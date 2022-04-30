@@ -32,28 +32,31 @@ namespace Aequus.Items.Armor.PassiveSummon
 
         public override void UpdateEquip(Player player)
         {
-            var aequus = player.Aequus();
-            aequus.wearingSummonHelmet = true;
-            if (CanDecrementTimer(player))
+            if (Main.myPlayer == player.whoAmI)
             {
-                aequus.summonHelmetTimer--;
-            }
-            if (aequus.summonHelmetTimer <= 0)
-            {
-                if (aequus.summonHelmetTimer != -1)
+                var aequus = player.Aequus();
+                aequus.wearingSummonHelmet = true;
+                if (CanDecrementTimer(player))
                 {
-                    int damage = player.GetWeaponDamage(Item);
-                    var spawnPosition = player.gravDir == -1
-                        ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
-                        : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
-                    int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition, new Vector2(Speed, 0f) * player.direction, ProjectileShot, damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI);
-                    Main.projectile[p].hostile = false;
-                    Main.projectile[p].friendly = true;
-                    Main.projectile[p].trap = false;
+                    aequus.summonHelmetTimer--;
                 }
-                aequus.summonHelmetTimer = TimeBetweenShots;
+                if (aequus.summonHelmetTimer <= 0)
+                {
+                    if (aequus.summonHelmetTimer != -1)
+                    {
+                        int damage = player.GetWeaponDamage(Item);
+                        var spawnPosition = player.gravDir == -1
+                            ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
+                            : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
+                        int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition, new Vector2(Speed, 0f) * player.direction, ProjectileShot, damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI);
+                        Main.projectile[p].hostile = false;
+                        Main.projectile[p].friendly = true;
+                        Main.projectile[p].trap = false;
+                    }
+                    aequus.summonHelmetTimer = TimeBetweenShots;
+                }
+                player.GetDamage(DamageClass.Summon) += 0.05f;
             }
-            player.GetDamage(DamageClass.Summon) += 0.05f;
         }
         public virtual bool CanDecrementTimer(Player player)
         {

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Utilities;
-using Aequus.Items;
+using Aequus.Content.ItemModules;
 using Aequus.NPCs.Characters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -176,9 +176,9 @@ namespace Aequus.UI.States
                     {
                         if (moduleSlot[i].Y > itemSlot.Y)
                         {
-                            if (module.modules != null && module.modules.dict.ContainsKey(i))
+                            if (module.itemModules != null && module.itemModules.Modules.ContainsKey(i))
                             {
-                                moduleSlot[i].item = module.modules.dict[i].Clone();
+                                moduleSlot[i].item = module.itemModules[i].Clone();
                             }
                             else
                             {
@@ -191,23 +191,23 @@ namespace Aequus.UI.States
                                 if (Main.mouseLeft && Main.mouseLeftRelease && CanSwapBarb(moduleSlot[i].item, Main.mouseItem))
                                 {
                                     SoundEngine.PlaySound(SoundID.Grab);
-                                    if (module.modules == null)
+                                    if (module.itemModules == null)
                                     {
-                                        module.modules = new ModularItems.ItemModuleData();
+                                        module.itemModules = new ItemModuleData();
                                     }
                                     if (Main.mouseItem == null || Main.mouseItem.IsAir)
                                     {
-                                        module.modules.dict.Remove(i);
+                                        module.itemModules.Modules.Remove(i);
                                     }
                                     else
                                     {
-                                        if (module.modules.dict.ContainsKey(i))
+                                        if (module.itemModules.Modules.ContainsKey(i))
                                         {
-                                            module.modules.dict[i] = Main.mouseItem;
+                                            module.itemModules[i] = Main.mouseItem;
                                         }
                                         else
                                         {
-                                            module.modules.dict.Add(i, Main.mouseItem);
+                                            module.itemModules.Modules.Add(i, Main.mouseItem);
                                         }
                                     }
                                     Utils.Swap(ref moduleSlot[i].item, ref Main.mouseItem);

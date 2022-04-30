@@ -8,7 +8,7 @@ using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables.TreasureBags;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Pets;

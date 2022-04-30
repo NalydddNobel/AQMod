@@ -12,6 +12,11 @@ using Terraria.DataStructures;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
+using Terraria.ID;
+using Terraria.GameContent.Events;
+using Aequus.Items;
+using Terraria.Audio;
+using System.Reflection;
 
 namespace Aequus
 {
@@ -47,15 +52,21 @@ namespace Aequus
         public bool resistHeat;
 
         /// <summary>
-        /// Whether or not the player is in the Gale Streams event. This is set to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>. Otherwise, this is false.
+        /// Whether or not the player is in the Gale Streams event. Updated to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>
         /// </summary>
         public bool eventGaleStreams;
 
         /// <summary>
-        /// Whether or not the player is 'in danger'. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
+        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
         /// </summary>
-        public bool inDanger;
+        public int closestEnemy;
+        public int closestEnemyOld;
 
+        /// <summary>
+        /// Applied by <see cref="Items.Accessories.Summon.SentrySquid"/>
+        /// </summary>
+        public bool autoSentry;
+        public ushort autoSentryCooldown;
         /// <summary>
         /// Used by <see cref="GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
         /// </summary>
@@ -110,14 +121,25 @@ namespace Aequus
         /// </summary>
         public uint interactionCooldown;
 
+        public int turretSlotCount;
+
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
         public bool HasCooldown => itemCooldown > 0;
+        public bool InDanger => closestEnemy != -1;
+
+        private static MethodInfo Player_ItemCheck_Shoot;
 
         public override void Load()
         {
             LoadHooks();
+            Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+
+        public override void Unload()
+        {
+            Player_ItemCheck_Shoot = null;
         }
 
         public override void Initialize()
@@ -127,6 +149,9 @@ namespace Aequus
             itemCombo = 0;
             itemSwitch = 0;
             interactionCooldown = 60;
+            closestEnemyOld = -1;
+            closestEnemy = -1;
+            autoSentryCooldown = 120;
         }
 
         public override void PreUpdate()
@@ -147,6 +172,12 @@ namespace Aequus
             return GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player);
         }
 
+        public override void UpdateDead()
+        {
+            autoSentry = false;
+            autoSentryCooldown = 120;
+        }
+
         public override void ResetEffects()
         {
             teamContext = Player.team;
@@ -159,6 +190,12 @@ namespace Aequus
 
             resistHeat = false;
 
+            autoSentry = false;
+            if (!InDanger)
+            {
+                autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
+            }
+            AequusHelpers.TickDown(ref autoSentryCooldown);
             glowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
@@ -237,23 +274,103 @@ namespace Aequus
                 AequusHelpers.Main_dayTime.EndCaching();
             }
             PostUpdate_CheckDanger();
+            if (autoSentry && autoSentryCooldown == 0)
+            {
+                UpdateAutoSentry();
+            }
             teamContext = 0;
         }
-        private void PostUpdate_CheckDanger()
+        public void PostUpdate_CheckDanger()
         {
-            inDanger = false;
-            var checkTangle = new Rectangle((int)Player.position.X + Player.width / 2 - 1000, (int)Player.position.X + Player.head / 2 - 500, 2000, 1000);
+            closestEnemyOld = closestEnemy;
+            closestEnemy = -1;
+
+            var center = Player.Center;
+            var checkTangle = new Rectangle((int)Player.position.X + Player.width / 2 - 1000, (int)Player.position.Y + Player.height / 2 - 500, 2000, 1000);
+            float distance = 2000f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].lifeMax > 5)
+                if (Main.npc[i].active && !Main.npc[i].friendly && !Main.npc[i].IsProbablyACritter())
                 {
                     if (Main.npc[i].getRect().Intersects(checkTangle))
                     {
-                        inDanger = true;
-                        return;
+                        float d = Main.npc[i].Distance(center);
+                        if (d < distance)
+                        {
+                            distance = d;
+                            closestEnemy = i;
+                        }
                     }
                 }
             }
+        }
+        public void UpdateAutoSentry()
+        {
+            if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
+            {
+                autoSentryCooldown = 30;
+                return;
+            }
+
+            var item = AutoSentry_GetUsableSentryStaff();
+            if (item == null)
+            {
+                autoSentryCooldown = 30;
+                return;
+            }
+
+            CountSentries();
+            if (turretSlotCount >= Player.maxTurrets)
+            {
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
+                    {
+                        Main.projectile[i].timeLeft = Math.Min(Main.projectile[i].timeLeft, 30);
+                        break;
+                    }
+                }
+                autoSentryCooldown = 30;
+                return;
+            }
+
+            if (!ItemsCatalogue.SentryUsage.TryGetValue(item.type, out var sentryUsage))
+            {
+                sentryUsage = ItemsCatalogue.SentryStaffUsage.Default;
+            }
+            if (sentryUsage.TrySummoningThisSentry(Player, item, Main.npc[closestEnemy]))
+            {
+                Player.UpdateMaxTurrets();
+                if (Player.maxTurrets > 1)
+                {
+                    autoSentryCooldown = 240;
+                }
+                else
+                {
+                    autoSentryCooldown = 3000;
+                }
+                if (Main.netMode != NetmodeID.Server && item.UseSound != null)
+                {
+                    SoundEngine.PlaySound(item.UseSound, Main.npc[closestEnemy].Center);
+                }
+            }
+            else
+            {
+                autoSentryCooldown = 30;
+            }
+        }
+        public Item AutoSentry_GetUsableSentryStaff()
+        {
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                // A very small check which doesn't care about checking damage and such, so this could be easily manipulated.
+                if (!Player.inventory[i].IsAir && Player.inventory[i].sentry && Player.inventory[i].shoot > ProjectileID.None && (!Player.inventory[i].DD2Summon || !DD2Event.Ongoing)
+                    && ItemLoader.CanUseItem(Player.inventory[i], Player))
+                {
+                    return Player.inventory[i];
+                }
+            }
+            return null;
         }
 
         public override void ModifyScreenPosition()
@@ -284,25 +401,23 @@ namespace Aequus
             {
                 return;
             }
-            RenderBungusAura();
+            RenderMendshroomAura();
             RenderFocusCrystalAura();
         }
-        private void RenderBungusAura()
+        public void RenderMendshroomAura()
         {
             var stat = Player.GetModPlayer<MendshroomPlayer>();
             if (stat._circumferenceForVFX > 0f)
             {
-                HelpBeginSpriteBatch(Main.spriteBatch);
-                HelpDrawAura(stat._circumferenceForVFX, 1f, new Color(10, 128, 10, 0));
-                Main.spriteBatch.End();
+                DrawBasicAura(stat._circumferenceForVFX, 1f, new Color(10, 128, 10, 0));
             }
         }
-        private void RenderFocusCrystalAura()
+        public void RenderFocusCrystalAura()
         {
             var hyperCrystal = Player.GetModPlayer<HyperCrystalPlayer>();
             if (hyperCrystal._accFocusCrystalCircumference > 0f && !hyperCrystal.hideVisual)
             {
-                if (inDanger)
+                if (InDanger)
                 {
                     hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 1f, 0.1f);
                 }
@@ -311,17 +426,17 @@ namespace Aequus
                     hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 0.2f, 0.1f);
                 }
 
-                HelpBeginSpriteBatch(Main.spriteBatch);
-                HelpDrawAura(hyperCrystal._accFocusCrystalCircumference, hyperCrystal._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
-                Main.spriteBatch.End();
+                DrawBasicAura(hyperCrystal._accFocusCrystalCircumference, hyperCrystal._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
             }
             else
             {
                 hyperCrystal._accFocusCrystalOpacity = 0f;
             }
         }
-        private void HelpDrawAura(float circumference, float opacity, Color color)
+        public void DrawBasicAura(float circumference, float opacity, Color color)
         {
+            BeginSpriteBatch(Main.spriteBatch);
+
             var texture = PlayerAssets.FocusAura.Value;
             var origin = texture.Size() / 2f;
             var drawCoords = (Player.Center - Main.screenPosition).Floor();
@@ -346,8 +461,10 @@ namespace Aequus
 
             Main.spriteBatch.Draw(texture, drawCoords, null,
                 color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+
+            Main.spriteBatch.End();
         }
-        private void HelpBeginSpriteBatch(SpriteBatch spriteBatch)
+        private void BeginSpriteBatch(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
         }
@@ -374,6 +491,7 @@ namespace Aequus
         /// </summary>
         /// <param name="cooldown">The amount of time the cooldown lasts in game ticks.</param>
         /// <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
+        /// <param name="itemReference"></param>
         public void SetCooldown(int cooldown, bool ignoreStats = false, Item itemReference = null)
         {
             if (cooldown < itemCooldown)
@@ -383,6 +501,68 @@ namespace Aequus
 
             itemCooldownMax = (ushort)cooldown;
             itemCooldown = (ushort)cooldown;
+        }
+
+        public void CountSentries()
+        {
+            turretSlotCount = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
+                {
+                    turretSlotCount++;
+                }
+            }
+        }
+
+        public static void ShootProj(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)
+        {
+            if (Player_ItemCheck_Shoot != null)
+            {
+                int mouseX = Main.mouseX;
+                int mouseY = Main.mouseY;
+
+                Player_ItemCheck_Shoot.Invoke(player, new object[] { player.whoAmI, item, player.GetWeaponDamage(item), });
+
+                Main.mouseX = mouseX;
+                Main.mouseY = mouseY;
+                return;
+            }
+
+            LegacySudoShootProj(player, item, source, location, velocity, projType, projDamage, projKB, setMousePos);
+        }
+        private static int LegacySudoShootProj(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)
+        {
+            int mouseX = Main.mouseX;
+            int mouseY = Main.mouseY;
+
+            if (source == null)
+            {
+                source = new EntitySource_ItemUse_WithAmmo(player, item, 0);
+            }
+
+            if (setMousePos != null)
+            {
+                var mousePos = setMousePos.Value - Main.screenPosition;
+                Main.mouseX = (int)mousePos.X;
+                Main.mouseX = (int)mousePos.Y;
+            }
+
+            CombinedHooks.ModifyShootStats(player, item, ref location, ref velocity, ref projType, ref projDamage, ref projKB);
+
+            int result;
+            if (CombinedHooks.Shoot(player, item, source, location, velocity, projType, projDamage, projKB))
+            {
+                result = Projectile.NewProjectile(source, location, velocity, projType, projDamage, projKB, player.whoAmI);
+            }
+            else
+            {
+                result = -2;
+            }
+
+            Main.mouseX = mouseX;
+            Main.mouseY = mouseY;
+            return result;
         }
     }
 }

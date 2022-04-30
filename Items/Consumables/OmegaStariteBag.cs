@@ -9,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.TreasureBags
+namespace Aequus.Items.Consumables
 {
     public class OmegaStariteBag : TreasureBagBase
     {

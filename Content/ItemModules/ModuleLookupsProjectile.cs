@@ -5,9 +5,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.HookEquips
+namespace Aequus.Content.ItemModules
 {
-    public sealed class HookEquipsProjectile : GlobalProjectile
+    public sealed class ModuleLookupsProjectile : GlobalProjectile
     {
         internal static bool moduleAddProjDamage;
         internal static Dictionary<int, int> modulesCombinedDamage;
@@ -43,22 +43,22 @@ namespace Aequus.Items.Misc.HookEquips
                 }
             }
         }
-        private void UpdateProjModuleLookups(Projectile projectile, Item item)
+        public void UpdateProjModuleLookups(Projectile projectile, Item item)
         {
             var grapplingHook = item;
             if (grapplingHook != null && !grapplingHook.IsAir)
             {
-                var modules = grapplingHook.GetGlobalItem<ModularItems>().modules;
+                var modules = grapplingHook.GetGlobalItem<ModularItems>().itemModules;
                 if (modules != null)
                 {
-                    int[] barbs = new int[modules.dict.Count];
+                    int[] barbs = new int[modules.Count];
                     int i = 0;
-                    foreach (var pair in modules.dict)
+                    foreach (var pair in modules)
                     {
                         barbs[i] = pair.Value.type;
                         i++;
                     }
-                    projectile.GetGlobalProjectile<HookEquipsProjectile>().moduleLookups = barbs;
+                    projectile.GetGlobalProjectile<ModuleLookupsProjectile>().moduleLookups = barbs;
                 }
             }
         }
@@ -78,6 +78,7 @@ namespace Aequus.Items.Misc.HookEquips
             }
             return true;
         }
+
         public override void AI(Projectile projectile)
         {
             if (moduleLookups != null)
@@ -90,6 +91,7 @@ namespace Aequus.Items.Misc.HookEquips
                 }
             }
         }
+
         public override void PostAI(Projectile projectile)
         {
             if (moduleLookups != null)

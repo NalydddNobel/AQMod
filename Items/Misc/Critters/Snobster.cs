@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Critters
 {
     public class Snobster : ModItem
     {

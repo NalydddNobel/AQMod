@@ -6,6 +6,7 @@ using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -119,6 +120,7 @@ namespace Aequus.Projectiles.Melee
                                 d.noGravity = true;
                             }
                             SoundID.Item14?.PlaySound(targetPos);
+                            AequusHelpers.PlaySound(SoundType.Sound, "thunderclap" + Main.rand.Next(2), targetPos, 0.5f);
                         }
                         if (Main.myPlayer == Projectile.owner)
                         {
@@ -167,11 +169,6 @@ namespace Aequus.Projectiles.Melee
                 }
             }
             Projectile.netUpdate = true;
-        }
-
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
-            target.AddBuff(BuffID.OnFire3, 480);
         }
 
         public override bool PreDraw(ref Color lightColor)

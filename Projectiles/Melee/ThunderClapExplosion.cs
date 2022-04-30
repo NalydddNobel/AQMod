@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee
@@ -8,8 +9,8 @@ namespace Aequus.Projectiles.Melee
         public override string Texture => Aequus.TextureNone;
         public override void SetDefaults()
         {
-            Projectile.width = 400;
-            Projectile.height = 400;
+            Projectile.width = 300;
+            Projectile.height = 300;
             Projectile.timeLeft = 6;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
@@ -26,6 +27,11 @@ namespace Aequus.Projectiles.Melee
             {
                 Projectile.damage -= 10;
             }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 480);
         }
     }
 }

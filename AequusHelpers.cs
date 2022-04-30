@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -23,6 +24,50 @@ namespace Aequus
         public static StaticManipulator<bool> Main_dayTime { get; internal set; }
 
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
+
+        public static byte TickDown(ref byte value, byte tickAmt = 1)
+        {
+            if (value > 0)
+            {
+                if (value - tickAmt < 0)
+                {
+                    value = 0;
+                    return 0;
+                }
+                value -= tickAmt;
+            }
+            return value;
+        }
+        public static ushort TickDown(ref ushort value, ushort tickAmt = 1)
+        {
+            if (value > 0)
+            {
+                if (value - tickAmt < 0)
+                {
+                    value = 0;
+                    return 0;
+                }
+                value -= tickAmt;
+            }
+            return value;
+        }
+        public static int TickDown(ref int value, uint tickAmt = 1)
+        {
+            if (value > 0)
+            {
+                value -= (int)tickAmt;
+                if (value < 0)
+                {
+                    value = 0;
+                }
+            }
+            return value;
+        }
+
+        public static bool IsProbablyACritter(this NPC npc)
+        {
+            return NPCID.Sets.CountsAsCritter[npc.type] || (npc.lifeMax < 5 && npc.lifeMax != 1);
+        }
 
         public static bool IsTheDestroyer(this NPC npc)
         {

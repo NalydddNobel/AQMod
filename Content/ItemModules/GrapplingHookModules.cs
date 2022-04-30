@@ -6,11 +6,11 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.HookEquips
+namespace Aequus.Content.ItemModules
 {
-    public sealed class GrapplingHookModules
+    public class GrapplingHookModules
     {
-        public interface IHookBarbData : ModularItems.IModuleData
+        public interface IHookBarbData : IItemModule
         {
             /// <summary>
             /// Ran in <see cref="GlobalProjectile.PreAI(Projectile)"/>
@@ -53,7 +53,7 @@ namespace Aequus.Items.Misc.HookEquips
 
             public static void FlagUseProjDamage(bool value)
             {
-                HookEquipsProjectile.moduleAddProjDamage = value;
+                ModuleLookupsProjectile.moduleAddProjDamage = value;
             }
             public static void AddToDamageBusVariableDamage(int npc, int damage, float luck = 0f)
             {
@@ -61,13 +61,13 @@ namespace Aequus.Items.Misc.HookEquips
             }
             public static void AddToDamageBus(int npc, int damage)
             {
-                if (HookEquipsProjectile.modulesCombinedDamage.ContainsKey(npc))
+                if (ModuleLookupsProjectile.modulesCombinedDamage.ContainsKey(npc))
                 {
-                    HookEquipsProjectile.modulesCombinedDamage[npc] += damage;
+                    ModuleLookupsProjectile.modulesCombinedDamage[npc] += damage;
                 }
                 else
                 {
-                    HookEquipsProjectile.modulesCombinedDamage.Add(npc, damage);
+                    ModuleLookupsProjectile.modulesCombinedDamage.Add(npc, damage);
                 }
             }
         }

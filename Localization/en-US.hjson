@@ -86,7 +86,7 @@ Mods: {
 			SupernovaFruit: Supernova Fruit
 			GalacticStarfruit: Galactic Starfruit
 			MoonLeech: Moon Leech
-			Squyp: Squyp
+			SentrySquid: Sentry Squid
 			DreamCatcher: Dream Catcher
 			MagikaAmulet: Magika Amulet
 			JellyAmulet: Jelly Amulet
@@ -438,7 +438,7 @@ Mods: {
 				'''
 			GalacticStarfruit: Creates a strange glimmer
 			MoonLeech: Attacks drain mana from enemies
-			Squyp:
+			SentrySquid:
 				'''
 				Automatically places a sentry when you are in combat
 				Requires a sentry staff in your inventory to work

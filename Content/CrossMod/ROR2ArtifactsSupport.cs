@@ -1,8 +1,9 @@
-﻿using Terraria;
+﻿using Aequus.Common;
+using Terraria;
 
 namespace Aequus.Content.CrossMod
 {
-    internal sealed class ROR2ArtifactsSupport : SupportBase
+    internal sealed class ROR2ArtifactsSupport : EmptyModType
     {
         public static ModData ROR2Artifacts;
 

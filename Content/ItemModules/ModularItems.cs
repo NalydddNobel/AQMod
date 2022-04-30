@@ -11,13 +11,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items
+namespace Aequus.Content.ItemModules
 {
-    public sealed class ModularItems : GlobalItem
+    public class ModularItems : GlobalItem
     {
         public sealed class Catalogue
         {
-            private static Dictionary<int, IModuleData> _registeredModules;
+            private static Dictionary<int, IItemModule> _registeredModules;
             private static Dictionary<int, List<int>> _allowedEquips;
 
             public static void AllowEquipType(int item, List<int> equipTypes)
@@ -66,7 +66,7 @@ namespace Aequus.Items
                 });
             }
 
-            public static void RegisterModule(int item, IModuleData data)
+            public static void RegisterModule(int item, IItemModule data)
             {
                 _registeredModules.Add(item, data);
             }
@@ -76,11 +76,11 @@ namespace Aequus.Items
                 return _registeredModules.ContainsKey(item);
             }
 
-            public static IModuleData GetModuleData(int item)
+            public static IItemModule GetModuleData(int item)
             {
                 return _registeredModules[item];
             }
-            public static bool TryGetModuleData(int item, out IModuleData value)
+            public static bool TryGetModuleData(int item, out IItemModule value)
             {
                 return _registeredModules.TryGetValue(item, out value);
             }
@@ -105,7 +105,7 @@ namespace Aequus.Items
 
             internal static void Load()
             {
-                _registeredModules = new Dictionary<int, IModuleData>();
+                _registeredModules = new Dictionary<int, IItemModule>();
                 // Hook of Dissonance and other teleporting hooks should not be allowed to use barbs
                 // Anti Gravity Hook and Static hook are also purposely not allowed to use barbs
                 _allowedEquips = new Dictionary<int, List<int>>();
@@ -140,61 +140,15 @@ namespace Aequus.Items
                 _allowedEquips = null;
             }
         }
-        public interface IModuleData
-        {
-            List<int> ModuleTypes { get; set; }
-        }
 
-        public class ItemModuleData : TagSerializable
-        {
-            public readonly Dictionary<int, Item> dict;
-
-            public ItemModuleData()
-            {
-                dict = new Dictionary<int, Item>();
-            }
-
-            public TagCompound SerializeData()
-            {
-                List<int> keys = new List<int>();
-                List<Item> values = new List<Item>();
-                foreach (var pair in dict)
-                {
-                    keys.Add(pair.Key);
-                    values.Add(pair.Value);
-                }
-                return new TagCompound()
-                {
-                    ["keys"] = keys.ToList(),
-                    ["values"] = values.ToList(),
-                };
-            }
-
-            public static ItemModuleData LoadData(TagCompound tag)
-            {
-                if (tag.ContainsKey("keys") && tag.ContainsKey("values"))
-                {
-                    var data = new ItemModuleData();
-                    List<int> keys = tag.Get<List<int>>("keys");
-                    List<Item> values = tag.Get<List<Item>>("values");
-                    for (int i = 0; i < keys.Count; i++)
-                    {
-                        data.dict.Add(keys[i], values[i]);
-                    }
-                    return data;
-                }
-                return null;
-            }
-        }
-
-        public ItemModuleData modules;
+        public ItemModuleData itemModules;
 
         public override bool InstancePerEntity => true;
 
         public override GlobalItem Clone(Item item, Item itemClone)
         {
             var clone = (ModularItems)base.Clone(item, itemClone);
-            clone.modules = modules;
+            clone.itemModules = itemModules;
             return clone;
         }
 
@@ -210,9 +164,9 @@ namespace Aequus.Items
 
         public override void SaveData(Item item, TagCompound tag)
         {
-            if (modules != null)
+            if (itemModules != null)
             {
-                tag["modules"] = modules.SerializeData();
+                tag["modules"] = itemModules.SerializeData();
             }
         }
 
@@ -222,12 +176,12 @@ namespace Aequus.Items
             {
                 try
                 {
-                    modules = ItemModuleData.LoadData(tag.Get<TagCompound>("modules"));
+                    itemModules = ItemModuleData.LoadData(tag.Get<TagCompound>("modules"));
                 }
                 catch (Exception ex)
                 {
                     Aequus.Instance.Logger.Error(ex);
-                    modules = null;
+                    itemModules = null;
                 }
             }
         }
@@ -238,7 +192,7 @@ namespace Aequus.Items
             {
                 if (Catalogue.TryGetAllowedModules(item.type, out var equips) && tooltips != null)
                 {
-                    if (modules != null && modules.dict.Count > 0)
+                    if (itemModules != null && itemModules.Count > 0)
                     {
                         for (int i = 0; i < 2; i++)
                         {
@@ -263,7 +217,7 @@ namespace Aequus.Items
 
         public override void PostDrawTooltip(Item item, ReadOnlyCollection<DrawableTooltipLine> lines)
         {
-            if (modules != null && modules.dict.Count > 0)
+            if (itemModules != null && itemModules.Count > 0)
             {
                 float X = lines[0].X;
                 float y = 0f;
@@ -282,7 +236,7 @@ namespace Aequus.Items
                 var back = TextureAssets.InventoryBack.Value;
                 float backWidth = back.Width * Main.inventoryScale;
                 int i = 0;
-                foreach (var module in modules.dict)
+                foreach (var module in itemModules)
                 {
                     float x = X + (backWidth + 4) * i;
                     Main.spriteBatch.Draw(back, new Vector2(x, y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), Main.inventoryScale, SpriteEffects.None, 0f);

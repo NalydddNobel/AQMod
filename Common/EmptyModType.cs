@@ -1,8 +1,8 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
+namespace Aequus.Common
 {
-    internal abstract class SupportBase : ModType
+    public abstract class EmptyModType : ModType
     {
         protected sealed override void Register()
         {

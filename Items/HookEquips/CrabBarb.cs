@@ -1,8 +1,9 @@
-﻿using Terraria;
+﻿using Aequus.Content.ItemModules;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.HookEquips
+namespace Aequus.Items.HookEquips
 {
     public class CrabBarb : ModItem
     {

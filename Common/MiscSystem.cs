@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.HookEquips;
+﻿using Aequus.Content.ItemModules;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
@@ -8,8 +8,8 @@ namespace Aequus.Common
     {
         public override void OnWorldLoad()
         {
-            HookEquipsProjectile.modulesCombinedDamage?.Clear();
-            HookEquipsProjectile.modulesCombinedDamage = new Dictionary<int, int>();
+            ModuleLookupsProjectile.modulesCombinedDamage?.Clear();
+            ModuleLookupsProjectile.modulesCombinedDamage = new Dictionary<int, int>();
         }
 
         public override void PostUpdatePlayers()

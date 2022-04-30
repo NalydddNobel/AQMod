@@ -3,7 +3,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Effects;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables.TreasureBags;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Characters;
