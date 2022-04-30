@@ -64,6 +64,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			IcebergKraken: 冰山海妖
 			ToySpaceGun: 玩具太空枪
 			GrandReward: 豪华奖励
 			Mendshroom: 愈灵菇
@@ -86,7 +87,7 @@ Mods: {
 			SupernovaFruit: 超新星果
 			GalacticStarfruit: 星河杨桃
 			MoonLeech: 月噬
-			Squyp: 特异珊瑚
+			SentrySquid: 哨兵乌贼
 			DreamCatcher: 捕梦者
 			MagikaAmulet: 神奇护符
 			JellyAmulet: 水母护符
@@ -365,6 +366,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			IcebergKraken:
+				'''
+				增加最大哨兵栏位
+				哨兵攻击有小几率造成霜火减益
+				当你处于战斗中时会自动召唤哨兵
+				仅在背包中拥有哨兵武器时才会生效
+				'''
 			ToySpaceGun: 
 				'''
 				召唤一只跟着你的太空乌贼
@@ -391,26 +399,6 @@ Mods: {
 				'''
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
-			ArtifactOfDissonance:
-				'''
-				怪物可以出现在它们通常不会出现的环境
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfKin:
-				'''
-				怪物在一分钟内仅会出现一种类型
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfSwarms:
-				'''
-				怪物生成率加倍, 但怪物的最大生命值减半
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfCommand:
-				'''
-				选择你的物品
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
 			MirrorsCall:
 				'''
 				'从你舒适的沙发上打击敌人!'
@@ -438,7 +426,7 @@ Mods: {
 				'''
 			GalacticStarfruit: 创造一道奇异微光
 			MoonLeech: 攻击会汲取敌人的法力
-			Squyp:
+			SentrySquid:
 				'''
 				当你处于战斗中时会自动召唤哨兵
 				仅在背包中拥有哨兵武器时才会生效
