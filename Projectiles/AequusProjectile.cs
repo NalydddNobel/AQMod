@@ -1,10 +1,11 @@
 ﻿using Aequus.Items.Accessories;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles
 {
-    public class ProjectileEffects : GlobalProjectile
+    public class AequusProjectile : GlobalProjectile
     {
         public override void PostAI(Projectile projectile)
         {
@@ -16,6 +17,17 @@ namespace Aequus.Projectiles
                     AequusPlayer.teamContext = Main.player[projectile.owner].team;
                     GlowCore.AddLight(projectile, aequus.glowCore);
                     AequusPlayer.teamContext = 0;
+                }
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+            {
+                if (Main.player[projectile.owner].Aequus().frostburnSentry && Main.rand.NextBool(6))
+                {
+                    target.AddBuff(BuffID.Frostburn2, 240);
                 }
             }
         }

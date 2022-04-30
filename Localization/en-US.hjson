@@ -64,6 +64,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			IcebergKraken: Iceberg Kraken
 			ToySpaceGun: Toy Space Gun
 			GrandReward: Grand Reward
 			Mendshroom: Mendshroom
@@ -365,6 +366,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			IcebergKraken:
+				'''
+				Increase your max number of sentries by 1
+				Sentry attacks have a small chance to inflict frostburn
+				Automatically places a sentry when you are in combat
+				Requires a sentry staff in your inventory to work
+				'''
 			ToySpaceGun: 
 				'''
 				Summons a space squiddy to follow you
@@ -391,26 +399,6 @@ Mods: {
 				'''
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
-			ArtifactOfDissonance:
-				'''
-				Monsters can appear outside their usual environments
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfKin:
-				'''
-				Monsters will be of only one type for a minute
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfSwarms:
-				'''
-				Monster spawns are doubled, but monster maximum health is halved
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
-			ArtifactOfCommand:
-				'''
-				Choose your items
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'''
 			MirrorsCall:
 				'''
 				'Strike the enemy from the comfort of your couch!'

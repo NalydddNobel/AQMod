@@ -115,14 +115,20 @@ namespace Aequus.Items
                     {
                         return false;
                     }
-                    AequusPlayer.ShootProj(player, item, source, resultPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), resultPosition);
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        AequusPlayer.ShootProj(player, item, source, resultPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), resultPosition);
+                    }
                 }
                 else
                 {
                     var shootPosition = target.position;
                     shootPosition.X += target.width / 2f;
-                    shootPosition.Y -= 200f;
-                    AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                    shootPosition.Y -= 200f; 
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                    }
                 }
                 return true;
             }

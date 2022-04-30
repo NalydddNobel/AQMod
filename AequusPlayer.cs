@@ -67,6 +67,7 @@ namespace Aequus
         /// </summary>
         public bool autoSentry;
         public ushort autoSentryCooldown;
+        public bool frostburnSentry;
         /// <summary>
         /// Used by <see cref="GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
         /// </summary>
@@ -164,6 +165,7 @@ namespace Aequus
             {
                 AequusHelpers.Main_dayTime.StartCaching(false);
             }
+            
             eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
         }
@@ -180,6 +182,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            frostburnSentry = false;
             teamContext = Player.team;
             blueFire = false;
             pickBreak = false;
@@ -191,14 +194,18 @@ namespace Aequus
             resistHeat = false;
 
             autoSentry = false;
+            glowCore = 0;
+            forceDaytime = 0;
+            lootLuck = 0f;
+        }
+
+        public override void PreUpdateBuffs()
+        {
             if (!InDanger)
             {
                 autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
             }
             AequusHelpers.TickDown(ref autoSentryCooldown);
-            glowCore = 0;
-            forceDaytime = 0;
-            lootLuck = 0f;
         }
 
         public override bool PreItemCheck()
@@ -322,13 +329,22 @@ namespace Aequus
             CountSentries();
             if (turretSlotCount >= Player.maxTurrets)
             {
+                int oldestSentry = -1;
+                int time = int.MaxValue;
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
                     {
-                        Main.projectile[i].timeLeft = Math.Min(Main.projectile[i].timeLeft, 30);
-                        break;
+                        if (Main.projectile[i].timeLeft < time)
+                        {
+                            oldestSentry = i;
+                            time = Main.projectile[i].timeLeft;
+                        }
                     }
+                }
+                if (oldestSentry != -1)
+                {
+                    Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
                 }
                 autoSentryCooldown = 30;
                 return;
@@ -521,6 +537,13 @@ namespace Aequus
             {
                 int mouseX = Main.mouseX;
                 int mouseY = Main.mouseY;
+
+                if (setMousePos != null)
+                {
+                    var mousePos = setMousePos.Value - Main.screenPosition;
+                    Main.mouseX = (int)mousePos.X;
+                    Main.mouseX = (int)mousePos.Y;
+                }
 
                 Player_ItemCheck_Shoot.Invoke(player, new object[] { player.whoAmI, item, player.GetWeaponDamage(item), });
 

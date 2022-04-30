@@ -1,10 +1,10 @@
-﻿using Terraria;
-using Terraria.ID;
+﻿using Aequus.Common;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon
 {
-    public sealed class SentrySquid : ModItem
+    public sealed class IcebergKraken : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,13 +16,20 @@ namespace Aequus.Items.Accessories.Summon
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Green;
-            Item.value = Item.sellPrice(gold: 1);
+            Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.value = ItemDefaults.GaleStreamsValue;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().autoSentry = true;
+            player.Aequus().frostburnSentry = true;
+            player.maxTurrets++;
+        }
+
+        public override void AddRecipes()
+        {
+            CommonRecipes.SpaceSquidDrop(this, ModContent.ItemType<SentrySquid>());
         }
     }
 }
