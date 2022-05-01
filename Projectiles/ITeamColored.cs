@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Projectiles.Healing
+namespace Aequus.Projectiles
 {
-    internal interface ITeamColored
+    public interface ITeamColored
     {
         Color TeamColor { get; protected set; }
 

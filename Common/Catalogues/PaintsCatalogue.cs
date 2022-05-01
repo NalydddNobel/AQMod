@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Catalogues
 {
-    public sealed class PaintsCatalogue : ILoadable
+    public class PaintsCatalogue : ILoadable
     {
         internal static Color Furniture => new Color(191, 142, 111);
 

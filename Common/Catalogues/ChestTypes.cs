@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace Aequus.Common.Catalogues
 {
-    internal static class ChestCatalogue
+    public static class ChestTypes
     {
         public const int Wood = 0;
         public const int Gold = 1;

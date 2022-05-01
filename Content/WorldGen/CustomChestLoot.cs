@@ -16,36 +16,40 @@ namespace Aequus.Content.WorldGeneration
                 Chest c = Main.chest[i];
                 if (c != null && Main.tile[c.x, c.y].TileType == TileID.Containers && c.item[0] != null && !c.item[0].IsAir)
                 {
-                    int chestType = ChestCatalogue.GetChestType(c);
-                    if (chestType == ChestCatalogue.Gold || chestType == ChestCatalogue.deadMans)
+                    int chestType = ChestTypes.GetChestType(c);
+                    if (chestType == ChestTypes.Gold || chestType == ChestTypes.deadMans)
                     {
                         GoldChestLoot(c);
                     }
-                    else if (chestType == ChestCatalogue.Frozen)
+                    else if (chestType == ChestTypes.Frozen)
                     {
                         FrozenChestLoot(c);
                     }
                 }
             }
         }
-        private void GoldChestLoot(Chest c)
+        public void GoldChestLoot(Chest c)
         {
             if (WorldGen.genRand.NextBool(3))
             {
-                for (int i = 0; i < Chest.maxItems; i++)
+                if (CanAddGlowCore(c))
                 {
-                    if (c.item[i].stack > 0 && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
-                    {
-                        goto AddGlowCore;
-                    }
+                    c.Insert(ModContent.ItemType<GlowCore>(), 1);
                 }
-                return;
-
-            AddGlowCore:
-                c.Insert(ModContent.ItemType<GlowCore>(), 1);
             }
         }
-        private void FrozenChestLoot(Chest c)
+        public bool CanAddGlowCore(Chest c)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (c.item[i].stack > 0 && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void FrozenChestLoot(Chest c)
         {
             if (c.item[0].type == ItemID.IceBlade)
             {

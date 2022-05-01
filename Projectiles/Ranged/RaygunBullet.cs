@@ -246,7 +246,7 @@ namespace Aequus.Projectiles.Ranged
             var center = Projectile.Center;
             if (Main.netMode != NetmodeID.Server)
             {
-                int amt = (int)(75 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+                int amt = (int)(75 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
                 var color = GetColor().UseA(0);
                 for (int i = 0; i < amt; i++)
                 {
@@ -266,7 +266,7 @@ namespace Aequus.Projectiles.Ranged
                     var explosionPos = Projectile.Center + r * Main.rand.NextFloat(16f, 60f);
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        int amt = (int)(35 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+                        int amt = (int)(35 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
                         var color = GetColor().UseA(0) * 0.8f;
                         for (int j = 0; j < amt; j++)
                         {
@@ -300,7 +300,7 @@ namespace Aequus.Projectiles.Ranged
             {
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    int amt = (int)(175 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+                    int amt = (int)(175 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
                     var color = GetColor().UseA(0) * 1.2f;
                     for (int j = 0; j < amt; j++)
                     {

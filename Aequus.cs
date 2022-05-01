@@ -22,7 +22,7 @@ namespace Aequus
         public static UserInterface NPCTalkInterface { get; private set; }
 
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
-        public static bool HQ => ClientConfiguration.Instance.HighQuality;
+        public static bool HQ => ClientConfig.Instance.HighQuality;
 
         internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
@@ -32,7 +32,7 @@ namespace Aequus
             Instance = this;
             AequusHelpers.Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
             AequusText.OnModLoad(this);
-            ClientConfiguration.OnModLoad(this);
+            ClientConfig.OnModLoad(this);
             if (Main.netMode != NetmodeID.Server)
             {
                 InventoryInterface = new UserInterface();
@@ -62,6 +62,10 @@ namespace Aequus
             return zoom * projection;
         }
 
+        public static Asset<Texture2D> TexAsset(string path)
+        {
+            return ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad);
+        }
         public static Texture2D Tex(string path)
         {
             return TexAsset(path).Value;
@@ -69,10 +73,6 @@ namespace Aequus
         public static Texture2D MyTex(string path)
         {
             return TexAsset(Instance.Name + "/" + path).Value;
-        }
-        public static Asset<Texture2D> TexAsset(string path)
-        {
-            return ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad);
         }
 
         public static string GetText(string key)

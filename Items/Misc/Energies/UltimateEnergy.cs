@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Energies
 {
-    public class UltimateEnergy : BaseEnergy
+    public class UltimateEnergy : EnergyItemBase
     {
         protected override IColorGradient Gradient => Gradients.ultimateGrad;
         protected override Vector3 LightColor => new Vector3(0.5f, 0.5f, 0.5f);

@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    internal sealed class AequusText : ILoadable
+    public class AequusText : ILoadable
     {
         public static FieldInfo translationsField;
         public static Dictionary<string, ModTranslation> Text;

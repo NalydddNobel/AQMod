@@ -7,11 +7,17 @@ using Terraria.ModLoader.Config;
 
 namespace Aequus.Common.Configuration
 {
-    public sealed class ClientConfiguration : ConfigurationBase
+    public sealed class ClientConfig : ConfigurationBase
     {
+        public override bool Autoload(ref string name)
+        {
+            name = "ClientConfiguration";
+            return base.Autoload(ref name);
+        }
+
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
-        public static ClientConfiguration Instance;
+        public static ClientConfig Instance;
 
         [Header(Key + "Client.Headers.Visuals")]
 

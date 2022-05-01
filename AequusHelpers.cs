@@ -14,33 +14,24 @@ using Terraria.Utilities;
 
 namespace Aequus
 {
+    /// <summary>
+    /// A helper class which contains many useful methods
+    /// </summary>
     public static class AequusHelpers
     {
+        /// <summary>
+        /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
+        /// </summary>
         public static int iterations;
 
+        /// <summary>
+        /// Caches <see cref="Main.dayTime"/>.
+        /// </summary>
         public static StaticManipulator<bool> Main_dayTime { get; internal set; }
+        /// <summary>
+        /// Determines whether or not the mouse has an item
+        /// </summary>
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
-
-        //public static bool SetBit(this Enum value, bool value2)
-        //{
-        //    value.GetTypeCode();
-        //    long value3 = (int)value;
-        //    get
-        //    {
-        //        return (value & (1 << key)) != 0;
-        //    }
-        //    set
-        //    {
-        //        if (value2)
-        //        {
-        //            value |= (byte)(1 << 1);
-        //        }
-        //        else
-        //        {
-        //            value &= (byte)(~(1 << 1));
-        //        }
-        //    }
-        //}
 
         public static byte TickDown(ref byte value, byte tickAmt = 1)
         {

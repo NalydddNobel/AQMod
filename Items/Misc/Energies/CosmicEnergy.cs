@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Misc.Energies
 {
-    public class CosmicEnergy : BaseEnergy
+    public class CosmicEnergy : EnergyItemBase
     {
         public override int Rarity => ItemRarityID.Green;
         protected override IColorGradient Gradient => Gradients.cosmicGrad;

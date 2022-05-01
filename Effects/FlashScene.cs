@@ -43,7 +43,7 @@ namespace Aequus.Effects
         {
             if (Flash.FlashLocation != Vector2.Zero)
             {
-                FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfiguration.Instance.FlashIntensity, 1f / 18f));
+                FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 1f / 18f));
                 if (!FlashFilter.IsActive())
                 {
                     Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation, null).GetShader()

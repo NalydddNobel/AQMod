@@ -122,7 +122,7 @@ namespace Aequus.Projectiles.Melee
             float trailOutwards = texture.Size().Length() * Projectile.scale - 40f * Projectile.scale;
             bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
             var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
-            if (ClientConfiguration.Instance.HighQuality)
+            if (ClientConfig.Instance.HighQuality)
             {
                 if (primBlue == null)
                 {

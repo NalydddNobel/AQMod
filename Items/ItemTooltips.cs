@@ -195,7 +195,7 @@ namespace Aequus.Items
             ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, new Vector2(x, y), Color.Black,
                 rotation, origin, baseScale);
 
-            if (ModContent.GetInstance<ClientConfiguration>().HighQuality)
+            if (ModContent.GetInstance<ClientConfig>().HighQuality)
             {
                 var rand = EffectsSystem.EffectRand;
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());

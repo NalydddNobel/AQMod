@@ -5,18 +5,23 @@ using Terraria.ID;
 
 namespace Aequus.Common.Catalogues
 {
-    public sealed class WindMovementCatalogue : CatalogueBase
+    public class WindMovementCatalogue : EmptyModType
     {
-        public static HashSet<int> NPCsWhitelist { get; private set; }
-        public static HashSet<int> ProjectilesWhitelist { get; private set; }
+        public static HashSet<int> WindNPCs { get; private set; }
+        public static HashSet<int> WindProjs { get; private set; }
 
-        public override void InitalizeMiscEntries()
+        public override void Load()
         {
-            NPCsWhitelist = new HashSet<int>();
-            ProjectilesWhitelist = new HashSet<int>();
+            WindNPCs = new HashSet<int>();
+            WindProjs = new HashSet<int>();
         }
 
-        public override void LoadAutomaticEntries()
+        public override void SetStaticDefaults()
+        {
+            AutoEntries();
+            SnipEntries();
+        }
+        public void AutoEntries()
         {
             AutomaticEntries_NPCs(new HashSet<int>()
             {
@@ -149,11 +154,11 @@ namespace Aequus.Common.Catalogues
                 ProjAIStyleID.WireKite,
             });
         }
-        private void AutomaticEntries_NPCs(HashSet<int> hash)
+        public void AutomaticEntries_NPCs(HashSet<int> hash)
         {
             foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (NPCsWhitelist.Contains(n.Key))
+                if (WindNPCs.Contains(n.Key))
                 {
                     continue;
                 }
@@ -162,7 +167,7 @@ namespace Aequus.Common.Catalogues
                     var npc = n.Value;
                     if (hash.Contains(npc.aiStyle))
                     {
-                        NPCsWhitelist.Add(n.Key);
+                        WindNPCs.Add(n.Key);
                     }
                 }
                 catch (Exception e)
@@ -172,11 +177,11 @@ namespace Aequus.Common.Catalogues
                 }
             }
         }
-        private void AutomaticEntries_Projectiles(HashSet<int> hash)
+        public void AutomaticEntries_Projectiles(HashSet<int> hash)
         {
             foreach (var p in ContentSamples.ProjectilesByType)
             {
-                if (ProjectilesWhitelist.Contains(p.Key))
+                if (WindProjs.Contains(p.Key))
                 {
                     continue;
                 }
@@ -185,7 +190,7 @@ namespace Aequus.Common.Catalogues
                     var projectile = p.Value;
                     if (hash.Contains(projectile.aiStyle))
                     {
-                        ProjectilesWhitelist.Add(p.Key);
+                        WindProjs.Add(p.Key);
                     }
                 }
                 catch (Exception e)
@@ -196,17 +201,17 @@ namespace Aequus.Common.Catalogues
             }
         }
 
-        public override void RemoveUnwantedEntries()
+        public void SnipEntries()
         {
-            NPCsWhitelist.Remove(NPCID.BloodSquid);
+            WindNPCs.Remove(NPCID.BloodSquid);
         }
 
         public override void Unload()
         {
-            NPCsWhitelist?.Clear();
-            NPCsWhitelist = null;
-            ProjectilesWhitelist?.Clear();
-            ProjectilesWhitelist = null;
+            WindNPCs?.Clear();
+            WindNPCs = null;
+            WindProjs?.Clear();
+            WindProjs = null;
         }
     }
 }

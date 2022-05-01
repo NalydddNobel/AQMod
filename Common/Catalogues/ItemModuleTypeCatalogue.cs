@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Catalogues
 {
-    public sealed class ItemModuleTypeCatalogue : ILoadable
+    public class ItemModuleTypeCatalogue : ILoadable
     {
         public const int BarbHook = 0;
         public const int BarbChain = 1;

@@ -8,7 +8,7 @@ using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    public sealed class FlawlessDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+    public class FlawlessDrop : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int ItemType;
 

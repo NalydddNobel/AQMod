@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common.Catalogues
 {
-    public sealed class ItemMaterialSort
+    public static class ItemMaterialSort
     {
         public const int Amethyst = 37;
         public const int Topaz = 38;

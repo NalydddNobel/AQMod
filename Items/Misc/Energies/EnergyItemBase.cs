@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Energies
 {
-    public abstract class BaseEnergy : ModItem
+    public abstract class EnergyItemBase : ModItem
     {
         protected abstract IColorGradient Gradient { get; }
         protected abstract Vector3 LightColor { get; }

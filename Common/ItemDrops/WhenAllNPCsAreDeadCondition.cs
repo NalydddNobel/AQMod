@@ -3,7 +3,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.ItemDrops
 {
-    internal class WhenAllNPCsAreDeadCondition : IItemDropRuleCondition, IProvideItemConditionDescription
+    public class WhenAllNPCsAreDeadCondition : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int type;
 

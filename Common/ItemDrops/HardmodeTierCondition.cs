@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.ItemDrops
 {
-    internal class HardmodeTierCondition : IItemDropRuleCondition, IProvideItemConditionDescription
+    public class HardmodeTierCondition : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public bool CanDrop(DropAttemptInfo info)
         {

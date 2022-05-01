@@ -1477,7 +1477,7 @@ namespace Aequus.NPCs.Boss
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
-            if (ClientConfiguration.Instance.HighQuality)
+            if (ClientConfig.Instance.HighQuality)
             {
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)
                 {

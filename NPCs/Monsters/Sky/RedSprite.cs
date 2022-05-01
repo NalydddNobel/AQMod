@@ -415,7 +415,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                             SoundHelper.Play(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
                                         }
                                         int dustAmount = 50;
-                                        if (!ClientConfiguration.Instance.HighQuality)
+                                        if (!ClientConfig.Instance.HighQuality)
                                         {
                                             dustAmount = (int)(dustAmount * 0.5f);
                                         }

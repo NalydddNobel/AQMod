@@ -62,7 +62,7 @@ namespace Aequus.Effects
 
         internal static void UpdateScreenPosition()
         {
-            Main.screenPosition += Shake.GetScreenOffset() * ClientConfiguration.Instance.ScreenshakeIntensity;
+            Main.screenPosition += Shake.GetScreenOffset() * ClientConfig.Instance.ScreenshakeIntensity;
         }
     }
 }

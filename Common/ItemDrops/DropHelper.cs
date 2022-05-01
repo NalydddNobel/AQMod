@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 
 namespace Aequus.Common.ItemDrops
 {
-    public sealed class DropHelper
+    public class DropHelper
     {
         public static void OneFromList(IEntitySource source, Player player, List<int> drops)
         {

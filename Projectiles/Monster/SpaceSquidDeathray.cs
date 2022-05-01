@@ -139,7 +139,7 @@ namespace Aequus.Projectiles.Monster
                 AequusHelpers.ScreenFlip(arr);
             }
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
-            int amount = (int)(30 * (ClientConfiguration.Instance.HighQuality ? 1f : 0.5f));
+            int amount = (int)(30 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
             var initialArr = new Vector2[amount];
             var center = Projectile.Center;
             initialArr[0] = center - Main.screenPosition;

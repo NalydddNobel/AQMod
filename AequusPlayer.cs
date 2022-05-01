@@ -20,7 +20,7 @@ using System.Reflection;
 
 namespace Aequus
 {
-    public sealed partial class AequusPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public static int teamContext;
 
@@ -169,7 +169,7 @@ namespace Aequus
             eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
         }
-        private bool CheckEventGaleStreams()
+        public bool CheckEventGaleStreams()
         {
             return GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player);
         }

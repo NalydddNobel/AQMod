@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    internal class StreamingBalloonSlimeInsideDropRule : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+    public class StreamingBalloonSlimeInsideDropRule : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public int Item;
         public int Chance;
