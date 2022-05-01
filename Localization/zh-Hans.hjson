@@ -13,6 +13,8 @@ Mods: {
 
 			SkyMerchant: 一位聪明的猎人创造了一颗热气球来狩猎鸟类, 在吃了一只鸟妖后他开始热衷于鸡块. 在有风的日子里可以看到他在天空中飞翔.
 			Exporter: 发货人是一个鲜为人知的小偷, 海盗的远亲. 所得的收益都会发放给位于世界各地的那些寻找最佳交易的可疑人士.
+
+			Snobster: 一种势利的虾, 这只特别势利.
 		}
 		DropCondition: {
 			StreamingBalloonKill: 
