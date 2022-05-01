@@ -49,13 +49,5 @@ namespace Aequus.NPCs
         {
             return npc.playerInteraction[player] && !noHit.damagedPlayers[player];
         }
-
-        public static void PlayJingle(Vector2 position)
-        {
-            if (Vector2.Distance(position, Main.player[Main.myPlayer].Center) < 3000f)
-            {
-                SoundHelper.Play(SoundType.Sound, "nohit", position);
-            }
-        }
     }
 }

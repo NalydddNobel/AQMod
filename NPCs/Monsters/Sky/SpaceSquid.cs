@@ -784,7 +784,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusWorld.DefeatEvent(ref AequusWorld.downedSpaceSquid);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedSpaceSquid, Type);
         }
 
         //public override void NPCLoot()

@@ -12,7 +12,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Characters
+namespace Aequus.NPCs.Friendly
 {
     [AutoloadBossHead()]
     public class SkyMerchant : ModNPC

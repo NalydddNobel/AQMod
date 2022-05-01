@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Catalogues;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.Invasions;
+using Aequus.Items.Misc;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using System.IO;
@@ -7,12 +9,13 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.Sky
 {
-    public sealed partial class Meteor : ModNPC
+    public class Meteor : ModNPC
     {
         public override void SetStaticDefaults()
         {
@@ -146,6 +149,22 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             NPC.localAI[0] = reader.ReadSingle();
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pumpinator>(), 15));
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 3), new ItemDrop(ItemID.CopperBar, 1)));
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 3), new ItemDrop(ItemID.TinBar, 1)));
+
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(1, false), new ItemDrop(ItemID.IronOre, 3), new ItemDrop(ItemID.IronBar, 1)));
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(1, true), new ItemDrop(ItemID.LeadOre, 3), new ItemDrop(ItemID.LeadBar, 1)));
+
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(2, false), new ItemDrop(ItemID.SilverOre, 4), new ItemDrop(ItemID.SilverBar, 1)));
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(2, true), new ItemDrop(ItemID.TungstenOre, 4), new ItemDrop(ItemID.TungstenBar, 1)));
+
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(3, false), new ItemDrop(ItemID.GoldOre, 4), new ItemDrop(ItemID.GoldBar, 1)));
+            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(3, true), new ItemDrop(ItemID.PlatinumOre, 4), new ItemDrop(ItemID.PlatinumBar, 1)));
         }
     }
 }

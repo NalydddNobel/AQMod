@@ -19,8 +19,28 @@ namespace Aequus
         public static int iterations;
 
         public static StaticManipulator<bool> Main_dayTime { get; internal set; }
-
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
+
+        //public static bool SetBit(this Enum value, bool value2)
+        //{
+        //    value.GetTypeCode();
+        //    long value3 = (int)value;
+        //    get
+        //    {
+        //        return (value & (1 << key)) != 0;
+        //    }
+        //    set
+        //    {
+        //        if (value2)
+        //        {
+        //            value |= (byte)(1 << 1);
+        //        }
+        //        else
+        //        {
+        //            value &= (byte)(~(1 << 1));
+        //        }
+        //    }
+        //}
 
         public static byte TickDown(ref byte value, byte tickAmt = 1)
         {

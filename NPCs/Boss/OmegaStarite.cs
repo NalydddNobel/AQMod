@@ -1654,7 +1654,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusWorld.DefeatEvent(ref AequusWorld.downedOmegaStarite);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
             //bool anyoneNoHit = false;

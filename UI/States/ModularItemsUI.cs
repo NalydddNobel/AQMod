@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Utilities;
 using Aequus.Content.ItemModules;
-using Aequus.NPCs.Characters;
+using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

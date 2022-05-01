@@ -13,6 +13,8 @@ Mods: {
 
 			SkyMerchant: A smart hunter who created a hot air balloon to hunt birds, proceeded to become an avid lover of chicken nuggets after eating a harpy. Can be seen flying around the sky during windy days.
 			Exporter: The Exporter is a thief with a relation to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
+
+			Snobster: A snobster lobster, this one's particularly snobby.
 		}
 		DropCondition: {
 			StreamingBalloonKill: 

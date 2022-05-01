@@ -13,14 +13,11 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Characters
+namespace Aequus.NPCs.Friendly
 {
     [AutoloadHead()]
     public class Exporter : ModNPC
     {
-        public static Color JeweledTileMapColor => new Color(255, 185, 25, 255);
-        public static Color RobsterBroadcastMessageColor => new Color(255, 215, 105, 255);
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;

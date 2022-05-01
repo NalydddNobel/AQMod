@@ -6,7 +6,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
-using Aequus.NPCs.Characters;
+using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Boss;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -887,7 +887,7 @@ namespace Aequus.NPCs.Boss
             {
                 NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
             }
-            AequusWorld.DefeatEvent(ref AequusWorld.downedCrabson);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
             //if (Main.expertMode)
             //{

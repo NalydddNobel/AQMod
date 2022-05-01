@@ -1,7 +1,7 @@
-﻿using Aequus.NPCs;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Aequus.NPCs.Friendly;
 
 namespace Aequus.Items.Misc.Critters
 {

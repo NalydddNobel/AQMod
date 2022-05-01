@@ -1081,7 +1081,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusWorld.DefeatEvent(ref AequusWorld.downedRedSprite);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedRedSprite, Type);
         }
 
         //public override void NPCLoot()
