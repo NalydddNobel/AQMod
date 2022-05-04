@@ -40,6 +40,10 @@ namespace Aequus.NPCs.Monsters.Sky
 
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Rotation = MathHelper.Pi,
+            });
             if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
             {
                 ROR2ArtifactsSupport.ROR2Artifacts.Call("AddToSwarmsBlacklist", Type);
