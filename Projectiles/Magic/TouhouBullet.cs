@@ -90,7 +90,7 @@ namespace Aequus.Projectiles.Magic
             float colorMultiplierSquared = colorMultiplier * colorMultiplier;
             var texture = TextureAssets.Projectile[Type].Value;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            var spotlight = Aequus.MyTex("Assets/Bloom");
+            var spotlight = Images.Bloom[0].Value;
             Main.spriteBatch.Draw(spotlight, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * colorMultiplierSquared, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.6f, SpriteEffects.None, 0f);
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, new Color(255, 255, 255, 255) * colorMultiplierSquared, Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
@@ -102,7 +102,7 @@ namespace Aequus.Projectiles.Magic
 
             if (Projectile.ai[0] > 120f)
             {
-                var explosionTexture = Aequus.MyTex("Assets/Explosion");
+                var explosionTexture = Images.Explosion[0].Value;
                 int explosionFrameNumber = (int)((Projectile.ai[0] - 120f) / 4f);
                 var explosionFrame = explosionTexture.Frame(verticalFrames: 5, frameY: explosionFrameNumber);
                 var explosionOrigin = explosionFrame.Size() / 2f;

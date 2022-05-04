@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -32,6 +33,22 @@ namespace Aequus
         /// Determines whether or not the mouse has an item
         /// </summary>
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
+        public static Matrix WorldViewPoint
+        {
+            get
+            {
+                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
+                Vector2 screenZoom = Main.GameViewMatrix.Zoom;
+                int width = graphics.Viewport.Width;
+                int height = graphics.Viewport.Height;
+
+                var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                    Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
+                    Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
+                var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+                return zoom * projection;
+            }
+        }
 
         public static byte TickDown(ref byte value, byte tickAmt = 1)
         {

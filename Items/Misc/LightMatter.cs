@@ -33,7 +33,7 @@ namespace Aequus.Items.Misc
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             var drawPosition = position - origin + frame.Size() / 2f * scale;
-            var texture = Aequus.MyTex("Assets/Bloom2");
+            var texture = Images.Bloom[1].Value;
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             var itemTexture = TextureAssets.Item[Type].Value;
@@ -56,7 +56,7 @@ namespace Aequus.Items.Misc
         {
             var itemTexture = TextureAssets.Item[Type].Value;
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + itemTexture.Width / 2 + Item.width / 2 - itemTexture.Width / 2, Item.position.Y - Main.screenPosition.Y + itemTexture.Height / 2 + Item.height - itemTexture.Height + 2f);
-            var texture = Aequus.MyTex("Assets/Bloom2");
+            var texture = Images.Bloom[1].Value;
             var drawFrame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawOrigin = drawFrame.Size() / 2f;
             float time = Main.GlobalTimeWrappedHourly * 2f;
@@ -89,7 +89,7 @@ namespace Aequus.Items.Misc
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b2, 0), rotation - MathHelper.PiOver4 + time, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);
 
             drawFrame.Height = 40;
-            texture = Aequus.MyTex("Assets/LightRay");
+            texture = Images.LightRay.Value;
 
             scale3 = MathHelper.Clamp(((float)Math.Sin(time * 1.1f) + 1f) / 2f, 0.151f, 0.8f) * 0.9f;
             Main.spriteBatch.Draw(texture, drawPosition, drawFrame, new Color(b, b, b2, 0) * scale3, rotation + time * 1.1f, drawOrigin, scale2 * scale3, SpriteEffects.None, 0f);

@@ -28,6 +28,7 @@ namespace Aequus.NPCs.Friendly
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 8;
+            NPCID.Sets.IsTownPet[Type] = true;
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {

@@ -16,12 +16,10 @@ namespace Aequus.Items.Misc.Summons
 
         public override void SetDefaults()
         {
+            Item.DefaultToHoldUpItem();
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Green;
-            Item.useAnimation = 45;
-            Item.useTime = 45;
-            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
             Item.maxStack = 999;
             Item.value = Item.buyPrice(gold: 10);

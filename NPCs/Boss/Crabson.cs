@@ -11,6 +11,7 @@ using Aequus.Projectiles.Boss;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,6 +37,8 @@ namespace Aequus.NPCs.Boss
         public const int PHASE2_CLAWSHOTS_SHRAPNEL = 6;
 
         public static int BossHeadID_Claw { get; private set; }
+        public static Asset<Texture2D> ClawTexture { get; private set; }
+        public static Asset<Texture2D> ClawChainTexture { get; private set; }
 
         public int leftClaw;
         public int rightClaw;
@@ -50,7 +53,12 @@ namespace Aequus.NPCs.Boss
 
         public override void Load()
         {
-            BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
+            if (!Main.dedServ)
+            {
+                BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
+                ClawTexture = ModContent.Request<Texture2D>(this.GetPath() + "Claw");
+                ClawChainTexture = ModContent.Request<Texture2D>(this.GetPath() + "Claw_Chain");
+            }
         }
 
         public override void SetStaticDefaults()
@@ -794,7 +802,7 @@ namespace Aequus.NPCs.Boss
         {
             if (NPC.IsABestiaryIconDummy)
             {
-                var claw = Aequus.Tex(this.GetPath() + "Claw");
+                var claw = ClawTexture.Value;
                 var origin = new Vector2(16f, 48f);
                 RenderClaw(spriteBatch, claw, NPC.Center + new Vector2(-NPC.width * 1.33f, -NPC.height * 1f) - screenPos, Color.White, origin, 0f, NPC.scale, SpriteEffects.None);
                 origin.X = claw.Width - origin.X;
@@ -809,7 +817,7 @@ namespace Aequus.NPCs.Boss
             if (EffectsSystem.NPCsBehindAllNPCs.renderingNow)
             {
                 var drawCoordinates = NPC.Center;
-                var chain = Aequus.Tex(this.GetPath() + "Claw_Chain");
+                var chain = ClawChainTexture.Value;
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
             }
@@ -821,7 +829,7 @@ namespace Aequus.NPCs.Boss
         }
         private void RenderClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var claw = Aequus.Tex(this.GetPath() + "Claw");
+            var claw = ClawTexture.Value;
             var origin = new Vector2(16f, 48f);
             var drawCoords = npc.position + new Vector2(origin.X + (npc.direction == 1 ? npc.width - origin.X * 2f : 0), npc.width / 2f) - screenPos;
             origin.X = npc.direction == 1 ? claw.Width - origin.X : origin.X;

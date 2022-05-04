@@ -17,6 +17,7 @@ using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -41,8 +42,11 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public const int FRAMES_X = 4;
 
+        public static Asset<Texture2D> GlowmaskTexture { get; private set; }
+
         public static float LightningDrawOpacity;
         public static float LightningDrawProgress;
+
 
         private LegacyPrimRenderer prim;
         private LegacyPrimRenderer bloomPrim;
@@ -59,6 +63,14 @@ namespace Aequus.NPCs.Monsters.Sky
         private Vector2[][] _redSpriteLightningCoords;
 
         private SoundEffectInstance windSoundInstance;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -85,6 +97,11 @@ namespace Aequus.NPCs.Monsters.Sky
             HeatDamageCatalogue.HeatNPC.Add(Type);
 
             FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+        }
+
+        public override void Unload()
+        {
+            GlowmaskTexture = null;
         }
 
         public override void SetDefaults()
@@ -1088,10 +1105,6 @@ namespace Aequus.NPCs.Monsters.Sky
         //{
         //    if (NPC.target != -1)
         //        GaleStreams.ProgressEvent(Main.player[NPC.target], 40);
-        //    if (Main.rand.NextBool(7))
-        //    {
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<RedSpriteMask>());
-        //    }
         //    if (Main.rand.NextBool(4))
         //    {
         //        if (Main.rand.NextBool())
@@ -1153,8 +1166,8 @@ namespace Aequus.NPCs.Monsters.Sky
                     drawPosition.X -= (scale.X - 1f) * 16f;
                 }
             }
-            DrawWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, 0f, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
-            Main.spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
+            DrawWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
+            Main.spriteBatch.Draw(GlowmaskTexture.Value, drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
         private void DrawLightning(Vector2 screenPos)
@@ -1240,12 +1253,12 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                prim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                bloomPrim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }

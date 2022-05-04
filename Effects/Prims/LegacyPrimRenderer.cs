@@ -147,7 +147,7 @@ namespace Aequus.Effects.Prims
                 return;
             }
             var effect = Shader;
-            effect.Parameters["WVP"].SetValue(Aequus.GetWorldViewPoint());
+            effect.Parameters["WVP"].SetValue(AequusHelpers.WorldViewPoint);
             effect.Parameters["imageTexture"].SetValue(Texture);
             effect.Parameters["strength"].SetValue(1f);
             effect.CurrentTechnique.Passes[Pass].Apply();

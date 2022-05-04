@@ -37,7 +37,7 @@ namespace Aequus.Items
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
                 {
                     float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
-                    AequusHelpers.DrawUIBack(spriteBatch, Aequus.MyTex("UI/InventoryBack"), position, frame, scale, new Color(125, 125, 125, 250) * (0.75f + progress * 0.25f), progress);
+                    AequusHelpers.DrawUIBack(spriteBatch, Images.InventoryBack.Value, position, frame, scale, new Color(125, 125, 125, 250) * (0.75f + progress * 0.25f), progress);
                 }
             }
             return true;

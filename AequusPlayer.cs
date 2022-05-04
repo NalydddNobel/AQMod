@@ -17,12 +17,21 @@ using Terraria.GameContent.Events;
 using Aequus.Items;
 using Terraria.Audio;
 using System.Reflection;
+using Terraria.ModLoader.IO;
+using Aequus.Common;
 
 namespace Aequus
 {
     public partial class AequusPlayer : ModPlayer
     {
         public static int teamContext;
+
+        private static MethodInfo Player_ItemCheck_Shoot;
+
+        /// <summary>
+        /// Enabled by <see cref="Items.Consumables.Moro"/>
+        /// </summary>
+        public bool permMoro;
 
         /// <summary>
         /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
@@ -123,14 +132,13 @@ namespace Aequus
         public uint interactionCooldown;
 
         public int turretSlotCount;
+        public int[] minionRespawnCounts;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown.
         /// </summary>
         public bool HasCooldown => itemCooldown > 0;
         public bool InDanger => closestEnemy != -1;
-
-        private static MethodInfo Player_ItemCheck_Shoot;
 
         public override void Load()
         {
@@ -145,6 +153,8 @@ namespace Aequus
 
         public override void Initialize()
         {
+            permMoro = false;
+
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -409,6 +419,16 @@ namespace Aequus
             {
                 damage = (int)(damage * 0.7f);
             }
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag["Moro"] = permMoro;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            permMoro = tag.GetBool("Moro");
         }
 
         public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)

@@ -46,6 +46,13 @@ namespace Aequus.Items
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
 
+        public static void DefaultToHoldUpItem(this Item item)
+        {
+            item.useAnimation = 45;
+            item.useTime = 45;
+            item.useStyle = ItemUseStyleID.HoldUp;
+        }
+
         public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : DopeSwordBase
         {
             item.useTime = swingTime;

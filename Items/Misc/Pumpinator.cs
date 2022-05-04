@@ -43,7 +43,7 @@ namespace Aequus.Items.Misc
                 {
                     return;
                 }
-                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", Aequus.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltips.MysteriousGuideTooltip, });
+                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltips.MysteriousGuideTooltip, });
             }
             catch
             {

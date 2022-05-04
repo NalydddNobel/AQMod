@@ -80,7 +80,7 @@ namespace Aequus.Projectiles.Monster
             float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
 
             int separation = frame.Height - 6;
-            var glow = Aequus.MyTex("Assets/BloomWide");
+            var glow = Images.Bloom[4].Value;
             var glowScale = new Vector2(Projectile.ai[0] / glow.Width * 2f, scale.X * 2f);
             var thunderGlowOrig = new Vector2(glow.Width / 4f, glow.Height / 2f);
             var glowBright = new Color(200, 140, 30);
@@ -127,7 +127,7 @@ namespace Aequus.Projectiles.Monster
                 length -= separation;
                 if (length < separation)
                 {
-                    var glow2 = Aequus.MyTex("Assets/Bloom");
+                    var glow2 = Images.Bloom[0].Value;
                     var glow2Orig = glow2.Size() / 2f;
                     Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
                     frame.Y = 1 * frame.Height;

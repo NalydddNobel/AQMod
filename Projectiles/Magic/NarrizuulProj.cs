@@ -3,6 +3,7 @@ using Aequus.Effects.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -13,13 +14,28 @@ namespace Aequus.Projectiles.Magic
 {
     public class NarrizuulProj : ModProjectile
     {
+        public static Asset<Texture2D> GlowmaskTexture { get; private set; }
+
         private LegacyPrimRenderer prim;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
+            }
+        }
 
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
+        }
+
+        public override void Unload()
+        {
+            GlowmaskTexture = null;
         }
 
         public override void SetDefaults()
@@ -79,20 +95,20 @@ namespace Aequus.Projectiles.Magic
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
-            Texture2D glow = Aequus.Tex(this.GetPath() + "_Glow");
+            Texture2D glow = GlowmaskTexture.Value;
             Vector2 origin = glow.Size() / 2f;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             float colorMult = 1f / ProjectileID.Sets.TrailCacheLength[Projectile.type];
             int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                prim = new LegacyPrimRenderer(Images.Trail[0].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(20f - p * 20f),
                     (p) => NarrizuulRainbow(Projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTimeWrappedHourly + p * 20f) * 0.1f)) * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
-            glow = Aequus.MyTex("Assets/Bloom");
+            glow = Images.Bloom[0].Value;
             Main.spriteBatch.Draw(glow, Projectile.Center - Main.screenPosition, null, NarrizuulRainbow(Projectile.localAI[1]).UseA(0) * 0.5f, Projectile.rotation, glow.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             glow = texture;
             var drawPos = Projectile.Center - Main.screenPosition;

@@ -128,11 +128,11 @@ namespace Aequus.Projectiles.Monster
                     Projectile.Center + new Vector2(Main.screenWidth * 2f * Projectile.direction, 0f) - Main.screenPosition, };
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                prim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (smokePrim == null)
             {
-                smokePrim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/SmokeLine"), LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                smokePrim = new LegacyPrimRenderer(Images.Trail[2].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
@@ -167,7 +167,7 @@ namespace Aequus.Projectiles.Monster
             prim.Draw(arr);
             smokePrim.Draw(arr, Main.GlobalTimeWrappedHourly * 0.5f, 4f);
 
-            var spotlight = Aequus.MyTex("Assets/Bloom3");
+            var spotlight = Images.Bloom[2].Value;
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
             return false;

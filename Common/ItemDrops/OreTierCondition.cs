@@ -32,7 +32,7 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return Aequus.GetText("DropCondition.OreTier." + textType);
+            return AequusText.GetText("DropCondition.OreTier." + textType);
         }
     }
 }

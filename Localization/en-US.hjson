@@ -66,6 +66,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Moro: Moro
 			IcebergKraken: Iceberg Kraken
 			ToySpaceGun: Toy Space Gun
 			GrandReward: Grand Reward
@@ -368,6 +369,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Moro: Summon staffs no longer consume mana and are faster
 			IcebergKraken:
 				'''
 				Increase your max number of sentries by 1

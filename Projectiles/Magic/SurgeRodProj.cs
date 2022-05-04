@@ -253,12 +253,12 @@ namespace Aequus.Projectiles.Magic
         {
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                prim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                bloomPrim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(8f), (p) => lightningBloomColor * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
         }

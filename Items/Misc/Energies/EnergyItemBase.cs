@@ -58,7 +58,7 @@ namespace Aequus.Items.Misc.Energies
 
             spriteBatch.Draw(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);
 
-            var bloomTexture = Aequus.MyTex("Assets/Bloom");
+            var bloomTexture = Images.Bloom[0].Value;
             var bloomOrigin = bloomTexture.Size() / 2f;
             float bloomScale = (scale + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 4f) * 0.1f + 0.65f) * 36f;
             spriteBatch.Draw(bloomTexture, drawPosition, null, coloring, rotation, bloomOrigin, scale / bloomTexture.Width, SpriteEffects.None, 0f);

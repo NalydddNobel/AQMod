@@ -1,5 +1,4 @@
-﻿using Aequus.Assets;
-using Aequus.Effects;
+﻿using Aequus.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -65,7 +64,7 @@ namespace Aequus.NPCs.Boss
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = TextureCache.Bloom[3].Value;
+            var texture = Images.Bloom[3].Value;
             var origin = texture.Size() / 2f;
             int segments = 30;
             float y = NPC.height;

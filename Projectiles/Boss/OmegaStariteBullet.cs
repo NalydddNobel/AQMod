@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Boss
             {
                 if (prim == null)
                 {
-                    prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickerLine"), LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
+                    prim = new LegacyPrimRenderer(Images.Trail[2].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
                 }
                 prim.Draw(Projectile.oldPos);
             }
@@ -81,10 +81,10 @@ namespace Aequus.Projectiles.Boss
                 intensity = 1f - playerDistance / 480f;
             if (intensity > 0f)
             {
-                var spotlight = Aequus.MyTex("Assets/Bloom");
+                var spotlight = Images.Bloom[0].Value;
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, Projectile.rotation, spotlightOrig, Projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = Aequus.MyTex("Assets/BloomWide");
+                spotlight = Images.Bloom[4].Value;
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;

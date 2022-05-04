@@ -37,6 +37,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public const int PHASE_TRANSITION_CHANGEDIRECTION = 2;
         public const int PHASE_SNOWFLAKESPIRAL = 3;
 
+        public static Asset<Texture2D> GlowmaskTexture { get; private set; }
         public static Asset<Texture2D> DefeatedTexture { get; private set; }
         public static Asset<Texture2D> DefeatedTextureGlow { get; private set; }
 
@@ -54,6 +55,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (!Main.dedServ)
             {
+                GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
                 DefeatedTexture = ModContent.Request<Texture2D>(this.GetPath() + "Defeated");
                 DefeatedTextureGlow = ModContent.Request<Texture2D>(this.GetPath() + "Defeated_Glow");
             }
@@ -82,6 +84,13 @@ namespace Aequus.NPCs.Monsters.Sky
             });
 
             FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+        }
+
+        public override void Unload()
+        {
+            GlowmaskTexture = null;
+            DefeatedTexture = null;
+            DefeatedTextureGlow = null;
         }
 
         public override void SetDefaults()
@@ -832,7 +841,7 @@ namespace Aequus.NPCs.Monsters.Sky
             DrawBGAura(spriteBatch, texture, drawPosition, screenPos, NPC.frame, NPC.rotation, origin, scale, effects, NPC.IsABestiaryIconDummy);
 
             spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, scale, effects, 0f);
-            spriteBatch.Draw(Aequus.Tex(this.GetPath() + "_Glow"), drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, effects, 0f);
+            spriteBatch.Draw(GlowmaskTexture.Value, drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, effects, 0f);
 
             if (!NPC.IsABestiaryIconDummy && Main.expertMode)
                 RenderDeathrayTelegraph(spriteBatch, screenPos);

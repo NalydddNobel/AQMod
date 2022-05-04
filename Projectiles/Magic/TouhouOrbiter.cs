@@ -124,7 +124,7 @@ namespace Aequus.Projectiles.Magic
             float colorMultiplierSquared = colorMultiplier * colorMultiplier;
             var texture = TextureAssets.Projectile[Type].Value;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            var spotlight = Aequus.MyTex("Assets/Bloom");
+            var spotlight = Images.Bloom[0].Value;
             Main.spriteBatch.Draw(spotlight, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * colorMultiplierSquared, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.6f, SpriteEffects.None, 0f);
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, new Color(255, 255, 255, 255) * colorMultiplierSquared, Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);

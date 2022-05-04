@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
@@ -134,10 +135,12 @@ namespace Aequus.Items
             }
         }
 
+        public static HashSet<int> SummonStaff { get; private set; }
         public static Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
 
         public override void Load()
         {
+            SummonStaff = new HashSet<int>();
             SentryUsage = new Dictionary<int, SentryStaffUsage>()
             {
                 [ItemID.DD2BallistraTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
@@ -157,6 +160,22 @@ namespace Aequus.Items
                 [ItemID.RainbowCrystalStaff] = new SentryStaffUsage(isGrounded: false, range: 500f),
                 [ItemID.MoonlordTurretStaff] = new SentryStaffUsage(isGrounded: false, range: 1250f),
             };
+        }
+
+        public static void LoadAutomaticEntries()
+        {
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                var item = ContentSamples.ItemsByType[i];
+                if (IsSummonStaff(item))
+                {
+                    SummonStaff.Add(i);
+                }
+            }
+        }
+        private static bool IsSummonStaff(Item item)
+        {
+            return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > 0 && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
         }
     }
 }

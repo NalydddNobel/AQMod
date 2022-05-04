@@ -23,12 +23,10 @@ namespace Aequus.Items.Misc.Summons
 
         public override void SetDefaults()
         {
+            Item.DefaultToHoldUpItem();
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Pink;
-            Item.useAnimation = 45;
-            Item.useTime = 45;
-            Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
         public override bool CanUseItem(Player player)

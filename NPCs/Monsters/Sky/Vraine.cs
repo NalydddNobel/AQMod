@@ -5,6 +5,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.IO;
 using Terraria;
 using Terraria.GameContent;
@@ -21,6 +22,18 @@ namespace Aequus.NPCs.Monsters.Sky
         public int transitionMax;
         public int temperature;
 
+        public static Asset<Texture2D> HotTexture { get; private set; }
+        public static Asset<Texture2D> ColdTexture { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                HotTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Hot");
+                ColdTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Cold");
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 16;
@@ -31,6 +44,12 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 ROR2ArtifactsSupport.ROR2Artifacts.Call("AddToSwarmsBlacklist", Type);
             }
+        }
+
+        public override void Unload()
+        {
+            HotTexture = null;
+            ColdTexture = null;
         }
 
         public override void SetDefaults()
@@ -482,21 +501,16 @@ namespace Aequus.NPCs.Monsters.Sky
                 float progress = NPC.ai[3] / transitionMax;
                 progress *= 2f;
                 progress -= 1f;
-                string appendage;
+                var overlayTexture = ColdTexture.Value;
                 if ((int)NPC.ai[1] == -1)
                 {
                     progress = 1f - progress;
-                    appendage = "_Hot";
+                    overlayTexture = HotTexture.Value;
                 }
                 else if ((int)NPC.ai[1] == 1)
                 {
-                    appendage = "_Hot";
+                    overlayTexture = HotTexture.Value;
                 }
-                else
-                {
-                    appendage = "_Cold";
-                }
-                var overlayTexture = Aequus.Tex(this.GetPath() + appendage);
                 Main.spriteBatch.Draw(overlayTexture, drawPos, NPC.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
 

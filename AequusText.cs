@@ -60,6 +60,11 @@ namespace Aequus
             Text = null;
         }
 
+        public static string GetText(string key)
+        {
+            return AequusText.Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+        }
+
         public static string UseAnimText(float useAnimation)
         {
             if (useAnimation <= 8)

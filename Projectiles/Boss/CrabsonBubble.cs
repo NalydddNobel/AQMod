@@ -134,7 +134,7 @@ namespace Aequus.Projectiles.Boss
                 drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
                 if (Projectile.ai[0] > 0f && !Main.getGoodWorld)
                 {
-                    var bloom = Aequus.MyTex("Assets/Bloom");
+                    var bloom = Images.Bloom[0].Value;
                     var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);
                     var bloomOrigin = new Vector2(bloomFrame.Width / 2f, bloomFrame.Height);
                     var bloomColor = new Color(25, 25, 255, 0);

@@ -46,12 +46,12 @@ namespace Aequus.Projectiles.Monster
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickerLine"), LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
+                prim = new LegacyPrimRenderer(Images.Trail[2].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
             Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
-            var spotlight = Aequus.MyTex("Assets/Bloom");
+            var spotlight = Images.Bloom[0].Value;
             Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.22f, SpriteEffects.None, 0f);
             return false;
         }

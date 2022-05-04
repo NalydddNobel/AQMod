@@ -114,7 +114,7 @@ namespace Aequus.Items
         {
             if (Catalogue.Dedicated.TryGetValue(item.type, out var dedication))
             {
-                tooltips.Add(new TooltipLine(Mod, "DedicatedItem", Aequus.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
+                tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
             }
         }
 
@@ -184,7 +184,7 @@ namespace Aequus.Items
             var center = size / 2f;
             var transparentColor = color * 0.4f;
             transparentColor.A = 0;
-            var texture = Aequus.MyTex("Assets/TextBloom");
+            var texture = Images.TextBloom.Value;
             var spotlightOrigin = texture.Size() / 2f;
             float spotlightRotation = rotation + MathHelper.PiOver2;
             var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 4f) * 0.145f, center.Y * 0.15f);
@@ -201,7 +201,7 @@ namespace Aequus.Items
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles
-                var particleTexture = Aequus.MyTex("Assets/Bloom");
+                var particleTexture = Images.Bloom[0].Value;
                 var particleOrigin = particleTexture.Size() / 2f;
                 int amt = (int)rand.Rand(size.X / 3, size.X);
                 for (int i = 0; i < amt; i++)

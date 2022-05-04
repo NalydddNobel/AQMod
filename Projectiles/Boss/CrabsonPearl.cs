@@ -1,6 +1,7 @@
 ﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -12,7 +13,14 @@ namespace Aequus.Projectiles.Boss
 {
     public class CrabsonPearl : ModProjectile
     {
+        public static Asset<Texture2D> WhiteTexture { get; private set; }
+
         private float _light;
+
+        public override void Load()
+        {
+            WhiteTexture = ModContent.Request<Texture2D>(this.GetPath() + "_White");
+        }
 
         public override void SetDefaults()
         {
@@ -136,7 +144,7 @@ namespace Aequus.Projectiles.Boss
             Main.EntitySpriteDraw(texture, Projectile.position + offset, null, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             if (_light > 0f)
             {
-                Main.EntitySpriteDraw(Aequus.Tex(this.GetPath() + "_White"), Projectile.position + offset, null, Color.White * _light, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(WhiteTexture.Value, Projectile.position + offset, null, Color.White * _light, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             return false;
         }

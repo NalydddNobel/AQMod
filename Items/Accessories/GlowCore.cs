@@ -1,5 +1,4 @@
-﻿using Aequus.Assets;
-using Aequus.Items.Consumables.Palettes;
+﻿using Aequus.Items.Consumables.Palettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

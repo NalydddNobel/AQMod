@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Magic
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Aequus.MyTex("Assets/Effects/Prims/ThickTrail"), LegacyPrimRenderer.DefaultPass,
+                prim = new LegacyPrimRenderer(Images.Trail[0].Value, LegacyPrimRenderer.DefaultPass,
                     (p) => new Vector2(14f - p * 14f) * Projectile.scale, (p) => _glowClr * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }

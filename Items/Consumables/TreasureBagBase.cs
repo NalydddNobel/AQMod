@@ -24,11 +24,11 @@ namespace Aequus.Items.Consumables
 
         public override void SetDefaults()
         {
-            Item.maxStack = 999;
-            Item.consumable = true;
             Item.width = 24;
             Item.height = 24;
+            Item.consumable = true;
             Item.rare = InternalRarity;
+            Item.maxStack = 999;
             Item.expert = true;
         }
 
