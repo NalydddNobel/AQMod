@@ -3,6 +3,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -788,7 +789,7 @@ namespace Aequus.NPCs.Monsters.Sky
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTear>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrostbiteDye>(), 7));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<FrostbiteDye>(), 7));
         }
 
         public override void OnKill()

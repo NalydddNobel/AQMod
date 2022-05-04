@@ -7,6 +7,7 @@ using Aequus.Content.Invasions;
 using Aequus.Effects;
 using Aequus.Effects.Prims;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -1090,10 +1091,11 @@ namespace Aequus.NPCs.Monsters.Sky
             npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<RedSpriteTrophy>(), 10));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<RedSpriteRelic>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedSpriteMask>(), 7));
+            npcLoot.Add(new OnFirstKillRuleOtherwiseChance(ModContent.ItemType<Moro>(), 5, () => AequusWorld.downedSpaceSquid, "SpaceSquid"));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fluorescence>(), 1, 10, 24));
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScorchingDye>(), 7));
+            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<ScorchingDye>(), 7));
         }
 
         public override void OnKill()

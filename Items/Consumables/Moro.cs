@@ -14,12 +14,18 @@ namespace Aequus.Items.Consumables
             Item.consumable = true;
             Item.rare = ItemDefaults.RarityGaleStreams + 2;
             Item.UseSound = SoundID.Item4;
+            Item.value = Item.sellPrice(gold: 2);
         }
 
         public override bool? UseItem(Player player)
         {
-            player.Aequus().permMoro = true;
-            return true;
+            if (!player.Aequus().permMoro)
+            {
+                player.Aequus().permMoro = true;
+                return true;
+            }
+            
+            return false;
         }
     }
 }

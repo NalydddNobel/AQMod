@@ -30,7 +30,7 @@ namespace Aequus.Common.ItemDrops
         public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
         {
             var result = default(ItemDropAttemptResult);
-            result.State = ItemDropAttemptResultState.DoesntFillConditions;
+            result.State = ItemDropAttemptResultState.DidNotRunCode;
             return result;
         }
 

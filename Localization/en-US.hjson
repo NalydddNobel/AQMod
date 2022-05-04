@@ -17,6 +17,8 @@ Mods: {
 			Snobster: A snobster lobster, this one's particularly snobby.
 		}
 		DropCondition: {
+			OnFirstKill: Only drops on first kill
+			OnFirstKillOtherwiseChance: 100% droprate on first kill
 			StreamingBalloonKill: 
 			'''
 			    Only dropped when the slime killed is attached to the balloon 
@@ -369,7 +371,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Moro: Summon staffs no longer consume mana and are faster
+			Moro: Summon staffs permanently no longer consume mana and are faster
 			IcebergKraken:
 				'''
 				Increase your max number of sentries by 1
