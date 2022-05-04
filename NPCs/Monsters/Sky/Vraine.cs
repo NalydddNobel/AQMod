@@ -3,6 +3,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -16,7 +17,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.Sky
 {
-    public class Vraine : ModNPC/*, IDecideFallThroughPlatforms*/
+    public class Vraine : ModNPC
     {
         public const int Temperature = 40;
         public int transitionMax;
@@ -425,6 +426,11 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.rotation = NPC.velocity.ToRotation();
         }
 
+        public override bool? CanFallThroughPlatforms()
+        {
+            return true;
+        }
+
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(transitionMax);
@@ -456,6 +462,7 @@ namespace Aequus.NPCs.Monsters.Sky
             var hardmodeOnly = new LeadingConditionRule(new Conditions.IsHardmode());
             var whenAllNPCsAreDead = new WhenAllNPCsAreDeadCondition(Type);
             hardmodeOnly.OnSuccess(ItemDropRule.ByCondition(whenAllNPCsAreDead, ModContent.ItemType<AtmosphericEnergy>(), 20));
+            npcLoot.Add(ItemDropRule.ByCondition(whenAllNPCsAreDead, ModContent.ItemType<Vrang>(), 8));
             npcLoot.Add(hardmodeOnly);
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CensorDye>(), 10));
         }
@@ -465,16 +472,6 @@ namespace Aequus.NPCs.Monsters.Sky
         //    if (NPC.target != -1)
         //        GaleStreams.ProgressEvent(Main.player[NPC.target], 2);
         //    bool anyOthers = NPC.AnyNPCs(NPC.type);
-        //    if (!anyOthers)
-        //    {
-        //        if (WorldDefeats.SudoHardmode)
-        //        {
-        //            if (Main.rand.NextBool(5))
-        //            {
-        //                Item.NewItem(NPC.getRect(), ModContent.ItemType<Vrang>(), Main.rand.NextVRand(1, 2));
-        //            }
-        //        }
-        //    }
         //    if (Main.rand.NextBool(100))
         //        Item.NewItem(NPC.getRect(), ModContent.ItemType<PeeledCarrot>(), Main.rand.NextVRand(1, 3));
         //}
@@ -520,10 +517,5 @@ namespace Aequus.NPCs.Monsters.Sky
 
             return false;
         }
-
-        //bool IDecideFallThroughPlatforms.Decide()
-        //{
-        //    return true;
-        //}
     }
 }

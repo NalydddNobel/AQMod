@@ -730,6 +730,10 @@ namespace Aequus
             return Main.tileSolid[tile.TileType];
         }
 
+        public static int Abs(this int value)
+        {
+            return value < 0 ? -value : value;
+        }
         public static float Abs(this float value)
         {
             return value < 0f ? -value : value;
