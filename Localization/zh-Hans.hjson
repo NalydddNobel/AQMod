@@ -17,6 +17,8 @@ Mods: {
 			Snobster: 一种势利的虾, 这只特别势利.
 		}
 		DropCondition: {
+			OnFirstKill: 仅会在首次击杀时掉落
+			OnFirstKillOtherwiseChance: 首次击杀后具有100%掉落几率
 			StreamingBalloonKill: 
 			'''
 			    仅会在击杀身上有着气球的史莱姆时掉落
@@ -66,6 +68,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Moro: 摩洛
 			IcebergKraken: 冰山海妖
 			ToySpaceGun: 玩具太空枪
 			GrandReward: 豪华奖励
@@ -368,6 +371,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 			IcebergKraken:
 				'''
 				增加最大哨兵栏位
