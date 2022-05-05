@@ -1827,25 +1827,6 @@ Mods: {
 			2: 向你致以节日的问候, {0}
 		}
 
-		Config: {
-			RequiresReload: 需要重新加载.
-		}
-
-		DiscordRichPresenceConfig: {
-			Name: Discord Rich Presence
-
-			Header: {
-				DRP: "[c/eeffee:选项]"
-			}
-
-			enableDiscordRichPresence: 启用 Discord Rich Presence
-			enableDiscordRichPresenceTooltip: 决定是否加载 Aequus 支持的 Discord Rich Presence
-			miniBossRichPresence: 小Boss Presence
-			miniBossRichPresenceTooltip: 会为 Aequus 中经过考虑的'小Boss'添加一个 rich presence
-			eventRichPresence: 事件 Presence
-			eventRichPresenceTooltip: 会为所有 Aequus 事件添加一个 rich presence
-		}
-
 		Configuration: {
 			Client: {
 				Headers: {
@@ -1855,6 +1836,13 @@ Mods: {
 			ScreenshakeIntensity: 屏幕震动强度
 				FlashIntensity: 闪光强度
 				HighQuality: 高品质
+				HighQualityShaders: 高品质着色器
+				FlashShaderRepetitions: 闪光着色器 - 重复
+				FlashShaderRepetitionsTooltip: 
+					'''
+					将重复执行多次该着色器
+					仅会在高品质着色器启用时生效
+					'''
 			}
 		}
 
