@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
-using Aequus.Effects;
+using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
@@ -78,7 +78,7 @@ namespace Aequus.NPCs.Boss
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
 
-            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
         }
 
         public override void SetDefaults()

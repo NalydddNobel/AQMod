@@ -32,7 +32,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 PortraitPositionYOverride = 36f,
             });
 
-            HeatDamageCatalogue.HeatNPC.Add(Type);
+            HeatDamageTypes.HeatNPC.Add(Type);
         }
 
         public override void SetDefaults()

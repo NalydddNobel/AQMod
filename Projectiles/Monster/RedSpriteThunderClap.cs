@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Monster
         {
             Main.projFrames[Projectile.type] = 4;
 
-            HeatDamageCatalogue.HeatProjectile.Add(Type);
+            HeatDamageTypes.HeatProjectile.Add(Type);
         }
 
         public override void SetDefaults()

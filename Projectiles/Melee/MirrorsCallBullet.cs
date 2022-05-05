@@ -1,4 +1,4 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Monster
         public override void SetStaticDefaults()
         {
             this.SetTrail(12);
-            HeatDamageCatalogue.HeatProjectile.Add(Type);
+            HeatDamageTypes.HeatProjectile.Add(Type);
         }
 
         public override void SetDefaults()

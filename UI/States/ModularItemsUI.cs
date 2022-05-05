@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Common;
+using Aequus.Common.Catalogues;
 using Aequus.Common.Utilities;
 using Aequus.Content.ItemModules;
 using Aequus.NPCs.Friendly;
@@ -31,14 +32,14 @@ namespace Aequus.UI.States
             int y = UIHelper.BottomInventory;
             var back = InvBack;
             itemSlot = new ItemSlotData(x, y, back, new SpriteFrameData(TextureAssets.Extra[ExtrasID.EquipIcons], 3, 6, 1, 1, -2, -2)) { Scale = DrawScale, };
-            moduleSlot = new ItemSlotData[ItemModuleTypeCatalogue.Count];
+            moduleSlot = new ItemSlotData[ItemModuleTypes.Count];
             int height = (int)(back.Height * DrawScale);
             for (int i = 0; i < moduleSlot.Length; i++)
             {
                 moduleSlot[i] = new ItemSlotData(x, y, back) { Scale = DrawScale, };
-                if (ItemModuleTypeCatalogue.TypeToTexture.ContainsKey(i))
+                if (ItemModuleTypes.TypeToTexture.ContainsKey(i))
                 {
-                    moduleSlot[i].icon = ItemModuleTypeCatalogue.TypeToTexture[i];
+                    moduleSlot[i].icon = ItemModuleTypes.TypeToTexture[i];
                 }
             }
             Append(itemSlot);

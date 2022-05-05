@@ -61,7 +61,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.eventGaleStreams">
             <summary>
-            Whether or not the player is in the Gale Streams event. Updated to true when <see cref="P:Aequus.Content.Invasions.GaleStreams.Status"/> equals <see cref="F:Aequus.Content.Invasions.InvasionStatus.Active"/> and the <see cref="M:Aequus.Content.Invasions.GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
+            Whether or not the player is in the Gale Streams event. Updated using <see cref="M:Aequus.AequusPlayer.CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -74,6 +74,11 @@
             Applied by <see cref="T:Aequus.Items.Accessories.Summon.SentrySquid"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.frostburnSentry">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.Summon.IcebergKraken"/>. Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.glowCore">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
@@ -81,7 +86,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.lootLuck">
             <summary>
-            Used to increase droprates.
+            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
             </summary>
         </member>
@@ -140,8 +145,35 @@
         </member>
         <member name="P:Aequus.AequusPlayer.HasCooldown">
             <summary>
-            Helper for whether or not the player currently has a cooldown.
+            Helper for whether or not the player currently has a cooldown
             </summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.InDanger">
+            <summary>
+            Helper for whether or not the player is in danger
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.CheckEventGaleStreams">
+            <summary>
+            Used to update <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/>
+            </summary>
+            <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.PostUpdate_CheckDanger">
+            <summary>
+            Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.UpdateAutoSentry">
+            <summary>
+            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.AutoSentry_GetUsableSentryStaff">
+            <summary>
+            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.AequusPlayer.UpdateAutoSentry"/>
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary>
@@ -203,7 +235,7 @@
             Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
             </summary>
         </member>
-        <member name="M:Aequus.Common.Catalogues.ItemModuleTypeCatalogue.GetReservedID">
+        <member name="M:Aequus.Common.Catalogues.ItemModuleTypes.GetReservedID">
             <summary>
             Gives you an ID to classify a specific item module type
             <para>
@@ -301,19 +333,19 @@
             <param name="value">An output value. When this method returns true, this is the data for the hook barb, otherwise it is useless data</param>
             <returns>The generic hook barb data for this item</returns>
         </member>
-        <member name="F:Aequus.Effects.FrozenNPC.Catalouge.OnFreezeNPC">
+        <member name="F:Aequus.Graphics.FrozenNPCEffect.Blacklist.OnFreezeNPC">
             <summary>
             Parameter 1: {NPC} - The NPC which is being sudo cloned
             <para>Parameter 2: {NPC} - The clone result</para>
             </summary>
         </member>
-        <member name="F:Aequus.Effects.FrozenNPC.Catalouge.CustomDraw">
+        <member name="F:Aequus.Graphics.FrozenNPCEffect.Blacklist.CustomDraw">
             <summary>
             Parameter 1: {NPC} - The NPC which is being sudo cloned
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
-        <member name="F:Aequus.Effects.FrozenNPC.Catalouge.CustomUpdate">
+        <member name="F:Aequus.Graphics.FrozenNPCEffect.Blacklist.CustomUpdate">
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>

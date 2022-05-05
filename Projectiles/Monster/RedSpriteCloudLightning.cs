@@ -12,7 +12,7 @@ namespace Aequus.Projectiles.Monster
     {
         public override void SetStaticDefaults()
         {
-            HeatDamageCatalogue.HeatProjectile.Add(Type);
+            HeatDamageTypes.HeatProjectile.Add(Type);
         }
 
         public override void SetDefaults()

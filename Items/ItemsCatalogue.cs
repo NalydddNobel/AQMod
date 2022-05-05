@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public sealed class ItemsCatalogue : EmptyModType
+    public sealed class ItemsCatalogue : LoadableType
     {
         public struct SentryStaffUsage
         {

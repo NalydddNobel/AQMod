@@ -53,16 +53,16 @@ namespace Aequus.Content.ItemModules
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbHook,
+                    ItemModuleTypes.BarbHook,
                 });
             }
             public static void DefaultAllBarbHookEquips(int item)
             {
                 AllowEquipType(item, new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbHook,
-                    ItemModuleTypeCatalogue.BarbChain,
-                    ItemModuleTypeCatalogue.BarbMisc,
+                    ItemModuleTypes.BarbHook,
+                    ItemModuleTypes.BarbChain,
+                    ItemModuleTypes.BarbMisc,
                 });
             }
 

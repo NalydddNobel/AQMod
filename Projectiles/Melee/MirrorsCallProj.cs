@@ -1,5 +1,5 @@
-﻿using Aequus.Effects;
-using Aequus.Effects.Prims;
+﻿using Aequus.Graphics;
+using Aequus.Graphics.Prims;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -158,11 +158,11 @@ namespace Aequus.Projectiles.Melee
             }
             if (prim == null)
             {
-                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
+                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
             }
             if (colorPrim == null)
             {
-                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.LerpBetween(MirrorsCall.EightWayRainbow, colorProgress).UseA(0) * (1f - p));
+                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.LerpBetween(MirrorsCall.EightWayRainbow, colorProgress).UseA(0) * (1f - p));
             }
             if (reverseTrail)
             {

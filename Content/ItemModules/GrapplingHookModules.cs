@@ -169,7 +169,7 @@ namespace Aequus.Content.ItemModules
                 crit = 0;
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbHook,
+                    ItemModuleTypes.BarbHook,
                 };
             }
 
@@ -222,7 +222,7 @@ namespace Aequus.Content.ItemModules
             {
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbHook,
+                    ItemModuleTypes.BarbHook,
                 };
                 DebuffsToApply = debuffs;
             }
@@ -269,7 +269,7 @@ namespace Aequus.Content.ItemModules
                 crit = 0;
                 ModuleTypes = new List<int>()
                 {
-                    ItemModuleTypeCatalogue.BarbHook,
+                    ItemModuleTypes.BarbHook,
                 };
                 DebuffsToApply = debuffs;
             }

@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Aequus.Content.CrossMod
 {
-    internal sealed class ROR2ArtifactsSupport : EmptyModType
+    internal sealed class ROR2ArtifactsSupport : LoadableType
     {
         public static ModData ROR2Artifacts;
 

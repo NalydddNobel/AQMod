@@ -1,4 +1,4 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

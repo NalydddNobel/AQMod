@@ -1,4 +1,4 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -47,7 +47,7 @@ namespace Aequus.NPCs
                 var deathEffects = self.GetGlobalNPC<DeathEffects>();
                 if (deathEffects.HasDeathContext && Main.netMode != NetmodeID.Server)
                 {
-                    if (deathEffects.context == Context.Snowgrave && self.life <= 0 && FrozenNPC.CanFreezeNPC(self))
+                    if (deathEffects.context == Context.Snowgrave && self.life <= 0 && FrozenNPCEffect.CanFreezeNPC(self))
                     {
                         SoundID.Item30?.PlaySound(self.Center);
                         return;
@@ -80,9 +80,9 @@ namespace Aequus.NPCs
         }
         private void DeathEffect_SnowgraveFreeze(NPC npc)
         {
-            if (Main.netMode != NetmodeID.Server && FrozenNPC.CanFreezeNPC(npc))
+            if (Main.netMode != NetmodeID.Server && FrozenNPCEffect.CanFreezeNPC(npc))
             {
-                EffectsSystem.BehindProjs.Add(new FrozenNPC(npc.Center, npc));
+                EffectsSystem.BehindProjs.Add(new FrozenNPCEffect(npc.Center, npc));
             }
         }
     }

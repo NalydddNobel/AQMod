@@ -1,4 +1,4 @@
-﻿using Aequus.Effects.Prims;
+﻿using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Magic
 {
     public class UmystickMoon : ModProjectile
     {
-        protected LegacyPrimRenderer prim;
+        protected PrimRenderer prim;
         protected Color _glowClr;
 
         public override void SetStaticDefaults()
@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Magic
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Images.Trail[0].Value, LegacyPrimRenderer.DefaultPass,
+                prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(14f - p * 14f) * Projectile.scale, (p) => _glowClr * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }

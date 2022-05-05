@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Configuration;
-using Aequus.Effects.Prims;
+using Aequus.Graphics.Prims;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -126,7 +126,7 @@ namespace Aequus.Projectiles.Melee
             {
                 if (primBlue == null)
                 {
-                    primBlue = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(15, 75, 255, 75) * (1f - p) * (1f - p) * (1f - p));
+                    primBlue = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(15, 75, 255, 75) * (1f - p) * (1f - p) * (1f - p));
                 }
                 if (reverseTrail)
                 {
@@ -143,7 +143,7 @@ namespace Aequus.Projectiles.Melee
             }
             if (prim == null)
             {
-                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(75, 180, 255, 0) * (1f - p));
+                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(75, 180, 255, 0) * (1f - p));
             }
             if (reverseTrail)
             {

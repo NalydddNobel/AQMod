@@ -4,8 +4,8 @@ using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
-using Aequus.Effects;
-using Aequus.Effects.Prims;
+using Aequus.Graphics;
+using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
@@ -49,8 +49,8 @@ namespace Aequus.NPCs.Monsters.Sky
         public static float LightningDrawProgress;
 
 
-        private LegacyPrimRenderer prim;
-        private LegacyPrimRenderer bloomPrim;
+        private PrimRenderer prim;
+        private PrimRenderer bloomPrim;
 
         public int frameIndex;
         public Color lightningBloomColor = new Color(128, 10, 5, 0);
@@ -95,9 +95,9 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
             });
 
-            HeatDamageCatalogue.HeatNPC.Add(Type);
+            HeatDamageTypes.HeatNPC.Add(Type);
 
-            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
         }
 
         public override void Unload()
@@ -1255,12 +1255,12 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
+                prim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
+                bloomPrim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }
@@ -1282,7 +1282,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 var color = new Color(255, 150, 0, 20) * 0.3f;
                 var circular = AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
 
-                var batchData = new SpriteBatchDataCache(spriteBatch);
+                var batchData = new SpriteBatchData(spriteBatch);
                 spriteBatch.End();
                 if (bestiary)
                 {
@@ -1293,13 +1293,13 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
                 else
                 {
-                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                    CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
-                EffectCache.MiscShader.UseSecondaryColor(Color.Orange);
-                EffectCache.MiscShader.UseColor(Color.Red);
-                EffectCache.MiscShader.Apply(drawData);
+                ModEffects.MiscShader.UseSecondaryColor(Color.Orange);
+                ModEffects.MiscShader.UseColor(Color.Red);
+                ModEffects.MiscShader.Apply(drawData);
 
                 foreach (var v in circular)
                 {

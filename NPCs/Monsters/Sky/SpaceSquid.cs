@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
-using Aequus.Effects;
+using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
@@ -84,7 +84,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
             });
 
-            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
         }
 
         public override void Unload()
@@ -910,7 +910,7 @@ namespace Aequus.NPCs.Monsters.Sky
             int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
             if (aura > 0f)
             {
-                var batchData = new SpriteBatchDataCache(spriteBatch);
+                var batchData = new SpriteBatchData(spriteBatch);
                 spriteBatch.End();
                 if (bestiary)
                 {
@@ -921,12 +921,12 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
                 else
                 {
-                    CommonSpriteBatchParameters.GeneralEntities.BeginShader(spriteBatch);
+                    CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
-                EffectCache.MiscShader.UseSecondaryColor(Color.Blue);
-                EffectCache.MiscShader.UseColor(Color.Cyan);
-                EffectCache.MiscShader.Apply(drawData);
+                ModEffects.MiscShader.UseSecondaryColor(Color.Blue);
+                ModEffects.MiscShader.UseColor(Color.Cyan);
+                ModEffects.MiscShader.Apply(drawData);
 
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {

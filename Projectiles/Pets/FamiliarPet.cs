@@ -1,4 +1,4 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -87,7 +87,7 @@ namespace Aequus.Projectiles.Pets
             {
                 return false;
             }
-            var batchData = new SpriteBatchDataCache(Main.spriteBatch);
+            var batchData = new SpriteBatchData(Main.spriteBatch);
             AequusPlayer.PlayerDrawScale = Projectile.scale;
             AequusPlayer.PlayerDrawForceDye = Main.CurrentDrawnEntityShader;
             Main.spriteBatch.End();

@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Invasions;
-using Aequus.Effects.Prims;
+using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Boss
 {
     public class OmegaStariteBullet : ModProjectile
     {
-        private LegacyPrimRenderer prim;
+        private PrimRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -56,11 +56,11 @@ namespace Aequus.Projectiles.Boss
             var drawColor = Glimmer.CosmicEnergyColor;
             drawColor.A = 0;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            if (LegacyPrimRenderer.renderProjTrails)
+            if (PrimRenderer.renderProjTrails)
             {
                 if (prim == null)
                 {
-                    prim = new LegacyPrimRenderer(Images.Trail[2].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
+                    prim = new PrimRenderer(Images.Trail[2].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
                 }
                 prim.Draw(Projectile.oldPos);
             }

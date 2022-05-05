@@ -1,4 +1,4 @@
-﻿using Aequus.Effects;
+﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -35,7 +35,7 @@ namespace Aequus.NPCs.Boss
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
 
-            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
         }
 
         public override void SetDefaults()

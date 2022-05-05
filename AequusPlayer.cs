@@ -1,30 +1,32 @@
 ﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
 using Aequus.Content.Invasions;
-using Aequus.Effects;
+using Aequus.Graphics;
+using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
-using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.GameContent.Events;
-using Aequus.Items;
-using Terraria.Audio;
-using System.Reflection;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Common;
 
 namespace Aequus
 {
-    public partial class AequusPlayer : ModPlayer
+    public class AequusPlayer : ModPlayer
     {
         public static int teamContext;
+        public static float? PlayerDrawScale { get; set; }
+        public static int? PlayerDrawForceDye { get; set; }
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
@@ -61,7 +63,7 @@ namespace Aequus
         public bool resistHeat;
 
         /// <summary>
-        /// Whether or not the player is in the Gale Streams event. Updated to true when <see cref="GaleStreams.Status"/> equals <see cref="InvasionStatus.Active"/> and the <see cref="GaleStreams.IsThisSpace(Terraria.Player)"/> returns true in <see cref="PreUpdate"/>
+        /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
         /// </summary>
         public bool eventGaleStreams;
 
@@ -72,17 +74,20 @@ namespace Aequus
         public int closestEnemyOld;
 
         /// <summary>
-        /// Applied by <see cref="Items.Accessories.Summon.SentrySquid"/>
+        /// Applied by <see cref="SentrySquid"/>
         /// </summary>
         public bool autoSentry;
         public ushort autoSentryCooldown;
+        /// <summary>
+        /// Used by <see cref="IcebergKraken"/>. Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff
+        /// </summary>
         public bool frostburnSentry;
         /// <summary>
         /// Used by <see cref="GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
         /// </summary>
         public byte glowCore;
         /// <summary>
-        /// Used to increase droprates.
+        /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
         /// <para>Used by <see cref="GrandReward"/></para> 
         /// </summary>
         public float lootLuck;
@@ -132,18 +137,25 @@ namespace Aequus
         public uint interactionCooldown;
 
         public int turretSlotCount;
-        public int[] minionRespawnCounts;
 
         /// <summary>
-        /// Helper for whether or not the player currently has a cooldown.
+        /// Helper for whether or not the player currently has a cooldown
         /// </summary>
         public bool HasCooldown => itemCooldown > 0;
+        /// <summary>
+        /// Helper for whether or not the player is in danger
+        /// </summary>
         public bool InDanger => closestEnemy != -1;
 
         public override void Load()
         {
             LoadHooks();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+        private void LoadHooks()
+        {
+            On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
+            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += OnRenderPlayer;
         }
 
         public override void Unload()
@@ -175,10 +187,14 @@ namespace Aequus
             {
                 AequusHelpers.Main_dayTime.StartCaching(false);
             }
-            
+
             eventGaleStreams = CheckEventGaleStreams();
             forceDaytime = 0;
         }
+        /// <summary>
+        /// Used to update <see cref="eventGaleStreams"/>
+        /// </summary>
+        /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
         public bool CheckEventGaleStreams()
         {
             return GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player);
@@ -297,6 +313,10 @@ namespace Aequus
             }
             teamContext = 0;
         }
+
+        /// <summary>
+        /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
+        /// </summary>
         public void PostUpdate_CheckDanger()
         {
             closestEnemyOld = closestEnemy;
@@ -321,6 +341,10 @@ namespace Aequus
                 }
             }
         }
+
+        /// <summary>
+        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="PostUpdate_CheckDanger"/>
+        /// </summary>
         public void UpdateAutoSentry()
         {
             if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
@@ -385,6 +409,10 @@ namespace Aequus
                 autoSentryCooldown = 30;
             }
         }
+        /// <summary>
+        /// Determines an item to use as a Sentry Staff for <see cref="UpdateAutoSentry"/>
+        /// </summary>
+        /// <returns></returns>
         public Item AutoSentry_GetUsableSentryStaff()
         {
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
@@ -407,7 +435,7 @@ namespace Aequus
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (resistHeat && HeatDamageCatalogue.HeatNPC.Contains(npc.netID))
+            if (resistHeat && HeatDamageTypes.HeatNPC.Contains(npc.netID))
             {
                 damage = (int)(damage * 0.7f);
             }
@@ -415,7 +443,7 @@ namespace Aequus
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if (resistHeat && HeatDamageCatalogue.HeatProjectile.Contains(proj.type))
+            if (resistHeat && HeatDamageTypes.HeatProjectile.Contains(proj.type))
             {
                 damage = (int)(damage * 0.7f);
             }
@@ -606,6 +634,54 @@ namespace Aequus
             Main.mouseX = mouseX;
             Main.mouseY = mouseY;
             return result;
+        }
+
+        private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
+        {
+            var aequusPlayers = new List<AequusPlayer>();
+            foreach (var p in players)
+            {
+                aequusPlayers.Add(p.GetModPlayer<AequusPlayer>());
+            }
+            foreach (var aequus in aequusPlayers)
+            {
+                aequus.PreDrawAllPlayers(self, camera, players);
+            }
+            orig(self, camera, players);
+            //foreach (var p in active)
+            //{
+            //    p.PostDrawAllPlayers(self);
+            //}
+        }
+
+        private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        {
+            if (PlayerDrawScale != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+                to -= Main.screenPosition;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
+                    data.scale *= PlayerDrawScale.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+            if (PlayerDrawForceDye != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.shader = PlayerDrawForceDye.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
+            orig(ref drawinfo);
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
         }
     }
 }

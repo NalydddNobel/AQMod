@@ -20,7 +20,7 @@ namespace Aequus.Projectiles.Ranged
 
             this.SetTrail(8);
 
-            WindMovementCatalogue.WindProjs.Add(Type);
+            WindMovementTypes.WindProjs.Add(Type);
         }
 
         public override void SetDefaults()

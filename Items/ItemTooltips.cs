@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Configuration;
-using Aequus.Effects;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

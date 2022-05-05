@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Effects.Prims;
+﻿using Aequus.Common;
+using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Boss
 {
     public class RainbowStarofHyperApocalypse : ModProjectile
     {
-        private LegacyPrimRenderer prim;
+        private PrimRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -75,11 +75,11 @@ namespace Aequus.Projectiles.Boss
             float playerDistance = (Main.player[Main.myPlayer].Center - Projectile.Center).Length();
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
-            if (LegacyPrimRenderer.renderProjTrails)
+            if (PrimRenderer.renderProjTrails)
             {
                 if (prim == null)
                 {
-                    prim = new LegacyPrimRenderer(Images.Trail[0].Value, LegacyPrimRenderer.DefaultPass,
+                    prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
                         (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
                 }
                 for (int i = 0; i < 4; i++)

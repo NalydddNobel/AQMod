@@ -5,8 +5,8 @@ using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;
-using Aequus.Effects;
-using Aequus.Effects.Prims;
+using Aequus.Graphics;
+using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
@@ -173,7 +173,7 @@ namespace Aequus.NPCs.Boss
         public static HashSet<int> StarResistCatalogue { get; private set; }
         public static HashSet<int> StarResistEasterEggCatalogue { get; private set; }
 
-        private LegacyPrimRenderer prim;
+        private PrimRenderer prim;
 
         public Ring[] rings;
         public float starDamageMultiplier;
@@ -219,7 +219,7 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
 
-            FrozenNPC.Catalouge.NPCBlacklist.Add(Type);
+            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
         }
 
         public override void SetDefaults()
@@ -1549,7 +1549,7 @@ namespace Aequus.NPCs.Boss
                     if (prim == null)
                     {
                         float radius = CIRCUMFERENCE / 2f;
-                        prim = new LegacyPrimRenderer(Images.Trail[0].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }

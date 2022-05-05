@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Configuration;
-using Aequus.Effects;
-using Aequus.Effects.Prims;
+using Aequus.Graphics;
+using Aequus.Graphics.Prims;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,8 +17,8 @@ namespace Aequus.Projectiles.Magic
 
         public static float DrawOpacity;
 
-        private LegacyPrimRenderer prim;
-        private LegacyPrimRenderer bloomPrim;
+        private PrimRenderer prim;
+        private PrimRenderer bloomPrim;
 
         public int lightningCheck;
 
@@ -253,12 +253,12 @@ namespace Aequus.Projectiles.Magic
         {
             if (prim == null)
             {
-                prim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
+                prim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new LegacyPrimRenderer(Images.Trail[1].Value, LegacyPrimRenderer.DefaultPass,
+                bloomPrim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(8f), (p) => lightningBloomColor * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
         }
