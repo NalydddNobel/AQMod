@@ -19,6 +19,7 @@ float2 uImageOffset;
 float uSaturation;
 float4 uSourceRect;
 float2 uZoom;
+int Repetitions;
 
 float4 GetOffsetClr(float2 coords, float2 offset)
 {
@@ -26,6 +27,27 @@ float4 GetOffsetClr(float2 coords, float2 offset)
 }
 
 float4 FlashCoordinate(float2 coords : TEXCOORD0) : COLOR0
+{
+    float2 target = uTargetPosition;
+    float2 screenLocation = (uScreenPosition + coords * uScreenResolution);
+    float2 dir = normalize(screenLocation - target);
+    
+    float4 color;
+    float intensity = max((uIntensity / ((Repetitions) / 2.5f)), 1.0f / (Repetitions * 2 + 1));
+
+    float2 flashDirection = ((dir * (float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2)) *
+    (2.0f / Repetitions + min(length(screenLocation - target) / 300, 10)))
+    * uIntensity;
+    for (int i = 0; i < Repetitions; i++)
+    {
+        color += GetOffsetClr(coords, flashDirection * i);
+    }
+    
+    return (tex2D(uImage0, coords)
+     + color) * intensity;
+}
+
+float4 FlashCoordinate_Old(float2 coords : TEXCOORD0) : COLOR0
 {
     float2 target = uTargetPosition;
     float2 dir = normalize((uScreenPosition + coords * uScreenResolution) - target);
@@ -50,6 +72,6 @@ technique Technique1
 {
     pass FlashCoordinatePass
     {
-        PixelShader = compile ps_2_0 FlashCoordinate();
+        PixelShader = compile ps_3_0 FlashCoordinate();
     }
 }

@@ -7,6 +7,8 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class Baozhu : ModItem
     {
+        public override string Texture => base.Texture;
+
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);

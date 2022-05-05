@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoMod.RuntimeDetour;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,13 @@ namespace Aequus
                 return zoom * projection;
             }
         }
+
+        public static void Hook(MethodInfo original, MethodInfo newMethod)
+        {
+            MonoModHooks.RequestNativeAccess();
+            new Hook(original, newMethod).Apply();
+        }
+
 
         public static byte TickDown(ref byte value, byte tickAmt = 1)
         {

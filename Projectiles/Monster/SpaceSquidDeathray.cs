@@ -132,7 +132,7 @@ namespace Aequus.Projectiles.Monster
             }
             if (smokePrim == null)
             {
-                smokePrim = new LegacyPrimRenderer(Images.Trail[2].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                smokePrim = new LegacyPrimRenderer(Images.Trail[3].Value, LegacyPrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (Main.LocalPlayer.gravDir == -1)
             {

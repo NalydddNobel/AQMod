@@ -1827,25 +1827,6 @@ Mods: {
 			2: Seasons Greetings to you, {0}
 		}
 
-		Config: {
-			RequiresReload: Requires a reload.
-		}
-
-		DiscordRichPresenceConfig: {
-			Name: Discord Rich Presence
-
-			Header: {
-				DRP: "[c/eeffee:Options]"
-			}
-
-			enableDiscordRichPresence: Enable Discord Rich Presence
-			enableDiscordRichPresenceTooltip: Whether or not Aequus' Discord Rich Presence support should be loaded
-			miniBossRichPresence: Presence for Minibosses
-			miniBossRichPresenceTooltip: Will add a rich presence for any Aequus enemy considered a 'miniboss'
-			eventRichPresence: Presence for Events
-			eventRichPresenceTooltip: Will add a rich presence for all Aequus events
-		}
-
 		Configuration: {
 			Client: {
 				Headers: {
@@ -1855,6 +1836,13 @@ Mods: {
 				ScreenshakeIntensity: Screenshake Intensity
 				FlashIntensity: Flash Intensity
 				HighQuality: High Quality
+				HighQualityShaders: HiDef Shaders
+				FlashShaderRepetitions: Flash Shader - Repetitions
+				FlashShaderRepetitionsTooltip: 
+					'''
+					How many repetitions this shader will perform
+					Only works when HiDef shaders are enabled
+					'''
 			}
 		}
 

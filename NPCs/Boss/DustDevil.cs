@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +15,8 @@ namespace Aequus.NPCs.Boss
     public class DustDevil : AequusBoss // test, not finished in any shape or form
     {
         public bool PhaseTwo => NPC.life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
+
+        public float _torandoMovement;
 
         public override void SetStaticDefaults()
         {
@@ -56,50 +59,81 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
+            _torandoMovement += 1f / 60f;
             NPC.TargetClosest(faceTarget: false);
             NPC.velocity.X += Math.Sign(Main.player[NPC.target].Center.X - NPC.Center.X) * 0.2f;
             NPC.velocity.X = MathHelper.Clamp(NPC.velocity.X, -10f, 10f);
             NPC.rotation = -NPC.velocity.X * 0.05f;
+            var tornadoBottom = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height);
+            Dust.NewDustPerfect(tornadoBottom, DustID.Cloud, NPC.velocity * 0.085f + Main.rand.NextVector2Unit() * 0.2f);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = Images.Bloom[3].Value;
+            var texture = TextureAssets.Npc[Type].Value;
+            var frame = NPC.frame;
             var origin = texture.Size() / 2f;
-            int segments = 30;
-            float y = NPC.height;
-            var bottom = NPC.position.Y + NPC.height / 2f + y / 2f;
-            float halfWidth = NPC.width / 2f;
-            float middle = NPC.position.X + halfWidth;
-            List<(Vector2, Color, float)> tornadoSegments = new List<(Vector2, Color, float)>();
-            for (int i = -segments; i < segments; i++)
+            var tornadoBottom = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height);
+
+            int tornadoX = texture.Width / 3;
+            float scale;
+            int i = 0;
+
+            for (int height = NPC.height; height > 0; height -= Math.Max((int)(frame.Height * scale) - 4, 2))
             {
-                float progress = AequusHelpers.CalcProgress(segments * 2, i + segments);
-                float x = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 7.5f + i * 0.35f, -halfWidth, halfWidth);
-                if (progress < 0.6f)
+                scale = NPC.scale * 1.2f;
+                if (height < 240)
                 {
-                    x *= progress / 0.6f;
+                    scale *= 1f / 240f * height;
+                    scale *= scale;
                 }
-                var color = Color.White;
-                if (i % 2 == 0)
-                {
-                    x = -x;
-                    color = Color.Lerp(color, Color.Blue, progress * 0.8f);
-                }
-                else
-                {
-                    color = Color.Lerp(color, Color.OrangeRed, progress * 0.8f);
-                }
-                tornadoSegments.Add((new Vector2(middle + x, bottom) + new Vector2(0f, -y * progress).RotatedBy(NPC.rotation * progress) - Main.screenPosition, color, NPC.scale * progress * 0.6f));
+                float wave = (float)Math.Sin(i * 0.35f + _torandoMovement * 5f);
+                var drawCoords = tornadoBottom + new Vector2(wave * tornadoX * scale, -height);
+                var segmentColor = NPC.GetNPCColorTintedByBuffs(Lighting.GetColor(drawCoords.ToTileCoordinates()));
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos, frame, segmentColor, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                segmentColor = NPC.GetNPCColorTintedByBuffs(Color.White);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos + new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.3f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos - new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.3f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                i++;
             }
-            foreach (var tuple in tornadoSegments)
+
+            tornadoX = texture.Width * 2;
+            for (int height = NPC.height; height > 0; height -= Math.Max((int)(frame.Height * scale) - 4, 2))
             {
-                Main.spriteBatch.Draw(texture, tuple.Item1, null, Color.White, 0f, origin, tuple.Item3, SpriteEffects.None, 0f);
+                scale = NPC.scale * 1.2f;
+                if (height < 240)
+                {
+                    scale *= 1f / 240f * height;
+                    scale *= scale;
+                }
+                scale *= 0.5f;
+                float wave = (float)Math.Sin(i * 0.35f + _torandoMovement * 5f + MathHelper.TwoPi / 3f);
+                var drawCoords = tornadoBottom + new Vector2(wave * tornadoX * scale, -height);
+                var segmentColor = NPC.GetNPCColorTintedByBuffs(Color.White);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos, frame, segmentColor * 0.2f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos + new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.1f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos - new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.1f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                i++;
             }
-            foreach (var tuple in tornadoSegments)
+
+            for (int height = NPC.height; height > 0; height -= Math.Max((int)(frame.Height * scale) - 4, 2))
             {
-                Main.spriteBatch.Draw(texture, tuple.Item1, null, tuple.Item2, 0f, origin, tuple.Item3 * 0.4f, SpriteEffects.None, 0f);
+                scale = NPC.scale * 1.2f;
+                if (height < 240)
+                {
+                    scale *= 1f / 240f * height;
+                    scale *= scale;
+                }
+                scale *= 0.5f;
+                float wave = (float)Math.Sin(i * 0.35f + _torandoMovement * 5f + MathHelper.TwoPi / 3f * 2f);
+                var drawCoords = tornadoBottom + new Vector2(wave * tornadoX * scale, -height);
+                var segmentColor = NPC.GetNPCColorTintedByBuffs(Color.White);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos, frame, segmentColor * 0.2f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos + new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.1f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords - screenPos - new Vector2(wave * 8f * scale, 0f), frame, segmentColor * 0.1f, wave * 0.1f, origin, scale, SpriteEffects.None, 0f);
+                i++;
             }
+
             return false;
         }
     }

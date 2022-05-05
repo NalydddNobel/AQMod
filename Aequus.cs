@@ -32,6 +32,7 @@ namespace Aequus
         {
             Instance = this;
             AequusHelpers.Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+
             AequusText.OnModLoad(this);
             ClientConfig.OnModLoad(this);
             if (Main.netMode != NetmodeID.Server)

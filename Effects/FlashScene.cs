@@ -15,6 +15,7 @@ namespace Aequus.Effects
         public const string FlashFilterName = "Aequus:Flash";
 
         public static Asset<Effect> FlashShader { get; private set; }
+        public static bool UsingOldFlashShader { get; private set; }
 
         public static Filter FlashFilter { get => Filters.Scene[FlashFilterName]; set => Filters.Scene[FlashFilterName] = value; }
 
@@ -29,9 +30,27 @@ namespace Aequus.Effects
 
         public override void Load()
         {
-            FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
+            LoadFlashShader();
             FlashFilter = new Filter(new ScreenShaderData(new Ref<Effect>(FlashShader.Value), "FlashCoordinatePass"), EffectPriority.VeryHigh);
             Flash = new ScreenFlashData();
+        }
+        private void LoadFlashShader()
+        {
+            if (ClientConfig.Instance.HighQualityShaders)
+            {
+                UsingOldFlashShader = false;
+                try
+                {
+                    FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
+                    return;
+                }
+                catch
+                {
+                    Aequus.Instance.Logger.Error("Couldn't load HiDef ps_3_0 flash shader... Loading old instead");
+                }
+            }
+            UsingOldFlashShader = true;
+            FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash_Old", AssetRequestMode.ImmediateLoad);
         }
 
         public override void Unload()
@@ -43,14 +62,26 @@ namespace Aequus.Effects
         {
             if (Flash.FlashLocation != Vector2.Zero)
             {
-                FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 1f / 18f));
-                if (!FlashFilter.IsActive())
+                try
                 {
-                    Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation, null).GetShader()
-                    .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
+                    FlashFilter.GetShader().UseTargetPosition(Flash.FlashLocation);
+                    FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 1f / 18f));
+                    if (!FlashFilter.IsActive())
+                    {
+                        Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation, null).GetShader()
+                        .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
+                    }
+                    float intensity = Math.Max(Flash.Intensity - Flash.Intensity * Flash.MultiplyPerTick, 0.01f);
+                    Flash.Intensity -= intensity;
+                    if (Flash.Intensity <= 0.0001f)
+                    {
+                        Flash.Clear();
+                    }
+
+                    if (!UsingOldFlashShader)
+                        FlashFilter.GetShader().Shader.Parameters["Repetitions"].SetValue(ModContent.GetInstance<ClientConfig>().FlashShaderRepetitions);
                 }
-                Flash.Intensity *= Flash.MultiplyPerTick;
-                if (Flash.Intensity <= 0.01f)
+                catch
                 {
                     Flash.Clear();
                 }

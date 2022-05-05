@@ -1,8 +1,10 @@
 ﻿using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Misc;
+using Aequus.Items.Misc.Summons;
 using System;
 using System.ComponentModel;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace Aequus.Common.Configuration
@@ -40,11 +42,29 @@ namespace Aequus.Common.Configuration
         [DefaultValue(true)]
         public bool HighQuality { get; set; }
 
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.HighQualityShadersLabel")]
+        [DefaultValue(true)]
+        [ReloadRequired()]
+        public bool HighQualityShaders { get; set; }
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.FlashShaderRepetitionsLabel")]
+        [Tooltip(Key + "Client.FlashShaderRepetitionsTooltip")]
+        [Increment(4)]
+        [DefaultValue(40)]
+        [Range(10, 80)]
+        [Slider()]
+        [SliderColor(30, 50, 120, 255)]
+        public int FlashShaderRepetitions { get; set; }
+
         internal static void OnModLoad(Aequus aequus)
         {
             AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.ItemText<NoonPotion>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<MirrorsCall>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<Fluorescence>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
         }
     }
 }
