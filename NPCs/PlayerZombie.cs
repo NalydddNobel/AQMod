@@ -142,6 +142,12 @@ namespace Aequus.NPCs
                     npc.active = false;
                 }
 
+                if (AI_ReturnPlayerLocation != Vector2.Zero)
+                {
+                    Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
+                    AI_ReturnPlayerLocation = Vector2.Zero;
+                }
+
                 AI_ZombieOwner = zombieOwner;
 
                 npc.life = npc.lifeMax - 1; // Aggros slimes and stuff
