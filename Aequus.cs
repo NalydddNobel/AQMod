@@ -3,10 +3,8 @@ using Aequus.Common.Utilities;
 using Aequus.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -25,7 +23,7 @@ namespace Aequus
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
         public static bool HQ => ClientConfig.Instance.HighQuality;
 
-        internal static Color GreenSlimeColor => new Color(0, 220, 40, 100);
+        internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
 
         public override void Load()
@@ -53,20 +51,6 @@ namespace Aequus
             AequusHelpers.Main_dayTime = null;
             InventoryInterface = null;
             NPCTalkInterface = null;
-        }
-
-        public static Matrix GetWorldViewPoint()
-        {
-            GraphicsDevice graphics = Main.graphics.GraphicsDevice;
-            Vector2 screenZoom = Main.GameViewMatrix.Zoom;
-            int width = graphics.Viewport.Width;
-            int height = graphics.Viewport.Height;
-
-            var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-                Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
-                Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
-            var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-            return zoom * projection;
         }
     }
 }

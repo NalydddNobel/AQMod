@@ -2,8 +2,6 @@
 using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoMod.RuntimeDetour;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -52,12 +50,11 @@ namespace Aequus
             }
         }
 
-        public static void Hook(MethodInfo original, MethodInfo newMethod)
+        public static void Max(this (int, int) tuple, int value) 
         {
-            MonoModHooks.RequestNativeAccess();
-            new Hook(original, newMethod).Apply();
+            tuple.Item1 = Math.Max(tuple.Item1, value);
+            tuple.Item2 = Math.Max(tuple.Item2, value);
         }
-
 
         public static byte TickDown(ref byte value, byte tickAmt = 1)
         {

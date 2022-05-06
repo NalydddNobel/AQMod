@@ -782,14 +782,14 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<SpaceSquidTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<SpaceSquidRelic>()));
-            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<ToySpaceGun>(), 4));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpaceSquidMask>(), 7));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTear>(), 1, 10, 24));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<FrostbiteDye>(), 7));
+            this.CreateLoot(npcLoot)
+                .AddBossLoot<SpaceSquidTrophy, SpaceSquidRelic>()
+                .AddMasterPet<ToySpaceGun>()
+                .Add<SpaceSquidMask>(chance: 7, stack: 1)
+                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
+                .Add<FrozenTear>(1, (10, 24))
+                .Add(ItemID.SoulofFlight, 1, (2, 6))
+                .Add(new GuaranteedFlawlessly(ModContent.ItemType<FrostbiteDye>(), 7));
         }
 
         public override void OnKill()

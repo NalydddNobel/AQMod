@@ -5,14 +5,14 @@ using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    public class GuaranteedDropWhenBeatenFlawlessly : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+    public class GuaranteedFlawlessly : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int Item;
         private readonly int DropChance;
 
         public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
-        public GuaranteedDropWhenBeatenFlawlessly(int item, int dropChance)
+        public GuaranteedFlawlessly(int item, int dropChance)
         {
             Item = item;
             DropChance = dropChance;

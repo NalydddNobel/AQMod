@@ -1639,17 +1639,16 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<OmegaStariteTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<OmegaStariteBag>()));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
-            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), 4));
-            npcLoot.Add(new FlawlessDrop(ModContent.ItemType<Origin>()));
-            var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), 7));
-            normalOnly.OnSuccess(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Raygun>()));
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<LightMatter>(), 1, 14, 20));
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CosmicEnergy>(), 1, 3, 6));
-            npcLoot.Add(normalOnly);
+            this.CreateLoot(npcLoot)
+                .AddBossLoot<OmegaStariteTrophy, OmegaStariteBag, OmegaStariteRelic, DragonBall>()
+                .AddFlawless<Origin>()
+
+                .SetCondition(new Conditions.NotExpert())
+                .Add<OmegaStariteMask>(chance: 7, stack: 1)
+                .AddOptions(1, ModContent.ItemType<Raygun>())
+                .Add<LightMatter>(stack: (14, 20))
+                .Add<CosmicEnergy>(stack: (3, 6))
+                .RegisterCondition();
         }
 
         public override void OnKill()

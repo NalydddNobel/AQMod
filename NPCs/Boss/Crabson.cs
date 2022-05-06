@@ -856,14 +856,15 @@ namespace Aequus.NPCs.Boss
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<CrabsonTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CrabsonBag>()));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
-            var normalOnly = new LeadingConditionRule(new Conditions.NotExpert());
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), 7));
-            normalOnly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<AquaticEnergy>(), 1, 3, 6));
-            normalOnly.OnSuccess(ItemDropRule.OneFromOptions(2, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>()));
-            npcLoot.Add(normalOnly);
+            this.CreateLoot(npcLoot)
+                .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
+                .AddFlawless<Origin>()
+
+                .SetCondition(new Conditions.NotExpert())
+                .Add<CrabsonMask>(chance: 7, stack: 1)
+                .AddOptions(1, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>())
+                .Add<AquaticEnergy>(stack: (3, 6))
+                .RegisterCondition();
         }
 
         private void CheckClosestSegmentForLoot(byte player, ref float distance, NPC npc)

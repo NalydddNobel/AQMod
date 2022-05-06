@@ -1088,14 +1088,14 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<RedSpriteTrophy>(), 10));
-            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<RedSpriteRelic>()));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RedSpriteMask>(), 7));
-            npcLoot.Add(new OnFirstKillRuleOtherwiseChance(ModContent.ItemType<Moro>(), 5, () => AequusWorld.downedSpaceSquid, "SpaceSquid"));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>()));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Fluorescence>(), 1, 10, 24));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFlight, 1, 2, 6));
-            npcLoot.Add(new GuaranteedDropWhenBeatenFlawlessly(ModContent.ItemType<ScorchingDye>(), 7));
+            this.CreateLoot(npcLoot)
+                .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
+                .Add<RedSpriteMask>(chance: 7, stack: 1)
+                .Add(new OnFirstKillRuleOtherwiseChance(ModContent.ItemType<Moro>(), 5, () => AequusWorld.downedRedSprite, "RedSprite"))
+                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
+                .Add<Fluorescence>(1, (10, 24))
+                .Add(ItemID.SoulofFlight, 1, (2, 6))
+                .Add(new GuaranteedFlawlessly(ModContent.ItemType<ScorchingDye>(), 7));
         }
 
         public override void OnKill()
