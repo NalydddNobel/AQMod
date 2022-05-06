@@ -52,6 +52,15 @@ namespace Aequus
             }
         }
 
+        public static T GetOrDefault<T>(this Dictionary<int, T> dict, int index, T Default = default(T))
+        {
+            if (dict.TryGetValue(index, out T value))
+            {
+                return value;
+            }
+            return Default;
+        }
+
         public static List<int> AllWhichShareBanner(int type, bool vanillaOnly = false)
         {
             var list = new List<int>();

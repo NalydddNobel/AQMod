@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Summon
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(100, 200, 255, 255 - Projectile.alpha);
+            return new Color(100, 140, 255, 255 - Projectile.alpha);
         }
 
         public override void AI()
@@ -64,7 +64,6 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Main.NewText(Projectile.ai[0]);
             NecromancyDebuff.ApplyDebuff(target, 600, Projectile.owner, Projectile.ai[0]);
         }
 

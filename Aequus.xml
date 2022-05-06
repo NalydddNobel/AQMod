@@ -249,6 +249,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:Aequus.Common.Catalogues.NecromancyTypes.NecroStats.None">
+            <summary>
+            For enemies which cannot be turned into player zombies
+            </summary>
+        </member>
         <member name="T:Aequus.Common.Players.HyperCrystalPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>

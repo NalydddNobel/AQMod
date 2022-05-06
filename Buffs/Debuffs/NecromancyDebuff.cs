@@ -21,7 +21,7 @@ namespace Aequus.Buffs.Debuffs
 
         public static void ApplyDebuff(NPC npc, int time, int player, float tier)
         {
-            if (NecromancyTypes.NPCs.TryGetValue(npc.type, out var value) && value.PowerNeeded <= tier)
+            if (tier >= 100 || (NecromancyTypes.NPCs.TryGetValue(npc.type, out var value) && value.PowerNeeded <= tier))
             {
                 npc.AddBuff(ModContent.BuffType<NecromancyDebuff>(), time);
                 npc.GetGlobalNPC<PlayerZombie>().zombieOwner = player;

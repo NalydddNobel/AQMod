@@ -1,7 +1,9 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Catalogues;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,6 +14,7 @@ namespace Aequus.NPCs
     public class PlayerZombie : GlobalNPC
     {
         public static bool AI_NPCIsZombie { get; private set; }
+        public static int AI_ZombieOwner { get; private set; }
         public static int AI_NPCTarget { get; private set; }
         public static Vector2 AI_ReturnPlayerLocation { get; private set; }
 
@@ -51,6 +54,42 @@ namespace Aequus.NPCs
                 return;
             }
             orig(self, faceTarget, realDist, tankTarget);
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (!AI_NPCIsZombie)
+            {
+                return;
+            }
+            if (source is EntitySource_OnHit onHit)
+            {
+                ZombieCheck(onHit.EntityStruck, npc);
+            }
+            else if (source is EntitySource_Parent parent)
+            {
+                ZombieCheck(parent.Entity, npc);
+            }
+            else if (source is EntitySource_HitEffect hitEffect)
+            {
+                ZombieCheck(hitEffect.Entity, npc);
+            }
+            else if (source is EntitySource_Death death)
+            {
+                ZombieCheck(death.Entity, npc);
+            }
+        }
+        public void ZombieCheck(Entity entity, NPC npc)
+        {
+            if (entity is NPC npc2 && npc2.GetGlobalNPC<PlayerZombie>().isZombie)
+            {
+                npc.friendly = true;
+                npc.damage *= 5;
+                npc.GetGlobalNPC<PlayerZombie>().zombieOwner = npc2.GetGlobalNPC<PlayerZombie>().zombieOwner;
+                npc.GetGlobalNPC<PlayerZombie>().zombieTimer = npc2.GetGlobalNPC<PlayerZombie>().zombieTimer;
+                npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = npc2.GetGlobalNPC<PlayerZombie>().zombieDebuffTier;
+                npc.GetGlobalNPC<PlayerZombie>().isZombie = true;
+            }
         }
 
         public override bool? CanHitNPC(NPC npc, NPC target)
@@ -103,7 +142,9 @@ namespace Aequus.NPCs
                     npc.active = false;
                 }
 
-                npc.life = 1; // Aggros slimes and stuff
+                AI_ZombieOwner = zombieOwner;
+
+                npc.life = npc.lifeMax - 1; // Aggros slimes and stuff
                 npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
                 npc.friendly = true;
                 npc.target = zombieOwner;
@@ -137,7 +178,7 @@ namespace Aequus.NPCs
         private int GetNPCTarget(NPC npc)
         {
             int target = -1;
-            float distance = NecromancyTypes.NPCs[npc.type].ViewDistance;
+            float distance = NecromancyTypes.NPCs.GetOrDefault(npc.type, NecromancyTypes.NecroStats.None).ViewDistance;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active && Main.npc[i].CanBeChasedBy(npc) &&
@@ -206,18 +247,23 @@ namespace Aequus.NPCs
             return (int)damage;
         }
 
-        public override void AI(NPC npc)
-        {
-        }
-
         public override void PostAI(NPC npc)
         {
             if (isZombie)
             {
+                npc.dontTakeDamage = true;
                 if (AI_ReturnPlayerLocation != Vector2.Zero)
                 {
                     Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
                     AI_ReturnPlayerLocation = Vector2.Zero;
+                }
+                if (Main.rand.NextBool(6))
+                {
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: new Color(50, 150, 255, 100));
+                    d.velocity *= 0.3f;
+                    d.velocity += npc.velocity * 0.2f;
+                    d.scale *= npc.scale;
+                    d.noGravity = true;
                 }
             }
             AI_NPCIsZombie = false;
@@ -240,18 +286,34 @@ namespace Aequus.NPCs
             {
                 int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
                 Main.npc[n].GetGlobalNPC<PlayerZombie>().isZombie = true;
+                Main.npc[n].damage *= GetDamageMultiplier(npc);
                 Main.npc[n].friendly = true;
                 Main.npc[n].extraValue = 0;
             }
         }   
+        public int GetDamageMultiplier(NPC npc)
+        {
+            int dmgMultiplier = 1;
+            if (npc.boss)
+            {
+                dmgMultiplier = 5;
+            }
+            dmgMultiplier += npc.lifeMax / 2500;
+            return dmgMultiplier;
+        }
         public bool CanBeTurnedIntoZombie(NPC npc)
         {
-            return NecromancyTypes.NPCs[npc.type].PowerNeeded >= zombieDebuffTier;
+            if (npc.type == NPCID.DungeonGuardian)
+            {
+                return false;
+            }
+            return NecromancyTypes.NPCs.GetOrDefault(npc.type, NecromancyTypes.NecroStats.None).PowerNeeded <= zombieDebuffTier;
         }
 
         internal static void SetupBuffImmunities()
         {
-            var buffList = NecromancyTypes.NecromancyDebuffs;
+            var buffList = new List<int>(NecromancyTypes.NecromancyDebuffs);
+            buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
             for (int i = 0; i < Main.maxNPCTypes; i++)
             {
                 if (!NecromancyTypes.NPCs.TryGetValue(i, out var stats) || stats == NecromancyTypes.NecroStats.None)
@@ -278,6 +340,41 @@ namespace Aequus.NPCs
                         k++;
                     }
                 }
+            }
+        }
+    }
+    public class PlayerZombieProj : GlobalProjectile
+    {
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            if (!PlayerZombie.AI_NPCIsZombie)
+            {
+                return;
+            }
+            if (source is EntitySource_OnHit onHit)
+            {
+                ZombieCheck(onHit.EntityStruck, projectile);
+            }
+            else if (source is EntitySource_Parent parent)
+            {
+                ZombieCheck(parent.Entity, projectile);
+            }
+            else if (source is EntitySource_HitEffect hitEffect)
+            {
+                ZombieCheck(hitEffect.Entity, projectile);
+            }
+            else if (source is EntitySource_Death death)
+            {
+                ZombieCheck(death.Entity, projectile);
+            }
+        }
+        public void ZombieCheck(Entity entity, Projectile projectile)
+        {
+            if (entity is NPC npc && npc.GetGlobalNPC<PlayerZombie>().isZombie)
+            {
+                projectile.hostile = false;
+                projectile.friendly = true;
+                projectile.owner = PlayerZombie.AI_ZombieOwner;
             }
         }
     }
