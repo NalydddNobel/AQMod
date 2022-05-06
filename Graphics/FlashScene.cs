@@ -71,9 +71,9 @@ namespace Aequus.Graphics
                         Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation, null).GetShader()
                         .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
                     }
-                    float intensity = Math.Max(Flash.Intensity - Flash.Intensity * Flash.MultiplyPerTick, 0.01f);
+                    float intensity = Math.Max(Flash.Intensity - Flash.Intensity * Flash.Multiplier, 0.05f);
                     Flash.Intensity -= intensity;
-                    if (Flash.Intensity <= 0.0001f)
+                    if (Flash.Intensity <= 0.00001f)
                     {
                         Flash.Clear();
                     }

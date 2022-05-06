@@ -6,20 +6,20 @@ namespace Aequus.Graphics
     {
         public Vector2 FlashLocation;
         public float Intensity;
-        public float MultiplyPerTick;
+        public float Multiplier;
 
         public void Set(Vector2 location, float brightness, float multiplier = 0.9f)
         {
             FlashLocation = location;
             Intensity = brightness;
-            MultiplyPerTick = multiplier;
+            Multiplier = multiplier;
         }
 
         public void Clear()
         {
             FlashLocation = default(Vector2);
             Intensity = 0f;
-            MultiplyPerTick = 0f;
+            Multiplier = 0f;
         }
     }
 }

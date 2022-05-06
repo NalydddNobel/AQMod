@@ -858,7 +858,6 @@ namespace Aequus.NPCs.Boss
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
-                .AddFlawless<Origin>()
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)

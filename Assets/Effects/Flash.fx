@@ -35,8 +35,8 @@ float4 FlashCoordinate(float2 coords : TEXCOORD0) : COLOR0
     float4 color;
     float intensity = max((uIntensity / ((Repetitions) / 2.5f)), 1.0f / (Repetitions * 2 + 1));
 
-    float2 flashDirection = ((dir * (float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2)) *
-    (2.0f / Repetitions + min(length(screenLocation - target) / 300, 10)))
+    float2 flashDirection = ((dir * (float2(1 / uScreenResolution.x, 1 / uScreenResolution.y) * 2)) 
+    * (4.0f / Repetitions) * min(length(screenLocation - target) / 20, 10))
     * uIntensity;
     for (int i = 0; i < Repetitions; i++)
     {
