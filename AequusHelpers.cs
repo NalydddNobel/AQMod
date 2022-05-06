@@ -20,6 +20,8 @@ namespace Aequus
     /// </summary>
     public static class AequusHelpers
     {
+        public const int NPCREGEN = 8;
+
         /// <summary>
         /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
         /// </summary>
@@ -48,6 +50,42 @@ namespace Aequus
                 var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
                 return zoom * projection;
             }
+        }
+
+        public static List<int> AllWhichShareBanner(int type, bool vanillaOnly = false)
+        {
+            var list = new List<int>();
+            int banner = ContentSamples.NpcsByNetId[type].ToBanner();
+            if (banner == 0)
+            {
+                return list;
+            }
+            foreach (var n in ContentSamples.NpcsByNetId)
+            {
+                if (vanillaOnly && n.Key > Main.maxNPCTypes)
+                {
+                    continue;
+                }
+                if (banner == n.Value.ToBanner())
+                {
+                    list.Add(n.Key);
+                }
+            }
+            return list;
+        }
+
+        public static int ToBanner(this NPC npc)
+        {
+            return Item.NPCtoBanner(npc.BannerID());
+        }
+
+        public static void AddRegen(this NPC npc, int regen)
+        {
+            if (regen < 0 && npc.lifeRegen > 0)
+            {
+                npc.lifeRegen = 0;
+            }
+            npc.lifeRegen += regen * NPCREGEN;
         }
 
         public static void Max(this (int, int) tuple, int value) 

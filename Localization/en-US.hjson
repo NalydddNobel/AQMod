@@ -68,6 +68,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			ZombieScepter: Zombie Scepter
 			Moro: Moro
 			IcebergKraken: Iceberg Kraken
 			ToySpaceGun: Toy Space Gun
@@ -371,6 +372,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ZombieScepter: 
+				'''
+				Drains the soul of weak enemies
+				Fully drained souls will join your team
+				'''
 			Moro: Summon staffs permanently no longer consume mana and are faster
 			IcebergKraken:
 				'''

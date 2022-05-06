@@ -46,6 +46,15 @@ namespace Aequus.Items
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
 
+        public static void DefaultToNecromancy(this Item item, int timeBetweenShots)
+        {
+            item.useTime = timeBetweenShots;
+            item.useAnimation = timeBetweenShots;
+            item.useStyle = ItemUseStyleID.Shoot;
+            item.DamageType = DamageClass.Summon;
+            item.noMelee = true;
+        }
+
         public static void DefaultToHoldUpItem(this Item item)
         {
             item.useAnimation = 45;

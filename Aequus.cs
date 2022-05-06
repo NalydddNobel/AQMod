@@ -1,6 +1,7 @@
 using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
 using Aequus.Items;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -42,6 +43,7 @@ namespace Aequus
 
         public override void AddRecipes()
         {
+            PlayerZombie.SetupBuffImmunities();
             ItemsCatalogue.LoadAutomaticEntries();
         }
 
