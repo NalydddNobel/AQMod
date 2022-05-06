@@ -317,20 +317,18 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            var rule = new LeadingConditionRule(new Conditions.IsHardmode());
-            rule.OnSuccess(npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AtmosphericEnergy>(), 20)));
-            npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 5, 15));
-            npcLoot.Add(ItemDropRule.ByCondition(new HardmodeTierCondition(), ModContent.ItemType<Umystick>(), 15));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SlimeStaff));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CensorDye>(), 10));
+            this.CreateLoot(npcLoot)
+                .Add<Umystick>(new HardmodeTierCondition(), chance: 15, stack: 1)
+                .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
+                .SetCondition(new Conditions.IsHardmode())
+                .Add<AtmosphericEnergy>(chance: 20, stack: 1)
+                .RegisterCondition()
+                .Add(ItemID.Gel, chance: 1, stack: (5, 15))
+                .Add<CensorDye>(chance: 10, stack: 1);
         }
 
         //public override void NPCLoot()
         //{
-        //    if (WorldDefeats.SudoHardmode && Main.rand.NextBool(15))
-        //    {
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<Items.Weapons.Magic.Umystick>());
-        //    }
         //    if (Main.rand.NextBool(8))
         //    {
         //        Item.NewItem(NPC.getRect(), ModContent.ItemType<CinnamonRoll>());

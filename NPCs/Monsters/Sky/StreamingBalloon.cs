@@ -323,24 +323,21 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(new StreamingBalloonKillSlaveRule(ModContent.ItemType<AtmosphericEnergy>(), 4));
-
             int goodItemsChance = 2 * 3;
-
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.CreativeWings, goodItemsChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.Starfury, goodItemsChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.ShinyRedBalloon, goodItemsChance));
-
             int randomItemChance = 9 * 8;
 
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlue, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlueAndYellow, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRed, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRedAndYellow, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteYellow, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBunny, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneA, randomItemChance));
-            npcLoot.Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneB, randomItemChance));
+            this.CreateLoot(npcLoot)
+                .Add(new StreamingBalloonKillSlaveRule(ModContent.ItemType<AtmosphericEnergy>(), 4))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.CreativeWings, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.Starfury, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.ShinyRedBalloon, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlue, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlueAndYellow, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRedAndYellow, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteYellow, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBunny, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneA, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.PaperAirplaneB, randomItemChance));
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

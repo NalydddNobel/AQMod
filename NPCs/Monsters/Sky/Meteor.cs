@@ -153,18 +153,16 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Pumpinator>(), 15));
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 3), new ItemDrop(ItemID.CopperBar, 1)));
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 3), new ItemDrop(ItemID.TinBar, 1)));
-
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(1, false), new ItemDrop(ItemID.IronOre, 3), new ItemDrop(ItemID.IronBar, 1)));
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(1, true), new ItemDrop(ItemID.LeadOre, 3), new ItemDrop(ItemID.LeadBar, 1)));
-
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(2, false), new ItemDrop(ItemID.SilverOre, 4), new ItemDrop(ItemID.SilverBar, 1)));
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(2, true), new ItemDrop(ItemID.TungstenOre, 4), new ItemDrop(ItemID.TungstenBar, 1)));
-
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(3, false), new ItemDrop(ItemID.GoldOre, 4), new ItemDrop(ItemID.GoldBar, 1)));
-            npcLoot.Add(new OneFromOptionsStackCondition(new OreTierCondition(3, true), new ItemDrop(ItemID.PlatinumOre, 4), new ItemDrop(ItemID.PlatinumBar, 1)));
+            this.CreateLoot(npcLoot)
+                .Add<Pumpinator>(chance: 15, stack: 1)
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 3), new ItemDrop(ItemID.CopperBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 3), new ItemDrop(ItemID.TinBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.IronOre, 3), new ItemDrop(ItemID.IronBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.LeadOre, 3), new ItemDrop(ItemID.LeadBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.SilverOre, 4), new ItemDrop(ItemID.SilverBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TungstenOre, 4), new ItemDrop(ItemID.TungstenBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.GoldOre, 4), new ItemDrop(ItemID.GoldBar, 1)))
+                .Add(new OneFromOptionsStackCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.PlatinumOre, 4), new ItemDrop(ItemID.PlatinumBar, 1)));
         }
     }
 }

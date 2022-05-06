@@ -63,13 +63,33 @@ namespace Aequus.NPCs
                 dropChance.Max(1);
                 return Add(ItemDropRule.ByCondition(condition, itemID, dropChance.chance, stack.min, stack.max, dropChance.over));
             }
+            public Drops Add<T>(IItemDropRuleCondition condition, (int chance, int over) dropChance = default((int, int)), (int min, int max) stack = default((int, int))) where T : ModItem
+            {
+                return Add(condition, ModContent.ItemType<T>(), dropChance, stack);
+            }
             public Drops Add(IItemDropRuleCondition condition, int itemID, (int chance, int over) dropChance = default((int, int)), int stack = 1)
             {
                 return Add(condition, itemID, dropChance, (stack, stack));
             }
+            public Drops Add<T>(IItemDropRuleCondition condition, (int chance, int over) dropChance = default((int, int)), int stack = 1) where T : ModItem
+            {
+                return Add(condition, ModContent.ItemType<T>(), dropChance, (stack, stack));
+            }
             public Drops Add(IItemDropRuleCondition condition, int itemID, int chance = 1, (int min, int max) stack = default((int, int)))
             {
                 return Add(condition, itemID, (chance, 1), stack);
+            }
+            public Drops Add<T>(IItemDropRuleCondition condition, int chance = 1, (int min, int max) stack = default((int, int))) where T : ModItem
+            {
+                return Add(condition, ModContent.ItemType<T>(), (chance, 1), stack);
+            }
+            public Drops Add(IItemDropRuleCondition condition, int itemID, int chance = 1, int stack = 1)
+            {
+                return Add(condition, itemID, (chance, 1), (stack, stack));
+            }
+            public Drops Add<T>(IItemDropRuleCondition condition, int chance = 1, int stack = 1) where T : ModItem
+            {
+                return Add(condition, ModContent.ItemType<T>(), (chance, 1), (stack, stack));
             }
 
             public Drops AddBossBag(int itemID)

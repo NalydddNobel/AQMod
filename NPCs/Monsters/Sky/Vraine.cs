@@ -459,12 +459,13 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            var hardmodeOnly = new LeadingConditionRule(new Conditions.IsHardmode());
             var whenAllNPCsAreDead = new WhenAllNPCsAreDeadCondition(Type);
-            hardmodeOnly.OnSuccess(ItemDropRule.ByCondition(whenAllNPCsAreDead, ModContent.ItemType<AtmosphericEnergy>(), 20));
-            npcLoot.Add(ItemDropRule.ByCondition(whenAllNPCsAreDead, ModContent.ItemType<Vrang>(), 8));
-            npcLoot.Add(hardmodeOnly);
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CensorDye>(), 10));
+            this.CreateLoot(npcLoot)
+                .Add<Vrang>(whenAllNPCsAreDead, chance: 8, stack: 1)
+                .SetCondition(new Conditions.IsHardmode())
+                .Add<AtmosphericEnergy>(condition: whenAllNPCsAreDead, chance: 20, stack: 1)
+                .RegisterCondition()
+                .Add<CensorDye>(chance: 60, stack: 1);
         }
 
         //public override void NPCLoot()
