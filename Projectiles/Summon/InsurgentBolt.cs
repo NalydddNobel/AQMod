@@ -2,12 +2,13 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 
 namespace Aequus.Projectiles.Summon
 {
     public class InsurgentBolt : InsurgentSkull
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancerBolt>();
+        public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.RainbowCrystalExplosion;
 
         public override void SetStaticDefaults()
         {
@@ -45,10 +46,19 @@ namespace Aequus.Projectiles.Summon
                 return;
             }
 
+            Projectile.tileCollide = true;
             int target = Projectile.FindTargetWithLineOfSight(400f);
-            if (target != -1)
+            if (target != -1 && target != (int)Projectile.ai[1])
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, (Main.npc[target].Center - Projectile.Center) / 20f, 0.05f);
+                Projectile.tileCollide = false;
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * 10f, 0.05f);
+            }
+            else
+            {
+                if (Projectile.velocity.Length() < 10f)
+                {
+                    Projectile.velocity *= 1.05f;
+                }
             }
 
             Projectile.rotation = Projectile.velocity.ToRotation();
@@ -70,6 +80,7 @@ namespace Aequus.Projectiles.Summon
             }
             if (Projectile.alpha == 0)
                 Projectile.damage = 1;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -78,20 +89,6 @@ namespace Aequus.Projectiles.Summon
             height = 10;
             fallThrough = true;
             return true;
-        }
-
-        public override bool PreDraw(ref Color lightColor)
-        {
-            var texture = TextureAssets.Projectile[Type].Value;
-            var frame = Projectile.Frame();
-            var origin = frame.Size() / 2f;
-            var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-            base.PreDraw(ref lightColor);
-            for (int i = 0; i < 4; i++)
-            {
-                Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            }
-            return false;
         }
     }
 }

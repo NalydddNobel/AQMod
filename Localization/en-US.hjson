@@ -39,8 +39,6 @@ Mods: {
 			Trophy: Will 100% drop when defeated flawlessly
 		}
 		Tooltips: {
-			HookBarbStation: Allows you to equip hook barbs to grappling hooks inside your inventory
-
 			UsesGel: Uses gel for ammo
 			ExporterQuest: Return this to the exporter
 			Concocted: Used in potion concoctions
@@ -376,6 +374,7 @@ Mods: {
 			InsurgencyScepter: 
 				'''
 				Drains the soul of very powerful enemies
+				Accursed enemies will release spirits that curse nearby enemies
 				Fully drained souls will join your team
 				'Silence'
 				'''

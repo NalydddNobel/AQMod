@@ -1,3 +1,4 @@
+using Aequus.Common.Catalogues;
 using Aequus.Common.Configuration;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
@@ -90,6 +91,16 @@ namespace Aequus
                     globals[i].Receive(reader);
                 }
             }
+        }
+
+        public override object Call(params object[] args)
+        {
+            switch ((string)args[0])
+            {
+                case "NecroStats":
+                    return ModContent.GetInstance<NecromancyTypes>().HandleModCall(this, args);
+            }
+            return null;
         }
     }
 }

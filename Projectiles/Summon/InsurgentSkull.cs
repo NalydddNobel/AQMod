@@ -142,7 +142,7 @@ namespace Aequus.Projectiles.Summon
                 }
                 goto RecalcShootDir;
             }
-            var p = Projectile.NewProjectileDirect(source, Projectile.Center + normal * distance, normal * 10f, ModContent.ProjectileType<InsurgentBolt>(), 0, Projectile.knockBack, Projectile.owner);
+            var p = Projectile.NewProjectileDirect(source, Projectile.Center + normal * distance, normal * 10f, ModContent.ProjectileType<InsurgentBolt>(), 0, Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1]);
         ShootAtEnemies:
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -150,7 +150,7 @@ namespace Aequus.Projectiles.Summon
                 {
                     count++;
                     normal = Vector2.Normalize(Main.npc[i].Center - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.025f, 0.025f));
-                    p = Projectile.NewProjectileDirect(source, Projectile.Center + normal * distance, normal * 10f, ModContent.ProjectileType<InsurgentBolt>(), 0, Projectile.knockBack, Projectile.owner);
+                    p = Projectile.NewProjectileDirect(source, Projectile.Center + normal * distance, normal * 10f, ModContent.ProjectileType<InsurgentBolt>(), 0, Projectile.knockBack, Projectile.owner, 0f, Projectile.ai[1]);
                     if (count >= 4)
                     {
                         break;
@@ -169,7 +169,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            NecromancyDebuff.ApplyDebuff<EnthrallingDebuff>(target, 3600, Projectile.owner, 100f);
+            NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner, 4f);
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;
             Projectile.ai[1] = target.whoAmI;

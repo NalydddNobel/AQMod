@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Catalogues;
-using Aequus.Projectiles.Summon;
+﻿using Aequus.Projectiles.Summon;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,8 +10,6 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
-
-            NecromancyTypes.StaffTiers.Add(Type, 100f);
 
             Tooltip.SetDefault("Testing Item");
         }

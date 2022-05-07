@@ -19,8 +19,6 @@ namespace Aequus.Graphics
             device.Clear(Color.Transparent);
             DrawOntoTarget(device, spriteBatch);
             device.SetRenderTarget(null);
-
-            _wasPrepared = true;
         }
 
         protected virtual void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)

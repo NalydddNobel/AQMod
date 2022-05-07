@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Catalogues;
-using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc;
 using Aequus.Projectiles.Summon;
 using Terraria;
 using Terraria.ID;
@@ -12,8 +11,6 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
-
-            NecromancyTypes.StaffTiers.Add(Type, 4f);
         }
 
         public override void SetDefaults()

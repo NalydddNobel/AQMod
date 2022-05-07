@@ -7,30 +7,24 @@ namespace Aequus.Graphics
 {
     public sealed class NecromancyScreenTarget : ScreenTarget
     {
-        public static DrawIndexCache NPCs { get; private set; }
+        public DrawIndexCache NPCs { get; private set; }
+
+        public static bool RenderingNow => EffectsSystem.NecromancyDrawer.NPCs.renderingNow;
+
+        public NecromancyScreenTarget()
+        {
+            NPCs = new DrawIndexCache();
+        }
 
         public static void Add(int whoAmI)
         {
-            if (NPCs == null)
-            {
-                NPCs = new DrawIndexCache();
-            }
-
-            NPCs.Add(whoAmI);
+            EffectsSystem.NecromancyDrawer.NPCs.Add(whoAmI);
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            _wasPrepared = false;
-            if (NPCs != null && NPCs.Count > 0)
+            if (NPCs.Count > 0)
             {
-                try
-                {
-                    Main.spriteBatch.End();
-                }
-                catch
-                {
-                }
                 CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
                 NPCs.renderingNow = true;
                 try

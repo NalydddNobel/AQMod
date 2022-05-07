@@ -13,7 +13,7 @@ namespace Aequus.Buffs.Debuffs
             npc.GetGlobalNPC<PlayerZombie>().zombieDrain = 100 * AequusHelpers.NPCREGEN;
         }
 
-        public static new void ApplyDebuff(NPC npc, int time, int player, float tier)
+        public static void ApplyDebuffTest(NPC npc, int time, int player, float tier)
         {
             npc.buffImmune[ModContent.BuffType<EnthrallingDebuff>()] = false;
             npc.AddBuff(ModContent.BuffType<EnthrallingDebuff>(), time);

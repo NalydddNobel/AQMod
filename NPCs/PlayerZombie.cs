@@ -439,7 +439,7 @@ namespace Aequus.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (isZombie && NecromancyScreenTarget.NPCs?.renderingNow != true)
+            if (isZombie && !NecromancyScreenTarget.RenderingNow)
             {
                 NecromancyScreenTarget.Add(npc.whoAmI);
             }
