@@ -17,13 +17,13 @@ namespace Aequus.Graphics
 
             device.SetRenderTarget(helperTarget);
             device.Clear(Color.Transparent);
-            OnDraw(device, spriteBatch);
+            DrawOntoTarget(device, spriteBatch);
             device.SetRenderTarget(null);
 
             _wasPrepared = true;
         }
 
-        protected virtual void OnDraw(GraphicsDevice device, SpriteBatch spriteBatch)
+        protected virtual void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
         }
 

@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Catalogues;
+using Aequus.Common.Networking;
 using Aequus.NPCs;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs
@@ -19,13 +21,23 @@ namespace Aequus.Buffs.Debuffs
             npc.GetGlobalNPC<PlayerZombie>().zombieDrain = 5 * AequusHelpers.NPCREGEN;
         }
 
-        public static void ApplyDebuff(NPC npc, int time, int player, float tier)
+        public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff
         {
             if (tier >= 100 || (NecromancyTypes.NPCs.TryGetValue(npc.type, out var value) && value.PowerNeeded <= tier))
             {
-                npc.AddBuff(ModContent.BuffType<NecromancyDebuff>(), time);
+                npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<PlayerZombie>().zombieOwner = player;
                 npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = tier;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    PacketSender.Send((p) =>
+                    {
+                        p.Write(npc.whoAmI);
+                        p.Write(player);
+                        p.Write(tier);
+                    },
+                    PacketType.SyncNecromancyDebuff);
+                }
             }
         }
     }

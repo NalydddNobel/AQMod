@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Configuration;
 using Aequus.Common.Utilities;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -19,6 +20,8 @@ namespace Aequus.Graphics
 
         public static ScreenShake Shake { get; private set; }
 
+        public static NecromancyScreenTarget NecromancyDrawer { get; private set; }
+
         public override void Load()
         {
             Effects = new ModEffects();
@@ -27,16 +30,20 @@ namespace Aequus.Graphics
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             BehindProjs = new ParticleRenderer();
+            NecromancyDrawer = new NecromancyScreenTarget();
             LoadHooks();
         }
         private void LoadHooks()
         {
+            On.Terraria.Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
+            On.Terraria.Main.DrawDust += Hook_OnDrawDust;
             On.Terraria.Main.DrawProjectiles += Hook_OnDrawProjs;
             On.Terraria.Main.DrawNPCs += Hook_OnDrawNPCs;
         }
 
         public override void Unload()
         {
+            NecromancyDrawer = null;
             BehindProjs = null;
             Effects = null;
             Shake = null;

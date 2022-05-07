@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Melee
 {
     public class ThunderClapProj : ModProjectile
     {
-        public static Asset<Texture2D> ChainTexture;
+        public static Asset<Texture2D> ChainTexture { get; private set; }
 
         public Vector2 targetVector;
         private bool _didEffects;
@@ -26,6 +26,11 @@ namespace Aequus.Projectiles.Melee
             {
                 ChainTexture = ModContent.Request<Texture2D>(this.GetPath() + "Chain");
             }
+        }
+
+        public override void Unload()
+        {
+            ChainTexture = null;
         }
 
         public override void SetDefaults()

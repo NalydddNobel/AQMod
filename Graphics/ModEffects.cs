@@ -8,9 +8,14 @@ namespace Aequus.Graphics
 {
     public sealed class ModEffects
     {
+        private Asset<Effect> necromancyOutline;
+        public Asset<Effect> NecromancyOutline { get => necromancyOutline; }
+        public static MiscShaderData NecromancyOutlineShader { get => GameShaders.Misc[NecromancyOutlineKey]; set => GameShaders.Misc[NecromancyOutlineKey] = value; }
+        public const string NecromancyOutlineKey = "Aequus:NecromancyOutline";
+
         private Asset<Effect> miscEffect;
         public Asset<Effect> MiscEffect { get => miscEffect; }
-        public static MiscShaderData MiscShader { get => GameShaders.Misc["Aequus:Misc"]; set => GameShaders.Misc["Aequus:Misc"] = value; }
+        public static MiscShaderData MiscShader { get => GameShaders.Misc[MiscShaderKey]; set => GameShaders.Misc[MiscShaderKey] = value; }
         public const string MiscShaderKey = "Aequus:Misc";
 
         public ModEffects()
@@ -19,9 +24,10 @@ namespace Aequus.Graphics
         }
         private void LoadShaders()
         {
+            LoadMiscShader(ref necromancyOutline, "NecromancyOutline", NecromancyOutlineKey, "NecromancyOutlinePass");
             LoadMiscShader(ref miscEffect, "MiscEffects", MiscShaderKey, "VerticalGradientPass");
         }
-        private void LoadMiscShader(ref Asset<Effect> asset, string requestPath, string gameShaderKey, string pass)
+        public void LoadMiscShader(ref Asset<Effect> asset, string requestPath, string gameShaderKey, string pass)
         {
             asset = ModContent.Request<Effect>("Aequus/Assets/Effects/" + requestPath, AssetRequestMode.ImmediateLoad);
             GameShaders.Misc[gameShaderKey] = new MiscShaderData(new Ref<Effect>(asset.Value), pass);

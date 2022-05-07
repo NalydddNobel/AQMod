@@ -1,19 +1,23 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Catalogues;
 using Aequus.Graphics;
+using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon
 {
     public class NecromancerBolt : ModProjectile
     {
+        protected PrimRenderer prim;
+        protected float primScale;
+        protected Color primColor;
+
         public override void SetDefaults()
         {
             Projectile.width = 14;
@@ -22,21 +26,6 @@ namespace Aequus.Projectiles.Summon
             Projectile.alpha = 10;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
-        }
-
-        public override void OnSpawn(IEntitySource source)
-        {
-            if (source is EntitySource_ItemUse use)
-            {
-                OnSpawn_CheckItem(use.Item);
-            }
-        }
-        public void OnSpawn_CheckItem(Item item)
-        {
-            if (NecromancyTypes.StaffTiers.TryGetValue(item.type, out float tier))
-            {
-                Projectile.ai[0] = tier;
-            }
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -64,7 +53,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            NecromancyDebuff.ApplyDebuff(target, 600, Projectile.owner, Projectile.ai[0]);
+            NecromancyDebuff.ApplyDebuff<NecromancyDebuff>(target, 600, Projectile.owner, 1f);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -83,6 +72,39 @@ namespace Aequus.Projectiles.Summon
             Main.spriteBatch.End();
             batchData.Begin(Main.spriteBatch);
             return false;
+        }
+
+        protected void DrawTrail(float waveSize = 8f, int maxLength = -1)
+        {
+            if (prim == null)
+            {
+                prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
+            }
+
+            int trailLength = maxLength > 0 ? maxLength : ProjectileID.Sets.TrailCacheLength[Type];
+            var trail = new Vector2[trailLength];
+            var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
+            for (int i = 0; i < trailLength; i++)
+            {
+                if (Projectile.oldPos[i] == Vector2.Zero)
+                {
+                    trailLength = i;
+                    continue;
+                }
+                trail[i] = Projectile.oldPos[i] + offset;
+            }
+            foreach (var f in AequusHelpers.Circular(3, Main.GlobalTimeWrappedHourly * 5f))
+            {
+                var renderTrail = new Vector2[trailLength];
+                Array.Copy(trail, renderTrail, trailLength);
+
+                for (int i = 0; i < trailLength; i++)
+                {
+                    renderTrail[i] += new Vector2(0f, (float)Math.Sin(f + i * 0.33f) * waveSize).RotatedBy(Projectile.oldRot[i]);
+                }
+
+                prim.Draw(renderTrail);
+            }
         }
     }
 }

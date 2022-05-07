@@ -25,6 +25,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
             Item.mana = 20;
+            Item.UseSound = SoundID.Item8;
         }
     }
 }

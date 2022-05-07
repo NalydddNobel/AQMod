@@ -16,7 +16,7 @@
     <None Include="Assets\Effects\.compiler\fxcompiler.exe" />
     <None Include="Assets\Effects\.compiler\Microsoft.Xna.Framework.Content.Pipeline.dll" />
     <None Include="Assets\Effects\.compiler\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
-    <None Include="Assets\Effects\.compiler\MiscEffects.fx" />
+    <None Include="Assets\Effects\.compiler\NecromancyOutline.fx" />
     <None Include="Assets\Effects\.compiler\wcfxcompiler.dll" />
   </ItemGroup>
 </Project>

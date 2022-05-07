@@ -1,9 +1,11 @@
 using Aequus.Common.Configuration;
+using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,6 +55,41 @@ namespace Aequus
             AequusHelpers.Main_dayTime = null;
             InventoryInterface = null;
             NPCTalkInterface = null;
+        }
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            PacketType type = PacketSender.ReadPacketType(reader);
+
+            var l = Instance.Logger;
+            l.Debug("Recieving Packet: " + type);
+            if (type == PacketType.SyncNPCNetworkerGlobals)
+            {
+                int npc = reader.ReadInt32();
+                var globals = PacketSender.GetNetworkerGlobals(Main.npc[npc]);
+                for (int i = 0; i < globals.Length; i++)
+                {
+                    globals[i].Receive(reader);
+                }
+            }
+            else if (type == PacketType.SyncNecromancyDebuff)
+            {
+                int npc = reader.ReadInt32();
+                Main.npc[npc].GetGlobalNPC<PlayerZombie>().zombieOwner = reader.ReadInt32();
+                Main.npc[npc].GetGlobalNPC<PlayerZombie>().zombieDebuffTier = reader.ReadSingle();
+            }
+            else if (type == PacketType.SyncNecromanyProjectile)
+            {
+                int projectileOwner = reader.ReadInt32();
+                int projectileIdentity = reader.ReadInt32();
+                int projectile = AequusHelpers.FindProjectileIdentity(projectileOwner, projectileIdentity);
+                l.Debug("Data for: " + projectile + ", " + Lang.GetProjectileName(Main.projectile[projectile].type));
+                var globals = PacketSender.GetNetworkerGlobals(Main.projectile[projectile]);
+                for (int i = 0; i < globals.Length; i++)
+                {
+                    globals[i].Receive(reader);
+                }
+            }
         }
     }
 }

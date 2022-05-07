@@ -2,5 +2,9 @@
 {
     public enum PacketType : byte
     {
+        SyncNPCNetworkerGlobals,
+        SyncNecromancyDebuff,
+        SyncNecromanyProjectile,
+        Count,
     }
 }

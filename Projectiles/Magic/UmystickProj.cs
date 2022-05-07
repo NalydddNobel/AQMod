@@ -61,7 +61,7 @@ namespace Aequus.Projectiles.Magic
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var shootPosition = Projectile.Center;
-                        if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height))
+                        if (!Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height))
                         {
                             shootPosition = player.Center;
                         }

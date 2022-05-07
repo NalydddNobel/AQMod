@@ -1,6 +1,6 @@
 sampler uImage0 : register(s0);
 sampler uImage1 : register(s1);
-sampler uImage2 : register(s1);
+sampler uImage2 : register(s2);
 float3 uColor;
 float3 uSecondaryColor;
 float uOpacity;

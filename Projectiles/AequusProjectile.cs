@@ -9,7 +9,7 @@ namespace Aequus.Projectiles
     {
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.owner >= 0 && projectile.owner != 255)
+            if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
             {
                 var aequus = Main.player[projectile.owner].Aequus();
                 if (aequus.glowCore > 0)

@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            EnthrallingDebuff.ApplyDebuff(target, 3600, Projectile.owner, Projectile.ai[0]);
+            NecromancyDebuff.ApplyDebuff<EnthrallingDebuff>(target, 3600, Projectile.owner, 100f);
         }
     }
 }

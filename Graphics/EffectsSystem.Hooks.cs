@@ -1,11 +1,29 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
     partial class EffectsSystem : ModSystem
     {
+        private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
+        {
+            orig();
+            NecromancyDrawer.Request();
+            NecromancyDrawer.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+        }
+
+        private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
+        {
+            orig(self);
+            if (NecromancyDrawer.IsReady)
+            {
+                NecromancyDrawer.DrawOntoScreen(Main.spriteBatch);
+            }
+        }
+
         private void Hook_OnDrawProjs(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
         {
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);

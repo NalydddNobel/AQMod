@@ -52,6 +52,35 @@ namespace Aequus
             }
         }
 
+        public static int FindProjectileIdentity(int owner, int identity)
+        {
+            int projectile = 1000;
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Main.projectile[i].owner == owner && Main.projectile[i].identity == identity && Main.projectile[i].active)
+                {
+                    projectile = i;
+                    break;
+                }
+            }
+            if (projectile == 1000)
+            {
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (!Main.projectile[i].active)
+                    {
+                        projectile = i;
+                        break;
+                    }
+                }
+            }
+            if (projectile == 1000)
+            {
+                projectile = Projectile.FindOldestProjectile();
+            }
+            return projectile;
+        }
+
         public static T GetOrDefault<T>(this Dictionary<int, T> dict, int index, T Default = default(T))
         {
             if (dict.TryGetValue(index, out T value))

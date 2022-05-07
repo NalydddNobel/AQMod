@@ -68,6 +68,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			InsurgencyScepter: Insurgency Scepter
 			ZombieScepter: Zombie Scepter
 			Moro: Moro
 			IcebergKraken: Iceberg Kraken
@@ -372,6 +373,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			InsurgencyScepter: 
+				'''
+				Drains the soul of very powerful enemies
+				Fully drained souls will join your team
+				'Silence'
+				'''
 			ZombieScepter: 
 				'''
 				Drains the soul of weak enemies
