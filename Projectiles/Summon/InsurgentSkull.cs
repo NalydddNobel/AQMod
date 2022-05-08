@@ -78,7 +78,10 @@ namespace Aequus.Projectiles.Summon
                 if (Projectile.alpha <= 0)
                 {
                     Projectile.alpha = 0;
-                    SpawnExtraSouls();
+                    if (Main.myPlayer == Projectile.owner)
+                    {
+                        SpawnExtraSouls();
+                    }
                     Projectile.Kill();
                 }
                 Projectile.frame = 1;

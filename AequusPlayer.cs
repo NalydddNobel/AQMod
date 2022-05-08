@@ -321,11 +321,11 @@ namespace Aequus
                     if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie)
                     {
                         var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                        int timeComparison = zombie.zombieTimer + (int)(zombie.zombieDebuffTier * 3600f); // Prioritize lower tier slaves
+                        int timeComparison = (int)(zombie.zombieTimer * zombie.zombieDebuffTier); // Prioritize to kill lower tier slaves
                         if (timeComparison < oldestTime)
                         {
                             removeNPC = i;
-                            oldestTime = zombie.zombieTimer;
+                            oldestTime = timeComparison;
                         }
                     }
                 }
@@ -334,9 +334,11 @@ namespace Aequus
                     Main.npc[removeNPC].life = -1;
                     Main.npc[removeNPC].HitEffect();
                     Main.npc[removeNPC].active = false;
-                    if (Main.netMode == NetmodeID.Server)
+                    if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, removeNPC);
+                        NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, removeNPC, 9999);
+                        //NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, removeNPC);
+                        Aequus.Instance.Logger.Debug("NPC: " + Lang.GetNPCName(Main.npc[removeNPC].type) + ", WhoAmI: " + removeNPC + ", Tier:" + Main.npc[removeNPC].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier);
                     }
                 }
             }

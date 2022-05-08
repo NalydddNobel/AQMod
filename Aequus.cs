@@ -64,17 +64,20 @@ namespace Aequus
             PacketType type = PacketSender.ReadPacketType(reader);
 
             var l = Instance.Logger;
-            l.Debug("Recieving Packet: " + type);
+            if (type != PacketType.SyncNPCNetworkerGlobals && type != PacketType.SyncNecromanyProjectile)
+            {
+                l.Debug("Recieving Packet: " + type);
+            }
             if (type == PacketType.SyncNPCNetworkerGlobals)
             {
                 int npc = reader.ReadInt32();
                 var globals = PacketSender.GetNetworkerGlobals(Main.npc[npc]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Receive(reader);
+                    globals[i].Receive(npc, reader);
                 }
             }
-            else if (type == PacketType.SyncNecromancyDebuff)
+            else if (type == PacketType.SyncNecromancyOwnerTier)
             {
                 int npc = reader.ReadInt32();
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
@@ -89,7 +92,7 @@ namespace Aequus
                 var globals = PacketSender.GetNetworkerGlobals(Main.projectile[projectile]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Receive(reader);
+                    globals[i].Receive(projectile, reader);
                 }
             }
         }

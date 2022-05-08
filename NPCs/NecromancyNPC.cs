@@ -16,7 +16,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public class NecromancyNPC : GlobalNPC, INetworker
+    public class NecromancyNPC : GlobalNPC, IEntityNetworker
     {
         public static bool AI_IsZombie { get; set; }
         public static int AI_ZombiePlayerOwner { get; set; }
@@ -115,27 +115,37 @@ namespace Aequus.NPCs
         }
         public void ZombieCheck(Entity entity, NPC npc)
         {
+            bool sendPacket = false;
+            int player = 0;
+            float tier = 0f;
             if (entity is NPC npc2 && npc2.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
                 npc.boss = false;
                 npc.friendly = true;
                 npc.damage *= 5;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = npc2.GetGlobalNPC<NecromancyNPC>().zombieOwner;
+                player = npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = npc2.GetGlobalNPC<NecromancyNPC>().zombieOwner;
                 npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimer;
                 npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = npc2.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
+                tier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = npc2.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
                 npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                sendPacket = true;
             }
             else if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
                 npc.boss = false;
                 npc.friendly = true;
                 npc.damage *= 5;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = proj.owner;
+                player = npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = proj.owner;
                 npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimer;
                 npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
+                tier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
                 npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                sendPacket = true;
+            }
+
+            if (sendPacket)
+            {
+                PacketSender.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
             }
         }
 
@@ -347,6 +357,8 @@ namespace Aequus.NPCs
             if (n < 200)
             {
                 Main.npc[n].GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
+                Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
                 Main.npc[n].Center = npc.Center;
                 Main.npc[n].velocity = npc.velocity * 0.25f;
                 Main.npc[n].direction = npc.direction;
@@ -424,35 +436,43 @@ namespace Aequus.NPCs
             }
         }
 
-        void INetworker.Send(BinaryWriter writer)
+        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
         {
-            writer.Write(isZombie);
-            if (isZombie)
+            writer.Write(Main.npc[whoAmI].active);
+            if (Main.npc[whoAmI].active)
             {
+                writer.Write(isZombie);
+                if (isZombie)
+                {
+                    writer.Write(zombieTimer);
+                    writer.Write(zombieTimerMax);
+                }
+                else
+                {
+                    writer.Write(zombieDrain);
+                }
                 writer.Write(zombieOwner);
-                writer.Write(zombieTimer);
-                writer.Write(zombieTimerMax);
                 writer.Write(zombieDebuffTier);
-            }
-            else
-            {
-                writer.Write(zombieDrain);
             }
         }
 
-        void INetworker.Receive(BinaryReader reader)
+        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {
-                isZombie = true;
+                if (reader.ReadBoolean())
+                {
+                    isZombie = true;
+                    zombieTimer = reader.ReadInt32();
+                    zombieTimerMax = reader.ReadInt32();
+                }
+                else
+                {
+                    zombieDrain = reader.ReadInt32();
+                }
                 zombieOwner = reader.ReadInt32();
-                zombieTimer = reader.ReadInt32();
-                zombieTimerMax = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
-            }
-            else
-            {
-                zombieDrain = reader.ReadInt32();
+                Main.NewText(Lang.GetNPCName(Main.npc[whoAmI].type) + ", WhoAmI: " + whoAmI + ", Tier: " + zombieDebuffTier, Main.DiscoColor);
             }
         }
 
@@ -536,7 +556,7 @@ namespace Aequus.NPCs
             return Color.Lerp(Color.Cyan, Color.Blue, 1f - lifeRatio);
         }
     }
-    public class NecromancyProj : GlobalProjectile, INetworker
+    public class NecromancyProj : GlobalProjectile, IEntityNetworker
     {
         public bool isZombie;
         public int zombieNPCOwner;
@@ -699,7 +719,7 @@ namespace Aequus.NPCs
             }
         }
 
-        void INetworker.Send(BinaryWriter writer)
+        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
         {
             writer.Write(isZombie);
             if (isZombie)
@@ -709,7 +729,7 @@ namespace Aequus.NPCs
             }
         }
 
-        void INetworker.Receive(BinaryReader reader)
+        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {

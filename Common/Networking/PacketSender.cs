@@ -33,7 +33,7 @@ namespace Aequus.Common.Networking
                 var globals = GetNetworkerGlobals(Main.npc[npc]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Send(p);
+                    globals[i].Send(npc, p);
                 }
             },
             PacketType.SyncNPCNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
@@ -47,19 +47,19 @@ namespace Aequus.Common.Networking
                 var globals = GetNetworkerGlobals(Main.projectile[projectile]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Send(p);
+                    globals[i].Send(projectile, p);
                 }
             },
             PacketType.SyncNecromanyProjectile, to: remoteClient, ignore: ignoreClient);
         }
 
-        public static INetworker[] GetNetworkerGlobals(NPC npc)
+        public static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
         {
-            return new INetworker[] { npc.GetGlobalNPC<NecromancyNPC>() };
+            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>() };
         }
-        public static INetworker[] GetNetworkerGlobals(Projectile projectile)
+        public static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
         {
-            return new INetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
+            return new IEntityNetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
         }
 
         public static PacketType ReadPacketType(BinaryReader reader)
@@ -75,7 +75,18 @@ namespace Aequus.Common.Networking
             packet.Send(to, ignore);
         }
 
-        public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
+        public static void SyncNecromancyOwnerTier(int npc, int player, float tier)
+        {
+            Send((p) =>
+                {
+                    p.Write(npc);
+                    p.Write(player);
+                    p.Write(tier);
+                },
+                PacketType.SyncNecromancyOwnerTier);
+        }
+
+public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
         {
             if (item != null)
             {

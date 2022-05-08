@@ -3,7 +3,7 @@
     public enum PacketType : byte
     {
         SyncNPCNetworkerGlobals,
-        SyncNecromancyDebuff,
+        SyncNecromancyOwnerTier,
         SyncNecromanyProjectile,
         Count,
     }

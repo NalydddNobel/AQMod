@@ -60,7 +60,7 @@ namespace Aequus.Common.Configuration
         public int FlashShaderRepetitions { get; set; }
 
         [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.InfoDebugLogs")]
+        [Label(Key + "Client.InfoDebugLogsLabel")]
         [Tooltip(Key + "Client.InfoDebugLogsTooltip")]
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }

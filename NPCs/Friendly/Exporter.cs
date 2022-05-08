@@ -26,7 +26,6 @@ namespace Aequus.NPCs.Friendly
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 8;
-            NPCID.Sets.IsTownPet[Type] = true;
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -48,11 +47,10 @@ namespace Aequus.NPCs.Friendly
             .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
             .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
             .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Like)
+            .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Love)
+            .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
             .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.Angler, AffectionLevel.Hate)
+            .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
         }
 

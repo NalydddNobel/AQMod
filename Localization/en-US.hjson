@@ -1871,22 +1871,18 @@ Mods: {
 				Basic: {
 					0: Just for ye, my friend, I'll give ye a little deal. Buy one, get another for the same price!
 					1: All proceeds go to charity- and by charity I mean me bank account!
-					2: No Text
-					3: No Text
-					4: No Text
 				}
 
 				Night: {
 					0: It be a beautiful night tonight. Perfect setting to buy something!
 					1: Ye know, big fish be more active when the moon’s out. Better get to fishing!
-					2: No Text
 				}
 
 				BloodMoon: {
 					0: No Text
 					1: No Text
 					2: No Text
-					WanderingEyeFish: I went out fishing tonight and I caught me a fish with a massive eye! I made thirty bucks off that eyeball.
+					WanderingEyeFish: I went out fishing tonight and I caught me a fish with a massive eye! I made thirty dubloons off that eyeball.
 					ZombieMerman: No Text
 					HemogoblinShark: No Text
 					BloodEel: No Text
@@ -1929,6 +1925,21 @@ Mods: {
 
 				VanityEyePatch: No Text
 				PirateVanitySet: No Text
+			}
+		}
+		TownNPCMood: {
+			Exporter: {
+				LoveSpace: Yarr this place is mighty fine lad, could probably setup shop here and continue my work.
+				LoveNPC: "{NPCName} has to be one of my most favorite crewmates- or well, housemates, I haven't gotten them to join me crew yet."
+				LikeNPC: Y'know {NPCName}? This landlubber cleaned off a barnacle which was growing on me chest! Their appreciation for animals gave me a lot of respect for them. 
+				DislikeNPC: Can't stand {NPCName}! I'm wanting to kick him off me ship- Err, house?
+				HateNPC: I. DON'T. WANT. TO. LIVE. NEXT. TO. {NPCName}. He's reported all of my acts of tax evasion, can't stand him!
+				LikeNPC_Princess: "{NPCName} is making me want to change me life's path, her royal, holy light prevents ye from feeling senses of thievery."
+				Content: This place is good matey! Could always be better though, yo ho ho!
+				DislikeCrowded: I would be liking this place, many people to steal from, yet many more eyes to spot you.
+				HateCrowded: Once enough people are in a place, it's hard to steal anything anymore! Get some of these maties out'ta here!
+				HateLonely: Where is everyone? There can be no thievery if there is no people!
+				NoHome: How will I store my stolen goods without me ship, definitely not digging up a lobster crevice that's for sure!
 			}
 		}
 
