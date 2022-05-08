@@ -30,6 +30,7 @@ namespace Aequus.Projectiles.Ranged
         {
             Projectile.scale += 0.0175f;
             Projectile.alpha += 15;
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override bool PreDraw(ref Color lightColor)

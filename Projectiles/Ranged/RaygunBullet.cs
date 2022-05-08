@@ -107,9 +107,10 @@ namespace Aequus.Projectiles.Ranged
             {
                 if (Main.myPlayer == Projectile.owner)
                 {
-                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<RayTrailEffect>(), 0, 0f, Projectile.owner);
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<RayTrailEffect>(), 0, 0f, Projectile.owner);
                     Main.projectile[p].rotation = Projectile.velocity.ToRotation();
                     ((RayTrailEffect)Main.projectile[p].ModProjectile).color = GetColor().UseA(0);
+                    Projectile.netUpdate = true;
                 }
                 trailTimer = 6;
             }
