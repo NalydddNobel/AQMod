@@ -11,6 +11,8 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
+
+            this.SetResearch(1);
         }
 
         public override void SetDefaults()

@@ -35,6 +35,7 @@ namespace Aequus.Common.Players
                 if (EffectActive)
                 {
                     lerpTo = circumference;
+                    Main.NewText("Healing players...");
                     HealPlayers(Player);
                 }
             }
@@ -46,7 +47,7 @@ namespace Aequus.Common.Players
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (i == healer.whoAmI || Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < circumference / 2f)
+                if (i == healer.whoAmI || (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < circumference / 2f))
                 {
                     HealPlayer(healer, i);
                 }
@@ -69,6 +70,7 @@ namespace Aequus.Common.Players
         public override void UpdateLifeRegen()
         {
             Player.AddLifeRegen(increasedRegen);
+            increasedRegen = 0;
         }
 
         public void Add(float circumference, int regen)

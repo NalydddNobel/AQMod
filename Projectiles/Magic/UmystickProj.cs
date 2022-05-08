@@ -67,6 +67,7 @@ namespace Aequus.Projectiles.Magic
                         }
                         Projectile.NewProjectile(Projectile.GetSource_FromAI(), shootPosition, Projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickMoon>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     }
+                    Projectile.netUpdate = true;
                 }
                 else
                 {
@@ -100,9 +101,7 @@ namespace Aequus.Projectiles.Magic
                 if (ignoreChannel || (player.channel && !player.noItems && !player.CCed))
                 {
                     var difference = Main.MouseWorld - player.Center;
-                    Projectile.rotation = difference.ToRotation();
                     Projectile.velocity = Vector2.Normalize(difference);
-                    Projectile.Center = player.Center + Projectile.velocity * 32f;
                 }
                 else
                 {
@@ -111,6 +110,8 @@ namespace Aequus.Projectiles.Magic
                 }
                 Projectile.netUpdate = true;
             }
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            Projectile.Center = player.Center + Projectile.velocity * 32f;
             player.ChangeDir(Math.Sign(Projectile.velocity.X));
             Projectile.hide = false;
             if (player.itemTime <= 2)

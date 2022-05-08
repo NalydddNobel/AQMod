@@ -114,6 +114,7 @@ namespace Aequus.Projectiles.Melee
             {
                 Initalize(player, aequus);
                 Projectile.ai[0]++;
+                Projectile.netUpdate = true;
             }
             else
             {

@@ -43,7 +43,10 @@ namespace Aequus.Projectiles.Melee
             var player = Main.player[Projectile.owner];
             float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee);
             if (stabLength == 0f)
+            {
                 stabLength = 145f * speedMultiplier;
+                Projectile.netUpdate = true;
+            }
             var playerCenter = player.RotatedRelativePoint(player.MountedCenter, true);
             Projectile.direction = player.direction;
             player.heldProj = Projectile.whoAmI;
@@ -56,9 +59,11 @@ namespace Aequus.Projectiles.Melee
                 if ((int)Projectile.ai[0] == 0)
                 {
                     Projectile.ai[0] = 25f;
-                    Projectile.ai[1] = Main.rand.NextFloat(-0.3f, 0.3f);
                     if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
+                    {
+                        Projectile.ai[1] = Main.rand.NextFloat(-0.3f, 0.3f);
                         Projectile.velocity = Vector2.Normalize(Main.MouseWorld - playerCenter).RotatedBy(Projectile.ai[1]) * Projectile.ai[0];
+                    }
                     AequusHelpers.MeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
@@ -68,10 +73,11 @@ namespace Aequus.Projectiles.Melee
                 }
                 else
                 {
+                    Projectile.ai[0] = MathHelper.Lerp(Projectile.ai[0], stabLength, MathHelper.Clamp(lerpAmount + 0.55f, 0.8f, 1f));
+
                     var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
                     d.velocity *= 0.1f;
                     d.velocity += Vector2.Normalize(-Projectile.velocity) * 1.35f;
-                    Projectile.ai[0] = MathHelper.Lerp(Projectile.ai[0], stabLength, MathHelper.Clamp(lerpAmount + 0.55f, 0.8f, 1f));
                 }
             }
             if (player.itemAnimation == 0)

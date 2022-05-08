@@ -31,7 +31,7 @@ namespace Aequus.NPCs.Friendly
 
         public Item shopBanner;
 
-        public static bool IsActive => Main.IsItAHappyWindyDay;
+        public static bool IsActive => Main.WindyEnoughForKiteDrops;
 
         public override void Load()
         {
@@ -77,6 +77,8 @@ namespace Aequus.NPCs.Friendly
             NPC.knockBackResist = 0.5f;
             AnimationType = NPCID.SkeletonMerchant;
             currentAction = 7;
+
+            shopBanner = null;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

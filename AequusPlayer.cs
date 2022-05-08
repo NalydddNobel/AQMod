@@ -318,7 +318,7 @@ namespace Aequus
                 int oldestTime = int.MaxValue;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie)
+                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie && Main.npc[i].GetGlobalNPC<NecromancyNPC>().zombieOwner == Player.whoAmI)
                     {
                         var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
                         int timeComparison = GetTimeComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves

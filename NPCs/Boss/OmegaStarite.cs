@@ -47,7 +47,7 @@ namespace Aequus.NPCs.Boss
         public const int PHASE_HYPER_STARITE_PART0 = 1;
         public const int PHASE_INIT = 0;
         public const int PHASE_DEAD = -1;
-        public const int PHASE_NOVA = -2;
+        public const int UNUSED_PHASE_NOVA = -2;
         public const int PHASE_GOODBYE = -3;
 
         public const float CIRCUMFERENCE = 120;
@@ -1029,36 +1029,17 @@ namespace Aequus.NPCs.Boss
                     break;
 
                 case PHASE_INIT:
+                case UNUSED_PHASE_NOVA:
                     {
-                        var choices = new List<int>
-                        {
-                            PHASE_ASSAULT_PLAYER,
-                            PHASE_HYPER_STARITE_PART0,
-                        };
-                        NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
-                        Initialize();
-                        NPC.netUpdate = true;
-                    }
-                    break;
+                        //var choices = new List<int>
+                        //{
+                        //    PHASE_ASSAULT_PLAYER,
+                        //    PHASE_HYPER_STARITE_PART0,
+                        //};
+                        //NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
+                        //Initialize();
+                        //NPC.netUpdate = true;
 
-                case PHASE_DEAD:
-                    {
-                        for (int i = 0; i < rings.Length; i++)
-                        {
-                            rings[i].rotationVelocity *= 0f;
-                        }
-                        NPC.ai[1] += 0.5f;
-                        if (NPC.ai[1] > DEATHTIME * 1.314f)
-                        {
-                            NPC.life = -33333;
-                            NPC.HitEffect();
-                            NPC.checkDead();
-                        }
-                    }
-                    break;
-
-                case PHASE_NOVA:
-                    {
                         if (NPC.ai[1] == 0f)
                         {
                             int target = NPC.target;
@@ -1078,32 +1059,24 @@ namespace Aequus.NPCs.Boss
                         }
                         else
                         {
-                            //if (Main.netMode != NetmodeID.Server) //Could not get this to work!
-                            //{
-                            //    int id = mod.GetSoundSlot(SoundType.Item, "Sounds/Item/OmegaStarite/novaspawn");
-                            //    float length = Vector2.Distance(NPC.Center, Main.player[NPC.target].Center);
-                            //    if (!_playedSpawnSound)
-                            //    {
-                            //        Main.soundInstanceItem[id].Stop();
-                            //        Main.soundInstanceItem[id] = Main.soundItem[id].CreateInstance();
-                            //    }
-                            //    if (length > 1000f)
-                            //    {
-                            //        Main.soundInstanceItem[id].Volume = 0.1f;
-                            //    }
-                            //    else
-                            //    {
-                            //        Main.soundInstanceItem[id].Volume = 1f - length / 1250f;
-                            //    }
-                            //    if (!_playedSpawnSound)
-                            //    {
-                            //        Main.soundInstanceItem[id].Play();
-                            //        _playedSpawnSound = true;
-                            //    }
-                            //    Main.soundInstanceItem[id].Pitch = 0f;
-                            //}
                             float fallSpeed = Main.getGoodWorld ? 56f : 36f;
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(new Vector2(center.X, NPC.ai[2]) - center) * fallSpeed, 0.025f);
+                        }
+                    }
+                    break;
+
+                case PHASE_DEAD:
+                    {
+                        for (int i = 0; i < rings.Length; i++)
+                        {
+                            rings[i].rotationVelocity *= 0f;
+                        }
+                        NPC.ai[1] += 0.5f;
+                        if (NPC.ai[1] > DEATHTIME * 1.314f)
+                        {
+                            NPC.life = -33333;
+                            NPC.HitEffect();
+                            NPC.checkDead();
                         }
                     }
                     break;

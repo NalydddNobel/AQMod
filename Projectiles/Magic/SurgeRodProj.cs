@@ -115,6 +115,8 @@ namespace Aequus.Projectiles.Magic
                     if (amountActive > Amount)
                     {
                         Main.projectile[oldest].timeLeft = 60;
+                        Projectile.netUpdate = true;
+                        Main.projectile[oldest].netUpdate = true;
                     }
                 }
                 else
@@ -132,6 +134,7 @@ namespace Aequus.Projectiles.Magic
                         Projectile.ai[0] = -2f;
                         Projectile.frame = 4;
                         Projectile.scale = 1f;
+                        Projectile.netUpdate = true;
                     }
                     else if (Projectile.timeLeft < 8)
                     {

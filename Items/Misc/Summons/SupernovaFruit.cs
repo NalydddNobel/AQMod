@@ -36,14 +36,13 @@ namespace Aequus.Items.Misc.Summons
 
         public override bool? UseItem(Player player)
         {
-            if (player.whoAmI == Main.myPlayer)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), player.whoAmI);
+            }
+            else
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
-
-                int n = NPC.NewNPC(new EntitySource_BossSpawn(player), (int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), 0, OmegaStarite.PHASE_NOVA, 0f, 0f, 0f, player.whoAmI);
-
-                AequusText.HasAwakened(Main.npc[n]);
-                AequusHelpers.SyncNPC(Main.npc[n]);
             }
             return true;
         }
