@@ -1849,11 +1849,16 @@ Mods: {
 				FlashIntensity: 闪光强度
 				HighQuality: 高品质
 				HighQualityShaders: 高品质着色器
-				FlashShaderRepetitions: 闪光着色器 - 重复
+				FlashShaderRepetitions: 高品质闪光着色器 - 重复
 				FlashShaderRepetitionsTooltip: 
 					'''
 					将重复执行多次该着色器
 					仅会在高品质着色器启用时生效
+					'''
+				InfoDebugLogs: 信息和调试日志
+				InfoDebugLogsTooltip: 
+					'''
+					只对需要确认事件的第三方开发者有用.
 					'''
 			}
 		}
