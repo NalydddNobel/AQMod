@@ -1,6 +1,4 @@
 ﻿using Aequus.NPCs.Boss;
-using Aequus.UI;
-using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -370,7 +368,6 @@ namespace Aequus.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                Aequus.InventoryInterface.SetState(new ModularItemsUI());
             }
         }
 

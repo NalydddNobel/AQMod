@@ -28,7 +28,7 @@ namespace Aequus.Items
             {
                 var buttonTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/ButtonPlay", AssetRequestMode.ImmediateLoad);
                 float buttonScale = Main.inventoryScale * 0.8f;
-                var buttonPosition = position + frame.Size() / 2f * scale + TextureAssets.InventoryBack.Value.Size() / 2f * Main.inventoryScale - (buttonTexture.Size() * buttonScale) + new Vector2(-4f, -4f);
+                var buttonPosition = position + frame.Size() / 2f * scale + TextureAssets.InventoryBack.Value.Size() / 2f * Main.inventoryScale - buttonTexture.Size() * buttonScale + new Vector2(-4f, -4f);
                 var destination = new Rectangle((int)buttonPosition.X, (int)buttonPosition.Y, (int)(buttonTexture.Value.Width * buttonScale), (int)(buttonTexture.Value.Height * buttonScale));
                 spriteBatch.Draw(buttonTexture.Value, destination, null, Color.White);
                 if (destination.Contains(Main.mouseX, Main.mouseY) && UIHelper.CanDoLeftClickItemActions && UIHelper.linkClickDelay == 0)
