@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 
 namespace Aequus.Projectiles.Summon
@@ -48,8 +46,10 @@ namespace Aequus.Projectiles.Summon
 
             Projectile.tileCollide = true;
             int target = Projectile.FindTargetWithLineOfSight(400f);
+            bool hasValidTarget = false;
             if (target != -1 && target != (int)Projectile.ai[1])
             {
+                hasValidTarget = true;
                 Projectile.tileCollide = false;
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * 10f, 0.05f);
             }
@@ -78,7 +78,7 @@ namespace Aequus.Projectiles.Summon
                     Projectile.scale = 0.5f;
                 }
             }
-            if (Projectile.alpha == 0)
+            if (Projectile.alpha < 150 || hasValidTarget)
                 Projectile.damage = 1;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }

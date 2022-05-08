@@ -52,6 +52,18 @@ namespace Aequus
             }
         }
 
+        public static void AddOrAdjust<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+        {
+            if (dict.ContainsKey(key))
+            {
+                dict[key] = value;
+            }
+            else
+            {
+                dict.Add(key, value);
+            }
+        }
+
         public static int FindProjectileIdentity(int owner, int identity)
         {
             int projectile = 1000;

@@ -10,11 +10,11 @@ using Terraria.ModLoader.Utilities;
 
 namespace Aequus.NPCs
 {
-    public sealed class NPCSpawnsManager : GlobalNPC
+    public sealed class MonsterSpawns : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (NoSpawns_CheckBosses(player) || NoSpawns_CheckEvents(player))
+            if (Spawnrates_AreAequusBossesActive(player) || Spawnrates_AequusEventActive(player))
             {
                 spawnRate *= 10000;
                 maxSpawns = 0;
@@ -35,18 +35,21 @@ namespace Aequus.NPCs
                 maxSpawns = Math.Min(maxSpawns, 2);
             }
         }
-
-        private bool NoSpawns_CheckBosses(Player player)
+        public bool Spawnrates_AreAequusBossesActive(Player player)
         {
             return IsClose<OmegaStarite>(player) || IsClose<OmegaStarite>(player);
         }
-        private bool NoSpawns_CheckEvents(Player player)
+        public bool Spawnrates_AequusEventActive(Player player)
         {
             return Glimmer.Status == InvasionStatus.Ending && player.position.Y < Main.worldSurface * 16f;
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
+            if (SpawnPool_DontAddSpawns(spawnInfo))
+            {
+                return;
+            }
             if (spawnInfo.Player.ZoneSkyHeight && GaleStreams.TimeForMeteorSpawns())
             {
                 AdjustSpawns(pool, 0.75f);
@@ -68,6 +71,34 @@ namespace Aequus.NPCs
                 }
                 pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
             }
+        }
+        public bool SpawnPool_DontAddSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
+        {
+            if (checkPillars && SpawnPool_ArePillarsActive(spawnInfo))
+            {
+                return true;
+            }
+            if (checkMoonSunEvents && SpawnPool_MoonSunInvasionActive(spawnInfo))
+            {
+                return true;
+            }
+            if (checkInvasion && SpawnPool_VanillaInvasions(spawnInfo))
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool SpawnPool_ArePillarsActive(NPCSpawnInfo spawnInfo)
+        {
+            return spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex;
+        }
+        public bool SpawnPool_MoonSunInvasionActive(NPCSpawnInfo spawnInfo)
+        {
+            return (!spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight) || (!Main.eclipse && !Main.pumpkinMoon && !Main.snowMoon);
+        }
+        public bool SpawnPool_VanillaInvasions(NPCSpawnInfo spawnInfo)
+        {
+            return !spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight || Main.invasionType <= 0;
         }
 
         private void AdjustSpawns(IDictionary<int, float> pool, float amt)

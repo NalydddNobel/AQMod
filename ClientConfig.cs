@@ -4,6 +4,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Summons;
 using System;
 using System.ComponentModel;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -58,6 +59,12 @@ namespace Aequus.Common.Configuration
         [SliderColor(30, 50, 120, 255)]
         public int FlashShaderRepetitions { get; set; }
 
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.InfoDebugLogs")]
+        [Tooltip(Key + "Client.InfoDebugLogsTooltip")]
+        [DefaultValue(false)]
+        public bool InfoDebugLogs { get; set; }
+
         internal static void OnModLoad(Aequus aequus)
         {
             AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
@@ -65,6 +72,7 @@ namespace Aequus.Common.Configuration
             AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<Fluorescence>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
         }
     }
 }

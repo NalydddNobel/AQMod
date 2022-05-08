@@ -10,14 +10,15 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public class PlayerZombie : GlobalNPC, INetworker
+    public class NecromancyNPC : GlobalNPC, INetworker
     {
-        public static bool AI_NPCIsZombie { get; set; }
+        public static bool AI_IsZombie { get; set; }
         public static int AI_ZombiePlayerOwner { get; set; }
         public static int AI_NPCTarget { get; set; }
         public static Vector2 AI_ReturnPlayerLocation { get; set; }
@@ -26,6 +27,7 @@ namespace Aequus.NPCs
         public bool isZombie;
         public int zombieOwner;
         public int zombieTimer;
+        public int zombieTimerMax;
         public float zombieDebuffTier;
         public int hitCheckDelay;
 
@@ -39,13 +41,13 @@ namespace Aequus.NPCs
 
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC self, int newType)
         {
-            bool isZombieOld = self.GetGlobalNPC<PlayerZombie>().isZombie;
+            bool isZombieOld = self.GetGlobalNPC<NecromancyNPC>().isZombie;
             int owner = -1;
             int timer = -1;
             float tier = -1f;
             if (isZombieOld)
             {
-                var zombie = self.GetGlobalNPC<PlayerZombie>();
+                var zombie = self.GetGlobalNPC<NecromancyNPC>();
                 owner = zombie.zombieOwner;
                 timer = zombie.zombieTimer;
                 tier = zombie.zombieDebuffTier;
@@ -55,7 +57,7 @@ namespace Aequus.NPCs
 
             if (isZombieOld)
             {
-                var zombie = self.GetGlobalNPC<PlayerZombie>();
+                var zombie = self.GetGlobalNPC<NecromancyNPC>();
                 zombie.isZombie = true;
                 zombie.zombieOwner = owner;
                 zombie.zombieTimer = timer;
@@ -65,9 +67,9 @@ namespace Aequus.NPCs
 
         private static void NPC_SetTargetTrackingValues(On.Terraria.NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
         {
-            if (AI_NPCIsZombie)
+            if (AI_IsZombie)
             {
-                self.target = self.GetGlobalNPC<PlayerZombie>().zombieOwner;
+                self.target = self.GetGlobalNPC<NecromancyNPC>().zombieOwner;
                 if (AI_NPCTarget != -1)
                 {
                     self.targetRect = Main.npc[AI_NPCTarget].getRect();
@@ -90,7 +92,7 @@ namespace Aequus.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (!AI_NPCIsZombie)
+            if (!AI_IsZombie)
             {
                 return;
             }
@@ -113,25 +115,27 @@ namespace Aequus.NPCs
         }
         public void ZombieCheck(Entity entity, NPC npc)
         {
-            if (entity is NPC npc2 && npc2.GetGlobalNPC<PlayerZombie>().isZombie)
+            if (entity is NPC npc2 && npc2.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
                 npc.boss = false;
                 npc.friendly = true;
                 npc.damage *= 5;
-                npc.GetGlobalNPC<PlayerZombie>().zombieOwner = npc2.GetGlobalNPC<PlayerZombie>().zombieOwner;
-                npc.GetGlobalNPC<PlayerZombie>().zombieTimer = npc2.GetGlobalNPC<PlayerZombie>().zombieTimer;
-                npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = npc2.GetGlobalNPC<PlayerZombie>().zombieDebuffTier;
-                npc.GetGlobalNPC<PlayerZombie>().isZombie = true;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = npc2.GetGlobalNPC<NecromancyNPC>().zombieOwner;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimer;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = npc2.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
+                npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             }
-            else if (entity is Projectile proj && proj.GetGlobalProjectile<PlayerZombieProj>().isZombie)
+            else if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
                 npc.boss = false;
                 npc.friendly = true;
                 npc.damage *= 5;
-                npc.GetGlobalNPC<PlayerZombie>().zombieOwner = proj.owner;
-                npc.GetGlobalNPC<PlayerZombie>().zombieTimer = Main.npc[proj.GetGlobalProjectile<PlayerZombieProj>().zombieNPCOwner].GetGlobalNPC<PlayerZombie>().zombieTimer;
-                npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = proj.GetGlobalProjectile<PlayerZombieProj>().zombieDebuffTier;
-                npc.GetGlobalNPC<PlayerZombie>().isZombie = true;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = proj.owner;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimer;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
+                npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             }
         }
 
@@ -168,13 +172,13 @@ namespace Aequus.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            AI_NPCIsZombie = isZombie;
+            AI_IsZombie = isZombie;
             AI_NPCTarget = -1;
             if (isZombie)
             {
                 if (zombieTimer == 0)
                 {
-                    zombieTimer = 3600;
+                    zombieTimerMax = zombieTimer = Main.player[zombieOwner].Aequus().necromancyTime;
                 }
                 zombieTimer--;
 
@@ -183,6 +187,10 @@ namespace Aequus.NPCs
                     npc.life = -1;
                     npc.HitEffect();
                     npc.active = false;
+                }
+                else
+                {
+                    npc.life = (int)Math.Clamp(npc.lifeMax * (zombieTimer / (float)zombieTimerMax), 1f, npc.lifeMax); // Aggros slimes and stuff
                 }
 
                 if (AI_ReturnPlayerLocation != Vector2.Zero)
@@ -193,7 +201,6 @@ namespace Aequus.NPCs
 
                 AI_ZombiePlayerOwner = zombieOwner;
 
-                npc.life = npc.lifeMax - 1; // Aggros slimes and stuff
                 npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
                 npc.friendly = true;
                 npc.target = zombieOwner;
@@ -261,7 +268,7 @@ namespace Aequus.NPCs
             int hitDirection = (!(npc.Center.X > target.Center.X)) ? 1 : (-1);
             bool crit = false;
             NPCLoader.ModifyHitNPC(npc, target, ref damage, ref knockBack, ref crit);
-            Main.player[npc.GetGlobalNPC<PlayerZombie>().zombieOwner].ApplyDamageToNPC(target, damage, knockBack, hitDirection, crit);
+            Main.player[npc.GetGlobalNPC<NecromancyNPC>().zombieOwner].ApplyDamageToNPC(target, damage, knockBack, hitDirection, crit);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, target.whoAmI, damage, knockBack, hitDirection);
@@ -294,6 +301,8 @@ namespace Aequus.NPCs
                     Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
                     AI_ReturnPlayerLocation = Vector2.Zero;
                 }
+                var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
+                aequus.necromancySlotUsed++;
                 if (Main.rand.NextBool(6))
                 {
                     var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: new Color(50, 150, 255, 100));
@@ -303,7 +312,7 @@ namespace Aequus.NPCs
                     d.noGravity = true;
                 }
             }
-            AI_NPCIsZombie = false;
+            AI_IsZombie = false;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -321,17 +330,7 @@ namespace Aequus.NPCs
         {
             if (zombieDrain > 0 && CanBeTurnedIntoZombie(npc))
             {
-                int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
-                if (n < 200)
-                {
-                    Main.npc[n].GetGlobalNPC<PlayerZombie>().isZombie = true;
-                    Main.npc[n].friendly = true;
-                    Main.npc[n].extraValue = 0;
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
-                    }
-                }
+                SpawnZombie(npc);
             }
         }   
         public bool CanBeTurnedIntoZombie(NPC npc)
@@ -341,6 +340,24 @@ namespace Aequus.NPCs
                 return false;
             }
             return NecromancyTypes.NPCs.GetOrDefault(npc.type, NecromancyTypes.NecroStats.None).PowerNeeded <= zombieDebuffTier;
+        }
+        public void SpawnZombie(NPC npc)
+        {
+            int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
+            if (n < 200)
+            {
+                Main.npc[n].GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                Main.npc[n].Center = npc.Center;
+                Main.npc[n].velocity = npc.velocity * 0.25f;
+                Main.npc[n].direction = npc.direction;
+                Main.npc[n].spriteDirection = npc.spriteDirection;
+                Main.npc[n].friendly = true;
+                Main.npc[n].extraValue = 0;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
+                }
+            }
         }
 
         public static int GetNPCTarget(Entity entity, int npcType)
@@ -414,6 +431,7 @@ namespace Aequus.NPCs
             {
                 writer.Write(zombieOwner);
                 writer.Write(zombieTimer);
+                writer.Write(zombieTimerMax);
                 writer.Write(zombieDebuffTier);
             }
             else
@@ -429,6 +447,7 @@ namespace Aequus.NPCs
                 isZombie = true;
                 zombieOwner = reader.ReadInt32();
                 zombieTimer = reader.ReadInt32();
+                zombieTimerMax = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
             }
             else
@@ -439,14 +458,85 @@ namespace Aequus.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (isZombie && !NecromancyScreenTarget.RenderingNow)
+            if (isZombie && !NecromancyScreenTarget.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
                 NecromancyScreenTarget.Add(npc.whoAmI);
+                DrawHealthbar(npc, spriteBatch, screenPos);
             }
             return true;
         }
+        public void DrawHealthbar(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos)
+        {
+            if (Main.HealthBarDrawSettings == 0 || npc.life < 0)
+            {
+                return;
+            }
+            float y = 0f;
+            if (Main.HealthBarDrawSettings == 1)
+            {
+                y += Main.NPCAddHeight(npc) + npc.height;
+            }
+            else if (Main.HealthBarDrawSettings == 2)
+            {
+                y -= Main.NPCAddHeight(npc) / 2f;
+            }
+            var center = npc.Center;
+            InnerDrawHealthbar(npc, spriteBatch, screenPos, center.X, npc.position.Y + y + npc.gfxOffY, npc.life, npc.lifeMax, Lighting.Brightness((int)(center.X / 16f), (int)((center.Y + npc.gfxOffY) / 16f)), 1f);
+        }
+        public void InnerDrawHealthbar(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, float x, float y, int life, int maxLife, float alpha, float scale)
+        {
+            var hb = TextureAssets.Hb1.Value;
+            var hbBack = TextureAssets.Hb2.Value;
+
+            float lifeRatio = MathHelper.Clamp(life / (float)maxLife, 0f, 1f);
+            int scaleX = (int)MathHelper.Clamp(hb.Width * lifeRatio, 2f, hb.Width - 2f);
+
+            x -= hb.Width / 2f * scale;
+            y += hb.Height; //I kind of like how they're lower than the vanilla hb spots
+            if (Main.LocalPlayer.gravDir == -1f)
+            {
+                y -= Main.screenPosition.Y;
+                y = Main.screenPosition.Y + Main.screenHeight - y;
+            }
+            var color = DetermineHealthbarColor(npc, lifeRatio);
+
+            spriteBatch.Draw(hb, new Vector2(x - screenPos.X, y - screenPos.Y), new Rectangle(0, 0, 2, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(hb, new Vector2(x - screenPos.X + 2 * scale, y - screenPos.Y), new Rectangle(2, 0, scaleX, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(hb, new Vector2(x - screenPos.X + scaleX * scale, y - screenPos.Y), new Rectangle(hb.Width - 2, 0, 2, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(hbBack, new Vector2(x - screenPos.X + (scaleX + 2) * scale, y - screenPos.Y), 
+                new Rectangle(scaleX + 2, 0, hbBack.Width - scaleX - 2, hbBack.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
+
+            //if (scaleX < 34)
+            //{
+            //    if (scaleX < 36)
+            //    {
+            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)y * scale, y - screenPos.Y), (Rectangle?)new Rectangle(2, 0, 2, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //    }
+            //    if (scaleX < 34)
+            //    {
+            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)(y + 2) * scale, y - screenPos.Y), (Rectangle?)new Rectangle(scaleX + 2, 0, 36 - scaleX - 2, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //    }
+            //    if (scaleX > 2)
+            //    {
+            //        spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X, y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, scaleX - 2, TextureAssets.Hb1.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //    }
+            //    spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X + (float)(scaleX - 2) * scale, y - screenPos.Y), (Rectangle?)new Rectangle(32, 0, 2, TextureAssets.Hb1.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //}
+            //else
+            //{
+            //    if (scaleX < 36)
+            //    {
+            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)scaleX * scale, y - screenPos.Y), (Rectangle?)new Rectangle(scaleX, 0, 36 - scaleX, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //    }
+            //    spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X, y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, scaleX, TextureAssets.Hb1.Value.Height), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
+            //}
+        }
+        public Color DetermineHealthbarColor(NPC npc, float lifeRatio)
+        {
+            return Color.Lerp(Color.Cyan, Color.Blue, 1f - lifeRatio);
+        }
     }
-    public class PlayerZombieProj : GlobalProjectile, INetworker
+    public class NecromancyProj : GlobalProjectile, INetworker
     {
         public bool isZombie;
         public int zombieNPCOwner;
@@ -455,9 +545,27 @@ namespace Aequus.NPCs
 
         public override bool InstancePerEntity => true;
 
+        public override void Load()
+        {
+            On.Terraria.Projectile.Kill += Projectile_Kill;
+        }
+
+        private static void Projectile_Kill(On.Terraria.Projectile.orig_Kill orig, Projectile self)
+        {
+            NecromancyNPC.AI_IsZombie = self.GetGlobalProjectile<NecromancyProj>().isZombie;
+            try
+            {
+                orig(self);
+            }
+            catch
+            {
+            }
+            NecromancyNPC.AI_IsZombie = false;
+        }
+
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (!PlayerZombie.AI_NPCIsZombie)
+            if (!NecromancyNPC.AI_IsZombie)
             {
                 return;
             }
@@ -480,25 +588,25 @@ namespace Aequus.NPCs
         }
         public void ZombieCheck(Entity entity, Projectile projectile)
         {
-            if (entity is Projectile proj && proj.GetGlobalProjectile<PlayerZombieProj>().isZombie)
+            if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
                 projectile.hostile = false;
                 projectile.friendly = true;
-                projectile.owner = PlayerZombie.AI_ZombiePlayerOwner;
+                projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
                 isZombie = true;
-                zombieNPCOwner = proj.GetGlobalProjectile<PlayerZombieProj>().zombieNPCOwner;
-                zombieDebuffTier = proj.GetGlobalProjectile<PlayerZombieProj>().zombieDebuffTier;
+                zombieNPCOwner = proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner;
+                zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
                 projectile.timeLeft = Math.Min(projectile.timeLeft, proj.timeLeft);
             }
-            else if (entity is NPC npc && npc.GetGlobalNPC<PlayerZombie>().isZombie)
+            else if (entity is NPC npc && npc.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
                 projectile.hostile = false;
                 projectile.friendly = true;
-                projectile.owner = PlayerZombie.AI_ZombiePlayerOwner;
+                projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
                 isZombie = true;
                 zombieNPCOwner = entity.whoAmI;
-                zombieDebuffTier = npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier;
-                projectile.timeLeft = Math.Min(projectile.timeLeft, npc.GetGlobalNPC<PlayerZombie>().zombieTimer);
+                zombieDebuffTier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
+                projectile.timeLeft = Math.Min(projectile.timeLeft, npc.GetGlobalNPC<NecromancyNPC>().zombieTimer);
             }
         }
 
@@ -518,8 +626,8 @@ namespace Aequus.NPCs
 
         public override bool PreAI(Projectile projectile)
         {
-            PlayerZombie.AI_NPCIsZombie = isZombie;
-            PlayerZombie.AI_NPCTarget = -1;
+            NecromancyNPC.AI_IsZombie = isZombie;
+            NecromancyNPC.AI_NPCTarget = -1;
             if (isZombie)
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)
@@ -539,23 +647,23 @@ namespace Aequus.NPCs
                     projectile.Kill();
                     return true;
                 }
-                if (PlayerZombie.AI_ReturnPlayerLocation != Vector2.Zero)
+                if (NecromancyNPC.AI_ReturnPlayerLocation != Vector2.Zero)
                 {
-                    Main.player[projectile.owner].position = PlayerZombie.AI_ReturnPlayerLocation;
-                    PlayerZombie.AI_ReturnPlayerLocation = Vector2.Zero;
+                    Main.player[projectile.owner].position = NecromancyNPC.AI_ReturnPlayerLocation;
+                    NecromancyNPC.AI_ReturnPlayerLocation = Vector2.Zero;
                 }
 
-                PlayerZombie.AI_ZombiePlayerOwner = projectile.owner;
+                NecromancyNPC.AI_ZombiePlayerOwner = projectile.owner;
 
                 projectile.hostile = false;
                 projectile.friendly = true;
                 projectile.alpha = Math.Max(projectile.alpha, 60);
-                int npcTarget = PlayerZombie.GetNPCTarget(projectile, zombieNPCOwner);
+                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, zombieNPCOwner);
 
                 if (npcTarget != -1)
                 {
-                    PlayerZombie.AI_ReturnPlayerLocation = Main.player[projectile.owner].position;
-                    PlayerZombie.AI_NPCTarget = npcTarget;
+                    NecromancyNPC.AI_ReturnPlayerLocation = Main.player[projectile.owner].position;
+                    NecromancyNPC.AI_NPCTarget = npcTarget;
                     Main.player[projectile.owner].Center = Main.npc[npcTarget].Center;
                 }
             }
@@ -566,10 +674,10 @@ namespace Aequus.NPCs
         {
             if (isZombie)
             {
-                if (PlayerZombie.AI_ReturnPlayerLocation != Vector2.Zero)
+                if (NecromancyNPC.AI_ReturnPlayerLocation != Vector2.Zero)
                 {
-                    Main.player[projectile.owner].position = PlayerZombie.AI_ReturnPlayerLocation;
-                    PlayerZombie.AI_ReturnPlayerLocation = Vector2.Zero;
+                    Main.player[projectile.owner].position = NecromancyNPC.AI_ReturnPlayerLocation;
+                    NecromancyNPC.AI_ReturnPlayerLocation = Vector2.Zero;
                 }
                 if (Main.rand.NextBool(6))
                 {
@@ -580,14 +688,14 @@ namespace Aequus.NPCs
                     d.noGravity = true;
                 }
             }
-            PlayerZombie.AI_NPCIsZombie = false;
+            NecromancyNPC.AI_IsZombie = false;
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (isZombie)
             {
-                damage *= PlayerZombie.GetDamageMultiplier(Main.npc[zombieNPCOwner]);
+                damage *= NecromancyNPC.GetDamageMultiplier(Main.npc[zombieNPCOwner]);
             }
         }
 

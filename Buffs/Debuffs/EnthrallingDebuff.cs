@@ -10,15 +10,15 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<PlayerZombie>().zombieDrain = 100 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 100 * AequusHelpers.NPCREGEN;
         }
 
         public static void ApplyDebuffTest(NPC npc, int time, int player, float tier)
         {
             npc.buffImmune[ModContent.BuffType<EnthrallingDebuff>()] = false;
             npc.AddBuff(ModContent.BuffType<EnthrallingDebuff>(), time);
-            npc.GetGlobalNPC<PlayerZombie>().zombieOwner = player;
-            npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = tier;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = tier;
         }
     }
 }

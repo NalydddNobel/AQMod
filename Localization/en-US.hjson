@@ -1849,11 +1849,16 @@ Mods: {
 				FlashIntensity: Flash Intensity
 				HighQuality: High Quality
 				HighQualityShaders: HiDef Shaders
-				FlashShaderRepetitions: Flash Shader - Repetitions
+				FlashShaderRepetitions: HiDef Flash Shader - Repetitions
 				FlashShaderRepetitionsTooltip: 
 					'''
 					How many repetitions this shader will perform
 					Only works when HiDef shaders are enabled
+					'''
+				InfoDebugLogs: Info and Debug Logs
+				InfoDebugLogsTooltip: 
+					'''
+					Only really useful for 3rd party developers who want confirmation for events.
 					'''
 			}
 		}

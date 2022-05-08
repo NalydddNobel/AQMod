@@ -18,7 +18,7 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<PlayerZombie>().zombieDrain = 5 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 5 * AequusHelpers.NPCREGEN;
         }
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff
@@ -26,8 +26,8 @@ namespace Aequus.Buffs.Debuffs
             if (tier >= 100 || (NecromancyTypes.NPCs.TryGetValue(npc.type, out var value) && value.PowerNeeded <= tier))
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
-                npc.GetGlobalNPC<PlayerZombie>().zombieOwner = player;
-                npc.GetGlobalNPC<PlayerZombie>().zombieDebuffTier = tier;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
+                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = tier;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     PacketSender.Send((p) =>

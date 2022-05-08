@@ -172,8 +172,7 @@ namespace Aequus.Common.Catalogues
                 }
                 catch (Exception e)
                 {
-                    var l = Aequus.Instance.Logger;
-                    l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(n.Key).Value + ", ID: " + n.Key + "}", e);
+                    Aequus.Instance.Logger.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetNPCName(n.Key).Value + ", ID: " + n.Key + "}", e);
                 }
             }
         }
@@ -195,8 +194,7 @@ namespace Aequus.Common.Catalogues
                 }
                 catch (Exception e)
                 {
-                    var l = Aequus.Instance.Logger;
-                    l.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetProjectileName(p.Key).Value + ", ID: " + p.Key + "}", e);
+                    Aequus.Instance.Logger.Error("An error occured when doing algorithmic checks for sets for {" + Lang.GetProjectileName(p.Key).Value + ", ID: " + p.Key + "}", e);
                 }
             }
         }

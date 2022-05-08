@@ -26,6 +26,7 @@ namespace Aequus
 
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
         public static bool HQ => ClientConfig.Instance.HighQuality;
+        public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
         internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
@@ -46,7 +47,7 @@ namespace Aequus
 
         public override void AddRecipes()
         {
-            PlayerZombie.SetupBuffImmunities();
+            NecromancyNPC.SetupBuffImmunities();
             ItemsCatalogue.LoadAutomaticEntries();
         }
 
@@ -76,8 +77,8 @@ namespace Aequus
             else if (type == PacketType.SyncNecromancyDebuff)
             {
                 int npc = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<PlayerZombie>().zombieOwner = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<PlayerZombie>().zombieDebuffTier = reader.ReadSingle();
+                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
+                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
             }
             else if (type == PacketType.SyncNecromanyProjectile)
             {
@@ -99,6 +100,9 @@ namespace Aequus
             {
                 case "NecroStats":
                     return ModContent.GetInstance<NecromancyTypes>().HandleModCall(this, args);
+
+                case "Downed":
+                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
             }
             return null;
         }

@@ -55,11 +55,11 @@ namespace Aequus.Common.Networking
 
         public static INetworker[] GetNetworkerGlobals(NPC npc)
         {
-            return new INetworker[] { npc.GetGlobalNPC<PlayerZombie>() };
+            return new INetworker[] { npc.GetGlobalNPC<NecromancyNPC>() };
         }
         public static INetworker[] GetNetworkerGlobals(Projectile projectile)
         {
-            return new INetworker[] { projectile.GetGlobalProjectile<PlayerZombieProj>() };
+            return new INetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
         }
 
         public static PacketType ReadPacketType(BinaryReader reader)

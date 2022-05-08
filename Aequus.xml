@@ -220,6 +220,31 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
+        <member name="T:Aequus.AequusWorld.DownedCalls">
+            <summary>
+            World Flags:
+            <list type="table">
+            <item>Crabson -- <see cref="F:Aequus.AequusWorld.downedCrabson"/></item>
+            <item>OmegaStarite -- <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></item>
+            <item>RedSprite -- <see cref="F:Aequus.AequusWorld.downedRedSprite"/></item>
+            <item>SpaceSquid -- <see cref="F:Aequus.AequusWorld.downedSpaceSquid"/></item>
+            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusWorld.downedEventGaleStreams"/></item>
+            <item>GaleStreams -- <see cref="F:Aequus.AequusWorld.downedEventGaleStreams"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusWorld.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
+            <summary>
+            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.DownedCalls"/>' summary.
+            <para>Obtaining a flag:</para>
+            <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
+            <para>Setting a flag:</para>
+            <code>aequus.Call("Downed", "Set", "Crabson" -- {Or any of the flag names provided}, {true/false})</code>
+            </summary>
+            <param name="aequus"></param>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Misc.Pets.FamiliarPickaxe"/>
@@ -253,6 +278,39 @@
             <summary>
             For enemies which cannot be turned into player zombies
             </summary>
+        </member>
+        <member name="M:Aequus.Common.Catalogues.NecromancyTypes.HandleModCall(Aequus.Aequus,System.Object[])">
+            <summary>
+            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Common.Catalogues.NecromancyTypes.NPCs"/>
+            <para>Parameter 1: NPC Type (short)</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.InsurgencyScepter"/> is tier 4</para>
+            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
+            <para>A successful mod call would look like:</para>
+            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
+            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Aequus.AddRecipes"/></para>
+            </summary>
+            <param name="aequus"></param>
+            <param name="args"></param>
+            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="M:Aequus.Common.IModCallable.UnboxIntoInt(System.Object)">
+            <summary>
+            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
+            <para>Accepts <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
+            <see cref="T:System.UInt16"/>, <see cref="T:System.Int16"/>, <see cref="T:System.Single"/>, and <see cref="T:System.Double"/>.</para>
+            </summary>
+            <param name="obj"></param>
+            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
+        </member>
+        <member name="M:Aequus.Common.IModCallable.UnboxIntoFloat(System.Object)">
+            <summary>
+            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
+            <para>Accepts <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
+            <see cref="T:System.UInt16"/>, and <see cref="T:System.Int16"/></para>
+            </summary>
+            <param name="obj"></param>
+            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
         </member>
         <member name="T:Aequus.Common.Players.HyperCrystalPlayer">
             <summary>

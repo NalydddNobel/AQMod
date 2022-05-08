@@ -5,6 +5,7 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -137,6 +138,9 @@ namespace Aequus
         public uint interactionCooldown;
 
         public int turretSlotCount;
+        public int necromancySlotUsed;
+        public int necromancySlots;
+        public int necromancyTime;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -223,6 +227,8 @@ namespace Aequus
             glowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
+            necromancySlots = 5;
+            necromancyTime = 3600;
         }
 
         public override void PreUpdateBuffs()
@@ -297,6 +303,42 @@ namespace Aequus
             if (glowCore > 0)
             {
                 GlowCore.AddLight(Player, glowCore);
+            }
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                UpdateZombies();
+            }
+            necromancySlotUsed = 0;
+        }
+        public void UpdateZombies()
+        {
+            if (necromancySlotUsed > necromancySlots)
+            {
+                int removeNPC = -1;
+                int oldestTime = int.MaxValue;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie)
+                    {
+                        var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
+                        int timeComparison = zombie.zombieTimer + (int)(zombie.zombieDebuffTier * 3600f); // Prioritize lower tier slaves
+                        if (timeComparison < oldestTime)
+                        {
+                            removeNPC = i;
+                            oldestTime = zombie.zombieTimer;
+                        }
+                    }
+                }
+                if (removeNPC != -1)
+                {
+                    Main.npc[removeNPC].life = -1;
+                    Main.npc[removeNPC].HitEffect();
+                    Main.npc[removeNPC].active = false;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, removeNPC);
+                    }
+                }
             }
         }
 
