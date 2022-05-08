@@ -321,7 +321,7 @@ namespace Aequus
                     if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie)
                     {
                         var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                        int timeComparison = (int)(zombie.zombieTimer * zombie.zombieDebuffTier); // Prioritize to kill lower tier slaves
+                        int timeComparison = GetTimeComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
                         if (timeComparison < oldestTime)
                         {
                             removeNPC = i;
@@ -342,6 +342,19 @@ namespace Aequus
                     }
                 }
             }
+        }
+        public int GetTimeComparison(NPC npc, NecromancyNPC zombie)
+        {
+            float tiering = 999f;
+            if (NecromancyTypes.TryGetByNetID(npc, out var value))
+            {
+                tiering = value.PowerNeeded;
+            }
+            if (npc.boss)
+            {
+                tiering += 25f;
+            }
+            return (int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2;
         }
 
         public override void PostUpdate()

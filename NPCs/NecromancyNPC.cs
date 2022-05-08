@@ -143,7 +143,7 @@ namespace Aequus.NPCs
                 sendPacket = true;
             }
 
-            if (sendPacket)
+            if (sendPacket && Main.netMode != NetmodeID.SinglePlayer)
             {
                 PacketSender.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
             }
@@ -217,7 +217,7 @@ namespace Aequus.NPCs
                 npc.alpha = Math.Max(npc.alpha, 60);
                 npc.dontTakeDamage = true;
                 npc.npcSlots = 0f;
-                int npcTarget = GetNPCTarget(npc, npc.type);
+                int npcTarget = GetNPCTarget(npc, npc.netID, npc.type);
 
                 if (npcTarget != -1)
                 {
@@ -349,7 +349,7 @@ namespace Aequus.NPCs
             {
                 return false;
             }
-            return NecromancyTypes.NPCs.GetOrDefault(npc.type, NecromancyTypes.NecroStats.None).PowerNeeded <= zombieDebuffTier;
+            return NecromancyTypes.GetByNetID(npc).PowerNeeded <= zombieDebuffTier;
         }
         public void SpawnZombie(NPC npc)
         {
@@ -372,10 +372,14 @@ namespace Aequus.NPCs
             }
         }
 
-        public static int GetNPCTarget(Entity entity, int npcType)
+        public static int GetNPCTarget(Entity entity, int netID, int npcType)
         {
             int target = -1;
-            float distance = NecromancyTypes.NPCs.GetOrDefault(npcType, NecromancyTypes.NecroStats.None).ViewDistance;
+            float distance = NecromancyTypes.GetByNetID(netID, npcType).ViewDistance;
+            if (distance < 800f)
+            {
+                distance = 800f;
+            }
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active && Main.npc[i].CanBeChasedBy(entity) &&
@@ -407,9 +411,9 @@ namespace Aequus.NPCs
         {
             var buffList = new List<int>(NecromancyTypes.NecromancyDebuffs);
             buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
-            for (int i = 0; i < Main.maxNPCTypes; i++)
+            for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
             {
-                if (!NecromancyTypes.NPCs.TryGetValue(i, out var stats) || stats == NecromancyTypes.NecroStats.None)
+                if (!NecromancyTypes.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats == NecromancyTypes.NecroStats.None)
                 {
                     if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(i, out var value))
                     {
@@ -472,7 +476,6 @@ namespace Aequus.NPCs
                 }
                 zombieOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
-                Main.NewText(Lang.GetNPCName(Main.npc[whoAmI].type) + ", WhoAmI: " + whoAmI + ", Tier: " + zombieDebuffTier, Main.DiscoColor);
             }
         }
 
@@ -678,7 +681,7 @@ namespace Aequus.NPCs
                 projectile.hostile = false;
                 projectile.friendly = true;
                 projectile.alpha = Math.Max(projectile.alpha, 60);
-                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, zombieNPCOwner);
+                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, Main.npc[zombieNPCOwner].netID, Main.npc[zombieNPCOwner].type);
 
                 if (npcTarget != -1)
                 {

@@ -23,7 +23,12 @@ namespace Aequus.Buffs.Debuffs
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff
         {
-            if (tier >= 100 || (NecromancyTypes.NPCs.TryGetValue(npc.type, out var value) && value.PowerNeeded <= tier))
+            bool cheat = tier >= 100;
+            if (cheat)
+            {
+                npc.buffImmune[ModContent.BuffType<T>()] = false;
+            }
+            if (cheat || (NecromancyTypes.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier))
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;

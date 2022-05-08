@@ -52,6 +52,34 @@ namespace Aequus.Common.Catalogues
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, NecroStats> NPCs { get; private set; }
 
+        public static NecroStats GetByNetID(int netID, int type)
+        {
+            if (NPCs.ContainsKey(netID))
+            {
+                return NPCs[netID];
+            }
+            return NPCs.GetOrDefault(type);
+        }
+        public static NecroStats GetByNetID(NPC npc)
+        {
+            return GetByNetID(npc.netID, npc.type);
+        }
+
+
+        public static bool TryGetByNetID(int netID, int type, out NecroStats value)
+        {
+            if (netID < 0 && NPCs.ContainsKey(netID))
+            {
+                value = NPCs[netID]; 
+                return true;
+            }
+            return NPCs.TryGetValue(type, out value);
+        }
+        public static bool TryGetByNetID(NPC npc, out NecroStats value)
+        {
+            return TryGetByNetID(npc.netID, npc.type, out value);
+        }
+
         public override void Load()
         {
             NecromancyDebuffs = new List<int>();
@@ -128,7 +156,6 @@ namespace Aequus.Common.Catalogues
 
                 [NPCID.Crimera] = NecroStats.Two,
                 [NPCID.EaterofSouls] = NecroStats.Two,
-                [NPCID.AngryBones] = NecroStats.Two,
                 [NPCID.GiantFlyingAntlion] = NecroStats.Two,
                 [NPCID.GiantWalkingAntlion] = NecroStats.Two,
                 [NPCID.CursedSkull] = NecroStats.Two,
@@ -245,16 +272,6 @@ namespace Aequus.Common.Catalogues
                 [NPCID.CreatureFromTheDeep] = NecroStats.Three,
                 [NPCID.Frankenstein] = NecroStats.Three,
                 [NPCID.Fritz] = NecroStats.Three,
-                [NPCID.Scarecrow1] = NecroStats.Three,
-                [NPCID.Scarecrow2] = NecroStats.Three,
-                [NPCID.Scarecrow3] = NecroStats.Three,
-                [NPCID.Scarecrow4] = NecroStats.Three,
-                [NPCID.Scarecrow5] = NecroStats.Three,
-                [NPCID.Scarecrow6] = NecroStats.Three,
-                [NPCID.Scarecrow7] = NecroStats.Three,
-                [NPCID.Scarecrow8] = NecroStats.Three,
-                [NPCID.Scarecrow9] = NecroStats.Three,
-                [NPCID.Scarecrow10] = NecroStats.Three,
                 [NPCID.Splinterling] = NecroStats.Three,
                 [NPCID.Hellhound] = NecroStats.Three,
                 [NPCID.Poltergeist] = NecroStats.Three,
@@ -269,10 +286,6 @@ namespace Aequus.Common.Catalogues
                 [NPCID.Flocko] = NecroStats.Three,
                 [NPCID.ElfCopter] = NecroStats.Three,
 
-                [NPCID.BlueArmoredBones] = NecroStats.Four,
-                [NPCID.BlueArmoredBonesMace] = NecroStats.Four,
-                [NPCID.BlueArmoredBonesNoPants] = NecroStats.Four,
-                [NPCID.BlueArmoredBonesSword] = NecroStats.Four,
                 [NPCID.BoneLee] = NecroStats.Four,
                 [NPCID.BigMimicCorruption] = NecroStats.Four,
                 [NPCID.BigMimicCrimson] = NecroStats.Four,
@@ -285,10 +298,6 @@ namespace Aequus.Common.Catalogues
                 [NPCID.GiantCursedSkull] = NecroStats.Four,
                 [NPCID.GiantFlyingFox] = NecroStats.Four,
                 [NPCID.GiantTortoise] = NecroStats.Four,
-                [NPCID.HellArmoredBones] = NecroStats.Four,
-                [NPCID.HellArmoredBonesMace] = NecroStats.Four,
-                [NPCID.HellArmoredBonesSpikeShield] = NecroStats.Four,
-                [NPCID.HellArmoredBonesSword] = NecroStats.Four,
                 [NPCID.JungleCreeper] = NecroStats.Four,
                 [NPCID.JungleCreeperWall] = NecroStats.Four,
                 [NPCID.Lihzahrd] = NecroStats.Four,
@@ -303,10 +312,6 @@ namespace Aequus.Common.Catalogues
                 [NPCID.RedDevil] = NecroStats.Four,
                 [NPCID.RockGolem] = NecroStats.Four,
                 [NPCID.RuneWizard] = NecroStats.Four,
-                [NPCID.RustyArmoredBonesAxe] = NecroStats.Four,
-                [NPCID.RustyArmoredBonesFlail] = NecroStats.Four,
-                [NPCID.RustyArmoredBonesSword] = NecroStats.Four,
-                [NPCID.RustyArmoredBonesSwordNoArmor] = NecroStats.Four,
                 [NPCID.SkeletonCommando] = NecroStats.Four,
                 [NPCID.SkeletonSniper] = NecroStats.Four,
                 [NPCID.TacticalSkeleton] = NecroStats.Four,
@@ -394,6 +399,26 @@ namespace Aequus.Common.Catalogues
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Hornet, vanillaOnly: true))
             {
                 NPCs[i] = NecroStats.Two;
+            }
+            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.AngryBones, vanillaOnly: true))
+            {
+                NPCs[i] = NecroStats.Two;
+            }
+            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Scarecrow1, vanillaOnly: true))
+            {
+                NPCs[i] = NecroStats.Three;
+            }
+            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.BlueArmoredBones, vanillaOnly: true))
+            {
+                NPCs[i] = NecroStats.Four;
+            }
+            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.HellArmoredBones, vanillaOnly: true))
+            {
+                NPCs[i] = NecroStats.Four;
+            }
+            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.RustyArmoredBonesAxe, vanillaOnly: true))
+            {
+                NPCs[i] = NecroStats.Four;
             }
         }
 
