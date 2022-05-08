@@ -53,11 +53,8 @@ namespace Aequus.Projectiles.Pets
             dummyPlayer.hairDyeVar = parent.hairDyeVar;
             dummyPlayer.hair = parent.hair;
 
-            // copies armors
-            //parent.armor.FillOther(dummyPlayer.armor);
-            //parent.dye.FillOther(dummyPlayer.dye);
-
-            //dummyPlayer.UpdateDyes();
+            //dummyPlayer.selectedItem = 0;
+            //dummyPlayer.inventory[dummyPlayer.selectedItem] = parent.HeldItem.Clone();
 
             // copies proj attributes
             dummyPlayer.width = Projectile.width;
@@ -77,6 +74,7 @@ namespace Aequus.Projectiles.Pets
             dummyPlayer.position = Projectile.position;
             dummyPlayer.position.Y -= 42 * (1f - Projectile.scale);
             dummyPlayer.whoAmI = Projectile.owner;
+
             dummyPlayer.PlayerFrame();
             return true;
         }

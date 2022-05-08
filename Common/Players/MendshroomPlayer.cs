@@ -35,7 +35,6 @@ namespace Aequus.Common.Players
                 if (EffectActive)
                 {
                     lerpTo = circumference;
-                    Main.NewText("Healing players...");
                     HealPlayers(Player);
                 }
             }

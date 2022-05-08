@@ -118,28 +118,18 @@ namespace Aequus.NPCs
             bool sendPacket = false;
             int player = 0;
             float tier = 0f;
-            if (entity is NPC npc2 && npc2.GetGlobalNPC<NecromancyNPC>().isZombie)
+            if (entity is NPC parentNPC && parentNPC.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
-                npc.boss = false;
-                npc.friendly = true;
-                npc.damage *= 5;
-                player = npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = npc2.GetGlobalNPC<NecromancyNPC>().zombieOwner;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimer;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = npc2.GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
-                tier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = npc2.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
-                npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                player = parentNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner;
+                tier = parentNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
+                ZombifyChild(npc, parentNPC, player, tier);
                 sendPacket = true;
             }
-            else if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
+            else if (entity is Projectile parentProjectile && parentProjectile.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
-                npc.boss = false;
-                npc.friendly = true;
-                npc.damage *= 5;
-                player = npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = proj.owner;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieTimer = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimer;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = Main.npc[proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieTimerMax;
-                tier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
-                npc.GetGlobalNPC<NecromancyNPC>().isZombie = true;
+                player = parentProjectile.owner;
+                tier = parentProjectile.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
+                ZombifyChild(npc, Main.npc[parentProjectile.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner], player, tier);
                 sendPacket = true;
             }
 
@@ -147,6 +137,19 @@ namespace Aequus.NPCs
             {
                 PacketSender.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
             }
+        }
+        public void ZombifyChild(NPC npc, NPC parentNPC, int player, float tier)
+        {
+            npc.boss = false;
+            npc.friendly = true;
+            npc.damage *= 5;
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            var parentZombie = parentNPC.GetGlobalNPC<NecromancyNPC>();
+            zombie.zombieOwner = player;
+            zombie.zombieTimer = parentZombie.zombieTimer;
+            zombie.zombieTimerMax = parentZombie.zombieTimerMax;
+            zombie.zombieDebuffTier = tier;
+            zombie.isZombie = true;
         }
 
         public override bool? CanHitNPC(NPC npc, NPC target)
@@ -213,6 +216,7 @@ namespace Aequus.NPCs
 
                 npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
                 npc.friendly = true;
+                npc.boss = false;
                 npc.target = zombieOwner;
                 npc.alpha = Math.Max(npc.alpha, 60);
                 npc.dontTakeDamage = true;
@@ -365,6 +369,12 @@ namespace Aequus.NPCs
                 Main.npc[n].spriteDirection = npc.spriteDirection;
                 Main.npc[n].friendly = true;
                 Main.npc[n].extraValue = 0;
+                Main.npc[n].boss = false;
+                if (Main.npc[n].ModNPC != null)
+                {
+                    Main.npc[n].ModNPC.Music = -1;
+                    Main.npc[n].ModNPC.SceneEffectPriority = SceneEffectPriority.None;
+                }
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
@@ -613,24 +623,22 @@ namespace Aequus.NPCs
         {
             if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
-                projectile.hostile = false;
-                projectile.friendly = true;
-                projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
-                isZombie = true;
-                zombieNPCOwner = proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner;
-                zombieDebuffTier = proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier;
-                projectile.timeLeft = Math.Min(projectile.timeLeft, proj.timeLeft);
+                ZombifyChild(projectile, proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner, proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier, proj.timeLeft);
             }
             else if (entity is NPC npc && npc.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
-                projectile.hostile = false;
-                projectile.friendly = true;
-                projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
-                isZombie = true;
-                zombieNPCOwner = entity.whoAmI;
-                zombieDebuffTier = npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier;
-                projectile.timeLeft = Math.Min(projectile.timeLeft, npc.GetGlobalNPC<NecromancyNPC>().zombieTimer);
+                ZombifyChild(projectile, entity.whoAmI, npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier, npc.GetGlobalNPC<NecromancyNPC>().zombieTimer);
             }
+        }
+        public void ZombifyChild(Projectile projectile, int npc, float tier, int timeLeft)
+        {
+            projectile.hostile = false;
+            projectile.friendly = true;
+            projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
+            isZombie = true;
+            zombieNPCOwner = npc;
+            zombieDebuffTier = tier;
+            projectile.timeLeft = Math.Min(projectile.timeLeft, timeLeft);
         }
 
         public override Color? GetAlpha(Projectile projectile, Color drawColor)
@@ -689,8 +697,17 @@ namespace Aequus.NPCs
                     NecromancyNPC.AI_NPCTarget = npcTarget;
                     Main.player[projectile.owner].Center = Main.npc[npcTarget].Center;
                 }
+
+                SpecialProjecitleAI(projectile);
             }
             return true;
+        }
+        public void SpecialProjecitleAI(Projectile projectile)
+        {
+            if (projectile.type == ProjectileID.Spike || projectile.type == ProjectileID.FrostWave)
+            {
+                projectile.scale = 1f;
+            }
         }
 
         public override void PostAI(Projectile projectile)
