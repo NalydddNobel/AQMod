@@ -39,8 +39,6 @@ Mods: {
 			Trophy: 在无伤击败时100%掉落
 		}
 		Tooltips: {
-			HookBarbStation: 允许你在背包中为抓钩装备刺钩
-
 			UsesGel: 使用凝胶作为弹药
 			ExporterQuest: 将此物交付于发货人
 			Concocted: 用于药水调配
@@ -68,6 +66,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			InsurgencyScepter: 叛乱权杖
 			ZombieScepter: 僵尸权杖
 			Moro: 摩洛
 			IcebergKraken: 冰山海妖
@@ -372,6 +371,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			InsurgencyScepter: 
+				'''
+				消耗强大敌人的灵魂
+				被诅咒的敌人会释放会诅咒附近敌人的灵魂
+				被完全消耗的灵魂会加入你的队伍
+				'寂静'
+				'''
 			ZombieScepter: 
 				'''
 				消耗弱小敌人的灵魂
