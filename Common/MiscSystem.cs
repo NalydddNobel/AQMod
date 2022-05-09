@@ -6,6 +6,10 @@ namespace Aequus.Common
     {
         public override void PostUpdatePlayers()
         {
+            if (AequusHelpers.Main_invasionSize.IsCaching)
+            {
+                AequusHelpers.Main_invasionSize.EndCaching();
+            }
             if (AequusHelpers.Main_invasionType.IsCaching)
             {
                 AequusHelpers.Main_invasionType.EndCaching();

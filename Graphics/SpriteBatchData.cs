@@ -81,13 +81,13 @@ namespace Aequus.Graphics
         }
 
         public void BeginCustom(SpriteBatch spriteBatch,
-            NullableOption<SpriteSortMode> spriteSortMode = default(NullableOption<SpriteSortMode>),
-            NullableOption<BlendState> blendState = default(NullableOption<BlendState>),
-            NullableOption<SamplerState> samplerState = default(NullableOption<SamplerState>),
-            NullableOption<DepthStencilState> depthStencilState = default(NullableOption<DepthStencilState>),
-            NullableOption<RasterizerState> rasterizerState = default(NullableOption<RasterizerState>),
-            NullableOption<Effect> customEffect = default(NullableOption<Effect>),
-            NullableOption<Matrix> transformMatrix = default(NullableOption<Matrix>))
+            NullInput<SpriteSortMode> spriteSortMode = default(NullInput<SpriteSortMode>),
+            NullInput<BlendState> blendState = default(NullInput<BlendState>),
+            NullInput<SamplerState> samplerState = default(NullInput<SamplerState>),
+            NullInput<DepthStencilState> depthStencilState = default(NullInput<DepthStencilState>),
+            NullInput<RasterizerState> rasterizerState = default(NullInput<RasterizerState>),
+            NullInput<Effect> customEffect = default(NullInput<Effect>),
+            NullInput<Matrix> transformMatrix = default(NullInput<Matrix>))
         {
             spriteBatch.Begin(spriteSortMode.Get(sortMode), blendState.Get(this.blendState),
                 samplerState.Get(this.samplerState), depthStencilState.Get(this.depthStencilState),

@@ -52,11 +52,13 @@ namespace Aequus.Content.Necromancy
 
             public void OnPreAI(NPC npc, NecromancyNPC necro)
             {
+                AequusHelpers.Main_invasionSize.StartCaching(100);
                 AequusHelpers.Main_invasionType.StartCaching(InvasionType);
             }
 
             public void OnPostAI(NPC npc, NecromancyNPC necro)
             {
+                AequusHelpers.Main_invasionSize.EndCaching();
                 AequusHelpers.Main_invasionType.EndCaching();
             }
         }

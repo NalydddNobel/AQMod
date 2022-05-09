@@ -1,11 +1,11 @@
 ﻿namespace Aequus.Common
 {
-    public struct NullableOption<T>
+    public struct NullInput<T>
     {
         private readonly bool useValue;
         private readonly T value;
 
-        public NullableOption(T value)
+        public NullInput(T value)
         {
             useValue = true;
             this.value = value;
@@ -16,13 +16,13 @@
             return useValue ? value : self;
         }
 
-        public static implicit operator NullableOption<T>(bool useless)
+        public static implicit operator NullInput<T>(bool useless)
         {
-            return new NullableOption<T>();
+            return new NullInput<T>();
         }
-        public static implicit operator NullableOption<T>(T value)
+        public static implicit operator NullInput<T>(T value)
         {
-            return new NullableOption<T>(value);
+            return new NullInput<T>(value);
         }
     }
 }

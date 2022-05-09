@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Content.CrossMod;
 using System;
 using Terraria;
 

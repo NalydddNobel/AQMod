@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Catalogues;
+﻿using Aequus.Common.Catalogues;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
@@ -407,7 +406,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         }
                         else
                         {
-                            if (NPC.ai[1] > 30 * 4 + 90f || !Main.expertMode && NPC.ai[1] >= 30 * 2 + 90f)
+                            if (NPC.ai[1] > 30 * 4 + 90f || (!Main.expertMode && NPC.ai[1] >= 30 * 2 + 90f))
                             {
                                 NPC.ai[2] = -1f;
                                 NPC.localAI[2] = 0f;
@@ -681,7 +680,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         break;
                     }
                 }
-                int d = Dust.NewDust(new Vector2(x - 1f, y - 1f), 2, 2, 268);
+                int d = Dust.NewDust(new Vector2(x - 1f, y - 1f), 2, 2, DustID.Sandstorm);
                 Main.dust[d].velocity.X = -NPC.direction * 20f;
                 Main.dust[d].velocity.Y = Main.rand.NextFloat(1f, 3f);
                 Main.dust[d].color = new Color(255, 200, 10, 255);

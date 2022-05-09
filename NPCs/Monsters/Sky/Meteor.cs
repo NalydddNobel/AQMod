@@ -110,7 +110,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 for (int i = 0; i < 25; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
                     Main.dust[d].noGravity = GaleStreams.IsThisSpace(NPC.position.Y);
                     Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
                 }
@@ -125,7 +125,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             else
             {
-                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 23, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
+                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
                 Main.dust[d].noGravity = GaleStreams.IsThisSpace(NPC.position.Y);
                 Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
             }

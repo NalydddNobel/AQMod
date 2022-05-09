@@ -14,9 +14,14 @@
             A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
             </summary>
         </member>
-        <member name="P:Aequus.AequusHelpers.Main_dayTime">
+        <member name="P:Aequus.AequusHelpers.Main_invasionSize">
             <summary>
-            Caches <see cref="F:Terraria.Main.dayTime"/>
+            Caches <see cref="F:Terraria.Main.invasionSize"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusHelpers.Main_invasionType">
+            <summary>
+            Caches <see cref="F:Terraria.Main.invasionType"/>
             </summary>
         </member>
         <member name="P:Aequus.AequusHelpers.Main_eclipse">
@@ -24,9 +29,9 @@
             Caches <see cref="F:Terraria.Main.eclipse"/>
             </summary>
         </member>
-        <member name="P:Aequus.AequusHelpers.Main_invasionType">
+        <member name="P:Aequus.AequusHelpers.Main_dayTime">
             <summary>
-            Caches <see cref="F:Terraria.Main.invasionType"/>
+            Caches <see cref="F:Terraria.Main.dayTime"/>
             </summary>
         </member>
         <member name="P:Aequus.AequusHelpers.HasMouseItem">
@@ -289,24 +294,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Common.IModCallable.UnboxIntoInt(System.Object)">
-            <summary>
-            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
-            <para>Accepts <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
-            <see cref="T:System.UInt16"/>, <see cref="T:System.Int16"/>, <see cref="T:System.Single"/>, and <see cref="T:System.Double"/>.</para>
-            </summary>
-            <param name="obj"></param>
-            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
-        </member>
-        <member name="M:Aequus.Common.IModCallable.UnboxIntoFloat(System.Object)">
-            <summary>
-            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
-            <para>Accepts <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
-            <see cref="T:System.UInt16"/>, and <see cref="T:System.Int16"/></para>
-            </summary>
-            <param name="obj"></param>
-            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
-        </member>
         <member name="T:Aequus.Common.Players.HyperCrystalPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
@@ -317,7 +304,25 @@
             Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
             </summary>
         </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.None">
+        <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
+            <summary>
+            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
+            <para>Accepts <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
+            <see cref="T:System.UInt16"/>, <see cref="T:System.Int16"/>, <see cref="T:System.Single"/>, and <see cref="T:System.Double"/>.</para>
+            </summary>
+            <param name="obj"></param>
+            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
+        </member>
+        <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoFloat(System.Object)">
+            <summary>
+            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
+            <para>Accepts <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
+            <see cref="T:System.UInt16"/>, and <see cref="T:System.Int16"/></para>
+            </summary>
+            <param name="obj"></param>
+            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
             For enemies which cannot be turned into player zombies
             </summary>

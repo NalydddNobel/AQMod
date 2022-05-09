@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Content.CrossMod;
 using Aequus.Items.Weapons.Summon.Necro;
 using System;
 using System.Collections.Generic;

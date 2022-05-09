@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Ranged
             Vector2 dustPos = position + n * 30f + new Vector2(0, -4f);
             for (int i = 0; i < amt; i++)
             {
-                int d = Dust.NewDust(dustPos, 10, 10, 33);
+                int d = Dust.NewDust(dustPos, 10, 10, DustID.Water);
                 Vector2 v = n.RotatedBy(Main.rand.NextFloat(-0.314f, 0.314f));
                 Main.dust[d].velocity.X = v.X * Main.rand.NextFloat(6f, 12f);
                 Main.dust[d].velocity.Y = v.Y * Main.rand.NextFloat(6f, 12f);
@@ -48,7 +48,7 @@ namespace Aequus.Items.Weapons.Ranged
             amt = Main.rand.Next(8, 12);
             for (int i = 0; i < amt; i++)
             {
-                int d = Dust.NewDust(dustPos, 10, 10, 15);
+                int d = Dust.NewDust(dustPos, 10, 10, DustID.MagicMirror);
                 Vector2 v = n.RotatedBy(Main.rand.NextFloat(-0.157f, 0.157f));
                 Main.dust[d].velocity.X = v.X * Main.rand.NextFloat(3f, 6f);
                 Main.dust[d].velocity.Y = v.Y * Main.rand.NextFloat(3f, 6f);

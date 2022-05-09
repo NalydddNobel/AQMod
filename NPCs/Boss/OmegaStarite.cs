@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
@@ -288,14 +287,10 @@ namespace Aequus.NPCs.Boss
             }
             if (NPC.life == -33333)
             {
-                //if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
-                //{
-                //    NoHitting.PlayNoHitJingle(NPC.Center);
-                //}
                 var center = NPC.Center;
                 for (int k = 0; k < 60; k++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
                 }
                 for (float f = 0f; f < 1f; f += 0.02f)
                 {
@@ -319,7 +314,7 @@ namespace Aequus.NPCs.Boss
                     {
                         for (int k = 0; k < 30; k++)
                         {
-                            Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                            Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
                         }
                         for (float f = 0f; f < 1f; f += 0.125f)
                         {
@@ -377,7 +372,7 @@ namespace Aequus.NPCs.Boss
                 //}
                 for (int k = 0; k < 60; k++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
                 }
                 for (float f = 0f; f < 1f; f += 0.02f)
                 {
@@ -408,7 +403,7 @@ namespace Aequus.NPCs.Boss
                 float x = NPC.velocity.X.Abs() * hitDirection;
                 if (Main.rand.NextBool())
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = Main.rand.NextFloat(2f, 6f);
                 }
@@ -1109,19 +1104,19 @@ namespace Aequus.NPCs.Boss
                     if (speed < 2f)
                     {
                         var spawnPos = new Vector2(RADIUS, 0f);
-                        int d = Dust.NewDust(center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), 2, 2, 15);
+                        int d = Dust.NewDust(center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)), 2, 2, DustID.MagicMirror);
                         Main.dust[d].velocity = Vector2.Normalize(spawnPos - center) * speed * 0.25f;
                     }
                     else
                     {
                         var spawnPos = new Vector2(RADIUS, 0f).RotatedBy(NPC.velocity.ToRotation() - MathHelper.Pi);
-                        int d = Dust.NewDust(NPC.Center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4)), 2, 2, 15);
+                        int d = Dust.NewDust(NPC.Center + spawnPos.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4)), 2, 2, DustID.MagicMirror);
                         Main.dust[d].velocity = -NPC.velocity * 0.25f;
                     }
                 }
                 if (Main.rand.NextBool(30))
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
                     Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
                     Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
                 }

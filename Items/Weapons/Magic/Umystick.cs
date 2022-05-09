@@ -111,7 +111,7 @@ namespace Aequus.Items.Weapons.Magic
                                 float x = player.position.X + Main.rand.NextFloat(-24f, 22f);
                                 if (player.direction == 1)
                                     x += player.width;
-                                int d = Dust.NewDust(new Vector2(x, player.position.Y - 14f), 2, 2, 15);
+                                int d = Dust.NewDust(new Vector2(x, player.position.Y - 14f), 2, 2, DustID.MagicMirror);
                                 Main.dust[d].velocity.X *= 0.1f;
                                 Main.dust[d].velocity.Y = -player.velocity.Y * 0.2f;
                             }

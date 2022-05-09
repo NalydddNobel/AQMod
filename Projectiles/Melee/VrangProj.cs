@@ -149,7 +149,7 @@ namespace Aequus.Projectiles.Melee
                     var off = new Vector2(Projectile.width / 2f, 0f).RotatedBy(Projectile.velocity.ToRotation() + MathHelper.PiOver2 * Projectile.localAI[0]);
                     if (temperature < 0)
                     {
-                        int d = Dust.NewDust(Projectile.Center + off, 2, 2, 185);
+                        int d = Dust.NewDust(Projectile.Center + off, 2, 2, DustID.FrostHydra);
                         Main.dust[d].velocity *= 0.1f;
                         Main.dust[d].noGravity = true;
                         Main.dust[d].scale = 0.8f;

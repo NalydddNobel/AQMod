@@ -28,17 +28,21 @@ namespace Aequus
         public static int iterations;
 
         /// <summary>
-        /// Caches <see cref="Main.dayTime"/>
+        /// Caches <see cref="Main.invasionSize"/>
         /// </summary>
-        public static StaticManipulator<bool> Main_dayTime { get; internal set; }
+        public static StaticManipulator<int> Main_invasionSize { get; internal set; }
+        /// <summary>
+        /// Caches <see cref="Main.invasionType"/>
+        /// </summary>
+        public static StaticManipulator<int> Main_invasionType { get; internal set; }
         /// <summary>
         /// Caches <see cref="Main.eclipse"/>
         /// </summary>
         public static StaticManipulator<bool> Main_eclipse { get; internal set; }
         /// <summary>
-        /// Caches <see cref="Main.invasionType"/>
+        /// Caches <see cref="Main.dayTime"/>
         /// </summary>
-        public static StaticManipulator<int> Main_invasionType { get; internal set; }
+        public static StaticManipulator<bool> Main_dayTime { get; internal set; }
         /// <summary>
         /// Determines whether or not the mouse has an item
         /// </summary>
@@ -62,15 +66,17 @@ namespace Aequus
 
         internal static void OnModLoad(Aequus aequus)
         {
-            Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
+            Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
             Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
+            Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
             Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
         }
 
         internal static void Unload()
         {
-            Main_eclipse = null;
+            Main_invasionSize = null;
             Main_invasionType = null;
+            Main_eclipse = null;
             Main_dayTime = null;
         }
 
@@ -658,9 +664,11 @@ namespace Aequus
         {
             return;
             // TODO: Check if these fields still exist
+#pragma warning disable CS0162 // Unreachable code detected
             typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, water);
             typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, lava);
             typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
+#pragma warning restore CS0162 // Unreachable code detected
         }
 
         public static T ModItem<T>(this Item item) where T : ModItem

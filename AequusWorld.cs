@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content.CrossMod;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;

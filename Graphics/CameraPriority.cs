@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common
+﻿namespace Aequus.Graphics
 {
     public enum CameraPriority
     {
