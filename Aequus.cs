@@ -3,6 +3,7 @@ using Aequus.Common.Configuration;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Items;
+using Aequus.Items.Recipes;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -45,8 +46,14 @@ namespace Aequus
             }
         }
 
+        public override void AddRecipeGroups()
+        {
+            AequusRecipes.Groups.AddRecipeGroups();
+        }
+
         public override void AddRecipes()
         {
+            AlternativeRecipes.AddRecipes();
             NecromancyNPC.SetupBuffImmunities();
             ItemsCatalogue.LoadAutomaticEntries();
         }

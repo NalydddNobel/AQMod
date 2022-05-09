@@ -3,7 +3,7 @@ using Aequus.Items.Misc.Energies;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Items
 {
     public sealed class CommonRecipes
     {
@@ -13,7 +13,6 @@ namespace Aequus.Common
                 .AddIngredient(original)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
-                .AddIngredient(ItemID.SoulofFlight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }
@@ -23,7 +22,6 @@ namespace Aequus.Common
                 .AddIngredient(original, amt)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
-                .AddIngredient(ItemID.SoulofFlight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

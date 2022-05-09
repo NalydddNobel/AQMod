@@ -66,6 +66,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			RitualisticSkull: Ritualistic Skull
 			InsurgencyScepter: Insurgency Scepter
 			ZombieScepter: Zombie Scepter
 			Moro: Moro
@@ -371,6 +372,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			RitualisticSkull: 
+				'''
+				Converts all of your minion slots into necromancy slots
+				'''
 			InsurgencyScepter: 
 				'''
 				Drains the soul of very powerful enemies
@@ -1777,6 +1782,7 @@ Mods: {
 		GaleStreams: Gale Streams
 
 		RecipeGroup: {
+			AnyEctoplasm: Any Ectoplasm
 			AnyEnergy: Any Energy
 			AnyNobleMushroom: Any Noble Mushroom
 			CopperOrTin: Copper or Tin

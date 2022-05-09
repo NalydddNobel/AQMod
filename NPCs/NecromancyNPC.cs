@@ -3,6 +3,7 @@ using Aequus.Common.Catalogues;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Particles.Dusts;
+using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -231,12 +232,18 @@ namespace Aequus.NPCs
 
                     if (hitCheckDelay <= 0)
                     {
-                        hitCheckDelay = 4;
+                        hitCheckDelay = 30;
                         try
                         {
                             if (Main.myPlayer == zombieOwner)
                             {
-                                ZombieHurtNPCsCheck(npc);
+                                int damage = npc.damage * GetDamageMultiplier(npc);
+                                int summonDamage = (int)(damage * Main.player[zombieOwner].GetTotalDamage(DamageClass.Summon).Multiplicative);
+                                int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<NecromancyNPCHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
+                                Main.projectile[p].width = npc.width;
+                                Main.projectile[p].height = npc.height;
+                                Main.projectile[p].position = npc.position;
+                                Main.projectile[p].originalDamage = damage;
                             }
                         }
                         catch
@@ -255,54 +262,6 @@ namespace Aequus.NPCs
         public bool ShouldDespawnZombie(NPC npc)
         {
             return zombieTimer <= 0 || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead;
-        }
-        public void ZombieHurtNPCsCheck(NPC npc)
-        {
-            var myRect = npc.getRect();
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                var n = Main.npc[i];
-                if (n.dontTakeDamage || n.dontTakeDamageFromHostiles || n.immortal || n.immune[255] > 0 || n.friendly)
-                {
-                    continue;
-                }
-
-                bool? modCanHit = NPCLoader.CanHitNPC(npc, Main.npc[i]);
-                if (modCanHit != false && myRect.Intersects(n.getRect()) && npc.type != NPCID.Gnome)
-                {
-                    ZombieHurtNPC(npc, n);
-                }
-            }
-        }
-        public void ZombieHurtNPC(NPC npc, NPC target)
-        {
-            int immuneTime = 30;
-            int damage = Main.DamageVar(GetNPCDamage(npc, target));
-            float knockBack = 6f;
-            int hitDirection = (!(npc.Center.X > target.Center.X)) ? 1 : (-1);
-            bool crit = false;
-            NPCLoader.ModifyHitNPC(npc, target, ref damage, ref knockBack, ref crit);
-            Main.player[npc.GetGlobalNPC<NecromancyNPC>().zombieOwner].ApplyDamageToNPC(target, damage, knockBack, hitDirection, crit);
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, target.whoAmI, damage, knockBack, hitDirection);
-            }
-            target.netUpdate = true;
-            target.immune[255] = immuneTime;
-            NPCLoader.OnHitNPC(npc, target, damage, knockBack, crit);
-        }
-        public int GetNPCDamage(NPC npc, NPC target)
-        {
-            double damage = ContentSamples.NpcsByNetId[npc.netID].damage;
-            if (Main.masterMode)
-            {
-                damage /= 3f;
-            }
-            else if (Main.expertMode)
-            {
-                damage /= 2f;
-            }
-            return (int)damage * GetDamageMultiplier(npc);
         }
 
         public override void PostAI(NPC npc)
@@ -346,7 +305,7 @@ namespace Aequus.NPCs
             {
                 SpawnZombie(npc);
             }
-        }   
+        }
         public bool CanBeTurnedIntoZombie(NPC npc)
         {
             if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)
@@ -536,7 +495,7 @@ namespace Aequus.NPCs
             spriteBatch.Draw(hb, new Vector2(x - screenPos.X, y - screenPos.Y), new Rectangle(0, 0, 2, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(hb, new Vector2(x - screenPos.X + 2 * scale, y - screenPos.Y), new Rectangle(2, 0, scaleX, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(hb, new Vector2(x - screenPos.X + scaleX * scale, y - screenPos.Y), new Rectangle(hb.Width - 2, 0, 2, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(hbBack, new Vector2(x - screenPos.X + (scaleX + 2) * scale, y - screenPos.Y), 
+            spriteBatch.Draw(hbBack, new Vector2(x - screenPos.X + (scaleX + 2) * scale, y - screenPos.Y),
                 new Rectangle(scaleX + 2, 0, hbBack.Width - scaleX - 2, hbBack.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
 
             //if (scaleX < 34)

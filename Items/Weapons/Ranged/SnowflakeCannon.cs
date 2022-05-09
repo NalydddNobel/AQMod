@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Projectiles.Ranged;
+﻿using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

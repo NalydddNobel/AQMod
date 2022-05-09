@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon

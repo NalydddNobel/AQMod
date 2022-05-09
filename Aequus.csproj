@@ -19,8 +19,4 @@
     <None Include="Assets\Effects\.compiler\NecromancyOutline.fx" />
     <None Include="Assets\Effects\.compiler\wcfxcompiler.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Items\Accessories\Summon\Necro\" />
-    <Folder Include="UI\States\" />
-  </ItemGroup>
 </Project>

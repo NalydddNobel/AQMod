@@ -5,6 +5,7 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -74,6 +75,10 @@ namespace Aequus
         public int closestEnemy;
         public int closestEnemyOld;
 
+        /// <summary>
+        /// Applied by <see cref="RitualisticSkull"/>
+        /// </summary>
+        public bool necromancyMinionSlotConvert;
         /// <summary>
         /// Applied by <see cref="SentrySquid"/>
         /// </summary>
@@ -212,6 +217,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            necromancyMinionSlotConvert = 
             frostburnSentry = false;
             teamContext = Player.team;
             blueFire = false;
@@ -303,6 +309,11 @@ namespace Aequus
             if (glowCore > 0)
             {
                 GlowCore.AddLight(Player, glowCore);
+            }
+            if (necromancyMinionSlotConvert)
+            {
+                necromancySlots += Player.maxMinions;
+                Player.maxMinions = 0;
             }
             if (Main.myPlayer == Player.whoAmI)
             {

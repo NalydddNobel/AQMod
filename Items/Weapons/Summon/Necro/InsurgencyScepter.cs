@@ -33,7 +33,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.Keybrand)
                 .AddIngredient<Hexoplasm>(12)
                 .AddIngredient(ItemID.SoulofNight, 8)
-                .AddTile(TileID.Anvils)
+                .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
     }
