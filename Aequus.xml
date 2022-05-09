@@ -16,7 +16,17 @@
         </member>
         <member name="P:Aequus.AequusHelpers.Main_dayTime">
             <summary>
-            Caches <see cref="F:Terraria.Main.dayTime"/>.
+            Caches <see cref="F:Terraria.Main.dayTime"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusHelpers.Main_eclipse">
+            <summary>
+            Caches <see cref="F:Terraria.Main.eclipse"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusHelpers.Main_invasionType">
+            <summary>
+            Caches <see cref="F:Terraria.Main.invasionType"/>
             </summary>
         </member>
         <member name="P:Aequus.AequusHelpers.HasMouseItem">
@@ -67,6 +77,11 @@
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> / <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.necromancyMinionSlotConvert">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.Necro.RitualisticSkull"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.autoSentry">
@@ -274,26 +289,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Common.Catalogues.NecromancyTypes.NecroStats.None">
-            <summary>
-            For enemies which cannot be turned into player zombies
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Catalogues.NecromancyTypes.HandleModCall(Aequus.Aequus,System.Object[])">
-            <summary>
-            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Common.Catalogues.NecromancyTypes.NPCs"/>
-            <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.InsurgencyScepter"/> is tier 4</para>
-            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-            <para>A successful mod call would look like:</para>
-            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
-            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Aequus.AddRecipes"/></para>
-            </summary>
-            <param name="aequus"></param>
-            <param name="args"></param>
-            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
-        </member>
         <member name="M:Aequus.Common.IModCallable.UnboxIntoInt(System.Object)">
             <summary>
             Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
@@ -321,6 +316,28 @@
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
             </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.None">
+            <summary>
+            For enemies which cannot be turned into player zombies
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
+            <summary>
+            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
+            <para>Parameter 1: NPC Type (short)</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.InsurgencyScepter"/> is tier 4</para>
+            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
+            <para>Parameter 4+ (Optional): Two paired arguments. One string and one value</para>
+            <para>A successful mod call would look like:</para>
+            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
+            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
+            <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Aequus.AddRecipes"/></para>
+            </summary>
+            <param name="aequus"></param>
+            <param name="args"></param>
+            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
         </member>
         <member name="F:Aequus.Graphics.FrozenNPCEffect.Blacklist.OnFreezeNPC">
             <summary>

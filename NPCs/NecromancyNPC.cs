@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Catalogues;
 using Aequus.Common.Networking;
+using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon;
@@ -143,7 +143,9 @@ namespace Aequus.NPCs
         {
             npc.boss = false;
             npc.friendly = true;
-            npc.damage *= 5;
+            npc.SpawnedFromStatue = true;
+            npc.extraValue = 0;
+            npc.value = 0;
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             var parentZombie = parentNPC.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieOwner = player;
@@ -151,11 +153,6 @@ namespace Aequus.NPCs
             zombie.zombieTimerMax = parentZombie.zombieTimerMax;
             zombie.zombieDebuffTier = tier;
             zombie.isZombie = true;
-        }
-
-        public override bool? CanHitNPC(NPC npc, NPC target)
-        {
-            return isZombie ? (target.CanBeChasedBy(npc) ? true : null) : null;
         }
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
@@ -190,9 +187,18 @@ namespace Aequus.NPCs
             AI_NPCTarget = -1;
             if (isZombie)
             {
+                var stats = NecromancyDatabase.GetByNetID(npc.netID, npc.type);
+                stats.Aggro?.OnPreAI(npc, this);
                 if (zombieTimer == 0)
                 {
-                    zombieTimerMax = zombieTimer = Main.player[zombieOwner].Aequus().necromancyTime;
+                    int time = (int)(Main.player[zombieOwner].Aequus().necromancyTime);
+                    if (stats.TimeLeftMultiplier.HasValue)
+                    {
+                        time = (int)(time * stats.TimeLeftMultiplier.Value);
+                    }
+
+                    zombieTimerMax = time;
+                    zombieTimer = time;
                 }
                 zombieTimer--;
 
@@ -222,39 +228,15 @@ namespace Aequus.NPCs
                 npc.alpha = Math.Max(npc.alpha, 60);
                 npc.dontTakeDamage = true;
                 npc.npcSlots = 0f;
-                int npcTarget = GetNPCTarget(npc, npc.netID, npc.type);
+                float prioritizeMultiplier = stats.PrioritizePlayerMultiplier.GetValueOrDefault(npc.noGravity ? 2f : 1f);
+                int npcTarget = GetNPCTarget(npc, Main.player[zombieOwner], npc.netID, npc.type, prioritizeMultiplier);
 
                 if (npcTarget != -1)
                 {
                     AI_ReturnPlayerLocation = Main.player[zombieOwner].position;
                     AI_NPCTarget = npcTarget;
                     Main.player[zombieOwner].Center = Main.npc[npcTarget].Center;
-
-                    if (hitCheckDelay <= 0)
-                    {
-                        hitCheckDelay = 30;
-                        try
-                        {
-                            if (Main.myPlayer == zombieOwner)
-                            {
-                                int damage = npc.damage * GetDamageMultiplier(npc);
-                                int summonDamage = (int)(damage * Main.player[zombieOwner].GetTotalDamage(DamageClass.Summon).Multiplicative);
-                                int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<NecromancyNPCHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
-                                Main.projectile[p].width = npc.width;
-                                Main.projectile[p].height = npc.height;
-                                Main.projectile[p].position = npc.position;
-                                Main.projectile[p].originalDamage = damage;
-                            }
-                        }
-                        catch
-                        {
-
-                        }
-                    }
-                    else
-                    {
-                        hitCheckDelay--;
-                    }
+                    UpdateHitbox(npc);
                 }
             }
             return true;
@@ -263,11 +245,52 @@ namespace Aequus.NPCs
         {
             return zombieTimer <= 0 || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead;
         }
+        public void UpdateHitbox(NPC npc)
+        {
+            if (hitCheckDelay <= 0)
+            {
+                hitCheckDelay = 30;
+                try
+                {
+                    if (Main.myPlayer == zombieOwner)
+                    {
+                        AI_IsZombie = false;
+                        try
+                        {
+                            float multiplier = GetDamageMultiplier(npc, npc.damage);
+                            int noSummonBoostDamage = (int)(npc.damage * multiplier);
+                            int summonDamage = (int)(noSummonBoostDamage * Main.player[zombieOwner].GetTotalDamage(DamageClass.Summon).Multiplicative);
+                            int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<NecromancyNPCHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
+                            Main.projectile[p].width = npc.width;
+                            Main.projectile[p].height = npc.height;
+                            Main.projectile[p].position = npc.position;
+                            Main.projectile[p].originalDamage = noSummonBoostDamage;
+                        }
+                        catch
+                        {
+
+                        }
+                        AI_IsZombie = true;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            else
+            {
+                hitCheckDelay--;
+            }
+        }
 
         public override void PostAI(NPC npc)
         {
             if (isZombie)
             {
+                var stats = NecromancyDatabase.GetByNetID(npc);
+                stats.Aggro?.OnPostAI(npc, this);
+
                 npc.dontTakeDamage = true;
                 if (AI_ReturnPlayerLocation != Vector2.Zero)
                 {
@@ -275,7 +298,7 @@ namespace Aequus.NPCs
                     AI_ReturnPlayerLocation = Vector2.Zero;
                 }
                 var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
-                aequus.necromancySlotUsed++;
+                aequus.necromancySlotUsed += stats.SlotsUsed.GetValueOrDefault(1);
                 if (Main.rand.NextBool(6))
                 {
                     var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: new Color(50, 150, 255, 100));
@@ -312,7 +335,7 @@ namespace Aequus.NPCs
             {
                 return false;
             }
-            return NecromancyTypes.GetByNetID(npc).PowerNeeded <= zombieDebuffTier;
+            return NecromancyDatabase.GetByNetID(npc).PowerNeeded <= zombieDebuffTier;
         }
         public void SpawnZombie(NPC npc)
         {
@@ -328,7 +351,9 @@ namespace Aequus.NPCs
                 Main.npc[n].spriteDirection = npc.spriteDirection;
                 Main.npc[n].friendly = true;
                 Main.npc[n].extraValue = 0;
+                Main.npc[n].value = 0;
                 Main.npc[n].boss = false;
+                Main.npc[n].SpawnedFromStatue = true;
                 if (Main.npc[n].ModNPC != null)
                 {
                     Main.npc[n].ModNPC.Music = -1;
@@ -341,13 +366,19 @@ namespace Aequus.NPCs
             }
         }
 
-        public static int GetNPCTarget(Entity entity, int netID, int npcType)
+        public static int GetNPCTarget(Entity entity, Player player, int netID, int npcType, float prioritizePlayerMultiplier = 1f)
         {
             int target = -1;
-            float distance = NecromancyTypes.GetByNetID(netID, npcType).ViewDistance;
+            float distance = NecromancyDatabase.GetByNetID(netID, npcType).ViewDistance;
             if (distance < 800f)
             {
                 distance = 800f;
+            }
+            int closestToPlayer = player.Aequus().closestEnemy;
+            int minionTarget = -1;
+            if (player.HasMinionAttackTargetNPC)
+            {
+                minionTarget = player.MinionAttackTargetNPC;
             }
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -355,6 +386,14 @@ namespace Aequus.NPCs
                     !NPCID.Sets.CountsAsCritter[Main.npc[i].type])
                 {
                     float c = entity.Distance(Main.npc[i].Center);
+                    if (i == closestToPlayer)
+                    {
+                        c /= 4f * prioritizePlayerMultiplier;
+                    }
+                    if (i == minionTarget)
+                    {
+                        c /= 6f * prioritizePlayerMultiplier;
+                    }
                     if (c < distance)
                     {
                         target = i;
@@ -365,24 +404,37 @@ namespace Aequus.NPCs
             return target;
         }
 
-        public static int GetDamageMultiplier(NPC npc)
+        public static float GetDamageMultiplier(NPC npc, int originalDamage)
         {
-            int dmgMultiplier = 1;
+            float dmgMultiplier = 1f;
             if (npc.boss)
             {
-                dmgMultiplier = 5;
+                dmgMultiplier += 4;
             }
-            dmgMultiplier += npc.lifeMax / 2500;
+
+            float addMultiplier = 0.5f;
+            float healthAdditions = npc.lifeMax / (float)(2500 + originalDamage * 5);
+            while (healthAdditions > 0f)
+            {
+                if (healthAdditions < 1f)
+                {
+                    addMultiplier *= healthAdditions;
+                }
+                dmgMultiplier += addMultiplier;
+                addMultiplier /= 2f;
+                healthAdditions -= 1f;
+            }
+
             return dmgMultiplier;
         }
 
         internal static void SetupBuffImmunities()
         {
-            var buffList = new List<int>(NecromancyTypes.NecromancyDebuffs);
+            var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
             buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
             for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
             {
-                if (!NecromancyTypes.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats == NecromancyTypes.NecroStats.None)
+                if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {
                     if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(i, out var value))
                     {
@@ -648,7 +700,7 @@ namespace Aequus.NPCs
                 projectile.hostile = false;
                 projectile.friendly = true;
                 projectile.alpha = Math.Max(projectile.alpha, 60);
-                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, Main.npc[zombieNPCOwner].netID, Main.npc[zombieNPCOwner].type);
+                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], Main.npc[zombieNPCOwner].netID, Main.npc[zombieNPCOwner].type);
 
                 if (npcTarget != -1)
                 {
@@ -694,7 +746,16 @@ namespace Aequus.NPCs
         {
             if (isZombie)
             {
-                damage *= NecromancyNPC.GetDamageMultiplier(Main.npc[zombieNPCOwner]);
+                float multiplier = NecromancyNPC.GetDamageMultiplier(Main.npc[zombieNPCOwner], projectile.damage);
+                if (Main.masterMode)
+                {
+                    multiplier *= 3f;
+                }
+                else if (Main.expertMode)
+                {
+                    multiplier *= 2f;
+                }
+                damage = (int)(damage * multiplier);
             }
         }
 

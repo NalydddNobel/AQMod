@@ -9,7 +9,7 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 20 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 15 * AequusHelpers.NPCREGEN;
         }
     }
 }

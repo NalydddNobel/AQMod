@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Catalogues;
-using Aequus.Common.Networking;
+﻿using Aequus.Common.Networking;
+using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Terraria;
 using Terraria.ID;
@@ -13,12 +13,12 @@ namespace Aequus.Buffs.Debuffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            NecromancyTypes.NecromancyDebuffs.Add(Type);
+            NecromancyDatabase.NecromancyDebuffs.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 5 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 2 * AequusHelpers.NPCREGEN;
         }
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff
@@ -28,7 +28,7 @@ namespace Aequus.Buffs.Debuffs
             {
                 npc.buffImmune[ModContent.BuffType<T>()] = false;
             }
-            if (cheat || (NecromancyTypes.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier))
+            if (cheat || (NecromancyDatabase.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier))
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;

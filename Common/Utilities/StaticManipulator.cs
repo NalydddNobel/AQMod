@@ -11,15 +11,14 @@ namespace Aequus.Common.Utilities
             }
         }
 
-        public delegate ref T GetReference();
 
-        private readonly GetReference _ref;
+        private readonly RefFunc<T> _ref;
         private T _myValue;
         private T _origValue;
         private bool _caching;
         public bool IsCaching => _caching;
 
-        public StaticManipulator(GetReference reference)
+        public StaticManipulator(RefFunc<T> reference)
         {
             _ref = reference;
             _myValue = default(T);

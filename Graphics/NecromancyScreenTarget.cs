@@ -40,10 +40,17 @@ namespace Aequus.Graphics
                 NPCs.renderingNow = false;
                 Main.spriteBatch.End();
 
+                var color = Color.White * 0.5f;
                 device.SetRenderTarget(_target);
                 device.Clear(Color.Transparent);
                 Main.spriteBatch.Begin();
-                Main.spriteBatch.Draw(helperTarget, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White);
+
+                Main.spriteBatch.Draw(helperTarget, new Vector2(2f, 0f), color);
+                Main.spriteBatch.Draw(helperTarget, new Vector2(-2f, 0f), color);
+                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, 2f), color);
+                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, -2f), color);
+                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, 0f), Color.White);
+
                 Main.spriteBatch.End();
 
                 device.SetRenderTarget(helperTarget);

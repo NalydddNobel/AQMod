@@ -1,10 +1,11 @@
-using Aequus.Common.Catalogues;
 using Aequus.Common.Configuration;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Recipes;
 using Aequus.NPCs;
+using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -35,8 +36,7 @@ namespace Aequus
         public override void Load()
         {
             Instance = this;
-            AequusHelpers.Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
-
+            AequusHelpers.OnModLoad(this);
             AequusText.OnModLoad(this);
             ClientConfig.OnModLoad(this);
             if (Main.netMode != NetmodeID.Server)
@@ -61,7 +61,7 @@ namespace Aequus
         public override void Unload()
         {
             Instance = null;
-            AequusHelpers.Main_dayTime = null;
+            AequusHelpers.Unload();
             InventoryInterface = null;
             NPCTalkInterface = null;
         }
@@ -109,7 +109,7 @@ namespace Aequus
             switch ((string)args[0])
             {
                 case "NecroStats":
-                    return ModContent.GetInstance<NecromancyTypes>().HandleModCall(this, args);
+                    return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
 
                 case "Downed":
                     return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
