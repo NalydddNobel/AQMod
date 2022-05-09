@@ -66,6 +66,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			RitualisticSkull: 仪式颅骨
 			InsurgencyScepter: 叛乱权杖
 			ZombieScepter: 僵尸权杖
 			Moro: 摩洛
@@ -371,6 +372,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			RitualisticSkull: 
+				'''
+				将你所有的召唤栏位转换为死灵栏位
+				'''
 			InsurgencyScepter: 
 				'''
 				消耗强大敌人的灵魂
@@ -1777,6 +1782,7 @@ Mods: {
 		GaleStreams: 紊流风暴
 
 		RecipeGroup: {
+			AnyEctoplasm: 任意灵质
 			AnyEnergy: 任意能量
 			AnyNobleMushroom: 任意华贵蘑菇
 			CopperOrTin: 铜或铅
