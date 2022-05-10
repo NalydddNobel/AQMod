@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.Necromancy;
+using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
@@ -33,6 +35,7 @@ namespace Aequus.NPCs.Monsters.Sky
             });
 
             HeatDamageTypes.HeatNPC.Add(Type);
+            NecromancyDatabase.NPCs.Add(Type, GhostInfo.Three);
         }
 
         public override void SetDefaults()
@@ -128,7 +131,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             else
             {
-                if (NPC.velocity.Y < -0.1f || NPC.HasValidTarget && NPC.position.Y + NPC.height - 2 < Main.player[NPC.target].position.Y + Main.player[NPC.target].height - 10)
+                if (NPC.velocity.Y < -0.1f || (NPC.HasValidTarget && NPC.position.Y + NPC.height - 2 < Main.player[NPC.target].position.Y + Main.player[NPC.target].height - 10))
                     NPC.noTileCollide = true;
                 else
                     NPC.noTileCollide = false;
@@ -292,10 +295,14 @@ namespace Aequus.NPCs.Monsters.Sky
                 float progress = 1f / trailLength * i;
                 spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - progress) * 0.35f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             }
-            float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
-            foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+
+            if (!NecromancyScreenRenderer.RenderingNow)
             {
-                spriteBatch.Draw(texture, NPC.position + offset - screenPos + v * (brightness * 2f + 2f), NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - brightness * 0.8f), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+                float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
+                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+                {
+                    spriteBatch.Draw(texture, NPC.position + offset - screenPos + v * (brightness * 2f + 2f), NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - brightness * 0.8f), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+                }
             }
 
             spriteBatch.Draw(texture, NPC.position + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Weapons.Summon.Necro;
 using System;
@@ -17,7 +18,7 @@ namespace Aequus.Content.Necromancy
         public override void Load()
         {
             NecromancyDebuffs = new List<int>();
-            AggroForcer.LoadAggression();
+            AggroForcer.LoadAggressions();
             PopulateEnemyStats();
         }
         private void PopulateEnemyStats()
@@ -358,6 +359,35 @@ namespace Aequus.Content.Necromancy
             {
                 NPCs[i] = GhostInfo.Four;
             }
+
+        }
+
+        public static void CrossmodEntries()
+        {
+            if (ModLoader.TryGetMod("Polarities", out var polarities))
+            {
+                if (Aequus.LogMore)
+                    Aequus.Instance.Logger.Info("Adding necromancy entries for " + polarities.Name);
+                PopulateEnemyStats_Polarities(polarities);
+            }
+        }
+        private static void PopulateEnemyStats_Polarities(Mod polarities)
+        {
+            new DatabaseBuilder<GhostInfo>(NPCs, polarities, NPCID.Search)
+                .TryAddModEntry("BloodBat", GhostInfo.One.WithAggro(AggroForcer.NightTime))
+                .TryAddModEntry("BatSlime", GhostInfo.Two)
+                .TryAddModEntry("ConeShell", GhostInfo.Two)
+                .TryAddModEntry("GreatStellatedSlime", GhostInfo.Three)
+                .TryAddModEntry("Alkalabomination", GhostInfo.Three)
+                .TryAddModEntry("AlkaliSpirit", GhostInfo.One)
+                .TryAddModEntry("FlowWorm", GhostInfo.One)
+                .TryAddModEntry("Limeshell", GhostInfo.Three)
+                .TryAddModEntry("Slimey", GhostInfo.Three)
+                .TryAddModEntry("StalagBeetle", GhostInfo.One)
+                .TryAddModEntry("NestGuardian", GhostInfo.One)
+                .TryAddModEntry("Rattler", GhostInfo.One)
+                .TryAddModEntry("BrineDweller", GhostInfo.Three)
+                .TryAddModEntry("Mussel", GhostInfo.Three);
         }
 
         /// <summary>

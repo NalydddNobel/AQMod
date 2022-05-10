@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 
 namespace Aequus.Graphics
 {
-    public sealed class NecromancyScreenTarget : ScreenTarget
+    public sealed class NecromancyScreenRenderer : ScreenTarget
     {
         public readonly DrawIndexCache NPCs;
         public readonly int Team;
@@ -14,7 +14,7 @@ namespace Aequus.Graphics
 
         public static bool RenderingNow;
 
-        public NecromancyScreenTarget(int team, Func<Color> color)
+        public NecromancyScreenRenderer(int team, Func<Color> color)
         {
             Team = team;
             DrawColor = color;

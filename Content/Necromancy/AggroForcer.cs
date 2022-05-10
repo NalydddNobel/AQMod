@@ -109,7 +109,7 @@ namespace Aequus.Content.Necromancy
         {
         }
 
-        internal static void LoadAggression()
+        internal static void LoadAggressions()
         {
             Eclipse = new NeedsEclipse();
             MartianMadness = new NeedsInvasion(InvasionID.MartianMadness);

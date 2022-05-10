@@ -1,4 +1,7 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Content.Necromancy;
+using Aequus.Graphics;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,8 +42,7 @@ namespace Aequus.NPCs
         {
             On.Terraria.NPC.VanillaHitEffect += NPC_VanillaHitEffect;
         }
-
-        private void NPC_VanillaHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
+        private static void NPC_VanillaHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
             try
             {
@@ -71,16 +73,68 @@ namespace Aequus.NPCs
         {
             if (HasDeathContext)
             {
-                if (context == Context.Snowgrave)
+                if (context == Context.Snowgrave && Main.netMode != NetmodeID.Server)
                 {
                     DeathEffect_SnowgraveFreeze(npc);
                 }
             }
+            var players = GetCloseEnoughPlayers(npc);
+
+            if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)
+            {
+                return false;
+            }
+
+            var info = NecromancyDatabase.GetByNetID(npc);
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            if (info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f)
+            {
+                if (CheckRecruitable(npc, zombie, info, players))
+                {
+                    zombie.SpawnZombie(npc);
+                }
+            }
             return false;
         }
-        private void DeathEffect_SnowgraveFreeze(NPC npc)
+        public List<Player> GetCloseEnoughPlayers(NPC npc)
         {
-            if (Main.netMode != NetmodeID.Server && FrozenNPCEffect.CanFreezeNPC(npc))
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                return new List<Player>() { Main.LocalPlayer, };
+            }
+            var list = new List<Player>();
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead)
+                {
+                    if (npc.Distance(Main.player[i].Center) < 2000f)
+                    {
+                        list.Add(Main.player[i]);
+                    }
+                }
+            }
+            return list;
+        }
+        public bool CheckRecruitable(NPC npc, NecromancyNPC zombie, GhostInfo info, List<Player> players)
+        {
+            if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
+            {
+                return true;
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
+                {
+                    zombie.zombieOwner = players[i].whoAmI;
+                    zombie.zombieDebuffTier = info.PowerNeeded;
+                    return true;
+                }
+            }
+            return false;
+        }
+        public void DeathEffect_SnowgraveFreeze(NPC npc)
+        {
+            if (FrozenNPCEffect.CanFreezeNPC(npc))
             {
                 EffectsSystem.BehindProjs.Add(new FrozenNPCEffect(npc.Center, npc));
             }

@@ -9,7 +9,7 @@ namespace Aequus.Graphics
 {
     public sealed partial class EffectsSystem : ModSystem
     {
-        public static NecromancyScreenTarget[] necromancyRenderers;
+        public static NecromancyScreenRenderer[] necromancyRenderers;
 
         public static ModEffects Effects { get; private set; }
 
@@ -29,10 +29,10 @@ namespace Aequus.Graphics
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             BehindProjs = new ParticleRenderer();
-            necromancyRenderers = new NecromancyScreenTarget[2]
+            necromancyRenderers = new NecromancyScreenRenderer[2]
             { 
-                new NecromancyScreenTarget(-1, () => ModContent.GetInstance<ClientConfig>().NecromancyColor), 
-                new NecromancyScreenTarget(0, () => Color.White) 
+                new NecromancyScreenRenderer(-1, () => ModContent.GetInstance<ClientConfig>().NecromancyColor), 
+                new NecromancyScreenRenderer(0, () => Color.White) 
             };
             LoadHooks();
         }

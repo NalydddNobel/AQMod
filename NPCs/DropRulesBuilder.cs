@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,26 +12,26 @@ namespace Aequus.NPCs
     {
         public struct Drops
         {
-            private readonly ModNPC modNPC;
-            private readonly NPCLoot loot;
-            private LeadingConditionRule leadingConditionRule;
+            public readonly int NPC;
+            public readonly NPCLoot Loot;
+            public LeadingConditionRule LeadingConditionRule;
 
-            public Drops(ModNPC modNPC, NPCLoot loot)
+            public Drops(int npc, NPCLoot loot)
             {
-                this.modNPC = modNPC;
-                this.loot = loot;
-                leadingConditionRule = null;
+                NPC = npc;
+                Loot = loot;
+                LeadingConditionRule = null;
             }
 
             public Drops Add(IItemDropRule rule)
             {
-                if (leadingConditionRule != null)
+                if (LeadingConditionRule != null)
                 {
-                    leadingConditionRule.OnSuccess(rule);
+                    LeadingConditionRule.OnSuccess(rule);
                 }
                 else
                 {
-                    loot.Add(rule);
+                    Loot.Add(rule);
                 }
                 return this;
             }
@@ -157,20 +159,36 @@ namespace Aequus.NPCs
 
             public Drops SetCondition(IItemDropRuleCondition rule)
             {
-                leadingConditionRule = new LeadingConditionRule(rule);
+                LeadingConditionRule = new LeadingConditionRule(rule);
                 return this;
             }
             public Drops RegisterCondition()
             {
-                var condition = leadingConditionRule;
-                leadingConditionRule = null;
+                var condition = LeadingConditionRule;
+                LeadingConditionRule = null;
                 return Add(condition);
             }
         }
 
+        public static Drops AddLoot(this NPC npc, NPCLoot loot)
+        {
+            return new Drops(npc.type, loot);
+        }
         public static Drops CreateLoot(this ModNPC modNPC, NPCLoot loot)
         {
-            return new Drops(modNPC, loot);
+            return AddLoot(modNPC.NPC, loot);
+        }
+
+        public class VanillaDrops : GlobalNPC
+        {
+            public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+            {
+                if (npc.type == NPCID.Clown)
+                {
+                    npc.AddLoot(npcLoot)
+                        .Add<HappiestMask>(chance: 5, stack: 1);
+                }
+            }
         }
     }
 }

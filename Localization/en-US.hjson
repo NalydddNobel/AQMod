@@ -66,6 +66,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			HappiestMask: Happiest Mask
 			RitualisticSkull: Ritualistic Skull
 			InsurgencyScepter: Insurgency Scepter
 			ZombieScepter: Zombie Scepter
@@ -372,9 +373,14 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HappiestMask: 
+				'''
+				Defeated enemies have a chance to turn into a necromantic ghost
+				'I wear a mask with a smile for hours at a time'
+				'''
 			RitualisticSkull: 
 				'''
-				Converts all of your minion slots into necromancy slots
+				Converts all of your minion slots into necromantic ghost slots
 				'''
 			InsurgencyScepter: 
 				'''
@@ -1864,7 +1870,12 @@ Mods: {
 				InfoDebugLogs: Info and Debug Logs
 				InfoDebugLogsTooltip: 
 					'''
-					Only really useful for 3rd party developers who want confirmation for events.
+					Only really useful for 3rd party developers who want confirmation for events
+					'''
+				NecromancyColor: Necromantic Ghosts Color
+				NecromancyColorTooltip: 
+					'''
+					Allows you to control what color your necromantic ghosts would use.
 					'''
 			}
 		}

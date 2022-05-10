@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Summon.Necro
+namespace Aequus.Items.Accessories.Summon
 {
     public sealed class RitualisticSkull : ModItem
     {
@@ -17,8 +17,8 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Lime;
-            Item.value = Item.buyPrice(gold: 80);
+            Item.rare = ItemRarityID.Yellow;
+            Item.value = Item.sellPrice(gold: 10);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

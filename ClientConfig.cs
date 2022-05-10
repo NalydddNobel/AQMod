@@ -71,6 +71,7 @@ namespace Aequus
         [Tooltip(Key + "Client.NecromancyColorTooltip")]
         [DefaultValue(typeof(Color), "100, 149, 237, 255")]
         [ColorHSLSlider()]
+        [ColorNoAlpha()]
         public Color NecromancyColor { get; set; }
 
         internal static void OnModLoad(Aequus aequus)
@@ -81,6 +82,7 @@ namespace Aequus
             AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.NecromancyColor", "Label", (s) => AequusText.ItemText(ItemID.CyanPaint) + "  " + s);
         }
     }
 }

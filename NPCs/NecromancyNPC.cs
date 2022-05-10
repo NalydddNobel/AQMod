@@ -302,7 +302,7 @@ namespace Aequus.NPCs
                 if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
                     Color color = new Color(50, 150, 255, 100);
-                    int index = NecromancyScreenTarget.GetScreenTargetIndex(Main.player[zombieOwner]);
+                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner]);
                     if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
                     {
                         color = EffectsSystem.necromancyRenderers[index].DrawColor();
@@ -329,21 +329,6 @@ namespace Aequus.NPCs
             }
         }
 
-        public override void OnKill(NPC npc)
-        {
-            if (zombieDrain > 0 && CanBeTurnedIntoZombie(npc))
-            {
-                SpawnZombie(npc);
-            }
-        }
-        public bool CanBeTurnedIntoZombie(NPC npc)
-        {
-            if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)
-            {
-                return false;
-            }
-            return NecromancyDatabase.GetByNetID(npc).PowerNeeded <= zombieDebuffTier;
-        }
         public void SpawnZombie(NPC npc)
         {
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
@@ -470,9 +455,9 @@ namespace Aequus.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (isZombie && !NecromancyScreenTarget.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
+            if (isZombie && !NecromancyScreenRenderer.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
-                int index = NecromancyScreenTarget.GetScreenTargetIndex(Main.player[zombieOwner]);
+                int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner]);
                 if (EffectsSystem.necromancyRenderers.Length <= index)
                 {
                     Array.Resize(ref EffectsSystem.necromancyRenderers, index + 1);
@@ -481,7 +466,7 @@ namespace Aequus.NPCs
                 if (EffectsSystem.necromancyRenderers[index] == null)
                 {
                     int team = Main.player[zombieOwner].team;
-                    EffectsSystem.necromancyRenderers[index] = new NecromancyScreenTarget(team, () => Main.teamColor[team]);
+                    EffectsSystem.necromancyRenderers[index] = new NecromancyScreenRenderer(team, () => Main.teamColor[team]);
                 }
 
                 EffectsSystem.necromancyRenderers[index].Add(npc.whoAmI);

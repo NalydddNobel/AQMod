@@ -6,7 +6,6 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
-using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -77,7 +76,11 @@ namespace Aequus
         public int closestEnemyOld;
 
         /// <summary>
-        /// Applied by <see cref="RitualisticSkull"/>
+        /// Applied by <see cref="HappiestMask"/>
+        /// </summary>
+        public bool dreamMask;
+        /// <summary>
+        /// Applied by <see cref="RitualisticSkull"/> and <see cref="HappiestMask"/>
         /// </summary>
         public bool necromancyMinionSlotConvert;
         /// <summary>
@@ -218,7 +221,8 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            necromancyMinionSlotConvert = 
+            dreamMask = false;
+            necromancyMinionSlotConvert = false;
             frostburnSentry = false;
             teamContext = Player.team;
             blueFire = false;

@@ -53,6 +53,7 @@ namespace Aequus
         public override void AddRecipes()
         {
             AlternativeRecipes.AddRecipes();
+            NecromancyDatabase.CrossmodEntries();
             NecromancyNPC.SetupBuffImmunities();
             ItemsCatalogue.LoadAutomaticEntries();
         }
