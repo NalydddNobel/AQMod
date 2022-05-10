@@ -66,6 +66,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			HappiestMask: 快乐面具
 			RitualisticSkull: 仪式颅骨
 			InsurgencyScepter: 叛乱权杖
 			ZombieScepter: 僵尸权杖
@@ -372,9 +373,14 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HappiestMask: 
+				'''
+				被击败的敌人有几率被转化为死灵幽魂
+				'我戴着带着微笑的面具, 一次戴上好几个小时'
+				'''
 			RitualisticSkull: 
 				'''
-				将你所有的召唤栏位转换为死灵栏位
+				将你所有的召唤栏位转换为死灵幽魂
 				'''
 			InsurgencyScepter: 
 				'''
@@ -1864,7 +1870,12 @@ Mods: {
 				InfoDebugLogs: 信息和调试日志
 				InfoDebugLogsTooltip: 
 					'''
-					只对需要确认事件的第三方开发者有用.
+					只对需要确认事件的第三方开发者有用
+					'''
+				NecromancyColor: 死灵幽魂颜色
+				NecromancyColorTooltip: 
+					'''
+					允许你控制你的死灵幽魂所使用的颜色.
 					'''
 			}
 		}
