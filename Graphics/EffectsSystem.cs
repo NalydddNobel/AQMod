@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Configuration;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Renderers;
@@ -10,6 +9,8 @@ namespace Aequus.Graphics
 {
     public sealed partial class EffectsSystem : ModSystem
     {
+        public static NecromancyScreenTarget[] necromancyRenderers;
+
         public static ModEffects Effects { get; private set; }
 
         public static MiniRandom EffectRand { get; private set; }
@@ -20,8 +21,6 @@ namespace Aequus.Graphics
 
         public static ScreenShake Shake { get; private set; }
 
-        public static NecromancyScreenTarget NecromancyDrawer { get; private set; }
-
         public override void Load()
         {
             Effects = new ModEffects();
@@ -30,7 +29,11 @@ namespace Aequus.Graphics
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             BehindProjs = new ParticleRenderer();
-            NecromancyDrawer = new NecromancyScreenTarget();
+            necromancyRenderers = new NecromancyScreenTarget[2]
+            { 
+                new NecromancyScreenTarget(-1, () => ModContent.GetInstance<ClientConfig>().NecromancyColor), 
+                new NecromancyScreenTarget(0, () => Color.White) 
+            };
             LoadHooks();
         }
         private void LoadHooks()
@@ -43,7 +46,7 @@ namespace Aequus.Graphics
 
         public override void Unload()
         {
-            NecromancyDrawer = null;
+            necromancyRenderers = null;
             BehindProjs = null;
             Effects = null;
             Shake = null;

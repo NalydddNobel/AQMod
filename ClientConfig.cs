@@ -1,14 +1,15 @@
-﻿using Aequus.Items.Consumables.Foods;
+﻿using Aequus.Common;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Summons;
+using Microsoft.Xna.Framework;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace Aequus.Common.Configuration
+namespace Aequus
 {
     public sealed class ClientConfig : ConfigurationBase
     {
@@ -64,6 +65,13 @@ namespace Aequus.Common.Configuration
         [Tooltip(Key + "Client.InfoDebugLogsTooltip")]
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.NecromancyColorLabel")]
+        [Tooltip(Key + "Client.NecromancyColorTooltip")]
+        [DefaultValue(typeof(Color), "100, 149, 237, 255")]
+        [ColorHSLSlider()]
+        public Color NecromancyColor { get; set; }
 
         internal static void OnModLoad(Aequus aequus)
         {

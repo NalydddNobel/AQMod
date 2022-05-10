@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Configuration;
-using Aequus.Graphics.Prims;
+﻿using Aequus.Graphics.Prims;
 using Aequus.NPCs.Monsters.Sky;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

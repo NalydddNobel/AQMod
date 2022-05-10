@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Configuration;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;

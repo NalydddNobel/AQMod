@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Configuration;
+﻿using Aequus;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Microsoft.Xna.Framework;

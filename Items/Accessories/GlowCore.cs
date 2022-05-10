@@ -28,7 +28,7 @@ namespace Aequus.Items.Accessories
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, 200);
+            return new Color(255, 255, 255, 255);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

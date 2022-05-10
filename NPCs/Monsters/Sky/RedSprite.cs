@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Catalogues;
-using Aequus.Common.Configuration;
+﻿using Aequus;
+using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Invasions;

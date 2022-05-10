@@ -16,7 +16,7 @@ namespace Aequus.Common
                     int slot = -1;
                     for (int i = 0; i < Chest.maxItems - 1; i++)
                     {
-                        if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants) // at the very end of the paintings, and will intercept the slot for any walls or blank slots
+                        if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants)
                         {
                             slot = i + 1;
                         }

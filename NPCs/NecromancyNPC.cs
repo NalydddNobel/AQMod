@@ -299,9 +299,16 @@ namespace Aequus.NPCs
                 }
                 var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
                 aequus.necromancySlotUsed += stats.SlotsUsed.GetValueOrDefault(1);
-                if (Main.rand.NextBool(6))
+                if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
-                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: new Color(50, 150, 255, 100));
+                    Color color = new Color(50, 150, 255, 100);
+                    int index = NecromancyScreenTarget.GetScreenTargetIndex(Main.player[zombieOwner]);
+                    if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
+                    {
+                        color = EffectsSystem.necromancyRenderers[index].DrawColor();
+                        color.A = 100;
+                    }
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: color);
                     d.velocity *= 0.3f;
                     d.velocity += npc.velocity * 0.2f;
                     d.scale *= npc.scale;
@@ -461,50 +468,23 @@ namespace Aequus.NPCs
             }
         }
 
-        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
-        {
-            writer.Write(Main.npc[whoAmI].active);
-            if (Main.npc[whoAmI].active)
-            {
-                writer.Write(isZombie);
-                if (isZombie)
-                {
-                    writer.Write(zombieTimer);
-                    writer.Write(zombieTimerMax);
-                }
-                else
-                {
-                    writer.Write(zombieDrain);
-                }
-                writer.Write(zombieOwner);
-                writer.Write(zombieDebuffTier);
-            }
-        }
-
-        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
-        {
-            if (reader.ReadBoolean())
-            {
-                if (reader.ReadBoolean())
-                {
-                    isZombie = true;
-                    zombieTimer = reader.ReadInt32();
-                    zombieTimerMax = reader.ReadInt32();
-                }
-                else
-                {
-                    zombieDrain = reader.ReadInt32();
-                }
-                zombieOwner = reader.ReadInt32();
-                zombieDebuffTier = reader.ReadSingle();
-            }
-        }
-
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (isZombie && !NecromancyScreenTarget.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
-                NecromancyScreenTarget.Add(npc.whoAmI);
+                int index = NecromancyScreenTarget.GetScreenTargetIndex(Main.player[zombieOwner]);
+                if (EffectsSystem.necromancyRenderers.Length <= index)
+                {
+                    Array.Resize(ref EffectsSystem.necromancyRenderers, index + 1);
+                }
+
+                if (EffectsSystem.necromancyRenderers[index] == null)
+                {
+                    int team = Main.player[zombieOwner].team;
+                    EffectsSystem.necromancyRenderers[index] = new NecromancyScreenTarget(team, () => Main.teamColor[team]);
+                }
+
+                EffectsSystem.necromancyRenderers[index].Add(npc.whoAmI);
                 DrawHealthbar(npc, spriteBatch, screenPos);
             }
             return true;
@@ -549,35 +529,66 @@ namespace Aequus.NPCs
             spriteBatch.Draw(hb, new Vector2(x - screenPos.X + scaleX * scale, y - screenPos.Y), new Rectangle(hb.Width - 2, 0, 2, hb.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(hbBack, new Vector2(x - screenPos.X + (scaleX + 2) * scale, y - screenPos.Y),
                 new Rectangle(scaleX + 2, 0, hbBack.Width - scaleX - 2, hbBack.Height), color, 0f, new Vector2(0f, 0f), scale, SpriteEffects.None, 0f);
-
-            //if (scaleX < 34)
-            //{
-            //    if (scaleX < 36)
-            //    {
-            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)y * scale, y - screenPos.Y), (Rectangle?)new Rectangle(2, 0, 2, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //    }
-            //    if (scaleX < 34)
-            //    {
-            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)(y + 2) * scale, y - screenPos.Y), (Rectangle?)new Rectangle(scaleX + 2, 0, 36 - scaleX - 2, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //    }
-            //    if (scaleX > 2)
-            //    {
-            //        spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X, y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, scaleX - 2, TextureAssets.Hb1.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //    }
-            //    spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X + (float)(scaleX - 2) * scale, y - screenPos.Y), (Rectangle?)new Rectangle(32, 0, 2, TextureAssets.Hb1.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //}
-            //else
-            //{
-            //    if (scaleX < 36)
-            //    {
-            //        spriteBatch.Draw(TextureAssets.Hb2.Value, new Vector2(x - screenPos.X + (float)scaleX * scale, y - screenPos.Y), (Rectangle?)new Rectangle(scaleX, 0, 36 - scaleX, TextureAssets.Hb2.Height()), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //    }
-            //    spriteBatch.Draw(TextureAssets.Hb1.Value, new Vector2(x - screenPos.X, y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, scaleX, TextureAssets.Hb1.Value.Height), color, 0f, new Vector2(0f, 0f), scale, (SpriteEffects)0, 0f);
-            //}
         }
         public Color DetermineHealthbarColor(NPC npc, float lifeRatio)
         {
-            return Color.Lerp(Color.Cyan, Color.Blue, 1f - lifeRatio);
+            int team = Main.player[zombieOwner].team;
+            Color color;
+            if (team == 0)
+            {
+                if (zombieOwner == Main.myPlayer)
+                {
+                    color = ClientConfig.Instance.NecromancyColor;
+                }
+                else
+                {
+                    color = Color.White;
+                }
+            }
+            else
+            {
+                color = Main.teamColor[Main.player[zombieOwner].team];
+            }
+            return Color.Lerp(color, (color * 0.5f).UseA(255), 1f - lifeRatio);
+        }
+
+        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
+        {
+            writer.Write(Main.npc[whoAmI].active);
+            if (Main.npc[whoAmI].active)
+            {
+                writer.Write(isZombie);
+                if (isZombie)
+                {
+                    writer.Write(zombieTimer);
+                    writer.Write(zombieTimerMax);
+                }
+                else
+                {
+                    writer.Write(zombieDrain);
+                }
+                writer.Write(zombieOwner);
+                writer.Write(zombieDebuffTier);
+            }
+        }
+
+        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                if (reader.ReadBoolean())
+                {
+                    isZombie = true;
+                    zombieTimer = reader.ReadInt32();
+                    zombieTimerMax = reader.ReadInt32();
+                }
+                else
+                {
+                    zombieDrain = reader.ReadInt32();
+                }
+                zombieOwner = reader.ReadInt32();
+                zombieDebuffTier = reader.ReadSingle();
+            }
         }
     }
     public class NecromancyProj : GlobalProjectile, IEntityNetworker

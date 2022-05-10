@@ -149,7 +149,7 @@ namespace Aequus.Content.Necromancy
                 [NPCID.CorruptSlime] = GhostInfo.Three,
                 [NPCID.Corruptor] = GhostInfo.Three,
                 [NPCID.Crimslime] = GhostInfo.Three,
-                [NPCID.Slimeling] = GhostInfo.Three, // TODO: support net IDs better?
+                [NPCID.Slimeling] = GhostInfo.Three,
                 [NPCID.CrimsonAxe] = GhostInfo.Three,
                 [NPCID.CursedHammer] = GhostInfo.Three,
                 [NPCID.EnchantedSword] = GhostInfo.Three,

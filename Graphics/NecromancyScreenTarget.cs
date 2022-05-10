@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 
@@ -7,18 +8,22 @@ namespace Aequus.Graphics
 {
     public sealed class NecromancyScreenTarget : ScreenTarget
     {
-        public DrawIndexCache NPCs { get; private set; }
+        public readonly DrawIndexCache NPCs;
+        public readonly int Team;
+        public Func<Color> DrawColor;
 
-        public static bool RenderingNow => EffectsSystem.NecromancyDrawer.NPCs.renderingNow;
+        public static bool RenderingNow;
 
-        public NecromancyScreenTarget()
+        public NecromancyScreenTarget(int team, Func<Color> color)
         {
+            Team = team;
+            DrawColor = color;
             NPCs = new DrawIndexCache();
         }
 
-        public static void Add(int whoAmI)
+        public void Add(int whoAmI)
         {
-            EffectsSystem.NecromancyDrawer.NPCs.Add(whoAmI);
+            NPCs.Add(whoAmI);
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
@@ -26,6 +31,7 @@ namespace Aequus.Graphics
             if (NPCs.Count > 0)
             {
                 CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+                RenderingNow = true;
                 NPCs.renderingNow = true;
                 try
                 {
@@ -37,6 +43,7 @@ namespace Aequus.Graphics
                 catch
                 {
                 }
+                RenderingNow = false;
                 NPCs.renderingNow = false;
                 Main.spriteBatch.End();
 
@@ -63,13 +70,22 @@ namespace Aequus.Graphics
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
             var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
-            ModEffects.NecromancyOutlineShader.UseColor(Color.CornflowerBlue);
+            ModEffects.NecromancyOutlineShader.UseColor(DrawColor());
             ModEffects.NecromancyOutlineShader.Apply(drawData);
 
             drawData.Draw(spriteBatch);
 
             spriteBatch.End();
             _wasPrepared = false;
+        }
+
+        public static int GetScreenTargetIndex(Player player)
+        {
+            if (Main.myPlayer == player.whoAmI && (player.team == 0 || !player.hostile))
+            {
+                return 0;
+            }
+            return player.team + 1;
         }
     }
 }

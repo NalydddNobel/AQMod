@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics
@@ -11,16 +9,32 @@ namespace Aequus.Graphics
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
-            NecromancyDrawer.Request();
-            NecromancyDrawer.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+            for (int i = 0; i < necromancyRenderers.Length; i++)
+            {
+                if (necromancyRenderers[i] != null)
+                {
+                    necromancyRenderers[i].Request();
+                    necromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                }
+            }
         }
 
         private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
         {
             orig(self);
-            if (NecromancyDrawer.IsReady)
+            try
             {
-                NecromancyDrawer.DrawOntoScreen(Main.spriteBatch);
+                for (int i = 0; i < necromancyRenderers.Length; i++)
+                {
+                    if (necromancyRenderers[i] != null && necromancyRenderers[i].IsReady)
+                    {
+                        necromancyRenderers[i].DrawOntoScreen(Main.spriteBatch);
+                    }
+                }
+            }
+            catch
+            {
+
             }
         }
 

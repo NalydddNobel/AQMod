@@ -1,4 +1,3 @@
-using Aequus.Common.Configuration;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
