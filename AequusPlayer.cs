@@ -112,6 +112,7 @@ namespace Aequus
         /// Used by summon helmets (<see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
+
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
         /// </summary>
@@ -142,6 +143,7 @@ namespace Aequus
         /// Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
         /// </summary>
         public uint interactionCooldown;
+        public int revenantScepterZombie;
 
         public int turretSlotCount;
         public int necromancySlotUsed;
@@ -314,8 +316,8 @@ namespace Aequus
             }
             if (necromancyMinionSlotConvert)
             {
-                necromancySlots += Player.maxMinions;
-                Player.maxMinions = 0;
+                necromancySlots += Player.maxMinions - 1;
+                Player.maxMinions = 1;
             }
             if (Main.myPlayer == Player.whoAmI)
             {

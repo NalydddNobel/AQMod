@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
@@ -32,6 +33,8 @@ namespace Aequus.Tiles
         public const int Unused_RedSprite = 12;
         public const int Unused_SpaceSquid = 13;
 
+        public static List<int> BannerTypesHack;
+
         #region Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!
 
         private static string SpecialThanks = "Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!";
@@ -51,10 +54,12 @@ namespace Aequus.Tiles
                 Logging.PublicLogger.Debug(e);
             }
 
+            BannerTypesHack = new List<int>();
             IL.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVines += TileDrawing_DrawMultiTileVines;
         }
         private static void TileDrawing_DrawMultiTileVines(ILContext il)
         {
+
             ILCursor c = new ILCursor(il);
 
             if (!c.TryGotoNext(MoveType.After,
@@ -69,8 +74,8 @@ namespace Aequus.Tiles
                 return;
 
             c.Emit(OpCodes.Ldloc, 9);
-            c.EmitDelegate<Func<Tile, int>>((Tile tile) => {
-                if (tile.TileType == ModContent.TileType<AequusBanners>())
+            c.EmitDelegate((Tile tile) => {
+                if (BannerTypesHack.Contains(tile.TileType))
                 {
                     return 3;
                 }
@@ -81,6 +86,8 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
+            BannerTypesHack?.Clear();
+            BannerTypesHack = null;
             _addSpecialPointSpecialPositions = null;
             _addSpecialPointSpecialsCount = null;
         }
@@ -126,6 +133,7 @@ namespace Aequus.Tiles
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
+            BannerTypesHack.Add(Type);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

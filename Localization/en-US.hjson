@@ -39,6 +39,7 @@ Mods: {
 			Trophy: Will 100% drop when defeated flawlessly
 		}
 		Tooltips: {
+			RevenantScepterGhost: "Contains a {0} soul"
 			NecromancyStaff: "{0} Staff"
 			NecromancyStaffTooltip: 
 				'''
@@ -73,6 +74,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			SkeletonKey: Skeleton Key
+			RevenantScepter: Revenant Scepter
 			NecromancyStaff: Necromancy Staff
 			UnenchantedStaff: Unenchanted Staff
 			RitualisticSkull: Ritualistic Skull
@@ -168,7 +171,7 @@ Mods: {
 			ScarletSea: Scarlet Sea
 			SeltzerRain: Tainted Rain
 			FizzlingFire: Super Scorcher
-			MagicalBoomerang: Magical Boomerang
+			Valari: Valari
 			StariteBlade: Star Blade
 			StariteSpinner: Pulsar
 			Resonance: Resonance
@@ -374,13 +377,18 @@ Mods: {
 			MagmabubbleBanner: Magmabubble Banner
 			TrapperImpBanner: Trapper Imp Banner
 			VraineBanner: Vraine Banner
-			RedSpriteBanner: Red Sprite Banner
 			WhiteSlimeBanner: White Slime Banner
 			SpaceSquidTrophy: Space Squid Trophy
-			SpaceSquidBanner: Space Squid Banner
 		}
 
 		ItemTooltip: {
+			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
+			RevenantScepter: 
+				'''
+				Drains the soul of strong enemies
+				Defeated enemies will join your team, stealing their soul
+				Right click to consume the soul and recruit them
+				'''
 			UnenchantedStaff: May be enchanted
 			RitualisticSkull: Converts all of your minion slots into ghost minion slots
 			InsurgencyScepter: 
@@ -680,7 +688,7 @@ Mods: {
 			ScarletSea: Summons two blood orbs
 			SeltzerRain: Shoots many corrupted orbs
 			FizzlingFire: Cannot be used if you have mana sickness
-			MagicalBoomerang: Can pick up items
+			Valari: Can pick up items
 			StariteBlade:
 				'''
 				Inflicts blue fire on hit

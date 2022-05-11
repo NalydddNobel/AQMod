@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Content.CrossMod
+﻿namespace Aequus.Content.CrossMod
 {
     public interface IModCallArgSettable
     {

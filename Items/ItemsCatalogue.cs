@@ -2,9 +2,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -125,7 +122,7 @@ namespace Aequus.Items
                 {
                     var shootPosition = target.position;
                     shootPosition.X += target.width / 2f;
-                    shootPosition.Y -= 200f; 
+                    shootPosition.Y -= 200f;
                     if (Main.myPlayer == player.whoAmI)
                     {
                         AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);

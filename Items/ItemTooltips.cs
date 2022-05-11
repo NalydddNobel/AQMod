@@ -25,7 +25,7 @@ namespace Aequus.Items
                 }
             }
 
-            internal static readonly string[] OutdatedTooltipNames = new string[]
+            internal static readonly string[] TooltipNames = new string[]
             {
                 "ItemName",
                 "Favorite",
@@ -75,6 +75,9 @@ namespace Aequus.Items
                 "PrefixAccMeleeSpeed",
                 "SetBonus",
                 "Expert",
+                "Master",
+                "JourneyResearch",
+                "BestiaryNotes",
                 "SpecialPrice",
                 "Price",
             };
@@ -125,7 +128,6 @@ namespace Aequus.Items
             {
                 if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
                 {
-                    Main.NewText(i + ", " + tooltips[i].Name + ": " + FindLineIndex(tooltips[i].Name) + ", " + ", " + lineName + ": " + myIndex, Main.DiscoColor);
                     return i;
                 }
             }
@@ -138,9 +140,9 @@ namespace Aequus.Items
             {
                 name = "Tooltip#";
             }
-            for (int i = 0; i < Catalogue.OutdatedTooltipNames.Length; i++)
+            for (int i = 0; i < Catalogue.TooltipNames.Length; i++)
             {
-                if (name == Catalogue.OutdatedTooltipNames[i])
+                if (name == Catalogue.TooltipNames[i])
                 {
                     return i;
                 }

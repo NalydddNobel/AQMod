@@ -336,6 +336,10 @@ namespace Aequus.NPCs
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
             if (n < 200)
             {
+                if (npc.HasBuff(ModContent.BuffType<RevenantDebuff>()))
+                {
+                    Main.player[zombieOwner].Aequus().revenantScepterZombie = npc.type;
+                }
                 Main.npc[n].whoAmI = n;
                 SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
             }

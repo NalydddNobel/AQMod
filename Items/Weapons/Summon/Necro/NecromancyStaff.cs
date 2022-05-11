@@ -52,7 +52,6 @@ namespace Aequus.Items.Weapons.Summon.Necro
             }
             catch
             {
-
             }
         }
 

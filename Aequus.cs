@@ -1,10 +1,12 @@
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Recipes;
 using Aequus.NPCs;
 using Aequus.NPCs.Monsters;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -57,6 +59,10 @@ namespace Aequus
         {
             AlternativeRecipes.AddRecipes();
             ItemsCatalogue.LoadAutomaticEntries();
+            if (PolaritiesSupport.Polarities.Enabled)
+            {
+                AequusBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
+            }
         }
 
         public override void Unload()

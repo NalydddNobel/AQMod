@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
-            Item.value = ItemDefaults.OmegaStariteDropValue;
+            Item.value = ItemDefaults.OmegaStariteValue;
             Item.knockBack = 1f;
             Item.useAmmo = AmmoID.Bullet;
         }

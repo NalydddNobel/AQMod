@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.width = 60;
             Projectile.height = 60;
             Projectile.penetrate = -1;
-            Projectile.alpha = 0;
+            Projectile.alpha = 250;
             Projectile.scale = 1f;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
@@ -115,6 +115,14 @@ namespace Aequus.Projectiles.Summon
                 return;
             }
 
+            if (Projectile.alpha > 0)
+            {
+                Projectile.alpha -= 40;
+                if (Projectile.alpha < 0)
+                {
+                    Projectile.alpha = 0;
+                }
+            }
             Projectile.ai[1] = -1f;
             Projectile.rotation = Projectile.velocity.ToRotation();
             Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
@@ -178,6 +186,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;
             Projectile.ai[1] = target.whoAmI;
+            Projectile.alpha = 0;
             Projectile.netUpdate = true;
         }
 

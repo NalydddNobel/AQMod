@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -60,23 +59,15 @@ namespace Aequus.Projectiles.Summon
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var batchData = new SpriteBatchData(Main.spriteBatch);
-
-            Main.spriteBatch.End();
-            batchData.BeginCustom(Main.spriteBatch, blendState: BlendState.Additive);
-
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = Projectile.Frame();
             var origin = frame.Size() / 2f;
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, new Color(10, 40, 255, 100), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
-
-            Main.spriteBatch.End();
-            batchData.Begin(Main.spriteBatch);
             return false;
         }
 
-        protected void DrawTrail(float waveSize = 8f, int maxLength = -1)
+        protected void DrawTrail(float waveSize = 8f, int maxLength = -1, float timeMultiplier = 5f)
         {
             if (prim == null)
             {
@@ -95,7 +86,7 @@ namespace Aequus.Projectiles.Summon
                 }
                 trail[i] = Projectile.oldPos[i] + offset;
             }
-            foreach (var f in AequusHelpers.Circular(3, Main.GlobalTimeWrappedHourly * 5f))
+            foreach (var f in AequusHelpers.Circular(3, Main.GlobalTimeWrappedHourly * timeMultiplier))
             {
                 var renderTrail = new Vector2[trailLength];
                 Array.Copy(trail, renderTrail, trailLength);
