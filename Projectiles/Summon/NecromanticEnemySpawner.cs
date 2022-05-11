@@ -31,6 +31,7 @@ namespace Aequus.Projectiles.Summon
                 int n = NPC.NewNPC(Projectile.GetSource_Death("Aequus:NecromancySpawn"), x, y, type);
                 Main.npc[n].whoAmI = n;
                 Main.npc[n].GetGlobalNPC<NecromancyNPC>().SpawnZombie_SetZombieStats(Main.npc[n], Projectile.Center, Projectile.velocity, 0, 0);
+                Main.npc[n].GetGlobalNPC<NecromancyNPC>().slotsConsumed *= 2;
                 Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieTimerMax *= 5;
                 Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieTimer *= 5;
             }

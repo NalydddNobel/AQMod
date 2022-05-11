@@ -26,6 +26,8 @@ namespace Aequus.Projectiles.Summon
             Projectile.alpha = 10;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 6;
         }
 
         public override Color? GetAlpha(Color lightColor)

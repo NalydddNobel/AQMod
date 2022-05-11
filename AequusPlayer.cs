@@ -235,7 +235,7 @@ namespace Aequus
             glowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
-            necromancySlots = 5;
+            necromancySlots = 1;
             necromancyTime = 3600;
         }
 

@@ -31,6 +31,7 @@ namespace Aequus.NPCs
         public int zombieTimerMax;
         public float zombieDebuffTier;
         public int hitCheckDelay;
+        public int slotsConsumed;
 
         public override bool InstancePerEntity => true;
 
@@ -153,6 +154,7 @@ namespace Aequus.NPCs
             zombie.zombieTimerMax = parentZombie.zombieTimerMax;
             zombie.zombieDebuffTier = tier;
             zombie.isZombie = true;
+            zombie.OnSpawnZombie(npc);
         }
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
@@ -298,7 +300,7 @@ namespace Aequus.NPCs
                     AI_ReturnPlayerLocation = Vector2.Zero;
                 }
                 var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
-                aequus.necromancySlotUsed += stats.SlotsUsed.GetValueOrDefault(1);
+                aequus.necromancySlotUsed += slotsConsumed;
                 if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
                     Color color = new Color(50, 150, 255, 100);
@@ -343,6 +345,7 @@ namespace Aequus.NPCs
             zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().OnSpawnZombie(zombieNPC);
             zombieNPC.Center = position;
             zombieNPC.velocity = velocity * 0.25f;
             zombieNPC.direction = direction;
@@ -361,6 +364,11 @@ namespace Aequus.NPCs
             {
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, zombieNPC.whoAmI);
             }
+        }
+
+        public void OnSpawnZombie(NPC npc)
+        {
+            slotsConsumed = NecromancyDatabase.GetByNetID(npc).SlotsUsed.GetValueOrDefault(1);
         }
 
         public static int GetNPCTarget(Entity entity, Player player, int netID, int npcType, float prioritizePlayerMultiplier = 1f)
@@ -552,6 +560,7 @@ namespace Aequus.NPCs
                 {
                     writer.Write(zombieTimer);
                     writer.Write(zombieTimerMax);
+                    writer.Write(slotsConsumed);
                 }
                 else
                 {
@@ -571,6 +580,7 @@ namespace Aequus.NPCs
                     isZombie = true;
                     zombieTimer = reader.ReadInt32();
                     zombieTimerMax = reader.ReadInt32();
+                    slotsConsumed = reader.ReadInt32();
                 }
                 else
                 {
@@ -581,6 +591,7 @@ namespace Aequus.NPCs
             }
         }
     }
+
     public class NecromancyProj : GlobalProjectile, IEntityNetworker
     {
         public bool isZombie;

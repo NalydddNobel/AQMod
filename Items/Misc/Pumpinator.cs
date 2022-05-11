@@ -38,12 +38,12 @@ namespace Aequus.Items.Misc
         {
             try
             {
-                int index = ItemTooltips.GetLineIndex(tooltips, "Material");
                 if (!Main.hardMode || AequusWorld.downedEventGaleStreams)
                 {
                     return;
                 }
-                tooltips.Insert(1, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltips.MysteriousGuideTooltip, });
+                int index = ItemTooltips.GetLineIndex(tooltips, "Material");
+                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = ItemTooltips.MysteriousGuideTooltip, });
             }
             catch
             {

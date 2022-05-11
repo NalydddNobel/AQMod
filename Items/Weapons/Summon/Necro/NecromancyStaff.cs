@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 {
                     key = "NecromancyStaffTooltipFriendly";
                 }
-                tooltips.Insert(ItemTooltips.GetLineIndex(tooltips, "Tooltip#"),
+                tooltips.Insert(ItemTooltips.GetLineIndex(tooltips, "Material"),
                     new TooltipLine(Mod, "NecromancyTooltip", AequusText.GetText("Tooltips." + key, Lang.GetNPCNameValue(npcSummon))));
 
                 ItemTooltips.ChangeVanillaLine(tooltips, "ItemName", (t) => t.Text = AequusText.GetText("Tooltips.NecromancyStaff", Lang.GetNPCNameValue(npcSummon)));

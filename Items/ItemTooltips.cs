@@ -120,18 +120,24 @@ namespace Aequus.Items
         public static int GetLineIndex(List<TooltipLine> tooltips, string lineName)
         {
             int myIndex = FindLineIndex(lineName);
-            for (int i = 0; i < tooltips.Count; i++)
+            int i = 0;
+            for (; i < tooltips.Count; i++)
             {
                 if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
                 {
+                    Main.NewText(i + ", " + tooltips[i].Name + ": " + FindLineIndex(tooltips[i].Name) + ", " + ", " + lineName + ": " + myIndex, Main.DiscoColor);
                     return i;
                 }
             }
-            return 1;
+            return i;
         }
 
         private static int FindLineIndex(string name)
         {
+            if (name.StartsWith("Tooltip"))
+            {
+                name = "Tooltip#";
+            }
             for (int i = 0; i < Catalogue.OutdatedTooltipNames.Length; i++)
             {
                 if (name == Catalogue.OutdatedTooltipNames[i])

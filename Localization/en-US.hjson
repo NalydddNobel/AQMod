@@ -40,7 +40,11 @@ Mods: {
 		}
 		Tooltips: {
 			NecromancyStaff: "{0} Staff"
-			NecromancyStaffTooltip: Summons a friendly {0} to fight for you
+			NecromancyStaffTooltip: 
+				'''
+				Summons a ghostly {0} to fight for you
+				Consumes twice the amount of necromantic minion slots
+				'''
 			NecromancyStaffTooltipFriendly: Summons a {0} to be cute
 			UsesGel: Uses gel for ammo
 			ExporterQuest: Return this to the exporter
@@ -382,14 +386,14 @@ Mods: {
 			InsurgencyScepter: 
 				'''
 				Drains the soul of very powerful enemies
-				Accursed enemies will release spirits that attack nearby enemies
-				Fully drained souls will join your team
+				While accursed, they release spirits that attack nearby enemies
+				Defeated enemies will join your team
 				'Silence'
 				'''
 			ZombieScepter: 
 				'''
 				Drains the soul of weak enemies
-				Fully drained souls will join your team
+				Defeated enemies will join your team
 				'''
 			Moro: Summon staffs permanently no longer consume mana and are faster
 			IcebergKraken:
