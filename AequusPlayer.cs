@@ -75,12 +75,9 @@ namespace Aequus
         public int closestEnemy;
         public int closestEnemyOld;
 
-        /// <summary>
-        /// Applied by <see cref="HappiestMask"/>
-        /// </summary>
         public bool dreamMask;
         /// <summary>
-        /// Applied by <see cref="RitualisticSkull"/> and <see cref="HappiestMask"/>
+        /// Applied by <see cref="RitualisticSkull"/>
         /// </summary>
         public bool necromancyMinionSlotConvert;
         /// <summary>
@@ -336,12 +333,16 @@ namespace Aequus
                 {
                     if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie && Main.npc[i].GetGlobalNPC<NecromancyNPC>().zombieOwner == Player.whoAmI)
                     {
-                        var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                        int timeComparison = GetDespawnComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
-                        if (timeComparison < oldestTime)
+                        var stats = NecromancyDatabase.GetByNetID(Main.npc[i]);
+                        if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
                         {
-                            removeNPC = i;
-                            oldestTime = timeComparison;
+                            var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
+                            int timeComparison = GetDespawnComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
+                            if (timeComparison < oldestTime)
+                            {
+                                removeNPC = i;
+                                oldestTime = timeComparison;
+                            }
                         }
                     }
                 }

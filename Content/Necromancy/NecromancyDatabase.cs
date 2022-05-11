@@ -255,7 +255,7 @@ namespace Aequus.Content.Necromancy
                 [NPCID.SkeletonSniper] = GhostInfo.Four,
                 [NPCID.TacticalSkeleton] = GhostInfo.Four,
                 [NPCID.GoblinShark] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.BloodNautilus] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
+                [NPCID.BloodNautilus] = GhostInfo.Four.WithAggro(AggroForcer.BloodMoon),
                 [NPCID.IceGolem] = GhostInfo.Four,
                 [NPCID.SandElemental] = GhostInfo.Four,
                 [NPCID.Mothron] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
@@ -359,11 +359,17 @@ namespace Aequus.Content.Necromancy
             {
                 NPCs[i] = GhostInfo.Four;
             }
-
         }
 
-        public static void CrossmodEntries()
+        public static void FinalizeContent()
         {
+            for (int i = 0; i < NPCLoader.NPCCount; i++)
+            {
+                if (NPCID.Sets.CountsAsCritter[i])
+                {
+                    NPCs[i] = GhostInfo.Critter;
+                }
+            }
             if (ModLoader.TryGetMod("Polarities", out var polarities))
             {
                 if (Aequus.LogMore)

@@ -224,7 +224,7 @@ namespace Aequus.NPCs.Boss
         {
             NPC.width = 120;
             NPC.height = 120;
-            NPC.lifeMax = 9500;
+            NPC.lifeMax = 8000;
             NPC.damage = 50;
             NPC.defense = 18;
             NPC.DeathSound = SoundID.NPCDeath55;
@@ -1054,7 +1054,8 @@ namespace Aequus.NPCs.Boss
                         else
                         {
                             float fallSpeed = Main.getGoodWorld ? 56f : 36f;
-                            NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(new Vector2(center.X, NPC.ai[2]) - center) * fallSpeed, 0.025f);
+                            NPC.velocity.X = 0f;
+                            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, fallSpeed, 0.025f);
                         }
                     }
                     break;

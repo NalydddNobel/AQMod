@@ -37,6 +37,10 @@ namespace Aequus
         /// </summary>
         public static StaticManipulator<int> Main_invasionType { get; internal set; }
         /// <summary>
+        /// Caches <see cref="Main.bloodMoon"/>
+        /// </summary>
+        public static StaticManipulator<bool> Main_bloodMoon { get; internal set; }
+        /// <summary>
         /// Caches <see cref="Main.eclipse"/>
         /// </summary>
         public static StaticManipulator<bool> Main_eclipse { get; internal set; }
@@ -69,6 +73,7 @@ namespace Aequus
         {
             Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
             Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
+            Main_bloodMoon = new StaticManipulator<bool>(() => ref Main.bloodMoon);
             Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
             Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
         }
@@ -731,12 +736,16 @@ namespace Aequus
             return timer / ticksPer;
         }
 
+        public static Vector2 InventoryItemGetCorner(Vector2 position, Rectangle itemFrame, float itemScale)
+        {
+            return position + itemFrame.Size() / 2f * itemScale;
+        }
         public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
         {
             int frameY = (int)(texture.Height * progress);
             var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
             position.Y += uiFrame.Y * Main.inventoryScale;
-            var center = position + itemFrame.Size() / 2f * itemScale;
+            var center = InventoryItemGetCorner(position, itemFrame, itemScale);
             spriteBatch.Draw(texture, center, uiFrame, color, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 

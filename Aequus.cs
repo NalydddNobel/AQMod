@@ -20,6 +20,7 @@ namespace Aequus
         internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
         public const string TextureNone = "Aequus/Assets/None";
+        public const string VanillaTexture = "Terraria/Images/";
 
         public static Aequus Instance { get; private set; }
         public static UserInterface InventoryInterface { get; private set; }
@@ -48,13 +49,13 @@ namespace Aequus
         public override void AddRecipeGroups()
         {
             AequusRecipes.Groups.AddRecipeGroups();
+            NecromancyDatabase.FinalizeContent();
+            NecromancyNPC.AdjustBuffImmunities();
         }
 
         public override void AddRecipes()
         {
             AlternativeRecipes.AddRecipes();
-            NecromancyDatabase.CrossmodEntries();
-            NecromancyNPC.SetupBuffImmunities();
             ItemsCatalogue.LoadAutomaticEntries();
         }
 

@@ -185,8 +185,6 @@ namespace Aequus.NPCs
             {
                 if (npc.type == NPCID.Clown)
                 {
-                    npc.AddLoot(npcLoot)
-                        .Add<HappiestMask>(chance: 5, stack: 1);
                 }
             }
         }

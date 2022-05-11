@@ -62,7 +62,12 @@ namespace Aequus
 
         public static string GetText(string key)
         {
-            return AequusText.Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+            return Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+        }
+
+        public static string GetText(string key, params object[] args)
+        {
+            return string.Format(Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture), args);
         }
 
         public static string UseAnimText(float useAnimation)

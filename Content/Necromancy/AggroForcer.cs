@@ -8,6 +8,7 @@ namespace Aequus.Content.Necromancy
 {
     public sealed class AggroForcer : ILoadable
     {
+        public static IEnemyAggressor BloodMoon { get; private set; }
         public static IEnemyAggressor Eclipse { get; private set; }
         public static IEnemyAggressor MartianMadness { get; private set; }
         public static IEnemyAggressor PirateInvasion { get; private set; }
@@ -20,6 +21,25 @@ namespace Aequus.Content.Necromancy
             public abstract void OnPreAI(NPC npc, NecromancyNPC necro);
 
             public abstract void OnPostAI(NPC npc, NecromancyNPC necro);
+        }
+
+        public struct NeedsBloodMoon : IEnemyAggressor
+        {
+            public NeedsBloodMoon()
+            {
+            }
+
+            public void OnPreAI(NPC npc, NecromancyNPC necro)
+            {
+                AequusHelpers.Main_dayTime.StartCaching(false);
+                AequusHelpers.Main_bloodMoon.StartCaching(true);
+            }
+
+            public void OnPostAI(NPC npc, NecromancyNPC necro)
+            {
+                AequusHelpers.Main_bloodMoon.EndCaching();
+                AequusHelpers.Main_dayTime.EndCaching();
+            }
         }
 
         public struct NeedsEclipse : IEnemyAggressor
@@ -111,6 +131,7 @@ namespace Aequus.Content.Necromancy
 
         internal static void LoadAggressions()
         {
+            BloodMoon = new NeedsBloodMoon();
             Eclipse = new NeedsEclipse();
             MartianMadness = new NeedsInvasion(InvasionID.MartianMadness);
             PirateInvasion = new NeedsInvasion(InvasionID.PirateInvasion);
@@ -121,6 +142,8 @@ namespace Aequus.Content.Necromancy
 
         void ILoadable.Unload()
         {
+            BloodMoon = null;
+            Eclipse = null;
             MartianMadness = null;
             PirateInvasion = null;
             GoblinArmy = null;

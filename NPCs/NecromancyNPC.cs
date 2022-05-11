@@ -334,27 +334,32 @@ namespace Aequus.NPCs
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
             if (n < 200)
             {
-                Main.npc[n].GetGlobalNPC<NecromancyNPC>().isZombie = true;
-                Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
-                Main.npc[n].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
-                Main.npc[n].Center = npc.Center;
-                Main.npc[n].velocity = npc.velocity * 0.25f;
-                Main.npc[n].direction = npc.direction;
-                Main.npc[n].spriteDirection = npc.spriteDirection;
-                Main.npc[n].friendly = true;
-                Main.npc[n].extraValue = 0;
-                Main.npc[n].value = 0;
-                Main.npc[n].boss = false;
-                Main.npc[n].SpawnedFromStatue = true;
-                if (Main.npc[n].ModNPC != null)
-                {
-                    Main.npc[n].ModNPC.Music = -1;
-                    Main.npc[n].ModNPC.SceneEffectPriority = SceneEffectPriority.None;
-                }
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
-                }
+                Main.npc[n].whoAmI = n;
+                SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
+            }
+        }
+        public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection)
+        {
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
+            zombieNPC.Center = position;
+            zombieNPC.velocity = velocity * 0.25f;
+            zombieNPC.direction = direction;
+            zombieNPC.spriteDirection = spriteDirection;
+            zombieNPC.friendly = true;
+            zombieNPC.extraValue = 0;
+            zombieNPC.value = 0;
+            zombieNPC.boss = false;
+            zombieNPC.SpawnedFromStatue = true;
+            if (zombieNPC.ModNPC != null)
+            {
+                zombieNPC.ModNPC.Music = -1;
+                zombieNPC.ModNPC.SceneEffectPriority = SceneEffectPriority.None;
+            }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, zombieNPC.whoAmI);
             }
         }
 
@@ -420,7 +425,7 @@ namespace Aequus.NPCs
             return dmgMultiplier;
         }
 
-        internal static void SetupBuffImmunities()
+        internal static void AdjustBuffImmunities()
         {
             var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
             buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());

@@ -10,6 +10,7 @@ namespace Aequus.Content.Necromancy
         /// For enemies which cannot be turned into player zombies
         /// </summary>
         public static GhostInfo Invalid => new GhostInfo(0f);
+        public static GhostInfo Critter => new GhostInfo(0.1f, 800f);
         public static GhostInfo One => new GhostInfo(1f, 800f);
         public static GhostInfo Two => new GhostInfo(2f, 800f);
         public static GhostInfo Three => new GhostInfo(3f, 1000f);

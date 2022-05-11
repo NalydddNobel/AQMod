@@ -39,6 +39,9 @@ Mods: {
 			Trophy: Will 100% drop when defeated flawlessly
 		}
 		Tooltips: {
+			NecromancyStaff: "{0} Staff"
+			NecromancyStaffTooltip: Summons a friendly {0} to fight for you
+			NecromancyStaffTooltipFriendly: Summons a {0} to be cute
 			UsesGel: Uses gel for ammo
 			ExporterQuest: Return this to the exporter
 			Concocted: Used in potion concoctions
@@ -66,7 +69,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			HappiestMask: Happiest Mask
+			NecromancyStaff: Necromancy Staff
+			UnenchantedStaff: Unenchanted Staff
 			RitualisticSkull: Ritualistic Skull
 			InsurgencyScepter: Insurgency Scepter
 			ZombieScepter: Zombie Scepter
@@ -373,19 +377,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			HappiestMask: 
-				'''
-				Defeated enemies have a chance to turn into a necromantic ghost
-				'I wear a mask with a smile for hours at a time'
-				'''
-			RitualisticSkull: 
-				'''
-				Converts all of your minion slots into necromantic ghost slots
-				'''
+			UnenchantedStaff: May be enchanted
+			RitualisticSkull: Converts all of your minion slots into ghost minion slots
 			InsurgencyScepter: 
 				'''
 				Drains the soul of very powerful enemies
-				Accursed enemies will release spirits that curse nearby enemies
+				Accursed enemies will release spirits that attack nearby enemies
 				Fully drained souls will join your team
 				'Silence'
 				'''
