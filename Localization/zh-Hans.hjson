@@ -39,6 +39,7 @@ Mods: {
 			Trophy: 在无伤击败时100%掉落
 		}
 		Tooltips: {
+			RevenantScepterGhost: "控制一个{0}幽魂"
 			NecromancyStaff: "{0}法杖"
 			NecromancyStaffTooltip: 
 				'''
@@ -73,6 +74,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			SkeletonKey: 骷髅钥匙
+			RevenantScepter: 亡魂权杖
 			NecromancyStaff: 死灵法杖
 			UnenchantedStaff: 未附魔的法杖
 			RitualisticSkull: 仪式颅骨
@@ -168,7 +171,7 @@ Mods: {
 			ScarletSea: 罪孽红海
 			SeltzerRain: 污浊腐雨
 			FizzlingFire: 超级火焰喷射器
-			MagicalBoomerang: 魔法回旋镖
+			Valari: 魔法回旋镖
 			StariteBlade: 星剑
 			StariteSpinner: 脉冲星
 			Resonance: 共振
@@ -374,13 +377,18 @@ Mods: {
 			MagmabubbleBanner: 熔火喷吐者旗
 			TrapperImpBanner: 捕魂小鬼旗
 			VraineBanner: 镰鸟旗
-			RedSpriteBanner: 红色精灵旗
 			WhiteSlimeBanner: 白色史莱姆旗
 			SpaceSquidTrophy: 太空乌贼纪念章
-			SpaceSquidBanner: 太空乌贼旗
 		}
 
 		ItemTooltip: {
+			SkeletonKey: 打开所有的金色宝箱和金色锁盒
+			RevenantScepter: 
+				'''
+				消耗强大敌人的灵魂
+				被击败的敌人会加入你的队伍, 窃取它们的灵魂
+				右键点击以消耗灵魂并招募它们
+				'''
 			UnenchantedStaff: 可被附魔
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 			InsurgencyScepter: 
@@ -680,7 +688,7 @@ Mods: {
 			ScarletSea: 召唤两颗血珠
 			SeltzerRain: 发射许多腐蚀球体
 			FizzlingFire: 在你拥有耐魔性减益时无法使用
-			MagicalBoomerang: 可以拾取物品
+			Valari: 可以拾取物品
 			StariteBlade:
 				'''
 				击中敌人时会对其造成碧蓝之火减益
