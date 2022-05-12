@@ -3,6 +3,10 @@ Mods: {
 		Bestiary: {
 			OmegaStarite: 从外太空被派去寻找有价值的资源. 星源生命周期中的一种异常现象, 需要来自其外壳的持续生命支持, 作为交换, 它可以产生大量的能量.
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
+			
+			BloodMimic: 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
+
+			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
 
 			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
 			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
@@ -17,6 +21,7 @@ Mods: {
 			Snobster: 一种势利的虾, 这只特别势利.
 		}
 		DropCondition: {
+			LastAlive: 仅会掉落自残存的敌人
 			OnFirstKill: 仅会在首次击杀时掉落
 			OnFirstKillOtherwiseChance: 首次击杀后具有100%掉落几率
 			StreamingBalloonKill: 
@@ -765,8 +770,7 @@ Mods: {
 			CrabPot: 使用鱼饵来捕捉水里的东西
 			PalePufferfish:
 				'''
-				能治愈你身上的许多种减益
-				能治愈血咒
+				能治愈你身上的多种减益和血咒
 				'''
 			VampireSquid: 使你获得血咒
 			Blobfish: "'要想看着它而不吐出来需要你没有呕吐反射'"
@@ -1133,6 +1137,7 @@ Mods: {
 			Trapper: 捕手
 			PiranhaPlant: 植物
 			Vampirism: 血咒
+			VampirismNight: 寒肤
 			VampirismDay: 日光
 			Harmony: 和谐
 			NoonBuff: 午光
@@ -1182,6 +1187,7 @@ Mods: {
 			Trapper: 恶魔捕手会为你而战
 			PiranhaPlant: 植物会为你而战
 			Vampirism: 在这之后你可能会变成吸血鬼...
+			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
 			VampirismDay: 你的各项属性大幅度降低, 你无法再通过食物获得增益
 			Harmony: 你的魔法能力大幅度增加
 			NoonBuff:
@@ -1472,7 +1478,7 @@ Mods: {
 			TrapImp: 捕魂小鬼
 			Trapper: 捕魂钩
 			Cindera: 幻形蝠
-			BloodMimic: "{$NPCName.Mimic}"
+			BloodMimic: 血红模仿者
 			Heckto: 冥狱之魂
 
 			SkyMerchant: 天空商人
