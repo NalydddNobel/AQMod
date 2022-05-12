@@ -6,15 +6,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class ZombieScepter : ModItem
+    public class ZombieScepter : BaseScepter
     {
-        public override void SetStaticDefaults()
-        {
-            Item.staff[Type] = true;
-
-            this.SetResearch(1);
-        }
-
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(30);
@@ -27,20 +20,14 @@ namespace Aequus.Items.Weapons.Summon.Necro
             Item.UseSound = SoundID.Item8;
         }
 
-        public override bool AllowPrefix(int pre)
+        public override void AddRecipes()
         {
-            return !AequusItem.CritOnlyModifier.Contains(pre);
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            try
-            {
-                tooltips.RemoveCritChanceModifier();
-            }
-            catch
-            {
-            }
+            CreateRecipe()
+                .AddIngredient(ItemID.DemoniteBar, 8)
+                .AddIngredient(ItemID.LifeCrystal)
+                .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .Register();
         }
     }
 }

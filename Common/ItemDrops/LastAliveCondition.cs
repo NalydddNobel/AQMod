@@ -3,18 +3,18 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.ItemDrops
 {
-    public class WhenAllNPCsAreDeadCondition : IItemDropRuleCondition, IProvideItemConditionDescription
+    public class LastAliveCondition : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int type;
 
-        public WhenAllNPCsAreDeadCondition(int type)
+        public LastAliveCondition(int type)
         {
             this.type = type;
         }
 
         public bool CanDrop(DropAttemptInfo info)
         {
-            return !NPC.AnyNPCs(type);
+            return NPC.CountNPCS(type) <= 1;
         }
 
         public bool CanShowItemDropInUI()
@@ -24,7 +24,7 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return null;
+            return AequusText.GetText("DropCondition.LastAlive");
         }
     }
 }

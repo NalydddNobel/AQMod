@@ -65,6 +65,11 @@ namespace Aequus.NPCs.Boss
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                return true;
+            }
+
             var rand = EffectsSystem.EffectRand;
 
             var bottom = NPC.position + new Vector2(NPC.width / 2f, NPC.height / 2f + 150f);

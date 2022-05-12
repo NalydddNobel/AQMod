@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class EnthrallingScepter : ZombieScepter
+    public class EnthrallingScepter : BaseScepter
     {
         public override void SetStaticDefaults()
         {

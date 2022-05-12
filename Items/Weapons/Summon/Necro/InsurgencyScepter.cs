@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class InsurgencyScepter : ZombieScepter
+    public class InsurgencyScepter : BaseScepter
     {
         public override void SetDefaults()
         {

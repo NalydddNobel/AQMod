@@ -4,6 +4,10 @@ Mods: {
 			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 
+			BloodMimic: Unlucky chest looters who were slain while stealing may mutate with the chest, creating a monster.
+
+			Heckto: The Molten Legion betrayed their kin, allowing their souls to be consumed by the Gore Nest. Hexoplasm is the result of their spirits being combined with demonic energy.
+			
 			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
 			RedSprite: A mysterious thunderous discharge once struck a nimbus. Both the thunder and the nimbus' living souls were combined to create an evil monster.
 			Vraine: Extraordinarily aerodynamic birds which come in packs of 3-9, temperature sensative beaks determine how aggressive they are. Their name is based off their v-arc anatomy and group flight pattern.
@@ -17,6 +21,7 @@ Mods: {
 			Snobster: A snobster lobster, this one's particularly snobby.
 		}
 		DropCondition: {
+			LastAlive: Only dropped by the last remaining enemy
 			OnFirstKill: Only drops on first kill
 			OnFirstKillOtherwiseChance: 100% droprate on first kill
 			StreamingBalloonKill: 
@@ -765,8 +770,7 @@ Mods: {
 			CrabPot: Uses bait to catch things in the water
 			PalePufferfish:
 				'''
-				Can cure you of many debuffs
-				Can cure vampirism
+				Can cure you of many debuffs and vampirism
 				'''
 			VampireSquid: Gives you vampirism
 			Blobfish: "'Looking at it without puking requires you to not have gag reflexes'"
@@ -1133,6 +1137,7 @@ Mods: {
 			Trapper: Trapper
 			PiranhaPlant: Plant
 			Vampirism: Vampirism
+			VampirismNight: Cold Skin
 			VampirismDay: Sunlight
 			Harmony: Harmony
 			NoonBuff: Noon
@@ -1182,6 +1187,7 @@ Mods: {
 			Trapper: The demonic trapper will fight for you
 			PiranhaPlant: The plant will fight for you
 			Vampirism: You may become a vampire after this...
+			VampirismNight: Greatly increased stats, attacks may lifesteal
 			VampirismDay: Greatly decreased stats, you no longer get buffs from food
 			Harmony: Greatly increases your magical powers
 			NoonBuff:
@@ -1472,7 +1478,7 @@ Mods: {
 			TrapImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
-			BloodMimic: "{$NPCName.Mimic}"
+			BloodMimic: Blood Mimic
 			Heckto: Heckto
 
 			SkyMerchant: Sky Merchant

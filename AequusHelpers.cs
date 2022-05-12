@@ -859,6 +859,11 @@ namespace Aequus
             return Main.tileSolidTop[tile.TileType];
         }
 
+        public static bool IsSolid(this Tile tile)
+        {
+            return tile.HasTile && Main.tileSolid[tile.TileType];
+        }
+
         public static bool Solid(this Tile tile)
         {
             return Main.tileSolid[tile.TileType];

@@ -459,7 +459,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            var whenAllNPCsAreDead = new WhenAllNPCsAreDeadCondition(Type);
+            var whenAllNPCsAreDead = new LastAliveCondition(Type);
             this.CreateLoot(npcLoot)
                 .Add<Vrang>(whenAllNPCsAreDead, chance: 8, stack: 1)
                 .Add<AtmosphericEnergy>(condition: whenAllNPCsAreDead, chance: 20, stack: 1)

@@ -1,5 +1,7 @@
 ﻿using Aequus.Projectiles.Melee;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -74,6 +76,13 @@ namespace Aequus.Items
             item.channel = true;
             item.noMelee = true;
             item.noUseGraphic = true;
+        }
+
+        public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors)
+        {
+            ItemID.Sets.IsFood[modItem.Type] = true;
+            ItemID.Sets.FoodParticleColors[modItem.Type] = colors;
+            Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
         }
     }
 }

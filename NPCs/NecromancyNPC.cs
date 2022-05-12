@@ -193,7 +193,7 @@ namespace Aequus.NPCs
                 stats.Aggro?.OnPreAI(npc, this);
                 if (zombieTimer == 0)
                 {
-                    int time = (int)(Main.player[zombieOwner].Aequus().ghostLifespan);
+                    int time = Main.player[zombieOwner].Aequus().ghostLifespan;
                     if (stats.TimeLeftMultiplier.HasValue)
                     {
                         time = (int)(time * stats.TimeLeftMultiplier.Value);
@@ -345,6 +345,8 @@ namespace Aequus.NPCs
             zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimer = zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = 
+                Main.player[zombieOwner].Aequus().ghostLifespan;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().OnSpawnZombie(zombieNPC);
             zombieNPC.Center = position;
             zombieNPC.velocity = velocity * 0.25f;

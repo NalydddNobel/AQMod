@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,6 +37,12 @@ namespace Aequus.NPCs.Monsters
             NPC.value = 510f;
             NPC.noTileCollide = true;
             NPC.noGravity = true;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.Dungeon);
         }
 
         public override void AI()
@@ -118,7 +125,7 @@ namespace Aequus.NPCs.Monsters
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<Hexoplasm>(chance: 1, stack: (1, 3));
+                .Add<Hexoplasm>(chance: 1, stack: (1, 2));
         }
         //public override void NPCLoot()
         //{

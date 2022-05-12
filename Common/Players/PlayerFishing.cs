@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Consumables.Foods;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -13,6 +14,17 @@ namespace Aequus.Common.Players
             if (Player.ZoneBeach && attempt.uncommon && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
+            }
+            if (Main.bloodMoon && attempt.heightLevel < 2)
+            {
+                if (attempt.uncommon && Main.rand.NextBool())
+                {
+                    itemDrop = ModContent.ItemType<PalePufferfish>();
+                }
+                else if (attempt.rare && Main.rand.NextBool())
+                {
+                    itemDrop = ModContent.ItemType<VampireSquid>();
+                }
             }
         }
     }

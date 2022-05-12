@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Invasions;
 using Aequus.NPCs.Boss;
+using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Sky;
 using Microsoft.Xna.Framework;
 using System;
@@ -63,7 +64,7 @@ namespace Aequus.NPCs
                     pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
                     pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
                 }
-                if (NPC.CountNPCS(ModContent.NPCType<Vraine>()) < 2)
+                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                     pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
                 if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY))
                 {
@@ -71,7 +72,18 @@ namespace Aequus.NPCs
                 }
                 pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
             }
+            else
+            {
+                if (!Main.dayTime && Main.bloodMoon && spawnInfo.SpawnTileY < Main.worldSurface)
+                {
+                    if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
+                    {
+                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.02f);
+                    }
+                }
+            }
         }
+
         public bool SpawnPool_DontAddSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
         {
             if (checkPillars && SpawnPool_ArePillarsActive(spawnInfo))

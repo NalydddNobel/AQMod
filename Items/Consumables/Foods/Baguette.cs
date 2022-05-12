@@ -11,11 +11,10 @@ namespace Aequus.Items.Consumables.Foods
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            ItemID.Sets.IsFood[Type] = true;
 
             AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(187, 142, 42, 255));
 
-            Main.RegisterItemAnimation(Type, new FoodFramingHack());
+            this.StaticDefaultsToFood(new Color(194, 136, 36, 255), new Color(147, 103, 27, 255), new Color(100, 49, 2, 255));
         }
 
         public override void SetDefaults()

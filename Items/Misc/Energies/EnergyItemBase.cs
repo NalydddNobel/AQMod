@@ -42,7 +42,7 @@ namespace Aequus.Items.Misc.Energies
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            spriteBatch.Draw(Aura.Value, position, null, Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 8f, 0.2f, 1f), 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(Aura.Value, position, null, Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, 0.02f, 1f), 0f, origin, scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
@@ -54,7 +54,7 @@ namespace Aequus.Items.Misc.Energies
             Vector2 origin = frame.Size() / 2f;
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + origin.X + Item.width / 2 - origin.X, Item.position.Y - Main.screenPosition.Y + origin.Y + Item.height - frame.Height);
             drawPosition = new Vector2((int)drawPosition.X, drawPosition.Y);
-            var coloring = Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 8f, 0.2f, 1f);
+            var coloring = Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, 0.02f, 1f);
 
             spriteBatch.Draw(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);
 
