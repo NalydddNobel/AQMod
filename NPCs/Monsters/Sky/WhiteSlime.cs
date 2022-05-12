@@ -327,9 +327,7 @@ namespace Aequus.NPCs.Monsters.Sky
             this.CreateLoot(npcLoot)
                 .Add<Umystick>(new HardmodeTierCondition(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
-                .SetCondition(new Conditions.IsHardmode())
                 .Add<AtmosphericEnergy>(chance: 20, stack: 1)
-                .RegisterCondition()
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15))
                 .Add<CensorDye>(chance: 10, stack: 1);
         }

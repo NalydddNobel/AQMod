@@ -1,10 +1,29 @@
-﻿using Terraria;
+﻿using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
     public class AequusItem : GlobalItem
     {
+        public static HashSet<int> CritOnlyModifier { get; private set; }
+
+        public override void Load()
+        {
+            CritOnlyModifier = new HashSet<int>() 
+            {
+                PrefixID.Keen,
+                PrefixID.Zealous,
+            };
+        }
+
+        public override void Unload()
+        {
+            CritOnlyModifier?.Clear();
+            CritOnlyModifier = null;
+        }
+
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
             if (player.GetModPlayer<AequusPlayer>().permMoro && ItemsCatalogue.SummonStaff.Contains(item.type))

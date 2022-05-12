@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Magic
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             CooldownItems.HasWeaponCooldown.Add(Type);
 
-            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(110, 110, 128, 255));
+            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
 
             this.SetResearch(1);
         }

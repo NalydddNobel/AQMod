@@ -11,22 +11,57 @@ using Terraria.UI.Chat;
 
 namespace Aequus.Items
 {
-    public sealed class ItemTooltips : GlobalItem
+    public static class AequusTooltips
     {
-        public class Catalogue
+        public struct ItemDedication
         {
-            public struct ItemDedication
-            {
-                public readonly Color color;
+            public readonly Color color;
 
-                public ItemDedication(Color color)
+            public ItemDedication(Color color)
+            {
+                this.color = color;
+            }
+        }
+
+        public class TooltipsGlobal : GlobalItem
+        {
+            public override void Load()
+            {
+                Dedicated = new Dictionary<int, ItemDedication>();
+                //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
+                //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
+                //[ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
+            }
+
+            public override void Unload()
+            {
+                Dedicated?.Clear();
+                Dedicated = null;
+            }
+
+            public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+            {
+                if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
-                    this.color = color;
+                    tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
                 }
             }
 
-            internal static readonly string[] TooltipNames = new string[]
+            public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
             {
+                if (line.Mod == "Aequus" && line.Name == "DedicatedItem")
+                {
+                    DrawDedicatedTooltip(line);
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
+
+        internal static readonly string[] TooltipNames = new string[]
+        {
                 "ItemName",
                 "Favorite",
                 "FavoriteDesc",
@@ -80,47 +115,12 @@ namespace Aequus.Items
                 "BestiaryNotes",
                 "SpecialPrice",
                 "Price",
-            };
-
-            public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
-
-            internal static void Load()
-            {
-                Dedicated = new Dictionary<int, ItemDedication>();
-                //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
-                //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
-                //[ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
-            }
-
-            internal static void Unload()
-            {
-                Dedicated?.Clear();
-                Dedicated = null;
-            }
-        }
+        };
 
         public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
 
-        public override void Load()
-        {
-            Catalogue.Load();
-        }
-
-        public override void Unload()
-        {
-            Catalogue.Unload();
-        }
-
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (Catalogue.Dedicated.TryGetValue(item.type, out var dedication))
-            {
-                tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
-            }
-        }
-
-        public static int GetLineIndex(List<TooltipLine> tooltips, string lineName)
+        public static int GetIndex(this List<TooltipLine> tooltips, string lineName)
         {
             int myIndex = FindLineIndex(lineName);
             int i = 0;
@@ -140,9 +140,9 @@ namespace Aequus.Items
             {
                 name = "Tooltip#";
             }
-            for (int i = 0; i < Catalogue.TooltipNames.Length; i++)
+            for (int i = 0; i < TooltipNames.Length; i++)
             {
-                if (name == Catalogue.TooltipNames[i])
+                if (name == TooltipNames[i])
                 {
                     return i;
                 }
@@ -160,16 +160,6 @@ namespace Aequus.Items
                     return;
                 }
             }
-        }
-
-        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.Mod == "Aequus" && line.Name == "DedicatedItem")
-            {
-                DrawDedicatedTooltip(line);
-                return false;
-            }
-            return true;
         }
 
         public static void DrawDevTooltip(DrawableTooltipLine line)
@@ -313,6 +303,39 @@ namespace Aequus.Items
                 var coords = new Vector2(x, y) + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 3f);
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.2f, rotation, origin, baseScale);
             }
+        }
+
+        public static void UsesLife(this List<TooltipLine> tooltips, ModItem item, int amt)
+        {
+            tooltips.Insert(GetIndex(tooltips, "UseMana"),
+                new TooltipLine(item.Mod, "UsesLife", AequusText.GetText("Tooltips.UsesLife", amt)));
+        }
+
+        public static TooltipLine Find(this List<TooltipLine> tooltips, string name)
+        {
+            return tooltips.Find((t) => t.Mod == "Terraria" && t.Name.Equals(name));
+        }
+
+        public static TooltipLine ItemName(this List<TooltipLine> tooltips)
+        {
+            return tooltips.Find("ItemName");
+        }
+
+        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key)
+        {
+            tooltips.Insert(GetIndex(tooltips, "Material"),
+                    new TooltipLine(item.Mod, name, AequusText.GetText(key)));
+        }
+
+        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key, params object[] args)
+        {
+            tooltips.Insert(GetIndex(tooltips, "Material"),
+                    new TooltipLine(item.Mod, name, AequusText.GetText(key, args)));
+        }
+
+        public static void RemoveCritChanceModifier(this List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "PrefixCritChance");
         }
     }
 }

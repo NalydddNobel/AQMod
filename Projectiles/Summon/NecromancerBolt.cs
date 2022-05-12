@@ -36,7 +36,6 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            Projectile.damage = Math.Max(Projectile.damage, 1);
             if (Main.myPlayer == Projectile.owner)
             {
                 var center = Projectile.Center;
@@ -49,7 +48,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            damage = 0;
+            damage = Math.Min(damage, target.life / 2);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -48,7 +48,6 @@ namespace Aequus.Projectiles.Summon
                     Projectile.alpha = 0;
                 }
             }
-            Projectile.damage = Math.Max(Projectile.damage, 1);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

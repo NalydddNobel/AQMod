@@ -36,7 +36,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            CommonRecipes.RedSpriteDrop(this, ItemID.NimbusRod);
+            AequusRecipes.RedSpriteDrop(this, ItemID.NimbusRod);
         }
     }
 }

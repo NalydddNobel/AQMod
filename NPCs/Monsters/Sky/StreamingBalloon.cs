@@ -167,7 +167,7 @@ namespace Aequus.NPCs.Monsters.Sky
             }
             if (!Main.npc[(int)NPC.ai[0]].active)
             {
-                if (AequusWorld.HardmodeTier && Main.rand.NextBool(4))
+                if (Main.rand.NextBool(4))
                     Item.NewItem(NPC.GetSource_Loot(), new Vector2(NPC.position.X + NPC.width / 2f - Main.npc[(int)NPC.ai[0]].width / 2f, NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2), ModContent.ItemType<AtmosphericEnergy>());
                 NPC.ai[0] = -1f;
                 NPC.netUpdate = true;

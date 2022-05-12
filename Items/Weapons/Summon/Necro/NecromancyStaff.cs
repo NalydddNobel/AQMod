@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Items.Misc;
+using Aequus.NPCs;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +21,13 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public int npcSummon;
         public int drawBanner;
 
+        public virtual int LifeUsed => 100;
+
+        public NecromancyStaff()
+        {
+            npcSummon = NPCID.BlueSlime;
+        }
+
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
@@ -28,36 +36,55 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(20);
+            Item.SetWeaponValues(1, 1f, 0);
             Item.shoot = ModContent.ProjectileType<NecromanticEnemySpawner>();
             Item.shootSpeed = 1f;
             Item.UseSound = SoundID.Item83;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(silver: 50);
-            Item.mana = 150;
+        }
+
+        public override bool AllowPrefix(int pre)
+        {
+            return !AequusItem.CritOnlyModifier.Contains(pre);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             try
             {
-                string key = "NecromancyStaffTooltip";
-                if (NPCID.Sets.CountsAsCritter[npcSummon])
-                {
-                    key = "NecromancyStaffTooltipFriendly";
-                }
-                tooltips.Insert(ItemTooltips.GetLineIndex(tooltips, "Material"),
-                    new TooltipLine(Mod, "NecromancyTooltip", AequusText.GetText("Tooltips." + key, Lang.GetNPCNameValue(npcSummon))));
+                tooltips.ItemName().Text = AequusText.GetText("Tooltips.NecromancyStaff", Lang.GetNPCNameValue(npcSummon));
+                tooltips.UsesLife(this, LifeUsed);
 
-                ItemTooltips.ChangeVanillaLine(tooltips, "ItemName", (t) => t.Text = AequusText.GetText("Tooltips.NecromancyStaff", Lang.GetNPCNameValue(npcSummon)));
+                string key = NPCID.Sets.CountsAsCritter[npcSummon] ? "NecromancyStaffTooltipFriendly" : "NecromancyStaffTooltip";
+                tooltips.PreTooltip(this, "NecromancyTooltip", "Tooltips." + key, Lang.GetNPCNameValue(npcSummon));
+
+                int damage = 0;
+                NPC npc = new NPC();
+                npc.SetDefaults(npcSummon);
+                damage = (int)(npc.damage * NecromancyNPC.GetDamageMultiplier(npc, npc.damage));
+                tooltips.Find("Damage").Text = damage + Lang.tip[53].Value;
+                tooltips.RemoveCritChanceModifier();
             }
             catch
             {
             }
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            if (NecromancyDatabase.TryGetByNetID(npcSummon, NPCID.FromNetId(npcSummon), out var value))
+            {
+                var aequus = player.Aequus();
+                return (aequus.ghostSlots + (value.SlotsUsed.GetValueOrDefault(1) * 2 - 1)) < aequus.ghostSlotsMax;
+            }
+            return true;
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectileDirect(source, Main.MouseWorld, Vector2.Zero, Item.shoot, 0, 0f, player.whoAmI, npcSummon);
+            player.Aequus().SacrificeLife(LifeUsed, LifeUsed / 8, reason: PlayerDeathReason.ByCustomReason(AequusText.GetText("Deaths.NecromancyStaffUsage", player.name, Lang.GetNPCName(npcSummon))));
+            Projectile.NewProjectileDirect(source, Main.MouseWorld, Vector2.Zero, Item.shoot, Item.damage, 0f, player.whoAmI, npcSummon);
             return false;
         }
 
@@ -136,13 +163,10 @@ namespace Aequus.Items.Weapons.Summon.Necro
             NewRecipe(ItemID.ZombieBanner, NPCID.Zombie).Register();
             NewRecipe(ItemID.ZombieBanner, NPCID.MaggotZombie).AddIngredient(ItemID.Tombstone)
                 .AddCondition(Recipe.Condition.InGraveyardBiome).Register();
-            NewRecipe(ItemID.MothronBanner, NPCID.MothronSpawn).Register();
-            NewRecipe(ItemID.MothronBanner, NPCID.Mothron).AddIngredient(ItemID.FragmentStardust, 18).Register();
-            NewRecipe(ItemID.BloodNautilusBanner, NPCID.BloodNautilus).AddIngredient(ItemID.FragmentStardust, 18).Register();
 
             foreach (var ghost in NecromancyDatabase.NPCs)
             {
-                if (ghost.Value.PowerNeeded > 0f)
+                if (ghost.Value.PowerNeeded > 0f && ghost.Value.PowerNeeded <= 3f)
                 {
                     int banner = Item.NPCtoBanner(ghost.Key);
                     if (banner > 0 && !registeredBanners.Contains(banner))

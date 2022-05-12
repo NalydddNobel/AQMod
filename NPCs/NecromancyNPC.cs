@@ -193,7 +193,7 @@ namespace Aequus.NPCs
                 stats.Aggro?.OnPreAI(npc, this);
                 if (zombieTimer == 0)
                 {
-                    int time = (int)(Main.player[zombieOwner].Aequus().necromancyTime);
+                    int time = (int)(Main.player[zombieOwner].Aequus().ghostLifespan);
                     if (stats.TimeLeftMultiplier.HasValue)
                     {
                         time = (int)(time * stats.TimeLeftMultiplier.Value);
@@ -300,7 +300,7 @@ namespace Aequus.NPCs
                     AI_ReturnPlayerLocation = Vector2.Zero;
                 }
                 var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
-                aequus.necromancySlotUsed += slotsConsumed;
+                aequus.ghostSlots += slotsConsumed;
                 if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
                     Color color = new Color(50, 150, 255, 100);
@@ -336,10 +336,6 @@ namespace Aequus.NPCs
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
             if (n < 200)
             {
-                if (npc.HasBuff(ModContent.BuffType<RevenantDebuff>()))
-                {
-                    Main.player[zombieOwner].Aequus().revenantScepterZombie = npc.type;
-                }
                 Main.npc[n].whoAmI = n;
                 SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
             }

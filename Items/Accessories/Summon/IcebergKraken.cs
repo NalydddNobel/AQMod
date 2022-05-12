@@ -28,7 +28,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void AddRecipes()
         {
-            CommonRecipes.SpaceSquidDrop(this, ModContent.ItemType<SentrySquid>());
+            AequusRecipes.SpaceSquidDrop(this, ModContent.ItemType<SentrySquid>());
         }
     }
 }

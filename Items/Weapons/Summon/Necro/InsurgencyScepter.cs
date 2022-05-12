@@ -6,18 +6,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class InsurgencyScepter : ModItem
+    public class InsurgencyScepter : ZombieScepter
     {
-        public override void SetStaticDefaults()
-        {
-            Item.staff[Type] = true;
-
-            this.SetResearch(1);
-        }
-
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(50);
+            Item.SetWeaponValues(25, 0.8f, 0);
             Item.shoot = ModContent.ProjectileType<InsurgentSkull>();
             Item.shootSpeed = 30f;
             Item.rare = ItemRarityID.Yellow;
@@ -30,7 +24,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Keybrand)
+                .AddIngredient<RevenantScepter>()
                 .AddIngredient<Hexoplasm>(12)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.MythrilAnvil)

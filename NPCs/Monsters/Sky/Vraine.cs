@@ -462,9 +462,7 @@ namespace Aequus.NPCs.Monsters.Sky
             var whenAllNPCsAreDead = new WhenAllNPCsAreDeadCondition(Type);
             this.CreateLoot(npcLoot)
                 .Add<Vrang>(whenAllNPCsAreDead, chance: 8, stack: 1)
-                .SetCondition(new Conditions.IsHardmode())
                 .Add<AtmosphericEnergy>(condition: whenAllNPCsAreDead, chance: 20, stack: 1)
-                .RegisterCondition()
                 .Add<CensorDye>(chance: 60, stack: 1);
         }
 

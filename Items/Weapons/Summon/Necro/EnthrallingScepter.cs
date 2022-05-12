@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class EnthrallingScepter : ModItem
+    public class EnthrallingScepter : ZombieScepter
     {
         public override void SetStaticDefaults()
         {
@@ -17,6 +17,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(30);
+            Item.SetWeaponValues(500, 1f, 96);
             Item.shoot = ModContent.ProjectileType<EnthrallingBolt>();
             Item.shootSpeed = 20f;
             Item.rare = ItemRarityID.Red;

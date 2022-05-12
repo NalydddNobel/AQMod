@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Melee
             this.SetResearch(1);
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
 
-            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(110, 110, 128, 255));
+            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()

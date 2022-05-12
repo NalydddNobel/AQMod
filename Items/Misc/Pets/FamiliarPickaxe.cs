@@ -13,7 +13,7 @@ namespace Aequus.Items.Misc.Pets
         {
             this.SetResearch(1);
 
-            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(200, 65, 70, 255));
+            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(200, 65, 70, 255));
         }
 
         public override void SetDefaults()

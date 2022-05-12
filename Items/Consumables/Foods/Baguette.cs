@@ -13,7 +13,7 @@ namespace Aequus.Items.Consumables.Foods
             this.SetResearch(1);
             ItemID.Sets.IsFood[Type] = true;
 
-            ItemTooltips.Catalogue.Dedicated[Type] = new ItemTooltips.Catalogue.ItemDedication(new Color(187, 142, 42, 255));
+            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(187, 142, 42, 255));
 
             Main.RegisterItemAnimation(Type, new FoodFramingHack());
         }

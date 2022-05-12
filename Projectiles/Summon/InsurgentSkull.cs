@@ -131,7 +131,6 @@ namespace Aequus.Projectiles.Summon
                 Projectile.rotation += MathHelper.Pi;
             }
             Projectile.frame = 0;
-            Projectile.damage = 1;
         }
         public void SpawnExtraSouls()
         {

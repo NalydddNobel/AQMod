@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             if (line.Mod == "Terraria" && line.Name == "ItemName")
             {
-                ItemTooltips.DrawDevTooltip(line);
+                AequusTooltips.DrawDevTooltip(line);
                 return false;
             }
             return true;

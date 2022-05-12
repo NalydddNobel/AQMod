@@ -143,12 +143,16 @@ namespace Aequus
         /// Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
         /// </summary>
         public uint interactionCooldown;
-        public int revenantScepterZombie;
 
         public int turretSlotCount;
-        public int necromancySlotUsed;
-        public int necromancySlots;
-        public int necromancyTime;
+
+        public int ghostSlotsMax;
+        public int ghostSlotsOld;
+        public int ghostSlots;
+
+        public int ghostLifespan;
+
+        public List<LifeSacrifice> sacrifices;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -187,6 +191,8 @@ namespace Aequus
             closestEnemyOld = -1;
             closestEnemy = -1;
             autoSentryCooldown = 120;
+
+            sacrifices = new List<LifeSacrifice>();
         }
 
         public override void PreUpdate()
@@ -216,6 +222,7 @@ namespace Aequus
         {
             autoSentry = false;
             autoSentryCooldown = 120;
+            sacrifices.Clear();
         }
 
         public override void ResetEffects()
@@ -237,8 +244,8 @@ namespace Aequus
             glowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
-            necromancySlots = 1;
-            necromancyTime = 3600;
+            ghostSlotsMax = 1;
+            ghostLifespan = 3600;
         }
 
         public override void PreUpdateBuffs()
@@ -316,18 +323,48 @@ namespace Aequus
             }
             if (necromancyMinionSlotConvert)
             {
-                necromancySlots += Player.maxMinions - 1;
+                ghostSlotsMax += Player.maxMinions - 1;
                 Player.maxMinions = 1;
             }
             if (Main.myPlayer == Player.whoAmI)
             {
                 UpdateZombies();
             }
-            necromancySlotUsed = 0;
+            ghostSlotsOld = ghostSlots;
+            ghostSlots = 0;
+            UpdateSacrifice();
+        }
+        public void UpdateSacrifice()
+        {
+            for (int i = 0; i < sacrifices.Count; i++)
+            {
+                var s = sacrifices[i];
+                s.time--;
+                if (s.time <= 0)
+                {
+                    var reason = s.reason ?? PlayerDeathReason.ByOther(4);
+                    if (s.physicallyHitPlayer)
+                    {
+                        Player.Hurt(reason, s.amtTaken, -Player.direction);
+                    }
+                    else
+                    {
+                        Player.statLife -= s.amtTaken;
+                        if (Player.statLife <= 0)
+                        {
+                            Player.KillMe(reason, s.amtTaken, -Player.direction);
+                        }
+                    }
+                    sacrifices.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                sacrifices[i] = s;
+            }
         }
         public void UpdateZombies()
         {
-            if (necromancySlotUsed > necromancySlots)
+            if (ghostSlots > ghostSlotsMax)
             {
                 int removeNPC = -1;
                 int oldestTime = int.MaxValue;
@@ -339,7 +376,7 @@ namespace Aequus
                         if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
                         {
                             var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                            int timeComparison = GetDespawnComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
+                            int timeComparison = GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
                             if (timeComparison < oldestTime)
                             {
                                 removeNPC = i;
@@ -364,13 +401,9 @@ namespace Aequus
                 }
             }
         }
-        public int GetDespawnComparison(NPC npc, NecromancyNPC zombie)
+        public int GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
         {
-            float tiering = 999f;
-            if (NecromancyDatabase.TryGetByNetID(npc, out var value))
-            {
-                tiering = value.PowerNeeded;
-            }
+            float tiering = stats.PowerNeeded;
             if (npc.boss)
             {
                 tiering += 10f;
@@ -379,7 +412,7 @@ namespace Aequus
             {
                 tiering *= 2f;
             }
-            return (int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2;
+            return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
         }
 
         public override void PostUpdate()
@@ -764,6 +797,37 @@ namespace Aequus
             drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
             orig(ref drawinfo);
             drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
+        }
+
+        public struct LifeSacrifice
+        {
+            public int time;
+            public int amtTaken;
+            public bool physicallyHitPlayer = false;
+            public PlayerDeathReason reason = null;
+
+            public LifeSacrifice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
+            {
+                this.amtTaken = amtTaken;
+                this.time = time;
+                physicallyHitPlayer = hitPlayer;
+                this.reason = reason;
+            }
+        }
+
+        public void SacrificeLife(int amt, int frames = 1, int separation = 1, bool hitPlayer = false, PlayerDeathReason reason = null)
+        {
+            if (amt < frames || frames < 2)
+            {
+                sacrifices.Add(new LifeSacrifice(amt, 0));
+                return;
+            }
+            int lifeTaken = amt / frames;
+            for (int i = 0; i < frames - 1; i++)
+            {
+                sacrifices.Add(new LifeSacrifice(lifeTaken, i * separation, hitPlayer, reason));
+            }
+            sacrifices.Add(new LifeSacrifice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
         }
     }
 }

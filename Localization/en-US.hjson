@@ -39,7 +39,7 @@ Mods: {
 			Trophy: Will 100% drop when defeated flawlessly
 		}
 		Tooltips: {
-			RevenantScepterGhost: "Contains a {0} soul"
+			UsesLife: "Uses {0} life"
 			NecromancyStaff: "{0} Staff"
 			NecromancyStaffTooltip: 
 				'''
@@ -385,9 +385,8 @@ Mods: {
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
 			RevenantScepter: 
 				'''
-				Drains the soul of strong enemies
-				Defeated enemies will join your team, stealing their soul
-				Right click to consume the soul and recruit them
+				Drains the soul of strong enemies, instantly killing weakened enemies
+				Defeated enemies will join your team
 				'''
 			UnenchantedStaff: May be enchanted
 			RitualisticSkull: Converts all of your minion slots into ghost minion slots
@@ -1968,7 +1967,10 @@ Mods: {
 				NoHome: How will I store my stolen goods without me ship, definitely not digging up a lobster crevice that's for sure!
 			}
 		}
-
+		
+		Deaths: {
+			NecromancyStaffUsage: "{0} converted themselves into a {1}"
+		}
 		UpgradeGrapplingHooks: Upgrade Hooks
 
 		Complete: Complete
