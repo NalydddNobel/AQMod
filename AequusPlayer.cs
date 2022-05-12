@@ -75,7 +75,6 @@ namespace Aequus
         public int closestEnemy;
         public int closestEnemyOld;
 
-        public bool dreamMask;
         /// <summary>
         /// Applied by <see cref="RitualisticSkull"/>
         /// </summary>
@@ -227,7 +226,6 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            dreamMask = false;
             necromancyMinionSlotConvert = false;
             frostburnSentry = false;
             teamContext = Player.team;

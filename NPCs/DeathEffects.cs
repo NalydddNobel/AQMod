@@ -121,15 +121,15 @@ namespace Aequus.NPCs
             {
                 return true;
             }
-            for (int i = 0; i < players.Count; i++)
-            {
-                if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
-                {
-                    zombie.zombieOwner = players[i].whoAmI;
-                    zombie.zombieDebuffTier = info.PowerNeeded;
-                    return true;
-                }
-            }
+            //for (int i = 0; i < players.Count; i++)
+            //{
+            //    if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
+            //    {
+            //        zombie.zombieOwner = players[i].whoAmI;
+            //        zombie.zombieDebuffTier = info.PowerNeeded;
+            //        return true;
+            //    }
+            //}
             return false;
         }
         public void DeathEffect_SnowgraveFreeze(NPC npc)
