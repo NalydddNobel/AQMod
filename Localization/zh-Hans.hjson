@@ -39,7 +39,7 @@ Mods: {
 			Trophy: 在无伤击败时100%掉落
 		}
 		Tooltips: {
-			RevenantScepterGhost: "控制一个{0}幽魂"
+			UsesLife: "使用{0}点生命"
 			NecromancyStaff: "{0}法杖"
 			NecromancyStaffTooltip: 
 				'''
@@ -385,9 +385,8 @@ Mods: {
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
 			RevenantScepter: 
 				'''
-				消耗强大敌人的灵魂
-				被击败的敌人会加入你的队伍, 窃取它们的灵魂
-				右键点击以消耗灵魂并招募它们
+				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+				被击败的敌人会加入你的队伍
 				'''
 			UnenchantedStaff: 可被附魔
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
@@ -1969,6 +1968,9 @@ Mods: {
 			}
 		}
 
+		Deaths: {
+			NecromancyStaffUsage: "{0}将自己转化为了一个{1}"
+		}
 		UpgradeGrapplingHooks: 升级钩爪
 
 		Complete: 完成
