@@ -79,12 +79,13 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Osiris: 欧西里斯
 			SkeletonKey: 骷髅钥匙
 			RevenantScepter: 亡魂权杖
 			NecromancyStaff: 死灵法杖
 			UnenchantedStaff: 未附魔的法杖
 			RitualisticSkull: 仪式颅骨
-			InsurgencyScepter: 叛乱权杖
+			Insurgency: 叛乱
 			ZombieScepter: 僵尸权杖
 			Moro: 摩洛
 			IcebergKraken: 冰山海妖
@@ -387,6 +388,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Osiris: 
+				'''
+				消耗极强敌人的灵魂
+				被击败的敌人会加入你的队伍
+				命中敌人时会爆裂成一群蝗虫群
+				'''
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
 			RevenantScepter: 
 				'''
@@ -395,7 +402,7 @@ Mods: {
 				'''
 			UnenchantedStaff: 可被附魔
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
-			InsurgencyScepter: 
+			Insurgency: 
 				'''
 				消耗强大敌人的灵魂
 				被诅咒的敌人会释放会攻击附近敌人的灵魂
@@ -1885,11 +1892,6 @@ Mods: {
 				InfoDebugLogsTooltip: 
 					'''
 					只对需要确认事件的第三方开发者有用
-					'''
-				NecromancyColor: 死灵幽魂颜色
-				NecromancyColorTooltip: 
-					'''
-					允许你控制你的死灵幽魂所使用的颜色.
 					'''
 			}
 		}
