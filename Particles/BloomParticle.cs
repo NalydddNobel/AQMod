@@ -38,7 +38,13 @@ namespace Aequus.Particles
 
         public virtual void DrawBloom(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
         {
-            spritebatch.Draw(BloomTexture, Position - Main.screenPosition, null, BloomColor, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
+            try
+            {
+                spritebatch.Draw(BloomTexture, Position - Main.screenPosition, null, BloomColor, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
+            }
+            catch
+            {
+            }
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Aequus
         private void InnerLoadProperty(PropertyInfo p)
         {
             string folderSpace = InnerGetPath(p);
-            p.SetMethod.Invoke(null, new object[] { ModContent.Request<Texture2D>("Aequus/" + folderSpace + "/" + p.Name, AssetRequestMode.ImmediateLoad) });
+            p.SetMethod.Invoke(null, new object[] { ModContent.Request<Texture2D>("Aequus/" + folderSpace + "/" + p.Name) });
         }
         private string InnerGetPath(PropertyInfo p)
         {

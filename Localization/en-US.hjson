@@ -180,7 +180,7 @@ Mods: {
 			MagicWand: Magic Wand
 			Deltoid: Deltoid
 			Lightbulb: Lightbulb
-			CrimsonHellSword: Cauterizer
+			Cauterizer: Cauterizer
 			HellsBoon: Hell's Boon
 			MonoxiderStaff: Monoxider Staff
 			ScarletSea: Scarlet Sea
@@ -693,11 +693,10 @@ Mods: {
 			MagicWand: Shoots a bolt which explodes into horizontal waves
 			Deltoid: Shoots a hellish arrow which summons more arrows
 			Lightbulb: Emits light using the power of stars
-			CrimsonHellSword:
+			Cauterizer:
 				'''
 				Shoots a wave of explosive demonic energy
 				Sword hits inflict crimson hellfire
-				'That's gotta burn'
 				'''
 			HellsBoon:
 				'''

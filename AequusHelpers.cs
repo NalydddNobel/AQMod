@@ -69,6 +69,15 @@ namespace Aequus
             }
         }
 
+        public static void GetDrawInfo(this Projectile projectile, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength)
+        {
+            texture = TextureAssets.Projectile[projectile.type].Value;
+            offset = projectile.Size / 2f;
+            frame = projectile.Frame();
+            origin = frame.Size() / 2f;
+            trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
+        }
+
         public static Vector2 NextCircularFromRect(this UnifiedRandom rand, Rectangle rectangle)
         {
             return rectangle.Center.ToVector2() + rand.NextVector2Unit() * rand.NextFloat(rectangle.Size().Length() / 2f);
