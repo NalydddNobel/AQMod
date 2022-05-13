@@ -5,8 +5,12 @@ Mods: {
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
 			
 			BloodMimic: 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
-
+			
 			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
+
+			Magmabubble: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩史莱姆在吞食了一条血爬行动物后长出了腿, 但它太重了, 爬不上墙壁.
+			TrapperImp: 恶魔能量从血巢的入口中倾泻而出. 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 将其自己的宠物.
+			Cindera: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩蝙蝠有着铰链式的下巴, 就像用来钳制猎物的宝箱.
 
 			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
 			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
@@ -20,10 +24,15 @@ Mods: {
 
 			Snobster: 一种势利的虾, 这只特别势利.
 		}
+
+		BiomeName: {
+			DemonSiegeInvasion: 恶魔围攻
+		}
+
 		DropCondition: {
+			OtherwiseChance: 满足'{0}'条件时100%掉落
 			LastAlive: 仅会掉落自残存的敌人
 			OnFirstKill: 仅会在首次击杀时掉落
-			OnFirstKillOtherwiseChance: 首次击杀后具有100%掉落几率
 			StreamingBalloonKill: 
 			'''
 			    仅会在击杀身上有着气球的史莱姆时掉落
@@ -81,7 +90,7 @@ Mods: {
 		ItemName: {
 			Osiris: 欧西里斯
 			SkeletonKey: 骷髅钥匙
-			RevenantScepter: 亡魂权杖
+			Revenant: 亡魂
 			NecromancyStaff: 死灵法杖
 			UnenchantedStaff: 未附魔的法杖
 			RitualisticSkull: 仪式颅骨
@@ -395,7 +404,7 @@ Mods: {
 				命中敌人时会爆裂成一群蝗虫群
 				'''
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
-			RevenantScepter: 
+			Revenant: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
 				被击败的敌人会加入你的队伍
@@ -1124,7 +1133,7 @@ Mods: {
 			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
 			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
 			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
-			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmalbubble}"
+			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
 			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapImp}"
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
@@ -1455,13 +1464,6 @@ Mods: {
 			Combo: "{0}%连击效率"
 		}
 
-		PrefixName: {
-			Speedrunning: 极速
-			Outpacing: 超越
-			Timed: 时限
-			Scheduled: 定序
-		}
-
 		NPCName: {
 			DustDevil: 尘卷风
 			OmegaStarite: 终末之星
@@ -1481,6 +1483,7 @@ Mods: {
 			DwarfStarite: 侏儒源星
 			Starite: 星之源
 			UltraStarite: 终耀源星
+
 			Magmalbubble: 熔火喷吐者
 			TrapImp: 捕魂小鬼
 			Trapper: 捕魂钩
