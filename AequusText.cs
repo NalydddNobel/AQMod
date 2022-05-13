@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -10,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class AequusText : ILoadable
+    public class AequusText : IOnModLoad
     {
         public static FieldInfo translationsField;
         public static Dictionary<string, ModTranslation> Text;
@@ -44,14 +45,14 @@ namespace Aequus
             return (Dictionary<int, string>)translationsField.GetValue(text);
         }
 
-        public static void OnModLoad(Aequus mod)
+        void ILoadable.Load(Mod mod)
+        {
+        }
+
+        void IOnModLoad.OnModLoad(Aequus aequus)
         {
             translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
             Text = (Dictionary<string, ModTranslation>)typeof(LocalizationLoader).GetField("translations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
-        }
-
-        void ILoadable.Load(Mod mod)
-        {
         }
 
         void ILoadable.Unload()

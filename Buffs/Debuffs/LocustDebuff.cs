@@ -12,11 +12,16 @@ namespace Aequus.Buffs.Debuffs
             Main.buffNoSave[Type] = true;
         }
 
-        public static void AddStack(NPC npc, int debuffTime, int amt = 1)
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.GetGlobalNPC<NPCDebuffs>().hasLocust = true;
+        }
+
+        public static void AddStack(NPC npc, int debuffTime, int stacksAmt = 1)
         {
             npc.AddBuff(ModContent.BuffType<LocustDebuff>(), debuffTime);
-            npc.GetGlobalNPC<DamageOverTime>().hasLocust = true;
-            npc.GetGlobalNPC<DamageOverTime>().locustStacks += amt;
+            npc.GetGlobalNPC<NPCDebuffs>().hasLocust = true;
+            npc.GetGlobalNPC<NPCDebuffs>().locustStacks += (byte)stacksAmt;
             npc.netUpdate = true;
         }
     }

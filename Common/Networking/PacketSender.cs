@@ -57,7 +57,7 @@ namespace Aequus.Common.Networking
 
         internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
         {
-            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>(), npc.GetGlobalNPC<DamageOverTime>(), };
+            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>(), npc.GetGlobalNPC<NPCDebuffs>(), };
         }
         internal static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
         {

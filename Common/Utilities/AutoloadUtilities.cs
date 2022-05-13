@@ -11,7 +11,7 @@ namespace Aequus.Common.Utilities
             return ass.GetTypes();
         }
 
-        public static bool HasInstanceOf<T>(Type t, out T instance) where T : class
+        public static bool TryGetInstanceOf<T>(Type t, out T instance) where T : class
         {
             instance = null;
             foreach (var i in t.GetInterfaces())
@@ -19,6 +19,10 @@ namespace Aequus.Common.Utilities
                 if (i.IsAssignableTo(typeof(T)))
                 {
                     instance = ModContent.GetInstance<T>();
+                    if (instance == null)
+                    {
+                        instance = (T)Activator.CreateInstance(t);
+                    }
                     return instance != null;
                 }
             }

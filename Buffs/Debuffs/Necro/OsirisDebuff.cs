@@ -2,7 +2,7 @@
 using Aequus.Graphics;
 using Terraria;
 
-namespace Aequus.Buffs.Debuffs
+namespace Aequus.Buffs.Debuffs.Necro
 {
     public class OsirisDebuff : NecromancyDebuff
     {

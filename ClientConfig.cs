@@ -7,11 +7,12 @@ using Microsoft.Xna.Framework;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace Aequus
 {
-    public sealed class ClientConfig : ConfigurationBase
+    public sealed class ClientConfig : ConfigurationBase, IPostSetupContent
     {
         public override bool Autoload(ref string name)
         {
@@ -66,7 +67,7 @@ namespace Aequus
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
 
-        internal static void OnModLoad(Aequus aequus)
+        void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
             AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.ItemText<NoonPotion>() + "  " + s);
@@ -74,7 +75,14 @@ namespace Aequus
             AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.NecromancyColor", "Label", (s) => AequusText.ItemText(ItemID.CyanPaint) + "  " + s);
+        }
+
+        void ILoadable.Load(Mod mod)
+        {
+        }
+
+        void ILoadable.Unload()
+        {
         }
     }
 }

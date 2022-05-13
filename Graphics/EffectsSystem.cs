@@ -11,8 +11,6 @@ namespace Aequus.Graphics
     {
         public static NecromancyScreenRenderer[] necromancyRenderers;
 
-        public static ModEffects Effects { get; private set; }
-
         public static MiniRandom EffectRand { get; private set; }
 
         public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
@@ -23,7 +21,6 @@ namespace Aequus.Graphics
 
         public override void Load()
         {
-            Effects = new ModEffects();
             NPCsBehindAllNPCs = new DrawIndexCache();
             ProjsBehindTiles = new DrawIndexCache();
             Shake = new ScreenShake();
@@ -52,7 +49,6 @@ namespace Aequus.Graphics
         {
             necromancyRenderers = null;
             BehindProjs = null;
-            Effects = null;
             Shake = null;
             NPCsBehindAllNPCs = null;
             ProjsBehindTiles = null;

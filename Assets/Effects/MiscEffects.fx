@@ -33,8 +33,29 @@ float4 VerticalGradient(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) 
     return float4(lerp(uColor, uSecondaryColor, GetUVForFrame(coords).y), sampleColor.a) * tex2D(uImage0, coords).a;
 }
 
+float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    if (color.a != 0)
+    {
+        float y = coords.y * uOpacity;
+        y = uOpacity - y;
+        y -= 0.01;
+        if (y <= 0)
+        {
+            return float4(0, 0, 0, 0);
+        }
+        return float4(y * color.r * sampleColor.r, y * color.g * sampleColor.g, y * color.b * sampleColor.b, y * color.a * sampleColor.a);
+    }
+    return color * sampleColor;
+}
+
 technique Technique1
 {
+    pass SpikeFadePass
+    {
+        PixelShader = compile ps_2_0 SpikeFade();
+    }
     pass VerticalGradientPass
     {
         PixelShader = compile ps_2_0 VerticalGradient();

@@ -38,13 +38,15 @@ namespace Aequus
         public override void Load()
         {
             Instance = this;
-            AequusHelpers.OnModLoad(this);
-            AequusText.OnModLoad(this);
-            ClientConfig.OnModLoad(this);
             if (Main.netMode != NetmodeID.Server)
             {
                 InventoryInterface = new UserInterface();
                 NPCTalkInterface = new UserInterface();
+            }
+
+            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            {
+                IOnModLoad.CheckAutoload(this, t);
             }
         }
 
@@ -60,7 +62,6 @@ namespace Aequus
         {
             AequusRecipes.Groups.AddRecipeGroups();
             NecromancyDatabase.FinalizeContent();
-            NecromancyNPC.AdjustBuffImmunities();
         }
 
         public override void AddRecipes()
@@ -84,7 +85,6 @@ namespace Aequus
         public override void Unload()
         {
             Instance = null;
-            AequusHelpers.Unload();
             InventoryInterface = null;
             NPCTalkInterface = null;
         }

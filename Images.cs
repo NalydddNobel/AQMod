@@ -29,6 +29,9 @@ namespace Aequus
 
         private static BindingFlags SearchFlags => BindingFlags.Public | BindingFlags.Static;
 
+        [ImgPath("Assets/Particles")]
+        public static Asset<Texture2D> Particle { get; private set; }
+
         public static Asset<Texture2D> LightRay { get; private set; }
         public static Asset<Texture2D> TextBloom { get; private set; }
         [ImgPath("UI")]
@@ -70,7 +73,7 @@ namespace Aequus
         private void InnerLoadProperty(PropertyInfo p)
         {
             string folderSpace = InnerGetPath(p);
-            p.SetMethod.Invoke(null, new object[] { ModContent.Request<Texture2D>("Aequus/" + folderSpace + "/" + p.Name) });
+            p.SetMethod.Invoke(null, new object[] { ModContent.Request<Texture2D>("Aequus/" + folderSpace + "/" + p.Name, AssetRequestMode.ImmediateLoad) });
         }
         private string InnerGetPath(PropertyInfo p)
         {

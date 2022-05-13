@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs.Necro;
 using Microsoft.Xna.Framework;
 using Terraria;
 

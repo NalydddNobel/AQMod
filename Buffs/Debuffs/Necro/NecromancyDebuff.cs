@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs
+namespace Aequus.Buffs.Debuffs.Necro
 {
     public class NecromancyDebuff : ModBuff
     {

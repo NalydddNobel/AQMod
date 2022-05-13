@@ -1,8 +1,8 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Particles;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

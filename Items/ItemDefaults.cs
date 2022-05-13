@@ -37,7 +37,7 @@ namespace Aequus.Items
 
         public static int CrabCreviceValue => Item.sellPrice(silver: 25);
         public static int GlimmerValue => Item.sellPrice(silver: 75);
-        public static int DemonSiegeValue => Item.sellPrice(silver: 80);
+        public static int DemonSiegeValue => Item.sellPrice(gold: 2, silver: 50);
         public static int MemorialistItemBuyValue => Item.buyPrice(gold: 20);
         public static int OmegaStariteValue => Item.sellPrice(gold: 4, silver: 50);
         public static int GaleStreamsValue => Item.sellPrice(gold: 4);

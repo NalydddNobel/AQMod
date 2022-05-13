@@ -1,8 +1,8 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

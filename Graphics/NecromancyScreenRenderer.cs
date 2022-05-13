@@ -3,11 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
+using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public sealed class NecromancyScreenRenderer : ScreenTarget
+    public sealed class NecromancyScreenRenderer : ScreenTarget, ILoadable
     {
+        public static StaticMiscShaderInfo<ShaderData> Necromancy { get; private set; }
+
         public readonly DrawIndexCache NPCs;
         public readonly int Team;
         public int Index;
@@ -36,12 +40,26 @@ namespace Aequus.Graphics
             public static int Count = 11;
         }
 
+        public NecromancyScreenRenderer()
+        {
+        }
+
         public NecromancyScreenRenderer(int playerTeam, int index, Func<Color> color)
         {
             Team = playerTeam;
             Index = index;
             DrawColor = color;
             NPCs = new DrawIndexCache();
+        }
+
+        void ILoadable.Load(Mod mod)
+        {
+            Necromancy = new StaticMiscShaderInfo<ShaderData>("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+        }
+
+        void ILoadable.Unload()
+        {
+            Necromancy = null;
         }
 
         public void Add(int whoAmI)
@@ -93,8 +111,8 @@ namespace Aequus.Graphics
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
             var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
-            ModEffects.NecromancyOutlineShader.UseColor(DrawColor());
-            ModEffects.NecromancyOutlineShader.Apply(drawData);
+            Necromancy.ShaderData.UseColor(DrawColor());
+            Necromancy.ShaderData.Apply(drawData);
 
             drawData.Draw(spriteBatch);
 

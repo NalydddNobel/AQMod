@@ -1297,9 +1297,9 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
-                ModEffects.MiscShader.UseSecondaryColor(Color.Orange);
-                ModEffects.MiscShader.UseColor(Color.Red);
-                ModEffects.MiscShader.Apply(drawData);
+                ModEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
+                ModEffects.VerticalGradient.ShaderData.UseColor(Color.Red);
+                ModEffects.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in circular)
                 {

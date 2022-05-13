@@ -1,9 +1,9 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Common;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
-using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

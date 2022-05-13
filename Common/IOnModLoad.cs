@@ -4,15 +4,15 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common
 {
-    internal interface IPostSetupContent : ILoadable
+    internal interface IOnModLoad : ILoadable
     {
-        void PostSetupContent(Aequus aequus);
+        void OnModLoad(Aequus aequus);
 
         public static bool CheckAutoload(Aequus aequus, Type type)
         {
-            if (AutoloadUtilities.TryGetInstanceOf<IPostSetupContent>(type, out var setupContent))
+            if (AutoloadUtilities.TryGetInstanceOf<IOnModLoad>(type, out var onModLoad))
             {
-                setupContent.PostSetupContent(aequus);
+                onModLoad.OnModLoad(aequus);
                 return true;
             }
             return false;

@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

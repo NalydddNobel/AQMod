@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Particles.Dusts;
@@ -17,7 +18,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class NecromancyNPC : GlobalNPC, IEntityNetworker
+    public class NecromancyNPC : GlobalNPC, IEntityNetworker, IAddRecipes
     {
         public static bool AI_IsZombie { get; set; }
         public static int AI_ZombiePlayerOwner { get; set; }
@@ -449,39 +450,6 @@ namespace Aequus.Content.Necromancy
             return dmgMultiplier;
         }
 
-        internal static void AdjustBuffImmunities()
-        {
-            var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
-            buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
-            for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
-            {
-                if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
-                {
-                    if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(i, out var value))
-                    {
-                        NPCID.Sets.DebuffImmunitySets.Add(i, new NPCDebuffImmunityData() { SpecificallyImmuneTo = buffList.ToArray() });
-                        continue;
-                    }
-                    if (value == null)
-                    {
-                        value = NPCID.Sets.DebuffImmunitySets[i] = new NPCDebuffImmunityData();
-                    }
-                    if (value.SpecificallyImmuneTo == null)
-                    {
-                        value.SpecificallyImmuneTo = buffList.ToArray();
-                        continue;
-                    }
-                    Array.Resize(ref value.SpecificallyImmuneTo, value.SpecificallyImmuneTo.Length + buffList.Count);
-                    int k = 0;
-                    for (int j = value.SpecificallyImmuneTo.Length - buffList.Count; j < value.SpecificallyImmuneTo.Length; j++)
-                    {
-                        value.SpecificallyImmuneTo[j] = buffList[k];
-                        k++;
-                    }
-                }
-            }
-        }
-
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (isZombie && !NecromancyScreenRenderer.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
@@ -608,6 +576,19 @@ namespace Aequus.Content.Necromancy
                 zombieOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();
+            }
+        }
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
+            buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
+            for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
+            {
+                if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
+                {
+                    BuffImmunitiesAdjuster.AddStaticImmunity(i, false, buffList.ToArray());
+                }
             }
         }
     }

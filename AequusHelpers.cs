@@ -1,8 +1,8 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -69,21 +69,35 @@ namespace Aequus
             }
         }
 
-        internal static void OnModLoad(Aequus aequus)
+        public static Vector2 NextCircularFromRect(this UnifiedRandom rand, Rectangle rectangle)
         {
-            Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
-            Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
-            Main_bloodMoon = new StaticManipulator<bool>(() => ref Main.bloodMoon);
-            Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
-            Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+            return rectangle.Center.ToVector2() + rand.NextVector2Unit() * rand.NextFloat(rectangle.Size().Length() / 2f);
         }
 
-        internal static void Unload()
+        public static Point FluffizePoint(Point point, int fluff = 10)
         {
-            Main_invasionSize = null;
-            Main_invasionType = null;
-            Main_eclipse = null;
-            Main_dayTime = null;
+            point.Fluffize(fluff);
+            return point;
+        }
+
+        public static void Fluffize(this ref Point point, int fluff = 10)
+        {
+            if (point.X < fluff)
+            {
+                point.X = fluff;
+            }
+            else if (point.X > Main.maxTilesX - fluff)
+            {
+                point.X = Main.maxTilesX - fluff;
+            }
+            if (point.Y < fluff)
+            {
+                point.Y = fluff;
+            }
+            else if (point.Y > Main.maxTilesY - fluff)
+            {
+                point.Y = Main.maxTilesY - fluff;
+            }
         }
 
         public static void AddOrAdjust<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
@@ -172,7 +186,7 @@ namespace Aequus
             npc.lifeRegen += regen * NPCREGEN;
         }
 
-        public static void Max(this (int, int) tuple, int value) 
+        public static void Max(this (int, int) tuple, int value)
         {
             tuple.Item1 = Math.Max(tuple.Item1, value);
             tuple.Item2 = Math.Max(tuple.Item2, value);
@@ -889,6 +903,31 @@ namespace Aequus
         public static string GetPath(Type t)
         {
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
+        }
+
+        public class Loader : IOnModLoad
+        {
+            void ILoadable.Load(Mod mod)
+            {
+            }
+
+            void IOnModLoad.OnModLoad(Aequus aequus)
+            {
+                Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
+                Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
+                Main_bloodMoon = new StaticManipulator<bool>(() => ref Main.bloodMoon);
+                Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
+                Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+            }
+
+            void ILoadable.Unload()
+            {
+                Main_invasionSize = null;
+                Main_invasionType = null;
+                Main_bloodMoon = null;
+                Main_eclipse = null;
+                Main_dayTime = null;
+            }
         }
     }
 }

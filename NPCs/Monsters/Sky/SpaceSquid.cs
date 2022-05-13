@@ -858,7 +858,7 @@ namespace Aequus.NPCs.Monsters.Sky
             if (frame.Y >= frame.Height * verticalFrames)
             {
                 frame.X = frame.Width * (frame.Y / (frame.Height * verticalFrames));
-                frame.Y = frame.Y % (frame.Height * verticalFrames);
+                frame.Y %= (frame.Height * verticalFrames);
             }
             else
             {
@@ -924,9 +924,9 @@ namespace Aequus.NPCs.Monsters.Sky
                     CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
-                ModEffects.MiscShader.UseSecondaryColor(Color.Blue);
-                ModEffects.MiscShader.UseColor(Color.Cyan);
-                ModEffects.MiscShader.Apply(drawData);
+                ModEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
+                ModEffects.VerticalGradient.ShaderData.UseColor(Color.Cyan);
+                ModEffects.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {

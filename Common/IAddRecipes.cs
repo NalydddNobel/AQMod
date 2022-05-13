@@ -10,7 +10,7 @@ namespace Aequus.Common
 
         public static bool CheckAutoload(Aequus aequus, Type type)
         {
-            if (AutoloadUtilities.HasInstanceOf<IAddRecipes>(type, out var addRecipes))
+            if (AutoloadUtilities.TryGetInstanceOf<IAddRecipes>(type, out var addRecipes))
             {
                 addRecipes.AddRecipes(aequus);
                 return true;
