@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.AncientBattleArmorMaterial)
                 .AddIngredient(ItemID.DarkShard, 2)
                 .AddIngredient(ItemID.SoulofNight, 8)
-                .AddTile(TileID.MythrilAnvil)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
     }

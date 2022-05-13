@@ -89,7 +89,7 @@ namespace Aequus.Items.Weapons.Magic
                                 aequus.itemSwitch += (ushort)(aequus.itemCooldown * 2);
                             }
                             aequus.itemCombo = 60;
-                            SoundHelper.Play(SoundType.Sound, "Umystick/jump" + Main.rand.Next(2), new Vector2(-1f, -1f), 0.6f);
+                            AequusHelpers.PlaySound(SoundType.Sound, "Umystick/jump" + Main.rand.Next(2), new Vector2(-1f, -1f), 0.6f);
                             player.velocity.Y = -12f;
                         }
                         Item.mana = oldMana;

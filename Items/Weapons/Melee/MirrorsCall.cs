@@ -71,7 +71,7 @@ namespace Aequus.Items.Weapons.Melee
             {
                 pitch += 1.8f;
             }
-            SoundHelper.Play(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
+            AequusHelpers.PlaySound(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
             return true;
         }
 

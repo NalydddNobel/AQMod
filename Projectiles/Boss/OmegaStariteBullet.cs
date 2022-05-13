@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Invasions;
+﻿using Aequus.Biomes;
 using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -43,7 +43,7 @@ namespace Aequus.Projectiles.Boss
             Projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 0.75f);
+                int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 0.75f);
                 Main.dust[d].velocity = Projectile.velocity * 0.1f;
             }
         }
@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Boss
             var texture = TextureAssets.Projectile[Projectile.type].Value;
             var orig = texture.Size() / 2f;
             var drawPos = Projectile.Center - Main.screenPosition;
-            var drawColor = Glimmer.CosmicEnergyColor;
+            var drawColor = GlimmerInvasion.CosmicEnergyColor;
             drawColor.A = 0;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (PrimRenderer.renderProjTrails)
@@ -106,7 +106,7 @@ namespace Aequus.Projectiles.Boss
             var velo = Projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 0.75f);
+                int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

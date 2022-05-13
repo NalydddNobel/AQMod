@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteDrop(this, ItemID.MolotovCocktail, 50);
+            AequusRecipes.RedSpriteRecipe(this, ItemID.MolotovCocktail, 50);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.NPCs.Monsters.Sky;
+using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Mono.Cecil.Cil;
@@ -25,9 +26,9 @@ namespace Aequus.Tiles
         public const int Unused_HermitCrab = 4;
         public const int SoliderCrabs = 5;
         public const int Unused_StriderCrab = 6;
-        public const int Cindera = 7;
-        public const int Magmabubble = 8;
-        public const int TrapperImp = 9;
+        public const int CinderaBanner = 7;
+        public const int MagmabubbleBanner = 8;
+        public const int TrapperImpBanner = 9;
         public const int VraineBanner = 10;
         public const int WhiteSlimeBanner = 11;
         public const int Unused_RedSprite = 12;
@@ -186,6 +187,10 @@ namespace Aequus.Tiles
         {
             switch (style)
             {
+                case CinderaBanner:
+                    return ModContent.NPCType<Cindera>();
+                case MagmabubbleBanner:
+                    return ModContent.NPCType<Magmabubble>();
                 case VraineBanner:
                     return ModContent.NPCType<Vraine>();
                 case WhiteSlimeBanner:

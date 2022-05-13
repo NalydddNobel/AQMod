@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Biomes;
+using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
-using Aequus.Content.Invasions;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -213,7 +213,7 @@ namespace Aequus
         /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
         public bool CheckEventGaleStreams()
         {
-            return GaleStreams.Status == InvasionStatus.Active && GaleStreams.IsThisSpace(Player);
+            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player);
         }
 
         public override void UpdateDead()

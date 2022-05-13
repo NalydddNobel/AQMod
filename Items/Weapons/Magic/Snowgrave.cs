@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidDrop(this, ItemID.WaterBolt);
+            AequusRecipes.SpaceSquidRecipe(this, ItemID.WaterBolt);
         }
     }
 }

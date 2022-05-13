@@ -46,7 +46,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidDrop(this, ModContent.ItemType<CrystalDagger>());
+            AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<CrystalDagger>());
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -56,7 +56,7 @@ namespace Aequus.Items.Weapons.Melee
             {
                 pitch += 1.25f;
             }
-            SoundHelper.Play(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
+            AequusHelpers.PlaySound(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
             return true;
         }
     }

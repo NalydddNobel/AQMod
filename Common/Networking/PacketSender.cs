@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.NPCs;
+using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
@@ -39,7 +40,7 @@ namespace Aequus.Common.Networking
             },
             PacketType.SyncNPCNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
         }
-        public static void SendNecromancyProjectile(int remoteClient, int ignoreClient, int projectile)
+        public static void SendProjNetworkerGlobals(int remoteClient, int ignoreClient, int projectile)
         {
             Send((p) =>
             {
@@ -51,7 +52,7 @@ namespace Aequus.Common.Networking
                     globals[i].Send(projectile, p);
                 }
             },
-            PacketType.SyncNecromanyProjectile, to: remoteClient, ignore: ignoreClient);
+            PacketType.SyncProjNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
         }
 
         internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
@@ -76,6 +77,26 @@ namespace Aequus.Common.Networking
             packet.Send(to, ignore);
         }
 
+        public static void SendSound(string name, Vector2? location = null,  float? volume = null, float? pitch = null)
+        {
+            Send((p) =>
+            {
+                p.Write(name);
+                FlaggedSend(location != null, (p) => p.WriteVector2(location.Value), p);
+                FlaggedSend(volume != null, (p) => p.Write(volume.Value), p);
+                FlaggedSend(pitch != null, (p) => p.Write(pitch.Value), p);
+            }, PacketType.SoundQueue);
+        }
+
+        public static void FlaggedSend(bool flag, Action<ModPacket> writeAction, ModPacket p)
+        {
+            p.Write(flag);
+            if (flag)
+            {
+                writeAction(p);
+            }
+        }
+
         public static void SyncNecromancyOwnerTier(int npc, int player, float tier)
         {
             Send((p) =>
@@ -87,7 +108,7 @@ namespace Aequus.Common.Networking
                 PacketType.SyncNecromancyOwnerTier);
         }
 
-public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
+        public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
         {
             if (item != null)
             {

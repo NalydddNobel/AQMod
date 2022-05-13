@@ -123,7 +123,7 @@ namespace Aequus.NPCs
 
             public Drops AddBossLoot(int trophy, int relic, int bossBag = ItemID.None, int masterPet = ItemID.None)
             {
-                Add(new GuaranteedFlawlessly(trophy, 10));
+                Add(new GuaranteedFlawlesslyRule(trophy, 10));
                 if (bossBag > 0)
                 {
                     AddBossBag(bossBag);

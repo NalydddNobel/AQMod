@@ -5,8 +5,12 @@ Mods: {
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 
 			BloodMimic: Unlucky chest looters who were slain while stealing may mutate with the chest, creating a monster.
-
+			
 			Heckto: The Molten Legion betrayed their kin, allowing their souls to be consumed by the Gore Nest. Hexoplasm is the result of their spirits being combined with demonic energy.
+
+			Magmabubble: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lava Slime grew legs after consuming a Blood Crawler, too heavy to climb on walls however.
+			TrapperImp: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Fire Imp uses wicked magic to entrap and rot away Clingers to become its personal pets.
+			Cindera: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lavabat has hinged jaws like a chest used to clamp down on prey.
 			
 			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
 			RedSprite: A mysterious thunderous discharge once struck a nimbus. Both the thunder and the nimbus' living souls were combined to create an evil monster.
@@ -20,10 +24,15 @@ Mods: {
 
 			Snobster: A snobster lobster, this one's particularly snobby.
 		}
+
+		BiomeName: {
+			DemonSiegeInvasion: Demon Siege
+		}
+
 		DropCondition: {
+			OtherwiseChance: Will 100% drop if '{0}' conditions are met
 			LastAlive: Only dropped by the last remaining enemy
 			OnFirstKill: Only drops on first kill
-			OnFirstKillOtherwiseChance: 100% droprate on first kill
 			StreamingBalloonKill: 
 			'''
 			    Only dropped when the slime killed is attached to the balloon 
@@ -81,7 +90,7 @@ Mods: {
 		ItemName: {
 			Osiris: Osiris
 			SkeletonKey: Skeleton Key
-			RevenantScepter: Revenant Scepter
+			Revenant: Revenant
 			NecromancyStaff: Necromancy Staff
 			UnenchantedStaff: Unenchanted Staff
 			RitualisticSkull: Ritualistic Skull
@@ -395,7 +404,7 @@ Mods: {
 				Bursts into a swarm of locusts on hit
 				'''
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
-			RevenantScepter: 
+			Revenant: 
 				'''
 				Drains the soul of strong enemies, instantly killing weakened enemies
 				Defeated enemies will join your team
@@ -1124,7 +1133,7 @@ Mods: {
 			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
 			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
 			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
-			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmalbubble}"
+			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
 			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapImp}"
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
@@ -1455,13 +1464,6 @@ Mods: {
 			Combo: "{0}% combo rate"
 		}
 
-		PrefixName: {
-			Speedrunning: Speedrunning
-			Outpacing: Outpacing
-			Timed: Timed
-			Scheduled: Scheduled
-		}
-
 		NPCName: {
 			DustDevil: Dust Devil
 			OmegaStarite: Omega Starite
@@ -1481,8 +1483,9 @@ Mods: {
 			DwarfStarite: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
-			Magmalbubble: Magmabubble
-			TrapImp: Trapper Imp
+
+			Magmabubble: Magmabubble
+			TrapperImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
 			BloodMimic: Blood Mimic

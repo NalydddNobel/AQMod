@@ -55,7 +55,7 @@ namespace Aequus.Projectiles.Boss
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity) * (Main.expertMode ? 10f : 6f);
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        SoundID.Item85?.Play(Projectile.Center, 0.7f);
+                        SoundID.Item85?.PlaySound(Projectile.Center, 0.7f);
                     }
                 }
                 if (Projectile.scale < 1f)

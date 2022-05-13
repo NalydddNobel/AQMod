@@ -1,5 +1,4 @@
 ﻿using Aequus.Projectiles.Summon.Necro;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +10,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(30);
-            Item.SetWeaponValues(1, 1f, 0);
+            Item.SetWeaponValues(2, 1f, 0);
             Item.shoot = ModContent.ProjectileType<ZombieBolt>();
             Item.shootSpeed = 6f;
             Item.rare = ItemRarityID.Blue;

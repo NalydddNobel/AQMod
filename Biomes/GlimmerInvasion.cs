@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Invasions
+namespace Aequus.Biomes
 {
-    public sealed class Glimmer : ModSystem
+    public sealed class GlimmerInvasion : ModSystem
     {
         public static Color CosmicEnergyColor => new Color(200, 10, 255, 0);
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Common;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using Terraria;

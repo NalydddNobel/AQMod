@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteDrop(this, ItemID.SlapHand);
+            AequusRecipes.RedSpriteRecipe(this, ItemID.SlapHand);
         }
     }
 }

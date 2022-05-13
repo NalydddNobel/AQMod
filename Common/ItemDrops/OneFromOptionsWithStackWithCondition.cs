@@ -4,7 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.ItemDrops
 {
-    public class OneFromOptionsStackCondition : IItemDropRule
+    public class OneFromOptionsWithStackWithCondition : IItemDropRule
     {
         public ItemDrop[] itemDrops;
         public int chanceDenominator;
@@ -17,11 +17,11 @@ namespace Aequus.Common.ItemDrops
             private set;
         }
 
-        public OneFromOptionsStackCondition(IItemDropRuleCondition condition = null, params ItemDrop[] options) : this(1, 1, condition, options)
+        public OneFromOptionsWithStackWithCondition(IItemDropRuleCondition condition = null, params ItemDrop[] options) : this(1, 1, condition, options)
         {
         }
 
-        public OneFromOptionsStackCondition(int chanceDenominator, int chanceNumerator, IItemDropRuleCondition condition = null, params ItemDrop[] options)
+        public OneFromOptionsWithStackWithCondition(int chanceDenominator, int chanceNumerator, IItemDropRuleCondition condition = null, params ItemDrop[] options)
         {
             this.chanceDenominator = chanceDenominator;
             this.chanceNumerator = chanceNumerator;

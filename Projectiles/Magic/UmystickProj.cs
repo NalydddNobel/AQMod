@@ -57,7 +57,7 @@ namespace Aequus.Projectiles.Magic
                 if (timer == 0)
                 {
                     _gfxOffY = 14f;
-                    SoundHelper.Play(SoundType.Sound, "Umystick/shoot" + Main.rand.Next(3), Projectile.Center, 0.6f);
+                    AequusHelpers.PlaySound(SoundType.Sound, "Umystick/shoot" + Main.rand.Next(3), Projectile.Center, 0.6f);
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var shootPosition = Projectile.Center;

@@ -78,6 +78,12 @@ namespace Aequus.NPCs
                     DeathEffect_SnowgraveFreeze(npc);
                 }
             }
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                return false;
+            }
+
             var players = GetCloseEnoughPlayers(npc);
 
             if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)

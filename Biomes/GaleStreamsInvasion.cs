@@ -4,9 +4,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Invasions
+namespace Aequus.Biomes
 {
-    public sealed class GaleStreams : ModSystem
+    public sealed class GaleStreamsInvasion : ModSystem
     {
         public static InvasionStatus Status { get; set; }
         public static byte updateTimer;

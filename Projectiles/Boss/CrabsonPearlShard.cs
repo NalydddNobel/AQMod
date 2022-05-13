@@ -63,7 +63,7 @@ namespace Aequus.Projectiles.Boss
                 return;
             }
             var center = Projectile.Center;
-            SoundID.Item50?.Play(center, 0.5f, -0.1f);
+            SoundID.Item50?.PlaySound(center, 0.5f, -0.1f);
             float dustRadius = Projectile.Size.Length() * 0.6f;
             for (int i = 0; i < 5; i++)
             {

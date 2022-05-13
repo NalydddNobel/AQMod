@@ -1,8 +1,8 @@
 ﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
-using Aequus.Content.Invasions;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
@@ -183,7 +183,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void AI()
         {
             bool leave = (int)NPC.ai[0] == -1;
-            if (!leave && !GaleStreams.IsThisSpace(Main.player[NPC.target].position.Y))
+            if (!leave && !GaleStreamsInvasion.IsThisSpace(Main.player[NPC.target].position.Y))
             {
                 leave = true;
             }
@@ -350,7 +350,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.localAI[2] = timer;
                                 if (timer == 0 && (Main.expertMode || NPC.ai[1] <= 160f))
                                 {
-                                    SoundID.Item66?.Play(gotoPosition, 1.3f);
+                                    SoundID.Item66?.PlaySound(gotoPosition, 1.3f);
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
                                         int timer2 = (int)(NPC.ai[1] - 90f) % 20;
@@ -429,7 +429,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            SoundHelper.Play(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
+                                            AequusHelpers.PlaySound(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
                                         }
                                         int dustAmount = 50;
                                         if (!ClientConfig.Instance.HighQuality)
@@ -497,7 +497,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             if (Main.netMode != NetmodeID.Server)
                             {
-                                NPC.DeathSound?.Play(NPC.Center, 1f, -0.5f);
+                                NPC.DeathSound?.PlaySound(NPC.Center, 1f, -0.5f);
                                 NPC.HitEffect(0, NPC.lifeMax);
                                 if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
                                 {
@@ -517,7 +517,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             NPC npc = new NPC();
                             npc.SetDefaults(NPCID.AngryNimbus);
                             npc.Center = NPC.Center;
-                            npc.DeathSound?.Play(NPC.Center);
+                            npc.DeathSound?.PlaySound(NPC.Center);
                             npc.HitEffect(0, npc.lifeMax);
                             NPC.active = false;
                             NPC.life = -1;
@@ -1090,11 +1090,12 @@ namespace Aequus.NPCs.Monsters.Sky
             this.CreateLoot(npcLoot)
                 .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
-                .Add(new OnFirstKillRuleOtherwiseChance(ModContent.ItemType<Moro>(), 5, () => AequusWorld.downedRedSprite, "RedSprite"))
+                .Add(new FilledConditionsOtherwiseChanceRule(
+                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
-                .Add(new GuaranteedFlawlessly(ModContent.ItemType<ScorchingDye>(), 7));
+                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));
         }
 
         public override void OnKill()

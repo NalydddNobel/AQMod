@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Misc;
+using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
@@ -24,9 +25,9 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<RevenantScepter>()
+                .AddIngredient<Revenant>()
                 .AddIngredient<Hexoplasm>(12)
-                .AddIngredient(ItemID.SoulofNight, 8)
+                .AddIngredient<DemonicEnergy>(5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

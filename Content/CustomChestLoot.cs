@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Common;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Necro;
@@ -69,7 +69,7 @@ namespace Aequus.Content.WorldGeneration
                     if (!placedRevenantStaff || Main.rand.NextBool())
                     {
                         placedRevenantStaff = true;
-                        c.Insert(ModContent.ItemType<RevenantScepter>(), 1);
+                        c.Insert(ModContent.ItemType<Revenant>(), 1);
                     }
                 }
                 else if (c.item[0].type == ItemID.Valor)

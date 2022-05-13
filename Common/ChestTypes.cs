@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Common.Catalogues
+namespace Aequus.Common
 {
     public static class ChestTypes
     {

@@ -51,7 +51,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidDrop(this, ItemID.SnowballCannon);
+            AequusRecipes.SpaceSquidRecipe(this, ItemID.SnowballCannon);
         }
     }
 }

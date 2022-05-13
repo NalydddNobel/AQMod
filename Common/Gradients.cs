@@ -5,6 +5,45 @@ namespace Aequus.Common
 {
     public sealed class Gradients : ILoadable
     {
+        public struct ColorGradient : IColorGradient
+        {
+            public ColorGradient(float timeBetweenColors, params Color[] colors)
+            {
+                Time = timeBetweenColors;
+                Colors = colors;
+            }
+
+            public readonly float Time;
+            public readonly Color[] Colors;
+
+            public Color GetColor(float time)
+            {
+                return InternalHelperGetColor(Colors, time, Time);
+            }
+
+            internal static Color InternalHelperGetColor(Color[] arr, float time, float timeBetweenColors)
+            {
+                int index = (int)(time * timeBetweenColors);
+                return Color.Lerp(arr[index % arr.Length], arr[(index + 1) % arr.Length], time % 1f);
+            }
+        }
+        public struct ColorWaveGradient : IColorGradient
+        {
+            public ColorWaveGradient(float waveTime, params Color[] colors)
+            {
+                Time = waveTime;
+                Colors = colors;
+            }
+
+            public readonly float Time;
+            public readonly Color[] Colors;
+
+            public Color GetColor(float time)
+            {
+                return ColorGradient.InternalHelperGetColor(Colors, AequusHelpers.Wave(time * Time, 0f, Colors.Length - 1f), 1f);
+            }
+        }
+
         public static IColorGradient aquaticGrad;
         public static IColorGradient atmosphericGrad;
         public static IColorGradient cosmicGrad;
@@ -32,46 +71,6 @@ namespace Aequus.Common
             demonicGrad = null;
             organicGrad = null;
             ultimateGrad = null;
-        }
-
-        public struct ColorGradient : IColorGradient
-        {
-            public ColorGradient(float timeBetweenColors, params Color[] colors)
-            {
-                Time = timeBetweenColors;
-                Colors = colors;
-            }
-
-            public readonly float Time;
-            public readonly Color[] Colors;
-
-            public Color GetColor(float time)
-            {
-                return InternalHelperGetColor(Colors, time, Time);
-            }
-
-            internal static Color InternalHelperGetColor(Color[] arr, float time, float timeBetweenColors)
-            {
-                int index = (int)(time * timeBetweenColors);
-                return Color.Lerp(arr[index % arr.Length], arr[(index + 1) % arr.Length], time % 1f);
-            }
-        }
-
-        public struct ColorWaveGradient : IColorGradient
-        {
-            public ColorWaveGradient(float waveTime, params Color[] colors)
-            {
-                Time = waveTime;
-                Colors = colors;
-            }
-
-            public readonly float Time;
-            public readonly Color[] Colors;
-
-            public Color GetColor(float time)
-            {
-                return ColorGradient.InternalHelperGetColor(Colors, AequusHelpers.Wave(time * Time, 0f, Colors.Length - 1f), 1f);
-            }
         }
     }
 }

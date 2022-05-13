@@ -104,7 +104,7 @@ namespace Aequus.Graphics
 
         public static int GetScreenTargetIndex(Player player, int suggestedTarget = 0)
         {
-            if (Main.myPlayer == player.whoAmI && (player.team == 0 || !player.hostile))
+            if (Main.myPlayer == player.whoAmI || (player.team == 0 && !player.hostile))
             {
                 return Math.Max(suggestedTarget, 0);
             }

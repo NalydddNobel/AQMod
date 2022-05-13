@@ -7,7 +7,6 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles.Dusts;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,7 +14,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,7 +33,7 @@ namespace Aequus.NPCs.Monsters.Sky
             });
 
             HeatDamageTypes.HeatNPC.Add(Type);
-            NecromancyDatabase.NPCs.Add(Type, GhostInfo.Three);
+            NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
         }
 
         public override void SetDefaults()
@@ -122,7 +120,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             if (NPC.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
                             {
-                                SoundHelper.Play(SoundType.Sound, "boowomp", NPC.Center, 0.9f);
+                                AequusHelpers.PlaySound(SoundType.Sound, "boowomp", NPC.Center);
                             }
                             NPC.localAI[0]++;
                         }

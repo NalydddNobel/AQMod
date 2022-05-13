@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Invasions
+﻿namespace Aequus.Biomes
 {
     public enum InvasionStatus : byte
     {

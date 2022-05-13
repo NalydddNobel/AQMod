@@ -34,6 +34,7 @@ namespace Aequus.Sounds
         /// Used when <see cref="AequusPlayer.eventGaleStreams"/> is true
         /// </summary>
         public static CustomMusicData GaleStreamsEvent { get; private set; }
+        public static CustomMusicData DemonSiegeEvent { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
@@ -44,6 +45,7 @@ namespace Aequus.Sounds
             CrabSeasonEvent = new CustomMusicData(MusicID.GoblinInvasion);
             GlimmerEvent = new CustomMusicData(MusicID.MartianMadness);
             GaleStreamsEvent = new CustomMusicData(MusicID.WindyDay);
+            DemonSiegeEvent = new CustomMusicData(MusicID.Monsoon);
         }
 
         void ILoadable.Unload()

@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    public class OnFirstKillRuleOtherwiseChance : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+    public class FilledConditionsOtherwiseChanceRule : IItemDropRule, IItemDropRuleCondition
     {
         public int ItemType;
         public int Chance;
-        public Func<bool> wasDefeated;
-        public readonly string Key;
+        public IItemDropRuleCondition Condition;
 
         public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
-        public OnFirstKillRuleOtherwiseChance(int item, int chance, Func<bool> wasDefeated, string defeatKey)
+        public FilledConditionsOtherwiseChanceRule(IItemDropRuleCondition condition, int item, int chance)
         {
             ItemType = item;
             Chance = chance;
-            this.wasDefeated = wasDefeated;
-            Key = defeatKey;
+            Condition = condition;
             ChainedRules = new List<IItemDropRuleChainAttempt>();
         }
 
@@ -38,7 +34,7 @@ namespace Aequus.Common.ItemDrops
             var result = default(ItemDropAttemptResult);
             result.State = ItemDropAttemptResultState.FailedRandomRoll;
 
-            if (wasDefeated() || info.rng.NextBool(Chance))
+            if (Condition.CanDrop(info) || info.rng.NextBool(Chance))
             {
                 CommonCode.DropItemFromNPC(info.npc, ItemType, 1);
                 result.State = ItemDropAttemptResultState.Success;
@@ -58,7 +54,8 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return Language.GetTextValue("Mods.Aequus.DropCondition.OnFirstKillOtherwiseChance");
+            string conditionDesc = Condition?.GetConditionDescription();
+            return conditionDesc != null ? AequusText.GetText("DropCondition.OtherwiseChance", conditionDesc) : null;
         }
     }
 }

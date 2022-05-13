@@ -1,8 +1,8 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Biomes;
+using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
-using Aequus.Content.Invasions;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
@@ -335,7 +335,7 @@ namespace Aequus.NPCs.Boss
             }
             else if (NPC.life <= 0)
             {
-                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
+                AequusHelpers.PlaySound(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
                 //if (skipDeathTimer > 0)
                 //{
                 //    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
@@ -393,7 +393,7 @@ namespace Aequus.NPCs.Boss
             }
             else
             {
-                SoundHelper.Play(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
+                AequusHelpers.PlaySound(SoundType.Sound, "omegastaritehit" + Main.rand.Next(3), NPC.Center, 0.6f);
                 byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
                 if (shake > _hitShake)
                 {
@@ -423,13 +423,13 @@ namespace Aequus.NPCs.Boss
             if (Main.dayTime)
             {
                 NPC.life = -1;
-                Glimmer.omegaStarite = -1;
+                GlimmerInvasion.omegaStarite = -1;
                 NPC.HitEffect();
                 SoundEngine.PlaySound(SoundID.Dig, NPC.Center);
                 NPC.active = false;
                 return;
             }
-            Glimmer.omegaStarite = (short)NPC.whoAmI;
+            GlimmerInvasion.omegaStarite = (short)NPC.whoAmI;
             //Main.NewText(NPC.ai[0]);
             Vector2 center = NPC.Center;
             Player player = Main.player[NPC.target];
@@ -688,9 +688,9 @@ namespace Aequus.NPCs.Boss
                                 const int width = (int)(CIRCUMFERENCE * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Glimmer.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
                             }
                         }
                     }
@@ -720,7 +720,7 @@ namespace Aequus.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundHelper.Play(SoundType.Sound, "starbullets", NPC.Center, 0.3f, 0.5f);
+                                AequusHelpers.PlaySound(SoundType.Sound, "starbullets", NPC.Center, 0.3f, 0.5f);
                                 //Main.PlaySound(SoundID.Item125);
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;

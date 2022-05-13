@@ -4,7 +4,8 @@
     {
         SyncNPCNetworkerGlobals,
         SyncNecromancyOwnerTier,
-        SyncNecromanyProjectile,
+        SyncProjNetworkerGlobals,
+        SoundQueue,
         Count,
     }
 }

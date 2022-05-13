@@ -1,6 +1,6 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Biomes;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
-using Aequus.Content.Invasions;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
@@ -193,7 +193,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void AI()
         {
             bool leave = (int)NPC.ai[0] == -1;
-            if (!leave && !GaleStreams.IsThisSpace(Main.player[NPC.target].position.Y))
+            if (!leave && !GaleStreamsInvasion.IsThisSpace(Main.player[NPC.target].position.Y))
             {
                 leave = true;
             }
@@ -280,7 +280,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.ai[2] = 0f;
                                 if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                 {
-                                    SoundHelper.Play(SoundType.Sound, "awesomedeathray");
+                                    AequusHelpers.PlaySound(SoundType.Sound, "awesomedeathray");
                                 }
                             }
                             bool doEffects = AequusHelpers.ShouldDoEffects(center);
@@ -373,7 +373,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         frameIndex = 8;
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            SoundHelper.Play(SoundType.Sound, "spacegun", NPC.Center);
+                                            AequusHelpers.PlaySound(SoundType.Sound, "spacegun", NPC.Center);
                                         }
                                         var spawnPosition = new Vector2(NPC.position.X + (NPC.direction == 1 ? NPC.width + 20f : -20), NPC.position.Y + NPC.height / 2f);
                                         var velocity = new Vector2(20f * NPC.direction, 0f);
@@ -472,7 +472,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 }
                                 if (Main.netMode != NetmodeID.Server)
                                 {
-                                    SoundHelper.Play(SoundType.Sound, "combo", NPC.Center);
+                                    AequusHelpers.PlaySound(SoundType.Sound, "combo", NPC.Center);
                                 }
                             }
                             if (NPC.ai[2] > 180f + (6 - timeBetweenShots) * 40f)
@@ -789,7 +789,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<FrozenTear>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
-                .Add(new GuaranteedFlawlessly(ModContent.ItemType<FrostbiteDye>(), 7));
+                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<FrostbiteDye>(), 7));
         }
 
         public override void OnKill()

@@ -80,7 +80,7 @@ namespace Aequus.Projectiles.Magic
             float size = Projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundHelper.Play(SoundType.Sound, "Umystick/destroy" + Main.rand.Next(4), Projectile.Center, 0.6f);
+                AequusHelpers.PlaySound(SoundType.Sound, "Umystick/destroy" + Main.rand.Next(4), Projectile.Center, 0.6f);
             }
             for (int i = 0; i < 30; i++)
             {

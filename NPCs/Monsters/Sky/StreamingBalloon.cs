@@ -210,7 +210,7 @@ namespace Aequus.NPCs.Monsters.Sky
             if (distance > 1650f)
             {
                 NPC.life = 0;
-                SoundID.Item111.Play(NPC.Center, 1.5f, 0.9f);
+                SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
                 NPC.HitEffect();
                 NPC.active = false;
             }
@@ -220,7 +220,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (distance < 40f)
                 {
                     NPC.life = 0;
-                    SoundID.Item111.Play(NPC.Center, 1.5f, 0.9f);
+                    SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
                     NPC.HitEffect();
                     NPC.active = false;
                 }
@@ -244,7 +244,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (distance < 150f)
                 {
                     NPC.life = 0;
-                    SoundID.Item111.Play(NPC.Center, 1.5f, 0.9f);
+                    SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
                     NPC.HitEffect();
                     NPC.active = false;
                 }
@@ -262,7 +262,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     if ((NPC.position.X + NPC.width / 2f - Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f).Abs() < 100f)
                     {
                         NPC.life = 0;
-                        SoundID.Item111?.Play(NPC.Center, 1.5f, 0.9f);
+                        SoundID.Item111?.PlaySound(NPC.Center, 1.5f, 0.9f);
                         NPC.HitEffect();
                         NPC.active = false;
                     }

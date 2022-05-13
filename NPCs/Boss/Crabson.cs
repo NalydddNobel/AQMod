@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ItemDrops;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
@@ -8,7 +7,6 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Boss;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -290,7 +288,7 @@ namespace Aequus.NPCs.Boss
                                     else
                                     {
                                         if (Main.netMode != NetmodeID.Server)
-                                            SoundID.Item85.Play(NPC.Center, 0.7f);
+                                            SoundID.Item85.PlaySound(NPC.Center, 0.7f);
                                         ShootProj<CrabsonBubble>(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: 1f);
                                     }
                                 }

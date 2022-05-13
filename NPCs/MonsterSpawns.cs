@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Invasions;
+﻿using Aequus.Biomes;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Sky;
@@ -21,7 +21,7 @@ namespace Aequus.NPCs
                 maxSpawns = 0;
                 return;
             }
-            if (player.ZoneSkyHeight && GaleStreams.TimeForMeteorSpawns())
+            if (player.ZoneSkyHeight && GaleStreamsInvasion.TimeForMeteorSpawns())
             {
                 spawnRate /= 2;
                 maxSpawns *= 2;
@@ -42,7 +42,7 @@ namespace Aequus.NPCs
         }
         public bool Spawnrates_AequusEventActive(Player player)
         {
-            return Glimmer.Status == InvasionStatus.Ending && player.position.Y < Main.worldSurface * 16f;
+            return GlimmerInvasion.Status == InvasionStatus.Ending && player.position.Y < Main.worldSurface * 16f;
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
@@ -51,7 +51,7 @@ namespace Aequus.NPCs
             {
                 return;
             }
-            if (spawnInfo.Player.ZoneSkyHeight && GaleStreams.TimeForMeteorSpawns())
+            if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsInvasion.TimeForMeteorSpawns())
             {
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);

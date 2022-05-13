@@ -124,7 +124,7 @@ namespace Aequus.Graphics
                 if (Collision.LavaCollision(TopLeft, _width, _height))
                 {
                     ShouldBeRemovedFromRenderer = true;
-                    SoundHelper.Play(SoundType.Sound, "sizzle");
+                    AequusHelpers.PlaySound(SoundType.Sound, "sizzle");
                     Kill(lavaDeath: true);
                     return;
                 }

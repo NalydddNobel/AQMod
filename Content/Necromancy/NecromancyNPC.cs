@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -227,19 +228,22 @@ namespace Aequus.Content.Necromancy
                 npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
                 npc.friendly = true;
                 npc.boss = false;
-                npc.target = zombieOwner;
                 npc.alpha = Math.Max(npc.alpha, 60);
                 npc.dontTakeDamage = true;
                 npc.npcSlots = 0f;
-                float prioritizeMultiplier = stats.PrioritizePlayerMultiplier.GetValueOrDefault(npc.noGravity ? 2f : 1f);
-                int npcTarget = GetNPCTarget(npc, Main.player[zombieOwner], npc.netID, npc.type, prioritizeMultiplier);
-
-                if (npcTarget != -1)
+                if (!Main.player[npc.target].active || Main.player[npc.target].dead || !Main.player[npc.target].hostile || Main.player[npc.target].team == Main.player[zombieOwner].team)
                 {
-                    AI_ReturnPlayerLocation = Main.player[zombieOwner].position;
-                    AI_NPCTarget = npcTarget;
-                    Main.player[zombieOwner].Center = Main.npc[npcTarget].Center;
-                    UpdateHitbox(npc);
+                    npc.target = zombieOwner;
+                    float prioritizeMultiplier = stats.PrioritizePlayerMultiplier.GetValueOrDefault(npc.noGravity ? 2f : 1f);
+                    int npcTarget = GetNPCTarget(npc, Main.player[zombieOwner], npc.netID, npc.type, prioritizeMultiplier);
+
+                    if (npcTarget != -1)
+                    {
+                        AI_ReturnPlayerLocation = Main.player[zombieOwner].position;
+                        AI_NPCTarget = npcTarget;
+                        Main.player[zombieOwner].Center = Main.npc[npcTarget].Center;
+                        UpdateHitbox(npc);
+                    }
                 }
             }
             return true;
@@ -339,6 +343,14 @@ namespace Aequus.Content.Necromancy
             {
                 Main.npc[n].whoAmI = n;
                 SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    PacketSender.SendSound("zombie_recruit", npc.Center);
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    AequusHelpers.PlaySound(SoundType.Sound, "zombie_recruit", npc.Center);
+                }
             }
         }
         public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection)
@@ -574,7 +586,7 @@ namespace Aequus.Content.Necromancy
                 }
                 writer.Write(zombieOwner);
                 writer.Write(zombieDebuffTier);
-                writer.Write(renderLayer);
+                writer.Write((byte)renderLayer);
             }
         }
 
@@ -595,6 +607,7 @@ namespace Aequus.Content.Necromancy
                 }
                 zombieOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
+                renderLayer = reader.ReadByte();
             }
         }
     }
@@ -697,7 +710,7 @@ namespace Aequus.Content.Necromancy
                 {
                     if (netUpdateTick <= 0)
                     {
-                        PacketSender.SendNecromancyProjectile(-1, -1, projectile.identity);
+                        PacketSender.SendProjNetworkerGlobals(-1, -1, projectile.identity);
                         netUpdateTick = 120 + projectile.netSpam * 5;
                     }
                     else

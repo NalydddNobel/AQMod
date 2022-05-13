@@ -1,3 +1,4 @@
+using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
@@ -47,6 +48,14 @@ namespace Aequus
             }
         }
 
+        public override void PostSetupContent()
+        {
+            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            {
+                IPostSetupContent.CheckAutoload(this, t);
+            }
+        }
+
         public override void AddRecipeGroups()
         {
             AequusRecipes.Groups.AddRecipeGroups();
@@ -62,6 +71,14 @@ namespace Aequus
             {
                 AequusBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
             }
+            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            {
+                if (t.IsAbstract || t.IsInterface)
+                {
+                    continue;
+                }
+                IAddRecipes.CheckAutoload(this, t);
+            }
         }
 
         public override void Unload()
@@ -72,12 +89,25 @@ namespace Aequus
             NPCTalkInterface = null;
         }
 
+        public override object Call(params object[] args)
+        {
+            switch ((string)args[0])
+            {
+                case "NecroStats":
+                    return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
+
+                case "Downed":
+                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
+            }
+            return null;
+        }
+
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             PacketType type = PacketSender.ReadPacketType(reader);
 
             var l = Instance.Logger;
-            if (type != PacketType.SyncNPCNetworkerGlobals && type != PacketType.SyncNecromanyProjectile)
+            if (type != PacketType.SyncNPCNetworkerGlobals && type != PacketType.SyncProjNetworkerGlobals)
             {
                 l.Debug("Recieving Packet: " + type);
             }
@@ -96,7 +126,7 @@ namespace Aequus
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
             }
-            else if (type == PacketType.SyncNecromanyProjectile)
+            else if (type == PacketType.SyncProjNetworkerGlobals)
             {
                 int projectileOwner = reader.ReadInt32();
                 int projectileIdentity = reader.ReadInt32();
@@ -108,19 +138,10 @@ namespace Aequus
                     globals[i].Receive(projectile, reader);
                 }
             }
-        }
-
-        public override object Call(params object[] args)
-        {
-            switch ((string)args[0])
+            else if (type == PacketType.SoundQueue)
             {
-                case "NecroStats":
-                    return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
-
-                case "Downed":
-                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
+                PacketReader.ReadSoundQueue(reader);
             }
-            return null;
         }
     }
 }
