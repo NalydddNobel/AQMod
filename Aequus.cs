@@ -4,7 +4,6 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Recipes;
-using Aequus.NPCs;
 using Aequus.NPCs.Monsters;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;

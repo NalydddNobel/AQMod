@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.Networking
 {
-    public interface IEntityNetworker
+    internal interface IEntityNetworker
     {
         void Send(int whoAmI, BinaryWriter writer);
         void Receive(int whoAmI, BinaryReader reader);

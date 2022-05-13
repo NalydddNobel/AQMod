@@ -1,5 +1,6 @@
-﻿using Aequus.NPCs;
-using Aequus.Projectiles.Summon;
+﻿using Aequus.Content.Necromancy;
+using Aequus.Graphics;
+using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -19,6 +20,11 @@ namespace Aequus.Buffs.Debuffs
                 var v = Main.rand.NextVector2Unit();
                 var p = Projectile.NewProjectileDirect(npc.GetSource_Buff(buffIndex), npc.Center + v * (npc.Size.Length() / 2f), v * 10f,
                     ModContent.ProjectileType<InsurgentBolt>(), 1, 0f, zombie.zombieOwner, ai1: npc.whoAmI);
+            }
+
+            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyInsurgent)
+            {
+                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyInsurgent;
             }
         }
     }

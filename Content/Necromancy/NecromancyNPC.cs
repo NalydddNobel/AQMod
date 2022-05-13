@@ -1,9 +1,8 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Networking;
-using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Summon;
+using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,7 +14,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
+namespace Aequus.Content.Necromancy
 {
     public class NecromancyNPC : GlobalNPC, IEntityNetworker
     {
@@ -32,6 +31,7 @@ namespace Aequus.NPCs
         public float zombieDebuffTier;
         public int hitCheckDelay;
         public int slotsConsumed;
+        public int renderLayer;
 
         public override bool InstancePerEntity => true;
 
@@ -153,6 +153,7 @@ namespace Aequus.NPCs
             zombie.zombieTimer = parentZombie.zombieTimer;
             zombie.zombieTimerMax = parentZombie.zombieTimerMax;
             zombie.zombieDebuffTier = tier;
+            zombie.renderLayer = parentZombie.renderLayer;
             zombie.isZombie = true;
             zombie.OnSpawnZombie(npc);
         }
@@ -304,7 +305,7 @@ namespace Aequus.NPCs
                 if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
                     Color color = new Color(50, 150, 255, 100);
-                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner]);
+                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
                     if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
                     {
                         color = EffectsSystem.necromancyRenderers[index].DrawColor();
@@ -345,8 +346,9 @@ namespace Aequus.NPCs
             zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimer = zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimerMax = 
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimer = zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimerMax =
                 Main.player[zombieOwner].Aequus().ghostLifespan;
+            zombieNPC.GetGlobalNPC<NecromancyNPC>().renderLayer = renderLayer;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().OnSpawnZombie(zombieNPC);
             zombieNPC.Center = position;
             zombieNPC.velocity = velocity * 0.25f;
@@ -472,7 +474,7 @@ namespace Aequus.NPCs
         {
             if (isZombie && !NecromancyScreenRenderer.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
-                int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner]);
+                int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
                 if (EffectsSystem.necromancyRenderers.Length <= index)
                 {
                     Array.Resize(ref EffectsSystem.necromancyRenderers, index + 1);
@@ -481,7 +483,7 @@ namespace Aequus.NPCs
                 if (EffectsSystem.necromancyRenderers[index] == null)
                 {
                     int team = Main.player[zombieOwner].team;
-                    EffectsSystem.necromancyRenderers[index] = new NecromancyScreenRenderer(team, () => Main.teamColor[team]);
+                    EffectsSystem.necromancyRenderers[index] = new NecromancyScreenRenderer(team, index, () => Main.teamColor[team]);
                 }
 
                 EffectsSystem.necromancyRenderers[index].Add(npc.whoAmI);
@@ -536,13 +538,15 @@ namespace Aequus.NPCs
             Color color;
             if (team == 0)
             {
+                color = Color.White;
                 if (zombieOwner == Main.myPlayer)
                 {
-                    color = ClientConfig.Instance.NecromancyColor;
-                }
-                else
-                {
-                    color = Color.White;
+                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                    if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
+                    {
+                        color = EffectsSystem.necromancyRenderers[index].DrawColor();
+                        color.A = 100;
+                    }
                 }
             }
             else
@@ -570,6 +574,7 @@ namespace Aequus.NPCs
                 }
                 writer.Write(zombieOwner);
                 writer.Write(zombieDebuffTier);
+                writer.Write(renderLayer);
             }
         }
 
@@ -599,7 +604,8 @@ namespace Aequus.NPCs
         public bool isZombie;
         public int zombieNPCOwner;
         public float zombieDebuffTier;
-        private int netUpdate;
+        public int renderLayer;
+        private int netUpdateTick;
 
         public override bool InstancePerEntity => true;
 
@@ -648,14 +654,14 @@ namespace Aequus.NPCs
         {
             if (entity is Projectile proj && proj.GetGlobalProjectile<NecromancyProj>().isZombie)
             {
-                ZombifyChild(projectile, proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner, proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier, proj.timeLeft);
+                ZombifyChild(projectile, proj.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner, proj.GetGlobalProjectile<NecromancyProj>().zombieDebuffTier, proj.timeLeft + 10, proj.GetGlobalProjectile<NecromancyProj>().renderLayer);
             }
             else if (entity is NPC npc && npc.GetGlobalNPC<NecromancyNPC>().isZombie)
             {
-                ZombifyChild(projectile, entity.whoAmI, npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier, npc.GetGlobalNPC<NecromancyNPC>().zombieTimer);
+                ZombifyChild(projectile, entity.whoAmI, npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier, npc.GetGlobalNPC<NecromancyNPC>().zombieTimer, npc.GetGlobalNPC<NecromancyNPC>().renderLayer);
             }
         }
-        public void ZombifyChild(Projectile projectile, int npc, float tier, int timeLeft)
+        public void ZombifyChild(Projectile projectile, int npc, float tier, int timeLeft, int renderLayer)
         {
             projectile.hostile = false;
             projectile.friendly = true;
@@ -663,7 +669,8 @@ namespace Aequus.NPCs
             isZombie = true;
             zombieNPCOwner = npc;
             zombieDebuffTier = tier;
-            projectile.timeLeft = Math.Min(projectile.timeLeft, timeLeft);
+            this.renderLayer = renderLayer;
+            projectile.timeLeft = Math.Max(Math.Min(projectile.timeLeft, timeLeft - 10), 2);
         }
 
         public override Color? GetAlpha(Projectile projectile, Color drawColor)
@@ -688,14 +695,14 @@ namespace Aequus.NPCs
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    if (netUpdate <= 0)
+                    if (netUpdateTick <= 0)
                     {
                         PacketSender.SendNecromancyProjectile(-1, -1, projectile.identity);
-                        netUpdate = 120 + projectile.netSpam * 5;
+                        netUpdateTick = 120 + projectile.netSpam * 5;
                     }
                     else
                     {
-                        netUpdate--;
+                        netUpdateTick--;
                     }
                 }
                 if (!Main.npc[zombieNPCOwner].active)
@@ -746,7 +753,15 @@ namespace Aequus.NPCs
                 }
                 if (Main.rand.NextBool(6))
                 {
-                    var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(50, 150, 255, 100));
+                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
+                    var color = new Color(50, 150, 255, 100);
+                    if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
+                    {
+                        color = EffectsSystem.necromancyRenderers[index].DrawColor();
+                        color.A = 100;
+                    }
+
+                    var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), newColor: color);
                     d.velocity *= 0.3f;
                     d.velocity += projectile.velocity * 0.2f;
                     d.scale *= projectile.scale;
@@ -780,6 +795,7 @@ namespace Aequus.NPCs
             {
                 writer.Write(zombieNPCOwner);
                 writer.Write(zombieDebuffTier);
+                writer.Write((byte)renderLayer);
             }
         }
 
@@ -790,6 +806,7 @@ namespace Aequus.NPCs
                 isZombie = true;
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
+                renderLayer = reader.ReadByte();
             }
         }
     }

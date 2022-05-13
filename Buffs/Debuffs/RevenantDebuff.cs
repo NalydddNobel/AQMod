@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Necromancy;
+using Aequus.Graphics;
 using Terraria;
 
 namespace Aequus.Buffs.Debuffs
@@ -18,7 +19,13 @@ namespace Aequus.Buffs.Debuffs
             {
                 damageOverTime = 6;
             }
-            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
+
+            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyRevenant)
+            {
+                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyRevenant;
+            }
         }
     }
 }

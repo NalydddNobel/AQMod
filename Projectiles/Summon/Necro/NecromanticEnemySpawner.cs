@@ -1,9 +1,10 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Necromancy;
+using Aequus.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
     public class NecromanticEnemySpawner : ModProjectile
     {
@@ -39,6 +40,7 @@ namespace Aequus.Projectiles.Summon
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0);
             zombie.zombieTimerMax *= 5;
             zombie.zombieTimer *= 5;
+            zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyBloodSacrifice;
         }
 
         public int DetermineNPCType(int type)

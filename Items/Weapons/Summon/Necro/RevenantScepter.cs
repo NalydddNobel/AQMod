@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Summon;
+﻿using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -29,10 +29,14 @@ namespace Aequus.Graphics
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             BehindProjs = new ParticleRenderer();
-            necromancyRenderers = new NecromancyScreenRenderer[2]
+            necromancyRenderers = new NecromancyScreenRenderer[]
             { 
-                new NecromancyScreenRenderer(-1, () => ModContent.GetInstance<ClientConfig>().NecromancyColor), 
-                new NecromancyScreenRenderer(0, () => Color.White) 
+                new NecromancyScreenRenderer(0, NecromancyScreenRenderer.TargetIDs.LocalPlayer, () => Color.White),
+                new NecromancyScreenRenderer(-1, NecromancyScreenRenderer.TargetIDs.FriendlyZombie, () => new Color(100, 149, 237, 255)),
+                new NecromancyScreenRenderer(-1, NecromancyScreenRenderer.TargetIDs.FriendlyRevenant, () => new Color(40, 100, 237, 255)),
+                new NecromancyScreenRenderer(-1, NecromancyScreenRenderer.TargetIDs.FriendlyOsiris, () => new Color(255, 128, 20, 255)),
+                new NecromancyScreenRenderer(-1, NecromancyScreenRenderer.TargetIDs.FriendlyInsurgent, () => new Color(80, 255, 200, 255)),
+                new NecromancyScreenRenderer(-1, NecromancyScreenRenderer.TargetIDs.FriendlyBloodSacrifice, () => new Color(255, 10, 10, 255)),
             };
             LoadHooks();
         }

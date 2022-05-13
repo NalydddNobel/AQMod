@@ -1,12 +1,12 @@
 ﻿using Aequus.Items.Misc;
-using Aequus.Projectiles.Summon;
+using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public class InsurgencyScepter : BaseScepter
+    public class Insurgency : BaseScepter
     {
         public override void SetDefaults()
         {

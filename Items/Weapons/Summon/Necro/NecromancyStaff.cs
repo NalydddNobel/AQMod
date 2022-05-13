@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Items.Misc;
-using Aequus.NPCs;
-using Aequus.Projectiles.Summon;
+using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

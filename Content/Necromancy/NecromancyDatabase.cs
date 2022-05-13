@@ -399,7 +399,7 @@ namespace Aequus.Content.Necromancy
         /// <summary>
         /// Adds a NecroStats data for an npc index in <see cref="NPCs"/>
         /// <para>Parameter 1: NPC Type (short)</para>
-        /// <para>Parameter 2: Tier (float), <see cref="ZombieScepter"/> is tier 1, <see cref="InsurgencyScepter"/> is tier 4</para>
+        /// <para>Parameter 2: Tier (float), <see cref="ZombieScepter"/> is tier 1, <see cref="Insurgency"/> is tier 4</para>
         /// <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
         /// <para>Parameter 4+ (Optional): Two paired arguments. One string and one value</para>
         /// <para>A successful mod call would look like:</para>

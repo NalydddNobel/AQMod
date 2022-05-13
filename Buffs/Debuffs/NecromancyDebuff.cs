@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
-using Aequus.NPCs;
+using Aequus.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,7 +18,13 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 2 * AequusHelpers.NPCREGEN;
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            zombie.zombieDrain = 2 * AequusHelpers.NPCREGEN;
+
+            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyZombie)
+            {
+                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyZombie;
+            }
         }
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff

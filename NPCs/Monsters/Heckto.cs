@@ -127,6 +127,7 @@ namespace Aequus.NPCs.Monsters
             this.CreateLoot(npcLoot)
                 .Add<Hexoplasm>(chance: 1, stack: (1, 2));
         }
+
         //public override void NPCLoot()
         //{
         //    if (Main.rand.NextBool(10))

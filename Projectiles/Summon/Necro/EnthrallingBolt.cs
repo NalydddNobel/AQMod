@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
-    public class EnthrallingBolt : NecromancerBolt
+    public class EnthrallingBolt : ZombieBolt
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancerBolt>();
+        public override string Texture => AequusHelpers.GetPath<ZombieBolt>();
 
         public override Color? GetAlpha(Color lightColor)
         {

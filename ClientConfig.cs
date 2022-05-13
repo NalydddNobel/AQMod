@@ -66,14 +66,6 @@ namespace Aequus
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.NecromancyColorLabel")]
-        [Tooltip(Key + "Client.NecromancyColorTooltip")]
-        [DefaultValue(typeof(Color), "100, 149, 237, 255")]
-        [ColorHSLSlider()]
-        [ColorNoAlpha()]
-        public Color NecromancyColor { get; set; }
-
         internal static void OnModLoad(Aequus aequus)
         {
             AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
     public class NecromancyNPCHitbox : ModProjectile
     {

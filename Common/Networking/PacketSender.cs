@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Necromancy;
+using Aequus.NPCs;
 using System;
 using System.IO;
 using Terraria;
@@ -53,11 +54,11 @@ namespace Aequus.Common.Networking
             PacketType.SyncNecromanyProjectile, to: remoteClient, ignore: ignoreClient);
         }
 
-        public static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
+        internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
         {
-            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>() };
+            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>(), npc.GetGlobalNPC<DamageOverTime>(), };
         }
-        public static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
+        internal static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
         {
             return new IEntityNetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
         }

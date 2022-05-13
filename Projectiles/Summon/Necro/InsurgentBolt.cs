@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
     public class InsurgentBolt : InsurgentSkull
     {

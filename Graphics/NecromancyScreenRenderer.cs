@@ -10,13 +10,36 @@ namespace Aequus.Graphics
     {
         public readonly DrawIndexCache NPCs;
         public readonly int Team;
+        public int Index;
         public Func<Color> DrawColor;
 
         public static bool RenderingNow;
 
-        public NecromancyScreenRenderer(int team, Func<Color> color)
+        public static class TargetIDs
         {
-            Team = team;
+            public const int LocalPlayer = 0;
+            public const int FriendlyZombie = 1;
+            public const int FriendlyRevenant = 2;
+            public const int FriendlyOsiris = 3;
+            public const int FriendlyInsurgent = 4;
+            public const int FriendlyBloodSacrifice = 5;
+            public const int PVPTeams = 6;
+            public const int PVPTeams_Red = 6;
+            public const int PVPTeams_Green = 7;
+            public const int PVPTeams_Blue = 8;
+            public const int PVPTeams_Yellow = 9;
+            public const int PVPTeams_Purple = 10;
+
+            /// <summary>
+            /// Use and increase respectively for custom Necromancy Screen Renderer layers.
+            /// </summary>
+            public static int Count = 11;
+        }
+
+        public NecromancyScreenRenderer(int playerTeam, int index, Func<Color> color)
+        {
+            Team = playerTeam;
+            Index = index;
             DrawColor = color;
             NPCs = new DrawIndexCache();
         }
@@ -79,13 +102,13 @@ namespace Aequus.Graphics
             _wasPrepared = false;
         }
 
-        public static int GetScreenTargetIndex(Player player)
+        public static int GetScreenTargetIndex(Player player, int suggestedTarget = 0)
         {
             if (Main.myPlayer == player.whoAmI && (player.team == 0 || !player.hostile))
             {
-                return 0;
+                return Math.Max(suggestedTarget, 0);
             }
-            return player.team + 1;
+            return player.team + TargetIDs.PVPTeams - 1;
         }
     }
 }

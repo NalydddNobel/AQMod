@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Necromancy;
 using Terraria;
 using Terraria.ModLoader;
 

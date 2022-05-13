@@ -79,12 +79,13 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Osiris: Osiris
 			SkeletonKey: Skeleton Key
 			RevenantScepter: Revenant Scepter
 			NecromancyStaff: Necromancy Staff
 			UnenchantedStaff: Unenchanted Staff
 			RitualisticSkull: Ritualistic Skull
-			InsurgencyScepter: Insurgency Scepter
+			Insurgency: Insurgency
 			ZombieScepter: Zombie Scepter
 			Moro: Moro
 			IcebergKraken: Iceberg Kraken
@@ -387,6 +388,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Osiris: 
+				'''
+				Drains the soul of powerful enemies
+				Defeated enemies will join your team
+				Bursts into a swarm of locusts on hit
+				'''
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
 			RevenantScepter: 
 				'''
@@ -395,7 +402,7 @@ Mods: {
 				'''
 			UnenchantedStaff: May be enchanted
 			RitualisticSkull: Converts all of your minion slots into ghost minion slots
-			InsurgencyScepter: 
+			Insurgency: 
 				'''
 				Drains the soul of very powerful enemies
 				While accursed, they release spirits that attack nearby enemies
@@ -1885,11 +1892,6 @@ Mods: {
 				InfoDebugLogsTooltip: 
 					'''
 					Only really useful for 3rd party developers who want confirmation for events
-					'''
-				NecromancyColor: Necromantic Ghosts Color
-				NecromancyColorTooltip: 
-					'''
-					Allows you to control what color your necromantic ghosts would use.
 					'''
 			}
 		}

@@ -9,9 +9,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
-    public class InsurgentSkull : NecromancerBolt
+    public class InsurgentSkull : ZombieBolt
     {
         protected PrimRenderer smokePrim;
 
@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Summon
                 {
                     var normal = Main.rand.NextVector2Unit();
                     float distance = Projectile.width * Projectile.scale;
-                    var d = Dust.NewDustPerfect(Projectile.Center + normal * distance, ModContent.DustType<MonoDust>(), -normal * distance / 16f, 
+                    var d = Dust.NewDustPerfect(Projectile.Center + normal * distance, ModContent.DustType<MonoDust>(), -normal * distance / 16f,
                         newColor: new Color(255 - Projectile.alpha, 255, 255 - Main.rand.Next((int)(120 * (1f - Projectile.Opacity))), 100));
                 }
                 if (Projectile.alpha <= 0)

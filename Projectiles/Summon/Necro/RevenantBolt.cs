@@ -1,19 +1,17 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
-    public class RevenantBolt : NecromancerBolt
+    public class RevenantBolt : ZombieBolt
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancerBolt>();
+        public override string Texture => AequusHelpers.GetPath<ZombieBolt>();
 
         public override void SetStaticDefaults()
         {
@@ -31,6 +29,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
             Projectile.alpha = 250;
+            Projectile.scale = 0.6f;
         }
 
         public override Color? GetAlpha(Color lightColor)

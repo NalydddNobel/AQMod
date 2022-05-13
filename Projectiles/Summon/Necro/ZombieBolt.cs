@@ -9,9 +9,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
-    public class NecromancerBolt : ModProjectile
+    public class ZombieBolt : ModProjectile
     {
         protected PrimRenderer prim;
         protected float primScale;
@@ -27,6 +27,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
+            Projectile.scale = 0.5f;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -24,6 +24,11 @@
             Caches <see cref="F:Terraria.Main.invasionType"/>
             </summary>
         </member>
+        <member name="P:Aequus.AequusHelpers.Main_bloodMoon">
+            <summary>
+            Caches <see cref="F:Terraria.Main.bloodMoon"/>
+            </summary>
+        </member>
         <member name="P:Aequus.AequusHelpers.Main_eclipse">
             <summary>
             Caches <see cref="F:Terraria.Main.eclipse"/>
@@ -84,14 +89,9 @@
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> / <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.dreamMask">
-            <summary>
-            Applied by <see cref="!:HappiestMask"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.necromancyMinionSlotConvert">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.RitualisticSkull"/> and <see cref="!:HappiestMask"/>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.RitualisticSkull"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.autoSentry">
