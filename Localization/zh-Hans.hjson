@@ -180,7 +180,7 @@ Mods: {
 			MagicWand: 魔杖
 			Deltoid: 增量
 			Lightbulb: 灯泡
-			CrimsonHellSword: 灼烧者
+			Cauterizer: 灼烧者
 			HellsBoon: 地狱之赐
 			MonoxiderStaff: 一氧化物法杖
 			ScarletSea: 罪孽红海
@@ -693,11 +693,10 @@ Mods: {
 			MagicWand: 向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
 			Deltoid: 发射地狱箭矢, 其会召唤更多的箭矢
 			Lightbulb: 利用恒星的能量散发着光
-			CrimsonHellSword:
+			Cauterizer:
 				'''
 				发射会爆炸的恶魔能量冲击波
 				剑身击中敌人时会对其造成猩红狱火减益
-				'那一定会燃起来的'
 				'''
 			HellsBoon:
 				'''
@@ -1100,7 +1099,7 @@ Mods: {
 				发射能量射线
 				'你准备好了吗吗吗吗吗吗'
 				'''
-			HamaYumi: 将箭矢转化为爆影破魔矢
+			HamaYumi: 接近敌人时会爆裂成腐败狱火
 			SpiralingTwilight: "{$Mods.Aequus.Common.UseDarts}"
 			Sprinkler: "{$Mods.Aequus.Common.UseDarts}"
 			StarPhish: "{$Mods.Aequus.Common.UseDarts}"
@@ -1315,7 +1314,7 @@ Mods: {
 			UltimaFlare: 绚彩圣焰
 			Venus: 维纳斯
 			RayBulletBase: 射线
-			HamaYumiArrow: 爆影破魔矢
+			HamaYumiArrow: 破魔弓
 			SpaceShot: 星星
 			Bubbler: 泡泡
 			FizzlingFire: 碧蓝之火
