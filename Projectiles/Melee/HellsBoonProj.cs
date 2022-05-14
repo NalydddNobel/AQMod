@@ -48,6 +48,8 @@ namespace Aequus.Projectiles.Melee
             Projectile.penetrate = -1;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 10;
         }
 
         private const int goOutTime = 15;
@@ -78,7 +80,7 @@ namespace Aequus.Projectiles.Melee
                         SoundEngine.PlaySound(new LegacySoundStyle(SoundID.Tink, 0, SoundType.Sound).WithVolume(0.5f).WithPitchVariance(2f), Projectile.Center);
                     }
                     float progress = (Projectile.ai[1] - 15f) / goOutTime;
-                    Projectile.ai[0] = MathHelper.Lerp(0f, 45f, progress);
+                    Projectile.ai[0] = MathHelper.Lerp(0f, 80f, progress);
                     Projectile.timeLeft += Main.rand.Next(6) - 1;
                 }
             }
@@ -119,7 +121,12 @@ namespace Aequus.Projectiles.Melee
             {
                 frameHeight = texture.Height;
             }
-            var drawData = new DrawData(texture, Projectile.Center - Main.screenPosition, new Rectangle(frameWidth * Projectile.frame, 0, frameWidth - 2, frameHeight), lightColor, Projectile.rotation + MathHelper.PiOver2, new Vector2(frameWidth / 2f, 16f), Projectile.scale, SpriteEffects.None, 0);
+            var drawData = new DrawData(texture, Projectile.Center - Main.screenPosition, new Rectangle(frameWidth * Projectile.frame, 0, frameWidth - 2, frameHeight), lightColor.MaxRGBA(200), Projectile.rotation + MathHelper.PiOver2, new Vector2(frameWidth / 2f, 16f), Projectile.scale, SpriteEffects.None, 0);
+            if (Projectile.ai[0] > 42f)
+            {
+                drawData.scale.Y += (Projectile.ai[0] - 42f) / 66f;
+            }
+            
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();

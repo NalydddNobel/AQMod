@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Ranged;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,17 +10,18 @@ namespace Aequus.Items.Weapons.Ranged
     {
         public override void SetDefaults()
         {
-            Item.damage = 23;
+            Item.damage = 13;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 38;
-            Item.useAnimation = 38;
+            Item.useTime = 8;
+            Item.useAnimation = Item.useTime * 3;
+            Item.reuseDelay = 20;
             Item.width = 20;
             Item.height = 30;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 2.8f;
+            Item.shootSpeed = 20f;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
             Item.value = ItemDefaults.DemonSiegeValue;
@@ -35,6 +37,9 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            position += new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f));
+            velocity = Vector2.Normalize(Main.MouseWorld - position) * velocity.Length();
+            type = ModContent.ProjectileType<DeltoidArrow>(); 
         }
     }
 }

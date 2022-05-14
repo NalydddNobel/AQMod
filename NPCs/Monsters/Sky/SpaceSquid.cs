@@ -240,21 +240,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[0] = PHASE_GOODBYE;
                 return;
             }
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                var parent = ROR2ArtifactsSupport.GetParent(NPC);
-                if (parent != null)
-                {
-                    if ((int)parent.ai[0] == PHASE_SPACEGUN)
-                    {
-                        NPC.ai[0] = PHASE_SNOWFLAKESPIRAL;
-                    }
-                    else
-                    {
-                        NPC.ai[0] = PHASE_SPACEGUN;
-                    }
-                }
-            }
             switch ((int)NPC.ai[0])
             {
                 case PHASE_SPACEGUN:

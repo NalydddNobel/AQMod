@@ -6,21 +6,18 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public class HamaYumiArrow : ModProjectile
+    public class DeltoidArrow : ModProjectile
     {
         public PrimRenderer prim;
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Type] = 2;
             this.SetTrail(10);
         }
 
@@ -34,21 +31,9 @@ namespace Aequus.Projectiles.Ranged
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 12;
-            Projectile.timeLeft = 28;
+            Projectile.timeLeft = 120;
             Projectile.extraUpdates = 1;
             Projectile.alpha = 200;
-        }
-
-        public override void OnSpawn(IEntitySource source)
-        {
-            if (source is EntitySource_ItemUse_WithAmmo ammo)
-            {
-                Projectile.ai[0] = ContentSamples.ItemsByType[ammo.AmmoItemIdUsed].shoot;
-            }
-            else
-            {
-                Projectile.ai[0] = ProjectileID.WoodenArrowFriendly;
-            }
         }
 
         public override void AI()
@@ -61,16 +46,24 @@ namespace Aequus.Projectiles.Ranged
                     Projectile.alpha = 0;
                 }
             }
+            Projectile.ai[0]++;
+            if (Projectile.ai[0] > 20f)
+            {
+                Projectile.velocity.Y += 0.45f;
+            }
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            CorruptionHellfire.AddStack(target, 60, 1);
+            if (Main.rand.NextBool(3))
+            {
+                CrimsonHellfire.AddStack(target, 120, 1);
+            }
             if (Main.myPlayer == Projectile.owner)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
-                Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
+                Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
             }
 
         }
@@ -87,17 +80,9 @@ namespace Aequus.Projectiles.Ranged
             if (Main.myPlayer == Projectile.owner)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
-                Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
             return true;
-        }
-
-        public override void Kill(int timeLeft)
-        {
-            if (Main.myPlayer == Projectile.owner)
-            {
-                Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Projectile.velocity * 2f, (int)Projectile.ai[0], Projectile.damage, Projectile.knockBack, Projectile.owner);
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -107,26 +92,17 @@ namespace Aequus.Projectiles.Ranged
 
             if (prim == null)
             {
-                prim = PrimRenderer.NewRenderer(Projectile, 1, 8f, CorruptionHellfire.FireColor * 3);
+                prim = PrimRenderer.NewRenderer(Projectile, 1, 8f, CrimsonHellfire.BloomColor * 3);
             }
 
             prim.Draw(Projectile.oldPos);
             var frame = Projectile.Frame();
-
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
-
-            float opacity = 1f;
-            if (Projectile.timeLeft < 12)
-            {
-                opacity = Projectile.timeLeft / 12f;
-            }
-            frame.Y += frame.Height;
-            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, CorruptionHellfire.FireColor * Projectile.Opacity * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }
 
-    public class HamaYumiExplosion : ModProjectile
+    public class DeltoidExplosion : ModProjectile
     {
         public override string Texture => "Aequus/Assets/Explosion1";
 
@@ -142,7 +118,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return CorruptionHellfire.BloomColor.UseA(0) * 5;
+            return CrimsonHellfire.BloomColor.UseA(0) * 5;
         }
 
         public override bool? CanHitNPC(NPC target)
@@ -158,13 +134,13 @@ namespace Aequus.Projectiles.Ranged
                 {
                     var v = Main.rand.NextVector2Unit();
                     EffectsSystem.BehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor, 1.25f, 0.3f));
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor, 1.25f, 0.3f));
                 }
                 for (int i = 0; i < 15; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
                     Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<VoidDust>(), v * Main.rand.NextFloat(1f, 12f), 0,
-                        new Color(175, 50, 255), Main.rand.NextFloat(0.4f, 1.5f));
+                        new Color(255, 85, 25), Main.rand.NextFloat(0.4f, 1.5f));
                 }
             }
             Projectile.frameCounter++;

@@ -45,10 +45,6 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 Rotation = MathHelper.Pi,
             });
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                ROR2ArtifactsSupport.ROR2Artifacts.Call("AddToSwarmsBlacklist", Type);
-            }
         }
 
         public override void Unload()
@@ -154,10 +150,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[2] = -1f;
                 int count = Main.rand.Next(3) + 1;
                 int swarmCount = count;
-                if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled && (bool)ROR2ArtifactsSupport.ROR2Artifacts.Call("GetSwarmsGameMode"))
-                {
-                    count *= 2;
-                }
                 int npcX = (int)NPC.position.X + NPC.width / 2;
                 int npcY = (int)NPC.position.Y + NPC.height / 2;
                 int lastNPC = NPC.whoAmI;
@@ -169,20 +161,12 @@ namespace Aequus.NPCs.Monsters.Sky
                     Main.npc[n].ai[2] = lastNPC;
                     Main.npc[n].localAI[0] = NPC.localAI[0];
                     Main.npc[n].target = NPC.target;
-                    if (i >= swarmCount && ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-                    {
-                        ROR2ArtifactsSupport.SetParent(Main.npc[n], Main.npc[lastNPC]);
-                    }
                     lastNPC = n;
                     n = NPC.NewNPC(NPC.GetSource_FromAI(), npcX - NPC.width * (i + 1), npcY, NPC.type, NPC.whoAmI);
                     Main.npc[n].ai[1] = NPC.ai[1];
                     Main.npc[n].ai[2] = lastNPC2;
                     Main.npc[n].localAI[0] = NPC.localAI[0];
                     Main.npc[n].target = NPC.target;
-                    if (i >= swarmCount && ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-                    {
-                        ROR2ArtifactsSupport.SetParent(Main.npc[n], Main.npc[lastNPC2]);
-                    }
                     lastNPC2 = n;
                 }
                 NPC.netUpdate = true;

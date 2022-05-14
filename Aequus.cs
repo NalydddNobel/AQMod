@@ -44,7 +44,7 @@ namespace Aequus
                 NPCTalkInterface = new UserInterface();
             }
 
-            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            foreach (var t in AutoloadUtilities.GetTypes(Code))
             {
                 IOnModLoad.CheckAutoload(this, t);
             }
@@ -52,7 +52,7 @@ namespace Aequus
 
         public override void PostSetupContent()
         {
-            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            foreach (var t in AutoloadUtilities.GetTypes(Code))
             {
                 IPostSetupContent.CheckAutoload(this, t);
             }
@@ -72,7 +72,7 @@ namespace Aequus
             {
                 AequusBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
             }
-            foreach (var t in AutoloadUtilities.GetTypesFor(Code))
+            foreach (var t in AutoloadUtilities.GetTypes(Code))
             {
                 if (t.IsAbstract || t.IsInterface)
                 {

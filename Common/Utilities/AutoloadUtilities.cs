@@ -6,7 +6,7 @@ namespace Aequus.Common.Utilities
 {
     internal static class AutoloadUtilities
     {
-        public static Type[] GetTypesFor(Assembly ass)
+        public static Type[] GetTypes(Assembly ass)
         {
             return ass.GetTypes();
         }

@@ -222,7 +222,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.ai[0] = -1;
                 return;
             }
-            AI_CrossMod_ROR2Artifacts_Swarms();
             switch ((int)NPC.ai[0])
             {
                 case PHASE_DIRECTWIND:
@@ -524,20 +523,6 @@ namespace Aequus.NPCs.Monsters.Sky
                         }
                     }
                     break;
-            }
-        }
-        public void AI_CrossMod_ROR2Artifacts_Swarms()
-        {
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                var parent = ROR2ArtifactsSupport.GetParent(NPC);
-                if (parent != null)
-                {
-                    if ((int)parent.ai[0] == (int)NPC.ai[0])
-                    {
-                        AI_RandomizePhase((int)NPC.ai[0]);
-                    }
-                }
             }
         }
         public void AI_Phase_DirectWind(Vector2 center)

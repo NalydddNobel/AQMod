@@ -435,14 +435,6 @@ namespace Aequus.NPCs.Boss
             Player player = Main.player[NPC.target];
             var plrCenter = player.Center;
             float speed = NPC.velocity.Length();
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                var parent = ROR2ArtifactsSupport.GetParent(NPC);
-                if (parent != null && !parent.dontTakeDamage && (int)parent.ai[0] == (int)NPC.ai[0])
-                {
-                    NPC.ai[0] = PHASE_ASSAULT_PLAYER;
-                }
-            }
             switch ((int)NPC.ai[0])
             {
                 default:

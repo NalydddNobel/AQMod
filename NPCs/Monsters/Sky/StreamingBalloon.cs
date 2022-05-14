@@ -43,10 +43,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 ImmuneToAllBuffsThatAreNotWhips = true,
                 ImmuneToWhips = true,
             });
-            if (ROR2ArtifactsSupport.ROR2Artifacts.Enabled)
-            {
-                ROR2ArtifactsSupport.ROR2Artifacts.Call("AddToSwarmsBlacklist", Type);
-            }
         }
 
         public override void SetDefaults()
