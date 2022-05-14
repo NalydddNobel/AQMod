@@ -1099,7 +1099,7 @@ Mods: {
 				Shoots lines of energy
 				'Are you readyayayayayyayayayaya'
 				'''
-			HamaYumi: Converts arrows into exploding shade arrows
+			HamaYumi: Close enemies explode into corruption hellfire
 			SpiralingTwilight: "{$Mods.Aequus.Common.UseDarts}"
 			Sprinkler: "{$Mods.Aequus.Common.UseDarts}"
 			StarPhish: "{$Mods.Aequus.Common.UseDarts}"
@@ -1314,7 +1314,7 @@ Mods: {
 			UltimaFlare: Ultima Flare
 			Venus: Venus
 			RayBulletBase: Ray
-			HamaYumiArrow: Hama Yumi Arrow
+			HamaYumiArrow: Hama Yumi
 			SpaceShot: SpaceShot
 			Bubbler: Bubbler
 			FizzlingFire: Fizzling Fire

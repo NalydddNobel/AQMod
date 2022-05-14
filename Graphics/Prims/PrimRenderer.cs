@@ -42,12 +42,35 @@ namespace Aequus.Graphics.Prims
             vertices = null;
         }
 
+        public static PrimRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
+        {
+            return new PrimRenderer(Images.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
+        }
+        public static PrimRenderer NewRenderer(int type, float width, Func<Color> color)
+        {
+            return NewRenderer(type, () => width, color);
+        }
+        public static PrimRenderer NewRenderer(int type, Func<float> width, Color color)
+        {
+            return NewRenderer(type, width, () => color);
+        }
+        public static PrimRenderer NewRenderer(int type, float width, Color color)
+        {
+            return NewRenderer(type, () => width, color);
+        }
+
+        public static PrimRenderer NewRenderer(Projectile projectile, int type, float width, Color color)
+        {
+            var prim = NewRenderer(type, width, () => color * projectile.Opacity);
+            prim.drawOffset = projectile.Size / 2f;
+            return prim;
+        }
+
         public static Vector2[] RemoveZerosAndDoOffset(Vector2[] arr, Vector2 offset)
         {
             var valid = new List<Vector2>();
             for (int i = 0; i < arr.Length; i++)
             {
-                //Main.NewText(arr[i], Main.DiscoColor);
                 if (arr[i] == Vector2.Zero || arr[i].HasNaNs())
                     break;
                 if (i != 0 && arr[i - 1] == arr[i])

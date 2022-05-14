@@ -13,9 +13,18 @@ namespace Aequus.Graphics
 
         public static MiniRandom EffectRand { get; private set; }
 
-        public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
         public static ParticleRenderer BehindProjs { get; private set; }
+        /// <summary>
+        /// Use this instead of <see cref="Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+        /// </summary>
+        public static ParticleRenderer BehindPlayers { get; private set; }
+        /// <summary>
+        /// Use this instead of <see cref="Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+        /// </summary>
+        public static ParticleRenderer AbovePlayers { get; private set; }
+
         public static DrawIndexCache ProjsBehindTiles { get; private set; }
+        public static DrawIndexCache NPCsBehindAllNPCs { get; private set; }
 
         public static ScreenShake Shake { get; private set; }
 
@@ -26,6 +35,8 @@ namespace Aequus.Graphics
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
             BehindProjs = new ParticleRenderer();
+            BehindPlayers = new ParticleRenderer();
+            AbovePlayers = new ParticleRenderer();
             necromancyRenderers = new NecromancyScreenRenderer[]
             { 
                 new NecromancyScreenRenderer(0, NecromancyScreenRenderer.TargetIDs.LocalPlayer, () => Color.White),
@@ -39,6 +50,7 @@ namespace Aequus.Graphics
         }
         private void LoadHooks()
         {
+            On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
             On.Terraria.Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
             On.Terraria.Main.DrawDust += Hook_OnDrawDust;
             On.Terraria.Main.DrawProjectiles += Hook_OnDrawProjs;
@@ -56,7 +68,13 @@ namespace Aequus.Graphics
 
         public override void OnWorldLoad()
         {
+            if (Main.dedServ)
+            {
+                return;
+            }
             BehindProjs = new ParticleRenderer();
+            BehindPlayers = new ParticleRenderer();
+            AbovePlayers = new ParticleRenderer();
         }
 
         public override void PreUpdatePlayers()
@@ -67,6 +85,8 @@ namespace Aequus.Graphics
 
                 Shake.Update();
                 BehindProjs.Update();
+                BehindPlayers.Update();
+                AbovePlayers.Update();
             }
         }
 

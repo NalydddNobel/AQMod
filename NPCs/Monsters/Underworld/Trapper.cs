@@ -30,6 +30,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 3;
+            this.HideBestiaryEntry();
         }
 
         public override void SetDefaults()

@@ -168,7 +168,6 @@ namespace Aequus
         }
         private void LoadHooks()
         {
-            On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += OnRenderPlayer;
         }
 
@@ -746,24 +745,6 @@ namespace Aequus
             Main.mouseX = mouseX;
             Main.mouseY = mouseY;
             return result;
-        }
-
-        private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
-        {
-            var aequusPlayers = new List<AequusPlayer>();
-            foreach (var p in players)
-            {
-                aequusPlayers.Add(p.GetModPlayer<AequusPlayer>());
-            }
-            foreach (var aequus in aequusPlayers)
-            {
-                aequus.PreDrawAllPlayers(self, camera, players);
-            }
-            orig(self, camera, players);
-            //foreach (var p in active)
-            //{
-            //    p.PostDrawAllPlayers(self);
-            //}
         }
 
         private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)

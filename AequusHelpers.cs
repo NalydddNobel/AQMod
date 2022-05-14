@@ -69,6 +69,11 @@ namespace Aequus
             }
         }
 
+        public static void HideBestiaryEntry(this ModNPC npc)
+        {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(npc.Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, });
+        }
+
         public static void GetDrawInfo(this Projectile projectile, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength)
         {
             texture = TextureAssets.Projectile[projectile.type].Value;

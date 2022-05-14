@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Networking;
+using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using System;
@@ -66,14 +67,14 @@ namespace Aequus.NPCs
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    Main.ParticleSystem_World_BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor, 1.25f, 0.3f));
             }
             if (hasCrimsonHellfire)
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    Main.ParticleSystem_World_BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor, 0.9f, 0.35f));
             }
         }

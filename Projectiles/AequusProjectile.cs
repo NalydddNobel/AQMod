@@ -31,5 +31,19 @@ namespace Aequus.Projectiles
                 }
             }
         }
+
+        public static void DefaultToExplosion(Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2)
+        {
+            projectile.width = size;
+            projectile.height = size;
+            projectile.tileCollide = false;
+            projectile.friendly = true;
+            projectile.DamageType = damageClass;
+            projectile.aiStyle = -1;
+            projectile.timeLeft = timeLeft;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = projectile.timeLeft + 1;
+            projectile.penetrate = -1;
+        }
     }
 }

@@ -1,11 +1,39 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.Graphics;
+using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
     partial class EffectsSystem : ModSystem
     {
+        private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
+        {
+            CommonSpriteBatchBegins.GeneralEntities.Begin(Main.spriteBatch);
+            BehindPlayers.Draw(Main.spriteBatch);
+            Main.spriteBatch.End();
+
+            var aequusPlayers = new List<AequusPlayer>();
+            foreach (var p in players)
+            {
+                aequusPlayers.Add(p.GetModPlayer<AequusPlayer>());
+            }
+            foreach (var aequus in aequusPlayers)
+            {
+                aequus.PreDrawAllPlayers(self, camera, players);
+            }
+            orig(self, camera, players);
+            //foreach (var p in active)
+            //{
+            //    p.PostDrawAllPlayers(self);
+            //}
+            CommonSpriteBatchBegins.GeneralEntities.Begin(Main.spriteBatch);
+            AbovePlayers.Draw(Main.spriteBatch);
+            Main.spriteBatch.End();
+        }
+
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
