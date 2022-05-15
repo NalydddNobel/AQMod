@@ -79,7 +79,7 @@ namespace Aequus.NPCs
             }
         }
 
-        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
+        public void Send(int whoAmI, BinaryWriter writer)
         {
             writer.Write(hasLocust);
             if (hasLocust)
@@ -98,7 +98,7 @@ namespace Aequus.NPCs
             }
         }
 
-        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
+        public void Receive(int whoAmI, BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {
@@ -114,6 +114,14 @@ namespace Aequus.NPCs
             {
                 hasCrimsonHellfire = true;
                 crimsonHellfireStacks = reader.ReadByte();
+            }
+        }
+
+        public static void SyncDebuffs(int npc)
+        {
+            if (Main.npc[npc].TryGetGlobalNPC<NPCDebuffs>(out var debuffs))
+            {
+                PacketSender.Send((p) => { p.Write((byte)npc); debuffs.Send(npc, p); }, PacketType.SyncDebuffs);
             }
         }
     }

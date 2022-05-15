@@ -1,5 +1,6 @@
 ﻿using Aequus.NPCs;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs
@@ -23,6 +24,10 @@ namespace Aequus.Buffs.Debuffs
             npc.GetGlobalNPC<NPCDebuffs>().hasLocust = true;
             npc.GetGlobalNPC<NPCDebuffs>().locustStacks += (byte)stacksAmt;
             npc.netUpdate = true;
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NPCDebuffs.SyncDebuffs(npc.whoAmI);
+            }
         }
     }
 }

@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,13 +15,13 @@ namespace Aequus.Projectiles.Melee
     {
         private float _portaloffset = 0f;
 
-        public static StaticMiscShaderInfo<ShaderData> SpikeFade { get; private set; }
+        public static StaticMiscShaderInfo SpikeFade { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                SpikeFade = new StaticMiscShaderInfo<ShaderData>("MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
+                SpikeFade = new StaticMiscShaderInfo("MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
             }
         }
 
@@ -126,7 +125,7 @@ namespace Aequus.Projectiles.Melee
             {
                 drawData.scale.Y += (Projectile.ai[0] - 42f) / 66f;
             }
-            
+
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();

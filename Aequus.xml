@@ -336,7 +336,7 @@
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
             <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.InsurgencyScepter"/> is tier 4</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.Insurgency"/> is tier 4</para>
             <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
             <para>Parameter 4+ (Optional): Two paired arguments. One string and one value</para>
             <para>A successful mod call would look like:</para>
@@ -348,6 +348,16 @@
             <param name="aequus"></param>
             <param name="args"></param>
             <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="P:Aequus.Graphics.EffectsSystem.BehindPlayers">
+            <summary>
+            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.EffectsSystem.AbovePlayers">
+            <summary>
+            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
         </member>
         <member name="F:Aequus.Graphics.FrozenNPCEffect.Blacklist.OnFreezeNPC">
             <summary>
@@ -365,6 +375,11 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.NecromancyScreenRenderer.TargetIDs.Count">
+            <summary>
+            Use and increase respectively for custom Necromancy Screen Renderer layers.
             </summary>
         </member>
         <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">

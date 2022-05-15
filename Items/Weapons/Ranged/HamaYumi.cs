@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Ranged;
+﻿using Aequus.Biomes;
+using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,9 +9,16 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class HamaYumi : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.DemonBow, Type));
+
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
-            Item.damage = 18;
+            Item.damage = 28;
             Item.DamageType = DamageClass.Ranged;
             Item.useTime = 36;
             Item.useAnimation = 36;

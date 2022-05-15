@@ -6,6 +6,10 @@
         SyncNecromancyOwnerTier,
         SyncProjNetworkerGlobals,
         SoundQueue,
+        DemonSiegeSacrificeStatus,
+        RequestDemonSiege,
+        RemoveDemonSiege,
+        SyncDebuffs,
         Count,
     }
 }

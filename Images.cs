@@ -29,6 +29,7 @@ namespace Aequus
 
         private static BindingFlags SearchFlags => BindingFlags.Public | BindingFlags.Static;
 
+        public static Asset<Texture2D> Pixel { get; private set; }
         [ImgPath("Assets/Particles")]
         public static Asset<Texture2D> Particle { get; private set; }
 

@@ -2,6 +2,7 @@
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Sky;
+using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,12 @@ namespace Aequus.NPCs
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
+            if (player.GetModPlayer<AequusPlayer>().eventDemonSiege.X != 0)
+            {
+                spawnRate = 150;
+                maxSpawns = 8;
+                return;
+            }
             if (Spawnrates_AreAequusBossesActive(player) || Spawnrates_AequusEventActive(player))
             {
                 spawnRate *= 10000;
@@ -47,6 +54,14 @@ namespace Aequus.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
+            if (spawnInfo.Player.Aequus().eventDemonSiege.X != 0)
+            {
+                pool.Clear();
+                pool.Add(ModContent.NPCType<TrapperImp>(), 0.33f);
+                pool.Add(ModContent.NPCType<Cindera>(), 0.33f);
+                pool.Add(ModContent.NPCType<Magmabubble>(), 0.33f);
+                return;
+            }
             if (SpawnPool_DontAddSpawns(spawnInfo))
             {
                 return;

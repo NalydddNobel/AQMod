@@ -515,9 +515,13 @@ namespace Aequus
             ProjectileID.Sets.TrailingMode[modProjectile.Type] = 2;
         }
 
+        public static void GetItemDrawData(int item, out Rectangle frame)
+        {
+            frame = Main.itemAnimations[item] == null ? TextureAssets.Item[item].Value.Frame() : Main.itemAnimations[item].GetFrame(TextureAssets.Item[item].Value);
+        }
         public static void GetItemDrawData(this Item item, out Rectangle frame)
         {
-            frame = Main.itemAnimations[item.type] == null ? TextureAssets.Item[item.type].Value.Frame() : Main.itemAnimations[item.type].GetFrame(TextureAssets.Item[item.type].Value);
+            GetItemDrawData(item.type, out frame);
         }
 
         public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
@@ -529,6 +533,14 @@ namespace Aequus
             return center + n * new Vector2(x, y);
         }
 
+        public static void Slope(this Tile tile, byte value)
+        {
+            tile.Slope = (SlopeType)value;
+        }
+        public static void HalfBrick(this Tile tile, bool value)
+        {
+            tile.IsHalfBlock = value;
+        }
         public static void Active(this Tile tile, bool value)
         {
             tile.HasTile = value;

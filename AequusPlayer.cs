@@ -67,6 +67,10 @@ namespace Aequus
         /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
         /// </summary>
         public bool eventGaleStreams;
+        /// <summary>
+        /// A point determining one of the close gore nests. Goes by on-spawn order.
+        /// </summary>
+        public Point eventDemonSiege;
 
         /// <summary>
         /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
@@ -204,6 +208,7 @@ namespace Aequus
             }
 
             eventGaleStreams = CheckEventGaleStreams();
+            eventDemonSiege = FindDemonSiege();
             forceDaytime = 0;
         }
         /// <summary>
@@ -213,6 +218,17 @@ namespace Aequus
         public bool CheckEventGaleStreams()
         {
             return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player);
+        }
+        public Point FindDemonSiege()
+        {
+            foreach (var s in DemonSiegeInvasion.Sacrifices)
+            {
+                if (Player.Distance(new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
+                {
+                    return s.Key;
+                }
+            }
+            return Point.Zero;
         }
 
         public override void UpdateDead()

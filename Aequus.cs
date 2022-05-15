@@ -1,3 +1,4 @@
+using Aequus.Biomes;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
@@ -5,12 +6,16 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Recipes;
+using Aequus.NPCs;
 using Aequus.NPCs.Monsters;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -35,6 +40,9 @@ namespace Aequus
         internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
 
+        public static Action ResetTileRenderPoints;
+        public static Action DrawSpecialTilePoints;
+
         public override void Load()
         {
             Instance = this;
@@ -47,6 +55,25 @@ namespace Aequus
             foreach (var t in AutoloadUtilities.GetTypes(Code))
             {
                 IOnModLoad.CheckAutoload(this, t);
+            }
+
+            On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
+        }
+
+        private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
+        {
+            orig(self);
+            DrawSpecialTilePoints?.Invoke();
+        }
+
+        private void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
+        {
+            orig(self, solidLayer, forRenderTargets, intoRenderTargets);
+            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
+            if (!solidLayer && flag)
+            {
+                ResetTileRenderPoints?.Invoke();
             }
         }
 
@@ -117,7 +144,7 @@ namespace Aequus
                 var globals = PacketSender.GetNetworkerGlobals(Main.npc[npc]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Receive(npc, reader);
+                    globals[i]?.Receive(npc, reader);
                 }
             }
             else if (type == PacketType.SyncNecromancyOwnerTier)
@@ -141,6 +168,23 @@ namespace Aequus
             else if (type == PacketType.SoundQueue)
             {
                 PacketReader.ReadSoundQueue(reader);
+            }
+            else if (type == PacketType.DemonSiegeSacrificeStatus)
+            {
+                DemonSiegeInvasion.EventSacrifice.ReadPacket(reader);
+            }
+            else if (type == PacketType.RequestDemonSiege)
+            {
+                DemonSiegeInvasion.ReadRequest(reader);
+            }
+            else if (type == PacketType.RemoveDemonSiege)
+            {
+                DemonSiegeInvasion.Sacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
+            }
+            else if (type == PacketType.SyncDebuffs)
+            {
+                byte npc = reader.ReadByte();
+                Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
             }
         }
     }

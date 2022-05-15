@@ -27,7 +27,7 @@ namespace Aequus.Tiles
 
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
 
-        public static List<Point> RelicRenderPoints { get; private set; }
+        public static List<Point> RenderPoints { get; private set; }
         public Asset<Texture2D> RelicOrbs;
         public Asset<Texture2D> Relic;
         private string RelicPath => base.Texture;
@@ -38,26 +38,15 @@ namespace Aequus.Tiles
             {
                 RelicOrbs = ModContent.Request<Texture2D>(RelicPath + "Orbs");
                 Relic = ModContent.Request<Texture2D>(RelicPath);
-                RelicRenderPoints = new List<Point>();
-                On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+                RenderPoints = new List<Point>();
                 On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
-            }
-        }
-
-        private void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
-        {
-            orig(self, solidLayer, forRenderTargets, intoRenderTargets);
-            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
-            if (!solidLayer && flag)
-            {
-                RelicRenderPoints.Clear();
             }
         }
 
         private void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
         {
             orig(self);
-            foreach (var p in RelicRenderPoints)
+            foreach (var p in RenderPoints)
             {
                 DrawRelic(p.X, p.Y, Main.spriteBatch);
             }
@@ -65,8 +54,8 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
-            RelicRenderPoints?.Clear();
-            RelicRenderPoints = null;
+            RenderPoints?.Clear();
+            RenderPoints = null;
             RelicOrbs = null;
             Relic = null;
         }
@@ -95,6 +84,11 @@ namespace Aequus.Tiles
             AdjTiles = new int[] { TileID.MasterTrophyBase, };
 
             AddMapEntry(new Color(233, 207, 94, 255), Language.GetText("MapObject.Relic"));
+
+            if (!Main.dedServ)
+            {
+                Aequus.ResetTileRenderPoints += () => RenderPoints.Clear();
+            }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -134,7 +128,7 @@ namespace Aequus.Tiles
         {
             if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0)
             {
-                RelicRenderPoints.Add(new Point(i, j));
+                RenderPoints.Add(new Point(i, j));
             }
         }
 

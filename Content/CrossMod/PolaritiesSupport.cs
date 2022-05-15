@@ -1,14 +1,23 @@
 ﻿using Aequus.Common;
+using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
-    internal sealed class PolaritiesSupport : LoadableType
+    internal sealed class PolaritiesSupport : IPostSetupContent
     {
         public static ModData Polarities;
 
-        public override void SetStaticDefaults()
+        void ILoadable.Load(Mod mod)
+        {
+        }
+
+        void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
             Polarities = new ModData("Polarities");
+        }
+
+        void ILoadable.Unload()
+        {
         }
     }
 }

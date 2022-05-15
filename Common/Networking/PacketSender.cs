@@ -35,7 +35,7 @@ namespace Aequus.Common.Networking
                 var globals = GetNetworkerGlobals(Main.npc[npc]);
                 for (int i = 0; i < globals.Length; i++)
                 {
-                    globals[i].Send(npc, p);
+                    globals[i]?.Send(npc, p);
                 }
             },
             PacketType.SyncNPCNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
@@ -57,7 +57,9 @@ namespace Aequus.Common.Networking
 
         internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
         {
-            return new IEntityNetworker[] { npc.GetGlobalNPC<NecromancyNPC>(), npc.GetGlobalNPC<NPCDebuffs>(), };
+            npc.TryGetGlobalNPC<NecromancyNPC>(out var necromancyNPC);
+            npc.TryGetGlobalNPC<NPCDebuffs>(out var debuffs);
+            return new IEntityNetworker[] { necromancyNPC, debuffs, };
         }
         internal static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
         {

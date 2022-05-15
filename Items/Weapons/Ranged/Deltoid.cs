@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Ranged;
+﻿using Aequus.Biomes;
+using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,13 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class Deltoid : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.TendonBow, Type));
+
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.damage = 13;

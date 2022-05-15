@@ -3,14 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
     public sealed class NecromancyScreenRenderer : ScreenTarget, ILoadable
     {
-        public static StaticMiscShaderInfo<ShaderData> Necromancy { get; private set; }
+        public static StaticMiscShaderInfo Necromancy { get; private set; }
 
         public readonly DrawIndexCache NPCs;
         public readonly int Team;
@@ -54,7 +53,10 @@ namespace Aequus.Graphics
 
         void ILoadable.Load(Mod mod)
         {
-            Necromancy = new StaticMiscShaderInfo<ShaderData>("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+            if (!Main.dedServ)
+            {
+                Necromancy = new StaticMiscShaderInfo("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+            }
         }
 
         void ILoadable.Unload()

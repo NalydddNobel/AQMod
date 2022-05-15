@@ -37,6 +37,10 @@ namespace Aequus.Buffs.Debuffs
                 npc.GetGlobalNPC<NPCDebuffs>().hasCrimsonHellfire = true;
                 npc.GetGlobalNPC<NPCDebuffs>().crimsonHellfireStacks += (byte)stacksAmt;
                 npc.netUpdate = true;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NPCDebuffs.SyncDebuffs(npc.whoAmI);
+                }
             }
         }
     }

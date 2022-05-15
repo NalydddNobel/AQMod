@@ -37,6 +37,10 @@ namespace Aequus.Buffs.Debuffs
                 npc.GetGlobalNPC<NPCDebuffs>().hasCorruptionHellfire = true;
                 npc.GetGlobalNPC<NPCDebuffs>().corruptionHellfireStacks += (byte)stacksAmt;
                 npc.netUpdate = true;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NPCDebuffs.SyncDebuffs(npc.whoAmI);
+                }
             }
         }
     }

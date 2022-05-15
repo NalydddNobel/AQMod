@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Biomes;
+using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -9,11 +10,18 @@ namespace Aequus.Items.Weapons.Melee
 {
     public class HellsBoon : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.LightsBane, Type));
+
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 40;
             Item.height = 40;
-            Item.damage = 38;
+            Item.damage = 46;
             Item.useTime = 38;
             Item.useAnimation = 19;
             Item.autoReuse = true;
