@@ -112,6 +112,8 @@ namespace Aequus
         public override void Unload()
         {
             Instance = null;
+            ResetTileRenderPoints = null;
+            DrawSpecialTilePoints = null;
             InventoryInterface = null;
             NPCTalkInterface = null;
         }

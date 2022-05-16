@@ -1484,6 +1484,10 @@ Mods: {
 			LightbulbTile: Lightbulb
 		}
 
+		WorldGeneration: {
+			GoreNests: Placing Gore Nests...
+		}
+
 		ContainerPotionError: This potion was improperly loaded
 		ContainerPotionLink: Will teleport to {0} ([i:{1}])
 

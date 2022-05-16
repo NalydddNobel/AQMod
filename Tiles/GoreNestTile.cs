@@ -20,8 +20,45 @@ namespace Aequus.Tiles
 {
     public class GoreNestTile : ModTile
     {
+        public static int MaxY => Main.UnderworldLayer + 150;
+        public static int MinY => Main.UnderworldLayer + 75;
+
+        public static HashSet<int> AvoidTiles { get; private set; }
+        public static HashSet<int> AvoidWalls { get; private set; }
         public static List<Point> RenderPoints { get; private set; }
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
+
+        public override void Load()
+        {
+            AvoidTiles = new HashSet<int>()
+            {
+                TileID.ObsidianBrick,
+                TileID.HellstoneBrick,
+            };
+            AvoidWalls = new HashSet<int>()
+            {
+                WallID.ObsidianBrick,
+                WallID.ObsidianBrickUnsafe,
+                TileID.HellstoneBrick,
+            };
+            if (!Main.dedServ)
+            {
+                RenderPoints = new List<Point>();
+                GoreNestPortal = new StaticMiscShaderInfo<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
+
+                Aequus.ResetTileRenderPoints += () => RenderPoints.Clear();
+                Aequus.DrawSpecialTilePoints += DrawPortals;
+            }
+        }
+
+        public override void Unload()
+        {
+            AvoidTiles?.Clear();
+            AvoidTiles = null;
+            RenderPoints?.Clear();
+            RenderPoints = null;
+            GoreNestPortal = null;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -37,15 +74,6 @@ namespace Aequus.Tiles
             DustType = DustID.Blood;
             AdjTiles = new int[] { TileID.DemonAltar };
             AddMapEntry(new Color(175, 15, 15), CreateMapEntryName("GoreNest"));
-
-            if (!Main.dedServ)
-            {
-                RenderPoints = new List<Point>();
-                GoreNestPortal = new StaticMiscShaderInfo<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
-
-                Aequus.ResetTileRenderPoints += () => RenderPoints.Clear();
-                Aequus.DrawSpecialTilePoints += DrawPortals;
-            }
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
@@ -288,19 +316,8 @@ namespace Aequus.Tiles
             return null;
         }
 
-        internal static bool TryGrowGoreNest(int x, int y, bool checkOuterThirds, bool checkIsHellLayer)
+        public static bool TryGrowGoreNest(int x, int y)
         {
-            if (checkOuterThirds)
-            {
-                int thirdX = Main.maxTilesX / 3;
-                if (x <= thirdX || x >= Main.maxTilesX - thirdX)
-                    return false;
-            }
-            if (checkIsHellLayer)
-            {
-                if (y < Main.UnderworldLayer - 100) // 300 tiles from the bottom of the world
-                    return false;
-            }
             if (Main.tile[x, y].HasTile)
             {
                 if (!Main.tile[x, y - 1].HasTile)
@@ -316,6 +333,11 @@ namespace Aequus.Tiles
             {
                 return false;
             }
+            //Main.NewText("Pass 1");
+            if (InnerGoreNestGenCheckForBlacklistedTiles(x, y))
+            {
+                return false;
+            }
             y -= 2;
             for (int i = 0; i < 3; i++)
             {
@@ -323,9 +345,8 @@ namespace Aequus.Tiles
                 {
                     int x2 = x + i;
                     int y2 = y + j;
-                    if (Main.tileCut[Main.tile[x2, y2].TileType])
                         Main.tile[x2, y2].Active(value: false);
-                    if (Framing.GetTileSafely(x2, y2).HasTile || Main.tile[x2, y2].LiquidAmount > 0)
+                    if (Main.tile[x2, y2].HasTile || Main.tile[x2, y2].LiquidAmount > 0)
                         return false;
                 }
             }
@@ -333,7 +354,7 @@ namespace Aequus.Tiles
             for (int i = 0; i < 3; i++)
             {
                 int x2 = x + i;
-                if (!Framing.GetTileSafely(x2, y).HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType])
+                if (!Main.tile[x2, y].HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType])
                     return false;
             }
             for (int i = 0; i < 3; i++)
@@ -343,15 +364,182 @@ namespace Aequus.Tiles
                 Main.tile[x2, y].HalfBrick(value: false);
             }
             y--;
-            int tileType = ModContent.TileType<GoreNestTile>();
-            WorldGen.PlaceTile(x, y, tileType);
-            if (Main.tile[x, y].TileType == tileType)
-            {
-                return true;
-            }
-            else
+            x++;
+            DustDebug(x, y);
+            WorldGen.PlaceTile(x, y, ModContent.TileType<GoreNestTile>(), mute: true, forced: true);
+            if (Main.tile[x, y].TileType != ModContent.TileType<GoreNestTile>())
             {
                 return false;
+            }
+            GenerateSurroundingGoreNestHill(x, y);
+            GenerateAmbientTiles(x, y);
+            return true;
+        }
+        public static void DustDebug(int x, int y)
+        {
+            Rectangle rect = new Rectangle(x * 16, y * 16, 16, 16);
+            for (int i = 0; i < 16; i++)
+            {
+                var d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y), DustID.Torch);
+                d.noGravity = true;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y + rect.Height), DustID.Torch);
+                d.noGravity = true;
+                d = Dust.NewDustPerfect(new Vector2(rect.X, rect.Y + i), DustID.Torch);
+                d.noGravity = true;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + rect.Width, rect.Y + i), DustID.Torch);
+                d.noGravity = true;
+            }
+        }
+        public static bool InnerGoreNestGenCheckForBlacklistedTiles(int x, int y)
+        {
+            for (int i = x - 25; i < x + 25; i++)
+            {
+                for (int j = y - 25; j < y + 25; j++)
+                {
+                    if (Main.tile[i, j].HasTile && AvoidTiles.Contains(Main.tile[i, j].TileType))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public static void GenerateSurroundingGoreNestHill(int x, int y)
+        {
+            GenerateHill_SpawnAsh(x, y);
+            int k = 0;
+            while (y < MaxY)
+            {
+                if (WorldGen.genRand.NextBool(3))
+                {
+                    y++;
+                }
+
+                GenerateHill_SpawnAsh(x + k + 1, y);
+                GenerateHill_SpawnAsh(x - k - 1, y);
+                k++;
+                if (k > 45 || (k > 20 && WorldGen.genRand.NextBool(15)))
+                {
+                    break;
+                }
+            }
+            //int oldK = k;
+            //while (true)
+            //{
+            //    if (x + k > Main.maxTilesX)
+            //    {
+            //        break;
+            //    }
+            //    if (Main.tile[x + k + 1, y].HasTile && !Main.tile[x + k + 1, y - 1].HasTile)
+            //    {
+            //        Main.NewText("ack");
+            //        DustDebug(x + k + 1, y);
+            //        break;
+            //    }
+            //    k++;
+            //    if (WorldGen.genRand.NextBool(3))
+            //    {
+            //        y--;
+            //    }
+            //    Main.NewText(y);
+            //    if (y < Main.UnderworldLayer)
+            //    {
+            //        for (int m = -10; m < 10; m++)
+            //        {
+            //            DustDebug(x + m, y);
+            //        }
+            //        DustDebug(x, Main.UnderworldLayer);
+            //        Main.NewText("min y" + y + ", " + Main.UnderworldLayer + ", " + MaxY);
+            //        break;
+            //    }
+            //    GenerateHill_SpawnAsh(x + k, y);
+            //}
+
+            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
+            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, -1);
+        }
+        public static void GenerateHill_TryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir)
+        {
+            k *= dir;
+            while (true)
+            {
+                if (x + k < 0 || x + k > Main.maxTilesX)
+                {
+                    break;
+                }
+                if (Main.tile[x + k + dir, y].HasTile && !Main.tile[x + k + dir, y - 1].HasTile)
+                {
+                    break;
+                }
+                k += dir;
+                if (WorldGen.genRand.NextBool(3))
+                {
+                    y--;
+                }
+                if (y < MinY)
+                {
+                    break;
+                }
+                GenerateHill_SpawnAsh(x + k, y);
+            }
+            x -= dir;
+            while (true)
+            {
+                x += dir;
+                if (x + k < 0 || x + k > Main.maxTilesX)
+                {
+                    break;
+                }
+                y += WorldGen.genRand.Next(3);
+                if (y > Main.maxTilesY)
+                {
+                    break;
+                }
+                GenerateHill_SpawnAsh(x + k, y, kill: false);
+            }
+        }
+        public static void GenerateHill_SpawnAsh(int x, int y, bool kill = true)
+        {
+            int l = 0;
+            while (true)
+            {
+                l++;
+                if (y + l > Main.maxTilesY)
+                {
+                    break;
+                }
+                if (l > 75 || (l > 40 && WorldGen.genRand.NextBool(15)))
+                {
+                    break;
+                }
+
+                if (kill && !AvoidTiles.Contains(Main.tile[x, y - l].TileType) && !AvoidWalls.Contains(Main.tile[x, y - l].WallType)
+                    && Main.tile[x, y - l].TileType != ModContent.TileType<GoreNestTile>())
+                    WorldGen.KillTile(x, y - l, noItem: true);
+
+                Main.tile[x, y + l].LiquidAmount = 0;
+
+                if (AvoidTiles.Contains(Main.tile[x, y + l].TileType) || AvoidWalls.Contains(Main.tile[x, y + l].WallType))
+                    continue;
+                WorldGen.PlaceTile(x, y + l, TileID.Ash, mute: true, forced: true);
+                Main.tile[x, y + l].Slope(value: 0);
+                Main.tile[x, y + l].HalfBrick(value: false);
+            }
+        }
+
+        public static void GenerateAmbientTiles(int x, int y)
+        {
+
+        }
+
+        public static void CleanLava(int x, int y)
+        {
+            for (int i = x - 60; i < x + 60; i++)
+            {
+                for (int j = y - 50; j < Main.maxTilesY && !Main.tile[i, j].IsSolid(); j++)
+                {
+                    Main.tile[i, j].LiquidAmount = 0;
+                }
             }
         }
     }

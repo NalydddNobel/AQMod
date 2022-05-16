@@ -1,11 +1,14 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Tiles;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.WorldBuilding;
 
 namespace Aequus
 {
@@ -64,9 +67,62 @@ namespace Aequus
             downedOmegaStarite = reader.ReadBoolean();
         }
 
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+            foreach (var t in tasks)
+            {
+                Aequus.Instance.Logger.Debug(t.Name);
+            }
+            AddPass("Underworld", "Gore Nests", (progress, configuration) =>
+            {
+                progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
+                int goreNestCount = 0;
+                for (int i = 0; i < (goreNestCount == 0 ? 1000000 : 10000); i++)
+                {
+                    int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
+                    int y = WorldGen.genRand.Next(GoreNestTile.MinY, GoreNestTile.MaxY);
+                    if (GoreNestTile.TryGrowGoreNest(x, y))
+                    {
+                        goreNestCount++;
+                        if (goreNestCount > 4)
+                            break;
+                    }
+                }
+            }, tasks);
+            AddPass("Tile Cleanup", "Remove Lava From Nests", (progress, configuration) =>
+            {
+                progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
+                for (int i = 0; i < Main.maxTilesX; i++)
+                {
+                    for (int j = GoreNestTile.MinY; j < GoreNestTile.MaxY; j++)
+                    {
+                        if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == ModContent.TileType<GoreNestTile>())
+                        {
+                            Aequus.Instance.Logger.Debug("Cleaning lava");
+                            GoreNestTile.CleanLava(i, j);
+                        }
+                    }
+                }
+            }, tasks);
+        }
+        private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
+        {
+            int i = tasks.FindIndex((t) => t.Name.Equals(task));
+            if (i != -1)
+                tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
+        }
+
         public static void MarkAsDefeated(ref bool defeated, int npcID)
         {
             NPC.SetEventFlagCleared(ref defeated, -npcID);
+        }
+
+        public static bool Outer(int x, int iths)
+        {
+            int ithX = Main.maxTilesX / iths;
+            if (x <= ithX || x >= Main.maxTilesX - ithX)
+                return true;
+            return false;
         }
 
         /// <summary>
