@@ -50,55 +50,43 @@ namespace Aequus.Tiles
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
         {
-            //if (DemonSiege.IsActive || !AQPlayer.InteractionDelay())
-            //{
-            //    return false;
-            //}
-            //return DemonSiege.FindUpgradeableItem(Main.LocalPlayer).item != null;
-            return true;
+            if (DemonSiegeInvasion.Sacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
+            {
+                return false;
+            }
+            return GetUsableDemonSiegeItem(settings.player) != null;
         }
 
         public override void MouseOver(int i, int j)
         {
-            //if (DemonSiege.IsActive)
-            //{
-            //    return;
-            //}
-            //var player = Main.player[Main.myPlayer];
-            //var upgradeableItem = DemonSiege.FindUpgradeableItem(player);
-            //if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None)
-            //{
-            //    player.noThrow = 2;
-            //    player.showItemIcon = true;
-            //    player.showItemIcon2 = upgradeableItem.item.type;
-            //}
+            if (DemonSiegeInvasion.Sacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
+            {
+                return;
+            }
+            var player = Main.LocalPlayer;
+            var upgradeableItem = GetUsableDemonSiegeItem(player);
+            if (upgradeableItem != null)
+            {
+                player.noThrow = 2;
+                player.cursorItemIconEnabled = true;
+                player.cursorItemIconID = upgradeableItem.type;
+            }
         }
 
         public override bool AutoSelect(int i, int j, Item item)
         {
-            //return DemonSiege.GetUpgrade(item) != null;
-            return true;
+            return DemonSiegeInvasion.registeredSacrifices.ContainsKey(item.type);
         }
 
         public override bool RightClick(int i, int j)
         {
-            //if (DemonSiege.IsActive)
-            //{
-            //    return false;
-            //}
-            //var player = Main.player[Main.myPlayer];
-            //var upgradeableItem = DemonSiege.FindUpgradeableItem(player);
-            //if (upgradeableItem.item != null && upgradeableItem.item.type > ItemID.None && AQPlayer.InteractionDelay(apply: 1800))
-            //{
-            //    DemonSiege.Activate(i, j, player.whoAmI, upgradeableItem.item);
-            //    Main.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(i * 16f, j * 16f));
-            //}
-            //foreach (var s in DemonSiegeInvasion.registeredSacrifices)
-            //{
-            //    Main.NewText(AequusText.ItemText(s.Key) + " -> " + AequusText.ItemText(s.Value.NewItem));
-            //}
             var topLeft = TopLeft(i, j);
-            if (DemonSiegeInvasion.NewInvasion(topLeft.X, topLeft.Y, Main.LocalPlayer.HeldItem, Main.myPlayer))
+            var item = GetUsableDemonSiegeItem(Main.LocalPlayer);
+            if (item == null)
+            {
+                return false;
+            }
+            if (DemonSiegeInvasion.NewInvasion(topLeft.X, topLeft.Y, item, Main.myPlayer))
             {
                 return true;
             }
@@ -113,7 +101,7 @@ namespace Aequus.Tiles
 
         public override bool CanKillTile(int i, int j, ref bool blockDamaged)
         {
-            return Main.hardMode/* && (!DemonSiege.IsActive || !DemonSiege.AltarRectangle().Contains(i, j))*/;
+            return Main.hardMode;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -275,6 +263,22 @@ namespace Aequus.Tiles
         public static Point TopLeft(int x, int y)
         {
             return new Point(x - Main.tile[x, y].TileFrameX / 18, y - Main.tile[x, y].TileFrameY / 18);
+        }
+
+        public static Item GetUsableDemonSiegeItem(Player player)
+        {
+            if (DemonSiegeInvasion.registeredSacrifices.ContainsKey(player.HeldItem.type))
+            {
+                return player.HeldItem;
+            }
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                if (DemonSiegeInvasion.registeredSacrifices.ContainsKey(player.inventory[i].type))
+                {
+                    return player.inventory[i];
+                }
+            }
+            return null;
         }
 
         internal static bool TryGrowGoreNest(int x, int y, bool checkOuterThirds, bool checkIsHellLayer)
