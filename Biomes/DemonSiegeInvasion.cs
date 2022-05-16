@@ -81,8 +81,7 @@ namespace Aequus.Biomes
             }
             public int DetermineLength()
             {
-                return 600;
-                int time = 360;
+                int time = 600;
                 foreach (var i in Items)
                 {
                     if (registeredSacrifices.TryGetValue(i.netID, out var value))

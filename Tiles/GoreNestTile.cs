@@ -88,13 +88,20 @@ namespace Aequus.Tiles
             }
             if (DemonSiegeInvasion.NewInvasion(topLeft.X, topLeft.Y, item, Main.myPlayer))
             {
-                return true;
+                goto ConsumeItem;
             }
             if (DemonSiegeInvasion.Sacrifices.TryGetValue(topLeft, out var sacrifice))
             {
                 sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketSender.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
+                return true;
+            }
+        ConsumeItem:
+            item.stack--;
+            if (item.stack <= 0)
+            {
+                item.TurnToAir();
             }
             return true;
         }
