@@ -200,17 +200,22 @@ namespace Aequus.Projectiles.Melee
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if (Main.tile[sizeCorner.X + i, sizeCorner.Y + j].IsSolid())
+                    int tileX = sizeCorner.X + i;
+                    int tileY = sizeCorner.Y + j;
+                    if (Main.tile[tileX, tileY].IsSolid())
                     {
-                        if (Main.tile[sizeCorner.X + i + 1, sizeCorner.Y + j].IsSolid() ||
-                            Main.tile[sizeCorner.X + i - 1, sizeCorner.Y + j].IsSolid() ||
-                            Main.tile[sizeCorner.X + i, sizeCorner.Y + j + 1].IsSolid() ||
-                            Main.tile[sizeCorner.X + i, sizeCorner.Y + j - 1].IsSolid())
+                        if (Main.tile[tileX + 1, tileY].IsSolid() &&
+                            Main.tile[tileX - 1, tileY].IsSolid() &&
+                            Main.tile[tileX, tileY + 1].IsSolid() &&
+                            Main.tile[tileX, tileY - 1].IsSolid())
                         {
-                            var pos = new Vector2(sizeCorner.X + i - 1, sizeCorner.Y + j) * 16f + new Vector2(8f, 8f);
-                            pos += Vector2.Normalize(Projectile.Center - pos) * 20f;
-                            if (Collision.CanHitLine(Projectile.Center, 0, 0, pos, 0, 0))
-                                validSpots.Add(new Point(sizeCorner.X + i, sizeCorner.Y + j));
+                            continue;
+                        }
+                        var pos = new Vector2(tileX * 16f + 8f, tileY * 16f + 8f);
+                        pos += Vector2.Normalize(Projectile.Center - pos) * 18f;
+                        if (Collision.CanHitLine(Projectile.Center, 2, 2, pos, 0, 0))
+                        {
+                            validSpots.Add(new Point(tileX, tileY));
                         }
                     }
                 }
