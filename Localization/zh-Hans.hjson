@@ -848,9 +848,9 @@ Mods: {
 			GlimmeringStatue: 用于制作由能量构成的强大物品
 			SedimentSandBlock: 不会坠落
 			SeaPickle: "'你听到一个声音告诉你把它翻过来'"
-			GoreNestItem:
+			GoreNest:
 				'''
-				在此祭坛处使用由魔矿锭或猩红矿锭制成的物品
+				可升级邪恶武器
 				视作恶魔/猩红祭坛
 				'''
 			ArgonMushroom:
@@ -1482,6 +1482,10 @@ Mods: {
 			AQChairs: 椅子
 			AQTables: 桌子
 			LightbulbTile: 灯泡
+		}
+
+		WorldGeneration: {
+			GoreNests: 正在放置血巢...
 		}
 
 		ContainerPotionError: 此药水未能正确加载
