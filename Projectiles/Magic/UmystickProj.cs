@@ -28,11 +28,6 @@ namespace Aequus.Projectiles.Magic
             Projectile.DamageType = DamageClass.Magic;
         }
 
-        public override bool? CanCutTiles()
-        {
-            return false;
-        }
-
         public override bool? CanDamage()
         {
             return false;

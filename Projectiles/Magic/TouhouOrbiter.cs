@@ -33,7 +33,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.penetrate = -1;
         }
 
-        public override bool? CanCutTiles()
+        public override bool? CanDamage()
         {
             return false;
         }

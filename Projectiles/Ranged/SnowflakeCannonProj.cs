@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public sealed class SnowflakeCannonBullet : ModProjectile
+    public sealed class SnowflakeCannonProj : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.NorthPoleSnowflake;
 

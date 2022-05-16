@@ -56,7 +56,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.aiStyle = -1;
             NPC.damage = 50;
             NPC.defense = 22;
-            NPC.lifeMax = 180;
+            NPC.lifeMax = 330;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.lavaImmune = true;

@@ -86,7 +86,7 @@ namespace Aequus.Biomes
                 {
                     if (registeredSacrifices.TryGetValue(i.netID, out var value))
                     {
-                        int newTime = 3600 + 1800 * (int)value.Progression;
+                        int newTime = 5400 + 1800 * (int)value.Progression;
                         if (time < newTime)
                         {
                             time = newTime;
@@ -107,6 +107,11 @@ namespace Aequus.Biomes
 
             public void Update()
             {
+                if (!OnValidTile())
+                {
+                    InnerUpdate_OnFail();
+                    return;
+                }
                 if (!_playedSound)
                 {
                     _playedSound = true;

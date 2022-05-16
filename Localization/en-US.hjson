@@ -1260,6 +1260,63 @@ Mods: {
 		}
 
 		ProjectileName: {
+			Magmabubble: Magmabubble
+			
+			OmegaStariteProj: Omega Starite
+			OmegaStariteBullet: Cosmic Bullet
+			OmegaStariteDeathray: Ultimate Ray
+
+			CrabsonBubble: Bubble
+			CrabsonPearlShard: Pearl Shard
+			CrabsonPearl: Pearl
+
+			SpaceSquidSnowflake: Hailing Snowflake
+			SpaceSquidLaser: Space Squid Gun
+			SpaceSquidDeathray: Doppleray
+
+			RedSpriteWindFire: Red Sprite Ember
+			RedSpriteThunderClap: Red Sprite Thunder Clap
+			RedSpriteLightning: Nimbus Lightning
+			RedSpriteCloud: Red Sprite Nimbus
+
+			TrapperExplosion: Trapper Blast
+			TrapperProj: Trapper Blast
+			MagmabubbleProj: Magmabubblet
+
+			VrangProj: Vrang
+			ValariProj: Valari
+			ThunderClapProj: Thunderclap
+			Sliceflake: Sliceflake
+			SliceProj: Slice
+			MirrorsCallExplosion: Mirror's Call
+			MirrorsCallBullet: Mirror's Call
+			MirrorsCallProj: Mirror's Call
+			CrystalDaggerProj: Crystal Dagger
+			CauterizerProj: Demonic Energy Wave
+
+			SnowflakeCannonProj: Snowflake Cannon
+			RayExplosion: Raygun
+			RaygunBullet: Raygun
+			HamaYumiArrow: Hama Yumi Arrow
+			DeltoidArrow: Deltoid Arrow
+			BaozhuProj: Baozhu
+
+			UmystickMoon: Menacing Moon
+			TouhouBullet: Magic Bullet
+			SurgeRodHitbox: Surge
+			SnowgraveProj: Snowgrave
+			NarrizuulProj: Narrizuul
+			CrusadersCrossbowBolt: Crusader's Crossbow Bolt
+
+			ZombieBolt: Zombie Bolt
+			RevenantBolt: Revenant
+			OsirisBolt: Osiris
+			LocustLarge: Locust
+			LocustSmall: Locust
+			InsurgentBolt: Insurgency Bolt
+			InsurgentSkull: Insurgency
+			FlowerCrownProj: Flower Crown
+
 			DreadsoulAttack: Hellish Spirit
 			BreadsoulHealing: Dream Spirit
 			FriendMinion: Friend
@@ -1298,9 +1355,6 @@ Mods: {
 			OmegaStaritePet: Omega Starite
 			SuperStariteBullet: Super Starite Bullet
 			HyperStariteProj: Hyper Starite
-			OmegaStariteProj: Omega Starite
-			OmegaStariteBullet: Omega Bullet
-			OmegaStariteDeathray: Omega Ray
 			RainbowStarofHyperApocalypse: Rainbow Star of Hyper Apocalypse
 			SparklingExplosion: Cosmic Rad-splosion
 			MothmanCritExplosion: Mothman Mask
@@ -1342,10 +1396,6 @@ Mods: {
 			ATM: ATM
 			BeeRod: Bee Bobber
 			CrabRod: Crab Bobber
-			JerryBubble: Jerry Bubble
-			JerryBubbleBig: Jerry Bubble
-			JerryPearl: Jerry Pearl
-			Magmabub: Magmabub
 			StriderCrab: Strider Crab
 			StriderCrabLaser: Strider Crab
 			Trapper: Trapper

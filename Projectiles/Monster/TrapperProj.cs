@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Monster
         public override void Kill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
-            int p = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<TrapperFireblastExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            int p = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<TrapperExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             Vector2 position = Projectile.Center - new Vector2(Main.projectile[p].width / 2f, Main.projectile[p].height / 2f);
             Main.projectile[p].position = position;
 
@@ -104,7 +104,7 @@ namespace Aequus.Projectiles.Monster
         }
     }
 
-    public class TrapperFireblastExplosion : ModProjectile
+    public class TrapperExplosion : ModProjectile
     {
         public override string Texture => Aequus.TextureNone;
 

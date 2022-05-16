@@ -18,7 +18,7 @@ namespace Aequus.NPCs
         {
             if (player.GetModPlayer<AequusPlayer>().eventDemonSiege.X != 0)
             {
-                spawnRate = 150;
+                spawnRate = 100;
                 maxSpawns = 8;
                 return;
             }
