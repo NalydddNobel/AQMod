@@ -3,6 +3,7 @@ using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
+using Aequus.Tiles.Natural;
 using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -461,9 +462,13 @@ namespace Aequus.Tiles
         public static void GenerateHill_TryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir)
         {
             k *= dir;
+            if (y < Main.maxTilesY)
+            {
+                y = Main.maxTilesY - 1;
+            }
             while (true)
             {
-                if (x + k < 0 || x + k > Main.maxTilesX)
+                if (x + k + dir < 0 || x + k + dir > Main.maxTilesX)
                 {
                     break;
                 }
@@ -529,7 +534,12 @@ namespace Aequus.Tiles
 
         public static void GenerateAmbientTiles(int x, int y)
         {
-
+            var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
+            for (int i = 0; i < 1250; i++)
+            {
+                var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
+                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<GoreNestStalagmite>(), style: WorldGen.genRand.Next(6));
+            }
         }
 
         public static void CleanLava(int x, int y)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Tiles;
+using Aequus.Tiles.Natural;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,9 +15,7 @@ namespace Aequus.Items
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<GoreNestTile>());
-            Item.placeStyle = 0;
-            Item.createTile = -1;
+            Item.DefaultToPlaceableTile(ModContent.TileType<GoreNestStalagmite>());
             Item.consumable = false;
             Item.maxStack = 1;
             Item.rare = ItemRarityID.LightRed;
@@ -25,8 +24,7 @@ namespace Aequus.Items
 
         public override bool? UseItem(Player player)
         {
-            Main.NewText("Tick");
-            GoreNestTile.TryGrowGoreNest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
+            //GoreNestTile.TryGrowGoreNest(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
             //GoreNestTile.CleanLava(Main.MouseWorld.ToTileCoordinates().X, Main.MouseWorld.ToTileCoordinates().Y);
             return true;
         }
