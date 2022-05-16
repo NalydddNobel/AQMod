@@ -29,6 +29,10 @@ Mods: {
 			DemonSiegeInvasion: 恶魔围攻
 		}
 
+		ChatBroadcast: {
+			DemonSiegeFail: 血巢反刍出了你的{0}...
+		}
+
 		DropCondition: {
 			OtherwiseChance: 满足'{0}'条件时100%掉落
 			LastAlive: 仅会掉落自残存的敌人
@@ -186,7 +190,7 @@ Mods: {
 			ScarletSea: 罪孽红海
 			SeltzerRain: 污浊腐雨
 			FizzlingFire: 超级火焰喷射器
-			Valari: 魔法回旋镖
+			Valari: 回旋镰
 			StariteBlade: 星剑
 			StariteSpinner: 脉冲星
 			Resonance: 共振
@@ -252,7 +256,7 @@ Mods: {
 			SeaPickle: 海泡菜
 			CrabsonTrophy: 巨蟹蛤纪念章
 			HellTombstone: 地狱墓碑
-			GoreNestItem: 血巢
+			GoreNest: 血巢
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
 			XenonMushroom: 氙蘑菇
@@ -1256,6 +1260,63 @@ Mods: {
 		}
 
 		ProjectileName: {
+			Magmabubble: 熔火泡泡
+
+			OmegaStariteProj: 终末之星
+			OmegaStariteBullet: 宇宙星幕
+			OmegaStariteDeathray: 最终射线
+
+			CrabsonBubble: 泡泡
+			CrabsonPearlShard: 珍珠碎片
+			CrabsonPearl: 珍珠
+
+			SpaceSquidSnowflake: 冰雹暴雪
+			SpaceSquidLaser: 太空乌贼枪
+			SpaceSquidDeathray: 多普勒射线
+
+			RedSpriteWindFire: 红色精灵余烬
+			RedSpriteThunderClap: 红色精灵雷击
+			RedSpriteLightning: 光晕闪电
+			RedSpriteCloud: 红色精灵光晕
+
+			TrapperExplosion: 捕手爆炸
+			TrapperProj: 捕手爆炸
+			MagmabubbleProj: 熔火泡泡
+
+			VrangProj: 镰鸟
+			ValariProj: 回旋镰
+			ThunderClapProj: 雷霆一击
+			Sliceflake: 利刃
+			SliceProj: 利刃
+			MirrorsCallExplosion: 镜之召
+			MirrorsCallBullet: 镜之召
+			MirrorsCallProj: 镜之召
+			CrystalDaggerProj: 水晶匕首
+			CauterizerProj: 恶魔能量波
+
+			SnowflakeCannonProj: 雪花大炮
+			RayExplosion: 射线枪
+			RaygunBullet: 射线枪
+			HamaYumiArrow: 破魔矢
+			DeltoidArrow: 增量矢
+			BaozhuProj: 爆竹
+
+			UmystickMoon: 凶恶之月
+			TouhouBullet: 魔法弹
+			SurgeRodHitbox: 电浪
+			SnowgraveProj: 雪墓
+			NarrizuulProj: 耀宇遗光
+			CrusadersCrossbowBolt: 十字军弩矢
+
+			ZombieBolt: 僵尸弹幕
+			RevenantBolt: 复仇
+			OsirisBolt: 欧西里斯
+			LocustLarge: 蝗虫
+			LocustSmall: 蝗虫
+			InsurgentBolt: 叛乱
+			InsurgentSkull: 叛乱
+			FlowerCrownProj: 花冠
+
 			DreadsoulAttack: 地狱之灵
 			BreadsoulHealing: 梦境之灵
 			FriendMinion: 朋友
@@ -1294,9 +1355,6 @@ Mods: {
 			OmegaStaritePet: 迷你终末之星
 			SuperStariteBullet: 极耀源星弹幕
 			HyperStariteProj: 巨耀源星
-			OmegaStariteProj: 终末之星
-			OmegaStariteBullet: 终末之星弹幕
-			OmegaStariteDeathray: 终末射线
 			RainbowStarofHyperApocalypse: 终末天启之七彩耀星
 			SparklingExplosion: 宇宙辐射涌流
 			MothmanCritExplosion: 天蛾人面具
@@ -1338,10 +1396,6 @@ Mods: {
 			ATM: ATM
 			BeeRod: 蜜蜂浮标
 			CrabRod: 螃蟹浮标
-			JerryBubble: 蟹蛤泡泡
-			JerryBubbleBig: 蟹蛤泡泡
-			JerryPearl: 蟹蛤珍珠
-			Magmabub: 熔火喷吐者
 			StriderCrab: 长足蟹
 			StriderCrabLaser: 长足蟹
 			Trapper: 捕魂钩
@@ -1686,19 +1740,7 @@ Mods: {
 
 		CrabSeason: 蟹季
 
-		BC: {
-			Spawn: {
-				Crabson: 在蟹状裂隙中使用{0}召唤.
-				DemonSiege: 在血巢处使用{0}召唤.
-				GlimmerEvent: 在夜晚自然开始. 也可以使用{0}召唤. 在太阳升起时结束.
-				OmegaStarite: 在夜晚使用{0}召唤. 也可以前往微光之源来召唤.
-				GaleStreams: 风速大于40 mph时开始, 风速小于34 mph时结束. 风速大于 300 mph 时同样会结束. 你可以使用{0}更改风速.
-				GaleStreamsMiniboss: 偶尔出现在紊流风暴中!
-			}
-		}
-
 		Common: {
-			AwakenedCrabson: 巨蟹蛤已苏醒!
 			KeyUnbound: "'按键未绑定'"
 			KeyBound: "'{0}'键"
 			EightballAnswer0: 是的
@@ -1722,48 +1764,7 @@ Mods: {
 			EightballAnswer18: 现在没法预测
 			EightballAnswer19: 请集中你的精神再问一次
 			EightballAnswer20: 星界8号球上没有显示任何内容
-			EightballMisc0: 雨过天晴
-			EightballMisc1: 你最喜欢的数字是{0}吗?
-			EightballMisc2: 微光之物
-			EightballMisc3: 一个球
-			EightballMisc4: 巨大的东西.
-			EightballMisc5: 你令我心碎
-			EightballMisc6: 生命的意义是什么
-			RandomStructures: 正在生成随机构造...
-			RandomStructures_TikiChest: 正在生成随机构造... 提基宝箱
-			RandomStructures_NobleMushrooms: 正在生成随机构造... 华贵蘑菇
-			RandomStructures_CandelabraTraps: 正在生成随机构造... 烛台陷阱
-			RandomStructures_ExoticCoralBlotches:正在生成随机构造... 奇异珊瑚
-			OceanRavines: 海沟
-			RareStructures: 正在生成稀有构造...
-			WorldGen_GoreNests: 正在生成血巢...
-			WorldGen_Globes: 正在生成天球仪...
-			WorldGen_GlimmeringStatues: 正在生成烁光雕像...
-			RobsterChat0: 我不喜欢其他的龙虾是有原因的...因为我的兄弟姐妹背叛了我.
-			RobsterChat1: 你知道我经历过什么吗?
-			RobsterChat2: 我脚下的地板似乎散发着光芒, 感觉就像扭曲迷雾一样.
-			RobsterChat3: 星源族可能会令人痛苦, 但至少它们是很好的谷类食物.
-			RobsterChat4: 我曾在某个离这里很远的地方看到过这把剑, 我很好奇当有人触摸这把剑时会发生什么...
-			RobsterChat5: 你应该懂吧, 我一直都不是恐怖电影迷, 那些恐怖电影把我吓坏了.
-			RobsterChat6: 我曾看到过一只披着蓝色斗篷的可疑飞蛾, 看起来非常的像拜月教邪教徒. 它告诉我蛾怪偷走了一件非常强大的东西, 不过我可不会蠢到试图击杀一只大飞蛾.
-			RobsterChat7: 在海上航行时最可怕的事莫过于发生血月, 我都不知道我的船员们杀死了多少只僵尸人鱼.
-			RobsterChat8: 告诉那些小海盗们, 我对他们说:'嗨'.
-			RobsterChat9: 我今晚在湖边钓鱼时被一条人形鲨鱼袭击了. 这简直是黑历史.
-			RobsterChat10: 我今晚在湖边钓鱼时被一条巨大的红鳗鱼袭击了. 这简直是黑历史.
-			RobsterChat11: 某次血月时我问{0}敢不敢去钓鱼. 结果他钓上来了一只鹦鹉螺, 我当时吓坏了.
-			RobsterChat12: 给了我这顶帽子的人并不知道这个帽子对我来说太大了...我现在啥都看不见!
-			RobsterChat13: 我真傻, 我竟然把我自己的给忘了. 除我之外还有第二个把自己名字忘了的人吗?
-			RobsterChat14: 感谢你帮忙找到了我的卡片, 这让我想起了过去我是多么的喜欢掠夺别人东西.
-			RobsterNPCDeath: 龙虾掠夺者想要你偷窃的东西已经不在原位了...
-			RobsterNPCDeath2: 询问龙虾掠夺者以开始另一场不同的狩猎.
-			RobsterFail: 你并没有足够小心翼翼的偷到东西...
-			RobsterFailAccident: T这件特别的东西被你不小心弄坏了...
-			SpawnAfterPoint: ({0}) 会在此位置生成
-			EnergiesEnabled: 能量掉落已启用
-			EnergiesDisabled: 能量掉落已禁用
-			TimeLeft: "{0}已离去"
-			DemonSiege: 恶魔围攻
-			DemonSiegeDeath: 血巢吐出了你的武器...
+
 			DemonSiegeTooFarAway: 你离恶魔围攻事件太远了, 必须在血巢附近才能升级你的武器
 			NoColorDistort: 颜色扭曲特效着色器未启用
 			NoScrollShader: 滚动特效着色器未启用
