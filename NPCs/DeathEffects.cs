@@ -49,7 +49,7 @@ namespace Aequus.NPCs
                 var deathEffects = self.GetGlobalNPC<DeathEffects>();
                 if (deathEffects.HasDeathContext && Main.netMode != NetmodeID.Server)
                 {
-                    if (deathEffects.context == Context.Snowgrave && self.life <= 0 && FrozenNPCEffect.CanFreezeNPC(self))
+                    if (deathEffects.context == Context.Snowgrave && self.life <= 0 && SnowgraveCorpse.CanFreezeNPC(self))
                     {
                         SoundID.Item30?.PlaySound(self.Center);
                         return;
@@ -140,9 +140,9 @@ namespace Aequus.NPCs
         }
         public void DeathEffect_SnowgraveFreeze(NPC npc)
         {
-            if (FrozenNPCEffect.CanFreezeNPC(npc))
+            if (SnowgraveCorpse.CanFreezeNPC(npc))
             {
-                EffectsSystem.BehindProjs.Add(new FrozenNPCEffect(npc.Center, npc));
+                EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
             }
         }
     }

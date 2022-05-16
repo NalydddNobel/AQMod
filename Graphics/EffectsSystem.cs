@@ -81,7 +81,8 @@ namespace Aequus.Graphics
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                FrozenNPCEffect.ResetCounts();
+                SnowgraveCorpse.ResetCounts();
+                GigaCrossbowCorpse.ResetCounts();
 
                 Shake.Update();
                 BehindProjs.Update();

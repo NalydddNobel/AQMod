@@ -175,7 +175,7 @@ namespace Aequus
             }
             else if (type == PacketType.RequestDemonSiege)
             {
-                DemonSiegeInvasion.ReadRequest(reader);
+                DemonSiegeInvasion.HandleStartRequest(reader);
             }
             else if (type == PacketType.RemoveDemonSiege)
             {

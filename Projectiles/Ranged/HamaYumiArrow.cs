@@ -67,9 +67,12 @@ namespace Aequus.Projectiles.Ranged
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             CorruptionHellfire.AddStack(target, 60, 1);
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.Server)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
+            }
+            if (Main.myPlayer == Projectile.owner)
+            {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
             }
 
@@ -84,9 +87,12 @@ namespace Aequus.Projectiles.Ranged
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.Server)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
+            }
+            if (Main.myPlayer == Projectile.owner)
+            {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
             return true;

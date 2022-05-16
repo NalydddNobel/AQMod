@@ -100,7 +100,6 @@ namespace Aequus.Tiles
             var topLeft = TopLeft(i, j);
             if (DemonSiegeInvasion.NewInvasion(topLeft.X, topLeft.Y, Main.LocalPlayer.HeldItem, Main.myPlayer))
             {
-                SoundID.DD2_EtherianPortalOpen?.PlaySound(new Vector2(i * 16f, j * 16f));
                 return true;
             }
             if (DemonSiegeInvasion.Sacrifices.TryGetValue(topLeft, out var sacrifice))

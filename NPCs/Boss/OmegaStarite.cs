@@ -217,7 +217,7 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
             Main.npcFrameCount[NPC.type] = 14;
 
-            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()

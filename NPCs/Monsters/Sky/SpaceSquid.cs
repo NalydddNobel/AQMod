@@ -84,7 +84,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
             });
 
-            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void Unload()

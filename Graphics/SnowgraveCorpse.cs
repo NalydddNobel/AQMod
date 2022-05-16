@@ -12,30 +12,30 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public class FrozenNPCEffect : ABasicParticle
+    public class SnowgraveCorpse : ABasicParticle
     {
-        public sealed class Blacklist : ILoadable
-        {
-            public static HashSet<int> NPCTypes;
-            /// <summary>
-            /// Parameter 1: {NPC} - The NPC which is being sudo cloned
-            /// <para>Parameter 2: {NPC} - The clone result</para>
-            /// </summary>
-            public static Dictionary<int, Action<NPC, NPC>> OnFreezeNPC;
-            /// <summary>
-            /// Parameter 1: {NPC} - The NPC which is being sudo cloned
-            /// <para>Parameter 2: {NPC} - The NPC</para>
-            /// </summary>
-            public static Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomDraw;
-            /// <summary>
-            /// Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
-            /// <para>Parameter 2: {NPC} - The NPC</para>
-            /// </summary>
-            public static Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomUpdate;
+        public static HashSet<int> NPCBlacklist { get; private set; }
+        /// <summary>
+        /// Parameter 1: {NPC} - The NPC which is being sudo cloned
+        /// <para>Parameter 2: {NPC} - The clone result</para>
+        /// </summary>
+        public static Dictionary<int, Action<NPC, NPC>> OnFreezeNPC { get; private set; }
+        /// <summary>
+        /// Parameter 1: {NPC} - The NPC which is being sudo cloned
+        /// <para>Parameter 2: {NPC} - The NPC</para>
+        /// </summary>
+        public static Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomDraw { get; private set; }
+        /// <summary>
+        /// Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
+        /// <para>Parameter 2: {NPC} - The NPC</para>
+        /// </summary>
+        public static Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomUpdate { get; private set; }
 
+        public sealed class Loader : ILoadable
+        {
             void ILoadable.Load(Mod mod)
             {
-                NPCTypes = new HashSet<int>()
+                NPCBlacklist = new HashSet<int>()
                 {
                     NPCID.GolemHead,
                     NPCID.PrimeCannon,
@@ -51,8 +51,8 @@ namespace Aequus.Graphics
 
             void ILoadable.Unload()
             {
-                NPCTypes?.Clear();
-                NPCTypes = null;
+                NPCBlacklist?.Clear();
+                NPCBlacklist = null;
                 OnFreezeNPC?.Clear();
                 OnFreezeNPC = null;
                 CustomDraw?.Clear();
@@ -82,12 +82,12 @@ namespace Aequus.Graphics
 
         public Vector2 TopLeft { get => LocalPosition - new Vector2(_width / 2f, _height / 2f); set => LocalPosition = value + new Vector2(_width / 2f, _height / 2f); }
 
-        public FrozenNPCEffect(Vector2 position, NPC npc)
+        public SnowgraveCorpse(Vector2 position, NPC npc)
         {
             maxTimeActive = 10800;
             LocalPosition = position;
             this.npc = AequusHelpers.CreateSudo(npc);
-            if (Blacklist.OnFreezeNPC.TryGetValue(npc.netID, out var onFreeze))
+            if (OnFreezeNPC.TryGetValue(npc.netID, out var onFreeze))
             {
                 onFreeze(npc, this.npc);
             }
@@ -116,7 +116,7 @@ namespace Aequus.Graphics
                     ShouldBeRemovedFromRenderer = true;
                 }
                 Amt++;
-                if (Blacklist.CustomUpdate.TryGetValue(npc.netID, out var customUpdate) && !customUpdate(this, settings, npc))
+                if (CustomUpdate.TryGetValue(npc.netID, out var customUpdate) && !customUpdate(this, settings, npc))
                 {
                     return;
                 }
@@ -201,7 +201,7 @@ namespace Aequus.Graphics
                     spritebatch.Draw(bloom, drawCoordinates, null, Color.Blue * 0.75f, 0f, _bloomOrigin, _scale * 0.7f, SpriteEffects.None, 0f);
 
 
-                    if (!Blacklist.CustomDraw.TryGetValue(npc.netID, out var customDraw) || customDraw(spritebatch, this, settings, npc))
+                    if (!CustomDraw.TryGetValue(npc.netID, out var customDraw) || customDraw(spritebatch, this, settings, npc))
                     {
                         Main.instance.DrawNPCDirect(spritebatch, npc, npc.behindTiles, Main.screenPosition);
                     }
@@ -232,7 +232,7 @@ namespace Aequus.Graphics
 
         public static bool CanFreezeNPC(NPC npc)
         {
-            return npc.realLife == -1 && npc.lifeMax > 5 && npc.aiStyle != NPCAIStyleID.Worm && npc.aiStyle != NPCAIStyleID.TheDestroyer && !Blacklist.NPCTypes.Contains(npc.type);
+            return npc.realLife == -1 && npc.lifeMax > 5 && npc.aiStyle != NPCAIStyleID.Worm && npc.aiStyle != NPCAIStyleID.TheDestroyer && !NPCBlacklist.Contains(npc.type);
         }
 
         internal static void ResetCounts()

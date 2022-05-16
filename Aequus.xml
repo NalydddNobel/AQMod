@@ -84,6 +84,11 @@
             Whether or not the player is in the Gale Streams event. Updated using <see cref="M:Aequus.AequusPlayer.CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.eventDemonSiege">
+            <summary>
+            A point determining one of the close gore nests. Goes by on-spawn order.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> / <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>

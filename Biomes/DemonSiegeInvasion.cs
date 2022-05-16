@@ -1,8 +1,11 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Items;
+using Aequus.Particles.Dusts;
 using Aequus.Sounds;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -10,6 +13,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 
 namespace Aequus.Biomes
 {
@@ -19,7 +25,7 @@ namespace Aequus.Biomes
         {
             PreHardmode = 0,
         }
-        public struct SacrificeData 
+        public struct SacrificeData
         {
             public readonly int OriginalItem;
             public readonly int NewItem;
@@ -49,12 +55,19 @@ namespace Aequus.Biomes
             public int TileX { get; internal set; }
             public int TileY { get; internal set; }
 
+            public Vector2 Center => new Vector2(TileX * 16f + 24f, TileY * 16f);
+
             public int MaxItems = 1;
-            public float Range = 480f;
+            public float Range = 800f;
+            public int TimeLeftMax = 3600;
             public int TimeLeft = 3600;
             public int PreStart = 300;
+            public int NetUpdate;
 
-            public List<Item> Items;
+            public readonly List<Item> Items;
+
+            public float _auraScale;
+            public bool _playedSound;
 
             public EventSacrifice(int x, int y)
             {
@@ -68,6 +81,7 @@ namespace Aequus.Biomes
             }
             public int DetermineLength()
             {
+                return 600;
                 int time = 360;
                 foreach (var i in Items)
                 {
@@ -94,6 +108,14 @@ namespace Aequus.Biomes
 
             public void Update()
             {
+                if (!_playedSound)
+                {
+                    _playedSound = true;
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundID.DD2_EtherianPortalOpen?.PlaySound(new Vector2(TileX * 16f + 24f, TileY * 16f));
+                    }
+                }
                 if (PreStart > 0)
                 {
                     PreStart--;
@@ -104,56 +126,120 @@ namespace Aequus.Biomes
                     return;
                 }
 
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetUpdate++;
+                    if (NetUpdate > 120 && Main.netMode == NetmodeID.Server)
+                    {
+                        PacketSender.Send((p) =>
+                        {
+                            SendStatusPacket(p);
+                        }, PacketType.DemonSiegeSacrificeStatus);
+                        NetUpdate = 0;
+                    }
+                    if (NetUpdate > 300)
+                    {
+                        InnerUpdate_OnFail(clientOnly: true);
+                        return;
+                    }
+                }
                 if (TimeLeft > 0)
                 {
+                    if (_auraScale < 1f)
+                    {
+                        _auraScale = MathHelper.Lerp(_auraScale, 1f, 0.05f);
+                        if (_auraScale > 1f)
+                        {
+                            _auraScale = 1f;
+                        }
+                    }
                     if (Items.Count == 0)
                     {
                         InnerUpdate_OnEnd();
                         return;
                     }
-                    TimeLeft--;
-                    if (TimeLeft % 120 == 0)
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            PacketSender.Send((p) =>
-                            {
-                                SendStatusPacket(p);
-                            }, PacketType.DemonSiegeSacrificeStatus);
-                        }
-                        //else
-                        //{
-                        //    Main.NewText(TimeLeft);
-                        //    foreach (var i in Items)
-                        //    {
-                        //        Main.NewText(AequusText.ItemText(i.netID));
-                        //    }
-                        //}
-                    }
+                    var center = Center;
+                    InnerUpdate_TimeLeft(center);
                     return;
                 }
                 InnerUpdate_OnEnd();
             }
             public void InnerUpdate_OnStart()
             {
-                TimeLeft = DetermineLength();
+                TimeLeftMax = TimeLeft = DetermineLength();
+            }
+            public void InnerUpdate_TimeLeft(Vector2 center)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(center) < Range)
+                    {
+                        TimeLeft--;
+                        return;
+                    }
+                }
+                TimeLeft++;
+                if (TimeLeft > TimeLeftMax)
+                {
+                    InnerUpdate_OnFail();
+                }
             }
             public void InnerUpdate_OnEnd()
             {
+                Vector2 itemSpawn = Center;
+                itemSpawn.Y -= 20f;
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     var source = new EntitySource_TileBreak(TileX, TileY, "GoreNest");
+                    //AequusText.Broadcast("Should be spawning these items: " + AequusText.ItemText(Items[0].type), Color.Red);
                     foreach (var i in Items)
                     {
-                        TryFromID(i.netID, out var value);
+                        TryFromID(i.type, out var value);
                         var item = value.Convert(i);
-                        int newItem = AequusItem.NewItemCloned(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), item);
+                        int newItem = AequusItem.NewItemCloned(source, itemSpawn, item);
                         Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        if (Main.netMode == NetmodeID.Server)
                         {
                             NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
                         }
                     }
+                    DemonSiegeSystem.RemovalQueue.Add(new Point(TileX, TileY));
+                }
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    for (int i = 0; i < 40; i++)
+                    {
+                        var d = Dust.NewDustPerfect(itemSpawn + Main.rand.NextVector2Unit() * (Main.rand.NextFloat(20f, 100f)), ModContent.DustType<MonoSparkleDust>(),
+                            newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 200) * Main.rand.NextFloat(0.9f, 1.5f), Scale: Main.rand.NextFloat(1f, 2.5f));
+                        d.velocity = (d.position - itemSpawn) / 20f;
+                        d.fadeIn = d.scale + Main.rand.NextFloat(0.9f, 1.1f);
+                    }
+                    SoundID.DD2_KoboldExplosion?.PlaySound(new Vector2(TileX * 16f + 24f, TileY * 16f));
+                }
+            }
+            public void InnerUpdate_OnFail(bool clientOnly = false)
+            {
+                if (!clientOnly && Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    return;
+                }
+                string itemList = "";
+                var source = new EntitySource_TileBreak(TileX, TileY, "GoreNest_MPFail");
+                foreach (var i in Items)
+                {
+                    int newItem = AequusItem.NewItemCloned(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), i);
+                    Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, number: newItem, number2: 1f);
+                    }
+                    if (itemList != "")
+                        itemList += ", ";
+                    itemList += AequusText.ItemText(i.type);
+                }
+                if (!clientOnly)
+                {
+                    AequusText.Broadcast("ChatBroadcast.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
                 }
                 DemonSiegeSystem.RemovalQueue.Add(new Point(TileX, TileY));
             }
@@ -181,6 +267,10 @@ namespace Aequus.Biomes
                 if (Sacrifices.TryGetValue(new Point(x, y), out var value))
                 {
                     s = value;
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        s.NetUpdate = -300;
+                    }
                 }
                 else
                 {
@@ -196,17 +286,22 @@ namespace Aequus.Biomes
                 MaxItems = reader.ReadByte();
                 Range = reader.ReadSingle();
                 int itemCount = reader.ReadByte();
+                Items.Clear();
                 for (int i = 0; i < itemCount; i++)
                 {
-                    ItemIO.Receive(Items[i], reader, true, false);
+                    Items.Add(ItemIO.Receive(reader, true, false));
                 }
             }
         }
+
+        public static Asset<Texture2D> AuraTexture { get; private set; }
 
         public static Dictionary<Point, EventSacrifice> Sacrifices { get; private set; }
 
         internal static Dictionary<int, SacrificeData> registeredSacrifices;
         internal static Dictionary<int, int> upgradeToOriginal;
+
+        public const string ExtraScreenFilter = "Aequus:DemonSiegeFilter";
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
@@ -219,10 +314,15 @@ namespace Aequus.Biomes
             registeredSacrifices = new Dictionary<int, SacrificeData>();
             upgradeToOriginal = new Dictionary<int, int>();
             Sacrifices = new Dictionary<Point, EventSacrifice>();
+            if (!Main.dedServ)
+            {
+                Filters.Scene[ExtraScreenFilter] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.6f, -0.75f), EffectPriority.High); ;
+            }
         }
 
         public override void Unload()
         {
+            AuraTexture = null;
             registeredSacrifices?.Clear();
             registeredSacrifices = null;
             upgradeToOriginal?.Clear();
@@ -233,7 +333,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return false;
+            return player.Aequus().eventDemonSiege.X != 0;
         }
 
         public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false)
@@ -269,7 +369,7 @@ namespace Aequus.Biomes
                     p.Write((byte)player);
                     if (player != 255)
                     {
-                        InnerWritePlayerSpecificData(Main.player[player], p);
+                        InnerWritePlayerSpecificRequest(Main.player[player], p);
                     }
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
                 }, PacketType.RequestDemonSiege);
@@ -283,9 +383,8 @@ namespace Aequus.Biomes
             Sacrifices.Add(new Point(x, y), s);
             return true;
         }
-        public static void InnerWritePlayerSpecificData(Player player, BinaryWriter writer)
+        public static void InnerWritePlayerSpecificRequest(Player player, BinaryWriter writer)
         {
-
         }
 
         public static bool TryFromID(int netID, out SacrificeData value)
@@ -320,22 +419,37 @@ namespace Aequus.Biomes
             return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<GoreNestTile>();
         }
 
-        public static void ReadRequest(BinaryReader reader)
+        public static void HandleStartRequest(BinaryReader reader)
         {
             int x = reader.ReadUInt16();
             int y = reader.ReadUInt16();
             byte player = reader.ReadByte();
             if (player != 255)
             {
-                InnerReadPlayerSpecificData(reader);
+                InnerReadPlayerSpecificRequest(reader);
             }
             var s = new EventSacrifice(x, y);
             var sacrifice = new Item();
             ItemIO.Receive(sacrifice, reader, readStack: true, readFavorite: false);
             s.Items.Add(sacrifice);
             Sacrifices.Add(new Point(x, y), s);
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                PacketSender.Send((p) =>
+                {
+                    p.Write((ushort)x);
+                    p.Write((ushort)y);
+                    p.Write(player);
+                    if (player != 255)
+                    {
+                        InnerWritePlayerSpecificRequest(Main.player[player], p);
+                    }
+                    ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
+                }, PacketType.RequestDemonSiege, ignore: player);
+            }
         }
-        public static void InnerReadPlayerSpecificData(BinaryReader reader)
+        public static void InnerReadPlayerSpecificRequest(BinaryReader reader)
         {
         }
 
@@ -400,6 +514,79 @@ namespace Aequus.Biomes
                     }
                 }
                 RemovalQueue.Clear();
+            }
+
+            public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+            {
+                layers.Insert(0, new LegacyGameInterfaceLayer("Aequus: DemonSiege", DrawDemonSiegeRange, InterfaceScaleType.Game));
+            }
+            public bool DrawDemonSiegeRange()
+            {
+                foreach (var v in GoreNestTile.RenderPoints)
+                {
+                    if (Sacrifices.TryGetValue(v, out var sacrifice) && sacrifice._auraScale > 0f)
+                    {
+                        if (AuraTexture == null)
+                        {
+                            AuraTexture = ModContent.Request<Texture2D>("Aequus/Assets/GoreNestAura");
+                            return true;
+                        }
+                        if (AuraTexture.Value == null)
+                        {
+                            return true;
+                        }
+                        var texture = AuraTexture.Value;
+                        var origin = texture.Size() / 2f;
+                        var drawCoords = (sacrifice.Center - Main.screenPosition).Floor();
+                        float scale = sacrifice.Range * 2f / texture.Width;
+                        float opacity = 1f;
+
+                        if (sacrifice.TimeLeft < 360)
+                        {
+                            opacity = sacrifice.TimeLeft / 360f;
+                        }
+
+                        opacity /= 5f;
+
+                        var color = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
+                        foreach (var c in AequusHelpers.CircularVector(4))
+                        {
+                            Main.spriteBatch.Draw(texture, drawCoords + c, null, color,
+                                0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
+                        }
+                        Main.spriteBatch.Draw(texture, drawCoords, null, color,
+                            0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
+                    }
+                }
+                return true;
+            }
+        }
+        public class DemonSiegeScene : ModSceneEffect
+        {
+            public override SceneEffectPriority Priority => SceneEffectPriority.Event;
+
+            public override bool IsSceneEffectActive(Player player)
+            {
+                return true;
+            }
+
+            public override void SpecialVisuals(Player player)
+            {
+                var invasion = player.Aequus().eventDemonSiege;
+                if (invasion.X != 0)
+                {
+                    if (!Filters.Scene[ExtraScreenFilter].Active)
+                    {
+                        Filters.Scene.Activate(ExtraScreenFilter, invasion.ToWorldCoordinates(), null);
+                    }
+                }
+                else
+                {
+                    if (Filters.Scene[ExtraScreenFilter].Active)
+                    {
+                        Filters.Scene.Deactivate(ExtraScreenFilter);
+                    }
+                }
             }
         }
     }

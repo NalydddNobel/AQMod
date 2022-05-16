@@ -96,7 +96,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
             HeatDamageTypes.HeatNPC.Add(Type);
 
-            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void Unload()

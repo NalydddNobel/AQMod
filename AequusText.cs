@@ -165,6 +165,7 @@ namespace Aequus
         }
         public static void Broadcast(string text, Color color)
         {
+            text = "Mods.Aequus." + text;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(Language.GetTextValue(text), color);
@@ -176,6 +177,7 @@ namespace Aequus
         }
         public static void Broadcast(string text, Color color, params object[] args)
         {
+            text = "Mods.Aequus." + text;
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 Main.NewText(Language.GetTextValue(text, args), color);

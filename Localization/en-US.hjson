@@ -29,6 +29,10 @@ Mods: {
 			DemonSiegeInvasion: Demon Siege
 		}
 
+		ChatBroadcast: {
+			DemonSiegeFail: The Gore Nest regurgitates your {0}...
+		}
+
 		DropCondition: {
 			OtherwiseChance: Will 100% drop if '{0}' conditions are met
 			LastAlive: Only dropped by the last remaining enemy
@@ -252,7 +256,7 @@ Mods: {
 			SeaPickle: Sea Pickle
 			CrabsonTrophy: Crabson Trophy
 			HellTombstone: Hell Tombstone
-			GoreNestItem: Gore Nest
+			GoreNest: Gore Nest
 			ArgonMushroom: Argon Mushroom
 			KryptonMushroom: Krypton Mushroom
 			XenonMushroom: Xenon Mushroom
@@ -1686,19 +1690,7 @@ Mods: {
 
 		CrabSeason: Crab Season
 
-		BC: {
-			Spawn: {
-				Crabson: Summoned by using a {0} at the crab caves
-				DemonSiege: Can be summoned using: {0} at a Gore Nest.
-				GlimmerEvent: Happens naturally at night. Can alternatively be summoned with a {0}. Ends when the sun rises.
-				OmegaStarite: Summoned by using {0} at night. Can also be summoned by going to the source of a glimmer
-				GaleStreams: Begins when the wind is above 40 mph, and ends when it's less than 34 mph. Will also end if the wind goes above 300 mph. You can modify the speed of the wind using {0}
-				GaleStreamsMiniboss: Occasionally appears during the Gale Streams!
-			}
-		}
-
 		Common: {
-			AwakenedCrabson: Crabson has awoken!
 			KeyUnbound: "'Unbound Key'"
 			KeyBound: "'{0}' Key"
 			EightballAnswer0: Yes
@@ -1722,48 +1714,7 @@ Mods: {
 			EightballAnswer18: Cannot predict now
 			EightballAnswer19: Concentrate and ask again
 			EightballAnswer20: Nothing is displayed on the Celestial 8-Ball
-			EightballMisc0: Rain rain go away
-			EightballMisc1: Is your favorite number {0}?
-			EightballMisc2: GlimmerItem
-			EightballMisc3: Balls
-			EightballMisc4: Massive Ones.
-			EightballMisc5: Jimbo sometimes you make me feel internal pain
-			EightballMisc6: What doth life
-			RandomStructures: Generating Random Structures...
-			RandomStructures_TikiChest: Generating Random Structures... Tiki Chest
-			RandomStructures_NobleMushrooms: Generating Random Structures... Noble Mushrooms
-			RandomStructures_CandelabraTraps: Generating Random Structures... Candelabra Traps
-			RandomStructures_ExoticCoralBlotches: Generating Random Structures... Exotic Coral Blotches
-			OceanRavines: Ocean Ravines
-			RareStructures: Generating Rare Structures...
-			WorldGen_GoreNests: Generating Gore Nests...
-			WorldGen_Globes: Generating Globes...
-			WorldGen_GlimmeringStatues: Generating Glimmering Statues...
-			RobsterChat0: There is a reason I don't like other lobsters... it's because my own brother betrayed me.
-			RobsterChat1: Do you know what I have been through?
-			RobsterChat2: The floor below me seems to be glowing... this feels like reversed fog.
-			RobsterChat3: Starites can be such a pain, I tell you. At least they make for good cereal.
-			RobsterChat4: There's this sword I saw somewhere in the distance. I wonder what happens if someone tried to touch it...
-			RobsterChat5: Y'know, I was never a fan of horror movies and this is absolutely freaking me out.
-			RobsterChat6: I saw a suspicious moth wearing a blue cloak, looked a bit like a cultist. It told me that Mothron stole a powerful piece of equipment. I am not gonna try to kill one of those giant Moths though.
-			RobsterChat7: Blood Moons were very scary when sailing through the ocean. I don't know how many Zombie Mermen our crew has killed.
-			RobsterChat8: Tell those little eye flappers I said 'hi'.
-			RobsterChat9: I was fishing at the lake tonight and got ambushed by an anthropomorphic shark. Ugly thing, I tell you.
-			RobsterChat10: I was fishing at the lake tonight and got ambushed by a giant red eel. Ugly thing, I tell you.
-			RobsterChat11: I once dared {0} to fish during the blood moon. He caught this massive nautilus! I was terrified.
-			RobsterChat12: Whoever gave me this hat forgot to make it fit me... I can't see a thing!
-			RobsterChat13: I feel really dumb that I forgot my own name. How would anyone even do that?
-			RobsterChat14: Thanks for finding my card. It reminded me of how much I love ripping people off and stealing their things.
-			RobsterNPCDeath: The town NPC that Robster wants you to steal from isn't here anymore...
-			RobsterNPCDeath2: Ask Robster to begin a different hunt.
-			RobsterFail: You didn't obtain the special item sneakily enough...
-			RobsterFailAccident: The special item was accidentally destroyed...
-			SpawnAfterPoint: ({0}) can spawn after this point
-			EnergiesEnabled: Energy drops are enabled
-			EnergiesDisabled: Energy drops are disabled
-			TimeLeft: "{0} Left"
-			DemonSiege: Demon Siege
-			DemonSiegeDeath: The Gore Nest regurgitates your item...
+
 			DemonSiegeTooFarAway: You are too far away from the Demon Siege in order to upgrade your weapon
 			NoColorDistort: Color Distort Shader is not enabled
 			NoScrollShader: Scroll Shader is not enabled

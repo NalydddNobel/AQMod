@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,6 +33,8 @@ namespace Aequus.Projectiles.Summon.Necro
                 int n = NPC.NewNPC(Projectile.GetSource_Death("Aequus:NecromancySpawn"), x, y, type);
                 Main.npc[n].whoAmI = n;
                 OnSpawnZombie(Main.npc[n], Main.npc[n].GetGlobalNPC<NecromancyNPC>());
+                Main.npc[n].netUpdate = true;
+                NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
             }
         }
 

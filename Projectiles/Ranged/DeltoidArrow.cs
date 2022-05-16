@@ -60,12 +60,14 @@ namespace Aequus.Projectiles.Ranged
             {
                 CrimsonHellfire.AddStack(target, 120, 1);
             }
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.Server)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
+            }
+            if (Main.myPlayer == Projectile.owner)
+            {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
             }
-
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -77,9 +79,12 @@ namespace Aequus.Projectiles.Ranged
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.Server)
             {
                 SoundID.Item14?.PlaySound(Projectile.Center);
+            }
+            if (Main.myPlayer == Projectile.owner)
+            {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
             return true;

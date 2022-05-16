@@ -36,7 +36,7 @@ namespace Aequus.NPCs.Boss
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
 
-            FrozenNPCEffect.Blacklist.NPCTypes.Add(Type);
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void SetDefaults()
