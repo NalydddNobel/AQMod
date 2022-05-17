@@ -12,8 +12,17 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public override void Update(NPC npc, ref int buffIndex)
         {
+            int damageOverTime = 15;
+            if (npc.life < 200)
+            {
+                damageOverTime = 200;
+            }
+            else if (npc.life < 500)
+            {
+                damageOverTime = 25;
+            }
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-            zombie.zombieDrain = 15 * AequusHelpers.NPCREGEN;
+            zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
 
             if (Main.myPlayer == zombie.zombieOwner && Main.rand.NextBool(60))
             {

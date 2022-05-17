@@ -63,7 +63,6 @@ namespace Aequus
 
         public static string GetText(string key)
         {
-            return "Lol";
             return Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
         }
 

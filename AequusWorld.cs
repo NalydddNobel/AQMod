@@ -1,4 +1,6 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common;
+using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Tiles;
 using System.Collections.Generic;
@@ -14,10 +16,20 @@ namespace Aequus
 {
     public sealed class AequusWorld : ModSystem
     {
+        [SaveData("SpaceSquid")]
+        [NetBool]
         public static bool downedSpaceSquid;
+        [SaveData("RedSprite")]
+        [NetBool]
         public static bool downedRedSprite;
+        [SaveData("GaleStreams")]
+        [NetBool]
         public static bool downedEventGaleStreams;
+        [SaveData("Crabson")]
+        [NetBool]
         public static bool downedCrabson;
+        [SaveData("OmegaStarite")]
+        [NetBool]
         public static bool downedOmegaStarite;
 
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
@@ -33,38 +45,32 @@ namespace Aequus
 
         public override void SaveWorldData(TagCompound tag)
         {
-            tag["SpaceSquid"] = downedSpaceSquid;
-            tag["RedSprite"] = downedRedSprite;
-            tag["GaleStreams"] = downedEventGaleStreams;
-            tag["Crabson"] = downedCrabson;
-            tag["OmegaStarite"] = downedOmegaStarite;
+            SaveDataAttribute.SaveData(tag, this);
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
-            downedSpaceSquid = tag.Get<bool>("SpaceSquid");
-            downedRedSprite = tag.Get<bool>("RedSprite");
-            downedEventGaleStreams = tag.Get<bool>("GaleStreams");
-            downedCrabson = tag.Get<bool>("Crabson");
-            downedOmegaStarite = tag.Get<bool>("OmegaStarite");
+            SaveDataAttribute.LoadData(tag, this);
         }
 
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(downedSpaceSquid);
-            writer.Write(downedRedSprite);
-            writer.Write(downedEventGaleStreams);
-            writer.Write(downedCrabson);
-            writer.Write(downedOmegaStarite);
+            NetTypeAttribute.SendData(writer, this);
+            //writer.Write(downedSpaceSquid);
+            //writer.Write(downedRedSprite);
+            //writer.Write(downedEventGaleStreams);
+            //writer.Write(downedCrabson);
+            //writer.Write(downedOmegaStarite);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            downedSpaceSquid = reader.ReadBoolean();
-            downedRedSprite = reader.ReadBoolean();
-            downedEventGaleStreams = reader.ReadBoolean();
-            downedCrabson = reader.ReadBoolean();
-            downedOmegaStarite = reader.ReadBoolean();
+            NetTypeAttribute.ReadData(reader, this);
+            //downedSpaceSquid = reader.ReadBoolean();
+            //downedRedSprite = reader.ReadBoolean();
+            //downedEventGaleStreams = reader.ReadBoolean();
+            //downedCrabson = reader.ReadBoolean();
+            //downedOmegaStarite = reader.ReadBoolean();
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

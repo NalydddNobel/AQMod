@@ -69,6 +69,28 @@ namespace Aequus
             }
         }
 
+        public static IEnumerable<(T attr, MemberInfo info)> GetFieldsPropertiesOfAttribute<T>(Type t) where T : Attribute
+        {
+            var l = new List<(T, MemberInfo)>();
+            foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static))
+            {
+                var attr = f.GetCustomAttribute<T>();
+                if (attr != null)
+                {
+                    l.Add((attr, f));
+                }
+            }
+            foreach (var p in t.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static))
+            {
+                var attr = p.GetCustomAttribute<T>();
+                if (attr != null)
+                {
+                    l.Add((attr, p));
+                }
+            }
+            return l;
+        }
+
         public static void HideBestiaryEntry(this ModNPC npc)
         {
             NPCID.Sets.NPCBestiaryDrawOffset.Add(npc.Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, });

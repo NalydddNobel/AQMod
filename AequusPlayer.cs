@@ -73,7 +73,7 @@ namespace Aequus
         public Point eventDemonSiege;
 
         /// <summary>
-        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> / <see cref="PostUpdate_CheckDanger"/>
+        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="PostUpdate_CheckDanger"/>
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
@@ -440,7 +440,6 @@ namespace Aequus
             }
             teamContext = 0;
         }
-
         /// <summary>
         /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
         /// </summary>

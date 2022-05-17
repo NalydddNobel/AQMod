@@ -92,30 +92,41 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			Osiris: Osiris
-			SkeletonKey: Skeleton Key
-			Revenant: Revenant
+			MirrorsCall: Mirror's Call
+			Slice: Slice
+
+			Triacanthorn: Triacanthorn
+
 			NecromancyStaff: Necromancy Staff
-			UnenchantedStaff: Unenchanted Staff
-			RitualisticSkull: Ritualistic Skull
 			Insurgency: Insurgency
+			Osiris: Osiris
+			Revenant: Revenant
 			ZombieScepter: Zombie Scepter
-			Moro: Moro
+
+			RitualisticSkull: Ritualistic Skull
 			IcebergKraken: Iceberg Kraken
-			ToySpaceGun: Toy Space Gun
 			GrandReward: Grand Reward
 			Mendshroom: Mendshroom
-			FrostPotion: Frost Potion
 			GlowCore: Glow Core
+
+			FrostPotion: Frost Potion
+
+			SkeletonKey: Skeleton Key
+			UnenchantedStaff: Unenchanted Staff
+			
+			Moro: Moro
+			
+			ToySpaceGun: Toy Space Gun
+						
 			SnowPalette: Snow Palette
 			GlowingMushroomsPalette: Glowing Mushrooms Palette
 			DesertPalette: Desert Palette
-			MirrorsCall: Mirror's Call
-			Slice: Slice
+			
 			SpaceSquidRelic: Space Squid Relic
 			RedSpriteRelic: Red Sprite Relic
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
+
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
 			Molite: Starbyte
@@ -401,32 +412,39 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Triacanthorn: 
+				'''
+				Summons splitting vile tendrils
+				Ignores 10 points of enemy Defense
+				'''
+			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
+			UnenchantedStaff: May be enchanted
+			RitualisticSkull: Converts all of your minion slots into ghost minion slots
+
+			Insurgency: 
+				'''
+				Drains the soul of very powerful enemies, instantly killing weakened enemies
+				While accursed, they release spirits that attack nearby enemies
+				Defeated enemies will join your team
+				'Silence'
+				'''
 			Osiris: 
 				'''
 				Drains the soul of powerful enemies
 				Defeated enemies will join your team
 				Bursts into a swarm of locusts on hit
 				'''
-			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
 			Revenant: 
 				'''
 				Drains the soul of strong enemies, instantly killing weakened enemies
 				Defeated enemies will join your team
-				'''
-			UnenchantedStaff: May be enchanted
-			RitualisticSkull: Converts all of your minion slots into ghost minion slots
-			Insurgency: 
-				'''
-				Drains the soul of very powerful enemies
-				While accursed, they release spirits that attack nearby enemies
-				Defeated enemies will join your team
-				'Silence'
 				'''
 			ZombieScepter: 
 				'''
 				Drains the soul of weak enemies
 				Defeated enemies will join your team
 				'''
+
 			Moro: Summon staffs permanently no longer consume mana and are faster
 			IcebergKraken:
 				'''
@@ -1301,6 +1319,8 @@ Mods: {
 			DeltoidArrow: Deltoid Arrow
 			BaozhuProj: Baozhu
 
+			TriacanthornBolt: Triacanthorn Shot
+			TriacanthornProj: Triacanthorn
 			UmystickMoon: Menacing Moon
 			TouhouBullet: Magic Bullet
 			SurgeRodHitbox: Surge

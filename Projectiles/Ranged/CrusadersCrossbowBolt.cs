@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Healing
+namespace Aequus.Projectiles.Ranged
 {
     public sealed class CrusadersCrossbowBolt : ModProjectile, ITeamColored
     {

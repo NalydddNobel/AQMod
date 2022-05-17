@@ -75,7 +75,6 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 8;
-            NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(1f, 0f),
