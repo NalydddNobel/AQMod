@@ -92,30 +92,41 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			Osiris: 欧西里斯
-			SkeletonKey: 骷髅钥匙
-			Revenant: 亡魂
+			MirrorsCall: 镜之召
+			Slice: 利刃
+
+			Triacanthorn: 三棘卷须
+			
 			NecromancyStaff: 死灵法杖
-			UnenchantedStaff: 未附魔的法杖
-			RitualisticSkull: 仪式颅骨
 			Insurgency: 叛乱
+			Osiris: 欧西里斯
+			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
-			Moro: 摩洛
+
+			RitualisticSkull: 仪式颅骨
 			IcebergKraken: 冰山海妖
-			ToySpaceGun: 玩具太空枪
 			GrandReward: 豪华奖励
 			Mendshroom: 愈灵菇
-			FrostPotion: 冰霜药水
 			GlowCore: 发光核心
+			
+			FrostPotion: 冰霜药水
+
+			SkeletonKey: 骷髅钥匙
+			UnenchantedStaff: 未附魔的法杖
+
+			Moro: 摩洛
+
+			ToySpaceGun: 玩具太空枪
+
 			SnowPalette: 雪地调色板
 			GlowingMushroomsPalette: 发光蘑菇调色板
 			DesertPalette: 沙漠调色板
-			MirrorsCall: 镜之召
-			Slice: 利刃
+			
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
+
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
 			Molite: 元星鱼
@@ -401,32 +412,39 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Triacanthorn: 
+				'''
+				召唤会分裂的邪恶卷须
+				无视敌人10点的防御力
+				'''
+			SkeletonKey: 打开所有的金色宝箱和金色锁盒
+			UnenchantedStaff: 可被附魔
+			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
+
+			Insurgency: 
+				'''
+				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+				被诅咒的敌人会释放会攻击附近敌人的灵魂
+				被击败的敌人会加入你的队伍
+				'寂静'
+				'''
 			Osiris: 
 				'''
 				消耗极强敌人的灵魂
 				被击败的敌人会加入你的队伍
 				命中敌人时会爆裂成一群蝗虫群
 				'''
-			SkeletonKey: 打开所有的金色宝箱和金色锁盒
 			Revenant: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
 				被击败的敌人会加入你的队伍
-				'''
-			UnenchantedStaff: 可被附魔
-			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
-			Insurgency: 
-				'''
-				消耗强大敌人的灵魂
-				被诅咒的敌人会释放会攻击附近敌人的灵魂
-				被击败的敌人会加入你的队伍
-				'寂静'
 				'''
 			ZombieScepter: 
 				'''
 				消耗弱小敌人的灵魂
 				被击败的敌人会加入你的队伍
 				'''
+
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 			IcebergKraken:
 				'''
@@ -1301,6 +1319,8 @@ Mods: {
 			DeltoidArrow: 增量矢
 			BaozhuProj: 爆竹
 
+			TriacanthornBolt: 三棘卷须
+			TriacanthornProj: 三棘卷须
 			UmystickMoon: 凶恶之月
 			TouhouBullet: 魔法弹
 			SurgeRodHitbox: 电浪
