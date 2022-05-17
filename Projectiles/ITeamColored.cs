@@ -5,7 +5,7 @@ namespace Aequus.Projectiles
 {
     public interface ITeamColored
     {
-        Color TeamColor { get; protected set; }
+        Color TeamColor { get; set; }
 
         public static void UpdateTeamColor(Player player, ITeamColored colored)
         {
