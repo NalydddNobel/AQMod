@@ -19,4 +19,9 @@
     <None Include="Assets\Effects\.compiler\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
     <None Include="Assets\Effects\.compiler\wcfxcompiler.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ModGlobalsNet">
+      <HintPath>..\ModGlobalsNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

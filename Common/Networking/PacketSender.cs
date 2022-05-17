@@ -13,58 +13,58 @@ namespace Aequus.Common.Networking
 {
     public sealed class PacketSender : ModSystem
     {
-        public override bool HijackSendData(int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7)
-        {
-            if (msgType == MessageID.SyncNPC)
-            {
-                try
-                {
-                    SendNPCNetworkerGlobals(remoteClient, ignoreClient, number);
-                }
-                catch
-                {
-                }
-            }
-            return false;
-        }
-        public static void SendNPCNetworkerGlobals(int remoteClient, int ignoreClient, int npc)
-        {
-            Send((p) =>
-            {
-                p.Write(npc);
-                var globals = GetNetworkerGlobals(Main.npc[npc]);
-                for (int i = 0; i < globals.Length; i++)
-                {
-                    globals[i]?.Send(npc, p);
-                }
-            },
-            PacketType.SyncNPCNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
-        }
-        public static void SendProjNetworkerGlobals(int remoteClient, int ignoreClient, int projectile)
-        {
-            Send((p) =>
-            {
-                p.Write(Main.projectile[projectile].owner);
-                p.Write(Main.projectile[projectile].identity);
-                var globals = GetNetworkerGlobals(Main.projectile[projectile]);
-                for (int i = 0; i < globals.Length; i++)
-                {
-                    globals[i].Send(projectile, p);
-                }
-            },
-            PacketType.SyncProjNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
-        }
+        //public override bool HijackSendData(int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7)
+        //{
+        //    if (msgType == MessageID.SyncNPC)
+        //    {
+        //        try
+        //        {
+        //            SendNPCNetworkerGlobals(remoteClient, ignoreClient, number);
+        //        }
+        //        catch
+        //        {
+        //        }
+        //    }
+        //    return false;
+        //}
+        //public static void SendNPCNetworkerGlobals(int remoteClient, int ignoreClient, int npc)
+        //{
+        //    Send((p) =>
+        //    {
+        //        p.Write(npc);
+        //        var globals = GetNetworkerGlobals(Main.npc[npc]);
+        //        for (int i = 0; i < globals.Length; i++)
+        //        {
+        //            globals[i]?.Send(npc, p);
+        //        }
+        //    },
+        //    PacketType.SyncNPCNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
+        //}
+        //public static void SendProjNetworkerGlobals(int remoteClient, int ignoreClient, int projectile)
+        //{
+        //    Send((p) =>
+        //    {
+        //        p.Write(Main.projectile[projectile].owner);
+        //        p.Write(Main.projectile[projectile].identity);
+        //        var globals = GetNetworkerGlobals(Main.projectile[projectile]);
+        //        for (int i = 0; i < globals.Length; i++)
+        //        {
+        //            globals[i].Send(projectile, p);
+        //        }
+        //    },
+        //    PacketType.SyncProjNetworkerGlobals, to: remoteClient, ignore: ignoreClient);
+        //}
 
-        internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
-        {
-            npc.TryGetGlobalNPC<NecromancyNPC>(out var necromancyNPC);
-            npc.TryGetGlobalNPC<NPCDebuffs>(out var debuffs);
-            return new IEntityNetworker[] { necromancyNPC, debuffs, };
-        }
-        internal static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
-        {
-            return new IEntityNetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
-        }
+        //internal static IEntityNetworker[] GetNetworkerGlobals(NPC npc)
+        //{
+        //    npc.TryGetGlobalNPC<NecromancyNPC>(out var necromancyNPC);
+        //    npc.TryGetGlobalNPC<NPCDebuffs>(out var debuffs);
+        //    return new IEntityNetworker[] { necromancyNPC, debuffs, };
+        //}
+        //internal static IEntityNetworker[] GetNetworkerGlobals(Projectile projectile)
+        //{
+        //    return new IEntityNetworker[] { projectile.GetGlobalProjectile<NecromancyProj>() };
+        //}
 
         public static PacketType ReadPacketType(BinaryReader reader)
         {

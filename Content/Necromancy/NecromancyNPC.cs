@@ -6,6 +6,7 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ModGlobalsNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class NecromancyNPC : GlobalNPC, IEntityNetworker, IAddRecipes
+    public class NecromancyNPC : GlobalNPC, IGlobalsNetworker, IAddRecipes
     {
         public static bool AI_IsZombie { get; set; }
         public static int AI_ZombiePlayerOwner { get; set; }
@@ -536,7 +537,7 @@ namespace Aequus.Content.Necromancy
             return Color.Lerp(color, (color * 0.5f).UseA(255), 1f - lifeRatio);
         }
 
-        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
+        void IGlobalsNetworker.Send(int whoAmI, BinaryWriter writer)
         {
             writer.Write(Main.npc[whoAmI].active);
             if (Main.npc[whoAmI].active)
@@ -558,7 +559,7 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
+        void IGlobalsNetworker.Receive(int whoAmI, BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {
@@ -593,13 +594,12 @@ namespace Aequus.Content.Necromancy
         }
     }
 
-    public class NecromancyProj : GlobalProjectile, IEntityNetworker
+    public class NecromancyProj : GlobalProjectile, IGlobalsNetworker
     {
         public bool isZombie;
         public int zombieNPCOwner;
         public float zombieDebuffTier;
         public int renderLayer;
-        private int netUpdateTick;
 
         public override bool InstancePerEntity => true;
 
@@ -687,18 +687,6 @@ namespace Aequus.Content.Necromancy
             NecromancyNPC.AI_NPCTarget = -1;
             if (isZombie)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    if (netUpdateTick <= 0)
-                    {
-                        PacketSender.SendProjNetworkerGlobals(-1, -1, projectile.identity);
-                        netUpdateTick = 120 + projectile.netSpam * 5;
-                    }
-                    else
-                    {
-                        netUpdateTick--;
-                    }
-                }
                 if (!Main.npc[zombieNPCOwner].active)
                 {
                     projectile.Kill();
@@ -782,7 +770,7 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        void IEntityNetworker.Send(int whoAmI, BinaryWriter writer)
+        void IGlobalsNetworker.Send(int whoAmI, BinaryWriter writer)
         {
             writer.Write(isZombie);
             if (isZombie)
@@ -793,7 +781,7 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        void IEntityNetworker.Receive(int whoAmI, BinaryReader reader)
+        void IGlobalsNetworker.Receive(int whoAmI, BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {

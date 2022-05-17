@@ -3,6 +3,7 @@ using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
+using ModGlobalsNet;
 using System;
 using System.IO;
 using Terraria;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public class NPCDebuffs : GlobalNPC, IEntityNetworker
+    public class NPCDebuffs : GlobalNPC, IGlobalsNetworker
     {
         public bool hasCorruptionHellfire;
         public byte corruptionHellfireStacks;

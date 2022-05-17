@@ -2,9 +2,9 @@
 {
     public enum PacketType : byte
     {
-        SyncNPCNetworkerGlobals,
+        Unused,
         SyncNecromancyOwnerTier,
-        SyncProjNetworkerGlobals,
+        Unused_1,
         SoundQueue,
         DemonSiegeSacrificeStatus,
         RequestDemonSiege,

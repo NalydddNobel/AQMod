@@ -133,18 +133,18 @@ namespace Aequus
             PacketType type = PacketSender.ReadPacketType(reader);
 
             var l = Instance.Logger;
-            if (type != PacketType.SyncNPCNetworkerGlobals && type != PacketType.SyncProjNetworkerGlobals)
+            if (type != PacketType.Unused && type != PacketType.Unused_1)
             {
                 l.Debug("Recieving Packet: " + type);
             }
-            if (type == PacketType.SyncNPCNetworkerGlobals)
+            if (type == PacketType.Unused)
             {
-                int npc = reader.ReadInt32();
-                var globals = PacketSender.GetNetworkerGlobals(Main.npc[npc]);
-                for (int i = 0; i < globals.Length; i++)
-                {
-                    globals[i]?.Receive(npc, reader);
-                }
+                //int npc = reader.ReadInt32();
+                //var globals = PacketSender.GetNetworkerGlobals(Main.npc[npc]);
+                //for (int i = 0; i < globals.Length; i++)
+                //{
+                //    globals[i]?.Receive(npc, reader);
+                //}
             }
             else if (type == PacketType.SyncNecromancyOwnerTier)
             {
@@ -152,17 +152,17 @@ namespace Aequus
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
             }
-            else if (type == PacketType.SyncProjNetworkerGlobals)
+            else if (type == PacketType.Unused_1)
             {
-                int projectileOwner = reader.ReadInt32();
-                int projectileIdentity = reader.ReadInt32();
-                int projectile = AequusHelpers.FindProjectileIdentity(projectileOwner, projectileIdentity);
-                l.Debug("Data for: " + projectile + ", " + Lang.GetProjectileName(Main.projectile[projectile].type));
-                var globals = PacketSender.GetNetworkerGlobals(Main.projectile[projectile]);
-                for (int i = 0; i < globals.Length; i++)
-                {
-                    globals[i].Receive(projectile, reader);
-                }
+                //int projectileOwner = reader.ReadInt32();
+                //int projectileIdentity = reader.ReadInt32();
+                //int projectile = AequusHelpers.FindProjectileIdentity(projectileOwner, projectileIdentity);
+                //l.Debug("Data for: " + projectile + ", " + Lang.GetProjectileName(Main.projectile[projectile].type));
+                //var globals = PacketSender.GetNetworkerGlobals(Main.projectile[projectile]);
+                //for (int i = 0; i < globals.Length; i++)
+                //{
+                //    globals[i].Receive(projectile, reader);
+                //}
             }
             else if (type == PacketType.SoundQueue)
             {
