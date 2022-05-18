@@ -69,7 +69,7 @@ Mods: {
 			UsesGel: 使用凝胶作为弹药
 			ExporterQuest: 将此物交付于发货人
 			Concocted: 用于药水调配
-			PaletteDrop: 下列物品必定掉落
+			RouletteDrop: 下列物品必定掉落
 			EffectActive: 禁用
 			EffectInactive: 启用
 			IncreasedMinions: 增加最大召唤栏位
@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			RockMan: 摇滚者
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
@@ -105,6 +106,7 @@ Mods: {
 			ZombieScepter: 僵尸权杖
 
 			RitualisticSkull: 仪式颅骨
+			SentrySquid: 哨兵乌贼
 			IcebergKraken: 冰山海妖
 			GrandReward: 豪华奖励
 			Mendshroom: 愈灵菇
@@ -121,14 +123,20 @@ Mods: {
 
 			ToySpaceGun: 玩具太空枪
 
-			SnowPalette: 雪地调色板
-			GlowingMushroomsPalette: 发光蘑菇调色板
-			DesertPalette: 沙漠调色板
+			SnowRoulette: 雪原转盘
+			GlowingMushroomsRoulette: 发光蘑菇转盘
+			DesertRoulette: 沙漠转盘
+			SkyRoulette: 天空转盘
+			GoldenRoulette: 黄金转盘
+			Roulette: 转盘
 
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
+
+			AncientFrostbiteDye: 远古霜寒染料
+			FrostbiteDye: 霜寒染料
 
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
@@ -138,7 +146,6 @@ Mods: {
 			SupernovaFruit: 超新星果
 			GalacticStarfruit: 星河杨桃
 			MoonLeech: 月噬
-			SentrySquid: 哨兵乌贼
 			DreamCatcher: 捕梦者
 			MagikaAmulet: 神奇护符
 			JellyAmulet: 水母护符
@@ -276,9 +283,6 @@ Mods: {
 			XenonMushroom: 氙蘑菇
 			CrabClock: 螃蟹挂钟
 			OceanRavineWall: 蟹状裂隙墙
-			SkyPalette: 天空调色板
-			OverworldPalette: 上界调色板
-			CavernPalette: 洞穴调色板
 			PotionofContainers: 传箱药水
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
 			NoonPotion: 午光药水
@@ -304,7 +308,6 @@ Mods: {
 			TemperatureHairDye: 气温染发剂
 			NalydDye: 极顶染料
 			RedSpriteDye: 灼炎染料
-			FrostbiteDye: 霜寒染料
 			EnchantedDye: 附魔染料
 			ScrollDye: 眩惑染料
 			HellBeamDye: 狱光染料
@@ -415,6 +418,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			RockMan: 
+				'''
+				一件远古遗物, 最初被用来切柠檬
+				'''
 			Triacanthorn: 
 				'''
 				召唤会分裂的邪恶卷须
@@ -473,21 +480,38 @@ Mods: {
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			FrostPotion: 降低来自热源的伤害
 			GlowCore: 你和你的弹幕会发光
-			SnowPalette:
+
+			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
-			GlowingMushroomsPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			DesertPalette:
+			GlowingMushroomsRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
+			DesertRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			SkyRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			GoldenRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			Roulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 			MirrorsCall:
@@ -898,21 +922,6 @@ Mods: {
 				'当你触摸它时, 它变得更亮了'
 				'''
 			CrabClock: "现在是什么时间? 螃躁时间.'"
-			SkyPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			OverworldPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			CavernPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
 			PotionofContainers:
 				'''
 				将你传送至世界中的随机一个箱子
@@ -1289,6 +1298,7 @@ Mods: {
 			OmegaStariteProj: 终末之星
 			OmegaStariteBullet: 宇宙星幕
 			OmegaStariteDeathray: 最终射线
+			TrollStar: 终末天启之七彩耀星
 
 			CrabsonBubble: 泡泡
 			CrabsonPearlShard: 珍珠碎片
@@ -1381,7 +1391,6 @@ Mods: {
 			OmegaStaritePet: 迷你终末之星
 			SuperStariteBullet: 极耀源星弹幕
 			HyperStariteProj: 巨耀源星
-			RainbowStarofHyperApocalypse: 终末天启之七彩耀星
 			SparklingExplosion: 宇宙辐射涌流
 			MothmanCritExplosion: 天蛾人面具
 			PowPunch: 链拳
