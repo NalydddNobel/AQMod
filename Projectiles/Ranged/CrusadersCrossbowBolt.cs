@@ -7,10 +7,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public sealed class CrusadersCrossbowBolt : ModProjectile, ITeamColored
+    public sealed class CrusadersCrossbowBolt : ModProjectile
     {
-        public Color TeamColor { get; set; }
-
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
@@ -24,12 +22,10 @@ namespace Aequus.Projectiles.Ranged
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
             Projectile.extraUpdates = 8;
-            TeamColor = Color.White;
         }
 
         public override void AI()
         {
-            ITeamColored.UpdateTeamColor(Main.player[Projectile.owner], this);
             Projectile.velocity.Y += 0.0005f;
             Projectile.rotation = Projectile.velocity.ToRotation();
             if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == Projectile.owner)
@@ -56,7 +52,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return TeamColor.UseA(15);
+            return Main.teamColor[Main.player[Projectile.owner].team].UseA(15);
         }
 
         public override bool PreDraw(ref Color lightColor)

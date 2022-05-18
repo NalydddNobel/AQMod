@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable;
+﻿using Aequus.Items.Placeable.BossTrophies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

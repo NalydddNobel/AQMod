@@ -94,7 +94,7 @@ namespace Aequus
             ItemsCatalogue.LoadAutomaticEntries();
             if (PolaritiesSupport.Polarities.Enabled)
             {
-                AequusBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
+                MonsterBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
             }
             foreach (var t in AutoloadUtilities.GetTypes(Code))
             {

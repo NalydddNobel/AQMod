@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Items.Consumables.Palettes;
+using Aequus.Items.Consumables.Roulettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -14,7 +14,7 @@ namespace Aequus.Items.Accessories
         {
             this.SetResearch(1);
             OnOpenBag.WoodenCratePool.Add(Type);
-            CavernPalette.CavernChestLoot.Add(Type);
+            GoldenRoulette.Table.Add(Type);
         }
 
         public override void SetDefaults()

@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Include="Assets\Effects\.compiler\fxcompiler.exe" />
     <None Include="Assets\Effects\.compiler\GoreNestPortal.fx" />
+    <None Include="Assets\Effects\.compiler\MasterDye.fx" />
     <None Include="Assets\Effects\.compiler\Microsoft.Xna.Framework.Content.Pipeline.dll" />
     <None Include="Assets\Effects\.compiler\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
     <None Include="Assets\Effects\.compiler\wcfxcompiler.dll" />

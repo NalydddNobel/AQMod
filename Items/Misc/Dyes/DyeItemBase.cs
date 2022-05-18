@@ -9,13 +9,17 @@ namespace Aequus.Items.Misc.Dyes
 {
     public abstract class DyeItemBase : ModItem
     {
-        public virtual Ref<Effect> Effect => new Ref<Effect>(ModContent.Request<Effect>("Aequus/Assets/Effects/ParentDyeShader", AssetRequestMode.ImmediateLoad).Value);
+        public virtual Ref<Effect> Effect => FromPath("ParentDyeShader");
         public abstract string Pass { get; }
         public virtual int Rarity => ItemRarityID.Blue;
         public virtual int Value => Item.sellPrice(gold: 1, silver: 50);
         public virtual ArmorShaderData CreateShaderData()
         {
             return new ArmorShaderData(Effect, Pass);
+        }
+        internal Ref<Effect> FromPath(string name)
+        {
+            return new Ref<Effect>(ModContent.Request<Effect>("Aequus/Assets/Effects/" + name, AssetRequestMode.ImmediateLoad).Value);
         }
 
         public override void SetStaticDefaults()

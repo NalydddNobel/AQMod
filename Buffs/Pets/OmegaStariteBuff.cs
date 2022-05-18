@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Pets;
+﻿using Aequus.Projectiles.Misc.Pets;
 using Terraria;
 using Terraria.ModLoader;
 

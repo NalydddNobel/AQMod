@@ -3,7 +3,7 @@ using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Natural;
+using Aequus.Tiles.Ambience;
 using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

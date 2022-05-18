@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Misc.AshGraves;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -41,6 +42,30 @@ namespace Aequus.Common.Players
             disableTombstones = tag.GetBool("DisableGravestones");
         }
 
+        public bool CustomTombstone(int coinsOwned, NetworkText deathText, int hitDirection)
+        {
+            var graves = new List<int>();
+            if (Player.position.Y > (Main.maxTilesY - 200) * 16f)
+            {
+                graves.Add(ModContent.ProjectileType<AshTombstoneProj>());
+                graves.Add(ModContent.ProjectileType<AshGraveMarkerProj>());
+                graves.Add(ModContent.ProjectileType<AshCrossGraveMarkerProj>());
+                graves.Add(ModContent.ProjectileType<AshHeadstoneProj>());
+                graves.Add(ModContent.ProjectileType<AshGravestoneProj>());
+                graves.Add(ModContent.ProjectileType<AshObeliskProj>());
+            }
+            if (graves.Count > 0)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int t = Main.rand.Next(graves.Count);
+                    int p = Projectile.NewProjectile(Player.GetSource_Death(), Player.Center, GetRandomTombstoneVelocity(hitDirection), graves[t], 0, 0f, Main.myPlayer);
+                    Main.projectile[p].miscText = deathText.ToString();
+                }
+                return true;
+            }
+            return false;
+        }
         public Vector2 GetRandomTombstoneVelocity(int hitDirection)
         {
             float num;
@@ -49,31 +74,6 @@ namespace Aequus.Common.Players
             }
             return new Vector2(Main.rand.Next(10, 30) * 0.1f * hitDirection + num,
                 Main.rand.Next(-40, -20) * 0.1f);
-        }
-
-        public bool CustomTombstone(int coinsOwned, NetworkText deathText, int hitDirection)
-        {
-            List<int> tombstoneChoices = new List<int>();
-            //if (hellTombstones || player.position.Y > (Main.maxTilesY - 200) * 16f)
-            //{
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellTombstone>());
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellGraveMarker>());
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellCrossGraveMarker>());
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellHeadstone>());
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellGravestone>());
-            //    tombstoneChoices.Add(ModContent.ProjectileType<HellObelisk>());
-            //}
-            if (tombstoneChoices.Count > 0)
-            {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    int t = Main.rand.Next(tombstoneChoices.Count);
-                    int p = Projectile.NewProjectile(Player.GetSource_Death(), Player.Center, GetRandomTombstoneVelocity(hitDirection), tombstoneChoices[t], 0, 0f, Main.myPlayer);
-                    Main.projectile[p].miscText = deathText.ToString();
-                }
-                return true;
-            }
-            return false;
         }
     }
 }

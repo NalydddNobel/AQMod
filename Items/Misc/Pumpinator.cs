@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles;
+﻿using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -28,7 +28,7 @@ namespace Aequus.Items.Misc
             Item.useAnimation = 9;
             Item.UseSound = SoundID.Item39;
             Item.rare = ItemRarityID.Pink;
-            Item.shoot = ModContent.ProjectileType<PumpinatorWind>();
+            Item.shoot = ModContent.ProjectileType<PumpinatorProj>();
             Item.shootSpeed = 9f;
             Item.autoReuse = true;
             Item.value = Item.buyPrice(gold: 50);

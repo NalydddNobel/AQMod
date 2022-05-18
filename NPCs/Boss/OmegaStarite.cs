@@ -11,9 +11,10 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Pets;
 using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Boss;
+using Aequus.Projectiles.Monster.OmegaStarite;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1582,13 +1583,13 @@ namespace Aequus.NPCs.Boss
                     var starVelocity = projectile.velocity * -1.2f;
                     for (int i = 0; i < 8; i++)
                     {
-                        int p2 = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, starVelocity.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
+                        int p2 = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, starVelocity.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<TrollStar>(), damage, knockback);
                         Main.projectile[p2].timeLeft = 240;
                     }
                 }
                 else
                 {
-                    int p = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<RainbowStarofHyperApocalypse>(), damage, knockback);
+                    int p = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<TrollStar>(), damage, knockback);
                     Main.projectile[p].timeLeft = 240;
                 }
                 projectile.active = false;

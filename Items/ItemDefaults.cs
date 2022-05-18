@@ -11,9 +11,9 @@ namespace Aequus.Items
     {
         public const int RarityCrabCrevice = ItemRarityID.Blue;
         public const int RarityGlimmer = ItemRarityID.Green;
-        public const int RarityDemonSiege = ItemRarityID.Orange;
-        public const int RarityOmegaStarite = ItemRarityID.LightRed;
-        public const int RarityGaleStreams = ItemRarityID.LightRed;
+        public const int RarityDemonSiege = ItemRarityID.LightRed;
+        public const int RarityOmegaStarite = ItemRarityID.Pink;
+        public const int RarityGaleStreams = ItemRarityID.LightPurple;
 
         public const int RarityBanner = ItemRarityID.Blue;
         public const int RarityBossMasks = ItemRarityID.Blue;

@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Banners
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<AequusBanners>(), AequusBanners.VraineBanner);
+            Item.DefaultToPlaceableTile(ModContent.TileType<MonsterBanners>(), MonsterBanners.VraineBanner);
             Item.rare = ItemDefaults.RarityBanner;
             Item.value = Item.sellPrice(silver: 2);
         }

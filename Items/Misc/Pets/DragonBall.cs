@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Projectiles.Pets;
+using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

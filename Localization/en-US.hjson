@@ -69,7 +69,7 @@ Mods: {
 			UsesGel: Uses gel for ammo
 			ExporterQuest: Return this to the exporter
 			Concocted: Used in potion concoctions
-			PaletteDrop: The item below is guaranteed to drop
+			RouletteDrop: The item below is guaranteed to drop
 			EffectActive: Disabled
 			EffectInactive: Active
 			IncreasedMinions: Increases your max number of minions
@@ -105,6 +105,7 @@ Mods: {
 			ZombieScepter: Zombie Scepter
 
 			RitualisticSkull: Ritualistic Skull
+			SentrySquid: Sentry Squid
 			IcebergKraken: Iceberg Kraken
 			GrandReward: Grand Reward
 			Mendshroom: Mendshroom
@@ -121,14 +122,20 @@ Mods: {
 			
 			ToySpaceGun: Toy Space Gun
 			
-			SnowPalette: Snow Palette
-			GlowingMushroomsPalette: Glowing Mushrooms Palette
-			DesertPalette: Desert Palette
-			
+			SnowRoulette: Snow Roulette
+			GlowingMushroomsRoulette: Glowing Mushrooms Roulette
+			DesertRoulette: Desert Roulette
+			SkyRoulette: Sky Roulette
+			GoldenRoulette: Golden Roulette
+			Roulette: Roulette
+
 			SpaceSquidRelic: Space Squid Relic
 			RedSpriteRelic: Red Sprite Relic
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
+
+			AncientFrostbiteDye: Ancient Frostbite Dye
+			FrostbiteDye: Frostbite Dye
 
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
@@ -138,7 +145,6 @@ Mods: {
 			SupernovaFruit: Supernova Fruit
 			GalacticStarfruit: Galactic Starfruit
 			MoonLeech: Moon Leech
-			SentrySquid: Sentry Squid
 			DreamCatcher: Dream Catcher
 			MagikaAmulet: Magika Amulet
 			JellyAmulet: Jelly Amulet
@@ -276,9 +282,6 @@ Mods: {
 			XenonMushroom: Xenon Mushroom
 			CrabClock: Crab Wall Clock
 			OceanRavineWall: Crab Crevice Wall
-			SkyPalette: Sky Palette
-			OverworldPalette: Overworld Palette
-			CavernPalette: Cavern Palette
 			PotionofContainers: Containers Potion
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
 			NoonPotion: Noon Potion
@@ -304,7 +307,6 @@ Mods: {
 			TemperatureHairDye: Temperature Hair Dye
 			NalydDye: Summit Dye
 			RedSpriteDye: Scorching Dye
-			FrostbiteDye: Frostbite Dye
 			EnchantedDye: Enchanted Dye
 			ScrollDye: Scroll Dye
 			HellBeamDye: Hell Beam Dye
@@ -473,21 +475,38 @@ Mods: {
 			Mendshroom: Standing still will heal yourself and nearby teammates
 			FrostPotion: Reduces damage from heat sources
 			GlowCore: You and your projectiles emit light
-			SnowPalette:
+
+			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
-			GlowingMushroomsPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			DesertPalette:
+			GlowingMushroomsRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
+			DesertRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			SkyRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			GoldenRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			Roulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 			MirrorsCall:
@@ -898,21 +917,6 @@ Mods: {
 				'Gets brighter when you touch it'
 				'''
 			CrabClock: "'What time is it? Crabby time.'"
-			SkyPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			OverworldPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
-			CavernPalette:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.PaletteDrop}
-				'''
 			PotionofContainers:
 				'''
 				Teleports you to random chests in the world
@@ -1289,6 +1293,7 @@ Mods: {
 			OmegaStariteProj: Omega Starite
 			OmegaStariteBullet: Cosmic Bullet
 			OmegaStariteDeathray: Ultimate Ray
+			TrollStar: Rainbow Star of Hyper Apocalypse
 
 			CrabsonBubble: Bubble
 			CrabsonPearlShard: Pearl Shard
@@ -1381,7 +1386,6 @@ Mods: {
 			OmegaStaritePet: Omega Starite
 			SuperStariteBullet: Super Starite Bullet
 			HyperStariteProj: Hyper Starite
-			RainbowStarofHyperApocalypse: Rainbow Star of Hyper Apocalypse
 			SparklingExplosion: Cosmic Rad-splosion
 			MothmanCritExplosion: Mothman Mask
 			PowPunch: Pow Punch
