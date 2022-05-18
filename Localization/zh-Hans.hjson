@@ -26,6 +26,7 @@ Mods: {
 		}
 
 		BiomeName: {
+			GaleStreamsInvasion: 紊流风暴
 			DemonSiegeInvasion: 恶魔围攻
 		}
 
@@ -85,7 +86,7 @@ Mods: {
 				手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果
 				你不会受到任何摔落伤害
 				'''
-			InventoryPiggyBankFunction: 放置于物品栏或猪猪存钱罐中即可生效
+			InventoryPiggyBankFunction: 放置于物品栏或存钱罐中即可生效
 			ToggleKeyBind: 按下{0}键以开关效果
 		}
 
@@ -108,6 +109,8 @@ Mods: {
 			GrandReward: 豪华奖励
 			Mendshroom: 愈灵菇
 			GlowCore: 发光核心
+
+			CinnamonRoll: 肉桂卷
 			
 			FrostPotion: 冰霜药水
 
@@ -121,7 +124,7 @@ Mods: {
 			SnowPalette: 雪地调色板
 			GlowingMushroomsPalette: 发光蘑菇调色板
 			DesertPalette: 沙漠调色板
-			
+
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
@@ -445,7 +448,15 @@ Mods: {
 				被击败的敌人会加入你的队伍
 				'''
 
+			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
+			SpicyEel: 
+				'''
+				大幅度增加移动速度
+				'可能会给那些在地下搜索的人带来好运'
+				'''
+
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
+
 			IcebergKraken:
 				'''
 				增加最大哨兵栏位
@@ -936,11 +947,6 @@ Mods: {
 				使你获得随机的增益或减益
 				'''
 			SaintsFlow:
-				'''
-				小幅度提升所有属性
-				大幅度增加速度
-				'''
-			SpicyEel:
 				'''
 				小幅度提升所有属性
 				大幅度增加速度
@@ -1832,8 +1838,6 @@ Mods: {
 		EventEnding: {
 			GlimmerEvent: 微光渐渐消失...
 		}
-
-		GaleStreams: 紊流风暴
 
 		RecipeGroup: {
 			AnyEctoplasm: 任意灵质
