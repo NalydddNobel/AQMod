@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
@@ -12,6 +13,11 @@ namespace Aequus.Projectiles.Misc
         public virtual string GetTombstoneText()
         {
             return Projectile.miscText;
+        }
+
+        public static string AshTombstoneText()
+        {
+            return AequusText.GetText("Deaths.AshTombstone." + Main.rand.Next(13));
         }
 
         public override void SetDefaults()

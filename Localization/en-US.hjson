@@ -2017,6 +2017,21 @@ Mods: {
 		}
 		
 		Deaths: {
+			AshTombstone: {
+				0: ...Locked away for eternity.
+				1: ...Forever left to burn in hell.
+				2: ...Soul consumed by the Gore Nest.
+				3: ...Heart burnt into ashes.
+				4: ...Resting in the darkest pit of hell.
+				5: ...Ashes to ashes.
+				6: ...Dust to dust.
+				7: ...Welcome to the underground.
+				8: ...How was the fall.
+				9: ...Thrown to the depths by Minos himself.
+				10: ...Sentenced to eternity in a river of fire.
+				11: ...Forced to freeze under the cold gaze of Lucifer forever.
+				12: ...Locked in the coffins of the heretics for the rest of time.
+			}
 			NecromancyStaffUsage: "{0} converted themselves into a {1}"
 		}
 		UpgradeGrapplingHooks: Upgrade Hooks

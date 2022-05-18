@@ -34,11 +34,6 @@ namespace Aequus.Items.Weapons.Melee
             Item.autoReuse = true;
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            position += Vector2.Normalize(velocity) * 10f;
-        }
-
         //public override bool? UseItem(Player player)
         //{
         //    for (int i = 0; i < Main.maxChests; i++)
@@ -59,6 +54,12 @@ namespace Aequus.Items.Weapons.Melee
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;
+        }
+
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+            position += Vector2.Normalize(velocity) * 10f;
         }
     }
 }

@@ -25,6 +25,11 @@ namespace Aequus.Projectiles.Misc.AshGraves
         public override int TileType => ModContent.TileType<Tombstones>();
         public override int TileStyle => Tombstones.AshGraveMarkerStyle;
 
+        public override string GetTombstoneText()
+        {
+            return base.GetTombstoneText() + "\n" + AshTombstoneText();
+        }
+
         public override void PostDraw(Color lightColor)
         {
             var drawCoordinates = Projectile.Center - Main.screenPosition;

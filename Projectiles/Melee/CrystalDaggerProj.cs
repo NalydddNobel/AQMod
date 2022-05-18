@@ -59,11 +59,7 @@ namespace Aequus.Projectiles.Melee
                 if ((int)Projectile.ai[0] == 0)
                 {
                     Projectile.ai[0] = 25f;
-                    if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
-                    {
-                        Projectile.ai[1] = Main.rand.NextFloat(-0.3f, 0.3f);
-                        Projectile.velocity = Vector2.Normalize(Main.MouseWorld - playerCenter).RotatedBy(Projectile.ai[1]) * Projectile.ai[0];
-                    }
+                    Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[0];
                     AequusHelpers.MeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
@@ -83,7 +79,7 @@ namespace Aequus.Projectiles.Melee
             if (player.itemAnimation == 0)
                 Projectile.Kill();
             if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.MouseWorld - playerCenter).RotatedBy(Projectile.ai[1]) * Projectile.ai[0], lerpAmount * 0.4f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.ai[0], lerpAmount * 0.4f);
             Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;

@@ -54,11 +54,7 @@ namespace Aequus.Projectiles.Melee
                 if ((int)Projectile.ai[0] == 0)
                 {
                     Projectile.ai[0] = 25f;
-                    if (Main.myPlayer == player.whoAmI)
-                    {
-                        Projectile.ai[1] = Main.rand.NextFloat(-0.3f, 0.3f);
-                        Projectile.velocity = Vector2.Normalize(Main.MouseWorld - playerCenter).RotatedBy(Projectile.ai[1]) * Projectile.ai[0];
-                    }
+                    Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[0];
                     AequusHelpers.MeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
