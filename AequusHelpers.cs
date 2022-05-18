@@ -429,20 +429,24 @@ namespace Aequus
             return false;
         }
 
-        public static bool ContainsAny<T>(this IEnumerable<T> en, int en2)
+        public static bool ContainsAny<T>(this IEnumerable<T> en, Func<T, bool> search)
         {
             foreach (var t in en)
             {
-                if (t.Equals(en2))
+                if (search(t))
                 {
                     return true;
                 }
             }
             return false;
         }
+        public static bool ContainsAny<T>(this IEnumerable<T> en, int en2)
+        {
+            return ContainsAny(en, (t) => t.Equals(en2));
+        }
         public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
         {
-            foreach (var t in en)
+            return ContainsAny(en, (t) => 
             {
                 foreach (var t2 in en2)
                 {
@@ -451,8 +455,8 @@ namespace Aequus
                         return true;
                     }
                 }
-            }
-            return false;
+                return false;
+            });
         }
 
         public static void PlaySound<T>() where T : ModSound
@@ -819,15 +823,15 @@ namespace Aequus
             return item;
         }
 
-        public static bool Insert(this Chest chest, int itemType, int index)
-        {
-            return chest.Insert(itemType, 1, index);
-        }
         public static bool Insert(this Chest chest, int itemType, int itemStack, int index)
         {
             var item = DefaultItem(itemType);
             item.stack = itemStack;
             return InsertIntoUnresizableArray(chest.item, item, index);
+        }
+        public static bool Insert(this Chest chest, int itemType, int index)
+        {
+            return chest.Insert(itemType, 1, index);
         }
         public static bool InsertIntoUnresizableArray<T>(T[] arr, T value, int index)
         {

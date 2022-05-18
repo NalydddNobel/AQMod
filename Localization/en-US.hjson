@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
@@ -417,6 +418,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			RockMan: 
+				'''
+				An ancient relic, originally used to cut lemons
+				'''
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils
