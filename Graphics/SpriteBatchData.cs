@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;

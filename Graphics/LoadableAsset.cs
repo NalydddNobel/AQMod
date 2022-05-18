@@ -1,7 +1,7 @@
 ﻿using ReLogic.Content;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Graphics
 {
     public sealed class LoadableAsset<T> where T : class
     {

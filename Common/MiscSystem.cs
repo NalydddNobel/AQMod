@@ -14,6 +14,10 @@ namespace Aequus.Common
             {
                 AequusHelpers.Main_invasionType.EndCaching();
             }
+            if (AequusHelpers.Main_bloodMoon.IsCaching)
+            {
+                AequusHelpers.Main_bloodMoon.EndCaching();
+            }
             if (AequusHelpers.Main_eclipse.IsCaching)
             {
                 AequusHelpers.Main_eclipse.EndCaching();

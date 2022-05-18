@@ -1,10 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
-using Terraria.ModLoader.Config.UI;
+﻿using Terraria.ModLoader.Config;
 
 namespace Aequus.Common
 {

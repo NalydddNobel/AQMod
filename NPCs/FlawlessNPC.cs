@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Content;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;

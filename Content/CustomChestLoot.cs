@@ -1,7 +1,7 @@
-﻿using Aequus.Common;
-using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Necro;
+using Aequus.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

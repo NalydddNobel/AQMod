@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common
+﻿namespace Aequus.Common.Utilities
 {
     public struct NullInput<T>
     {

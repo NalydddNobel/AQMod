@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs.Necro;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
@@ -588,7 +589,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {
-                    BuffImmunitiesAdjuster.AddStaticImmunity(i, false, buffList.ToArray());
+                    BuffImmunities.AddStaticImmunity(i, false, buffList.ToArray());
                 }
             }
         }

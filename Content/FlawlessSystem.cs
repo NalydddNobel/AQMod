@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Content
 {
     public sealed class FlawlessSystem : ModSystem
     {

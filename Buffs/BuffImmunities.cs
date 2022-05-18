@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.ID;
 
-namespace Aequus.Common
+namespace Aequus.Buffs
 {
-    public static class BuffImmunitiesAdjuster
+    public static class BuffImmunities
     {
         public static bool AddStaticImmunity(int npc, bool isWhipBuff, params int[] buffList)
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Content.CrossMod
 {
     internal struct ModData
     {
