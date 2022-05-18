@@ -1179,7 +1179,10 @@ Mods: {
 		Doubled: Doubled {0}
 
 		BuffName: {
+			SpicyEelBuff: Spicy Eel
+
 			SpaceSquidBuff: Space Squid
+
 			Omori: Friends
 			PrimeTime: Arachnotron Power
 			ArachnotronCooldown: Arachnotron Cooldown
@@ -1229,7 +1232,10 @@ Mods: {
 		}
 
 		BuffDescription: {
+			SpicyEelBuff: Greatly increases speed
+
 			SpaceSquidBuff: "'It's just so cute'"
+
 			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
 			PrimeTime: Your defense is greatly increased!
 			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore
