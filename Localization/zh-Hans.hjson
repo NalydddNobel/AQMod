@@ -130,10 +130,6 @@ Mods: {
 			GoldenRoulette: 黄金转盘
 			Roulette: 转盘
 
-			SnowPalette: 雪地调色板
-			GlowingMushroomsPalette: 发光蘑菇调色板
-			DesertPalette: 沙漠调色板
-
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
@@ -515,6 +511,7 @@ Mods: {
 				{$CommonItemTooltip.RightClickToOpen}
 				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
+
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 			MirrorsCall:
