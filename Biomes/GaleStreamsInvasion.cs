@@ -1,70 +1,26 @@
-﻿using System;
+﻿using Aequus.Sounds;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.Biomes
 {
-    public sealed class GaleStreamsInvasion : ModSystem
+    public sealed class GaleStreamsInvasion : ModBiome
     {
         public static InvasionStatus Status { get; set; }
         public static byte updateTimer;
         public static bool SupressWindUpdates { get; set; }
 
-        public override void SaveWorldData(TagCompound tag)
-        {
-            tag["Status"] = (byte)Status;
-        }
+        public override int Music => MusicData.GaleStreamsEvent.GetID();
 
-        public override void LoadWorldData(TagCompound tag)
-        {
-            Status = (InvasionStatus)tag.Get<byte>("Status");
-        }
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override void PostUpdateWorld()
-        {
-            if (!AequusWorld.HardmodeTier)
-            {
-                Status = InvasionStatus.Inactive;
-                return;
-            }
-            if (Main.WindyEnoughForKiteDrops)
-            {
-                Status = InvasionStatus.Active;
-            }
-            else
-            {
-                Status = InvasionStatus.Inactive;
-            }
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                if (Status == InvasionStatus.Active)
-                {
-                    UpdateActive();
-                }
-            }
-        }
-        private void UpdateActive()
-        {
-            if (updateTimer == 1)
-            {
-                SupressWindUpdates = false;
-                for (int i = 0; i < Main.maxPlayers; i++)
-                {
-                    if (Main.player[i].active && IsThisSpace(Main.player[i]))
-                    {
-                        SupressWindUpdates = true;
-                        break;
-                    }
-                }
-            }
-            updateTimer++;
+        public override string BestiaryIcon => "Assets/UI/BestiaryIcons/GaleStreams";
 
-            if (SupressWindUpdates)
-            {
-                Main.windCounter = Math.Max(Main.windCounter, 360);
-            }
+        public override bool IsBiomeActive(Player player)
+        {
+            return player.Aequus().eventGaleStreams;
         }
 
         public static bool IsThisSpace(Player player)
@@ -244,6 +200,54 @@ namespace Aequus.Biomes
             if (Main.netMode != NetmodeID.MultiplayerClient)
                 NetMessage.SendTileSquare(-1, minX, minY, size);
             return true;
+        }
+
+        public class GaleStreamsSystem : ModSystem
+        {
+            public override void PostUpdateWorld()
+            {
+                if (!AequusWorld.HardmodeTier)
+                {
+                    Status = InvasionStatus.Inactive;
+                    return;
+                }
+                if (Main.WindyEnoughForKiteDrops)
+                {
+                    Status = InvasionStatus.Active;
+                }
+                else
+                {
+                    Status = InvasionStatus.Inactive;
+                }
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    if (Status == InvasionStatus.Active)
+                    {
+                        InnerUpdateActive();
+                    }
+                }
+            }
+            public void InnerUpdateActive()
+            {
+                if (updateTimer == 1)
+                {
+                    SupressWindUpdates = false;
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        if (Main.player[i].active && IsThisSpace(Main.player[i]))
+                        {
+                            SupressWindUpdates = true;
+                            break;
+                        }
+                    }
+                }
+                updateTimer++;
+
+                if (SupressWindUpdates)
+                {
+                    Main.windCounter = Math.Max(Main.windCounter, 360);
+                }
+            }
         }
     }
 }

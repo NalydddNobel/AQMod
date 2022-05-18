@@ -80,5 +80,11 @@ namespace Aequus.NPCs
             }
             return entry;
         }
+
+        public static int[] SetBiome<T>(this ModNPC modNPC) where T : ModBiome
+        {
+            modNPC.SpawnModBiomes = new int[] { ModContent.GetInstance<T>().Type };
+            return modNPC.SpawnModBiomes;
+        }
     }
 }

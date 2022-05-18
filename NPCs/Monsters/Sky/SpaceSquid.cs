@@ -110,6 +110,8 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.noTileCollide = true;
 
             _brightness = 0.2f;
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -264,7 +266,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.ai[2] = 0f;
                                 if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                 {
-                                    AequusHelpers.PlaySound(SoundType.Sound, "awesomedeathray");
+                                    AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/awesomedeathray");
                                 }
                             }
                             bool doEffects = AequusHelpers.ShouldDoEffects(center);
@@ -357,7 +359,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         frameIndex = 8;
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            AequusHelpers.PlaySound(SoundType.Sound, "spacegun", NPC.Center);
+                                            AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/spacegun", NPC.Center);
                                         }
                                         var spawnPosition = new Vector2(NPC.position.X + (NPC.direction == 1 ? NPC.width + 20f : -20), NPC.position.Y + NPC.height / 2f);
                                         var velocity = new Vector2(20f * NPC.direction, 0f);
@@ -456,7 +458,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 }
                                 if (Main.netMode != NetmodeID.Server)
                                 {
-                                    AequusHelpers.PlaySound(SoundType.Sound, "combo", NPC.Center);
+                                    AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/snowflakeshoot", NPC.Center);
                                 }
                             }
                             if (NPC.ai[2] > 180f + (6 - timeBetweenShots) * 40f)

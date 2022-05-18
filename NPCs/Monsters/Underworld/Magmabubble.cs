@@ -84,7 +84,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<MagmabubbleBanner>();
 
-            SpawnModBiomes = new int[1] { ModContent.GetInstance<DemonSiegeInvasion>().Type };
+            this.SetBiome<DemonSiegeInvasion>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

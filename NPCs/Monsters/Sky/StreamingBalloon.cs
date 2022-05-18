@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Biomes;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
@@ -56,6 +57,8 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

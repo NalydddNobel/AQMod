@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Biomes;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -71,6 +72,8 @@ namespace Aequus.NPCs.Monsters.Sky
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<VraineBanner>();
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

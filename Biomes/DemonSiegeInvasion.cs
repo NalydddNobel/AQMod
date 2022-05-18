@@ -307,9 +307,9 @@ namespace Aequus.Biomes
 
         public const string ExtraScreenFilter = "Aequus:DemonSiegeFilter";
 
-        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
-
         public override int Music => MusicData.DemonSiegeEvent.GetID();
+
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
         public override string BestiaryIcon => "Assets/UI/BestiaryIcons/DemonSiege";
 

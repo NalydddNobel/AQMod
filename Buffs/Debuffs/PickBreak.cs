@@ -13,7 +13,7 @@ namespace Aequus.Buffs.Debuffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.pickSpeed *= 2;
-            player.GetModPlayer<AequusPlayer>().pickBreak = true;
+            player.GetModPlayer<AequusPlayer>().debuffPickBreak = true;
         }
     }
 }

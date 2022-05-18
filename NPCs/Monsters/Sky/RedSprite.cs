@@ -119,6 +119,8 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.noTileCollide = true;
 
             _brightness = 0.2f;
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -427,7 +429,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            AequusHelpers.PlaySound(SoundType.Sound, "thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
+                                            AequusHelpers.PlaySound(SoundType.Sound, "RedSprite/thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
                                         }
                                         int dustAmount = 50;
                                         if (!ClientConfig.Instance.HighQuality)

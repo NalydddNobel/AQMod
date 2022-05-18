@@ -26,6 +26,7 @@ Mods: {
 		}
 
 		BiomeName: {
+			GaleStreamsInvasion: Gale Streams
 			DemonSiegeInvasion: Demon Siege
 		}
 
@@ -85,7 +86,7 @@ Mods: {
 				You will fall slower while holding this, holding down will let you fall at regular speed
 				You will not take any fall damage
 				'''
-			InventoryPiggyBankFunction: Works in your inventory or piggy bank
+			InventoryPiggyBankFunction: Works in your inventory or banks
 			ToggleKeyBind: You can toggle this function by pressing {0}
 		}
 
@@ -109,6 +110,8 @@ Mods: {
 			Mendshroom: Mendshroom
 			GlowCore: Glow Core
 
+			CinnamonRoll: Cinnamon Roll
+
 			FrostPotion: Frost Potion
 
 			SkeletonKey: Skeleton Key
@@ -117,7 +120,7 @@ Mods: {
 			Moro: Moro
 			
 			ToySpaceGun: Toy Space Gun
-						
+			
 			SnowPalette: Snow Palette
 			GlowingMushroomsPalette: Glowing Mushrooms Palette
 			DesertPalette: Desert Palette
@@ -445,7 +448,15 @@ Mods: {
 				Defeated enemies will join your team
 				'''
 
+			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
+			SpicyEel: 
+				'''
+				Greatly increases speed
+				'May provide luck to those searching underground'
+				'''
+
 			Moro: Summon staffs permanently no longer consume mana and are faster
+
 			IcebergKraken:
 				'''
 				Increase your max number of sentries by 1
@@ -936,11 +947,6 @@ Mods: {
 				Gives you a random buff
 				'''
 			SaintsFlow:
-				'''
-				Minor improvements to all stats
-				Greatly increases speed
-				'''
-			SpicyEel:
 				'''
 				Minor improvements to all stats
 				Greatly increases speed
@@ -1832,8 +1838,6 @@ Mods: {
 		EventEnding: {
 			GlimmerEvent: The glimmer begins to fade away...
 		}
-
-		GaleStreams: Gale Streams
 
 		RecipeGroup: {
 			AnyEctoplasm: Any Ectoplasm

@@ -125,7 +125,7 @@ namespace Aequus.Projectiles.Melee
                                 d.noGravity = true;
                             }
                             SoundID.Item14?.PlaySound(targetPos);
-                            AequusHelpers.PlaySound(SoundType.Sound, "thunderclap" + Main.rand.Next(2), targetPos, 0.5f);
+                            AequusHelpers.PlaySound(SoundType.Sound, "RedSprite/thunderclap" + Main.rand.Next(2), targetPos, 0.5f);
                         }
                         if (Main.myPlayer == Projectile.owner)
                         {

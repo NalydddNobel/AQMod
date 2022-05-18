@@ -1,4 +1,7 @@
 ﻿using Aequus.Biomes;
+using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Pets;
 using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
 using Aequus.Content.Necromancy;
@@ -37,31 +40,35 @@ namespace Aequus
         public bool permMoro;
 
         /// <summary>
-        /// Applied by <see cref="Buffs.Debuffs.BlueFire"/>
+        /// Applied by <see cref="BlueFire"/>
         /// </summary>
-        public bool blueFire;
+        public bool debuffBlueFire;
         /// <summary>
-        /// Applied by <see cref="Buffs.Debuffs.PickBreak"/>
+        /// Applied by <see cref="PickBreak"/>
         /// </summary>
-        public bool pickBreak;
+        public bool debuffPickBreak;
 
         /// <summary>
-        /// Applied by <see cref="Buffs.Pets.SpaceSquidBuff"/>
+        /// Applied by <see cref="SpicyEelBuff"/>
+        /// </summary>
+        public bool buffSpicyEel;
+        /// <summary>
+        /// Applied by <see cref="FrostBuff"/>
+        /// </summary>
+        public bool buffResistHeat;
+
+        /// <summary>
+        /// Applied by <see cref="SpaceSquidBuff"/>
         /// </summary>
         public bool spaceSquidPet;
         /// <summary>
-        /// Applied by <see cref="Buffs.Pets.FamiliarBuff"/>
+        /// Applied by <see cref="FamiliarBuff"/>
         /// </summary>
         public bool familiarPet;
         /// <summary>
-        /// Applied by <see cref="Buffs.Pets.OmegaStariteBuff"/>
+        /// Applied by <see cref="OmegaStariteBuff"/>
         /// </summary>
         public bool omegaStaritePet;
-
-        /// <summary>
-        /// Applied by <see cref="Buffs.FrostBuff"/>
-        /// </summary>
-        public bool resistHeat;
 
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
@@ -114,6 +121,9 @@ namespace Aequus
         /// Used by summon helmets (<see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
+
+        public bool hasSkeletonKey;
+        public bool hasShadowKey;
 
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -243,14 +253,19 @@ namespace Aequus
             necromancyMinionSlotConvert = false;
             frostburnSentry = false;
             teamContext = Player.team;
-            blueFire = false;
-            pickBreak = false;
+
+            buffSpicyEel = false;
+            buffResistHeat = false;
+
+            debuffBlueFire = false;
+            debuffPickBreak = false;
 
             spaceSquidPet = false;
             familiarPet = false;
             omegaStaritePet = false;
 
-            resistHeat = false;
+            hasSkeletonKey = false;
+            hasShadowKey = false;
 
             autoSentry = false;
             glowCore = 0;
@@ -329,6 +344,10 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            UpdateBank(Player.bank, 0);
+            UpdateBank(Player.bank2, 1);
+            UpdateBank(Player.bank3, 2);
+            UpdateBank(Player.bank4, 3);
             if (glowCore > 0)
             {
                 GlowCore.AddLight(Player, glowCore);
@@ -345,6 +364,34 @@ namespace Aequus
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
             UpdateSacrifice();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bank"></param>
+        /// <param name="bankType">Types: 
+        /// <list type="number">
+        /// Piggy Bank
+        /// <item>Safe</item>
+        /// <item>Defender's Forge</item>
+        /// <item>Void Bag</item>
+        /// </list></param>
+        public void UpdateBank(Chest bank, int bankType)
+        {
+            for (int i = 0; i < bank.item.Length; i++)
+            {
+                if (bank.item[i] != null && !bank.item[i].IsAir)
+                {
+                    if (bank.item[i].type == ItemID.ShadowKey)
+                    {
+                        hasShadowKey = true;
+                    }
+                    else if (bank.item[i].ModItem is IUpdateBank b)
+                    {
+                        b.UpdateBank(Player, this, i, bankType);
+                    }
+                }
+            }
         }
         public void UpdateSacrifice()
         {
@@ -561,7 +608,7 @@ namespace Aequus
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (resistHeat && HeatDamageTypes.HeatNPC.Contains(npc.netID))
+            if (buffResistHeat && HeatDamageTypes.HeatNPC.Contains(npc.netID))
             {
                 damage = (int)(damage * 0.7f);
             }
@@ -569,7 +616,7 @@ namespace Aequus
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if (resistHeat && HeatDamageTypes.HeatProjectile.Contains(proj.type))
+            if (buffResistHeat && HeatDamageTypes.HeatProjectile.Contains(proj.type))
             {
                 damage = (int)(damage * 0.7f);
             }

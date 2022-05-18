@@ -214,7 +214,16 @@ namespace Aequus.NPCs.Boss
             {
                 Position = new Vector2(0f, 2f),
             });
-            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, };
+            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { SpecificallyImmuneTo = new int[] 
+                {
+                    BuffID.Confused,
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.Poisoned,
+                    BuffID.Frostburn,
+                    BuffID.Frostburn2,
+                }, 
+            };
             Main.npcFrameCount[NPC.type] = 14;
 
             SnowgraveCorpse.NPCBlacklist.Add(Type);
@@ -231,7 +240,7 @@ namespace Aequus.NPCs.Boss
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.knockBackResist = 0f;
-            NPC.value = Item.buyPrice(gold: 18);
+            NPC.value = Item.buyPrice(gold: 6);
             NPC.boss = true;
             NPC.npcSlots = 10f;
             NPC.noTileCollide = true;
@@ -245,17 +254,17 @@ namespace Aequus.NPCs.Boss
                 NPC.scale *= 0.5f;
                 starDamageMultiplier *= 0.5f;
             }
-
-            if (AprilFools.CheckAprilFools())
+            if (!Main.dedServ)
             {
-                NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
+                Music = MusicData.OmegaStariteBoss.GetID();
+                SceneEffectPriority = SceneEffectPriority.BossLow;
+                if (AprilFools.CheckAprilFools())
+                {
+                    NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
+                    Music = MusicID.WindyDay;
+                    SceneEffectPriority = SceneEffectPriority.BossHigh;
+                }
             }
-            //if (!Glimmer.IsGlimmerEventCurrentlyActive())
-            //if (AQMod.UseAssets)
-            //{
-            //    music = GetMusic().GetMusicID();
-            //    musicPriority = MusicPriority.BossMedium;
-            //}
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -269,13 +278,7 @@ namespace Aequus.NPCs.Boss
             {
                 starDamageMultiplier *= 0.8f;
             }
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.8f) + 4000 * numPlayers;
-            //if (AQMod.calamityMod.IsActive)
-            //{
-            //    NPC.lifeMax = (int)(NPC.lifeMax * 2f);
-            //    NPC.damage *= 2;
-            //    NPC.defense *= 2;
-            //}
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f) + 4000 * numPlayers;
         }
 
         public override void HitEffect(int hitDirection, double damage)

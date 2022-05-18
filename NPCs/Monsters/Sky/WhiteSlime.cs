@@ -1,7 +1,9 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Biomes;
+using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
@@ -62,6 +64,8 @@ namespace Aequus.NPCs.Monsters.Sky
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<WhiteSlimeBanner>();
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -327,7 +331,8 @@ namespace Aequus.NPCs.Monsters.Sky
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
                 .Add<AtmosphericEnergy>(chance: 20, stack: 1)
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15))
-                .Add<CensorDye>(chance: 10, stack: 1);
+                .Add<CensorDye>(chance: 10, stack: 1)
+                .Add<CinnamonRoll>(chance: 15, stack: 1);
         }
 
         //public override void NPCLoot()

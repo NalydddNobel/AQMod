@@ -13,7 +13,7 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<AequusPlayer>().blueFire = true;
+            player.GetModPlayer<AequusPlayer>().debuffBlueFire = true;
         }
 
         //public override void Update(NPC npc, ref int buffIndex)

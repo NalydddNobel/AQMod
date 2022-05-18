@@ -41,6 +41,10 @@ namespace Aequus.Items
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
+                if (item.type == ItemID.ShadowKey || item.ModItem is IUpdateBank)
+                {
+                    tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
+                }
                 if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
                     tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
@@ -128,6 +132,19 @@ namespace Aequus.Items
             {
                 if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
                 {
+                    if (lineName == "Tooltip#")
+                    {
+                        int finalIndex = i;
+                        while (i < tooltips.Count)
+                        {
+                            if (tooltips[i].Name.StartsWith("Tooltip"))
+                            {
+                                finalIndex = i;
+                            }
+                            i++;
+                        }
+                        return finalIndex;
+                    }
                     return i;
                 }
             }
