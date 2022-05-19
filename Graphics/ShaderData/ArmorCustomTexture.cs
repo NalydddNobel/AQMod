@@ -3,13 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Graphics.ArmorShaders
+namespace Aequus.Graphics.ShaderData
 {
-    public class ArmorShaderDataCustomTexture : ArmorShaderData
+    public class ArmorCustomTexture : ArmorShaderData
     {
         private readonly Ref<Texture2D> _texture;
 
-        public ArmorShaderDataCustomTexture(Ref<Effect> shader, string passName, Ref<Texture2D> texture) : base(shader, passName)
+        public ArmorCustomTexture(Ref<Effect> shader, string passName, Ref<Texture2D> texture) : base(shader, passName)
         {
             _texture = texture;
         }
@@ -18,6 +18,7 @@ namespace Aequus.Graphics.ArmorShaders
         {
             var t = _texture.Value;
             Main.graphics.GraphicsDevice.Textures[1] = t;
+            Main.graphics.GraphicsDevice.SamplerStates[1] = SamplerState.LinearWrap;
             Shader.Parameters["uImageSize1"].SetValue(new Vector2(t.Width, t.Height));
             base.Apply();
         }

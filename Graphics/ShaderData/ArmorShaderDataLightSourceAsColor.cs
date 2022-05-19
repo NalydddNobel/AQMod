@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Graphics.ArmorShaders
+namespace Aequus.Graphics.ShaderData
 {
     public class ArmorShaderDataLightSourceAsColor : ArmorShaderData
     {

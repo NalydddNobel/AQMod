@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().necromancyMinionSlotConvert = true;
+            player.Aequus().accMinionsToGhosts = true;
         }
 
         public override void AddRecipes()

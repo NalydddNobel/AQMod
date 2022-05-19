@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.ArmorShaders;
+﻿using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -16,7 +16,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataCustomTexture(Effect, Pass,
+            return new ArmorCustomTexture(Effect, Pass,
                 new Ref<Texture2D>(ModContent.Request<Texture2D>("Aequus/Assets/EnchantGlimmer", AssetRequestMode.ImmediateLoad).Value)).UseOpacity(0.8f);
         }
     }

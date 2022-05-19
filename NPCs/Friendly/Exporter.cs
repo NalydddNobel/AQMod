@@ -1,4 +1,7 @@
-﻿using Aequus.NPCs.Boss;
+﻿using Aequus.Items.Accessories;
+using Aequus.Items.Misc;
+using Aequus.Items.Misc.Money;
+using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -371,35 +374,23 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            if (Main.hardMode)
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.DiscountCard);
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.LuckyCoin);
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.CoinRing);
+
+            if (NPC.downedBoss3)
             {
-                if (NPC.downedPirates)
-                {
-                    shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
-                    nextSlot++;
-                }
-                //shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());
-                //nextSlot++;
-                //shop.item[nextSlot].SetDefaults(ModContent.ItemType<SpoilsPotion>());
-                //nextSlot++;
-                //shop.item[nextSlot].SetDefaults(ModContent.ItemType<GoldPowder>());
-                //nextSlot++;
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
+                shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             }
-            else
-            {
-                //shop.item[nextSlot].SetDefaults(ModContent.ItemType<BlurryDiscountCard>());
-                //nextSlot++;
-            }
-            if (NPC.downedBoss3 && Main.moonPhase % 2 == 1)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.GoldenKey);
-                shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 15);
-                nextSlot++;
-            }
-            //shop.item[nextSlot].SetDefaults(ModContent.ItemType<FishingCraftingStation>());
-            //nextSlot++;
-            //shop.item[nextSlot].SetDefaults(ModContent.ItemType<CrabClock>());
-            //nextSlot++;
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

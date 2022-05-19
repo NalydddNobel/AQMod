@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Graphics.ArmorShaders
+namespace Aequus.Graphics.ShaderData
 {
     public sealed class ArmorShaderDataDynamicColor : ArmorShaderData
     {

@@ -28,6 +28,21 @@ float2 GetUVForFrame(float2 coords)
     return float2(x * 1 / frameSizeX, y * 1 / frameSizeY);
 }
 
+float2 RotationToVector2(float f)
+{
+    return float2(cos(f), sin(f));
+}
+
+float4 TextureScrolling(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    float time = uTime * uSaturation + (color.r + color.g + color.b) / 3;
+    float2 gradientCoords = RotationToVector2(uOpacity) * time;
+    gradientCoords.x %= 1;
+    gradientCoords.y %= 1;
+    return tex2D(uImage1, gradientCoords) * sampleColor * color.a;
+}
+
 float4 VerticalGradient(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     return float4(lerp(uColor, uSecondaryColor, GetUVForFrame(coords).y), sampleColor.a) * tex2D(uImage0, coords).a;
@@ -52,6 +67,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass TextureScrollingPass
+    {
+        PixelShader = compile ps_2_0 TextureScrolling();
+    }
     pass SpikeFadePass
     {
         PixelShader = compile ps_2_0 SpikeFade();

@@ -38,7 +38,7 @@ namespace Aequus.Items.Accessories
             {
                 value++;
             }
-            player.Aequus().glowCore = value;
+            player.Aequus().accGlowCore = value;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

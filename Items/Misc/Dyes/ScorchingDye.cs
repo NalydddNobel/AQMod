@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.ArmorShaders;
+﻿using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 

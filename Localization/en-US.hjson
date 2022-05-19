@@ -105,6 +105,9 @@ Mods: {
 			Revenant: Revenant
 			ZombieScepter: Zombie Scepter
 
+			FoolsGoldRing: Fool's Gold Ring
+			FaultyCoin: Faulty Coin
+			ForgedCard: Forged Card
 			RitualisticSkull: Ritualistic Skull
 			SentrySquid: Sentry Squid
 			IcebergKraken: Iceberg Kraken
@@ -464,6 +467,13 @@ Mods: {
 
 			Moro: Summon staffs permanently no longer consume mana and are faster
 
+			FoolsGoldRing: 
+				'''
+				Held coins increase your stats
+				All coins disappear when killed
+				'''
+			FaultyCoin: 10% chance to not consume coins
+			ForgedCard: Receive a flat 2 gold 50 silver discount on all items
 			IcebergKraken:
 				'''
 				Increase your max number of sentries by 1

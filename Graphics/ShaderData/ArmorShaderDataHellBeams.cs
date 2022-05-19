@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Aequus.Graphics.ArmorShaders
+namespace Aequus.Graphics.ShaderData
 {
     public class ArmorShaderDataHellBeams : ArmorShaderDataLightSourceAsColor, IShaderDataModifyLightColor
     {

@@ -23,6 +23,21 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float2 RotationToVector2(float f)
+{
+    return float2(cos(f), sin(f));
+}
+
+float4 TextureScrolling(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float4 color = tex2D(uImage0, coords);
+    float time = uTime * uSaturation + (color.r + color.g + color.b) / 3;
+    float2 gradientCoords = RotationToVector2(uOpacity) * time;
+    gradientCoords.x %= 1;
+    gradientCoords.y %= 1;
+    return tex2D(uImage1, gradientCoords) * sampleColor * color.a;
+}
+
 float4 Unchained(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float intensity = (cos(uTime * 10) + 1) / 2;
@@ -466,9 +481,9 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
-    pass UnchainedPass
+    pass TextureScrollingPass
     {
-        PixelShader = compile ps_2_0 Unchained();
+        PixelShader = compile ps_2_0 TextureScrolling();
     }   
     pass HoriztonalWavePass
     {

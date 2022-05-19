@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics.ShaderData;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
@@ -15,7 +17,7 @@ namespace Aequus.Graphics
         {
             if (!Main.dedServ)
             {
-                VerticalGradient = new StaticMiscShaderInfo("MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
+                VerticalGradient = new StaticMiscShaderInfo("MiscEffects", "Aequus:VerticalGradient", "TextureScrollingPass", true);
             }
         }
 

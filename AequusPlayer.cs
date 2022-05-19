@@ -2,6 +2,7 @@
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Pets;
+using Aequus.Common;
 using Aequus.Common.Catalogues;
 using Aequus.Common.Players;
 using Aequus.Content.Necromancy;
@@ -9,6 +10,7 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Misc.Money;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,6 +36,9 @@ namespace Aequus
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
+        [SaveData("Scammer")]
+        public bool permHasScammed;
+        [SaveData("Moro")]
         /// <summary>
         /// Enabled by <see cref="Items.Consumables.Moro"/>
         /// </summary>
@@ -86,32 +91,46 @@ namespace Aequus
         public int closestEnemyOld;
 
         /// <summary>
-        /// Applied by <see cref="RitualisticSkull"/>
+        /// 0 = no force, 1 = force day, 2 = force night
+        /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
         /// </summary>
-        public bool necromancyMinionSlotConvert;
+        public byte forceDaytime;
+
         /// <summary>
-        /// Applied by <see cref="SentrySquid"/>
+        /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref=""/>
         /// </summary>
-        public bool autoSentry;
-        public ushort autoSentryCooldown;
+        public float scamChance;
         /// <summary>
-        /// Used by <see cref="IcebergKraken"/>. Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff
+        /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="ForgedCard"/>
         /// </summary>
-        public bool frostburnSentry;
-        /// <summary>
-        /// Used by <see cref="GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
-        /// </summary>
-        public byte glowCore;
+        public int flatScamDiscount;
         /// <summary>
         /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
         /// <para>Used by <see cref="GrandReward"/></para> 
         /// </summary>
         public float lootLuck;
+
         /// <summary>
-        /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
+        /// Applied by <see cref="FoolsGoldRing"/>
         /// </summary>
-        public byte forceDaytime;
+        public bool accFoolsGoldRing;
+        /// <summary>
+        /// Applied by <see cref="RitualisticSkull"/>
+        /// </summary>
+        public bool accMinionsToGhosts;
+        /// <summary>
+        /// Applied by <see cref="SentrySquid"/>
+        /// </summary>
+        public bool accAutoSentry;
+        public ushort autoSentryCooldown;
+        /// <summary>
+        /// Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff. Applied by <see cref="IcebergKraken"/>
+        /// </summary>
+        public bool accFrostburnSentry;
+        /// <summary>
+        /// All player owned projectiles also check this in order to decide if they should glow. Applied by <see cref="GlowCore"/>
+        /// </summary>
+        public byte accGlowCore;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
@@ -164,6 +183,8 @@ namespace Aequus
 
         public int ghostLifespan;
 
+        public int hitTime;
+
         public List<LifeSacrifice> sacrifices;
 
         /// <summary>
@@ -182,7 +203,41 @@ namespace Aequus
         }
         private void LoadHooks()
         {
+            On.Terraria.Player.DropCoins += Player_DropCoins;
+            On.Terraria.Player.GetItemExpectedPrice += Player_GetItemExpectedPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += OnRenderPlayer;
+        }
+
+        private int Player_DropCoins(On.Terraria.Player.orig_DropCoins orig, Player self)
+        {
+            if (self.Aequus().accFoolsGoldRing)
+            {
+                for (int i = 0; i < 59; i++)
+                {
+                    if (self.inventory[i].IsACoin)
+                    {
+                        self.inventory[i].TurnToAir();
+                    }
+                    if (i == 58)
+                    {
+                        Main.mouseItem = self.inventory[i].Clone();
+                    }
+                }
+                self.lostCoins = 0;
+                self.lostCoinString = "";
+                return 0;
+            }
+            return orig(self);
+        }
+
+        private void Player_GetItemExpectedPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
+        {
+            orig(self, item, out calcForSelling, out calcForBuying);
+            if (item.shopSpecialCurrency != -1)
+            {
+                return;
+            }
+            calcForBuying -= self.Aequus().flatScamDiscount;
         }
 
         public override void Unload()
@@ -243,15 +298,20 @@ namespace Aequus
 
         public override void UpdateDead()
         {
-            autoSentry = false;
+            hitTime = 0;
+            accAutoSentry = false;
             autoSentryCooldown = 120;
             sacrifices.Clear();
         }
 
         public override void ResetEffects()
         {
-            necromancyMinionSlotConvert = false;
-            frostburnSentry = false;
+            scamChance = 0f;
+            flatScamDiscount = 0;
+
+            accFoolsGoldRing = false;
+            accMinionsToGhosts = false;
+            accFrostburnSentry = false;
             teamContext = Player.team;
 
             buffSpicyEel = false;
@@ -267,8 +327,8 @@ namespace Aequus
             hasSkeletonKey = false;
             hasShadowKey = false;
 
-            autoSentry = false;
-            glowCore = 0;
+            accAutoSentry = false;
+            accGlowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
             ghostSlotsMax = 1;
@@ -282,6 +342,7 @@ namespace Aequus
                 autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
             }
             AequusHelpers.TickDown(ref autoSentryCooldown);
+            hitTime++;
         }
 
         public override bool PreItemCheck()
@@ -348,11 +409,11 @@ namespace Aequus
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
             UpdateBank(Player.bank4, 3);
-            if (glowCore > 0)
+            if (accGlowCore > 0)
             {
-                GlowCore.AddLight(Player, glowCore);
+                GlowCore.AddLight(Player, accGlowCore);
             }
-            if (necromancyMinionSlotConvert)
+            if (accMinionsToGhosts)
             {
                 ghostSlotsMax += Player.maxMinions - 1;
                 Player.maxMinions = 1;
@@ -385,6 +446,10 @@ namespace Aequus
                     if (bank.item[i].type == ItemID.ShadowKey)
                     {
                         hasShadowKey = true;
+                    }
+                    else if (bank.item[i].type == ItemID.DiscountCard && !Player.discount)
+                    {
+                        Player.ApplyEquipFunctional(bank.item[i], true); // Acts as a hidden accessory while in the bank.
                     }
                     else if (bank.item[i].ModItem is IUpdateBank b)
                     {
@@ -481,7 +546,7 @@ namespace Aequus
                 AequusHelpers.Main_dayTime.EndCaching();
             }
             PostUpdate_CheckDanger();
-            if (autoSentry && autoSentryCooldown == 0)
+            if (accAutoSentry && autoSentryCooldown == 0)
             {
                 UpdateAutoSentry();
             }
@@ -600,6 +665,26 @@ namespace Aequus
             return null;
         }
 
+        public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
+        {
+            if (scamChance > 0f || flatScamDiscount > 0)
+            {
+                permHasScammed = true;
+            }
+            if (Main.rand.NextFloat() < scamChance)
+            {
+                int oldStack = item.stack;
+                item.stack = 1;
+                Player.GetItemExpectedPrice(item, out int sellPrice, out int buyPrice);
+                item.stack = oldStack;
+                item.value = 0; // A janky way to prevent infinite money, although infinite money is still possible lol
+                if (buyPrice > 0)
+                {
+                    AequusHelpers.DropMoney(new EntitySource_Gift(vendor, "Aequus:FaultyCoin"), Player.getRect(), buyPrice, quiet: false);
+                }
+            }
+        }
+
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<GameCamera>().UpdateScreen();
@@ -622,14 +707,19 @@ namespace Aequus
             }
         }
 
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+        {
+            hitTime = 0;
+        }
+
         public override void SaveData(TagCompound tag)
         {
-            tag["Moro"] = permMoro;
+            SaveDataAttribute.SaveData(tag, this);
         }
 
         public override void LoadData(TagCompound tag)
         {
-            permMoro = tag.GetBool("Moro");
+            SaveDataAttribute.LoadData(tag, this);
         }
 
         public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)

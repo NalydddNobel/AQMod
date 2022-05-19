@@ -12,10 +12,10 @@ namespace Aequus.Projectiles
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                if (aequus.glowCore > 0)
+                if (aequus.accGlowCore > 0)
                 {
                     AequusPlayer.teamContext = Main.player[projectile.owner].team;
-                    GlowCore.AddLight(projectile, aequus.glowCore);
+                    GlowCore.AddLight(projectile, aequus.accGlowCore);
                     AequusPlayer.teamContext = 0;
                 }
             }
@@ -25,7 +25,7 @@ namespace Aequus.Projectiles
         {
             if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
             {
-                if (Main.player[projectile.owner].Aequus().frostburnSentry && Main.rand.NextBool(6))
+                if (Main.player[projectile.owner].Aequus().accFrostburnSentry && Main.rand.NextBool(6))
                 {
                     target.AddBuff(BuffID.Frostburn2, 240);
                 }

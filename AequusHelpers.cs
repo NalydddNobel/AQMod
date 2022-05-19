@@ -3,13 +3,16 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -69,6 +72,29 @@ namespace Aequus
             }
         }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+        public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
+
+        public static void DropMoney(IEntitySource source, Rectangle rect, int amt, bool quiet = true)
+        {
+            int[] coins = Utils.CoinsSplit(amt);
+            for (int i = 0; i < coins.Length; i++)
+            {
+                if (coins[i] > 0)
+                {
+                    int item = Item.NewItem(source, rect, ItemID.CopperCoin + i, coins[i]);
+                    if (!quiet && Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+                    }
+                }
+            }
+        }
+
+        public static MiscShaderData UseImage1(this MiscShaderData misc, Asset<Texture2D> texture)
+        {
+            typeof(MiscShaderData).GetField("_uImage1", LetMeIn).SetValue(misc, texture);
+            return misc;
+        }
 
         public static IEnumerable<(T attr, MemberInfo info)> GetFieldsPropertiesOfAttribute<T>(Type t) where T : Attribute
         {

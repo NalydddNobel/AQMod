@@ -41,7 +41,7 @@ namespace Aequus.Items
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
-                if (item.type == ItemID.ShadowKey || item.ModItem is IUpdateBank)
+                if (item.type == ItemID.ShadowKey || item.type == ItemID.DiscountCard || item.ModItem is IUpdateBank)
                 {
                     tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
                 }

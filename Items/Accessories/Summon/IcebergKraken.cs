@@ -21,8 +21,8 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().autoSentry = true;
-            player.Aequus().frostburnSentry = true;
+            player.Aequus().accAutoSentry = true;
+            player.Aequus().accFrostburnSentry = true;
             player.maxTurrets++;
         }
 

@@ -49,19 +49,19 @@ namespace Aequus.Common
             {
                 return false;
             }
-            Aequus.Instance.Logger.Debug(Name);
-            Aequus.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());
+            //Aequus.Instance.Logger.Debug(Name);
+            //Aequus.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());
             if (info is FieldInfo field)
             {
                 obj = TagIO.Deserialize(field.FieldType, obj);
                 field.SetValue(me, obj);
-                Aequus.Instance.Logger.Debug(field.FieldType + ": " + field.GetValue(me));
+                //Aequus.Instance.Logger.Debug(field.FieldType + ": " + field.GetValue(me));
             }
             else if (info is PropertyInfo property)
             {
                 obj = TagIO.Deserialize(property.PropertyType, obj);
                 property.SetValue(me, obj);
-                Aequus.Instance.Logger.Debug(property.PropertyType + ": " + property.GetValue(me));
+                //Aequus.Instance.Logger.Debug(property.PropertyType + ": " + property.GetValue(me));
             }
 
             return false;
@@ -71,7 +71,7 @@ namespace Aequus.Common
         {
             foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
             {
-                m.attr.SaveData(tag, m, m.info);
+                m.attr.SaveData(tag, me, m.info);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Aequus.Common
         {
             foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
             {
-                m.attr.LoadData(tag, m, m.info);
+                m.attr.LoadData(tag, me, m.info);
             }
         }
     }

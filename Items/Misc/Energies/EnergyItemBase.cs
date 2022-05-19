@@ -1,10 +1,13 @@
 ﻿using Aequus.Common;
+using Aequus.Graphics;
+using Aequus.Graphics.ShaderData;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,15 +16,32 @@ namespace Aequus.Items.Misc.Energies
 {
     public abstract class EnergyItemBase : ModItem
     {
-        protected abstract IColorGradient Gradient { get; }
         protected abstract Vector3 LightColor { get; }
         public abstract int Rarity { get; }
+        public abstract ref StaticMiscShaderInfo Shader { get; }
+        public abstract ref Asset<Texture2D> Aura { get; }
         protected virtual Vector2 BloomOffset => Vector2.Zero;
-        protected Asset<Texture2D> Aura;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                Aura = ModContent.Request<Texture2D>(Texture + "_Aura");
+                Shader = new StaticMiscShaderInfo("MiscEffects", "Aequus:" + Name, "TextureScrollingPass", true);
+                Shader.ShaderData
+                    .UseImage1(ModContent.Request<Texture2D>("Aequus/Assets/Effects/Textures/" + Name + "Gradient", AssetRequestMode.ImmediateLoad))
+                    .UseSaturation(0.75f);
+            }
+        }
+
+        public override void Unload()
+        {
+            Shader = null;
+            Aura = null;
+        }
 
         public override void SetStaticDefaults()
         {
-            Aura = ModContent.Request<Texture2D>(Texture + "_Aura");
             ItemID.Sets.ItemNoGravity[Item.type] = true;
             this.SetResearch(10);
         }
@@ -42,8 +62,35 @@ namespace Aequus.Items.Misc.Energies
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            spriteBatch.Draw(Aura.Value, position, null, Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, 0.02f, 1f), 0f, origin, scale, SpriteEffects.None, 0f);
+            var coloring = new Color(255, 255, 255, 200) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, 0.8f, 1f);
+
+            if (Aequus.HQ)
+            {
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader);
+                var drawData = new DrawData(Aura.Value, position, null, coloring, 0f, origin, scale, SpriteEffects.None, 0);
+                Shader.ShaderData.Apply(drawData);
+
+                drawData.Draw(spriteBatch);
+
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch);
+            }
+
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
+
+            if (Aequus.HQ)
+            {
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader);
+                var drawData = new DrawData(Aura.Value, position, null, coloring.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
+                Shader.ShaderData.Apply(drawData);
+
+                drawData.Draw(spriteBatch);
+
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch);
+            }
             return false;
         }
 
@@ -54,30 +101,49 @@ namespace Aequus.Items.Misc.Energies
             Vector2 origin = frame.Size() / 2f;
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + origin.X + Item.width / 2 - origin.X, Item.position.Y - Main.screenPosition.Y + origin.Y + Item.height - frame.Height);
             drawPosition = new Vector2((int)drawPosition.X, drawPosition.Y);
-            var coloring = Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, 0.02f, 1f);
+            var coloring = new Color(255, 255, 255, 200) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, 0.8f, 1f);
 
-            spriteBatch.Draw(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);
+            if (Aequus.HQ)
+            {
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                var drawData = new DrawData(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0);
+                Shader.ShaderData.Apply(drawData);
+               
+                drawData.Draw(spriteBatch);
 
-            var bloomTexture = Images.Bloom[0].Value;
-            var bloomOrigin = bloomTexture.Size() / 2f;
-            float bloomScale = (scale + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 4f) * 0.1f + 0.65f) * 36f;
-            spriteBatch.Draw(bloomTexture, drawPosition, null, coloring, rotation, bloomOrigin, scale / bloomTexture.Width, SpriteEffects.None, 0f);
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+            }
 
             spriteBatch.Draw(itemTexture, drawPosition, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
+
+            if (Aequus.HQ)
+            {
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                var drawData = new DrawData(Aura.Value, drawPosition, frame, coloring.UseA(0) * 0.33f, rotation, origin, scale, SpriteEffects.None, 0);
+                Shader.ShaderData.Apply(drawData);
+
+                drawData.Draw(spriteBatch);
+
+                Main.spriteBatch.End();
+                CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+            }
             return false;
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            if (Item.timeSinceItemSpawned % 12 == 0)
-            {
-                int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyDust>(), 0f, 0f, 0, Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0));
-                Main.dust[d].alpha = Main.rand.Next(0, 35);
-                Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
-                if (Main.dust[d].scale > 1f)
-                    Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
-            }
+            //if (Item.timeSinceItemSpawned % 12 == 0)
+            //{
+            //    int d = Dust.NewDust(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyDust>(), 0f, 0f, 0, Gradient.GetColor(Main.GlobalTimeWrappedHourly).UseA(0));
+            //    Main.dust[d].alpha = Main.rand.Next(0, 35);
+            //    Main.dust[d].scale = Main.rand.NextFloat(0.95f, 1.15f);
+            //    if (Main.dust[d].scale > 1f)
+            //        Main.dust[d].noGravity = true;
+            //    Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(-0.15f, 0.15f), Main.rand.NextFloat(-3.5f, -1.75f));
+            //}
             Lighting.AddLight(Item.position, LightColor);
         }
 

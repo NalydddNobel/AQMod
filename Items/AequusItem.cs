@@ -26,6 +26,26 @@ namespace Aequus.Items
             CritOnlyModifier = null;
         }
 
+        public override void SetDefaults(Item item)
+        {
+            if (item.type == ItemID.ShadowKey)
+            {
+                item.rare = ItemRarityID.Blue;
+            }
+            else if (item.type == ItemID.DiscountCard)
+            {
+                item.accessory = false;
+            }
+        }
+
+        public override void UpdateInventory(Item item, Player player)
+        {
+            if (item.type == ItemID.DiscountCard && !player.discount)
+            {
+                player.ApplyEquipFunctional(item, false);
+            }
+        }
+
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
             if (player.GetModPlayer<AequusPlayer>().permMoro && ItemsCatalogue.SummonStaff.Contains(item.type))
