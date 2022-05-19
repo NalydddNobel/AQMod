@@ -44,7 +44,7 @@ namespace Aequus.Sounds
             CrabCreviceBiome = new CustomMusicData(MusicID.OceanNight);
             CrabSeasonEvent = new CustomMusicData(MusicID.GoblinInvasion);
             GlimmerEvent = new CustomMusicData(MusicID.MartianMadness);
-            GaleStreamsEvent = new CustomMusicData(MusicID.WindyDay);
+            GaleStreamsEvent = new CustomMusicData(MusicID.UndergroundDesert);
             DemonSiegeEvent = new CustomMusicData(MusicID.Monsoon);
         }
 
