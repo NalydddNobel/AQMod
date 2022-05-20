@@ -1,10 +1,10 @@
 ﻿using Aequus.Graphics;
+using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,11 +13,11 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
-        public const float PHASE_INTRO = 0f;
+        public const int PHASE_GOODBYE = -1;
+        public const int PHASE_INTRO = 0;
+        public const int PHASE_TORNADOBULLETS = 1;
 
         public bool PhaseTwo => NPC.life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
-
-        public float timer;
 
         public override void SetStaticDefaults()
         {
@@ -58,85 +58,206 @@ namespace Aequus.NPCs.Boss
             NPC.trapImmune = true;
         }
 
-        public override void AI()
+        public override Color? GetAlpha(Color drawColor)
         {
-            timer += 1f / 60f;
+            return PhaseTwo ? Color.Red : Color.White;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
-            if (NPC.IsABestiaryIconDummy)
-            {
-                return true;
-            }
-
-            var rand = EffectsSystem.EffectRand;
-
-            var bottom = NPC.position + new Vector2(NPC.width / 2f, NPC.height / 2f + 150f);
-            for (int i = 0; i < 300; i++)
-            {
-                rand.SetRand(i * 3);
-                float cloudProgress = (rand.Rand(0f, 2f) + timer * rand.Rand(0.1f, 0.3f)) % 2f;
-                if (cloudProgress > 1f)
-                {
-                    continue;
-                }
-                var cloudTexture = TextureAssets.Cloud[(int)rand.Rand(0f, Main.maxCloudTypes)].Value;
-                float wave = AequusHelpers.Wave(timer * rand.Rand(0.6f, 10f) + rand.Rand(MathHelper.TwoPi), -NPC.width / 2f, NPC.width / 2f);
-                float opacity = 1f;
-                if (cloudProgress < 0.8f)
-                {
-                    wave *= cloudProgress / 0.8f;
-                }
-                if (cloudProgress < 0.3f)
-                {
-                    opacity *= cloudProgress / 0.3f;
-                }
-                else if (cloudProgress > 0.7f)
-                {
-                    opacity *= (1f - cloudProgress) / 0.3f;
-                }
-                wave *= rand.Rand(0.5f, 1.2f);
-                var drawCoordinates = bottom - screenPos + new Vector2(wave, cloudProgress * -300f);
-                var rotation = AequusHelpers.Wave(timer * rand.Rand(0.1f, 2f), -0.05f, 0.05f);
-                float scale = (rand.Rand(0.06f, 0.2f) + AequusHelpers.Wave(timer * rand.Rand(0.1f, 5.5f), -0.05f, 0.1f)) * 0.35f + cloudProgress * 0.1f;
-                
-                foreach (var v in AequusHelpers.CircularVector(4))
-                {
-                    spriteBatch.Draw(cloudTexture, drawCoordinates + v * 2f * scale,
-                        null, Color.Blue * opacity * 0.25f, rotation, cloudTexture.Size() / 2f,
-                        scale, SpriteEffects.None, 0f);
-                }
-
-                spriteBatch.Draw(cloudTexture, drawCoordinates,
-                    null, Color.White * opacity, rotation, cloudTexture.Size() / 2f,
-                    scale, SpriteEffects.None, 0f);
-            }
-
-            var texture = TextureAssets.Npc[Type].Value;
-            foreach (var v in AequusHelpers.CircularVector(4))
-            {
-                spriteBatch.Draw(texture, NPC.Center - screenPos + v * 2f * NPC.scale,
-                    null, Color.Blue * 0.3f, 0f, texture.Size() / 2f,
-                    NPC.scale, SpriteEffects.None, 0f);
-            }
-
-            var ray = Images.LightRay.Value;
-            for (int i = 0; i < 50; i++)
-            {
-                rand.SetRand(i * 12);
-                float rayIntensity = AequusHelpers.Wave(timer * rand.Rand(0.1f, 0.5f) + rand.Rand(MathHelper.TwoPi), 0f, 1f);
-                float rotation = rand.Rand(MathHelper.TwoPi) + timer * rand.Rand(0.1f, 0.5f);
-                spriteBatch.Draw(ray, NPC.Center - screenPos + rotation.ToRotationVector2() * 24f,
-                    null, new Color(222, 222, 255, 100) * rayIntensity, rotation + MathHelper.PiOver2, ray.Size() / 2f,
-                    rand.Rand(0.4f, 0.75f) * rayIntensity, SpriteEffects.None, 0f);
-            }
-
-            spriteBatch.Draw(texture, NPC.Center - screenPos,
-                null, Color.White, NPC.rotation, texture.Size() / 2f,
-                NPC.scale, SpriteEffects.None, 0f);
-
             return false;
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            return false;
+        }
+
+        public override void AI()
+        {
+            switch ((int)NPC.ai[0])
+            {
+                case PHASE_GOODBYE:
+                    {
+                        NPC.timeLeft = Math.Min(NPC.timeLeft, 100);
+                        NPC.velocity.X *= 0.8f;
+                        if (NPC.velocity.Y > 0f)
+                        {
+                            NPC.velocity.Y *= 0.8f;
+                        }
+                        NPC.velocity.Y -= 0.05f;
+                    }
+                    break;
+
+                case PHASE_INTRO:
+                    {
+                        if ((int)NPC.ai[1] == 0)
+                        {
+                            NPC.ai[1]++;
+                            if (!PlrCheck())
+                            {
+                                return;
+                            }
+                        }
+                        RandomizePhase();
+                    }
+                    break;
+
+                case PHASE_TORNADOBULLETS:
+                    {
+                        var gotoPosition = Main.player[NPC.target].Center + new Vector2(0f, -NPC.height - 300);
+                        NPC.ai[3]++;
+                        if (NPC.ai[3] < 30f)
+                        {
+                            NPC.ai[1] = gotoPosition.X;
+                            NPC.ai[2] = gotoPosition.Y;
+                        }
+                        else
+                        {
+                            NPC.ai[1] = MathHelper.Lerp(NPC.ai[1], gotoPosition.X, 0.001f);
+                            NPC.ai[2] = MathHelper.Lerp(NPC.ai[2], gotoPosition.Y, 0.001f);
+                        }
+
+                        NPC.velocity = GetTo(new Vector2(NPC.ai[1], NPC.ai[2]), addSpeedX: 0.8f, addSpeedY: 0.4f);
+
+                        if (NPC.ai[3] > 50f && NPC.ai[3] < 100f)
+                        {
+                            int amt = 4;
+                            if (Main.getGoodWorld)
+                            {
+                                amt *= 2;
+                            }
+                            int ticksPerShot = (int)(50f / amt);
+                            if ((NPC.ai[3] - 50f) <= ticksPerShot * amt 
+                                && (int)(NPC.ai[3] - 50f) % ticksPerShot == 0)
+                            {
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
+                                {
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(10f, 0f), 
+                                        ModContent.ProjectileType<DustDevilTornadoBullet>(), NPC.damage, 1f, Main.myPlayer, 180f, 20f);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(-10f, 0f), 
+                                        ModContent.ProjectileType<DustDevilTornadoBullet>(), NPC.damage, 1f, Main.myPlayer, 180f, 20f);
+                                }
+                                SoundID.Item1?.PlaySound(NPC.Center);
+                            }
+                        }
+                        if (NPC.ai[3] > 160f)
+                        {
+                            NPC.ai[3] = 0f;
+                        }
+                    }
+                    break;
+            }
+        }
+
+        public void RandomizePhase(int? phase = null, float? hpRatio = null)
+        {
+            int p = phase ?? (int)NPC.ai[0];
+            float hp = hpRatio ?? NPC.life / (float)NPC.lifeMax;
+            if (Main.getGoodWorld && PhaseTwo)
+            {
+                hp /= 4f;
+            }
+
+            var l = InnerGetChooseablePhases(p, hp);
+            SetPhase(l[Main.rand.Next(l.Count)]);
+        }
+        public List<int> InnerGetChooseablePhases(int phase, float hpRatio)
+        {
+            var l = new List<int>()
+            {
+                PHASE_TORNADOBULLETS,
+            };
+            return l;
+        }
+        public void SetPhase(int phase)
+        {
+            ClearAI();
+            NPC.ai[0] = phase;
+        }
+        public bool PlrCheck()
+        {
+            NPC.TargetClosest(faceTarget: false);
+            NPC.netUpdate = true;
+            if (Main.player[NPC.target].dead)
+            {
+                NPC.ai[0] = PHASE_GOODBYE;
+                NPC.ai[1] = 0f;
+                NPC.ai[2] = 0f;
+                NPC.ai[3] = 0f;
+                NPC.localAI[0] = 0f;
+                NPC.localAI[1] = 0f;
+                NPC.localAI[2] = 0f;
+                NPC.localAI[3] = 0f;
+                return false;
+            }
+            return true;
+        }
+
+        public Vector2 GetTo(Vector2 spot, float addSpeedX = 0.8f, float addSpeedY = 0.4f, float maxSpeed = 20f, float wrongWayMultiplier = 0.96f, float minDistance = 50f)
+        {
+            if (NPC.Distance(spot) < minDistance)
+            {
+                return NPC.velocity;
+            }
+
+            var velocity = NPC.velocity;
+            if (NPC.position.X < spot.X)
+            {
+                if (velocity.X < maxSpeed)
+                {
+                    velocity.X += addSpeedX;
+                    if (velocity.X < 0f)
+                    {
+                        velocity.X *= wrongWayMultiplier;
+                    }
+                }
+            }
+            else
+            {
+                if (velocity.X > -maxSpeed)
+                {
+                    velocity.X -= addSpeedX;
+                    if (velocity.X > 0f)
+                    {
+                        velocity.X *= wrongWayMultiplier;
+                    }
+                }
+            }
+
+            if (NPC.position.Y < spot.Y)
+            {
+                if (velocity.Y < maxSpeed)
+                {
+                    velocity.Y += addSpeedX;
+                    if (velocity.Y < 0f)
+                    {
+                        velocity.Y *= wrongWayMultiplier;
+                    }
+                }
+            }
+            else
+            {
+                if (velocity.Y > -maxSpeed)
+                {
+                    velocity.Y -= addSpeedX;
+                    if (velocity.Y > 0f)
+                    {
+                        velocity.Y *= wrongWayMultiplier;
+                    }
+                }
+            }
+
+            return velocity;
+        }
+        public Vector2 GetTo(Vector2 spot, float addSpeed = 0.8f, float maxSpeed = 20f, float wrongWayMultiplier = 0.96f, float minDistance = 50f)
+        {
+            return GetTo(spot, addSpeed, addSpeed, maxSpeed, wrongWayMultiplier, minDistance);
+        }
+
+        public override void BossLoot(ref string name, ref int potionType)
+        {
+            potionType = ItemID.GreaterHealingPotion;
         }
     }
 }

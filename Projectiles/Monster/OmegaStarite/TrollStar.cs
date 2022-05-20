@@ -75,28 +75,13 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             float playerDistance = (Main.player[Main.myPlayer].Center - Projectile.Center).Length();
             if (playerDistance < 1200f)
                 intensity = 1f - playerDistance / 1200f;
-            if (PrimRenderer.renderProjTrails)
+            if (prim == null)
             {
-                if (prim == null)
-                {
-                    prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
-                        (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
-                }
-                for (int i = 0; i < 4; i++)
-                    prim.Draw(Projectile.oldPos);
+                prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
+                    (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
             }
-            else
-            {
-                int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
-                for (int i = 0; i < trailLength; i++)
-                {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    float progress = 1f - 1f / trailLength * i;
-                    var trailClr = getColor(Main.GlobalTimeWrappedHourly + progress) * 0.5f;
-                    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, trailClr * progress, Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
-                }
-            }
+            for (int i = 0; i < 4; i++)
+                prim.Draw(Projectile.oldPos);
             if (intensity > 0f)
             {
                 var spotlight = Images.Bloom[0].Value;

@@ -14,7 +14,6 @@ namespace Aequus.Graphics.Prims
 
         protected static Asset<Effect> shader;
         public static Effect Shader => shader.Value;
-        public static bool renderProjTrails;
 
         public Vector2 drawOffset;
         protected readonly Texture2D Texture;
@@ -188,7 +187,6 @@ namespace Aequus.Graphics.Prims
 
         void ILoadable.Load(Mod mod)
         {
-            renderProjTrails = true;
             if (!Main.dedServ)
             {
                 shader = ModContent.Request<Effect>("Aequus/Assets/Effects/Prims/Trailshader");

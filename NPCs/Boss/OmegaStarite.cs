@@ -1,8 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
-using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
@@ -174,7 +172,7 @@ namespace Aequus.NPCs.Boss
 
         private PrimRenderer prim;
 
-        public Ring[] rings;
+        public List<Ring> rings;
         public float starDamageMultiplier;
         private byte _hitShake;
 
@@ -215,7 +213,9 @@ namespace Aequus.NPCs.Boss
             {
                 Position = new Vector2(0f, 2f),
             });
-            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() { SpecificallyImmuneTo = new int[] 
+            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = new int[]
                 {
                     BuffID.Confused,
                     BuffID.OnFire,
@@ -223,7 +223,7 @@ namespace Aequus.NPCs.Boss
                     BuffID.Poisoned,
                     BuffID.Frostburn,
                     BuffID.Frostburn2,
-                }, 
+                },
             };
             Main.npcFrameCount[NPC.type] = 14;
 
@@ -311,7 +311,7 @@ namespace Aequus.NPCs.Boss
                         Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                     }
                 }
-                for (int i = 0; i < rings.Length; i++)
+                for (int i = 0; i < rings.Count; i++)
                 {
                     for (int j = 0; j < rings[i].amountOfSegments; j++)
                     {
@@ -466,7 +466,7 @@ namespace Aequus.NPCs.Boss
                         {
                             allRingsSet = false;
                         }
-                        for (int i = 1; i < rings.Length; i++)
+                        for (int i = 1; i < rings.Count; i++)
                         {
                             rings[i].rotationVelocity *= 0.95f;
 
@@ -485,7 +485,7 @@ namespace Aequus.NPCs.Boss
                                 NPC.velocity = Vector2.Normalize(plrCenter - center) * NPC.velocity.Length();
                                 rings[0].pitch = MathHelper.PiOver2;
                                 rings[0].roll = -MathHelper.PiOver2;
-                                for (int i = 1; i < rings.Length; i++)
+                                for (int i = 1; i < rings.Count; i++)
                                 {
                                     rings[i].pitch = 0f;
                                     rings[i].roll = 0f;
@@ -501,7 +501,7 @@ namespace Aequus.NPCs.Boss
                         else
                         {
                             rings[0].yaw += 0.0314f - NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += 0.0157f - NPC.ai[1] * 0.5f;
                             }
@@ -532,7 +532,7 @@ namespace Aequus.NPCs.Boss
                                 if (Main.getGoodWorld)
                                 {
                                     bool shot = false;
-                                    for (int i = 0; i < rings.Length; i++)
+                                    for (int i = 0; i < rings.Count; i++)
                                     {
                                         shot |= ShootProjsFromRing(endingPhase: true, rings[i]);
                                     }
@@ -555,7 +555,7 @@ namespace Aequus.NPCs.Boss
                             {
                                 ringsSet = true;
                             }
-                            for (int i = 2; i < rings.Length; i++)
+                            for (int i = 2; i < rings.Count; i++)
                             {
                                 rings[i].radiusFromOrigin -= MathHelper.PiOver2 * 3f;
                                 if (rings[i].radiusFromOrigin > rings[i].OriginalRadiusFromOrigin)
@@ -587,7 +587,7 @@ namespace Aequus.NPCs.Boss
                         {
                             NPC.ai[2] = 1200f;
                             rings[0].yaw += NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
                             }
@@ -603,7 +603,7 @@ namespace Aequus.NPCs.Boss
                                 NPC.ai[1] += 0.0002f;
                             }
                             rings[0].yaw += NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
                                 rings[i].radiusFromOrigin = MathHelper.Lerp(rings[i].radiusFromOrigin, rings[i].OriginalRadiusFromOrigin * (NPC.ai[3] + i), 0.025f);
@@ -645,7 +645,7 @@ namespace Aequus.NPCs.Boss
                                 if (Main.getGoodWorld)
                                 {
                                     bool shot = false;
-                                    for (int i = 1; i < rings.Length; i++)
+                                    for (int i = 1; i < rings.Count; i++)
                                     {
                                         shot |= ShootProjsFromRing(endingPhase: false, rings[i]);
                                     }
@@ -856,7 +856,7 @@ namespace Aequus.NPCs.Boss
                                 NPC.ai[1] = 0.0314f;
                             }
                             rings[0].yaw += NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
                             }
@@ -867,7 +867,7 @@ namespace Aequus.NPCs.Boss
                         {
                             NPC.ai[2] = 300f;
                             rings[0].yaw += NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
                             }
@@ -884,7 +884,7 @@ namespace Aequus.NPCs.Boss
                             }
                             rings[0].yaw += NPC.ai[1];
                             rings[0].radiusFromOrigin = MathHelper.Lerp(rings[0].radiusFromOrigin, rings[0].OriginalRadiusFromOrigin * NPC.ai[3], 0.025f);
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += NPC.ai[1] * 0.5f;
                                 rings[i].radiusFromOrigin = MathHelper.Lerp(rings[i].radiusFromOrigin, rings[i].OriginalRadiusFromOrigin * (NPC.ai[3] + i), 0.025f);
@@ -895,7 +895,7 @@ namespace Aequus.NPCs.Boss
                                 if (Main.getGoodWorld)
                                 {
                                     bool shot = false;
-                                    for (int i = 0; i < rings.Length; i++)
+                                    for (int i = 0; i < rings.Count; i++)
                                     {
                                         shot |= ShootProjsFromRing(endingPhase: false, rings[i]);
                                     }
@@ -930,7 +930,7 @@ namespace Aequus.NPCs.Boss
                         NPC.ai[1] += 0.0002f;
 
                         bool allRingsSet = true;
-                        for (int i = 0; i < rings.Length; i++)
+                        for (int i = 0; i < rings.Count; i++)
                         {
                             rings[i].rotationVelocity *= 0.95f;
                             rings[i].pitch = rings[i].pitch.AngleLerp(0f, 0.025f);
@@ -945,7 +945,7 @@ namespace Aequus.NPCs.Boss
                             if (allRingsSet)
                             {
                                 NPC.velocity = Vector2.Normalize(plrCenter - center) * NPC.velocity.Length();
-                                for (int i = 0; i < rings.Length; i++)
+                                for (int i = 0; i < rings.Count; i++)
                                 {
                                     rings[i].pitch = 0f;
                                     rings[i].roll = 0f;
@@ -961,7 +961,7 @@ namespace Aequus.NPCs.Boss
                         else
                         {
                             rings[0].yaw += 0.0314f - NPC.ai[1];
-                            for (int i = 1; i < rings.Length; i++)
+                            for (int i = 1; i < rings.Count; i++)
                             {
                                 rings[i].yaw += 0.0157f - NPC.ai[1] * 0.5f;
                             }
@@ -1058,7 +1058,7 @@ namespace Aequus.NPCs.Boss
 
                 case PHASE_DEAD:
                     {
-                        for (int i = 0; i < rings.Length; i++)
+                        for (int i = 0; i < rings.Count; i++)
                         {
                             rings[i].rotationVelocity *= 0f;
                         }
@@ -1088,7 +1088,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
             }
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].Update(center + NPC.velocity);
             }
@@ -1127,7 +1127,7 @@ namespace Aequus.NPCs.Boss
                 return;
             }
             Lighting.AddLight(NPC.Center, new Vector3(1.2f, 1.2f, 2.2f));
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 for (int j = 0; j < rings[i].amountOfSegments; j++)
                 {
@@ -1142,27 +1142,27 @@ namespace Aequus.NPCs.Boss
             else if (!Main.getGoodWorld)
                 NPC.scale *= 0.5f;
             var center = NPC.Center;
-            rings = new Ring[2];
+            rings = new List<Ring>();
             if (Main.expertMode)
             {
-                rings[0] = new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE, RING_1_SCALE);
+                rings.Add(new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE, RING_1_SCALE));
                 if (Main.getGoodWorld)
                 {
-                    rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT);
-                    Array.Resize(ref rings, 3);
-                    rings[2] = new Ring(RING_3_SEGMENTCOUNT, CIRCUMFERENCE * RING_3_CIRCUMFERENCEMULT, RING_3_SCALE);
+                    rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT));
+
+                    rings.Add(new Ring(RING_3_SEGMENTCOUNT, CIRCUMFERENCE * RING_3_CIRCUMFERENCEMULT, RING_3_SCALE));
                 }
                 else
                 {
-                    rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT);
+                    rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT));
                 }
             }
             else
             {
-                rings[0] = new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE * 0.75f, RING_1_SCALE);
-                rings[1] = new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT, RING_2_SCALE);
+                rings.Add(new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE * 0.75f, RING_1_SCALE));
+                rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT, RING_2_SCALE));
             }
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].MultScale(NPC.scale);
                 rings[i].Update(center);
@@ -1196,7 +1196,7 @@ namespace Aequus.NPCs.Boss
         {
             rings[0].rotationVelocity = Vector3.Lerp(rings[0].rotationVelocity, new Vector3(0.01f, 0.0157f, 0.0314f), 0.1f);
             rings[1].rotationVelocity = Vector3.Lerp(rings[1].rotationVelocity, new Vector3(0.011f, 0.0314f, 0.0157f), 0.1f);
-            if (rings.Length > 2)
+            if (rings.Count > 2)
             {
                 rings[2].rotationVelocity = Vector3.Lerp(rings[2].rotationVelocity, new Vector3(0.012f, 0.0186f, 0.0214f), 0.1f);
             }
@@ -1233,31 +1233,31 @@ namespace Aequus.NPCs.Boss
             }
             return false;
         }
-        private void CullRingRotations()
+        public void CullRingRotations()
         {
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].pitch %= MathHelper.TwoPi;
                 rings[i].roll %= MathHelper.TwoPi;
             }
         }
-        private void ResetRingsRadiusFromOrigin()
+        public void ResetRingsRadiusFromOrigin()
         {
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].radiusFromOrigin = rings[i].OriginalRadiusFromOrigin;
             }
         }
-        private void PullInRingsTransition()
+        public void PullInRingsTransition()
         {
             bool allRingsSet = true;
-            float[] transitionSpeed = new float[rings.Length];
+            float[] transitionSpeed = new float[rings.Count];
             transitionSpeed[0] = MathHelper.Pi;
-            for (int i = 1; i < rings.Length; i++)
+            for (int i = 1; i < rings.Count; i++)
             {
                 transitionSpeed[i] = MathHelper.PiOver2 * (3f + 2.5f * i);
             }
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 if (rings[i].radiusFromOrigin > rings[i].OriginalRadiusFromOrigin)
                 {
@@ -1268,7 +1268,7 @@ namespace Aequus.NPCs.Boss
 
             if (allRingsSet && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                for (int i = 0; i < rings.Length; i++)
+                for (int i = 0; i < rings.Count; i++)
                 {
                     rings[i].radiusFromOrigin = rings[i].OriginalRadiusFromOrigin;
                 }
@@ -1369,7 +1369,7 @@ namespace Aequus.NPCs.Boss
                     NPC.ai[0]++;
                 }
                 LerpToDefaultRotationVelocity();
-                for (int i = 0; i < rings.Length; i++)
+                for (int i = 0; i < rings.Count; i++)
                 {
                     rings[i].Update(NPC.Center);
                 }
@@ -1395,7 +1395,7 @@ namespace Aequus.NPCs.Boss
                 drawPos.Y += 2f;
             }
             var positions = new List<Vector4>();
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
                 for (int j = 0; j < rings[i].amountOfSegments; j++)
                 {
@@ -1729,8 +1729,8 @@ namespace Aequus.NPCs.Boss
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(rings.Length);
-            for (int i = 0; i < rings.Length; i++)
+            writer.Write(rings.Count);
+            for (int i = 0; i < rings.Count; i++)
             {
                 writer.Write(rings[i].pitch);
                 writer.Write(rings[i].roll);
@@ -1742,12 +1742,12 @@ namespace Aequus.NPCs.Boss
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             int amt = reader.ReadInt32();
-            for (int i = 0; i < rings.Length; i++)
+            for (int i = 0; i < rings.Count; i++)
             {
-                rings[1].pitch = reader.ReadSingle();
-                rings[1].roll = reader.ReadSingle();
-                rings[1].yaw = reader.ReadSingle();
-                rings[1].RecieveNetPackage(reader);
+                rings[i].pitch = reader.ReadSingle();
+                rings[i].roll = reader.ReadSingle();
+                rings[i].yaw = reader.ReadSingle();
+                rings[i].RecieveNetPackage(reader);
             }
         }
 

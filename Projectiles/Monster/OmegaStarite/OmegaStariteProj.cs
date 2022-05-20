@@ -51,7 +51,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             var omegaStarite = (NPCs.Boss.OmegaStarite)Main.npc[(int)Projectile.ai[0]].ModNPC;
-            for (int i = 0; i < omegaStarite.rings.Length; i++)
+            for (int i = 0; i < omegaStarite.rings.Count; i++)
             {
                 for (int j = 0; j < omegaStarite.rings[i].amountOfSegments; j++)
                 {

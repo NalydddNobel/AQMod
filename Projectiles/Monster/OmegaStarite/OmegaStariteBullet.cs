@@ -56,25 +56,11 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             var drawColor = GlimmerInvasion.CosmicEnergyColor;
             drawColor.A = 0;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            if (PrimRenderer.renderProjTrails)
+            if (prim == null)
             {
-                if (prim == null)
-                {
-                    prim = new PrimRenderer(Images.Trail[2].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
-                }
-                prim.Draw(Projectile.oldPos);
+                prim = new PrimRenderer(Images.Trail[2].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
             }
-            else
-            {
-                int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
-                for (int i = 0; i < trailLength; i++)
-                {
-                    if (Projectile.oldPos[i] == new Vector2(0f, 0f))
-                        break;
-                    float progress = 1f - 1f / trailLength * i;
-                    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, drawColor * progress, Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
-                }
-            }
+            prim.Draw(Projectile.oldPos);
             float intensity = 0f;
             float playerDistance = (Main.player[Main.myPlayer].Center - Projectile.Center).Length();
             if (playerDistance < 480f)

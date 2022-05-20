@@ -1,5 +1,4 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;

@@ -63,22 +63,30 @@ namespace Aequus.Graphics
             {
                 try
                 {
+                    Main.NewText(1);
                     FlashFilter.GetShader().UseTargetPosition(Flash.FlashLocation);
+                    Main.NewText(2);
                     FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 1f / 18f));
+                    Main.NewText(3);
                     if (!FlashFilter.IsActive())
                     {
-                        Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation, null).GetShader()
+                        Main.NewText(4);
+                        Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation).GetShader()
                         .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
                     }
+                    Main.NewText(5);
                     float intensity = Math.Max(Flash.Intensity - Flash.Intensity * Flash.Multiplier, 0.05f);
                     Flash.Intensity -= intensity;
+                    Main.NewText(6);
                     if (Flash.Intensity <= 0.00001f)
                     {
                         Flash.Clear();
                     }
+                    Main.NewText(7);
 
                     if (!UsingOldFlashShader)
                         FlashFilter.GetShader().Shader.Parameters["Repetitions"].SetValue(ModContent.GetInstance<ClientConfig>().FlashShaderRepetitions);
+                    Main.NewText(8);
                 }
                 catch
                 {
