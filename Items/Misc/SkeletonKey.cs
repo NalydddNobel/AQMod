@@ -18,6 +18,11 @@ namespace Aequus.Items.Misc
             Item.rare++;
         }
 
+        public override void UpdateInventory(Player player)
+        {
+            player.Aequus().hasSkeletonKey = true;
+        }
+
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
             aequus.hasSkeletonKey = true;

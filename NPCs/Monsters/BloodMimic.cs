@@ -1,6 +1,8 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
+using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
@@ -55,12 +57,42 @@ namespace Aequus.NPCs.Monsters
         {
             this.CreateLoot(npcLoot)
                 .SetCondition(new LastAliveCondition(Type))
-                .Add<CrusadersCrossbow>(chance: 1, stack: 1)
-                .AddOptions(chance: 2, ItemID.MoneyTrough, ItemID.SharkToothNecklace)
+
+                .AddOptions(chance: 1, 
+                ModContent.ItemType<CrusadersCrossbow>(), 
+                ModContent.ItemType<BloodiedBucket>())
+
+                .AddOptions(chance: 2, 
+                ItemID.MoneyTrough, 
+                ItemID.SharkToothNecklace)
+
                 .Add(ItemID.AdhesiveBandage, chance: 8, stack: 1)
                 .RegisterCondition()
-                .Add<SuspiciousLookingSteak>(chance: 5, stack: 1);
+
+                .Add<SuspiciousLookingSteak>(chance: 5, stack: 1)
+                .Add<PotionOfResurrection>(chance: 5, stack: 1);
         }
+
+        //public override void NPCLoot()
+        //{
+        //    Rectangle rect = NPC.getRect();
+        //    if (NPC.CountNPCS(NPC.type) <= 1)
+        //    {
+        //        var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), ModContent.ItemType<CrusadersCrossbow>(), };
+        //        if (NPC.downedBoss3)
+        //            choices.Add(ModContent.ItemType<ATM>());
+        //        if (NPC.downedPlantBoss)
+        //            choices.Add(ModContent.ItemType<VampireHook>());
+        //        int choice = Main.rand.Next(choices.Count);
+        //        Item.NewItem(rect, choices[choice]);
+        //    }
+        //}
+
+        //private void randDrops()
+        //{
+        //    if (Main.rand.NextBool(5))
+        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<BloodshedPotion>());
+        //}
 
         protected override int GetJumpTimer() => NPC.ai[1] == 0f ? 5 : 10;
 
@@ -232,26 +264,5 @@ namespace Aequus.NPCs.Monsters
             }
             target.AddBuff(BuffID.Bleeding, 60);
         }
-
-        //public override void NPCLoot()
-        //{
-        //    Rectangle rect = NPC.getRect();
-        //    if (NPC.CountNPCS(NPC.type) <= 1)
-        //    {
-        //        var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), ModContent.ItemType<CrusadersCrossbow>(), };
-        //        if (NPC.downedBoss3)
-        //            choices.Add(ModContent.ItemType<ATM>());
-        //        if (NPC.downedPlantBoss)
-        //            choices.Add(ModContent.ItemType<VampireHook>());
-        //        int choice = Main.rand.Next(choices.Count);
-        //        Item.NewItem(rect, choices[choice]);
-        //    }
-        //}
-
-        //private void randDrops()
-        //{
-        //    if (Main.rand.NextBool(5))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<BloodshedPotion>());
-        //}
     }
 }

@@ -3,7 +3,6 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Potions;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Summons;
-using Microsoft.Xna.Framework;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
@@ -14,12 +13,6 @@ namespace Aequus
 {
     public sealed class ClientConfig : ConfigurationBase, IPostSetupContent
     {
-        public override bool Autoload(ref string name)
-        {
-            name = "ClientConfiguration";
-            return base.Autoload(ref name);
-        }
-
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         public static ClientConfig Instance;

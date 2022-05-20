@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			BloodiedBucket: Bloodied Bucket
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
@@ -118,6 +119,8 @@ Mods: {
 			CinnamonRoll: Cinnamon Roll
 
 			FrostPotion: Frost Potion
+
+			PotionOfResurrection: Potion of Resurrection
 
 			SkeletonKey: Skeleton Key
 			UnenchantedStaff: Unenchanted Staff
@@ -293,7 +296,6 @@ Mods: {
 			Baguette: Baguette
 			SpoilsPotion: Plethora Potion
 			BloodthirstPotion: Bloodthirst Potion
-			BloodshedPotion: Resurrection Potion
 			SpreadPotion: Spread Potion
 			ShadePotion: Shade Potion
 			MysteryGrail: Mysterious Grail
@@ -421,10 +423,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			RockMan: 
+			BloodiedBucket: 
 				'''
-				An ancient relic, originally used to cut lemons
+				Greatly increases the lifespan of ghost minions
+				'I know your type: tall, dark, and dead'
 				'''
+			RockMan: An ancient relic, originally used to cut lemons
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils
@@ -488,8 +492,11 @@ Mods: {
 				'''
 			GrandReward: Enemies are more likely to drop rarer items
 			Mendshroom: Standing still will heal yourself and nearby teammates
-			FrostPotion: Reduces damage from heat sources
 			GlowCore: You and your projectiles emit light
+
+			PotionOfResurrection: Teleports you to the location of your most recent death
+			FrostPotion: Reduces damage from heat sources
+
 
 			SnowRoulette:
 				'''
@@ -957,7 +964,6 @@ Mods: {
 				'You are such a spoiled brat!'
 				'''
 			BloodthirstPotion: You drain some life when you kill an enemy
-			BloodshedPotion: Teleports you to the location of your most recent death
 			SpreadPotion: Enemies will spread their current debuffs to nearby enemies when attacked
 			ShadePotion: Standing still will make enemies unable to target you
 			MysteryGrail:
@@ -1931,7 +1937,7 @@ Mods: {
 		Configuration: {
 			Client: {
 				Headers: {
-					Visuals: Visuals
+					Visuals: "[c/ddddff:Visuals]"
 				}
 
 				ScreenshakeIntensity: Screenshake Intensity
@@ -1949,6 +1955,14 @@ Mods: {
 					'''
 					Only really useful for 3rd party developers who want confirmation for events
 					'''
+			}
+
+			Gameplay: {
+				Headers: {
+					Recipes: "[c/ddddff:Recipe Changes]"
+				}
+				VoidBagRecipe: Void Bag Recipe
+				VoidBagRecipeTooltip: Whether or not to change the void bag and void vault's recipe
 			}
 		}
 

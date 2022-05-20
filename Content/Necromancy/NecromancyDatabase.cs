@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public sealed class NecromancyDatabase : LoadableType, IModCallable
+    public sealed class NecromancyDatabase : LoadableType, IAddRecipes, IModCallable
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }
@@ -361,7 +361,11 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        public static void FinalizeContent()
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            InnerFinalizeContent();
+        }
+        public static void InnerFinalizeContent()
         {
             for (int i = 0; i < NPCLoader.NPCCount; i++)
             {
@@ -377,7 +381,7 @@ namespace Aequus.Content.Necromancy
                 PopulateEnemyStats_Polarities(polarities);
             }
         }
-        private static void PopulateEnemyStats_Polarities(Mod polarities)
+        public static void PopulateEnemyStats_Polarities(Mod polarities)
         {
             new DatabaseBuilder<GhostInfo>(NPCs, polarities, NPCID.Search)
                 .TryAddModEntry("BloodBat", GhostInfo.One.WithAggro(AggroForcer.NightTime))

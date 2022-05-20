@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -9,19 +10,20 @@ namespace Aequus.Items
 {
     public static class AequusRecipes
     {
-        public static class Groups
-        {
-            public const string AnyEctoplasm = "Aequus:AnyEctoplasm";
+        public static RecipeGroup AnyEctoplasm;
 
-            internal static void AddRecipeGroups()
-            {
-                RecipeGroup.RegisterGroup(
-                    "Aequus:AnyEctoplasm",
-                    new RecipeGroup(
-                        () => AequusText.GetText("RecipeGroup.AnyEctoplasm"),
-                        ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>()
-                    ));
-            }
+        internal static void AddRecipeGroups()
+        {
+            NewGroup("AnyEctoplasm", ref AnyEctoplasm,
+                ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+        }
+        private static RecipeGroup NewGroup(string name, ref RecipeGroup group, params int[] items)
+        {
+            group = new RecipeGroup(
+                () => AequusText.GetText("RecipeGroup." + name),
+                items);
+            RecipeGroup.RegisterGroup("Aequus:" + name, group);
+            return group;
         }
 
         public static Recipe CreateRecipe(Recipe parent)
@@ -66,7 +68,7 @@ namespace Aequus.Items
             return r;
         }
 
-        public static void ReplaceItemWithRecipeGroup(this Recipe r, int item, string recipeGroup)
+        public static void ReplaceItemWith(this Recipe r, int item, Action<Recipe, Item> replacementMethod)
         {
             var itemList = new List<Item>(r.requiredItem);
             r.requiredItem.Clear();
@@ -74,7 +76,7 @@ namespace Aequus.Items
             {
                 if (itemList[i].type == item)
                 {
-                    r.AddRecipeGroup(recipeGroup, itemList[i].stack);
+                    replacementMethod(r, itemList[i]);
                 }
                 else
                 {

@@ -49,7 +49,7 @@ namespace Aequus
                 NPCTalkInterface = new UserInterface();
             }
 
-            foreach (var t in AutoloadUtilities.GetTypes(Code))
+            foreach (var t in AutoloadHelper.GetTypes(Code))
             {
                 IOnModLoad.CheckAutoload(this, t);
             }
@@ -76,7 +76,7 @@ namespace Aequus
 
         public override void PostSetupContent()
         {
-            foreach (var t in AutoloadUtilities.GetTypes(Code))
+            foreach (var t in AutoloadHelper.GetTypes(Code))
             {
                 IPostSetupContent.CheckAutoload(this, t);
             }
@@ -84,26 +84,21 @@ namespace Aequus
 
         public override void AddRecipeGroups()
         {
-            AequusRecipes.Groups.AddRecipeGroups();
-            NecromancyDatabase.FinalizeContent();
+            AequusRecipes.AddRecipeGroups();
         }
 
         public override void AddRecipes()
         {
-            AlternativeRecipes.AddRecipes();
-            ItemsCatalogue.LoadAutomaticEntries();
             if (PolaritiesSupport.Polarities.Enabled)
             {
                 MonsterBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
             }
-            foreach (var t in AutoloadUtilities.GetTypes(Code))
-            {
-                if (t.IsAbstract || t.IsInterface)
-                {
-                    continue;
-                }
-                IAddRecipes.CheckAutoload(this, t);
-            }
+            AutoloadHelper.AutoloadOfType<IAddRecipes>(Code, this);
+        }
+
+        public override void PostAddRecipes()
+        {
+            AutoloadHelper.AutoloadOfType<IPostAddRecipes>(Code, this);
         }
 
         public override void Unload()

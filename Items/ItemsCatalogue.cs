@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public sealed class ItemsCatalogue : LoadableType
+    public sealed class ItemsCatalogue : LoadableType, IAddRecipes
     {
         public struct SentryStaffUsage
         {
@@ -159,7 +159,13 @@ namespace Aequus.Items
             };
         }
 
-        public static void LoadAutomaticEntries()
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            InnerLoadAutomaticEntries();
+        }
+
+        public static void InnerLoadAutomaticEntries()
         {
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
@@ -170,7 +176,7 @@ namespace Aequus.Items
                 }
             }
         }
-        private static bool IsSummonStaff(Item item)
+        public static bool IsSummonStaff(Item item)
         {
             return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > 0 && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
         }

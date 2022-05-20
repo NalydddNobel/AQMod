@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Consumables.Foods;
+﻿using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Melee;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
