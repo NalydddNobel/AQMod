@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			BloodiedBucket: 血污桶
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
 			Slice: 利刃
@@ -105,6 +106,9 @@ Mods: {
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
+			FoolsGoldRing: 愚者之金戒
+			FaultyCoin: 缺陷硬币
+			ForgedCard: 伪造的卡片
 			RitualisticSkull: 仪式颅骨
 			SentrySquid: 哨兵乌贼
 			IcebergKraken: 冰山海妖
@@ -115,6 +119,8 @@ Mods: {
 			CinnamonRoll: 肉桂卷
 			
 			FrostPotion: 冰霜药水
+
+			PotionOfResurrection: 复活药水
 
 			SkeletonKey: 骷髅钥匙
 			UnenchantedStaff: 未附魔的法杖
@@ -290,7 +296,6 @@ Mods: {
 			Baguette: 法棍
 			SpoilsPotion: 超量药水
 			BloodthirstPotion: 嗜血药水
-			BloodshedPotion: 复活药水
 			SpreadPotion: 扩散药水
 			ShadePotion: 暗影药水
 			MysteryGrail: 神秘圣杯
@@ -418,10 +423,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			RockMan: 
+			BloodiedBucket: 
 				'''
-				一件远古遗物, 最初被用来切柠檬
+				大幅度增加幽魂仆从的实名制
+				'我知道你的成分: 高大、暗黑以及是死的'
 				'''
+			RockMan: 一件远古遗物, 最初被用来切柠檬
 			Triacanthorn: 
 				'''
 				召唤会分裂的邪恶卷须
@@ -464,6 +471,13 @@ Mods: {
 
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
+			FoolsGoldRing: 
+				'''
+				基于所持有的钱币数量增加属性
+				被击杀所会掉落所有的钱币
+				'''
+			FaultyCoin: 10%几率不消耗钱币
+			ForgedCard: 所有的商品均可享受2金50银的折扣
 			IcebergKraken:
 				'''
 				增加最大哨兵栏位
@@ -478,9 +492,12 @@ Mods: {
 				'''
 			GrandReward: 敌人更容易掉落稀有物品
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
-			FrostPotion: 降低来自热源的伤害
 			GlowCore: 你和你的弹幕会发光
 
+			PotionOfResurrection: 将你传送至上次死亡时的位置
+			FrostPotion: 降低热源对你造成的伤害
+
+			
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -947,7 +964,6 @@ Mods: {
 				'你只是个被惯坏了的坏孩子!'
 				'''
 			BloodthirstPotion: 当你击杀一名敌人时你会回复些许生命值
-			BloodshedPotion: 将你传送至上次死亡时的位置
 			SpreadPotion: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
 			ShadePotion: 站定不动时会使敌人无法以你为攻击目标
 			MysteryGrail:
@@ -1179,7 +1195,10 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
+			SpicyEelBuff: 香辣鳗鱼
+
 			SpaceSquidBuff: 太空乌贼
+
 			Omori: 朋友
 			PrimeTime: 机械蜘蛛强化
 			ArachnotronCooldown:机械蜘蛛冷却
@@ -1229,7 +1248,10 @@ Mods: {
 		}
 
 		BuffDescription: {
+			SpicyEelBuff: 大幅度增加移动速度
+
 			SpaceSquidBuff: "'它太可爱了'"
+
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 			PrimeTime: 防御大幅度提升!
 			ArachnotronCooldown: 你现在无法使用机械蜘蛛套装的效果
@@ -1915,7 +1937,7 @@ Mods: {
 		Configuration: {
 			Client: {
 				Headers: {
-					Visuals: 视觉
+					Visuals: "[c/ddddff:视觉]"
 				}
 
 			ScreenshakeIntensity: 屏幕震动强度
@@ -1933,6 +1955,14 @@ Mods: {
 					'''
 					只对需要确认事件的第三方开发者有用
 					'''
+			}
+
+			Gameplay: {
+				Headers: {
+					Recipes: "[c/ddddff:合成表更改]"
+				}
+				VoidBagRecipe: 虚空包裹合成表
+				VoidBagRecipeTooltip: 决定是否会更改虚空包裹和虚空保险箱的合成表配方
 			}
 		}
 
@@ -2017,6 +2047,21 @@ Mods: {
 		}
 
 		Deaths: {
+			AshTombstone: {
+				0: ...被永远的锁住了.
+				1: ...将永远的在地狱中燃烧.
+				2: ...的灵魂呗血巢吞噬了.
+				3: ...的心脏烧了成灰烬.
+				4: ...在地狱最黑暗的深渊中歇息.
+				5: ...化作了灰烬.
+				6: ...化作了尘埃.
+				7: ..., 欢迎来到地狱.
+				8: ..., 摔得怎么样.
+				9: ...被米诺斯自己扔到了深渊中.
+				10: ...被判决在火河中永生.
+				11: ...被迫在路西法的冷眼下永远冻结.
+				12: ...的余生都将被锁在异教徒的棺材中.
+			}
 			NecromancyStaffUsage: "{0}将自己转化为了一个{1}"
 		}
 		UpgradeGrapplingHooks: 升级钩爪
