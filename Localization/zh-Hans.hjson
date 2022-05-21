@@ -93,6 +93,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			SantankSentry: 哨兵6502型微型处理器
+			Slingshot: 弹弓
 			BloodiedBucket: 血污桶
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
@@ -423,6 +425,15 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SantankSentry: 
+				'''
+				允许你的哨兵装备你的饰品
+				'''
+			Slingshot: 
+				'''
+				向射击的反方向移动光标以增加射击强度
+				使用鸟作为弹药
+				'''
 			BloodiedBucket: 
 				'''
 				大幅度增加幽魂仆从的实名制
