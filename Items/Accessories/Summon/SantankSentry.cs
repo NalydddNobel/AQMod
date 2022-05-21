@@ -55,7 +55,6 @@ namespace Aequus.Items.Accessories.Summon
 
         public Player dummyPlayer;
         public bool appliedItemStatChanges;
-        public bool magmaStoneMelee;
         public int[] hasBounded;
 
         public override void Load()
@@ -109,7 +108,6 @@ namespace Aequus.Items.Accessories.Summon
         {
             dummyPlayer = null;
             appliedItemStatChanges = false;
-            magmaStoneMelee = false;
             hasBounded = null;
         }
 
@@ -120,7 +118,6 @@ namespace Aequus.Items.Accessories.Summon
                 return;
             }
 
-            magmaStoneMelee = false;
             if (ProjectileID.Sets.SentryShot[projectile.type])
             {
                 if (source is EntitySource_Parent parent)
@@ -244,10 +241,6 @@ namespace Aequus.Items.Accessories.Summon
 
         public static void WaterWalkingBoots_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-        }
-        public static void MagmaStone_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
-        {
-            sentry.magmaStoneMelee = true;
         }
         public static void SharkToothNecklace_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
