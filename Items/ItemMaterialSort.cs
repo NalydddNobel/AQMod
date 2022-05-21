@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Catalogues
+﻿namespace Aequus.Items
 {
     public static class ItemMaterialSort
     {
