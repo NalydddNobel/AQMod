@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.
 			Slingshot: Slingshot
 			BloodiedBucket: Bloodied Bucket
@@ -425,10 +426,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			SantankSentry: 
-				'''
-				Allows your sentries to equip your accessories
-				'''
+			BallisticScreecher: Shoots magma balls
+			RabbitsFoot: Increases luck for the user
+			SantankSentry: Allows your sentries to equip your accessories
 			Slingshot: 
 				'''
 				Bring your cursor back in order to charge the shot more

@@ -78,7 +78,8 @@ namespace Aequus.Projectiles.Melee
         {
             if (damageTime == 1 && Main.myPlayer == player.whoAmI && player.altFunctionUse != 2)
             {
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center, Projectile.velocity * 10f, ModContent.ProjectileType<Sliceflake>(), (int)(Projectile.damage * 0.66f), Projectile.knockBack, Projectile.owner);
+                var v = player.DirectionTo(player.ApplyRangeCompensation(0.125f, player.Center, Main.MouseWorld));
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center, v * 10f, ModContent.ProjectileType<Sliceflake>(), (int)(Projectile.damage * 0.66f), Projectile.knockBack, Projectile.owner);
             }
             int direction = -Projectile.direction;
             if (combo > 0)

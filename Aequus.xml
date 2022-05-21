@@ -49,14 +49,24 @@
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.blueFire">
+        <member name="F:Aequus.AequusPlayer.debuffBlueFire">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.Debuffs.BlueFire"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.pickBreak">
+        <member name="F:Aequus.AequusPlayer.debuffPickBreak">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.Debuffs.PickBreak"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.buffSpicyEel">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.SpicyEelBuff"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.buffResistHeat">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.spaceSquidPet">
@@ -74,11 +84,6 @@
             Applied by <see cref="T:Aequus.Buffs.Pets.OmegaStariteBuff"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.resistHeat">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.eventGaleStreams">
             <summary>
             Whether or not the player is in the Gale Streams event. Updated using <see cref="M:Aequus.AequusPlayer.CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
@@ -94,24 +99,20 @@
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.necromancyMinionSlotConvert">
+        <member name="F:Aequus.AequusPlayer.forceDaytime">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.RitualisticSkull"/>
+            0 = no force, 1 = force day, 2 = force night
+            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.autoSentry">
+        <member name="F:Aequus.AequusPlayer.scamChance">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.SentrySquid"/>
+            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Misc.Money.FaultyCoin"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.frostburnSentry">
+        <member name="F:Aequus.AequusPlayer.flatScamDiscount">
             <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Summon.IcebergKraken"/>. Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.glowCore">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.GlowCore"/>. All player owned projectiles also check this in order to decide if they should glow.
+            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Misc.Money.ForgedCard"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lootLuck">
@@ -120,10 +121,34 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.forceDaytime">
+        <member name="F:Aequus.AequusPlayer.accInheritTurrets">
             <summary>
-            0 = no force, 1 = force day, 2 = force night
-            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.SantankSentry"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accMinionsToGhosts">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.RitualisticSkull"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accAutoSentry">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.SentrySquid"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accFrostburnSentry">
+            <summary>
+            Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff. Applied by <see cref="T:Aequus.Items.Accessories.Summon.IcebergKraken"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accGlowCore">
+            <summary>
+            All player owned projectiles also check this in order to decide if they should glow. Applied by <see cref="T:Aequus.Items.Accessories.GlowCore"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
@@ -188,6 +213,19 @@
             Used to update <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/>
             </summary>
             <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.UpdateBank(Terraria.Chest,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="bank"></param>
+            <param name="bankType">Types: 
+            <list type="number">
+            Piggy Bank
+            <item>Safe</item>
+            <item>Defender's Forge</item>
+            <item>Void Bag</item>
+            </list></param>
         </member>
         <member name="M:Aequus.AequusPlayer.PostUpdate_CheckDanger">
             <summary>
@@ -303,16 +341,6 @@
             </para>
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:Aequus.Common.Players.HyperCrystalPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Players.MendshroomPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
-            </summary>
         </member>
         <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
             <summary>
@@ -441,6 +469,37 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Items.Accessories.MendshroomPlayer">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.Accessories.Summon.SantankSentryProjectile.SantankAccessoryInteraction_AI">
+            <summary>
+            <para>1) Projectile - the projectile</para>
+            <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+            <para>3) Item - the accessory</para>
+            <para>4) Player - the player owner of both projectiles</para>
+            <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.Accessories.Summon.SantankSentryProjectile.SantankAccessoryInteraction_OnShoot">
+            <summary>
+            <para>1) IEntitySource - the entity source</para>
+            <para>2) Projectile - the projectile</para>
+            <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+            <para>4) Projectile - the parent projectile, aka shooter</para>
+            <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
+            <para>6) Item - the accessory</para>
+            <para>7) Player - the player owner of both projectiles</para>
+            <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
         <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">

@@ -1,11 +1,7 @@
-﻿using Aequus.Common;
-using Aequus.Graphics;
-using Aequus.Graphics.ShaderData;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -67,14 +63,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader);
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader, useScissorRectangle: true);
                 var drawData = new DrawData(Aura.Value, position, null, coloring, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch);
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, useScissorRectangle: true);
             }
 
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -82,14 +78,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader);
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader, useScissorRectangle: true);
                 var drawData = new DrawData(Aura.Value, position, null, coloring.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch);
+                CommonSpriteBatchBegins.UI.Begin(spriteBatch, useScissorRectangle: true);
             }
             return false;
         }
@@ -109,7 +105,7 @@ namespace Aequus.Items.Misc.Energies
                 CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
                 var drawData = new DrawData(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
-               
+
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();

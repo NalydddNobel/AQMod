@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Magic
                             if (i != 0)
                             {
                                 var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, v.RotatedBy(MathHelper.PiOver4 / 2f * i) * 1.5f,
-                                    ModContent.ProjectileType<TriacanthornBolt>(), Projectile.damage / 4, Projectile.knockBack, Projectile.owner);
+                                    ModContent.ProjectileType<TriacanthornBolt>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
                             }
                         }
                     }

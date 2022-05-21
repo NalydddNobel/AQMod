@@ -47,13 +47,20 @@ namespace Aequus.Graphics
 
         public static class UI
         {
-            public static void Begin(SpriteBatch spriteBatch)
+            public static void Begin(SpriteBatch spriteBatch, bool useScissorRectangle = false)
             {
-                Begin(spriteBatch, Regular);
+                Begin(spriteBatch, Regular, useScissorRectangle);
             }
-            public static void Begin(SpriteBatch spriteBatch, SpriteSortMode spriteSort)
+            public static void Begin(SpriteBatch spriteBatch, SpriteSortMode spriteSort, bool useScissorRectangle = false)
             {
-                spriteBatch.Begin(spriteSort, null, null, null, null, null, Main.UIScaleMatrix);
+                RasterizerState rasterizer = null;
+                if (useScissorRectangle)
+                {
+                    rasterizer = new RasterizerState();
+                    rasterizer.CullMode = CullMode.None;
+                    rasterizer.ScissorTestEnable = true;
+                }
+                spriteBatch.Begin(spriteSort, null, null, null, rasterizer, null, Main.UIScaleMatrix);
             }
         }
     }

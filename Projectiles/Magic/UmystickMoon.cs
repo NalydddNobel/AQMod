@@ -70,6 +70,8 @@ namespace Aequus.Projectiles.Magic
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
+            Main.spriteBatch.Draw(Images.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, Images.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Images.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, Images.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

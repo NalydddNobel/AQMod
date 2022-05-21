@@ -35,13 +35,13 @@ namespace Aequus.Items.Accessories.Summon
     {
         /// <summary>
         /// <para>1) Projectile - the projectile</para>
-        /// <para>2) Item - the accessory</para>
-        /// <para>3) Player - the player owner of both projectiles</para>
-        /// <para>4) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
+        /// <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+        /// <para>3) Item - the accessory</para>
+        /// <para>4) Player - the player owner of both projectiles</para>
+        /// <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
         /// </summary>
         public static Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>> SantankAccessoryInteraction_AI { get; private set; }
         /// <summary>
-        /// Args:
         /// <para>1) IEntitySource - the entity source</para>
         /// <para>2) Projectile - the projectile</para>
         /// <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
@@ -79,6 +79,7 @@ namespace Aequus.Items.Accessories.Summon
                 [ItemID.VolatileGelatin] = SantankInteractions.VolatileGelatin_AI,
                 [ItemID.BoneGlove] = SantankInteractions.BoneGlove_AI,
             };
+
             SantankAccessoryInteraction_OnShoot = new Dictionary<int, Action<IEntitySource, Projectile, SantankSentryProjectile, Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
             {
                 [ItemID.SharkToothNecklace] = SantankInteractions.SharkToothNecklace_OnShoot,
