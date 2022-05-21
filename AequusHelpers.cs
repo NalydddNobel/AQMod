@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -399,6 +400,10 @@ namespace Aequus
             return npc2;
         }
 
+        public static AequusProjectile Aequus(this Projectile projectile)
+        {
+            return projectile.GetGlobalProjectile<AequusProjectile>();
+        }
         public static AequusPlayer Aequus(this Player player)
         {
             return player.GetModPlayer<AequusPlayer>();

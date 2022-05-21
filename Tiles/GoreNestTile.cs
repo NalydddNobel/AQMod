@@ -466,26 +466,19 @@ namespace Aequus.Tiles
             {
                 y = Main.maxTilesY - 1;
             }
-            while (true)
+            while ((x + k + dir < 0 || x + k + dir > Main.maxTilesX) 
+                && !Main.tile[x + k + dir, y].HasTile && !Main.tile[x + k + dir, y - 1].HasTile)
             {
-                if (x + k + dir < 0 || x + k + dir > Main.maxTilesX)
-                {
-                    break;
-                }
-                if (Main.tile[x + k + dir, y].HasTile && !Main.tile[x + k + dir, y - 1].HasTile)
-                {
-                    break;
-                }
                 k += dir;
                 if (WorldGen.genRand.NextBool(3))
                 {
                     y--;
                 }
-                if (y < MinY)
+                if (y < Main.UnderworldLayer)
                 {
                     break;
                 }
-                GenerateHill_SpawnAsh(x + k, y);
+                GenerateHill_SpawnAsh(x + k, y, kill: true);
             }
             x -= dir;
             while (true)

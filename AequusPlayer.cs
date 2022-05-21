@@ -11,6 +11,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Misc.Money;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -36,12 +37,14 @@ namespace Aequus
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
+        public bool IsFake;
+
         [SaveData("Scammer")]
         public bool permHasScammed;
-        [SaveData("Moro")]
         /// <summary>
         /// Enabled by <see cref="Items.Consumables.Moro"/>
         /// </summary>
+        [SaveData("Moro")]
         public bool permMoro;
 
         /// <summary>
@@ -97,7 +100,7 @@ namespace Aequus
         public byte forceDaytime;
 
         /// <summary>
-        /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref=""/>
+        /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="FaultyCoin"/>
         /// </summary>
         public float scamChance;
         /// <summary>
@@ -110,6 +113,10 @@ namespace Aequus
         /// </summary>
         public float lootLuck;
 
+        /// <summary>
+        /// Applied by <see cref="SantankSentry"/>
+        /// </summary>
+        public bool accInheritTurrets;
         /// <summary>
         /// Applied by <see cref="FoolsGoldRing"/>
         /// </summary>
@@ -296,6 +303,30 @@ namespace Aequus
             return Point.Zero;
         }
 
+        public override void SetControls()
+        {
+            if (IsFake)
+            {
+                Player.controlCreativeMenu = false;
+                Player.controlHook = false;
+                Player.controlInv = false;
+                Player.controlJump = false;
+                Player.controlLeft = false;
+                Player.controlMap = false;
+                Player.controlMount = false;
+                Player.controlQuickHeal = false;
+                Player.controlQuickMana = false;
+                Player.controlRight = false;
+                Player.controlSmart = false;
+                Player.controlThrow = false;
+                Player.controlTorch = false;
+                Player.controlUseItem = false;
+                Player.controlUseTile = false;
+                Player.gravControl = false;
+                Player.gravControl2 = false;
+            }
+        }
+
         public override void UpdateDead()
         {
             hitTime = 0;
@@ -306,9 +337,15 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            if (IsFake)
+            {
+                Player.ClearBuff(BuffID.Gravitation);
+                Player.gravDir = 1;
+            }
             scamChance = 0f;
             flatScamDiscount = 0;
 
+            accInheritTurrets = false;
             accFoolsGoldRing = false;
             accMinionsToGhosts = false;
             accFrostburnSentry = false;
@@ -728,45 +765,13 @@ namespace Aequus
             {
                 return;
             }
-            RenderMendshroomAura();
-            RenderFocusCrystalAura();
         }
-        public void RenderMendshroomAura()
-        {
-            var stat = Player.GetModPlayer<MendshroomPlayer>();
-            if (stat._circumferenceForVFX > 0f)
-            {
-                DrawBasicAura(stat._circumferenceForVFX, 1f, new Color(10, 128, 10, 0));
-            }
-        }
-        public void RenderFocusCrystalAura()
-        {
-            var hyperCrystal = Player.GetModPlayer<HyperCrystalPlayer>();
-            if (hyperCrystal._accFocusCrystalCircumference > 0f && !hyperCrystal.hideVisual)
-            {
-                if (InDanger)
-                {
-                    hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 1f, 0.1f);
-                }
-                else
-                {
-                    hyperCrystal._accFocusCrystalOpacity = MathHelper.Lerp(hyperCrystal._accFocusCrystalOpacity, 0.2f, 0.1f);
-                }
 
-                DrawBasicAura(hyperCrystal._accFocusCrystalCircumference, hyperCrystal._accFocusCrystalOpacity, new Color(128, 10, 10, 0));
-            }
-            else
-            {
-                hyperCrystal._accFocusCrystalOpacity = 0f;
-            }
-        }
-        public void DrawBasicAura(float circumference, float opacity, Color color)
+        public static void DrawLegacyAura(Vector2 location, float circumference, float opacity, Color color)
         {
-            BeginSpriteBatch(Main.spriteBatch);
-
             var texture = PlayerAssets.FocusAura.Value;
             var origin = texture.Size() / 2f;
-            var drawCoords = (Player.Center - Main.screenPosition).Floor();
+            var drawCoords = (location - Main.screenPosition).Floor();
             float scale = circumference / texture.Width;
             opacity = Math.Min(opacity * scale, 1f);
 
@@ -788,8 +793,6 @@ namespace Aequus
 
             Main.spriteBatch.Draw(texture, drawCoords, null,
                 color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-
-            Main.spriteBatch.End();
         }
         private void BeginSpriteBatch(SpriteBatch spriteBatch)
         {
@@ -958,6 +961,72 @@ namespace Aequus
                 sacrifices.Add(new LifeSacrifice(lifeTaken, i * separation, hitPlayer, reason));
             }
             sacrifices.Add(new LifeSacrifice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
+        }
+
+        public static Player CreateAPrettyCloseClone(Player basePlayer)
+        {
+            var p = (Player)basePlayer.clientClone();
+            p.boneGloveItem = basePlayer.boneGloveItem?.Clone();
+            p.boneGloveTimer = basePlayer.boneGloveTimer;
+            p.volatileGelatin = basePlayer.volatileGelatin;
+            p.volatileGelatinCounter = basePlayer.volatileGelatinCounter;
+            return p;
+        }
+
+        public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true)
+        {
+            var l = new List<Item>();
+            if (armor)
+            {
+                for (int i = 0; i < 3; i++)
+                    l.Add(player.armor[i]);
+            }
+            if (accessories)
+            {
+                for (int i = 3; i < 10; i++)
+                {
+                    if (player.IsAValidEquipmentSlotForIteration(i))
+                        l.Add(player.armor[i]);
+                }
+            }
+            return l;
+        }
+
+        public static void SpawnBounded(IEntitySource source, Player player, int type)
+        {
+            if (SantankInteractions.RunningProj != -1)
+            {
+                var arr = Main.projectile[SantankInteractions.RunningProj].GetGlobalProjectile<SantankSentryProjectile>().hasBounded;
+                if (arr.ContainsAny(type))
+                {
+                    return;
+                }
+
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI, 
+                        Main.projectile[SantankInteractions.RunningProj].identity + 1);
+                }
+                Array.Resize(ref arr, arr.Length + 1);
+                arr[^1] = type;
+                Main.projectile[SantankInteractions.RunningProj].GetGlobalProjectile<SantankSentryProjectile>().hasBounded = arr;
+                return;
+            }
+
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == type && 
+                    (int)Main.projectile[i].ai[0] == 0)
+                {
+                    return;
+                }
+            }
+
+            if (Main.myPlayer == player.whoAmI)
+            {
+                Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI);
+            }
+            player.ownedProjectileCounts[type]++;
         }
     }
 }

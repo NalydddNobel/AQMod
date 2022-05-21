@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,6 +8,24 @@ namespace Aequus.Projectiles
 {
     public class AequusProjectile : GlobalProjectile
     {
+        public int itemUsed;
+        public int ammoUsed;
+
+        public override bool InstancePerEntity => true;
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
+            {
+                itemUsed = itemUse_WithAmmo.Item.netID;
+                ammoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+            }
+            else if (source is EntitySource_ItemUse itemUse)
+            {
+                itemUsed = itemUse.Item.netID;
+            }
+        }
+
         public override void PostAI(Projectile projectile)
         {
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)

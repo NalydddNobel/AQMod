@@ -98,10 +98,6 @@ namespace Aequus.Content.Necromancy
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (!AI_IsZombie)
-            {
-                return;
-            }
             if (source is EntitySource_OnHit onHit)
             {
                 ZombieCheck(onHit.EntityStruck, npc);
@@ -624,10 +620,6 @@ namespace Aequus.Content.Necromancy
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (!NecromancyNPC.AI_IsZombie)
-            {
-                return;
-            }
             if (source is EntitySource_OnHit onHit)
             {
                 ZombieCheck(onHit.EntityStruck, projectile);

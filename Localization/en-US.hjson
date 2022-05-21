@@ -93,6 +93,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			SantankSentry: Sentry 6502 N.O.S.
+			Slingshot: Slingshot
 			BloodiedBucket: Bloodied Bucket
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
@@ -423,6 +425,15 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SantankSentry: 
+				'''
+				Allows your sentries to equip your accessories
+				'''
+			Slingshot: 
+				'''
+				Bring your cursor back in order to charge the shot more
+				Uses birds as ammo
+				'''
 			BloodiedBucket: 
 				'''
 				Greatly increases the lifespan of ghost minions
