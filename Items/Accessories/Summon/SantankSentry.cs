@@ -69,7 +69,6 @@ namespace Aequus.Items.Accessories.Summon
                 [ItemID.ObsidianWaterWalkingBoots] = SantankInteractions.WaterWalkingBoots_AI,
                 [ItemID.WaterWalkingBoots] = SantankInteractions.WaterWalkingBoots_AI,
                 [ItemID.FireGauntlet] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.MagmaStone] = SantankInteractions.ApplyEquipFunctional_AI,
                 [ItemID.ArcticDivingGear] = SantankInteractions.ApplyEquipFunctional_AI,
                 [ItemID.JellyfishDivingGear] = SantankInteractions.ApplyEquipFunctional_AI,
                 [ItemID.JellyfishNecklace] = SantankInteractions.ApplyEquipFunctional_AI,
@@ -266,7 +265,7 @@ namespace Aequus.Items.Accessories.Summon
         }
         public static void BoneHelm_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-            Player_SpawnHallucination.Invoke(player, new object[] { item });
+            Player_SpawnHallucination.Invoke(sentry.dummyPlayer, new object[] { item });
         }
         public static void VolatileGelatin_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
