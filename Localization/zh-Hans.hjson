@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			RabbitsFoot: 兔脚
 			SantankSentry: 哨兵6502型微型处理器
 			Slingshot: 弹弓
 			BloodiedBucket: 血污桶
@@ -425,10 +426,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			SantankSentry: 
-				'''
-				允许你的哨兵装备你的饰品
-				'''
+			BallisticScreecher: 发射熔岩球
+			RabbitsFoot: 增加用户的幸运度
+			SantankSentry: 允许你的哨兵装备你的饰品
 			Slingshot: 
 				'''
 				向射击的反方向移动光标以增加射击强度
