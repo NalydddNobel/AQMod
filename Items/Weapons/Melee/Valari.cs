@@ -9,7 +9,7 @@ namespace Aequus.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            OnOpenBag.LockboxPool.Add(Type);
+            BagLootPools.LockboxPool.Add(Type);
 
             this.SetResearch(1);
         }

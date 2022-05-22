@@ -33,9 +33,9 @@ namespace Aequus.Projectiles
                 var aequus = Main.player[projectile.owner].Aequus();
                 if (aequus.accGlowCore > 0)
                 {
-                    AequusPlayer.teamContext = Main.player[projectile.owner].team;
+                    AequusPlayer.TeamContext = Main.player[projectile.owner].team;
                     GlowCore.AddLight(projectile, aequus.accGlowCore);
-                    AequusPlayer.teamContext = 0;
+                    AequusPlayer.TeamContext = 0;
                 }
             }
         }

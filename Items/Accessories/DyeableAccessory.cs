@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories
             }
             if (dye == 253)
             {
-                return Main.teamColor[AequusPlayer.teamContext];
+                return Main.teamColor[AequusPlayer.TeamContext];
             }
             if (dye == 255)
             {

@@ -101,7 +101,7 @@ namespace Aequus.Items.Accessories.Summon
         {
             var clone = (SantankSentryProjectile)base.Clone(projectile, projectileClone);
             if (dummyPlayer != null)
-                clone.dummyPlayer = AequusPlayer.CreateAPrettyCloseClone(dummyPlayer);
+                clone.dummyPlayer = AequusPlayer.SantankAccClone(dummyPlayer);
             return clone;
         }
 
@@ -165,7 +165,7 @@ namespace Aequus.Items.Accessories.Summon
             {
                 if (dummyPlayer == null)
                 {
-                    dummyPlayer = AequusPlayer.CreateAPrettyCloseClone(Main.player[projectile.owner]);
+                    dummyPlayer = AequusPlayer.SantankAccClone(Main.player[projectile.owner]);
                 }
                 dummyPlayer.Center = projectile.Center;
                 dummyPlayer.velocity = projectile.velocity;

@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            OnOpenBag.LockboxPool.Add(Type);
+            BagLootPools.LockboxPool.Add(Type);
         }
 
         public override void SetDefaults()

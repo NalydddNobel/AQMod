@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Items
 {
-    public static class ItemMaterialSort
+    public static class MaterialSort
     {
         public const int Amethyst = 37;
         public const int Topaz = 38;

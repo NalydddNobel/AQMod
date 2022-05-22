@@ -13,7 +13,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            OnOpenBag.WoodenCratePool.Add(Type);
+            BagLootPools.WoodenCratePool.Add(Type);
             GoldenRoulette.Table.Add(Type);
         }
 
@@ -47,9 +47,9 @@ namespace Aequus.Items.Accessories
             {
                 var texture = TextureAssets.Item[Type].Value;
 
-                AequusPlayer.teamContext = Main.LocalPlayer.team;
+                AequusPlayer.TeamContext = Main.LocalPlayer.team;
                 var coloring = DyeColor();
-                AequusPlayer.teamContext = 0;
+                AequusPlayer.TeamContext = 0;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -76,15 +76,15 @@ namespace Aequus.Items.Accessories
 
                 if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
                 {
-                    AequusPlayer.teamContext = Main.player[Item.playerIndexTheItemIsReservedFor].team;
+                    AequusPlayer.TeamContext = Main.player[Item.playerIndexTheItemIsReservedFor].team;
                 }
                 else
                 {
-                    AequusPlayer.teamContext = 0;
+                    AequusPlayer.TeamContext = 0;
                 }
 
                 var coloring = DyeColor();
-                AequusPlayer.teamContext = 0;
+                AequusPlayer.TeamContext = 0;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {

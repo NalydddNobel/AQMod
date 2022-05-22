@@ -9,7 +9,7 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[Type] = ItemMaterialSort.Ectoplasm;
+            ItemID.Sets.SortingPriorityMaterials[Type] = MaterialSort.Ectoplasm;
             this.SetResearch(25);
         }
 

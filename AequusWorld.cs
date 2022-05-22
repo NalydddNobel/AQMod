@@ -56,21 +56,11 @@ namespace Aequus
         public override void NetSend(BinaryWriter writer)
         {
             NetTypeAttribute.SendData(writer, this);
-            //writer.Write(downedSpaceSquid);
-            //writer.Write(downedRedSprite);
-            //writer.Write(downedEventGaleStreams);
-            //writer.Write(downedCrabson);
-            //writer.Write(downedOmegaStarite);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             NetTypeAttribute.ReadData(reader, this);
-            //downedSpaceSquid = reader.ReadBoolean();
-            //downedRedSprite = reader.ReadBoolean();
-            //downedEventGaleStreams = reader.ReadBoolean();
-            //downedCrabson = reader.ReadBoolean();
-            //downedOmegaStarite = reader.ReadBoolean();
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

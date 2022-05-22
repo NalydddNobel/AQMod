@@ -27,6 +27,11 @@ namespace Aequus.Items
         {
             public override void Load()
             {
+                VanillaWorksInInvAndBank = new HashSet<int>()
+                {
+                    ItemID.DiscountCard,
+                    ItemID.ShadowKey,
+                };
                 Dedicated = new Dictionary<int, ItemDedication>();
                 //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                 //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
@@ -35,13 +40,15 @@ namespace Aequus.Items
 
             public override void Unload()
             {
+                VanillaWorksInInvAndBank?.Clear();
+                VanillaWorksInInvAndBank = null;
                 Dedicated?.Clear();
                 Dedicated = null;
             }
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
-                if (item.type == ItemID.ShadowKey || item.type == ItemID.DiscountCard || item.ModItem is IUpdateBank)
+                if (item.ModItem is IUpdateBank || VanillaWorksInInvAndBank.Contains(item.type))
                 {
                     tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
                 }
@@ -63,6 +70,7 @@ namespace Aequus.Items
         }
 
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
+        public static HashSet<int> VanillaWorksInInvAndBank { get; private set; }
 
         internal static readonly string[] TooltipNames = new string[]
         {

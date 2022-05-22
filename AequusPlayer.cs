@@ -11,7 +11,6 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Misc.Money;
-using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,13 +30,27 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
-        public static int teamContext;
-        public static float? PlayerDrawScale { get; set; }
-        public static int? PlayerDrawForceDye { get; set; }
+        public struct LifeSacrifice
+        {
+            public int time;
+            public int amtTaken;
+            public bool physicallyHitPlayer = false;
+            public PlayerDeathReason reason = null;
+
+            public LifeSacrifice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
+            {
+                this.amtTaken = amtTaken;
+                this.time = time;
+                physicallyHitPlayer = hitPlayer;
+                this.reason = reason;
+            }
+        }
+
+        public static int TeamContext;
+        public static float? PlayerDrawScale;
+        public static int? PlayerDrawForceDye;
 
         private static MethodInfo Player_ItemCheck_Shoot;
-
-        public bool IsFake;
 
         [SaveData("Scammer")]
         public bool permHasScammed;
@@ -88,7 +101,7 @@ namespace Aequus
         public Point eventDemonSiege;
 
         /// <summary>
-        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="PostUpdate_CheckDanger"/>
+        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="CheckDanger"/>
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
@@ -107,6 +120,11 @@ namespace Aequus
         /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="ForgedCard"/>
         /// </summary>
         public int flatScamDiscount;
+        /// <summary>
+        /// Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
+        /// <para>Used by <see cref="RabbitsFoot"/></para> 
+        /// </summary>
+        public float luckRerolls;
         /// <summary>
         /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
         /// <para>Used by <see cref="GrandReward"/></para> 
@@ -208,36 +226,84 @@ namespace Aequus
             LoadHooks();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
-        private void LoadHooks()
+
+        #region Hooks
+        private static void LoadHooks()
         {
+            On.Terraria.Player.RollLuck += Player_RollLuck;
             On.Terraria.Player.DropCoins += Player_DropCoins;
             On.Terraria.Player.GetItemExpectedPrice += Player_GetItemExpectedPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += OnRenderPlayer;
         }
 
-        private int Player_DropCoins(On.Terraria.Player.orig_DropCoins orig, Player self)
+        private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
+        {
+            int rolled = orig(self, range);
+            if (AequusHelpers.iterations == 0)
+            {
+                AequusHelpers.iterations++;
+                try
+                {
+                    rolled = self.Aequus().RerollLuck(rolled, range);
+                }
+                catch
+                {
+                }
+                AequusHelpers.iterations = 0;
+            }
+            return rolled;
+        }
+        public int RerollLuck(int rolledAmt, int range)
+        {
+            for (float luckLeft = lootLuck; luckLeft > 0f; luckLeft--)
+            {
+                if (luckLeft < 1f)
+                {
+                    if (Main.rand.NextFloat(1f) > luckLeft)
+                    {
+                        return rolledAmt;
+                    }
+                }
+                int roll = Player.RollLuck(range);
+                if (roll < rolledAmt)
+                {
+                    rolledAmt = roll;
+                }
+                if (rolledAmt <= 0)
+                {
+                    return 0;
+                }
+            }
+            return rolledAmt;
+        }
+
+        private static int Player_DropCoins(On.Terraria.Player.orig_DropCoins orig, Player self)
         {
             if (self.Aequus().accFoolsGoldRing)
             {
-                for (int i = 0; i < 59; i++)
-                {
-                    if (self.inventory[i].IsACoin)
-                    {
-                        self.inventory[i].TurnToAir();
-                    }
-                    if (i == 58)
-                    {
-                        Main.mouseItem = self.inventory[i].Clone();
-                    }
-                }
-                self.lostCoins = 0;
-                self.lostCoinString = "";
-                return 0;
+                return FoolsGoldCoinCurse(self);
             }
             return orig(self);
         }
+        public static int FoolsGoldCoinCurse(Player player)
+        {
+            for (int i = 0; i < 59; i++)
+            {
+                if (player.inventory[i].IsACoin)
+                {
+                    player.inventory[i].TurnToAir();
+                }
+                if (i == 58)
+                {
+                    Main.mouseItem = player.inventory[i].Clone();
+                }
+            }
+            player.lostCoins = 0;
+            player.lostCoinString = "";
+            return 0;
+        }
 
-        private void Player_GetItemExpectedPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
+        private static void Player_GetItemExpectedPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);
             if (item.shopSpecialCurrency != -1)
@@ -246,6 +312,42 @@ namespace Aequus
             }
             calcForBuying -= self.Aequus().flatScamDiscount;
         }
+
+        private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        {
+            AdjustPlayerRender(PlayerDrawScale, PlayerDrawForceDye, ref drawinfo);
+
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
+            orig(ref drawinfo);
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
+        }
+        public static void AdjustPlayerRender(float? drawScale, int? drawForceDye, ref PlayerDrawSet drawinfo)
+        {
+            if (drawScale != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+                to -= Main.screenPosition;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
+                    data.scale *= PlayerDrawScale.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+            if (drawForceDye != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.shader = PlayerDrawForceDye.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+        }
+        #endregion
 
         public override void Unload()
         {
@@ -303,30 +405,6 @@ namespace Aequus
             return Point.Zero;
         }
 
-        public override void SetControls()
-        {
-            if (IsFake)
-            {
-                Player.controlCreativeMenu = false;
-                Player.controlHook = false;
-                Player.controlInv = false;
-                Player.controlJump = false;
-                Player.controlLeft = false;
-                Player.controlMap = false;
-                Player.controlMount = false;
-                Player.controlQuickHeal = false;
-                Player.controlQuickMana = false;
-                Player.controlRight = false;
-                Player.controlSmart = false;
-                Player.controlThrow = false;
-                Player.controlTorch = false;
-                Player.controlUseItem = false;
-                Player.controlUseTile = false;
-                Player.gravControl = false;
-                Player.gravControl2 = false;
-            }
-        }
-
         public override void UpdateDead()
         {
             hitTime = 0;
@@ -337,11 +415,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            if (IsFake)
-            {
-                Player.ClearBuff(BuffID.Gravitation);
-                Player.gravDir = 1;
-            }
+            UpdateCooldowns();
             scamChance = 0f;
             flatScamDiscount = 0;
 
@@ -349,7 +423,7 @@ namespace Aequus
             accFoolsGoldRing = false;
             accMinionsToGhosts = false;
             accFrostburnSentry = false;
-            teamContext = Player.team;
+            TeamContext = Player.team;
 
             buffSpicyEel = false;
             buffResistHeat = false;
@@ -371,21 +445,8 @@ namespace Aequus
             ghostSlotsMax = 1;
             ghostLifespan = 3600;
         }
-
-        public override void PreUpdateBuffs()
+        public void UpdateCooldowns()
         {
-            if (!InDanger)
-            {
-                autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
-            }
-            AequusHelpers.TickDown(ref autoSentryCooldown);
-            hitTime++;
-        }
-
-        public override bool PreItemCheck()
-        {
-            if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.RepairCachedStatic();
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -425,6 +486,22 @@ namespace Aequus
             {
                 interactionCooldown--;
             }
+        }
+
+        public override void PreUpdateBuffs()
+        {
+            if (!InDanger)
+            {
+                autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
+            }
+            AequusHelpers.TickDown(ref autoSentryCooldown);
+            hitTime++;
+        }
+
+        public override bool PreItemCheck()
+        {
+            if (AequusHelpers.Main_dayTime.IsCaching)
+                AequusHelpers.Main_dayTime.RepairCachedStatic();
             return true;
         }
 
@@ -582,17 +659,17 @@ namespace Aequus
             {
                 AequusHelpers.Main_dayTime.EndCaching();
             }
-            PostUpdate_CheckDanger();
+            CheckDanger();
             if (accAutoSentry && autoSentryCooldown == 0)
             {
                 UpdateAutoSentry();
             }
-            teamContext = 0;
+            TeamContext = 0;
         }
         /// <summary>
         /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
         /// </summary>
-        public void PostUpdate_CheckDanger()
+        public void CheckDanger()
         {
             closestEnemyOld = closestEnemy;
             closestEnemy = -1;
@@ -618,7 +695,7 @@ namespace Aequus
         }
 
         /// <summary>
-        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="PostUpdate_CheckDanger"/>
+        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="CheckDanger"/>
         /// </summary>
         public void UpdateAutoSentry()
         {
@@ -704,10 +781,18 @@ namespace Aequus
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
         {
-            if (scamChance > 0f || flatScamDiscount > 0)
+            if (CheckScam())
             {
                 permHasScammed = true;
             }
+            MoneyBack(vendor, shopInventory, item);
+        }
+        public bool CheckScam()
+        {
+            return scamChance > 0f || flatScamDiscount > 0;
+        }
+        public bool MoneyBack(NPC vendor, Item[] shopInventory, Item item)
+        {
             if (Main.rand.NextFloat() < scamChance)
             {
                 int oldStack = item.stack;
@@ -718,8 +803,10 @@ namespace Aequus
                 if (buyPrice > 0)
                 {
                     AequusHelpers.DropMoney(new EntitySource_Gift(vendor, "Aequus:FaultyCoin"), Player.getRect(), buyPrice, quiet: false);
+                    return true;
                 }
             }
+            return false;
         }
 
         public override void ModifyScreenPosition()
@@ -793,10 +880,6 @@ namespace Aequus
 
             Main.spriteBatch.Draw(texture, drawCoords, null,
                 color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-        }
-        private void BeginSpriteBatch(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
         }
 
         /// <summary>
@@ -902,52 +985,6 @@ namespace Aequus
             return result;
         }
 
-        private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
-        {
-            if (PlayerDrawScale != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
-                to -= Main.screenPosition;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
-                    data.scale *= PlayerDrawScale.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
-            if (PlayerDrawForceDye != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.shader = PlayerDrawForceDye.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
-            orig(ref drawinfo);
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
-        }
-
-        public struct LifeSacrifice
-        {
-            public int time;
-            public int amtTaken;
-            public bool physicallyHitPlayer = false;
-            public PlayerDeathReason reason = null;
-
-            public LifeSacrifice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
-            {
-                this.amtTaken = amtTaken;
-                this.time = time;
-                physicallyHitPlayer = hitPlayer;
-                this.reason = reason;
-            }
-        }
-
         public void SacrificeLife(int amt, int frames = 1, int separation = 1, bool hitPlayer = false, PlayerDeathReason reason = null)
         {
             if (amt < frames || frames < 2)
@@ -963,7 +1000,7 @@ namespace Aequus
             sacrifices.Add(new LifeSacrifice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
         }
 
-        public static Player CreateAPrettyCloseClone(Player basePlayer)
+        public static Player SantankAccClone(Player basePlayer)
         {
             var p = (Player)basePlayer.clientClone();
             p.boneGloveItem = basePlayer.boneGloveItem?.Clone();
@@ -1004,7 +1041,7 @@ namespace Aequus
 
                 if (Main.myPlayer == player.whoAmI)
                 {
-                    Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI, 
+                    Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI,
                         Main.projectile[SantankInteractions.RunningProj].identity + 1);
                 }
                 Array.Resize(ref arr, arr.Length + 1);
@@ -1015,7 +1052,7 @@ namespace Aequus
 
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == type && 
+                if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == type &&
                     (int)Main.projectile[i].ai[0] == 0)
                 {
                     return;

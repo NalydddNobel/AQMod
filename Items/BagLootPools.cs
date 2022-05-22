@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public class OnOpenBag : GlobalItem
+    public class BagLootPools : GlobalItem
     {
         public static List<int> WoodenCratePool { get; private set; }
         public static List<int> LockboxPool { get; private set; }
@@ -21,15 +21,14 @@ namespace Aequus.Items
         {
             if (context == "lockBox")
             {
-                OpenBag_Lockbox(player);
+                LockboxLoot(player);
             }
             else if (context == "crate")
             {
-                OpenBag_Crate(player, arg);
+                CrateLoot(player, arg);
             }
         }
-
-        public void OpenBag_Lockbox(Player player)
+        public void LockboxLoot(Player player)
         {
             var source = player.GetSource_OpenItem(ItemID.LockBox);
             if (Main.rand.NextBool(3))
@@ -37,8 +36,7 @@ namespace Aequus.Items
                 DropHelper.OneFromList(source, player, LockboxPool);
             }
         }
-
-        public void OpenBag_Crate(Player player, int type)
+        public void CrateLoot(Player player, int type)
         {
             var source = player.GetSource_OpenItem(type);
             if (type == ItemID.WoodenCrate && Main.rand.NextBool(3))
