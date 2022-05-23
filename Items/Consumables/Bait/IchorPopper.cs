@@ -7,6 +7,11 @@ namespace Aequus.Items.Consumables.Bait
 {
     public class IchorPopper : ModItem, IModifyFishingPower
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(5);
+        }
+
         public override void SetDefaults()
         {
             Item.width = 6;

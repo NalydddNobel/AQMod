@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
@@ -24,8 +25,8 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
-            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Slingshot/stretch")?.WithVolume(0.2f);
+            Item.value = Item.sellPrice(gold: 2);
             Item.knockBack = 1f;
             Item.useAmmo = AmmoID.Bullet;
         }

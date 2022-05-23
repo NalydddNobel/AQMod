@@ -111,6 +111,9 @@ namespace Aequus.Items.Accessories.Summon
                 dummyPlayer.ResetEffects();
                 dummyPlayer.whoAmI = projectile.owner;
                 dummyPlayer.Aequus().projectileIdentity = projectile.identity;
+                dummyPlayer.wet = projectile.wet;
+                dummyPlayer.lavaWet = projectile.lavaWet;
+                dummyPlayer.honeyWet = projectile.honeyWet;
                 AequusProjectile.ParentProjectile = projectile.whoAmI;
 
                 try

@@ -37,6 +37,12 @@ namespace Aequus.Items.Consumables
 
                 player.Teleport(player.lastDeathPostion - new Vector2(0f, 48f), -1);
 
+                var s = Main.screenPosition;
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    Main.screenPosition = player.Center - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+                }
+
                 for (int i = 0; i < 30; i++)
                 {
                     var d = Dust.NewDustDirect(player.position, player.width, player.height, DustID.Blood, Scale: Main.rand.NextFloat(1f, 1.5f));
@@ -52,6 +58,7 @@ namespace Aequus.Items.Consumables
                     d.velocity += player.velocity * 0.2f + new Vector2(Main.rand.NextFloat(-2f, 2f), -4f);
                     d.color = Color.Red;
                 }
+                Main.screenPosition = s;
             }
         }
 
