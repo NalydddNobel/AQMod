@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Recipes
 {
-    public sealed class AlternativeRecipes : GlobalRecipe, IPostAddRecipes
+    public sealed class Alternatives : GlobalRecipe, IPostAddRecipes
     {
         void IPostAddRecipes.PostAddRecipes(Aequus aequus)
         {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Recipes;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon

@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Tiles;
 using System.Collections.Generic;
@@ -40,6 +41,10 @@ namespace Aequus.Content
                             rockmanChests.Add(i);
                             FrozenChestLoot(c, ref placedCrystalDagger);
                         }
+                        else if (chestType == ChestTypes.Skyware)
+                        {
+                            FrozenChestLoot(c, ref placedCrystalDagger);
+                        }
                     }
                     else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
                     {
@@ -54,6 +59,14 @@ namespace Aequus.Content
             if (rockmanChests.Count > 0)
             {
                 Main.chest[rockmanChests[WorldGen.genRand.Next(rockmanChests.Count)]].Insert(ModContent.ItemType<RockMan>(), WorldGen.genRand.Next(Chest.maxItems - 1));
+            }
+        }
+
+        public void FrozenChestLoot(Chest c)
+        {
+            if (c.item[0].type == ItemID.CreativeWings)
+            {
+                c.Insert(ModContent.ItemType<Slingshot>(), 1);
             }
         }
 

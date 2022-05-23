@@ -25,7 +25,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.luck += 0.25f;
+            player.Aequus().luckRerolls += 1f;
         }
     }
 }

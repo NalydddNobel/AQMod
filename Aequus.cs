@@ -3,7 +3,7 @@ using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
-using Aequus.Items;
+using Aequus.Items.Recipes;
 using Aequus.NPCs;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;

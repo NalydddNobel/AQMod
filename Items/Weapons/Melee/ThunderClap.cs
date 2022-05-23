@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee;
+﻿using Aequus.Items.Recipes;
+using Aequus.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
