@@ -13,7 +13,7 @@ namespace Aequus.Items.Accessories
         {
             this.SetResearch(1);
 
-            SantankSentryProjectile.SantankAccessoryInteraction_AI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
+            SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
         }
 
         public override void SetDefaults()
@@ -32,7 +32,11 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            AequusPlayer.SpawnBounded(player.GetSource_Accessory(Item), player, ModContent.ProjectileType<HyperCrystalAuraProj>());
+            if (player.Aequus().ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<HyperCrystalAuraProj>()) <= 0)
+            {
+                Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalAuraProj>(),
+                    0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
+            }
             player.GetModPlayer<HyperCrystalPlayer>().Add(480f, 0.25f, hideVisual);
         }
     }

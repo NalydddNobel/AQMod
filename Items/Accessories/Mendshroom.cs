@@ -14,7 +14,7 @@ namespace Aequus.Items.Accessories
         {
             this.SetResearch(1);
 
-            SantankSentryProjectile.SantankAccessoryInteraction_AI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
+            SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
         }
 
         public override void SetDefaults()
@@ -30,7 +30,11 @@ namespace Aequus.Items.Accessories
             stat.Add(circumference: 240f, regen: 60);
             if (stat.EffectActive)
             {
-                AequusPlayer.SpawnBounded(player.GetSource_Accessory(Item), player, ModContent.ProjectileType<MendshroomAuraProj>());
+                if (player.Aequus().ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<MendshroomAuraProj>()) <= 0)
+                {
+                    Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<MendshroomAuraProj>(),
+                        0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
+                }
                 var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
                 var d = Dust.NewDustPerfect(player.Center + v * Main.rand.NextFloat(stat.diameter / 2f), ModContent.DustType<MonoDust>(), -v, 0, new Color(10, 100, 20, 25));
             }

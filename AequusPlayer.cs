@@ -52,6 +52,8 @@ namespace Aequus
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
+        public int projectileIdentity = -1;
+
         [SaveData("Scammer")]
         public bool permHasScammed;
         /// <summary>
@@ -372,6 +374,7 @@ namespace Aequus
 
         public override void PreUpdate()
         {
+            projectileIdentity = -1;
             if (forceDaytime == 1)
             {
                 AequusHelpers.Main_dayTime.StartCaching(true);
@@ -1029,41 +1032,39 @@ namespace Aequus
             return l;
         }
 
-        public static void SpawnBounded(IEntitySource source, Player player, int type)
+        public int ProjectilesOwned_ConsiderProjectileIdentity(int type, bool extraThorough = false)
         {
-            if (SantankInteractions.RunningProj != -1)
+            int count = 0;
+            if (projectileIdentity != -1)
             {
-                var arr = Main.projectile[SantankInteractions.RunningProj].GetGlobalProjectile<SantankSentryProjectile>().hasBounded;
-                if (arr.ContainsAny(type))
+                int myProj = AequusHelpers.FindProjectileIdentity(Player.whoAmI, projectileIdentity);
+                if (myProj != -1)
                 {
-                    return;
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type 
+                            && Main.projectile[i].Aequus().projectileOwner == projectileIdentity)
+                        {
+                            count++;
+                        }
+                    }
                 }
-
-                if (Main.myPlayer == player.whoAmI)
-                {
-                    Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI,
-                        Main.projectile[SantankInteractions.RunningProj].identity + 1);
-                }
-                Array.Resize(ref arr, arr.Length + 1);
-                arr[^1] = type;
-                Main.projectile[SantankInteractions.RunningProj].GetGlobalProjectile<SantankSentryProjectile>().hasBounded = arr;
-                return;
+                return count;
             }
-
+            count = Player.ownedProjectileCounts[type]; 
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].type == type &&
-                    (int)Main.projectile[i].ai[0] == 0)
+                if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
+                    && Main.projectile[i].Aequus().projectileOwner > 0)
                 {
-                    return;
+                    if (extraThorough && AequusHelpers.FindProjectileIdentity(Player.whoAmI, Main.projectile[i].Aequus().projectileOwner) == -1)
+                    {
+                        break;
+                    }
+                    count--;
                 }
             }
-
-            if (Main.myPlayer == player.whoAmI)
-            {
-                Projectile.NewProjectile(source, player.Center, Vector2.Zero, type, 0, 0f, player.whoAmI);
-            }
-            player.ownedProjectileCounts[type]++;
+            return count;
         }
     }
 }

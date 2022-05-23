@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -33,67 +34,8 @@ namespace Aequus.Items.Accessories.Summon
 
     public class SantankSentryProjectile : GlobalProjectile
     {
-        /// <summary>
-        /// <para>1) Projectile - the projectile</para>
-        /// <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-        /// <para>3) Item - the accessory</para>
-        /// <para>4) Player - the player owner of both projectiles</para>
-        /// <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
-        /// </summary>
-        public static Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>> SantankAccessoryInteraction_AI { get; private set; }
-        /// <summary>
-        /// <para>1) IEntitySource - the entity source</para>
-        /// <para>2) Projectile - the projectile</para>
-        /// <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-        /// <para>4) Projectile - the parent projectile, aka shooter</para>
-        /// <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
-        /// <para>6) Item - the accessory</para>
-        /// <para>7) Player - the player owner of both projectiles</para>
-        /// <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
-        /// </summary>
-        public static Dictionary<int, Action<IEntitySource, Projectile, SantankSentryProjectile, Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>> SantankAccessoryInteraction_OnShoot { get; private set; }
-
         public Player dummyPlayer;
         public bool appliedItemStatChanges;
-        public int[] hasBounded;
-
-        public override void Load()
-        {
-            SantankInteractions.Load();
-            // Players get info effects from nearby players, maybe inherited info items should do the same?
-            SantankAccessoryInteraction_AI = new Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
-            {
-                [ItemID.TerrasparkBoots] = SantankInteractions.WaterWalkingBoots_AI,
-                [ItemID.LavaWaders] = SantankInteractions.WaterWalkingBoots_AI,
-                [ItemID.ObsidianWaterWalkingBoots] = SantankInteractions.WaterWalkingBoots_AI,
-                [ItemID.WaterWalkingBoots] = SantankInteractions.WaterWalkingBoots_AI,
-                [ItemID.FireGauntlet] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.ArcticDivingGear] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.JellyfishDivingGear] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.JellyfishNecklace] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.Magiluminescence] = SantankInteractions.ApplyEquipFunctional_AI,
-                [ItemID.StingerNecklace] = SantankInteractions.SharkToothNecklace_AI,
-                [ItemID.SharkToothNecklace] = SantankInteractions.SharkToothNecklace_AI,
-                [ItemID.FloatingTube] = SantankInteractions.InnerTube_AI,
-                [ItemID.BoneHelm] = SantankInteractions.BoneHelm_AI,
-                [ItemID.VolatileGelatin] = SantankInteractions.VolatileGelatin_AI,
-                [ItemID.BoneGlove] = SantankInteractions.BoneGlove_AI,
-            };
-
-            SantankAccessoryInteraction_OnShoot = new Dictionary<int, Action<IEntitySource, Projectile, SantankSentryProjectile, Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
-            {
-                [ItemID.SharkToothNecklace] = SantankInteractions.SharkToothNecklace_OnShoot,
-                [ItemID.BoneGlove] = SantankInteractions.BoneGlove_OnShoot,
-            };
-        }
-
-        public override void Unload()
-        {
-            SantankAccessoryInteraction_AI?.Clear();
-            SantankAccessoryInteraction_AI = null;
-            SantankAccessoryInteraction_OnShoot?.Clear();
-            SantankAccessoryInteraction_OnShoot = null;
-        }
 
         public override bool InstancePerEntity => true;
 
@@ -109,7 +51,6 @@ namespace Aequus.Items.Accessories.Summon
         {
             dummyPlayer = null;
             appliedItemStatChanges = false;
-            hasBounded = null;
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -130,13 +71,12 @@ namespace Aequus.Items.Accessories.Summon
                         {
                             var aequus = Main.player[projectile.owner].Aequus();
                             var parentSentry = parentProj.GetGlobalProjectile<SantankSentryProjectile>();
-                            SantankInteractions.RunningProj = projectile.whoAmI;
-                            SantankInteractions.RunningProjParent = parentProj.whoAmI;
+                            AequusProjectile.ParentProjectile = projectile.identity;
                             try
                             {
                                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
                                 {
-                                    if (SantankAccessoryInteraction_OnShoot.TryGetValue(i.type, out var onShoot))
+                                    if (SantankInteractions.OnShoot.TryGetValue(i.type, out var onShoot))
                                     {
                                         onShoot(source, projectile, this, parentProj, parentSentry, i, Main.player[projectile.owner], aequus);
                                     }
@@ -145,8 +85,7 @@ namespace Aequus.Items.Accessories.Summon
                             catch
                             {
                             }
-                            SantankInteractions.RunningProjParent = -1;
-                            SantankInteractions.RunningProj = -1;
+                            AequusProjectile.ParentProjectile = -1;
                         }
                     }
                 }
@@ -171,16 +110,15 @@ namespace Aequus.Items.Accessories.Summon
                 dummyPlayer.velocity = projectile.velocity;
                 dummyPlayer.ResetEffects();
                 dummyPlayer.whoAmI = projectile.owner;
-                if (hasBounded == null)
-                {
-                    hasBounded = Array.Empty<int>();
-                }
-                SantankInteractions.RunningProj = projectile.whoAmI;
+                dummyPlayer.Aequus().projectileIdentity = projectile.identity;
+                DummyProjCounts();
+                AequusProjectile.ParentProjectile = projectile.whoAmI;
+
                 try
                 {
                     foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
                     {
-                        if (SantankAccessoryInteraction_AI.TryGetValue(i.type, out var ai))
+                        if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
                         {
                             ai(projectile, this, i, Main.player[projectile.owner], aequus);
                         }
@@ -192,29 +130,19 @@ namespace Aequus.Items.Accessories.Summon
 
                 }
 
-                if (hasBounded.Length > 0)
-                {
-                    var l = new List<int>();
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && hasBounded.ContainsAny(Main.projectile[i].type))
-                        {
-                            int proj = (int)Main.projectile[i].ai[0] - 1;
-                            if (AequusHelpers.FindProjectileIdentity(projectile.owner, proj) == projectile.whoAmI)
-                            {
-                                l.Add(Main.projectile[i].type);
-                            }
-                        }
-                    }
-                    hasBounded = l.ToArray();
-                }
-
-                SantankInteractions.RunningProj = -1;
+                AequusProjectile.ParentProjectile = -1;
             }
             else
             {
                 dummyPlayer = null;
-                hasBounded = null;
+            }
+        }
+
+        public void DummyProjCounts()
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+
             }
         }
 
@@ -227,19 +155,92 @@ namespace Aequus.Items.Accessories.Summon
         }
     }
 
-    public class SantankInteractions
-    {
-        public static int RunningProj;
-        public static int RunningProjParent;
+    public class SantankInteractions : ILoadable
+    {        
+        /// <summary>
+        /// <para>1) Projectile - the projectile</para>
+        /// <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+        /// <para>3) Item - the accessory</para>
+        /// <para>4) Player - the player owner of both projectiles</para>
+        /// <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
+        /// </summary>
+        public static Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>> OnAI { get; private set; }
+        /// <summary>
+        /// <para>1) IEntitySource - the entity source</para>
+        /// <para>2) Projectile - the projectile</para>
+        /// <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+        /// <para>4) Projectile - the parent projectile, aka shooter</para>
+        /// <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
+        /// <para>6) Item - the accessory</para>
+        /// <para>7) Player - the player owner of both projectiles</para>
+        /// <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
+        /// </summary>
+        public static Dictionary<int, Action<IEntitySource, Projectile, SantankSentryProjectile, Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>> OnShoot { get; private set; }
+
         public static MethodInfo Player_SpawnHallucination;
 
-        internal static void Load()
+        void ILoadable.Load(Mod mod)
         {
-            RunningProj = -1;
-            RunningProjParent = -1;
             Player_SpawnHallucination = typeof(Player).GetMethod("SpawnHallucination", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            // Players get info effects from nearby players, maybe inherited info items should do the same?
+            OnAI = new Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
+            {
+                [ItemID.SporeSac] = SporeSac_AI,
+                [ItemID.TerrasparkBoots] = WaterWalkingBoots_AI,
+                [ItemID.LavaWaders] = WaterWalkingBoots_AI,
+                [ItemID.ObsidianWaterWalkingBoots] = WaterWalkingBoots_AI,
+                [ItemID.WaterWalkingBoots] = WaterWalkingBoots_AI,
+                [ItemID.FireGauntlet] = ApplyEquipFunctional_AI,
+                [ItemID.ArcticDivingGear] = ApplyEquipFunctional_AI,
+                [ItemID.JellyfishDivingGear] = ApplyEquipFunctional_AI,
+                [ItemID.JellyfishNecklace] = ApplyEquipFunctional_AI,
+                [ItemID.Magiluminescence] = ApplyEquipFunctional_AI,
+                [ItemID.StingerNecklace] = SharkToothNecklace_AI,
+                [ItemID.SharkToothNecklace] = SharkToothNecklace_AI,
+                [ItemID.FloatingTube] = InnerTube_AI,
+                [ItemID.BoneHelm] = BoneHelm_AI,
+                [ItemID.VolatileGelatin] = VolatileGelatin_AI,
+                [ItemID.BoneGlove] = BoneGlove_AI,
+            };
+
+            OnShoot = new Dictionary<int, Action<IEntitySource, Projectile, SantankSentryProjectile, Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
+            {
+                [ItemID.SharkToothNecklace] = SharkToothNecklace_OnShoot,
+                [ItemID.BoneGlove] = BoneGlove_OnShoot,
+            };
         }
 
+        void ILoadable.Unload()
+        {
+            Player_SpawnHallucination = null;
+
+            OnAI?.Clear();
+            OnAI = null;
+            OnShoot?.Clear();
+            OnShoot = null;
+        }
+
+        public static void SporeSac_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
+        {
+            List<Projectile> sporeSacProjs = new List<Projectile>();
+            for (int i = 0; i < 1000; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == 567 || Main.projectile[i].type == 568))
+                {
+                    if (Main.projectile[i].Aequus().projectileOwner >= 0)
+                    {
+                        sporeSacProjs.Add(Main.projectile[i]);
+                        Main.projectile[i].owner = -1;
+                    }
+                }
+            }
+            sentry.dummyPlayer.SporeSac(item);
+            foreach (var p in sporeSacProjs)
+            {
+                p.owner = projectile.owner;
+            }
+        }
         public static void WaterWalkingBoots_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
         }

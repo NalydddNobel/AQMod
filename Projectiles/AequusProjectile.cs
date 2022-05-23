@@ -1,4 +1,6 @@
 ﻿using Aequus.Items.Accessories;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -8,13 +10,41 @@ namespace Aequus.Projectiles
 {
     public class AequusProjectile : GlobalProjectile
     {
-        public int itemUsed;
-        public int ammoUsed;
+        public static int ParentProjectile;
+        public static int ParentNPC;
+
+        public int itemUsed = 0;
+        public int ammoUsed = 0;
+        public int npcOwner = -1;
+        public int projectileOwner = -1;
 
         public override bool InstancePerEntity => true;
 
+        public bool FromItem => itemUsed > 0;
+        public bool FromAmmo => ammoUsed > 0;
+        public bool HasProjectileOwner => projectileOwner > -1;
+        public bool HasNPCOwner => npcOwner > -1;
+
+        public override void Load()
+        {
+            ParentProjectile = -1;
+            ParentNPC = -1;
+        }
+
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            itemUsed = -1;
+            ammoUsed = -1;
+            npcOwner = ParentNPC;
+            projectileOwner = ParentProjectile;
+            if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
+            {
+                int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
+                if (projOwner != -1)
+                {
+                    projectileOwner = projOwner;
+                }
+            }
             if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
             {
                 itemUsed = itemUse_WithAmmo.Item.netID;
@@ -23,6 +53,17 @@ namespace Aequus.Projectiles
             else if (source is EntitySource_ItemUse itemUse)
             {
                 itemUsed = itemUse.Item.netID;
+            }
+            else if (source is EntitySource_Parent parent)
+            {
+                if (parent.Entity is NPC)
+                {
+                    npcOwner = parent.Entity.whoAmI;
+                }
+                else if (parent.Entity is Projectile parentProjectile)
+                {
+                    projectileOwner = parentProjectile.identity;
+                }
             }
         }
 
@@ -63,6 +104,11 @@ namespace Aequus.Projectiles
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = projectile.timeLeft + 1;
             projectile.penetrate = -1;
+        }
+
+        public int ProjectileOwner(Projectile projectile)
+        {
+            return AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwner);
         }
     }
 }

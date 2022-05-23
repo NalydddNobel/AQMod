@@ -34,10 +34,9 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Kill();
                     return;
                 }
-                //Main.NewText("I have this dumb hydra bounded", Main.DiscoColor);
+
                 Projectile.Center = Main.projectile[projIdentity].Center;
-                Projectile.scale = value.dummyPlayer
-                    .GetModPlayer<MendshroomPlayer>()._accMendshroomDiameter;
+                Projectile.scale = (value.dummyPlayer?.GetModPlayer<MendshroomPlayer>()?._accMendshroomDiameter).GetValueOrDefault(0f);
             }
             else
             {

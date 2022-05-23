@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Accessories.Summon;
+using Aequus.Projectiles;
 using Terraria.ModLoader;
 
 namespace Aequus.Common
@@ -7,8 +8,8 @@ namespace Aequus.Common
     {
         public override void PostUpdatePlayers()
         {
-            SantankInteractions.RunningProj = -1;
-            SantankInteractions.RunningProjParent = -1;
+            AequusProjectile.ParentProjectile = -1;
+            AequusProjectile.ParentNPC = -1;
             if (AequusHelpers.Main_invasionSize.IsCaching)
             {
                 AequusHelpers.Main_invasionSize.EndCaching();

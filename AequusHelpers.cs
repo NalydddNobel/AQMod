@@ -178,16 +178,19 @@ namespace Aequus
 
         public static int FindProjectileIdentity(int owner, int identity)
         {
-            int projectile = 1000;
             for (int i = 0; i < 1000; i++)
             {
                 if (Main.projectile[i].owner == owner && Main.projectile[i].identity == identity && Main.projectile[i].active)
                 {
-                    projectile = i;
-                    break;
+                    return i;
                 }
             }
-            if (projectile == 1000)
+            return -1;
+        }
+        public static int FindProjectileIdentity_OtherwiseFindPotentialSlot(int owner, int identity)
+        {
+            int projectile = FindProjectileIdentity(owner, identity);
+            if (projectile == -1)
             {
                 for (int i = 0; i < 1000; i++)
                 {
