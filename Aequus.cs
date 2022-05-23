@@ -126,7 +126,7 @@ namespace Aequus
             PacketType type = PacketSender.ReadPacketType(reader);
 
             var l = Instance.Logger;
-            if (type != PacketType.Unused && type != PacketType.Unused_1)
+            if (type != PacketType.Unused && type != PacketType.SyncAequusPlayer)
             {
                 l.Debug("Recieving Packet: " + type);
             }
@@ -139,8 +139,12 @@ namespace Aequus
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
             }
-            else if (type == PacketType.Unused_1)
+            else if (type == PacketType.SyncAequusPlayer)
             {
+                if (Main.player[reader.ReadByte()].TryGetModPlayer<AequusPlayer>(out var aequus))
+                {
+                    aequus.RecieveChanges(reader);
+                }
             }
             else if (type == PacketType.SoundQueue)
             {

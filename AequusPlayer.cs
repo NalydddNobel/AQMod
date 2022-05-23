@@ -4,17 +4,20 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Pets;
 using Aequus.Common;
 using Aequus.Common.Catalogues;
+using Aequus.Common.Networking;
 using Aequus.Common.Players;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc.Money;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
@@ -356,6 +359,71 @@ namespace Aequus
             Player_ItemCheck_Shoot = null;
         }
 
+        public override void clientClone(ModPlayer clientClone)
+        {
+            var clone = (AequusPlayer)clientClone;
+            clone.itemCombo = itemCombo;
+            clone.itemSwitch = itemSwitch;
+            clone.itemUsage = itemUsage;
+            clone.itemCooldown = itemCooldown;
+            clone.itemCooldownMax = itemCooldownMax;
+            clone.hitTime = hitTime;
+            clone.sacrifices = new List<LifeSacrifice>();
+            foreach (var l in sacrifices)
+            {
+                clone.sacrifices.Add(l);
+            }
+        }
+
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            var clone = (AequusPlayer)clientPlayer;
+
+            bool itemSync = (clone.itemCombo - itemCombo).Abs() > 10 ||
+                (clone.itemSwitch - itemSwitch).Abs() > 10 ||
+                (clone.itemUsage - itemUsage).Abs() > 10 ||
+                (clone.itemCooldown - itemCooldown).Abs() > 10 ||
+                clone.itemCooldownMax != itemCooldownMax;
+            bool syncHitTime = (clone.hitTime - hitTime).Abs() > 10;
+
+            if (itemSync || syncHitTime)
+            {
+                Sync(itemSync, syncHitTime);
+            }
+        }
+        public void Sync(bool itemSync, bool syncHitTime)
+        {
+            PacketSender.Send((p) =>
+            {
+                if (itemSync)
+                {
+                    p.Write(true);
+                    p.Write(itemCombo);
+                    p.Write(itemSwitch);
+                    p.Write(itemUsage);
+                    p.Write(itemCooldown);
+                    p.Write(itemCooldownMax);
+                }
+                else
+                {
+                    p.Write(false);
+                }
+            }, PacketType.SyncAequusPlayer);
+
+        }
+
+        public void RecieveChanges(BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                itemCombo = reader.ReadUInt16();
+                itemSwitch = reader.ReadUInt16();
+                itemUsage = reader.ReadUInt16();
+                itemCooldown = reader.ReadUInt16();
+                itemCooldownMax = reader.ReadUInt16();
+            }
+        }
+
         public override void Initialize()
         {
             permMoro = false;
@@ -560,17 +628,29 @@ namespace Aequus
             {
                 if (bank.item[i] != null && !bank.item[i].IsAir)
                 {
+                    bool update = false;
                     if (bank.item[i].type == ItemID.ShadowKey)
                     {
+                        update = true;
                         hasShadowKey = true;
                     }
                     else if (bank.item[i].type == ItemID.DiscountCard && !Player.discount)
                     {
-                        Player.ApplyEquipFunctional(bank.item[i], true); // Acts as a hidden accessory while in the bank.
+                        update = true;
+                    }
+                    else if (AequusItem.BankEquipFuncs.Contains(bank.item[i].type))
+                    {
+                        update = true;
                     }
                     else if (bank.item[i].ModItem is IUpdateBank b)
                     {
                         b.UpdateBank(Player, this, i, bankType);
+                    }
+
+                    if (update)
+                    {
+                        Player.VanillaUpdateEquip(bank.item[i]);
+                        Player.ApplyEquipFunctional(bank.item[i], true); // Acts as a hidden accessory while in the bank.
                     }
                 }
             }
@@ -839,6 +919,50 @@ namespace Aequus
             hitTime = 0;
         }
 
+        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
+        {
+            if (Main.rand.Next(50) <= Player.anglerQuestsFinished - 15)
+            {
+                if (Main.rand.NextBool())
+                {
+                    return;
+                }
+
+                for (int i = 0; i < rewardItems.Count; i++)
+                {
+                    if (rewardItems[i].type == ItemID.ApprenticeBait || rewardItems[i].type == ItemID.JourneymanBait || rewardItems[i].type == ItemID.MasterBait)
+                    {
+                        rewardItems.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                var item = new Item();
+                if (Main.rand.NextBool())
+                {
+                    item.SetDefaults(ModContent.ItemType<Omnibait>());
+                }
+                else
+                {
+                    item.SetDefaults(ModContent.ItemType<LegendberryBait>());
+                }
+
+                if (Main.rand.Next(25) <= Player.anglerQuestsFinished)
+                {
+                    item.stack++;
+                }
+                for (int i = 0; i < 5; i++)
+                {
+                    if (Main.rand.Next(50 + i * 50) <= Player.anglerQuestsFinished)
+                    {
+                        item.stack++;
+                    }
+                }
+
+                rewardItems.Add(item);
+            }
+        }
+
         public override void SaveData(TagCompound tag)
         {
             SaveDataAttribute.SaveData(tag, this);
@@ -1043,7 +1167,7 @@ namespace Aequus
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
                         if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type 
-                            && Main.projectile[i].Aequus().projectileOwner == projectileIdentity)
+                            && Main.projectile[i].Aequus().projectileOwnerIdentity == projectileIdentity)
                         {
                             count++;
                         }
@@ -1055,9 +1179,9 @@ namespace Aequus
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
-                    && Main.projectile[i].Aequus().projectileOwner > 0)
+                    && Main.projectile[i].Aequus().projectileOwnerIdentity > 0)
                 {
-                    if (extraThorough && AequusHelpers.FindProjectileIdentity(Player.whoAmI, Main.projectile[i].Aequus().projectileOwner) == -1)
+                    if (extraThorough && AequusHelpers.FindProjectileIdentity(Player.whoAmI, Main.projectile[i].Aequus().projectileOwnerIdentity) == -1)
                     {
                         break;
                     }

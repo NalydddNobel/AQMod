@@ -43,4 +43,14 @@ namespace Aequus.Items.Consumables.Bait
         /// <param name="fish"></param>
         void ModifyFishItem(Item fish);
     }
+    internal interface IModifyFishAttempt
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bobber"></param>
+        /// <param name="fisher"></param>
+        /// <returns>Return false to prevent vanilla rolling fish</returns>
+        bool OnItemRoll(Projectile bobber, ref FishingAttempt fisher);
+    }
 }

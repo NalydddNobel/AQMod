@@ -4,7 +4,7 @@
     {
         Unused,
         SyncNecromancyOwnerTier,
-        Unused_1,
+        SyncAequusPlayer,
         SoundQueue,
         DemonSiegeSacrificeStatus,
         RequestDemonSiege,

@@ -10,6 +10,7 @@ namespace Aequus.Items
     public class AequusItem : GlobalItem
     {
         public static HashSet<int> CritOnlyModifier { get; private set; }
+        public static HashSet<int> BankEquipFuncs { get; private set; }
 
         public override void Load()
         {
@@ -18,10 +19,41 @@ namespace Aequus.Items
                 PrefixID.Keen,
                 PrefixID.Zealous,
             };
+            BankEquipFuncs = new HashSet<int>()
+            {
+                ItemID.CellPhone,
+                ItemID.PDA,
+                ItemID.REK,
+                ItemID.GoblinTech,
+                ItemID.FishFinder,
+                ItemID.GPS,
+                ItemID.Radar,
+                ItemID.LifeformAnalyzer,
+                ItemID.TallyCounter,
+                ItemID.DPSMeter,
+                ItemID.Stopwatch,
+                ItemID.MetalDetector,
+                ItemID.Sextant,
+                ItemID.WeatherRadio,
+                ItemID.FishermansGuide,
+                ItemID.Compass,
+                ItemID.DepthMeter,
+                ItemID.PlatinumWatch,
+                ItemID.TungstenWatch,
+                ItemID.TinWatch,
+                ItemID.GoldWatch,
+                ItemID.SilverWatch,
+                ItemID.CopperWatch,
+
+                ItemID.DiscountCard,
+                ItemID.ShadowKey,
+            };
         }
 
         public override void Unload()
         {
+            BankEquipFuncs?.Clear();
+            BankEquipFuncs = null;
             CritOnlyModifier?.Clear();
             CritOnlyModifier = null;
         }

@@ -12,6 +12,23 @@ namespace Aequus.Common.Players
     {
         public Item baitUsed;
 
+        public override void Load()
+        {
+            On.Terraria.Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
+        }
+
+        private void Projectile_FishingCheck_RollItemDrop(On.Terraria.Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
+        {
+            if (fisher.playerFishingConditions.Bait?.ModItem is IModifyFishAttempt modBait)
+            {
+                if (!modBait.OnItemRoll(self, ref fisher))
+                {
+                    return;
+                }
+            }
+            orig(self, ref fisher);
+        }
+
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {
             if (bait.ModItem is IModifyFishingPower modBait)
@@ -28,6 +45,11 @@ namespace Aequus.Common.Players
                 return;
             }
 
+            if (npcSpawn > 0)
+            {
+                goto PostProbeFish;
+            }
+
             if (Player.ZoneBeach && attempt.uncommon && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
@@ -42,6 +64,12 @@ namespace Aequus.Common.Players
                 {
                     itemDrop = ModContent.ItemType<VampireSquid>();
                 }
+            }
+
+        PostProbeFish:
+            if (Main.myPlayer == Player.whoAmI && baitUsed.type == ModContent.ItemType<Omnibait>())
+            {
+                Player.UpdateBiomes(); // Kind of cheeky
             }
         }
 

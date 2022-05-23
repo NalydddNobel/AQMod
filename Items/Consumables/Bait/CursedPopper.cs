@@ -21,22 +21,16 @@ namespace Aequus.Items.Consumables.Bait
         void IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
         {
             if (player.ZoneCorrupt)
-                fishingLevel += 30;
+                fishingLevel += 0.3f;
         }
 
-        //public override void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
-        //{
-        //    Projectile.NewProjectile(bobber.Center + new Vector2(0f, (byte.MaxValue - tile.liquid) / 16), Vector2.Zero, ModContent.ProjectileType<CursedPopperEffect>(), 0, 0f, player.whoAmI);
-        //}
-
-        //public override void AddRecipes()
-        //{
-        //    var r = new ModRecipe(mod);
-        //    r.AddIngredient(ItemID.CursedFlame, 10);
-        //    r.AddIngredient(ItemID.UnholyWater);
-        //    r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
-        //    r.SetResult(this, 10);
-        //    r.AddRecipe();
-        //}
+        public override void AddRecipes()
+        {
+            CreateRecipe(10)
+                .AddIngredient(ItemID.CursedFlame, 10)
+                .AddIngredient(ItemID.UnholyWater)
+                .AddTile(TileID.Bottles)
+                .Register();
+        }
     }
 }

@@ -94,7 +94,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.hostile || !projectile.sentry)
+            if (projectile.hostile || !projectile.sentry || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
             {
                 return;
             }
@@ -111,7 +111,6 @@ namespace Aequus.Items.Accessories.Summon
                 dummyPlayer.ResetEffects();
                 dummyPlayer.whoAmI = projectile.owner;
                 dummyPlayer.Aequus().projectileIdentity = projectile.identity;
-                DummyProjCounts();
                 AequusProjectile.ParentProjectile = projectile.whoAmI;
 
                 try
@@ -135,22 +134,6 @@ namespace Aequus.Items.Accessories.Summon
             else
             {
                 dummyPlayer = null;
-            }
-        }
-
-        public void DummyProjCounts()
-        {
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-
-            }
-        }
-
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            if (dummyPlayer != null)
-            {
-                dummyPlayer.GetModPlayer<HyperCrystalPlayer>().CalcDamage(target.getRect(), ref damage);
             }
         }
     }
@@ -196,8 +179,6 @@ namespace Aequus.Items.Accessories.Summon
                 [ItemID.JellyfishDivingGear] = ApplyEquipFunctional_AI,
                 [ItemID.JellyfishNecklace] = ApplyEquipFunctional_AI,
                 [ItemID.Magiluminescence] = ApplyEquipFunctional_AI,
-                [ItemID.StingerNecklace] = SharkToothNecklace_AI,
-                [ItemID.SharkToothNecklace] = SharkToothNecklace_AI,
                 [ItemID.FloatingTube] = InnerTube_AI,
                 [ItemID.BoneHelm] = BoneHelm_AI,
                 [ItemID.VolatileGelatin] = VolatileGelatin_AI,
@@ -224,18 +205,29 @@ namespace Aequus.Items.Accessories.Summon
         public static void SporeSac_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
             List<Projectile> sporeSacProjs = new List<Projectile>();
+            int myCount = 0;
             for (int i = 0; i < 1000; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == 567 || Main.projectile[i].type == 568))
                 {
-                    if (Main.projectile[i].Aequus().projectileOwner >= 0)
+                    int identity = Main.projectile[i].Aequus().projectileOwnerIdentity;
+                    if (identity >= 0)
                     {
                         sporeSacProjs.Add(Main.projectile[i]);
                         Main.projectile[i].owner = -1;
+                        if (AequusHelpers.FindProjectileIdentity(projectile.owner, identity) == projectile.whoAmI)
+                        {
+                            myCount++;
+                            if (myCount > 10)
+                            {
+                                goto Reset;
+                            }
+                        }
                     }
                 }
             }
             sentry.dummyPlayer.SporeSac(item);
+        Reset:
             foreach (var p in sporeSacProjs)
             {
                 p.owner = projectile.owner;
@@ -243,13 +235,6 @@ namespace Aequus.Items.Accessories.Summon
         }
         public static void WaterWalkingBoots_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-        }
-        public static void SharkToothNecklace_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
-        {
-            if (!sentry.appliedItemStatChanges)
-            {
-                projectile.ArmorPenetration += 5;
-            }
         }
         public static void ApplyEquipFunctional_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {

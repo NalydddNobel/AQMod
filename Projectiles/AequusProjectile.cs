@@ -16,13 +16,14 @@ namespace Aequus.Projectiles
         public int itemUsed = 0;
         public int ammoUsed = 0;
         public int npcOwner = -1;
+        public int projectileOwnerIdentity = -1;
         public int projectileOwner = -1;
 
         public override bool InstancePerEntity => true;
 
         public bool FromItem => itemUsed > 0;
         public bool FromAmmo => ammoUsed > 0;
-        public bool HasProjectileOwner => projectileOwner > -1;
+        public bool HasProjectileOwner => projectileOwnerIdentity > -1;
         public bool HasNPCOwner => npcOwner > -1;
 
         public override void Load()
@@ -36,13 +37,13 @@ namespace Aequus.Projectiles
             itemUsed = -1;
             ammoUsed = -1;
             npcOwner = ParentNPC;
-            projectileOwner = ParentProjectile;
+            projectileOwnerIdentity = ParentProjectile;
             if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
             {
                 int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
                 if (projOwner != -1)
                 {
-                    projectileOwner = projOwner;
+                    projectileOwnerIdentity = projOwner;
                 }
             }
             if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
@@ -62,9 +63,10 @@ namespace Aequus.Projectiles
                 }
                 else if (parent.Entity is Projectile parentProjectile)
                 {
-                    projectileOwner = parentProjectile.identity;
+                    projectileOwnerIdentity = parentProjectile.identity;
                 }
             }
+            projectileOwner = projectileOwnerIdentity;
         }
 
         public override void PostAI(Projectile projectile)
@@ -77,6 +79,15 @@ namespace Aequus.Projectiles
                     AequusPlayer.TeamContext = Main.player[projectile.owner].team;
                     GlowCore.AddLight(projectile, aequus.accGlowCore);
                     AequusPlayer.TeamContext = 0;
+                }
+            }
+
+            if (projectileOwnerIdentity > 0)
+            {
+                projectileOwner = AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
+                if (projectileOwner == -1)
+                {
+                    projectileOwnerIdentity = -1;
                 }
             }
         }
@@ -108,7 +119,7 @@ namespace Aequus.Projectiles
 
         public int ProjectileOwner(Projectile projectile)
         {
-            return AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwner);
+            return AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
         }
     }
 }

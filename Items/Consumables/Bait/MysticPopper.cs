@@ -21,7 +21,7 @@ namespace Aequus.Items.Consumables.Bait
         void IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
         {
             if (player.ZoneHallow)
-                fishingLevel += 20;
+                fishingLevel += 0.2f;
         }
 
         //public override void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
@@ -29,15 +29,14 @@ namespace Aequus.Items.Consumables.Bait
         //    Projectile.NewProjectile(bobber.Center + new Vector2(0f, (byte.MaxValue - tile.liquid) / 16), Vector2.Zero, ModContent.ProjectileType<MysticPopperEffect>(), 0, 0f, player.whoAmI);
         //}
 
-        //public override void AddRecipes()
-        //{
-        //    var r = new ModRecipe(mod);
-        //    r.AddIngredient(ItemID.PixieDust, 10);
-        //    r.AddIngredient(ItemID.UnicornHorn);
-        //    r.AddIngredient(ItemID.HolyWater);
-        //    r.AddTile(ModContent.TileType<FishingCraftingStationTile>());
-        //    r.SetResult(this, 10);
-        //    r.AddRecipe();
-        //}
+        public override void AddRecipes()
+        {
+            CreateRecipe(10)
+                .AddIngredient(ItemID.PixieDust, 10)
+                .AddIngredient(ItemID.UnicornHorn, 1)
+                .AddIngredient(ItemID.HolyWater)
+                .AddTile(TileID.Bottles)
+                .Register();
+        }
     }
 }
