@@ -119,6 +119,12 @@ Mods: {
 			Mendshroom: 愈灵菇
 			GlowCore: 发光核心
 
+			LegendberryBait: 传奇浆果鱼饵
+			Omnibait: 全能鱼饵
+			CursedPopper: 诅咒响饵
+			IchorPopper: 灵液响饵
+			MysticPopper: 秘圣响饵
+
 			CinnamonRoll: 肉桂卷
 			
 			FrostPotion: 冰霜药水
@@ -367,9 +373,6 @@ Mods: {
 			AtmosphericEnergy: 天权能量
 			AquaticEnergy: 海蓝能量
 			UltimateEnergy: 终极能量
-			CursedPopper: 诅咒响饵
-			IchorPopper: 灵液响饵
-			MysticPopper: 秘圣响饵
 			CrabRod: 螃蟹钓竿
 			BeeRod: 蜜蜂钓竿
 			DwarfStariteItem: 侏儒源星
@@ -504,6 +507,12 @@ Mods: {
 			GrandReward: 敌人更容易掉落稀有物品
 			Mendshroom: 站定不动时会治疗你自己和附近的队友
 			GlowCore: 你和你的弹幕会发光
+
+			LegendberryBait: 有更高的几率钓到稀有鱼类
+			Omnibait: 视作在各种生物群落中钓鱼
+			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
+			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
+			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
 			PotionOfResurrection: 将你传送至上次死亡时的位置
 			FrostPotion: 降低热源对你造成的伤害
@@ -1125,9 +1134,6 @@ Mods: {
 				增加10%召唤伤害
 				增加最大召唤栏位
 				'''
-			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
-			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
-			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 			BeeRod:
 				'''
 				扔出飞行的蜜蜂浮标
