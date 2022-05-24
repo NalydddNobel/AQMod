@@ -93,6 +93,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			RecyclingMachine: Recycling Machine
 			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.
 			Slingshot: Slingshot
@@ -429,6 +430,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			RecyclingMachine: Allows you to recycle trash items
 			BallisticScreecher: Shoots magma balls
 			RabbitsFoot: Increases luck for the user
 			SantankSentry: Allows your sentries to equip your accessories
@@ -1538,6 +1540,7 @@ Mods: {
 		}
 
 		MapObject: {
+			RecyclingMachine: Recycling Machine
 			Moonflower: Moonflower
 			GlimmeringStatueTile: Ultimate Crystal
 			SeaPickle: Sea Pickle

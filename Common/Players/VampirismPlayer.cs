@@ -74,11 +74,7 @@ namespace Aequus.Common.Players
             {
                 int x = ((int)Player.position.X + Player.width / 2) / 16;
                 int y = ((int)Player.position.Y + Player.height / 2) / 16;
-                bool burn = true;
-                if (Main.tile[x, y].WallType > 0)
-                {
-                    burn = false;
-                }
+                bool burn = y < Main.worldSurface && Main.tile[x, y].WallType == 0;
                 if (burn)
                 {
                     for (int i = 1; i < 10; i++)

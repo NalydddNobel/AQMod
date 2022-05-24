@@ -100,12 +100,12 @@ namespace Aequus.Tiles
             {
                 drawCoordinates += recycling.GetDrawOffset(i, j);
             }
-            
+
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates.Floor(),
                 frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 
-            if (i == (recycling.Position.X + 1) && j == recycling.Position.Y) 
-            { 
+            if (i == (recycling.Position.X + 1) && j == recycling.Position.Y)
+            {
                 if (recycling.timeLeft == 0 && recycling.item != null && !recycling.item.IsAir)
                 {
                     InnerDrawChatBubble(recycling, recycling.item, drawCoordinates + new Vector2(0f, -4f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, -4f, 0f)).Floor());
@@ -133,7 +133,7 @@ namespace Aequus.Tiles
                 itemScale = 38f / largestSide;
             }
 
-            where.Y -= chatBubbleFrame.Height / 2f;
+            where.Y += chatBubbleFrame.Height / -2f - 2f;
 
             Main.spriteBatch.Draw(itemTexture, where.Floor(),
                 null, Color.White, 0f, frame.Size() / 2f, itemScale, SpriteEffects.None, 0f);
@@ -187,7 +187,7 @@ namespace Aequus.Tiles
                 return Vector2.Zero;
             }
 
-            if (Main.tile[x, y].TileFrameX == 0 && Main.tile[x, y].TileFrameY == 0)
+            if (Main.tile[x, y].TileFrameX == 0 && Main.tile[x, y].TileFrameY == 0 && Aequus.GameWorldActive)
             {
                 drawOffset = new Vector2(EffectsSystem.EffectRand.Rand(-2f, 2f), EffectsSystem.EffectRand.Rand(-1f, 1f));
                 if (drawOffset.Length() < 1f)
@@ -219,6 +219,23 @@ namespace Aequus.Tiles
                     RecyclingTable.Convert.TryGetValue(item.type, out var l);
 
                     item = ConvertItem(item, l);
+
+                    Sync();
+
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.MenuOpen, Position.X * 16, Position.Y * 16);
+                    }
+                }
+                else
+                {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        if ((Main.GameUpdateCount % 10) == 0)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item22.SoundId, Position.X * 16, Position.Y * 16, SoundID.Item22.Style, 0.6f, -1f);
+                        }
+                    }
                 }
             }
         }
@@ -363,8 +380,17 @@ namespace Aequus.Tiles
         {
             Convert = new Dictionary<int, List<int>>()
             {
-                [ItemID.TinCan] = new List<int>() { ItemID.CopperBar, ItemID.TinBar, },
-                [ItemID.OldShoe] = new List<int>() { ItemID.Silk, ItemID.Cobweb, ItemID.HermesBoots, },
+                [ItemID.TinCan] = new List<int>()
+                {
+                    ItemID.CopperBar,
+                    ItemID.TinBar,
+                },
+                [ItemID.OldShoe] = new List<int>()
+                {
+                    ItemID.Silk,
+                    ItemID.Cobweb,
+                    ItemID.HermesBoots,
+                },
             };
         }
 
