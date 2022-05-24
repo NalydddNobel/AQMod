@@ -93,6 +93,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Driftwood: Driftwood
+			PlasticBottle: Plastic Bottle
 			RecyclingMachine: Recycling Machine
 			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.

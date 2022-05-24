@@ -1,9 +1,13 @@
 ﻿using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc.Trash;
 using Microsoft.Xna.Framework;
+using MonoMod.RuntimeDetour;
+using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Players
@@ -15,9 +19,45 @@ namespace Aequus.Common.Players
         public override void Load()
         {
             On.Terraria.Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
+
+            MonoModHooks.RequestNativeAccess();
+
+            new Hook(
+                typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
+                typeof(PlayerFishing).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static)
+                ).Apply();
         }
 
-        private void Projectile_FishingCheck_RollItemDrop(On.Terraria.Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
+        #region Hooks
+        private delegate void PlayerLoader_CatchFish(Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition);
+
+        private static void PostCatchFish(PlayerLoader_CatchFish orig, Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            orig(player, attempt, ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition);
+
+            if (itemDrop > 0 && ContentSamples.ItemsByType[itemDrop].rare == -1)
+            {
+                if (Main.rand.NextBool())
+                {
+                    switch (Main.rand.Next(2))
+                    {
+                        case 0:
+                            {
+                                itemDrop = ModContent.ItemType<PlasticBottle>();
+                            }
+                            break;
+
+                        case 1:
+                            {
+                                itemDrop = ModContent.ItemType<Driftwood>();
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        private static void Projectile_FishingCheck_RollItemDrop(On.Terraria.Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
         {
             if (fisher.playerFishingConditions.Bait?.ModItem is IModifyFishAttempt modBait)
             {
@@ -28,6 +68,7 @@ namespace Aequus.Common.Players
             }
             orig(self, ref fisher);
         }
+        #endregion
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {

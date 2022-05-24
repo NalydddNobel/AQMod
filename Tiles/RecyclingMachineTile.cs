@@ -3,8 +3,10 @@ using Aequus.Items;
 using Aequus.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -218,7 +220,8 @@ namespace Aequus.Tiles
                 {
                     RecyclingTable.Convert.TryGetValue(item.type, out var l);
 
-                    item = ConvertItem(item, l);
+                    item = ConvertItem(item, l.FindAll((l2) => l2.CanObtain())
+                        .Select((l3) => l3.item).ToArray());
 
                     Sync();
 
@@ -240,7 +243,7 @@ namespace Aequus.Tiles
             }
         }
 
-        public Item ConvertItem(Item item, List<int> conversionData)
+        public Item ConvertItem(Item item, int[] conversionData)
         {
             item = item.Clone();
 
@@ -250,7 +253,7 @@ namespace Aequus.Tiles
                 return item;
             }
 
-            item.SetDefaults(conversionData[Main.rand.Next(conversionData.Count)]);
+            item.SetDefaults(conversionData[Main.rand.Next(conversionData.Length)]);
             return item;
         }
 
@@ -374,18 +377,40 @@ namespace Aequus.Tiles
 
     public class RecyclingTable : ILoadable
     {
-        public static Dictionary<int, List<int>> Convert { get; private set; }
+        public struct Info 
+        {
+            public int item;
+            public Func<bool> canObtain;
+
+            public Info(int item, Func<bool> canObtain = null)
+            {
+                this.item = item;
+                this.canObtain = canObtain;
+            }
+
+            public bool CanObtain()
+            {
+                return (canObtain?.Invoke()).GetValueOrDefault(true);
+            }
+
+            public static implicit operator Info(int item)
+            {
+                return new Info(item);
+            }
+        }
+
+        public static Dictionary<int, List<Info>> Convert { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
-            Convert = new Dictionary<int, List<int>>()
+            Convert = new Dictionary<int, List<Info>>()
             {
-                [ItemID.TinCan] = new List<int>()
+                [ItemID.TinCan] = new List<Info>()
                 {
                     ItemID.CopperBar,
                     ItemID.TinBar,
                 },
-                [ItemID.OldShoe] = new List<int>()
+                [ItemID.OldShoe] = new List<Info>()
                 {
                     ItemID.Silk,
                     ItemID.Cobweb,
