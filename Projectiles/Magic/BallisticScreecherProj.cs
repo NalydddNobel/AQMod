@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -97,7 +98,7 @@ namespace Aequus.Projectiles.Magic
             {
                 return;
             }
-            SoundID.Item10?.PlaySound(Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
             var center = Projectile.Center;
             for (int i = 0; i < 20; i++)
             {

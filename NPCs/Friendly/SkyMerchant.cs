@@ -21,6 +21,8 @@ namespace Aequus.NPCs.Friendly
         public static Asset<Texture2D> BalloonTexture { get; private set; }
         public static Asset<Texture2D> FleeTexture { get; private set; }
 
+        public static SoundStyle WWWWWWWWWWhhhhooooooooopSound { get; private set; }
+
         public int currentAction;
         public bool setupShop;
         public int oldSpriteDirection;
@@ -40,6 +42,8 @@ namespace Aequus.NPCs.Friendly
                 BasketTexture = ModContent.Request<Texture2D>(this.GetPath() + "Basket");
                 BalloonTexture = ModContent.Request<Texture2D>(this.GetPath() + "Balloon");
                 FleeTexture = ModContent.Request<Texture2D>(this.GetPath() + "Flee");
+
+                WWWWWWWWWWhhhhooooooooopSound = new SoundStyle("Aequus/Sounds/slidewhistle") { Volume = 0.5f, };
             }
         }
 
@@ -282,7 +286,7 @@ namespace Aequus.NPCs.Friendly
                 }
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    AequusHelpers.PlaySound(SoundType.Sound, "slidewhistle", NPC.Center, 0.5f);
+                    SoundEngine.PlaySound(WWWWWWWWWWhhhhooooooooopSound, NPC.Center);
                 }
             }
 
@@ -723,7 +727,7 @@ namespace Aequus.NPCs.Friendly
             NPC.life = NPC.lifeMax;
             if (Main.netMode != NetmodeID.Server)
             {
-                AequusHelpers.PlaySound(SoundType.Sound, "slidewhistle", NPC.Center, 0.5f);
+                SoundEngine.PlaySound(WWWWWWWWWWhhhhooooooooopSound, NPC.Center);
             }
             if (NPC.velocity.X <= 0)
             {

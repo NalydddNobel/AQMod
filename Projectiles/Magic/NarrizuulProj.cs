@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -151,7 +152,9 @@ namespace Aequus.Projectiles.Magic
                 Main.dust[d].alpha = Main.rand.Next(30);
             }
             if (Vector2.Distance(Projectile.Center, Main.player[Projectile.owner].Center) < Math.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight * Main.screenHeight))
-                SoundID.Item14?.PlaySound(Projectile.Center);
+            {
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+            }
         }
 
         public static Color NarrizuulRainbow(float position) => AequusHelpers.LerpBetween(new Color[] { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Magenta, }, position);

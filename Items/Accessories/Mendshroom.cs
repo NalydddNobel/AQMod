@@ -103,6 +103,10 @@ namespace Aequus.Items.Accessories
             clone.idleTime = idleTime;
         }
 
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+        }
+
         public override void UpdateDead()
         {
             _accMendshroomDiameter = MathHelper.Lerp(_accMendshroomDiameter, 0f, 0.2f);

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -235,7 +236,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 if (Projectile.ai[1] != -1f)
                 {
                     amt += 8;
-                    SoundID.NPCDeath52?.PlaySound(Projectile.Center, 0.9f, -0.2f);
+                    SoundEngine.PlaySound(SoundID.NPCDeath52.WithVolume(0.9f).WithPitch(-0.2f), Projectile.Center);
                 }
                 for (int i = 0; i < amt; i++)
                 {

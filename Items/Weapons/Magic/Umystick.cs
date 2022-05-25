@@ -10,6 +10,16 @@ namespace Aequus.Items.Weapons.Magic
 {
     public class Umystick : ModItem
     {
+        public static SoundStyle UmysticJumpSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                UmysticJumpSound = new SoundStyle("Aequus/Sounds/Items/Umystick/jump", 1);
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
@@ -89,7 +99,7 @@ namespace Aequus.Items.Weapons.Magic
                                 aequus.itemSwitch += (ushort)(aequus.itemCooldown * 2);
                             }
                             aequus.itemCombo = 60;
-                            AequusHelpers.PlaySound(SoundType.Sound, "Umystick/jump" + Main.rand.Next(2), new Vector2(-1f, -1f), 0.6f);
+                            SoundEngine.PlaySound(UmysticJumpSound);
                             player.velocity.Y = -12f;
                         }
                         Item.mana = oldMana;

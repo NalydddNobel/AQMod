@@ -105,7 +105,11 @@ namespace Aequus.Projectiles.Monster
                 return;
             }
 
-            SoundEngine.PlaySound(SoundID.Item85.WithPitchVariance(2f), Projectile.position);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SoundEngine.PlaySound(SoundID.Item85.WithPitch(1f), Projectile.Center);
+            }
+
             for (int i = 0; i < 18; i++)
             {
                 int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);

@@ -23,8 +23,7 @@ namespace Aequus.Tiles.Ambience
             TileObjectData.addTile(Type);
 
             DustType = DustID.Blood;
-            SoundType = SoundID.NPCKilled;
-            SoundStyle = 1;
+            HitSound = SoundID.NPCDeath1;
 
             AddMapEntry(new Color(95, 22, 37, 255));
         }

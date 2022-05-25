@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -143,7 +144,7 @@ namespace Aequus.NPCs.Boss
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(-10f, 0f), 
                                         ModContent.ProjectileType<DustDevilTornadoBullet>(), NPC.damage, 1f, Main.myPlayer, 180f, 20f);
                                 }
-                                SoundID.Item1?.PlaySound(NPC.Center);
+                                SoundEngine.PlaySound(SoundID.Item1, NPC.Center);
                             }
                         }
                         if (NPC.ai[3] > 160f)

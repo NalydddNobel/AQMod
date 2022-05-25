@@ -78,6 +78,10 @@ namespace Aequus.Items.Accessories
             clone.hideVisual = hideVisual;
         }
 
+        public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+        }
+
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
             CalcDamage(target.getRect(), ref damage);

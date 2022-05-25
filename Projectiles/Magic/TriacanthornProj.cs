@@ -3,6 +3,7 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -102,7 +103,7 @@ namespace Aequus.Projectiles.Magic
                 if (Projectile.alpha == 0)
                 {
                     Projectile.ai[0] = -22f;
-                    SoundID.Item74?.PlaySound(Projectile.Center);
+                    SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var v = Vector2.Normalize(Projectile.velocity);

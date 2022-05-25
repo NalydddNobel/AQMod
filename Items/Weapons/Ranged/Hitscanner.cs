@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,20 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public sealed class Hitscanner : ModItem
     {
-        public override bool OnlyShootOnSwing => true;
+        public static SoundStyle? DOOMShotgun { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                DOOMShotgun = new SoundStyle("Aequus/Sounds/doomshotgun");
+            }
+        }
+
+        public override void Unload()
+        {
+            DOOMShotgun = null;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -28,7 +42,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 16f;
             Item.useAmmo = AmmoID.Bullet;
-            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/doomshotgun");
+            Item.UseSound = DOOMShotgun;
             Item.value = Item.sellPrice(gold: 7, silver: 50);
             Item.noMelee = true;
             Item.autoReuse = true;

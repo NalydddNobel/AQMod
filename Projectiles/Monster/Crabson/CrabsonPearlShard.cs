@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -62,7 +63,10 @@ namespace Aequus.Projectiles.Monster.Crabson
                 return;
             }
             var center = Projectile.Center;
-            SoundID.Item50?.PlaySound(center, 0.5f, -0.1f);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SoundEngine.PlaySound(SoundID.Item50.WithVolume(0.5f).WithPitch(-0.1f), Projectile.Center);
+            }
             float dustRadius = Projectile.Size.Length() * 0.6f;
             for (int i = 0; i < 5; i++)
             {

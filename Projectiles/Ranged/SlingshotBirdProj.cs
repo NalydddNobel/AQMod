@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -12,11 +13,21 @@ namespace Aequus.Projectiles.Ranged.Birds
 {
     public class SlingshotBirdProj : ModProjectile
     {
+        public static SoundStyle ShootSound { get; private set; }
+
         public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.Bird;
 
         public int ItemTexture = ItemID.Bird;
 
         public virtual float Gravity => 0.1f;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                ShootSound = new SoundStyle("Aequus/Sounds/Items/Slingshot/shoot", 2);
+            }
+        }
 
         public override void SetDefaults()
         {
@@ -86,7 +97,7 @@ namespace Aequus.Projectiles.Ranged.Birds
                     }
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        AequusHelpers.PlaySound(Terraria.Audio.SoundType.Sound, "Slingshot/shoot_" + Main.rand.Next(3), player.Center);
+                        SoundEngine.PlaySound(ShootSound, player.Center);
                     }
                     Projectile.ai[0] = 1f;
                     Projectile.netUpdate = true;

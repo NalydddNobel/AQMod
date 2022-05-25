@@ -226,7 +226,7 @@ namespace Aequus.Tiles
 
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        SoundEngine.PlaySound(SoundID.MenuOpen, Position.X * 16, Position.Y * 16);
+                        SoundEngine.PlaySound(SoundID.MenuOpen, new Vector2(Position.X * 16f, Position.Y * 16f));
                     }
                 }
                 else
@@ -235,7 +235,7 @@ namespace Aequus.Tiles
                     {
                         if ((Main.GameUpdateCount % 10) == 0)
                         {
-                            SoundEngine.PlaySound(SoundID.Item22.SoundId, Position.X * 16, Position.Y * 16, SoundID.Item22.Style, 0.6f, -1f);
+                            SoundEngine.PlaySound(SoundID.Item22.WithVolume(0.6f).WithPitch(-1f), new Vector2(Position.X * 16f, Position.Y * 16f));
                         }
                     }
                 }

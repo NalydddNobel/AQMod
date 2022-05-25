@@ -16,6 +16,16 @@ namespace Aequus.NPCs.Monsters
 {
     public class Heckto : ModNPC
     {
+        public static SoundStyle HeckoMoan_wtfDidIJustWrite { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                HeckoMoan_wtfDidIJustWrite = new SoundStyle(SoundID.ZombieMoan.SoundPath, 53, 2);
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
@@ -93,7 +103,9 @@ namespace Aequus.NPCs.Monsters
             if (Main.netMode == NetmodeID.Server)
                 return;
             if (Main.rand.Next(400) == 0)
-                SoundEngine.PlaySound(SoundID.Zombie, (int)NPC.position.X, (int)NPC.position.Y, Main.rand.Next(53, 55));
+            {
+                SoundEngine.PlaySound(HeckoMoan_wtfDidIJustWrite, NPC.Center);
+            }
         }
 
         public override void FindFrame(int frameHeight)

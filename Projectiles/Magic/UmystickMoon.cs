@@ -1,6 +1,5 @@
 ﻿using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,8 +12,18 @@ namespace Aequus.Projectiles.Magic
 {
     public class UmystickMoon : ModProjectile
     {
+        public static SoundStyle UmysticDestroyd { get; private set; }
+
         protected PrimRenderer prim;
         protected Color _glowClr;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                UmysticDestroyd = new SoundStyle("Aequus/Sounds/Items/Umystick/destroy", 3) { Volume = 0.6f, };
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -82,7 +91,7 @@ namespace Aequus.Projectiles.Magic
             float size = Projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server)
             {
-                AequusHelpers.PlaySound(SoundType.Sound, "Umystick/destroy" + Main.rand.Next(4), Projectile.Center, 0.6f);
+                SoundEngine.PlaySound(UmysticDestroyd, Projectile.Center);
             }
             for (int i = 0; i < 30; i++)
             {

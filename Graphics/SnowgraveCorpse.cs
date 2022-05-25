@@ -31,6 +31,8 @@ namespace Aequus.Graphics
         /// </summary>
         public static Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomUpdate { get; private set; }
 
+        public static SoundStyle SizzleSound { get; private set; }
+
         public sealed class Loader : ILoadable
         {
             void ILoadable.Load(Mod mod)
@@ -47,6 +49,11 @@ namespace Aequus.Graphics
                 OnFreezeNPC = new Dictionary<int, Action<NPC, NPC>>();
                 CustomDraw = new Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>>();
                 CustomUpdate = new Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>>();
+            
+                if (!Main.dedServ)
+                {
+                    SizzleSound = new SoundStyle("Aequus/Sounds/sizzle");
+                }
             }
 
             void ILoadable.Unload()
@@ -124,7 +131,7 @@ namespace Aequus.Graphics
                 if (Collision.LavaCollision(TopLeft, _width, _height))
                 {
                     ShouldBeRemovedFromRenderer = true;
-                    AequusHelpers.PlaySound(SoundType.Sound, "sizzle");
+                    SoundEngine.PlaySound(SizzleSound, LocalPosition);
                     Kill(lavaDeath: true);
                     return;
                 }

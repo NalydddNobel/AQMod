@@ -1,6 +1,6 @@
 ﻿using Aequus.Projectiles.Ranged.Birds;
-using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +8,16 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class Slingshot : ModItem
     {
+        public static SoundStyle? STTTTTTTTTTTTTTTTRETCHSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                STTTTTTTTTTTTTTTTRETCHSound = new SoundStyle("Aequus/Sounds/Items/Slingshot/stretch") { Volume = 0.2f, };
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
@@ -27,7 +37,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ModContent.ProjectileType<SlingshotBirdProj>();
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
-            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Slingshot/stretch")?.WithVolume(0.2f);
+            Item.UseSound = STTTTTTTTTTTTTTTTRETCHSound;
             Item.value = Item.sellPrice(gold: 2);
             Item.knockBack = 1f;
             Item.useAmmo = SlingshotAmmos.BirdAmmo;
@@ -46,8 +56,8 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemID.Bird || item.type == ItemID.Cardinal || item.type == ItemID.BlueJay || 
-                item.type == ItemID.Duck || item.type == ItemID.MallardDuck || item.type == ItemID.Seagull || 
+            if (item.type == ItemID.Bird || item.type == ItemID.Cardinal || item.type == ItemID.BlueJay ||
+                item.type == ItemID.Duck || item.type == ItemID.MallardDuck || item.type == ItemID.Seagull ||
                 item.type == ItemID.Grebe)
             {
                 item.ammo = BirdAmmo;

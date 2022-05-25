@@ -347,7 +347,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.localAI[2] = timer;
                                 if (timer == 0 && (Main.expertMode || NPC.ai[1] <= 160f))
                                 {
-                                    SoundID.Item66?.PlaySound(gotoPosition, 1.3f);
+                                    SoundEngine.PlaySound(SoundID.Item66, gotoPosition);
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
                                         int timer2 = (int)(NPC.ai[1] - 90f) % 20;
@@ -430,7 +430,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            AequusHelpers.PlaySound(SoundType.Sound, "RedSprite/thunderclap" + Main.rand.Next(2), NPC.Center, 0.6f);
+                                            SoundEngine.PlaySound(SoundHelpers.Thunderclap, NPC.Center);
                                         }
                                         int dustAmount = 50;
                                         if (!ClientConfig.Instance.HighQuality)
@@ -502,7 +502,10 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             if (Main.netMode != NetmodeID.Server)
                             {
-                                NPC.DeathSound?.PlaySound(NPC.Center, 1f, -0.5f);
+                                if (NPC.DeathSound != null)
+                                {
+                                    SoundEngine.PlaySound(NPC.DeathSound.Value.WithPitch(-0.5f), NPC.Center);
+                                }
                                 NPC.HitEffect(0, NPC.lifeMax);
                                 if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
                                 {
@@ -522,7 +525,10 @@ namespace Aequus.NPCs.Monsters.Sky
                             NPC npc = new NPC();
                             npc.SetDefaults(NPCID.AngryNimbus);
                             npc.Center = NPC.Center;
-                            npc.DeathSound?.PlaySound(NPC.Center);
+                            if (NPC.DeathSound != null)
+                            {
+                                SoundEngine.PlaySound(NPC.DeathSound.Value, NPC.Center);
+                            }
                             npc.HitEffect(0, npc.lifeMax);
                             NPC.active = false;
                             NPC.life = -1;
@@ -750,7 +756,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (windSoundInstance == null)
             {
-                var soundEffect = SoundEngine.GetTrackableSoundByStyleId(SoundID.BlizzardStrongLoop.Style);
+                var soundEffect = SoundID.BlizzardStrongLoop.GetRandomSound();
                 windSoundInstance = soundEffect.CreateInstance();
             }
         }

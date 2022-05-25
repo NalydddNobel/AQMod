@@ -6,6 +6,7 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -62,7 +63,7 @@ namespace Aequus.Projectiles.Ranged
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundID.Item14?.PlaySound(Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
             if (Main.myPlayer == Projectile.owner)
             {
@@ -81,7 +82,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundID.Item14?.PlaySound(Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
             if (Main.myPlayer == Projectile.owner)
             {

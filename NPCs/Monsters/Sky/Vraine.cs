@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -269,7 +270,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.ai[1] = 1f;
                                 NPC.ai[3] = transitionMax;
                                 NPC.velocity = gotoVeloc;
-                                SoundID.Item1?.PlaySound(NPC.Center);
+                                SoundEngine.PlaySound(SoundID.Item1, NPC.Center);
                             }
                         }
                         else

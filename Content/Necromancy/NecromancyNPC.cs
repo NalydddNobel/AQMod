@@ -22,10 +22,12 @@ namespace Aequus.Content.Necromancy
 {
     public class NecromancyNPC : GlobalNPC, IGlobalsNetworker, IAddRecipes
     {
-        public static bool AI_IsZombie { get; set; }
-        public static int AI_ZombiePlayerOwner { get; set; }
-        public static int AI_NPCTarget { get; set; }
-        public static Vector2 AI_ReturnPlayerLocation { get; set; }
+        public static bool AI_IsZombie;
+        public static int AI_ZombiePlayerOwner;
+        public static int AI_NPCTarget;
+        public static Vector2 AI_ReturnPlayerLocation;
+
+        public static SoundStyle ZombieRecruitSound { get; private set; }
 
         public int zombieDrain;
         public bool isZombie;
@@ -43,8 +45,13 @@ namespace Aequus.Content.Necromancy
         {
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
+            if (!Main.dedServ)
+            {
+                ZombieRecruitSound = new SoundStyle("Aequus/Sounds/zombierecruit");
+            }
         }
 
+        #region Hooks
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC self, int newType)
         {
             bool isZombieOld = self.GetGlobalNPC<NecromancyNPC>().isZombie;
@@ -95,6 +102,7 @@ namespace Aequus.Content.Necromancy
             }
             orig(self, faceTarget, realDist, tankTarget);
         }
+        #endregion
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
@@ -344,11 +352,11 @@ namespace Aequus.Content.Necromancy
                 SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
                 if (Main.netMode == NetmodeID.Server)
                 {
-                    PacketSender.SendSound("zombie_recruit", npc.Center);
+                    PacketSender.SendSound("ZombieRecruit", npc.Center);
                 }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    AequusHelpers.PlaySound(SoundType.Sound, "zombie_recruit", npc.Center);
+                    SoundEngine.PlaySound(ZombieRecruitSound);
                 }
             }
         }

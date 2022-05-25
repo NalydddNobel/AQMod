@@ -34,7 +34,7 @@ namespace Aequus.Items.Misc.Summons
         {
             if (Main.myPlayer == player.whoAmI)
             {
-                SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
             }
             return true;
         }

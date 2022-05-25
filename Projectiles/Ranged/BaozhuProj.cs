@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -118,7 +119,10 @@ namespace Aequus.Projectiles.Ranged
             {
                 return;
             }
-            SoundID.Item14?.PlaySound(Projectile.Center, 1f, 0.1f);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SoundEngine.PlaySound(SoundID.Item14.WithPitch(0.1f), Projectile.Center);
+            }
             var center = Projectile.Center;
             float radius = Projectile.Size.Length() / 2f * 0.55f;
             for (int i = 0; i < 20; i++)

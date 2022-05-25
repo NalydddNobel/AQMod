@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -55,7 +56,7 @@ namespace Aequus.Projectiles.Monster.Crabson
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity) * (Main.expertMode ? 10f : 6f);
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        SoundID.Item85?.PlaySound(Projectile.Center, 0.7f);
+                        SoundEngine.PlaySound(SoundID.Item85.WithVolume(0.7f), Projectile.Center);
                     }
                 }
                 if (Projectile.scale < 1f)

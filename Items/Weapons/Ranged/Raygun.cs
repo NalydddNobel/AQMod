@@ -1,6 +1,7 @@
 ﻿using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +9,16 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class Raygun : ModItem
     {
+        public static SoundStyle? CapleweySound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                CapleweySound = new SoundStyle("Aequus/Sounds/Items/raygun") { Volume = 0.2f, };
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
@@ -27,7 +38,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
-            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/raygun")?.WithVolume(0.2f);
+            Item.UseSound = CapleweySound;
             Item.value = ItemDefaults.OmegaStariteValue;
             Item.knockBack = 1f;
             Item.useAmmo = AmmoID.Bullet;

@@ -1,9 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -11,7 +9,6 @@ using Aequus.Items.Misc.Pets;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.SpaceSquid;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -21,7 +18,6 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -42,6 +38,10 @@ namespace Aequus.NPCs.Monsters.Sky
         public static Asset<Texture2D> DefeatedTexture { get; private set; }
         public static Asset<Texture2D> DefeatedTextureGlow { get; private set; }
 
+        public static SoundStyle SpaceGunSound { get; private set; }
+        public static SoundStyle SnowflakeShootSound { get; private set; }
+        public static SoundStyle AwesomeDeathraySound { get; private set; }
+
         public int frameIndex;
 
         private bool _setupFrame;
@@ -59,6 +59,10 @@ namespace Aequus.NPCs.Monsters.Sky
                 GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
                 DefeatedTexture = ModContent.Request<Texture2D>(this.GetPath() + "Defeated");
                 DefeatedTextureGlow = ModContent.Request<Texture2D>(this.GetPath() + "Defeated_Glow");
+
+                SpaceGunSound = new SoundStyle("Aequus/Sounds/SpaceSquid/spacegun");
+                SnowflakeShootSound = new SoundStyle("Aequus/Sounds/SpaceSquid/snowflakeshoot");
+                AwesomeDeathraySound = new SoundStyle("Aequus/Sounds/SpaceSquid/awesomedeathray");
             }
         }
 
@@ -266,7 +270,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.ai[2] = 0f;
                                 if (Main.netMode != NetmodeID.Server && (Main.player[Main.myPlayer].Center - center).Length() < 2000f)
                                 {
-                                    AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/awesomedeathray");
+                                    SoundEngine.PlaySound(AwesomeDeathraySound);
                                 }
                             }
                             bool doEffects = AequusHelpers.ShouldDoEffects(center);
@@ -363,7 +367,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         frameIndex = 8;
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/spacegun", NPC.Center);
+                                            SoundEngine.PlaySound(SpaceGunSound, NPC.Center);       
                                         }
                                         var spawnPosition = new Vector2(NPC.position.X + (NPC.direction == 1 ? NPC.width + 20f : -20), NPC.position.Y + NPC.height / 2f);
                                         var velocity = new Vector2(20f * NPC.direction, 0f);
@@ -462,7 +466,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 }
                                 if (Main.netMode != NetmodeID.Server)
                                 {
-                                    AequusHelpers.PlaySound(SoundType.Sound, "SpaceSquid/snowflakeshoot", NPC.Center);
+                                    SoundEngine.PlaySound(SnowflakeShootSound, NPC.Center);
                                 }
                             }
                             if (NPC.ai[2] > 180f + (6 - timeBetweenShots) * 40f)
@@ -503,7 +507,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             if (!_magicMirrorSound && Main.netMode != NetmodeID.Server)
                             {
-                                SoundID.Item6?.PlaySound(NPC.Center);
+                                SoundEngine.PlaySound(SoundID.Item6, NPC.Center);
                                 _magicMirrorSound = true;
                             }
 

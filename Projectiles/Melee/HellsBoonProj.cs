@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Melee
                     Projectile.ai[1] += Main.rand.NextFloat(1f, 2.5f);
                     if (Main.netMode != NetmodeID.Server && (int)Projectile.ai[1] >= 15 + goOutTime)
                     {
-                        SoundEngine.PlaySound(new LegacySoundStyle(SoundID.Tink, 0, SoundType.Sound).WithVolume(0.5f).WithPitchVariance(2f), Projectile.Center);
+                        SoundEngine.PlaySound(SoundID.Tink.WithVolume(0.5f).WithPitch(1f), Projectile.Center);
                     }
                     float progress = (Projectile.ai[1] - 15f) / goOutTime;
                     Projectile.ai[0] = MathHelper.Lerp(0f, 80f, progress);
@@ -104,7 +104,8 @@ namespace Aequus.Projectiles.Melee
                 return;
             }
 
-            SoundEngine.PlaySound(new LegacySoundStyle(SoundID.Dig, 0, SoundType.Sound).WithVolume(0.25f).WithPitchVariance(2f), Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Dig.WithVolume(0.25f).WithPitch(1f), Projectile.Center);
+
             for (int i = 0; i < 20; i++)
             {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17);

@@ -52,12 +52,8 @@ namespace Aequus.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            float pitch = 0.8f;
-            if (SliceProj.FasterSwings(player.GetModPlayer<AequusPlayer>().itemUsage))
-            {
-                pitch += 1.25f;
-            }
-            AequusHelpers.PlaySound(SoundType.Sound, "swordswoosh" + Main.rand.Next(4), position, 0.7f, pitch);
+            SoundEngine.PlaySound(SoundHelpers.SwordSwoosh.WithPitch(
+                SliceProj.FasterSwings(player.GetModPlayer<AequusPlayer>().itemUsage) ? 1f : 0.8f), position);
             return true;
         }
     }

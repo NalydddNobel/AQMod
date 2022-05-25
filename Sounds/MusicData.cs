@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Sounds

@@ -23,6 +23,16 @@ namespace Aequus.NPCs.Monsters.Sky
 {
     public class WhiteSlime : ModNPC
     {
+        public static SoundStyle BoowompSadFaceSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                BoowompSadFaceSound = new SoundStyle("Aequus/Sounds/boowomp");
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 20;
@@ -124,7 +134,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         {
                             if (NPC.localAI[0] == 0 && Main.netMode != NetmodeID.Server)
                             {
-                                AequusHelpers.PlaySound(SoundType.Sound, "boowomp", NPC.Center);
+                                SoundEngine.PlaySound(BoowompSadFaceSound, NPC.Center);
                             }
                             NPC.localAI[0]++;
                         }

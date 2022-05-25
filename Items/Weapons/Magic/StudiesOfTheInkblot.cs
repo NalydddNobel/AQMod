@@ -1,6 +1,7 @@
 ﻿using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,6 +10,16 @@ namespace Aequus.Items.Weapons.Magic
 {
     public class StudiesOfTheInkblot : ModItem
     {
+        public static SoundStyle? IHateTouhouSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                IHateTouhouSound = new SoundStyle("Aequus/Sounds/Items/touhoushoot");
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
@@ -33,7 +44,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.knockBack = 0f;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/touhoushoot");
+            Item.UseSound = IHateTouhouSound;
             Item.rare = ItemRarityID.Red;
             Item.shootSpeed = 10f;
             Item.autoReuse = true;

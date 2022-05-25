@@ -84,7 +84,10 @@ namespace Aequus.Projectiles.Monster.Crabson
                 {
                     if (Projectile.velocity.Y < -8f)
                         Projectile.velocity.Y = -8f;
-                    SoundID.Item10?.PlaySound(Projectile.Center);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
+                    }
                 }
             }
             if (Projectile.velocity.X != oldVelocity.X)

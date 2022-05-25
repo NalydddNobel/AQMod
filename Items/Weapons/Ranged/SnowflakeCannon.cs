@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
         }
 
-        public override bool CanConsumeAmmo(Player player)
+        public override bool CanBeConsumedAsAmmo(Item weapon, Player player)
         {
             return Main.rand.NextFloat() < 0.66f;
         }

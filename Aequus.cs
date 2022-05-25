@@ -179,7 +179,7 @@ namespace Aequus
             }
             else if (type == PacketType.SoundQueue)
             {
-                PacketReader.ReadSoundQueue(reader);
+                SoundHelpers.ReadSoundQueue(reader);
             }
             else if (type == PacketType.DemonSiegeSacrificeStatus)
             {

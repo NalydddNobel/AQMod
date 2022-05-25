@@ -41,7 +41,7 @@ namespace Aequus.Common
             {
                 item.SetDefaults();
             }
-            SoundEngine.PlaySound(7);
+            SoundEngine.PlaySound(SoundID.Unlock);
             Main.stackSplit = 30;
             Main.mouseRightRelease = false;
             opening(item.type);

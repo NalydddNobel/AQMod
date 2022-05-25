@@ -17,6 +17,16 @@ namespace Aequus.NPCs.Monsters.Sky
 {
     public class Meteor : ModNPC
     {
+        public static SoundStyle CRUNCHSonicBreakingSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                CRUNCHSonicBreakingSound = new SoundStyle("Aequus/Sounds/sonicmeteor") { Volume = 0.6f, };
+            }
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
@@ -71,7 +81,9 @@ namespace Aequus.NPCs.Monsters.Sky
                     NPC.defense = 0;
                     NPC.ai[0] = 2f;
                     if (NPC.HasValidTarget)
+                    {
                         Main.player[NPC.target].ApplyDamageToNPC(NPC, NPC.lifeMax, NPC.velocity.Length(), 0, false);
+                    }
                     else
                     {
                         NPC.life = -1;
@@ -80,7 +92,7 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     NPC.life = -1;
                     var p = NPC.Center.ToTileCoordinates();
-                    SoundID.NPCDeath14?.PlaySound(NPC.Center);
+                    SoundEngine.PlaySound(SoundID.NPCDeath14);
                     for (int i = 0; i < 80; i++)
                     {
                         int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.8f, 2f));
@@ -121,7 +133,9 @@ namespace Aequus.NPCs.Monsters.Sky
                     Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
                 }
                 if (Main.netMode != NetmodeID.Server)
-                    AequusHelpers.PlaySound(SoundType.Sound, "sonicmeteor", NPC.Center, 0.6f);
+                {
+                    SoundEngine.PlaySound(CRUNCHSonicBreakingSound, NPC.Center);
+                }
             }
             else
             {

@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -276,7 +277,9 @@ namespace Aequus.NPCs.Boss
                                     else
                                     {
                                         if (Main.netMode != NetmodeID.Server)
-                                            SoundID.Item85.PlaySound(NPC.Center, 0.7f);
+                                        {
+                                            SoundEngine.PlaySound(SoundID.Item85.WithVolume(0.7f), NPC.Center);
+                                        }
                                         ShootProj<CrabsonBubble>(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: 1f);
                                     }
                                 }
@@ -316,7 +319,12 @@ namespace Aequus.NPCs.Boss
                                     NPC.ai[2] = 0.5f;
                                     NPC.position.X += 40f * NPC.direction;
                                     NPC.velocity = new Vector2(16f * NPC.direction, 0f);
-                                    SoundID.Item61?.PlaySound(NPC.Center);
+
+                                    if (Main.netMode != NetmodeID.Server)
+                                    {
+                                        SoundEngine.PlaySound(SoundID.Item61, NPC.Center);
+                                    }
+
                                     ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: (int)CrabsonNPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL ? 1f : 0f);
                                 }
                             }
@@ -372,7 +380,10 @@ namespace Aequus.NPCs.Boss
                                         NPC.noTileCollide = false;
                                         if (Main.netMode != NetmodeID.Server && (int)NPC.localAI[0] == 0)
                                         {
-                                            SoundID.Item14.PlaySound(NPC.Center);
+                                            if (Main.netMode != NetmodeID.Server)
+                                            {
+                                                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+                                            }
                                             //AQMod.Effects.SetShake(2f, 6f);
                                         }
                                         NPC.localAI[0] = 1f;

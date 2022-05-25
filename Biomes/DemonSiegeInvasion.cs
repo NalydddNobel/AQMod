@@ -16,6 +16,7 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using Terraria.Audio;
 
 namespace Aequus.Biomes
 {
@@ -117,7 +118,7 @@ namespace Aequus.Biomes
                     _playedSound = true;
                     if (Main.netMode != NetmodeID.Server)
                     {
-                        SoundID.DD2_EtherianPortalOpen?.PlaySound(new Vector2(TileX * 16f + 24f, TileY * 16f));
+                        SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(TileX * 16f + 24f, TileY * 16f));
                     }
                 }
                 if (PreStart > 0)
@@ -218,7 +219,7 @@ namespace Aequus.Biomes
                         d.velocity = (d.position - itemSpawn) / 20f;
                         d.fadeIn = d.scale + Main.rand.NextFloat(0.9f, 1.1f);
                     }
-                    SoundID.DD2_KoboldExplosion?.PlaySound(new Vector2(TileX * 16f + 24f, TileY * 16f));
+                    SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, new Vector2(TileX * 16f + 24f, TileY * 16f));
                 }
             }
             public void InnerUpdate_OnFail(bool clientOnly = false)

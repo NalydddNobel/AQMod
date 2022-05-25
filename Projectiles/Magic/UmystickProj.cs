@@ -11,7 +11,17 @@ namespace Aequus.Projectiles.Magic
 {
     public class UmystickProj : ModProjectile
     {
+        public static SoundStyle UmysticShoot { get; private set; }
+
         private float _gfxOffY;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                UmysticShoot = new SoundStyle("Aequus/Sounds/Items/Umystick/shoot", 2) { Volume = 0.6f, };
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -52,7 +62,7 @@ namespace Aequus.Projectiles.Magic
                 if (timer == 0)
                 {
                     _gfxOffY = 14f;
-                    AequusHelpers.PlaySound(SoundType.Sound, "Umystick/shoot" + Main.rand.Next(3), Projectile.Center, 0.6f);
+                    SoundEngine.PlaySound(UmysticShoot, Projectile.Center);
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var shootPosition = Projectile.Center;

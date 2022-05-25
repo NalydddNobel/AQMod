@@ -59,6 +59,7 @@ Mods: {
 			Flawless: Drops when defeated flawlessly
 			Trophy: Will 100% drop when defeated flawlessly
 		}
+
 		Tooltips: {
 			UsesLife: "Uses {0} life"
 			NecromancyStaff: "{0} Staff"

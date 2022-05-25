@@ -3,6 +3,7 @@ using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -51,7 +52,7 @@ namespace Aequus.NPCs
                 {
                     if (deathEffects.context == Context.Snowgrave && self.life <= 0 && SnowgraveCorpse.CanFreezeNPC(self))
                     {
-                        SoundID.Item30?.PlaySound(self.Center);
+                        SoundEngine.PlaySound(SoundID.Item30, self.Center);
                         return;
                     }
                 }

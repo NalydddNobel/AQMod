@@ -493,68 +493,18 @@ namespace Aequus
             });
         }
 
-        public static void PlaySound<T>() where T : ModSound
+        public static SoundStyle WithVolume(this SoundStyle soundStyle, float volume)
         {
-            SoundEngine.PlaySound(From<T>());
+            var value = soundStyle;
+            value.Volume = volume;
+            return value;
         }
-        public static void PlaySound<T>(Vector2 location) where T : ModSound
+
+        public static SoundStyle WithPitch(this SoundStyle soundStyle, float pitch)
         {
-            SoundEngine.PlaySound(From<T>(), location);
-        }
-        public static LegacySoundStyle From<T>() where T : ModSound
-        {
-            return SoundLoader.GetLegacySoundSlot(typeof(T).Namespace.Replace('.', '/') + "/" + ModContent.GetInstance<T>().Name);
-        }
-        public static void PlaySound(SoundType type, string name)
-        {
-            if (type != SoundType.Sound)
-            {
-                name = type.ToString() + "/" + name;
-            }
-            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
-            SoundEngine.PlaySound(slot);
-        }
-        public static void PlaySound(SoundType type, string name, Vector2 position)
-        {
-            if (Main.dedServ)
-            {
-                return;
-            }
-            if (type != SoundType.Sound)
-            {
-                name = type.ToString() + "/" + name;
-            }
-            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
-            SoundEngine.PlaySound(slot, position);
-        }
-        public static void PlaySound(SoundType type, string name, Vector2 position, float volume = 1f, float pitch = 0f)
-        {
-            if (Main.dedServ)
-            {
-                return;
-            }
-            if (type != SoundType.Sound)
-            {
-                name = type.ToString() + "/" + name;
-            }
-            var slot = SoundLoader.GetLegacySoundSlot("Aequus/Sounds/" + name);
-            SoundEngine.PlaySound(slot.SoundId, (int)position.X, (int)position.Y, slot.Style, volume, pitch);
-        }
-        public static void PlaySound(this LegacySoundStyle value, Vector2 position, float volume, float pitch)
-        {
-            SoundEngine.PlaySound(value.SoundId, (int)position.X, (int)position.Y, value.Style, volume, pitch);
-        }
-        public static void PlaySound(this LegacySoundStyle value, Vector2 position, float volume)
-        {
-            SoundEngine.PlaySound(value.SoundId, (int)position.X, (int)position.Y, value.Style, volume);
-        }
-        public static void PlaySound(this LegacySoundStyle value, Vector2 position)
-        {
-            SoundEngine.PlaySound(value, position);
-        }
-        public static void PlaySound(this LegacySoundStyle value)
-        {
-            SoundEngine.PlaySound(value);
+            var value = soundStyle;
+            value.PitchRange = (pitch, pitch);
+            return value;
         }
 
         public static void DrawTrail(this ModProjectile modProjectile, Action<Vector2, float> draw)

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +14,17 @@ namespace Aequus.Projectiles.Magic
 {
     public sealed class SnowgraveProj : ModProjectile
     {
+        public static SoundStyle SnowgraveSound { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                SnowgraveSound = new SoundStyle("Aequus/Sounds/Items/snowgrave") 
+                { Volume = 0.75f, PitchVariance = 0f, Pitch = 0f, };
+            }
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 180;
@@ -135,13 +147,10 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && !_playedSound)
             {
-                if (!_playedSound)
-                {
-                    _playedSound = true;
-                    AequusHelpers.PlaySound<snowgrave>(Main.player[Projectile.owner].Center);
-                }
+                _playedSound = true;
+                SoundEngine.PlaySound(SnowgraveProj.SnowgraveSound, Projectile.Center);
             }
             Projectile.velocity.Y = 8f;
             if (Main.myPlayer == Projectile.owner)

@@ -42,7 +42,7 @@ namespace Aequus.Items.Misc.Summons
             }
             else
             {
-                SoundEngine.PlaySound(SoundID.Roar, player.position, 0);
+                SoundEngine.PlaySound(SoundID.Roar, player.position);
             }
             return true;
         }

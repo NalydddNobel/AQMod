@@ -69,7 +69,7 @@ namespace Aequus.Projectiles.Ranged
             CorruptionHellfire.AddStack(target, 60, 1);
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundID.Item14?.PlaySound(Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
             if (Main.myPlayer == Projectile.owner)
             {
@@ -89,7 +89,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundID.Item14?.PlaySound(Projectile.Center);
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
             if (Main.myPlayer == Projectile.owner)
             {

@@ -190,7 +190,10 @@ namespace Aequus.Projectiles.Melee
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            SoundEngine.PlaySound(SoundID.Dig, (int)Projectile.position.X, (int)Projectile.position.Y);
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
+            }
             if (Projectile.alpha > 100)
             {
                 return true;

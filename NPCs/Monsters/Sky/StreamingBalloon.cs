@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -209,7 +210,10 @@ namespace Aequus.NPCs.Monsters.Sky
             if (distance > 1650f)
             {
                 NPC.life = 0;
-                SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SoundEngine.PlaySound(SoundID.Item111.WithVolume(1.5f).WithPitch(0.9f), NPC.Center);
+                }
                 NPC.HitEffect();
                 NPC.active = false;
             }
@@ -219,7 +223,10 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (distance < 40f)
                 {
                     NPC.life = 0;
-                    SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item111.WithVolume(1.5f).WithPitch(0.9f), NPC.Center);
+                    }
                     NPC.HitEffect();
                     NPC.active = false;
                 }
@@ -243,7 +250,10 @@ namespace Aequus.NPCs.Monsters.Sky
                 if (distance < 150f)
                 {
                     NPC.life = 0;
-                    SoundID.Item111.PlaySound(NPC.Center, 1.5f, 0.9f);
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item111.WithVolume(1.5f).WithPitch(0.9f), NPC.Center);
+                    }
                     NPC.HitEffect();
                     NPC.active = false;
                 }
@@ -261,7 +271,10 @@ namespace Aequus.NPCs.Monsters.Sky
                     if ((NPC.position.X + NPC.width / 2f - Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f).Abs() < 100f)
                     {
                         NPC.life = 0;
-                        SoundID.Item111?.PlaySound(NPC.Center, 1.5f, 0.9f);
+                        if (Main.netMode != NetmodeID.Server)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item111.WithVolume(1.5f).WithPitch(0.9f), NPC.Center);
+                        }
                         NPC.HitEffect();
                         NPC.active = false;
                     }

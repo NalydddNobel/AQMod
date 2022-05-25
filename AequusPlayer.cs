@@ -836,7 +836,7 @@ namespace Aequus
                 }
                 if (Main.netMode != NetmodeID.Server && item.UseSound != null)
                 {
-                    SoundEngine.PlaySound(item.UseSound, Main.npc[closestEnemy].Center);
+                    SoundEngine.PlaySound(item.UseSound.Value, Main.npc[closestEnemy].Center);
                 }
             }
             else
