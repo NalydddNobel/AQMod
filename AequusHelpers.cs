@@ -769,13 +769,9 @@ namespace Aequus
 
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
-            return;
-            // TODO: Check if these fields still exist
-#pragma warning disable CS0162 // Unreachable code detected
             typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, water);
             typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, lava);
             typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
-#pragma warning restore CS0162 // Unreachable code detected
         }
 
         public static T ModItem<T>(this Item item) where T : ModItem

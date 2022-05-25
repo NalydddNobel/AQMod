@@ -255,12 +255,6 @@ namespace Aequus.Items.Accessories.Summon
         }
         public static void ApplyEquipFunctional_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-            //Main.NewText(player.ZoneSkyHeight);
-            //Main.NewText(player.ZoneOverworldHeight);
-            //Main.NewText(player.slotsMinions);
-            //Main.NewText(player.numMinions);
-            //Main.NewText(player.maxMinions);
-            //Main.NewText(AequusText.ItemText(item.type));
             sentry.dummyPlayer.ApplyEquipFunctional(item, false);
         }
         public static void InnerTube_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)

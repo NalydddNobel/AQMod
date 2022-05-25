@@ -38,9 +38,14 @@ namespace Aequus
         public static Action ResetTileRenderPoints;
         public static Action DrawSpecialTilePoints;
 
+        public static float SkiesDarkness;
+        public static float SkiesDarknessGoTo;
+        public static float SkiesDarknessGoToSpeed;
+
         public override void Load()
         {
             Instance = this;
+            SkiesDarkness = 1f;
             if (Main.netMode != NetmodeID.Server)
             {
                 InventoryInterface = new UserInterface();
@@ -54,6 +59,32 @@ namespace Aequus
 
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
+            On.Terraria.Main.SetBackColor += Main_SetBackColor;
+        }
+
+        private void Main_SetBackColor(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
+        {
+            orig(info, out sunColor, out moonColor);
+
+            if (SkiesDarkness != 1f)
+            {
+                SkiesDarkness = MathHelper.Clamp(SkiesDarkness, 0.1f, 1f);
+
+                byte a = Main.ColorOfTheSkies.A;
+                Main.ColorOfTheSkies *= SkiesDarkness;
+                Main.ColorOfTheSkies.A = a;
+
+                if (GameWorldActive)
+                {
+                    if (SkiesDarkness > 0.9999f)
+                    {
+                        SkiesDarkness = 1f;
+                    }
+                    SkiesDarkness = MathHelper.Lerp(SkiesDarkness, SkiesDarknessGoTo, SkiesDarknessGoToSpeed);
+                    SkiesDarknessGoTo = 1f;
+                    SkiesDarknessGoToSpeed = 0.02f;
+                }
+            }
         }
 
         private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
@@ -167,6 +198,18 @@ namespace Aequus
                 byte npc = reader.ReadByte();
                 Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
             }
+        }
+
+        public static bool ShouldDoScreenEffect(Vector2 where)
+        {
+            return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 3000f;
+        }
+
+        public static void DarkenSky(float to, float speed = 0.05f)
+        {
+            SkiesDarkness -= 0.01f;
+            SkiesDarknessGoTo = Math.Min(SkiesDarknessGoTo, to);
+            SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
         }
     }
 }

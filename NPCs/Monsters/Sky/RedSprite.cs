@@ -2,7 +2,6 @@
 using Aequus.Biomes;
 using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
@@ -13,7 +12,6 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.RedSprite;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +22,6 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -392,6 +389,10 @@ namespace Aequus.NPCs.Monsters.Sky
 
                 case PHASE_THUNDERCLAP:
                     {
+                        if (Aequus.ShouldDoScreenEffect(NPC.Center))
+                        {
+                            Aequus.DarkenSky(0.5f, 0.05f);
+                        }
                         NPC.direction = 0;
                         NPC.rotation = NPC.rotation.AngleLerp(0f, 0.1f);
                         Vector2 gotoPosition = new Vector2(Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f, Main.player[NPC.target].position.Y - 300f);
@@ -489,6 +490,10 @@ namespace Aequus.NPCs.Monsters.Sky
 
                 case PHASE_DEAD:
                     {
+                        if (Aequus.ShouldDoScreenEffect(NPC.Center))
+                        {
+                            Aequus.DarkenSky(0.4f, 0.05f);
+                        }
                         NPC.rotation = MathHelper.WrapAngle(NPC.rotation);
                         NPC.rotation *= 0.8f;
                         NPC.velocity *= 0.8f;

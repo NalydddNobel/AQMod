@@ -41,9 +41,19 @@ namespace Aequus.Common.Players
                 return;
             }
 
-            if (itemDrop > 0 && ContentSamples.ItemsByType[itemDrop].rare == -1)
+            if (itemDrop > 0 && ContentSamples.ItemsByType[itemDrop].rare == -1) // trash drop tables
             {
-                if (Main.rand.NextBool(16))
+                int breadMonsterChance = 30;
+                if (!Main.dayTime)
+                {
+                    breadMonsterChance /= 2; // 1/15
+
+                    if (Main.bloodMoon)
+                    {
+                        breadMonsterChance /= 4; // 1/3
+                    }
+                }
+                if (Main.rand.NextBool(breadMonsterChance))
                 {
                     itemDrop = 0;
                     npcSpawn = ModContent.NPCType<BreadOfCthulhu>();

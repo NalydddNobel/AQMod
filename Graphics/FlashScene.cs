@@ -67,7 +67,6 @@ namespace Aequus.Graphics
                     FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 1f / 18f));
                     if (!FlashFilter.IsActive())
                     {
-                        Main.NewText(4);
                         Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation).GetShader()
                         .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
                     }

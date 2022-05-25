@@ -303,6 +303,10 @@ namespace Aequus.NPCs.Monsters.Sky
                             }
                             else if ((int)NPC.ai[1] > 200)
                             {
+                                if (Aequus.ShouldDoScreenEffect(NPC.Center))
+                                {
+                                    Aequus.DarkenSky(0.5f, 0.05f);
+                                }
                                 var eyePos = GetEyePos();
                                 Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 80, 0), 0.9f);
                                 int spawnChance = 3 - (int)(NPC.ai[1] - 210) / 8;

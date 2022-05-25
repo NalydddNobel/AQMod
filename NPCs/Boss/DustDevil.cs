@@ -13,6 +13,11 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public const int PHASE_GOODBYE = -1;
         public const int PHASE_INTRO = 0;
         public const int PHASE_TORNADOBULLETS = 1;

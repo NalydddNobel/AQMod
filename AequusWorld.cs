@@ -3,6 +3,7 @@ using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Tiles;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -36,6 +37,7 @@ namespace Aequus
 
         public override void OnWorldLoad()
         {
+            Aequus.SkiesDarkness = 1f;
             downedSpaceSquid = false;
             downedRedSprite = false;
             downedEventGaleStreams = false;
