@@ -8,6 +8,8 @@ Mods: {
 			
 			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
 
+			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
+
 			Magmabubble: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩史莱姆在吞食了一条血爬行动物后长出了腿, 但它太重了, 爬不上墙壁.
 			TrapperImp: 恶魔能量从血巢的入口中倾泻而出. 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 将其自己的宠物.
 			Cindera: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩蝙蝠有着铰链式的下巴, 就像用来钳制猎物的宝箱.
@@ -15,7 +17,7 @@ Mods: {
 			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
 			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
 			Vraine: 非常符合空气动力学的鸟类, 一群通常有3-9只, 对温度敏感的喙决定了它们的攻击性. 它们的名字基于它们的V字弧形结构和群体飞行模式而来.
-			StreamingBalloon: 更机制的史莱姆乘坐着微型热气球在更高的天空中寻找着食物. 它们故意飞近猎物, 而后击破自己的气球, 落在猎物身上.
+			StreamingBalloon: 更机智的史莱姆乘坐着微型热气球在更高的天空中寻找着食物. 它们故意飞近猎物, 而后击破自己的气球, 落在猎物身上.
 			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在受到宇宙辐射的冲击后, 它吸收了太阳的能力. 据说味道像肉桂.
 			Meteor: 与藤壶相似, 这些东西看起来是无生命体, 但实际上是活的. 当被吹风机吹离太空, 它们会留下陨石坑.
 
@@ -57,6 +59,7 @@ Mods: {
 			Flawless: 仅在无伤击败时掉落
 			Trophy: 在无伤击败时100%掉落
 		}
+
 		Tooltips: {
 			UsesLife: "使用{0}点生命"
 			NecromancyStaff: "{0}法杖"
@@ -93,9 +96,6 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			Driftwood: 浮木
-			PlasticBottle: 塑料瓶
-			RecyclingMachine: 回收机
 			RabbitsFoot: 兔脚
 			SantankSentry: 哨兵6502型微型处理器
 			Slingshot: 弹弓
@@ -104,6 +104,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 			
 			NecromancyStaff: 死灵法杖
@@ -134,9 +135,9 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
+			Hexoplasm: 冥狱融质
 			SkeletonKey: 骷髅钥匙
 			UnenchantedStaff: 未附魔的法杖
-
 			Moro: 摩洛
 
 			ToySpaceGun: 玩具太空枪
@@ -148,15 +149,31 @@ Mods: {
 			GoldenRoulette: 黄金转盘
 			Roulette: 转盘
 
-			BreadOfCthulhuMask: 面包克苏鲁面具
+			RedSpriteMask: 红色精灵面具
+			SpaceSquidMask: 太空乌贼面具
+			BreadOfCthulhuMask: 克苏鲁之面包面具
+
+			RedSpriteTrophy: 红色精灵纪念章
 
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
-			AncientFrostbiteDye: 远古霜寒染料
+			AshCrossGraveMarker: 余烬十字碑
+			AshGraveMarker: 余烬墓标
+			AshGravestone: 余烬墓碑
+			AshHeadstone: 余烬墓碑
+			AshObelisk: 余烬尖碑
+			AshTombstone: 余烬墓碑
+			RecyclingMachine: 回收机
+
+			CensorDye: 监察染料
+			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
+
+			Driftwood: 浮木
+			PlasticBottle: 塑料瓶
 
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
@@ -1614,7 +1631,7 @@ Mods: {
 			Vraine: 镰鸟
 			Meteor: 流星
 
-			BreadOfCthulhu: 面包克苏鲁
+			BreadOfCthulhu: 克苏鲁之面包
 
 			SoldierCrabs: 兵蟹
 			HermitCrab: 寄居蟹
