@@ -93,6 +93,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Driftwood: 浮木
+			PlasticBottle: 塑料瓶
 			RecyclingMachine: 回收机
 			RabbitsFoot: 兔脚
 			SantankSentry: 哨兵6502型微型处理器
@@ -145,6 +147,8 @@ Mods: {
 			SkyRoulette: 天空转盘
 			GoldenRoulette: 黄金转盘
 			Roulette: 转盘
+
+			BreadOfCthulhuMask: 克苏鲁之面包面具
 
 			SpaceSquidRelic: 太空乌贼纪念物
 			RedSpriteRelic: 红色精灵纪念物
@@ -1609,6 +1613,8 @@ Mods: {
 			StreamingBalloon: 紊流气球
 			Vraine: 镰鸟
 			Meteor: 流星
+
+			BreadOfCthulhu: 克苏鲁之面包
 
 			SoldierCrabs: 兵蟹
 			HermitCrab: 寄居蟹
