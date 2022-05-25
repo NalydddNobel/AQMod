@@ -18,7 +18,7 @@ namespace Aequus
         {
             SwordSlash = new SoundStyle("Aequus/Sounds/Items/swordslash", 2, SoundType.Sound);
             SwordSwoosh = new SoundStyle("Aequus/Sounds/Items/swordswoosh", 3, SoundType.Sound);
-            Thunderclap = new SoundStyle("Aequus/Sounds/thunderclap", 1) { Volume = 0.6f, };
+            Thunderclap = new SoundStyle("Aequus/Sounds/RedSprite/thunderclap", 1) { Volume = 0.6f, };
         }
 
         void ILoadable.Unload()
