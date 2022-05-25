@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged.Birds
 {
-    public class BirdProj : ModProjectile
+    public class SlingshotBirdProj : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.Bird;
 
@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Ranged.Birds
                 Projectile.position.Y -= 10f;
                 if (Main.myPlayer == Projectile.owner)
                 {
-                    Projectile.velocity = Vector2.Normalize(Projectile.Center - Main.MouseWorld);
+                    Projectile.velocity = Vector2.Normalize(Main.MouseWorld - Projectile.Center);
 
                     GetShootingStats(out int predictiveTrailType, out float speed, out float ai0);
 

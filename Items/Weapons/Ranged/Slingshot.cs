@@ -24,7 +24,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Green;
-            Item.shoot = ModContent.ProjectileType<BirdProj>();
+            Item.shoot = ModContent.ProjectileType<SlingshotBirdProj>();
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;
             Item.UseSound = SoundLoader.GetLegacySoundSlot(Mod, "Sounds/Slingshot/stretch")?.WithVolume(0.2f);

@@ -16,6 +16,7 @@ namespace Aequus.Items.Armor.Vanity
         {
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
             Item.rare = ItemDefaults.RarityBossMasks;
+            Item.vanity = true;
         }
     }
 }

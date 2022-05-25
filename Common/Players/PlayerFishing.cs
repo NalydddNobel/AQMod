@@ -2,6 +2,7 @@
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Trash;
+using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
 using System.Reflection;
@@ -35,9 +36,19 @@ namespace Aequus.Common.Players
         {
             orig(player, attempt, ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition);
 
+            if (npcSpawn > 0)
+            {
+                return;
+            }
+
             if (itemDrop > 0 && ContentSamples.ItemsByType[itemDrop].rare == -1)
             {
-                if (Main.rand.NextBool())
+                if (Main.rand.NextBool(16))
+                {
+                    itemDrop = 0;
+                    npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
+                }
+                else if (Main.rand.NextBool())
                 {
                     switch (Main.rand.Next(2))
                     {

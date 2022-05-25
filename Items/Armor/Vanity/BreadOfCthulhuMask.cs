@@ -1,15 +1,13 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.Vanity
 {
     [AutoloadEquip(EquipType.Head)]
-    public class SpaceSquidMask : ModItem
+    public class BreadOfCthulhuMask : ModItem
     {
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
         public override void SetDefaults()

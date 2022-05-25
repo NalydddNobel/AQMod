@@ -1,4 +1,7 @@
-﻿using Aequus.Projectiles;
+﻿using Aequus.Common;
+using Aequus.Common.Utilities;
+using Aequus.Content.CrossMod;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -106,9 +109,13 @@ namespace Aequus.Items.Accessories.Summon
                 {
                     dummyPlayer = AequusPlayer.SantankAccClone(Main.player[projectile.owner]);
                 }
+                dummyPlayer.active = true;
+                dummyPlayer.dead = false;
                 dummyPlayer.Center = projectile.Center;
                 dummyPlayer.velocity = projectile.velocity;
+                PlayerLoader.PreUpdate(dummyPlayer);
                 dummyPlayer.ResetEffects();
+                dummyPlayer.UpdateBiomes();
                 dummyPlayer.whoAmI = projectile.owner;
                 dummyPlayer.Aequus().projectileIdentity = projectile.identity;
                 dummyPlayer.wet = projectile.wet;
@@ -132,6 +139,9 @@ namespace Aequus.Items.Accessories.Summon
 
                 }
 
+                PlayerLoader.PostUpdate(dummyPlayer);
+                dummyPlayer.numMinions = 0;
+                dummyPlayer.slotsMinions = 0f;
                 AequusProjectile.ParentProjectile = -1;
             }
             else
@@ -141,7 +151,7 @@ namespace Aequus.Items.Accessories.Summon
         }
     }
 
-    public class SantankInteractions : ILoadable
+    public class SantankInteractions : IAddRecipes
     {        
         /// <summary>
         /// <para>1) Projectile - the projectile</para>
@@ -195,6 +205,10 @@ namespace Aequus.Items.Accessories.Summon
             };
         }
 
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+        }
+
         void ILoadable.Unload()
         {
             Player_SpawnHallucination = null;
@@ -241,6 +255,12 @@ namespace Aequus.Items.Accessories.Summon
         }
         public static void ApplyEquipFunctional_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
+            //Main.NewText(player.ZoneSkyHeight);
+            //Main.NewText(player.ZoneOverworldHeight);
+            //Main.NewText(player.slotsMinions);
+            //Main.NewText(player.numMinions);
+            //Main.NewText(player.maxMinions);
+            //Main.NewText(AequusText.ItemText(item.type));
             sentry.dummyPlayer.ApplyEquipFunctional(item, false);
         }
         public static void InnerTube_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)

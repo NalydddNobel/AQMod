@@ -37,10 +37,10 @@ namespace Aequus.NPCs.Monsters
             NPC.defense = 10;
             NPC.lifeMax = 125;
             NPC.HitSound = SoundID.NPCHit16;
-            NPC.DeathSound = SoundID.NPCDeath41;
+            NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(silver: 50);
             NPC.knockBackResist = 0.4f;
-            NPC.rarity = 2;
+            NPC.rarity = 1;
             Banner = Item.NPCtoBanner(NPCID.Mimic);
             BannerItem = ItemID.MimicBanner;
 

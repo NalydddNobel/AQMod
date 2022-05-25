@@ -1,4 +1,5 @@
 ﻿using Aequus.Tiles;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -12,17 +13,22 @@ namespace Aequus.Items.Misc.Trash
         {
             RecyclingTable.Convert.Add(Type, new List<RecyclingTable.Info>()
             {
-                ItemID.Wood,
-                ItemID.Ebonwood,
-                ItemID.Shadewood,
-                ItemID.RichMahogany,
-                ItemID.BorealWood,
-                ItemID.PalmWood,
-                ItemID.DynastyWood,
-                new RecyclingTable.Info(ItemID.Pearlwood, () => Main.hardMode),
+                WoodInfo(ItemID.Wood),
+                WoodInfo(ItemID.Ebonwood),
+                WoodInfo(ItemID.Shadewood),
+                WoodInfo(ItemID.RichMahogany),
+                WoodInfo(ItemID.BorealWood),
+                WoodInfo(ItemID.PalmWood),
+                WoodInfo(ItemID.DynastyWood),
+                WoodInfo(ItemID.Pearlwood, () => Main.hardMode),
             });
 
             this.SetResearch(1);
+        }
+
+        private RecyclingTable.Info WoodInfo(int item, Func<bool> canObtain = null)
+        {
+            return new RecyclingTable.Info(item, 2, 8, canObtain);
         }
 
         public override void SetDefaults()

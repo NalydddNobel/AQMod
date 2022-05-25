@@ -220,8 +220,7 @@ namespace Aequus.Tiles
                 {
                     RecyclingTable.Convert.TryGetValue(item.type, out var l);
 
-                    item = ConvertItem(item, l.FindAll((l2) => l2.CanObtain())
-                        .Select((l3) => l3.item).ToArray());
+                    item = ConvertItem(item, l.FindAll((l2) => l2.CanObtain()));
 
                     Sync();
 
@@ -243,7 +242,7 @@ namespace Aequus.Tiles
             }
         }
 
-        public Item ConvertItem(Item item, int[] conversionData)
+        public Item ConvertItem(Item item, List<RecyclingTable.Info> conversionData)
         {
             item = item.Clone();
 
@@ -253,7 +252,9 @@ namespace Aequus.Tiles
                 return item;
             }
 
-            item.SetDefaults(conversionData[Main.rand.Next(conversionData.Length)]);
+            var c = conversionData[Main.rand.Next(conversionData.Count)];
+            item.SetDefaults(c.item);
+            item.stack = c.RollStack();
             return item;
         }
 
@@ -380,17 +381,32 @@ namespace Aequus.Tiles
         public struct Info 
         {
             public int item;
+            public int minStack;
+            public int maxStack;
             public Func<bool> canObtain;
 
-            public Info(int item, Func<bool> canObtain = null)
+            public Info(int item, int minStack, int maxStack, Func<bool> canObtain = null)
             {
                 this.item = item;
+                this.minStack = minStack;
+                this.maxStack = maxStack;
                 this.canObtain = canObtain;
+            }
+            public Info(int item, int stack, Func<bool> canObtain = null) : this(item, stack, stack, canObtain)
+            {
+            }
+            public Info(int item, Func<bool> canObtain = null) : this(item, 1, 1, canObtain)
+            {
             }
 
             public bool CanObtain()
             {
                 return (canObtain?.Invoke()).GetValueOrDefault(true);
+            }
+
+            public int RollStack()
+            {
+                return Main.rand.Next(minStack, maxStack + 1);
             }
 
             public static implicit operator Info(int item)
@@ -412,8 +428,8 @@ namespace Aequus.Tiles
                 },
                 [ItemID.OldShoe] = new List<Info>()
                 {
-                    ItemID.Silk,
-                    ItemID.Cobweb,
+                    new Info(ItemID.Silk, 1, 3),
+                    new Info(ItemID.Cobweb, 7, 24),
                     ItemID.HermesBoots,
                 },
             };

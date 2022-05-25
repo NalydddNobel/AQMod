@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -69,6 +70,22 @@ namespace Aequus.Projectiles
             projectileOwner = projectileOwnerIdentity;
         }
 
+        public override bool PreAI(Projectile projectile)
+        {
+            if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
+            {
+                if (projectileOwnerIdentity > 0)
+                {
+                    projectileOwner = AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
+                    if (projectileOwner == -1)
+                    {
+                        projectileOwnerIdentity = -1;
+                    }
+                }
+            }
+            return true;
+        }
+
         public override void PostAI(Projectile projectile)
         {
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
@@ -79,15 +96,6 @@ namespace Aequus.Projectiles
                     AequusPlayer.TeamContext = Main.player[projectile.owner].team;
                     GlowCore.AddLight(projectile, aequus.accGlowCore);
                     AequusPlayer.TeamContext = 0;
-                }
-            }
-
-            if (projectileOwnerIdentity > 0)
-            {
-                projectileOwner = AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
-                if (projectileOwner == -1)
-                {
-                    projectileOwnerIdentity = -1;
                 }
             }
         }

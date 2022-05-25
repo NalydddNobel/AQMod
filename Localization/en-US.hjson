@@ -148,6 +148,8 @@ Mods: {
 			GoldenRoulette: Golden Roulette
 			Roulette: Roulette
 
+			BreadOfCthulhuMask: Bread of Cthulhu Mask
+
 			SpaceSquidRelic: Space Squid Relic
 			RedSpriteRelic: Red Sprite Relic
 			CrabsonRelic: Crabson Relic
@@ -1611,6 +1613,8 @@ Mods: {
 			StreamingBalloon: Streaming Balloon
 			Vraine: Vraine
 			Meteor: Meteor
+
+			BreadOfCthulhu: Bread of Cthulhu
 
 			SoldierCrabs: Soldier Crab
 			HermitCrab: Hermit Crab

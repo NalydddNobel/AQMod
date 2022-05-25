@@ -11,9 +11,9 @@ namespace Aequus.Items.Misc.Trash
         {
             RecyclingTable.Convert.Add(Type, new List<RecyclingTable.Info>()
             {
-                ItemID.Bottle,
-                ItemID.Mug,
-                ItemID.ClayPot,
+                new RecyclingTable.Info(ItemID.Bottle, 1, 4),
+                new RecyclingTable.Info(ItemID.Mug, 1, 4),
+                new RecyclingTable.Info(ItemID.ClayPot, 1, 3),
             });
 
             this.SetResearch(1);
