@@ -95,9 +95,6 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			Driftwood: Driftwood
-			PlasticBottle: Plastic Bottle
-			RecyclingMachine: Recycling Machine
 			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.
 			Slingshot: Slingshot
@@ -142,7 +139,7 @@ Mods: {
 			Moro: Moro
 			
 			ToySpaceGun: Toy Space Gun
-			
+
 			SnowRoulette: Snow Roulette
 			GlowingMushroomsRoulette: Glowing Mushrooms Roulette
 			DesertRoulette: Desert Roulette
@@ -157,8 +154,18 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
-			AncientFrostbiteDye: Ancient Frostbite Dye
+			AshCrossGraveMarker: Ash Cross Grave Marker
+			AshGraveMarker: Ash Grave Marker
+			AshGravestone: Ash Gravestone
+			AshHeadstone: Ash Headstone
+			AshObelisk: Ash Obelisk
+			AshTombstone: Ash Tombstone
+			RecyclingMachine: Recycling Machine
+
 			FrostbiteDye: Frostbite Dye
+
+			Driftwood: Driftwood
+			PlasticBottle: Plastic Bottle
 
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
