@@ -103,6 +103,7 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
 			NecromancyStaff: Necromancy Staff
@@ -133,9 +134,9 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
+			Hexoplasm: Hexoplasm
 			SkeletonKey: Skeleton Key
 			UnenchantedStaff: Unenchanted Staff
-			
 			Moro: Moro
 			
 			ToySpaceGun: Toy Space Gun
@@ -147,7 +148,11 @@ Mods: {
 			GoldenRoulette: Golden Roulette
 			Roulette: Roulette
 
+			RedSpriteMask: Red Sprite Mask
+			SpaceSquidMask: Space Squid Mask
 			BreadOfCthulhuMask: Bread of Cthulhu Mask
+
+			RedSpriteTrophy: Red Sprite Trophy
 
 			SpaceSquidRelic: Space Squid Relic
 			RedSpriteRelic: Red Sprite Relic
@@ -162,6 +167,8 @@ Mods: {
 			AshTombstone: Ash Tombstone
 			RecyclingMachine: Recycling Machine
 
+			CensorDye: Censor Dye
+			ScorchingDye: Scorching Dye
 			FrostbiteDye: Frostbite Dye
 
 			Driftwood: Driftwood
