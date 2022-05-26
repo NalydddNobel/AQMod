@@ -28,7 +28,7 @@ namespace Aequus.Items.Misc.Trash
 
         private RecyclingTable.Info WoodInfo(int item, Func<bool> canObtain = null)
         {
-            return new RecyclingTable.Info(item, 2, 8, canObtain);
+            return new RecyclingTable.Info(item, 12, 64, canObtain);
         }
 
         public override void SetDefaults()

@@ -1,6 +1,8 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Items;
+using Aequus.Items.Accessories;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Money;
+using Aequus.Items.Placeable;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -55,6 +57,8 @@ namespace Aequus.NPCs.Friendly
             .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
+
+            AequusTooltips.NPCShopQuote.Add(Type, Color.Orange * 1.2f);
         }
 
         public override void SetDefaults()
@@ -86,6 +90,31 @@ namespace Aequus.NPCs.Friendly
         {
             this.CreateEntry(database, bestiaryEntry)
                 .AddSpawn(BestiaryBuilder.OceanBiome);
+        }
+
+        public override void SetupShop(Chest shop, ref int nextSlot)
+        {
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.DiscountCard);
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.LuckyCoin);
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
+            if (NPC.downedPirates)
+                shop.item[nextSlot++].SetDefaults(ItemID.CoinRing);
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
+
+            if (NPC.downedBoss3)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
+                shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
+            }
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());
         }
 
         //public static bool TryPlaceQuestTile(int x, int y)
@@ -369,27 +398,6 @@ namespace Aequus.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-            }
-        }
-
-        public override void SetupShop(Chest shop, ref int nextSlot)
-        {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
-            if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.DiscountCard);
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
-            if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.LuckyCoin);
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
-            if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.CoinRing);
-
-            if (NPC.downedBoss3)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
-                shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             }
         }
 

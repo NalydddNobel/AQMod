@@ -37,7 +37,7 @@ namespace Aequus
         public static Asset<Texture2D> TextBloom { get; private set; }
         [ImgPath("Assets/UI")]
         public static Asset<Texture2D> StatusBubble { get; private set; }
-        public const int StatusBubbleFrames = 2;
+        public const int StatusBubbleFramesX = 3;
         [ImgPath("UI")]
         public static Asset<Texture2D> InventoryBack { get; private set; }
 

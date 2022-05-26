@@ -24,7 +24,7 @@ namespace Aequus.Items.Consumables
                 player.QuickSpawnItem(source, ModContent.ItemType<CrabsonMask>());
             }
             player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
-            DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>(), });
+            DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), });
             //AQMod.AequusDeveloperItems(player, hardmode: false);
             //player.QuickSpawnItem(ModContent.ItemType<Crabax>());
             //if (Main.rand.NextBool(7))

@@ -2071,8 +2071,16 @@ Mods: {
 
 				VanityEyePatch: No Text
 				PirateVanitySet: No Text
+
+				ShopQuote: {
+					GrandReward: Ye like getting more buck from your bangs? This here item is ye choice.
+					SkeletonKey: Need ye a way to unlock some forgotten booty but ye keys keep breaking? Purchase now!
+					Terraria_ShadowKey: Like ye skeleton key, but can unlock even more than landlubber booty! Purchase now!
+					RecyclingMachine: Littering is a crime worse than bein' a pirate. Keep yeself safe with this cheap recycler!
+				}
 			}
 		}
+
 		TownNPCMood: {
 			Exporter: {
 				LoveSpace: Yarr this place is mighty fine lad, could probably setup shop here and continue my work.

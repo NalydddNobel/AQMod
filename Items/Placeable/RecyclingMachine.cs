@@ -1,4 +1,5 @@
 ﻿using Aequus.Tiles;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,26 +16,8 @@ namespace Aequus.Items.Placeable
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<RecyclingMachineTile>());
             Item.maxStack = 99;
+            Item.value = Item.buyPrice(gold: 15);
             Item.rare = ItemRarityID.Blue;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.CopperBar, 12)
-                .AddRecipeGroup("IronBar", 2)
-                .AddRecipeGroup("PresurePlate")
-                .AddRecipeGroup("Sand", 10)
-                .AddTile(TileID.Anvils)
-                .Register();
-            CreateRecipe()
-                .AddIngredient(ItemID.TinBar, 12)
-                .AddRecipeGroup("IronBar", 2)
-                .AddRecipeGroup("PresurePlate")
-                .AddRecipeGroup("Sand", 10)
-                .AddTile(TileID.Anvils)
-                .Register();
-
         }
     }
 }

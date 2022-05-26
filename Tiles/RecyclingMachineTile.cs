@@ -119,7 +119,7 @@ namespace Aequus.Tiles
 
         public void InnerDrawChatBubble(TERecyclingMachine recylcing, Item item, Vector2 where)
         {
-            var chatBubbleFrame = Images.StatusBubble.Value.Frame(horizontalFrames: Images.StatusBubbleFrames, frameX: 1);
+            var chatBubbleFrame = Images.StatusBubble.Value.Frame(horizontalFrames: Images.StatusBubbleFramesX, frameX: 1);
             Main.spriteBatch.Draw(Images.StatusBubble.Value, where.Floor(),
                 chatBubbleFrame, Color.White, 0f, new Vector2(chatBubbleFrame.Width / 2f, chatBubbleFrame.Height), 1f, SpriteEffects.None, 0f);
 
@@ -423,8 +423,8 @@ namespace Aequus.Tiles
             {
                 [ItemID.TinCan] = new List<Info>()
                 {
-                    ItemID.CopperBar,
-                    ItemID.TinBar,
+                    new Info(ItemID.CopperBar, 4, 8),
+                    new Info(ItemID.TinBar, 4, 8),
                 },
                 [ItemID.OldShoe] = new List<Info>()
                 {

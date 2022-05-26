@@ -187,5 +187,26 @@ namespace Aequus
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text, args), color);
             }
         }
+
+        public static string IDSearchNameToAKey(string name)
+        {
+            if (name.StartsWith("Aequus/"))
+            {
+                var split = name.Split('/');
+                name = "";
+                for (int i = 1; i < split.Length; i++)
+                {
+                    if (i != 1)
+                        name += "/";
+                    name += split[i];
+                }
+            }
+            else if (!name.Contains('/'))
+            {
+                name = "Terraria_" + name;
+            }
+
+            return name.Replace('/', '_');
+        }
     }
 }

@@ -792,7 +792,7 @@ namespace Aequus.NPCs.Boss
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
-                .AddOptions(1, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<GrandReward>())
+                .AddOptions(1, ModContent.ItemType<Mendshroom>())
                 .Add<AquaticEnergy>(stack: (3, 6))
                 .RegisterCondition();
         }
