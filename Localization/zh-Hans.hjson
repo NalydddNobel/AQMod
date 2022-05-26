@@ -175,6 +175,8 @@ Mods: {
 			Driftwood: 浮木
 			PlasticBottle: 塑料瓶
 
+			GhostlyGrave: 幽魂冢
+
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
 			Molite: 元星鱼
@@ -290,7 +292,6 @@ Mods: {
 			VampireHook: 血族
 			BlackBookofUntoldLegends: "'无名传说'"
 			EquivalenceMachine: 等均仪
-			GhostlyGrave: 幽魂冢
 			Stardrop: 星落果
 			IWillBeBack: "'我将归来'"
 			Nimrod: 猎手
@@ -451,15 +452,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			RecyclingMachine: 允许你回收垃圾物品
-			BallisticScreecher: 发射熔岩球
-			RabbitsFoot: 增加用户的幸运度
-			SantankSentry: 允许你的哨兵装备你的饰品
 			Slingshot: 
 				'''
-				向射击的反方向移动光标以增加射击强度
+				向射击的拉动移动光标以增加射击强度
 				使用鸟作为弹药
 				'''
+
+			BallisticScreecher: 发射熔火球
 			BloodiedBucket: 
 				'''
 				大幅度增加幽魂仆从的实名制
@@ -508,6 +507,8 @@ Mods: {
 
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
+			RabbitsFoot: 增加用户的幸运度
+			SantankSentry: 允许你的哨兵装备你的饰品
 			FoolsGoldRing: 
 				'''
 				基于所持有的钱币数量增加属性
@@ -521,6 +522,12 @@ Mods: {
 				哨兵攻击有小几率造成霜火减益
 				当你处于战斗中时会自动召唤哨兵
 				仅在背包中拥有哨兵武器时才会生效
+				'''
+				SentrySquid:
+				'''
+				当你处于战斗中时会自动召唤哨兵
+				仅在背包中拥有哨兵武器时才会生效
+				'仅是轻微的干扰'
 				'''
 			ToySpaceGun: 
 				'''
@@ -539,6 +546,9 @@ Mods: {
 
 			PotionOfResurrection: 将你传送至上次死亡时的位置
 			FrostPotion: 降低热源对你造成的伤害
+
+			Fluorescence: "'猛烈的跳动着'"
+			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
 			
 			SnowRoulette:
@@ -572,8 +582,10 @@ Mods: {
 				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
 
-			Fluorescence: "'猛烈的跳动着'"
-			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
+			RecyclingMachine: 允许你回收垃圾物品
+
+			GhostlyGrave: 阻止你在死亡时生成的墓碑
+
 			MirrorsCall:
 				'''
 				'从你舒适的沙发上打击敌人!'
@@ -601,12 +613,6 @@ Mods: {
 				'''
 			GalacticStarfruit: 创造一道奇异微光
 			MoonLeech: 攻击会汲取敌人的法力
-			SentrySquid:
-				'''
-				当你处于战斗中时会自动召唤哨兵
-				仅在背包中拥有哨兵武器时才会生效
-				'仅是轻微的干扰'
-				'''
 			DreamCatcher:
 				'''
 				{$Mods.Aequus.Tooltips.HookBarb}
@@ -924,7 +930,6 @@ Mods: {
 				'''
 			BlackBookofUntoldLegends: 召唤寄居蟹商人
 			EquivalenceMachine: 附近的物品会现在漂浮而非下落
-			GhostlyGrave: 可在你死亡后阻止墓碑的生成
 			Stardrop: 切换以决定是否允许城镇NPC在夜间入住
 			IWillBeBack:
 				'''
@@ -1119,18 +1124,6 @@ Mods: {
 				使你获得缓降效果
 				长按'下'键可恢复正常的重力效果, 长按'上'键可进一步强化低重力效果
 				'HE-HE'
-				'''
-			BlurryDiscountCard:
-				'''
-				小幅度降低商店价格
-				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
-				'它很难被读懂, 但无论如何商人们都会给你打折'
-				'''
-			BusinessCard:
-				'''
-				降低商店价格
-				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
-				'把你花费的钱都当做是业务支出就好了'
 				'''
 			Crabsol: 只有最强壮的人才能举起这把剑
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1995,10 +1988,10 @@ Mods: {
 					仅会在高品质着色器启用时生效
 					'''
 
-				NPCShopQuotes: NPC商店对话
-				NPCShopQuotesTooltip: 禁用NPC商店物品对话
-				OtherNPCShopQuotes: * 原版商店对话
-				OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品对话
+				NPCShopQuotes: NPC商店报价
+				NPCShopQuotesTooltip: 禁用NPC商店物品报价
+				OtherNPCShopQuotes: * 原版商店报价
+				OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品报价
 				InfoDebugLogs: 信息和调试日志
 				InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
 			}
@@ -2014,66 +2007,101 @@ Mods: {
 
 
 		Chat: {
+			Terraria_Pirate: {
+				ShopQuote: {
+					Terraria_Cannon: 蹦! 我吓到恁了吗? 我把那门大炮从可怕的海盗罗伯特的船上拿下来了.
+					Terraria_Cannonball: 恁在那得到了整整18磅的铅. 肯定会对任何一艘帆船造成伤害!
+					Terraria_PirateHat: 是的, 那曾是我配偶的帽子. 我在海战中失去了他. 我肯定他不介意我把这个当做战利品!
+					Terraria_PirateShirt: 是的, 那曾是我配偶的衣服. 我在海战中失去了他. 我肯定他不介意我把这个当做战利品!
+					Terraria_PiratePants: 是的, 那曾是我配偶的裤子. 我在海战中失去了他. 我肯定他不介意我把这些当做战利品!
+					Terraria_Sail: 几张我上一艘船长的船帆.
+					Terraria_ParrotCracker: 是的! 那是我鹦鹉最喜欢的牌子. 也许恁会找到自己的羽毛朋友!
+					Terraria_BunnyCannon: 这是一门非常不寻常的大炮, 但我相信恁能在战斗中很好地使用它.
+					Terraria_ExplosiveBunny: 我为这个可怜的野兽感到难过, 但我担心如果我救了他会发生什么!
+				}
+			}
+
+			Terraria_Cyborg: {
+				ShopQuote: {
+					Terraria_RocketI: 对一些爆炸性弹药感兴趣?
+					Terraria_RocketII: 对一些高口径爆炸性弹药感兴趣?
+					Terraria_RocketIII: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
+					Terraria_RocketIV: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
+					Terraria_DryRocket: 对一些装满了爆炸性集数弹药的弹药筒感兴趣?
+					Terraria_ProximityMineLauncher: 这是一个精确的手持式近距离地雷发射器. 要达到最大效率, 请等待地雷完全隐藏起来.
+					Terraria_Nanites: 这些我自己设计的纳米机器人, 可以直接注入任何生命形式. 出于任何目的.
+					Terraria_ClusterRocketI: 对一些集数弹药感兴趣?
+					Terraria_ClusterRocketII: 对一些高口径爆炸性弹药感兴趣?
+					Terraria_HiTekSunglasses: 火星的时尚. 入侵者似乎留下了一些衣服.
+					Terraria_NightVisionHelmet: 火星的时尚. 入侵者似乎留下了一些衣服. 报告显示, 它还为岩石设置了动画.
+					Terraria_PortalGunStation: 你的量子挖掘装置可能需要一些自动化.
+					Terraria_EchoBlock: 在用看不见的能量粒子进行实验后, 我设法将它们转化为固态. 可能对建筑有用.
+					Terraria_SpectreGoggles: 这些经过修改的视觉感受器可以帮助你研究和处理奇怪的隐形异常.
+				}
+			}
+
 			Exporter: {
 				Introduction: 我的名字是{0}, 我将致力于为恁带来我所能找到的最可疑的商品!
 
 				Basic: {
 					0: 仅为恁, 我的朋友, 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
 					1: 所有收益都会捐给慈善机构 — 我所说的慈善机构是指我的银行账户!
+					2: No Text, do not translate
+					3: No Text, do not translate
+					4: No Text, do not translate
 				}
 
 				Night: {
 					0: 今晚夜色真美, 非常适合买点什么!
 					1: 恁知道的, 大鱼会在月亮出来的时候更活跃. 最好去钓鱼!
+					2: No Text, do not translate
 				}
 
 				BloodMoon: {
-					0: 无文本
-					1: 无文本
-					2: 无文本
+					0: 当海潮和雨水变红的时候, 一只强大的乌贼就冲出海面, 把船给毁了! 
+					1: 我在吃午饭, 一条特别的金鱼. 我没想到今晚的月亮升起时会它会变得如此邪恶.
+					2: No Text, do not translate
+
 					WanderingEyeFish: 我今晚出去钓鱼了, 然后我钓到了一条长着大眼睛的鱼! 我从那只眼球上赚了30达布隆.
-					ZombieMerman: 无文本
-					HemogoblinShark: 无文本
-					BloodEel: 无文本
-					Dreadnautilus: 无文本
+					ZombieMerman: No Text, do not translate
+					HemogoblinShark: No Text, do not translate
+					BloodEel: No Text, do not translate
+					Dreadnautilus: No Text, do not translate
 				}
 
 				Ocean: {
 					0: 如果愿望是鱼...如果愿望是鱼, 我就不会因为骗税而被通缉!
-					1: 无文本
-					2: 无文本
+					1: No Text, do not translate
+					2: No Text, do not translate
 				}
 
 				CrabCrevice: {
-					0: 
-						'''
-						我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
-						'''
-					1: 无文本
-					2: 无文本
+					0: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+					1: No Text, do not translate
+					2: No Text, do not translate
 				}
 
 				AnglerTownNPC: "{0}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你见过的还多."
 				PirateTownNPC: 耶! 我和{0}在公海上相遇过几次. 但那都是美好的过去了...
-				DryadTownNPC: 无文本
-				ZoologistTownNPC: 无文本
+				DryadTownNPC: No Text, do not translate
+				ZoologistTownNPC: No Text, do not translate
 				TruffleTownNPC: "{0}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来."
-				ArmsDealerTownNPC: 无文本
-				DemolitionistTownNPC: 无文本
+				ArmsDealerTownNPC: No Text, do not translate
+				DemolitionistTownNPC: No Text, do not translate
 				TaxCollectorTownNPC: 我躲着{0}已经七年了! 别让他知道我在这里!
-				TravellingMerchantTownNPC: 无文本
+				TravellingMerchantTownNPC: No Text, do not translate
 				StylistTownNPC: 有一次我要求{0}给我修剪头发. 但她却砍掉了我的触角! 我是说我的感知头发!
 
-				PhysicistTownNPC: 无文本
-				MemorialistTownNPC: 无文本
+				PhysicistTownNPC: No Text, do not translate
+				MemorialistTownNPC: No Text, do not translate
 
 				Crabson: 吓我一跳! 恁杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
 
 				PirateInvasion: 我在海盗时代就认识这些小伙子. 他是公海上第十七位最可怕的船员!
-				XMas: 无文本
+				XMas: No Text, do not translate
 
-				VanityEyePatch: 无文本
-				PirateVanitySet: 无文本
+				VanityEyePatch: No Text, do not translate
+				PirateVanitySet: No Text, do not translate
 
 				ShopQuote: {
 					Terraria_GoldRing: 据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 能以一个较便宜的价格买到!
@@ -2086,6 +2114,13 @@ Mods: {
 					Terraria_ShadowKey: 就像恁的骷髅钥匙一样, 但可以解锁比旱鸭子战利品更多的物品! 买一个吧!
 					SkeletonKey: 恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 买一个吧!
 					GrandReward: 恁喜欢通过打架来赚钱吗? 这个物品是恁的不二之选.
+				}
+
+				ShopPrice: {
+					Platinum: 白金达布隆
+					Gold: 黄金达布隆
+					Silver: 银达布隆
+					Copper: 铜达布隆
 				}
 			}
 		}
