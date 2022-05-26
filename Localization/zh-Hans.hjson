@@ -1981,6 +1981,7 @@ Mods: {
 			Client: {
 				Headers: {
 					Visuals: "[c/ddddff:视觉]"
+					Misc: "[c/ddddff:杂项]"
 				}
 
 			ScreenshakeIntensity: 屏幕震动强度
@@ -1993,11 +1994,13 @@ Mods: {
 					将重复执行多次该着色器
 					仅会在高品质着色器启用时生效
 					'''
+
+				NPCShopQuotes: NPC商店对话
+				NPCShopQuotesTooltip: 禁用NPC商店物品对话
+				OtherNPCShopQuotes: * 原版商店对话
+				OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品对话
 				InfoDebugLogs: 信息和调试日志
-				InfoDebugLogsTooltip: 
-					'''
-					只对需要确认事件的第三方开发者有用
-					'''
+				InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
 			}
 
 			Gameplay: {
@@ -2073,10 +2076,16 @@ Mods: {
 				PirateVanitySet: 无文本
 
 				ShopQuote: {
-					GrandReward: 恁喜欢通过打架来赚钱吗? 这个物品是恁的选择.
-					SkeletonKey: 恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 买一个吧!
-					Terraria_ShadowKey: 就像恁的骷髅钥匙一样, 但可以解锁比旱鸭子战利品更多的物品! 买一个吧!
+					Terraria_GoldRing: 据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 能以一个较便宜的价格买到!
+					Terraria_LuckyCoin: 我的老船长的第一枚硬币, 据说能够带来好运, 但恁这只老龙虾不相信这样的神话.
+					Terraria_DiscountCard: 我从我一个配偶的尸体上拿到了这个, 恁俩看起来很像啊, 不是吗?
+					FoolsGoldRing: 女士们会喜欢恁戴着这个的, 但千万不要告诉她们恁的秘密!
+					FaultyCoin: 把这个视作一枚普通硬币, 如果他们抓不到恁, 恁就可以得到一笔免费的交易, 淘气鬼.
+					ForgedCard: 不喜欢付全款? 这张伪造的卡会使恁的财产花费降低许多.
 					RecyclingMachine: 乱扔垃圾是比当海盗更严重的罪行. 用这个廉价的回收机保证恁自己的安全吧!
+					Terraria_ShadowKey: 就像恁的骷髅钥匙一样, 但可以解锁比旱鸭子战利品更多的物品! 买一个吧!
+					SkeletonKey: 恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 买一个吧!
+					GrandReward: 恁喜欢通过打架来赚钱吗? 这个物品是恁的不二之选.
 				}
 			}
 		}
