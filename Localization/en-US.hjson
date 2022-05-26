@@ -2007,6 +2007,20 @@ Mods: {
 
 
 		Chat: {
+			Terraria_Pirate: {
+				ShopQuote: {
+					Terraria_Cannon: BOOM! Did I scare ye? I took that cannon off the ship of the Dread Pirate Robert.
+					Terraria_Cannonball: That’s a whole 18 pounds of solid lead ye got there. Sure to put a dent in any galleon!
+					Terraria_PirateHat: Aye, that was me matey’s hat. Lost him in a sea battle. I’m sure he didn’t mind me looting it!
+					Terraria_PirateShirt: Aye, that was me matey’s shirt. Lost him in a sea battle. I’m sure he didn’t mind me looting it!
+					Terraria_PiratePants: Aye, those were me matey’s pants. Lost him in a sea battle. I’m sure he didn’t mind me looting them!
+					Terraria_Sail: Just a couple of sails from me last vessel.
+					Terraria_ParrotCracker: Aye! That’s me parrot’s favorite brand. Maybe ye’ll find ye own feathered friend with it!
+					Terraria_BunnyCannon: This be a rather unconventional cannon, but I be sure ye can use it well in combat.
+					Terraria_ExplosiveBunny: I feel bad for this poor beastie, but I be afraid of what would happen if I try to save him!
+				}
+			}
+			
 			Terraria_Cyborg: {
 				ShopQuote: {
 					Terraria_RocketI: Interested in some explosive munitions?

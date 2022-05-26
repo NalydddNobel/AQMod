@@ -98,8 +98,7 @@ namespace Aequus.Content
                 {
                     [NPCID.ArmsDealer] = new NPCQuotes(NPCID.ArmsDealer)
                     .WithColor(Color.Gray * 1.45f)
-                    .AddQuote("LegacyDialog.66", ItemID.Minishark)
-                    ,
+                    .AddQuote("LegacyDialog.66", ItemID.Minishark),
 
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
@@ -116,7 +115,19 @@ namespace Aequus.Content
                     .AddQuote(ItemID.NightVisionHelmet)
                     .AddQuote(ItemID.PortalGunStation)
                     .AddQuote(ItemID.EchoBlock)
-                    .AddQuote(ItemID.SpectreGoggles)
+                    .AddQuote(ItemID.SpectreGoggles),
+
+                    [NPCID.Pirate] = new NPCQuotes(NPCID.Pirate)
+                    .WithColor(Color.Orange * 1.2f)
+                    .AddQuote(ItemID.Cannon)
+                    .AddQuote(ItemID.Cannonball)
+                    .AddQuote(ItemID.PirateHat)
+                    .AddQuote(ItemID.PirateShirt)
+                    .AddQuote(ItemID.PiratePants)
+                    .AddQuote(ItemID.Sail)
+                    .AddQuote(ItemID.ParrotCracker)
+                    .AddQuote(ItemID.BunnyCannon)
+                    .AddQuote(ItemID.ExplosiveBunny)
                     ,
                 };
             }
