@@ -128,13 +128,17 @@ namespace Aequus.Content
 
             /// <summary>
             /// Adds shop quote data for an npc
-            /// <para>Parameter 1: NPC Type (int)</para>
-            /// <para>Parameter 2: Key (string)</para>
-            /// <para>Parameter 2 (Alternative): Mod (Mod) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
-            /// <para>Parameter 3: Item Type (int)</para>
+            /// <para>Parameter 1: NPC Type (<see cref="int"/>)</para>
+            /// <para>Parameter 2: Key (<see cref="string"/>)</para>
+            /// <para>Parameter 2 (Alternative): Mod (<see cref="Mod"/>) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
+            /// <para>Parameter 3: Item Type (<see cref="int"/>)</para>
+            /// <para>To make a town npc use a specific quote color:</para>
+            /// <para>Parameter 1: NPC Type (<see cref="int"/>)</para>
+            /// <para>Parameter 2: Color (<see cref="Color"/>)</para>
             /// <para>A successful mod call would look like:</para>
-            /// <code>aequus.Call("AddShopQuote", NPCID, this, ItemID);</code> OR
-            /// <code>aequus.Call("AddShopQuote", NPCID, "This is text. I can also use language keys here.", ItemID);</code>
+            /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, <see cref="Color"/>);</code> OR
+            /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, this, <see cref="ItemID"/>);</code> OR
+            /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, "This is text. I can also use language keys here.", <see cref="ItemID"/>);</code>
             /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>.</para>
             /// </summary>
             /// <param name="aequus"></param>
@@ -143,9 +147,14 @@ namespace Aequus.Content
             public object HandleModCall(Aequus aequus, object[] args)
             {
                 int npc = (int)args[1];
-                int item = (int)args[3];
 
                 AddNPC(npc);
+                if (args[2] is Color color)
+                {
+                    this[npc].WithColor(color);
+                    return IModCallable.Success;
+                }
+                int item = (int)args[3];
                 if (args[2] is string quoteText)
                 {
                     this[npc].AddQuote(quoteText, item);

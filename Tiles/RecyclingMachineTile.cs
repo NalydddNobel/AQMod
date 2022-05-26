@@ -137,6 +137,8 @@ namespace Aequus.Tiles
 
             where.Y += chatBubbleFrame.Height / -2f - 2f;
 
+            Main.spriteBatch.Draw(itemTexture, where.Floor() + new Vector2(2f, 2f) * itemScale,
+                null, Color.Black * 0.4f, 0f, frame.Size() / 2f, itemScale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(itemTexture, where.Floor(),
                 null, Color.White, 0f, frame.Size() / 2f, itemScale, SpriteEffects.None, 0f);
         }
