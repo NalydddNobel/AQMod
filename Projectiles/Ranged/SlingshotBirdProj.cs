@@ -173,6 +173,11 @@ namespace Aequus.Projectiles.Ranged.Birds
             Projectile.hide = true;
         }
 
+        public override bool? CanDamage()
+        {
+            return false;
+        }
+
         public override void AI()
         {
             Projectile.velocity.Y += Projectile.ai[0];

@@ -10,6 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Items
@@ -44,6 +45,11 @@ namespace Aequus.Items
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
+                if (Main.LocalPlayer.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[Main.LocalPlayer.talkNPC].type == ModContent.NPCType<Exporter>())
+                {
+                    RobsterPrice(item, tooltips);
+                }
+
                 if (item.ModItem is IUpdateBank || (AequusItem.BankEquipFuncs.Contains(item.type) && item.type != ItemID.CellPhone))
                 {
                     tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
@@ -52,6 +58,19 @@ namespace Aequus.Items
                 {
                     tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
                 }
+            }
+
+            public bool RobsterPrice(Item item, List<TooltipLine> lines)
+            {
+                var t = lines.Find("Price");
+                if (t != null)
+                {
+                    t.Text = t.Text.Replace(Lang.inter[15].Value, AequusText.GetText("Chat.Exporter.ShopPrice.Platinum"));
+                    t.Text = t.Text.Replace(Lang.inter[16].Value, AequusText.GetText("Chat.Exporter.ShopPrice.Gold"));
+                    t.Text = t.Text.Replace(Lang.inter[17].Value, AequusText.GetText("Chat.Exporter.ShopPrice.Silver"));
+                    t.Text = t.Text.Replace(Lang.inter[18].Value, AequusText.GetText("Chat.Exporter.ShopPrice.Copper"));
+                }
+                return false;
             }
 
             public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)

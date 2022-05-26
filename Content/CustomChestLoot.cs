@@ -43,7 +43,7 @@ namespace Aequus.Content
                         }
                         else if (chestType == ChestTypes.Skyware)
                         {
-                            FrozenChestLoot(c, ref placedCrystalDagger);
+                            SkyChestLoot(c);
                         }
                     }
                     else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
@@ -62,7 +62,7 @@ namespace Aequus.Content
             }
         }
 
-        public void FrozenChestLoot(Chest c)
+        public void SkyChestLoot(Chest c)
         {
             if (c.item[0].type == ItemID.CreativeWings)
             {

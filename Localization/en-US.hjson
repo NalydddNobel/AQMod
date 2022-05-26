@@ -175,6 +175,8 @@ Mods: {
 			Driftwood: Driftwood
 			PlasticBottle: Plastic Bottle
 
+			GhostlyGrave: Ghostly Grave
+
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
 			Molite: Starbyte
@@ -290,7 +292,6 @@ Mods: {
 			VampireHook: Bloodline
 			BlackBookofUntoldLegends: "'Untold Legends'"
 			EquivalenceMachine: Equivalence Machine
-			GhostlyGrave: Ghostly Grave
 			Stardrop: Stardrop
 			IWillBeBack: "'I'll Be Back'"
 			Nimrod: Nimrod
@@ -451,15 +452,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			RecyclingMachine: Allows you to recycle trash items
-			BallisticScreecher: Shoots magma balls
-			RabbitsFoot: Increases luck for the user
-			SantankSentry: Allows your sentries to equip your accessories
 			Slingshot: 
 				'''
-				Bring your cursor back in order to charge the shot more
+				Bring your cursor out in order to charge the shot more
 				Uses birds as ammo
 				'''
+
+			BallisticScreecher: Shoots magma balls
 			BloodiedBucket: 
 				'''
 				Greatly increases the lifespan of ghost minions
@@ -508,6 +507,8 @@ Mods: {
 
 			Moro: Permanently makes minion staffs consume no mana and faster
 
+			RabbitsFoot: Increases luck for the user
+			SantankSentry: Allows your sentries to equip your accessories
 			FoolsGoldRing: 
 				'''
 				Held coins increase your stats
@@ -522,6 +523,13 @@ Mods: {
 				Automatically places a sentry when you are in combat
 				Requires a sentry staff in your inventory to work
 				'''
+			SentrySquid:
+				'''
+				Automatically places a sentry when you are in combat
+				Requires a sentry staff in your inventory to work
+				'It's only mildy disturbing'
+				'''
+
 			ToySpaceGun: 
 				'''
 				Summons a space squiddy to follow you
@@ -540,6 +548,8 @@ Mods: {
 			PotionOfResurrection: Teleports you to the location of your most recent death
 			FrostPotion: Reduces damage from heat sources
 
+			Fluorescence: "'Pulsates with violence'"
+			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
 			SnowRoulette:
 				'''
@@ -572,8 +582,10 @@ Mods: {
 				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
 
-			Fluorescence: "'Pulsates with violence'"
-			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
+			RecyclingMachine: Allows you to recycle trash items
+
+			GhostlyGrave: Disables graves from spawning upon your death
+
 			MirrorsCall:
 				'''
 				'Strike the enemy from the comfort of your couch!'
@@ -601,12 +613,6 @@ Mods: {
 				'''
 			GalacticStarfruit: Creates a strange glimmer
 			MoonLeech: Attacks drain mana from enemies
-			SentrySquid:
-				'''
-				Automatically places a sentry when you are in combat
-				Requires a sentry staff in your inventory to work
-				'It's only mildy disturbing'
-				'''
 			DreamCatcher:
 				'''
 				{$Mods.Aequus.Tooltips.HookBarb}
@@ -924,7 +930,6 @@ Mods: {
 				'''
 			BlackBookofUntoldLegends: Summons the Hermit Crab merchant
 			EquivalenceMachine: Nearby items float instead of falling
-			GhostlyGrave: Can disable graves from spawning upon your death
 			Stardrop: Toggles whether town NPCs can move in during night
 			IWillBeBack:
 				'''
@@ -1119,18 +1124,6 @@ Mods: {
 				Allows slow fall
 				Hold down to revert to regular gravity and hold up to lower gravity even more
 				'HE-HE'
-				'''
-			BlurryDiscountCard:
-				'''
-				Shops have slightly lower prices
-				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
-				'It's hard to read but they will give you a discount anyways'
-				'''
-			BusinessCard:
-				'''
-				Shops have even lower prices
-				{$Mods.Aequus.Common.WorksInInventoryAndPiggyBank}
-				'Consider everything a business expense'
 				'''
 			Crabsol: Only the strongest of people can wield this weapon in honor
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -2014,66 +2007,87 @@ Mods: {
 
 
 		Chat: {
+			Terraria_Cyborg: {
+				ShopQuote: {
+					Terraria_RocketI: Interested in some explosive munitions?
+					Terraria_RocketII: Interested in some high caliber explosive munitions?
+					Terraria_RocketIII: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
+					Terraria_RocketIV: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
+					Terraria_DryRocket: Interested in some canister fitted explosive cluster munitions?
+					Terraria_ProximityMineLauncher: This is a precise handheld proximity landmine launcher. To reach maximum efficiency wait for the mines to be fully armed.
+					Terraria_Nanites: These Nanobots of my own design can be directly injected into any lifeform. For any purpose.
+					Terraria_ClusterRocketI: Interested in some explosive cluster munitions?
+					Terraria_ClusterRocketII: Interested in some high caliber explosive munitions?
+					Terraria_HiTekSunglasses: Martian fashion. The invaders seem to have left some of their wardrobe behind.
+					Terraria_NightVisionHelmet: Martian fashion. The invaders seem to have left some of their wardrobe behind. Reports show it animated the rocks aswell.
+					Terraria_PortalGunStation: That Quantum tunneling device of yours could use some automation.
+					Terraria_EchoBlock: After experimenting with invisible energy particles i managed to convert them into a solid state. May prove useful in building.
+					Terraria_SpectreGoggles: These modified visual receptors may help you study and interact with strange invisible anomalies.
+				}
+			}
+			
 			Exporter: {
 				Introduction: Me name be {0} and I be dedicated to bringing ye only the most dubiously sourced goods I can find!
 								
 				Basic: {
 					0: Just for ye, my friend, I'll give ye a little deal. Buy one, get another for the same price!
 					1: All proceeds go to charity- and by charity I mean me bank account!
+					2: No Text, do not translate
+					3: No Text, do not translate
+					4: No Text, do not translate
 				}
 
 				Night: {
 					0: It be a beautiful night tonight. Perfect setting to buy something!
 					1: Ye know, big fish be more active when the moon’s out. Better get to fishing!
+					2: No Text, do not translate
 				}
 
 				BloodMoon: {
-					0: No Text
-					1: No Text
-					2: No Text
+					0: The tides and the rain turned red, a mighty squid came up and destroyed the ship! 
+					1: I was eating lunch, a goldfish specifically. I didn't expect it to turn evil when the moon rose tonight.
+					2: No Text, do not translate
+
 					WanderingEyeFish: I went out fishing tonight and I caught me a fish with a massive eye! I made thirty dubloons off that eyeball.
-					ZombieMerman: No Text
-					HemogoblinShark: No Text
-					BloodEel: No Text
-					Dreadnautilus: No Text
+					ZombieMerman: No Text, do not translate
+					HemogoblinShark: No Text, do not translate
+					BloodEel: No Text, do not translate
+					Dreadnautilus: No Text, do not translate
 				}
 
 				Ocean: {
-					0: No Text
-					1: If wishes were fishes... if wishes were fishes I wouldn't be wanted for tax fraud!
-					2: No Text 
+					0: If wishes were fishes... if wishes were fishes I wouldn't be wanted for tax fraud!
+					1: No Text, do not translate
+					2: No Text, do not translate
 				}
 
 				CrabCrevice: {
-					0: 
-						'''
-						I'd rather be in Davy Jones' Locker than down here in this… crab-infested hellhole!
-						'''
-					1: No Text
-					2: No Text
+					0: I'd rather be in Davy Jones' Locker than down here in this… crab-infested hellhole!
+					1: No Text, do not translate
+					2: No Text, do not translate
 				}
 
 				AnglerTownNPC: "{0} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen."
 				PirateTownNPC: Yarrgh! Me and {0} crossed paths a couple of times on the high seas. Those were the good old days...
-				DryadTownNPC: No Text
-				ZoologistTownNPC: No Text
+				DryadTownNPC: No Text, do not translate
+				ZoologistTownNPC: No Text, do not translate
 				TruffleTownNPC: "{0} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up."
-				ArmsDealerTownNPC: No Text
-				DemolitionistTownNPC: No Text
+				ArmsDealerTownNPC: No Text, do not translate
+				DemolitionistTownNPC: No Text, do not translate
 				TaxCollectorTownNPC: I've been hiding from {0} for seven years! Don't let him know I be here!
-				TravellingMerchantTownNPC: No Text
+				TravellingMerchantTownNPC: No Text, do not translate
 				StylistTownNPC: One time I asked {0} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
 
-				PhysicistTownNPC: No Text
-				MemorialistTownNPC: No Text
+				PhysicistTownNPC: No Text, do not translate
+				MemorialistTownNPC: No Text, do not translate
 
 				Crabson: Shiver me timbers! Ye killed that god-forsaken crab monster. That beastie be the same one who sunk me ship last year!
 
 				PirateInvasion: I know these lads from me days as a buccaneer. They were the seventeenth-most-feared crew on the high seas!
-				XMas: No Text
+				XMas: No Text, do not translate
 
-				VanityEyePatch: No Text
-				PirateVanitySet: No Text
+				VanityEyePatch: No Text, do not translate
+				PirateVanitySet: No Text, do not translate
 
 				ShopQuote: {
 					Terraria_GoldRing: Said to attract coins, yet this ring hasn't ripped a bank off of the ground! Purchasable for a cheap price!
@@ -2086,6 +2100,13 @@ Mods: {
 					Terraria_ShadowKey: Like ye skeleton key, but can unlock even more than landlubber booty! Purchase now!
 					SkeletonKey: Need ye a way to unlock some forgotten booty but ye keys keep breaking? Purchase now!
 					GrandReward: Ye like getting more buck from your bangs? This here item is ye choice.
+				}
+
+				ShopPrice: {
+					Platinum: platinum dubloons
+					Gold: gold dubloons
+					Silver: silver dubloons
+					Copper: copper dubloons
 				}
 			}
 		}

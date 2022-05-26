@@ -10,6 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Content
@@ -96,8 +97,27 @@ namespace Aequus.Content
                 database = new Dictionary<int, NPCQuotes>()
                 {
                     [NPCID.ArmsDealer] = new NPCQuotes(NPCID.ArmsDealer)
-                    .WithColor(Color.Gray * 1.25f)
-                    .AddQuote("LegacyDialog.66", ItemID.Minishark),
+                    .WithColor(Color.Gray * 1.45f)
+                    .AddQuote("LegacyDialog.66", ItemID.Minishark)
+                    ,
+
+                    [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
+                    .WithColor(Color.Cyan * 1.5f)
+                    .AddQuote(ItemID.RocketI)
+                    .AddQuote(ItemID.RocketII)
+                    .AddQuote(ItemID.RocketIII)
+                    .AddQuote(ItemID.RocketIV)
+                    .AddQuote(ItemID.DryRocket)
+                    .AddQuote(ItemID.ProximityMineLauncher)
+                    .AddQuote(ItemID.Nanites)
+                    .AddQuote(ItemID.ClusterRocketI)
+                    .AddQuote(ItemID.ClusterRocketII)
+                    .AddQuote(ItemID.HiTekSunglasses)
+                    .AddQuote(ItemID.NightVisionHelmet)
+                    .AddQuote(ItemID.PortalGunStation)
+                    .AddQuote(ItemID.EchoBlock)
+                    .AddQuote(ItemID.SpectreGoggles)
+                    ,
                 };
             }
 
@@ -131,7 +151,7 @@ namespace Aequus.Content
             /// <para>Parameter 1: NPC Type (<see cref="int"/>)</para>
             /// <para>Parameter 2: Key (<see cref="string"/>)</para>
             /// <para>Parameter 2 (Alternative): Mod (<see cref="Mod"/>) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
-            /// <para>Parameter 3: Item Type (<see cref="int"/>)</para>
+            /// <para>Parameter 3: Item Type (<see cref="int"/>) OR (<see cref="int"/>[])</para>
             /// <para>To make a town npc use a specific quote color:</para>
             /// <para>Parameter 1: NPC Type (<see cref="int"/>)</para>
             /// <para>Parameter 2: Color (<see cref="Color"/>)</para>
@@ -139,6 +159,7 @@ namespace Aequus.Content
             /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, <see cref="Color"/>);</code> OR
             /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, this, <see cref="ItemID"/>);</code> OR
             /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, "This is text. I can also use language keys here.", <see cref="ItemID"/>);</code>
+            /// <code>aequus.Call("AddShopQuote", <see cref="NPCID"/>, "This is text. I can also use language keys here.", new int[] { <see cref="ItemID"/>, });</code>
             /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>.</para>
             /// </summary>
             /// <param name="aequus"></param>
@@ -154,15 +175,28 @@ namespace Aequus.Content
                     this[npc].WithColor(color);
                     return IModCallable.Success;
                 }
-                int item = (int)args[3];
-                if (args[2] is string quoteText)
+                int[] items = new int[1];
+                if (args[3] is int[] arr)
                 {
-                    this[npc].AddQuote(quoteText, item);
+                    items = arr;
                 }
-                else if (args[2] is Mod mod)
+                else
                 {
-                    this[npc].AddQuote(mod, item);
+                    items[0] = (int)args[3];
                 }
+
+                foreach (var item in items)
+                {
+                    if (args[2] is string quoteText)
+                    {
+                        this[npc].AddQuote(quoteText, item);
+                    }
+                    else if (args[2] is Mod mod)
+                    {
+                        this[npc].AddQuote(mod, item);
+                    }
+                }
+
                 return IModCallable.Success;
             }
 
@@ -189,7 +223,7 @@ namespace Aequus.Content
                 return;
             }
 
-            if (item.isAShopItem && Main.LocalPlayer.talkNPC != -1)
+            if (item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.LocalPlayer.talkNPC != -1)
             {
                 try
                 {

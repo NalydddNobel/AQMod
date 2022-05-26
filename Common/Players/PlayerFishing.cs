@@ -112,6 +112,20 @@ namespace Aequus.Common.Players
                 goto PostProbeFish;
             }
 
+            if (attempt.inLava)
+            {
+                if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4))
+                {
+                    itemDrop = ModContent.ItemType<TatteredDemonHorn>();
+                }
+                return;
+            }
+
+            if (attempt.inHoney)
+            {
+                return;
+            }
+
             if (Player.ZoneBeach && attempt.uncommon && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();

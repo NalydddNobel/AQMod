@@ -314,18 +314,18 @@ namespace Aequus.NPCs.Friendly
         public override string GetChat()
         {
             var player = Main.LocalPlayer;
-            if (player.armor[0].headSlot == 97 && Main.rand.NextBool())
-            {
-                return GetChatText("VanityEyePatch");
-            }
-            if (player.armor[0].headSlot == 68 && Main.rand.NextBool())
-            {
-                return GetChatText("PirateVanitySet");
-            }
-            if (Main.xMas && Main.rand.NextBool())
-            {
-                return GetChatText("XMas");
-            }
+            //if (player.armor[0].headSlot == 97 && Main.rand.NextBool())
+            //{
+            //    return GetChatText("VanityEyePatch");
+            //}
+            //if (player.armor[0].headSlot == 68 && Main.rand.NextBool())
+            //{
+            //    return GetChatText("PirateVanitySet");
+            //}
+            //if (Main.xMas && Main.rand.NextBool())
+            //{
+            //    return GetChatText("XMas");
+            //}
 
             return GetTextFromList(player);
         }
@@ -335,43 +335,53 @@ namespace Aequus.NPCs.Friendly
             {
                 GetChatText("Basic.0"),
                 GetChatText("Basic.1"),
-                GetChatText("Basic.2"),
-                GetChatText("Basic.3"),
-                GetChatText("Basic.4"),
+                //GetChatText("Basic.2"),
+                //GetChatText("Basic.3"),
+                //GetChatText("Basic.4"),
             };
 
             if (!Main.dayTime)
             {
                 textChoices.Add(GetChatText("Night.0"));
                 textChoices.Add(GetChatText("Night.1"));
-                textChoices.Add(GetChatText("Night.2"));
+                //textChoices.Add(GetChatText("Night.2"));
+                if (Main.bloodMoon)
+                {
+                    textChoices.Add(GetChatText("BloodMoon.0"));
+                    textChoices.Add(GetChatText("BloodMoon.1"));
+
+                    if (NPC.killCount[NPCID.WanderingEye] > 0)
+                    {
+                        textChoices.Add(GetChatText("BloodMoon.WanderingEyeFish"));
+                    }
+                }
             }
 
             if (player.ZoneBeach)
             {
                 textChoices.Add(GetChatText("Ocean.0"));
-                textChoices.Add(GetChatText("Ocean.1"));
-                textChoices.Add(GetChatText("Ocean.2"));
-                // temporary
+                //textChoices.Add(GetChatText("Ocean.1"));
+                //textChoices.Add(GetChatText("Ocean.2"));
+
                 textChoices.Add(GetChatText("CrabCrevice.0"));
-                textChoices.Add(GetChatText("CrabCrevice.1"));
-                textChoices.Add(GetChatText("CrabCrevice.2"));
+                //textChoices.Add(GetChatText("CrabCrevice.1"));
+                //textChoices.Add(GetChatText("CrabCrevice.2"));
             }
 
             if (Main.rand.NextBool())
             {
                 FindAndAddText(textChoices, NPCID.Angler, "AnglerTownNPC");
                 FindAndAddText(textChoices, NPCID.Pirate, "PirateTownNPC");
-                FindAndAddText(textChoices, NPCID.Dryad, "DryadTownNPC");
-                FindAndAddText(textChoices, NPCID.BestiaryGirl, "ZoologistTownNPC");
+                //FindAndAddText(textChoices, NPCID.Dryad, "DryadTownNPC");
+                //FindAndAddText(textChoices, NPCID.BestiaryGirl, "ZoologistTownNPC");
                 FindAndAddText(textChoices, NPCID.Truffle, "TruffleTownNPC");
             }
             else
             {
-                FindAndAddText(textChoices, NPCID.ArmsDealer, "ArmsDealerTownNPC");
-                FindAndAddText(textChoices, NPCID.Demolitionist, "DemolitionistTownNPC");
+                //FindAndAddText(textChoices, NPCID.ArmsDealer, "ArmsDealerTownNPC");
+                //FindAndAddText(textChoices, NPCID.Demolitionist, "DemolitionistTownNPC");
                 FindAndAddText(textChoices, NPCID.TaxCollector, "TaxCollectorTownNPC");
-                FindAndAddText(textChoices, NPCID.TravellingMerchant, "TravellingMerchantTownNPC");
+                //FindAndAddText(textChoices, NPCID.TravellingMerchant, "TravellingMerchantTownNPC");
                 FindAndAddText(textChoices, NPCID.Stylist, "StylistTownNPC");
             }
 
