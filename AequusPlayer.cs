@@ -12,7 +12,8 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Misc.Money;
+using Aequus.Items.Misc;
+using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -311,11 +312,26 @@ namespace Aequus
         private static void Player_GetItemExpectedPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);
-            if (item.shopSpecialCurrency != -1)
+            if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
             {
                 return;
             }
-            calcForBuying -= self.Aequus().flatScamDiscount;
+
+            if (!CanScamNPC(Main.npc[self.talkNPC]))
+            {
+                return;
+            }
+
+            int min = item.shopCustomPrice.GetValueOrDefault(item.value) / 5;
+            if (calcForBuying < min) // shrug
+            {
+                return;
+            }
+            calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
+        }
+        public static bool CanScamNPC(NPC npc)
+        {
+            return npc.type != ModContent.NPCType<Exporter>();
         }
 
         private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)

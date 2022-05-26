@@ -1,15 +1,19 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
 using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
     public class FoolsGoldRing : ModItem
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.CoinRing;
+        public override string Texture => "Terraria/Images/Item_" + ItemID.GoldRing;
+
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
 
         public override void SetDefaults()
         {
@@ -17,7 +21,7 @@ namespace Aequus.Items.Accessories
             Item.height = 20;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.sellPrice(gold: 20);
+            Item.value = Item.buyPrice(gold: 20);
             Item.color = new Color(255, 200, 200, 255);
         }
 

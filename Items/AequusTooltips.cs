@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Content;
+using Aequus.Graphics;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,12 +16,6 @@ namespace Aequus.Items
 {
     public static class AequusTooltips
     {
-        /// <summary>
-        /// Add the name of your mod to this list in order to have it be used to look up a shop quote. Aequus takes priority, then whatever mod adds to this list takes next priority.
-        /// </summary>
-        public static List<string> ShopQuoteModLookups { get; private set; }
-        public static Dictionary<int, Color> NPCShopQuote { get; private set; }
-
         public struct ItemDedication
         {
             public readonly Color color;
@@ -36,8 +31,6 @@ namespace Aequus.Items
             public override void Load()
             {
                 Dedicated = new Dictionary<int, ItemDedication>();
-                ShopQuoteModLookups = new List<string>();
-                NPCShopQuote = new Dictionary<int, Color>();
                 //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                 //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
                 //[ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
@@ -51,16 +44,6 @@ namespace Aequus.Items
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
-                if (item.isAShopItem && Main.LocalPlayer.talkNPC != -1)
-                {
-                    try
-                    {
-                        AddShopQuote(item, tooltips);
-                    }
-                    catch
-                    {
-                    }
-                }
                 if (item.ModItem is IUpdateBank || (AequusItem.BankEquipFuncs.Contains(item.type) && item.type != ItemID.CellPhone))
                 {
                     tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
@@ -69,48 +52,6 @@ namespace Aequus.Items
                 {
                     tooltips.Add(new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
                 }
-            }
-            public void AddShopQuote(Item item, List<TooltipLine> tooltips)
-            {
-                var talkNPC = Main.npc[Main.LocalPlayer.talkNPC];
-
-                if (GetShopQuoteText(talkNPC, item, out string text))
-                {
-                    string lineText = "         ";
-                    lineText += text;
-                    int index = GetIndex(tooltips, "JourneyResearch");
-                    tooltips.Insert(index, new TooltipLine(Mod, "Fake", "_"));
-                    tooltips.Insert(index, new TooltipLine(Mod, "ShopQuote", lineText) { OverrideColor = DetermineShopQuoteColor(talkNPC), });
-                }
-            }
-            public bool GetShopQuoteText(NPC talkNPC, Item item, out string text)
-            {
-                string itemKey = AequusText.IDSearchNameToAKey(ItemID.Search.GetName(item.type));
-                string npcKey = AequusText.IDSearchNameToAKey(NPCID.Search.GetName(talkNPC.type));
-                string textKey = "Mods.Aequus.Chat." + npcKey + ".ShopQuote." + itemKey;
-                text = Language.GetTextValue(textKey);
-
-                if (textKey != text)
-                {
-                    return true;
-                }
-
-                foreach (var s in ShopQuoteModLookups)
-                {
-                    textKey = "Mods." + s + ".Chat." + npcKey + ".ShopQuote." + itemKey;
-                    text = Language.GetTextValue(textKey);
-
-                    if (textKey != text)
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
-            }
-            public Color DetermineShopQuoteColor(NPC npc)
-            {
-                return NPCShopQuote.TryGetValue(npc.type, out var color) ? color : new Color(180, 180, 255, 255);
             }
 
             public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
@@ -128,42 +69,12 @@ namespace Aequus.Items
                     }
                     if (line.Name == "ShopQuote")
                     {
-                        DrawShopQuote(line, Main.npc[Main.LocalPlayer.talkNPC]);
+                        ShopQuotes.DrawShopQuote(line, Main.npc[Main.LocalPlayer.talkNPC]);
                         return false;
                     }
                 }
                 return true;
             }
-        }
-
-        public static void DrawShopQuote(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color, NPC npc)
-        {
-            var chatBubbleFrame = Images.StatusBubble.Value.Frame(horizontalFrames: Images.StatusBubbleFramesX, frameX: 2);
-            var chatBubbleScale = baseScale * 0.9f;
-            chatBubbleScale.X *= 1.1f;
-            var chatBubblePosition = new Vector2(x + chatBubbleFrame.Width / 2f * chatBubbleScale.X, y + chatBubbleFrame.Height / 2f * chatBubbleScale.Y);
-
-            Main.spriteBatch.Draw(Images.StatusBubble.Value, chatBubblePosition + new Vector2(2f) * chatBubbleScale,
-                chatBubbleFrame, Color.Black * 0.4f, 0f, chatBubbleFrame.Size() / 2f, chatBubbleScale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(Images.StatusBubble.Value, chatBubblePosition,
-                chatBubbleFrame, Color.White, 0f, chatBubbleFrame.Size() / 2f, chatBubbleScale, SpriteEffects.None, 0f);
-
-            var headTexture = TextureAssets.NpcHead[NPC.TypeToDefaultHeadIndex(npc.type)].Value;
-
-            Main.spriteBatch.Draw(headTexture, chatBubblePosition,
-                headTexture.Frame(), Color.White, 0f, headTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
-
-            var font = FontAssets.MouseText.Value;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, chatBubblePosition.Y - font.MeasureString(text).Y / 2f), color, rotation, origin, baseScale);
-
-        }
-        public static void DrawShopQuote(string text, int x, int y, Color color, NPC npc)
-        {
-            DrawShopQuote(text, x, y, 0f, Vector2.Zero, Vector2.One, color, npc);
-        }
-        public static void DrawShopQuote(DrawableTooltipLine line, NPC npc)
-        {
-            DrawShopQuote(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color), npc);
         }
 
         public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)

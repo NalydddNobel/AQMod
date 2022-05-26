@@ -32,7 +32,7 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                var manager = ModContent.GetInstance<FlawlessSystem>();
+                var manager = ModContent.GetInstance<Flawless>();
                 for (int i = 0; i < manager.DamagedPlayers.Count; i++)
                 {
                     damagedPlayers[manager.DamagedPlayers[i]] = true;

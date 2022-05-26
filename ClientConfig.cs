@@ -54,6 +54,20 @@ namespace Aequus
         [SliderColor(30, 50, 120, 255)]
         public int FlashShaderRepetitions { get; set; }
 
+        [Header(Key + "Client.Headers.Misc")]
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.NPCShopQuotesLabel")]
+        [Tooltip(Key + "Client.NPCShopQuotesTooltip")]
+        [DefaultValue(true)]
+        public bool NPCShopQuotes { get; set; }
+
+        [BackgroundColor(80, 80, 130, 180)]
+        [Label(Key + "Client.OtherNPCShopQuotes")]
+        [Tooltip(Key + "Client.OtherNPCShopQuotesTooltip")]
+        [DefaultValue(true)]
+        public bool OtherNPCShopQuotes { get; set; }
+
         [BackgroundColor(47, 29, 140, 180)]
         [Label(Key + "Client.InfoDebugLogsLabel")]
         [Tooltip(Key + "Client.InfoDebugLogsTooltip")]
@@ -67,6 +81,7 @@ namespace Aequus
             AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<Fluorescence>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.NPCShopQuotes", "Label", (s) => AequusText.ItemText(ItemID.Teacup) + "  " + s);
             AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
         }
 

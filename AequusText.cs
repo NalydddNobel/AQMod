@@ -188,7 +188,16 @@ namespace Aequus
             }
         }
 
-        public static string IDSearchNameToAKey(string name)
+        public static string CreateSearchNameFromNPC(int npc)
+        {
+            if (npc < Main.maxNPCTypes)
+            {
+                return "Terraria_" + NPCID.Search.GetName(npc);
+            }
+            return SearchNameToAequusKey(ModContent.GetModNPC(npc).FullName);
+        }
+
+        public static string SearchNameToAequusKey(string name)
         {
             if (name.StartsWith("Aequus/"))
             {

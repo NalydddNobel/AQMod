@@ -1,7 +1,7 @@
-﻿using Aequus.Items;
+﻿using Aequus.Content;
+using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Money;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -58,7 +58,20 @@ namespace Aequus.NPCs.Friendly
             .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
-            AequusTooltips.NPCShopQuote.Add(Type, Color.Orange * 1.2f);
+            ShopQuotes.Database
+                .AddNPC(Type)
+                .WithColor(Color.Orange * 1.2f)
+                .AddQuote<GrandReward>()
+                .AddQuote<SkeletonKey>()
+                .AddQuote(ItemID.ShadowKey)
+                .AddQuote<RecyclingMachine>()
+                .AddQuote<ForgedCard>()
+                .AddQuote<FaultyCoin>()
+                .AddQuote<FoolsGoldRing>()
+                .AddQuote(ItemID.DiscountCard)
+                .AddQuote(ItemID.LuckyCoin)
+                .AddQuote(ItemID.GoldRing)
+                ;
         }
 
         public override void SetDefaults()
@@ -96,15 +109,24 @@ namespace Aequus.NPCs.Friendly
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
             if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.DiscountCard);
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+            }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
             if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.LuckyCoin);
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.LuckyCoin);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+            }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
             if (NPC.downedPirates)
-                shop.item[nextSlot++].SetDefaults(ItemID.CoinRing);
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.GoldRing);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+            }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
 

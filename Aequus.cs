@@ -1,6 +1,7 @@
 using Aequus.Biomes;
 using Aequus.Common;
 using Aequus.Common.Networking;
+using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
@@ -150,17 +151,8 @@ namespace Aequus
                 case "Downed":
                     return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
 
-                case "AddToShopQuoteLookups":
-                    {
-                        AequusTooltips.ShopQuoteModLookups.Add((string)args[1]);
-                    }
-                    return IModCallable.Success;
-
-                case "AddToShopQuoteData":
-                    {
-                        AequusTooltips.NPCShopQuote.Add((int)args[1], (Color)args[2]);
-                    }
-                    return IModCallable.Success;
+                case "AddShopQuote":
+                    return ShopQuotes.Database.HandleModCall(this, args);
             }
             return null;
         }
