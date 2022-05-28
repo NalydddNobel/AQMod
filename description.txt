@@ -1,4 +1,12 @@
-﻿A porting for the mod "Aequus" from Terraria 1.3
+﻿[c/7EC8E3:Overview]
+Aequus is a mod full of experimental features and content, I make this mod for fun, and don't have much of an intention or goal.
+This mod intends to be multiplayer compatible!
 
-This is not for playing, just for testing.
-Many things will need to be obtained through cheating.
+[c/7EC8E3:Content]
+[c/7EC8E3:>] 120+ Items
+[c/7EC8E3:>] 15+ NPCs
+[c/7EC8E3:>] 2 Bosses
+[c/7EC8E3:>] 2 Events
+[c/7EC8E3:>] A ton of bugs.. and more!
+
+The mod updates each month with new content, and to continue working after preview and stable merge!
