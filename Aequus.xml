@@ -96,7 +96,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
-            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.CheckDanger"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.forceDaytime">
@@ -107,12 +107,18 @@
         </member>
         <member name="F:Aequus.AequusPlayer.scamChance">
             <summary>
-            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Misc.Money.FaultyCoin"/>
+            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Misc.FaultyCoin"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.flatScamDiscount">
             <summary>
-            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Misc.Money.ForgedCard"/>
+            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Misc.ForgedCard"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.luckRerolls">
+            <summary>
+            Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
+            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lootLuck">
@@ -227,14 +233,14 @@
             <item>Void Bag</item>
             </list></param>
         </member>
-        <member name="M:Aequus.AequusPlayer.PostUpdate_CheckDanger">
+        <member name="M:Aequus.AequusPlayer.CheckDanger">
             <summary>
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
             </summary>
         </member>
         <member name="M:Aequus.AequusPlayer.UpdateAutoSentry">
             <summary>
-            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckDanger"/>
+            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.CheckDanger"/>
             </summary>
         </member>
         <member name="M:Aequus.AequusPlayer.AutoSentry_GetUsableSentryStaff">
@@ -328,20 +334,6 @@
             Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
             </summary>
         </member>
-        <member name="M:Aequus.Common.Catalogues.ItemModuleTypes.GetReservedID">
-            <summary>
-            Gives you an ID to classify a specific item module type
-            <para>
-            It may be confusing to wrap around your head what this ID is used for, but this example should help:
-            <code>public static int MyCustomModuleType;</code>
-            <code>...Load()</code>
-            <code>MyCustomEquipType = ItemModuleType.GetReservedID();</code>
-            <code>...SetStaticDefaults() in a Grappling Hook Item...</code>
-            <code>ModularItemManager.Catalogue.AllowEquipType(Type, MyCustomEquipType);</code>
-            </para>
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
             <summary>
             Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
@@ -381,6 +373,34 @@
             <param name="aequus"></param>
             <param name="args"></param>
             <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="M:Aequus.Content.ShopQuotes.QuoteDatabase.AddNPC(System.Int32)">
+            <summary>
+            Adds an NPC entry if one doesn't exist already
+            </summary>
+            <param name="npc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.ShopQuotes.QuoteDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
+            <summary>
+            Adds shop quote data for an npc
+            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
+            <para>Parameter 2: Key (<see cref="T:System.String"/>)</para>
+            <para>Parameter 2 (Alternative): Mod (<see cref="T:Terraria.ModLoader.Mod"/>) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
+            <para>Parameter 3: Item Type (<see cref="T:System.Int32"/>) OR (<see cref="T:System.Int32"/>[])</para>
+            <para>To make a town npc use a specific quote color:</para>
+            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
+            <para>Parameter 2: Color (<see cref="T:Microsoft.Xna.Framework.Color"/>)</para>
+            <para>A successful mod call would look like:</para>
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, <see cref="T:Microsoft.Xna.Framework.Color"/>);</code> OR
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, this, <see cref="T:Terraria.ID.ItemID"/>);</code> OR
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", <see cref="T:Terraria.ID.ItemID"/>);</code>
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", new int[] { <see cref="T:Terraria.ID.ItemID"/>, });</code>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>.</para>
+            </summary>
+            <param name="aequus"></param>
+            <param name="args"></param>
+            <returns></returns>
         </member>
         <member name="P:Aequus.Graphics.EffectsSystem.BehindPlayers">
             <summary>
@@ -481,7 +501,7 @@
             Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
             </summary>
         </member>
-        <member name="P:Aequus.Items.Accessories.Summon.SantankSentryProjectile.SantankAccessoryInteraction_AI">
+        <member name="P:Aequus.Items.Accessories.Summon.SantankInteractions.OnAI">
             <summary>
             <para>1) Projectile - the projectile</para>
             <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
@@ -490,7 +510,7 @@
             <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
-        <member name="P:Aequus.Items.Accessories.Summon.SantankSentryProjectile.SantankAccessoryInteraction_OnShoot">
+        <member name="P:Aequus.Items.Accessories.Summon.SantankInteractions.OnShoot">
             <summary>
             <para>1) IEntitySource - the entity source</para>
             <para>2) Projectile - the projectile</para>
@@ -501,6 +521,40 @@
             <para>7) Player - the player owner of both projectiles</para>
             <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
+        </member>
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.Players.PlayerFishing,Terraria.Item,System.Single@)">
+            <summary>
+            
+            </summary>
+            <param name="player"></param>
+            <param name="fishing"></param>
+            <param name="fishingRod"></param>
+            <param name="fishingLevel"></param>
+        </member>
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            
+            </summary>
+            <param name="attempt"></param>
+            <param name="itemDrop"></param>
+            <param name="npcSpawn"></param>
+            <param name="sonar"></param>
+            <param name="sonarPosition"></param>
+            <returns>Return false to prevent Aequus from running fish checks.</returns>
+        </member>
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishItem.ModifyFishItem(Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="fish"></param>
+        </member>
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <summary>
+            
+            </summary>
+            <param name="bobber"></param>
+            <param name="fisher"></param>
+            <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
         <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">
             <summary>
@@ -582,6 +636,14 @@
             <summary>
             Used when <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/> is true
             </summary>
+        </member>
+        <member name="M:Aequus.Tiles.RecyclingMachineTile.GetTileEntity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to get the recycling machine Tile Entity instance. Returns null if none is found.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

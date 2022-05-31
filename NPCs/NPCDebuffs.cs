@@ -122,7 +122,7 @@ namespace Aequus.NPCs
         {
             if (Main.npc[npc].TryGetGlobalNPC<NPCDebuffs>(out var debuffs))
             {
-                PacketSender.Send((p) => { p.Write((byte)npc); debuffs.Send(npc, p); }, PacketType.SyncDebuffs);
+                PacketHandler.Send((p) => { p.Write((byte)npc); debuffs.Send(npc, p); }, PacketType.SyncDebuffs);
             }
         }
     }

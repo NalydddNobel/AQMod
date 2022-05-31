@@ -52,7 +52,7 @@ namespace Aequus.Graphics
             
                 if (!Main.dedServ)
                 {
-                    SizzleSound = new SoundStyle("Aequus/Sounds/sizzle");
+                    SizzleSound = Aequus.GetSound("sizzle");
                 }
             }
 

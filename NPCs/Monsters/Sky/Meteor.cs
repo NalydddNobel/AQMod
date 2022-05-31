@@ -23,7 +23,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (!Main.dedServ)
             {
-                CRUNCHSonicBreakingSound = new SoundStyle("Aequus/Sounds/sonicmeteor") { Volume = 0.6f, };
+                CRUNCHSonicBreakingSound = Aequus.GetSound("sonicmeteor", 0.6f);
             }
         }
 

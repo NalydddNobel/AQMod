@@ -43,7 +43,7 @@ namespace Aequus.NPCs.Friendly
                 BalloonTexture = ModContent.Request<Texture2D>(this.GetPath() + "Balloon");
                 FleeTexture = ModContent.Request<Texture2D>(this.GetPath() + "Flee");
 
-                WWWWWWWWWWhhhhooooooooopSound = new SoundStyle("Aequus/Sounds/slidewhistle") { Volume = 0.5f, };
+                WWWWWWWWWWhhhhooooooooopSound = Aequus.GetSound("slidewhistle", 0.5f);
             }
         }
 
@@ -658,13 +658,13 @@ namespace Aequus.NPCs.Friendly
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(currentAction);
-            PacketSender.WriteNullableItem(shopBanner, writer, writeStack: true);
+            PacketHandler.WriteNullableItem(shopBanner, writer, writeStack: true);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             currentAction = reader.ReadInt32();
-            shopBanner = PacketSender.ReadNullableItem(reader, readStack: true);
+            shopBanner = PacketHandler.ReadNullableItem(reader, readStack: true);
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

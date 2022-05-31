@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace Aequus.Buffs
 {
-    public static class BuffImmunities
+    public static class BuffImmunity
     {
         public static bool AddStaticImmunity(int npc, bool isWhipBuff, params int[] buffList)
         {

@@ -6,7 +6,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class NecromancyNPCHitbox : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         public override void SetStaticDefaults()
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.UI.Drawers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
@@ -37,7 +38,7 @@ namespace Aequus.Items
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
                 {
                     float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
-                    AequusHelpers.DrawUIBack(spriteBatch, Images.InventoryBack.Value, position, frame, scale, new Color(125, 125, 125, 250) * (0.75f + progress * 0.25f), progress);
+                    AequusHelpers.DrawUIBack(spriteBatch, ItemSlotRenderer.InventoryBack.Value, position, frame, scale, new Color(125, 125, 125, 250) * (0.75f + progress * 0.25f), progress);
                 }
             }
             return true;

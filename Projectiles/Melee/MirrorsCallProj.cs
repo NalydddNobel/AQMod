@@ -285,7 +285,7 @@ namespace Aequus.Projectiles.Melee
     {
         public float colorProgress;
 
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
         public override void SetDefaults()
         {
             Projectile.width = 400;

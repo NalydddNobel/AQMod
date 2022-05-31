@@ -8,7 +8,7 @@ namespace Aequus.Projectiles.Misc.Pets
 {
     public sealed class FamiliarPet : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         private Player dummyPlayer;
 

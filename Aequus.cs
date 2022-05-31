@@ -4,7 +4,6 @@ using Aequus.Common.Networking;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
-using Aequus.Items;
 using Aequus.Items.Recipes;
 using Aequus.NPCs;
 using Aequus.Tiles;
@@ -13,6 +12,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -23,8 +23,10 @@ namespace Aequus
     {
         internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
-        public const string TextureNone = "Aequus/Assets/None";
         public const string VanillaTexture = "Terraria/Images/";
+        public const string BlankTexture = "Aequus/Assets/None";
+        public const string AssetsPath = "Aequus/Assets/";
+        public const string SoundsPath = AssetsPath + "Sounds/";
 
         public static Aequus Instance { get; private set; }
         public static UserInterface InventoryInterface { get; private set; }
@@ -159,50 +161,6 @@ namespace Aequus
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            PacketType type = PacketSender.ReadPacketType(reader);
-
-            var l = Instance.Logger;
-            if (type != PacketType.Unused && type != PacketType.SyncAequusPlayer)
-            {
-                l.Debug("Recieving Packet: " + type);
-            }
-            if (type == PacketType.Unused)
-            {
-            }
-            else if (type == PacketType.SyncNecromancyOwnerTier)
-            {
-                int npc = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
-            }
-            else if (type == PacketType.SyncAequusPlayer)
-            {
-                if (Main.player[reader.ReadByte()].TryGetModPlayer<AequusPlayer>(out var aequus))
-                {
-                    aequus.RecieveChanges(reader);
-                }
-            }
-            else if (type == PacketType.SoundQueue)
-            {
-                SoundHelpers.ReadSoundQueue(reader);
-            }
-            else if (type == PacketType.DemonSiegeSacrificeStatus)
-            {
-                DemonSiegeInvasion.EventSacrifice.ReadPacket(reader);
-            }
-            else if (type == PacketType.RequestDemonSiege)
-            {
-                DemonSiegeInvasion.HandleStartRequest(reader);
-            }
-            else if (type == PacketType.RemoveDemonSiege)
-            {
-                DemonSiegeInvasion.Sacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
-            }
-            else if (type == PacketType.SyncDebuffs)
-            {
-                byte npc = reader.ReadByte();
-                Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
-            }
         }
 
         public static bool ShouldDoScreenEffect(Vector2 where)
@@ -215,6 +173,11 @@ namespace Aequus
             SkiesDarkness -= 0.01f;
             SkiesDarknessGoTo = Math.Min(SkiesDarknessGoTo, to);
             SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
+        }
+
+        internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f)
+        {
+            return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = 0f, };
         }
     }
 }

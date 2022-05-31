@@ -29,7 +29,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (!Main.dedServ)
             {
-                BoowompSadFaceSound = new SoundStyle("Aequus/Sounds/boowomp");
+                BoowompSadFaceSound = Aequus.GetSound("boowomp");
             }
         }
 

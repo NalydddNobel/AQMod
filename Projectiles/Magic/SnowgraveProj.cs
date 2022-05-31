@@ -124,7 +124,7 @@ namespace Aequus.Projectiles.Magic
 
     public sealed class SnowgraveProjSpawner : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         private bool _playedSound;
 

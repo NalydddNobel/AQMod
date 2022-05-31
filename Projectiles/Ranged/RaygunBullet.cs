@@ -16,7 +16,7 @@ namespace Aequus.Projectiles.Ranged
     {
         public static Dictionary<int, Color> RaygunColors { get; private set; }
 
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         public int projType;
         public int trailTimer;
@@ -346,7 +346,7 @@ namespace Aequus.Projectiles.Ranged
 
     public sealed class RayExplosion : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         public override void SetDefaults()
         {

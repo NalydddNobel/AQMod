@@ -23,6 +23,15 @@ float FrameYFix(float2 coords)
     return y * 1 / frameSizeY;
 }
 
+float2 FrameFix(float2 coords)
+{
+    float frameSizeX = uSourceRect.z / uImageSize0.x;
+    float x = coords.x % frameSizeX;
+    float frameSizeY = uSourceRect.w / uImageSize0.y;
+    float y = coords.y % frameSizeY;
+    return float2(x * 1 / frameSizeX, y * 1 / frameSizeY);
+}
+
 float2 RotationToVector2(float f)
 {
     return float2(cos(f), sin(f));
@@ -81,8 +90,8 @@ float4 Enchantment(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
     {
         return color * sampleColor;
     }
-    float textureY = FrameYFix(coords);
-    float4 mergeColor = tex2D(uImage1, float2((uTime * 0.21f + coords.x * 0.2) % 1, (uTime * 0.0042f + textureY * 0.2) % 1));
+    float2 textureCoords = FrameFix(coords);
+    float4 mergeColor = tex2D(uImage1, float2((uTime * 0.21f + textureCoords.x * 0.2) % 1, (uTime * 0.0042f + textureCoords.y * 0.2) % 1));
     mergeColor *= min(min(mergeColor.r, mergeColor.g), mergeColor.b) + max(max(mergeColor.r, mergeColor.g), mergeColor.b) * uOpacity;
     return float4(color.r * sampleColor.r + mergeColor.r * sampleColor.a,
     color.g * sampleColor.g + mergeColor.g * sampleColor.a,
@@ -92,7 +101,8 @@ float4 Enchantment(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
 float4 RedSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
-    color = lerp(color, tex2D(uImage0, float2((coords.x + sin(uTime * 20 + FrameYFix(coords.y) * 30) * 0.05f) % 1, coords.y)), 0.5f);
+    float2 textureCoords = FrameFix(coords);
+    color = lerp(color, tex2D(uImage0, float2((textureCoords.x + sin(uTime * 20 + textureCoords.y * 30) * 0.05f) % 1, textureCoords.y)), 0.5f);
     color.r *= uColor.r;
     color.g *= uColor.g;
     color.b *= uColor.b; 
@@ -127,10 +137,10 @@ float4 ColorDistort(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : CO
 {
     float4 origColor = tex2D(uImage0, coords);
     float time = uTime * 20;
-    float yFIX = FrameYFix(coords);
-    float rLERP = normalsin(origColor.r * 10 + time + yFIX);
+    float2 textureCoords = FrameFix(coords);
+    float rLERP = normalsin(origColor.r * 10 + time + textureCoords.y);
     origColor.r = lerp(origColor.r, rLERP, 0.5 * origColor.a);
-    float gLERP = normalsin(origColor.g * 10 + time + coords.x);
+    float gLERP = normalsin(origColor.g * 10 + time + textureCoords.x);
     origColor.g = lerp(origColor.g, gLERP, 0.5 * origColor.a);
     float bLERP = normalsin(origColor.b * 10 + time + origColor.r);
     origColor.b = lerp(origColor.b, bLERP, 0.5 * origColor.a);
@@ -165,7 +175,8 @@ float4 HyperRainbow(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : CO
 float4 Hypno(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
-    float offset = sin(uTime + FrameYFix(coords.y) * 25) * 0.05 * uDirection;
+    float2 textureCoords = FrameFix(coords);
+    float offset = sin(uTime + textureCoords.y * 25) * 0.05 * uDirection;
     color.r = tex2D(uImage0, float2(coords.x + offset, coords.y)).r;
     color.b = tex2D(uImage0, float2(coords.x - offset, coords.y)).b;
     return color * sampleColor;
@@ -174,10 +185,10 @@ float4 Hypno(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 float4 BreakSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
-    float y = FrameYFix(coords.y);
+    float2 textureCoords = FrameFix(coords);
     float pixelSize = 1 / uImageSize0;
-    float yPixel = y / pixelSize;
-    float offset = sin(uTime + y * 25) * 0.05 * uDirection;
+    float yPixel = textureCoords.y / pixelSize;
+    float offset = sin(uTime + textureCoords.y * 25) * 0.05 * uDirection;
     if (yPixel % 8 < 4)
     {
         color = tex2D(uImage0, float2(coords.x + pixelSize * 4, coords.y));
@@ -341,9 +352,9 @@ float4 ImageScroll(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
     {
         return color * sampleColor;
     }
-    float textureY = FrameYFix(coords);
+    float2 textureCoords = FrameFix(coords);
     float time = uTime * 0.2;
-    float4 mergeColor = tex2D(uImage1, float2((time + coords.x * 0.5) % 1, (time * 0.75 + textureY * 0.5) % 1));
+    float4 mergeColor = tex2D(uImage1, float2((time + textureCoords.x * 0.5) % 1, (time * 0.75 + textureCoords.y * 0.5) % 1));
     mergeColor *= L(minMaxRGB(float3(mergeColor.r, mergeColor.g, mergeColor.b)));
     mergeColor.a = 1;
     return color * sampleColor + (mergeColor * 0.5);
@@ -483,106 +494,106 @@ technique Technique1
 {
     pass TextureScrollingPass
     {
-        PixelShader = compile ps_2_0 TextureScrolling();
+        PixelShader = compile ps_3_0 TextureScrolling();
     }   
     pass HoriztonalWavePass
     {
-        PixelShader = compile ps_2_0 HoriztonalWave();
+        PixelShader = compile ps_3_0 HoriztonalWave();
     }
     pass EnchantmentPass
     {
-        PixelShader = compile ps_2_0 Enchantment();
+        PixelShader = compile ps_3_0 Enchantment();
     }
     pass RedSpritePass
     {
-        PixelShader = compile ps_2_0 RedSprite();
+        PixelShader = compile ps_3_0 RedSprite();
     }
     pass CensorPass
     {
-        PixelShader = compile ps_2_0 Censor();
+        PixelShader = compile ps_3_0 Censor();
     }
     pass SpotlightPass
     {
-        PixelShader = compile ps_2_0 Spotlight();
+        PixelShader = compile ps_3_0 Spotlight();
     }
     pass MonoSpotlightPass
     {
-        PixelShader = compile ps_2_0 MonoSpotlight();
+        PixelShader = compile ps_3_0 MonoSpotlight();
     }
     pass FadePass
     {
-        PixelShader = compile ps_2_0 Fade();
+        PixelShader = compile ps_3_0 Fade();
     }
     pass FadeYProgressPass
     {
-        PixelShader = compile ps_2_0 FadeYProgress();
+        PixelShader = compile ps_3_0 FadeYProgress();
     }
     pass FadeYProgressAlphaPass
     {
-        PixelShader = compile ps_2_0 FadeYProgressAlpha();
+        PixelShader = compile ps_3_0 FadeYProgressAlpha();
     }
     pass SpikeFadePass
     {
-        PixelShader = compile ps_2_0 SpikeFade();
+        PixelShader = compile ps_3_0 SpikeFade();
     }
     pass ScrollPass
     {
-        PixelShader = compile ps_2_0 PixelShaderFunction();
+        PixelShader = compile ps_3_0 PixelShaderFunction();
     }
     pass ImageScrollPass
     {
-        PixelShader = compile ps_2_0 ImageScroll();
+        PixelShader = compile ps_3_0 ImageScroll();
     }
     pass MonitorPass
     {
-        PixelShader = compile ps_2_0 Monitor();
+        PixelShader = compile ps_3_0 Monitor();
     }
     pass ShieldBeamsPass
     {
-        PixelShader = compile ps_2_0 ShieldBeams();
+        PixelShader = compile ps_3_0 ShieldBeams();
     }
     pass OutlinePass
     {
-        PixelShader = compile ps_2_0 Outline();
+        PixelShader = compile ps_3_0 Outline();
     }
     pass OutlineAlphaPass
     {
-        PixelShader = compile ps_2_0 OutlineAlpha();
+        PixelShader = compile ps_3_0 OutlineAlpha();
     }
     pass OutlineColorPass
     {
-        PixelShader = compile ps_2_0 OutlineColor();
+        PixelShader = compile ps_3_0 OutlineColor();
     }
     pass OutlineColorAlphaPass
     {
-        PixelShader = compile ps_2_0 OutlineColorAlpha();
+        PixelShader = compile ps_3_0 OutlineColorAlpha();
     }
     pass HypnoPass
     {
-        PixelShader = compile ps_2_0 Hypno();
+        PixelShader = compile ps_3_0 Hypno();
     }
     pass BreakSpritePass
     {
-        PixelShader = compile ps_2_0 BreakSprite();
+        PixelShader = compile ps_3_0 BreakSprite();
     }
     pass SimplifyPass
     {
-        PixelShader = compile ps_2_0 Simplify();
+        PixelShader = compile ps_3_0 Simplify();
     }
     pass ColorDistortPass
     {
-        PixelShader = compile ps_2_0 ColorDistort();
+        PixelShader = compile ps_3_0 ColorDistort();
     }
     pass RainbowPass
     {
-        PixelShader = compile ps_2_0 Rainbow();
+        PixelShader = compile ps_3_0 Rainbow();
     }
     pass HyperRainbowPass
     {
-        PixelShader = compile ps_2_0 HyperRainbow();
+        PixelShader = compile ps_3_0 HyperRainbow();
     }
     pass CensorTechnique
     {
-        PixelShader = compile ps_2_0 Censor();
+        PixelShader = compile ps_3_0 Censor();
     }
 }

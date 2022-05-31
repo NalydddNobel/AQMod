@@ -136,7 +136,7 @@ namespace Aequus.Biomes
                     NetUpdate++;
                     if (NetUpdate > 120 && Main.netMode == NetmodeID.Server)
                     {
-                        PacketSender.Send((p) =>
+                        PacketHandler.Send((p) =>
                         {
                             SendStatusPacket(p);
                         }, PacketType.DemonSiegeSacrificeStatus);
@@ -367,7 +367,7 @@ namespace Aequus.Biomes
             }
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketSender.Send((p) =>
+                PacketHandler.Send((p) =>
                 {
                     p.Write((ushort)x);
                     p.Write((ushort)y);
@@ -441,7 +441,7 @@ namespace Aequus.Biomes
 
             if (Main.netMode == NetmodeID.Server)
             {
-                PacketSender.Send((p) =>
+                PacketHandler.Send((p) =>
                 {
                     p.Write((ushort)x);
                     p.Write((ushort)y);
@@ -511,7 +511,7 @@ namespace Aequus.Biomes
                     Sacrifices.Remove(p);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        PacketSender.Send((packet) =>
+                        PacketHandler.Send((packet) =>
                         {
                             packet.Write((ushort)p.X);
                             packet.Write((ushort)p.Y);

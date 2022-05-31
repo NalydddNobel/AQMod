@@ -1,23 +1,17 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Biomes;
+using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Networking
 {
-    public sealed class PacketSender : ModSystem
+    public sealed class PacketHandler : ModSystem
     {
-        public static PacketType ReadPacketType(BinaryReader reader)
-        {
-            return (PacketType)reader.ReadByte();
-        }
-
         public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -26,7 +20,7 @@ namespace Aequus.Common.Networking
             packet.Send(to, ignore);
         }
 
-        public static void SendSound(string name, Vector2? location = null,  float? volume = null, float? pitch = null)
+        public static void SendSound(string name, Vector2? location = null, float? volume = null, float? pitch = null)
         {
             Send((p) =>
             {
@@ -117,6 +111,59 @@ namespace Aequus.Common.Networking
             else
             {
                 return null;
+            }
+        }
+
+        public static PacketType ReadPacketType(BinaryReader reader)
+        {
+            return (PacketType)reader.ReadByte();
+        }
+
+        public static void HandlePacket(BinaryReader reader)
+        {
+            PacketType type = ReadPacketType(reader);
+
+            var l = Aequus.Instance.Logger;
+            if (type != PacketType.Unused && type != PacketType.SyncAequusPlayer)
+            {
+                l.Debug("Recieving Packet: " + type);
+            }
+            if (type == PacketType.Unused)
+            {
+            }
+            else if (type == PacketType.SyncNecromancyOwnerTier)
+            {
+                int npc = reader.ReadInt32();
+                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
+                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
+            }
+            else if (type == PacketType.SyncAequusPlayer)
+            {
+                if (Main.player[reader.ReadByte()].TryGetModPlayer<AequusPlayer>(out var aequus))
+                {
+                    aequus.RecieveChanges(reader);
+                }
+            }
+            else if (type == PacketType.SoundQueue)
+            {
+                SoundHelpers.ReadSoundQueue(reader);
+            }
+            else if (type == PacketType.DemonSiegeSacrificeStatus)
+            {
+                DemonSiegeInvasion.EventSacrifice.ReadPacket(reader);
+            }
+            else if (type == PacketType.RequestDemonSiege)
+            {
+                DemonSiegeInvasion.HandleStartRequest(reader);
+            }
+            else if (type == PacketType.RemoveDemonSiege)
+            {
+                DemonSiegeInvasion.Sacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
+            }
+            else if (type == PacketType.SyncDebuffs)
+            {
+                byte npc = reader.ReadByte();
+                Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
             }
         }
     }

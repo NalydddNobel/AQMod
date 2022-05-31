@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Ranged
         {
             if (!Main.dedServ)
             {
-                DOOMShotgun = new SoundStyle("Aequus/Sounds/doomshotgun");
+                DOOMShotgun = Aequus.GetSound("doomshotgun");
             }
         }
 

@@ -409,7 +409,7 @@ namespace Aequus
         }
         public void Sync(bool itemSync, bool syncHitTime)
         {
-            PacketSender.Send((p) =>
+            PacketHandler.Send((p) =>
             {
                 if (itemSync)
                 {

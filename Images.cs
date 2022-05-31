@@ -35,11 +35,10 @@ namespace Aequus
 
         public static Asset<Texture2D> LightRay { get; private set; }
         public static Asset<Texture2D> TextBloom { get; private set; }
+
+        public const int StatusBubbleFramesX = 3;
         [ImgPath("Assets/UI")]
         public static Asset<Texture2D> StatusBubble { get; private set; }
-        public const int StatusBubbleFramesX = 3;
-        [ImgPath("UI")]
-        public static Asset<Texture2D> InventoryBack { get; private set; }
 
         [ImgArr(5)]
         public static Asset<Texture2D>[] Bloom { get; private set; }

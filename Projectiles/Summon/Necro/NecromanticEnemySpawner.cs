@@ -9,7 +9,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class NecromanticEnemySpawner : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         public override void SetDefaults()
         {
@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         protected virtual void OnSpawnZombie(NPC npc, NecromancyNPC zombie)
         {
-            zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0);
+            zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
             zombie.zombieTimerMax *= 5;
             zombie.zombieTimer *= 5;
             zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyBloodSacrifice;

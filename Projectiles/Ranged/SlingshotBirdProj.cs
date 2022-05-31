@@ -156,7 +156,7 @@ namespace Aequus.Projectiles.Ranged.Birds
 
     public class BirdProjPrediction : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
 
         public override void SetDefaults()
         {

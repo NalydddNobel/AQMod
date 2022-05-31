@@ -3,17 +3,14 @@ using Aequus.UI.Drawers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI;
 
 namespace Aequus.UI
 {
-    public sealed class ItemSlotData : UIElement
+    public sealed class ItemSlotElement : UIElement
     {
         public Item item;
-        public int X;
-        public int Y;
         public float Scale;
         public Texture2D back;
         public SpriteFrameData icon;
@@ -21,20 +18,18 @@ namespace Aequus.UI
 
         public bool HasItem => item != null && !item.IsAir;
 
-        public ItemSlotData(int x, int y, Texture2D back, SpriteFrameData icon = null)
+        public ItemSlotElement(int x, int y, Texture2D back, SpriteFrameData icon = null)
         {
-            X = x;
-            Y = y;
             Scale = 1f;
             item = new Item();
             this.back = back;
             this.icon = icon;
-        }
 
-        public Rectangle GetHitbox()
-        {
-            var back = TextureAssets.InventoryBack.Value;
-            return new Rectangle(X, Y, (int)(back.Width * Scale), (int)(back.Height * Scale));
+            Left.Set(pixels: x, 0f);
+            Top.Set(pixels: y, 0f);
+
+            Width.Set(pixels: (int)(back.Width * Scale), 0f);
+            Height.Set(pixels: (int)(back.Height * Scale), 0f);
         }
 
         public override void Update(GameTime gameTime)
@@ -51,17 +46,17 @@ namespace Aequus.UI
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            var c = GetDimensions();
             float oldScale = Main.inventoryScale;
             Main.inventoryScale = Scale;
-            spriteBatch.Draw(back, new Vector2(X, Y), null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(back, new Vector2(c.X, c.Y), null, Color.White, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0f);
             if (!HasItem && icon != null)
             {
-                spriteBatch.Draw(icon.Texture.Value, new Vector2(X, Y) + back.Size() / 2f * Scale, icon.Frame, Color.White * 0.35f, 0f, icon.Frame.Size() / 2f, Scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(icon.Texture.Value, new Vector2(c.X, c.Y) + back.Size() / 2f * Scale, icon.Frame, Color.White * 0.35f, 0f, icon.Frame.Size() / 2f, Scale, SpriteEffects.None, 0f);
             }
-            InvDrawer.Draw(spriteBatch, item, new Vector2(X, Y));
+            ItemSlotRenderer.Draw(spriteBatch, item, new Vector2(c.X, c.Y));
             base.Draw(spriteBatch);
             Main.inventoryScale = oldScale;
         }
-
     }
 }

@@ -256,7 +256,7 @@ namespace Aequus.Projectiles.Melee
 
     public class ThunderClapExplosion : ModProjectile
     {
-        public override string Texture => Aequus.TextureNone;
+        public override string Texture => Aequus.BlankTexture;
         public override void SetDefaults()
         {
             Projectile.width = 300;

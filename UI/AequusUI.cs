@@ -3,30 +3,29 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.UI
 {
-    public sealed partial class UIHelper : ModSystem
+    public sealed class AequusUI : ModSystem
     {
-        public static byte linkClickDelay;
-        public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
-        public static HashSet<int> ValidModularSlotContext { get; private set; }
-
         public const int LeftInv = 20;
+
         public static int leftInvOffset;
-        public static int LeftInventory(bool ignoreCreative = false)
-        {
-            int left = LeftInv;
-            if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked)
-            {
-                left += 48;
-            }
-            return leftInvOffset + left;
-        }
+        public static byte linkClickDelay;
+        public static byte specialLeftClickDelay;
+        public static byte disableItemLeftClick;
+
+        public static int ItemSlotContext { get; private set; }
+
+        public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
+
         public static int BottomInventory => 260;
+
+        public static byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
+
+        public static bool CanDoLeftClickItemActions => specialLeftClickDelay == 0;
 
         public override void Load()
         {
@@ -40,21 +39,25 @@ namespace Aequus.UI
                 ItemSlot.Context.BankItem,
                 ItemSlot.Context.ChestItem,
             };
-            ValidModularSlotContext = new HashSet<int>()
+        }
+        private void LoadHooks()
+        {
+            On.Terraria.UI.ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
+            On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += Hook_UpdateStaticContext;
+        }
+
+        private void Hook_DisableLeftClick(On.Terraria.UI.ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+        {
+            if (disableItemLeftClick == 0)
             {
-                ItemSlot.Context.InventoryItem,
-                ItemSlot.Context.EquipArmor,
-                ItemSlot.Context.EquipAccessory,
-                ItemSlot.Context.BankItem,
-                ItemSlot.Context.ChestItem,
-                ItemSlot.Context.DisplayDollAccessory,
-                ItemSlot.Context.DisplayDollArmor,
-                ItemSlot.Context.EquipGrapple,
-                ItemSlot.Context.EquipLight,
-                ItemSlot.Context.EquipMinecart,
-                ItemSlot.Context.EquipMount,
-                ItemSlot.Context.ModdedAccessorySlot,
-            };
+                orig(inv, context, slot);
+            }
+        }
+
+        private void Hook_UpdateStaticContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        {
+            ItemSlotContext = context;
+            orig(spriteBatch, inv, context, slot, position, lightColor);
         }
 
         public override void Unload()
@@ -102,6 +105,16 @@ namespace Aequus.UI
             {
                 layers.Insert(index, new LegacyGameInterfaceLayer(yourName, method, scaleType));
             }
+        }
+
+        public static int LeftInventory(bool ignoreCreative = false)
+        {
+            int left = LeftInv;
+            if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked)
+            {
+                left += 48;
+            }
+            return leftInvOffset + left;
         }
 
         public static void CloseAllInventoryRelatedUI()

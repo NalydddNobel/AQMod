@@ -41,7 +41,7 @@ namespace Aequus.Buffs.Debuffs.Necro
                 npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = tier;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    PacketSender.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
+                    PacketHandler.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
                 }
             }
         }

@@ -123,7 +123,7 @@ namespace Aequus.Tiles
             {
                 sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    PacketSender.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
+                    PacketHandler.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
                 return true;
             }
         ConsumeItem:

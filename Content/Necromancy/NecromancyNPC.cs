@@ -47,7 +47,7 @@ namespace Aequus.Content.Necromancy
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
             if (!Main.dedServ)
             {
-                ZombieRecruitSound = new SoundStyle("Aequus/Sounds/zombierecruit");
+                ZombieRecruitSound = Aequus.GetSound("zombierecruit");
             }
         }
 
@@ -145,7 +145,7 @@ namespace Aequus.Content.Necromancy
 
             if (sendPacket && Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketSender.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
+                PacketHandler.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
             }
         }
         public void ZombifyChild(NPC npc, NPC parentNPC, int player, float tier)
@@ -349,18 +349,21 @@ namespace Aequus.Content.Necromancy
             if (n < 200)
             {
                 Main.npc[n].whoAmI = n;
-                SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection);
-                if (Main.netMode == NetmodeID.Server)
+                SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection, out bool playSound);
+                if (playSound)
                 {
-                    PacketSender.SendSound("ZombieRecruit", npc.Center);
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    SoundEngine.PlaySound(ZombieRecruitSound);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        SoundHelpers.SendSound(SoundHelpers.NetSoundID.ZombieRecruit, npc.Center);
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        SoundEngine.PlaySound(ZombieRecruitSound);
+                    }
                 }
             }
         }
-        public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection)
+        public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound)
         {
             zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
             zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
@@ -387,6 +390,7 @@ namespace Aequus.Content.Necromancy
             {
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, zombieNPC.whoAmI);
             }
+            playSound = true;
         }
 
         public void OnSpawnZombie(NPC npc)
@@ -593,7 +597,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {
-                    BuffImmunities.AddStaticImmunity(i, false, buffList.ToArray());
+                    BuffImmunity.AddStaticImmunity(i, false, buffList.ToArray());
                 }
             }
         }
