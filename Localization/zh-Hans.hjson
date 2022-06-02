@@ -32,6 +32,26 @@ Mods: {
 			DemonSiegeInvasion: 恶魔围攻
 		}
 
+		Achievement: {
+			Name: {
+				OmegaStarite: 空间分形
+				Crabson: 我的珍珠女儿
+				DemonSiege: 毁灭猎手
+				Glimmer: 星宇之憎
+				GlimmerHyperStarite: 触星
+				GlimmerBeaten: 狂热之源
+			}
+
+			Description: {
+				OmegaStarite: 击败终末之星, 一种可捕获所有终极能量源头的精锐星源武器...
+				Crabson: 击败巨蟹蛤, 一只蟹蛤怪物躲在自己的地下海洞里, 它在搜寻着稀有的珍珠...
+				DemonSiege: 唤醒血巢, 升级武器!
+				Glimmer: 发现微光!
+				GlimmerHyperStarite: 深入微光!
+				GlimmerBeaten: 与微光之源互动!
+			}
+		}
+
 		ChatBroadcast: {
 			DemonSiegeFail: 血巢反刍出了你的{0}...
 		}
@@ -529,6 +549,7 @@ Mods: {
 				仅在背包中拥有哨兵武器时才会生效
 				'仅是轻微的干扰'
 				'''
+
 			ToySpaceGun: 
 				'''
 				召唤一只跟着你的太空乌贼
@@ -550,7 +571,6 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
-			
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -2007,6 +2027,91 @@ Mods: {
 
 
 		Chat: {
+			Terraria_Merchant: {
+				ShopQuote: {
+					Terraria_MiningHelmet: 厌倦了每走两步放一根火把? 戴上采矿头盔吧!
+					Terraria_PiggyBank: 用这个方便的小朋友来储存你的收益!
+					Terraria_PiggyBank_Goober: 用这个方便的傻蛋来储存你的收益!
+					Terraria_IronAnvil: 那个脏的旧工作台已经不起作用了? 试试这个沉重的铁砧!
+					Terraria_LeadAnvil: "{$Mods.Aequus.Chat.Terraria_Merchant.ShopQuote.Terraria_IronAnvil}"
+					Terraria_BugNet: 有没有试过捉虫子? 我听说周围的一些小动物可能值很多金子...
+					Terraria_CopperPickaxe: 最新的稿子技艺! 可别与锡稿混淆了.
+					Terraria_CopperAxe: 用这把铜斧来让周围的生态系统知道谁才是老大!
+					Terraria_LesserHealingPotion: 能治好从擦伤到刺伤的一切伤口! (包含蘑菇)
+					Terraria_LesserManaPotion: 感到法不从心了? 买两瓶法力药水吧!
+					Terraria_WoodenArrow: 消灭那些飞行的害虫遇到困难了吗? 买一包箭矢吧! 
+					Terraria_Shuriken: 忍者可能不是真的, 但你今天可以成为第一名忍者!
+					Terraria_Rope: 探索者入门服装, 只需要几枚铜币!
+					Terraria_Marshmallow: 在寒冷中吃一点甜食是不会痛的.
+					Terraria_Furnace: 石头不够用吗? 不够的话, 我正好有你需要的.
+					Terraria_PinWheel: 你不会相信这些在有风的日子里能卖多少!
+					Terraria_ThrowingKnife: 近距离战斗不得劲? 试试这些飞刀吧!
+					Terraria_Glowstick: 在黑暗和潮湿中发光!
+					Terraria_SharpeningStation: 用这个磨刀台来保持你刀的刀型!
+					Terraria_Safe: 用这个保险箱保管好你的东西.
+					Terraria_DiscoBall: 没有这个你就无法跳舞!
+					Terraria_DiscoBall_PartyGirl: 嘿, 把这个东西告诉给{PartyGirl}, 她会买光我所有的库存!
+					Terraria_Flare: 我注意到你带着信号枪, 来点照明弹怎么样?
+					Terraria_BlueFlare: 照明弹也有蓝色的!
+					Terraria_Sickle: 只有镰刀.
+					Terraria_GoldDust: 用少许银币换些许金币, 没有比这更划算的买卖了!
+					Terraria_DrumSet: 用这套鼓来释放你的音乐创造力! 不含鼓槌.
+					Terraria_DrumStick: 用这些山胡桃木鼓槌来完成你的鼓套装.
+					Terraria_Nail: 射钉枪需要钉子才能有用!
+				}
+			}
+
+			Terraria_ArmsDealer: {
+				ShopQuote: {
+					Terraria_SilverBullet: 你在附近见过狼人吗? 我很想在他们身上测试一下.
+					Terraria_TungstenBullet: 比一般子弹更重更致命.
+					Terraria_UnholyArrow: 射箭不是我的强项, 但我无法拒绝邪弹.
+					Terraria_FlintlockPistol: 可能有点过时, 但我保证它射击东西射很好用.
+					Terraria_IllegalGunParts:没人在看...让我们保守秘密, 好吗?
+					Terraria_Shotgun: 这款伊萨卡37型非常适合近距离射击怪物!
+					Terraria_EmptyBullet: 我很感激有人在乎他们的子弹, 用这些空壳来制作你自己的!
+					Terraria_StyngerBolt: 我得说, 那些神庙蜥蜴知道如何给他们的比赛增添趣味.
+					Terraria_Stake: 如果你见到了德古拉, 告诉他我对他说'嗨'.
+					Terraria_Nail: 别听商人的话, 我的钉子的口径要大得多!
+					Terraria_Nail_Merchant: 别听{Merchant}的话, 我的钉子的口径要大得多!
+					Terraria_CandyCorn: 我听说过用沙子作为弹药, 但这太荒谬了.
+					Terraria_ExplosiveJackOLantern: 现在, 我知道炸药是[name of demoman]的东西, 但有时你必须让其他人参与其中, 你知道吗?
+					Terraria_QuadBarrelShotgun: 双倍的猎枪, 双倍的杀敌数!
+
+					NurseOutfit: 不要告诉护士这件事, 她会杀了我的!
+					NurseOutfit_Nurse: 不要告诉{Nurse}这件件事, 她会杀了我的!
+				}
+			}
+
+
+			Terraria_Demolitionist: {
+				ShopQuote: {
+					Terraria_Grenade: 我向恁保证, 这比任何枪都好. 只需比较伤害的大小!
+					Terraria_HellfireArrow: 现在, 我通常不使用弓, 但我发现当恁可以把箭变成手榴弹时, 我上瘾了.
+					Terraria_LandMine: 有点令人失望的是, 恁不能用这个突破材料, 但它会造成伤害. 只要它不是哑弹!
+					Terraria_ExplosivePowder: 这是使地狱之火箭和爆炸子弹生效的秘密成分 —— 一点火药!
+					Terraria_DryBomb: 当其他炸弹摧毁固体材料时, 这个炸弹摧毁液体! 接下来是什么, 一颗毒气弹?
+					Terraria_WetBomb: 我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 至少这只是水, 而不是泥土.
+					Terraria_LavaBomb: 我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 至少这只是岩浆, 而不是泥土.
+					Terraria_HoneyBomb: 我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 至少这只是蜂蜜, 而不是泥土.
+				}
+			}
+
+			Terraria_GoblinTinkerer: {
+				ShopQuote: {
+					Terraria_RocketBoots: 
+						'''
+						事实证明, 以法力为动力的火箭并不是最有效的.
+						希望你能从中找到比我的东西更有用的东西.
+						'''
+					Terraria_Ruler: 当然, 尺子很好用, 但我认为它可以更大一些...
+					Terraria_TinkerersWorkshop: 满足你所有的小玩意的修补需求!
+					Terraria_GrapplingHook: 一个钩爪! 我想知道还有什么东西可以系在链子上...
+					Terraria_Toolbelt: 在进行大型项目时, 手头上最好有各种工具.
+					Terraria_SpikyBall: 真的? 拿着这些, 我不知道为什么我还带着它们.
+				}
+			}
+
 			Terraria_Pirate: {
 				ShopQuote: {
 					Terraria_Cannon: 蹦! 我吓到恁了吗? 我把那门大炮从可怕的海盗罗伯特的船上拿下来了.
@@ -2040,6 +2145,87 @@ Mods: {
 				}
 			}
 
+			Terraria_BestiaryGirl: {
+				ShopQuote: {
+					Terraria_DontHurtCrittersBook: 拿走这个吧, 老兄. 这本书是你唯一需要与动物建立终身友谊的东西.
+					Terraria_SquirrelHook: 前几天我去了森林, 用这个在树之间飞来飞去. 它真的太太太酷了!
+					Terraria_BlandWhip: 求求你, 比如, 买这个东西. 我再也不想要它了. 它是用来伤害动物的, 而且闻起来像蝙蝠.
+					Terraria_MolluskWhistle: 火烈鸟一定是最酷的动物. 它们的腿太迷人了.
+					Terraria_CritterShampoo: 老兄, 不要对你的仆从如此粗鲁. 它们有时也需要清洗一下!
+					Terraria_DogEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的狗.
+					Terraria_DogTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的狗.
+					Terraria_FoxEars: 我非常喜欢这些耳朵. 它们让我看起来就像那只咬了我的诅咒狐狸一样...
+					Terraria_FoxTail: 我非常喜欢这条尾巴. 们让我看起来就像那只咬了我的诅咒狐狸一样...
+					Terraria_LizardEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的蜥蜴.
+					Terraria_LizardTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的蜥蜴.
+					Terraria_BunnyEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的兔子.
+					Terraria_BunnyTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的兔子.
+					Terraria_FullMoonSqueakyToy: *吼叫声..... (*尖叫声*)
+					Terraria_MudBud: 这种植物很酷, 但我更喜欢动物. 但它还是挺酷的...
+					Terraria_LicenseCat: 谁不想要一只可爱、蓬松、讨喜又顽皮的小猫呢? 我可以给你一张猫猫证书!
+					Terraria_LicenseDog: 谁不想要一只可爱、蓬松、忠诚又顽皮的小狗呢? 我可以给你一张狗狗证书!
+					Terraria_LicenseBunny: 谁不想要一只可爱、蓬松、活泼又顽皮的小狗呢? 我可以给你一张兔兔证书!
+					Terraria_KiteKoi: 这个风筝上的鱼真的很可爱. 我希望它是真的, 这样我就能每天喂它了.
+					Terraria_KiteCrawltipede: 嗯...我真的不喜欢虫子. 幸运的是, 爬行动物是节肢动物!
+					Terraria_PaintedHorseSaddle: 我非常喜欢在草地上骑马! 这匹马让我想起了一个电视节目...
+					Terraria_MajesticHorseSaddle: 我非常喜欢在草地上骑马! 这匹马让我想起了一个神话...
+					Terraria_DarkHorseSaddle: 我非常喜欢在草地上骑马! 这匹马让我想起了一本书...
+					Terraria_VanityTreeSakuraSeed: 我只是喜欢你在森林里找到的那些美丽的樱花树! 我找到了自己的特别配方并自己种了一种.
+					Terraria_VanityTreeYellowWillowSeed: 我只是喜欢你在森林里找到的那些美丽的黄柳树! 我找到了自己的特别配方并自己种了一种.
+					Terraria_RabbitOrder: 嗷! 这只小兔子真可爱!!! 我只想抚摸他, 让他坐在我的头上. 想象一下这如果有两只...
+					Terraria_JoustingLance: 
+						'''
+						我找到一根奇怪的棍子...我想这是为了更接近空中的生物以更容易喂养它们, 
+						但我想这应该是一件武器. 无说服力.
+						'''
+					Terraria_FairyGlowstick: 我想去抓一个可怕的地下仙女, 但我最后得到的只是一个很酷的荧光棒.
+					Terraria_TreeGlobe: 这是自然科学技术的一个更惊人的进步! 眨眼间就能改变树木的力量!
+					Terraria_WorldGlobe: 这是大自然科技的一个惊人进步! 眨眼间改变森林的力量! 当然, 我们碰不到不到它们.
+					Terraria_LightningCarrot: 我走遍了这片土地, 到处寻找, 我终于找到了这只可爱的伏特兔子! 必须抓住他们!
+					Terraria_DiggingMoleMinecart: 这个生物的结构很奇怪...它的中心有一个人大小的洞. 这是我见过的最奇怪的动物...
+					Terraria_BallOfFuseWire: 很高兴你没有激怒这只会爆炸的小猫, 老兄! 我没在你身上看到和平卡片.
+
+					Lycantrope: {
+					}
+				}
+			}
+
+			Terraria_Princess: {
+				ShopQuote: {
+					Terraria_RoyalTiara: 我做了一个精致的头饰, 为时尚量身订做.
+					Terraria_RoyalDressTop: 我做了一件精致的衬衫, 为时尚量身订做.
+					Terraria_RoyalDressBottom: 我做了一件精致的连衣裙, 为时尚量身订做.
+					Terraria_RoyalScepter: 我的魔法作品中没有危险的仿制品, 共振节杖.
+					Terraria_GlassSlipper_Male: 一双拖鞋, 任何一位少女都会很乐意收到它作为礼物!
+					Terraria_GlassSlipper_Female: 这些应该非常适合你的脚!
+					Terraria_PrinceUniform: 我为皇室王子做的衣服, 为时尚量身订做.
+					Terraria_PrincePants: 我为皇室王子做的一条裤子, 为时尚量身订做.
+					Terraria_PrinceCape: 我为皇室王子做的飘逸斗篷, 为时尚量身订做.
+					Terraria_PottedCrystalPlantFern: 这种神秘的植物生长在我的花园里, 这种蕨类植物在神圣的环境中会很好看!
+					Terraria_PottedCrystalPlantSpiral: 这种神秘的植物生长在我的花园里, 这种螺旋形的植物在神圣的环境中会很好看!
+					Terraria_PottedCrystalPlantTeardrop: 这个神秘的泪滴落在了我的花园里, 它长出了根并开始像植物一样生长! 真是个奇怪的小东西.
+					Terraria_PottedCrystalPlantTree: 这种神秘的植物生长在我的花园里, 这棵树在神圣的环境下会很好看!
+					Terraria_Princess64: 一个看起来不像我想要的东西. 我一直想把它从城堡里搬出来换个新东西, 所以它可出售的.
+					Terraria_PaintingOfALass: 我在幼儿园时的自画像. 我简直受不了我在上面的样子! 所以它可出售的.
+					Terraria_DarkSideHallow: 我要求的第一幅套画作之一. 我想要一幅独角兽的画, 因为我被告知它们不是真的, 但事实证明它们是真的! 所以它可出售的.
+					Terraria_BerniePetItem: 一只可爱的毛绒熊的纽扣.
+					Terraria_MusicBoxCredits: 你冒险经历的一大步, 击败月球领主! 然而你的旅途尚未结束.
+					Terraria_MusicBoxCredits_GuideAndrew: 你冒险经历的一大步,击败月球领主! 然而你的旅途尚未结束. 我想安德鲁为你感到骄傲.
+					Terraria_SlimeStaff: 这个粘糊糊的法杖召唤了一个可爱的小史莱姆! 可爱极了!
+					Terraria_HeartLantern: 装饰得不错, 我还听说它能治头痛, 有助于愈合伤口. 我把它评为'plus up', 比'plus'还要大!
+					Terraria_FlaskofParty: 使用你的剑在命中时进行派对! 别告诉派对女孩我在转售她的东西!
+					Terraria_FlaskofParty_PartyGirl: 使用你的剑在命中时进行派对! 别告诉{PartyGirl}我在转售她的东西!
+					Terraria_SandstorminaBottle: 比金字塔还要古老的古代遗物! 它一直放在我的衣柜里, 制造了额外的灰尘.
+					Terraria_Terragrim: 一把轻快且锋利的剑! 但它并不像我城堡里的那件会召唤魔法弹幕的一样.
+					Terraria_PirateStaff:私人飞船! 只需要希望没人是内鬼...
+					Terraria_DiscountCard: 在我的衣柜里发现了这个, 看起来有点像你.
+					Terraria_DiscountCard_Exporter: 在我的衣柜里发现了这个, 看起来有点像你. 我听说{Exporter}在卖这个, 但他的价格太贵了!
+					Terraria_LuckyCoin: 在我的衣柜里发现了这个, 看起来很幸运!
+					Terraria_LuckyCoin_Exporter: 在我的衣柜里发现了这个, 看起来很幸运! 我听说{Exporter}在卖这个, 但他的价格太贵了!
+					Terraria_CoinGun: 零钱从未变得如此致命. 我可以用这个和城堡的财富来对抗整个军队!
+				}
+			}
+			
 			Exporter: {
 				Introduction: 我的名字是{0}, 我将致力于为恁带来我所能找到的最可疑的商品!
 
