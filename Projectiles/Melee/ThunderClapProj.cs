@@ -124,7 +124,7 @@ namespace Aequus.Projectiles.Melee
                                 d.scale = Main.rand.NextFloat(1.4f, 2f);
                                 d.noGravity = true;
                             }
-                            SoundEngine.PlaySound(SoundID.Item, targetPos);
+                            SoundEngine.PlaySound(SoundID.Item14, targetPos);
                             SoundEngine.PlaySound(SoundHelpers.Thunderclap, targetPos);
                         }
                         if (Main.myPlayer == Projectile.owner)

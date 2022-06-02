@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Friendly
 {
-    [AutoloadBossHead()]
+    [AutoloadHead()]
     public class SkyMerchant : ModNPC
     {
         public static Asset<Texture2D> BasketTexture { get; private set; }

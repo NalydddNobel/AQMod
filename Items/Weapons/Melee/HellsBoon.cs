@@ -50,6 +50,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             damage = (int)(damage * 0.5f);
             position = Main.MouseWorld;
+            player.LimitPointToPlayerReachableArea(ref position);
         }
     }
 }

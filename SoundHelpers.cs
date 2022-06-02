@@ -17,9 +17,9 @@ namespace Aequus
 
         void ILoadable.Load(Mod mod)
         {
-            SwordSlash = new SoundStyle("Aequus/Sounds/Items/swordslash", 0, 2, SoundType.Sound);
-            SwordSwoosh = new SoundStyle("Aequus/Sounds/Items/swordswoosh", 0, 3, SoundType.Sound);
-            Thunderclap = new SoundStyle("Aequus/Sounds/RedSprite/thunderclap", 0, 1) { Volume = 0.6f, };
+            SwordSlash = new SoundStyle("Aequus/Sounds/Items/swordslash", 0, 3, SoundType.Sound);
+            SwordSwoosh = new SoundStyle("Aequus/Sounds/Items/swordswoosh", 0, 4, SoundType.Sound);
+            Thunderclap = new SoundStyle("Aequus/Sounds/RedSprite/thunderclap", 0, 2) { Volume = 0.6f, };
         }
 
         void ILoadable.Unload()

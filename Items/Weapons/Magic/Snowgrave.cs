@@ -42,6 +42,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             position.X = Main.MouseWorld.X;
+            player.LimitPointToPlayerReachableArea(ref position);
             position.Y += 600f;
             velocity *= 0.001f;
         }

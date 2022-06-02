@@ -81,10 +81,16 @@ namespace Aequus.Items.Weapons.Summon.Necro
             return true;
         }
 
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
+            position = Main.MouseWorld;
+            player.LimitPointToPlayerReachableArea(ref position);
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             player.Aequus().SacrificeLife(LifeUsed, LifeUsed / 8, reason: PlayerDeathReason.ByCustomReason(AequusText.GetText("Deaths.NecromancyStaffUsage", player.name, Lang.GetNPCName(npcSummon))));
-            Projectile.NewProjectileDirect(source, Main.MouseWorld, Vector2.Zero, Item.shoot, Item.damage, 0f, player.whoAmI, npcSummon);
+            Projectile.NewProjectileDirect(source, position, Vector2.Zero, Item.shoot, Item.damage, 0f, player.whoAmI, npcSummon);
             return false;
         }
 
