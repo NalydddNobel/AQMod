@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.UI.Drawers
+namespace Aequus.UI
 {
     public class ItemSlotRenderer : ILoadable
     {
@@ -100,6 +101,21 @@ namespace Aequus.UI.Drawers
         public static void Draw(SpriteBatch spriteBatch, DrawInput data)
         {
             Draw(spriteBatch, data.texture, data.drawPos, data.item, data.frame, data.drawColor, data.color, data.origin, data.scale, data.scale2);
+        }
+
+        public static Vector2 InventoryItemGetCorner(Vector2 position, Rectangle itemFrame, float itemScale)
+        {
+            return position + itemFrame.Size() / 2f * itemScale;
+        }
+
+        public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
+        {
+            var backFrame = InventoryBackFrame(frameY: 0);
+            int frameY = (int)(backFrame.Height * progress);
+            var uiFrame = new Rectangle(0, backFrame.Height - frameY, backFrame.Width, frameY);
+            position.Y += (backFrame.Height - frameY) * Main.inventoryScale;
+            var center = InventoryItemGetCorner(position, itemFrame, itemScale);
+            spriteBatch.Draw(texture, center, uiFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 
         void ILoadable.Load(Mod mod)

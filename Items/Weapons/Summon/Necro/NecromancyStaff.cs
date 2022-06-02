@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Items.Misc;
 using Aequus.Projectiles.Summon.Necro;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -94,7 +95,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 drawBanner = DetermineBanner();
             }
 
-            DrawBanner(spriteBatch, AequusHelpers.InventoryItemGetCorner(position + new Vector2(4f, 4f) * Main.inventoryScale, frame, scale), drawColor, scale * 0.9f);
+            DrawBanner(spriteBatch, ItemSlotRenderer.InventoryItemGetCorner(position + new Vector2(4f, 4f) * Main.inventoryScale, frame, scale), drawColor, scale * 0.9f);
         }
         public int DetermineBanner()
         {

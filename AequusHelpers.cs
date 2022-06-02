@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Projectiles;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -781,19 +782,6 @@ namespace Aequus
         {
             timer %= ticksPer * loop;
             return timer / ticksPer;
-        }
-
-        public static Vector2 InventoryItemGetCorner(Vector2 position, Rectangle itemFrame, float itemScale)
-        {
-            return position + itemFrame.Size() / 2f * itemScale;
-        }
-        public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)
-        {
-            int frameY = (int)(texture.Height * progress);
-            var uiFrame = new Rectangle(0, texture.Height - frameY, texture.Width, frameY);
-            position.Y += uiFrame.Y * Main.inventoryScale;
-            var center = InventoryItemGetCorner(position, itemFrame, itemScale);
-            spriteBatch.Draw(texture, center, uiFrame, color, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 
         public static Item DefaultItem(int type)

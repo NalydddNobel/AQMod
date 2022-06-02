@@ -1,5 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -153,14 +154,22 @@ namespace Aequus.Items.Misc.Summons
         //    Main.playerDrawData.Add(new DrawData(texture, drawCoordinates, drawFrame, new Color(255, 255, 255, 255), drawRotation, origin, Item.scale, info.spriteEffects, 0) { shader = GameShaders.Armor.GetShaderIdFromItemId(ModContent.ItemType<EnchantedDye>()) });
         //}
 
-        //public override void AddRecipes()
-        //{
-        //    var r = new ModRecipe(mod);
-        //    r.AddIngredient(ModContent.ItemType<CosmicEnergy>(), 5);
-        //    r.AddIngredient(ItemID.HellstoneBar, 15);
-        //    r.AddTile(ModContent.TileType<GlimmeringStatueTile>());
-        //    r.SetResult(this);
-        //    r.AddRecipe();
-        //}
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<CosmicEnergy>(5)
+                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+
+
+
+            CreateRecipe()
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddIngredient(ItemID.HellstoneBar, 15)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+        }
     }
 }

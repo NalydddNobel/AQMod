@@ -40,5 +40,32 @@ namespace Aequus.Items.Misc.Summons
             }
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.WhitePearl)
+                .AddIngredient(ItemID.Coral, 5)
+                .AddIngredient(ItemID.Starfish, 5)
+                .AddIngredient(ItemID.Seashell, 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.BlackPearl)
+                .AddIngredient(ItemID.Coral, 5)
+                .AddIngredient(ItemID.Starfish, 5)
+                .AddIngredient(ItemID.Seashell, 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.PinkPearl)
+                .AddIngredient(ItemID.Coral, 5)
+                .AddIngredient(ItemID.Starfish, 5)
+                .AddIngredient(ItemID.Seashell, 5)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+        }
     }
 }

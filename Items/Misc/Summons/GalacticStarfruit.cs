@@ -1,6 +1,7 @@
 ﻿using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -35,6 +36,8 @@ namespace Aequus.Items.Misc.Summons
             if (Main.myPlayer == player.whoAmI)
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
+                Main.hardMode = !Main.hardMode;
+                LanternNight.GenuineLanterns = !LanternNight.GenuineLanterns;
             }
             return true;
         }

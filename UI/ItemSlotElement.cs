@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.UI.Drawers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

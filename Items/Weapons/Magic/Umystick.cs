@@ -1,5 +1,4 @@
 ﻿using Aequus.Projectiles.Magic;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -16,7 +15,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             if (!Main.dedServ)
             {
-                UmysticJumpSound = new SoundStyle("Aequus/Sounds/Items/Umystick/jump", 1);
+                UmysticJumpSound = new SoundStyle("Aequus/Sounds/Items/Umystick/jump", 0, 2);
             }
         }
 
