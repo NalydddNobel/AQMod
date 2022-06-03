@@ -6,6 +6,11 @@ namespace Aequus.Items.Placeable.Graves
 {
     public class AshGraveMarker : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(2);
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<Tombstones>(), Tombstones.AshGraveMarkerStyle);

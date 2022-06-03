@@ -1,11 +1,8 @@
-using Aequus.Biomes;
 using Aequus.Common;
-using Aequus.Common.Networking;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Recipes;
-using Aequus.NPCs;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

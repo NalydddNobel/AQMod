@@ -7,6 +7,11 @@ namespace Aequus.Items.Misc.Critters
 {
     public class Snobster : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(5);
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToCapturedCritter((short)ModContent.NPCType<SnobsterCritter>());

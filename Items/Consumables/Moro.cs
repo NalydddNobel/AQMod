@@ -6,6 +6,11 @@ namespace Aequus.Items.Consumables
 {
     public class Moro : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToHoldUpItem();

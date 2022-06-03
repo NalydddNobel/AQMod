@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc
@@ -11,6 +10,11 @@ namespace Aequus.Items.Misc
     public class GhostlyGrave : ModItem
     {
         public static Color TextColor => new Color(211, 200, 200, 255);
+
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
 
         public override void SetDefaults()
         {
