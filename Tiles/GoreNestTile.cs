@@ -366,7 +366,6 @@ namespace Aequus.Tiles
             }
             y--;
             x++;
-            DustDebug(x, y);
             WorldGen.PlaceTile(x, y, ModContent.TileType<GoreNestTile>(), mute: true, forced: true);
             if (Main.tile[x, y].TileType != ModContent.TileType<GoreNestTile>())
             {
@@ -375,21 +374,6 @@ namespace Aequus.Tiles
             GenerateSurroundingGoreNestHill(x, y);
             GenerateAmbientTiles(x, y);
             return true;
-        }
-        public static void DustDebug(int x, int y)
-        {
-            Rectangle rect = new Rectangle(x * 16, y * 16, 16, 16);
-            for (int i = 0; i < 16; i++)
-            {
-                var d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y), DustID.Torch);
-                d.noGravity = true;
-                d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y + rect.Height), DustID.Torch);
-                d.noGravity = true;
-                d = Dust.NewDustPerfect(new Vector2(rect.X, rect.Y + i), DustID.Torch);
-                d.noGravity = true;
-                d = Dust.NewDustPerfect(new Vector2(rect.X + rect.Width, rect.Y + i), DustID.Torch);
-                d.noGravity = true;
-            }
         }
         public static bool InnerGoreNestGenCheckForBlacklistedTiles(int x, int y)
         {

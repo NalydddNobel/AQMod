@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Placeable.BossTrophies;
+﻿using Aequus;
+using Aequus.Items.Placeable.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -12,7 +13,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
+namespace Aequus.Tiles.Furniture
 {
     public sealed class BossRelics : ModTile
     {

@@ -1,34 +1,34 @@
-﻿using Terraria.Audio;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Aequus.Sounds
 {
     public struct CustomMusicData
     {
         private string mod;
-        private string musicPath;
-        private SoundStyle sound;
-        private int vanillaMusic;
-
+        private int modMusicID;
+        private int vanillaMusicID;
 
         internal CustomMusicData(int musicID)
         {
             mod = "Aequus";
-            musicPath = "";
-            vanillaMusic = musicID;
-            sound = default(SoundStyle);
+            vanillaMusicID = musicID;
+            modMusicID = -1;
         }
 
         public int GetID()
         {
-            return vanillaMusic;
+            return modMusicID != -1 ? modMusicID : vanillaMusicID;
         }
 
         public void SetMusic(Mod mod, string musicPath)
         {
+            SetMusic(mod, MusicLoader.GetMusicSlot(musicPath));
+        }
+
+        public void SetMusic(Mod mod, int musicID)
+        {
             this.mod = mod.Name;
-            this.musicPath = musicPath;
-            //sound = new SoundStyle(musicPath, SoundType.Music);
+            modMusicID = musicID;
         }
 
         public void ResetMusic(Mod mod)
@@ -36,7 +36,7 @@ namespace Aequus.Sounds
             if (mod.Name == this.mod)
             {
                 this.mod = "Aequus";
-                musicPath = "";
+                modMusicID = -1;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Aequus.Tiles.Furniture.Jeweled;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Jeweled
@@ -12,7 +13,7 @@ namespace Aequus.Items.Placeable.Jeweled
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(TileID.Pots/*ModContent.TileType<JeweledChaliceTile>()*/);
+            Item.DefaultToPlaceableTile(ModContent.TileType<JeweledChaliceTile>());
             Item.width = 16;
             Item.height = 24;
             Item.rare = ItemRarityID.Quest;

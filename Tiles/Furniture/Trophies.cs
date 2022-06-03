@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
+namespace Aequus.Tiles.Furniture
 {
     public class Trophies : ModTile
     {

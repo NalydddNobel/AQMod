@@ -15,7 +15,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
+namespace Aequus.Tiles.Furniture
 {
     public sealed class MonsterBanners : ModTile
     {
@@ -75,7 +75,8 @@ namespace Aequus.Tiles
                 return;
 
             c.Emit(OpCodes.Ldloc, 9);
-            c.EmitDelegate((Tile tile) => {
+            c.EmitDelegate((Tile tile) =>
+            {
                 if (BannerTypesHack.Contains(tile.TileType))
                 {
                     return 3;

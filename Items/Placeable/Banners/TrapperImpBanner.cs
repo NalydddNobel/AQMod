@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Tiles.Furniture;
 using Terraria;
 using Terraria.ModLoader;
 

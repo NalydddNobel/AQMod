@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
@@ -52,7 +51,7 @@ namespace Aequus.Projectiles.Misc
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NetMessage.SendData(MessageID.TileChange, -1, -1, null, 1, x, y, TileType, TileStyle);
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 1, x, y, TileType, TileStyle);
                 }
                 int sign = Sign.ReadSign(x, y);
                 if (sign >= 0)

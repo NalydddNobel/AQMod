@@ -2,7 +2,6 @@
 using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Projectiles;
-using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -75,6 +74,48 @@ namespace Aequus
         }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
+
+        public static Rectangle Fluffize(this Rectangle rect, int padding = 10)
+        {
+            if (rect.X < 10)
+            {
+                rect.X = 10;
+            }
+            else if (rect.X + rect.Width > Main.maxTilesX - padding)
+            {
+                rect.X = Main.maxTilesX - rect.Width - padding;
+            }
+
+            if (rect.Y < 10)
+            {
+                rect.Y = 10;
+            }
+            else if (rect.Y + rect.Height > Main.maxTilesX - padding)
+            {
+                rect.Y = Main.maxTilesX - rect.Height - padding;
+            }
+            return rect;
+        }
+
+        public static List<TValue> ToList<TKey, TValue>(this Dictionary<TKey, TValue>.ValueCollection keys)
+        {
+            var l = new List<TValue>();
+            foreach (var k in keys)
+            {
+                l.Add(k);
+            }
+            return l;
+        }
+
+        public static List<TKey> ToList<TKey, TValue>(this Dictionary<TKey, TValue>.KeyCollection keys)
+        {
+            var l = new List<TKey>();
+            foreach (var k in keys)
+            {
+                l.Add(k);
+            }
+            return l;
+        }
 
         public static void DropMoney(IEntitySource source, Rectangle rect, int amt, bool quiet = true)
         {
@@ -924,6 +965,32 @@ namespace Aequus
         public static string GetPath(Type t)
         {
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
+        }
+
+        public static void dustDebug(int x, int y, int dustType = DustID.Torch)
+        {
+            var rect = new Rectangle(x * 16, y * 16, 16, 16);
+            for (int i = 0; i < 8; i++)
+            {
+                i *= 2;
+                var d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y + rect.Height), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                d = Dust.NewDustPerfect(new Vector2(rect.X, rect.Y + i), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + rect.Width, rect.Y + i), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                i /= 2;
+            }
         }
 
         public class Loader : IOnModLoad

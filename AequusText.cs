@@ -60,15 +60,19 @@ namespace Aequus
             translationsField = null;
             Text = null;
         }
+        public static ModTranslation GetTranslation(string key)
+        {
+            return Text["Mods.Aequus." + key];
+        }
 
         public static string GetText(string key)
         {
-            return Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture);
+            return GetTranslation(key).GetTranslation(Language.ActiveCulture);
         }
 
         public static string GetText(string key, params object[] args)
         {
-            return string.Format(Text["Mods.Aequus." + key].GetTranslation(Language.ActiveCulture), args);
+            return string.Format(GetText(key), args);
         }
 
         public static string UseAnimText(float useAnimation)

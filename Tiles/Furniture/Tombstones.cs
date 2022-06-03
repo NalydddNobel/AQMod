@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
+namespace Aequus.Tiles.Furniture
 {
     public class Tombstones : ModTile
     {
