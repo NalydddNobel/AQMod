@@ -1741,12 +1741,6 @@ Mods: {
 				RedSprite: 红色精灵在气球中很容易处理, 它们将我推离它们, 这个气球是一个很好的保护装置, 可以防止传导攻击.
 				SpaceSquid: 一只会发射激光束的太空乌贼, 它让我的脊椎发冷... 或者, 这种寒意可能是因为它在不断吸收热量, 以便为其武器提供能量.
 			}
-
-			RenameItem: {
-				PlaceHere: 放置于此处来重命名你的物品
-				PressHere: 按下来设置你物品的名字
-				ChatButton: 重命名物品
-			}
 		}
 
 		Physicist: {
@@ -2308,6 +2302,18 @@ Mods: {
 					Silver: 银达布隆
 					Copper: 铜达布隆
 				}
+			}
+
+			SkyMerchant: {
+
+				Basic: {
+					0: Basic Sky Merchant Text.
+					1: Basic Sky Merchant Text.
+				}
+
+				PlaceHere: 放置于此处来重命名你的物品
+				PressHere: 按下来设置你物品的名字
+				RenameChatButton: 重命名物品
 			}
 		}
 
