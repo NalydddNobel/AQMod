@@ -81,6 +81,7 @@ Mods: {
 		}
 
 		Tooltips: {
+			UseDarts: 使用种子和飞镖作为弹药
 			UsesLife: "使用{0}点生命"
 			NecromancyStaff: "{0}法杖"
 			NecromancyStaffTooltip: 
@@ -1200,15 +1201,9 @@ Mods: {
 				'''
 			PentalScythe: 发射追踪敌人的烈焰魔镰
 			ArgonSpear: 会不断的瞄准你的光标位置
-			HorizonSkies:
-				'''
-				发射能量射线
-				'你准备好了吗吗吗吗吗吗'
-				'''
 			HamaYumi: 接近敌人时会爆裂成腐败狱火
-			SpiralingTwilight: "{$Mods.Aequus.Common.UseDarts}"
-			Sprinkler: "{$Mods.Aequus.Common.UseDarts}"
-			StarPhish: "{$Mods.Aequus.Common.UseDarts}"
+			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
+			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
 			Raygun: 将大多数子弹转化为射线
 			SpaceShot: 发射一颗星星, 随后再发射其使用的子弹
 			LotusStaff:
@@ -1876,21 +1871,13 @@ Mods: {
 			EightballAnswer19: 请集中你的精神再问一次
 			EightballAnswer20: 星界8号球上没有显示任何内容
 
-			DemonSiegeTooFarAway: 你离恶魔围攻事件太远了, 必须在血巢附近才能升级你的武器
-			NoColorDistort: 颜色扭曲特效着色器未启用
-			NoScrollShader: 滚动特效着色器未启用
-			NoHypnoShader: 色彩分离特效着色器未启用
-			NoOutlineShader: 轮廓描边特效着色器未启用
 			CrabSeason: 蟹季
 			CrabSeasonWarning: 海洋的温度正在逐渐升高...
 			CrabSeasonEnding: 海洋再度变得冰冷...
 			GlimmerEvent: 微光事件
 			GlimmerEventWarning: 天空中闪烁着微光...
 			GlimmerEventEnding: 微光渐渐消失...
-			EnergyDoDrop: 世界的能量再度变得稳定...
-			EnergyDontDrop: 世界的能量又回到了混乱之中...
 			WorksInInventoryAndPiggyBank: 放置在背包或猪猪存钱罐中即可生效
-			UseDarts: 使用种子和飞镖作为弹药
 			FavoriteOnly: 仅将其标记为收藏时才会生效
 			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
 			NotConsumable: 不消耗
@@ -1928,60 +1915,6 @@ Mods: {
 			DemoniteBarOrCrimtaneBar: 魔矿锭或猩红矿锭
 			ShadowScaleOrTissueSample: 暗影鳞片或组织样本
 			CascadeOrHelfire: 喷流球或狱火球
-			AnyEel: 任意鳗鱼
-			EvilAccessories: 邪恶饰品之一
-		}
-
-		Gen: {
-			SkyGlobes: Aequus: 正在藏匿天球仪
-		}
-
-		WorldGen: {
-			FinalSteps: 正在创造在其它事物之后的东西...
-
-			CrabCrevice: {
-				$parentVal: Aequus: 正在生成蟹状裂隙
-				Sand: Aequus: 正在生成蟹状裂隙... 沙圈
-				Caves: Aequus: 正在生成蟹状裂隙... 洞穴
-				FinalCave: Aequus: 正在生成蟹状裂隙... 大型洞穴
-				Chests: Aequus: 正在生成蟹状裂隙... 宝藏
-				Vines: Aequus: 正在生成蟹状裂隙... 植被
-				Ores: Aequus: 正在生成蟹状裂隙... 矿石
-			}
-
-			Fix1TileHighWater: Aequus: 正在修复小水坑
-			BuriedDirtChests: Aequus: 正在生成被掩埋的土箱
-			ExoticBlotches: Aequus: 正在生成奇异斑点
-			MiscFoliageCrabCrevice: Aequus: 正在生成其他植被... 蟹状裂隙
-			ChristmasSpirit: 圣诞节贴图
-			ChristmasSpiritProgress0: 当前进度: (某些东西/某些东西%)
-			ChristmasSpiritProgress1: 当前进度: (圣诞老人的魔法%)
-			ChristmasSpiritProgress2: 当前进度: (你好)
-			ChristmasSpiritProgress3: 当前进度: (小精灵/小精灵%)
-			ChristmasSpiritProgress4: 当前进度: (100%)
-			ChristmasSpiritProgress5: 当前进度: (99.9999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress6: 当前进度: (99.999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress7: 当前进度: (99.99999999999999999965998%)
-			ChristmasSpiritProgress8: 当前进度: (99.992%)
-			ChristmasSpiritProgress9: 当前进度: (99.91%)
-			ChristmasSpiritProgress10: 当前进度: (99.9%)
-			ChristmasSpiritProgress11: 当前进度: (99%)
-			ChristmasSpiritProgress12: 当前进度: (95%)
-			ChristmasSpiritProgress13: 当前进度: (80%)
-			ChristmasSpiritProgress14: 当前进度: (50%)
-			ChristmasSpiritProgress15: 当前进度: (0%)
-		}
-
-		XmasGift: {
-			Tooltip: 你是乖孩子还是淘气鬼..?
-			Nice: 你今年表现不错!
-			Naughty: 你今年很淘气...
-		}
-
-		MerryXmas: {
-			0: 祝你圣诞快乐, {0}
-			1: 祝你节日快乐, {0}
-			2: 向你致以节日的问候, {0}
 		}
 
 		Configuration: {
