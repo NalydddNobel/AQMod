@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Accessories
 {
     public class FaultyCoin : ModItem, IUpdateBank
     {

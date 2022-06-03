@@ -9,7 +9,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Tools
 {
     public class Pumpinator : ModItem
     {
@@ -42,7 +42,7 @@ namespace Aequus.Items.Misc
                 {
                     return;
                 }
-                int index = AequusTooltips.GetIndex(tooltips, "Material");
+                int index = tooltips.GetIndex("Material");
                 tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = AequusTooltips.MysteriousGuideTooltip, });
             }
             catch

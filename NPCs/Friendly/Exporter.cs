@@ -2,8 +2,8 @@
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Roulettes;
-using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
+using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

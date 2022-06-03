@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
 using Terraria;
@@ -19,6 +20,7 @@ namespace Aequus.Items.Consumables
         public override void OpenBossBag(Player player)
         {
             var source = player.GetSource_OpenItem(Type);
+            player.QuickSpawnItem(source, ModContent.ItemType<Crabax>());
             if (player.RollLuck(7) == 0)
             {
                 player.QuickSpawnItem(source, ModContent.ItemType<CrabsonMask>());

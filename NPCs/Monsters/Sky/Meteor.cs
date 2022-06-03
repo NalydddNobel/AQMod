@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
-using Aequus.Items.Misc;
+using Aequus.Items.Tools;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using System.IO;

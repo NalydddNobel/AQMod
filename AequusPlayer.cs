@@ -12,7 +12,6 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Misc;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -81,6 +81,7 @@ Mods: {
 		}
 
 		Tooltips: {
+			UseDarts: Uses seeds and darts as ammo
 			UsesLife: "Uses {0} life"
 			NecromancyStaff: "{0} Staff"
 			NecromancyStaffTooltip: 
@@ -1200,15 +1201,9 @@ Mods: {
 				'''
 			PentalScythe: Shoots firey demon scythes that target your enemies
 			ArgonSpear: Redirects itself to your cursor
-			HorizonSkies:
-				'''
-				Shoots lines of energy
-				'Are you readyayayayayyayayayaya'
-				'''
 			HamaYumi: Close enemies explode into corruption hellfire
-			SpiralingTwilight: "{$Mods.Aequus.Common.UseDarts}"
-			Sprinkler: "{$Mods.Aequus.Common.UseDarts}"
-			StarPhish: "{$Mods.Aequus.Common.UseDarts}"
+			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
+			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
 			Raygun: Converts most bullets into a ray
 			SpaceShot: Shoots a star which then shoots bullets
 			LotusStaff:
@@ -1876,21 +1871,13 @@ Mods: {
 			EightballAnswer19: Concentrate and ask again
 			EightballAnswer20: Nothing is displayed on the Celestial 8-Ball
 
-			DemonSiegeTooFarAway: You are too far away from the Demon Siege in order to upgrade your weapon
-			NoColorDistort: Color Distort Shader is not enabled
-			NoScrollShader: Scroll Shader is not enabled
-			NoHypnoShader: Hypno Shader is not enabled
-			NoOutlineShader: Outline Shader is not enabled
 			CrabSeason: Crab Season
 			CrabSeasonWarning: The warmth of the oceans increases...
 			CrabSeasonEnding: The oceans become neutral again...
 			GlimmerEvent: Glimmer Event
 			GlimmerEventWarning: A glimmer appears in the sky...
 			GlimmerEventEnding: The glimmer begins to fade away...
-			EnergyDoDrop: The energies of the world become stable...
-			EnergyDontDrop: The energies of the world return to chaos...
 			WorksInInventoryAndPiggyBank: Works in your inventory or piggy bank
-			UseDarts: Uses seeds and darts as ammo
 			FavoriteOnly: Only works when favorited
 			DoesntMinionTarget: Does not obey minion targetting
 			NotConsumable: Does not get consumed
@@ -1928,60 +1915,6 @@ Mods: {
 			DemoniteBarOrCrimtaneBar: Demonite Bar or Crimtane Bar
 			ShadowScaleOrTissueSample: Shadow Scale or Tissue Sample
 			CascadeOrHelfire: Cascade or Helfire
-			AnyEel: Any Eel
-			EvilAccessories: Either Evil Accessories
-		}
-
-		Gen: {
-			SkyGlobes: Aequus: Sky Globes
-		}
-
-		WorldGen: {
-			FinalSteps: Generating things after Everything Else...
-
-			CrabCrevice: {
-				$parentVal: Aequus: Generating Crab Crevice
-				Sand: Aequus: Generating Crab Crevice... Sand Circle
-				Caves: Aequus: Generating Crab Crevice... Caves
-				FinalCave: Aequus: Generating Crab Crevice... Big Caves
-				Chests: Aequus: Generating Crab Crevice... Treasure
-				Vines: Aequus: Generating Crab Crevice... Foliage
-				Ores: Aequus: Generating Crab Crevice... Ores
-			}
-
-			Fix1TileHighWater: Aequus: Fixing Baby Pools
-			BuriedDirtChests: Aequus: Generating Buried Dirt Chests
-			ExoticBlotches: Aequus: Exotic Blotches
-			MiscFoliageCrabCrevice: Aequus: Misc Foliage... Crab Crevice
-			ChristmasSpirit: The Christmas Spirit
-			ChristmasSpiritProgress0: Current Progress: (Something/Something%)
-			ChristmasSpiritProgress1: Current Progress: (Santa Magic%)
-			ChristmasSpiritProgress2: Current Progress: (Hello)
-			ChristmasSpiritProgress3: Current Progress: (Elf/Elf%)
-			ChristmasSpiritProgress4: Current Progress: (100%)
-			ChristmasSpiritProgress5: Current Progress: (99.9999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress6: Current Progress: (99.999999999999999999999999999999999999998%)
-			ChristmasSpiritProgress7: Current Progress: (99.99999999999999999965998%)
-			ChristmasSpiritProgress8: Current Progress: (99.992%)
-			ChristmasSpiritProgress9: Current Progress: (99.91%)
-			ChristmasSpiritProgress10: Current Progress: (99.9%)
-			ChristmasSpiritProgress11: Current Progress: (99%)
-			ChristmasSpiritProgress12: Current Progress: (95%)
-			ChristmasSpiritProgress13: Current Progress: (80%)
-			ChristmasSpiritProgress14: Current Progress: (50%)
-			ChristmasSpiritProgress15: Current Progress: (0%)
-		}
-
-		XmasGift: {
-			Tooltip: Will you be naughty or nice..?
-			Nice: You were nice this year!
-			Naughty: You were naughty this year...
-		}
-
-		MerryXmas: {
-			0: Merry Xmas to you, {0}
-			1: Happy Holidays to you, {0}
-			2: Seasons Greetings to you, {0}
 		}
 
 		Configuration: {
