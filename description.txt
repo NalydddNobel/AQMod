@@ -2,6 +2,8 @@
 Aequus is a mod full of experimental features and content, I make this mod for fun, and don't have much of an intention or goal.
 This mod intends to be multiplayer compatible!
 
+~ Some content from the 1.3 version is NOT ported yet, sorry! ~
+
 [c/7EC8E3:Content]
 [c/7EC8E3:>] 120+ Items
 [c/7EC8E3:>] 15+ NPCs

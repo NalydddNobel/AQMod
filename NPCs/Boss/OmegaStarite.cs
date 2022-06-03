@@ -1613,7 +1613,7 @@ namespace Aequus.NPCs.Boss
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddBossLoot<OmegaStariteTrophy, OmegaStariteBag, OmegaStariteRelic, DragonBall>()
+                .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<Origin>()
 
                 .SetCondition(new Conditions.NotExpert())
