@@ -94,6 +94,7 @@ namespace Aequus.UI
             leftInvOffset = 0;
             IntoLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
+                Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 Aequus.InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 return true;
             });

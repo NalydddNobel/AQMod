@@ -1741,12 +1741,6 @@ Mods: {
 				RedSprite: Red Sprites are quite easy to manage in a balloon, they literally push me away from them, and this balloon is a great protector against conductive attacks.
 				SpaceSquid: A squid with laser beams, it brings a chill to my spine... or maybe that chill is from the constant absorption of heat in order to power up its weaponry...
 			}
-
-			RenameItem: {
-				PlaceHere: Place here to rename your item
-				PressHere: Press to set the item's name
-				ChatButton: Rename Items
-			}
 		}
 
 		Physicist: {
@@ -2308,6 +2302,18 @@ Mods: {
 					Silver: silver dubloons
 					Copper: copper dubloons
 				}
+			}
+
+			SkyMerchant: {
+
+				Basic: {
+					0: Basic Sky Merchant Text.
+					1: Basic Sky Merchant Text.
+				}
+
+				PlaceHere: Place here to rename your item
+				PressHere: Press to set the item's name
+				RenameChatButton: Rename Item
 			}
 		}
 

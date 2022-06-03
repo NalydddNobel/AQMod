@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
+using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -92,11 +94,8 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            if (IsActive)
-            {
-                button = Language.GetTextValue("LegacyInterface.28");
-                button2 = Language.GetTextValue("Mods.AQMod.BalloonMerchant.RenameItem.ChatButton");
-            }
+            button = Language.GetTextValue("LegacyInterface.28");
+            button2 = AequusText.GetText("Chat.SkyMerchant.RenameChatButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -109,7 +108,7 @@ namespace Aequus.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                //Aequus.NPCTalkInterface.SetState(new RenameItemUI());
+                Aequus.NPCTalkInterface.SetState(new RenameItemState());
             }
         }
 
@@ -208,7 +207,11 @@ namespace Aequus.NPCs.Friendly
 
         public override string GetChat()
         {
-            return "No Text";
+            var chat = new SelectableChat("Mods.Aequus.Chat.SkyMerchant.");
+
+            chat.Add("Basic.0");
+
+            return chat.Get();
             //if (!GaleStreams.IsActive)
             //    return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Leaving." + Main.rand.Next(3));
             //if (!WorldDefeats.HunterIntroduction)

@@ -2,8 +2,8 @@
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Pets;
-using Aequus.Common;
 using Aequus.Common.Catalogues;
+using Aequus.Common.IO;
 using Aequus.Common.Networking;
 using Aequus.Common.Players;
 using Aequus.Content.Necromancy;

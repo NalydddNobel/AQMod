@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.UI
+namespace Aequus.UI.Elements
 {
     public sealed class ItemSlotElement : UIElement
     {
@@ -17,15 +17,12 @@ namespace Aequus.UI
 
         public bool HasItem => item != null && !item.IsAir;
 
-        public ItemSlotElement(int x, int y, Texture2D back, SpriteFrameData icon = null)
+        public ItemSlotElement(Texture2D back, SpriteFrameData icon = null)
         {
             Scale = 1f;
             item = new Item();
             this.back = back;
             this.icon = icon;
-
-            Left.Set(pixels: x, 0f);
-            Top.Set(pixels: y, 0f);
 
             Width.Set(pixels: (int)(back.Width * Scale), 0f);
             Height.Set(pixels: (int)(back.Height * Scale), 0f);
