@@ -1,13 +1,16 @@
-﻿using Aequus.Content;
-using Aequus.Items;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Items.Consumables.Roulettes;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -327,97 +330,68 @@ namespace Aequus.NPCs.Friendly
             //    return GetChatText("XMas");
             //}
 
-            return GetTextFromList(player);
-        }
-        private string GetTextFromList(Player player)
-        {
-            List<string> textChoices = new List<string>()
-            {
-                GetChatText("Basic.0"),
-                GetChatText("Basic.1"),
-                //GetChatText("Basic.2"),
-                //GetChatText("Basic.3"),
-                //GetChatText("Basic.4"),
-            };
+            var chat = new SelectableChat("Mods.Aequus.Chat.Exporter.");
+
+            chat.Add("Basic.0");
+            chat.Add("Basic.1");
 
             if (!Main.dayTime)
             {
-                textChoices.Add(GetChatText("Night.0"));
-                textChoices.Add(GetChatText("Night.1"));
+                chat.Add("Night.0");
+                chat.Add("Night.1");
                 //textChoices.Add(GetChatText("Night.2"));
                 if (Main.bloodMoon)
                 {
-                    textChoices.Add(GetChatText("BloodMoon.0"));
-                    textChoices.Add(GetChatText("BloodMoon.1"));
+                    chat.Add("BloodMoon.0");
+                    chat.Add("BloodMoon.1");
 
                     if (NPC.killCount[NPCID.WanderingEye] > 0)
                     {
-                        textChoices.Add(GetChatText("BloodMoon.WanderingEyeFish"));
+                        chat.Add("BloodMoon.WanderingEyeFish");
                     }
                 }
             }
 
             if (player.ZoneBeach)
             {
-                textChoices.Add(GetChatText("Ocean.0"));
-                //textChoices.Add(GetChatText("Ocean.1"));
-                //textChoices.Add(GetChatText("Ocean.2"));
+                chat.Add("Ocean.0");
+                //chat.Add("Ocean.1");
+                //chat.Add("Ocean.2");
 
-                textChoices.Add(GetChatText("CrabCrevice.0"));
-                //textChoices.Add(GetChatText("CrabCrevice.1"));
-                //textChoices.Add(GetChatText("CrabCrevice.2"));
+                chat.Add("CrabCrevice.0");
+                //chat.Add("CrabCrevice.1");
+                //chat.Add("CrabCrevice.2");
             }
 
-            if (Main.rand.NextBool())
-            {
-                FindAndAddText(textChoices, NPCID.Angler, "AnglerTownNPC");
-                FindAndAddText(textChoices, NPCID.Pirate, "PirateTownNPC");
-                //FindAndAddText(textChoices, NPCID.Dryad, "DryadTownNPC");
-                //FindAndAddText(textChoices, NPCID.BestiaryGirl, "ZoologistTownNPC");
-                FindAndAddText(textChoices, NPCID.Truffle, "TruffleTownNPC");
-            }
-            else
-            {
-                //FindAndAddText(textChoices, NPCID.ArmsDealer, "ArmsDealerTownNPC");
-                //FindAndAddText(textChoices, NPCID.Demolitionist, "DemolitionistTownNPC");
-                FindAndAddText(textChoices, NPCID.TaxCollector, "TaxCollectorTownNPC");
-                //FindAndAddText(textChoices, NPCID.TravellingMerchant, "TravellingMerchantTownNPC");
-                FindAndAddText(textChoices, NPCID.Stylist, "StylistTownNPC");
-            }
+            if (NPC.AnyNPCs(NPCID.Angler))
+                chat.Add("Angler", () => new { Angler = NPC.GetFirstNPCNameOrNull(NPCID.Angler) });
+            if (NPC.AnyNPCs(NPCID.Pirate))
+                chat.Add("Pirate", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
+            if (NPC.AnyNPCs(NPCID.Truffle))
+                chat.Add("Truffle", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Truffle) });
+            if (NPC.AnyNPCs(NPCID.TaxCollector))
+                chat.Add("TaxCollector", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector) });
+            if (NPC.AnyNPCs(NPCID.Stylist))
+                chat.Add("Stylist", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Stylist) });
 
             if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>()))
             {
-                textChoices.Add(GetChatText("Crabson"));
+                chat.Add("Crabson");
             }
 
             if (Main.invasionType == InvasionID.PirateInvasion || (Main.rand.NextBool(4) && NPC.downedPirates))
             {
-                textChoices.Add(GetChatText("PirateInvasion"));
+                chat.Add("PirateInvasion");
             }
 
-            return textChoices[Main.rand.Next(textChoices.Count)];
-        }
-        private void FindAndAddText(List<string> textChoices, int npc, string key)
-        {
-            int n = NPC.FindFirstNPC(npc);
-            if (n != -1)
-            {
-                textChoices.Add(GetChatText(key, Main.npc[n].GivenOrTypeName));
-            }
-        }
-        private string GetChatText(string key, params object[] args)
-        {
-            return Language.GetTextValue("Mods.Aequus.Chat.Exporter." + key, args);
-        }
-        private string GetChatText(string key)
-        {
-            return Language.GetTextValue("Mods.Aequus.Chat.Exporter." + key);
+
+            return chat.Get();
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Language.GetTextValue("Mods.Aequus.UpgradeGrapplingHooks");
+            button2 = AequusText.GetText("Chat.Exporter.ThieveryButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -428,9 +402,86 @@ namespace Aequus.NPCs.Friendly
             }
             else
             {
-                Main.playerInventory = true;
-                Main.npcChatText = "";
+                for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+                {
+                    if (QuestItem(Main.LocalPlayer, i))
+                    {
+                        OnQuestCompleted(Main.LocalPlayer, i);
+                        return;
+                    }
+                }
+                OnQuestFailed(Main.LocalPlayer);
             }
+        }
+        public bool QuestItem(Player player, int i)
+        {
+            return !player.inventory[i].IsAir && player.inventory[i].createTile >= TileID.Dirt && ExporterQuests.TilePlacements.ContainsKey(player.inventory[i].createTile);
+        }
+        public void OnQuestCompleted(Player player, int i)
+        {
+            player.inventory[i].stack--;
+            if (player.inventory[i].stack <= 0)
+            {
+                player.inventory[i].TurnToAir();
+            }
+
+            InnerOnQuestCompleted_SpawnLoot(player, i);
+
+            SoundEngine.PlaySound(SoundID.Grab);
+            Main.npcChatText = AequusText.GetTextWith("Chat.Exporter.ThieveryComplete." + Main.rand.Next(5), new { ItemName = player.inventory[i].Name });
+        }
+        public void InnerOnQuestCompleted_SpawnLoot(Player player, int i)
+        {
+            var source = player.GetSource_GiftOrReward("Robster");
+
+            if (Main.rand.NextBool(4))
+            {
+                player.QuickSpawnItem(source, ModContent.ItemType<GoldenRoulette>(), 1);
+            }
+            else
+            {
+                player.QuickSpawnItem(source, ModContent.ItemType<Roulette>(), 1);
+            }
+
+            int amtRolled = Math.Max(ExporterQuests.QuestsCompleted / 15, 1);
+            for (int k = 0; k < amtRolled; k++)
+            {
+                int roulette = SpawnLoot_ChooseRoulette(player, i);
+
+                if (roulette != 0)
+                {
+                    player.QuickSpawnItem(source, roulette, 1);
+                }
+            }
+
+            int extraMoney = Item.silver * 3 * ExporterQuests.QuestsCompleted;
+            AequusHelpers.DropMoney(source, player.getRect(), Main.rand.Next(Item.silver * 50 + extraMoney / 2, Item.gold + extraMoney));
+
+            ExporterQuests.QuestsCompleted++;
+        }
+        public int SpawnLoot_ChooseRoulette(Player player, int i)
+        {
+            var choices = new List<int>();
+            if (Main.rand.NextBool(3))
+            {
+                choices.Add(ModContent.ItemType<Roulette>());
+                choices.Add(ModContent.ItemType<GoldenRoulette>());
+            }
+            if (ExporterQuests.QuestsCompleted > 5)
+            {
+                choices.Add(ModContent.ItemType<GlowingMushroomsRoulette>());;
+                choices.Add(ModContent.ItemType<SnowRoulette>());
+            }
+            if (ExporterQuests.QuestsCompleted > 10)
+            {
+                choices.Add(ModContent.ItemType<SkyRoulette>());;
+                choices.Add(ModContent.ItemType<DesertRoulette>());
+            }
+            return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;
+        }
+        public void OnQuestFailed(Player player)
+        {
+            Main.npcChatText = AequusText.GetText("Chat.Exporter.ThieveryFailed." + Main.rand.Next(2));
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

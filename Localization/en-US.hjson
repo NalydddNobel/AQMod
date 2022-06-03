@@ -2261,16 +2261,11 @@ Mods: {
 					2: No Text, do not translate
 				}
 
-				AnglerTownNPC: "{0} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen."
-				PirateTownNPC: Yarrgh! Me and {0} crossed paths a couple of times on the high seas. Those were the good old days...
-				DryadTownNPC: No Text, do not translate
-				ZoologistTownNPC: No Text, do not translate
-				TruffleTownNPC: "{0} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up."
-				ArmsDealerTownNPC: No Text, do not translate
-				DemolitionistTownNPC: No Text, do not translate
-				TaxCollectorTownNPC: I've been hiding from {0} for seven years! Don't let him know I be here!
-				TravellingMerchantTownNPC: No Text, do not translate
-				StylistTownNPC: One time I asked {0} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
+				Angler: "{Angler} keeps boasting to me about some little fish he caught. Lad, I’ve sailed the high seas since I left me egg! I’ve caught me more fish than ye’ve ever seen."
+				Pirate: Yarrgh! Me and {Pirate} crossed paths a couple of times on the high seas. Those were the good old days...
+				Truffle: "{Truffle} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up."
+				TaxCollector: I've been hiding from {TaxCollector} for seven years! Don't let him know I be here!
+				Stylist: One time I asked {Stylist} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
 
 				PhysicistTownNPC: No Text, do not translate
 				MemorialistTownNPC: No Text, do not translate
@@ -2282,6 +2277,24 @@ Mods: {
 
 				VanityEyePatch: No Text, do not translate
 				PirateVanitySet: No Text, do not translate
+
+
+				ThieveryComplete: {
+					0: Yarr har har har, this {ItemName} is mighty fine! I'll add this to my collection. --And you can add this to yours!
+					1: I knows someone who'd like this {ItemName}. Now here's ye payment, I gotta go!
+					2: How much does this cost? About 100 gold doubloons...? Well it costs that now! --And here's ye payment.
+					3: How's it feel to be a thief? I say it feels good, getting paid for taking other landlubber's things. Here's ye payment little feller.
+					4: Good job not getting caught! -What do you mean they didn't care you stole ye {ItemName}? Ah whatever, here's ye payment.
+				}
+
+				ThieveryFailed: {
+					0: Try looking for some fancy relics. Not the ones dropped by bosses- but the rare jeweled ones that landlubbers buy. They normally leave them lying around in ye houses.
+					1: Ye don't have anything stolen goods I want on ye person! I only want jeweled furniture which ye townfolk buy.
+				}
+
+				UpgradeBurgerButton: Upgrade Burger?
+				ThieveryButton: Thievery
+
 
 				ShopQuote: {
 					Terraria_GoldRing: Said to attract coins, yet this ring hasn't ripped a bank off of the ground! Purchasable for a cheap price!

@@ -21,6 +21,9 @@ namespace Aequus.Items.Consumables.Roulettes
         {
             base.SetStaticDefaults();
             Table.AddRange(GoldenRoulette.Table);
+            Table.Add(ItemID.Shroomerang);
+            Table.Add(ItemID.MushroomHat);
+            Table.Add(ItemID.ShroomMinecart);
         }
 
         public override void Unload()
@@ -33,13 +36,13 @@ namespace Aequus.Items.Consumables.Roulettes
         {
             var source = player.GetSource_OpenItem(Type);
             player.QuickSpawnItem(source, ItemID.SilverCoin, Main.rand.Next(50, 80));
-            if (Main.rand.NextBool(8))
+            if (Main.rand.NextBool(8) || GetItem() == ItemID.MushroomHat)
             {
                 player.QuickSpawnItem(source, ItemID.MushroomHat);
                 player.QuickSpawnItem(source, ItemID.MushroomVest);
                 player.QuickSpawnItem(source, ItemID.MushroomPants);
             }
-            if (Main.rand.NextBool(8))
+            if (Main.rand.NextBool(8) || GetItem() == ItemID.ShroomMinecart)
             {
                 player.QuickSpawnItem(source, ItemID.ShroomMinecart);
             }

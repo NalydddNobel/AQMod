@@ -75,6 +75,11 @@ namespace Aequus
             return string.Format(GetText(key), args);
         }
 
+        public static string GetTextWith(string key, object obj)
+        {
+            return Language.GetTextValueWith("Mods.Aequus." + key, obj);
+        }
+
         public static string UseAnimText(float useAnimation)
         {
             if (useAnimation <= 8)

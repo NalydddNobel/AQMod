@@ -1,9 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.IO;
+using Aequus.NPCs.Friendly;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Content
@@ -100,6 +103,8 @@ namespace Aequus.Content
         public static HashSet<int> NPCTypesNoSpawns { get; private set; }
 
         public static int PlaceCheck;
+        [SaveData("QuestsCompleted")]
+        public static int QuestsCompleted;
 
         public override void Load()
         {
@@ -124,9 +129,21 @@ namespace Aequus.Content
             PlaceCheck = RollPlaceCheck();
         }
 
+        public override void SaveWorldData(TagCompound tag)
+        {
+            SaveDataAttribute.SaveData(tag, this);
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            SaveDataAttribute.LoadData(tag, this);
+        }
+
         public override void PostUpdateWorld()
         {
-            PlaceCheck--;
+            if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+                PlaceCheck--;
+
             if (PlaceCheck == 0)
             {
                 PlaceCheck = RollPlaceCheck();
