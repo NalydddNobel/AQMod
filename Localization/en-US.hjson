@@ -2023,17 +2023,45 @@ Mods: {
 		Chat: {
 			Terraria_Merchant: {
 				ShopQuote: {
-					Terraria_MiningHelmet: Tired of placing torches every two steps? Get a mining helmet!
+					Terraria_MiningHelmet: 
+						'''
+						Tired of placing torches every two steps? 
+						Get a mining helmet!
+						'''
 					Terraria_PiggyBank: Use this handy little friend to store your gains!
 					Terraria_PiggyBank_Goober: Use this handy little goober to store your gains!
-					Terraria_IronAnvil: That dusty old workbench just isn't doing the trick anymore? Try this heavy anvil!
+					Terraria_IronAnvil: 
+						'''
+						That dusty old workbench just isn't doing the trick anymore? 
+						Try this heavy anvil!
+						'''
 					Terraria_LeadAnvil: "{$Mods.Aequus.Chat.Terraria_Merchant.ShopQuote.Terraria_IronAnvil}"
-					Terraria_BugNet: Ever tried bug catching? I heard some critters around may be worth lots of gold...
-					Terraria_CopperPickaxe: The latest on pickaxe technology! Not to be confused with tin pickaxe.
+					Terraria_BugNet: 
+						'''
+						Ever tried bug catching? 
+						I heard some critters around may be worth lots of gold...
+						'''
+					Terraria_CopperPickaxe: 
+						'''
+						The latest on pickaxe technology! 
+						Not to be confused with tin pickaxe.
+						'''
 					Terraria_CopperAxe: Show the ecosystem who's boss with this brand new copper axe!
-					Terraria_LesserHealingPotion: Will cure anything from a scratch to a stab! (contains mushroom)
-					Terraria_LesserManaPotion: Feeling a little magically exhausted? Get a pair of mana potions!
-					Terraria_WoodenArrow: Having trouble taking out those flying pests? Buy a pack of arrows! 
+					Terraria_LesserHealingPotion: 
+						'''
+						Will cure anything from a scratch to a stab! 
+						(Contains Mushroom)
+						'''
+					Terraria_LesserManaPotion: 
+						'''
+						Feeling a little magically exhausted? 
+						Get a pair of mana potions!
+						'''
+					Terraria_WoodenArrow: 
+						'''
+						Having trouble taking out those flying pests? 
+						Buy a pack of arrows! 
+						'''
 					Terraria_Shuriken: Ninjas may not be real, but you can become the first one today!
 					Terraria_Rope: The adventurers starter kit, only for a few coppers!
 					Terraria_Marshmallow: A bit of sweet in the cold never hurts.
@@ -2044,12 +2072,24 @@ Mods: {
 					Terraria_SharpeningStation: Help your blades in ship shape with this exclusive sharpening station!
 					Terraria_Safe: Keep your goodies safe with this Safe.
 					Terraria_DiscoBall: You can't have a dance without this!
-					Terraria_DiscoBall_PartyGirl: Hey, tell {PartyGirl} about this one, she's gonna buy my entire stock!
+					Terraria_DiscoBall_PartyGirl: 
+						'''
+						Hey, tell {PartyGirl} about this one, 
+						she'd buy my entire stock!
+						'''
 					Terraria_Flare: I noticed you were carrying that flare gun, how about some flares to go along with it?
 					Terraria_BlueFlare: Flares also come in blue!
 					Terraria_Sickle: Only the sickle.
-					Terraria_GoldDust: Get some gold for a few silvers, it doesn't get cheaper than this!
-					Terraria_DrumSet: Let out your musical creativity with this drum set! Drumsticks not included.
+					Terraria_GoldDust: 
+						'''
+						Get some gold for a few silvers, 
+						it doesn't get cheaper than this!
+						'''
+					Terraria_DrumSet: 
+						'''
+						Let out your musical creativity with this drum set! 
+						Drumsticks not included.
+						'''
 					Terraria_DrumStick: Complete your set with these Hickory wood drumsticks.
 					Terraria_Nail: Nail gun's no use with no nails!
 				}
@@ -2057,19 +2097,39 @@ Mods: {
 
 			Terraria_ArmsDealer: {
 				ShopQuote: {
-					Terraria_SilverBullet: Have you seen any werewolves around? I've been eager to test one of these on them.
+					Terraria_SilverBullet: 
+						'''
+						Have you seen any werewolves around? 
+						I've been eager to test one of these on them.
+						'''
 					Terraria_TungstenBullet: Heavier and deadlier than your average bullet.
-					Terraria_UnholyArrow: Archery ain't really my strong suit, but I just can't say no to some evil ammo.
-					Terraria_FlintlockPistol: Might be a little on the antique side, but I assure it shoots stuff just fine.
+					Terraria_UnholyArrow: 
+						'''
+						Archery ain't really my strong suit, 
+						but I just can't say no to some evil ammo.
+						'''
+					Terraria_FlintlockPistol: 
+						'''
+						Might be a little on the antique side, 
+						but I assure it shoots stuff just fine.
+						'''
 					Terraria_IllegalGunParts: No one's watching... Let's keep this between you and me, alright?
 					Terraria_Shotgun: This Ithaca Model 37 is perfect for shooting up monsters up close!
-					Terraria_EmptyBullet: I appreciate someone who cares about their bullets, make up your own with these empty shells!
+					Terraria_EmptyBullet: 
+						'''
+						I appreciate someone who cares about their bullets, 
+						make up your own with these empty shells!
+						'''
 					Terraria_StyngerBolt: I gotta say, those lihzahrds know how to spice up their game.
 					Terraria_Stake: If you ever see Dracula tell him I said 'Hi'.
 					Terraria_Nail: Don't listen to the Merchant, my nails are way higher caliber!
 					Terraria_Nail_Merchant: Don't listen to {Merchant}, my nails are way higher caliber!
 					Terraria_CandyCorn: I've heard about using sand as ammo but this is getting ridiculous.
-					Terraria_ExplosiveJackOLantern: Now, I know explosives are [name of demoman]'s thing but sometimes you gotta let other people in on the fun y'know?
+					Terraria_ExplosiveJackOLantern: 
+						'''
+						Now, I know explosives are [name of demoman]'s thing but sometimes 
+						you gotta let other people in on the fun y'know?
+						'''
 					Terraria_QuadBarrelShotgun: Double the shotgun, double the things you can kill at once!
 
 					NurseOutfit: Do not tell the Nurse about this, she would kill me!
@@ -2080,14 +2140,42 @@ Mods: {
 
 			Terraria_Demolitionist: {
 				ShopQuote: {
-					Terraria_Grenade: I promise ya, this is better than any gun. Just compare the damage size!
-					Terraria_HellfireArrow: Now, I don’t normally use bows, but when I found out you could turn an arrow into a grenade, I was hooked.
-					Terraria_LandMine: A little disappointing that ya can’t break through material with this, but it does its damage. Just hope it isn’t a dud!
-					Terraria_ExplosivePowder: And here’s the secret ingredient that led to Hellfire Arrows and Exploding Bullets - a dash of gunpowder!
+					Terraria_Grenade: 
+						'''
+						I promise ya, this is better than any gun. 
+						Just compare the damage size!
+						'''
+					Terraria_HellfireArrow: 
+						'''
+						Now, I don’t normally use bows, but when I found out you could turn an arrow into a grenade, 
+						I was hooked.
+						'''
+					Terraria_LandMine: 
+						'''
+						A little disappointing that ya can’t break through material with this, but it does its damage. 
+						Just hope it isn’t a dud!
+						'''
+					Terraria_ExplosivePowder: 
+						'''
+						And here’s the secret ingredient that led to Hellfire Arrows and Exploding Bullets. 
+						A dash of gunpowder!
+						'''
 					Terraria_DryBomb: Where other bombs destroy solid material, this bomb destroys liquids! What’s next, a gas bomb?
-					Terraria_WetBomb: I never thought this would happen! A bomb that creates rather than destroys. At least it’s only water and not, say, dirt.
-					Terraria_LavaBomb: I never thought this would happen! A bomb that creates rather than destroys. At least it’s only lava and not, say, dirt.
-					Terraria_HoneyBomb: I never thought this would happen! A bomb that creates rather than destroys. At least it’s only honey and not, say, dirt.
+					Terraria_WetBomb: 
+						'''
+						I never thought this would happen! A bomb that creates rather than destroys. 
+						At least it’s only water and not, say, dirt.
+						'''
+					Terraria_LavaBomb:
+						'''
+						I never thought this would happen! A bomb that creates rather than destroys. 
+						At least it’s only lava and not, say, dirt.
+						'''
+					Terraria_HoneyBomb: 
+						'''
+						I never thought this would happen! A bomb that creates rather than destroys. 
+						At least it’s only honey and not, say, dirt.
+						'''
 				}
 			}
 
@@ -2108,15 +2196,47 @@ Mods: {
 
 			Terraria_Pirate: {
 				ShopQuote: {
-					Terraria_Cannon: BOOM! Did I scare ye? I took that cannon off the ship of the Dread Pirate Robert.
-					Terraria_Cannonball: That’s a whole 18 pounds of solid lead ye got there. Sure to put a dent in any galleon!
-					Terraria_PirateHat: Aye, that was me matey’s hat. Lost him in a sea battle. I’m sure he didn’t mind me looting it!
-					Terraria_PirateShirt: Aye, that was me matey’s shirt. Lost him in a sea battle. I’m sure he didn’t mind me looting it!
-					Terraria_PiratePants: Aye, those were me matey’s pants. Lost him in a sea battle. I’m sure he didn’t mind me looting them!
+					Terraria_Cannon: 
+						'''
+						BOOM! Did I scare ye?
+						I took that cannon off the ship of the Dread Pirate Robert.
+						'''
+					Terraria_Cannonball: 
+						'''
+						That’s a whole 18 pounds of solid lead ye got there. 
+						Sure to put a dent in any galleon!
+						'''
+					Terraria_PirateHat:
+						'''
+						Aye, that was me matey’s hat. Lost him in a sea battle.
+						I’m sure he didn’t mind me looting it!
+						'''
+					Terraria_PirateShirt: 
+						'''
+						Aye, that was me matey’s shirt. Lost him in a sea battle. 
+						I’m sure he didn’t mind me looting it!
+						'''
+					Terraria_PiratePants: 
+						'''
+						Aye, those were me matey’s pants. Lost him in a sea battle. 
+						I’m sure he didn’t mind me looting them!
+						'''
 					Terraria_Sail: Just a couple of sails from me last vessel.
-					Terraria_ParrotCracker: Aye! That’s me parrot’s favorite brand. Maybe ye’ll find ye own feathered friend with it!
-					Terraria_BunnyCannon: This be a rather unconventional cannon, but I be sure ye can use it well in combat.
-					Terraria_ExplosiveBunny: I feel bad for this poor beastie, but I be afraid of what would happen if I try to save him!
+					Terraria_ParrotCracker: 
+						'''
+						Aye! That’s me parrot’s favorite brand. 
+						Maybe ye’ll find ye own feathered friend with it!
+						'''
+					Terraria_BunnyCannon: 
+						'''
+						This be a rather unconventional cannon, 
+						but I be sure ye can use it well in combat.
+						'''
+					Terraria_ExplosiveBunny: 
+						'''
+						I feel bad for this poor beastie, 
+						but I be afraid of what would happen if I try to save him!
+						'''
 				}
 			}
 			
@@ -2127,25 +2247,57 @@ Mods: {
 					Terraria_RocketIII: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
 					Terraria_RocketIV: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
 					Terraria_DryRocket: Interested in some canister fitted explosive cluster munitions?
-					Terraria_ProximityMineLauncher: This is a precise handheld proximity landmine launcher. To reach maximum efficiency wait for the mines to be fully armed.
+					Terraria_ProximityMineLauncher: 
+						'''
+						This is a precise handheld proximity landmine launcher.
+						To reach maximum efficiency wait for the mines to be fully armed.
+						'''
 					Terraria_Nanites: These Nanobots of my own design can be directly injected into any lifeform. For any purpose.
 					Terraria_ClusterRocketI: Interested in some explosive cluster munitions?
 					Terraria_ClusterRocketII: Interested in some high caliber explosive munitions?
 					Terraria_HiTekSunglasses: Martian fashion. The invaders seem to have left some of their wardrobe behind.
-					Terraria_NightVisionHelmet: Martian fashion. The invaders seem to have left some of their wardrobe behind. Reports show it animated the rocks aswell.
+					Terraria_NightVisionHelmet: 
+						'''
+						Martian fashion. The invaders seem to have left some of their wardrobe behind. 
+						Reports show it had animated nearby rocks aswell.
+						'''
 					Terraria_PortalGunStation: That Quantum tunneling device of yours could use some automation.
-					Terraria_EchoBlock: After experimenting with invisible energy particles i managed to convert them into a solid state. May prove useful in building.
+					Terraria_EchoBlock: 
+						'''
+						After experimenting with invisible energy particles I managed to convert them into a solid state.
+						May prove useful in building.
+						'''
 					Terraria_SpectreGoggles: These modified visual receptors may help you study and interact with strange invisible anomalies.
 				}
 			}
 			
 			Terraria_BestiaryGirl: {
 				ShopQuote: {
-					Terraria_DontHurtCrittersBook: Take it from me, bro. This book is the only thing you’ll need to have lifelong friendships with critters.
-					Terraria_SquirrelHook: I went out to the forest the other day and totally flew around on the trees with this. It was sooo cool!
-					Terraria_BlandWhip: Please, like, buy this thing. I don’t want it anymore. It’s for hurting animals and it stinks like a bat.
-					Terraria_MolluskWhistle: Flamingos have totally got to be, like, the coolest animal. Their legs are sooo fascinating.
-					Terraria_CritterShampoo: Don’t be so rude to your minions, bro. They need to be washed sometimes too!
+					Terraria_DontHurtCrittersBook: 
+						'''
+						Take it from me, bro. 
+						This book is the only thing you’ll need to have lifelong friendships with critters.
+						'''
+					Terraria_SquirrelHook: 
+						'''
+						I went out to the forest the other day and totally flew around on the trees with this. 
+						It was sooo cool!
+						'''
+					Terraria_BlandWhip: 
+						'''
+						Please, like, buy this thing. I don’t want it anymore. 
+						It’s for hurting animals and it stinks like a bat.
+						'''
+					Terraria_MolluskWhistle:
+						'''
+						Flamingos have totally got to be, like, the coolest animal. 
+						Their legs are sooo fascinating.
+						'''
+					Terraria_CritterShampoo: 
+						'''
+						Don’t be so rude to your minions, bro. 
+						They need to be washed sometimes too!
+						'''
 					Terraria_DogEars: I totally love these ears. They make me look just like a cute dog.
 					Terraria_DogTail: I totally love this tail. It makes me look just like a cute dog.
 					Terraria_FoxEars: I totally love these ears. They make me look just like the cursed fox that bit me...
@@ -2156,28 +2308,94 @@ Mods: {
 					Terraria_BunnyTail: I totally love this tail. It makes me look just like a cute bunny.
 					Terraria_FullMoonSqueakyToy: GRRR..... (*squeak squeak*)
 					Terraria_MudBud: This plant is like, really cool and all, but I prefer animals. Still pretty cool...
-					Terraria_LicenseCat: Who doesn’t want a cute, fluffy, adorable, playful little kitty? I can give you certification to own one of your own!
-					Terraria_LicenseDog: Who doesn’t want a cute, fluffy, loyal, playful little puppy? I can give you certification to own one of your own!
-					Terraria_LicenseBunny: Who doesn’t want a cute, fluffy, springy, playful little bunny? I can give you certification to own one of your own!
-					Terraria_KiteKoi: The fish on this kite is, like, absolutely adorable. I wish he was real so I could, like, feed him daily.
+					Terraria_LicenseCat: 
+						'''
+						Who doesn’t want a cute, fluffy, adorable, playful little kitty?
+						I can give you certification to own one of your own!
+						'''
+					Terraria_LicenseDog: 
+						'''
+						Who doesn’t want a cute, fluffy, loyal, playful little puppy? 
+						I can give you certification to own one of your own!
+						'''
+					Terraria_LicenseBunny: 
+						'''
+						Who doesn’t want a cute, fluffy, springy, playful little bunny? 
+						I can give you certification to own one of your own!
+						'''
+					Terraria_KiteKoi: 
+						'''
+						The fish on this kite is, like, absolutely adorable. 
+						I wish he was real so I could, like, feed him daily.
+						'''
 					Terraria_KiteCrawltipede: Eugh... I don’t really like bugs. Luckily Crawltipedes are arthropods!
-					Terraria_PaintedHorseSaddle: I totally love riding horses out on the grass! This horse reminds me of a TV show...
-					Terraria_MajesticHorseSaddle: I totally love riding horses out on the grass! This horse reminds me of a myth...
-					Terraria_DarkHorseSaddle: I totally love riding horses out on the grass! This horse reminds me of a book...
-					Terraria_VanityTreeSakuraSeed: I just love those beautiful sakura trees you can find out in the forest! I found my own special recipe to plant one yourself.
-					Terraria_VanityTreeYellowWillowSeed: I just love those beautiful yellow willow trees you can find out in the forest! I found my own special recipe to plant one yourself.
-					Terraria_RabbitOrder: Aww! This little bunny is SO CUTE!!! I just want to pet him and let him sit on my head. Imagine if there were two...
+					Terraria_PaintedHorseSaddle:
+						'''
+						I totally love riding horses out on the grass! 
+						This horse reminds me of a TV show...
+						'''
+					Terraria_MajesticHorseSaddle:
+						'''
+						I totally love riding horses out on the grass! 
+						This horse reminds me of a myth...
+						'''
+					Terraria_DarkHorseSaddle:
+						'''
+						I totally love riding horses out on the grass! 
+						This horse reminds me of a book...
+						'''
+					Terraria_VanityTreeSakuraSeed: 
+						'''
+						I just love those beautiful sakura trees you can find out in the forest! 
+						I found my own special recipe to plant one yourself.
+						'''
+					Terraria_VanityTreeYellowWillowSeed: 
+						'''
+						I just love those beautiful yellow willow trees you can find out in the forest! 
+						I found my own special recipe to plant one yourself.
+						'''
+					Terraria_RabbitOrder: 
+						'''
+						Aww! This little bunny is SO CUTE!!! 
+						just want to pet him and let him sit on my head. 
+						Imagine if there were two...
+						'''
 					Terraria_JoustingLance: 
 						'''
-						I found this weird stick... I thought it was for reaching sky critters to feed them easier, 
+						I found this weird stick... 
+						I thought it was for reaching sky critters to feed them easier, 
 						but I guess it’s supposed to be a weapon. Lame.
 						'''
-					Terraria_FairyGlowstick: I tried to go and catch one of those awesome fairies underground, but all I ended up with was this cool glowstick.
-					Terraria_TreeGlobe: This is an even more amazing advancement in nature technology! The power to shift trees in the blink of an eye!
-					Terraria_WorldGlobe: This is a totally amazing advancement in nature technology! The power to shift forests in the blink of an eye! Of course, we can’t reach them.
-					Terraria_LightningCarrot: I have traveled across the land, searching far and wide, and I managed to find this adorable volt bunny! Gotta catch ‘em all!
-					Terraria_DiggingMoleMinecart: This critter is very weirdly structured... It has a person-size hole in its center. This is, like, the weirdest animal I have ever seen...
-					Terraria_BallOfFuseWire: Be glad you didn’t draw this exploding kitten, bro! I don’t see a defuse card anywhere on you.
+					Terraria_FairyGlowstick: 
+						'''
+						I tried to go and catch one of those awesome fairies underground, 
+						but all I ended up with was this cool glowstick.
+						'''
+					Terraria_TreeGlobe: 
+						'''
+						This is an even more amazing advancement in nature technology! 
+						The power to shift trees in the blink of an eye!
+						'''
+					Terraria_WorldGlobe: 
+						'''
+						This is a totally amazing advancement in nature technology! 
+						The power to shift forests in the blink of an eye! Of course, we can’t reach them.
+						'''
+					Terraria_LightningCarrot: 
+						'''
+						I have traveled across the land, searching far and wide,
+						and I managed to find this adorable volt bunny! Gotta catch ‘em all!
+						'''
+					Terraria_DiggingMoleMinecart: 
+						'''
+						This critter is very weirdly structured... It has a person-size hole in its center. 
+						This is, like, the weirdest animal I have ever seen...
+						'''
+					Terraria_BallOfFuseWire: 
+						'''
+						Be glad you didn’t draw this exploding kitten, bro! 
+						I don’t see a defuse card anywhere on you.
+						'''
 
 					Lycantrope: {
 					}
@@ -2195,28 +2413,95 @@ Mods: {
 					Terraria_PrinceUniform: An outfit I made for a royaline prince, tailor made for fashion.
 					Terraria_PrincePants: A pair of pants I made for a royaline prince, tailor made for fashion.
 					Terraria_PrinceCape: A flowing cape I made for a royaline prince, tailor made for fashion.
-					Terraria_PottedCrystalPlantFern: This mystical plant grew in my garden, this fern would look great in a hallowed environment!
-					Terraria_PottedCrystalPlantSpiral: This mystical plant grew in my garden, this spiraling plant would look great in a hallowed environment!
-					Terraria_PottedCrystalPlantTeardrop: This mystical tear fell into my garden, it grew roots and started acting like a plant! Quite a strange little creature.
-					Terraria_PottedCrystalPlantTree: This mystical plant grew in my garden, this tree would look great in a hallowed environment!
-					Terraria_Princess64: A commision which didn't look exactly how I wanted. I've been needing to remove it from the castle for something new, so it's for sale.
-					Terraria_PaintingOfALass: A self portrait of me when I was in Kindergarten. I just can't stand my look in it! So this is for sale.
-					Terraria_DarkSideHallow: One of the first paintings I ever requested. I wanted a unicorn painting after being told they aren't real, but turns out they are! So this is for sale.
+					Terraria_PottedCrystalPlantFern: 
+						'''
+						This mystical plant grew in my garden,
+						this fern would look great in a hallowed environment!
+						'''
+					Terraria_PottedCrystalPlantSpiral:
+						'''
+						This mystical plant grew in my garden,
+						this spiraling plant would look great in a hallowed environment!
+						'''
+					Terraria_PottedCrystalPlantTeardrop:
+						'''
+						This mystical tear fell into my garden,
+						it grew roots and started acting like a plant! 
+						Quite a strange little creature.
+						'''
+					Terraria_PottedCrystalPlantTree: 
+						'''
+						This mystical plant grew in my garden, 
+						this tree would look great in a hallowed environment!
+						'''
+					Terraria_Princess64: 
+						'''
+						A commision which didn't look exactly how I wanted. 
+						I've been needing to remove it from the castle for something new, so it's for sale.
+						'''
+					Terraria_PaintingOfALass: 
+						'''
+						A self portrait of me when I was in Kindergarten. 
+						I just can't stand my look in it! So this is for sale.
+						'''
+					Terraria_DarkSideHallow: 
+						'''
+						One of the first paintings I ever requested. 
+						I wanted a unicorn painting after being told they aren't real, 
+						but turns out they are! So this is for sale.
+						'''
 					Terraria_BerniePetItem: A button to an adorable stuffed bear!
-					Terraria_MusicBoxCredits: The great leap of your adventure, defeating the Moon Lord! However your journey is quite far from over.
-					Terraria_MusicBoxCredits_GuideAndrew: The great leap of your adventure, defeating the Moon Lord! However your journey is quite far from over. I think Andrew is proud of you.
+					Terraria_MusicBoxCredits:
+						'''
+						The great leap of your adventure, defeating the Moon Lord!
+						However your journey is quite far from over.
+						'''
+					Terraria_MusicBoxCredits_GuideAndrew: 
+						'''
+						The great leap of your adventure, defeating the Moon Lord! 
+						However your journey is quite far from over. 
+						I think Andrew is proud of you.
+						'''
 					Terraria_SlimeStaff: This ew-y gooey staff spawns a cute little slime! Adorable!
-					Terraria_HeartLantern: Quite a nice decoration, I've also heard it cures headaches and helps heal wounds. I rate it a 'plus up', which is greater than a 'plus'!
-					Terraria_FlaskofParty: Apply to your sword to make a party on hit! Don't tell the party girl I'm reselling her stuff!
+					Terraria_HeartLantern: 
+						'''
+						Quite a nice decoration, I've also heard it cures headaches and helps heal wounds. 
+						I rate it a 'plus up', which is greater than a 'plus'!
+						'''
+					Terraria_FlaskofParty: 
+						'''
+						Apply to your sword to make a party on hit! 
+						Don't tell the party girl I'm reselling her stuff!
+						'''
 					Terraria_FlaskofParty_PartyGirl: Apply to your sword to make a party on hit! Don't tell {PartyGirl} I'm reselling her stuff!
-					Terraria_SandstorminaBottle: An ancient relic, older than the pyramids! It's been sitting in my closet though, creating extra dust.
-					Terraria_Terragrim: A swishy-slashy sword! It doesn't summon magic projectiles like the one at my castle though.
+					Terraria_SandstorminaBottle: 
+						'''
+						An ancient relic, older than the pyramids! 
+						It's been sitting in my closet though, creating extra dust.
+						'''
+					Terraria_Terragrim: 
+						'''
+						A swishy-slashy sword! 
+						It doesn't summon magic bullets like the one at my castle though.
+						'''
 					Terraria_PirateStaff: A personal crew! Just hope none are imposters...
 					Terraria_DiscountCard: Found this lying in my closet, it looks kind of like you.
-					Terraria_DiscountCard_Exporter: Found this lying in my closet, it looks kind of like you. I heard {Exporter} was selling something similar, but his prices are so high!
+					Terraria_DiscountCard_Exporter: 
+						'''
+						Found this lying in my closet, it looks kind of like you. 
+						I heard {Exporter} was selling something similar, but his prices are so high!
+						'''
 					Terraria_LuckyCoin: Found this lying in my closet, it looks quite lucky!
-					Terraria_LuckyCoin_Exporter: Found this lying in my closet, it looks quite lucky! I heard {Exporter} was selling something similar, but his prices are so high!
-					Terraria_CoinGun: Loose change has never been so deadly. I could take on an entire army using this and the castle's riches!
+					Terraria_LuckyCoin_Exporter: 
+						'''
+						Found this lying in my closet, it looks quite lucky! 
+						I heard {Exporter} was selling something similar, but his prices are so high!
+						'''
+					Terraria_CoinGun: 
+						'''
+						Loose change has never been so deadly. 
+						I could take on an entire army using this and the castle's riches!
+						'''
 				}
 			}
 
@@ -2297,16 +2582,56 @@ Mods: {
 
 
 				ShopQuote: {
-					Terraria_GoldRing: Said to attract coins, yet this ring hasn't ripped a bank off of the ground! Purchasable for a cheap price!
-					Terraria_LuckyCoin: My ol' captain's first coin, said to be lucky, but ye old lobster don't believe in myths like that.
-					Terraria_DiscountCard: Grabbed this of one of me maties' corpses, you two look similar enough eh?
-					FoolsGoldRing: The ladies would love ye for wearing this, just don't tell them ye secret!
-					FaultyCoin: Slip this as a regular coin, ye get a free deal if they don't catch ye, scallywag.
-					ForgedCard: Don't like payin' for full? This forged card will knock down ye common prices by a lot.
-					RecyclingMachine: Littering is a crime worse than bein' a pirate. Keep yeself safe with this cheap recycler!
-					Terraria_ShadowKey: Like ye skeleton key, but can unlock even more than landlubber booty! Purchase now!
-					SkeletonKey: Need ye a way to unlock some forgotten booty but ye keys keep breaking? Purchase now!
-					GrandReward: Ye like getting more buck from your bangs? This here item is ye choice.
+					Terraria_GoldRing: 
+						'''
+						Said to attract coins, yet this ring hasn't ripped a bank off of the ground! 
+						Purchasable for a cheap price!
+						'''
+					Terraria_LuckyCoin: 
+						'''
+						My ol' captain's first coin, said to be lucky, 
+						but ye old lobster don't believe in myths like that.
+						'''
+					Terraria_DiscountCard: 
+						'''
+						Grabbed this of one of me maties' corpses, 
+						you two look similar enough eh?
+						'''
+					FoolsGoldRing: 
+						'''
+						The ladies would love ye for wearing this, 
+						just don't tell them ye secret!
+						'''
+					FaultyCoin: 
+						'''
+						Slip this as a regular coin, 
+						ye get a free deal if they don't catch ye, scallywag.
+						'''
+					ForgedCard: 
+						'''
+						Don't like payin' for full? 
+						This forged card will knock down ye common prices by a lot.
+						'''
+					RecyclingMachine: 
+						'''
+						Littering is a crime worse than bein' a pirate. 
+						Keep yeself safe with this cheap recycler!
+						'''
+					Terraria_ShadowKey: 
+						'''
+						Like ye skeleton key, but can unlock even more than landlubber booty! 
+						Purchase now!
+						'''
+					SkeletonKey: 
+						'''
+						Need ye a way to unlock some forgotten booty but ye keys keep breaking?
+						Purchase now!
+						'''
+					GrandReward: 
+						'''
+						Ye like getting more buck from your bangs? 
+						This here item is ye choice.
+						'''
 				}
 
 				ShopPrice: {
