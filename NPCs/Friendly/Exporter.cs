@@ -368,11 +368,11 @@ namespace Aequus.NPCs.Friendly
             if (NPC.AnyNPCs(NPCID.Pirate))
                 chat.Add("Pirate", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
             if (NPC.AnyNPCs(NPCID.Truffle))
-                chat.Add("Truffle", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Truffle) });
+                chat.Add("Truffle", () => new { Truffle = NPC.GetFirstNPCNameOrNull(NPCID.Truffle) });
             if (NPC.AnyNPCs(NPCID.TaxCollector))
-                chat.Add("TaxCollector", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector) });
+                chat.Add("TaxCollector", () => new { TaxCollector = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector) });
             if (NPC.AnyNPCs(NPCID.Stylist))
-                chat.Add("Stylist", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Stylist) });
+                chat.Add("Stylist", () => new { Stylist = NPC.GetFirstNPCNameOrNull(NPCID.Stylist) });
 
             if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>()))
             {
@@ -383,7 +383,6 @@ namespace Aequus.NPCs.Friendly
             {
                 chat.Add("PirateInvasion");
             }
-
 
             return chat.Get();
         }

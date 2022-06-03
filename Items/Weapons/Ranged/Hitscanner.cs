@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.autoReuse = true;
             Item.knockBack = 1f;
-            Item.useTime = 10;
+            Item.useTime = 60;
             Item.useAnimation = 60;
         }
 

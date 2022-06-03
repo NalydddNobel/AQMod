@@ -227,7 +227,7 @@ Mods: {
 			MetalBarb: Metal Barb
 			CrabBarb: Crab Barb
 			Meathook: Meathook
-			CelesteTorus: Interstellar Orbiter
+			CelesteTorus: Celeste Torus
 			VoodooAmulet: Voodoo Amulet
 			WyvernAmulet: Featherflight Amulet
 			DarkAmulet: Dark Amulet
@@ -705,7 +705,7 @@ Mods: {
 			CelesteTorus:
 				'''
 				You obtain rotating orbs which deal contact damage
-				The radius, speed, and damage, are all determined by various stats
+				The radius, speed, are all determined by various stats
 				'''
 			VoodooAmulet:
 				'''
@@ -1427,7 +1427,7 @@ Mods: {
 			BreadsoulHealing: Dream Spirit
 			FriendMinion: Friend
 			KelBall: Kel's Ball
-			OmegaStariteAccessory: Interstellar Orb
+			CelesteTorusProj: Celeste Torus
 			FlowerCrownProj: Flower Crown
 			FlameblasterFire: Flameblaster
 			FlameblasterWind: Flameblaster Wind

@@ -992,6 +992,37 @@ namespace Aequus
                 i /= 2;
             }
         }
+        public static void dustDebug(Rectangle rect, int dustType = DustID.Torch)
+        {
+            int amt = rect.Width / 2;
+            for (int i = 0; i < amt; i++)
+            {
+                i *= 2;
+                var d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y + rect.Height), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                i /= 2;
+            }
+            amt = rect.Height / 2;
+            for (int i = 0; i < amt; i++)
+            {
+                i *= 2;
+                var d = Dust.NewDustPerfect(new Vector2(rect.X, rect.Y + i), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                d = Dust.NewDustPerfect(new Vector2(rect.X + rect.Width, rect.Y + i), dustType);
+                d.noGravity = true;
+                d.fadeIn = d.scale * 2f;
+                d.velocity = Vector2.Zero;
+                i /= 2;
+            }
+        }
 
         public class Loader : IOnModLoad
         {

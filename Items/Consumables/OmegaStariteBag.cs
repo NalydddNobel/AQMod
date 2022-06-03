@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -21,6 +22,7 @@ namespace Aequus.Items.Consumables
         {
             var source = player.GetSource_OpenItem(Type);
 
+            player.QuickSpawnItem(source, ModContent.ItemType<CelesteTorus>());
             DropHelper.OneFromList(source, player, new List<int>()
             {
                 ModContent.ItemType<Raygun>(),
