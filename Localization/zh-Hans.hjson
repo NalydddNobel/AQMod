@@ -227,7 +227,7 @@ Mods: {
 			MetalBarb: 金属刺钩
 			CrabBarb: 螃蟹刺钩
 			Meathook: 血肉刺钩
-			CelesteTorus: 星际轨道仪
+			CelesteTorus: 天界圆环
 			VoodooAmulet: 巫毒护符
 			WyvernAmulet: 飞羽护符
 			DarkAmulet: 黑暗护符
@@ -705,7 +705,7 @@ Mods: {
 			CelesteTorus:
 				'''
 				在你的周围召唤一圈环绕着你的球体
-				球体的半径、速度和伤害都根据你不同的属性决定
+				球体的半径和速度都根据你不同的属性决定
 				'''
 			VoodooAmulet:
 				'''
@@ -1427,7 +1427,7 @@ Mods: {
 			BreadsoulHealing: 梦境之灵
 			FriendMinion: 朋友
 			KelBall: Kel的球球
-			OmegaStariteAccessory: 星际法球
+			CelesteTorusProj: 天界圆环
 			FlowerCrownProj: 花冠
 			FlameblasterFire: 火焰爆破器
 			FlameblasterWind: 火焰爆破器烈风
