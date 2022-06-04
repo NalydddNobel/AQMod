@@ -334,7 +334,6 @@ namespace Aequus.Tiles
             {
                 return false;
             }
-            //Main.NewText("Pass 1");
             if (InnerGoreNestGenCheckForBlacklistedTiles(x, y))
             {
                 return false;
@@ -408,37 +407,6 @@ namespace Aequus.Tiles
                     break;
                 }
             }
-            //int oldK = k;
-            //while (true)
-            //{
-            //    if (x + k > Main.maxTilesX)
-            //    {
-            //        break;
-            //    }
-            //    if (Main.tile[x + k + 1, y].HasTile && !Main.tile[x + k + 1, y - 1].HasTile)
-            //    {
-            //        Main.NewText("ack");
-            //        DustDebug(x + k + 1, y);
-            //        break;
-            //    }
-            //    k++;
-            //    if (WorldGen.genRand.NextBool(3))
-            //    {
-            //        y--;
-            //    }
-            //    Main.NewText(y);
-            //    if (y < Main.UnderworldLayer)
-            //    {
-            //        for (int m = -10; m < 10; m++)
-            //        {
-            //            DustDebug(x + m, y);
-            //        }
-            //        DustDebug(x, Main.UnderworldLayer);
-            //        Main.NewText("min y" + y + ", " + Main.UnderworldLayer + ", " + MaxY);
-            //        break;
-            //    }
-            //    GenerateHill_SpawnAsh(x + k, y);
-            //}
 
             GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
             GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, -1);

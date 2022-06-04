@@ -443,7 +443,6 @@ namespace Aequus.NPCs.Boss
                 return;
             }
             GlimmerInvasion.omegaStarite = (short)NPC.whoAmI;
-            //Main.NewText(NPC.ai[0]);
             Vector2 center = NPC.Center;
             Player player = Main.player[NPC.target];
             var plrCenter = player.Center;

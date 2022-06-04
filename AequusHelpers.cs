@@ -804,19 +804,6 @@ namespace Aequus
             }
             int index = (int)amount;
             return Color.Lerp(colors[index % colors.Length], colors[(index + 1) % colors.Length], amount % 1f);
-            //try
-            //{
-            //}
-            //catch
-            //{
-            //    Main.NewText(index);
-            //    Main.NewText(index % colors.Length, Color.Blue);
-            //    Main.NewText((index + 1) % colors.Length, Color.Red);
-            //    Main.NewText(amount, Color.BlanchedAlmond);
-            //    Main.NewText(amount % colors.Length, Color.AliceBlue);
-            //    Main.NewText(colors.Length, Main.DiscoColor);
-            //}
-            //return Color.Black;
         }
 
         public static int TimedBasedOn(int timer, int ticksPer, int loop)
