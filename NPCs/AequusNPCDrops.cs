@@ -62,25 +62,6 @@ namespace Aequus.NPCs
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
             }
-            else if (npc.type == NPCID.SantaNK1)
-            {
-                foreach (var r in npcLoot.Get(includeGlobalDrops: false))
-                {
-                    if (r is LeadingConditionRule conditionRule && conditionRule.condition is Conditions.FrostMoonDropGatingChance)
-                    {
-                        foreach (var c in conditionRule.ChainedRules)
-                        {
-                            if (c is Chains.TryIfSucceeded onSuccess 
-                                && onSuccess.RuleToChain is OneFromOptionsDropRule options 
-                                && options.dropIds.Contains(ItemID.EldMelter) && options.dropIds.Contains(ItemID.ChainGun))
-                            {
-                                Array.Resize(ref options.dropIds, options.dropIds.Length + 1);
-                                options.dropIds[^1] = ModContent.ItemType<SantankSentry>();
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }

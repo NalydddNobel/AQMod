@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Pets;
 using Terraria;
 using Terraria.ID;
@@ -28,6 +29,10 @@ namespace Aequus.Common
                     }
                     nextSlot++;
                 }
+            }
+            else if (type == NPCID.Mechanic)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
             }
             else if (type == NPCID.Wizard)
             {

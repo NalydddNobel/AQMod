@@ -61,6 +61,10 @@ namespace Aequus.Projectiles.Misc
             {
                 Projectile.timeLeft = 2;
             }
+            else
+            {
+                return;
+            }
 
             if (Projectile.active)
             {

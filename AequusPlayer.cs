@@ -33,22 +33,6 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
-        public struct LifeSacrifice
-        {
-            public int time;
-            public int amtTaken;
-            public bool physicallyHitPlayer = false;
-            public PlayerDeathReason reason = null;
-
-            public LifeSacrifice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
-            {
-                this.amtTaken = amtTaken;
-                this.time = time;
-                physicallyHitPlayer = hitPlayer;
-                this.reason = reason;
-            }
-        }
-
         public static int TeamContext;
         public static float? PlayerDrawScale;
         public static int? PlayerDrawForceDye;
@@ -69,10 +53,6 @@ namespace Aequus
         /// Applied by <see cref="BlueFire"/>
         /// </summary>
         public bool debuffBlueFire;
-        /// <summary>
-        /// Applied by <see cref="PickBreak"/>
-        /// </summary>
-        public bool debuffPickBreak;
 
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
@@ -215,7 +195,6 @@ namespace Aequus
 
         public int hitTime;
 
-        public List<LifeSacrifice> sacrifices;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -383,11 +362,6 @@ namespace Aequus
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
             clone.hitTime = hitTime;
-            clone.sacrifices = new List<LifeSacrifice>();
-            foreach (var l in sacrifices)
-            {
-                clone.sacrifices.Add(l);
-            }
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -451,8 +425,6 @@ namespace Aequus
             closestEnemyOld = -1;
             closestEnemy = -1;
             autoSentryCooldown = 120;
-
-            sacrifices = new List<LifeSacrifice>();
         }
 
         public override void PreUpdate()
@@ -496,7 +468,6 @@ namespace Aequus
             hitTime = 0;
             accAutoSentry = false;
             autoSentryCooldown = 120;
-            sacrifices.Clear();
         }
 
         public override void ResetEffects()
@@ -515,7 +486,6 @@ namespace Aequus
             buffResistHeat = false;
 
             debuffBlueFire = false;
-            debuffPickBreak = false;
 
             spaceSquidPet = false;
             familiarPet = false;
@@ -624,7 +594,6 @@ namespace Aequus
             }
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
-            UpdateSacrifice();
         }
         /// <summary>
         /// 
@@ -672,31 +641,6 @@ namespace Aequus
         }
         public void UpdateSacrifice()
         {
-            for (int i = 0; i < sacrifices.Count; i++)
-            {
-                var s = sacrifices[i];
-                s.time--;
-                if (s.time <= 0)
-                {
-                    var reason = s.reason ?? PlayerDeathReason.ByOther(4);
-                    if (s.physicallyHitPlayer)
-                    {
-                        Player.Hurt(reason, s.amtTaken, -Player.direction);
-                    }
-                    else
-                    {
-                        Player.statLife -= s.amtTaken;
-                        if (Player.statLife <= 0)
-                        {
-                            Player.KillMe(reason, s.amtTaken, -Player.direction);
-                        }
-                    }
-                    sacrifices.RemoveAt(i);
-                    i--;
-                    continue;
-                }
-                sacrifices[i] = s;
-            }
         }
         public void UpdateZombies()
         {
@@ -1125,21 +1069,6 @@ namespace Aequus
             Main.mouseX = mouseX;
             Main.mouseY = mouseY;
             return result;
-        }
-
-        public void SacrificeLife(int amt, int frames = 1, int separation = 1, bool hitPlayer = false, PlayerDeathReason reason = null)
-        {
-            if (amt < frames || frames < 2)
-            {
-                sacrifices.Add(new LifeSacrifice(amt, 0));
-                return;
-            }
-            int lifeTaken = amt / frames;
-            for (int i = 0; i < frames - 1; i++)
-            {
-                sacrifices.Add(new LifeSacrifice(lifeTaken, i * separation, hitPlayer, reason));
-            }
-            sacrifices.Add(new LifeSacrifice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
         }
 
         public static Player SantankAccClone(Player basePlayer)

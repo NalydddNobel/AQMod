@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.Players;
+using Aequus.Content.Necromancy;
 using Aequus.Items.Misc;
 using Aequus.Projectiles.Summon.Necro;
 using Aequus.UI;
@@ -89,7 +90,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            player.Aequus().SacrificeLife(LifeUsed, LifeUsed / 8, reason: PlayerDeathReason.ByCustomReason(AequusText.GetText("Deaths.NecromancyStaffUsage", player.name, Lang.GetNPCName(npcSummon))));
+            player.GetModPlayer<SacrificingPlayer>().SacrificeLife(LifeUsed, LifeUsed / 8, reason: PlayerDeathReason.ByCustomReason(AequusText.GetText("Deaths.NecromancyStaffUsage", player.name, Lang.GetNPCName(npcSummon))));
             Projectile.NewProjectileDirect(source, position, Vector2.Zero, Item.shoot, Item.damage, 0f, player.whoAmI, npcSummon);
             return false;
         }

@@ -1,6 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Utilities;
-using Aequus.Content.CrossMod;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -97,7 +95,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.hostile || !projectile.sentry || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+            if (projectile.hostile || !projectile.WipableTurret || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
             {
                 return;
             }
@@ -152,7 +150,7 @@ namespace Aequus.Items.Accessories.Summon
     }
 
     public class SantankInteractions : IAddRecipes
-    {        
+    {
         /// <summary>
         /// <para>1) Projectile - the projectile</para>
         /// <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>

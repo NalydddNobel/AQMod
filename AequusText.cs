@@ -80,6 +80,15 @@ namespace Aequus
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
 
+        public static string ColorText(string text, Color color, bool alphaPulse = false)
+        {
+            if (alphaPulse)
+            {
+                color = Colors.AlphaDarken(color);
+            }
+            return "[c/" + color.Hex3() + ":" + text + "]";
+        }
+
         public static string UseAnimText(float useAnimation)
         {
             if (useAnimation <= 8)
