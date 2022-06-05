@@ -46,7 +46,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 if (Main.myPlayer == Projectile.owner)
                 {
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, 
-                        Vector2.Normalize(Main.MouseWorld - Projectile.Center) * Projectile.velocity.Length() * 10f,
+                        Vector2.Normalize(Main.MouseWorld - Projectile.Center) * Projectile.velocity.Length() * 6f,
                         ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.5f ), Projectile.knockBack, Projectile.owner);
                 }
             }

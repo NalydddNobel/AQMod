@@ -56,6 +56,10 @@ namespace Aequus.Common
                 writer.Write(true);
                 writer.Write(NameTag);
             }
+            else
+            {
+                writer.Write(false);
+            }
             if (RenameCount > 0)
             {
                 writer.Write(true);
