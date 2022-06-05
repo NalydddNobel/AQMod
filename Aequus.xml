@@ -54,11 +54,6 @@
             Applied by <see cref="T:Aequus.Buffs.Debuffs.BlueFire"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.debuffPickBreak">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Debuffs.PickBreak"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.buffSpicyEel">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.SpicyEelBuff"/>
@@ -587,17 +582,17 @@
             </summary>
             <param name="reader"></param>
         </member>
-        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionSpeedup">
+        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionSpeedup">
             <summary>
             Multiplies the use time by this value when the player is using the right click function of the item. Lower numbers means faster speed
             </summary>
         </member>
-        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionScale">
+        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionScale">
             <summary>
             Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
             </summary>
         </member>
-        <member name="P:Aequus.Projectiles.Melee.DopeSwordBase.AltFunctionHitboxScale">
+        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionHitboxScale">
             <summary>
             Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>

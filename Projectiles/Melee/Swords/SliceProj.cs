@@ -8,9 +8,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
+namespace Aequus.Projectiles.Melee.Swords
 {
-    public sealed class SliceProj : DopeSwordBase
+    public sealed class SliceProj : SwordProjectileBaseCircular
     {
         public SwordSlashPrimRenderer prim;
         public SwordSlashPrimRenderer primBlue;

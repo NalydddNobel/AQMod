@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Recipes;
-using Aequus.Projectiles.Melee;
+using Aequus.Projectiles.Melee.Swords;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;

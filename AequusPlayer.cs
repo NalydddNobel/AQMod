@@ -855,6 +855,7 @@ namespace Aequus
         {
             ModContent.GetInstance<GameCamera>().UpdateScreen();
             EffectsSystem.UpdateScreenPosition();
+            Main.screenPosition = Main.screenPosition.Floor();
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)

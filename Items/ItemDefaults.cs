@@ -65,7 +65,7 @@ namespace Aequus.Items
             item.useStyle = ItemUseStyleID.HoldUp;
         }
 
-        public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : DopeSwordBase
+        public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : ModProjectile
         {
             item.useTime = swingTime;
             item.useAnimation = swingTime;

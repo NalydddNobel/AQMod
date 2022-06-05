@@ -251,10 +251,6 @@ namespace Aequus.Items.Accessories.Summon
         public static void WaterWalkingBoots_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
         }
-        public static void ApplyEquipFunctional_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
-        {
-            sentry.dummyPlayer.ApplyEquipFunctional(item, false);
-        }
         public static void InnerTube_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
         }
@@ -269,6 +265,10 @@ namespace Aequus.Items.Accessories.Summon
         public static void BoneGlove_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
             sentry.dummyPlayer.boneGloveTimer--;
+        }
+        public static void ApplyEquipFunctional_AI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
+        {
+            sentry.dummyPlayer.ApplyEquipFunctional(item, false);
         }
 
         public static void SharkToothNecklace_OnShoot(IEntitySource source, Projectile projectile, SantankSentryProjectile sentry, Projectile parent, SantankSentryProjectile parentSentry,

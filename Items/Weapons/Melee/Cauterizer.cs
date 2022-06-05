@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Projectiles.Melee;
+using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -19,21 +19,15 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
+            Item.DefaultToDopeSword<CauterizerProj>(48);
+            Item.SetWeaponValues(60, 3f);
             Item.width = 40;
             Item.height = 40;
-            Item.damage = 80;
-            Item.useTime = 48;
-            Item.useAnimation = 24;
-            Item.autoReuse = true;
+            Item.scale = 1.3f;
             Item.rare = ItemDefaults.RarityDemonSiege;
-            Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
+            Item.autoReuse = true;
             Item.value = ItemDefaults.DemonSiegeValue;
-            Item.DamageType = DamageClass.Melee;
-            Item.knockBack = 3f;
-            Item.shoot = ModContent.ProjectileType<CauterizerProj>();
-            Item.shootSpeed = 7f;
-            Item.scale = 1.2f;
         }
 
         public override Color? GetAlpha(Color lightColor)

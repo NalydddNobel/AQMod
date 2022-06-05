@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
-using Aequus.Projectiles.Melee;
+using Aequus.Projectiles.Melee.Swords;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

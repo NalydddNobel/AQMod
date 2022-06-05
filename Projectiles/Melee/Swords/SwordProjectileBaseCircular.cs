@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee
 {
-    public abstract class DopeSwordBase : ModProjectile
+    public abstract class SwordProjectileBaseCircular : ModProjectile
     {
         public virtual float VisualHoldout => 8f;
         public virtual float HitboxHoldout => 45f;

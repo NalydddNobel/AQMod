@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
@@ -27,7 +26,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.ignoreWater = true;
             Projectile.manualDirectionChange = true;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 6;
+            Projectile.idStaticNPCHitCooldown = 20;
         }
 
         public override bool? CanCutTiles() => false;

@@ -11,9 +11,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
+namespace Aequus.Projectiles.Melee.Swords
 {
-    public sealed class MirrorsCallProj : DopeSwordBase
+    public sealed class MirrorsCallProj : SwordProjectileBaseCircular
     {
         public override string Texture => AequusHelpers.GetPath<MirrorsCall>();
 

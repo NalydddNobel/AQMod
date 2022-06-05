@@ -94,7 +94,7 @@ namespace Aequus.Items.Accessories
         {
             if (diameter > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < diameter / 2f)
             {
-                damage = (int)(damage * damageMultiplier);
+                damage = (int)(damage * (1f + damageMultiplier));
             }
         }
 
