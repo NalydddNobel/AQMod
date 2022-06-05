@@ -1,15 +1,11 @@
-﻿using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Summon;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles
 {
-    public class AequusProjectile : GlobalProjectile
+    public class ProjectileSources : GlobalProjectile
     {
         public static int ParentProjectile;
         public static int ParentNPC;
@@ -84,31 +80,6 @@ namespace Aequus.Projectiles
                 }
             }
             return true;
-        }
-
-        public override void PostAI(Projectile projectile)
-        {
-            if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
-            {
-                var aequus = Main.player[projectile.owner].Aequus();
-                if (aequus.accGlowCore > 0)
-                {
-                    AequusPlayer.TeamContext = Main.player[projectile.owner].team;
-                    GlowCore.AddLight(projectile, aequus.accGlowCore);
-                    AequusPlayer.TeamContext = 0;
-                }
-            }
-        }
-
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
-        {
-            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
-            {
-                if (Main.player[projectile.owner].Aequus().accFrostburnSentry && Main.rand.NextBool(6))
-                {
-                    target.AddBuff(BuffID.Frostburn2, 240);
-                }
-            }
         }
 
         public static void DefaultToExplosion(Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2)

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics;
-using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

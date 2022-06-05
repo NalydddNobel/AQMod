@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Summon
+namespace Aequus.Items.Accessories.Summon.Necro
 {
     public sealed class RitualisticSkull : ModItem
     {
@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accMinionsToGhosts = true;
+            player.GetModPlayer<RitualisticSkullPlayer>().minionsToGhosts = true;
         }
 
         public override void AddRecipes()
@@ -34,6 +34,25 @@ namespace Aequus.Items.Accessories.Summon
                 .AddIngredient(ItemID.SoulofFright, 8)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
+        }
+    }
+
+    public class RitualisticSkullPlayer : ModPlayer
+    {
+        public bool minionsToGhosts;
+
+        public override void ResetEffects()
+        {
+            minionsToGhosts = false;
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if (minionsToGhosts)
+            {
+                Player.Aequus().ghostSlotsMax += Player.maxMinions - 1;
+                Player.maxMinions = 1;
+            }
         }
     }
 }

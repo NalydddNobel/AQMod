@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

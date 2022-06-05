@@ -445,9 +445,9 @@ namespace Aequus
             return npc2;
         }
 
-        public static AequusProjectile Aequus(this Projectile projectile)
+        public static ProjectileSources Aequus(this Projectile projectile)
         {
-            return projectile.GetGlobalProjectile<AequusProjectile>();
+            return projectile.GetGlobalProjectile<ProjectileSources>();
         }
         public static AequusPlayer Aequus(this Player player)
         {

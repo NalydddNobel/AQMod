@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Energies;

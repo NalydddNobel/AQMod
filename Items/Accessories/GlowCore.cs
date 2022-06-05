@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
@@ -38,7 +39,7 @@ namespace Aequus.Items.Accessories
             {
                 value++;
             }
-            player.Aequus().accGlowCore = value;
+            player.GetModPlayer<GlowCorePlayer>().glowCore = value;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -112,6 +113,41 @@ namespace Aequus.Items.Accessories
                 glowCore--;
             }
             Lighting.AddLight(entity.Center, DyeColor(glowCore).ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
+        }
+    }
+
+    public class GlowCorePlayer : ModPlayer
+    {
+        public byte glowCore;
+
+        public override void ResetEffects()
+        {
+            glowCore = 0;
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if (glowCore > 0)
+            {
+                GlowCore.AddLight(Player, glowCore);
+            }
+        }
+    }
+
+    public class GlowCoreProjectile : GlobalProjectile
+    {
+        public override void PostAI(Projectile projectile)
+        {
+            if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
+            {
+                var glowCore = Main.player[projectile.owner].GetModPlayer<GlowCorePlayer>();
+                if (glowCore.glowCore > 0)
+                {
+                    AequusPlayer.TeamContext = Main.player[projectile.owner].team;
+                    GlowCore.AddLight(projectile, glowCore.glowCore);
+                    AequusPlayer.TeamContext = 0;
+                }
+            }
         }
     }
 }

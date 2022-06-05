@@ -10,7 +10,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
@@ -63,6 +63,10 @@ namespace Aequus
         /// </summary>
         public bool buffResistHeat;
 
+        /// <summary>
+        /// Applied by <see cref="RedSpriteBuff"/>
+        /// </summary>
+        public bool redSpritePet;
         /// <summary>
         /// Applied by <see cref="SpaceSquidBuff"/>
         /// </summary>
@@ -124,23 +128,6 @@ namespace Aequus
         /// Applied by <see cref="FoolsGoldRing"/>
         /// </summary>
         public bool accFoolsGoldRing;
-        /// <summary>
-        /// Applied by <see cref="RitualisticSkull"/>
-        /// </summary>
-        public bool accMinionsToGhosts;
-        /// <summary>
-        /// Applied by <see cref="SentrySquid"/>
-        /// </summary>
-        public bool accAutoSentry;
-        public ushort autoSentryCooldown;
-        /// <summary>
-        /// Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff. Applied by <see cref="IcebergKraken"/>
-        /// </summary>
-        public bool accFrostburnSentry;
-        /// <summary>
-        /// All player owned projectiles also check this in order to decide if they should glow. Applied by <see cref="GlowCore"/>
-        /// </summary>
-        public byte accGlowCore;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
@@ -424,7 +411,6 @@ namespace Aequus
             interactionCooldown = 60;
             closestEnemyOld = -1;
             closestEnemy = -1;
-            autoSentryCooldown = 120;
         }
 
         public override void PreUpdate()
@@ -466,8 +452,6 @@ namespace Aequus
         public override void UpdateDead()
         {
             hitTime = 0;
-            accAutoSentry = false;
-            autoSentryCooldown = 120;
         }
 
         public override void ResetEffects()
@@ -478,8 +462,6 @@ namespace Aequus
 
             accInheritTurrets = false;
             accFoolsGoldRing = false;
-            accMinionsToGhosts = false;
-            accFrostburnSentry = false;
             TeamContext = Player.team;
 
             buffSpicyEel = false;
@@ -487,6 +469,7 @@ namespace Aequus
 
             debuffBlueFire = false;
 
+            redSpritePet = false;
             spaceSquidPet = false;
             familiarPet = false;
             omegaStaritePet = false;
@@ -494,8 +477,6 @@ namespace Aequus
             hasSkeletonKey = false;
             hasShadowKey = false;
 
-            accAutoSentry = false;
-            accGlowCore = 0;
             forceDaytime = 0;
             lootLuck = 0f;
             ghostSlotsMax = 1;
@@ -546,31 +527,7 @@ namespace Aequus
 
         public override void PreUpdateBuffs()
         {
-            if (!InDanger)
-            {
-                autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
-            }
-            AequusHelpers.TickDown(ref autoSentryCooldown);
             hitTime++;
-        }
-
-        public override bool PreItemCheck()
-        {
-            if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.RepairCachedStatic();
-            return true;
-        }
-
-        public override void PostItemCheck()
-        {
-            if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.DisrepairCachedStatic();
-            if (Player.selectedItem != lastSelectedItem)
-            {
-                lastSelectedItem = Player.selectedItem;
-                itemSwitch = 30;
-                itemUsage = 0;
-            }
         }
 
         public override void PostUpdateEquips()
@@ -579,19 +536,6 @@ namespace Aequus
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
             UpdateBank(Player.bank4, 3);
-            if (accGlowCore > 0)
-            {
-                GlowCore.AddLight(Player, accGlowCore);
-            }
-            if (accMinionsToGhosts)
-            {
-                ghostSlotsMax += Player.maxMinions - 1;
-                Player.maxMinions = 1;
-            }
-            if (Main.myPlayer == Player.whoAmI)
-            {
-                UpdateZombies();
-            }
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
         }
@@ -639,60 +583,25 @@ namespace Aequus
                 }
             }
         }
-        public void UpdateSacrifice()
-        {
-        }
-        public void UpdateZombies()
-        {
-            if (ghostSlots > ghostSlotsMax)
-            {
-                int removeNPC = -1;
-                int oldestTime = int.MaxValue;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie && Main.npc[i].GetGlobalNPC<NecromancyNPC>().zombieOwner == Player.whoAmI)
-                    {
-                        var stats = NecromancyDatabase.GetByNetID(Main.npc[i]);
-                        if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
-                        {
-                            var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                            int timeComparison = GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
-                            if (timeComparison < oldestTime)
-                            {
-                                removeNPC = i;
-                                oldestTime = timeComparison;
-                            }
-                        }
-                    }
-                }
-                if (removeNPC != -1)
-                {
-                    Main.npc[removeNPC].life = -1;
-                    Main.npc[removeNPC].HitEffect();
-                    Main.npc[removeNPC].active = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-#pragma warning disable CS0618 // Type or member is obsolete
-                        NetMessage.SendData(MessageID.StrikeNPC, -1, -1, null, removeNPC, 9999);
-#pragma warning restore CS0618 // Type or member is obsolete
 
-                        Aequus.Instance.Logger.Debug("NPC: " + Lang.GetNPCName(Main.npc[removeNPC].type) + ", WhoAmI: " + removeNPC + ", Tier:" + Main.npc[removeNPC].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier);
-                    }
-                }
-            }
-        }
-        public int GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
+        public override bool PreItemCheck()
         {
-            float tiering = stats.PowerNeeded;
-            if (npc.boss)
+            if (AequusHelpers.Main_dayTime.IsCaching)
+                AequusHelpers.Main_dayTime.RepairCachedStatic();
+            return true;
+        }
+
+        public override void PostItemCheck()
+        {
+            if (AequusHelpers.Main_dayTime.IsCaching)
+                AequusHelpers.Main_dayTime.DisrepairCachedStatic();
+            if (Player.selectedItem != lastSelectedItem)
             {
-                tiering += 10f;
+                lastSelectedItem = Player.selectedItem;
+                itemSwitch = 30;
+                itemUsage = 0;
             }
-            if (npc.noGravity)
-            {
-                tiering *= 2f;
-            }
-            return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
+            CountSentries();
         }
 
         public override void PostUpdate()
@@ -701,11 +610,11 @@ namespace Aequus
             {
                 AequusHelpers.Main_dayTime.EndCaching();
             }
-            CheckDanger();
-            if (accAutoSentry && autoSentryCooldown == 0)
+            if (Main.myPlayer == Player.whoAmI)
             {
-                UpdateAutoSentry();
+                UpdateZombies();
             }
+            CheckDanger();
             TeamContext = 0;
         }
         /// <summary>
@@ -735,90 +644,55 @@ namespace Aequus
                 }
             }
         }
-
-        /// <summary>
-        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="CheckDanger"/>
-        /// </summary>
-        public void UpdateAutoSentry()
+        public void UpdateZombies()
         {
-            if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
+            if (ghostSlots > ghostSlotsMax)
             {
-                autoSentryCooldown = 30;
-                return;
-            }
-
-            var item = AutoSentry_GetUsableSentryStaff();
-            if (item == null)
-            {
-                autoSentryCooldown = 30;
-                return;
-            }
-
-            CountSentries();
-            if (turretSlotCount >= Player.maxTurrets)
-            {
-                int oldestSentry = -1;
-                int time = int.MaxValue;
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                int removeNPC = -1;
+                int oldestTime = int.MaxValue;
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
+                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie && Main.npc[i].GetGlobalNPC<NecromancyNPC>().zombieOwner == Player.whoAmI)
                     {
-                        if (Main.projectile[i].timeLeft < time)
+                        var stats = NecromancyDatabase.GetByNetID(Main.npc[i]);
+                        if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
                         {
-                            oldestSentry = i;
-                            time = Main.projectile[i].timeLeft;
+                            var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
+                            int timeComparison = InnerUpdateZombie_GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
+                            if (timeComparison < oldestTime)
+                            {
+                                removeNPC = i;
+                                oldestTime = timeComparison;
+                            }
                         }
                     }
                 }
-                if (oldestSentry != -1)
+                if (removeNPC != -1)
                 {
-                    Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
-                }
-                autoSentryCooldown = 30;
-                return;
-            }
+                    Main.npc[removeNPC].life = -1;
+                    Main.npc[removeNPC].HitEffect();
+                    Main.npc[removeNPC].active = false;
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, removeNPC, 9999);
 
-            if (!ItemsCatalogue.SentryUsage.TryGetValue(item.type, out var sentryUsage))
-            {
-                sentryUsage = ItemsCatalogue.SentryStaffUsage.Default;
-            }
-            if (sentryUsage.TrySummoningThisSentry(Player, item, Main.npc[closestEnemy]))
-            {
-                Player.UpdateMaxTurrets();
-                if (Player.maxTurrets > 1)
-                {
-                    autoSentryCooldown = 240;
+                        Aequus.Instance.Logger.Debug("NPC: " + Lang.GetNPCName(Main.npc[removeNPC].type) + ", WhoAmI: " + removeNPC + ", Tier:" + Main.npc[removeNPC].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier);
+                    }
                 }
-                else
-                {
-                    autoSentryCooldown = 3000;
-                }
-                if (Main.netMode != NetmodeID.Server && item.UseSound != null)
-                {
-                    SoundEngine.PlaySound(item.UseSound.Value, Main.npc[closestEnemy].Center);
-                }
-            }
-            else
-            {
-                autoSentryCooldown = 30;
             }
         }
-        /// <summary>
-        /// Determines an item to use as a Sentry Staff for <see cref="UpdateAutoSentry"/>
-        /// </summary>
-        /// <returns></returns>
-        public Item AutoSentry_GetUsableSentryStaff()
+        public int InnerUpdateZombie_GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
         {
-            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            float tiering = stats.PowerNeeded;
+            if (npc.boss)
             {
-                // A very small check which doesn't care about checking damage and such, so this could be easily manipulated.
-                if (!Player.inventory[i].IsAir && Player.inventory[i].sentry && Player.inventory[i].shoot > ProjectileID.None && (!Player.inventory[i].DD2Summon || !DD2Event.Ongoing)
-                    && ItemLoader.CanUseItem(Player.inventory[i], Player))
-                {
-                    return Player.inventory[i];
-                }
+                tiering += 10f;
             }
-            return null;
+            if (npc.noGravity)
+            {
+                tiering *= 2f;
+            }
+            return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)

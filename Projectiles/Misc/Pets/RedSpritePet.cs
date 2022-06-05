@@ -8,11 +8,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Pets
 {
-    public class SpaceSquidPet : ModProjectile
+    public class RedSpritePet : ModProjectile
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 5;
+            Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
         }
 
@@ -29,7 +29,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive(Projectile, ref player.GetModPlayer<AequusPlayer>().spaceSquidPet);
+            AequusHelpers.UpdateProjActive(Projectile, ref player.GetModPlayer<AequusPlayer>().redSpritePet);
             var gotoPos = GetIdlePosition();
             Projectile.direction = player.direction;
             var center = Projectile.Center;
@@ -61,20 +61,16 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.LoopingFrame(6);
 
             Projectile.rotation = Projectile.velocity.X * 0.1f;
+            Lighting.AddLight(Projectile.Center, new Vector3(1.2f, 1f, 0.5f));
         }
         private Vector2 GetIdlePosition()
         {
-            int dir = Main.player[Projectile.owner].direction;
+            int dir = -Main.player[Projectile.owner].direction;
             float y = -20f;
             var counts = Main.player[Projectile.owner].ownedProjectileCounts;
-            if (counts[ProjectileID.SuspiciousTentacle] > 0 || counts[ProjectileID.DD2PetGhost] > 0
-                || counts[ProjectileID.MagicLantern] > 0 || counts[ProjectileID.PumpkingPet] > 0)
+            if (counts[ProjectileID.IceQueenPet] > 0 || counts[ProjectileID.GlommerPet] > 0)
             {
                 dir = -dir;
-            }
-            if (counts[ProjectileID.GolemPet] > 0)
-            {
-                y -= 36;
             }
             return Main.player[Projectile.owner].Center + new Vector2((Main.player[Projectile.owner].width + 16f) * dir, y);
         }
@@ -92,7 +88,7 @@ namespace Aequus.Projectiles.Misc.Pets
             for (int i = 0; i < circular.Length; i++)
             {
                 Main.EntitySpriteDraw(texture, drawCoordinates + circular[i] * Projectile.scale * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 6f), frame,
-                    Color.Lerp(Color.Blue.UseA(0) * 0.3f, Color.Cyan.UseA(0) * 0.5f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
+                    Color.Lerp(Color.Red.UseA(0) * 0.3f, Color.OrangeRed.UseA(0) * 0.5f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);

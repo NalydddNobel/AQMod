@@ -9,6 +9,7 @@ using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Pets;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.RedSprite;
@@ -133,6 +134,20 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateGaleStreamsEntry(database, bestiaryEntry, miniBoss: true);
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            this.CreateLoot(npcLoot)
+                .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
+                .AddMasterPet<LightningRod>()
+                .Add<RedSpriteMask>(chance: 7, stack: 1)
+                .Add(new FilledConditionsOtherwiseChanceRule(
+                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
+                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
+                .Add<Fluorescence>(1, (10, 24))
+                .Add(ItemID.SoulofFlight, 1, (2, 6))
+                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -1080,19 +1095,6 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.life = 1;
             NPC.netUpdate = true;
             return false;
-        }
-
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
-            this.CreateLoot(npcLoot)
-                .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
-                .Add<RedSpriteMask>(chance: 7, stack: 1)
-                .Add(new FilledConditionsOtherwiseChanceRule(
-                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
-                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
-                .Add<Fluorescence>(1, (10, 24))
-                .Add(ItemID.SoulofFlight, 1, (2, 6))
-                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));
         }
 
         public override void OnKill()

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon;
+﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Pets;
 using Terraria;

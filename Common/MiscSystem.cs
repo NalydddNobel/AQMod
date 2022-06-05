@@ -8,8 +8,8 @@ namespace Aequus.Common
     {
         public override void PostUpdatePlayers()
         {
-            AequusProjectile.ParentProjectile = -1;
-            AequusProjectile.ParentNPC = -1;
+            ProjectileSources.ParentProjectile = -1;
+            ProjectileSources.ParentNPC = -1;
             if (AequusHelpers.Main_invasionSize.IsCaching)
             {
                 AequusHelpers.Main_invasionSize.EndCaching();

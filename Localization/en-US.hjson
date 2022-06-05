@@ -24,7 +24,7 @@ Mods: {
 			SkyMerchant: A smart hunter who created a hot air balloon to hunt birds, proceeded to become an avid lover of chicken nuggets after eating a harpy. Can be seen flying around the sky during windy days.
 			Exporter: The Exporter is a thief with a relation to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
 
-			Snobster: A snobster lobster, this one's particularly snobby.
+			SnobsterCritter: A snobster lobster, this one's particularly snobby.
 		}
 
 		BiomeName: {
@@ -161,6 +161,7 @@ Mods: {
 			UnenchantedStaff: Unenchanted Staff
 			Moro: Moro
 			
+			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 
 			SnowRoulette: Snow Roulette
@@ -551,6 +552,10 @@ Mods: {
 				'It's only mildy disturbing'
 				'''
 
+			LightningRod: 
+				'''
+				Summons an angry thundercloud to follow you
+				'''
 			ToySpaceGun: 
 				'''
 				Summons a space squiddy to follow you
@@ -1245,7 +1250,10 @@ Mods: {
 		BuffName: {
 			SpicyEelBuff: Spicy Eel
 
+			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
+
+			MendshroomBuff: Mendshroom
 
 			Omori: Friends
 			PrimeTime: Arachnotron Power
@@ -1298,7 +1306,10 @@ Mods: {
 		BuffDescription: {
 			SpicyEelBuff: Greatly increases speed
 
+			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
+
+			MendshroomBuff: You are being healed by a teammate!
 
 			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
 			PrimeTime: Your defense is greatly increased!

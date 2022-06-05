@@ -90,7 +90,6 @@ namespace Aequus.Projectiles.Melee.Swords
                 float s = Projectile.scale;
                 Projectile.scale = GetScale(swingProgress);
                 visualOutwards = (int)GetVisualOuter(swingProgress);
-                Main.NewText(visualOutwards);
                 SetArmRotation(player, AngleVector);
             }
 

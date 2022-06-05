@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Summon
+namespace Aequus.Items.Accessories.Summon.Sentry
 {
     public sealed class SantankSentry : ModItem
     {
@@ -72,7 +72,7 @@ namespace Aequus.Items.Accessories.Summon
                         {
                             var aequus = Main.player[projectile.owner].Aequus();
                             var parentSentry = parentProj.GetGlobalProjectile<SantankSentryProjectile>();
-                            AequusProjectile.ParentProjectile = projectile.identity;
+                            ProjectileSources.ParentProjectile = projectile.identity;
                             try
                             {
                                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
@@ -86,7 +86,7 @@ namespace Aequus.Items.Accessories.Summon
                             catch
                             {
                             }
-                            AequusProjectile.ParentProjectile = -1;
+                            ProjectileSources.ParentProjectile = -1;
                         }
                     }
                 }
@@ -119,7 +119,7 @@ namespace Aequus.Items.Accessories.Summon
                 dummyPlayer.wet = projectile.wet;
                 dummyPlayer.lavaWet = projectile.lavaWet;
                 dummyPlayer.honeyWet = projectile.honeyWet;
-                AequusProjectile.ParentProjectile = projectile.whoAmI;
+                ProjectileSources.ParentProjectile = projectile.whoAmI;
 
                 try
                 {
@@ -140,7 +140,7 @@ namespace Aequus.Items.Accessories.Summon
                 PlayerLoader.PostUpdate(dummyPlayer);
                 dummyPlayer.numMinions = 0;
                 dummyPlayer.slotsMinions = 0f;
-                AequusProjectile.ParentProjectile = -1;
+                ProjectileSources.ParentProjectile = -1;
             }
             else
             {

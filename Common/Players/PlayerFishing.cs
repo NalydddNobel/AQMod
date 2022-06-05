@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon;
+﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Trash;

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Summon
+namespace Aequus.Items.Accessories.Summon.Necro
 {
     public sealed class BloodiedBucket : ModItem
     {

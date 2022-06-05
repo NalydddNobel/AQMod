@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Summon;
+﻿using Aequus.Buffs;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
@@ -6,7 +7,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Accessories.Healing
 {
     public sealed class Mendshroom : ModItem
     {
@@ -82,7 +83,7 @@ namespace Aequus.Items.Accessories
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (i == healer.whoAmI || (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < diameter / 2f))
+                if (i == healer.whoAmI || Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < diameter / 2f)
                 {
                     HealPlayer(healer, i);
                 }
@@ -92,7 +93,10 @@ namespace Aequus.Items.Accessories
         {
             var bungus = Main.player[i].GetModPlayer<MendshroomPlayer>();
             if (bungus.increasedRegen < regenerationToGive)
+            {
                 bungus.increasedRegen = regenerationToGive;
+                Main.player[i].AddBuff(ModContent.BuffType<MendshroomBuff>(), 2);
+            }
         }
 
         public override void clientClone(ModPlayer clientClone)
