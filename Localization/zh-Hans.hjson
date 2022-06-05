@@ -24,7 +24,7 @@ Mods: {
 			SkyMerchant: 一位聪明的猎人创造了一颗热气球来狩猎鸟类, 在吃了一只鸟妖后他开始热衷于鸡块. 在有风的日子里可以看到他在天空中飞翔.
 			Exporter: 发货人是一个鲜为人知的小偷, 海盗的远亲. 所得的收益都会发放给位于世界各地的那些寻找最佳交易的可疑人士.
 
-			Snobster: 一种势利的虾, 这只特别势利.
+			SnobsterCritter: 一种势利的虾, 这只特别势利.
 		}
 
 		BiomeName: {
@@ -161,6 +161,7 @@ Mods: {
 			UnenchantedStaff: 未附魔的法杖
 			Moro: 摩洛
 
+			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 
 			SnowRoulette: 雪原转盘
@@ -551,6 +552,10 @@ Mods: {
 				'仅是轻微的干扰'
 				'''
 
+			LightningRod: 
+				'''
+				召唤愤怒的雷云跟随着你
+				'''
 			ToySpaceGun: 
 				'''
 				召唤一只跟着你的太空乌贼
@@ -1245,7 +1250,10 @@ Mods: {
 		BuffName: {
 			SpicyEelBuff: 香辣鳗鱼
 
+			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
+
+			MendshroomBuff: 愈灵菇
 
 			Omori: 朋友
 			PrimeTime: 机械蜘蛛强化
@@ -1298,7 +1306,10 @@ Mods: {
 		BuffDescription: {
 			SpicyEelBuff: 大幅度增加移动速度
 
+			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
+
+			MendshroomBuff: 你正在被队友治愈!
 
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 			PrimeTime: 防御大幅度提升!
