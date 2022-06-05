@@ -81,12 +81,12 @@ namespace Aequus.Projectiles.Melee.Swords
                     forced50 = true;
                 }
                 float swingProgress = SwingProgress(progress);
-                UpdateSwing(progress, swingProgress);
                 AngleVector = GetOffsetVector(swingProgress);
                 Projectile.position = arm + AngleVector * hitboxOutwards;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
+                UpdateSwing(progress, swingProgress);
                 float s = Projectile.scale;
                 Projectile.scale = GetScale(swingProgress);
                 visualOutwards = (int)GetVisualOuter(swingProgress);

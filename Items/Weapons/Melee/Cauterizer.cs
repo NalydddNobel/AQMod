@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Melee
 {
@@ -33,6 +34,11 @@ namespace Aequus.Items.Weapons.Melee
         public override Color? GetAlpha(Color lightColor)
         {
             return lightColor.MaxRGBA(200);
+        }
+
+        public override int ChoosePrefix(UnifiedRandom rand)
+        {
+            return AequusHelpers.RollSwordPrefix(Item, rand);
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
