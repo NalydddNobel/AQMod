@@ -28,6 +28,7 @@ Mods: {
 		}
 
 		BiomeName: {
+			CrabCreviceBiome: 蟹状裂隙
 			GaleStreamsInvasion: 紊流风暴
 			DemonSiegeInvasion: 恶魔围攻
 		}
@@ -174,6 +175,9 @@ Mods: {
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
 			BreadOfCthulhuMask: 克苏鲁之面包面具
+
+			SedimentaryRockWall: 沉积岩墙
+			SedimentaryRock: 沉积岩
 
 			RedSpriteTrophy: 红色精灵纪念章
 
@@ -1602,7 +1606,8 @@ Mods: {
 		}
 
 		WorldGeneration: {
-			GoreNests: 正在放置血巢...
+			CrabCrevice: 正在生成地下海洋...
+			GoreNests: 正在使地狱更加邪恶...
 		}
 
 		ContainerPotionError: 此药水未能正确加载
@@ -2507,7 +2512,6 @@ Mods: {
 				VanityEyePatch: No Text, do not translate
 				PirateVanitySet: No Text, do not translate
 
-
 				ThieveryComplete: {
 					0: 耶哈哈, 这个{ItemName}非常好! 我会把这个添加到我的收藏中. ——恁也可以把这个添加到恁的收藏!
 					1: 我知道有人会喜欢这个{ItemName}的. 这是恁的报酬, 我得走了!
@@ -2524,7 +2528,6 @@ Mods: {
 				UpgradeBurgerButton: 升级汉堡?
 				ThieveryButton: 偷窃
 			
-
 				ShopQuote: {
 					Terraria_GoldRing: 
 					'''
@@ -2589,9 +2592,17 @@ Mods: {
 			SkyMerchant: {
 
 				Basic: {
-					0: Basic Sky Merchant Text.
-					1: Basic Sky Merchant Text.
+					0: 我卖某些物品的速度跟它们飞的一样快.
+					1: 
+					2: 
 				}
+
+				Night: 
+				BloodMoon:
+
+				Merchant: 呃, [Merchant]总是谈论他的销售额有多高, 他不是一个天空商人, 真是讽刺, 但等下, 我是.
+				TravellingMerchant: 
+				Pirate: 关于飞翔的荷兰人的某些事.
 
 				PlaceHere: 放置于此处来重命名你的物品
 				PressHere: 按下来设置你物品的名字
