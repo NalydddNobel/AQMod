@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace Aequus.Tiles
 {
-    public static class ChestTypes
+    public struct ChestTypes
     {
         public const int Wood = 0;
         public const int Gold = 1;

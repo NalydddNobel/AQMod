@@ -118,6 +118,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.
 			Slingshot: Slingshot
@@ -478,6 +479,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ReboundNecklace: 
+				'''
+				Allows your double jumps to refresh while falling
+				Automatically double jumps to prevent fall damage
+				'''
+
 			Slingshot: 
 				'''
 				Bring your cursor out in order to charge the shot more
@@ -1728,32 +1735,6 @@ Mods: {
 			}
 		}
 
-		SkyMerchant: {
-			Chat: {
-				Introduction: You are an interesting looking person, I sell materials I have gathered at quite a good price. You can catch me hunting up in space while the wind is fierce.
-
-				Leaving: {
-					0: I must go, the next hunt starts far from here.
-					1: The heavy winds have ended, I shall take my departure.
-					2: I follow the winds, they are my partner for hunting.
-				}
-
-				Corruption: Even in such vile places, there are edible meats and plants.
-				Crimson: Even in such gorey places, there are edible meats and plants.
-				Hallow: A utopia, plenty of unicorns to go find and hunt.
-				0: Up here in the emptiness, many birds and other strong wind beasts flock here.
-				1: How come less creatures assault me compared to you? What do you mean I decrease enemy spawns? Why would things be giving birth mid-battle...?
-				2: Dogs are unfortunately afraid of heights, and will jump off your hot air balloon if you try to go hunting with them. Do not ask if I have experience with this.
-				3: Have I fallen out of this basket before? No. And don't even think about shaking it.
-				MeteorTime: Meteors come out during the early morning, and beginning of night. It is quite an experience to fly around with them.
-				Vraine: I must beware of Vraines, their beaks are sharp enough to blow up this balloon in an instant.
-				StreamingBalloon: Some slimes seem to have stolen my balloon idea for hunting...
-				WhiteSlime: I tried mixing white slime gel and black slime gel, unfortunately, instead of creating the perfect slime, it just gave birth to a regular black slime, what?!
-				RedSprite: Red Sprites are quite easy to manage in a balloon, they literally push me away from them, and this balloon is a great protector against conductive attacks.
-				SpaceSquid: A squid with laser beams, it brings a chill to my spine... or maybe that chill is from the constant absorption of heat in order to power up its weaponry...
-			}
-		}
-
 		Physicist: {
 			Chat: {
 				Introduction: Oh hello, my name is {0}. I came here after hearing about a strange phenomenon where cosmic entities try to intercept some sort of powerful source.
@@ -2593,16 +2574,16 @@ Mods: {
 
 				Basic: {
 					0: Some of my items sell like they're on the fly
-					1: 
-					2: 
+					1: Our most satisfied customers are the harpies. Come check out my items for lightweight prices!
+					2: I remember that one time when I was travelling in the sky. I was greeted by two young familiar brats on mystic bird creatures, what a fun time back then... Oh uhh, hey! Welcome to the skyline shop!
 				}
 
-				Night: 
-				BloodMoon:
+				Night: This time of the day is always so relaxing. You get a closer view of the shooting stars passing through the cloudy islands. It's amazing.
+				BloodMoon: The sky is p-pretty menancing looking today... I-I just hope that there won't be any f-flying threats up here...eheh... not that I am worried about it or anything.
 				
-				Merchant: Ugh, [Merchant] always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
-				TravellingMerchant: 
-				Pirate: Something about the flying dutchman
+				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
+				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
+				Pirate: Recently, {Pirate} to me talked about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
 
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name

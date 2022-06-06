@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Items.Accessories;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -129,6 +130,10 @@ namespace Aequus.NPCs.Friendly
             {
                 shop.item[nextSlot++] = shopBanner.Clone();
             }
+            if (Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ReboundNecklace>());
+            }
         }
         public void SetupShopCache()
         {
@@ -210,6 +215,24 @@ namespace Aequus.NPCs.Friendly
             var chat = new SelectableChat("Mods.Aequus.Chat.SkyMerchant.");
 
             chat.Add("Basic.0");
+            chat.Add("Basic.1");
+            chat.Add("Basic.2");
+
+            if (!Main.dayTime)
+            {
+                chat.Add("Night");
+                if (Main.bloodMoon)
+                {
+                    chat.Add("BloodMoon");
+                }
+            }
+
+            if (NPC.AnyNPCs(NPCID.Merchant))
+                chat.Add("Merchant", () => new { Merchant = NPC.GetFirstNPCNameOrNull(NPCID.Merchant) });
+            if (NPC.AnyNPCs(NPCID.TravellingMerchant))
+                chat.Add("TravellingMerchant", () => new { TravellingMerchant = NPC.GetFirstNPCNameOrNull(NPCID.TravellingMerchant) });
+            if (NPC.AnyNPCs(NPCID.Pirate))
+                chat.Add("Pirate", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
 
             return chat.Get();
             //if (!GaleStreams.IsActive)

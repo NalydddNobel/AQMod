@@ -943,7 +943,7 @@ namespace Aequus
 
         public static bool IsSolid(this Tile tile)
         {
-            return tile.HasTile && Main.tileSolid[tile.TileType];
+            return tile.HasTile && !tile.IsActuated && Main.tileSolid[tile.TileType];
         }
 
         public static bool Solid(this Tile tile)
@@ -976,9 +976,9 @@ namespace Aequus
         public static void dustDebug(int x, int y, int dustType = DustID.Torch)
         {
             var rect = new Rectangle(x * 16, y * 16, 16, 16);
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 4; i++)
             {
-                i *= 2;
+                i *= 4;
                 var d = Dust.NewDustPerfect(new Vector2(rect.X + i, rect.Y), dustType);
                 d.noGravity = true;
                 d.fadeIn = d.scale * 2f;
@@ -995,7 +995,7 @@ namespace Aequus
                 d.noGravity = true;
                 d.fadeIn = d.scale * 2f;
                 d.velocity = Vector2.Zero;
-                i /= 2;
+                i /= 4;
             }
         }
         public static void dustDebug(Rectangle rect, int dustType = DustID.Torch)

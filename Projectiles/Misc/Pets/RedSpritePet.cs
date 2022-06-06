@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -10,6 +11,21 @@ namespace Aequus.Projectiles.Misc.Pets
 {
     public class RedSpritePet : ModProjectile
     {
+        public static Asset<Texture2D> Glow { get; private set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                Glow = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
+            }
+        }
+
+        public override void Unload()
+        {
+            Glow = null;
+        }
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 4;
@@ -91,7 +107,8 @@ namespace Aequus.Projectiles.Misc.Pets
                     Color.Lerp(Color.Red.UseA(0) * 0.3f, Color.OrangeRed.UseA(0) * 0.5f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
-            Main.EntitySpriteDraw(texture, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(texture, drawCoordinates, frame, lightColor.MaxRGBA(24), Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(Glow.Value, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
         }
     }
