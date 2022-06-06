@@ -131,7 +131,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                     //ModContent.ItemType<CinnamonRoll>(),
                                     //ModContent.ItemType<TemperatureHairDye>(),
                                 };
-                                if (AequusWorld.HardmodeTier)
+                                if (Aequus.HardmodeTier)
                                 {
                                     selectableLoot.Add(ModContent.ItemType<Umystick>());
                                 }
@@ -312,7 +312,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPCID.SpikedJungleSlime,
                 NPCID.SpikedIceSlime,
             };
-            if (AequusWorld.HardmodeTier)
+            if (Aequus.HardmodeTier)
             {
                 selectableEnemies.Add(NPCID.ToxicSludge);
             }

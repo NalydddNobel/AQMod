@@ -13,7 +13,7 @@ namespace Aequus.Common
         {
             if (type == NPCID.Clothier)
             {
-                if (AequusWorld.HardmodeTier)
+                if (Aequus.HardmodeTier)
                 {
                     int slot = -1;
                     for (int i = 0; i < Chest.maxItems - 1; i++)

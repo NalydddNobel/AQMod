@@ -206,7 +206,7 @@ namespace Aequus.Biomes
         {
             public override void PostUpdateWorld()
             {
-                if (!AequusWorld.HardmodeTier)
+                if (!Aequus.HardmodeTier)
                 {
                     Status = InvasionStatus.Inactive;
                     return;

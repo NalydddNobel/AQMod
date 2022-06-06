@@ -6,7 +6,7 @@ namespace Aequus.Common.ItemDrops
     {
         public bool CanDrop(DropAttemptInfo info)
         {
-            return AequusWorld.HardmodeTier;
+            return Aequus.HardmodeTier;
         }
 
         public bool CanShowItemDropInUI()

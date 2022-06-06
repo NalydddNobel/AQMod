@@ -20,9 +20,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Events;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -986,7 +984,7 @@ namespace Aequus
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
                     {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type 
+                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
                             && Main.projectile[i].Aequus().projectileOwnerIdentity == projectileIdentity)
                         {
                             count++;
@@ -995,7 +993,7 @@ namespace Aequus
                 }
                 return count;
             }
-            count = Player.ownedProjectileCounts[type]; 
+            count = Player.ownedProjectileCounts[type];
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type

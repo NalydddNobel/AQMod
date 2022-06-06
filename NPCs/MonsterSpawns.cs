@@ -12,7 +12,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Aequus.NPCs
 {
-    public sealed class MonsterSpawns : GlobalNPC
+    public class MonsterSpawns : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -22,7 +22,7 @@ namespace Aequus.NPCs
                 maxSpawns = 8;
                 return;
             }
-            if (Spawnrates_AreAequusBossesActive(player) || Spawnrates_AequusEventActive(player))
+            if (player.Zen())
             {
                 spawnRate *= 10000;
                 maxSpawns = 0;
@@ -47,10 +47,6 @@ namespace Aequus.NPCs
         {
             return IsClose<OmegaStarite>(player) || IsClose<OmegaStarite>(player);
         }
-        public bool Spawnrates_AequusEventActive(Player player)
-        {
-            return GlimmerInvasion.Status == InvasionStatus.Ending && player.position.Y < Main.worldSurface * 16f;
-        }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
@@ -62,7 +58,7 @@ namespace Aequus.NPCs
                 pool.Add(ModContent.NPCType<Magmabubble>(), 0.33f);
                 return;
             }
-            if (SpawnPool_DontAddSpawns(spawnInfo))
+            if (DontAddNewSpawns(spawnInfo))
             {
                 return;
             }
@@ -74,7 +70,7 @@ namespace Aequus.NPCs
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().eventGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-                if (AequusWorld.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
+                if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
                 {
                     pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
                     pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
@@ -99,35 +95,6 @@ namespace Aequus.NPCs
             }
         }
 
-        public bool SpawnPool_DontAddSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
-        {
-            if (checkPillars && SpawnPool_ArePillarsActive(spawnInfo))
-            {
-                return true;
-            }
-            if (checkMoonSunEvents && SpawnPool_MoonSunInvasionActive(spawnInfo))
-            {
-                return true;
-            }
-            if (checkInvasion && SpawnPool_VanillaInvasions(spawnInfo))
-            {
-                return true;
-            }
-            return false;
-        }
-        public bool SpawnPool_ArePillarsActive(NPCSpawnInfo spawnInfo)
-        {
-            return spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex;
-        }
-        public bool SpawnPool_MoonSunInvasionActive(NPCSpawnInfo spawnInfo)
-        {
-            return (!spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight) || (!Main.eclipse && !Main.pumpkinMoon && !Main.snowMoon);
-        }
-        public bool SpawnPool_VanillaInvasions(NPCSpawnInfo spawnInfo)
-        {
-            return !spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight || Main.invasionType <= 0;
-        }
-
         private void AdjustSpawns(IDictionary<int, float> pool, float amt)
         {
             var enumerator = pool.GetEnumerator();
@@ -150,6 +117,61 @@ namespace Aequus.NPCs
                 }
             }
             return false;
+        }
+
+        public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
+        {
+            if (checkPillars && ArePillarsActiveAndInZone(spawnInfo))
+            {
+                return true;
+            }
+            if (checkMoonSunEvents && AreMoonInvasionsActive(spawnInfo))
+            {
+                return true;
+            }
+            if (checkInvasion && AreVanillaInvasionsActive(spawnInfo))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool ArePillarsActiveAndInZone(NPCSpawnInfo spawnInfo)
+        {
+            return spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex;
+        }
+        public static bool AreMoonInvasionsActive(NPCSpawnInfo spawnInfo)
+        {
+            return (!spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight) || (!Main.eclipse && !Main.pumpkinMoon && !Main.snowMoon);
+        }
+        public static bool AreVanillaInvasionsActive(NPCSpawnInfo spawnInfo)
+        {
+            return !spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight || Main.invasionType <= 0;
+        }
+
+        public static void ForceZen(Vector2 mySpot, float zenningDistance)
+        {
+            for (int i =0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active)
+                {
+                    Main.player[i].GetModPlayer<MonsterSpawnsPlayer>().forceZen = true;
+                }
+            }
+        }
+        public static void ForceZen(NPC npc)
+        {
+            ForceZen(npc.Center, 2000f);
+        }
+    }
+
+    public class MonsterSpawnsPlayer : ModPlayer
+    {
+        public bool forceZen;
+
+        public override void ResetEffects()
+        {
+            forceZen = false;
         }
     }
 }

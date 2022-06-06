@@ -21,27 +21,11 @@ namespace Aequus.Tiles
 {
     public class GoreNestTile : ModTile
     {
-        public static int MaxY => Main.UnderworldLayer + 150;
-        public static int MinY => Main.UnderworldLayer + 75;
-
-        public static HashSet<int> AvoidTiles { get; private set; }
-        public static HashSet<int> AvoidWalls { get; private set; }
         public static List<Point> RenderPoints { get; private set; }
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
 
         public override void Load()
         {
-            AvoidTiles = new HashSet<int>()
-            {
-                TileID.ObsidianBrick,
-                TileID.HellstoneBrick,
-            };
-            AvoidWalls = new HashSet<int>()
-            {
-                WallID.ObsidianBrick,
-                WallID.ObsidianBrickUnsafe,
-                TileID.HellstoneBrick,
-            };
             if (!Main.dedServ)
             {
                 RenderPoints = new List<Point>();
@@ -54,8 +38,6 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
-            AvoidTiles?.Clear();
-            AvoidTiles = null;
             RenderPoints?.Clear();
             RenderPoints = null;
             GoreNestPortal = null;
@@ -315,187 +297,6 @@ namespace Aequus.Tiles
                 }
             }
             return null;
-        }
-
-        public static bool TryGrowGoreNest(int x, int y)
-        {
-            if (Main.tile[x, y].HasTile)
-            {
-                if (!Main.tile[x, y - 1].HasTile)
-                {
-                    y--;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (!Main.tile[x, y + 1].HasTile)
-            {
-                return false;
-            }
-            if (InnerGoreNestGenCheckForBlacklistedTiles(x, y))
-            {
-                return false;
-            }
-            y -= 2;
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    int x2 = x + i;
-                    int y2 = y + j;
-                        Main.tile[x2, y2].Active(value: false);
-                    if (Main.tile[x2, y2].HasTile || Main.tile[x2, y2].LiquidAmount > 0)
-                        return false;
-                }
-            }
-            y += 3;
-            for (int i = 0; i < 3; i++)
-            {
-                int x2 = x + i;
-                if (!Main.tile[x2, y].HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType])
-                    return false;
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                int x2 = x + i;
-                Main.tile[x2, y].Slope(value: 0);
-                Main.tile[x2, y].HalfBrick(value: false);
-            }
-            y--;
-            x++;
-            WorldGen.PlaceTile(x, y, ModContent.TileType<GoreNestTile>(), mute: true, forced: true);
-            if (Main.tile[x, y].TileType != ModContent.TileType<GoreNestTile>())
-            {
-                return false;
-            }
-            GenerateSurroundingGoreNestHill(x, y);
-            GenerateAmbientTiles(x, y);
-            return true;
-        }
-        public static bool InnerGoreNestGenCheckForBlacklistedTiles(int x, int y)
-        {
-            for (int i = x - 25; i < x + 25; i++)
-            {
-                for (int j = y - 25; j < y + 25; j++)
-                {
-                    if (Main.tile[i, j].HasTile && AvoidTiles.Contains(Main.tile[i, j].TileType))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        public static void GenerateSurroundingGoreNestHill(int x, int y)
-        {
-            GenerateHill_SpawnAsh(x, y);
-            int k = 0;
-            while (y < MaxY)
-            {
-                if (WorldGen.genRand.NextBool(3))
-                {
-                    y++;
-                }
-
-                GenerateHill_SpawnAsh(x + k + 1, y);
-                GenerateHill_SpawnAsh(x - k - 1, y);
-                k++;
-                if (k > 45 || (k > 20 && WorldGen.genRand.NextBool(15)))
-                {
-                    break;
-                }
-            }
-
-            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
-            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, -1);
-        }
-        public static void GenerateHill_TryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir)
-        {
-            k *= dir;
-            if (y < Main.maxTilesY)
-            {
-                y = Main.maxTilesY - 1;
-            }
-            while ((x + k + dir < 0 || x + k + dir > Main.maxTilesX) 
-                && !Main.tile[x + k + dir, y].HasTile && !Main.tile[x + k + dir, y - 1].HasTile)
-            {
-                k += dir;
-                if (WorldGen.genRand.NextBool(3))
-                {
-                    y--;
-                }
-                if (y < Main.UnderworldLayer)
-                {
-                    break;
-                }
-                GenerateHill_SpawnAsh(x + k, y, kill: true);
-            }
-            x -= dir;
-            while (true)
-            {
-                x += dir;
-                if (x + k < 0 || x + k > Main.maxTilesX)
-                {
-                    break;
-                }
-                y += WorldGen.genRand.Next(3);
-                if (y > Main.maxTilesY)
-                {
-                    break;
-                }
-                GenerateHill_SpawnAsh(x + k, y, kill: false);
-            }
-        }
-        public static void GenerateHill_SpawnAsh(int x, int y, bool kill = true)
-        {
-            int l = 0;
-            while (true)
-            {
-                l++;
-                if (y + l > Main.maxTilesY)
-                {
-                    break;
-                }
-                if (l > 75 || (l > 40 && WorldGen.genRand.NextBool(15)))
-                {
-                    break;
-                }
-
-                if (kill && !AvoidTiles.Contains(Main.tile[x, y - l].TileType) && !AvoidWalls.Contains(Main.tile[x, y - l].WallType)
-                    && Main.tile[x, y - l].TileType != ModContent.TileType<GoreNestTile>())
-                    WorldGen.KillTile(x, y - l, noItem: true);
-
-                Main.tile[x, y + l].LiquidAmount = 0;
-
-                if (AvoidTiles.Contains(Main.tile[x, y + l].TileType) || AvoidWalls.Contains(Main.tile[x, y + l].WallType))
-                    continue;
-                WorldGen.PlaceTile(x, y + l, TileID.Ash, mute: true, forced: true);
-                Main.tile[x, y + l].Slope(value: 0);
-                Main.tile[x, y + l].HalfBrick(value: false);
-            }
-        }
-
-        public static void GenerateAmbientTiles(int x, int y)
-        {
-            var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
-            for (int i = 0; i < 1250; i++)
-            {
-                var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
-                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<GoreNestStalagmite>(), style: WorldGen.genRand.Next(6));
-            }
-        }
-
-        public static void CleanLava(int x, int y)
-        {
-            for (int i = x - 60; i < x + 60; i++)
-            {
-                for (int j = y - 50; j < Main.maxTilesY && !Main.tile[i, j].IsSolid(); j++)
-                {
-                    Main.tile[i, j].LiquidAmount = 0;
-                }
-            }
         }
     }
 }

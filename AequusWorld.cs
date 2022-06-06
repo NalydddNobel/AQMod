@@ -2,6 +2,7 @@
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Content.Generation;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -18,22 +19,36 @@ namespace Aequus
     public sealed class AequusWorld : ModSystem
     {
         [SaveData("SpaceSquid")]
+        [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedSpaceSquid;
         [SaveData("RedSprite")]
+        [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedRedSprite;
         [SaveData("GaleStreams")]
+        [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedEventGaleStreams;
         [SaveData("Crabson")]
+        [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedCrabson;
         [SaveData("OmegaStarite")]
+        [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedOmegaStarite;
 
+        public static Structures Structures { get; private set; }
+
+        public static GoreNestGen GoreNests { get; private set; }
+
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
+
+        public override void Load()
+        {
+            GoreNests = new GoreNestGen();
+        }
 
         public override void OnWorldLoad()
         {
@@ -43,16 +58,19 @@ namespace Aequus
             downedEventGaleStreams = false;
             downedCrabson = false;
             downedOmegaStarite = false;
+            Structures = new Structures();
         }
 
         public override void SaveWorldData(TagCompound tag)
         {
             SaveDataAttribute.SaveData(tag, this);
+            Structures.Save(tag);
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
+            Structures.Load(tag);
         }
 
         public override void NetSend(BinaryWriter writer)
@@ -67,40 +85,23 @@ namespace Aequus
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
-            foreach (var t in tasks)
+            Structures = new Structures();
+            AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
             {
-                Aequus.Instance.Logger.Debug(t.Name);
-            }
+                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
+                var crabCrevice = new CrabCreviceGen();
+                crabCrevice.GenerateCrabCrevice(out var savePoint);
+                Structures.Add("CrabCrevice", savePoint);
+            }, tasks);
+
+            AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
+            {
+                GoreNests.Cleanup();
+            }, tasks);
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>
             {
                 progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
-                int goreNestCount = 0;
-                for (int i = 0; i < (goreNestCount == 0 ? 1000000 : 10000); i++)
-                {
-                    int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
-                    int y = WorldGen.genRand.Next(GoreNestTile.MinY, GoreNestTile.MaxY);
-                    if (GoreNestTile.TryGrowGoreNest(x, y))
-                    {
-                        goreNestCount++;
-                        if (goreNestCount > 4)
-                            break;
-                    }
-                }
-            }, tasks);
-            AddPass("Tile Cleanup", "Remove Lava From Nests", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
-                for (int i = 0; i < Main.maxTilesX; i++)
-                {
-                    for (int j = GoreNestTile.MinY; j < GoreNestTile.MaxY; j++)
-                    {
-                        if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == ModContent.TileType<GoreNestTile>())
-                        {
-                            Aequus.Instance.Logger.Debug("Cleaning lava");
-                            GoreNestTile.CleanLava(i, j);
-                        }
-                    }
-                }
+                GoreNests.Generate();
             }, tasks);
         }
         private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)

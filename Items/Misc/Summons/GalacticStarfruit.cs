@@ -38,6 +38,7 @@ namespace Aequus.Items.Misc.Summons
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
                 Main.hardMode = !Main.hardMode;
                 LanternNight.GenuineLanterns = !LanternNight.GenuineLanterns;
+                player.Teleport(AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(Microsoft.Xna.Framework.Point.Zero).ToWorldCoordinates());
             }
             return true;
         }

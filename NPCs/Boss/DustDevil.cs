@@ -81,6 +81,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
+            MonsterSpawns.ForceZen(NPC);
             switch ((int)NPC.ai[0])
             {
                 case PHASE_GOODBYE:

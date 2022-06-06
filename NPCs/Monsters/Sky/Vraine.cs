@@ -79,7 +79,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            if (AequusWorld.HardmodeTier)
+            if (Aequus.HardmodeTier)
             {
                 NPC.lifeMax = (int)(NPC.lifeMax * 1.375f);
             }

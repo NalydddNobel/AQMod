@@ -34,6 +34,8 @@ namespace Aequus
         public static bool HQ => ClientConfig.Instance.HighQuality;
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
+        public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
+
         internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
 

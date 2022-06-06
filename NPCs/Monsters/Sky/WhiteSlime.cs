@@ -81,7 +81,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f);
-            if (AequusWorld.HardmodeTier)
+            if (Aequus.HardmodeTier)
             {
                 NPC.lifeMax *= 2;
                 NPC.knockBackResist = 0f;

@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.NPCs;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -74,6 +75,24 @@ namespace Aequus
         }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
+
+        public static float Angle(Vector2 me, Vector2 to)
+        {
+            return (to - me).ToRotation();
+        }
+
+        public static Vector2 To(Vector2 me, Vector2 to, float speed)
+        {
+            return Vector2.Normalize(me - to) * speed;
+        }
+
+        public static bool Zen(this Player player, bool? active = null)
+        {
+            var zen = player.GetModPlayer<MonsterSpawnsPlayer>();
+            if (active.HasValue)
+                zen.forceZen = active.Value;
+            return zen.forceZen;
+        }
 
         public static Rectangle Fluffize(this Rectangle rect, int padding = 10)
         {

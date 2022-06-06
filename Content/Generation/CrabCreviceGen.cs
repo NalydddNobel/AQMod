@@ -4,144 +4,26 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.IO;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.Utilities;
-using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Generation
 {
-    public class CrabCreviceGenerator : ModSystem
+    public struct CrabCreviceGen
     {
         private const int Size = 160;
         private static int PirateChestCount = 0;
 
-        private struct Circle
-        {
-            public int X;
-            public int Y;
-            public int Radius;
-
-            public bool IsInvalid => X == -1;
-
-            public Circle(int x, int y, int radius)
-            {
-                X = x;
-                Y = y;
-                Radius = radius;
-            }
-
-            public bool Inside(int x, int y)
-            {
-                int x2 = x - X;
-                int y2 = y - Y;
-                return Math.Sqrt(x2 * x2 + y2 * y2) <= Radius;
-            }
-            public double Distance(int x, int y)
-            {
-                int x2 = x - X;
-                int y2 = y - Y;
-                return Math.Sqrt(x2 * x2 + y2 * y2);
-            }
-            public Circle GetRandomCircleInsideCircle(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand)
-            {
-                List<Point> testPoints = new List<Point>();
-                for (int i = 0; i < Radius * 2; i++)
-                {
-                    for (int j = 0; j < Radius * 2; j++)
-                    {
-                        int x = X + i - Radius;
-                        int y = Y + j - Radius;
-                        if (Distance(x, y) < Radius - minDistanceFromEdge)
-                        {
-                            if (!Main.tile[x, y].HasTile || !Main.tile[x, y].Solid())
-                            {
-                                continue;
-                            }
-                            testPoints.Add(new Point(x, y));
-                        }
-                    }
-                }
-                for (int i = 0; i < testPoints.Count; i++)
-                {
-                    int chosenPoint = rand.Next(testPoints.Count);
-                    int size = rand.Next(minScale, maxScale);
-                    for (int j = size; j >= minScale; j--)
-                    {
-                        var c = FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, j);
-                        if (IsValidCircleForGeneratingCave(c))
-                        {
-                            return c;
-                        }
-                    }
-                    testPoints.RemoveAt(i);
-                }
-                return new Circle(-1, -1, -1);
-            }
-            public Circle GetRandomCircleInsideCircleNoAirCheck(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand)
-            {
-                List<Point> testPoints = new List<Point>();
-                for (int i = 0; i < Radius * 2; i++)
-                {
-                    for (int j = 0; j < Radius * 2; j++)
-                    {
-                        int x = X + i - Radius;
-                        int y = Y + j - Radius;
-                        if (Distance(x, y) < Radius - minDistanceFromEdge)
-                        {
-                            if (!Main.tile[x, y].HasTile || !Main.tile[x, y].Solid())
-                            {
-                                continue;
-                            }
-                            testPoints.Add(new Point(x, y));
-                        }
-                    }
-                }
-                int chosenPoint = rand.Next(testPoints.Count);
-                int size = rand.Next(minScale, maxScale);
-                return FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, size);
-            }
-        }
-
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
-        {
-            //int i = tasks.FindIndex((t) => t.Name.Equals("Beaches"));
-            //if (i != -1)
-            //{
-            //    tasks.Insert(i + 1, new PassLegacy("Aequus: Crab Crevice", GenerateCrabCrevice));
-            //}
-        }
+        public Point shipHole;
+        public bool[,] holes;
+        public Point[] chests;
 
         private static bool CanOverwriteTile(Tile tile)
         {
             return !Main.tileDungeon[tile.TileType] && !Main.wallDungeon[tile.WallType];
         }
 
-        private static Circle FixedCircle(int x, int y, int radius)
-        {
-            if (x - radius < 10)
-            {
-                x = radius + 10;
-            }
-            else if (x + radius > Main.maxTilesX - 10)
-            {
-                x = Main.maxTilesX - 10 - radius;
-            }
-            if (y - radius < 10)
-            {
-                y = radius + 10;
-            }
-            else if (y + radius > Main.maxTilesY - 10)
-            {
-                y = Main.maxTilesY - 10 - radius;
-            }
-            return new Circle(x, y, radius);
-        }
-
-        private static bool IsValidCircleForGeneratingCave(int x, int y, int radius)
+        private bool IsValidCircleForGeneratingCave(int x, int y, int radius)
         {
             return IsValidCircleForGeneratingCave(new Circle(x, y, radius));
         }
@@ -173,7 +55,7 @@ namespace Aequus.Content.Generation
             return true;
         }
 
-        public static void CreateSandAreaForCrevice(int x, int y)
+        public void CreateSandAreaForCrevice(int x, int y)
         {
             if (x - Size < 10)
             {
@@ -245,7 +127,7 @@ namespace Aequus.Content.Generation
             }
         }
 
-        private static bool HasUnOverwriteableTiles(Circle circle)
+        private bool HasUnOverwriteableTiles(Circle circle)
         {
             for (int i = 0; i < circle.Radius * 2; i++)
             {
@@ -262,12 +144,12 @@ namespace Aequus.Content.Generation
             return false;
         }
 
-        public static bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps)
+        public bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps)
         {
             List<Circle> validCircles = new List<Circle>();
             for (int i = maxScale; i > minScale; i--)
             {
-                var c = FixedCircle(x, y, i);
+                var c = Circle.FixedCircle(x, y, i);
                 if (IsValidCircleForGeneratingCave(c))
                 {
                     validCircles.Add(c);
@@ -278,7 +160,8 @@ namespace Aequus.Content.Generation
             {
                 return false;
             }
-            validCircles.Add(validCircles[0].GetRandomCircleInsideCircle(validCircles[0].Radius / 3, minScale, maxScale, WorldGen.genRand));
+            validCircles.Add(validCircles[0]
+                .GetRandomCircleInsideCircle(validCircles[0].Radius / 3, minScale, maxScale, WorldGen.genRand, IsValidCircleForGeneratingCave));
             if (validCircles[1].IsInvalid || HasUnOverwriteableTiles(validCircles[1]))
             {
                 return false;
@@ -286,7 +169,8 @@ namespace Aequus.Content.Generation
             for (int i = 0; i < steps; i++)
             {
                 int chosenCircle = WorldGen.genRand.Next(validCircles.Count);
-                validCircles.Add(validCircles[chosenCircle].GetRandomCircleInsideCircle(validCircles[chosenCircle].Radius / 4, minScale, maxScale, WorldGen.genRand));
+                validCircles.Add(validCircles[chosenCircle]
+                    .GetRandomCircleInsideCircle(validCircles[chosenCircle].Radius / 4, minScale, maxScale, WorldGen.genRand, IsValidCircleForGeneratingCave));
                 if (validCircles[^1].IsInvalid || HasUnOverwriteableTiles(validCircles[^1]))
                 {
                     //Main.NewText("c" + (i + 2) + " was considered invalid!");
@@ -377,7 +261,7 @@ namespace Aequus.Content.Generation
             return true;
         }
 
-        private static void AddVines()
+        private void AddVines()
         {
             for (int i = 10; i < Main.maxTilesX - 10; i++)
             {
@@ -396,7 +280,7 @@ namespace Aequus.Content.Generation
             }
         }
 
-        private static void AddChests(int genX, int genY)
+        private void AddChests(int genX, int genY)
         {
             int count = 0;
             for (int i = 0; i < 50000; i++)
@@ -454,7 +338,7 @@ namespace Aequus.Content.Generation
             }
         }
 
-        private static void FillPalmChest(int chest, int count)
+        private void FillPalmChest(int chest, int count)
         {
             if (chest == -1 || Main.chest[chest] == null)
                 return;
@@ -550,7 +434,7 @@ namespace Aequus.Content.Generation
             i++;
         }
 
-        private static void FillPirateChest(int chest, int count)
+        private void FillPirateChest(int chest, int count)
         {
             if (chest == -1 || Main.chest[chest] == null)
                 return;
@@ -631,17 +515,17 @@ namespace Aequus.Content.Generation
             i++;
         }
 
-        public static void GenPirateShip(int x, int y)
+        public void GenPirateShip(int x, int y)
         {
             GenPirateShip(x, y, WorldGen.genRand.NextBool() ? 1 : -1);
         }
 
-        public static void GenPirateShip(int x, int y, int direction)
+        public void GenPirateShip(int x, int y, int direction)
         {
             GenPirateShip(x, y, direction, WorldGen.genRand.Next(35, 51));
         }
 
-        public static void GenPirateShip(int x, int y, int direction, int length)
+        public void GenPirateShip(int x, int y, int direction, int length)
         {
             //if (x < 40)
             //{
@@ -898,10 +782,9 @@ namespace Aequus.Content.Generation
             //}
         }
 
-        public static void GenerateCrabCrevice(GenerationProgress progress, GameConfiguration config)
+        public void GenerateCrabCrevice(out Point crabCreviceLocation)
         {
             PirateChestCount = 0;
-            progress.Message = Language.GetTextValue("Mods.AQMod.WorldGen.CrabCrevice");
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
             int reccomendedDir = 0;
@@ -949,7 +832,8 @@ namespace Aequus.Content.Generation
                 }
             }
 
-            progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
+            crabCreviceLocation = new Point(crabCreviceLocationX, crabCreviceLocationY);
+
             CreateSandAreaForCrevice(crabCreviceLocationX, crabCreviceLocationY + 40);
 
             int finalCaveStart = -50;
@@ -1061,7 +945,7 @@ namespace Aequus.Content.Generation
             AddVines();
         }
 
-        public static bool ProperCrabCreviceAnchor(int x, int y)
+        public bool ProperCrabCreviceAnchor(int x, int y)
         {
             return !Framing.GetTileSafely(x, y).HasTile && Main.tile[x, y].LiquidAmount > 0 && Framing.GetTileSafely(x, y + 1).HasTile && Main.tileSand[Main.tile[x, y + 1].TileType];
         }

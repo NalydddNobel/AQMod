@@ -1,12 +1,31 @@
-﻿using Aequus.Content;
-using Aequus.Sounds;
-using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
+    public class Flawless : ModSystem
+    {
+        public readonly List<byte> DamagedPlayers;
+
+        public Flawless()
+        {
+            DamagedPlayers = new List<byte>();
+        }
+
+        public override void PostUpdatePlayers()
+        {
+            DamagedPlayers.Clear();
+            for (byte i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && Main.player[i].statLife < Main.player[i].statLifeMax2)
+                {
+                    DamagedPlayers.Add(i);
+                }
+            }
+        }
+    }
+
     public class FlawlessNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
@@ -19,15 +38,6 @@ namespace Aequus.NPCs
             damagedPlayers = new bool[Main.maxPlayers];
         }
 
-        private void ResetNoHit(int player)
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<FlawlessNPC>().damagedPlayers[player] = false;
-            }
-        }
-
         public override void ResetEffects(NPC npc)
         {
             if (!preventNoHitCheck)
@@ -37,6 +47,15 @@ namespace Aequus.NPCs
                 {
                     damagedPlayers[manager.DamagedPlayers[i]] = true;
                 }
+            }
+        }
+
+        public void ResetNoHit(int player)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active)
+                    Main.npc[i].GetGlobalNPC<FlawlessNPC>().damagedPlayers[player] = false;
             }
         }
 
