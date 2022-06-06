@@ -80,6 +80,7 @@ namespace Aequus
         /// </summary>
         public bool omegaStaritePet;
 
+        public bool biomeCrabCrevice;
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
         /// </summary>
@@ -435,7 +436,7 @@ namespace Aequus
         /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
         public bool CheckEventGaleStreams()
         {
-            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player);
+            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f);
         }
         public Point FindDemonSiege()
         {

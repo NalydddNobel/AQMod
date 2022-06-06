@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Biomes;
+using Aequus.Graphics;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
@@ -103,6 +104,9 @@ namespace Aequus.NPCs.Boss
             //    music = GetMusic().GetMusicID();
             //    musicPriority = MusicPriority.BossLow;
             //}
+
+            this.SetBiome<CrabCreviceBiome>();
+
             crabson = -1;
             leftClaw = -1;
             rightClaw = -1;

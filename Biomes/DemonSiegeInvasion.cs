@@ -20,7 +20,7 @@ using Terraria.Audio;
 
 namespace Aequus.Biomes
 {
-    public sealed class DemonSiegeInvasion : ModBiome
+    public class DemonSiegeInvasion : ModBiome
     {
         public enum UpgradeProgression : byte
         {

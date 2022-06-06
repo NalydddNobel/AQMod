@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content
+namespace Aequus.Content.Generation
 {
     public sealed class CustomChestLoot : ModSystem
     {

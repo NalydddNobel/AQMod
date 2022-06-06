@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Biomes
 {
-    public sealed class GlimmerInvasion : ModSystem
+    public class GlimmerInvasion : ModSystem
     {
         public static Color CosmicEnergyColor => new Color(200, 10, 255, 0);
 

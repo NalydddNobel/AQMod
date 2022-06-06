@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Biomes
 {
-    public sealed class GaleStreamsInvasion : ModBiome
+    public class GaleStreamsInvasion : ModBiome
     {
         public static InvasionStatus Status { get; set; }
         public static byte updateTimer;
@@ -234,7 +234,7 @@ namespace Aequus.Biomes
                     SupressWindUpdates = false;
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && IsThisSpace(Main.player[i]))
+                        if (Main.player[i].active && Main.player[i].Aequus().eventGaleStreams)
                         {
                             SupressWindUpdates = true;
                             break;

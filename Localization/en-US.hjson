@@ -28,6 +28,7 @@ Mods: {
 		}
 
 		BiomeName: {
+			CrabCreviceBiome: Crab Crevice
 			GaleStreamsInvasion: Gale Streams
 			DemonSiegeInvasion: Demon Siege
 		}
@@ -174,6 +175,9 @@ Mods: {
 			RedSpriteMask: Red Sprite Mask
 			SpaceSquidMask: Space Squid Mask
 			BreadOfCthulhuMask: Bread of Cthulhu Mask
+
+			SedimentaryRockWall: Sedimentary Rock Wall
+			SedimentaryRock: Sedimentary Rock
 
 			RedSpriteTrophy: Red Sprite Trophy
 
@@ -1602,7 +1606,8 @@ Mods: {
 		}
 
 		WorldGeneration: {
-			GoreNests: Placing Gore Nests...
+			CrabCrevice: Generating Underground Ocean...
+			GoreNests: Making Hell Eviler...
 		}
 
 		ContainerPotionError: This potion was improperly loaded
@@ -2507,7 +2512,6 @@ Mods: {
 				VanityEyePatch: No Text, do not translate
 				PirateVanitySet: No Text, do not translate
 
-
 				ThieveryComplete: {
 					0: Yarr har har har, this {ItemName} is mighty fine! I'll add this to my collection. --And you can add this to yours!
 					1: I knows someone who'd like this {ItemName}. Now here's ye payment, I gotta go!
@@ -2523,7 +2527,6 @@ Mods: {
 
 				UpgradeBurgerButton: Upgrade Burger?
 				ThieveryButton: Thievery
-
 
 				ShopQuote: {
 					Terraria_GoldRing: 
@@ -2589,9 +2592,17 @@ Mods: {
 			SkyMerchant: {
 
 				Basic: {
-					0: Basic Sky Merchant Text.
-					1: Basic Sky Merchant Text.
+					0: Some of my items sell like they're on the fly
+					1: 
+					2: 
 				}
+
+				Night: 
+				BloodMoon:
+				
+				Merchant: Ugh, [Merchant] always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
+				TravellingMerchant: 
+				Pirate: Something about the flying dutchman
 
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name
