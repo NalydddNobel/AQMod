@@ -702,12 +702,18 @@ namespace Aequus
             {
                 return;
             }
-            for (int i = 0; i < Main.maxProjectiles; i++)
+            try
             {
-                if (Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    sentry.UpdateInheritance(Main.projectile[i]);
+                    if (Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
+                    {
+                        sentry.UpdateInheritance(Main.projectile[i]);
+                    }
                 }
+            }
+            catch
+            {
             }
         }
 

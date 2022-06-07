@@ -93,61 +93,62 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
         }
 
+        public override void PostAI(Projectile projectile)
+        {
+            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || !Main.player[projectile.owner].Aequus().accInheritTurrets)
+            {
+                dummyPlayer = null;
+            }
+        }
+
         public void UpdateInheritance(Projectile projectile)
         {
-            if (projectile.hostile || !projectile.WipableTurret || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
+            if (projectile.hostile || !projectile.sentry || projectile.TurretShouldPersist() || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
             {
                 return;
             }
 
-            var aequus = Main.player[projectile.owner].Aequus();
-            if (aequus.accInheritTurrets)
+            if (dummyPlayer == null)
             {
-                if (dummyPlayer == null)
-                {
-                    dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
-                }
-                Main.NewText("ok dummy player should exist...");
-                dummyPlayer.active = true;
-                dummyPlayer.dead = false;
-                dummyPlayer.Center = projectile.Center;
-                dummyPlayer.velocity = projectile.velocity;
-                PlayerLoader.PreUpdate(dummyPlayer);
-                dummyPlayer.ResetEffects();
+                dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
+            }
+            dummyPlayer.active = true;
+            dummyPlayer.dead = false;
+            dummyPlayer.Center = projectile.Center;
+            dummyPlayer.velocity = projectile.velocity;
+            PlayerLoader.PreUpdate(dummyPlayer);
+            dummyPlayer.ResetEffects();
+            if (Main.myPlayer == projectile.owner)
+            {
                 dummyPlayer.UpdateBiomes();
-                dummyPlayer.whoAmI = projectile.owner;
-                dummyPlayer.Aequus().projectileIdentity = projectile.identity;
-                dummyPlayer.wet = projectile.wet;
-                dummyPlayer.lavaWet = projectile.lavaWet;
-                dummyPlayer.honeyWet = projectile.honeyWet;
-                ProjectileSources.ParentProjectile = projectile.whoAmI;
-
-                try
-                {
-                    foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
-                    {
-                        if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
-                        {
-                            ai(projectile, this, i, Main.player[projectile.owner], aequus);
-                        }
-                    }
-                    appliedItemStatChanges = true;
-                }
-                catch
-                {
-
-                }
-
-                PlayerLoader.PostUpdate(dummyPlayer);
-                dummyPlayer.numMinions = 0;
-                dummyPlayer.slotsMinions = 0f;
-                ProjectileSources.ParentProjectile = -1;
             }
-            else
+            dummyPlayer.whoAmI = projectile.owner;
+            dummyPlayer.Aequus().projectileIdentity = projectile.identity;
+            dummyPlayer.wet = projectile.wet;
+            dummyPlayer.lavaWet = projectile.lavaWet;
+            dummyPlayer.honeyWet = projectile.honeyWet;
+            ProjectileSources.ParentProjectile = projectile.whoAmI;
+
+            try
             {
-                Main.NewText("nah man");
-                dummyPlayer = null;
+                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
+                {
+                    if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
+                    {
+                        ai(projectile, this, i, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
+                    }
+                }
+                appliedItemStatChanges = true;
             }
+            catch
+            {
+
+            }
+
+            PlayerLoader.PostUpdate(dummyPlayer);
+            dummyPlayer.numMinions = 0;
+            dummyPlayer.slotsMinions = 0f;
+            ProjectileSources.ParentProjectile = -1;
         }
     }
 
