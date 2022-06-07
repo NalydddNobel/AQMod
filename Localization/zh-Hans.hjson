@@ -121,11 +121,17 @@ Mods: {
 			ReboundNecklace: 回弹项链
 			RabbitsFoot: 兔脚
 			SantankSentry: 哨兵6502型微型处理器
-			Slingshot: 弹弓
 			BloodiedBucket: 血污桶
+
+			FlowerCrown: 花冠
+			DartTrapHat: 飞镖帽
+			SuperDartTrapHat: 超级飞镖帽
+
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
 			Slice: 利刃
+
+			Slingshot: 弹弓
 
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
@@ -251,7 +257,6 @@ Mods: {
 			SparrowWings: 雀翼
 			Thunderbird: 远古雷鸟
 			FishyFins: 鱼鳍
-			FlowerCrown: 花冠
 			ArachnotronVisor: 机械蜘蛛面具
 			ArachnotronRibcage: 机械蜘蛛胸甲
 			ArachnotronRevvers: 机械蜘蛛护胫
@@ -415,8 +420,6 @@ Mods: {
 			SuspiciousLookingSteak: 可疑牛排
 			HermitShell: 蟹壳头盔
 			StriderPalms: 长足护胫
-			DartTrapHat: 飞镖帽
-			SuperDartTrapHat: 超级飞镖帽
 			OrganicEnergy: 自然能量
 			DemonicEnergy: 恶魔能量
 			CosmicEnergy: 星宇能量
@@ -484,6 +487,53 @@ Mods: {
 				在下落时会刷新你的二段跳
 				自动进行二段跳以阻止摔落伤害
 				'''
+			BloodiedBucket: 
+				'''
+				大幅度增加幽魂仆从的存在时间
+				'我知道你的成分: 高大、暗黑以及是死的'
+				'''
+			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
+			RabbitsFoot: 增加用户的幸运度
+			SantankSentry: 允许你的哨兵装备你的饰品
+			FoolsGoldRing: 
+				'''
+				基于所持有的钱币数量增加属性
+				被击杀时会掉落所有的钱币
+				'''
+			FaultyCoin: 10%几率不消耗钱币
+			ForgedCard: 所有的商品均可享受2金50银的折扣
+			IcebergKraken:
+				'''
+				增加最大哨兵栏位
+				哨兵攻击有小几率造成霜火减益
+				当你处于战斗中时会自动召唤哨兵
+				仅在背包中拥有哨兵武器时才会生效
+				'''
+			SentrySquid:
+				'''
+				当你处于战斗中时会自动召唤哨兵
+				仅在背包中拥有哨兵武器时才会生效
+				'只是轻微的干扰'
+				'''
+
+			FlowerCrown: 
+				'''
+				偶尔召唤在风中飘动的伤害性花瓣
+				无视敌人10点的防御力
+				'''
+			DartTrapHat:
+				'''
+				增加10%召唤伤害
+				无视敌人10点的防御力
+				'''
+			SuperDartTrapHat:
+				'''
+				增加50%召唤伤害
+				增加最大召唤栏位
+				无视敌人15点的防御力
+				'''
+
+			RockMan: 一件远古遗物, 最初被用来切柠檬
 
 			Slingshot: 
 				'''
@@ -492,20 +542,11 @@ Mods: {
 				'''
 
 			BallisticScreecher: 发射熔火球
-			BloodiedBucket: 
-				'''
-				大幅度增加幽魂仆从的实名制
-				'我知道你的成分: 高大、暗黑以及是死的'
-				'''
-			RockMan: 一件远古遗物, 最初被用来切柠檬
 			Triacanthorn: 
 				'''
 				召唤会分裂的邪恶卷须
 				无视敌人10点的防御力
 				'''
-			SkeletonKey: 打开所有的金色宝箱和金色锁盒
-			UnenchantedStaff: 可被附魔
-			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 
 			Insurgency: 
 				'''
@@ -540,32 +581,12 @@ Mods: {
 
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
-			RabbitsFoot: 增加用户的幸运度
-			SantankSentry: 允许你的哨兵装备你的饰品
-			FoolsGoldRing: 
-				'''
-				基于所持有的钱币数量增加属性
-				被击杀所会掉落所有的钱币
-				'''
-			FaultyCoin: 10%几率不消耗钱币
-			ForgedCard: 所有的商品均可享受2金50银的折扣
-			IcebergKraken:
-				'''
-				增加最大哨兵栏位
-				哨兵攻击有小几率造成霜火减益
-				当你处于战斗中时会自动召唤哨兵
-				仅在背包中拥有哨兵武器时才会生效
-				'''
-				SentrySquid:
-				'''
-				当你处于战斗中时会自动召唤哨兵
-				仅在背包中拥有哨兵武器时才会生效
-				'仅是轻微的干扰'
-				'''
+			SkeletonKey: 打开所有的金色宝箱和金色锁盒
+			UnenchantedStaff: 可被附魔
 
 			LightningRod: 
 				'''
-				召唤愤怒的雷云跟随着你
+				召唤一朵会提供光照的愤怒雷云
 				'''
 			ToySpaceGun: 
 				'''
@@ -784,7 +805,6 @@ Mods: {
 				有着强大的水平速度!
 				'''
 			FishyFins: "{$Mods.Aequus.nalyd}"
-			FlowerCrown: 偶尔召唤在风中飘动的伤害性花瓣
 			ArachnotronVisor:
 				'''
 				增加10%近战伤害、暴击率和召唤伤害
@@ -1080,7 +1100,7 @@ Mods: {
 			HeartLamp: 召唤一只会增加你生命恢复速度并提供光照的心蛾
 			StariteinaBottle:
 				'''
-				召唤一颗侏儒源星提供光照
+				召唤一颗会提供光照的侏儒源星
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
 			DragonBall: 
@@ -1175,17 +1195,6 @@ Mods: {
 				'''
 				增加10%召唤伤害
 				强化长足蟹钩的各项属性
-				'''
-			DartTrapHat:
-				'''
-				当你站在地面上时发射毒镖
-				增加5%召唤伤害
-				'''
-			SuperDartTrapHat:
-				'''
-				当你站在地面上时发射毒镖
-				增加10%召唤伤害
-				增加最大召唤栏位
 				'''
 			BeeRod:
 				'''
