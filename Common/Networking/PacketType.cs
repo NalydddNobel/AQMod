@@ -10,6 +10,7 @@
         RequestDemonSiege,
         RemoveDemonSiege,
         SyncDebuffs,
+        SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities,
         Count,
     }
 }

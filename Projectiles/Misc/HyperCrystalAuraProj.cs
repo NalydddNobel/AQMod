@@ -35,6 +35,11 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Kill();
                     return;
                 }
+
+                if (value.dummyPlayer == null)
+                {
+                    Main.NewText("Dummy player is null for hyper crytal");
+                }
                 Projectile.Center = Main.projectile[projIdentity].Center;
                 Projectile.scale = value.dummyPlayer
                     .GetModPlayer<HyperCrystalPlayer>()._accFocusCrystalDiameter;

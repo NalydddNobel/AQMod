@@ -550,7 +550,7 @@ namespace Aequus.NPCs.Friendly
         {
             if (spawnInfo.Player.ZoneSkyHeight && !NPC.AnyNPCs(Type))
             {
-                return 0.1f;
+                return 0.05f;
             }
             return 0f;
         }

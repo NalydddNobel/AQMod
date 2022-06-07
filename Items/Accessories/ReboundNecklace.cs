@@ -59,6 +59,11 @@ namespace Aequus.Items.Accessories
 
         public override void PostUpdateEquips()
         {
+            if (!reboundNecklace)
+            {
+                return;
+            }
+
             int y = (int)(Player.position.Y + Player.height) / 16;
             int fallAmt = y - Player.fallStart;
             if (fallAmt - lastRefreshedFall > 20)

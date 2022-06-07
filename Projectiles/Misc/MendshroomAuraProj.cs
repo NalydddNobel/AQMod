@@ -25,6 +25,8 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
+            float scale = Projectile.scale;
+            MendshroomPlayer mendshroom;
             int projIdentity = (int)Projectile.ai[0] - 1;
             if (projIdentity > -1)
             {
@@ -36,17 +38,32 @@ namespace Aequus.Projectiles.Misc
                 }
 
                 Projectile.Center = Main.projectile[projIdentity].Center;
-                Projectile.scale = (value.dummyPlayer?.GetModPlayer<MendshroomPlayer>()?._accMendshroomDiameter).GetValueOrDefault(0f);
+                mendshroom = value.dummyPlayer?.GetModPlayer<MendshroomPlayer>();
+                if (mendshroom == null)
+                {
+                    Main.NewText("Dummy player is null for mendshroom");
+                }
+                Projectile.scale = (mendshroom?.mendshroomDiameter).GetValueOrDefault(0f);
             }
             else
             {
                 Projectile.Center = Main.player[Projectile.owner].Center;
-                Projectile.scale = Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>()._accMendshroomDiameter;
+                mendshroom = Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>();
+                Projectile.scale = mendshroom.mendshroomDiameter;
+            }
+
+            if (mendshroom?.EffectActive == true)
+            {
+                mendshroom.HealPlayers();
             }
 
             if (Projectile.scale > 0.1f)
             {
                 Projectile.timeLeft = 2;
+            }
+            if (scale != Projectile.scale)
+            {
+                Projectile.netUpdate = true;
             }
         }
 

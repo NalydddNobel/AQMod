@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Networking;
+using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Placeable;
 using Microsoft.Xna.Framework;
@@ -62,7 +63,7 @@ namespace Aequus.Tiles
 
             var player = Main.LocalPlayer;
             Item hoverItem;
-            if (recycling.item != null && !recycling.item.IsAir)
+            if (recycling.HasItem)
             {
                 hoverItem = recycling.item;
             }
@@ -101,6 +102,7 @@ namespace Aequus.Tiles
             if (recycling != null)
             {
                 drawCoordinates += recycling.GetDrawOffset(i, j);
+                recycling.UpdateSounds();
             }
 
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates.Floor(),
@@ -108,7 +110,7 @@ namespace Aequus.Tiles
 
             if (i == (recycling.Position.X + 1) && j == recycling.Position.Y)
             {
-                if (recycling.timeLeft == 0 && recycling.item != null && !recycling.item.IsAir)
+                if (recycling.timeLeft == 0 && recycling.HasItem)
                 {
                     InnerDrawChatBubble(recycling, recycling.item, drawCoordinates + new Vector2(0f, -4f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, -4f, 0f)).Floor());
                 }
@@ -168,7 +170,12 @@ namespace Aequus.Tiles
         public ushort timeLeft;
         public Item item;
 
+        public float eventPlaySound;
+        public bool eventPlaySoundBlip;
+
         private Vector2 drawOffset;
+
+        public bool HasItem => this.item != null || this.item?.IsAir == false;
 
         public override bool IsTileValidForEntity(int x, int y)
         {
@@ -178,9 +185,9 @@ namespace Aequus.Tiles
 
         public override void OnKill()
         {
-            if (item != null && !item.IsAir)
+            if (HasItem)
             {
-                AequusItem.NewItemCloned(new EntitySource_TileBreak(Position.X, Position.Y), new Vector2(Position.X * 16 + 16f, Position.Y * 16 + 24f), item);
+                AequusItem.NewItemCloned(new EntitySource_TileEntity(this), new Vector2(Position.X * 16 + 16f, Position.Y * 16 + 24f), item);
             }
         }
 
@@ -213,6 +220,39 @@ namespace Aequus.Tiles
             return Place(i - 1, j - 2);
         }
 
+        public void UpdateSounds()
+        {
+            if (!Aequus.GameWorldActive)
+            {
+                return;
+            }
+            if (timeLeft > 0)
+            {
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    if (Main.GlobalTimeWrappedHourly - eventPlaySound > 0.16f)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item22.WithVolume(0.6f).WithPitch(-1f), new Vector2(Position.X * 16f, Position.Y * 16f));
+                        eventPlaySound = Main.GlobalTimeWrappedHourly;
+                    }
+                }
+                if (timeLeft > 1)
+                {
+                    eventPlaySoundBlip = false;
+                }
+                if (!eventPlaySoundBlip && timeLeft <= 1 && HasItem)
+                {
+                    SoundEngine.PlaySound(SoundID.MenuOpen, new Vector2(Position.X * 16f, Position.Y * 16f));
+                    eventPlaySoundBlip = true;
+                }
+            }
+            if (item != null)
+            {
+                Main.NewText(item.ToString());
+            }
+            //Main.NewText(timeLeft);
+        }
+
         public override void Update()
         {
             if (timeLeft > 0)
@@ -223,23 +263,9 @@ namespace Aequus.Tiles
                     RecyclingTable.Convert.TryGetValue(item.type, out var l);
 
                     item = ConvertItem(item, l.FindAll((l2) => l2.CanObtain()));
-
+                    AequusItem.NewItemCloned(new EntitySource_TileEntity(this), new Vector2(Position.X * 16f + 16f, Position.Y * 16f + 24f), item);
+                    item = null;
                     Sync();
-
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        SoundEngine.PlaySound(SoundID.MenuOpen, new Vector2(Position.X * 16f, Position.Y * 16f));
-                    }
-                }
-                else
-                {
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        if ((Main.GameUpdateCount % 10) == 0)
-                        {
-                            SoundEngine.PlaySound(SoundID.Item22.WithVolume(0.6f).WithPitch(-1f), new Vector2(Position.X * 16f, Position.Y * 16f));
-                        }
-                    }
                 }
             }
         }
@@ -262,7 +288,7 @@ namespace Aequus.Tiles
 
         public bool Interact(Player player)
         {
-            if (item != null || item?.IsAir == false)
+            if (HasItem)
             {
                 if (timeLeft != 0)
                 {
@@ -279,6 +305,7 @@ namespace Aequus.Tiles
             if (trash != null)
             {
                 UseItem(trash);
+                Sync();
                 return true;
             }
             return false;
@@ -286,12 +313,13 @@ namespace Aequus.Tiles
 
         public void UseItem(Item item)
         {
-            if (this.item != null || this.item?.IsAir == false)
+            if (HasItem)
             {
                 return;
             }
 
             this.item = item.Clone();
+            this.item.stack = 1;
 
             item.stack--;
             if (item.stack <= 0)
@@ -302,8 +330,6 @@ namespace Aequus.Tiles
             timeLeft = 3600;
 
             SoundEngine.PlaySound(SoundID.Grab);
-
-            Sync();
         }
 
         public static Item GetUsableItem(Player player)
@@ -328,7 +354,7 @@ namespace Aequus.Tiles
 
         public override void SaveData(TagCompound tag)
         {
-            if (item != null && !item.IsAir)
+            if (HasItem)
             {
                 tag["Item"] = item;
                 tag["TimeLeft"] = timeLeft;
@@ -346,35 +372,51 @@ namespace Aequus.Tiles
 
         public override void NetSend(BinaryWriter writer)
         {
-            if (item != null)
+            PacketHandler.Send((p) =>
             {
-                writer.Write(true);
-
-                ItemIO.Send(item, writer, writeStack: true);
-                writer.Write(timeLeft);
-                return;
-            }
-
-            writer.Write(false);
+                p.Write(item != null);
+                p.Write(ID);
+                if (item != null)
+                {
+                    ItemIO.Send(item, p, writeStack: true);
+                    p.Write(timeLeft);
+                }
+            }, PacketType.SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            if (reader.ReadBoolean())
+        }
+
+        public static void NetReceive2(BinaryReader reader)
+        {
+            bool hasItem = reader.ReadBoolean();
+            int id = reader.ReadInt32();
+            var recyclingMachine = (TERecyclingMachine)ByID[id];
+            ByPosition[recyclingMachine.Position] = recyclingMachine;
+            if (hasItem)
             {
-                item = ItemIO.Receive(reader, readStack: true);
-                timeLeft = reader.ReadUInt16();
+                recyclingMachine.item = ItemIO.Receive(reader, readStack: true);
+                recyclingMachine.timeLeft = reader.ReadUInt16();
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    Main.NewText(recyclingMachine.item.ToString()); 
+                    AequusHelpers.dustDebug(recyclingMachine.Position.X, recyclingMachine.Position.Y);
+                }
                 return;
             }
 
-            item = null;
-            timeLeft = 0;
+            recyclingMachine.item = null;
+            recyclingMachine.timeLeft = 0;
         }
 
         public void Sync()
         {
             if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                Aequus.Instance.Logger.Debug("Syncing recycling machine tile");
                 NetMessage.SendData(MessageID.TileEntitySharing, -1, -1, null, ID);
+            }
         }
     }
 

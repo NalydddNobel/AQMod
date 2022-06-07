@@ -791,6 +791,8 @@ namespace Aequus.Content.Necromancy
             if (reader.ReadBoolean())
             {
                 isZombie = true;
+                Main.projectile[whoAmI].hostile = false;
+                Main.projectile[whoAmI].friendly = true;
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();

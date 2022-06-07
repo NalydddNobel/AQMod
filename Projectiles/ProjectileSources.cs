@@ -1,7 +1,9 @@
-﻿using Terraria;
+﻿using System.IO;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Projectiles
 {
@@ -100,5 +102,58 @@ namespace Aequus.Projectiles
         {
             return AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
         }
+
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            bitWriter.WriteBit(itemUsed > 0);
+            if (itemUsed > 0)
+            {
+                binaryWriter.Write((ushort)itemUsed);
+            }
+            bitWriter.WriteBit(ammoUsed > 0);
+            if (ammoUsed > 0)
+            {
+                binaryWriter.Write((ushort)ammoUsed);
+            }
+            bitWriter.WriteBit(npcOwner > -1);
+            if (npcOwner > -1)
+            {
+                binaryWriter.Write((ushort)npcOwner);
+            }
+            bitWriter.WriteBit(projectileOwnerIdentity > -1);
+            if (projectileOwnerIdentity > -1)
+            {
+                binaryWriter.Write((ushort)projectileOwnerIdentity);
+            }
+            bitWriter.WriteBit(projectileOwner > -1);
+            if (projectileOwner > -1)
+            {
+                binaryWriter.Write((ushort)projectileOwner);
+            }
+        }
+
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+        {
+            if (bitReader.ReadBit())
+            {
+                itemUsed = binaryReader.ReadUInt16();
+            }
+            if (bitReader.ReadBit())
+            {
+                ammoUsed = binaryReader.ReadUInt16();
+            }
+            if (bitReader.ReadBit())
+            {
+                npcOwner = binaryReader.ReadUInt16();
+            }
+            if (bitReader.ReadBit())
+            {
+                projectileOwnerIdentity = binaryReader.ReadUInt16();
+            }
+            if (bitReader.ReadBit())
+            {
+                projectileOwner = binaryReader.ReadUInt16();
+            }
+       }
     }
 }

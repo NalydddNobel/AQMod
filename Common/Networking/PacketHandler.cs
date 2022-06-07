@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -164,6 +165,10 @@ namespace Aequus.Common.Networking
             {
                 byte npc = reader.ReadByte();
                 Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
+            }
+            else if (type == PacketType.SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities)
+            {
+                TERecyclingMachine.NetReceive2(reader);
             }
         }
     }

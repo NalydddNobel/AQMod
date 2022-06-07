@@ -126,7 +126,7 @@ namespace Aequus.Common.Players
                 return;
             }
 
-            if (Player.ZoneBeach && attempt.uncommon && Main.rand.NextBool(3))
+            if (Player.ZoneBeach && attempt.rare && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
             }

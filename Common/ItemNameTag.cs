@@ -63,7 +63,7 @@ namespace Aequus.Common
             if (RenameCount > 0)
             {
                 writer.Write(true);
-                writer.Write(RenameCount);
+                writer.Write((ushort)RenameCount);
             }
             else
             {

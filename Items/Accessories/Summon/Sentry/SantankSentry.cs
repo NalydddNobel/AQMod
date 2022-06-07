@@ -44,7 +44,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             var clone = (SantankSentryProjectile)base.Clone(projectile, projectileClone);
             if (dummyPlayer != null)
-                clone.dummyPlayer = AequusPlayer.SantankAccClone(dummyPlayer);
+                clone.dummyPlayer = AequusPlayer.ProjectileClone(dummyPlayer);
             return clone;
         }
 
@@ -105,7 +105,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             {
                 if (dummyPlayer == null)
                 {
-                    dummyPlayer = AequusPlayer.SantankAccClone(Main.player[projectile.owner]);
+                    dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
                 }
                 dummyPlayer.active = true;
                 dummyPlayer.dead = false;
@@ -123,7 +123,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
                 try
                 {
-                    foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
+                    foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
                     {
                         if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
                         {

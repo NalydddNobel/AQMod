@@ -370,6 +370,7 @@ namespace Aequus
         {
             PacketHandler.Send((p) =>
             {
+                p.Write((byte)Player.whoAmI);
                 if (itemSync)
                 {
                     p.Write(true);
@@ -946,7 +947,7 @@ namespace Aequus
             return result;
         }
 
-        public static Player SantankAccClone(Player basePlayer)
+        public static Player ProjectileClone(Player basePlayer)
         {
             var p = (Player)basePlayer.clientClone();
             p.boneGloveItem = basePlayer.boneGloveItem?.Clone();
@@ -975,7 +976,7 @@ namespace Aequus
             return l;
         }
 
-        public int ProjectilesOwned_ConsiderProjectileIdentity(int type, bool extraThorough = false)
+        public int ProjectilesOwned_ConsiderProjectileIdentity(int type)
         {
             int count = 0;
             if (projectileIdentity != -1)
@@ -994,17 +995,12 @@ namespace Aequus
                 }
                 return count;
             }
-            count = Player.ownedProjectileCounts[type];
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
-                    && Main.projectile[i].Aequus().projectileOwnerIdentity > 0)
+                    && Main.projectile[i].Aequus().projectileOwnerIdentity == -1)
                 {
-                    if (extraThorough && AequusHelpers.FindProjectileIdentity(Player.whoAmI, Main.projectile[i].Aequus().projectileOwnerIdentity) == -1)
-                    {
-                        break;
-                    }
-                    count--;
+                    count++;
                 }
             }
             return count;

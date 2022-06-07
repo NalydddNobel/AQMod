@@ -31,7 +31,8 @@ namespace Aequus.Items.Accessories.Healing
             stat.Add(circumference: 240f, regen: 60);
             if (stat.EffectActive)
             {
-                if (player.Aequus().ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<MendshroomAuraProj>()) <= 0)
+                if (player.Aequus()
+                    .ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<MendshroomAuraProj>()) <= 0)
                 {
                     Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<MendshroomAuraProj>(),
                         0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
@@ -50,7 +51,7 @@ namespace Aequus.Items.Accessories.Healing
         public float diameter;
         public int regenerationToGive;
         public int idleTime;
-        public float _accMendshroomDiameter;
+        public float mendshroomDiameter;
 
         public int increasedRegen;
 
@@ -72,31 +73,11 @@ namespace Aequus.Items.Accessories.Healing
                 if (EffectActive)
                 {
                     lerpTo = diameter;
-                    HealPlayers(Player);
                 }
             }
-            _accMendshroomDiameter = MathHelper.Lerp(_accMendshroomDiameter, lerpTo, 0.2f);
+            mendshroomDiameter = MathHelper.Lerp(mendshroomDiameter, lerpTo, 0.2f);
             diameter = 0f;
             regenerationToGive = 0;
-        }
-        private void HealPlayers(Player healer)
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (i == healer.whoAmI || Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(healer.Center) < diameter / 2f)
-                {
-                    HealPlayer(healer, i);
-                }
-            }
-        }
-        private void HealPlayer(Player healer, int i)
-        {
-            var bungus = Main.player[i].GetModPlayer<MendshroomPlayer>();
-            if (bungus.increasedRegen < regenerationToGive)
-            {
-                bungus.increasedRegen = regenerationToGive;
-                Main.player[i].AddBuff(ModContent.BuffType<MendshroomBuff>(), 2);
-            }
         }
 
         public override void clientClone(ModPlayer clientClone)
@@ -113,7 +94,7 @@ namespace Aequus.Items.Accessories.Healing
 
         public override void UpdateDead()
         {
-            _accMendshroomDiameter = MathHelper.Lerp(_accMendshroomDiameter, 0f, 0.2f);
+            mendshroomDiameter = MathHelper.Lerp(mendshroomDiameter, 0f, 0.2f);
             diameter = 0f;
             regenerationToGive = 0;
         }
@@ -128,6 +109,26 @@ namespace Aequus.Items.Accessories.Healing
         {
             diameter = Math.Max(diameter, circumference);
             regenerationToGive += regen;
+        }
+
+        public void HealPlayers()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(Player.Center) < diameter / 2f)
+                {
+                    HealPlayer(i);
+                }
+            }
+        }
+        public void HealPlayer(int i)
+        {
+            var bungus = Main.player[i].GetModPlayer<MendshroomPlayer>();
+            if (bungus.increasedRegen < regenerationToGive)
+            {
+                bungus.increasedRegen = regenerationToGive;
+                Main.player[i].AddBuff(ModContent.BuffType<MendshroomBuff>(), 2);
+            }
         }
     }
 }
