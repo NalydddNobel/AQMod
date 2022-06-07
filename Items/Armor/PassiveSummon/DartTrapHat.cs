@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Summon.Misc;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,7 @@ namespace Aequus.Items.Armor.PassiveSummon
     public class DartTrapHat : ModItem
     {
         public virtual int TimeBetweenShots => 320;
-        public virtual int ProjectileShot => ProjectileID.PoisonDart;
+        public virtual int ProjectileShot => ModContent.ProjectileType<DartTrapHatProj>();
         public virtual float Speed => 10f;
 
         public override void SetStaticDefaults()
@@ -22,9 +23,10 @@ namespace Aequus.Items.Armor.PassiveSummon
         {
             Item.width = 16;
             Item.height = 16;
-            Item.defense = 2;
+            Item.defense = 1;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 20;
+            Item.damage = 28;
+            Item.ArmorPenetration = 10;
             Item.knockBack = 2f;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 30);
@@ -36,10 +38,7 @@ namespace Aequus.Items.Armor.PassiveSummon
             {
                 var aequus = player.Aequus();
                 aequus.wearingSummonHelmet = true;
-                if (CanDecrementTimer(player))
-                {
-                    aequus.summonHelmetTimer--;
-                }
+                aequus.summonHelmetTimer--;
                 if (aequus.summonHelmetTimer <= 0)
                 {
                     if (aequus.summonHelmetTimer != -1)
@@ -49,18 +48,12 @@ namespace Aequus.Items.Armor.PassiveSummon
                             ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
                             : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
                         int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition, new Vector2(Speed, 0f) * player.direction, ProjectileShot, damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI);
-                        Main.projectile[p].hostile = false;
-                        Main.projectile[p].friendly = true;
-                        Main.projectile[p].trap = false;
+                        Main.projectile[p].ArmorPenetration = Item.ArmorPenetration;
                     }
                     aequus.summonHelmetTimer = TimeBetweenShots;
                 }
-                player.GetDamage(DamageClass.Summon) += 0.05f;
+                player.GetDamage(DamageClass.Summon) += 0.10f;
             }
-        }
-        public virtual bool CanDecrementTimer(Player player)
-        {
-            return player.velocity.Y == 0f;
         }
 
         public override void AddRecipes()

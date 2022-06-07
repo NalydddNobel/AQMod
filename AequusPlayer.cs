@@ -434,7 +434,8 @@ namespace Aequus
         /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
         public bool CheckEventGaleStreams()
         {
-            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f);
+            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f)
+                && Player.townNPCs < 1f && !Player.ZonePeaceCandle && Player.behindBackWall;
         }
         public Point FindDemonSiege()
         {

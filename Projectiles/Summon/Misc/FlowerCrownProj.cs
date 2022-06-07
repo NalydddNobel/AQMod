@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -6,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Misc
 {
     public sealed class FlowerCrownProj : ModProjectile
     {
@@ -35,6 +36,11 @@ namespace Aequus.Projectiles.Summon
             return false;
         }
 
+        public override bool? CanHitNPC(NPC target)
+        {
+            return NPCID.Sets.CountsAsCritter[target.type] ? false : null;
+        }
+
         public override void AI()
         {
             if ((int)Projectile.ai[0] == 1)
@@ -51,23 +57,22 @@ namespace Aequus.Projectiles.Summon
             }
             else
             {
+                float decrement = Math.Max(Projectile.ai[1] * 2f, 0f);
+                Projectile.ai[1]++;
                 if (Projectile.position.Y < Main.worldSurface * 16f && Main.tile[((int)Projectile.position.X + Projectile.width / 2) / 16, ((int)Projectile.position.Y + Projectile.height / 2) / 16].WallType == WallID.None)
                 {
-                    Projectile.ai[1]++;
-
-                    float decrement = Math.Max(Projectile.ai[1], 0f);
-                    float gotoSpeed = Main.windSpeedCurrent * 5f + AequusHelpers.Wave(Projectile.timeLeft * 0.25f, -2f, 0.2f) * Math.Sign(Main.windSpeedCurrent);
-                    Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoSpeed, 0.01f) * (1f - Math.Min(decrement * 0.001f, 0.95f));
+                    float gotoSpeed = Main.windSpeedCurrent * 5f + AequusHelpers.Wave(Projectile.timeLeft * 0.33f, -2f, 0.2f) * Math.Sign(Main.windSpeedCurrent);
+                    Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoSpeed, 0.03f) * (1f - Math.Min(decrement * 0.001f, 0.95f));
                     if (Main.windSpeedCurrent.Abs() > 0.1f)
                     {
-                        Projectile.velocity.Y = 0.02f + decrement * 0.002f + AequusHelpers.Wave(Projectile.timeLeft * 0.02f, -0f, 0.1f);
+                        Projectile.velocity.Y += decrement * 0.002f + AequusHelpers.Wave(Projectile.timeLeft * 0.02f, -0f, 0.1f);
+                        goto SkipVelocityY;
                     }
-                    else
-                    {
-                        Projectile.velocity.Y = 0.02f + decrement * 0.00008f;
-                    }
-                    Projectile.rotation += Math.Max(Projectile.velocity.X * 0.015f, 0.015f);
                 }
+                Projectile.velocity.Y += 0.02f + decrement * 0.00008f;
+
+            SkipVelocityY:
+                Projectile.rotation += Math.Max(Projectile.velocity.X * 0.015f, 0.015f);
             }
         }
 

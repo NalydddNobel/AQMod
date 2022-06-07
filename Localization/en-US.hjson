@@ -121,11 +121,17 @@ Mods: {
 			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			SantankSentry: Sentry 6502 N.O.S.
-			Slingshot: Slingshot
 			BloodiedBucket: Bloodied Bucket
+
+			FlowerCrown: Flower Crown
+			DartTrapHat: Dart Trap Hat
+			SuperDartTrapHat: Super Dart Trap Hat
+
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
+
+			Slingshot: Slingshot
 
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
@@ -251,7 +257,6 @@ Mods: {
 			SparrowWings: Sparrow Wings
 			Thunderbird: Ancient Thunderbird
 			FishyFins: Fish Fins
-			FlowerCrown: Flower Crown
 			ArachnotronVisor: Arachnotron Visor
 			ArachnotronRibcage: Arachnotron Ribcage
 			ArachnotronRevvers: Arachnotron Revvers
@@ -415,8 +420,6 @@ Mods: {
 			SuspiciousLookingSteak: Suspicious Looking Steak
 			HermitShell: Clamshell Helmet
 			StriderPalms: Strider Palms
-			DartTrapHat: Dart Trap Hat
-			SuperDartTrapHat: Super Dart Trap Hat
 			OrganicEnergy: Organic Energy
 			DemonicEnergy: Demonic Energy
 			CosmicEnergy: Cosmic Energy
@@ -484,6 +487,53 @@ Mods: {
 				Allows your double jumps to refresh while falling
 				Automatically double jumps to prevent fall damage
 				'''
+			BloodiedBucket: 
+				'''
+				Greatly increases the lifespan of ghost minions
+				'I know your type: tall, dark, and dead'
+				'''
+			RitualisticSkull: Converts all of your minion slots into ghost minion slots
+			RabbitsFoot: Increases luck for the user
+			SantankSentry: Allows your sentries to equip your accessories
+			FoolsGoldRing: 
+				'''
+				Held coins increase your stats
+				All coins disappear when killed
+				'''
+			FaultyCoin: 10% chance to not consume coins
+			ForgedCard: Receive a flat 2 gold 50 silver discount on all items
+			IcebergKraken:
+				'''
+				Increase your max number of sentries by 1
+				Sentry attacks have a small chance to inflict frostburn
+				Automatically places a sentry when you are in combat
+				Requires a sentry staff in your inventory to work
+				'''
+			SentrySquid:
+				'''
+				Automatically places a sentry when you are in combat
+				Requires a sentry staff in your inventory to work
+				'It's only mildy disturbing'
+				'''
+
+			FlowerCrown: 
+				'''
+				Ocassionally summons damaging petals which blow in the wind
+				Ignores 10 points of enemy Defense
+				'''
+			DartTrapHat:
+				'''
+				10% increased summon damage
+				Ignores 10 points of enemy Defense
+				'''
+			SuperDartTrapHat:
+				'''
+				50% increased summon damage
+				Increases your max number of minions
+				Ignores 15 points of enemy Defense
+				'''
+
+			RockMan: An ancient relic, originally used to cut lemons
 
 			Slingshot: 
 				'''
@@ -492,20 +542,11 @@ Mods: {
 				'''
 
 			BallisticScreecher: Shoots magma balls
-			BloodiedBucket: 
-				'''
-				Greatly increases the lifespan of ghost minions
-				'I know your type: tall, dark, and dead'
-				'''
-			RockMan: An ancient relic, originally used to cut lemons
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils
 				Ignores 10 points of enemy Defense
 				'''
-			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
-			UnenchantedStaff: May be enchanted
-			RitualisticSkull: Converts all of your minion slots into ghost minion slots
 
 			Insurgency: 
 				'''
@@ -540,32 +581,12 @@ Mods: {
 
 			Moro: Permanently makes minion staffs consume no mana and faster
 
-			RabbitsFoot: Increases luck for the user
-			SantankSentry: Allows your sentries to equip your accessories
-			FoolsGoldRing: 
-				'''
-				Held coins increase your stats
-				All coins disappear when killed
-				'''
-			FaultyCoin: 10% chance to not consume coins
-			ForgedCard: Receive a flat 2 gold 50 silver discount on all items
-			IcebergKraken:
-				'''
-				Increase your max number of sentries by 1
-				Sentry attacks have a small chance to inflict frostburn
-				Automatically places a sentry when you are in combat
-				Requires a sentry staff in your inventory to work
-				'''
-			SentrySquid:
-				'''
-				Automatically places a sentry when you are in combat
-				Requires a sentry staff in your inventory to work
-				'It's only mildy disturbing'
-				'''
+			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
+			UnenchantedStaff: May be enchanted
 
 			LightningRod: 
 				'''
-				Summons an angry thundercloud to follow you
+				Summons an angry thundercloud to provide light
 				'''
 			ToySpaceGun: 
 				'''
@@ -784,7 +805,6 @@ Mods: {
 				Has immense horizontal speed!
 				'''
 			FishyFins: "{$Mods.Aequus.nalyd}"
-			FlowerCrown: Ocassionally summons damaging petals which blow in the wind
 			ArachnotronVisor:
 				'''
 				Increases melee damage, crit, and summon damage by 10%
@@ -1175,17 +1195,6 @@ Mods: {
 				'''
 				Increases minion damage by 10%
 				Increases the stats of the Strider Hook
-				'''
-			DartTrapHat:
-				'''
-				Shoots poisioned darts while you are on the ground
-				Increases summon damage by 5%
-				'''
-			SuperDartTrapHat:
-				'''
-				Shoots poisioned darts while you are on the ground
-				Increases summon damage by 10%
-				Increases your max number of minions
 				'''
 			BeeRod:
 				'''
