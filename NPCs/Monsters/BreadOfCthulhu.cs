@@ -13,8 +13,6 @@ namespace Aequus.NPCs.Monsters
 {
     public class BreadOfCthulhu : ModNPC
     {
-        private const int SPAWNRECTANGLE_SIZE = 20;
-
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
