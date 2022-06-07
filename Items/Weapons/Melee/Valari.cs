@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Melee;
+﻿using Aequus.Common;
+using Aequus.Projectiles.Melee;
+using Aequus.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,9 +11,10 @@ namespace Aequus.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            BagLootPools.LockboxPool.Add(Type);
-
             this.SetResearch(1);
+
+            LootPools.Bags.Lockbox_Secondary.Add(Type);
+            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.LockedGold);
         }
 
         public override void SetDefaults()

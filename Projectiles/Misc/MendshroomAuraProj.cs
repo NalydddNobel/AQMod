@@ -20,7 +20,6 @@ namespace Aequus.Projectiles.Misc
             Projectile.aiStyle = -1;
             Projectile.hide = true;
             Projectile.timeLeft = 20;
-            Projectile.friendly = true;
         }
 
         public override void AI()

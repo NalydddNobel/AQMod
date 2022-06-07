@@ -128,5 +128,9 @@ namespace Aequus.Tiles
         {
             return frameX / 36;
         }
+        public static int GetChestStyle(Chest chest)
+        {
+            return GetChestStyle(Main.tile[chest.x, chest.y].TileFrameX);
+        }
     }
 }

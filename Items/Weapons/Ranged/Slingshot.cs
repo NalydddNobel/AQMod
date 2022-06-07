@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Ranged.Birds;
+﻿using Aequus.Common;
+using Aequus.Projectiles.Ranged.Birds;
+using Aequus.Tiles;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -20,6 +22,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
+            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 4), ChestTypes.Skyware);
             this.SetResearch(1);
         }
 

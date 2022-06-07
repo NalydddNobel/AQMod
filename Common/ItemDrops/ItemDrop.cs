@@ -24,7 +24,7 @@ namespace Aequus.Common.ItemDrops
 
         public int RollStack(UnifiedRandom rng)
         {
-            return rng.Next(minStack, maxStack) + 1;
+            return rng.Next(minStack, maxStack + 1);
         }
     }
 }

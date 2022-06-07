@@ -64,6 +64,11 @@
             Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.redSpritePet">
+            <summary>
+            Applied by <see cref="T:Aequus.Buffs.Pets.RedSpriteBuff"/>
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.spaceSquidPet">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.Pets.SpaceSquidBuff"/>
@@ -124,32 +129,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accInheritTurrets">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.SantankSentry"/>
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
             <summary>
             Applied by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accMinionsToGhosts">
-            <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.RitualisticSkull"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accAutoSentry">
-            <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.SentrySquid"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accFrostburnSentry">
-            <summary>
-            Gives all sentries and their projectiles a 1/6 chance to inflict the Frostburn debuff. Applied by <see cref="T:Aequus.Items.Accessories.Summon.IcebergKraken"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accGlowCore">
-            <summary>
-            All player owned projectiles also check this in order to decide if they should glow. Applied by <see cref="T:Aequus.Items.Accessories.GlowCore"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
@@ -233,17 +218,6 @@
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
             </summary>
         </member>
-        <member name="M:Aequus.AequusPlayer.UpdateAutoSentry">
-            <summary>
-            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.CheckDanger"/>
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.AutoSentry_GetUsableSentryStaff">
-            <summary>
-            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.AequusPlayer.UpdateAutoSentry"/>
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary>
             Called right before all player layers have been drawn
@@ -324,6 +298,11 @@
             Applied by <see cref="T:Aequus.Items.Misc.Pets.DragonBall"/>
             </summary>
         </member>
+        <member name="T:Aequus.Buffs.Pets.RedSpriteBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
@@ -346,6 +325,20 @@
             </summary>
             <param name="obj"></param>
             <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
+        </member>
+        <member name="M:Aequus.Content.Generation.Structures.Add(System.String,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Adds a structure to the list
+            </summary>
+            <param name="name">The name of the structure</param>
+            <param name="location">The location of the structure in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Content.Generation.Structures.GetLocation(System.String)">
+            <summary>
+            Gets the location of a structure using a name
+            </summary>
+            <param name="name">The name of the structure</param>
+            <returns></returns>
         </member>
         <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
@@ -486,17 +479,17 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
+        <member name="T:Aequus.Items.Accessories.Healing.MendshroomPlayer">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.Healing.Mendshroom"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Accessories.MendshroomPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Mendshroom"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.Accessories.Summon.SantankInteractions.OnAI">
+        <member name="P:Aequus.Items.Accessories.Summon.Sentry.SantankInteractions.OnAI">
             <summary>
             <para>1) Projectile - the projectile</para>
             <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
@@ -505,7 +498,7 @@
             <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
-        <member name="P:Aequus.Items.Accessories.Summon.SantankInteractions.OnShoot">
+        <member name="P:Aequus.Items.Accessories.Summon.Sentry.SantankInteractions.OnShoot">
             <summary>
             <para>1) IEntitySource - the entity source</para>
             <para>2) Projectile - the projectile</para>
@@ -516,6 +509,27 @@
             <para>7) Player - the player owner of both projectiles</para>
             <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.SentryStaffUsage.customAction">
+            <summary>
+            Player is the player who is summoning the sentry
+            <para>Item is the item used to summon the sentry</para>
+            <para>NPC is the target</para>
+            <para>.</para>
+            <para>returns:</para> 
+                Whether it was successful at placing a sentry
+            </summary>
+        </member>
+        <member name="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.UpdateAutoSentry(System.Int32)">
+            <summary>
+            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="!:closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="!:CheckDanger"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.AutoSentry_GetUsableSentryStaff">
+            <summary>
+            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.UpdateAutoSentry(System.Int32)"/>
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Items.Consumables.Bait.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.Players.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
@@ -554,16 +568,6 @@
         <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.ItemsCatalogue.SentryStaffUsage.customAction">
-            <summary>
-            Player is the player who is summoning the sentry
-            <para>Item is the item used to summon the sentry</para>
-            <para>NPC is the target</para>
-            <para>.</para>
-            <para>returns:</para> 
-                Whether it was successful at placing a sentry
             </summary>
         </member>
         <member name="T:Aequus.Items.OnlineLinkedItem">

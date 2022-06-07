@@ -1,5 +1,7 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Items.Consumables.Roulettes;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -14,7 +16,9 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            BagLootPools.WoodenCratePool.Add(Type);
+            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.Gold);
+            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.deadMans, TileID.Containers2);
+            LootPools.Bags.WoodenCrate_Secondary.Add(Type);
             GoldenRoulette.Table.Add(Type);
         }
 
