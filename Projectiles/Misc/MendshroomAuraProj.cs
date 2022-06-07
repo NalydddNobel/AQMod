@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Accessories.Healing;
+﻿using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -32,28 +31,40 @@ namespace Aequus.Projectiles.Misc
                 projIdentity = AequusHelpers.FindProjectileIdentity(Projectile.owner, projIdentity);
                 if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SantankSentryProjectile>(out var value))
                 {
-                    Projectile.Kill();
+                    if (Main.myPlayer == Projectile.owner)
+                    {
+                        Projectile.Kill();
+                        Projectile.netUpdate = true;
+                    }
                     return;
                 }
 
                 Projectile.Center = Main.projectile[projIdentity].Center;
                 mendshroom = value.dummyPlayer?.GetModPlayer<MendshroomPlayer>();
-                if (mendshroom == null)
-                {
-                    Main.NewText("Dummy player is null for mendshroom");
-                }
-                Projectile.scale = (mendshroom?.mendshroomDiameter).GetValueOrDefault(0f);
+                //if (mendshroom == null)
+                //{
+                //    Main.NewText("Dummy player is null for mendshroom");
+                //}
+                //else
+                //{
+                //    Main.NewText(mendshroom.diameter);
+                //    Main.NewText(mendshroom.EffectActive);
+                //}
             }
             else
             {
                 Projectile.Center = Main.player[Projectile.owner].Center;
                 mendshroom = Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>();
-                Projectile.scale = mendshroom.mendshroomDiameter;
             }
 
             if (mendshroom?.EffectActive == true)
             {
                 mendshroom.HealPlayers();
+                Projectile.scale = MathHelper.Lerp(Projectile.scale, mendshroom.diameter, 0.2f);
+            }
+            else
+            {
+                Projectile.scale = MathHelper.Lerp(Projectile.scale, 0f, 0.2f);
             }
 
             if (Projectile.scale > 0.1f)

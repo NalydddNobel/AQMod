@@ -51,7 +51,6 @@ namespace Aequus.Items.Accessories.Healing
         public float diameter;
         public int regenerationToGive;
         public int idleTime;
-        public float mendshroomDiameter;
 
         public int increasedRegen;
 
@@ -75,7 +74,6 @@ namespace Aequus.Items.Accessories.Healing
                     lerpTo = diameter;
                 }
             }
-            mendshroomDiameter = MathHelper.Lerp(mendshroomDiameter, lerpTo, 0.2f);
             diameter = 0f;
             regenerationToGive = 0;
         }
@@ -94,7 +92,6 @@ namespace Aequus.Items.Accessories.Healing
 
         public override void UpdateDead()
         {
-            mendshroomDiameter = MathHelper.Lerp(mendshroomDiameter, 0f, 0.2f);
             diameter = 0f;
             regenerationToGive = 0;
         }

@@ -246,10 +246,10 @@ namespace Aequus.Tiles
                     eventPlaySoundBlip = true;
                 }
             }
-            if (item != null)
-            {
-                Main.NewText(item.ToString());
-            }
+            //if (item != null)
+            //{
+            //    Main.NewText(item.ToString());
+            //}
             //Main.NewText(timeLeft);
         }
 
@@ -398,11 +398,11 @@ namespace Aequus.Tiles
             {
                 recyclingMachine.item = ItemIO.Receive(reader, readStack: true);
                 recyclingMachine.timeLeft = reader.ReadUInt16();
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    Main.NewText(recyclingMachine.item.ToString()); 
-                    AequusHelpers.dustDebug(recyclingMachine.Position.X, recyclingMachine.Position.Y);
-                }
+                //if (Main.netMode == NetmodeID.MultiplayerClient)
+                //{
+                //    Main.NewText(recyclingMachine.item.ToString()); 
+                //    AequusHelpers.dustDebug(recyclingMachine.Position.X, recyclingMachine.Position.Y);
+                //}
                 return;
             }
 

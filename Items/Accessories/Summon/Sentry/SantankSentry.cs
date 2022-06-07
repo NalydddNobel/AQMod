@@ -93,7 +93,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
         }
 
-        public override void PostAI(Projectile projectile)
+        public void UpdateInheritance(Projectile projectile)
         {
             if (projectile.hostile || !projectile.WipableTurret || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
             {
@@ -107,6 +107,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 {
                     dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
                 }
+                Main.NewText("ok dummy player should exist...");
                 dummyPlayer.active = true;
                 dummyPlayer.dead = false;
                 dummyPlayer.Center = projectile.Center;
@@ -144,6 +145,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
             else
             {
+                Main.NewText("nah man");
                 dummyPlayer = null;
             }
         }

@@ -616,6 +616,7 @@ namespace Aequus
                 UpdateZombies();
             }
             CheckDanger();
+            UpdateInheritingTurrets();
             TeamContext = 0;
         }
         /// <summary>
@@ -694,6 +695,20 @@ namespace Aequus
                 tiering *= 2f;
             }
             return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
+        }
+        public void UpdateInheritingTurrets()
+        {
+            if (!accInheritTurrets)
+            {
+                return;
+            }
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
+                {
+                    sentry.UpdateInheritance(Main.projectile[i]);
+                }
+            }
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
