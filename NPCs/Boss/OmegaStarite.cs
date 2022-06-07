@@ -244,7 +244,7 @@ namespace Aequus.NPCs.Boss
             NPC.width = 120;
             NPC.height = 120;
             NPC.lifeMax = 8000;
-            NPC.damage = 50;
+            NPC.damage = 25;
             NPC.defense = 18;
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.aiStyle = -1;
@@ -729,9 +729,9 @@ namespace Aequus.NPCs.Boss
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
-                                int damage = 30;
+                                int damage = 15;
                                 if (Main.expertMode)
-                                    damage = 20;
+                                    damage = 10;
                                 float rot = MathHelper.TwoPi / (Main.getGoodWorld ? 10f : 5f);
                                 for (int i = 0; i < (Main.getGoodWorld ? 3 : 2); i++)
                                 {
@@ -825,9 +825,9 @@ namespace Aequus.NPCs.Boss
                                                 SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, NPC.Center);
                                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
-                                                int damage = 30;
+                                                int damage = 15;
                                                 if (Main.expertMode)
-                                                    damage = 20;
+                                                    damage = 10;
                                                 float rot = MathHelper.TwoPi / (Main.getGoodWorld ? 10f : 5f) + 0.01f;
                                                 for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                                 {
@@ -1178,7 +1178,7 @@ namespace Aequus.NPCs.Boss
             }
             if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
             {
-                int damage = Main.expertMode ? 25 : 30;
+                int damage = Main.expertMode ? 12 : 15;
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
                     ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI);
             }
@@ -1227,9 +1227,9 @@ namespace Aequus.NPCs.Boss
                         var diff = new Vector2(ring.CachedPositions[0].X, ring.CachedPositions[0].Y) - NPC.Center;
                         var shootDir = Vector2.Normalize(diff).RotatedBy(MathHelper.PiOver2) * speed;
                         int type = ModContent.ProjectileType<OmegaStariteBullet>();
-                        int damage = 25;
+                        int damage = 12;
                         if (Main.expertMode)
-                            damage = 18;
+                            damage = 9;
                         for (int i = 0; i < ring.amountOfSegments; i++)
                         {
                             float rot = ring.rotationOrbLoop * i;

@@ -85,7 +85,7 @@ namespace Aequus.NPCs.Boss
             NPC.width = 90;
             NPC.height = 60;
             NPC.lifeMax = 2500;
-            NPC.damage = 20;
+            NPC.damage = 10;
             NPC.defense = 6;
             NPC.aiStyle = -1;
             NPC.noTileCollide = true;
@@ -669,7 +669,7 @@ namespace Aequus.NPCs.Boss
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), position, velo, type, Main.expertMode ? damage / 3 : damage, 1f, Main.myPlayer, ai0, ai1);
+                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), position, velo, type, Main.masterMode ? damage / 3 : Main.expertMode ? damage / 2 : damage, 1f, Main.myPlayer, ai0, ai1);
                 if (p == -1)
                     return -1;
                 Main.projectile[p].extraUpdates += extraUpdates;
