@@ -195,7 +195,6 @@ namespace Aequus.Content
                 return false;
             }
 
-
             while (points.Count > 0)
             {
                 int selectedPoint = rand.Next(points.Count);
@@ -213,7 +212,8 @@ namespace Aequus.Content
         }
         public static bool InnerPlace_CheckQuestTiles(NPC townNPC)
         {
-            var rectangle = new Rectangle(townNPC.homeTileX - 35, townNPC.homeTileY - 35, 70, 70).Fluffize();
+            const int size = 150;
+            var rectangle = new Rectangle(townNPC.homeTileX - (size / 2), townNPC.homeTileY - (size / 2), size, size).Fluffize();
 
             for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
             {
@@ -242,7 +242,7 @@ namespace Aequus.Content
         }
         public static int RollPlaceCheck()
         {
-            return WorldGen.genRand.Next(1200, 3600);
+            return WorldGen.genRand.Next(1200, 3600) * 10;
         }
     }
 }

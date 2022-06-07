@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -18,13 +19,19 @@ namespace Aequus.Projectiles.Monster
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(180, 180, 180, 0);
+            return new Color(180, 180, 180, 60);
         }
 
         public override void AI()
         {
             if (Main.rand.NextBool(4))
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
+                d.scale *= 0.6f;
+                d.fadeIn = d.scale + 0.4f;
+                d.velocity *= 0.33f;
+                d.noGravity = true;
+            }
             if (Projectile.lavaWet)
             {
                 var player = Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)];
@@ -67,8 +74,11 @@ namespace Aequus.Projectiles.Monster
             Vector2 spawnPos = Projectile.position + velocity;
             for (int i = 0; i < 5; i++)
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-                Main.dust[d].velocity = new Vector2(0f, 2f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
+                d.velocity = new Vector2(0f, 2f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                d.scale *= 0.6f;
+                d.fadeIn = d.scale + 0.3f;
+                d.noGravity = true;
             }
         }
 
@@ -112,9 +122,19 @@ namespace Aequus.Projectiles.Monster
 
             for (int i = 0; i < 18; i++)
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-                Main.dust[d].velocity = new Vector2(0f, 3f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
+                d.velocity = new Vector2(0f, 3f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+                d.scale *= 0.6f;
+                d.fadeIn = d.scale + 0.8f;
+                d.noGravity = true;
             }
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            return false;
         }
     }
 }

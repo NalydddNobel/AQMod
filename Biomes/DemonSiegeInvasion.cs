@@ -321,7 +321,17 @@ namespace Aequus.Biomes
             Sacrifices = new Dictionary<Point, EventSacrifice>();
             if (!Main.dedServ)
             {
-                Filters.Scene[ExtraScreenFilter] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.6f, -0.75f), EffectPriority.High); ;
+                Filters.Scene[ExtraScreenFilter] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
+            }
+            On.Terraria.Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
+        }
+
+        private void Main_DrawUnderworldBackground(On.Terraria.Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
+        {
+            orig(self, flat);
+            if (Filters.Scene[ExtraScreenFilter].Opacity > 0f)
+            {
+                Main.spriteBatch.Draw(Images.Pixel.Value, new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20), new Color(20, 2, 2, 180) * Filters.Scene[ExtraScreenFilter].Opacity);
             }
         }
 

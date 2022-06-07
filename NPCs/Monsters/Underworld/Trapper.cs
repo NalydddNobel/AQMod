@@ -255,7 +255,11 @@ namespace Aequus.NPCs.Monsters.Underworld
             var texture = TextureAssets.Npc[Type].Value;
             var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
+            {
+                spriteBatch.Draw(texture, drawPosition - screenPos + v * 2f, NPC.frame, Color.Orange.UseA(0) * 0.7f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            }
+            spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             return false;
         }
 

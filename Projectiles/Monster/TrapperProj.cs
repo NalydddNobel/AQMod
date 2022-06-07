@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Buffs.Debuffs;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -19,12 +21,12 @@ namespace Aequus.Projectiles.Monster
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(180, 180, 180, 0);
+            return new Color(180, 180, 180, 50);
         }
 
         public override void AI()
         {
-            int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+            int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
             Main.dust[d].velocity = Vector2.Lerp(Projectile.velocity, Main.dust[d].velocity, 0.5f);
             Main.dust[d].scale = Main.rand.NextFloat(0.9f, 2f);
             Main.dust[d].noGravity = true;
@@ -96,7 +98,7 @@ namespace Aequus.Projectiles.Monster
             }
             for (int i = 0; i < 30; i++)
             {
-                int d = Dust.NewDust(Main.projectile[p].position, Main.projectile[p].width, Main.projectile[p].height, DustID.Torch);
+                int d = Dust.NewDust(Main.projectile[p].position, Main.projectile[p].width, Main.projectile[p].height, DustID.DemonTorch);
                 Main.dust[d].scale = Main.rand.NextFloat(0.9f, 2f);
                 Main.dust[d].velocity = Vector2.Lerp(bvelo, Main.dust[d].velocity, 0.7f);
                 Main.dust[d].noGravity = true;
@@ -106,7 +108,12 @@ namespace Aequus.Projectiles.Monster
 
     public class TrapperExplosion : ModProjectile
     {
-        public override string Texture => Aequus.BlankTexture;
+        public override string Texture => "Aequus/Assets/Explosion1";
+
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Type] = 7;
+        }
 
         public override void SetDefaults()
         {
@@ -117,13 +124,33 @@ namespace Aequus.Projectiles.Monster
             Projectile.aiStyle = -1;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
+            Projectile.timeLeft = 20;
         }
 
         public override void AI()
         {
-            if (Projectile.ai[0] > 0)
-                Projectile.active = false;
-            Projectile.ai[0]++;
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter > 2)
+            {
+                Projectile.frameCounter = 0;
+                Projectile.frame++;
+                if (Projectile.frame >= Main.projFrames[Type])
+                {
+                    Projectile.hide = true;
+                }
+            }
+        }
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return CorruptionHellfire.BloomColor.UseA(0) * 5;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            return false;
         }
     }
 }

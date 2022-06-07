@@ -201,12 +201,16 @@ namespace Aequus.NPCs.Monsters.Underworld
             var drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);
             drawPosition.Y -= 10.5f;
 
-            DrawWings(spriteBatch, drawPosition, screenPos, drawColor);
-            DrawTail(spriteBatch, drawPosition, screenPos, drawColor);
-
             var texture = TextureAssets.Npc[Type].Value;
             var glowTexture = GlowTexture.Value;
             var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
+            foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
+            {
+                spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, Color.Orange.UseA(0) * 0.7f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
+            }
+
+            DrawWings(spriteBatch, drawPosition, screenPos, drawColor);
+            DrawTail(spriteBatch, drawPosition, screenPos, drawColor);
 
             spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(glowTexture, drawPosition - screenPos, NPC.frame, new Color(200, 200, 200, 0), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);

@@ -28,7 +28,7 @@ namespace Aequus.Items.Accessories.Healing
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var stat = player.GetModPlayer<MendshroomPlayer>();
-            stat.Add(circumference: 240f, regen: 60);
+            stat.Add(circumference: 280f, regen: 20);
             if (stat.EffectActive)
             {
                 if (player.Aequus()

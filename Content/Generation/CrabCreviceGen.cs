@@ -784,6 +784,9 @@ namespace Aequus.Content.Generation
 
         public void GenerateCrabCrevice(out Point crabCreviceLocation)
         {
+            crabCreviceLocation = Point.Zero;
+            return;
+
             PirateChestCount = 0;
             int crabCreviceLocationX = 0;
             int crabCreviceLocationY = 0;
@@ -833,6 +836,7 @@ namespace Aequus.Content.Generation
             }
 
             crabCreviceLocation = new Point(crabCreviceLocationX, crabCreviceLocationY);
+
 
             CreateSandAreaForCrevice(crabCreviceLocationX, crabCreviceLocationY + 40);
 
