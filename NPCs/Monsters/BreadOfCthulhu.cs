@@ -40,7 +40,8 @@ namespace Aequus.NPCs.Monsters
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.CavernsBiome);
+                .AddMainSpawn(BestiaryBuilder.CavernsBiome)
+                .QuickUnlock();
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
