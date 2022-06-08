@@ -941,11 +941,7 @@ Mods: {
 			CursedKey: 召唤一个恶魔捕手为你而战
 			PiranhaPot: 召唤一株邪恶的植物为你而战
 			Skrawler: 发射致命的火焰弹幕
-			SnowflakeCannon:
-				'''
-				发射许多雪球
-				66%几率不消耗弹药
-				'''
+			SnowflakeCannon: 66%几率不消耗弹药
 			Snowgrave:
 				'''
 				在下方召唤向上喷涌的致命冰雪风暴
