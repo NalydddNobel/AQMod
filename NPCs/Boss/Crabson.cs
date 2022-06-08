@@ -364,8 +364,8 @@ namespace Aequus.NPCs.Boss
                 {
                     NPC.ai[1] = 1f;
                     NPC.ai[2] = 0.5f;
-                    NPC.position.X += 12f * NPC.direction;
-                    NPC.velocity = new Vector2(16f * NPC.direction, 0f);
+                    NPC.position.X += 40f * NPC.direction;
+                    NPC.velocity = new Vector2(6f * NPC.direction, 0f);
 
                     if (Main.netMode != NetmodeID.Server)
                     {
