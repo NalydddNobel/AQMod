@@ -457,7 +457,7 @@ namespace Aequus.Content.Necromancy
                 healthAdditions -= 1f;
             }
 
-            return dmgMultiplier;
+            return dmgMultiplier / 2f;
         }
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -31,7 +31,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             Projectile.localNPCHitCooldown = 4;
         }
 
-        private const float size = NPCs.Boss.OmegaStarite.CIRCUMFERENCE * 4f;
+        private const float size = NPCs.Boss.OmegaStarite.DIAMETER * 4f;
 
         public override void AI()
         {
@@ -66,7 +66,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            var offset = normal * NPCs.Boss.OmegaStarite.CIRCUMFERENCE;
+            var offset = normal * NPCs.Boss.OmegaStarite.DIAMETER;
             var end = Projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + offset, end, size * Projectile.scale, ref _);
         }
@@ -78,7 +78,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             var frame = new Rectangle(0, 0, texture.Width, texture.Height / Main.projFrames[Projectile.type]);
             float timeSin = (float)(Math.Sin(Main.GlobalTimeWrappedHourly) + 1f) / 2f;
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.OmegaStarite.CIRCUMFERENCE;
+            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.OmegaStarite.DIAMETER;
             Vector2 origin = frame.Size() / 2f;
             Color beamColor = GlimmerInvasion.CosmicEnergyColor * 0.065f;
             float rotation = Projectile.rotation - MathHelper.PiOver2;
@@ -108,7 +108,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             Vector2 dustVelocityNormal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation - MathHelper.PiOver2);
             Vector2 dustPositionOffset = dustVelocityNormal * (size / 2 - 60f) * baseScale;
             int type = ModContent.DustType<MonoDust>();
-            Vector2 spawnBase = Projectile.Center + normalizedRotation * (NPCs.Boss.OmegaStarite.CIRCUMFERENCE + 30f);
+            Vector2 spawnBase = Projectile.Center + normalizedRotation * (NPCs.Boss.OmegaStarite.DIAMETER + 30f);
             for (int i = 0; i < dustAmount; i++)
             {
                 float x = Main.rand.NextFloat(0f, length) * 60f;

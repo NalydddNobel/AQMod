@@ -26,14 +26,11 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class Crabson : AequusBoss
     {
-        public const int PHASE_GOODBYE = -1;
-        public const int PHASE_INIT = 0;
-        public const int PHASE_INTRO = 1;
-        public const int PHASE_CLAWSHOTS = 2;
+        public const int ACTION_CLAWSHOTS = 2;
         public const int PHASE_GROUNDBUBBLES = 3;
-        public const int PHASE_CLAWSLAMS = 4;
+        public const int ACTION_CLAWSLAMS = 4;
         public const int PHASE2_GROUNDBUBBLES_SPAMMY = 5;
-        public const int PHASE2_CLAWSHOTS_SHRAPNEL = 6;
+        public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
 
         public static int BossHeadID_Claw { get; private set; }
         public static Asset<Texture2D> ClawTexture { get; private set; }
@@ -44,6 +41,7 @@ namespace Aequus.NPCs.Boss
         public int crabson;
         public bool dealContactDamage;
 
+        public int MainAction => (int)Main.npc[crabson].ai[0];
         public NPC Left => Main.npc[leftClaw];
         public NPC Right => Main.npc[rightClaw];
         public NPC CrabsonNPC => Main.npc[crabson];
@@ -112,6 +110,11 @@ namespace Aequus.NPCs.Boss
             rightClaw = -1;
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * bossLifeScale);
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (NPC.life <= 0)
@@ -160,29 +163,15 @@ namespace Aequus.NPCs.Boss
                 {
                     NPC.position += NPC.velocity;
                 }
-                if ((int)NPC.ai[0] == PHASE_GOODBYE)
+                Vector2 center = NPC.Center;
+                if (Action == ACTION_INIT && Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    if (NPC.timeLeft > 20)
-                    {
-                        NPC.timeLeft = 20;
-                    }
-                    NPC.velocity.X *= 0.9f;
-                    if (NPC.velocity.Y < 0f)
-                    {
-                        NPC.velocity.Y *= 0.8f;
-                    }
-                    Right.rotation *= 0.8f;
-                    Left.rotation *= 0.8f;
-                    NPC.velocity.Y += 0.1f;
+                    BodyInit();
                     return;
                 }
-                Vector2 center = NPC.Center;
-                if ((int)NPC.ai[0] == PHASE_INIT && Main.netMode != NetmodeID.MultiplayerClient)
+                if (MainAction == ACTION_GOODBYE)
                 {
-                    NPC.ai[0] = PHASE_INTRO;
-                    NPC.netUpdate = true;
-                    NPC.TargetClosest(faceTarget: false);
-                    SpawnClaws(center);
+                    BodyGoodbye();
                     return;
                 }
                 if (CheckClaws())
@@ -192,103 +181,32 @@ namespace Aequus.NPCs.Boss
                     {
                         dealContactDamage = false;
                         NPC.behindTiles = true;
-                        if (!NPC.HasValidTarget || NPC.Distance(Main.npc[NPC.target].Center) > 4000f)
+                        if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > 4000f)
                         {
                             NPC.TargetClosest(faceTarget: false);
-                            if (!NPC.HasValidTarget)
+                            if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > 4000f)
                             {
                                 SetGoodbyeState();
                                 return;
                             }
                         }
-                        if ((int)NPC.ai[0] == PHASE_INTRO)
+
+                        switch (Action)
                         {
-                            Movement1(out var tileCoords, out var j);
-                            NPC.ai[1]++;
-                            if ((NPC.position.Y + NPC.height - (tileCoords.Y + j) * 16f).Abs() < 20f || NPC.ai[1] > 60f)
-                            {
-                                NPC.ai[0] = PHASE_CLAWSHOTS;
-                                NPC.ai[1] = Main.expertMode ? 240f : 320f;
-                                Left.ai[1] = 0f;
-                                Right.ai[1] = 0f;
-                                Left.ai[2] = 0f;
-                                Right.ai[2] = 0f;
-                            }
-                        }
-                        else if ((int)NPC.ai[0] == PHASE_CLAWSHOTS || (int)NPC.ai[0] == PHASE_CLAWSLAMS || (int)NPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL)
-                        {
-                            NPC.ai[1]--;
-                            Movement1();
-                            if (NPC.ai[1] <= 0f)
-                            {
-                                RandomizePhase((int)NPC.ai[0]);
-                            }
-                        }
-                        else if ((int)NPC.ai[0] == PHASE_GROUNDBUBBLES || (int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY)
-                        {
-                            NPC.ai[1]--;
-                            var tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
-                            int randomness = Main.expertMode ? 4 : 3;
-                            tileCoordinates.X += Main.rand.Next(-randomness, randomness);
-                            bool toPlayer = true;
-                            int bubbleTile = 40;
-                            int start = Main.rand.Next(5, 12);
-                            for (int j = start; j < 40; j++)
-                            {
-                                var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
-                                if (tile.HasTile)
-                                {
-                                    if (bubbleTile == 40 && tile.Solid())
-                                    {
-                                        bubbleTile = j;
-                                    }
-                                    if (j > 20 && (tile.Solid() || tile.SolidTop()))
-                                    {
-                                        GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f + NPC.height + 20f));
-                                        toPlayer = false;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (toPlayer)
-                            {
-                                GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 320f + NPC.height));
-                            }
-                            if (NPC.ai[1] <= 0f)
-                            {
-                                RandomizePhase((int)NPC.ai[0]);
-                            }
-                            NPC.ai[2]++;
-                            float time = Main.expertMode ? 40f : 80f;
-                            if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY)
-                            {
-                                time -= 36f * (1f - NPC.life / NPC.lifeMax);
-                            }
-                            if (NPC.ai[2] > time)
-                            {
-                                NPC.ai[2] = 0f;
-                                float shootTime = Main.expertMode ? 30f - (PhaseTwo ? 8f : 0f) : 40f;
-                                if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY && Main.rand.NextBool())
-                                {
-                                    var spawnPos = new Vector2((tileCoordinates.X + Main.rand.Next(-3, 3)) * 16f + 8f, (tileCoordinates.Y - Main.rand.Next(12, 20)) * 16f - 4f);
-                                    ShootProj<CrabsonBubble>(spawnPos, Vector2.Normalize(Main.player[NPC.target].Center - spawnPos) * 0.01f, NPC.damage, ai0: shootTime / 2f, alpha: 1);
-                                }
-                                else
-                                {
-                                    if (bubbleTile != 40)
-                                    {
-                                        ShootProj<CrabsonBubble>(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + bubbleTile) * 16f - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: shootTime);
-                                    }
-                                    else
-                                    {
-                                        if (Main.netMode != NetmodeID.Server)
-                                        {
-                                            SoundEngine.PlaySound(SoundID.Item85.WithVolume(0.7f), NPC.Center);
-                                        }
-                                        ShootProj<CrabsonBubble>(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: 1f);
-                                    }
-                                }
-                            }
+                            case ACTION_INTRO:
+                                BodyIntro();
+                                break;
+
+                            case ACTION_CLAWSHOTS:
+                            case ACTION_CLAWSLAMS:
+                            case ACTION_P2_CLAWSHOTS_SHRAPNEL:
+                                BodyMovement();
+                                break;
+
+                            case PHASE_GROUNDBUBBLES:
+                            case PHASE2_GROUNDBUBBLES_SPAMMY:
+                                BodyGroundBubblesAttack();
+                                break;
                         }
                     }
                     else
@@ -297,123 +215,24 @@ namespace Aequus.NPCs.Boss
                         NPC.behindTiles = false;
                         NPC.noGravity = true;
                         NPC.noTileCollide = true;
-                        if (CrabsonNPC.ai[0] == PHASE_CLAWSHOTS || CrabsonNPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL)
-                        {
-                            var gotoPosition = Main.player[NPC.target].Center + new Vector2(400f * NPC.direction, 0f);
 
-                            var difference = gotoPosition - center;
-                            float l = difference.Length();
-                            if (CrabsonNPC.ai[1] > 30f)
-                            {
-                                NPC.ai[1]++;
-                                int shootTime = Main.expertMode ? 80 : 160;
-                                if (NPC.whoAmI == leftClaw)
-                                {
-                                    if (Right.ai[1] >= NPC.ai[1] - 5f)
-                                    {
-                                        NPC.ai[1] = Right.ai[1] - shootTime / 2f;
-                                    }
-                                }
-                                if (NPC.ai[1] > shootTime / 2f)
-                                {
-                                    NPC.rotation = MathHelper.Lerp(NPC.rotation, 0.5f, 0.4f);
-                                }
-                                if (NPC.ai[1] > shootTime)
-                                {
-                                    NPC.ai[1] = 1f;
-                                    NPC.ai[2] = 0.5f;
-                                    NPC.position.X += 40f * NPC.direction;
-                                    NPC.velocity = new Vector2(16f * NPC.direction, 0f);
-
-                                    if (Main.netMode != NetmodeID.Server)
-                                    {
-                                        SoundEngine.PlaySound(SoundID.Item61, NPC.Center);
-                                    }
-
-                                    ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: (int)CrabsonNPC.ai[0] == PHASE2_CLAWSHOTS_SHRAPNEL ? 1f : 0f);
-                                }
-                            }
-                            if (CrabsonNPC.ai[1] < 30f)
-                            {
-                                NPC.rotation *= 0.6f;
-                                if (NPC.rotation < 0.05f)
-                                {
-                                    NPC.rotation = 0f;
-                                }
-                            }
-                            if (l < 0.01f)
-                            {
-                                NPC.Center = gotoPosition;
-                                NPC.velocity = Vector2.Zero;
-                                NPC.ai[2] = 0f;
-                            }
-                            else
-                            {
-                                if (NPC.ai[2] > 0f)
-                                {
-                                    NPC.ai[2] -= 0.05f;
-                                    if (NPC.ai[2] < 0f)
-                                    {
-                                        NPC.ai[2] = 0f;
-                                    }
-                                }
-                                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(difference) * difference.Length() / 20f, Math.Max(0.7f - NPC.ai[2], 0.01f));
-                            }
-                        }
-                        else if ((int)CrabsonNPC.ai[0] == PHASE_CLAWSLAMS)
+                        switch (MainAction)
                         {
-                            dealContactDamage = true;
-                            NPC.ai[1]++;
-                            int time = 10;
-                            if (NPC.ai[1] + time < 0f)
-                            {
-                                NPC.noGravity = false;
-                                NPC.noTileCollide = false;
-                            }
-                            else
-                            {
-                                int smashTime = Main.expertMode ? 45 : 75;
-                                if (NPC.ai[1] > smashTime)
-                                {
-                                    NPC.damage = NPC.defDamage * 2;
-                                    NPC.velocity.X = 0f;
-                                    NPC.velocity.Y = Main.expertMode ? 32f : 16f;
-                                    int fallingTime = Main.expertMode ? 10 : 20;
-                                    if (NPC.ai[1] > smashTime + fallingTime)
-                                    {
-                                        NPC.noGravity = false;
-                                        NPC.noTileCollide = false;
-                                        if (Main.netMode != NetmodeID.Server && (int)NPC.localAI[0] == 0)
-                                        {
-                                            if (Main.netMode != NetmodeID.Server)
-                                            {
-                                                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
-                                            }
-                                            //AQMod.Effects.SetShake(2f, 6f);
-                                        }
-                                        NPC.localAI[0] = 1f;
-                                    }
-                                }
-                                else
-                                {
-                                    NPC.damage = 0;
-                                    var gotoPos = Main.player[NPC.target].Center;
-                                    if (NPC.position.Y < Main.player[NPC.target].position.Y - 80)
-                                    {
-                                        gotoPos += new Vector2(0f, -320f - NPC.height);
-                                    }
-                                    else
-                                    {
-                                        gotoPos += new Vector2(200f * NPC.direction, -120f - NPC.height);
-                                    }
-                                    NPC.Center = Vector2.Lerp(NPC.Center, gotoPos, 0.05f + 0.4f * (NPC.ai[0] / smashTime));
-                                }
-                            }
+                            case ACTION_CLAWSHOTS:
+                            case ACTION_P2_CLAWSHOTS_SHRAPNEL:
+                                ClawShots(MainAction == ACTION_P2_CLAWSHOTS_SHRAPNEL);
+                                break;
+
+                            case ACTION_CLAWSLAMS:
+                                ClawSlams();
+                                break;
+
+                            default:
+                                NPC.Center = Vector2.Lerp(NPC.Center, ClawIdlePosition(), CrabsonNPC.ai[0] == ACTION_INTRO ? 0.5f : 0.1f);
+                                NPC.velocity *= 0.9f;
+                                break;
                         }
-                        else
-                        {
-                            NPC.Center = Vector2.Lerp(NPC.Center, ClawIdlePosition(), CrabsonNPC.ai[0] == PHASE_INTRO ? 0.5f : 0.1f);
-                        }
+
                         if (crabson == -1 || !Main.npc[crabson].active || Main.npc[crabson].type != NPC.type)
                         {
                             Kill();
@@ -470,8 +289,230 @@ namespace Aequus.NPCs.Boss
                 }
             }
         }
-        private void SpawnClaws(Vector2 center)
+        public void ClawSlams()
         {
+            dealContactDamage = true;
+            NPC.ai[1]++;
+            int time = 10;
+            if (NPC.ai[1] + time < 0f)
+            {
+                NPC.noGravity = false;
+                NPC.noTileCollide = false;
+            }
+            else
+            {
+                int smashTime = Main.expertMode ? 45 : 75;
+                if (NPC.ai[1] > smashTime)
+                {
+                    NPC.damage = NPC.defDamage * 2;
+                    NPC.velocity.X = 0f;
+                    NPC.velocity.Y = Main.expertMode ? 32f : 16f;
+                    int fallingTime = Main.expertMode ? 10 : 20;
+                    if (NPC.ai[1] > smashTime + fallingTime)
+                    {
+                        NPC.noGravity = true;
+                        NPC.noTileCollide = false;
+                        if (Main.netMode != NetmodeID.Server && (int)NPC.localAI[0] == 0)
+                        {
+                            if (Main.netMode != NetmodeID.Server)
+                            {
+                                SoundEngine.PlaySound(SoundID.Item14, NPC.Center);
+                            }
+                            //AQMod.Effects.SetShake(2f, 6f);
+                        }
+                        NPC.localAI[0] = 1f;
+                    }
+                }
+                else
+                {
+                    NPC.damage = 0;
+                    var gotoPos = Main.player[NPC.target].Center;
+                    if (NPC.position.Y < Main.player[NPC.target].position.Y - 80)
+                    {
+                        gotoPos += new Vector2(0f, -320f - NPC.height);
+                    }
+                    else
+                    {
+                        gotoPos += new Vector2(200f * NPC.direction, -120f - NPC.height);
+                    }
+                    NPC.Center = Vector2.Lerp(NPC.Center, gotoPos, 0.05f + 0.75f * (NPC.ai[0] / smashTime));
+                }
+            }
+        }
+        public void ClawShots(bool shrapnel)
+        {
+            var gotoPosition = Main.player[NPC.target].Center + new Vector2(400f * NPC.direction, 0f);
+
+            var difference = gotoPosition - NPC.Center;
+            float l = difference.Length();
+            if (CrabsonNPC.ai[1] > 30f)
+            {
+                NPC.ai[1]++;
+                int shootTime = Main.expertMode ? 80 : 160;
+                if (NPC.whoAmI == leftClaw)
+                {
+                    if (Right.ai[1] >= NPC.ai[1] - 5f)
+                    {
+                        NPC.ai[1] = Right.ai[1] - shootTime / 2f;
+                    }
+                }
+                if (NPC.ai[1] > shootTime / 2f)
+                {
+                    NPC.rotation = MathHelper.Lerp(NPC.rotation, 0.5f, 0.4f);
+                }
+                if (NPC.ai[1] > shootTime)
+                {
+                    NPC.ai[1] = 1f;
+                    NPC.ai[2] = 0.5f;
+                    NPC.position.X += 12f * NPC.direction;
+                    NPC.velocity = new Vector2(16f * NPC.direction, 0f);
+
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item61, NPC.Center);
+                    }
+
+                    ShootProj<CrabsonPearl>(NPC.Center, new Vector2(20f * -NPC.direction, 0f), NPC.damage, ai1: shrapnel ? 1f : 0f);
+                }
+            }
+            if (CrabsonNPC.ai[1] < 30f)
+            {
+                NPC.rotation *= 0.6f;
+                if (NPC.rotation < 0.05f)
+                {
+                    NPC.rotation = 0f;
+                }
+            }
+            if (l < 0.01f)
+            {
+                NPC.Center = gotoPosition;
+                NPC.velocity = Vector2.Zero;
+                NPC.ai[2] = 0f;
+            }
+            else
+            {
+                if (NPC.ai[2] > 0f)
+                {
+                    NPC.ai[2] -= 0.05f;
+                    if (NPC.ai[2] < 0f)
+                    {
+                        NPC.ai[2] = 0f;
+                    }
+                }
+                NPC.velocity = Vector2.Lerp(NPC.velocity, difference / 20f, 
+                    Math.Max(0.3f - NPC.ai[2], 0f));
+            }
+        }
+
+        public void BodyGoodbye()
+        {
+            if (NPC.timeLeft > 20)
+            {
+                NPC.timeLeft = 20;
+            }
+            NPC.velocity.X *= 0.9f;
+            if (NPC.velocity.Y < 0f)
+            {
+                NPC.velocity.Y *= 0.8f;
+            }
+            Right.rotation *= 0.8f;
+            Left.rotation *= 0.8f;
+            NPC.velocity.Y += 0.1f;
+        }
+        public void BodyGroundBubblesAttack()
+        {
+            NPC.ai[1]--;
+            var tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
+            int randomness = Main.expertMode ? 4 : 3;
+            tileCoordinates.X += Main.rand.Next(-randomness, randomness);
+            bool toPlayer = true;
+            int bubbleTile = 40;
+            int start = Main.rand.Next(5, 12);
+            for (int j = start; j < 40; j++)
+            {
+                var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
+                if (tile.HasTile)
+                {
+                    if (bubbleTile == 40 && tile.Solid())
+                    {
+                        bubbleTile = j;
+                    }
+                    if (j > 20 && (tile.Solid() || tile.SolidTop()))
+                    {
+                        GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f + NPC.height + 20f));
+                        toPlayer = false;
+                        break;
+                    }
+                }
+            }
+            if (toPlayer)
+            {
+                GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 320f + NPC.height));
+            }
+            if (NPC.ai[1] <= 0f)
+            {
+                RandomizePhase((int)NPC.ai[0]);
+            }
+            NPC.ai[2]++;
+            float time = Main.expertMode ? 40f : 80f;
+            if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY)
+            {
+                time -= 36f * (1f - NPC.life / NPC.lifeMax);
+            }
+            if (NPC.ai[2] > time)
+            {
+                NPC.ai[2] = 0f;
+                float shootTime = Main.expertMode ? 30f - (PhaseTwo ? 8f : 0f) : 40f;
+                if ((int)NPC.ai[0] == PHASE2_GROUNDBUBBLES_SPAMMY && Main.rand.NextBool())
+                {
+                    var spawnPos = new Vector2((tileCoordinates.X + Main.rand.Next(-3, 3)) * 16f + 8f, (tileCoordinates.Y - Main.rand.Next(12, 20)) * 16f - 4f);
+                    ShootProj<CrabsonBubble>(spawnPos, Vector2.Normalize(Main.player[NPC.target].Center - spawnPos) * 0.01f, NPC.damage, ai0: shootTime / 2f, alpha: 1);
+                }
+                else
+                {
+                    if (bubbleTile != 40)
+                    {
+                        ShootProj<CrabsonBubble>(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + bubbleTile) * 16f - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: shootTime);
+                    }
+                    else
+                    {
+                        if (Main.netMode != NetmodeID.Server)
+                        {
+                            SoundEngine.PlaySound(SoundID.Item85.WithVolume(0.7f), NPC.Center);
+                        }
+                        ShootProj<CrabsonBubble>(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y - 4f), new Vector2(0f, -0.01f), NPC.damage, ai0: 1f);
+                    }
+                }
+            }
+        }
+        public void BodyMovement()
+        {
+            NPC.ai[1]--;
+            GroundMove();
+            if (NPC.ai[1] <= 0f)
+            {
+                RandomizePhase((int)NPC.ai[0]);
+            }
+        }
+        public void BodyIntro()
+        {
+            GroundMove(out var tileCoords, out var j);
+            NPC.ai[1]++;
+            if ((NPC.position.Y + NPC.height - (tileCoords.Y + j) * 16f).Abs() < 20f || NPC.ai[1] > 60f)
+            {
+                NPC.ai[0] = ACTION_CLAWSHOTS;
+                NPC.ai[1] = Main.expertMode ? 240f : 320f;
+                Left.ai[1] = 0f;
+                Right.ai[1] = 0f;
+                Left.ai[2] = 0f;
+                Right.ai[2] = 0f;
+            }
+        }
+        public void BodyInit()
+        {
+            NPC.ai[0] = ACTION_INTRO;
+            NPC.netUpdate = true;
+            NPC.TargetClosest(faceTarget: false);
             leftClaw = -1;
             rightClaw = -1;
             crabson = NPC.whoAmI;
@@ -480,7 +521,7 @@ namespace Aequus.NPCs.Boss
             {
                 if (i != 0)
                 {
-                    int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)center.X, (int)center.Y, NPC.type);
+                    int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, NPC.type);
                     if (i == -1)
                     {
                         leftClaw = n;
@@ -490,7 +531,7 @@ namespace Aequus.NPCs.Boss
                         rightClaw = n;
                     }
                     Main.npc[n].position.X += 150f * i;
-                    Main.npc[n].ai[0] = PHASE_INTRO;
+                    Main.npc[n].ai[0] = ACTION_INTRO;
                     Main.npc[n].direction = i;
                     Main.npc[n].spriteDirection = i;
                     Main.npc[n].realLife = NPC.whoAmI;
@@ -517,6 +558,7 @@ namespace Aequus.NPCs.Boss
             crab.leftClaw = leftClaw;
             crab.crabson = crabson;
         }
+
         private bool CheckClaws()
         {
             return !(leftClaw == -1 || !Left.active || Left.type != NPC.type ||
@@ -530,7 +572,7 @@ namespace Aequus.NPCs.Boss
         }
         private void SetGoodbyeState()
         {
-            NPC.ai[0] = PHASE_GOODBYE;
+            NPC.ai[0] = ACTION_GOODBYE;
             NPC.ai[1] = 60f;
         }
         private void GroundMovement(Vector2 location)
@@ -564,18 +606,14 @@ namespace Aequus.NPCs.Boss
             if (differenceX.Abs() > 100f)
             {
                 int sign = Math.Sign(differenceX);
-                NPC.velocity.X -= sign * 0.085f;
+                NPC.velocity.X -= sign * 0.045f;
             }
             else
             {
                 NPC.velocity.X *= 0.8f;
             }
         }
-        private void Movement1()
-        {
-            Movement1(out var _, out var _);
-        }
-        private void Movement1(out Point tileCoordinates, out int j)
+        private void GroundMove(out Point tileCoordinates, out int j)
         {
             tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
             bool toPlayer = true;
@@ -592,9 +630,13 @@ namespace Aequus.NPCs.Boss
             if (toPlayer)
                 GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 128f + NPC.height));
         }
+        private void GroundMove()
+        {
+            GroundMove(out var _, out var _);
+        }
         private void RandomizePhase(int current)
         {
-            List<int> actions = new List<int>() { PHASE_CLAWSHOTS, PHASE_GROUNDBUBBLES, PHASE_CLAWSLAMS };
+            List<int> actions = new List<int>() { ACTION_CLAWSHOTS, PHASE_GROUNDBUBBLES, ACTION_CLAWSLAMS };
             NPC.ai[0] = actions[Main.rand.Next(actions.Count)];
             dealContactDamage = true;
             NPC.localAI[0] = 0f;
@@ -606,12 +648,12 @@ namespace Aequus.NPCs.Boss
             NPC.defense = NPC.defDefense;
             Right.defense = Right.defDefense;
             Left.defense = Left.defDefense;
-            if ((int)NPC.ai[0] == PHASE_CLAWSHOTS)
+            if ((int)NPC.ai[0] == ACTION_CLAWSHOTS)
             {
                 NPC.ai[1] = Main.expertMode ? 240f : 320f;
                 if (PhaseTwo && (Main.expertMode || Main.rand.NextFloat() < 0.75f))
                 {
-                    NPC.ai[0] = PHASE2_CLAWSHOTS_SHRAPNEL;
+                    NPC.ai[0] = ACTION_P2_CLAWSHOTS_SHRAPNEL;
                 }
                 Left.ai[1] = 0f;
                 Right.ai[1] = 0f;
@@ -635,7 +677,7 @@ namespace Aequus.NPCs.Boss
                 Right.defense *= 4;
                 Left.defense *= 4;
             }
-            else if ((int)NPC.ai[0] == PHASE_CLAWSLAMS)
+            else if ((int)NPC.ai[0] == ACTION_CLAWSLAMS)
             {
                 float firstSmash = Main.expertMode ? -8f : -60f;
                 float secondSmash = Main.expertMode ? -68f : -128f;

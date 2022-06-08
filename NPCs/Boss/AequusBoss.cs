@@ -7,6 +7,13 @@ namespace Aequus.NPCs.Boss
 {
     public abstract class AequusBoss : ModNPC
     {
+        public const int ACTION_GOODBYE = -1;
+        public const int ACTION_INIT = 0;
+        public const int ACTION_INTRO = 1;
+
+        public int Action { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
+        public float ActionTimer { get => NPC.ai[1]; set => NPC.ai[1] = value; }
+
         public override void SetStaticDefaults()
         {
             NPCID.Sets.MPAllowedEnemies[Type] = true;

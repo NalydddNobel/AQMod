@@ -941,11 +941,7 @@ Mods: {
 			CursedKey: Summons a demonic trapper to fight for you
 			PiranhaPot: Summons a vicious plant to fight for you
 			Skrawler: Shoots a deadly flame bolt
-			SnowflakeCannon:
-				'''
-				Launches many snowballs at once
-				66% chance to not consume ammo
-				'''
+			SnowflakeCannon: 66% chance to not consume ammo
 			Snowgrave:
 				'''
 				Summons a deadly snowblast from below

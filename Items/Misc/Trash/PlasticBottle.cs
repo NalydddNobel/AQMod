@@ -1,5 +1,6 @@
 ﻿using Aequus.Tiles;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

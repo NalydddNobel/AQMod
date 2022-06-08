@@ -34,38 +34,36 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
     {
-        public const int PHASE_HYPER_STARITE_PART2_ALT = 8;
-        public const int PHASE_OMEGA_LASER_PART0 = 7;
-        public const int PHASE_OMEGA_LASER = 6;
-        public const int PHASE_STAR_BULLETS = 5;
-        public const int PHASE_ASSAULT_PLAYER = 4;
-        public const int PHASE_HYPER_STARITE_PART2 = 3;
-        public const int PHASE_HYPER_STARITE_PART1 = 2;
-        public const int PHASE_HYPER_STARITE_PART0 = 1;
-        public const int PHASE_INIT = 0;
-        public const int PHASE_DEAD = -1;
-        public const int UNUSED_PHASE_NOVA = -2;
-        public const int PHASE_GOODBYE = -3;
+        public const int ACTION_LASER_ORBTIAL_2 = 8;
+        public const int ACTION_LASER_ORBITAL_1 = 7;
+        public const int ACTION_STARS = 6;
+        public const int ACTION_ASSAULT = 5;
+        public const int ACTION_ORBITAL_3 = 4;
+        public const int ACTION_ORBITAL_2 = 3;
+        public const int ACTION_ORBITAL_1 = 2;
+        public const int ACTION_UNUSED = -2;
+        public const int ACTION_DEAD = -3;
 
-        public const float CIRCUMFERENCE = 120;
-        public const float RADIUS = CIRCUMFERENCE / 2f;
+        public const float DIAMETER = 120;
+        public const float RADIUS = DIAMETER / 2f;
         private const float DEATHTIME = MathHelper.PiOver4 * 134;
-
-        public const int RING_1_SEGMENTCOUNT = 5;
-        public const int RING_2_SEGMENTCOUNT = 8;
-        public const int RING_3_SEGMENTCOUNT = 13;
-
-        public const float RING_1_SCALE = 1f;
-        public const float RING_2_SCALE = 1.1f;
-        public const float RING_2_SCALE_EXPERT = 1.2f;
-        public const float RING_3_SCALE = 1.45f;
-
-        public const float RING_2_CIRCUMFERENCEMULT = 1.5f;
-        public const float RING_2_CIRCUMFERENCEMULT_EXPERT = 1.75f;
-        public const float RING_3_CIRCUMFERENCEMULT = 2.5f;
 
         public class Ring : ICloneable
         {
+            public const int SEGMENTS_1 = 5;
+            public const int SEGMENTS_2 = 8;
+            public const int SEGMENTS_3 = 13;
+
+            public const float SCALE_1 = 1f;
+            public const float SCALE_2 = 1.1f;
+            public const float SCALE_2_EXPERT = 1.2f;
+
+            public const float RING_3_SCALE = 1.45f;
+
+            public const float DIAMETERMULT_2 = 1.5f;
+            public const float DIAMETERMULT_2_EXPERT = 1.75f;
+            public const float DIAMETERMULT_3 = 2.5f;
+
             public readonly byte amountOfSegments;
             public readonly float rotationOrbLoop;
             public readonly Vector3[] CachedPositions;
@@ -288,7 +286,7 @@ namespace Aequus.NPCs.Boss
             {
                 starDamageMultiplier *= 0.8f;
             }
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f) + 4000 * numPlayers;
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.7f * bossLifeScale);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -444,8 +442,8 @@ namespace Aequus.NPCs.Boss
                 return;
             }
             GlimmerInvasion.omegaStarite = (short)NPC.whoAmI;
-            Vector2 center = NPC.Center;
-            Player player = Main.player[NPC.target];
+            var center = NPC.Center;
+            var player = Main.player[NPC.target];
             var plrCenter = player.Center;
             float speed = NPC.velocity.Length();
             switch ((int)NPC.ai[0])
@@ -453,11 +451,11 @@ namespace Aequus.NPCs.Boss
                 default:
                     {
                         LerpToDefaultRotationVelocity();
-                        NPC.Center = plrCenter + new Vector2(0f, -CIRCUMFERENCE * 2f);
+                        NPC.Center = plrCenter + new Vector2(0f, -DIAMETER * 2f);
                     }
                     break;
 
-                case PHASE_OMEGA_LASER_PART0:
+                case ACTION_LASER_ORBTIAL_2:
                     {
                         if (NPC.ai[1] == 0f)
                         {
@@ -501,7 +499,7 @@ namespace Aequus.NPCs.Boss
                                 }
                                 if (PlrCheck())
                                 {
-                                    NPC.ai[0] = PHASE_OMEGA_LASER;
+                                    NPC.ai[0] = ACTION_LASER_ORBITAL_1;
                                     NPC.ai[1] = 0f;
                                     NPC.ai[3] = 3f + (1f - NPC.life / (float)NPC.lifeMax) * 1.5f;
                                 }
@@ -518,7 +516,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_OMEGA_LASER:
+                case ACTION_LASER_ORBITAL_1:
                     {
                         NPC.ai[2]++;
                         if (NPC.ai[2] > 1200f)
@@ -579,8 +577,8 @@ namespace Aequus.NPCs.Boss
                                 {
                                     var choices = new List<int>
                                     {
-                                        PHASE_ASSAULT_PLAYER,
-                                        PHASE_STAR_BULLETS,
+                                        ACTION_ASSAULT,
+                                        ACTION_STARS,
                                     };
                                     NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
                                     NPC.ai[1] = 0f;
@@ -690,7 +688,7 @@ namespace Aequus.NPCs.Boss
                             }
                             else
                             {
-                                const int width = (int)(CIRCUMFERENCE * 2f);
+                                const int width = (int)(DIAMETER * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
                                 Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
@@ -701,7 +699,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_STAR_BULLETS:
+                case ACTION_STARS:
                     {
                         LerpToDefaultRotationVelocity();
 
@@ -750,11 +748,11 @@ namespace Aequus.NPCs.Boss
                             }
                         }
                         float distance = (center - plrCenter).Length();
-                        if (distance > CIRCUMFERENCE * 3.75f)
+                        if (distance > DIAMETER * 3.75f)
                         {
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(plrCenter - center) * NPC.ai[2], 0.02f);
                         }
-                        else if (distance < CIRCUMFERENCE * 2.25f)
+                        else if (distance < DIAMETER * 2.25f)
                         {
                             NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(center - plrCenter) * NPC.ai[2], 0.02f);
                         }
@@ -765,7 +763,7 @@ namespace Aequus.NPCs.Boss
 
                         if (NPC.ai[1] > 480f)
                         {
-                            NPC.ai[0] = PHASE_HYPER_STARITE_PART0;
+                            NPC.ai[0] = ACTION_ORBITAL_1;
                             NPC.ai[1] = 0f;
                             NPC.ai[2] = 0f;
                             NPC.ai[3] = 0f;
@@ -773,85 +771,11 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_ASSAULT_PLAYER:
-                    {
-                        LerpToDefaultRotationVelocity();
-
-                        if (NPC.ai[1] < 0f)
-                        {
-                            NPC.ai[1]++;
-                            if (NPC.ai[2] == 0f)
-                            {
-                                if (PlrCheck())
-                                {
-                                    NPC.ai[2] = Main.expertMode ? 18f : 6f;
-                                }
-                                else
-                                {
-                                    break;
-                                }
-                            }
-                            NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(plrCenter - center) * NPC.ai[2], 0.02f);
-                        }
-                        else
-                        {
-                            if (!PlrCheck())
-                                break;
-                            if (NPC.ai[1] == 0f)
-                            {
-                                SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
-                                NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
-                                NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
-                            }
-                            if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < CIRCUMFERENCE)
-                            {
-                                NPC.ai[3]++;
-                                if (NPC.ai[3] > 5)
-                                {
-                                    NPC.ai[0] = PHASE_HYPER_STARITE_PART0;
-                                    NPC.ai[1] = 0f;
-                                    NPC.ai[3] = 0f;
-                                }
-                                else
-                                {
-                                    NPC.ai[1] = -NPC.ai[3] * 16;
-                                    if (Main.getGoodWorld || Vector2.Distance(plrCenter, center) > 120f)
-                                    {
-                                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                                        {
-                                            float lifePercent = NPC.life / (float)NPC.lifeMax;
-                                            if (Main.getGoodWorld || (Main.expertMode && lifePercent < 0.75f) || lifePercent < 0.6f)
-                                            {
-                                                SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, NPC.Center);
-                                                int type = ModContent.ProjectileType<OmegaStariteBullet>();
-                                                float speed2 = Main.expertMode ? 12.5f : 5.5f;
-                                                int damage = 15;
-                                                if (Main.expertMode)
-                                                    damage = 10;
-                                                float rot = MathHelper.TwoPi / (Main.getGoodWorld ? 10f : 5f) + 0.01f;
-                                                for (float f = 0f; f < MathHelper.TwoPi; f += rot)
-                                                {
-                                                    var v = f.ToRotationVector2();
-                                                    int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
-                                                    Main.projectile[p].timeLeft += 120;
-                                                }
-                                            }
-                                        }
-                                    }
-                                    NPC.netUpdate = true;
-                                }
-                                NPC.ai[2] = 0f;
-                            }
-                            else
-                            {
-                                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(new Vector2(NPC.ai[1], NPC.ai[2]) - center) * 20f, 0.025f);
-                            }
-                        }
-                    }
+                case ACTION_ASSAULT:
+                    Assault(center, plrCenter, player);
                     break;
 
-                case PHASE_HYPER_STARITE_PART2_ALT:
-                case PHASE_HYPER_STARITE_PART2:
+                case ACTION_ORBITAL_3:
                     {
                         NPC.ai[2]++;
                         if (NPC.ai[2] > 300f)
@@ -927,7 +851,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_HYPER_STARITE_PART1:
+                case ACTION_ORBITAL_2:
                     {
                         if (NPC.ai[1] == 0f)
                         {
@@ -961,7 +885,7 @@ namespace Aequus.NPCs.Boss
                                 }
                                 if (PlrCheck())
                                 {
-                                    NPC.ai[0] = Main.rand.NextBool() ? PHASE_HYPER_STARITE_PART2 : PHASE_HYPER_STARITE_PART2_ALT;
+                                    NPC.ai[0] = ACTION_ORBITAL_3;
                                     NPC.ai[1] = 0f;
                                     NPC.ai[3] = 3f + (1f - NPC.life / (float)NPC.lifeMax) * 1.5f;
                                 }
@@ -978,7 +902,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_HYPER_STARITE_PART0:
+                case ACTION_ORBITAL_1:
                     {
                         LerpToDefaultRotationVelocity();
                         if (NPC.ai[1] == 0f)
@@ -995,7 +919,7 @@ namespace Aequus.NPCs.Boss
                                 break;
                             }
                         }
-                        if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < CIRCUMFERENCE)
+                        if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < DIAMETER)
                         {
                             if (NPC.velocity.Length() < 2f)
                             {
@@ -1005,11 +929,11 @@ namespace Aequus.NPCs.Boss
                                     NPC.velocity *= 0.1f;
                                     if (NPC.life / (float)NPC.lifeMax < 0.5f)
                                     {
-                                        NPC.ai[0] = PHASE_OMEGA_LASER_PART0;
+                                        NPC.ai[0] = ACTION_LASER_ORBTIAL_2;
                                     }
                                     else
                                     {
-                                        NPC.ai[0] = PHASE_HYPER_STARITE_PART1;
+                                        NPC.ai[0] = ACTION_ORBITAL_2;
                                     }
                                     NPC.ai[1] = 0f;
                                     NPC.ai[2] = 0f;
@@ -1027,81 +951,32 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case PHASE_INIT:
-                case UNUSED_PHASE_NOVA:
-                    {
-                        //var choices = new List<int>
-                        //{
-                        //    PHASE_ASSAULT_PLAYER,
-                        //    PHASE_HYPER_STARITE_PART0,
-                        //};
-                        //NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
-                        //Initialize();
-                        //NPC.netUpdate = true;
-
-                        if (NPC.ai[1] == 0f)
-                        {
-                            int target = NPC.target;
-                            Initialize();
-                            NPC.netUpdate = true;
-                            NPC.target = target;
-                            NPC.ai[2] = plrCenter.Y - CIRCUMFERENCE * 2.5f;
-                        }
-                        LerpToDefaultRotationVelocity();
-                        if (center.Y > NPC.ai[2])
-                        {
-                            int[] choices = new int[] { PHASE_HYPER_STARITE_PART0, PHASE_ASSAULT_PLAYER };
-                            NPC.ai[0] = choices[Main.rand.Next(choices.Length)];
-                            NPC.ai[1] = 0f;
-                            NPC.ai[2] = 0f;
-                            NPC.netUpdate = true;
-                        }
-                        else
-                        {
-                            float fallSpeed = Main.getGoodWorld ? 56f : 36f;
-                            NPC.velocity.X = 0f;
-                            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, fallSpeed, 0.025f);
-                        }
-                    }
+                case ACTION_INTRO:
+                    Intro(center, plrCenter);
                     break;
 
-                case PHASE_DEAD:
-                    {
-                        for (int i = 0; i < rings.Count; i++)
-                        {
-                            rings[i].rotationVelocity *= 0f;
-                        }
-                        NPC.ai[1] += 0.5f;
-                        if (NPC.ai[1] > DEATHTIME * 1.314f)
-                        {
-                            NPC.life = -33333;
-                            NPC.HitEffect();
-                            NPC.checkDead();
-                        }
-                    }
+                case ACTION_INIT:
+                    int target = NPC.target;
+                    Initalize();
+                    NPC.netUpdate = true;
+                    NPC.target = target;
+                    NPC.ai[0] = ACTION_INTRO;
+                    NPC.ai[2] = plrCenter.Y - DIAMETER * 2.5f;
                     break;
 
-                case PHASE_GOODBYE:
-                    {
-                        if (NPC.timeLeft > 120)
-                            NPC.timeLeft = 120;
-                        NPC.velocity.X *= 0.975f;
-                        NPC.velocity.Y -= 0.2f;
+                case ACTION_GOODBYE:
+                    Goodbye();
+                    break;
 
-                        rings[0].yaw += 0.0314f;
-                        rings[0].roll += 0.0157f;
-                        rings[0].pitch += 0.01f;
-                        rings[1].yaw += 0.0157f;
-                        rings[1].roll += 0.0314f;
-                        rings[1].pitch += 0.011f;
-                    }
+                case ACTION_DEAD:
+                    Die();
                     break;
             }
             for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].Update(center + NPC.velocity);
             }
-            if (NPC.ai[0] != -1)
+            if (NPC.ai[0] != ACTION_DEAD)
             {
                 int chance = 10 - (int)speed;
                 if (chance < 2 || Main.rand.NextBool(chance))
@@ -1144,7 +1019,129 @@ namespace Aequus.NPCs.Boss
                 }
             }
         }
-        private void Initialize(bool bestiaryDummy = false)
+
+        public void Assault(Vector2 center, Vector2 plrCenter, Player player)
+        {
+            LerpToDefaultRotationVelocity();
+
+            if (NPC.ai[1] < 0f)
+            {
+                NPC.ai[1]++;
+                if (NPC.ai[2] == 0f)
+                {
+                    if (PlrCheck())
+                    {
+                        NPC.ai[2] = Main.expertMode ? 18f : 6f;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(plrCenter - center) * NPC.ai[2], 0.02f);
+            }
+            else
+            {
+                if (!PlrCheck())
+                    return;
+                if (NPC.ai[1] == 0f)
+                {
+                    SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
+                    NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
+                    NPC.ai[2] = plrCenter.Y + player.velocity.Y * 20f;
+                }
+                if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < DIAMETER)
+                {
+                    NPC.ai[3]++;
+                    if (NPC.ai[3] > 5)
+                    {
+                        NPC.ai[0] = ACTION_ORBITAL_1;
+                        NPC.ai[1] = 0f;
+                        NPC.ai[3] = 0f;
+                    }
+                    else
+                    {
+                        NPC.ai[1] = -NPC.ai[3] * 16;
+                        if (Main.getGoodWorld || Vector2.Distance(plrCenter, center) > 120f)
+                        {
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            {
+                                float lifePercent = NPC.life / (float)NPC.lifeMax;
+                                if (Main.getGoodWorld || (Main.expertMode && lifePercent < 0.75f) || lifePercent < 0.6f)
+                                {
+                                    SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, NPC.Center);
+                                    int type = ModContent.ProjectileType<OmegaStariteBullet>();
+                                    float speed2 = Main.expertMode ? 12.5f : 5.5f;
+                                    int damage = 15;
+                                    if (Main.expertMode)
+                                        damage = 10;
+                                    float rot = MathHelper.TwoPi / (Main.getGoodWorld ? 10f : 5f) + 0.01f;
+                                    for (float f = 0f; f < MathHelper.TwoPi; f += rot)
+                                    {
+                                        var v = f.ToRotationVector2();
+                                        int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
+                                        Main.projectile[p].timeLeft += 120;
+                                    }
+                                }
+                            }
+                        }
+                        NPC.netUpdate = true;
+                    }
+                    NPC.ai[2] = 0f;
+                }
+                else
+                {
+                    NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(new Vector2(NPC.ai[1], NPC.ai[2]) - center) * 20f, 0.025f);
+                }
+            }
+        }
+        public void Intro(Vector2 center, Vector2 plrCenter)
+        {
+            LerpToDefaultRotationVelocity();
+            if (center.Y > NPC.ai[2])
+            {
+                int[] choices = new int[] { ACTION_ORBITAL_1, ACTION_ASSAULT };
+                NPC.ai[0] = choices[Main.rand.Next(choices.Length)];
+                NPC.ai[1] = 0f;
+                NPC.ai[2] = 0f;
+                NPC.netUpdate = true;
+            }
+            else
+            {
+                float fallSpeed = Main.getGoodWorld ? 56f : 36f;
+                NPC.velocity.X = 0f;
+                NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, fallSpeed, 0.025f);
+            }
+        }
+        public void Die()
+        {
+            for (int i = 0; i < rings.Count; i++)
+            {
+                rings[i].rotationVelocity *= 0f;
+            }
+            NPC.ai[1] += 0.5f;
+            if (NPC.ai[1] > DEATHTIME * 1.314f)
+            {
+                NPC.life = -33333;
+                NPC.HitEffect();
+                NPC.checkDead();
+            }
+        }
+        public void Goodbye()
+        {
+            if (NPC.timeLeft > 120)
+                NPC.timeLeft = 120;
+            NPC.velocity.X *= 0.975f;
+            NPC.velocity.Y -= 0.2f;
+
+            rings[0].yaw += 0.0314f;
+            rings[0].roll += 0.0157f;
+            rings[0].pitch += 0.01f;
+            rings[1].yaw += 0.0157f;
+            rings[1].roll += 0.0314f;
+            rings[1].pitch += 0.011f;
+        }
+        private void Initalize(bool bestiaryDummy = false)
         {
             if (!bestiaryDummy)
                 NPC.TargetClosest(faceTarget: false);
@@ -1154,22 +1151,21 @@ namespace Aequus.NPCs.Boss
             rings = new List<Ring>();
             if (Main.expertMode)
             {
-                rings.Add(new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE, RING_1_SCALE));
-                if (Main.getGoodWorld)
+                rings.Add(new Ring(Ring.SEGMENTS_1, DIAMETER, Ring.SCALE_1));
+                if (!Main.getGoodWorld)
                 {
-                    rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT));
-
-                    rings.Add(new Ring(RING_3_SEGMENTCOUNT, CIRCUMFERENCE * RING_3_CIRCUMFERENCEMULT, RING_3_SCALE));
+                    rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2_EXPERT, Ring.SCALE_2_EXPERT));
                 }
                 else
                 {
-                    rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT_EXPERT, RING_2_SCALE_EXPERT));
+                    rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2_EXPERT, Ring.SCALE_2_EXPERT));
+                    rings.Add(new Ring(Ring.SEGMENTS_3, DIAMETER * Ring.DIAMETERMULT_3, Ring.RING_3_SCALE));
                 }
             }
             else
             {
-                rings.Add(new Ring(RING_1_SEGMENTCOUNT, CIRCUMFERENCE * 0.75f, RING_1_SCALE));
-                rings.Add(new Ring(RING_2_SEGMENTCOUNT, CIRCUMFERENCE * RING_2_CIRCUMFERENCEMULT, RING_2_SCALE));
+                rings.Add(new Ring(Ring.SEGMENTS_1, DIAMETER * 0.75f, Ring.SCALE_1));
+                rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2, Ring.SCALE_2));
             }
             for (int i = 0; i < rings.Count; i++)
             {
@@ -1187,9 +1183,9 @@ namespace Aequus.NPCs.Boss
         {
             NPC.TargetClosest(faceTarget: false);
             NPC.netUpdate = true;
-            if (Main.player[NPC.target].dead)
+            if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > 4000f)
             {
-                NPC.ai[0] = PHASE_GOODBYE;
+                NPC.ai[0] = ACTION_GOODBYE;
                 NPC.ai[1] = 0f;
                 NPC.ai[2] = 0f;
                 NPC.ai[3] = 0f;
@@ -1285,10 +1281,10 @@ namespace Aequus.NPCs.Boss
                 {
                     var choices = new List<int>
                     {
-                        PHASE_ASSAULT_PLAYER,
+                        ACTION_ASSAULT,
                     };
                     if (NPC.life / (float)NPC.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
-                        choices.Add(PHASE_STAR_BULLETS);
+                        choices.Add(ACTION_STARS);
                     if (choices.Count == 1)
                     {
                         NPC.ai[0] = choices[0];
@@ -1308,7 +1304,7 @@ namespace Aequus.NPCs.Boss
 
         public override void FindFrame(int frameHeight)
         {
-            if (NPC.ai[0] != -1)
+            if (NPC.ai[0] != ACTION_DEAD)
             {
                 NPC.frameCounter++;
                 if (NPC.frameCounter >= 6)
@@ -1323,13 +1319,13 @@ namespace Aequus.NPCs.Boss
 
         public override bool CheckDead()
         {
-            if (NPC.ai[0] == -1f)
+            if (Action == ACTION_DEAD)
             {
                 NPC.lifeMax = -33333;
                 return true;
             }
             //NPC.GetGlobalNPC<NoHitting>().preventNoHitCheck = true;
-            NPC.ai[0] = -1f;
+            NPC.ai[0] = ACTION_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
             NPC.ai[3] = 0f;
@@ -1374,7 +1370,7 @@ namespace Aequus.NPCs.Boss
             {
                 if ((int)NPC.ai[0] == 0)
                 {
-                    Initialize(bestiaryDummy: true);
+                    Initalize(bestiaryDummy: true);
                     NPC.ai[0]++;
                 }
                 LerpToDefaultRotationVelocity();
@@ -1413,7 +1409,7 @@ namespace Aequus.NPCs.Boss
             }
             float intensity = 1f;
 
-            if ((int)NPC.ai[0] == -1)
+            if (Action == ACTION_DEAD)
             {
                 intensity += NPC.ai[1] / 20;
                 if (NPC.CountNPCS(Type) == 1)
@@ -1521,7 +1517,7 @@ namespace Aequus.NPCs.Boss
                 {
                     if (prim == null)
                     {
-                        float radius = CIRCUMFERENCE / 2f;
+                        float radius = DIAMETER / 2f;
                         prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
@@ -1762,7 +1758,7 @@ namespace Aequus.NPCs.Boss
 
         public bool IsUltimateRayActive()
         {
-            return NPC.ai[0] == PHASE_OMEGA_LASER && NPC.ai[2] < 1200f;
+            return NPC.ai[0] == ACTION_LASER_ORBITAL_1 && NPC.ai[2] < 1200f;
         }
     }
 }
