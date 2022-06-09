@@ -27,6 +27,12 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.CrimtaneBar, 8)
+                .AddIngredient(ItemID.LifeCrystal)
+                .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .Register();
         }
     }
 }

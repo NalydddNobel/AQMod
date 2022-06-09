@@ -537,8 +537,6 @@ namespace Aequus
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
             UpdateBank(Player.bank4, 3);
-            ghostSlotsOld = ghostSlots;
-            ghostSlots = 0;
         }
         /// <summary>
         /// 
@@ -615,6 +613,8 @@ namespace Aequus
             {
                 UpdateZombies();
             }
+            ghostSlotsOld = ghostSlots;
+            ghostSlots = 0;
             CheckDanger();
             UpdateInheritingTurrets();
             TeamContext = 0;

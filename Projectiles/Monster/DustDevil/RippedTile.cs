@@ -44,7 +44,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
             Projectile.height = 16;
             Projectile.hostile = true;
             Projectile.aiStyle = -1;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 500;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
             Projectile.alpha = 255;
@@ -75,11 +75,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
             var npc = Main.npc[(int)Projectile.ai[1]];
             if (npc.active && (int)npc.ai[0] == NPCs.Boss.DustDevil.ACTION_SUCTIONTILES)
             {
-                if (npc.ai[1] < 120f)
-                {
-
-                }
-                else if ((int)npc.ai[1] == 120f)
+                if ((int)npc.ai[1] == 120f)
                 {
                     Projectile.ai[0] = 1f;
                     var tile = Main.tile[Projectile.Center.ToTileCoordinates()];
@@ -107,8 +103,8 @@ namespace Aequus.Projectiles.Monster.DustDevil
                     {
                         if (Projectile.timeLeft == 239)
                         {
+                            SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
                             Projectile.velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].Center - Projectile.Center) * 20f;
-                            Projectile.tileCollide = true;
                             Projectile.extraUpdates = 0;
                         }
                         else
@@ -119,19 +115,42 @@ namespace Aequus.Projectiles.Monster.DustDevil
                     }
                     else
                     {
+                        if (waveSpeed <= 0f)
+                        {
+                            Projectile.velocity = Vector2.Normalize(npc.Center - Projectile.Center);
+                            return;
+                        }
                         float orbitWidth = npc.width * 3f;
                         float y = randomYOffset + (float)Math.Sin(wave * 0.8f) * 10f;
                         NPCs.Boss.DustDevil.GetTornadoInfo(npc.height, y, out float _, out float _, out float progress);
                         var gotoPosition = npc.Center + new Vector2((float)Math.Sin(wave) * orbitWidth * progress, y);
                         Projectile.localAI[0] = (float)Math.Cos(wave);
                         var diff = gotoPosition - Projectile.Center;
-                        float div = 600f;
+                        float div = 200f;
                         float l = diff.Length();
-                        if (l < 200f)
+                        if (l < 400f)
                         {
-                            float amt = diff.Length() / 200f;
-                            div = MathHelper.Lerp(div, 50f, amt * amt);
                             wave += waveSpeed * (1f - progress);
+                        }
+                        if (l < 40f)
+                        {
+                            div = 10f;
+                        }
+                        else if (l < 100f)
+                        {
+                            div /= 6f;
+                        }
+                        else if (l < 200f)
+                        {
+                            div /= 3f;
+                        }
+                        else if (l < 300f)
+                        {
+                            div /= 2f;
+                        }
+                        else if (l < 400f)
+                        {
+                            div /= 1.5f;
                         }
                         Projectile.velocity = diff / Math.Max(div * waveSpeed, 1f);
                     }
@@ -188,17 +207,11 @@ namespace Aequus.Projectiles.Monster.DustDevil
                 for (int i = 0; i < trailLength; i++)
                 {
                     var p = AequusHelpers.CalcProgress(trailLength, i);
-                    Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor * p * p * 0.55f,
+                    Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor.UseA(100) * p * p * 0.55f,
                         Projectile.oldRot[i], origin, Projectile.scale * (0.6f + 0.4f * p), SpriteEffects.None, 0f);
                 }
             }
             return false;
-        }
-
-        public override void Kill(int timeLeft)
-        {
-            Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
-            SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
         }
 
         public override void SendExtraAI(BinaryWriter writer)

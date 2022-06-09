@@ -77,7 +77,6 @@ namespace Aequus.Content.Necromancy
                 [NPCID.WalkingAntlion] = GhostInfo.One,
                 [NPCID.LarvaeAntlion] = GhostInfo.One,
                 [NPCID.GreekSkeleton] = GhostInfo.One,
-                [NPCID.FaceMonster] = GhostInfo.One,
                 [NPCID.JungleBat] = GhostInfo.One,
                 [NPCID.UndeadViking] = GhostInfo.One,
                 [NPCID.WallCreeper] = GhostInfo.One,

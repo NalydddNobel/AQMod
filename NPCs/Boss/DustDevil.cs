@@ -18,10 +18,15 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
+        public const int ACTION_FIREBALLS = 4;
+        public const int ACTION_SUCTIONENEMIES = 3;
         public const int ACTION_SUCTIONTILES = 2;
 
         public float HPRatio => NPC.life / (float)NPC.lifeMax;
         public bool PhaseTwo => NPC.life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
+
+        public int SecondaryAction { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
+        public float DirectActionTimer { get => NPC.ai[3]; set => NPC.ai[3] = value; }
 
         //public override bool IsLoadingEnabled(Mod mod)
         //{
@@ -69,7 +74,7 @@ namespace Aequus.NPCs.Boss
             NPC.width = 100;
             NPC.height = 100;
             NPC.lifeMax = 14500;
-            NPC.damage = 50;
+            NPC.damage = 25;
             NPC.defense = 12;
             NPC.aiStyle = -1;
             NPC.noTileCollide = true;
@@ -81,6 +86,11 @@ namespace Aequus.NPCs.Boss
             NPC.value = Item.buyPrice(gold: 10);
             NPC.lavaImmune = true;
             NPC.trapImmune = true;
+
+            if (Main.getGoodWorld)
+            {
+                NPC.height *= 10;
+            }
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -117,6 +127,14 @@ namespace Aequus.NPCs.Boss
 
             switch (Action)
             {
+                case ACTION_FIREBALLS:
+                    Fireballs();
+                    break;
+
+                case ACTION_SUCTIONENEMIES:
+                    SuctionEnemies();
+                    break;
+
                 case ACTION_SUCTIONTILES:
                     SuctionTiles();
                     break;
@@ -134,6 +152,13 @@ namespace Aequus.NPCs.Boss
                     break;
             }
 
+            if (Main.getGoodWorld)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    UpdateEffects();
+                }
+            }
             UpdateEffects();
         }
 
@@ -167,14 +192,78 @@ namespace Aequus.NPCs.Boss
             auraTimer++;
         }
 
+        public void Fireballs()
+        {
+            ActionTimer++;
+            if (ActionTimer == 60 || ActionTimer == 150)
+            {
+                NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
+                NPC.netUpdate = true;
+            }
+            if (ActionTimer == 90 || ActionTimer == 180)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    foreach (var v in AequusHelpers.CircularVector(8, ActionTimer == 180 ? (MathHelper.PiOver4 / 2f) : 0f))
+                    {
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center,
+                            v * 10f, ModContent.ProjectileType<DustDevilFireball>(), CalcDamage(1.25f), 1f, Main.myPlayer);
+                    }
+                }
+                NPC.netUpdate = true;
+            }
+            if (ActionTimer >= 220)
+            {
+                int newPhase = SecondaryAction;
+                ClearAI();
+                Action = newPhase;
+            }
+            NPC.velocity *= 0.95f;
+        }
+
+        public void SuctionEnemies()
+        {
+            ActionTimer++;
+            if (ActionTimer <= 120)
+            {
+                int delay = Main.getGoodWorld ? 10 : Main.expertMode ? 25 : 50;
+
+                if (ActionTimer % delay == 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        if (SuctionEnemies_EnsureYouWontBreakTheNPCCap())
+                        {
+                            var point = ScanTilePoint(Main.rand.NextVector2Unit()).ToWorldCoordinates() + new Vector2(8f);
+                            Projectile.NewProjectile(NPC.GetSource_FromThis(), point, Vector2.Normalize(NPC.Center - point),
+                                ModContent.ProjectileType<SuctionedEnemy>(), CalcDamage(), 1f, Main.myPlayer, ai1: NPC.whoAmI);
+                        }
+                    }
+                }
+                NPC.velocity = -Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
+            }
+            else
+            {
+                if (ActionTimer > 400)
+                {
+                    SetAction(ACTION_SUCTIONTILES);
+                }
+                NPC.velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 2f;
+            }
+        }
+        public bool SuctionEnemies_EnsureYouWontBreakTheNPCCap()
+        {
+            return Main.npc.Count((n) => n.active) <= Main.maxNPCs - 20;
+        }
+
         public void SuctionTiles()
         {
-            if (!CheckTargets())
-            {
-                return;
-            }
             if ((int)ActionTimer == 0)
             {
+                if (!CheckTargets())
+                {
+                    return;
+                }
                 NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
             }
             else
@@ -185,15 +274,6 @@ namespace Aequus.NPCs.Boss
             ActionTimer++;
             if (ActionTimer <= 120)
             {
-                if (ActionTimer % 5 == 0)
-                {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        var point = SuctionTiles_Scan(Main.rand.NextVector2Unit()).ToWorldCoordinates() + new Vector2(8f);
-                        Projectile.NewProjectile(NPC.GetSource_FromThis(), point, Vector2.Normalize(NPC.Center - point),
-                            ModContent.ProjectileType<RippedTile>(), CalcDamage(), 1f, Main.myPlayer, ai1: NPC.whoAmI);
-                    }
-                }
                 if (ActionTimer == 120)
                 {
                     if (!CheckTargets())
@@ -206,13 +286,36 @@ namespace Aequus.NPCs.Boss
                         SoundEngine.PlaySound(SoundID.Item14);
                     }
                 }
+                else 
+                {
+                    int delay = Main.getGoodWorld ? 1 : Main.expertMode ? 5 : 10;
+
+                    if (PhaseTwo)
+                    {
+                        delay *= 2;
+                    }
+
+                    if (ActionTimer % delay == 0)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
+                            var point = ScanTilePoint(Main.rand.NextVector2Unit()).ToWorldCoordinates() + new Vector2(8f);
+                            Projectile.NewProjectile(NPC.GetSource_FromThis(), point, Vector2.Normalize(NPC.Center - point),
+                                ModContent.ProjectileType<RippedTile>(), CalcDamage(), 1f, Main.myPlayer, ai1: NPC.whoAmI);
+                        }
+                    }
+                }
             }
             else 
             {
+                if (ActionTimer > 400)
+                {
+                    SetAction(ACTION_SUCTIONENEMIES);
+                }
                 NPC.velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
             }
         }
-        public Point SuctionTiles_Scan(Vector2 dir)
+        public Point ScanTilePoint(Vector2 dir)
         {
             var center = NPC.Center;
             dir = Vector2.Normalize(dir) * 16f;
@@ -220,13 +323,14 @@ namespace Aequus.NPCs.Boss
             for (int i = 0; i < scanTiles; i++)
             {
                 var point = (center + dir * i).ToTileCoordinates();
-                if (Main.tile[point].IsSolid())
+                if (!WorldGen.InWorld(point.X, point.Y, 10) || Main.tile[point].IsSolid())
                 {
                     return point;
                 }
             }
             return (center + dir * scanTiles).ToTileCoordinates();
         }
+
         public void Intro()
         {
             if (ActionTimer < 120f)
@@ -236,6 +340,13 @@ namespace Aequus.NPCs.Boss
                     if (!CheckTargets())
                     {
                         return;
+                    }
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        for (int i = 0; i < 100; i++)
+                        {
+                            UpdateEffects();
+                        }
                     }
                     NPC.velocity.X = 0f;
                     NPC.velocity.Y = 6f;
@@ -262,15 +373,8 @@ namespace Aequus.NPCs.Boss
                 }
                 SetAction(ACTION_SUCTIONTILES);
             }
-
-            if (Main.netMode != NetmodeID.Server)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    UpdateEffects();
-                }
-            }
         }
+
         public void Goodbye()
         {
             if (NPC.ai[1] < 60f)
@@ -296,15 +400,23 @@ namespace Aequus.NPCs.Boss
             }
         }
 
-        public int CalcDamage()
+        public int CalcDamage(float mult = 1f)
         {
-            return NPC.damage;
+            return (int)((Main.masterMode ? NPC.damage / 3 : Main.expertMode ? NPC.damage / 2 : NPC.damage) * mult);
         }
 
         public void SetAction(int phase)
         {
             ClearAI();
-            Action = phase;
+            if (PhaseTwo)
+            {
+                SecondaryAction = phase;
+                Action = ACTION_FIREBALLS;
+            }
+            else
+            {
+                Action = phase;
+            }
         }
         public bool CheckTargets(float checkDistance = 4000f)
         {
