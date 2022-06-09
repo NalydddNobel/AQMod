@@ -1616,7 +1616,7 @@ namespace Aequus.NPCs.Boss
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .AddOptions(1, ModContent.ItemType<Raygun>())
                 .Add<LightMatter>(stack: (14, 20))
-                .Add<CosmicEnergy>(stack: (3, 6))
+                .Add<CosmicEnergy>(stack: 3)
                 .RegisterCondition();
         }
 

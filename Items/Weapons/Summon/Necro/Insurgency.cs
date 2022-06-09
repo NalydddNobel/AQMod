@@ -27,7 +27,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
             CreateRecipe()
                 .AddIngredient<Revenant>()
                 .AddIngredient<Hexoplasm>(12)
-                .AddIngredient<DemonicEnergy>(5)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

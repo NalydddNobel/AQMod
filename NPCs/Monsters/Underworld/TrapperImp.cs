@@ -184,7 +184,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<DemonicEnergy>(chance: 6, stack: 1)
+                .Add<DemonicEnergy>(chance: 10, stack: 1)
                 .Add(ItemID.ObsidianRose, chance: 16, stack: 1);
         }
 

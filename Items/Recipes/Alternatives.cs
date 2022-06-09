@@ -31,7 +31,7 @@ namespace Aequus.Items.Recipes
                         if (j == 1)
                         {
                             r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-                            r.requiredItem[j].stack = 5;
+                            r.requiredItem[j].stack = 1;
                         }
                     }
                 }
@@ -46,7 +46,7 @@ namespace Aequus.Items.Recipes
                         if (j == 1)
                         {
                             r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-                            r.requiredItem[j].stack = 2;
+                            r.requiredItem[j].stack = 1;
                         }
                     }
                 }

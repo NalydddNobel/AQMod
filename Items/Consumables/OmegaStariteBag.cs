@@ -31,7 +31,6 @@ namespace Aequus.Items.Consumables
             {
                 player.QuickSpawnItem(source, ModContent.ItemType<OmegaStariteMask>());
             }
-            player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), Main.rand.Next(4) + 5);
             player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), Main.rand.Next(7) + 18);
             player.QuickSpawnItem(source, ItemID.FallenStar, Main.rand.Next(11) + 20);
 

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics;
+using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +18,7 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
-        public const int ACTION_ = 2;
+        public const int ACTION_SUCTIONTILES = 2;
 
         public float HPRatio => NPC.life / (float)NPC.lifeMax;
         public bool PhaseTwo => NPC.life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
@@ -29,6 +31,18 @@ namespace Aequus.NPCs.Boss
         public List<DustParticle> dust;
         public int effectsTimer;
         public int auraTimer;
+
+        public static DrawIndexCache DrawBack { get; internal set; }
+        public static DrawIndexCache DrawFront { get; internal set; }
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                DrawBack = new DrawIndexCache();
+                DrawFront = new DrawIndexCache();
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -93,10 +107,18 @@ namespace Aequus.NPCs.Boss
         {
             MonsterSpawns.ForceZen(NPC);
 
+            if (Action != ACTION_GOODBYE && !NPC.HasValidTarget)
+            {
+                if (!CheckTargets())
+                {
+                    return;
+                }
+            }
+
             switch (Action)
             {
-                case ACTION_:
-                    _();
+                case ACTION_SUCTIONTILES:
+                    SuctionTiles();
                     break;
 
                 case ACTION_INTRO:
@@ -126,7 +148,11 @@ namespace Aequus.NPCs.Boss
             {
                 dust = new List<DustParticle>();
             }
-            dust.Add(new DustParticle(0f, NPC.height * 1.5f, 0f) { waveTime = Main.rand.NextFloat(MathHelper.TwoPi) });
+            int amt = Main.rand.Next((int)Math.Max(20 * HPRatio * HPRatio, 2));
+            for (int i = 0; i < amt; i++)
+            {
+                dust.Add(new DustParticle(0f, NPC.height * 1.5f, 0f) { waveTime = Main.rand.NextFloat(MathHelper.TwoPi) });
+            }
 
             for (int i = 0; i < dust.Count; i++)
             {
@@ -141,13 +167,69 @@ namespace Aequus.NPCs.Boss
             auraTimer++;
         }
 
-        public void _()
+        public void SuctionTiles()
         {
-
+            if (!CheckTargets())
+            {
+                return;
+            }
+            if ((int)ActionTimer == 0)
+            {
+                NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
+            }
+            else
+            {
+                NPC.velocity *= 0.95f;
+            }
+            
+            ActionTimer++;
+            if (ActionTimer <= 120)
+            {
+                if (ActionTimer % 5 == 0)
+                {
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        var point = SuctionTiles_Scan(Main.rand.NextVector2Unit()).ToWorldCoordinates() + new Vector2(8f);
+                        Projectile.NewProjectile(NPC.GetSource_FromThis(), point, Vector2.Normalize(NPC.Center - point),
+                            ModContent.ProjectileType<RippedTile>(), CalcDamage(), 1f, Main.myPlayer, ai1: NPC.whoAmI);
+                    }
+                }
+                if (ActionTimer == 120)
+                {
+                    if (!CheckTargets())
+                    {
+                        return;
+                    }
+                    if (Aequus.ShouldDoScreenEffect(NPC.Center))
+                    {
+                        Shake(10);
+                        SoundEngine.PlaySound(SoundID.Item14);
+                    }
+                }
+            }
+            else 
+            {
+                NPC.velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
+            }
+        }
+        public Point SuctionTiles_Scan(Vector2 dir)
+        {
+            var center = NPC.Center;
+            dir = Vector2.Normalize(dir) * 16f;
+            int scanTiles = 75;
+            for (int i = 0; i < scanTiles; i++)
+            {
+                var point = (center + dir * i).ToTileCoordinates();
+                if (Main.tile[point].IsSolid())
+                {
+                    return point;
+                }
+            }
+            return (center + dir * scanTiles).ToTileCoordinates();
         }
         public void Intro()
         {
-            if (ActionTimer < 60f)
+            if (ActionTimer < 120f)
             {
                 if ((int)ActionTimer == 0)
                 {
@@ -178,9 +260,16 @@ namespace Aequus.NPCs.Boss
                         return;
                     }
                 }
-                SetAction(ACTION_);
+                SetAction(ACTION_SUCTIONTILES);
             }
 
+            if (Main.netMode != NetmodeID.Server)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    UpdateEffects();
+                }
+            }
         }
         public void Goodbye()
         {
@@ -207,6 +296,11 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public int CalcDamage()
+        {
+            return NPC.damage;
+        }
+
         public void SetAction(int phase)
         {
             ClearAI();
@@ -226,65 +320,19 @@ namespace Aequus.NPCs.Boss
             return true;
         }
 
-        public Vector2 GetTo(Vector2 spot, float addSpeedX = 0.8f, float addSpeedY = 0.4f, float maxSpeed = 20f, float wrongWayMultiplier = 0.96f, float minDistance = 50f)
+        public static void AddDraw(int proj, float z)
         {
-            if (NPC.Distance(spot) < minDistance)
+            if (z > 0f)
             {
-                return NPC.velocity;
+                DrawBack.Add(proj);
+                return;
             }
-
-            var velocity = NPC.velocity;
-            if (NPC.position.X < spot.X)
-            {
-                if (velocity.X < maxSpeed)
-                {
-                    velocity.X += addSpeedX;
-                    if (velocity.X < 0f)
-                    {
-                        velocity.X *= wrongWayMultiplier;
-                    }
-                }
-            }
-            else
-            {
-                if (velocity.X > -maxSpeed)
-                {
-                    velocity.X -= addSpeedX;
-                    if (velocity.X > 0f)
-                    {
-                        velocity.X *= wrongWayMultiplier;
-                    }
-                }
-            }
-
-            if (NPC.position.Y < spot.Y)
-            {
-                if (velocity.Y < maxSpeed)
-                {
-                    velocity.Y += addSpeedX;
-                    if (velocity.Y < 0f)
-                    {
-                        velocity.Y *= wrongWayMultiplier;
-                    }
-                }
-            }
-            else
-            {
-                if (velocity.Y > -maxSpeed)
-                {
-                    velocity.Y -= addSpeedX;
-                    if (velocity.Y > 0f)
-                    {
-                        velocity.Y *= wrongWayMultiplier;
-                    }
-                }
-            }
-
-            return velocity;
+            DrawFront.Add(proj);
         }
-        public Vector2 GetTo(Vector2 spot, float addSpeed = 0.8f, float maxSpeed = 20f, float wrongWayMultiplier = 0.96f, float minDistance = 50f)
+
+        public static bool CurrentlyDrawing(float z)
         {
-            return GetTo(spot, addSpeed, addSpeed, maxSpeed, wrongWayMultiplier, minDistance);
+            return z > 0f ? DrawBack.renderingNow : DrawFront.renderingNow;
         }
 
         public override void BossLoot(ref string name, ref int potionType)
@@ -306,9 +354,7 @@ namespace Aequus.NPCs.Boss
             NPC.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
 
             DrawDustnado(spriteBatch, NPC.position + offset, screenPos, dust.Where((v) => v.Z > 0f));
-
             DrawHead(spriteBatch, texture, offset, screenPos, frame, origin);
-
             DrawDustnado(spriteBatch, NPC.position + offset, screenPos, dust.Where((v) => v.Z <= 0f));
 
             return false;
@@ -346,6 +392,13 @@ namespace Aequus.NPCs.Boss
 
                 spriteBatch.Draw(texture.Value, drawPosition, frame, d.color * drawScale * d.Opacity, d.rotation, origin, drawScale, SpriteEffects.None, 0f);
             }
+        }
+
+        public static void GetTornadoInfo(float npcHeight, float y, out float start, out float end, out float progress)
+        {
+            start = npcHeight * 1.5f;
+            end = -start;
+            progress = (-y + start) / (start * 2f);
         }
 
         public class DustParticle
@@ -399,8 +452,7 @@ namespace Aequus.NPCs.Boss
             {
                 position.Y += yVelocity;
                 rotation += rotVelocity;
-                float start = npcHeight * 1.5f;
-                float end = -start;
+                GetTornadoInfo(npcHeight, position.Y, out float start, out float end, out float progress);
                 if (position.Y < end)
                 {
                     alpha += Main.rand.Next(6);
@@ -410,11 +462,10 @@ namespace Aequus.NPCs.Boss
                         return false;
                     }
                 }
-                position.X = (float)Math.Sin(waveTime + position.Y * 0.05f);
-                float progress = (-position.Y + start) / (start * 2f);
+                position.X = (float)Math.Sin((waveTime + position.Y * 0.05f * (1f - progress)));
                 position.X *= npcWidth * progress * Math.Min(progress * 3f, 1f);
                 position.X += npcWidth * progress * 0.2f * (float)Math.Sin(effectsTimer * 0.025f + position.Y * 0.1225f);
-                position.Z = (float)Math.Cos(waveTime + position.Y * 0.05f);
+                position.Z = (float)Math.Cos(waveTime + position.Y * 0.05f) * progress;
                 if (progress < 0.4f)
                 {
                     scale2 = progress / 0.4f;

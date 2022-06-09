@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.NPCs.Boss;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics;
@@ -84,37 +85,54 @@ namespace Aequus.Graphics
                     Main.instance.DrawNPC(NPCsBehindAllNPCs.Index(i), behindTiles);
                 }
                 NPCsBehindAllNPCs.Clear();
+
+                if (!behindTiles)
+                {
+                    DustDevil.DrawBack.renderingNow = true;
+                    for (int i = 0; i < DustDevil.DrawBack.Count; i++)
+                    {
+                        Main.instance.DrawProj(DustDevil.DrawBack.Index(i));
+                    }
+                    DustDevil.DrawBack.Clear();
+                }
             }
             catch
             {
                 NPCsBehindAllNPCs?.Clear();
                 NPCsBehindAllNPCs = new DrawIndexCache();
+                DustDevil.DrawBack?.Clear();
+                DustDevil.DrawBack = new DrawIndexCache();
             }
-            //if (!behindTiles)
-            //{
-            //    GoreNestRenderer.Render();
-            //    UltimateSwordRenderer.Render();
-            //}
+
             orig(self, behindTiles);
-            if (behindTiles)
+
+            try
             {
-                try
+                if (behindTiles)
                 {
                     ProjsBehindTiles.renderingNow = true;
-                    if (ProjsBehindTiles != null)
+                    for (int i = 0; i < ProjsBehindTiles.Count; i++)
                     {
-                        for (int i = 0; i < ProjsBehindTiles.Count; i++)
-                        {
-                            Main.instance.DrawProj(ProjsBehindTiles.Index(i));
-                        }
+                        Main.instance.DrawProj(ProjsBehindTiles.Index(i));
                     }
                     ProjsBehindTiles.Clear();
                 }
-                catch
+                else
                 {
-                    ProjsBehindTiles?.Clear();
-                    ProjsBehindTiles = new DrawIndexCache();
+                    DustDevil.DrawFront.renderingNow = true;
+                    for (int i = 0; i < DustDevil.DrawFront.Count; i++)
+                    {
+                        Main.instance.DrawProj(DustDevil.DrawFront.Index(i));
+                    }
+                    DustDevil.DrawFront.Clear();
                 }
+            }
+            catch
+            {
+                ProjsBehindTiles?.Clear();
+                ProjsBehindTiles = new DrawIndexCache();
+                DustDevil.DrawFront?.Clear();
+                DustDevil.DrawFront = new DrawIndexCache();
             }
         }
     }

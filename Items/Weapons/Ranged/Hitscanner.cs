@@ -82,7 +82,7 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient(ItemID.Boomstick)
                 .AddIngredient(ItemID.MythrilBar, 12)
                 .AddIngredient(ItemID.SoulofNight, 8)
-                .AddIngredient<DemonicEnergy>(5)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

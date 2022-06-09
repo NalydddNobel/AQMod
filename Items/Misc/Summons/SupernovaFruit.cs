@@ -157,7 +157,7 @@ namespace Aequus.Items.Misc.Summons
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<CosmicEnergy>(5)
+                .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.HellstoneBar, 15)
                 .AddTile(TileID.DemonAltar)
                 .Register();

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
@@ -25,7 +25,7 @@ namespace Aequus.Items.Consumables
             {
                 player.QuickSpawnItem(source, ModContent.ItemType<CrabsonMask>());
             }
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), Main.rand.Next(4) + 5);
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<CrabCasing>(), Main.rand.Next(4) + 3);
             DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), });
             //AQMod.AequusDeveloperItems(player, hardmode: false);
             //player.QuickSpawnItem(ModContent.ItemType<Crabax>());

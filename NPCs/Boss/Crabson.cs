@@ -3,6 +3,7 @@ using Aequus.Graphics;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.NPCs.Friendly;
@@ -836,11 +837,12 @@ namespace Aequus.NPCs.Boss
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
+                .Add<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
+                .Add<CrabCasing>(stack: (3, 6))
                 .AddOptions(1, ModContent.ItemType<Mendshroom>())
-                .Add<AquaticEnergy>(stack: (3, 6))
                 .RegisterCondition();
         }
 
