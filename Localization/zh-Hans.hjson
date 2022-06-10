@@ -1,6 +1,7 @@
 Mods: {
 	Aequus: {
 		Bestiary: {
+			DustDevil: 一种几乎可以控制所有元素的强大元素. 操纵气流从而形成强大的旋风! 它的名字源于它强大的吸力吸入了很多灰尘.
 			OmegaStarite: 从外太空被派去寻找有价值的资源. 星源生命周期中的一种异常现象, 需要来自其外壳的持续生命支持, 作为交换, 它可以产生大量的能量.
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
 			
@@ -149,6 +150,7 @@ Mods: {
 			SentrySquid: 哨兵乌贼
 			IcebergKraken: 冰山海妖
 			GrandReward: 豪华奖励
+			Reliefshroom: 息灵菇
 			Mendshroom: 愈灵菇
 			GlowCore: 发光核心
 
@@ -594,7 +596,8 @@ Mods: {
 				'太可爱了'
 				'''
 			GrandReward: 敌人更容易掉落稀有物品
-			Mendshroom: 站定不动时会治疗你自己和附近的队友
+			Reliefshroom: 移动时会大幅度增加生命恢复速度
+			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
 			GlowCore: 你和你的弹幕会发光
 
 			LegendberryBait: 有更高的几率钓到稀有鱼类
@@ -1269,6 +1272,7 @@ Mods: {
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
 
+			ReliefshroomBuff: 息灵菇
 			MendshroomBuff: 愈灵菇
 
 			Omori: 朋友
@@ -1325,6 +1329,7 @@ Mods: {
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
 
+			ReliefshroomBuff: 你正在被治愈!
 			MendshroomBuff: 你正在被队友治愈!
 
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
