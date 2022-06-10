@@ -1,7 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -27,7 +25,7 @@ namespace Aequus.Items.Accessories.Healing
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var relief = player.GetModPlayer<ReliefshroomPlayer>();
-            relief.Add(regen: 8);
+            relief.Add(regen: 12);
 
             if (relief.EffectActive && Main.rand.NextBool(12))
             {
@@ -35,6 +33,15 @@ namespace Aequus.Items.Accessories.Healing
                 d.velocity *= 0.2f;
                 d.velocity -= player.velocity * 0.2f;
             }
+        }
+
+        public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+        {
+            return CheckMendshroom(equippedItem) && CheckMendshroom(incomingItem);
+        }
+        public bool CheckMendshroom(Item item)
+        {
+            return item.type != ModContent.ItemType<Mendshroom>();
         }
 
         public override void AddRecipes()
@@ -82,6 +89,14 @@ namespace Aequus.Items.Accessories.Healing
         {
             Player.AddLifeRegen(increasedRegen);
             increasedRegen = 0;
+        }
+
+        public override void PostUpdateEquips()
+        {
+            if (EffectActive)
+            {
+                HealPlayer(Player.whoAmI);
+            }
         }
 
         public void Add(int regen)

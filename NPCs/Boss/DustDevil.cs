@@ -1,5 +1,7 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
 using Aequus.Graphics;
+using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;
@@ -11,6 +13,7 @@ using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -93,11 +96,25 @@ namespace Aequus.NPCs.Boss
             {
                 NPC.height *= 10;
             }
+
+            this.SetBiome<GaleStreamsInvasion>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f * bossLifeScale);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.SkyBiome);
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            this.CreateLoot(npcLoot)
+                .Add<AtmosphericEnergy>(stack: 3);
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -553,6 +570,13 @@ namespace Aequus.NPCs.Boss
             if (dust == null)
             {
                 dust = new List<DustParticle>();
+                if (NPC.IsABestiaryIconDummy)
+                {
+                    for (int i = 0; i < 500; i++)
+                    {
+                        UpdateEffects();
+                    }
+                }
             }
             if (NPC.IsABestiaryIconDummy)
             {
