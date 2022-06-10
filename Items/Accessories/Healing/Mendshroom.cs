@@ -37,8 +37,6 @@ namespace Aequus.Items.Accessories.Healing
                     Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<MendshroomAuraProj>(),
                         0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
                 }
-                var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                var d = Dust.NewDustPerfect(player.Center + v * Main.rand.NextFloat(stat.diameter / 2f), ModContent.DustType<MonoDust>(), -v, 0, new Color(10, 100, 20, 25));
             }
         }
     }
@@ -105,7 +103,7 @@ namespace Aequus.Items.Accessories.Healing
         public void Add(float circumference, int regen)
         {
             diameter = Math.Max(diameter, circumference);
-            regenerationToGive += regen;
+            regenerationToGive = Math.Max(regenerationToGive, regen);
         }
 
         public void HealPlayers()

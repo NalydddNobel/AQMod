@@ -76,6 +76,11 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+        public static float Opacity(this Dust dust)
+        {
+            return 1f - dust.alpha / 255f;
+        }
+
         public static float Angle(Vector2 me, Vector2 to)
         {
             return (to - me).ToRotation();

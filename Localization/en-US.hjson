@@ -149,6 +149,7 @@ Mods: {
 			SentrySquid: Sentry Squid
 			IcebergKraken: Iceberg Kraken
 			GrandReward: Grand Reward
+			Reliefshroom: Reliefshroom
 			Mendshroom: Mendshroom
 			GlowCore: Glow Core
 
@@ -594,6 +595,7 @@ Mods: {
 				'Just too cute'
 				'''
 			GrandReward: Enemies are more likely to drop rarer items
+			Reliefshroom: Moving will heal yourself
 			Mendshroom: Standing still will heal yourself and nearby teammates
 			GlowCore: You and your projectiles emit light
 

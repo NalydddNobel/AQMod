@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -60,6 +61,12 @@ namespace Aequus.Projectiles.Misc
             if (mendshroom?.EffectActive == true)
             {
                 mendshroom.HealPlayers();
+                if (Main.rand.NextBool(10))
+                {
+                    var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                    Dust.NewDustPerfect(mendshroom.Player.Center + v * Main.rand.NextFloat(Projectile.scale / 2f * 0.9f), ModContent.DustType<MendshroomDustSpore>(), -v, 255, new Color(10, 100, 20, 25));
+                }
+                Lighting.AddLight(mendshroom.Player.Center, Color.Green.ToVector3());
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, mendshroom.diameter, 0.2f);
             }
             else
@@ -75,6 +82,7 @@ namespace Aequus.Projectiles.Misc
             {
                 Projectile.netUpdate = true;
             }
+
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)

@@ -7,14 +7,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster.DustDevil
 {
-    public class DustDevilFireball : ModProjectile
+    public class DustDevilFrostball : ModProjectile
     {
-        public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.Flamelash;
-
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
-        }
+        public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.RainbowCrystalExplosion;
 
         public override void SetDefaults()
         {
@@ -24,12 +19,12 @@ namespace Aequus.Projectiles.Monster.DustDevil
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.alpha = 255;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 300;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White * Projectile.Opacity;
+            return new Color(70, 235, 255) * Projectile.Opacity;
         }
 
         public override bool? CanDamage()
@@ -52,32 +47,32 @@ namespace Aequus.Projectiles.Monster.DustDevil
                     return;
                 }
                 float dir = Math.Sign(Projectile.ai[0]);
-                float power = Math.Clamp((float)Math.Pow(Projectile.ai[0].Abs() / 60f, 2f), 0.1f, 1f);
+                float power = Math.Clamp((float)Math.Pow(Projectile.ai[0].Abs() / 120f, 2f), 0.1f, 1f);
 
-                Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[1] * power;
+                Projectile.velocity = Vector2.Normalize(Projectile.velocity.RotatedBy(0.01f * dir)) * Projectile.ai[1] * power;
                 Projectile.alpha = 0;
                 Projectile.ai[0] += dir;
             }
-            Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
             if (Projectile.alpha < 10)
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-                Main.dust[d].velocity = Vector2.Lerp(Projectile.velocity, Main.dust[d].velocity, 0.5f);
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost);
+                Main.dust[d].velocity = Vector2.Lerp(-Projectile.velocity, Main.dust[d].velocity, 0.5f);
                 Main.dust[d].scale = Main.rand.NextFloat(0.9f, 2f);
                 Main.dust[d].noGravity = true;
             }
-            Projectile.LoopingFrame(4);
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 240);
+            target.AddBuff(BuffID.Frostburn, 240);
+            target.AddBuff(BuffID.Chilled, 600);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) , Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation + MathHelper.PiOver2, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
             return false;
         }
     }

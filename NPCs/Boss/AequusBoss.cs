@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +13,8 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_INIT = 0;
         public const int ACTION_INTRO = 1;
 
+        public int horizontalFrames = 1;
+
         public int Action { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
         public float ActionTimer { get => NPC.ai[1]; set => NPC.ai[1] = value; }
 
@@ -20,6 +23,18 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
+        }
+
+        public void SetFrame(int y, int x = 0)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+            var t = TextureAssets.Npc[Type].Value;
+            int w = t.Width / horizontalFrames;
+            int h = t.Height / Main.npcFrameCount[Type];
+            NPC.frame = new Rectangle(w * x, h * y, w - 2, h - 2);
         }
 
         public int Mode(int normal, int expert, int ftw)

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +19,7 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
+        public const int ACTION_ICE = 5;
         public const int ACTION_FIREBALLS = 4;
         public const int ACTION_SUCTIONENEMIES = 3;
         public const int ACTION_SUCTIONTILES = 2;
@@ -108,6 +110,38 @@ namespace Aequus.NPCs.Boss
             return false;
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            int count = 1;
+            if (NPC.life <= 0)
+            {
+                count = 50;
+                foreach (var d in dust)
+                {
+                    var d2 = Dust.NewDustDirect(new Vector2(d.position.X, d.position.Y) + NPC.Center, 2, 2, ModContent.DustType<MonoDust>(), newColor: d.color * d.Opacity, Scale: d.Scale);
+                    d2.velocity *= 1.5f;
+                    d2.rotation = d.rotation;
+                }
+            }
+            for (int i = 0; i < count; i++)
+            {
+                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, Main.rand.NextBool() ? DustID.Torch : DustID.Frost);
+                d.velocity = (d.position - NPC.Center) / 8f;
+                if (Main.rand.NextBool(3))
+                {
+                    d.velocity *= 2f;
+                    d.scale *= 1.75f;
+                    d.fadeIn = d.scale + Main.rand.NextFloat(0.5f, 0.75f);
+                    d.noGravity = true;
+                }
+            }
+        }
+
         public override void AI()
         {
             MonsterSpawns.ForceZen(NPC);
@@ -122,6 +156,10 @@ namespace Aequus.NPCs.Boss
 
             switch (Action)
             {
+                case ACTION_ICE:
+                    Ice();
+                    break;
+
                 case ACTION_FIREBALLS:
                     Fireballs();
                     break;
@@ -169,7 +207,7 @@ namespace Aequus.NPCs.Boss
             if (secondary == 0 && PhaseTwo)
             {
                 SecondaryAction = phase;
-                Action = ACTION_FIREBALLS;
+                Action = Main.rand.NextBool() ? ACTION_FIREBALLS : ACTION_ICE;
             }
             else
             {
@@ -221,8 +259,54 @@ namespace Aequus.NPCs.Boss
             auraTimer++;
         }
 
+        public void Ice()
+        {
+            SetFrame(1);
+            ActionTimer++;
+            if (ActionTimer == 60 || ActionTimer == 120)
+            {
+                NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 20f;
+                NPC.netUpdate = true;
+            }
+            if (ActionTimer == 90 || ActionTimer == 180)
+            {
+                if (!CheckTargets())
+                {
+                    return;
+                }
+                int delay = Mode(15, 10, 5);
+                if (ActionTimer % delay == 0)
+                {
+                    SoundEngine.PlaySound(SoundID.Item34, NPC.position);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    {
+                        float speed = Mode(12f, 20f, 48f);
+                        var toPlayer = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
+
+                        var source = NPC.GetSource_FromAI();
+                        int damage = CalcDamage(1.25f);
+                        foreach (var r in AequusHelpers.Circular(Mode(6, 15, 50), Main.rand.NextFloat(MathHelper.TwoPi)))
+                        {
+                            Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(r) * speed, ModContent.ProjectileType<DustDevilFrostball>(), damage, 1f, Main.myPlayer, ai0: 1f);
+                            Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(r) * speed, ModContent.ProjectileType<DustDevilFrostball>(), damage, 1f, Main.myPlayer, ai0: -1f);
+                        }
+                    }
+                }
+                NPC.netUpdate = true;
+            }
+            if (ActionTimer >= 200)
+            {
+                SetAction(SecondaryAction);
+            }
+            if (NPC.Distance(Main.player[NPC.target].Center) < 2000f)
+            {
+                NPC.velocity *= 0.92f;
+            }
+        }
+
         public void Fireballs()
         {
+            SetFrame(0);
             ActionTimer++;
             if (ActionTimer == 60 || ActionTimer == 120)
             {
@@ -241,11 +325,11 @@ namespace Aequus.NPCs.Boss
                     SoundEngine.PlaySound(SoundID.Item34, NPC.position);
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        float speed = Mode(12f, 24f, 48f);
+                        float speed = Mode(12f, 20f, 48f);
                         var toPlayer = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
 
                         var source = NPC.GetSource_FromAI();
-                        int amt = Mode(1, 5, 12);
+                        int amt = Mode(1, 3, 7);
                         int damage = CalcDamage(1.25f);
                         float r = Main.rand.NextFloat(-0.5f, 0.5f);
                         for (int i = 0; i < amt; i++)
@@ -333,7 +417,7 @@ namespace Aequus.NPCs.Boss
             {
                 NPC.velocity *= 0.95f;
             }
-            
+
             ActionTimer++;
             if (ActionTimer <= 120)
             {
@@ -346,10 +430,11 @@ namespace Aequus.NPCs.Boss
                     if (Aequus.ShouldDoScreenEffect(NPC.Center))
                     {
                         Shake(10);
+                        Flash(NPC.Center, 0.25f, 0.8f);
                         SoundEngine.PlaySound(SoundID.Item14);
                     }
                 }
-                else 
+                else
                 {
                     int delay = Main.getGoodWorld ? 1 : Main.expertMode ? 5 : 10;
 
@@ -364,7 +449,7 @@ namespace Aequus.NPCs.Boss
                     }
                 }
             }
-            else 
+            else
             {
                 if (ActionTimer > 400)
                 {
