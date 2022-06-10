@@ -41,6 +41,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
                 NPCID.SpikedJungleSlime,
                 NPCID.SpikedIceSlime,
                 NPCID.IceSlime,
+                NPCID.ToxicSludge,
             };
         }
 

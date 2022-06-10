@@ -103,11 +103,6 @@ namespace Aequus.NPCs.Boss
             return PhaseTwo ? Color.Red : Color.White;
         }
 
-        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
-        {
-            return false;
-        }
-
         public override bool? CanHitNPC(NPC target)
         {
             return false;
@@ -162,6 +157,40 @@ namespace Aequus.NPCs.Boss
             UpdateEffects();
         }
 
+        public int CalcDamage(float mult = 1f)
+        {
+            return (int)((Main.masterMode ? NPC.damage / 3 : Main.expertMode ? NPC.damage / 2 : NPC.damage) * mult);
+        }
+
+        public void SetAction(int phase)
+        {
+            int secondary = SecondaryAction;
+            ClearAI();
+            if (secondary == 0 && PhaseTwo)
+            {
+                SecondaryAction = phase;
+                Action = ACTION_FIREBALLS;
+            }
+            else
+            {
+                Action = phase;
+            }
+        }
+
+        public bool CheckTargets(float checkDistance = 4000f)
+        {
+            NPC.TargetClosest(faceTarget: false);
+            NPC.netUpdate = true;
+            if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > checkDistance)
+            {
+                ClearAI();
+                ClearLocalAI();
+                NPC.ai[0] = ACTION_GOODBYE;
+                return false;
+            }
+            return true;
+        }
+
         public void UpdateEffects()
         {
             if (Main.netMode == NetmodeID.Server)
@@ -195,30 +224,64 @@ namespace Aequus.NPCs.Boss
         public void Fireballs()
         {
             ActionTimer++;
-            if (ActionTimer == 60 || ActionTimer == 150)
+            if (ActionTimer == 60 || ActionTimer == 120)
             {
                 NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
                 NPC.netUpdate = true;
             }
-            if (ActionTimer == 90 || ActionTimer == 180)
+            if ((ActionTimer >= 90 && ActionTimer < 120) || (ActionTimer >= 150 && ActionTimer < 180))
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
+                if (!CheckTargets())
                 {
-                    foreach (var v in AequusHelpers.CircularVector(8, ActionTimer == 180 ? (MathHelper.PiOver4 / 2f) : 0f))
+                    return;
+                }
+                int delay = Mode(15, 10, 5);
+                if (ActionTimer % delay == 0)
+                {
+                    SoundEngine.PlaySound(SoundID.Item34, NPC.position);
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center,
-                            v * 10f, ModContent.ProjectileType<DustDevilFireball>(), CalcDamage(1.25f), 1f, Main.myPlayer);
+                        float speed = Mode(12f, 24f, 48f);
+                        var toPlayer = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
+
+                        var source = NPC.GetSource_FromAI();
+                        int amt = Mode(1, 5, 12);
+                        int damage = CalcDamage(1.25f);
+                        float r = Main.rand.NextFloat(-0.5f, 0.5f);
+                        for (int i = 0; i < amt; i++)
+                        {
+                            Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(MathHelper.PiOver4 / 2f * i + r) * speed, ModContent.ProjectileType<DustDevilFireball>(), damage, 1f, Main.myPlayer, ai0: 1f);
+                            if (i != 0)
+                                Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(MathHelper.PiOver4 / 2f * -i + r) * speed, ModContent.ProjectileType<DustDevilFireball>(), damage, 1f, Main.myPlayer, ai0: -1f);
+                        }
                     }
                 }
                 NPC.netUpdate = true;
             }
-            if (ActionTimer >= 220)
+            if (ActionTimer >= 200)
             {
-                int newPhase = SecondaryAction;
-                ClearAI();
-                Action = newPhase;
+                SetAction(SecondaryAction);
             }
-            NPC.velocity *= 0.95f;
+            if (NPC.Distance(Main.player[NPC.target].Center) < 2000f)
+            {
+                NPC.velocity *= 0.92f;
+            }
+        }
+
+        public Point ScanTilePoint(Vector2 dir)
+        {
+            var center = NPC.Center;
+            dir = Vector2.Normalize(dir) * 16f;
+            int scanTiles = 75;
+            for (int i = 0; i < scanTiles; i++)
+            {
+                var point = (center + dir * i).ToTileCoordinates();
+                if (!WorldGen.InWorld(point.X, point.Y, 10) || Main.tile[point].IsSolid())
+                {
+                    return point;
+                }
+            }
+            return (center + dir * scanTiles).ToTileCoordinates();
         }
 
         public void SuctionEnemies()
@@ -248,7 +311,7 @@ namespace Aequus.NPCs.Boss
                 {
                     SetAction(ACTION_SUCTIONTILES);
                 }
-                NPC.velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * 2f;
+                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * Mode(3f, 6f, 6f), 0.1f);
             }
         }
         public bool SuctionEnemies_EnsureYouWontBreakTheNPCCap()
@@ -266,7 +329,7 @@ namespace Aequus.NPCs.Boss
                 }
                 NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
             }
-            else
+            else if (NPC.Distance(Main.player[NPC.target].Center) < 2000f)
             {
                 NPC.velocity *= 0.95f;
             }
@@ -290,11 +353,6 @@ namespace Aequus.NPCs.Boss
                 {
                     int delay = Main.getGoodWorld ? 1 : Main.expertMode ? 5 : 10;
 
-                    if (PhaseTwo)
-                    {
-                        delay *= 2;
-                    }
-
                     if (ActionTimer % delay == 0)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -312,23 +370,8 @@ namespace Aequus.NPCs.Boss
                 {
                     SetAction(ACTION_SUCTIONENEMIES);
                 }
-                NPC.velocity = Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(Main.player[NPC.target].Center - NPC.Center) * Mode(3f, 6f, 6f), 0.1f);
             }
-        }
-        public Point ScanTilePoint(Vector2 dir)
-        {
-            var center = NPC.Center;
-            dir = Vector2.Normalize(dir) * 16f;
-            int scanTiles = 75;
-            for (int i = 0; i < scanTiles; i++)
-            {
-                var point = (center + dir * i).ToTileCoordinates();
-                if (!WorldGen.InWorld(point.X, point.Y, 10) || Main.tile[point].IsSolid())
-                {
-                    return point;
-                }
-            }
-            return (center + dir * scanTiles).ToTileCoordinates();
         }
 
         public void Intro()
@@ -398,38 +441,6 @@ namespace Aequus.NPCs.Boss
                 NPC.active = false;
                 NPC.life = -1;
             }
-        }
-
-        public int CalcDamage(float mult = 1f)
-        {
-            return (int)((Main.masterMode ? NPC.damage / 3 : Main.expertMode ? NPC.damage / 2 : NPC.damage) * mult);
-        }
-
-        public void SetAction(int phase)
-        {
-            ClearAI();
-            if (PhaseTwo)
-            {
-                SecondaryAction = phase;
-                Action = ACTION_FIREBALLS;
-            }
-            else
-            {
-                Action = phase;
-            }
-        }
-        public bool CheckTargets(float checkDistance = 4000f)
-        {
-            NPC.TargetClosest(faceTarget: false);
-            NPC.netUpdate = true;
-            if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > checkDistance)
-            {
-                ClearAI();
-                ClearLocalAI();
-                NPC.ai[0] = ACTION_GOODBYE;
-                return false;
-            }
-            return true;
         }
 
         public static void AddDraw(int proj, float z)

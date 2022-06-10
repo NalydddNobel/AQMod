@@ -1,5 +1,6 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,6 +20,15 @@ namespace Aequus.NPCs.Boss
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
+        }
+
+        public int Mode(int normal, int expert, int ftw)
+        {
+            return Main.getGoodWorld ? ftw : (Main.expertMode ? expert : normal);
+        }
+        public float Mode(float normal, float expert, float ftw)
+        {
+            return Main.getGoodWorld ? ftw : (Main.expertMode ? expert : normal);
         }
 
         public void ClearAI()

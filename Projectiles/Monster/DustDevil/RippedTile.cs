@@ -104,7 +104,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
                         if (Projectile.timeLeft == 239)
                         {
                             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
-                            Projectile.velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].Center - Projectile.Center) * 20f;
+                            Projectile.velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].Center - Projectile.Center) * 15.5f;
                             Projectile.extraUpdates = 0;
                         }
                         else
@@ -190,8 +190,8 @@ namespace Aequus.Projectiles.Monster.DustDevil
                 var bloomColor = new Color(120, 120, 185, 0);
                 float opacity = Projectile.Opacity;
                 bloomColor *= opacity;
-                Main.spriteBatch.Draw(bloom, Projectile.Center - Main.screenPosition, bloomFrame, bloomColor, Projectile.velocity.ToRotation() + MathHelper.PiOver2, bloomOrigin, new Vector2(0.01f, 10f * opacity), SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(bloom, Projectile.Center - Main.screenPosition, bloomFrame, bloomColor * 0.6f, Projectile.velocity.ToRotation() + MathHelper.PiOver2, bloomOrigin, new Vector2(0.01f, 10f * opacity), SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(bloom, Projectile.Center - Main.screenPosition, bloomFrame, bloomColor, Projectile.velocity.ToRotation() + MathHelper.PiOver2, bloomOrigin, new Vector2(0.01f, 7f * opacity), SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(bloom, Projectile.Center - Main.screenPosition, bloomFrame, bloomColor * 0.6f, Projectile.velocity.ToRotation() + MathHelper.PiOver2, bloomOrigin, new Vector2(0.01f, 7f * opacity), SpriteEffects.None, 0f);
                 return false;
             }
             if ((int)Projectile.ai[0] == -1 || NPCs.Boss.DustDevil.CurrentlyDrawing(Projectile.localAI[0]))
