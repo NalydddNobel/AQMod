@@ -121,10 +121,9 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.lootLuck">
+        <member name="F:Aequus.AequusPlayer.accExpertItemBoost">
             <summary>
-            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            Applied by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accInheritTurrets">
@@ -479,9 +478,20 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
+        <member name="F:Aequus.Items.Accessories.GrandRewardPlayer.lootLuck">
+            <summary>
+            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            </summary>
+        </member>
         <member name="T:Aequus.Items.Accessories.Healing.MendshroomPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.Healing.Mendshroom"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Items.Accessories.Healing.ReliefshroomPlayer">
+            <summary>
+            Used by <see cref="T:Aequus.Items.Accessories.Healing.Reliefshroom"/>
             </summary>
         </member>
         <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">
@@ -569,6 +579,17 @@
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
+        </member>
+        <member name="M:Aequus.Items.Hooks.IUpdateItemDye.Hook_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="orig"></param>
+            <param name="self"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">If you are an equipped item, this is you.</param>
+            <param name="dyeItem">If you are a dye, this is you.</param>
         </member>
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>

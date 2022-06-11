@@ -26,7 +26,7 @@ namespace Aequus.Items.Consumables.Potions
                 .AddIngredient(ItemID.FlarefinKoi)
                 .AddIngredient(ItemID.Fireblossom)
                 .AddTile(TileID.Bottles)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.WarmthPotion));
         }
     }
 }

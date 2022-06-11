@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public sealed class SantankSentry : ModItem
+    public class SantankSentry : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -107,6 +107,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             if (projectile.hostile || !projectile.sentry || projectile.TurretShouldPersist() || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
             {
+                appliedItemStatChanges = false;
                 return;
             }
 
@@ -134,11 +135,17 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
             try
             {
+                var aequus = Main.player[projectile.owner].Aequus();
+                dummyPlayer.Aequus().accExpertItemBoost = aequus.accExpertItemBoost;
                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
                 {
                     if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
                     {
-                        ai(projectile, this, i, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
+                        ai(projectile, this, i, Main.player[projectile.owner], aequus);
+                    }
+                    else if (aequus.accExpertItemBoost)
+                    {
+                        MechsSentry.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }
                 }
                 appliedItemStatChanges = true;
@@ -187,6 +194,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             // Players get info effects from nearby players, maybe inherited info items should do the same?
             OnAI = new Dictionary<int, Action<Projectile, SantankSentryProjectile, Item, Player, AequusPlayer>>()
             {
+                [ItemID.BrainOfConfusion] = ApplyEquipFunctional_AI,
                 [ItemID.SporeSac] = SporeSac_AI,
                 [ItemID.TerrasparkBoots] = WaterWalkingBoots_AI,
                 [ItemID.LavaWaders] = WaterWalkingBoots_AI,

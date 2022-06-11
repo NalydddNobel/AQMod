@@ -33,7 +33,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
                 .AddIngredient<Hexoplasm>(12)
                 .AddIngredient(ItemID.SoulofFright, 8)
                 .AddTile(TileID.MythrilAnvil)
-                .Register();
+                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.PapyrusScarab));
         }
     }
 

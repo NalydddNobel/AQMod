@@ -212,10 +212,10 @@ namespace Aequus
             {
                 return "Terraria_" + NPCID.Search.GetName(npc);
             }
-            return SearchNameToAequusKey(ModContent.GetModNPC(npc).FullName);
+            return CreateKeyNameFromSearch(ModContent.GetModNPC(npc).FullName);
         }
 
-        public static string SearchNameToAequusKey(string name)
+        public static string CreateKeyNameFromSearch(string name)
         {
             if (name.StartsWith("Aequus/"))
             {

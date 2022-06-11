@@ -114,6 +114,18 @@ Mods: {
 				'''
 			InventoryPiggyBankFunction: Works in your inventory or banks
 			ToggleKeyBind: You can toggle this function by pressing {0}
+
+			MechsSentry: {
+				Terraria_EoCShield: Increased dash attack range
+				Terraria_WormScarf: You passively shoot lasers
+				Terraria_BrainOfConfusion: You are protected by probes
+				Terraria_BoneGlove: Crossbones are replaced by laser saws
+				Terraria_HiveBackpack: May turn strong bees into mechanical bees
+				Terraria_BoneHelm: Shadow hands are replaced with gestalts
+				Terraria_VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+				Terraria_SporeSac: Spores are replaced with explosive nanites
+				CelesteTorus: You are given an extra ring of orbs
+			}
 		}
 
 		nalyd: "'Smells like roses'"
@@ -121,6 +133,7 @@ Mods: {
 		ItemName: {
 			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
+			MechsSentry: Sentinel 6510 N.O.S.
 			SantankSentry: Sentry 6502 N.O.S.
 			BloodiedBucket: Bloodied Bucket
 
@@ -496,7 +509,12 @@ Mods: {
 				'''
 			RitualisticSkull: Converts all of your minion slots into ghost minion slots
 			RabbitsFoot: Increases luck for the user
-			SantankSentry: Allows your sentries to equip your accessories
+			MechsSentry:
+				'''
+				Increases the strength of expert accessories
+				Sentries equip your accessories
+				'''
+			SantankSentry: Sentries equip your accessories
 			FoolsGoldRing: 
 				'''
 				Held coins increase your stats
@@ -595,7 +613,11 @@ Mods: {
 				Summons a space squiddy to follow you
 				'Just too cute'
 				'''
-			GrandReward: Enemies are more likely to drop rarer items
+			GrandReward: 
+				'''
+				Enemies are more likely to drop rarer items
+				However they no longer drop coins
+				'''
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
 			GlowCore: You and your projectiles emit light
@@ -1828,24 +1850,6 @@ Mods: {
 			}
 		}
 
-		Exporter: {
-			Quests: {
-				Complete: {
-					0: You got it, very nice... I bet they didn't suspect a thing.
-					1: Ooohoohoohoohoo yes yes yes yeesssss you got it. I can't wait to sell this out on the seas.
-					2: Dumb cricket, I don't even think they remember buying that. Ah, whatever, I'm just going to take this trinket and use it for... something better.
-					3: Looks like the gems got a bit scuffed... whatever. Here's your pay.
-					4: They say steal from the rich and give to the poor, but I think we should do the opposite. OH! And here's your payment.
-				}
-
-				AtTownNPCHouse: I think I saw it in {0}'s house.
-				QuitHuntQuestion: Do you really want to quit this mission?
-				UIButtonQuit: Quit
-				UIButtonComplete: Complete
-				UIButtonQuest: Thievery
-			}
-		}
-
 		PaintingSignature: {
 			NalydT: "'N.T.'"
 			niker: "'N.'"
@@ -2603,17 +2607,20 @@ Mods: {
 
 		TownNPCMood: {
 			Exporter: {
+				Content: This place is good matey! Could always be better though, yo ho ho!
+				NoHome: How will I store my stolen goods without me ship!? Definitely not digging up a lobster crevice that's for sure!
+				FarFromHome: "{$Mods.Aequus.TownNPCMood.Exporter.NoHome}"
 				LoveSpace: Yarr this place is mighty fine lad, could probably setup shop here and continue my work.
+				DislikeCrowded: I would be liking this place, many people to steal from, yet many more eyes to spot you.
+				HateCrowded: Once enough people are in a place, it's hard to steal anything anymore! Get some of these maties out'ta here!
+				LikeBiome: "{BiomeName} is not too bad matey, better than me ship!"
+				LoveBiome: "{BiomeName} is the best place to consider home."
+				DislikeBiome: Matey, {BiomeName} makes me shell dry!
+				HateBiome: "Argh! {BiomeName} is such a horrible place to be in, I'd rather be on me ship!"
 				LoveNPC: "{NPCName} has to be one of my most favorite crewmates- or well, housemates, I haven't gotten them to join me crew yet."
 				LikeNPC: Y'know {NPCName}? This landlubber cleaned off a barnacle which was growing on me chest! Their appreciation for animals gave me a lot of respect for them. 
 				DislikeNPC: Can't stand {NPCName}! I'm wanting to kick him off me ship- Err, house?
-				HateNPC: I. DON'T. WANT. TO. LIVE. NEXT. TO. {NPCName}. He's reported all of my acts of tax evasion, can't stand him!
-				LikeNPC_Princess: "{NPCName} is making me want to change me life's path, her royal, holy light prevents ye from feeling senses of thievery."
-				Content: This place is good matey! Could always be better though, yo ho ho!
-				DislikeCrowded: I would be liking this place, many people to steal from, yet many more eyes to spot you.
-				HateCrowded: Once enough people are in a place, it's hard to steal anything anymore! Get some of these maties out'ta here!
-				HateLonely: Where is everyone? There can be no thievery if there is no people!
-				NoHome: How will I store my stolen goods without me ship, definitely not digging up a lobster crevice that's for sure!
+				HateNPC: I DON'T WANT TO BE ANYWHERE NEAR {NPCName}! This landlubber reported all of my acts of tax evasion!
 			}
 		}
 		

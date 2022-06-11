@@ -85,23 +85,35 @@ namespace Aequus.Items.Recipes
             }
         }
 
-        public static void SpaceSquidRecipe(ModItem modItem, int original)
+        public static Recipe SpaceSquidRecipe(ModItem modItem, int original, bool sort = true)
         {
-            modItem.CreateRecipe()
+            return modItem.CreateRecipe()
                 .AddIngredient(original)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register((r) => 
+                    {
+                        if (sort)
+                        {
+                            r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
+                        }
+                    });
         }
-        public static void RedSpriteRecipe(ModItem modItem, int original, int amt = 1)
+        public static void RedSpriteRecipe(ModItem modItem, int original, int amt = 1, bool sort = true)
         {
             modItem.CreateRecipe()
                 .AddIngredient(original, amt)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register((r) =>
+                    {
+                        if (sort)
+                        {
+                            r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
+                        }
+                    });
         }
     }
 }

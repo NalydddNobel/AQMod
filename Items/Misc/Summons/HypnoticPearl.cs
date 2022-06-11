@@ -49,7 +49,7 @@ namespace Aequus.Items.Misc.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
 
             CreateRecipe()
                 .AddIngredient(ItemID.BlackPearl)
@@ -57,7 +57,7 @@ namespace Aequus.Items.Misc.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
 
             CreateRecipe()
                 .AddIngredient(ItemID.PinkPearl)
@@ -65,7 +65,7 @@ namespace Aequus.Items.Misc.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
         }
     }
 }

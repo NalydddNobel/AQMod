@@ -634,7 +634,7 @@ namespace Aequus.Content
 
         public static string KeyFromIDs(string mod, int npc, int item)
         {
-            return $"Mods.{mod}.Chat.{AequusText.CreateSearchNameFromNPC(npc)}.ShopQuote.{AequusText.SearchNameToAequusKey(ItemID.Search.GetName(item))}";
+            return $"Mods.{mod}.Chat.{AequusText.CreateSearchNameFromNPC(npc)}.ShopQuote.{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item))}";
         }
 
         public static NPC TalkingNPC()

@@ -138,6 +138,11 @@ namespace Aequus.Items.Accessories
         {
             player.GetModPlayer<CelesteTorusPlayer>().cCelesteTorus = dyeItem.dye;
         }
+
+        public override void AddRecipes()
+        {
+            MechsSentryItem.AddEntry(Type);
+        }
     }
 
     public class CelesteTorusPlayer : ModPlayer

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Recipes
 {
-    public sealed class Alternatives : GlobalRecipe, IPostAddRecipes
+    public class Changes : GlobalRecipe, IPostAddRecipes
     {
         void IPostAddRecipes.PostAddRecipes(Aequus aequus)
         {
@@ -15,7 +15,11 @@ namespace Aequus.Items.Recipes
             for (int i = 0; i < Main.recipe.Length; i++)
             {
                 Recipe r = Main.recipe[i];
-                if (r.createItem.type == ItemID.PumpkinMoonMedallion || r.createItem.type == ItemID.NaughtyPresent)
+                if (r.createItem.type == ItemID.MinecartMech)
+                {
+                    r.AddIngredient(ItemID.Minecart);
+                }
+                else if (r.createItem.type == ItemID.PumpkinMoonMedallion || r.createItem.type == ItemID.NaughtyPresent)
                 {
                     r.ReplaceItemWith(ItemID.Ectoplasm,
                         (r, i) => r.AddRecipeGroup(AequusRecipes.AnyEctoplasm, i.stack));

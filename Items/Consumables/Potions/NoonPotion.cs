@@ -40,7 +40,7 @@ namespace Aequus.Items.Consumables.Potions
                 .AddIngredient(ItemID.FallenStar)
                 .AddIngredient(ItemID.SoulofLight)
                 .AddTile(TileID.Bottles)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.InfernoPotion));
         }
     }
 }

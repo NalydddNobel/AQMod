@@ -13,6 +13,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.NPCs.Friendly;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,6 +21,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
@@ -114,6 +116,16 @@ namespace Aequus
         /// </summary>
         public float luckRerolls;
 
+        public int accExpertItemBoostWormScarfTimer;
+        public bool accExpertItemBoostBoCProbesHurtSignal;
+        public int accExpertItemBoostBoCProbesDefenseProjectile;
+        public int accExpertItemBoostBoCProbesDefenseTimer;
+        public int accExpertItemBoostBoCProbesDefense;
+        /// <summary>
+        /// Applied by <see cref="MechsSentry"/>
+        /// </summary>
+        public bool accExpertItemBoost;
+        public bool accExpertItemBoostOld;
         /// <summary>
         /// Applied by <see cref="SantankSentry"/>
         /// </summary>
@@ -176,6 +188,7 @@ namespace Aequus
 
         public int hitTime;
 
+        public bool AccExpertItemBoost => accExpertItemBoostOld || accExpertItemBoost;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -337,6 +350,7 @@ namespace Aequus
         public override void clientClone(ModPlayer clientClone)
         {
             var clone = (AequusPlayer)clientClone;
+            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
             clone.itemCombo = itemCombo;
             clone.itemSwitch = itemSwitch;
             clone.itemUsage = itemUsage;
@@ -448,36 +462,15 @@ namespace Aequus
         public override void UpdateDead()
         {
             hitTime = 0;
+            accExpertItemBoostOld = false;
+            accExpertItemBoost = false;
+        }
+
+        public void UpdateCooldowns()
+        {
         }
 
         public override void ResetEffects()
-        {
-            UpdateCooldowns();
-            scamChance = 0f;
-            flatScamDiscount = 0;
-
-            accInheritTurrets = false;
-            accFoolsGoldRing = false;
-            TeamContext = Player.team;
-
-            buffSpicyEel = false;
-            buffResistHeat = false;
-
-            debuffBlueFire = false;
-
-            redSpritePet = false;
-            spaceSquidPet = false;
-            familiarPet = false;
-            omegaStaritePet = false;
-
-            hasSkeletonKey = false;
-            hasShadowKey = false;
-
-            forceDaytime = 0;
-            ghostSlotsMax = 1;
-            ghostLifespan = 3600;
-        }
-        public void UpdateCooldowns()
         {
             if (itemCombo > 0)
             {
@@ -518,6 +511,38 @@ namespace Aequus
             {
                 interactionCooldown--;
             }
+
+            if (accExpertItemBoostWormScarfTimer > 0)
+            {
+                accExpertItemBoostWormScarfTimer--;
+            }
+            accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
+
+            scamChance = 0f;
+            flatScamDiscount = 0;
+
+            accExpertItemBoostOld = accExpertItemBoost;
+            accExpertItemBoost = false;
+            accInheritTurrets = false;
+            accFoolsGoldRing = false;
+            TeamContext = Player.team;
+
+            buffSpicyEel = false;
+            buffResistHeat = false;
+
+            debuffBlueFire = false;
+
+            redSpritePet = false;
+            spaceSquidPet = false;
+            familiarPet = false;
+            omegaStaritePet = false;
+
+            hasSkeletonKey = false;
+            hasShadowKey = false;
+
+            forceDaytime = 0;
+            ghostSlotsMax = 1;
+            ghostLifespan = 3600;
         }
 
         public override void PreUpdateBuffs()
@@ -612,6 +637,12 @@ namespace Aequus
             CheckDanger();
             UpdateInheritingTurrets();
             TeamContext = 0;
+
+            if (!accExpertItemBoost || Player.brainOfConfusionItem == null)
+            {
+                accExpertItemBoostBoCProbesDefense = 0;
+                accExpertItemBoostBoCProbesDefenseTimer = 0;
+            }
         }
         /// <summary>
         /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
@@ -700,7 +731,7 @@ namespace Aequus
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
+                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
                     {
                         sentry.UpdateInheritance(Main.projectile[i]);
                     }
@@ -709,6 +740,32 @@ namespace Aequus
             catch
             {
             }
+        }
+
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+            if (damage > 1000)
+            {
+                return true;
+            }
+
+            if (AccExpertItemBoost && accExpertItemBoostBoCProbesDefense > 60)
+            {
+                int def = accExpertItemBoostBoCProbesDefense;
+                accExpertItemBoostBoCProbesDefense -= damage;
+                if (accExpertItemBoostBoCProbesDefense < 5)
+                {
+                    accExpertItemBoostBoCProbesDefenseTimer = 0;
+                    accExpertItemBoostBoCProbesDefense = 5;
+                    damage -= def;
+                }
+                else
+                {
+                    SoundEngine.PlaySound(SoundID.NPCHit4);
+                    damage = 1;
+                }
+            }
+            return true;
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)

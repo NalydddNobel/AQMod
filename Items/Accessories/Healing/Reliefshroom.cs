@@ -70,7 +70,7 @@ namespace Aequus.Items.Accessories.Healing
                 .AddIngredient<Mendshroom>()
                 .AddIngredient(ItemID.SoulofNight, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.CharmofMyths));
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

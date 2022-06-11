@@ -160,16 +160,13 @@ namespace Aequus.Items.Misc.Summons
                 .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.HellstoneBar, 15)
                 .AddTile(TileID.DemonAltar)
-                .Register();
-
-
-
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.DeerThing));
 
             CreateRecipe()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddIngredient(ItemID.HellstoneBar, 15)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.DeerThing));
         }
     }
 }

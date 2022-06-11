@@ -26,13 +26,13 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.RainbowRod));
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 8)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.RainbowRod));
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Aequus.Items.Armor.PassiveSummon
                 .AddIngredient(ItemID.ChlorophyteBar, 8)
                 .AddIngredient(ItemID.LihzahrdPressurePlate)
                 .AddTile(TileID.MythrilAnvil)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.CopperBar));
         }
     }
 }

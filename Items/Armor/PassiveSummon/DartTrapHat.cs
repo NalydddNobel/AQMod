@@ -63,13 +63,13 @@ namespace Aequus.Items.Armor.PassiveSummon
                 .AddIngredient(ItemID.CopperBar, 8)
                 .AddRecipeGroup("PresurePlate")
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.CopperBar));
             CreateRecipe()
                 .AddIngredient(ItemID.DartTrap)
                 .AddIngredient(ItemID.TinBar, 8)
                 .AddRecipeGroup("PresurePlate")
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.CopperBar));
         }
     }
 }

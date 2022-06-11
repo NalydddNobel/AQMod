@@ -68,7 +68,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<GrandRewardPlayer>().lootLuck += 0.5f;
+            player.GetModPlayer<GrandRewardPlayer>().lootLuck += 1f;
             player.GetModPlayer<GrandRewardPlayer>().noMoreMoney = true;
         }
     }

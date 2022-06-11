@@ -30,7 +30,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<SentrySquid>());
+            AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
+                                .SortAfterFirstRecipesOf(ItemID.PygmyNecklace);
         }
     }
 

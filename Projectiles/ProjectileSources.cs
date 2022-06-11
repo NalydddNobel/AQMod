@@ -16,6 +16,7 @@ namespace Aequus.Projectiles
         public int itemUsed;
         public int ammoUsed;
         public int npcOwner;
+        public int projectileOwnerType;
         public int projectileOwnerIdentity;
         public int projectileOwner;
 
@@ -25,6 +26,7 @@ namespace Aequus.Projectiles
         public bool FromAmmo => ammoUsed > 0;
         public bool HasProjectileOwner => projectileOwnerIdentity > -1;
         public bool HasNPCOwner => npcOwner > -1;
+        public bool MissingProjectileOwner => projectileOwnerIdentity == -1 && projectileOwner != -1;
 
         public ProjectileSources()
         {
@@ -73,7 +75,18 @@ namespace Aequus.Projectiles
                     projectileOwnerIdentity = parentProjectile.identity;
                 }
             }
-            projectileOwner = projectileOwnerIdentity;
+            if (projectileOwnerIdentity != -1)
+            {
+                projectileOwner = AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
+                if (projectileOwner == -1)
+                {
+                    projectileOwnerIdentity = -1;
+                }
+                else
+                {
+                    projectileOwnerType = Main.projectile[projectileOwner].type;
+                }
+            }
         }
 
         public override bool PreAI(Projectile projectile)
@@ -83,9 +96,13 @@ namespace Aequus.Projectiles
                 if (projectileOwnerIdentity > 0)
                 {
                     projectileOwner = AequusHelpers.FindProjectileIdentity(projectile.owner, projectileOwnerIdentity);
-                    if (projectileOwner == -1)
+                    if (projectileOwner == -1 || Main.projectile[projectileOwner].type != projectileOwnerType)
                     {
                         projectileOwnerIdentity = -1;
+                        if (projectile.ModProjectile is Hooks.IOnUnmatchingProjectileParents unmatchingMethod)
+                        {
+                            unmatchingMethod.OnUnmatchingProjectileParents(this, projectileOwner);
+                        }
                     }
                 }
             }

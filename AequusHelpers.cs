@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -75,6 +76,93 @@ namespace Aequus
         }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
+
+        public static void CollideWithOthers(this Projectile projectile, float speed = 0.05f)
+        {
+            var rect = projectile.getRect();
+            for (int i =0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && i != projectile.whoAmI && projectile.type == Main.projectile[i].type && projectile.owner == Main.projectile[i].owner 
+                    && projectile.Colliding(rect, Main.projectile[i].getRect()))
+                {
+                    projectile.velocity += Main.projectile[i].DirectionTo(projectile.Center) * speed;
+                }
+            }
+        }
+
+        public static Player GetHereditaryOwnerPlayer(Entity entity)
+        {
+            if (entity is Player player)
+            {
+                return player;
+            }
+            else if (entity is Projectile projectile)
+            {
+                return projectile.GetGlobalProjectile<SantankSentryProjectile>().dummyPlayer;
+            }
+            return null;
+        }
+
+        public static Entity GetHereditaryOwner(this Projectile projectile)
+        {
+            int projIdentity = (int)projectile.ai[0] - 1;
+
+            if (projIdentity > -1)
+            {
+                projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SantankSentryProjectile>(out var value))
+                {
+                    if (Main.myPlayer == projectile.owner)
+                    {
+                        projectile.Kill();
+                        projectile.netUpdate = true;
+                    }
+                }
+                else
+                {
+                    return Main.projectile[projIdentity];
+                }
+            }
+            return Main.player[projectile.owner];
+        }
+
+        public static void Transform(this Projectile proj, int newType)
+        {
+            int damage = proj.damage;
+            float kb = proj.knockBack;
+            int owner = proj.owner;
+            var center = proj.Center;
+            var velo = proj.velocity;
+
+            proj.SetDefaults(newType);
+
+            proj.damage = damage;
+            proj.knockBack = kb;
+            proj.owner = owner;
+            proj.Center = center;
+            proj.velocity = velo;
+        }
+
+        public static SpriteEffects ToSpriteEffect(this int value)
+        {
+            return value == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        }
+
+        public static float UnNaN(this float value)
+        {
+            return value == float.NaN ? 0f : value;
+        }
+        public static Vector2 UnNaN(this Vector2 value)
+        {
+            return new Vector2(UnNaN(value.X), UnNaN(value.Y));
+        }
+
+        public static Recipe Register(this Recipe rec, Action<Recipe> postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh)
+        {
+            rec.Register();
+            postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh(rec);
+            return rec;
+        }
 
         public static bool CheckHeredity(this Projectile projectile, ProjectileSources sources, Projectile projectile2)
         {
@@ -907,12 +995,13 @@ namespace Aequus
         {
             float num = maxRange;
             int result = -1;
+            var center = position + new Vector2(width / 2f, height / 2f);
             for (int i = 0; i < 200; i++)
             {
                 NPC nPC = Main.npc[i];
                 if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i)))
                 {
-                    float num2 = Vector2.Distance(position, Main.npc[i].Center);
+                    float num2 = Vector2.Distance(center, Main.npc[i].Center);
                     if (num2 < num && Collision.CanHit(position, width, height, nPC.position, nPC.width, nPC.height))
                     {
                         num = num2;

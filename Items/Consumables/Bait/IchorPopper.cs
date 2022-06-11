@@ -35,7 +35,7 @@ namespace Aequus.Items.Consumables.Bait
                 .AddIngredient(ItemID.Ichor, 10)
                 .AddIngredient(ItemID.BloodWater)
                 .AddTile(TileID.Bottles)
-                .Register();
+                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler));
         }
     }
 }
