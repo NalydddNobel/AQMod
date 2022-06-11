@@ -114,6 +114,18 @@ Mods: {
 				'''
 			InventoryPiggyBankFunction: 放置于物品栏或存钱罐中即可生效
 			ToggleKeyBind: 按下{0}键以开关效果
+
+			MechsSentry: {
+				Terraria_EoCShield: 增加冲刺攻击距离
+				Terraria_WormScarf: 你会被动地发射激光
+				Terraria_BrainOfConfusion: 你受到探测器的保护
+				Terraria_BoneGlove: 骷髅头被激光锯替代
+				Terraria_HiveBackpack: 有几率将强壮的蜜蜂变为机械蜜蜂
+				Terraria_BoneHelm: 暗影之手被完整形态替代
+				Terraria_VolatileGelatin: 挥发性明胶被热能明胶替代
+				Terraria_SporeSac: 孢子被爆炸性纳米替代
+				CelesteTorus: 你会得到一个额外的球环
+			}
 		}
 
 		nalyd: "'闻起来像玫瑰'"
@@ -121,6 +133,7 @@ Mods: {
 		ItemName: {
 			ReboundNecklace: 回弹项链
 			RabbitsFoot: 兔脚
+			MechsSentry: 哨卫6510型微型处理器
 			SantankSentry: 哨兵6502型微型处理器
 			BloodiedBucket: 血污桶
 
@@ -496,7 +509,12 @@ Mods: {
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 			RabbitsFoot: 增加用户的幸运度
-			SantankSentry: 允许你的哨兵装备你的饰品
+			MechsSentry:
+				'''
+				增加专家饰品的强度
+				哨兵会装备你的饰品
+				'''
+			SantankSentry: 哨兵会装备你的饰品
 			FoolsGoldRing: 
 				'''
 				基于所持有的钱币数量增加属性
@@ -595,7 +613,11 @@ Mods: {
 				召唤一只跟着你的太空乌贼
 				'太可爱了'
 				'''
-			GrandReward: 敌人更容易掉落稀有物品
+			GrandReward: 
+				'''
+				敌人更容易掉落稀有物品
+				但不会再掉落钱币
+				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
 			GlowCore: 你和你的弹幕会发光
@@ -1828,24 +1850,6 @@ Mods: {
 			}
 		}
 
-		Exporter: {
-			Quests: {
-				Complete: {
-					0: 很好, 你做到了. 我打赌他们不会起疑的.
-					1: 哦哦哦哦哦哦, 你搞到它了. 我迫不及待的想在海上把它给卖出去了.
-					2: 真是个笨蟋蟀, 我觉得他们都不记得买过在东西. 啊管他呢, 我要用这些小饰品来装饰...某些特别的东西.
-					3: 上面的宝石看起来磨损了...管他呢. 这是给你的奖励.
-					4: 他们常说劫富济贫, 但我认为我们应该做与其相反的事情. 嘿, 这是给你的奖励.
-				}
-
-				AtTownNPCHouse: 我想我是在{0}的房子里看到的这个.
-				QuitHuntQuestion: 你想停止狩猎吗?
-				UIButtonQuit: 停止
-				UIButtonComplete: 完成
-				UIButtonQuest: 盗窃
-			}
-		}
-
 		PaintingSignature: {
 			NalydT: "'N.T.'"
 			niker: "'N.'"
@@ -2603,17 +2607,20 @@ Mods: {
 
 		TownNPCMood: {
 			Exporter: {
+				Content: 这地方真不错, 伙计! 但总会有更好的, 呦吼吼!
+				NoHome: 如果没有我的船, 我该怎么储存我的赃物!? 肯定不是挖龙虾裂隙, 肯定不是!
+				FarFromHome: "{$Mods.Aequus.TownNPCMood.Exporter.NoHome}"
 				LoveSpace: 呀小伙子, 这地方真不错, 也许可以在这里开店以继续我的工作.
+				DislikeCrowded: 我会喜欢这个地方的, 这有很多人都想偷东西, 还有许多的眼睛在注视着你.
+				HateCrowded: 当有足够多的人挤在一个地方时, 就很难再偷东西了! 把那些伙计弄出去!
+				LikeBiome: "{BiomeName}不算太差, 伙计, 比我船好!"
+				LoveBiome: "{BiomeName}是最适合作为家的地方."
+				DislikeBiome: 哥儿们, {BiomeName}让我的壳都变干了!
+				HateBiome: "啊! {BiomeName}是个可怕的地方, 我宁愿待在我的船上!"
 				LoveNPC: "{NPCName}曾是我最喜爱的船员之-- 好吧, 室友, 我还没让他们加入我的团队."
 				LikeNPC: 你认识{NPCName}吗? 这个陆地机器人清除了我胸口上长的藤壶! 他们对动物的同情令我对他们很尊重. 
 				DislikeNPC: 我没法忍受{NPCName}! 我想把他踢出我的船-- 额, 屋子?
-				HateNPC: 我. 不. 想. 当. {NPCName} 的. 邻. 居. 他举报了我所有的逃税行为, 我受不了他!
-				LikeNPC_Princess: "{NPCName}让我想改变我的人生道路, 她的威严与圣光阻止了想要到偷窃的感觉."
-				Content: 这地方真不错, 伙计! 但总会有更好的, 呦吼吼!
-				DislikeCrowded: 我会喜欢这个地方的, 这有很多人都想偷东西, 还有许多的眼睛在注视着你.
-				HateCrowded: 当有足够多的人挤在一个地方时, 就很难再偷东西了! 把那些伙计弄出去!
-				HateLonely: 人呢? 如果没有人, 就没法偷窃了!
-				NoHome: 如果没有我的船, 我该怎么储存我的赃物, 肯定不是挖龙虾裂隙, 肯定不是!
+				HateNPC:我不想住在{NPCName}附近! 这个旱鸭子举报了我所有的逃税行为!
 			}
 		}
 
