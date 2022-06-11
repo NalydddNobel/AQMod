@@ -82,14 +82,14 @@ namespace Aequus.Projectiles.Misc
                 if (Projectile.velocity.Length() > 2f)
                     Projectile.velocity *= 0.985f;
 
-                if (Main.myPlayer != Projectile.owner)
+                if (Main.myPlayer == Projectile.owner)
                 {
                     Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
-                    Projectile.localAI[0]--;
-                    if (Projectile.localAI[0] <= 0f)
+                    Projectile.localAI[1]--;
+                    if (Projectile.localAI[1] <= 0f)
                     {
                         Projectile.netUpdate = true;
-                        Projectile.localAI[0] = 6f;
+                        Projectile.localAI[1] = 6f;
                     }
                 }
             }

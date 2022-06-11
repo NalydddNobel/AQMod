@@ -323,7 +323,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if (player.Aequus().accExpertItemBoost)
+            if (player.Aequus().AccExpertItemBoost)
             {
                 MechsSentry.ExpertEffect_UpdateAccessory(item, player);
             }
