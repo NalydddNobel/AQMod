@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Misc
             Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.3f, 0.5f));
 
             var sources = Projectile.GetGlobalProjectile<ProjectileSources>();
-            if (Main.player[Projectile.owner].Aequus().accExpertItemBoostBoCProbesDefense == 0 || sources.MissingProjectileOwner)
+            if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].dead || Main.player[Projectile.owner].Aequus().accExpertItemBoostBoCProbesDefense == 0 || sources.MissingProjectileOwner)
             {
                 if (Projectile.ai[1] > 300f)
                 {

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Projectiles;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -238,8 +239,9 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             int myCount = 0;
             for (int i = 0; i < 1000; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == 567 || Main.projectile[i].type == 568))
-                {
+                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == ProjectileID.SporeTrap || Main.projectile[i].type == ProjectileID.SporeTrap2 
+                    || Main.projectile[i].type == ModContent.ProjectileType<NaniteSpore>()))
+                { 
                     int identity = Main.projectile[i].Aequus().projectileOwnerIdentity;
                     if (identity >= 0)
                     {
