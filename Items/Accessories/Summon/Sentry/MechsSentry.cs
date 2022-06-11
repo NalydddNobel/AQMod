@@ -217,6 +217,17 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             {
                 ExpertEffect_WormScarf(item, player, aequus);
             }
+            else if (item.type == ItemID.EoCShield)
+            {
+                ExpertEffect_ShieldOfCthulhu(item, player, aequus);
+            }
+        }
+        public static void ExpertEffect_ShieldOfCthulhu(Item item, Player player, AequusPlayer aequus)
+        {
+            if (player.eocDash > 0 && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<ShieldOfCthulhuBoost>()] <= 0)
+            {
+                Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item), 1f, player.whoAmI);
+            }
         }
         public static void ExpertEffect_WormScarf(Item item, Player player, AequusPlayer aequus)
         {
@@ -248,12 +259,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 }
             }
 
-            if (Main.myPlayer != player.whoAmI)
-            {
-                return;
-            }
-
-            if (player.Aequus()
+            if (Main.myPlayer == player.whoAmI && player.Aequus()
                 .ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<ProtectiveProbe>()) < aequus.accExpertItemBoostBoCProbesDefense / ProtectiveProbe.DefenseSlices)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, player.velocity, ModContent.ProjectileType<ProtectiveProbe>(), 0, 1f, player.whoAmI,
@@ -278,8 +284,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             AddEntry(ItemID.WormScarf);
             AddEntry(ItemID.BrainOfConfusion);
             AddEntry(ItemID.BoneGlove);
-            AddEntry(ItemID.HiveBackpack);
-            AddEntry(ItemID.BoneHelm);
+            //AddEntry(ItemID.HiveBackpack);
+            //AddEntry(ItemID.BoneHelm);
             AddEntry(ItemID.VolatileGelatin);
             AddEntry(ItemID.SporeSac);
         }

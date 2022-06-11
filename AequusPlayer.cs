@@ -116,6 +116,9 @@ namespace Aequus
         /// </summary>
         public float luckRerolls;
 
+        public Item accCelesteTorusItem;
+        public int cCelesteTorus;
+
         public int accExpertItemBoostWormScarfTimer;
         public bool accExpertItemBoostBoCProbesHurtSignal;
         public int accExpertItemBoostBoCProbesDefenseProjectile;
@@ -517,6 +520,9 @@ namespace Aequus
                 accExpertItemBoostWormScarfTimer--;
             }
             accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
+
+            cCelesteTorus = 0;
+            accCelesteTorusItem = null;
 
             scamChance = 0f;
             flatScamDiscount = 0;

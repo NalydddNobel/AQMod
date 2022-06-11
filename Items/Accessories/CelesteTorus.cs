@@ -18,17 +18,27 @@ namespace Aequus.Items.Accessories
         public struct RenderData
         {
             public Vector3 Rotation;
+            public Vector3? Rotation2;
             public Vector2 Position;
             public float Radius;
+            public float Radius2;
             public float Scale;
             public int Dye;
+            public bool Eight;
 
             public Vector3[] TurnIntoRing()
             {
-                var arr = new Vector3[5];
+                var arr = new Vector3[Rotation2 != null ? 8 + 5 : 5];
                 for (int i = 0; i < 5; i++)
                 {
                     arr[i] = CelesteTorusProj.GetRot(i, Rotation, Radius);
+                }
+                if (Rotation2 != null)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        arr[i + 5] = CelesteTorusProj.GetRot(i, Rotation2.Value, Radius * 2f, 8);
+                    }
                 }
                 return arr;
             }
@@ -126,8 +136,9 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<CelesteTorusPlayer>().celesteTorus = Item;
-            if (player.Aequus().ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
+            var aequus = player.Aequus();
+            aequus.accCelesteTorusItem = Item;
+            if (aequus.ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<CelesteTorusProj>(),
                     0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
@@ -136,24 +147,12 @@ namespace Aequus.Items.Accessories
 
         void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
-            player.GetModPlayer<CelesteTorusPlayer>().cCelesteTorus = dyeItem.dye;
+            player.Aequus().cCelesteTorus = dyeItem.dye;
         }
 
         public override void AddRecipes()
         {
             MechsSentryItem.AddEntry(Type);
-        }
-    }
-
-    public class CelesteTorusPlayer : ModPlayer
-    {
-        public Item celesteTorus;
-        public int cCelesteTorus;
-
-        public override void ResetEffects()
-        {
-            celesteTorus = null;
-            cCelesteTorus = 0;
         }
     }
 }

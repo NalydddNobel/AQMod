@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Misc
     public class CelesteTorusProj : ModProjectile
     {
         public Vector3 rotation;
+        public Vector3 rotation2;
+        public bool show2ndRing;
         public float currentRadius;
 
         public override void SetDefaults()
@@ -34,7 +36,7 @@ namespace Aequus.Projectiles.Misc
         public override void AI()
         {
             int projIdentity = (int)Projectile.ai[0] - 1;
-            CelesteTorusPlayer celeste;
+            AequusPlayer aequus;
             if (projIdentity > -1)
             {
                 projIdentity = AequusHelpers.FindProjectileIdentity(Projectile.owner, projIdentity);
@@ -44,19 +46,19 @@ namespace Aequus.Projectiles.Misc
                     return;
                 }
 
-                celeste = value.dummyPlayer?.GetModPlayer<CelesteTorusPlayer>();
+                aequus = value.dummyPlayer?.GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.projectile[projIdentity].Center;
                 Projectile.scale = 2f;
             }
             else
             {
-                celeste = Main.player[Projectile.owner].GetModPlayer<CelesteTorusPlayer>();
+                aequus = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.player[Projectile.owner].Center;
                 Projectile.scale = 2f;
             }
 
             var player = Main.player[Projectile.owner];
-            if (player.active && !player.dead && (celeste?.celesteTorus) != null)
+            if (player.active && !player.dead && (aequus?.accCelesteTorusItem) != null)
             {
                 Projectile.timeLeft = 2;
             }
@@ -67,7 +69,7 @@ namespace Aequus.Projectiles.Misc
 
             if (Projectile.active)
             {
-                int damage = player.GetWeaponDamage(celeste.celesteTorus);
+                int damage = player.GetWeaponDamage(aequus.accCelesteTorusItem);
                 if (Projectile.damage != damage)
                 {
                     if (Projectile.damage < damage)
@@ -101,13 +103,26 @@ namespace Aequus.Projectiles.Misc
                     rotation.X = rotation.X.AngleLerp(0f, 0.01f);
                     rotation.Y = rotation.Y.AngleLerp(0f, 0.0075f);
                     rotation.Z += 0.04f + (1f - playerPercent) * 0.0314f;
+
+                    rotation2.X = rotation.X.AngleLerp(0f, 0.01f);
+                    rotation2.Y = rotation.Y.AngleLerp(0f, 0.0075f);
+                    rotation2.Z += 0.04f + (1f - playerPercent) * 0.0314f;
                 }
                 else
                 {
                     rotation.X += 0.0157f;
                     rotation.Y += 0.01f;
                     rotation.Z += 0.0314f;
+
+                    if (aequus.AccExpertItemBoost)
+                    {
+                        rotation2.X += 0.0157f;
+                        rotation2.Y += 0.0314f;
+                        rotation2.Z += 0.011f;
+                    }
                 }
+
+                show2ndRing = aequus.AccExpertItemBoost;
             }
         }
 
@@ -115,11 +130,22 @@ namespace Aequus.Projectiles.Misc
         {
             for (int i = 0; i < 5; i++)
             {
-                var pos = GetRot(i);
+                var pos = GetRot(i, rotation, currentRadius);
                 var collisionCenter = projHitbox.Center.ToVector2() + new Vector2(pos.X, pos.Y);
                 var collisionRectangle = Utils.CenteredRectangle(collisionCenter, new Vector2(Projectile.width, Projectile.width));
                 if (collisionRectangle.Intersects(targetHitbox))
                     return true;
+            }
+            if (show2ndRing)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    var pos = GetRot(i, rotation, currentRadius * 2f, 8);
+                    var collisionCenter = projHitbox.Center.ToVector2() + new Vector2(pos.X, pos.Y);
+                    var collisionRectangle = Utils.CenteredRectangle(collisionCenter, new Vector2(Projectile.width, Projectile.width) * 1.2f);
+                    if (collisionRectangle.Intersects(targetHitbox))
+                        return true;
+                }
             }
             return false;
         }
@@ -153,17 +179,15 @@ namespace Aequus.Projectiles.Misc
                 Rotation = rotation,
                 Radius = currentRadius,
                 Scale = Projectile.scale,
-                Dye = Main.player[Projectile.owner].GetModPlayer<CelesteTorusPlayer>().cCelesteTorus,
+                Dye = Main.player[Projectile.owner].Aequus().cCelesteTorus,
+
+                Rotation2 = show2ndRing ? rotation2 : null,
             });
         }
 
-        public Vector3 GetRot(int i)
+        public static Vector3 GetRot(int i, Vector3 rotation, float currentRadius, int max = 5)
         {
-            return Vector3.Transform(new Vector3(currentRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z + MathHelper.TwoPi / 5 * i));
-        }
-        public static Vector3 GetRot(int i, Vector3 rotation, float currentRadius)
-        {
-            return Vector3.Transform(new Vector3(currentRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z + MathHelper.TwoPi / 5 * i));
+            return Vector3.Transform(new Vector3(currentRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z + MathHelper.TwoPi / max * i));
         }
     }
 }
