@@ -113,11 +113,6 @@ namespace Aequus
         /// <para>Used by <see cref="RabbitsFoot"/></para> 
         /// </summary>
         public float luckRerolls;
-        /// <summary>
-        /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-        /// <para>Used by <see cref="GrandReward"/></para> 
-        /// </summary>
-        public float lootLuck;
 
         /// <summary>
         /// Applied by <see cref="SantankSentry"/>
@@ -225,7 +220,7 @@ namespace Aequus
         }
         public int RerollLuck(int rolledAmt, int range)
         {
-            for (float luckLeft = lootLuck; luckLeft > 0f; luckLeft--)
+            for (float luckLeft = luckRerolls; luckLeft > 0f; luckLeft--)
             {
                 if (luckLeft < 1f)
                 {
@@ -479,7 +474,6 @@ namespace Aequus
             hasShadowKey = false;
 
             forceDaytime = 0;
-            lootLuck = 0f;
             ghostSlotsMax = 1;
             ghostLifespan = 3600;
         }
@@ -839,30 +833,6 @@ namespace Aequus
 
         public static void DrawLegacyAura(Vector2 location, float circumference, float opacity, Color color)
         {
-            var texture = PlayerAssets.FocusAura.Value;
-            var origin = texture.Size() / 2f;
-            var drawCoords = (location - Main.screenPosition).Floor();
-            float scale = circumference / texture.Width;
-            opacity = Math.Min(opacity * scale, 1f);
-
-            Main.spriteBatch.Draw(texture, drawCoords, null,
-                color * 0.5f * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-            texture = PlayerAssets.FocusCircle.Value;
-
-            foreach (var v in AequusHelpers.CircularVector(8))
-            {
-                Main.spriteBatch.Draw(texture, drawCoords + v * 2f * scale, null,
-                    color * 0.66f * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-            }
-
-            foreach (var v in AequusHelpers.CircularVector(4))
-            {
-                Main.spriteBatch.Draw(texture, drawCoords + v * scale, null,
-                    color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
-            }
-
-            Main.spriteBatch.Draw(texture, drawCoords, null,
-                color * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
         }
 
         /// <summary>
@@ -1015,6 +985,10 @@ namespace Aequus
                     }
                 }
                 return count;
+            }
+            if (Main.myPlayer != Player.whoAmI)
+            {
+                return count + 1;
             }
             for (int i = 0; i < Main.maxProjectiles; i++)
             {

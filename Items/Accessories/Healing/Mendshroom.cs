@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Healing
 {
-    public sealed class Mendshroom : ModItem
+    public sealed class Mendshroom : ModItem, Hooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -28,7 +27,7 @@ namespace Aequus.Items.Accessories.Healing
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var stat = player.GetModPlayer<MendshroomPlayer>();
-            stat.Add(circumference: 280f, regen: 20);
+            stat.Add(circumference: 280f, regen: 30);
             if (stat.EffectActive)
             {
                 if (player.Aequus()
@@ -38,6 +37,11 @@ namespace Aequus.Items.Accessories.Healing
                         0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);
                 }
             }
+        }
+
+        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            player.GetModPlayer<MendshroomPlayer>().cMendshroom = dyeItem.dye;
         }
     }
 
@@ -49,6 +53,8 @@ namespace Aequus.Items.Accessories.Healing
         public float diameter;
         public int regenerationToGive;
         public int idleTime;
+
+        public int cMendshroom;
 
         public int increasedRegen;
 
@@ -74,6 +80,8 @@ namespace Aequus.Items.Accessories.Healing
             }
             diameter = 0f;
             regenerationToGive = 0;
+
+            cMendshroom = 0;
         }
 
         public override void clientClone(ModPlayer clientClone)

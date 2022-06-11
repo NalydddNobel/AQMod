@@ -2,15 +2,34 @@
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
 {
     public class MendshroomAuraProj : ModProjectile
     {
-        public override string Texture => Aequus.BlankTexture;
+        public static Asset<Texture2D> AuraTexture { get; private set; }
+
+        public override void Load()
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AuraTexture = ModContent.Request<Texture2D>(Texture + "Aura");
+            }
+        }
+
+        public override void Unload()
+        {
+            AuraTexture = null;
+        }
 
         public override void SetDefaults()
         {
@@ -25,6 +44,19 @@ namespace Aequus.Projectiles.Misc
         public override void AI()
         {
             float scale = Projectile.scale;
+
+            if (Main.player[Projectile.owner].ownedProjectileCounts[Type] > 10)
+            {
+                for (int i = Projectile.whoAmI; i >= 0; i--)
+                {
+                    if (Projectile.CheckHeredity(Main.projectile[i]))
+                    {
+                        Projectile.timeLeft = Math.Min(Projectile.timeLeft, 2);
+                        return;
+                    }
+                }
+            }
+
             MendshroomPlayer mendshroom;
             int projIdentity = (int)Projectile.ai[0] - 1;
             if (projIdentity > -1)
@@ -61,10 +93,14 @@ namespace Aequus.Projectiles.Misc
             if (mendshroom?.EffectActive == true)
             {
                 mendshroom.HealPlayers();
-                if (Main.rand.NextBool(10))
+                if (Main.rand.NextBool(7))
                 {
                     var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                    Dust.NewDustPerfect(mendshroom.Player.Center + v * Main.rand.NextFloat(Projectile.scale / 2f * 0.9f), ModContent.DustType<MendshroomDustSpore>(), -v, 255, new Color(10, 100, 20, 25));
+                    var d = Dust.NewDustPerfect(mendshroom.Player.Center + v * Main.rand.NextFloat(0.2f, Projectile.scale / 2f * 0.95f), ModContent.DustType<MendshroomDustSpore>(), -v * Main.rand.NextFloat(0.1f, 1f), 255, new Color(10, 100, 20, 25));
+                    if (mendshroom.cMendshroom != 0)
+                    {
+                        d.shader = GameShaders.Armor.GetSecondaryShader(mendshroom.cMendshroom, Main.player[Projectile.owner]);
+                    }
                 }
                 Lighting.AddLight(mendshroom.Player.Center, Color.Green.ToVector3());
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, mendshroom.diameter, 0.2f);
@@ -82,7 +118,6 @@ namespace Aequus.Projectiles.Misc
             {
                 Projectile.netUpdate = true;
             }
-
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
@@ -92,8 +127,37 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            AequusPlayer.DrawLegacyAura(Projectile.Center, Projectile.scale, Projectile.Opacity, new Color(10, 128, 10, 0));
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>().cMendshroom);
+            DrawAura(Projectile.Center - Main.screenPosition, Projectile.scale, Projectile.Opacity, AuraTexture.Value, TextureAssets.Projectile[Type].Value);
             return false;
+        }
+
+        public static void DrawAura(Vector2 location, float diameter, float opacity, Texture2D texture, Texture2D circle)
+        {
+            var origin = texture.Size() / 2f;
+            location = location.Floor();
+            float scale = diameter / texture.Width;
+            opacity = Math.Min(opacity * scale, 1f);
+
+            var color = new Color(255, 255, 255, 0);
+            Main.EntitySpriteDraw(texture, location, null,
+                color * 0.4f * opacity, 0f, origin, scale, SpriteEffects.None, 0);
+            texture = circle;
+
+            foreach (var v in AequusHelpers.CircularVector(8))
+            {
+                Main.EntitySpriteDraw(texture, location + v * 2f * scale, null,
+                    color * 0.66f * opacity, 0f, origin, scale, SpriteEffects.None, 0);
+            }
+
+            foreach (var v in AequusHelpers.CircularVector(4))
+            {
+                Main.EntitySpriteDraw(texture, location + v * scale, null,
+                    color * opacity, 0f, origin, scale, SpriteEffects.None, 0);
+            }
+
+            Main.EntitySpriteDraw(texture, location, null,
+                Color.White * opacity, 0f, origin, scale, SpriteEffects.None, 0);
         }
     }
 }

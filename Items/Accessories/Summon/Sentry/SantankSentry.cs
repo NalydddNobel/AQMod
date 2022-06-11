@@ -72,7 +72,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         {
                             var aequus = Main.player[projectile.owner].Aequus();
                             var parentSentry = parentProj.GetGlobalProjectile<SantankSentryProjectile>();
-                            ProjectileSources.ParentProjectile = projectile.identity;
+                            ProjectileSources.ParentProjectile_WhoAmI = projectile.whoAmI;
+                            ProjectileSources.ParentProjectile_Identity = projectile.identity;
                             try
                             {
                                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
@@ -86,7 +87,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                             catch
                             {
                             }
-                            ProjectileSources.ParentProjectile = -1;
+                            ProjectileSources.ParentProjectile_Identity = -1;
+                            ProjectileSources.ParentProjectile_WhoAmI = -1;
                         }
                     }
                 }
@@ -127,7 +129,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             dummyPlayer.wet = projectile.wet;
             dummyPlayer.lavaWet = projectile.lavaWet;
             dummyPlayer.honeyWet = projectile.honeyWet;
-            ProjectileSources.ParentProjectile = projectile.whoAmI;
+            ProjectileSources.ParentProjectile_WhoAmI = projectile.whoAmI;
+            ProjectileSources.ParentProjectile_Identity = projectile.identity;
 
             try
             {
@@ -148,7 +151,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             PlayerLoader.PostUpdate(dummyPlayer);
             dummyPlayer.numMinions = 0;
             dummyPlayer.slotsMinions = 0f;
-            ProjectileSources.ParentProjectile = -1;
+            ProjectileSources.ParentProjectile_Identity = -1;
+            ProjectileSources.ParentProjectile_WhoAmI = -1;
         }
     }
 

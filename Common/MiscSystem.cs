@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon;
-using Aequus.Projectiles;
+﻿using Aequus.Projectiles;
 using Terraria.ModLoader;
 
 namespace Aequus.Common
@@ -8,7 +7,8 @@ namespace Aequus.Common
     {
         public override void PostUpdatePlayers()
         {
-            ProjectileSources.ParentProjectile = -1;
+            ProjectileSources.ParentProjectile_WhoAmI = -1;
+            ProjectileSources.ParentProjectile_Identity = -1;
             ProjectileSources.ParentNPC = -1;
             if (AequusHelpers.Main_invasionSize.IsCaching)
             {

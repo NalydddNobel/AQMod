@@ -9,14 +9,15 @@ namespace Aequus.Projectiles
 {
     public class ProjectileSources : GlobalProjectile
     {
-        public static int ParentProjectile;
+        public static int ParentProjectile_WhoAmI;
+        public static int ParentProjectile_Identity;
         public static int ParentNPC;
 
-        public int itemUsed = 0;
-        public int ammoUsed = 0;
-        public int npcOwner = -1;
-        public int projectileOwnerIdentity = -1;
-        public int projectileOwner = -1;
+        public int itemUsed;
+        public int ammoUsed;
+        public int npcOwner;
+        public int projectileOwnerIdentity;
+        public int projectileOwner;
 
         public override bool InstancePerEntity => true;
 
@@ -25,9 +26,16 @@ namespace Aequus.Projectiles
         public bool HasProjectileOwner => projectileOwnerIdentity > -1;
         public bool HasNPCOwner => npcOwner > -1;
 
+        public ProjectileSources()
+        {
+            npcOwner = -1;
+            projectileOwnerIdentity = -1;
+            projectileOwner = -1;
+        }
+
         public override void Load()
         {
-            ParentProjectile = -1;
+            ParentProjectile_Identity = -1;
             ParentNPC = -1;
         }
 
@@ -36,7 +44,7 @@ namespace Aequus.Projectiles
             itemUsed = -1;
             ammoUsed = -1;
             npcOwner = ParentNPC;
-            projectileOwnerIdentity = ParentProjectile;
+            projectileOwnerIdentity = ParentProjectile_Identity;
             if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
             {
                 int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;

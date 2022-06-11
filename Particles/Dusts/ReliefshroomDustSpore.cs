@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus.Particles.Dusts
 {
-    public class MendshroomDustSpore : MonoDust
+    public class ReliefshroomDustSpore : MonoDust
     {
         public override float VelocityMultiplier => 0.95f;
         public override float ScaleSubtraction => 0.03f;
@@ -25,7 +25,7 @@ namespace Aequus.Particles.Dusts
         {
             if (dust.alpha > 0)
             {
-                dust.alpha -= 5;
+                dust.alpha -= 10;
                 if (dust.alpha < 0)
                 {
                     dust.alpha = 0;
@@ -33,19 +33,26 @@ namespace Aequus.Particles.Dusts
             }
             else
             {
-                dust.scale -= 0.01f - Math.Min(dust.scale * 0.009f, 0.005f);
+                dust.scale -= 0.02f - Math.Min(dust.scale * 0.009f, 0.007f);
                 if (dust.scale < 0.01f)
                 {
                     dust.active = false;
                 }
             }
 
-            dust.velocity = dust.velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
-            if (dust.velocity.Length() > 0.1f)
+            float range = 0.15f;
+            if (dust.customData is Player player)
             {
-                dust.velocity *= 0.99f;
+                dust.position += player.velocity * Math.Clamp(dust.scale, 0.1f, 1f);
+                range *= 1f - Math.Clamp(dust.scale, 0f, 1f);
             }
-            dust.rotation += 0.005f;
+            dust.velocity = dust.velocity.RotatedBy(Main.rand.NextFloat(-range, range));
+            float l = dust.velocity.Length();
+            if (l > 0.3f)
+            {
+                dust.velocity *= 0.98f;
+            }
+            dust.rotation += 0.01f + l * 0.05f;
 
             dust.position += dust.velocity;
             return false;
