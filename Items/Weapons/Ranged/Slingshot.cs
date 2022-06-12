@@ -22,7 +22,6 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetStaticDefaults()
         {
-            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 4), ChestTypes.Skyware);
             this.SetResearch(1);
         }
 

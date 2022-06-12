@@ -3,6 +3,10 @@ using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
+using Aequus.Items.Accessories;
+using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -18,6 +22,11 @@ namespace Aequus
 {
     public sealed class AequusWorld : ModSystem
     {
+        [SaveData("GaleStreams")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedEventGaleStreams;
+
         [SaveData("SpaceSquid")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
@@ -26,18 +35,21 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedRedSprite;
-        [SaveData("GaleStreams")]
-        [SaveDataAttribute.IsListedBoolean]
-        [NetBool]
-        public static bool downedEventGaleStreams;
+
         [SaveData("Crabson")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedCrabson;
+
         [SaveData("OmegaStarite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedOmegaStarite;
+
+        [SaveData("DustDevil")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedDustDevil;
 
         public static Structures Structures { get; private set; }
 
@@ -58,6 +70,7 @@ namespace Aequus
             downedEventGaleStreams = false;
             downedCrabson = false;
             downedOmegaStarite = false;
+            downedDustDevil = false;
             Structures = new Structures();
         }
 
@@ -109,6 +122,86 @@ namespace Aequus
             int i = tasks.FindIndex((t) => t.Name.Equals(task));
             if (i != -1)
                 tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
+        }
+
+        public override void PostWorldGen()
+        {
+            var rockmanChests = new List<int>();
+
+            var placedItems = new HashSet<int>();
+
+            for (int k = 0; k < Main.maxChests; k++)
+            {
+                Chest c = Main.chest[k];
+                if (c != null)
+                {
+                    if (Main.tile[c.x, c.y].TileType == TileID.Containers)
+                    {
+                        int style = ChestTypes.GetChestStyle(c);
+                        if (style == ChestTypes.Gold || style == ChestTypes.Frozen)
+                        {
+                            rockmanChests.Add(k);
+
+                            if (Main.rand.NextBool(6))
+                            {
+                                for (int i = 0; i < Chest.maxItems; i++)
+                                {
+                                    if (!c.item[i].IsAir && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
+                                    {
+                                        c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
+                                        placedItems.Add(ModContent.ItemType<GlowCore>());
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else if (style == ChestTypes.LockedGold)
+                        {
+                            if (!placedItems.Contains(ModContent.ItemType<Valari>()) || Main.rand.NextBool(6))
+                            {
+                                c.Insert(ModContent.ItemType<Valari>(), 1);
+                                placedItems.Add(ModContent.ItemType<Valari>());
+                            }
+                            else if (!placedItems.Contains(ModContent.ItemType<Revenant>()) || Main.rand.NextBool(6))
+                            {
+                                c.Insert(ModContent.ItemType<Valari>(), 1);
+                                placedItems.Add(ModContent.ItemType<Revenant>());
+                            }
+                        }
+                        else if (style == ChestTypes.Frozen)
+                        {
+                            if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || Main.rand.NextBool(6))
+                            {
+                                c.Insert(ModContent.ItemType<CrystalDagger>(), 1);
+                                placedItems.Add(ModContent.ItemType<CrystalDagger>());
+                            }
+                        }
+                        else if (style == ChestTypes.Skyware)
+                        {
+                            if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || Main.rand.NextBool())
+                            {
+                                c.Insert(ModContent.ItemType<Slingshot>(), 1);
+                                placedItems.Add(ModContent.ItemType<Slingshot>());
+                            }
+                        }
+                    }
+                    else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
+                    {
+                        int style = ChestTypes.GetChestStyle(c);
+                        if (style == ChestTypes.deadMans || style == ChestTypes.sandstone)
+                        {
+                            rockmanChests.Add(k);
+                        }
+                    }
+                }
+            }
+
+            if (rockmanChests.Count > 0)
+            {
+                var c = Main.chest[rockmanChests[WorldGen.genRand.Next(rockmanChests.Count)]];
+                Structures.Add("RockManChest", new Point(c.x, c.y));
+                c.Insert(ModContent.ItemType<RockMan>(), WorldGen.genRand.Next(Chest.maxItems - 1));
+            }
         }
 
         public static void MarkAsDefeated(ref bool defeated, int npcID)

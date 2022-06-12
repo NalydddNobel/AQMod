@@ -242,7 +242,7 @@ namespace Aequus.Content
         }
         public static int RollPlaceCheck()
         {
-            return WorldGen.genRand.Next(1200, 3600) * 10;
+            return WorldGen.genRand.Next(1200, 3600) * 20;
         }
     }
 }

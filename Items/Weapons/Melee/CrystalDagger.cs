@@ -14,8 +14,6 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-
-            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.Frozen);
         }
 
         public override void SetDefaults()

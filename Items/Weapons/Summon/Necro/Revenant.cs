@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Projectiles.Summon.Necro;
-using Aequus.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +12,6 @@ namespace Aequus.Items.Weapons.Summon.Necro
         {
             base.SetStaticDefaults();
 
-            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.LockedGold);
             LootPools.Bags.Lockbox_Secondary.Add(Type);
         }
 

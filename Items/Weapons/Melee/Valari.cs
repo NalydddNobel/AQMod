@@ -14,7 +14,6 @@ namespace Aequus.Items.Weapons.Melee
             this.SetResearch(1);
 
             LootPools.Bags.Lockbox_Secondary.Add(Type);
-            LootPools.Chests.Add(new LootPools.Chests.FrontChestLoot(Type, 8), ChestTypes.LockedGold);
         }
 
         public override void SetDefaults()

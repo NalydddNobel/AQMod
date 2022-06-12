@@ -8,7 +8,7 @@ using Terraria.UI;
 
 namespace Aequus.Common
 {
-    public class ChestUnlockers : GlobalTile
+    public class UnlockingHelper : GlobalTile
     {
         public override void Load()
         {

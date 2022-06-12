@@ -565,6 +565,12 @@ namespace Aequus.NPCs.Boss
             potionType = ItemID.GreaterHealingPotion;
         }
 
+        public override void OnKill()
+        {
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventGaleStreams, NPC.type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, NPC.type);
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (dust == null)
