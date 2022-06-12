@@ -121,6 +121,12 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.grandRewardLuck">
+            <summary>
+            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.increasedRegen">
             <summary>
             An amount of regen to add to the player
@@ -513,12 +519,6 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.GrandRewardPlayer.lootLuck">
-            <summary>
-            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
             </summary>
         </member>
         <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">

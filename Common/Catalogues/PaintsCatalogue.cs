@@ -9,6 +9,9 @@ namespace Aequus.Common.Catalogues
     {
         internal static Color Furniture => new Color(191, 142, 111);
 
+        public const byte Team = 254;
+        public const byte Rainbow = 255;
+
         public static byte[] Paints { get; private set; }
         public static Dictionary<short, byte> DyeToPaint { get; private set; }
         public static Dictionary<byte, short> PaintToDye { get; private set; }
@@ -33,8 +36,8 @@ namespace Aequus.Common.Catalogues
                 PaintID.BlackPaint,
                 PaintID.WhitePaint,
                 PaintID.BrownPaint,
-                253, // Team
-                255, // Rainbow
+                Team, // Team
+                Rainbow, // Rainbow
             };
             DyeToPaint = new Dictionary<short, byte>
             {

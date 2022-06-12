@@ -38,12 +38,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            byte value = color;
-            if (color != 255)
-            {
-                value++;
-            }
-            player.GetModPlayer<GlowCorePlayer>().glowCore = value;
+            player.Aequus().glowCoreItem = Item;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -52,9 +47,9 @@ namespace Aequus.Items.Accessories
             {
                 var texture = TextureAssets.Item[Type].Value;
 
-                AequusPlayer.TeamContext = Main.LocalPlayer.team;
+                AequusPlayer.Team = Main.LocalPlayer.team;
                 var coloring = DyeColor();
-                AequusPlayer.TeamContext = 0;
+                AequusPlayer.Team = 0;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -81,15 +76,15 @@ namespace Aequus.Items.Accessories
 
                 if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
                 {
-                    AequusPlayer.TeamContext = Main.player[Item.playerIndexTheItemIsReservedFor].team;
+                    AequusPlayer.Team = Main.player[Item.playerIndexTheItemIsReservedFor].team;
                 }
                 else
                 {
-                    AequusPlayer.TeamContext = 0;
+                    AequusPlayer.Team = 0;
                 }
 
                 var coloring = DyeColor();
-                AequusPlayer.TeamContext = 0;
+                AequusPlayer.Team = 0;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -110,31 +105,9 @@ namespace Aequus.Items.Accessories
             ColorRecipes<GlowCore>();
         }
 
-        public static void AddLight(Entity entity, byte glowCore, int playerTeam = -1)
+        public static void AddLight(Vector2 location, Player player, AequusPlayer aequus)
         {
-            if (glowCore != 255)
-            {
-                glowCore--;
-            }
-            Lighting.AddLight(entity.Center, DyeColor(glowCore).ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
-        }
-    }
-
-    public class GlowCorePlayer : ModPlayer
-    {
-        public byte glowCore;
-
-        public override void ResetEffects()
-        {
-            glowCore = 0;
-        }
-
-        public override void PostUpdateEquips()
-        {
-            if (glowCore > 0)
-            {
-                GlowCore.AddLight(Player, glowCore);
-            }
+            Lighting.AddLight(location, DyeColor(((aequus.glowCoreItem.ModItem as DyeableAccessory)?.color).GetValueOrDefault(0)).ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
         }
     }
 
@@ -142,14 +115,12 @@ namespace Aequus.Items.Accessories
     {
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
+            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255)
             {
-                var glowCore = Main.player[projectile.owner].GetModPlayer<GlowCorePlayer>();
-                if (glowCore.glowCore > 0)
+                var glowCore = Main.player[projectile.owner].Aequus();
+                if (glowCore.glowCoreItem != null)
                 {
-                    AequusPlayer.TeamContext = Main.player[projectile.owner].team;
-                    GlowCore.AddLight(projectile, glowCore.glowCore);
-                    AequusPlayer.TeamContext = 0;
+                    GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
                 }
             }
         }

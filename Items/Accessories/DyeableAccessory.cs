@@ -16,15 +16,15 @@ namespace Aequus.Items.Accessories
         {
             return DyeColor(color);
         }
-        public static Color DyeColor(byte dye)
+        public static Color DyeColor(byte dye, Player player = null)
         {
             if (dye == 0)
             {
                 return Color.White;
             }
-            if (dye == 253)
+            if (dye == 254)
             {
-                return Main.teamColor[AequusPlayer.TeamContext];
+                return Main.teamColor[player != null ? player.team : AequusPlayer.Team];
             }
             if (dye == 255)
             {

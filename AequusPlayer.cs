@@ -22,6 +22,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -32,7 +33,7 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
-        public static int TeamContext;
+        public static int Team;
         public static float? PlayerDrawScale;
         public static int? PlayerDrawForceDye;
 
@@ -115,9 +116,23 @@ namespace Aequus
         /// </summary>
         public float luckRerolls;
         /// <summary>
+        /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+        /// <para>Used by <see cref="GrandReward"/></para> 
+        /// </summary>
+        public float grandRewardLuck;
+        /// <summary>
         /// An amount of regen to add to the player
         /// </summary>
         public int increasedRegen;
+
+        public Item glowCoreItem;
+
+        public bool reboundNecklace;
+        public bool reboundNecklaceJump;
+        public int reboundNecklaceTimer;
+        public int reboundNecklaceFall;
+
+        public bool grandReward;
 
         public Item sentrySquidItem;
         public int sentrySquidTimer;
@@ -320,6 +335,15 @@ namespace Aequus
             expertBoost = false;
         }
 
+        public override void SetControls()
+        {
+            if (reboundNecklaceJump)
+            {
+                Player.controlJump = true;
+            }
+            reboundNecklaceJump = false;
+        }
+
         public override void ResetEffects()
         {
             if (Player.velocity.Length() < 1f)
@@ -377,6 +401,26 @@ namespace Aequus
             }
             accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
 
+            glowCoreItem = null;
+
+            if (reboundNecklace)
+            {
+                if (reboundNecklaceTimer > 0)
+                {
+                    reboundNecklaceTimer--;
+                }
+                int y = (int)(Player.position.Y + Player.height) / 16;
+                int fallAmt = y - Player.fallStart;
+                if (fallAmt < reboundNecklaceFall)
+                {
+                    reboundNecklaceFall = fallAmt;
+                }
+            }
+            reboundNecklace = false;
+
+            grandRewardLuck = 0f;
+            grandReward = false;
+
             sentrySquidItem = null;
             if (!InDanger)
             {
@@ -403,7 +447,7 @@ namespace Aequus
             hasExpertItemBoost = expertBoost;
             expertBoost = false;
             foolsGold = false;
-            TeamContext = Player.team;
+            Team = Player.team;
 
             buffSpicyEel = false;
             buffResistHeat = false;
@@ -543,6 +587,11 @@ namespace Aequus
 
         public override void PostUpdate()
         {
+            if (glowCoreItem != null && glowCoreItem.ModItem is DyeableAccessory)
+            {
+                GlowCore.AddLight(Player.Center, Player, this);
+            }
+
             if (healingMushroomItem != null && healingMushroomItem.shoot > ProjectileID.None
                 && MendshroomActive && ProjectilesOwned_ConsiderProjectileIdentity(healingMushroomItem.shoot) <= 0)
             {
@@ -558,7 +607,7 @@ namespace Aequus
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
             ClosestEnemy();
-            TeamContext = 0;
+            Team = 0;
 
             if (sentrySquidItem != null && sentrySquidTimer == 0)
             {
@@ -574,6 +623,11 @@ namespace Aequus
             {
                 accExpertItemBoostBoCProbesDefense = 0;
                 accExpertItemBoostBoCProbesDefenseTimer = 0;
+            }
+
+            if (reboundNecklace)
+            {
+                ReboundNecklace();
             }
 
             if (AequusHelpers.Main_dayTime.IsCaching)
@@ -607,6 +661,45 @@ namespace Aequus
                     }
                 }
             }
+        }
+
+        public void ReboundNecklace()
+        {
+            int y = (int)(Player.position.Y + Player.height) / 16;
+            int fallAmt = y - Player.fallStart;
+            if (fallAmt - reboundNecklaceFall > 20)
+            {
+                reboundNecklaceFall = fallAmt;
+                RefreshJumpOption();
+            }
+            if (Player.noFallDmg || Player.slowFall || Player.wingTime > 0 || fallAmt < 10)
+            {
+                return;
+            }
+            int x = (int)(Player.position.X + Player.width / 2f) / 16;
+            int tileScanAmt = Math.Min((int)(Player.velocity.Y / 2f), 30);
+            for (int i = 0; i < tileScanAmt; i++)
+            {
+                if (y + i > Main.maxTilesY - 10)
+                {
+                    return;
+                }
+                if (Main.tile[x, y + i].IsSolid())
+                {
+                    ReboundNecklaceFallJump();
+                    break;
+                }
+            }
+        }
+        public void ReboundNecklaceFallJump()
+        {
+            if (reboundNecklaceTimer > 0)
+            {
+                return;
+            }
+            RefreshJumpOption();
+            reboundNecklaceTimer = 60;
+            reboundNecklaceJump = true;
         }
 
         /// <summary>
@@ -936,6 +1029,42 @@ namespace Aequus
         {
         }
 
+        public void RefreshJumpOption()
+        {
+            if (Player.hasJumpOption_Cloud && !Player.isPerformingJump_Cloud && !Player.canJumpAgain_Cloud)
+            {
+                Player.canJumpAgain_Cloud = true;
+            }
+            else if (Player.hasJumpOption_Blizzard && !Player.isPerformingJump_Blizzard && !Player.canJumpAgain_Blizzard)
+            {
+                Player.canJumpAgain_Blizzard = true;
+            }
+            else if (Player.hasJumpOption_Sandstorm && !Player.isPerformingJump_Sandstorm && !Player.canJumpAgain_Sandstorm)
+            {
+                Player.canJumpAgain_Sandstorm = true;
+            }
+            else if (Player.hasJumpOption_Fart && !Player.isPerformingJump_Fart && !Player.canJumpAgain_Fart)
+            {
+                Player.canJumpAgain_Fart = true;
+            }
+            else if (Player.hasJumpOption_Sail && !Player.isPerformingJump_Sail && !Player.canJumpAgain_Sail)
+            {
+                Player.canJumpAgain_Sail = true;
+            }
+            else if (Player.hasJumpOption_Basilisk && !Player.isPerformingJump_Basilisk && !Player.canJumpAgain_Basilisk)
+            {
+                Player.canJumpAgain_Basilisk = true;
+            }
+            else if (Player.hasJumpOption_Unicorn && !Player.isPerformingJump_Unicorn && !Player.canJumpAgain_Unicorn)
+            {
+                Player.canJumpAgain_Unicorn = true;
+            }
+            else if (Player.hasJumpOption_WallOfFleshGoat && !Player.isPerformingJump_WallOfFleshGoat && !Player.canJumpAgain_WallOfFleshGoat)
+            {
+                Player.canJumpAgain_WallOfFleshGoat = true;
+            }
+        }
+
         /// <summary>
         /// Sets a cooldown for the player. If the cooldown value provided is less than the player's currently active cooldown, this does nothing.
         /// <para>Use in combination with <see cref="HasCooldown"/></para>
@@ -1115,10 +1244,55 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
+            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
             On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+        }
+
+        private static void Hook_NoMoreMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
+        {
+            if (closestPlayer.Aequus().grandReward)
+            {
+                return;
+            }
+            orig(self, closestPlayer);
+        }
+
+        private static ItemDropAttemptResult Hook_RerollLoot(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
+        {
+            var result = orig(self, rule, info);
+            if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
+            {
+                if (AequusHelpers.iterations == 0)
+                {
+                    for (float luckLeft = info.player.Aequus().grandRewardLuck; luckLeft > 0f; luckLeft--)
+                    {
+                        if (luckLeft < 1f)
+                        {
+                            if (Main.rand.NextFloat(1f) > luckLeft)
+                            {
+                                return result;
+                            }
+                        }
+                        var result2 = orig(self, rule, info);
+                        AequusHelpers.iterations++;
+                        if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
+                        {
+                            AequusHelpers.iterations = 0;
+                            return result2;
+                        }
+                    }
+                    AequusHelpers.iterations = 0;
+                }
+                else
+                {
+                    AequusHelpers.iterations++;
+                }
+            }
+            return result;
         }
 
         private static int Hook_ModifyLuckRoll(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
