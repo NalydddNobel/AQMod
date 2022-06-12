@@ -77,7 +77,8 @@ namespace Aequus.Projectiles.Magic
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
-            target.GetGlobalNPC<DeathEffects>().SetContext(DeathEffects.Context.Snowgrave, 20);
+            var d = target.GetGlobalNPC<DeathEffects>();
+            d.snowgrave = Math.Max(20, d.snowgrave);
             if (target.IsTheDestroyer())
             {
                 Projectile.ai[0] += 12.5f;

@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Graphics.Prims;
+using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -190,6 +191,9 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            var d = target.GetGlobalNPC<DeathEffects>();
+            d.zombieSoul = Math.Max(60, d.zombieSoul);
+
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner, 4f);
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;

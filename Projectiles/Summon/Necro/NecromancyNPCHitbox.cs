@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.NPCs;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -36,6 +38,12 @@ namespace Aequus.Projectiles.Summon.Necro
                 return;
             }
             Projectile.Center = Main.npc[npc].Center;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            var d = target.GetGlobalNPC<DeathEffects>();
+            d.zombieSoul = Math.Max(60, d.zombieSoul);
         }
     }
 }

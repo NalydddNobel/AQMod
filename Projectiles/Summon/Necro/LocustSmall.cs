@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -85,6 +86,9 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            var d = target.GetGlobalNPC<DeathEffects>();
+            d.zombieSoul = Math.Max(60, d.zombieSoul);
+
             LocustDebuff.AddStack(target, 120, 2);
         }
     }

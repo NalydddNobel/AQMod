@@ -219,7 +219,7 @@ namespace Aequus
         /// </summary>
         public uint interactionCooldown;
 
-        public bool holdingSoulCandle;
+        public int soulCandleLimit;
 
         public int turretSlotCount;
 
@@ -352,7 +352,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            holdingSoulCandle = Player.HeldItem?.ModItem is SoulCandle;
+            soulCandleLimit = 0;
 
             if (Player.velocity.Length() < 1f)
             {
@@ -473,8 +473,6 @@ namespace Aequus
             forceDaytime = 0;
             ghostSlotsMax = 1;
             ghostLifespan = 3600;
-
-            candleSouls = 999;
         }
 
         public override void PreUpdate()

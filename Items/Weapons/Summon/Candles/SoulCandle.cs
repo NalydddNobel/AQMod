@@ -27,6 +27,11 @@ namespace Aequus.Items.Weapons.Summon.Candles
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
+        public override void HoldItem(Player player)
+        {
+            player.Aequus().soulCandleLimit = soulLimit;
+        }
+
         public override bool CanUseItem(Player player)
         {
             return player.Aequus().candleSouls >= useSouls;

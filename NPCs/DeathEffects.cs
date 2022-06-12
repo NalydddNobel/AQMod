@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.Networking;
+using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -19,25 +20,8 @@ namespace Aequus.NPCs
 
         public override bool InstancePerEntity => true;
 
-        public Context context;
-        public int timer;
-
-        public bool HasDeathContext => timer > 0 && context != Context.None;
-
-        public void SetContext(Context context, int time)
-        {
-            if (timer < time)
-            {
-                this.context = context;
-                timer = time;
-            }
-        }
-
-        public void ClearContext()
-        {
-            context = Context.None;
-            timer = 0;
-        }
+        public int snowgrave;
+        public int zombieSoul;
 
         public override void Load()
         {
@@ -47,10 +31,10 @@ namespace Aequus.NPCs
         {
             try
             {
-                var deathEffects = self.GetGlobalNPC<DeathEffects>();
-                if (deathEffects.HasDeathContext && Main.netMode != NetmodeID.Server)
+                if (Main.netMode != NetmodeID.Server)
                 {
-                    if (deathEffects.context == Context.Snowgrave && self.life <= 0 && SnowgraveCorpse.CanFreezeNPC(self))
+                    var d = self.GetGlobalNPC<DeathEffects>();
+                    if (d.snowgrave > 0 && self.life <= 0 && SnowgraveCorpse.CanFreezeNPC(self))
                     {
                         SoundEngine.PlaySound(SoundID.Item30, self.Center);
                         return;
@@ -66,18 +50,25 @@ namespace Aequus.NPCs
 
         public override void AI(NPC npc)
         {
-            if (timer > 0)
-                timer--;
+            if (snowgrave > 0)
+                snowgrave--;
+            if (zombieSoul > 1)
+                zombieSoul--;
+        }
+
+        public override void OnHitNPC(NPC npc, NPC target, int damage, float knockback, bool crit)
+        {
+            if (zombieSoul == 1)
+            {
+                zombieSoul = 0;
+            }
         }
 
         public override bool SpecialOnKill(NPC npc)
         {
-            if (HasDeathContext)
+            if (snowgrave > 0 && Main.netMode != NetmodeID.Server)
             {
-                if (context == Context.Snowgrave && Main.netMode != NetmodeID.Server)
-                {
-                    DeathEffect_SnowgraveFreeze(npc);
-                }
+                DeathEffect_SnowgraveFreeze(npc);
             }
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -92,6 +83,11 @@ namespace Aequus.NPCs
                 return false;
             }
 
+            if (zombieSoul > 0)
+            {
+                CheckSouls(players);
+            }
+
             if (NecromancyDatabase.TryGetByNetID(npc, out var info))
             {
                 var zombie = npc.GetGlobalNPC<NecromancyNPC>();
@@ -102,26 +98,54 @@ namespace Aequus.NPCs
             }
             return false;
         }
-        public List<Player> GetCloseEnoughPlayers(NPC npc)
+        public void CheckSouls(List<(Player, AequusPlayer, float)> players)
+        {
+            int closest = -1;
+            float closestDistance = 2000f;
+            foreach (var p in players)
+            {
+                if (p.Item3 < closestDistance && p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                {
+                    closest = p.Item1.whoAmI;
+                    closestDistance = p.Item3;
+                }
+            }
+            if (closest != -1)
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.player[closest].Aequus().candleSouls++; // bru
+                }
+                else
+                {
+                    PacketHandler.Send((p) =>
+                    {
+                        p.Write(closest);
+                    }, PacketType.GiveoutEnemySoul);
+                }
+            }
+        }
+        public List<(Player, AequusPlayer, float)> GetCloseEnoughPlayers(NPC npc)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                return new List<Player>() { Main.LocalPlayer, };
+                return new List<(Player, AequusPlayer, float)>() { (Main.LocalPlayer, Main.LocalPlayer.Aequus(), npc.Distance(Main.LocalPlayer.Center)), };
             }
-            var list = new List<Player>();
+            var list = new List<(Player, AequusPlayer, float)>();
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active && !Main.player[i].dead)
                 {
-                    if (npc.Distance(Main.player[i].Center) < 2000f)
+                    float d = npc.Distance(Main.player[i].Center);
+                    if (d < 2000f)
                     {
-                        list.Add(Main.player[i]);
+                        list.Add((Main.player[i], Main.player[i].Aequus(), d));
                     }
                 }
             }
             return list;
         }
-        public bool CheckRecruitable(NPC npc, NecromancyNPC zombie, GhostInfo info, List<Player> players)
+        public bool CheckRecruitable(NPC npc, NecromancyNPC zombie, GhostInfo info, List<(Player, AequusPlayer, float)> players)
         {
             if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
             {

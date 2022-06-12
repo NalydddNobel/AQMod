@@ -3,6 +3,7 @@ using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
+using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -772,6 +773,15 @@ namespace Aequus.Content.Necromancy
                     multiplier *= 2f;
                 }
                 damage = (int)(damage * multiplier);
+            }
+        }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (isZombie)
+            {
+                var d = target.GetGlobalNPC<DeathEffects>();
+                d.zombieSoul = Math.Max(60, d.zombieSoul);
             }
         }
 

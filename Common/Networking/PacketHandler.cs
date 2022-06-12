@@ -170,6 +170,10 @@ namespace Aequus.Common.Networking
             {
                 TERecyclingMachine.NetReceive2(reader);
             }
+            else if (type == PacketType.GiveoutEnemySoul)
+            {
+                Main.player[reader.ReadInt32()].GetModPlayer<AequusPlayer>().candleSouls++;
+            }
         }
     }
 }
