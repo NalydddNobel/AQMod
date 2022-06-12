@@ -504,7 +504,7 @@ Mods: {
 		ItemTooltip: {
 			WretchedCandle:
 				'''
-				召唤一个诅咒骷髅为你而战
+				召唤一个诅咒颅骨为你而战
 				会吸收被幽魂仆从杀死的敌人的灵魂
 				'''
 			AshCandle:
