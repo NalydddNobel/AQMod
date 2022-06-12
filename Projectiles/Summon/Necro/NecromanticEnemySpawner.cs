@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.Networking;
+using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using System;
 using Terraria;
@@ -25,16 +26,14 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void Kill(int timeLeft)
         {
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int x = (int)Projectile.position.X + Projectile.width / 2;
                 int y = (int)Projectile.position.Y + Projectile.height / 2;
                 int type = DetermineNPCType((int)Projectile.ai[0]);
                 int n = NPC.NewNPC(Projectile.GetSource_Death("Aequus:NecromancySpawn"), x, y, type);
-                Main.npc[n].whoAmI = n;
                 OnSpawnZombie(Main.npc[n], Main.npc[n].GetGlobalNPC<NecromancyNPC>());
-                Main.npc[n].netUpdate = true;
-                NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, n);
+                PacketHandler.SyncNPC(Main.npc[n]);
             }
         }
 

@@ -1,8 +1,10 @@
-﻿using Aequus.Common.Networking;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
-using Microsoft.Xna.Framework;
+using ModGlobalsNet;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -10,35 +12,23 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public sealed class DeathEffects : GlobalNPC
+    public sealed class AequusNPC : GlobalNPC
     {
-        public enum Context
-        {
-            None = 0,
-            Snowgrave,
-        }
-
         public override bool InstancePerEntity => true;
-
-        public int snowgrave;
-        public int zombieSoul;
 
         public override void Load()
         {
-            On.Terraria.NPC.VanillaHitEffect += NPC_VanillaHitEffect;
+            On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
-        private static void NPC_VanillaHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
+        private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
             try
             {
-                if (Main.netMode != NetmodeID.Server)
+                if (Main.netMode != NetmodeID.Server && self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
+                    && SnowgraveCorpse.CanFreezeNPC(self))
                 {
-                    var d = self.GetGlobalNPC<DeathEffects>();
-                    if (d.snowgrave > 0 && self.life <= 0 && SnowgraveCorpse.CanFreezeNPC(self))
-                    {
-                        SoundEngine.PlaySound(SoundID.Item30, self.Center);
-                        return;
-                    }
+                    SoundEngine.PlaySound(SoundID.Item30, self.Center);
+                    return;
                 }
             }
             catch
@@ -48,25 +38,9 @@ namespace Aequus.NPCs
             orig(self, hitDirection, dmg);
         }
 
-        public override void AI(NPC npc)
-        {
-            if (snowgrave > 0)
-                snowgrave--;
-            if (zombieSoul > 1)
-                zombieSoul--;
-        }
-
-        public override void OnHitNPC(NPC npc, NPC target, int damage, float knockback, bool crit)
-        {
-            if (zombieSoul == 1)
-            {
-                zombieSoul = 0;
-            }
-        }
-
         public override bool SpecialOnKill(NPC npc)
         {
-            if (snowgrave > 0 && Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && npc.HasBuff<SnowgraveDebuff>())
             {
                 DeathEffect_SnowgraveFreeze(npc);
             }
@@ -78,14 +52,14 @@ namespace Aequus.NPCs
 
             var players = GetCloseEnoughPlayers(npc);
 
+            if (npc.HasBuff<SoulStolen>())
+            {
+                CheckSouls(players);
+            }
+
             if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)
             {
                 return false;
-            }
-
-            if (zombieSoul > 0)
-            {
-                CheckSouls(players);
             }
 
             if (NecromancyDatabase.TryGetByNetID(npc, out var info))

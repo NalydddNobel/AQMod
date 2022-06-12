@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs.Necro;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Debuffs.Necro;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -60,9 +61,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            var d = target.GetGlobalNPC<DeathEffects>();
-            d.zombieSoul = Math.Max(60, d.zombieSoul);
-
+            target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
             NecromancyDebuff.ApplyDebuff<RevenantDebuff>(target, 600, Projectile.owner, 2f);
         }
 

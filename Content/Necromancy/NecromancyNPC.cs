@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.Networking;
@@ -363,6 +364,7 @@ namespace Aequus.Content.Necromancy
                         SoundEngine.PlaySound(ZombieRecruitSound);
                     }
                 }
+                PacketHandler.SyncNPC(Main.npc[n]);
             }
         }
         public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound)
@@ -780,8 +782,7 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie)
             {
-                var d = target.GetGlobalNPC<DeathEffects>();
-                d.zombieSoul = Math.Max(60, d.zombieSoul);
+                target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
             }
         }
 

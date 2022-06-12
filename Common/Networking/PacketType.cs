@@ -12,6 +12,7 @@
         SyncDebuffs,
         SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities,
         GiveoutEnemySoul,
+        SoulDamage,
         Count,
     }
 }

@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -76,9 +77,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
-            var d = target.GetGlobalNPC<DeathEffects>();
-            d.snowgrave = Math.Max(20, d.snowgrave);
+            target.AddBuff(ModContent.BuffType<SoulStolen>(), 60);
             if (target.IsTheDestroyer())
             {
                 Projectile.ai[0] += 12.5f;

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -118,6 +119,11 @@ namespace Aequus.Common.Networking
         public static PacketType ReadPacketType(BinaryReader reader)
         {
             return (PacketType)reader.ReadByte();
+        }
+
+        public static void SyncNPC(NPC npc)
+        {
+            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
         }
 
         public static void HandlePacket(BinaryReader reader)
