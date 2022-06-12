@@ -20,12 +20,12 @@ namespace Aequus.Items.Tools
 
         public override void UpdateInventory(Player player)
         {
-            player.Aequus().hasSkeletonKey = true;
+            player.Aequus().skeletonKey = true;
         }
 
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
-            aequus.hasSkeletonKey = true;
+            aequus.skeletonKey = true;
         }
     }
 }

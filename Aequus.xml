@@ -96,7 +96,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
-            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.CheckDanger"/>
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.forceDaytime">
@@ -121,19 +121,24 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accExpertItemBoost">
+        <member name="F:Aequus.AequusPlayer.increasedRegen">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
+            An amount of regen to add to the player
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accInheritTurrets">
+        <member name="F:Aequus.AequusPlayer.expertBoost">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
+        <member name="F:Aequus.AequusPlayer.sentryInheritItem">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.foolsGold">
+            <summary>
+            Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
@@ -144,6 +149,16 @@
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
             Used by summon helmets (<see cref="T:Aequus.Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.skeletonKey">
+            <summary>
+            Set by <see cref="T:Aequus.Items.Tools.SkeletonKey"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.shadowKey">
+            <summary>
+            Set by <see cref="F:Terraria.ID.ItemID.ShadowKey"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -199,6 +214,12 @@
             </summary>
             <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
         </member>
+        <member name="M:Aequus.AequusPlayer.FindDemonSiege">
+            <summary>
+            Finds and returns the closest demon siege
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.AequusPlayer.UpdateBank(Terraria.Chest,System.Int32)">
             <summary>
             
@@ -212,9 +233,25 @@
             <item>Void Bag</item>
             </list></param>
         </member>
-        <member name="M:Aequus.AequusPlayer.CheckDanger">
+        <member name="M:Aequus.AequusPlayer.ClosestEnemy">
             <summary>
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.UpdateSentrySquid(System.Int32)">
+            <summary>
+            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.SentrySquid_GetStaff">
+            <summary>
+            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.AequusPlayer.UpdateSentrySquid(System.Int32)"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.UpdateMaxZombies">
+            <summary>
+            If the player has too many zombies, it kills the oldest and least prioritized one.
             </summary>
         </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
@@ -484,16 +521,6 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
             </summary>
         </member>
-        <member name="T:Aequus.Items.Accessories.Healing.MendshroomPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Healing.Mendshroom"/>
-            </summary>
-        </member>
-        <member name="T:Aequus.Items.Accessories.Healing.ReliefshroomPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.Healing.Reliefshroom"/>
-            </summary>
-        </member>
         <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">
             <summary>
             Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
@@ -529,17 +556,6 @@
             <para>returns:</para> 
                 Whether it was successful at placing a sentry
             </summary>
-        </member>
-        <member name="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.UpdateAutoSentry(System.Int32)">
-            <summary>
-            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="!:closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="!:CheckDanger"/>
-            </summary>
-        </member>
-        <member name="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.AutoSentry_GetUsableSentryStaff">
-            <summary>
-            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.Items.Accessories.Summon.Sentry.SentrySquidPlayer.UpdateAutoSentry(System.Int32)"/>
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Aequus.Items.Consumables.Bait.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.Players.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>

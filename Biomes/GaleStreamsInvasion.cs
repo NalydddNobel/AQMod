@@ -204,7 +204,7 @@ namespace Aequus.Biomes
 
         public class GaleStreamsSystem : ModSystem
         {
-            public override void PostUpdateWorld()
+            public override void PreUpdateEntities()
             {
                 if (!Aequus.HardmodeTier)
                 {

@@ -182,8 +182,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accInheritTurrets = true;
-            player.Aequus().accExpertItemBoost = true;
+            player.Aequus().sentryInheritItem = Item;
+            player.Aequus().expertBoost = true;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
@@ -269,7 +269,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public static void OnAI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-            aequus.accExpertItemBoost = true;
+            aequus.expertBoost = true;
         }
     }
 
@@ -303,7 +303,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             try
             {
-                if (!Main.LocalPlayer.Aequus().accExpertItemBoost || !TooltipItems.TryGetValue(item.type, out var text))
+                if (!Main.LocalPlayer.Aequus().expertBoost || !TooltipItems.TryGetValue(item.type, out var text))
                 {
                     return;
                 }

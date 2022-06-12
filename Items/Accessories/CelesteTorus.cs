@@ -137,7 +137,7 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accCelesteTorusItem = Item;
+            aequus.celesteTorusItem = Item;
             if (aequus.ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<CelesteTorusProj>(),

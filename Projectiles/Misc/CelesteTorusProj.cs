@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Misc
             }
 
             var player = Main.player[Projectile.owner];
-            if (player.active && !player.dead && (aequus?.accCelesteTorusItem) != null)
+            if (player.active && !player.dead && (aequus?.celesteTorusItem) != null)
             {
                 Projectile.timeLeft = 2;
             }
@@ -69,7 +69,7 @@ namespace Aequus.Projectiles.Misc
 
             if (Projectile.active)
             {
-                int damage = player.GetWeaponDamage(aequus.accCelesteTorusItem);
+                int damage = player.GetWeaponDamage(aequus.celesteTorusItem);
                 if (Projectile.damage != damage)
                 {
                     if (Projectile.damage < damage)

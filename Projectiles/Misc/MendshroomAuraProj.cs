@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.Healing;
-using Aequus.Items.Accessories.Summon.Sentry;
+﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,7 +56,7 @@ namespace Aequus.Projectiles.Misc
                 }
             }
 
-            MendshroomPlayer mendshroom;
+            AequusPlayer aequus;
             int projIdentity = (int)Projectile.ai[0] - 1;
             if (projIdentity > -1)
             {
@@ -73,37 +72,28 @@ namespace Aequus.Projectiles.Misc
                 }
 
                 Projectile.Center = Main.projectile[projIdentity].Center;
-                mendshroom = value.dummyPlayer?.GetModPlayer<MendshroomPlayer>();
-                //if (mendshroom == null)
-                //{
-                //    Main.NewText("Dummy player is null for mendshroom");
-                //}
-                //else
-                //{
-                //    Main.NewText(mendshroom.diameter);
-                //    Main.NewText(mendshroom.EffectActive);
-                //}
+                aequus = value.dummyPlayer?.Aequus();
             }
             else
             {
                 Projectile.Center = Main.player[Projectile.owner].Center;
-                mendshroom = Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>();
+                aequus = Main.player[Projectile.owner].Aequus();
             }
 
-            if (mendshroom?.EffectActive == true)
+            if (aequus?.healingMushroomItem != null && aequus?.MendshroomActive == true)
             {
-                mendshroom.HealPlayers();
+                aequus.Mendshroom();
                 if (Main.rand.NextBool(7))
                 {
                     var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                    var d = Dust.NewDustPerfect(mendshroom.Player.Center + v * Main.rand.NextFloat(0.2f, Projectile.scale / 2f * 0.95f), ModContent.DustType<MendshroomDustSpore>(), -v * Main.rand.NextFloat(0.1f, 1f), 255, new Color(10, 100, 20, 25));
-                    if (mendshroom.cMendshroom != 0)
+                    var d = Dust.NewDustPerfect(aequus.Player.Center + v * Main.rand.NextFloat(0.2f, Projectile.scale / 2f * 0.95f), ModContent.DustType<MendshroomDustSpore>(), -v * Main.rand.NextFloat(0.1f, 1f), 255, new Color(10, 100, 20, 25));
+                    if (aequus.cHealingMushroom != 0)
                     {
-                        d.shader = GameShaders.Armor.GetSecondaryShader(mendshroom.cMendshroom, Main.player[Projectile.owner]);
+                        d.shader = GameShaders.Armor.GetSecondaryShader(aequus.cHealingMushroom, Main.player[Projectile.owner]);
                     }
                 }
-                Lighting.AddLight(mendshroom.Player.Center, Color.Green.ToVector3());
-                Projectile.scale = MathHelper.Lerp(Projectile.scale, mendshroom.diameter, 0.2f);
+                Lighting.AddLight(aequus.Player.Center, Color.Green.ToVector3());
+                Projectile.scale = MathHelper.Lerp(Projectile.scale, aequus.mendshroomDiameter, 0.2f);
             }
             else
             {
@@ -127,7 +117,7 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].GetModPlayer<MendshroomPlayer>().cMendshroom);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHealingMushroom);
             DrawAura(Projectile.Center - Main.screenPosition, Projectile.scale, Projectile.Opacity, AuraTexture.Value, TextureAssets.Projectile[Type].Value);
             return false;
         }

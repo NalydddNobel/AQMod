@@ -5,17 +5,15 @@ using Aequus.Buffs.Pets;
 using Aequus.Common.Catalogues;
 using Aequus.Common.IO;
 using Aequus.Common.Networking;
-using Aequus.Common.Players;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
+using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
-using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +21,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -91,7 +90,7 @@ namespace Aequus
         public Point eventDemonSiege;
 
         /// <summary>
-        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="CheckDanger"/>
+        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="ClosestEnemy"/>
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
@@ -115,28 +114,42 @@ namespace Aequus
         /// <para>Used by <see cref="RabbitsFoot"/></para> 
         /// </summary>
         public float luckRerolls;
+        /// <summary>
+        /// An amount of regen to add to the player
+        /// </summary>
+        public int increasedRegen;
 
-        public Item accCelesteTorusItem;
+        public Item sentrySquidItem;
+        public int sentrySquidTimer;
+
+        public Item healingMushroomItem;
+        public int healingMushroomRegeneration;
+        public int cHealingMushroom;
+        public float mendshroomDiameter;
+
+        public Item celesteTorusItem;
         public int cCelesteTorus;
 
+        /// <summary>
+        /// Set by <see cref="MechsSentry"/>
+        /// </summary>
+        public bool expertBoost;
+        public bool hasExpertItemBoost;
         public int accExpertItemBoostWormScarfTimer;
         public bool accExpertItemBoostBoCProbesHurtSignal;
         public int accExpertItemBoostBoCProbesDefenseProjectile;
         public int accExpertItemBoostBoCProbesDefenseTimer;
         public int accExpertItemBoostBoCProbesDefense;
+
         /// <summary>
-        /// Applied by <see cref="MechsSentry"/>
+        /// Set by <see cref="SantankSentry"/>
         /// </summary>
-        public bool accExpertItemBoost;
-        public bool accExpertItemBoostOld;
+        public Item sentryInheritItem;
+
         /// <summary>
-        /// Applied by <see cref="SantankSentry"/>
+        /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
-        public bool accInheritTurrets;
-        /// <summary>
-        /// Applied by <see cref="FoolsGoldRing"/>
-        /// </summary>
-        public bool accFoolsGoldRing;
+        public bool foolsGold;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
@@ -147,8 +160,14 @@ namespace Aequus
         /// </summary>
         public int summonHelmetTimer;
 
-        public bool hasSkeletonKey;
-        public bool hasShadowKey;
+        /// <summary>
+        /// Set by <see cref="SkeletonKey"/>
+        /// </summary>
+        public bool skeletonKey;
+        /// <summary>
+        /// Set by <see cref="ItemID.ShadowKey"/>
+        /// </summary>
+        public bool shadowKey;
 
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -190,8 +209,11 @@ namespace Aequus
         public int ghostLifespan;
 
         public int hitTime;
+        public int idleTime;
 
-        public bool AccExpertItemBoost => accExpertItemBoostOld || accExpertItemBoost;
+        public bool MendshroomActive => idleTime >= 60;
+
+        public bool AccExpertItemBoost => hasExpertItemBoost || expertBoost;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -208,143 +230,6 @@ namespace Aequus
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
-        #region Hooks
-        private static void LoadHooks()
-        {
-            On.Terraria.Player.RollLuck += Player_RollLuck;
-            On.Terraria.Player.DropCoins += Player_DropCoins;
-            On.Terraria.Player.GetItemExpectedPrice += Player_GetItemExpectedPrice;
-            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += OnRenderPlayer;
-        }
-
-        private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
-        {
-            int rolled = orig(self, range);
-            if (AequusHelpers.iterations == 0)
-            {
-                AequusHelpers.iterations++;
-                try
-                {
-                    rolled = self.Aequus().RerollLuck(rolled, range);
-                }
-                catch
-                {
-                }
-                AequusHelpers.iterations = 0;
-            }
-            return rolled;
-        }
-        public int RerollLuck(int rolledAmt, int range)
-        {
-            for (float luckLeft = luckRerolls; luckLeft > 0f; luckLeft--)
-            {
-                if (luckLeft < 1f)
-                {
-                    if (Main.rand.NextFloat(1f) > luckLeft)
-                    {
-                        return rolledAmt;
-                    }
-                }
-                int roll = Player.RollLuck(range);
-                if (roll < rolledAmt)
-                {
-                    rolledAmt = roll;
-                }
-                if (rolledAmt <= 0)
-                {
-                    return 0;
-                }
-            }
-            return rolledAmt;
-        }
-
-        private static int Player_DropCoins(On.Terraria.Player.orig_DropCoins orig, Player self)
-        {
-            if (self.Aequus().accFoolsGoldRing)
-            {
-                return FoolsGoldCoinCurse(self);
-            }
-            return orig(self);
-        }
-        public static int FoolsGoldCoinCurse(Player player)
-        {
-            for (int i = 0; i < 59; i++)
-            {
-                if (player.inventory[i].IsACoin)
-                {
-                    player.inventory[i].TurnToAir();
-                }
-                if (i == 58)
-                {
-                    Main.mouseItem = player.inventory[i].Clone();
-                }
-            }
-            player.lostCoins = 0;
-            player.lostCoinString = "";
-            return 0;
-        }
-
-        private static void Player_GetItemExpectedPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
-        {
-            orig(self, item, out calcForSelling, out calcForBuying);
-            if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
-            {
-                return;
-            }
-
-            if (!CanScamNPC(Main.npc[self.talkNPC]))
-            {
-                return;
-            }
-
-            int min = item.shopCustomPrice.GetValueOrDefault(item.value) / 5;
-            if (calcForBuying < min) // shrug
-            {
-                return;
-            }
-            calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
-        }
-        public static bool CanScamNPC(NPC npc)
-        {
-            return npc.type != ModContent.NPCType<Exporter>();
-        }
-
-        private static void OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
-        {
-            AdjustPlayerRender(PlayerDrawScale, PlayerDrawForceDye, ref drawinfo);
-
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
-            orig(ref drawinfo);
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
-        }
-        public static void AdjustPlayerRender(float? drawScale, int? drawForceDye, ref PlayerDrawSet drawinfo)
-        {
-            if (drawScale != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
-                to -= Main.screenPosition;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
-                    data.scale *= PlayerDrawScale.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
-            if (drawForceDye != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.shader = PlayerDrawForceDye.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
-        }
-        #endregion
-
         public override void Unload()
         {
             Player_ItemCheck_Shoot = null;
@@ -353,13 +238,14 @@ namespace Aequus
         public override void clientClone(ModPlayer clientClone)
         {
             var clone = (AequusPlayer)clientClone;
-            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
             clone.itemCombo = itemCombo;
             clone.itemSwitch = itemSwitch;
             clone.itemUsage = itemUsage;
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
             clone.hitTime = hitTime;
+            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
+            clone.increasedRegen = increasedRegen;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -415,7 +301,9 @@ namespace Aequus
         public override void Initialize()
         {
             permMoro = false;
+            permHasScammed = false;
 
+            sentrySquidTimer = 120;
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -425,56 +313,24 @@ namespace Aequus
             closestEnemy = -1;
         }
 
-        public override void PreUpdate()
-        {
-            projectileIdentity = -1;
-            if (forceDaytime == 1)
-            {
-                AequusHelpers.Main_dayTime.StartCaching(true);
-            }
-            else if (forceDaytime == 2)
-            {
-                AequusHelpers.Main_dayTime.StartCaching(false);
-            }
-
-            eventGaleStreams = CheckEventGaleStreams();
-            eventDemonSiege = FindDemonSiege();
-            forceDaytime = 0;
-        }
-        /// <summary>
-        /// Used to update <see cref="eventGaleStreams"/>
-        /// </summary>
-        /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
-        public bool CheckEventGaleStreams()
-        {
-            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f)
-                && Player.townNPCs < 1f && !Player.ZonePeaceCandle && Player.behindBackWall;
-        }
-        public Point FindDemonSiege()
-        {
-            foreach (var s in DemonSiegeInvasion.Sacrifices)
-            {
-                if (Player.Distance(new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
-                {
-                    return s.Key;
-                }
-            }
-            return Point.Zero;
-        }
-
         public override void UpdateDead()
         {
             hitTime = 0;
-            accExpertItemBoostOld = false;
-            accExpertItemBoost = false;
-        }
-
-        public void UpdateCooldowns()
-        {
+            hasExpertItemBoost = false;
+            expertBoost = false;
         }
 
         public override void ResetEffects()
         {
+            if (Player.velocity.Length() < 1f)
+            {
+                idleTime++;
+            }
+            else
+            {
+                idleTime = 0;
+            }
+
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -521,16 +377,32 @@ namespace Aequus
             }
             accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
 
+            sentrySquidItem = null;
+            if (!InDanger)
+            {
+                sentrySquidTimer = Math.Min(sentrySquidTimer, (ushort)240);
+            }
+            if (sentrySquidTimer > 0)
+            {
+                sentrySquidTimer--;
+            }
+
+            sentryInheritItem = null;
+
+            healingMushroomItem = null;
+            mendshroomDiameter = 0f;
+            healingMushroomRegeneration = 0;
+            cHealingMushroom = 0;
+
+            celesteTorusItem = null;
             cCelesteTorus = 0;
-            accCelesteTorusItem = null;
 
             scamChance = 0f;
             flatScamDiscount = 0;
 
-            accExpertItemBoostOld = accExpertItemBoost;
-            accExpertItemBoost = false;
-            accInheritTurrets = false;
-            accFoolsGoldRing = false;
+            hasExpertItemBoost = expertBoost;
+            expertBoost = false;
+            foolsGold = false;
             TeamContext = Player.team;
 
             buffSpicyEel = false;
@@ -543,12 +415,53 @@ namespace Aequus
             familiarPet = false;
             omegaStaritePet = false;
 
-            hasSkeletonKey = false;
-            hasShadowKey = false;
+            skeletonKey = false;
+            shadowKey = false;
 
             forceDaytime = 0;
             ghostSlotsMax = 1;
             ghostLifespan = 3600;
+        }
+
+        public override void PreUpdate()
+        {
+            projectileIdentity = -1;
+            if (forceDaytime == 1)
+            {
+                AequusHelpers.Main_dayTime.StartCaching(true);
+            }
+            else if (forceDaytime == 2)
+            {
+                AequusHelpers.Main_dayTime.StartCaching(false);
+            }
+
+            eventGaleStreams = CheckEventGaleStreams();
+            eventDemonSiege = FindDemonSiege();
+            forceDaytime = 0;
+        }
+        /// <summary>
+        /// Used to update <see cref="eventGaleStreams"/>
+        /// </summary>
+        /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
+        public bool CheckEventGaleStreams()
+        {
+            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f)
+                && Player.townNPCs < 1f && !Player.ZonePeaceCandle && Player.behindBackWall;
+        }
+        /// <summary>
+        /// Finds and returns the closest demon siege
+        /// </summary>
+        /// <returns></returns>
+        public Point FindDemonSiege()
+        {
+            foreach (var s in DemonSiegeInvasion.Sacrifices)
+            {
+                if (Player.Distance(new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
+                {
+                    return s.Key;
+                }
+            }
+            return Point.Zero;
         }
 
         public override void PreUpdateBuffs()
@@ -584,7 +497,7 @@ namespace Aequus
                     if (bank.item[i].type == ItemID.ShadowKey)
                     {
                         update = true;
-                        hasShadowKey = true;
+                        shadowKey = true;
                     }
                     else if (bank.item[i].type == ItemID.DiscountCard && !Player.discount)
                     {
@@ -630,30 +543,48 @@ namespace Aequus
 
         public override void PostUpdate()
         {
-            if (AequusHelpers.Main_dayTime.IsCaching)
+            if (healingMushroomItem != null && healingMushroomItem.shoot > ProjectileID.None
+                && MendshroomActive && ProjectilesOwned_ConsiderProjectileIdentity(healingMushroomItem.shoot) <= 0)
             {
-                AequusHelpers.Main_dayTime.EndCaching();
+                Projectile.NewProjectile(Player.GetSource_Accessory(healingMushroomItem), Player.Center, Vector2.Zero, healingMushroomItem.shoot,
+                    0, 0f, Player.whoAmI, projectileIdentity + 1);
             }
+
             if (Main.myPlayer == Player.whoAmI)
             {
-                UpdateZombies();
+                UpdateMaxZombies();
             }
+
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
-            CheckDanger();
-            UpdateInheritingTurrets();
+            ClosestEnemy();
             TeamContext = 0;
 
-            if (!accExpertItemBoost || Player.brainOfConfusionItem == null)
+            if (sentrySquidItem != null && sentrySquidTimer == 0)
+            {
+                UpdateSentrySquid(Player.Aequus().closestEnemy);
+            }
+
+            if (sentryInheritItem != null)
+            {
+                UpdateSantankSentry();
+            }
+
+            if (!expertBoost || Player.brainOfConfusionItem == null)
             {
                 accExpertItemBoostBoCProbesDefense = 0;
                 accExpertItemBoostBoCProbesDefenseTimer = 0;
+            }
+
+            if (AequusHelpers.Main_dayTime.IsCaching)
+            {
+                AequusHelpers.Main_dayTime.EndCaching();
             }
         }
         /// <summary>
         /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
         /// </summary>
-        public void CheckDanger()
+        public void ClosestEnemy()
         {
             closestEnemyOld = closestEnemy;
             closestEnemy = -1;
@@ -677,7 +608,95 @@ namespace Aequus
                 }
             }
         }
-        public void UpdateZombies()
+
+        /// <summary>
+        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="ClosestEnemy"/>
+        /// </summary>
+        public void UpdateSentrySquid(int closestEnemy)
+        {
+            if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
+            {
+                sentrySquidTimer = 30;
+                return;
+            }
+
+            var item = SentrySquid_GetStaff();
+            if (item == null)
+            {
+                sentrySquidTimer = 30;
+                return;
+            }
+
+            if (Player.Aequus().turretSlotCount >= Player.maxTurrets)
+            {
+                int oldestSentry = -1;
+                int time = int.MaxValue;
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
+                    {
+                        if (Main.projectile[i].timeLeft < time)
+                        {
+                            oldestSentry = i;
+                            time = Main.projectile[i].timeLeft;
+                        }
+                    }
+                }
+                if (oldestSentry != -1)
+                {
+                    Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
+                }
+                sentrySquidTimer = 30;
+                return;
+            }
+
+            if (!SentrySquid.SentryUsage.TryGetValue(item.type, out var sentryUsage))
+            {
+                sentryUsage = SentrySquid.SentryStaffUsage.Default;
+            }
+            if (sentryUsage.TrySummoningThisSentry(Player, item, Main.npc[closestEnemy]))
+            {
+                Player.UpdateMaxTurrets();
+                if (Player.maxTurrets > 1)
+                {
+                    sentrySquidTimer = 240;
+                }
+                else
+                {
+                    sentrySquidTimer = 3000;
+                }
+                if (Main.netMode != NetmodeID.Server && item.UseSound != null)
+                {
+                    SoundEngine.PlaySound(item.UseSound.Value, Main.npc[closestEnemy].Center);
+                }
+            }
+            else
+            {
+                sentrySquidTimer = 30;
+            }
+        }
+        /// <summary>
+        /// Determines an item to use as a Sentry Staff for <see cref="UpdateSentrySquid"/>
+        /// </summary>
+        /// <returns></returns>
+        public Item SentrySquid_GetStaff()
+        {
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                // A very small check which doesn't care about checking damage and such, so this could be easily manipulated.
+                if (!Player.inventory[i].IsAir && Player.inventory[i].sentry && Player.inventory[i].shoot > ProjectileID.None && (!Player.inventory[i].DD2Summon || !DD2Event.Ongoing)
+                    && ItemLoader.CanUseItem(Player.inventory[i], Player))
+                {
+                    return Player.inventory[i];
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// If the player has too many zombies, it kills the oldest and least prioritized one.
+        /// </summary>
+        public void UpdateMaxZombies()
         {
             if (ghostSlots > ghostSlotsMax)
             {
@@ -691,7 +710,7 @@ namespace Aequus
                         if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
                         {
                             var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                            int timeComparison = InnerUpdateZombie_GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
+                            int timeComparison = UpdateMaxZombies_GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
                             if (timeComparison < oldestTime)
                             {
                                 removeNPC = i;
@@ -714,7 +733,7 @@ namespace Aequus
                 }
             }
         }
-        public int InnerUpdateZombie_GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
+        public int UpdateMaxZombies_GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
         {
             float tiering = stats.PowerNeeded;
             if (npc.boss)
@@ -727,12 +746,9 @@ namespace Aequus
             }
             return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
         }
-        public void UpdateInheritingTurrets()
+
+        public void UpdateSantankSentry()
         {
-            if (!accInheritTurrets)
-            {
-                return;
-            }
             try
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
@@ -746,6 +762,12 @@ namespace Aequus
             catch
             {
             }
+        }
+
+        public override void UpdateLifeRegen()
+        {
+            Player.AddLifeRegen(increasedRegen);
+            increasedRegen = 0;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
@@ -1063,5 +1085,164 @@ namespace Aequus
             }
             return count;
         }
+
+        public static bool CanScamNPC(NPC npc)
+        {
+            return npc.type != ModContent.NPCType<Exporter>();
+        }
+
+        public void Mendshroom()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(Player.Center) < mendshroomDiameter / 2f)
+                {
+                    mendshroomHeal(i);
+                }
+            }
+        }
+
+        public void mendshroomHeal(int i)
+        {
+            var bungus = Main.player[i].Aequus();
+            if (bungus.increasedRegen < healingMushroomRegeneration)
+            {
+                bungus.increasedRegen = healingMushroomRegeneration;
+                Main.player[i].AddBuff(healingMushroomItem.buffType, 4, quiet: true);
+            }
+        }
+
+        #region Hooks
+        private static void LoadHooks()
+        {
+            On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
+            On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
+            On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
+            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+        }
+
+        private static int Hook_ModifyLuckRoll(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
+        {
+            int rolled = orig(self, range);
+            if (AequusHelpers.iterations == 0)
+            {
+                AequusHelpers.iterations++;
+                try
+                {
+                    rolled = self.Aequus().RerollLuck(rolled, range);
+                }
+                catch
+                {
+                }
+                AequusHelpers.iterations = 0;
+            }
+            return rolled;
+        }
+        public int RerollLuck(int rolledAmt, int range)
+        {
+            for (float luckLeft = luckRerolls; luckLeft > 0f; luckLeft--)
+            {
+                if (luckLeft < 1f)
+                {
+                    if (Main.rand.NextFloat(1f) > luckLeft)
+                    {
+                        return rolledAmt;
+                    }
+                }
+                int roll = Player.RollLuck(range);
+                if (roll < rolledAmt)
+                {
+                    rolledAmt = roll;
+                }
+                if (rolledAmt <= 0)
+                {
+                    return 0;
+                }
+            }
+            return rolledAmt;
+        }
+
+        private static int Hook_DropCoinsOnDeath(On.Terraria.Player.orig_DropCoins orig, Player self)
+        {
+            if (self.Aequus().foolsGold)
+            {
+                return FoolsGoldCoinCurse(self);
+            }
+            return orig(self);
+        }
+        public static int FoolsGoldCoinCurse(Player player)
+        {
+            for (int i = 0; i < 59; i++)
+            {
+                if (player.inventory[i].IsACoin)
+                {
+                    player.inventory[i].TurnToAir();
+                }
+                if (i == 58)
+                {
+                    Main.mouseItem = player.inventory[i].Clone();
+                }
+            }
+            player.lostCoins = 0;
+            player.lostCoinString = "";
+            return 0;
+        }
+
+        private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
+        {
+            orig(self, item, out calcForSelling, out calcForBuying);
+            if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
+            {
+                return;
+            }
+
+            if (!CanScamNPC(Main.npc[self.talkNPC]))
+            {
+                return;
+            }
+
+            int min = item.shopCustomPrice.GetValueOrDefault(item.value) / 5;
+            if (calcForBuying < min) // shrug
+            {
+                return;
+            }
+            calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
+        }
+
+        private static void Hook_OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        {
+            AdjustPlayerRender(PlayerDrawScale, PlayerDrawForceDye, ref drawinfo);
+
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
+            orig(ref drawinfo);
+            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
+        }
+        public static void AdjustPlayerRender(float? drawScale, int? drawForceDye, ref PlayerDrawSet drawinfo)
+        {
+            if (drawScale != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+                to -= Main.screenPosition;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
+                    data.scale *= PlayerDrawScale.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+            if (drawForceDye != null)
+            {
+                var drawPlayer = drawinfo.drawPlayer;
+                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
+                {
+                    DrawData data = drawinfo.DrawDataCache[i];
+                    data.shader = PlayerDrawForceDye.Value;
+                    drawinfo.DrawDataCache[i] = data;
+                }
+            }
+        }
+        #endregion
     }
 }

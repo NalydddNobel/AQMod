@@ -30,7 +30,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accInheritTurrets = true;
+            player.Aequus().sentryInheritItem = Item;
         }
     }
 
@@ -69,7 +69,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                     if (parent.Entity is Projectile parentProj)
                     {
                         if (parentProj.owner == Main.myPlayer && !parentProj.hostile
-                        && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accInheritTurrets)
+                        && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().sentryInheritItem != null)
                         {
                             var aequus = Main.player[projectile.owner].Aequus();
                             var parentSentry = parentProj.GetGlobalProjectile<SantankSentryProjectile>();
@@ -98,7 +98,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || !Main.player[projectile.owner].Aequus().accInheritTurrets)
+            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || Main.player[projectile.owner].Aequus().sentryInheritItem == null)
             {
                 dummyPlayer = null;
             }
@@ -122,6 +122,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             dummyPlayer.velocity = projectile.velocity;
             PlayerLoader.PreUpdate(dummyPlayer);
             dummyPlayer.ResetEffects();
+            dummyPlayer.UpdateDyes();
             if (Main.myPlayer == projectile.owner)
             {
                 dummyPlayer.UpdateBiomes();
@@ -137,14 +138,14 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             try
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                dummyPlayer.Aequus().accExpertItemBoost = aequus.accExpertItemBoost;
+                dummyPlayer.Aequus().expertBoost = aequus.expertBoost;
                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
                 {
                     if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
                     {
-                        ai(projectile, this, i, Main.player[projectile.owner], aequus);
+                        ai(projectile, this, i.Clone(), Main.player[projectile.owner], aequus);
                     }
-                    else if (aequus.accExpertItemBoost)
+                    else if (aequus.expertBoost)
                     {
                         MechsSentry.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }
