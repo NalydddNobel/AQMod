@@ -6,6 +6,7 @@ using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -164,8 +165,21 @@ namespace Aequus
                             }
                             else if (!placedItems.Contains(ModContent.ItemType<Revenant>()) || Main.rand.NextBool(6))
                             {
-                                c.Insert(ModContent.ItemType<Valari>(), 1);
+                                c.Insert(ModContent.ItemType<Revenant>(), 1);
                                 placedItems.Add(ModContent.ItemType<Revenant>());
+                            }
+                            else if (!placedItems.Contains(ModContent.ItemType<WretchedCandle>()) || Main.rand.NextBool(6))
+                            {
+                                c.Insert(ModContent.ItemType<WretchedCandle>(), 1);
+                                placedItems.Add(ModContent.ItemType<WretchedCandle>());
+                            }
+                        }
+                        else if (style == ChestTypes.LockedShadow)
+                        {
+                            if (!placedItems.Contains(ModContent.ItemType<AshCandle>()) || Main.rand.NextBool(6))
+                            {
+                                c.Insert(ModContent.ItemType<AshCandle>(), 1);
+                                placedItems.Add(ModContent.ItemType<AshCandle>());
                             }
                         }
                         else if (style == ChestTypes.Frozen)

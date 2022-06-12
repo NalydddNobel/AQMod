@@ -24,9 +24,9 @@ namespace Aequus.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            if (!player.Aequus().permMoro)
+            if (!player.Aequus().moroUsed)
             {
-                player.Aequus().permMoro = true;
+                player.Aequus().moroUsed = true;
                 return true;
             }
             

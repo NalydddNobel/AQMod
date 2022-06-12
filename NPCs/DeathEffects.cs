@@ -92,11 +92,10 @@ namespace Aequus.NPCs
                 return false;
             }
 
-            var info = NecromancyDatabase.GetByNetID(npc);
-            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-            if (info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f)
+            if (NecromancyDatabase.TryGetByNetID(npc, out var info))
             {
-                if (CheckRecruitable(npc, zombie, info, players))
+                var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && CheckRecruitable(npc, zombie, info, players))
                 {
                     zombie.SpawnZombie(npc);
                 }

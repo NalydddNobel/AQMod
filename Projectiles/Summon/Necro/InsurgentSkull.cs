@@ -125,6 +125,14 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
             }
             Projectile.ai[1] = -1f;
+
+            int target = Projectile.FindTargetWithLineOfSight(600f);
+            if (target != -1)
+            {
+                float speed = Projectile.velocity.Length();
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.125f)) * speed;
+            }
+
             Projectile.rotation = Projectile.velocity.ToRotation();
             Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
             if (Projectile.spriteDirection == -1)

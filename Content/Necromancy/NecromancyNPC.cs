@@ -17,6 +17,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Necromancy
 {
@@ -395,7 +396,7 @@ namespace Aequus.Content.Necromancy
 
         public void OnSpawnZombie(NPC npc)
         {
-            slotsConsumed = NecromancyDatabase.GetByNetID(npc).SlotsUsed.GetValueOrDefault(1);
+            slotsConsumed = NecromancyDatabase.GetByNetID(npc).slotsUsed.GetValueOrDefault(1);
         }
 
         public static int GetNPCTarget(Entity entity, Player player, int netID, int npcType, float prioritizePlayerMultiplier = 1f)
@@ -526,17 +527,14 @@ namespace Aequus.Content.Necromancy
         {
             int team = Main.player[zombieOwner].team;
             Color color;
-            if (team == 0)
+            if (zombieOwner == Main.myPlayer)
             {
                 color = Color.White;
-                if (zombieOwner == Main.myPlayer)
+                int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
                 {
-                    int index = NecromancyScreenRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
-                    if (EffectsSystem.necromancyRenderers.Length > index && EffectsSystem.necromancyRenderers[index] != null)
-                    {
-                        color = EffectsSystem.necromancyRenderers[index].DrawColor();
-                        color.A = 100;
-                    }
+                    color = EffectsSystem.necromancyRenderers[index].DrawColor();
+                    color.A = 100;
                 }
             }
             else
@@ -545,6 +543,8 @@ namespace Aequus.Content.Necromancy
             }
             return Color.Lerp(color, (color * 0.5f).UseA(255), 1f - lifeRatio);
         }
+
+        public int DespawnPriority(NPC npc) => (int)(zombieTimer / (float)zombieTimerMax * NecromancyDatabase.GetOrDefault(npc.type).despawnPriority);
 
         void IGlobalsNetworker.Send(int whoAmI, BinaryWriter writer)
         {
@@ -603,7 +603,7 @@ namespace Aequus.Content.Necromancy
         }
     }
 
-    public class NecromancyProj : GlobalProjectile, IGlobalsNetworker
+    public class NecromancyProj : GlobalProjectile
     {
         public bool isZombie;
         public int zombieNPCOwner;
@@ -775,9 +775,9 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        void IGlobalsNetworker.Send(int whoAmI, BinaryWriter writer)
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter writer)
         {
-            writer.Write(isZombie);
+            bitWriter.WriteBit(isZombie);
             if (isZombie)
             {
                 writer.Write(zombieNPCOwner);
@@ -786,13 +786,13 @@ namespace Aequus.Content.Necromancy
             }
         }
 
-        void IGlobalsNetworker.Receive(int whoAmI, BinaryReader reader)
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader reader)
         {
-            if (reader.ReadBoolean())
+            if (bitReader.ReadBit())
             {
                 isZombie = true;
-                Main.projectile[whoAmI].hostile = false;
-                Main.projectile[whoAmI].friendly = true;
+                projectile.hostile = false;
+                projectile.friendly = true;
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();

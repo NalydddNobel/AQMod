@@ -45,6 +45,13 @@ namespace Aequus.Projectiles.Summon.Necro
                     Dust.NewDustPerfect(center + v * Projectile.width, ModContent.DustType<MonoDust>(), Projectile.velocity * -0.1f + Main.rand.NextVector2Unit() * 0.2f, Math.Min(Projectile.alpha * 4, 255), new Color(1, 20, 100, 100), 1.5f);
                 }
             }
+
+            int target = Projectile.FindTargetWithLineOfSight(600f);
+            if (target != -1)
+            {
+                float speed = Projectile.velocity.Length();
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.02f)) * speed;
+            }
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

@@ -83,6 +83,8 @@ Mods: {
 		}
 
 		Tooltips: {
+			CarryingSouls: Carrying {0} of {1} souls
+			UseSouls: Uses {0} souls
 			UseDarts: Uses seeds and darts as ammo
 			UsesLife: "Uses {0} life"
 			NecromancyStaff: "{0} Staff"
@@ -131,6 +133,9 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			WretchedCandle: Wretched Candle
+			AshCandle: Ash Candle
+
 			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			MechsSentry: Sentinel 6510 N.O.S.
@@ -497,6 +502,16 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			WretchedCandle:
+				'''
+				Summons a cursed skull to fight for you
+				Absorbs the souls of enemies killed by ghost minions
+				'''
+			AshCandle:
+				'''
+				Summons a demon to fight for you
+				Absorbs the souls of enemies killed by ghost minions
+				'''
 			ReboundNecklace: 
 				'''
 				Allows your double jumps to refresh while falling

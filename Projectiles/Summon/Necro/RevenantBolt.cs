@@ -47,6 +47,13 @@ namespace Aequus.Projectiles.Summon.Necro
                     Projectile.alpha = 0;
                 }
             }
+
+            int target = Projectile.FindTargetWithLineOfSight(600f);
+            if (target != -1)
+            {
+                float speed = Projectile.velocity.Length();
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.05f)) * speed;
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

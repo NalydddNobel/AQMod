@@ -379,6 +379,8 @@ namespace Aequus.Content.Necromancy
                     Aequus.Instance.Logger.Info("Adding necromancy entries for " + polarities.Name);
                 PopulateEnemyStats_Polarities(polarities);
             }
+
+            SetupPriorities();
         }
         public static void PopulateEnemyStats_Polarities(Mod polarities)
         {
@@ -397,6 +399,33 @@ namespace Aequus.Content.Necromancy
                 .TryAddModEntry("Rattler", GhostInfo.One)
                 .TryAddModEntry("BrineDweller", GhostInfo.Three)
                 .TryAddModEntry("Mussel", GhostInfo.Three);
+        }
+        public static void SetupPriorities()
+        {
+            foreach (int i in NPCs.Keys)
+            {
+                var g = NPCs[i];
+                var n = ContentSamples.NpcsByNetId[i];
+                g.despawnPriority = CalcPriority(CalcTiering(g.PowerNeeded, n.boss, n.noGravity), n.life, n.damage, n.defense, g.slotsUsed.GetValueOrDefault(1));
+                NPCs[i] = g;
+            }
+        }
+        public static float CalcTiering(float powerNeeded, bool boss, bool flies)
+        {
+            float tiering = powerNeeded;
+            if (boss)
+            {
+                tiering += 10f;
+            }
+            if (flies)
+            {
+                tiering *= 2f;
+            }
+            return tiering;
+        }
+        public static int CalcPriority(float tiering, int life, int damage, int defense, int slotsUsed)
+        {
+            return (int)((life + damage * 3 + defense * 2) * slotsUsed * tiering);
         }
 
         /// <summary>
@@ -446,20 +475,50 @@ namespace Aequus.Content.Necromancy
         {
             if (NPCs.ContainsKey(netID))
             {
-                return NPCs[netID];
+                return Get(netID);
             }
-            return NPCs.GetOrDefault(type);
+            return Get(type);
         }
         public static GhostInfo GetByNetID(NPC npc)
         {
             return GetByNetID(npc.netID, npc.type);
+        }
+        public static GhostInfo Get(int type)
+        {
+            return NPCs[type];
+        }
+        public static GhostInfo Get(NPC npc)
+        {
+            return Get(npc.type);
+        }
+
+        public static bool TryGet(int type, out GhostInfo value)
+        {
+            return NPCs.TryGetValue(type, out value);
+        }
+        public static bool TryGet(NPC npc, out GhostInfo value)
+        {
+            return TryGet(npc.type, out value);
+        }
+
+        public static GhostInfo GetOrDefault(int type)
+        {
+            if (!TryGet(type, out var value))
+            {
+                return GhostInfo.Invalid;
+            }
+            return value;
+        }
+        public static GhostInfo GetOrDefault(NPC npc)
+        {
+            return GetOrDefault(npc.type);
         }
 
         public static bool TryGetByNetID(int netID, int type, out GhostInfo value)
         {
             if (netID < 0 && NPCs.ContainsKey(netID))
             {
-                value = NPCs[netID];
+                value = Get(netID);
                 return true;
             }
             return NPCs.TryGetValue(type, out value);

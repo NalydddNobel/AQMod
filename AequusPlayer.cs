@@ -12,6 +12,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
@@ -41,13 +42,16 @@ namespace Aequus
 
         public int projectileIdentity = -1;
 
+        [SaveData("Souls")]
+        public int candleSouls;
+
         [SaveData("Scammer")]
-        public bool permHasScammed;
+        public bool scammer;
         /// <summary>
         /// Enabled by <see cref="Items.Consumables.Moro"/>
         /// </summary>
         [SaveData("Moro")]
-        public bool permMoro;
+        public bool moroUsed;
 
         /// <summary>
         /// Applied by <see cref="BlueFire"/>
@@ -215,6 +219,8 @@ namespace Aequus
         /// </summary>
         public uint interactionCooldown;
 
+        public bool holdingSoulCandle;
+
         public int turretSlotCount;
 
         public int ghostSlotsMax;
@@ -315,8 +321,8 @@ namespace Aequus
 
         public override void Initialize()
         {
-            permMoro = false;
-            permHasScammed = false;
+            moroUsed = false;
+            scammer = false;
 
             sentrySquidTimer = 120;
             itemCooldown = 0;
@@ -346,6 +352,8 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            holdingSoulCandle = Player.HeldItem?.ModItem is SoulCandle;
+
             if (Player.velocity.Length() < 1f)
             {
                 idleTime++;
@@ -465,6 +473,8 @@ namespace Aequus
             forceDaytime = 0;
             ghostSlotsMax = 1;
             ghostLifespan = 3600;
+
+            candleSouls = 999;
         }
 
         public override void PreUpdate()
@@ -797,18 +807,13 @@ namespace Aequus
                 int oldestTime = int.MaxValue;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie && Main.npc[i].GetGlobalNPC<NecromancyNPC>().zombieOwner == Player.whoAmI)
+                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI && zombie.slotsConsumed > 0)
                     {
-                        var stats = NecromancyDatabase.GetByNetID(Main.npc[i]);
-                        if (stats.SlotsUsed == null || stats.SlotsUsed > 0)
+                        int timeComparison = UpdateMaxZombies_GetDespawnComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
+                        if (timeComparison < oldestTime)
                         {
-                            var zombie = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                            int timeComparison = UpdateMaxZombies_GetDespawnComparison(Main.npc[i], zombie, stats); // Prioritize to kill lower tier slaves
-                            if (timeComparison < oldestTime)
-                            {
-                                removeNPC = i;
-                                oldestTime = timeComparison;
-                            }
+                            removeNPC = i;
+                            oldestTime = timeComparison;
                         }
                     }
                 }
@@ -826,18 +831,9 @@ namespace Aequus
                 }
             }
         }
-        public int UpdateMaxZombies_GetDespawnComparison(NPC npc, NecromancyNPC zombie, GhostInfo stats)
+        public int UpdateMaxZombies_GetDespawnComparison(NPC npc, NecromancyNPC zombie)
         {
-            float tiering = stats.PowerNeeded;
-            if (npc.boss)
-            {
-                tiering += 10f;
-            }
-            if (npc.noGravity)
-            {
-                tiering *= 2f;
-            }
-            return ((int)(zombie.zombieTimer * tiering) + npc.lifeMax + npc.damage * 3 + npc.defense * 2) * stats.SlotsUsed.GetValueOrDefault(1);
+            return zombie.DespawnPriority(npc);
         }
 
         public void UpdateSantankSentry()
@@ -893,7 +889,7 @@ namespace Aequus
         {
             if (CheckScam())
             {
-                permHasScammed = true;
+                scammer = true;
             }
             MoneyBack(vendor, shopInventory, item);
         }

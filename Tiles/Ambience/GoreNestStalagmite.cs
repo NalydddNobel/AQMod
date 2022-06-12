@@ -22,10 +22,10 @@ namespace Aequus.Tiles.Ambience
 
             TileObjectData.addTile(Type);
 
-            DustType = DustID.JungleGrass;
-            HitSound = SoundID.Grass;
+            DustType = DustID.Blood;
+            HitSound = SoundID.NPCDeath1;
 
-            AddMapEntry(Color.Teal);
+            AddMapEntry(new Color(95, 22, 37, 255));
         }
 
         public override bool CreateDust(int i, int j, ref int type)

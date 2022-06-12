@@ -81,7 +81,7 @@ namespace Aequus.Items
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
-            if (player.GetModPlayer<AequusPlayer>().permMoro && ItemsCatalogue.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroUsed && ItemsCatalogue.SummonStaff.Contains(item.type))
             {
                 mult = 0f;
             }
@@ -89,7 +89,7 @@ namespace Aequus.Items
 
         public override float UseSpeedMultiplier(Item item, Player player)
         {
-            if (player.GetModPlayer<AequusPlayer>().permMoro && ItemsCatalogue.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroUsed && ItemsCatalogue.SummonStaff.Contains(item.type))
             {
                 return 2f;
             }

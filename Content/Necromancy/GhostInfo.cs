@@ -20,8 +20,11 @@ namespace Aequus.Content.Necromancy
         public float ViewDistance;
         public float? PrioritizePlayerMultiplier;
         public float? TimeLeftMultiplier;
-        public int? SlotsUsed;
+        public int? slotsUsed;
         public AggroForcer.IEnemyAggressor Aggro;
+        public int despawnPriority;
+
+        public int SlotsUsed => slotsUsed.GetValueOrDefault(1);
 
         public GhostInfo(float power, float view = 800f)
         {
@@ -29,8 +32,9 @@ namespace Aequus.Content.Necromancy
             ViewDistance = view;
             PrioritizePlayerMultiplier = null;
             TimeLeftMultiplier = null;
-            SlotsUsed = null;
+            slotsUsed = null;
             Aggro = null;
+            despawnPriority = 1;
         }
 
         public GhostInfo WithAggro(AggroForcer.IEnemyAggressor aggro)
@@ -54,7 +58,7 @@ namespace Aequus.Content.Necromancy
             else if (name == "SlotsUsed")
             {
                 // Call(..., "SlotsUsed", 1);
-                SlotsUsed = value == null ? null : IModCallable.UnboxIntoInt(value);
+                slotsUsed = value == null ? null : IModCallable.UnboxIntoInt(value);
             }
             else if (name == "Aggro")
             {
