@@ -276,7 +276,7 @@ namespace Aequus.NPCs.Monsters.Sky
                             bool doEffects = AequusHelpers.ShouldDoEffects(center);
                             if (NPC.ai[1] >= 242f && (int)NPC.ai[2] < 1 && doEffects)
                             {
-                                FlashScene.Flash.Set(NPC.Center, 0.75f);
+                                ScreenFlash.Flash.Set(NPC.Center, 0.75f);
                             }
                             if ((int)NPC.ai[1] >= 245)
                             {
@@ -285,7 +285,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 {
                                     if (doEffects)
                                     {
-                                        EffectsSystem.Shake.Set(12f);
+                                        AequusEffects.Shake.Set(12f);
                                     }
                                     NPC.ai[2]++;
                                     NPC.velocity.X = -NPC.direction * 12.5f;
@@ -762,7 +762,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = !AequusWorld.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusSystem.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -788,7 +788,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedSpaceSquid, Type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedSpaceSquid, Type);
         }
 
         //public override void NPCLoot()
@@ -915,12 +915,12 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
                 else
                 {
-                    CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                    Begin.GeneralEntities.BeginShader(spriteBatch);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
-                ModEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
-                ModEffects.VerticalGradient.ShaderData.UseColor(Color.Cyan);
-                ModEffects.VerticalGradient.ShaderData.Apply(drawData);
+                AequusEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
+                AequusEffects.VerticalGradient.ShaderData.UseColor(Color.Cyan);
+                AequusEffects.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {

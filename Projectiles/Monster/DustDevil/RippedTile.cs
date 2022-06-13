@@ -173,7 +173,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
         {
             if ((int)Projectile.ai[0] == 0)
             {
-                EffectsSystem.ProjsBehindTiles.Add(Projectile.whoAmI);
+                AequusEffects.ProjsBehindTiles.Add(Projectile.whoAmI);
             }
             else if ((int)Projectile.ai[0] > 0)
             {
@@ -182,7 +182,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if (EffectsSystem.ProjsBehindTiles.renderingNow)
+            if (AequusEffects.ProjsBehindTiles.renderingNow)
             {
                 var bloom = Images.Bloom[3].Value;
                 var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);

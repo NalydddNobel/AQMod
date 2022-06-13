@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Common.Catalogues
+namespace Aequus.Common
 {
-    public class WindMovementTypes : LoadableType
+    public class WindMovementDatabase : LoadableType
     {
         public static HashSet<int> WindNPCs { get; private set; }
         public static HashSet<int> WindProjs { get; private set; }

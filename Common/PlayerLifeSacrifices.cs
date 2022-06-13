@@ -2,18 +2,18 @@
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players
+namespace Aequus.Common
 {
-    public class SacrificingPlayer : ModPlayer
+    public class PlayerLifeSacrifices : ModPlayer
     {
-        public struct LifeSacrifice
+        public struct Data
         {
             public int time;
             public int amtTaken;
             public bool physicallyHitPlayer = false;
             public PlayerDeathReason reason = null;
 
-            public LifeSacrifice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
+            public Data(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
             {
                 this.amtTaken = amtTaken;
                 this.time = time;
@@ -22,11 +22,11 @@ namespace Aequus.Common.Players
             }
         }
 
-        public List<LifeSacrifice> sacrifices;
+        public List<Data> sacrifices;
 
         public override void Initialize()
         {
-            sacrifices = new List<LifeSacrifice>();
+            sacrifices = new List<Data>();
         }
 
         public override void UpdateDead()
@@ -67,21 +67,21 @@ namespace Aequus.Common.Players
         {
             if (amt < frames || frames < 2)
             {
-                sacrifices.Add(new LifeSacrifice(amt, 0));
+                sacrifices.Add(new Data(amt, 0));
                 return;
             }
             int lifeTaken = amt / frames;
             for (int i = 0; i < frames - 1; i++)
             {
-                sacrifices.Add(new LifeSacrifice(lifeTaken, i * separation, hitPlayer, reason));
+                sacrifices.Add(new Data(lifeTaken, i * separation, hitPlayer, reason));
             }
-            sacrifices.Add(new LifeSacrifice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
+            sacrifices.Add(new Data(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
         }
 
         public override void clientClone(ModPlayer clientClone)
         {
-            var clone = (SacrificingPlayer)clientClone;
-            clone.sacrifices = new List<LifeSacrifice>();
+            var clone = (PlayerLifeSacrifices)clientClone;
+            clone.sacrifices = new List<Data>();
             foreach (var l in sacrifices)
             {
                 clone.sacrifices.Add(l);

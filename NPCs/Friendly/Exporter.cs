@@ -286,7 +286,7 @@ namespace Aequus.NPCs.Friendly
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return AequusWorld.downedCrabson;
+            return AequusSystem.downedCrabson;
         }
 
         public override List<string> SetNPCNameList()

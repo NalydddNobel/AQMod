@@ -53,13 +53,13 @@ namespace Aequus.Items.Misc.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader);
+            Begin.UI.Begin(spriteBatch, Begin.Shader);
             var drawData = new DrawData(texture, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<EnchantedDye>());
             effect.Apply(null, drawData);
             drawData.Draw(spriteBatch);
             Main.spriteBatch.End();
-            CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Regular);
+            Begin.UI.Begin(spriteBatch, Begin.Regular);
             return false;
         }
 
@@ -68,7 +68,7 @@ namespace Aequus.Items.Misc.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            CommonSpriteBatchBegins.GeneralEntities.BeginShader(Main.spriteBatch);
+            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
 
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + frame.Width / 2 + Item.width / 2 - frame.Width / 2, Item.position.Y - Main.screenPosition.Y + frame.Height / 2 + Item.height - frame.Height);
@@ -80,7 +80,7 @@ namespace Aequus.Items.Misc.Summons
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.End();
-            CommonSpriteBatchBegins.GeneralEntities.Begin(Main.spriteBatch);
+            Begin.GeneralEntities.Begin(Main.spriteBatch);
             return false;
         }
 

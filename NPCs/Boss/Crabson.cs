@@ -793,7 +793,7 @@ namespace Aequus.NPCs.Boss
                 RenderClaw(NPC, spriteBatch, screenPos, drawColor);
                 return false;
             }
-            if (EffectsSystem.NPCsBehindAllNPCs.renderingNow)
+            if (AequusEffects.NPCsBehindAllNPCs.renderingNow)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;
@@ -802,7 +802,7 @@ namespace Aequus.NPCs.Boss
             }
             else
             {
-                EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+                AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
             }
             return true;
         }
@@ -871,11 +871,11 @@ namespace Aequus.NPCs.Boss
         public override void OnKill()
         {
             Rectangle rect = NPC.getRect();
-            if (!AequusWorld.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+            if (!AequusSystem.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
             {
                 NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
             }
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedCrabson, NPC.type);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
             //if (Main.expertMode)
             //{

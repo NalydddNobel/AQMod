@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Consumables;

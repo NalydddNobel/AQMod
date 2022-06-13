@@ -153,10 +153,10 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			CrimsonCandle: Vicious Candle
-			CorruptionCandle: Vile Candle
+			CrimsonCandle: Flesh Lighter
+			CorruptionCandle: Light Eater
 			PixieCandle: Pixie Candle
-			BloodZombieCandle: Blood Candle
+			BloodZombieCandle: Phlegethon
 			WretchedCandle: Wretched Candle
 			AshCandle: Ash Candle
 
@@ -728,7 +728,7 @@ Mods: {
 
 			RecyclingMachine: Allows you to recycle trash items
 
-			GhostlyGrave: Disables graves from spawning upon your death
+			GhostlyGrave: Converts your grave into a ghost
 
 			MirrorsCall:
 				'''

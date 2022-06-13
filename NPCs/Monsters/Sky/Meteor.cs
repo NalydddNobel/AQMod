@@ -1,5 +1,5 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.Catalogues;
+using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Tools;
 using Aequus.Sounds;
@@ -30,7 +30,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
-            WindMovementTypes.WindNPCs.Add(Type);
+            WindMovementDatabase.WindNPCs.Add(Type);
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(0f, 8f),

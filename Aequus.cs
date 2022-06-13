@@ -34,13 +34,7 @@ namespace Aequus
         public static bool HQ => ClientConfig.Instance.HighQuality;
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
-        public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
-
-        internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
-        internal static Color BlueSlimeColor => new Color(0, 80, 255, 100);
-
-        public static Action ResetTileRenderPoints;
-        public static Action DrawSpecialTilePoints;
+        public static bool HardmodeTier => Main.hardMode || AequusSystem.downedOmegaStarite;
 
         public static float SkiesDarkness;
         public static float SkiesDarknessGoTo;
@@ -61,8 +55,6 @@ namespace Aequus
                 IOnModLoad.CheckAutoload(this, t);
             }
 
-            On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
-            On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             On.Terraria.Main.SetBackColor += Main_SetBackColor;
         }
 
@@ -91,22 +83,6 @@ namespace Aequus
             }
         }
 
-        private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
-        {
-            orig(self);
-            DrawSpecialTilePoints?.Invoke();
-        }
-
-        private void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
-        {
-            orig(self, solidLayer, forRenderTargets, intoRenderTargets);
-            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
-            if (!solidLayer && flag)
-            {
-                ResetTileRenderPoints?.Invoke();
-            }
-        }
-
         public override void PostSetupContent()
         {
             foreach (var t in AutoloadHelper.GetTypes(Code))
@@ -122,10 +98,6 @@ namespace Aequus
 
         public override void AddRecipes()
         {
-            if (PolaritiesSupport.Polarities.Enabled)
-            {
-                MonsterBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
-            }
             AutoloadHelper.AutoloadOfType<IAddRecipes>(Code, this);
         }
 
@@ -137,8 +109,6 @@ namespace Aequus
         public override void Unload()
         {
             Instance = null;
-            ResetTileRenderPoints = null;
-            DrawSpecialTilePoints = null;
             InventoryInterface = null;
             NPCTalkInterface = null;
         }
@@ -151,7 +121,7 @@ namespace Aequus
                     return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
 
                 case "Downed":
-                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
+                    return ModContent.GetInstance<AequusSystem.DownedCalls>().HandleModCall(this, args);
 
                 case "AddShopQuote":
                     return ShopQuotes.Database.HandleModCall(this, args);

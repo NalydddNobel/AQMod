@@ -7,9 +7,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Players
+namespace Aequus.Content
 {
-    public sealed class VampirismPlayer : ModPlayer
+    public sealed class PlayerVampirism : ModPlayer
     {
         public ushort vampirism;
 

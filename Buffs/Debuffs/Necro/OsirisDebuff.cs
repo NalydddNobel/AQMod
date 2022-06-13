@@ -13,9 +13,9 @@ namespace Aequus.Buffs.Debuffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = 5 * AequusHelpers.NPCREGEN;
 
-            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyOsiris)
+            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyOsiris)
             {
-                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyOsiris;
+                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyOsiris;
             }
         }
     }

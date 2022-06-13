@@ -38,7 +38,7 @@ namespace Aequus.Items.Tools
         {
             try
             {
-                if (!Main.hardMode || AequusWorld.downedEventGaleStreams)
+                if (!Main.hardMode || AequusSystem.downedEventGaleStreams)
                 {
                     return;
                 }

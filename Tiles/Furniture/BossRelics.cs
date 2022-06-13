@@ -88,7 +88,7 @@ namespace Aequus.Tiles.Furniture
 
             if (!Main.dedServ)
             {
-                Aequus.ResetTileRenderPoints += () => RenderPoints.Clear();
+                AequusTile.ResetTileRenderPoints += () => RenderPoints.Clear();
             }
         }
 

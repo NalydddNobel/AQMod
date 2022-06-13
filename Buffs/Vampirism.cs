@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Content;
 using Terraria;
 
 namespace Aequus.Buffs
@@ -7,7 +7,7 @@ namespace Aequus.Buffs
     {
         public override int GetTick(Player player)
         {
-            return player.GetModPlayer<VampirismPlayer>().vampirism;
+            return player.GetModPlayer<PlayerVampirism>().vampirism;
         }
 
         public override void SetStaticDefaults()
@@ -18,7 +18,7 @@ namespace Aequus.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.GetModPlayer<VampirismPlayer>().IsVampire)
+            if (player.GetModPlayer<PlayerVampirism>().IsVampire)
             {
                 player.DelBuff(buffIndex);
                 buffIndex--;

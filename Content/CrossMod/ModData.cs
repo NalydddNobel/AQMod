@@ -7,7 +7,7 @@ namespace Aequus.Content.CrossMod
     {
         public readonly string Name;
         public readonly string CodeName;
-        public readonly Mod Mod;
+        public Mod Mod { get; private set; }
         public bool Enabled => Mod != null;
 
         public static ModData Unloaded => new ModData();
@@ -38,6 +38,11 @@ namespace Aequus.Content.CrossMod
         public static implicit operator Mod(ModData data)
         {
             return data.Mod;
+        }
+
+        public void Clear()
+        {
+            Mod = null;
         }
     }
 }

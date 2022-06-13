@@ -27,7 +27,7 @@ namespace Aequus.Common.ItemDrops
         }
         public bool CanDropOrShow()
         {
-            return Main.drunkWorld || AequusWorld.OreTiers()[tier] == !alt;
+            return Main.drunkWorld || AequusSystem.OreTiers()[tier] == !alt;
         }
 
         public string GetConditionDescription()

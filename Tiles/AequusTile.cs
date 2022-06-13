@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -9,7 +10,22 @@ namespace Aequus.Tiles
 {
     public class AequusTile : GlobalTile
     {
+        public static Action ResetTileRenderPoints;
+        public static Action DrawSpecialTilePoints;
+
         public const int ShadowOrbDrops_Aequus = 5;
+
+        public override void Load()
+        {
+            On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
+        }
+
+        public override void Unload()
+        {
+            ResetTileRenderPoints = null;
+            DrawSpecialTilePoints = null;
+        }
 
         public override bool Drop(int i, int j, int type)
         {
@@ -23,7 +39,7 @@ namespace Aequus.Tiles
                 {
                     CrimsonOrbDrops(i, j);
                 }
-                AequusWorld.shadowOrbsBrokenTotal++;
+                AequusSystem.shadowOrbsBrokenTotal++;
             }
             return true;
         }
@@ -51,7 +67,23 @@ namespace Aequus.Tiles
         }
         public int OrbDrop()
         {
-            return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
+            return AequusSystem.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusSystem.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
+        }
+
+        private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
+        {
+            orig(self);
+            DrawSpecialTilePoints?.Invoke();
+        }
+
+        private void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
+        {
+            orig(self, solidLayer, forRenderTargets, intoRenderTargets);
+            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
+            if (!solidLayer && flag)
+            {
+                ResetTileRenderPoints?.Invoke();
+            }
         }
     }
 }

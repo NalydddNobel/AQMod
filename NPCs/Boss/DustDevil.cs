@@ -42,15 +42,15 @@ namespace Aequus.NPCs.Boss
         public int effectsTimer;
         public int auraTimer;
 
-        public static DrawIndexCache DrawBack { get; internal set; }
-        public static DrawIndexCache DrawFront { get; internal set; }
+        public static DrawList DrawBack { get; internal set; }
+        public static DrawList DrawFront { get; internal set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                DrawBack = new DrawIndexCache();
-                DrawFront = new DrawIndexCache();
+                DrawBack = new DrawList();
+                DrawFront = new DrawList();
             }
         }
 
@@ -567,8 +567,8 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventGaleStreams, NPC.type);
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, NPC.type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedEventGaleStreams, NPC.type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedDustDevil, NPC.type);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

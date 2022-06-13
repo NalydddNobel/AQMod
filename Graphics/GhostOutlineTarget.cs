@@ -7,11 +7,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public sealed class NecromancyScreenRenderer : ScreenTarget, ILoadable
+    public sealed class GhostOutlineTarget : ScreenTarget, ILoadable
     {
         public static StaticMiscShaderInfo Necromancy { get; private set; }
 
-        public readonly DrawIndexCache NPCs;
+        public readonly DrawList NPCs;
         public readonly int Team;
         public int Index;
         public Func<Color> DrawColor;
@@ -39,16 +39,16 @@ namespace Aequus.Graphics
             public static int Count = 11;
         }
 
-        public NecromancyScreenRenderer()
+        public GhostOutlineTarget()
         {
         }
 
-        public NecromancyScreenRenderer(int playerTeam, int index, Func<Color> color)
+        public GhostOutlineTarget(int playerTeam, int index, Func<Color> color)
         {
             Team = playerTeam;
             Index = index;
             DrawColor = color;
-            NPCs = new DrawIndexCache();
+            NPCs = new DrawList();
         }
 
         void ILoadable.Load(Mod mod)
@@ -73,7 +73,7 @@ namespace Aequus.Graphics
         {
             if (NPCs.Count > 0)
             {
-                CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+                Begin.GeneralEntities.Begin(spriteBatch);
                 RenderingNow = true;
                 NPCs.renderingNow = true;
                 try

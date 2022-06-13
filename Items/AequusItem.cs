@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -7,13 +8,15 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public class AequusItem : GlobalItem
+    public class AequusItem : GlobalItem, IAddRecipes
     {
+        public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
         public static HashSet<int> BankEquipFuncs { get; private set; }
 
         public override void Load()
         {
+            SummonStaff = new HashSet<int>();
             CritOnlyModifier = new HashSet<int>() 
             {
                 PrefixID.Keen,
@@ -50,8 +53,26 @@ namespace Aequus.Items
             };
         }
 
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                var item = ContentSamples.ItemsByType[i];
+                if (IsSummonStaff(item))
+                {
+                    SummonStaff.Add(i);
+                }
+            }
+        }
+        public static bool IsSummonStaff(Item item)
+        {
+            return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > 0 && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
+        }
+
         public override void Unload()
         {
+            SummonStaff?.Clear();
+            SummonStaff = null;
             BankEquipFuncs?.Clear();
             BankEquipFuncs = null;
             CritOnlyModifier?.Clear();
@@ -81,7 +102,7 @@ namespace Aequus.Items
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroUsed && ItemsCatalogue.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroUsed && AequusItem.SummonStaff.Contains(item.type))
             {
                 mult = 0f;
             }
@@ -89,7 +110,7 @@ namespace Aequus.Items
 
         public override float UseSpeedMultiplier(Item item, Player player)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroUsed && ItemsCatalogue.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroUsed && AequusItem.SummonStaff.Contains(item.type))
             {
                 return 2f;
             }

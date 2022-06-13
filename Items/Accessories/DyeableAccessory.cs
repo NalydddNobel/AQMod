@@ -55,11 +55,11 @@ namespace Aequus.Items.Accessories
 
         protected void ColorRecipes<T>() where T : DyeableAccessory
         {
-            foreach (byte paint in PaintsCatalogue.Paints)
+            foreach (byte paint in PaintDatabase.PaintIDs)
             {
                 var r = CreateRecipe()
                     .AddIngredient<T>()
-                    .AddIngredient(PaintsCatalogue.PaintToDye[paint])
+                    .AddIngredient(PaintDatabase.PaintToDye[paint])
                     .AddTile(TileID.DyeVat);
                 r.createItem.ModItem<T>().color = paint;
                 r.Register();

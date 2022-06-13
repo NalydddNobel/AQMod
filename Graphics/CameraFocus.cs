@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,12 +8,12 @@ namespace Aequus.Graphics
     /// <summary>
     /// Manages screen panning
     /// </summary>
-    public sealed class GameCamera : ModSystem
+    public sealed class CameraFocus : ModSystem
     {
         /// <summary>
         /// A context string for the current focus
         /// </summary>
-        public string FocusContext { get; private set; }
+        public string Context { get; private set; }
 
         /// <summary>
         /// The target position for the camera in the world
@@ -27,7 +26,7 @@ namespace Aequus.Graphics
         /// <summary>
         /// A priority for determining whether or not a new camera focus can be added
         /// </summary>
-        public CameraPriority priority;
+        public FocusPriority priority;
         /// <summary>
         /// The speed of the camera
         /// </summary>
@@ -37,7 +36,7 @@ namespace Aequus.Graphics
         /// </summary>
         public float cameraProgress;
         /// <summary>
-        /// How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, CameraPriority, float, int)"/>
+        /// How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, FocusPriority, float, int)"/>
         /// </summary>
         public int hold;
         /// <summary>
@@ -62,7 +61,7 @@ namespace Aequus.Graphics
         {
             target = null;
             cameraPosition = null;
-            priority = CameraPriority.None;
+            priority = FocusPriority.None;
             speed = 10f;
             hold = 0;
             returning = false;
@@ -75,11 +74,11 @@ namespace Aequus.Graphics
         /// <param name="target">A world coordinate to point the camera at</param>
         /// <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
         /// <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-        /// <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, CameraPriority, float, int)"/></param>
+        /// <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, FocusPriority, float, int)"/></param>
         /// <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 6f, int hold = 25)
+        public bool SetTarget(string key, Vector2 target, FocusPriority priority, float speed = 6f, int hold = 25)
         {
-            if (key == FocusContext)
+            if (key == Context)
             {
                 this.hold = hold;
             }
@@ -90,7 +89,7 @@ namespace Aequus.Graphics
                 this.speed = speed;
                 returning = false;
                 this.hold = hold;
-                FocusContext = key;
+                Context = key;
                 return true;
             }
             return false;
@@ -133,7 +132,7 @@ namespace Aequus.Graphics
                     target = null;
                     cameraProgress = 0f;
                     cameraPosition = null;
-                    FocusContext = null;
+                    Context = null;
                     return;
                 }
                 cameraPosition = Main.screenPosition + difference * cameraProgress;

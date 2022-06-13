@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Players;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -81,7 +81,7 @@ namespace Aequus.Items.Consumables.Foods
                     i--;
                 }
             }
-            player.GetModPlayer<VampirismPlayer>().vampirism = 0;
+            player.GetModPlayer<PlayerVampirism>().vampirism = 0;
             return true;
         }
     }

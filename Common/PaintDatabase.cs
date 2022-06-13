@@ -5,21 +5,21 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Catalogues
 {
-    public class PaintsCatalogue : ILoadable
+    public class PaintDatabase : ILoadable
     {
         internal static Color Furniture => new Color(191, 142, 111);
 
         public const byte Team = 254;
         public const byte Rainbow = 255;
 
-        public static byte[] Paints { get; private set; }
+        public static byte[] PaintIDs { get; private set; }
         public static Dictionary<short, byte> DyeToPaint { get; private set; }
         public static Dictionary<byte, short> PaintToDye { get; private set; }
         public static Dictionary<byte, short> PaintToYoyoString { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
-            Paints = new byte[]
+            PaintIDs = new byte[]
             {
                 PaintID.RedPaint,
                 PaintID.OrangePaint,
@@ -41,23 +41,23 @@ namespace Aequus.Common.Catalogues
             };
             DyeToPaint = new Dictionary<short, byte>
             {
-                [ItemID.RedDye] = Paints[0],
-                [ItemID.OrangeDye] = Paints[1],
-                [ItemID.YellowDye] = Paints[2],
-                [ItemID.LimeDye] = Paints[3],
-                [ItemID.GreenDye] = Paints[4],
-                [ItemID.TealDye] = Paints[5],
-                [ItemID.CyanDye] = Paints[6],
-                [ItemID.SkyBlueDye] = Paints[7],
-                [ItemID.BlueDye] = Paints[8],
-                [ItemID.PurpleDye] = Paints[9],
-                [ItemID.VioletDye] = Paints[10],
-                [ItemID.PinkDye] = Paints[11],
-                [ItemID.BlackDye] = Paints[12],
-                [ItemID.SilverDye] = Paints[13],
-                [ItemID.BrownDye] = Paints[14],
-                [ItemID.TeamDye] = Paints[15],
-                [ItemID.RainbowDye] = Paints[16],
+                [ItemID.RedDye] = PaintIDs[0],
+                [ItemID.OrangeDye] = PaintIDs[1],
+                [ItemID.YellowDye] = PaintIDs[2],
+                [ItemID.LimeDye] = PaintIDs[3],
+                [ItemID.GreenDye] = PaintIDs[4],
+                [ItemID.TealDye] = PaintIDs[5],
+                [ItemID.CyanDye] = PaintIDs[6],
+                [ItemID.SkyBlueDye] = PaintIDs[7],
+                [ItemID.BlueDye] = PaintIDs[8],
+                [ItemID.PurpleDye] = PaintIDs[9],
+                [ItemID.VioletDye] = PaintIDs[10],
+                [ItemID.PinkDye] = PaintIDs[11],
+                [ItemID.BlackDye] = PaintIDs[12],
+                [ItemID.SilverDye] = PaintIDs[13],
+                [ItemID.BrownDye] = PaintIDs[14],
+                [ItemID.TeamDye] = PaintIDs[15],
+                [ItemID.RainbowDye] = PaintIDs[16],
             };
             PaintToDye = new Dictionary<byte, short>();
             foreach (var pair in DyeToPaint)
@@ -67,29 +67,29 @@ namespace Aequus.Common.Catalogues
             PaintToYoyoString = new Dictionary<byte, short>
             {
                 [0] = ItemID.WhiteString,
-                [Paints[0]] = ItemID.RedString,
-                [Paints[1]] = ItemID.OrangeString,
-                [Paints[2]] = ItemID.YellowString,
-                [Paints[3]] = ItemID.LimeString,
-                [Paints[4]] = ItemID.GreenString,
-                [Paints[5]] = ItemID.TealString,
-                [Paints[6]] = ItemID.CyanString,
-                [Paints[7]] = ItemID.SkyBlueString,
-                [Paints[8]] = ItemID.BlueString,
-                [Paints[9]] = ItemID.PurpleString,
-                [Paints[10]] = ItemID.VioletString,
-                [Paints[11]] = ItemID.PinkString,
-                [Paints[12]] = ItemID.BlackString,
-                [Paints[13]] = ItemID.WhiteString,
-                [Paints[14]] = ItemID.BrownString,
-                [Paints[15]] = 0,
-                [Paints[16]] = ItemID.RainbowString,
+                [PaintIDs[0]] = ItemID.RedString,
+                [PaintIDs[1]] = ItemID.OrangeString,
+                [PaintIDs[2]] = ItemID.YellowString,
+                [PaintIDs[3]] = ItemID.LimeString,
+                [PaintIDs[4]] = ItemID.GreenString,
+                [PaintIDs[5]] = ItemID.TealString,
+                [PaintIDs[6]] = ItemID.CyanString,
+                [PaintIDs[7]] = ItemID.SkyBlueString,
+                [PaintIDs[8]] = ItemID.BlueString,
+                [PaintIDs[9]] = ItemID.PurpleString,
+                [PaintIDs[10]] = ItemID.VioletString,
+                [PaintIDs[11]] = ItemID.PinkString,
+                [PaintIDs[12]] = ItemID.BlackString,
+                [PaintIDs[13]] = ItemID.WhiteString,
+                [PaintIDs[14]] = ItemID.BrownString,
+                [PaintIDs[15]] = 0,
+                [PaintIDs[16]] = ItemID.RainbowString,
             };
         }
 
         void ILoadable.Unload()
         {
-            Paints = null;
+            PaintIDs = null;
             DyeToPaint?.Clear();
             DyeToPaint = null;
             PaintToDye?.Clear();

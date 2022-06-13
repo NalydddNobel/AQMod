@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Graphics.Prims;
+﻿using Aequus.Graphics.Prims;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -48,7 +47,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             }
         }
 
-        private static readonly Gradients.ColorGradient gradient = new Gradients.ColorGradient(3f,
+        private static readonly ColorHelper.ColorGradient gradient = new ColorHelper.ColorGradient(3f,
             new Color(255, 0, 0, 128),
             new Color(255, 128, 0, 128),
             new Color(255, 255, 0, 128),

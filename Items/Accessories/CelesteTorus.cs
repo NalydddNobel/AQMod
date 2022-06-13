@@ -83,11 +83,11 @@ namespace Aequus.Items.Accessories
             {
                 if (render.Dye != 0)
                 {
-                    CommonSpriteBatchBegins.GeneralEntities.BeginShader(Main.spriteBatch);
+                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
                 }
                 else
                 {
-                    CommonSpriteBatchBegins.GeneralEntities.Begin(Main.spriteBatch);
+                    Begin.GeneralEntities.Begin(Main.spriteBatch);
                 }
 
                 var arr = render.TurnIntoRing();

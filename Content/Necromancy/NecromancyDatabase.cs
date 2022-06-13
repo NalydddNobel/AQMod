@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public sealed class NecromancyDatabase : LoadableType, IAddRecipes, IModCallable
+    public class NecromancyDatabase : LoadableType, IAddRecipes, IModCallable
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }

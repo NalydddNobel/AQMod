@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus.Graphics
 {
-    internal static class CommonSpriteBatchBegins
+    internal static class Begin
     {
         public static SpriteSortMode Regular => SpriteSortMode.Deferred;
         public static SpriteSortMode Shader => SpriteSortMode.Immediate;

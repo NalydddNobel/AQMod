@@ -99,7 +99,7 @@ namespace Aequus.Projectiles.Misc
                 for (int i = 0; i < 8; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
                         new Color(4, 15, 25, 0), new Color(10, 15, 50, 0), 1.25f, 0.3f));
                 }
             }

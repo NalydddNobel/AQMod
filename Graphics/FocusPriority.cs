@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Graphics
 {
-    public enum CameraPriority
+    public enum FocusPriority
     {
         None,
         Weak,

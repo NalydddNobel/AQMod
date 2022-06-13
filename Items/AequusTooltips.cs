@@ -298,7 +298,7 @@ namespace Aequus.Items
 
             if (Aequus.HQ)
             {
-                var rand = EffectsSystem.EffectRand;
+                var rand = AequusEffects.EffectRand;
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles

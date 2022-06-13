@@ -1,4 +1,4 @@
-﻿using Aequus.Common.IO;
+﻿using Aequus.Common.Utilities;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;

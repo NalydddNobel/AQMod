@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Armor.Vanity;
+﻿using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Trash;
 using Microsoft.Xna.Framework;

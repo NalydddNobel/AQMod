@@ -1,5 +1,4 @@
-﻿using Aequus.Common.IO;
-using Aequus.Common.Networking;
+﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
@@ -8,6 +7,7 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Necro;
+using Aequus.Projectiles;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -21,7 +21,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus
 {
-    public sealed class AequusWorld : ModSystem
+    public sealed class AequusSystem : ModSystem
     {
         [SaveData("GaleStreams")]
         [SaveDataAttribute.IsListedBoolean]
@@ -129,6 +129,14 @@ namespace Aequus
             int i = tasks.FindIndex((t) => t.Name.Equals(task));
             if (i != -1)
                 tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
+        }
+
+        public override void PostUpdatePlayers()
+        {
+            AequusProjectile.pWhoAmI = -1;
+            AequusProjectile.pIdentity = -1;
+            AequusProjectile.pNPC = -1;
+            AequusHelpers.EndCaches();
         }
 
         public override void PostWorldGen()

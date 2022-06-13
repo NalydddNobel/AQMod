@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus
 {
-    public static class ModGores
+    public static class GoreHelper
     {
         public static int GoreType(string name)
         {

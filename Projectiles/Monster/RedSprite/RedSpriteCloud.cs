@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Catalogues;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -15,7 +14,7 @@ namespace Aequus.Projectiles.Monster.RedSprite
         {
             Main.projFrames[Projectile.type] = 10;
 
-            HeatDamageTypes.HeatProjectile.Add(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

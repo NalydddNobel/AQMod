@@ -41,6 +41,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.ignoreWater = true;
+            Projectile.timeLeft = 3600;
         }
 
         public override bool? CanDamage()
@@ -290,7 +291,7 @@ namespace Aequus.Projectiles.Magic
                 return null;
             }
             Vector2[] coordinates = new Vector2[(ClientConfig.Instance.HighQuality ? 25 : 8)];
-            var rand = EffectsSystem.EffectRand;
+            var rand = AequusEffects.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {

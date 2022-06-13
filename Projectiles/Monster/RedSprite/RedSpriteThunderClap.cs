@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Monster.RedSprite
         {
             Main.projFrames[Projectile.type] = 4;
 
-            HeatDamageTypes.HeatProjectile.Add(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

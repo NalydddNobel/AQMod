@@ -91,8 +91,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
             });
 
-            HeatDamageTypes.HeatNPC.Add(Type);
-
+            AequusNPC.HeatDamage.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
@@ -143,7 +142,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 .AddMasterPet<LightningRod>()
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add(new FilledConditionsOtherwiseChanceRule(
-                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
+                    new OnFirstKillCondition(() => AequusSystem.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
@@ -435,14 +434,14 @@ namespace Aequus.NPCs.Monsters.Sky
                                     && Main.netMode != NetmodeID.Server &&
                                     (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
-                                    FlashScene.Flash.Set(NPC.Center, 0.75f);
-                                    EffectsSystem.Shake.Set(8f);
+                                    ScreenFlash.Flash.Set(NPC.Center, 0.75f);
+                                    AequusEffects.Shake.Set(8f);
                                 }
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        EffectsSystem.Shake.Set(12f);
+                                        AequusEffects.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundEngine.PlaySound(SoundHelpers.Thunderclap, NPC.Center);
@@ -524,9 +523,9 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.HitEffect(0, NPC.lifeMax);
                                 if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
                                 {
-                                    bool reduceFX = AequusWorld.downedRedSprite || NPC.CountNPCS(Type) > 1;
-                                    FlashScene.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
-                                    EffectsSystem.Shake.Set(reduceFX ? 18f : 20f);
+                                    bool reduceFX = AequusSystem.downedRedSprite || NPC.CountNPCS(Type) > 1;
+                                    ScreenFlash.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
+                                    AequusEffects.Shake.Set(reduceFX ? 18f : 20f);
                                 }
                                 _deathEffect = true;
                             }
@@ -1086,7 +1085,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = !AequusWorld.downedRedSprite && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusSystem.downedRedSprite && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -1099,7 +1098,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedRedSprite, Type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedRedSprite, Type);
         }
 
         //public override void NPCLoot()
@@ -1138,7 +1137,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 if (_importantDeath)
                 {
-                    ModContent.GetInstance<GameCamera>().SetTarget("Red Sprite", NPC.Center, CameraPriority.MinibossDefeat, 6f, 60);
+                    ModContent.GetInstance<CameraFocus>().SetTarget("Red Sprite", NPC.Center, FocusPriority.MinibossDefeat, 6f, 60);
                 }
                 if (NPC.ai[1] > 60f)
                 {
@@ -1216,7 +1215,7 @@ namespace Aequus.NPCs.Monsters.Sky
         private Vector2[] GenerateLightningString(ref Vector2[] coordinates, float timer, Vector2 difference)
         {
             var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
-            var rand = EffectsSystem.EffectRand;
+            var rand = AequusEffects.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             float multiplier = 0.01f;
             float diff = 0f;
@@ -1239,7 +1238,7 @@ namespace Aequus.NPCs.Monsters.Sky
         }
         private Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
         {
-            var rand = EffectsSystem.EffectRand;
+            var rand = AequusEffects.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {
@@ -1247,7 +1246,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 coordinates[i] += _redSpriteLightningCoords[k][i] + screenPosition + offset;
             }
             rand.SetRand(old);
-            GameCamera.GetY_Check(coordinates);
+            CameraFocus.GetY_Check(coordinates);
             return coordinates;
         }
         private void CheckPrims()
@@ -1292,13 +1291,13 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
                 else
                 {
-                    CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                    Begin.GeneralEntities.BeginShader(spriteBatch);
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
-                ModEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
-                ModEffects.VerticalGradient.ShaderData.UseColor(Color.Red);
-                ModEffects.VerticalGradient.ShaderData.Apply(drawData);
+                AequusEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
+                AequusEffects.VerticalGradient.ShaderData.UseColor(Color.Red);
+                AequusEffects.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in circular)
                 {

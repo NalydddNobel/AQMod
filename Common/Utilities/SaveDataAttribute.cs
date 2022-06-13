@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.IO
+namespace Aequus.Common.Utilities
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class SaveDataAttribute : Attribute

@@ -48,16 +48,16 @@ namespace Aequus.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.GetModPlayer<GravestonesPlayer>().disableTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
+            tooltips.Add(new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
         }
 
         public override bool? UseItem(Player player)
         {
-            var graves = player.GetModPlayer<GravestonesPlayer>();
-            graves.disableTombstones = !graves.disableTombstones;
+            var aequus = player.Aequus();
+            aequus.ghostTombstones = !aequus.ghostTombstones;
             if (Main.myPlayer == player.whoAmI)
             {
-                if (graves.disableTombstones)
+                if (aequus.ghostTombstones)
                 {
                     Main.NewText(AequusText.GetText("GhostlyGrave.True"), TextColor);
                 }

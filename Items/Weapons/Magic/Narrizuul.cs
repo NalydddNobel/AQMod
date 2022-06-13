@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Projectiles.Magic;
+﻿using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -35,7 +34,7 @@ namespace Aequus.Items.Weapons.Magic
             {
                 if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
                 {
-                    tooltips[i].OverrideColor = Gradients.nalydGradient.GetColor(Main.GlobalTimeWrappedHourly);
+                    tooltips[i].OverrideColor = ColorHelper.nalydGradient.GetColor(Main.GlobalTimeWrappedHourly);
                     return;
                 }
             }

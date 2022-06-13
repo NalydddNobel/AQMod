@@ -1,9 +1,11 @@
 ﻿using Aequus.Common;
+using Aequus.Tiles.Furniture;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
-    internal sealed class PolaritiesSupport : IPostSetupContent
+    internal class PolaritiesSupport : IPostSetupContent, IAddRecipes
     {
         public static ModData Polarities;
 
@@ -16,8 +18,17 @@ namespace Aequus.Content.CrossMod
             Polarities = new ModData("Polarities");
         }
 
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            if (Polarities.Enabled)
+            {
+                MonsterBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
+            }
+        }
+
         void ILoadable.Unload()
         {
+            Polarities.Clear();
         }
     }
 }

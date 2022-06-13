@@ -2,14 +2,14 @@
 
 namespace Aequus.Graphics
 {
-    public sealed class DrawIndexCache
+    public sealed class DrawList
     {
         public int Count => List.Count;
 
         internal readonly List<int> List;
         public bool renderingNow;
 
-        public DrawIndexCache()
+        public DrawList()
         {
             List = new List<int>();
             renderingNow = false;

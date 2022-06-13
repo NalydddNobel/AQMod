@@ -18,10 +18,26 @@ namespace Aequus.NPCs
 {
     public sealed class AequusNPC : GlobalNPC
     {
+        public static HashSet<int> HeatDamage { get; private set; }
         public override bool InstancePerEntity => true;
+
+        public bool heatDamage;
 
         public override void Load()
         {
+            HeatDamage = new HashSet<int>()
+            {
+                NPCID.Lavabat,
+                NPCID.LavaSlime,
+                NPCID.FireImp,
+                NPCID.MeteorHead,
+                NPCID.HellArmoredBones,
+                NPCID.HellArmoredBonesMace,
+                NPCID.HellArmoredBonesSpikeShield,
+                NPCID.HellArmoredBonesSword,
+                NPCID.BlazingWheel,
+            };
+
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
         private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
@@ -40,6 +56,14 @@ namespace Aequus.NPCs
 
             }
             orig(self, hitDirection, dmg);
+        }
+
+        public override void SetDefaults(NPC npc)
+        {
+            if (HeatDamage.Contains(npc.type))
+            {
+                heatDamage = true;
+            }
         }
 
         public override bool SpecialOnKill(NPC npc)
@@ -128,7 +152,7 @@ namespace Aequus.NPCs
         {
             if (SnowgraveCorpse.CanFreezeNPC(npc))
             {
-                EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
+                AequusEffects.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
             }
         }
         public List<(Player, AequusPlayer, float)> GetCloseEnoughPlayers(NPC npc)

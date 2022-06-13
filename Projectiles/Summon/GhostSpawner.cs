@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Summon.Necro
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
             zombie.zombieTimerMax *= 5;
             zombie.zombieTimer *= 5;
-            zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyBloodSacrifice;
+            zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyBloodSacrifice;
         }
 
         public int DetermineNPCType(int type)

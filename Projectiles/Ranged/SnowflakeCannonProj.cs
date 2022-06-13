@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Common;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,7 +20,7 @@ namespace Aequus.Projectiles.Ranged
 
             this.SetTrail(8);
 
-            WindMovementTypes.WindProjs.Add(Type);
+            WindMovementDatabase.WindProjs.Add(Type);
         }
 
         public override void SetDefaults()

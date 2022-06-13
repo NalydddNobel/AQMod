@@ -589,6 +589,10 @@ namespace Aequus
             return npc2;
         }
 
+        public static AequusNPC Aequus(this NPC npc)
+        {
+            return npc.GetGlobalNPC<AequusNPC>();
+        }
         public static AequusProjectile Aequus(this Projectile projectile)
         {
             return projectile.GetGlobalProjectile<AequusProjectile>();
@@ -1153,6 +1157,30 @@ namespace Aequus
                 d.fadeIn = d.scale * 2f;
                 d.velocity = Vector2.Zero;
                 i /= 2;
+            }
+        }
+
+        public static void EndCaches()
+        {
+            if (Main_invasionSize.IsCaching)
+            {
+                Main_invasionSize.EndCaching();
+            }
+            if (Main_invasionType.IsCaching)
+            {
+                Main_invasionType.EndCaching();
+            }
+            if (Main_bloodMoon.IsCaching)
+            {
+                Main_bloodMoon.EndCaching();
+            }
+            if (Main_eclipse.IsCaching)
+            {
+                Main_eclipse.EndCaching();
+            }
+            if (Main_dayTime.IsCaching)
+            {
+                Main_dayTime.EndCaching();
             }
         }
 

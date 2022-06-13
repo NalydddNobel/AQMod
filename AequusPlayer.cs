@@ -3,8 +3,8 @@ using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Pets;
 using Aequus.Common.Catalogues;
-using Aequus.Common.IO;
 using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -13,6 +13,7 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
+using Aequus.Projectiles.Misc.AshGraves;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -33,6 +35,8 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
+        public const float FrostPotionDamageMultiplier = 0.7f;
+
         public static int Team;
         public static float? PlayerDrawScale;
         public static int? PlayerDrawForceDye;
@@ -51,6 +55,8 @@ namespace Aequus
         /// </summary>
         [SaveData("Moro")]
         public bool moroUsed;
+        [SaveData("GravesDisabled")]
+        public bool ghostTombstones;
 
         /// <summary>
         /// Applied by <see cref="BlueFire"/>
@@ -268,7 +274,7 @@ namespace Aequus
                     (clone.itemSwitch - itemSwitch).Abs() > 10 ||
                     (clone.itemUsage - itemUsage).Abs() > 10 ||
                     (clone.itemCooldown - itemCooldown).Abs() > 10 ||
-                    clone.itemCooldownMax != itemCooldownMax, 
+                    clone.itemCooldownMax != itemCooldownMax,
                 (p) =>
                     {
                         p.Write(itemCombo);
@@ -927,24 +933,24 @@ namespace Aequus
 
         public override void ModifyScreenPosition()
         {
-            ModContent.GetInstance<GameCamera>().UpdateScreen();
-            EffectsSystem.UpdateScreenPosition();
+            ModContent.GetInstance<CameraFocus>().UpdateScreen();
+            AequusEffects.UpdateScreenPosition();
             Main.screenPosition = Main.screenPosition.Floor();
         }
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (buffResistHeat && HeatDamageTypes.HeatNPC.Contains(npc.netID))
+            if (buffResistHeat && npc.Aequus().heatDamage)
             {
-                damage = (int)(damage * 0.7f);
+                damage = (int)(damage * FrostPotionDamageMultiplier);
             }
         }
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
-            if (buffResistHeat && HeatDamageTypes.HeatProjectile.Contains(proj.type))
+            if (buffResistHeat && proj.Aequus().heatDamage)
             {
-                damage = (int)(damage * 0.7f);
+                damage = (int)(damage * FrostPotionDamageMultiplier);
             }
         }
 
@@ -1266,15 +1272,64 @@ namespace Aequus
             return l;
         }
 
+        public void GetCustomTombstones(int coinsOwned, NetworkText deathText, int hitDirection, out List<int> graves)
+        {
+            graves = new List<int>();
+            if (Player.position.Y > (Main.maxTilesY - 200) * 16f)
+            {
+                graves.Add(ModContent.ProjectileType<AshTombstoneProj>());
+                graves.Add(ModContent.ProjectileType<AshGraveMarkerProj>());
+                graves.Add(ModContent.ProjectileType<AshCrossGraveMarkerProj>());
+                graves.Add(ModContent.ProjectileType<AshHeadstoneProj>());
+                graves.Add(ModContent.ProjectileType<AshGravestoneProj>());
+                graves.Add(ModContent.ProjectileType<AshObeliskProj>());
+            }
+        }
+
+        public Vector2 GetRandomTombstoneVelocity(int hitDirection)
+        {
+            float num;
+            for (num = Main.rand.Next(-35, 36) * 0.1f; num < 2f && num > -2f; num += Main.rand.Next(-30, 31) * 0.1f)
+            {
+            }
+            return new Vector2(Main.rand.Next(10, 30) * 0.1f * hitDirection + num,
+                Main.rand.Next(-40, -20) * 0.1f);
+        }
+
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.DropTombstone += Hook_ModifyTombstone;
             On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
             On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
             On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+        }
+
+        private static void Hook_ModifyTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
+        {
+            var aequus = self.Aequus();
+            if (aequus.ghostTombstones)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.NewNPCDirect(self.GetSource_Death("GhostlyGrave"), self.Center, NPCID.Ghost);
+                }
+                return;
+            }
+
+            aequus.GetCustomTombstones(coinsOwned, deathText, hitDirection, out var graves);
+            if (graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                int t = Main.rand.Next(graves.Count);
+                int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), graves[t], 0, 0f, Main.myPlayer);
+                Main.projectile[p].miscText = deathText.ToString();
+                return;
+            }
+
+            orig(self, coinsOwned, deathText, hitDirection);
         }
 
         private static void Hook_NoMoreMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)

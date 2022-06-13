@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Content;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -15,7 +15,7 @@ namespace Aequus.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<VampirismPlayer>().daylightBurning = true;
+            player.GetModPlayer<PlayerVampirism>().daylightBurning = true;
         }
     }
 }

@@ -31,9 +31,9 @@ namespace Aequus.Buffs.Debuffs.Necro
                     ModContent.ProjectileType<InsurgentBolt>(), 1, 0f, zombie.zombieOwner, ai1: npc.whoAmI);
             }
 
-            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyInsurgent)
+            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyInsurgent)
             {
-                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyInsurgent;
+                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyInsurgent;
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;

@@ -1,10 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus
 {
-    public sealed class Gradients : ILoadable
+    public sealed class ColorHelper : ILoadable
     {
+        internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
+        internal static Color BlueSlimeColor => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
+
+        public interface IColorGradient
+        {
+            Color GetColor(float time);
+            void OnUnload()
+            {
+            }
+        }
         public struct ColorGradient : IColorGradient
         {
             public ColorGradient(float timeBetweenColors, params Color[] colors)
@@ -44,33 +55,17 @@ namespace Aequus.Common
             }
         }
 
-        public static IColorGradient aquaticGrad;
-        public static IColorGradient atmosphericGrad;
-        public static IColorGradient cosmicGrad;
-        public static IColorGradient demonicGrad;
-        public static IColorGradient organicGrad;
-        public static IColorGradient ultimateGrad;
         public static IColorGradient nalydGradient;
 
         void ILoadable.Load(Mod mod)
         {
-            aquaticGrad = new ColorWaveGradient(4f, new Color(111, 111, 190, 0), new Color(144, 144, 255, 0));
-            atmosphericGrad = new ColorWaveGradient(4f, new Color(200, 150, 10, 0) * 0.8f, new Color(255, 230, 70, 0) * 0.8f);
-            cosmicGrad = new ColorWaveGradient(4f, new Color(90, 30, 200, 0), new Color(190, 120, 255, 0));
-            demonicGrad = new ColorWaveGradient(4f, new Color(222, 100, 10, 0) * 0.8f, new Color(255, 255, 120, 0) * 0.8f);
-            organicGrad = new ColorWaveGradient(4f, new Color(120, 255, 60, 0), new Color(180, 250, 90, 0));
-            ultimateGrad = new ColorWaveGradient(8f, new Color(150, 255, 255, 0), new Color(255, 150, 255, 0));
             nalydGradient = new ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
         }
 
         void ILoadable.Unload()
         {
-            aquaticGrad = null;
-            atmosphericGrad = null;
-            cosmicGrad = null;
-            demonicGrad = null;
-            organicGrad = null;
-            ultimateGrad = null;
+            nalydGradient?.OnUnload();
+            nalydGradient = null;
         }
     }
 }

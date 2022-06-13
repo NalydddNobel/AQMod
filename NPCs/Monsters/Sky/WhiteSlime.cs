@@ -44,7 +44,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 PortraitPositionYOverride = 36f,
             });
 
-            HeatDamageTypes.HeatNPC.Add(Type);
+            AequusNPC.HeatDamage.Add(Type);
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
         }
 
@@ -308,7 +308,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - progress) * 0.35f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             }
 
-            if (!NecromancyScreenRenderer.RenderingNow)
+            if (!GhostOutlineTarget.RenderingNow)
             {
                 float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))

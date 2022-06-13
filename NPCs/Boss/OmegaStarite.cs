@@ -625,7 +625,7 @@ namespace Aequus.NPCs.Boss
                                         SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            EffectsSystem.Shake.Set(12f);
+                                            AequusEffects.Shake.Set(12f);
                                         }
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                         Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
@@ -1414,11 +1414,11 @@ namespace Aequus.NPCs.Boss
                 intensity += NPC.ai[1] / 20;
                 if (NPC.CountNPCS(Type) == 1)
                 {
-                    ModContent.GetInstance<GameCamera>().SetTarget("Omega Starite", NPC.Center, CameraPriority.BossDefeat, 12f, 60);
+                    ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, FocusPriority.BossDefeat, 12f, 60);
                 }
 
-                FlashScene.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 0.75f));
-                EffectsSystem.Shake.Set(intensity * 2f);
+                ScreenFlash.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 0.75f));
+                AequusEffects.Shake.Set(intensity * 2f);
 
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
@@ -1622,7 +1622,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
+            AequusSystem.MarkAsDefeated(ref AequusSystem.downedOmegaStarite, Type);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
             //bool anyoneNoHit = false;

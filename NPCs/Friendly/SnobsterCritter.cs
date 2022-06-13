@@ -33,7 +33,7 @@ namespace Aequus.NPCs.Friendly
         {
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, NPC.velocity.X, NPC.velocity.Y, 0, Aequus.GreenSlimeColor);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, NPC.velocity.X, NPC.velocity.Y, 0, ColorHelper.GreenSlimeColor);
             }
         }
 
@@ -97,7 +97,7 @@ namespace Aequus.NPCs.Friendly
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             float chance = SpawnCondition.Ocean.Chance * 0.1f * (SpawnCondition.TownCritter.Chance * 5f + 1f);
-            if (AequusWorld.downedCrabson)
+            if (AequusSystem.downedCrabson)
                 chance *= 5f;
             return chance;
         }

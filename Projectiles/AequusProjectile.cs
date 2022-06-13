@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -8,9 +10,13 @@ namespace Aequus.Projectiles
 {
     public class AequusProjectile : GlobalProjectile
     {
+        public static HashSet<int> HeatDamage { get; private set; }
+
         public static int pWhoAmI;
         public static int pIdentity;
         public static int pNPC;
+
+        public bool heatDamage;
 
         public int sourceItemUsed;
         public int sourceAmmoUsed;
@@ -36,8 +42,32 @@ namespace Aequus.Projectiles
 
         public override void Load()
         {
+            HeatDamage = new HashSet<int>()
+            {
+                ProjectileID.CultistBossFireBall,
+                ProjectileID.CultistBossFireBallClone,
+                ProjectileID.EyeFire,
+                ProjectileID.GreekFire1,
+                ProjectileID.GreekFire2,
+                ProjectileID.GreekFire3,
+            };
             pIdentity = -1;
+            pWhoAmI = -1;
             pNPC = -1;
+        }
+
+        public override void Unload()
+        {
+            HeatDamage?.Clear();
+            HeatDamage = null;
+        }
+
+        public override void SetDefaults(Projectile projectile)
+        {
+            if (HeatDamage.Contains(projectile.type))
+            {
+                heatDamage = true;
+            }
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)

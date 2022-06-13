@@ -62,17 +62,17 @@ namespace Aequus.NPCs.Boss
             NPC.localAI[3] = 0f;
         }
 
-        public void SetCamera(string context = null, Vector2? position = null, CameraPriority priority = CameraPriority.BossDefeat, float speed = 12f, int hold = 60)
+        public void SetCamera(string context = null, Vector2? position = null, FocusPriority priority = FocusPriority.BossDefeat, float speed = 12f, int hold = 60)
         {
-            ModContent.GetInstance<GameCamera>().SetTarget(context ?? Name, position ?? NPC.Center, priority, speed, hold);
+            ModContent.GetInstance<CameraFocus>().SetTarget(context ?? Name, position ?? NPC.Center, priority, speed, hold);
         }
         public void Flash(Vector2? position, float amt, float multiplier = 0.9f)
         {
-            FlashScene.Flash.Set(position ?? NPC.Center, amt, multiplier);
+            ScreenFlash.Flash.Set(position ?? NPC.Center, amt, multiplier);
         }
         public void Shake(float amt, float multiplier = 0.9f)
         {
-            EffectsSystem.Shake.Set(amt, multiplier);
+            AequusEffects.Shake.Set(amt, multiplier);
         }
     }
 }

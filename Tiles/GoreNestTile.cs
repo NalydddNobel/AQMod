@@ -3,8 +3,6 @@ using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Ambience;
-using AQMod.Effects.GoreNest;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +11,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -21,6 +20,22 @@ namespace Aequus.Tiles
 {
     public class GoreNestTile : ModTile
     {
+        public class GoreNestShaderData : MiscShaderData
+        {
+            public GoreNestShaderData(Ref<Effect> shader, string passName) : base(shader, passName)
+            {
+                UseColor(new Vector3(5f, 0f, 0f)).UseSecondaryColor(new Vector3(4f, 0, 2f))
+                    .UseSaturation(1f).UseOpacity(1f);
+            }
+
+            public override void Apply()
+            {
+                Shader.Parameters["colorLerpMult"].SetValue(0.45f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10) * 0.1f);
+                Shader.Parameters["thirdColor"].SetValue(new Vector3(2f, 4f, 0));
+                base.Apply();
+            }
+        }
+
         public static List<Point> RenderPoints { get; private set; }
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
 
@@ -31,8 +46,8 @@ namespace Aequus.Tiles
                 RenderPoints = new List<Point>();
                 GoreNestPortal = new StaticMiscShaderInfo<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
 
-                Aequus.ResetTileRenderPoints += () => RenderPoints.Clear();
-                Aequus.DrawSpecialTilePoints += DrawPortals;
+                AequusTile.ResetTileRenderPoints += () => RenderPoints.Clear();
+                AequusTile.DrawSpecialTilePoints += DrawPortals;
             }
         }
 
@@ -146,8 +161,8 @@ namespace Aequus.Tiles
         {
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
-            
-            ModEffects.DrawShader(GoreNestPortal.ShaderData, Main.spriteBatch, position, Color.White, scale: 82f);
+
+            AequusEffects.DrawShader(GoreNestPortal.ShaderData, Main.spriteBatch, position, Color.White, scale: 82f);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);

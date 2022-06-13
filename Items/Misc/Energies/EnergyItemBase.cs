@@ -63,14 +63,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader, useScissorRectangle: true);
+                Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
                 var drawData = new DrawData(Aura.Value, position, null, coloring, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, useScissorRectangle: true);
+                Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
             }
 
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -78,14 +78,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, CommonSpriteBatchBegins.Shader, useScissorRectangle: true);
+                Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
                 var drawData = new DrawData(Aura.Value, position, null, coloring.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.UI.Begin(spriteBatch, useScissorRectangle: true);
+                Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
             }
             return false;
         }
@@ -102,14 +102,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                Begin.GeneralEntities.BeginShader(spriteBatch);
                 var drawData = new DrawData(Aura.Value, drawPosition, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+                Begin.GeneralEntities.Begin(spriteBatch);
             }
 
             spriteBatch.Draw(itemTexture, drawPosition, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
@@ -117,14 +117,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.GeneralEntities.BeginShader(spriteBatch);
+                Begin.GeneralEntities.BeginShader(spriteBatch);
                 var drawData = new DrawData(Aura.Value, drawPosition, frame, coloring.UseA(0) * 0.33f, rotation, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                CommonSpriteBatchBegins.GeneralEntities.Begin(spriteBatch);
+                Begin.GeneralEntities.Begin(spriteBatch);
             }
             return false;
         }

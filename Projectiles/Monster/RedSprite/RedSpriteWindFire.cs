@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Monster.RedSprite
         public override void SetStaticDefaults()
         {
             this.SetTrail(12);
-            HeatDamageTypes.HeatProjectile.Add(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

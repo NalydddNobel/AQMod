@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -91,7 +90,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                     for (int i = length; i > 0; i--)
                     {
                         Gore.NewGoreDirect(NPC.GetSource_Death(),
-                            NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), ModGores.GoreType("Trapper_" + (Main.rand.Next(2) + 3)));
+                            NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), GoreHelper.GoreType("Trapper_" + (Main.rand.Next(2) + 3)));
                     }
                 }
             }
@@ -221,7 +220,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         {
             if (!NPC.IsABestiaryIconDummy)
             {
-                if (EffectsSystem.NPCsBehindAllNPCs.renderingNow)
+                if (AequusEffects.NPCsBehindAllNPCs.renderingNow)
                 {
                     var chainTexture = TrapperChainTexture.Value;
                     int npcOwner = (int)NPC.ai[1] - 1;
@@ -246,7 +245,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                 }
                 else
                 {
-                    EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+                    AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
                 }
             }
 

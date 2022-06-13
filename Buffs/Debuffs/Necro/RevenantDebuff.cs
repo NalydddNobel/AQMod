@@ -22,9 +22,9 @@ namespace Aequus.Buffs.Debuffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
 
-            if (zombie.renderLayer < NecromancyScreenRenderer.TargetIDs.FriendlyRevenant)
+            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyRevenant)
             {
-                zombie.renderLayer = NecromancyScreenRenderer.TargetIDs.FriendlyRevenant;
+                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyRevenant;
             }
         }
     }

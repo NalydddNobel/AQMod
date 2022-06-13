@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader.Config;
 
-namespace Aequus.Common
+namespace Aequus
 {
     [BackgroundColor(10, 10, 40, 220)]
     public abstract class ConfigurationBase : ModConfig

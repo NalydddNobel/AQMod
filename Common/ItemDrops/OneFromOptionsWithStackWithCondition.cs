@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.ItemDrops
