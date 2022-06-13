@@ -131,6 +131,25 @@ Mods: {
 			}
 		}
 
+		PrefixName: {
+			DivinePrefix: 神圣的
+			BlessedPrefix: 赐福的
+			VitriousPrefix: 多样的
+			EnlightenedPrefix: 启发的
+			PraisedPrefix: 赞颂的
+
+			SinfulPrefix: 有罪的
+			EvilPrefix: 邪恶的
+			EldritchPrefix: 怪异的
+			NecromanticPrefix: 妖术的 
+			DiabolicPrefix: 恶毒的 
+		}
+
+		Prefixes: {
+			PrefixSoulLimit: "{0}灵魂容量"
+			PrefixSoulCost: "{0}灵魂消耗"
+		}
+
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
