@@ -555,7 +555,8 @@ Mods: {
 				'''
 				召唤一只恶魔为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				
+				'''
+
 			ReboundNecklace: 
 				'''
 				在下落时会刷新你的二段跳

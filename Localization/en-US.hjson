@@ -204,6 +204,7 @@ Mods: {
 
 			CinnamonRoll: Cinnamon Roll
 
+			SentryPotion: Sentry Potion
 			FrostPotion: Frost Potion
 
 			PotionOfResurrection: Potion of Resurrection
@@ -688,7 +689,8 @@ Mods: {
 			MysticPopper: Increases bait power by 25% when in the hallow
 
 			PotionOfResurrection: Teleports you to the location of your most recent death
-			FrostPotion: Reduces damage from heat sources
+			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
+			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
@@ -1348,6 +1350,8 @@ Mods: {
 		Doubled: Doubled {0}
 
 		BuffName: {
+			SentryBuff: Sentry
+			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
 			RedSpriteBuff: Red Sprite
@@ -1405,6 +1409,8 @@ Mods: {
 		}
 
 		BuffDescription: {
+			SentryBuff: Increase your max number of sentries by 1 
+			FrostBuff: Reduces damage from heat sources
 			SpicyEelBuff: Greatly increases speed
 
 			RedSpriteBuff: "'May get into hissy fits!'"
