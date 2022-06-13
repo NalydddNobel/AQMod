@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Potions
+namespace Aequus.Items.Consumables.BuffPotions
 {
     public class NoonPotion : ModItem
     {

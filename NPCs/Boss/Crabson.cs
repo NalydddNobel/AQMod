@@ -2,9 +2,9 @@
 using Aequus.Graphics;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Expert;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Monster.Crabson;

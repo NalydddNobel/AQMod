@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
+namespace Aequus.Items.Misc.Expert
 {
     public class CrabsonBag : TreasureBagBase
     {

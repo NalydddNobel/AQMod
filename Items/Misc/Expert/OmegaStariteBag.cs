@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
+namespace Aequus.Items.Misc.Expert
 {
     public class OmegaStariteBag : TreasureBagBase
     {

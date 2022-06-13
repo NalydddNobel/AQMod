@@ -7,7 +7,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
+namespace Aequus.Items.Misc.Expert
 {
     public abstract class TreasureBagBase : ModItem
     {

@@ -13,6 +13,7 @@
         SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities,
         GiveoutEnemySouls,
         SoulDamage,
+        SetExporterQuestsCompleted,
         Count,
     }
 }

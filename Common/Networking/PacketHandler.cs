@@ -1,9 +1,11 @@
 ﻿using Aequus.Biomes;
+using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -14,6 +16,54 @@ namespace Aequus.Common.Networking
 {
     public sealed class PacketHandler : ModSystem
     {
+        public delegate void SendProcedureMethod(ModPacket packet, object[] args);
+        public delegate void ReadProcedureMethod(BinaryReader reader);
+        public struct Procedure
+        {
+            public SendProcedureMethod Send;
+            public ReadProcedureMethod Read;
+
+            public Procedure(SendProcedureMethod send, ReadProcedureMethod read)
+            {
+                Send = send;
+                Read = read;
+            }
+        }
+
+        private static Dictionary<PacketType, Procedure> procedures;
+
+        public override void Load()
+        {
+            procedures = new Dictionary<PacketType, Procedure>()
+            {
+                [PacketType.SetExporterQuestsCompleted] = new Procedure
+                ((p, o) =>
+                {
+                    p.Write((ushort)ExporterQuests.QuestsCompleted);
+                },
+                (r) =>
+                {
+                    ExporterQuests.QuestsCompleted = r.ReadUInt16();
+                }),
+            };
+        }
+
+        public static void SendProcedure(PacketType packetType, params object[] obj)
+        {
+            Send((p) =>
+            {
+                procedures[packetType].Send(p, obj);
+            }, packetType);
+        }
+
+        public static void ReadProcedure(PacketType packetType, BinaryReader reader)
+        {
+            if (procedures.TryGetValue(packetType, out var p))
+            {
+                p.Read(reader);
+            }
+        }
+
         public static void Send(Func<ModPacket, bool> func, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -136,7 +186,7 @@ namespace Aequus.Common.Networking
 
         public static void HandlePacket(BinaryReader reader)
         {
-            PacketType type = ReadPacketType(reader);
+            var type = ReadPacketType(reader);
 
             var l = Aequus.Instance.Logger;
             if (type != PacketType.Unused && type != PacketType.SyncAequusPlayer)
@@ -191,6 +241,10 @@ namespace Aequus.Common.Networking
                 {
                     Main.player[reader.ReadInt32()].GetModPlayer<AequusPlayer>().candleSouls++;
                 }
+            }
+            else
+            {
+                ReadProcedure(type, reader);
             }
         }
     }

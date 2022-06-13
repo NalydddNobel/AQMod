@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Roulettes;
@@ -457,6 +458,11 @@ namespace Aequus.NPCs.Friendly
             AequusHelpers.DropMoney(source, player.getRect(), Main.rand.Next(Item.silver * 50 + extraMoney / 2, Item.gold + extraMoney));
 
             ExporterQuests.QuestsCompleted++;
+
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                PacketHandler.SendProcedure(PacketType.SetExporterQuestsCompleted);
+            }
         }
         public int SpawnLoot_ChooseRoulette(Player player, int i)
         {

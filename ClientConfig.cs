@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Consumables.Potions;
+using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Summons;
 using System;

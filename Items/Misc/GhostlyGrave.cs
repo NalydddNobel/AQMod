@@ -1,11 +1,10 @@
-﻿using Aequus.Common.Players;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Misc
 {
     public class GhostlyGrave : ModItem
     {
