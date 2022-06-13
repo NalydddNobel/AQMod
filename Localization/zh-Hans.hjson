@@ -83,6 +83,7 @@ Mods: {
 		}
 
 		Tooltips: {
+			NecromancyCandle: 吸收被仆从杀死的敌人的灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
 			UseDarts: 使用种子和飞镖作为弹药
@@ -133,7 +134,11 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			WretchedCandle: 卑劣蜡烛
+			CrimsonCandle: 恶毒蜡烛
+			CorruptionCandle: 卑劣蜡烛
+			PixieCandle: 精灵蜡烛
+			BloodZombieCandle: 血红蜡烛
+			WretchedCandle: 可悲蜡烛
 			AshCandle: 余烬蜡烛
 
 			ReboundNecklace: 回弹项链
@@ -502,16 +507,36 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			CrimsonCandle:
+				'''
+				召唤一只血爬虫为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			CorruptionCandle:
+				'''
+				召唤一只灵魂吞噬者为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			PixieCandle:
+				'''
+				召唤一只精灵为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			BloodZombieCandle:
+				'''
+				召唤一只血僵尸为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
 			WretchedCandle:
 				'''
-				召唤一个诅咒颅骨为你而战
-				会吸收被幽魂仆从杀死的敌人的灵魂
+				召唤一颗诅咒颅骨为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 			AshCandle:
 				'''
-				召唤一个恶魔为你而战
-				会吸收被幽魂仆从杀死的敌人的灵魂
-				'''
+				召唤一只恶魔为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				
 			ReboundNecklace: 
 				'''
 				在下落时会刷新你的二段跳

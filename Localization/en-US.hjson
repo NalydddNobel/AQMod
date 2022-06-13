@@ -532,11 +532,6 @@ Mods: {
 				Summons a cursed skull to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			WretchedCandle:
-				'''
-				Summons a cursed skull to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
 			AshCandle:
 				'''
 				Summons a demon to fight for you
