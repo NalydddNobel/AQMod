@@ -4,6 +4,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Summon.Candles;
 using ModGlobalsNet;
 using System.Collections.Generic;
 using System.IO;
@@ -156,6 +157,14 @@ namespace Aequus.NPCs
             if (npc.type == NPCID.UndeadViking || npc.type == NPCID.ArmoredViking)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalDagger>(), 50));
+            }
+            else if (npc.type == NPCID.Drippler || npc.type == NPCID.BloodZombie)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodZombieCandle>(), 100));
+            }
+            else if (npc.type == NPCID.Pixie)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
             }
             else if (npc.type == NPCID.DevourerHead || npc.type == NPCID.GiantWormHead || npc.type == NPCID.BoneSerpentHead || npc.type == NPCID.TombCrawlerHead
                 || npc.type == NPCID.DiggerHead || npc.type == NPCID.DuneSplicerHead || npc.type == NPCID.SeekerHead || npc.type == NPCID.BloodEelHead)

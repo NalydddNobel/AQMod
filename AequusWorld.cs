@@ -52,6 +52,9 @@ namespace Aequus
         [NetBool]
         public static bool downedDustDevil;
 
+        [SaveData("ShadowOrbs")]
+        public static int shadowOrbsBrokenTotal;
+
         public static Structures Structures { get; private set; }
 
         public static GoreNestGen GoreNests { get; private set; }
@@ -66,6 +69,7 @@ namespace Aequus
         public override void OnWorldLoad()
         {
             Aequus.SkiesDarkness = 1f;
+            shadowOrbsBrokenTotal = 0;
             downedSpaceSquid = false;
             downedRedSprite = false;
             downedEventGaleStreams = false;
@@ -90,11 +94,13 @@ namespace Aequus
         public override void NetSend(BinaryWriter writer)
         {
             NetTypeAttribute.SendData(writer, this);
+            writer.Write(shadowOrbsBrokenTotal);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             NetTypeAttribute.ReadData(reader, this);
+            shadowOrbsBrokenTotal = reader.ReadInt32();
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)

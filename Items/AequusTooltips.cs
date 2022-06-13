@@ -96,6 +96,26 @@ namespace Aequus.Items
             }
         }
 
+        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool lowerIsGood = false)
+        {
+            if (num == originalNum)
+            {
+                return;
+            }
+
+            float value = num / (float)originalNum;
+            if (value < 1f)
+            {
+                value = 1f - value;
+            }
+            else
+            {
+                value--;
+            }
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
+            { IsModifier = true, IsModifierBad = num < originalNum ? lowerIsGood : !lowerIsGood, });
+        }
+
         public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
         {
             float brightness = Main.mouseTextColor / 255f;

@@ -131,6 +131,25 @@ Mods: {
 			}
 		}
 
+		PrefixName: {
+			DivinePrefix: Divine
+			BlessedPrefix: Blessed
+			VitriousPrefix: Vitrious
+			EnlightenedPrefix: Enlightened
+			PraisedPrefix: Praised
+
+			SinfulPrefix: Sinful
+			EvilPrefix: Evil
+			EldritchPrefix: Eldritch
+			NecromanticPrefix: Necromantic 
+			DiabolicPrefix: Diabolic 
+		}
+
+		Prefixes: {
+			PrefixSoulLimit: "{0} soul capacity"
+			PrefixSoulCost: "{0} soul cost"
+		}
+
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
@@ -525,11 +544,6 @@ Mods: {
 			BloodZombieCandle:
 				'''
 				Summons a blood zombie to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			WretchedCandle:
-				'''
-				Summons a cursed skull to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 			WretchedCandle:

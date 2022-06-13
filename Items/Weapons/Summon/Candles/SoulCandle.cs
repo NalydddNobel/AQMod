@@ -1,10 +1,12 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Prefixes.SoulCandles;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Summon.Candles
 {
@@ -13,7 +15,9 @@ namespace Aequus.Items.Weapons.Summon.Candles
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
         public int soulLimit;
+        public int defSoulLimit { get; protected set; }
         public int useSouls;
+        public int defUseSouls { get; protected set; }
         public int npcSummon;
 
         protected void DefaultToCandle(int limit, int souls, int npc)
@@ -21,10 +25,17 @@ namespace Aequus.Items.Weapons.Summon.Candles
             Item.holdStyle = ItemHoldStyle;
             soulLimit = limit;
             useSouls = souls;
+            defSoulLimit = limit;
+            defUseSouls = souls;
             npcSummon = npc;
             Item.useTime = 40;
             Item.useAnimation = 40;
             Item.useStyle = ItemUseStyleID.HoldUp;
+        }
+        public void ClearPrefix()
+        {
+            soulLimit = defSoulLimit;
+            useSouls = defUseSouls;
         }
 
         public override void HoldItem(Player player)
@@ -79,6 +90,14 @@ namespace Aequus.Items.Weapons.Summon.Candles
             int i = tooltips.GetIndex("UseMana");
             tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("Tooltips.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
             tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("Tooltips.UseSouls", useSouls)));
+
+            AequusTooltips.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, lowerIsGood: false);
+            AequusTooltips.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, lowerIsGood: true);
+        }
+
+        public override int ChoosePrefix(UnifiedRandom rand)
+        {
+            return SoulCandlePrefix.ChoosePrefix(Item, rand).Type;
         }
     }
 }
