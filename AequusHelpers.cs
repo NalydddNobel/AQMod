@@ -77,6 +77,20 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+        public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2)
+        {
+            projectile.width = size;
+            projectile.height = size;
+            projectile.tileCollide = false;
+            projectile.friendly = true;
+            projectile.DamageType = damageClass;
+            projectile.aiStyle = -1;
+            projectile.timeLeft = timeLeft;
+            projectile.usesIDStaticNPCImmunity = true;
+            projectile.idStaticNPCHitCooldown = projectile.timeLeft + 1;
+            projectile.penetrate = -1;
+        }
+
         public static void CollideWithOthers(this Projectile projectile, float speed = 0.05f)
         {
             var rect = projectile.getRect();
@@ -164,13 +178,13 @@ namespace Aequus
             return rec;
         }
 
-        public static bool CheckHeredity(this Projectile projectile, ProjectileSources sources, Projectile projectile2)
+        public static bool CheckHeredity(this Projectile projectile, AequusProjectile sources, Projectile projectile2)
         {
-            return projectile2.active && projectile2.owner == projectile.owner && projectile.type == projectile2.type && sources.projectileOwnerIdentity == projectile2.GetGlobalProjectile<ProjectileSources>().projectileOwnerIdentity;
+            return projectile2.active && projectile2.owner == projectile.owner && projectile.type == projectile2.type && sources.sourceProjIdentity == projectile2.GetGlobalProjectile<AequusProjectile>().sourceProjIdentity;
         }
         public static bool CheckHeredity(this Projectile projectile, Projectile projectile2)
         {
-            return CheckHeredity(projectile, projectile.GetGlobalProjectile<ProjectileSources>(), projectile2);
+            return CheckHeredity(projectile, projectile.GetGlobalProjectile<AequusProjectile>(), projectile2);
         }
 
         public static float Opacity(this Dust dust)
@@ -575,9 +589,9 @@ namespace Aequus
             return npc2;
         }
 
-        public static ProjectileSources Aequus(this Projectile projectile)
+        public static AequusProjectile Aequus(this Projectile projectile)
         {
-            return projectile.GetGlobalProjectile<ProjectileSources>();
+            return projectile.GetGlobalProjectile<AequusProjectile>();
         }
         public static AequusPlayer Aequus(this Player player)
         {

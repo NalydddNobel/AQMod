@@ -2,11 +2,14 @@
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Weapons.Melee;
 using ModGlobalsNet;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -45,58 +48,86 @@ namespace Aequus.NPCs
                 DeathEffect_SnowgraveFreeze(npc);
             }
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (Main.netMode == NetmodeID.MultiplayerClient
+                || npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
             {
                 return false;
             }
 
             var players = GetCloseEnoughPlayers(npc);
-
             if (npc.HasBuff<SoulStolen>())
             {
                 CheckSouls(players);
             }
-
-            if (npc.type == NPCID.DungeonGuardian || npc.SpawnedFromStatue)
-            {
-                return false;
-            }
-
             if (NecromancyDatabase.TryGetByNetID(npc, out var info))
             {
                 var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && CheckRecruitable(npc, zombie, info, players))
+                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
                 {
                     zombie.SpawnZombie(npc);
                 }
             }
+
             return false;
         }
         public void CheckSouls(List<(Player, AequusPlayer, float)> players)
         {
-            int closest = -1;
-            float closestDistance = 2000f;
-            foreach (var p in players)
+            if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                if (p.Item3 < closestDistance && p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                foreach (var p in players)
                 {
-                    closest = p.Item1.whoAmI;
-                    closestDistance = p.Item3;
+                    if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                    {
+                        p.Item2.candleSouls++;
+                    }
                 }
             }
-            if (closest != -1)
+            else
             {
-                if (Main.netMode == NetmodeID.SinglePlayer)
+                List<int> candlePlayers = new List<int>();
+                foreach (var p in players)
                 {
-                    Main.player[closest].Aequus().candleSouls++; // bru
+                    if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                    {
+                        candlePlayers.Add(p.Item1.whoAmI);
+                    }
                 }
-                else
+
+                if (candlePlayers.Count > 0)
                 {
                     PacketHandler.Send((p) =>
                     {
-                        p.Write(closest);
-                    }, PacketType.GiveoutEnemySoul);
+                        p.Write(candlePlayers.Count);
+                        for (int i = 0; i < candlePlayers.Count; i++)
+                        {
+                            p.Write(candlePlayers[i]);
+                        }
+                    }, PacketType.GiveoutEnemySouls);
                 }
+            }
+        }
+        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<(Player, AequusPlayer, float)> players)
+        {
+            if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
+            {
+                return true;
+            }
+            //for (int i = 0; i < players.Count; i++)
+            //{
+            //    if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
+            //    {
+            //        zombie.zombieOwner = players[i].whoAmI;
+            //        zombie.zombieDebuffTier = info.PowerNeeded;
+            //        return true;
+            //    }
+            //}
+            return false;
+        }
+        public void DeathEffect_SnowgraveFreeze(NPC npc)
+        {
+            if (SnowgraveCorpse.CanFreezeNPC(npc))
+            {
+                EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
             }
         }
         public List<(Player, AequusPlayer, float)> GetCloseEnoughPlayers(NPC npc)
@@ -119,28 +150,17 @@ namespace Aequus.NPCs
             }
             return list;
         }
-        public bool CheckRecruitable(NPC npc, NecromancyNPC zombie, GhostInfo info, List<(Player, AequusPlayer, float)> players)
+
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
-            if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
+            if (npc.type == NPCID.UndeadViking || npc.type == NPCID.ArmoredViking)
             {
-                return true;
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalDagger>(), 50));
             }
-            //for (int i = 0; i < players.Count; i++)
-            //{
-            //    if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
-            //    {
-            //        zombie.zombieOwner = players[i].whoAmI;
-            //        zombie.zombieDebuffTier = info.PowerNeeded;
-            //        return true;
-            //    }
-            //}
-            return false;
-        }
-        public void DeathEffect_SnowgraveFreeze(NPC npc)
-        {
-            if (SnowgraveCorpse.CanFreezeNPC(npc))
+            else if (npc.type == NPCID.DevourerHead || npc.type == NPCID.GiantWormHead || npc.type == NPCID.BoneSerpentHead || npc.type == NPCID.TombCrawlerHead
+                || npc.type == NPCID.DiggerHead || npc.type == NPCID.DuneSplicerHead || npc.type == NPCID.SeekerHead || npc.type == NPCID.BloodEelHead)
             {
-                EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
             }
         }
     }

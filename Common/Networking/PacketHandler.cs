@@ -14,6 +14,14 @@ namespace Aequus.Common.Networking
 {
     public sealed class PacketHandler : ModSystem
     {
+        public static void Send(Func<ModPacket, bool> func, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
+        {
+            var packet = Aequus.Instance.GetPacket(capacity);
+            packet.Write((byte)type);
+            if (func(packet))
+                packet.Send(to, ignore);
+        }
+
         public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -176,9 +184,13 @@ namespace Aequus.Common.Networking
             {
                 TERecyclingMachine.NetReceive2(reader);
             }
-            else if (type == PacketType.GiveoutEnemySoul)
+            else if (type == PacketType.GiveoutEnemySouls)
             {
-                Main.player[reader.ReadInt32()].GetModPlayer<AequusPlayer>().candleSouls++;
+                int amt = reader.ReadInt32();
+                for (int i = 0; i < amt; i++)
+                {
+                    Main.player[reader.ReadInt32()].GetModPlayer<AequusPlayer>().candleSouls++;
+                }
             }
         }
     }

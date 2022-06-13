@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Aequus.Buffs.Debuffs
 {
@@ -12,5 +13,10 @@ namespace Aequus.Buffs.Debuffs
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
         }
+
+        //public override void Update(NPC npc, ref int buffIndex)
+        //{
+        //    Dust.NewDust(npc.position, npc.width, npc.height, DustID.Gold);
+        //}
     }
 }

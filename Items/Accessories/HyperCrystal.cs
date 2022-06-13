@@ -32,7 +32,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            if (player.Aequus().ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<HyperCrystalAuraProj>()) <= 0)
+            if (player.Aequus().ProjectilesOwned(ModContent.ProjectileType<HyperCrystalAuraProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalAuraProj>(),
                     0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon.Necro
 {
-    public class NecromancyNPCHitbox : ModProjectile
+    public class GhostHitbox : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
 
@@ -22,10 +22,9 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.DamageType = DamageClass.Summon;
-
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.timeLeft = 30;
+            Projectile.timeLeft = 70;
         }
 
         public override void AI()
@@ -41,7 +40,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SoulStolen>(), 600);
+            target.AddBuff(ModContent.BuffType<SoulStolen>(), 1200);
         }
     }
 }

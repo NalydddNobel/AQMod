@@ -277,7 +277,7 @@ namespace Aequus.Content.Necromancy
                             float multiplier = GetDamageMultiplier(npc, npc.damage);
                             int noSummonBoostDamage = (int)(npc.damage * multiplier);
                             int summonDamage = (int)(noSummonBoostDamage * Main.player[zombieOwner].GetTotalDamage(DamageClass.Summon).Multiplicative);
-                            int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<NecromancyNPCHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
+                            int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
                             Main.projectile[p].width = npc.width;
                             Main.projectile[p].height = npc.height;
                             Main.projectile[p].position = npc.position;

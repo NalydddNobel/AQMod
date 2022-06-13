@@ -43,10 +43,6 @@ namespace Aequus.NPCs
                 maxSpawns = Math.Min(maxSpawns, 2);
             }
         }
-        public bool Spawnrates_AreAequusBossesActive(Player player)
-        {
-            return IsClose<OmegaStarite>(player) || IsClose<OmegaStarite>(player);
-        }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {

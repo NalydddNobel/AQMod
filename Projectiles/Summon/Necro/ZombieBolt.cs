@@ -30,6 +30,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
             Projectile.scale = 0.5f;
+            Projectile.DamageType = DamageClass.Summon;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -54,6 +55,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 float speed = Projectile.velocity.Length();
                 Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.02f)) * speed;
             }
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -63,7 +65,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
+            Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
             NecromancyDebuff.ApplyDebuff<NecromancyDebuff>(target, 600, Projectile.owner, 1f);
         }
 

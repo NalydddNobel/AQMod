@@ -128,7 +128,7 @@ namespace Aequus.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            ProjectileSources.DefaultToExplosion(Projectile, 90, DamageClass.Ranged, 20);
+            Projectile.DefaultToExplosion(90, DamageClass.Ranged, 20);
         }
 
         public override Color? GetAlpha(Color lightColor)

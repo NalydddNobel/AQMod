@@ -138,7 +138,7 @@ namespace Aequus.Items.Accessories
         {
             var aequus = player.Aequus();
             aequus.celesteTorusItem = Item;
-            if (aequus.ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
+            if (aequus.ProjectilesOwned(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<CelesteTorusProj>(),
                     0, 0f, player.whoAmI, player.Aequus().projectileIdentity + 1);

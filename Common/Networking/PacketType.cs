@@ -11,7 +11,7 @@
         RemoveDemonSiege,
         SyncDebuffs,
         SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities,
-        GiveoutEnemySoul,
+        GiveoutEnemySouls,
         SoulDamage,
         Count,
     }

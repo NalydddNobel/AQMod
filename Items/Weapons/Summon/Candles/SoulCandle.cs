@@ -70,7 +70,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
             player.LimitPointToPlayerReachableArea(ref position);
             if (Main.myPlayer == player.whoAmI)
             {
-                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<NecromanticEnemySpawner>(), Item.damage, 0f, player.whoAmI, npcSummon);
+                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<GhostSpawner>(), Item.damage, 0f, player.whoAmI, npcSummon);
             }
         }
 

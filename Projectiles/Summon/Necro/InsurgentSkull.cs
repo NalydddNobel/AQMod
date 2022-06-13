@@ -34,6 +34,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.scale = 1f;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
+            Projectile.DamageType = DamageClass.Summon;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -192,8 +193,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
-
+            Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner, 4f);
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;

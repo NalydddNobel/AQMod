@@ -73,8 +73,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         {
                             var aequus = Main.player[projectile.owner].Aequus();
                             var parentSentry = parentProj.GetGlobalProjectile<SantankSentryProjectile>();
-                            ProjectileSources.ParentProjectile_WhoAmI = projectile.whoAmI;
-                            ProjectileSources.ParentProjectile_Identity = projectile.identity;
+                            AequusProjectile.pWhoAmI = projectile.whoAmI;
+                            AequusProjectile.pIdentity = projectile.identity;
                             try
                             {
                                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
@@ -88,8 +88,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                             catch
                             {
                             }
-                            ProjectileSources.ParentProjectile_Identity = -1;
-                            ProjectileSources.ParentProjectile_WhoAmI = -1;
+                            AequusProjectile.pIdentity = -1;
+                            AequusProjectile.pWhoAmI = -1;
                         }
                     }
                 }
@@ -132,8 +132,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             dummyPlayer.wet = projectile.wet;
             dummyPlayer.lavaWet = projectile.lavaWet;
             dummyPlayer.honeyWet = projectile.honeyWet;
-            ProjectileSources.ParentProjectile_WhoAmI = projectile.whoAmI;
-            ProjectileSources.ParentProjectile_Identity = projectile.identity;
+            AequusProjectile.pWhoAmI = projectile.whoAmI;
+            AequusProjectile.pIdentity = projectile.identity;
 
             try
             {
@@ -160,8 +160,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             PlayerLoader.PostUpdate(dummyPlayer);
             dummyPlayer.numMinions = 0;
             dummyPlayer.slotsMinions = 0f;
-            ProjectileSources.ParentProjectile_Identity = -1;
-            ProjectileSources.ParentProjectile_WhoAmI = -1;
+            AequusProjectile.pIdentity = -1;
+            AequusProjectile.pWhoAmI = -1;
         }
     }
 
@@ -243,7 +243,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == ProjectileID.SporeTrap || Main.projectile[i].type == ProjectileID.SporeTrap2 
                     || Main.projectile[i].type == ModContent.ProjectileType<NaniteSpore>()))
                 { 
-                    int identity = Main.projectile[i].Aequus().projectileOwnerIdentity;
+                    int identity = Main.projectile[i].Aequus().sourceProjIdentity;
                     if (identity >= 0)
                     {
                         sporeSacProjs.Add(Main.projectile[i]);

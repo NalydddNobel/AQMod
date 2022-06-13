@@ -260,7 +260,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
 
             if (Main.myPlayer == player.whoAmI && player.Aequus()
-                .ProjectilesOwned_ConsiderProjectileIdentity(ModContent.ProjectileType<ProtectiveProbe>()) < aequus.accExpertItemBoostBoCProbesDefense / ProtectiveProbe.DefenseSlices)
+                .ProjectilesOwned(ModContent.ProjectileType<ProtectiveProbe>()) < aequus.accExpertItemBoostBoCProbesDefense / ProtectiveProbe.DefenseSlices)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, player.velocity, ModContent.ProjectileType<ProtectiveProbe>(), 0, 1f, player.whoAmI,
                      player.Aequus().projectileIdentity + 1);

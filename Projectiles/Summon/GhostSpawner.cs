@@ -1,14 +1,13 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon.Necro
 {
-    public class NecromanticEnemySpawner : ModProjectile
+    public class GhostSpawner : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
 

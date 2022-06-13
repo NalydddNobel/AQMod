@@ -12,7 +12,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using System;
@@ -256,55 +255,46 @@ namespace Aequus
             Player_ItemCheck_Shoot = null;
         }
 
-        public override void clientClone(ModPlayer clientClone)
-        {
-            var clone = (AequusPlayer)clientClone;
-            clone.itemCombo = itemCombo;
-            clone.itemSwitch = itemSwitch;
-            clone.itemUsage = itemUsage;
-            clone.itemCooldown = itemCooldown;
-            clone.itemCooldownMax = itemCooldownMax;
-            clone.hitTime = hitTime;
-            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
-            clone.increasedRegen = increasedRegen;
-        }
-
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             var clone = (AequusPlayer)clientPlayer;
 
-            bool itemSync = (clone.itemCombo - itemCombo).Abs() > 10 ||
-                (clone.itemSwitch - itemSwitch).Abs() > 10 ||
-                (clone.itemUsage - itemUsage).Abs() > 10 ||
-                (clone.itemCooldown - itemCooldown).Abs() > 10 ||
-                clone.itemCooldownMax != itemCooldownMax;
-            bool syncHitTime = (clone.hitTime - hitTime).Abs() > 10;
-
-            if (itemSync || syncHitTime)
-            {
-                Sync(itemSync, syncHitTime);
-            }
-        }
-        public void Sync(bool itemSync, bool syncHitTime)
-        {
             PacketHandler.Send((p) =>
             {
+                bool sentAnything = false;
                 p.Write((byte)Player.whoAmI);
-                if (itemSync)
-                {
-                    p.Write(true);
-                    p.Write(itemCombo);
-                    p.Write(itemSwitch);
-                    p.Write(itemUsage);
-                    p.Write(itemCooldown);
-                    p.Write(itemCooldownMax);
-                }
-                else
-                {
-                    p.Write(false);
-                }
-            }, PacketType.SyncAequusPlayer);
+                PacketHandler.FlaggedSend(
+                    (clone.itemCombo - itemCombo).Abs() > 10 ||
+                    (clone.itemSwitch - itemSwitch).Abs() > 10 ||
+                    (clone.itemUsage - itemUsage).Abs() > 10 ||
+                    (clone.itemCooldown - itemCooldown).Abs() > 10 ||
+                    clone.itemCooldownMax != itemCooldownMax, 
+                (p) =>
+                    {
+                        p.Write(itemCombo);
+                        p.Write(itemSwitch);
+                        p.Write(itemUsage);
+                        p.Write(itemCooldown);
+                        p.Write(itemCooldownMax);
+                        sentAnything = true;
+                    }, p);
 
+                PacketHandler.FlaggedSend((clone.hitTime - hitTime).Abs() > 10,
+                (p) =>
+                    {
+                        p.Write(hitTime);
+                        sentAnything = true;
+                    }, p);
+
+                PacketHandler.FlaggedSend(clone.candleSouls != candleSouls,
+                (p) =>
+                    {
+                        p.Write(candleSouls);
+                        sentAnything = true;
+                    }, p);
+                return sentAnything;
+
+            }, PacketType.SyncAequusPlayer);
         }
 
         public void RecieveChanges(BinaryReader reader)
@@ -317,6 +307,28 @@ namespace Aequus
                 itemCooldown = reader.ReadUInt16();
                 itemCooldownMax = reader.ReadUInt16();
             }
+            if (reader.ReadBoolean())
+            {
+                hitTime = reader.ReadInt32();
+            }
+            if (reader.ReadBoolean())
+            {
+                candleSouls = reader.ReadInt32();
+            }
+        }
+
+        public override void clientClone(ModPlayer clientClone)
+        {
+            var clone = (AequusPlayer)clientClone;
+            clone.itemCombo = itemCombo;
+            clone.itemSwitch = itemSwitch;
+            clone.itemUsage = itemUsage;
+            clone.itemCooldown = itemCooldown;
+            clone.itemCooldownMax = itemCooldownMax;
+            clone.hitTime = hitTime;
+            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
+            clone.increasedRegen = increasedRegen;
+            clone.candleSouls = candleSouls;
         }
 
         public override void Initialize()
@@ -601,7 +613,7 @@ namespace Aequus
             }
 
             if (healingMushroomItem != null && healingMushroomItem.shoot > ProjectileID.None
-                && MendshroomActive && ProjectilesOwned_ConsiderProjectileIdentity(healingMushroomItem.shoot) <= 0)
+                && MendshroomActive && ProjectilesOwned(healingMushroomItem.shoot) <= 0)
             {
                 Projectile.NewProjectile(Player.GetSource_Accessory(healingMushroomItem), Player.Center, Vector2.Zero, healingMushroomItem.shoot,
                     0, 0f, Player.whoAmI, projectileIdentity + 1);
@@ -941,6 +953,26 @@ namespace Aequus
             hitTime = 0;
         }
 
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
+            {
+                NecromancyHit(target, proj);
+            }
+        }
+        /// <summary>
+        /// Inflicts <see cref="SoulStolen"/> if the player is able to get more candle souls
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="proj"></param>
+        public void NecromancyHit(NPC target, Projectile proj)
+        {
+            if (candleSouls < soulCandleLimit)
+            {
+                target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
+            }
+        }
+
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
         {
             if (Main.rand.Next(50) <= Player.anglerQuestsFinished - 15)
@@ -1077,6 +1109,65 @@ namespace Aequus
             itemCooldown = (ushort)cooldown;
         }
 
+        public int ProjectilesOwned(int type)
+        {
+            int count = 0;
+            if (projectileIdentity != -1)
+            {
+                int myProj = AequusHelpers.FindProjectileIdentity(Player.whoAmI, projectileIdentity);
+                if (myProj != -1)
+                {
+                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    {
+                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
+                            && Main.projectile[i].Aequus().sourceProjIdentity == projectileIdentity)
+                        {
+                            count++;
+                        }
+                    }
+                }
+                return count;
+            }
+            if (Main.myPlayer != Player.whoAmI)
+            {
+                return count + 1;
+            }
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
+                    && Main.projectile[i].Aequus().sourceProjIdentity == -1)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public static bool CanScamNPC(NPC npc)
+        {
+            return npc.type != ModContent.NPCType<Exporter>();
+        }
+
+        public void Mendshroom()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(Player.Center) < mendshroomDiameter / 2f)
+                {
+                    mendshroomHeal(i);
+                }
+            }
+        }
+        public void mendshroomHeal(int i)
+        {
+            var bungus = Main.player[i].Aequus();
+            if (bungus.increasedRegen < healingMushroomRegeneration)
+            {
+                bungus.increasedRegen = healingMushroomRegeneration;
+                Main.player[i].AddBuff(healingMushroomItem.buffType, 4, quiet: true);
+            }
+        }
+
         public void CountSentries()
         {
             turretSlotCount = 0;
@@ -1110,9 +1201,9 @@ namespace Aequus
                 return;
             }
 
-            LegacySudoShootProj(player, item, source, location, velocity, projType, projDamage, projKB, setMousePos);
+            LegacyShootProj(player, item, source, location, velocity, projType, projDamage, projKB, setMousePos);
         }
-        private static int LegacySudoShootProj(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)
+        private static int LegacyShootProj(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)
         {
             int mouseX = Main.mouseX;
             int mouseY = Main.mouseY;
@@ -1173,66 +1264,6 @@ namespace Aequus
                 }
             }
             return l;
-        }
-
-        public int ProjectilesOwned_ConsiderProjectileIdentity(int type)
-        {
-            int count = 0;
-            if (projectileIdentity != -1)
-            {
-                int myProj = AequusHelpers.FindProjectileIdentity(Player.whoAmI, projectileIdentity);
-                if (myProj != -1)
-                {
-                    for (int i = 0; i < Main.maxProjectiles; i++)
-                    {
-                        if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
-                            && Main.projectile[i].Aequus().projectileOwnerIdentity == projectileIdentity)
-                        {
-                            count++;
-                        }
-                    }
-                }
-                return count;
-            }
-            if (Main.myPlayer != Player.whoAmI)
-            {
-                return count + 1;
-            }
-            for (int i = 0; i < Main.maxProjectiles; i++)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].type == type
-                    && Main.projectile[i].Aequus().projectileOwnerIdentity == -1)
-                {
-                    count++;
-                }
-            }
-            return count;
-        }
-
-        public static bool CanScamNPC(NPC npc)
-        {
-            return npc.type != ModContent.NPCType<Exporter>();
-        }
-
-        public void Mendshroom()
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(Player.Center) < mendshroomDiameter / 2f)
-                {
-                    mendshroomHeal(i);
-                }
-            }
-        }
-
-        public void mendshroomHeal(int i)
-        {
-            var bungus = Main.player[i].Aequus();
-            if (bungus.increasedRegen < healingMushroomRegeneration)
-            {
-                bungus.increasedRegen = healingMushroomRegeneration;
-                Main.player[i].AddBuff(healingMushroomItem.buffType, 4, quiet: true);
-            }
         }
 
         #region Hooks

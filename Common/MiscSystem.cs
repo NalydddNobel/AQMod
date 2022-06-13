@@ -7,9 +7,9 @@ namespace Aequus.Common
     {
         public override void PostUpdatePlayers()
         {
-            ProjectileSources.ParentProjectile_WhoAmI = -1;
-            ProjectileSources.ParentProjectile_Identity = -1;
-            ProjectileSources.ParentNPC = -1;
+            AequusProjectile.pWhoAmI = -1;
+            AequusProjectile.pIdentity = -1;
+            AequusProjectile.pNPC = -1;
             if (AequusHelpers.Main_invasionSize.IsCaching)
             {
                 AequusHelpers.Main_invasionSize.EndCaching();

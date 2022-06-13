@@ -44,7 +44,7 @@
             Determines whether or not the mouse has an item
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.permMoro">
+        <member name="F:Aequus.AequusPlayer.moroUsed">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
             </summary>

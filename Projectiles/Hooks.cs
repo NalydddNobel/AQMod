@@ -4,7 +4,7 @@
     {
         public interface IOnUnmatchingProjectileParents
         {
-            void OnUnmatchingProjectileParents(ProjectileSources sources, int identityFound);
+            void OnUnmatchingProjectileParents(AequusProjectile sources, int identityFound);
         }
     }
 }

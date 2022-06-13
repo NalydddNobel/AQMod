@@ -83,6 +83,7 @@ Mods: {
 		}
 
 		Tooltips: {
+			NecromancyCandle: Absorbs the souls of enemies killed by minions
 			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
 			UseDarts: Uses seeds and darts as ammo
@@ -133,6 +134,10 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			CrimsonCandle: Vicious Candle
+			CorruptionCandle: Vile Candle
+			PixieCandle: Pixie Candle
+			BloodZombieCandle: Blood Candle
 			WretchedCandle: Wretched Candle
 			AshCandle: Ash Candle
 
@@ -502,15 +507,40 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			CrimsonCandle:
+				'''
+				Summons a blood crawler to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			CorruptionCandle:
+				'''
+				Summons an eater of souls to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			PixieCandle:
+				'''
+				Summons a pixie to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			BloodZombieCandle:
+				'''
+				Summons a blood zombie to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
 			WretchedCandle:
 				'''
 				Summons a cursed skull to fight for you
-				Absorbs the souls of enemies killed by ghost minions
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			WretchedCandle:
+				'''
+				Summons a cursed skull to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 			AshCandle:
 				'''
 				Summons a demon to fight for you
-				Absorbs the souls of enemies killed by ghost minions
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 			ReboundNecklace: 
 				'''
