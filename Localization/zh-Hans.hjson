@@ -153,10 +153,10 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			CrimsonCandle: 恶毒蜡烛
-			CorruptionCandle: 卑劣蜡烛
+			CrimsonCandle: 灼光者
+			CorruptionCandle: 噬光者
 			PixieCandle: 精灵蜡烛
-			BloodZombieCandle: 血红蜡烛
+			BloodZombieCandle: 冥狱之火
 			WretchedCandle: 可悲蜡烛
 			AshCandle: 余烬蜡烛
 
@@ -203,7 +203,8 @@ Mods: {
 			MysticPopper: 秘圣响饵
 
 			CinnamonRoll: 肉桂卷
-			
+
+			SentryPotion: 哨兵药水
 			FrostPotion: 冰霜药水
 
 			PotionOfResurrection: 复活药水
@@ -556,7 +557,6 @@ Mods: {
 				召唤一只恶魔为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-
 			ReboundNecklace: 
 				'''
 				在下落时会刷新你的二段跳
@@ -689,7 +689,8 @@ Mods: {
 			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
 			PotionOfResurrection: 将你传送至上次死亡时的位置
-			FrostPotion: 降低热源对你造成的伤害
+			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
+			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
@@ -727,7 +728,7 @@ Mods: {
 
 			RecyclingMachine: 允许你回收垃圾物品
 
-			GhostlyGrave: 阻止你在死亡时生成的墓碑
+			GhostlyGrave: 将你的墓碑变为幽魂
 
 			MirrorsCall:
 				'''
@@ -1349,6 +1350,8 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
+			SentryBuff: 哨兵
+			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
 			RedSpriteBuff: 红色精灵
@@ -1406,6 +1409,8 @@ Mods: {
 		}
 
 		BuffDescription: {
+			SentryBuff: 增加最大哨兵栏位
+			FrostBuff: 降低来自热源的伤害
 			SpicyEelBuff: 大幅度增加移动速度
 
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
