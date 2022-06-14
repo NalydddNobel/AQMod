@@ -76,6 +76,8 @@ namespace Aequus.NPCs.Friendly
                 .AddQuote(ItemID.LuckyCoin)
                 .AddQuote(ItemID.GoldRing)
                 ;
+
+            ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }
 
         public override void SetDefaults()

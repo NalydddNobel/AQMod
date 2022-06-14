@@ -23,6 +23,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
         protected void DefaultToCandle(int limit, int souls, int npc)
         {
             Item.holdStyle = ItemHoldStyle;
+            Item.DamageType = DamageClass.Summon; // Invisible damage type which should hopefully trick the game into believing it's a summoner related item
             soulLimit = limit;
             useSouls = souls;
             defSoulLimit = limit;

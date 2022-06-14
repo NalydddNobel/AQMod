@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -51,6 +52,12 @@ namespace Aequus.Items
                 ItemID.DiscountCard,
                 ItemID.ShadowKey,
             };
+            On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
+        }
+
+        private bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Weapon self, Item entry)
+        {
+            return orig(self, entry) || entry.ModItem is SoulCandle;
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)
