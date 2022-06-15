@@ -1361,6 +1361,8 @@ Mods: {
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			RedSpriteMinionBuff: Mysterious Sprite
+
 			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
 
@@ -1419,6 +1421,8 @@ Mods: {
 			SentryBuff: Increase your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 			SpicyEelBuff: Greatly increases speed
+
+			RedSpriteMinionBuff: The red sprite will fight for you!
 
 			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
