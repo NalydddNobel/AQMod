@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles.Melee;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
@@ -55,7 +54,7 @@ namespace Aequus.Items
             item.useTime = timeBetweenShots;
             item.useAnimation = timeBetweenShots;
             item.useStyle = ItemUseStyleID.Shoot;
-            item.DamageType = DamageClass.Summon;
+            item.DamageType = AequusItem.Necromancy;
             item.noMelee = true;
         }
 

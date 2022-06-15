@@ -172,6 +172,7 @@ Mods: {
 			Triacanthorn: Triacanthorn
 
 			DisturbanceStaff: Disturbance Staff
+			HailstormStaff: Hailstorm Staff
 
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
@@ -316,7 +317,6 @@ Mods: {
 			Flameblaster: Flameblaster
 			CrusadersCrossbow: Crusader's Crossbow
 			DoubleShot: Double Shot
-			KochfrostStaff: Kochfrost Staff
 			Baozhu: Baozhu
 			JerryClawFlail: Jerry Claw
 			MagicWand: Magic Wand
@@ -607,6 +607,11 @@ Mods: {
 				'''
 				Summons a mysterious red sprite to haunt your foes
 				Slain enemies have a chance to convert into ghost minions
+				'''
+			HailstormStaff:
+				'''
+				Summons a snowflake to fight for you
+				Uses half a minion slot
 				'''
 
 			CrimsonCandle:
@@ -952,11 +957,6 @@ Mods: {
 				'''
 				Spawns a secondary bullet
 				50% chance to not be consumed upon firing
-				'''
-			KochfrostStaff:
-				'''
-				Summons a snowflake to fight for you
-				Uses half a minion slot
 				'''
 			Baozhu:
 				'''
@@ -1367,6 +1367,7 @@ Mods: {
 			SpicyEelBuff: Spicy Eel
 
 			RedSpriteMinionBuff: Mysterious Sprite
+			SnowflakeBuff: Snowflake
 
 			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
@@ -1377,7 +1378,6 @@ Mods: {
 			Omori: Friends
 			PrimeTime: Arachnotron Power
 			ArachnotronCooldown: Arachnotron Cooldown
-			SnowsawBuff: Snowflake
 			MonoxiderBuff: Monoxider
 			Starite: Starite
 			Trapper: Trapper
@@ -1428,6 +1428,7 @@ Mods: {
 			SpicyEelBuff: Greatly increases speed
 
 			RedSpriteMinionBuff: The red sprite will fight for you!
+			SnowflakeBuff: The snowflake will fight for you
 
 			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
@@ -1438,7 +1439,6 @@ Mods: {
 			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
 			PrimeTime: Your defense is greatly increased!
 			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore
-			SnowsawBuff: The snowflake will fight for you
 			MonoxiderBuff: The monoxider will fight for you
 			Starite: The starite will fight for you
 			Trapper: The demonic trapper will fight for you

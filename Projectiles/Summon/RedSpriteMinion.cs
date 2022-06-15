@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon
 {
-    public class RedSpriteMinion : ModProjectile
+    public class RedSpriteMinion : MinionBase
     {
         public const int STATE_HAUNTING = 2;
         public const int STATE_ATTACKING = 1;
@@ -140,7 +140,7 @@ namespace Aequus.Projectiles.Summon
                 Projectile.ai[1] += Main.rand.NextFloat(0.8f, 1f);
                 Projectile.ai[0] = STATE_IDLE;
             }
-            var idlePosition = DetermineIdlePosition(leader, minionPos, count);
+            var idlePosition = IdlePosition(Main.player[Projectile.owner], leader, minionPos, count);
             float d = Projectile.Distance(idlePosition);
             if (d > 2000f)
             {
@@ -154,17 +154,15 @@ namespace Aequus.Projectiles.Summon
             Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.02f, 0.02f));
             Projectile.CollideWithOthers();
         }
-        public Vector2 DetermineIdlePosition(int leader, int minionPos, int count)
+        public override Vector2 IdlePosition(Player player, int leader, int minionPos, int count)
         {
-            var p = Main.player[Projectile.owner].Center + new Vector2(0f, -100f);
-
+            var p = base.IdlePosition(player, leader, minionPos, count) + new Vector2(0f, -100f);
             if (Projectile.whoAmI != leader)
             {
                 int movePos = (minionPos + 1) / 2;
                 int dir = minionPos % 2 == 0 ? 1 : -1;
                 p.X += 30f * movePos * dir;
             }
-
             return p;
         }
 

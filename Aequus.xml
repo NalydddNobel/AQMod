@@ -485,7 +485,7 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="F:Aequus.Graphics.GhostOutlineTarget.TargetIDs.Count">
+        <member name="F:Aequus.Graphics.GhostOutlineTarget.IDs.Count">
             <summary>
             Use and increase respectively for custom Necromancy Screen Renderer layers.
             </summary>

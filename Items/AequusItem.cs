@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Weapons.Summon;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Aequus.Items
 {
     public class AequusItem : GlobalItem, IAddRecipes
     {
+        public static NecromancyDamageClass Necromancy => new NecromancyDamageClass();
+
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
         public static HashSet<int> BankEquipFuncs { get; private set; }

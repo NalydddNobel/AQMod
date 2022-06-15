@@ -89,8 +89,8 @@ namespace Aequus.Items.Recipes
         {
             return modItem.CreateRecipe()
                 .AddIngredient(original)
-                .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
+                .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddTile(TileID.Anvils)
                 .Register((r) => 
                     {
@@ -104,8 +104,8 @@ namespace Aequus.Items.Recipes
         {
             modItem.CreateRecipe()
                 .AddIngredient(original, amt)
-                .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
+                .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddTile(TileID.Anvils)
                 .Register((r) =>
                     {
