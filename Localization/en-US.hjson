@@ -151,6 +151,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			PandorasBox: Pandora's Box
 			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			MechsSentry: Sentinel 6510 N.O.S.
@@ -174,10 +175,10 @@ Mods: {
 
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
-			PixieCandle: Pixie Candle
+			PixieCandle: Fallen Angel
 			BloodZombieCandle: Phlegethon
-			WretchedCandle: Wretched Candle
-			AshCandle: Ash Candle
+			WretchedCandle: Wretchedness
+			AshCandle: Purgatory
 
 			NecromancyStaff: Necromancy Staff
 			Insurgency: Insurgency
@@ -527,6 +528,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			PandorasBox: 
+				'''
+				Increases the projectile speed of ghost minions
+				'''
 			ReboundNecklace: 
 				'''
 				Allows your double jumps to refresh while falling

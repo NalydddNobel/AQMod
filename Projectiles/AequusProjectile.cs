@@ -18,6 +18,8 @@ namespace Aequus.Projectiles
 
         public bool heatDamage;
 
+        public int defExtraUpdates;
+
         public int sourceItemUsed;
         public int sourceAmmoUsed;
         public int sourceNPC;
@@ -72,6 +74,7 @@ namespace Aequus.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
+            defExtraUpdates = projectile.extraUpdates;
             sourceItemUsed = -1;
             sourceAmmoUsed = -1;
             sourceNPC = pNPC;
@@ -145,6 +148,11 @@ namespace Aequus.Projectiles
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
+            bitWriter.WriteBit(defExtraUpdates > 0);
+            if (defExtraUpdates > 0)
+            {
+                binaryWriter.Write((ushort)defExtraUpdates);
+            }
             bitWriter.WriteBit(sourceItemUsed > 0);
             if (sourceItemUsed > 0)
             {

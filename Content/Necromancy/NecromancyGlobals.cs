@@ -4,7 +4,6 @@ using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -62,12 +61,14 @@ namespace Aequus.Content.Necromancy
             int owner = -1;
             int timer = -1;
             float tier = -1f;
+            int renderLayer = -1;
             if (isZombieOld)
             {
                 var zombie = self.GetGlobalNPC<NecromancyNPC>();
                 owner = zombie.zombieOwner;
                 timer = zombie.zombieTimer;
                 tier = zombie.zombieDebuffTier;
+                renderLayer = zombie.renderLayer;
             }
 
             orig(self, newType);
@@ -79,6 +80,7 @@ namespace Aequus.Content.Necromancy
                 zombie.zombieOwner = owner;
                 zombie.zombieTimer = timer;
                 zombie.zombieDebuffTier = tier;
+                zombie.renderLayer = renderLayer;
             }
         }
 
@@ -642,15 +644,22 @@ namespace Aequus.Content.Necromancy
 
     public class NecromancyProj : GlobalProjectile
     {
+        public static HashSet<int> BlacklistExtraUpdates { get; private set; }
+
         public bool isZombie;
         public int zombieNPCOwner;
         public float zombieDebuffTier;
         public int renderLayer;
+        public bool appliedEffects;
 
         public override bool InstancePerEntity => true;
 
         public override void Load()
         {
+            BlacklistExtraUpdates = new HashSet<int>()
+            {
+                ProjectileID.SandnadoHostile,
+            };
             On.Terraria.Projectile.Kill += Projectile_Kill;
         }
 
@@ -702,6 +711,7 @@ namespace Aequus.Content.Necromancy
             projectile.hostile = false;
             projectile.friendly = true;
             projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
+            projectile.DamageType = DamageClass.Summon;
             isZombie = true;
             zombieNPCOwner = npc;
             zombieDebuffTier = tier;
@@ -729,6 +739,16 @@ namespace Aequus.Content.Necromancy
             NecromancyNPC.AI_NPCTarget = -1;
             if (isZombie)
             {
+                var aequus = Main.player[projectile.owner].Aequus();
+                if (!appliedEffects)
+                {
+                    if (aequus.ghostProjExtraUpdates > 0)
+                    {
+                        if (!BlacklistExtraUpdates.Contains(projectile.type))
+                            projectile.extraUpdates = (projectile.extraUpdates + 1) * (aequus.ghostProjExtraUpdates + 1) - 1;
+                    }
+                    appliedEffects = true;
+                }
                 if (!Main.npc[zombieNPCOwner].active)
                 {
                     projectile.Kill();
@@ -838,6 +858,7 @@ namespace Aequus.Content.Necromancy
                 isZombie = true;
                 projectile.hostile = false;
                 projectile.friendly = true;
+                projectile.DamageType = DamageClass.Summon;
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();

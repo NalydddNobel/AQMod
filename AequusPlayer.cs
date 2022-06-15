@@ -215,6 +215,7 @@ namespace Aequus
         public int ghostSlotsOld;
         public int ghostSlots;
 
+        public int ghostProjExtraUpdates;
         public int ghostLifespan;
 
         public int hitTime;
@@ -468,6 +469,7 @@ namespace Aequus
 
             forceDaytime = 0;
             ghostSlotsMax = 1;
+            ghostProjExtraUpdates = 0;
             ghostLifespan = 3600;
         }
 

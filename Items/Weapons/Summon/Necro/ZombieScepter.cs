@@ -22,13 +22,13 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.DemoniteBar, 8)
+                .AddIngredient(ItemID.DemoniteBar, 4)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register((r) => r.SortAfterFirstRecipesOf(ItemID.RainbowRod));
             CreateRecipe()
-                .AddIngredient(ItemID.CrimtaneBar, 8)
+                .AddIngredient(ItemID.CrimtaneBar, 4)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)

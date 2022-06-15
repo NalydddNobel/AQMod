@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -23,6 +24,8 @@ namespace Aequus
 {
     public sealed class AequusSystem : ModSystem
     {
+        public const int DungeonChestItemTypesMax = 4;
+
         [SaveData("GaleStreams")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
@@ -131,14 +134,6 @@ namespace Aequus
                 tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
         }
 
-        public override void PostUpdatePlayers()
-        {
-            AequusProjectile.pWhoAmI = -1;
-            AequusProjectile.pIdentity = -1;
-            AequusProjectile.pNPC = -1;
-            AequusHelpers.EndCaches();
-        }
-
         public override void PostWorldGen()
         {
             var rockmanChests = new List<int>();
@@ -172,20 +167,24 @@ namespace Aequus
                         }
                         else if (style == ChestTypes.LockedGold)
                         {
-                            if (!placedItems.Contains(ModContent.ItemType<Valari>()) || Main.rand.NextBool(6))
+                            int choice = -1;
+                            for (int i = 0; i < DungeonChestItemTypesMax; i++)
                             {
-                                c.Insert(ModContent.ItemType<Valari>(), 1);
-                                placedItems.Add(ModContent.ItemType<Valari>());
+                                int item = DungeonChestItem(i);
+                                if (!placedItems.Contains(item))
+                                {
+                                    choice = item;
+                                }
                             }
-                            else if (!placedItems.Contains(ModContent.ItemType<Revenant>()) || Main.rand.NextBool(6))
+                            if (choice == -1 && WorldGen.genRand.NextBool(DungeonChestItemTypesMax))
                             {
-                                c.Insert(ModContent.ItemType<Revenant>(), 1);
-                                placedItems.Add(ModContent.ItemType<Revenant>());
+                                choice = DungeonChestItem(WorldGen.genRand.Next(DungeonChestItemTypesMax));
                             }
-                            else if (!placedItems.Contains(ModContent.ItemType<WretchedCandle>()) || Main.rand.NextBool(6))
+
+                            if (choice != -1)
                             {
-                                c.Insert(ModContent.ItemType<WretchedCandle>(), 1);
-                                placedItems.Add(ModContent.ItemType<WretchedCandle>());
+                                c.Insert(choice, 1);
+                                placedItems.Add(choice);
                             }
                         }
                         else if (style == ChestTypes.LockedShadow)
@@ -230,6 +229,29 @@ namespace Aequus
                 Structures.Add("RockManChest", new Point(c.x, c.y));
                 c.Insert(ModContent.ItemType<RockMan>(), WorldGen.genRand.Next(Chest.maxItems - 1));
             }
+        }
+
+        public int DungeonChestItem(int type)
+        {
+            switch (Main.rand.Next(4))
+            {
+                default:
+                    return ModContent.ItemType<Valari>();
+                case 1:
+                    return ModContent.ItemType<Revenant>();
+                case 2:
+                    return ModContent.ItemType<WretchedCandle>();
+                case 3:
+                    return ModContent.ItemType<PandorasBox>();
+            }
+        }
+
+        public override void PostUpdatePlayers()
+        {
+            AequusProjectile.pWhoAmI = -1;
+            AequusProjectile.pIdentity = -1;
+            AequusProjectile.pNPC = -1;
+            AequusHelpers.EndCaches();
         }
 
         public static void MarkAsDefeated(ref bool defeated, int npcID)
