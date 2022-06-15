@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Summon
 
         public override void SetDefaults()
         {
-            Item.damage = 28;
+            Item.damage = 45;
             Item.knockBack = 3f;
             Item.mana = 10;
             Item.width = 32;
