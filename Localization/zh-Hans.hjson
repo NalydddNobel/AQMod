@@ -172,6 +172,7 @@ Mods: {
 			Triacanthorn: 三棘卷须
 
 			DisturbanceStaff: 扰乱法杖
+			HailstormStaff: 雹暴法杖
 
 			CrimsonCandle: 灼光者
 			CorruptionCandle: 噬光者
@@ -316,7 +317,6 @@ Mods: {
 			Flameblaster: 火焰爆破器
 			CrusadersCrossbow: 十字军弩
 			DoubleShot: 双重射击
-			KochfrostStaff: 科赫霜法杖
 			Baozhu: 爆竹
 			JerryClawFlail: 蟹蛤之爪
 			MagicWand: 魔杖
@@ -607,6 +607,11 @@ Mods: {
 				'''
 				召唤一个神秘的红色精灵折磨你的敌人
 				被击杀的敌人有几率转化为幽魂仆从
+				'''
+			HailstormStaff:
+				'''
+				召唤雪花为你而战
+				占据半格召唤栏位
 				'''
 
 			CrimsonCandle:
@@ -952,11 +957,6 @@ Mods: {
 				'''
 				会产生第二颗子弹
 				50%几率不会被消耗
-				'''
-			KochfrostStaff:
-				'''
-				召唤雪花为你而战
-				占据半格召唤栏
 				'''
 			Baozhu:
 				'''
@@ -1367,6 +1367,7 @@ Mods: {
 			SpicyEelBuff: 香辣鳗鱼
 
 			RedSpriteMinionBuff: 神秘精灵
+			SnowflakeBuff: 雪花
 
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
@@ -1376,8 +1377,7 @@ Mods: {
 
 			Omori: 朋友
 			PrimeTime: 机械蜘蛛强化
-			ArachnotronCooldown:机械蜘蛛冷却
-			SnowsawBuff: 雪花
+			ArachnotronCooldown: 机械蜘蛛冷却
 			MonoxiderBuff: 一氧化物
 			Starite: 星之源
 			Trapper: 捕手
@@ -1428,6 +1428,7 @@ Mods: {
 			SpicyEelBuff: 大幅度增加移动速度
 
 			RedSpriteMinionBuff: 红色精灵会为你而战!
+			SnowflakeBuff: 雪花会为你而战
 
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
@@ -1438,7 +1439,6 @@ Mods: {
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 			PrimeTime: 防御大幅度提升!
 			ArachnotronCooldown: 你现在无法使用机械蜘蛛套装的效果
-			SnowsawBuff: 雪花会为你而战
 			MonoxiderBuff: 一氧化物雀会为你而战
 			Starite: 星之源会为你而战
 			Trapper: 恶魔捕手会为你而战
@@ -2017,30 +2017,47 @@ Mods: {
 				}
 
 			ScreenshakeIntensity: 屏幕震动强度
+			ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
 				FlashIntensity: 闪光强度
+				FlashIntensityTooltip: 数值越低, 闪光强度越低.
 				HighQuality: 高品质
+				HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
 				HighQualityShaders: 高品质着色器
+				HighQualityShadersTooltip: 禁用并重新加载Mod以使用常规着色器, 可能有助于提高性能.
 				FlashShaderRepetitions: 高品质闪光着色器 - 重复
 				FlashShaderRepetitionsTooltip: 
 					'''
-					将重复执行多次该着色器
+					将重复执行多次该着色器, 较低的数值可能有助于提高性能.
 					仅会在高品质着色器启用时生效
 					'''
+				NecromancyOutlines: 幽魂仆从轮廓
+				NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
 
 				NPCShopQuotes: NPC商店报价
-				NPCShopQuotesTooltip: 禁用NPC商店物品报价
+				NPCShopQuotesTooltip: 禁用以移除NPC商店物品报价.
 				OtherNPCShopQuotes: * 原版商店报价
-				OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品报价
+				OtherNPCShopQuotesTooltip: 禁用以移除原版城镇NPC商店物品报价.
 				InfoDebugLogs: 信息和调试日志
-				InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
+				InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用.
 			}
 
 			Gameplay: {
 				Headers: {
 					Recipes: "[c/ddddff:合成表更改]"
+					General: "[c/ddddff:常规]"
+					Drops: "[c/ddddff:掉落物]"
 				}
+				Drops: {
+					DungeonMisc_AngryBones: "{Valari}掉落自愤怒骷髅"
+					DungeonNecromancy_DarkCaster: "{Revenant}、{WretchedCandle}和{PandorasBox}掉落自黑暗滚轮"
+					DungeonNecromancy_Necromancer: "{Revenant}、{WretchedCandle}和{PandorasBox}掉落自死灵巫师"
+					LavaCharm_LavaSlime: "{LavaCharm}掉落自熔岩史莱姆"
+					Skyware_Harpies: "{Slingshot}掉落自鸟妖"
+					FrozenMisc_Vikings: "{CrystalDagger}掉落自不死维京人和装甲维京人"
+				}
+
 				VoidBagRecipe: 虚空包裹合成表
-				VoidBagRecipeTooltip: 决定是否会更改虚空包裹和虚空保险箱的合成表配方
+				VoidBagRecipeTooltip: 决定是否会更改虚空包裹和虚空保险箱的合成表配方.
 			}
 		}
 
