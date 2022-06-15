@@ -11,8 +11,6 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-
-            LootPools.Bags.Lockbox_Secondary.Add(Type);
         }
 
         public override void SetDefaults()

@@ -154,18 +154,10 @@ namespace Aequus
 
                             if (Main.rand.NextBool(6))
                             {
-                                for (int i = 0; i < Chest.maxItems; i++)
-                                {
-                                    if (!c.item[i].IsAir && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
-                                    {
-                                        c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
-                                        placedItems.Add(ModContent.ItemType<GlowCore>());
-                                        break;
-                                    }
-                                }
+                                AddGlowCore(c, placedItems);
                             }
                         }
-                        else if (style == ChestTypes.LockedGold)
+                        if (style == ChestTypes.LockedGold)
                         {
                             int choice = -1;
                             for (int i = 0; i < DungeonChestItemTypesMax; i++)
@@ -215,7 +207,15 @@ namespace Aequus
                     else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
                     {
                         int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.deadMans || style == ChestTypes.sandstone)
+                        if (style == ChestTypes.deadMans)
+                        {
+                            rockmanChests.Add(k);
+                            if (Main.rand.NextBool())
+                            {
+                                AddGlowCore(c, placedItems);
+                            }
+                        }
+                        else if (style == ChestTypes.sandstone)
                         {
                             rockmanChests.Add(k);
                         }
@@ -230,8 +230,20 @@ namespace Aequus
                 c.Insert(ModContent.ItemType<RockMan>(), WorldGen.genRand.Next(Chest.maxItems - 1));
             }
         }
-
-        public int DungeonChestItem(int type)
+        public static bool AddGlowCore(Chest c, HashSet<int> placedItems = null)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (!c.item[i].IsAir && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
+                {
+                    c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
+                    placedItems?.Add(ModContent.ItemType<GlowCore>());
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static int DungeonChestItem(int type)
         {
             switch (Main.rand.Next(4))
             {

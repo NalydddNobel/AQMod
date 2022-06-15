@@ -9,7 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -76,6 +78,25 @@ namespace Aequus
         }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
+
+        private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
+
+        public static string FormatWith(this string text, object obj)
+        {
+            string input = text;
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
+            return _substitutionRegex.Replace(input, delegate (Match match)
+            {
+                if (match.Groups[1].Length != 0)
+                {
+                    return "";
+                }
+
+                string name = match.Groups[2].ToString();
+                PropertyDescriptor propertyDescriptor = properties.Find(name, ignoreCase: false);
+                return (propertyDescriptor != null) ? (propertyDescriptor.GetValue(obj) ?? "")!.ToString() : "";
+            });
+        }
 
         public static void GetMinionLeadership(this Projectile projectile, out int leader, out int minionPos, out int count)
         {

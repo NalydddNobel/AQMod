@@ -1,6 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Projectiles.Melee;
-using Aequus.Tiles;
+﻿using Aequus.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,8 +10,6 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-
-            LootPools.Bags.Lockbox_Secondary.Add(Type);
         }
 
         public override void SetDefaults()

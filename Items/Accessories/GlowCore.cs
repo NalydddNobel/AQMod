@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common;
 using Aequus.Items.Consumables.Roulettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +14,6 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            LootPools.Bags.WoodenCrate_Secondary.Add(Type);
             GoldenRoulette.Table.Add(Type);
         }
 

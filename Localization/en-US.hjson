@@ -2044,9 +2044,20 @@ Mods: {
 			Gameplay: {
 				Headers: {
 					Recipes: "[c/ddddff:Recipe Changes]"
+					General: "[c/ddddff:General]"
+					Drops: "[c/ddddff:Drops]"
 				}
+				Drops: {
+					DungeonMisc_AngryBones: "{Valari} dropping from Angry Bones"
+					DungeonNecromancy_DarkCaster: "{Revenant}, {WretchedCandle}, & {PandorasBox} dropping from Dark Casters"
+					DungeonNecromancy_Necromancer: "{Revenant}, {WretchedCandle}, & {PandorasBox} dropping from Necromancers"
+					LavaCharm_LavaSlime: "{LavaCharm} dropping from Lava Slimes"
+					Skyware_Harpies: "{Slingshot} dropping from Harpies"
+					FrozenMisc_Vikings: "{CrystalDagger} dropping from Undead Vikings & Armored Vikings"
+				}
+
 				VoidBagRecipe: Void Bag Recipe
-				VoidBagRecipeTooltip: Whether or not to change the void bag and void vault's recipe
+				VoidBagRecipeTooltip: Whether or not to change the void bag and void vault's recipe.
 			}
 		}
 
