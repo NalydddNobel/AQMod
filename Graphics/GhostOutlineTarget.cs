@@ -73,6 +73,11 @@ namespace Aequus.Graphics
         {
             if (NPCs.Count > 0)
             {
+                if (!ClientConfig.Instance.NecromancyOutlines)
+                {
+                    NPCs.Clear();
+                    return;
+                }
                 Begin.GeneralEntities.Begin(spriteBatch);
                 RenderingNow = true;
                 NPCs.renderingNow = true;

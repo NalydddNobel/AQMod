@@ -2017,22 +2017,28 @@ Mods: {
 				}
 
 				ScreenshakeIntensity: Screenshake Intensity
+				ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
 				FlashIntensity: Flash Intensity
+				FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
 				HighQuality: High Quality
+				HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
 				HighQualityShaders: HiDef Shaders
+				HighQualityShadersTooltip: Disable and reload your mods to use regular shaders, may help with performance.
 				FlashShaderRepetitions: HiDef Flash Shader - Repetitions
 				FlashShaderRepetitionsTooltip: 
 					'''
-					How many repetitions this shader will perform
-					Only works when HiDef shaders are enabled
+					How many repetitions this shader will perform, lower values may help with performance.
+					Only works when HiDef shaders are enabled.
 					'''
+				NecromancyOutlines: Ghost Minion Outlines
+				NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
 
 				NPCShopQuotes: NPC Shop Quotes
-				NPCShopQuotesTooltip: Disables npc shop quotes for items
+				NPCShopQuotesTooltip: Disable to remove npc item shop quotes.
 				OtherNPCShopQuotes: * Vanilla Shop Quotes
-				OtherNPCShopQuotesTooltip: Disables item shop quotes for vanilla town npcs specifically
+				OtherNPCShopQuotesTooltip: Disable to remove item shop quotes for vanilla npcs.
 				InfoDebugLogs: Info and Debug Logs
-				InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events
+				InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
 			}
 
 			Gameplay: {

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
+using Aequus.Items.Weapons.Summon.Necro;
 
 namespace Aequus
 {
@@ -21,6 +22,7 @@ namespace Aequus
 
         [BackgroundColor(47, 29, 140, 180)]
         [Label(Key + "Client.ScreenshakeIntensityLabel")]
+        [Tooltip(Key + "Client.ScreenshakeIntensityTooltip")]
         [Range(0f, 1f)]
         [DefaultValue(1f)]
         [SliderColor(120, 40, 255, 255)]
@@ -28,6 +30,7 @@ namespace Aequus
 
         [BackgroundColor(47, 29, 140, 180)]
         [Label(Key + "Client.FlashIntensityLabel")]
+        [Tooltip(Key + "Client.FlashIntensityTooltip")]
         [Range(0f, 1f)]
         [DefaultValue(1f)]
         [SliderColor(120, 40, 255, 255)]
@@ -35,11 +38,13 @@ namespace Aequus
 
         [BackgroundColor(47, 29, 140, 180)]
         [Label(Key + "Client.HighQualityLabel")]
+        [Tooltip(Key + "Client.HighQualityTooltip")]
         [DefaultValue(true)]
         public bool HighQuality { get; set; }
 
         [BackgroundColor(47, 29, 140, 180)]
         [Label(Key + "Client.HighQualityShadersLabel")]
+        [Tooltip(Key + "Client.HighQualityShadersTooltip")]
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool HighQualityShaders { get; set; }
@@ -53,6 +58,12 @@ namespace Aequus
         [Slider()]
         [SliderColor(30, 50, 120, 255)]
         public int FlashShaderRepetitions { get; set; }
+
+        [BackgroundColor(47, 29, 140, 180)]
+        [Label(Key + "Client.NecromancyOutlinesLabel")]
+        [Tooltip(Key + "Client.NecromancyOutlinesTooltip")]
+        [DefaultValue(true)]
+        public bool NecromancyOutlines { get; set; }
 
         [Header(Key + "Client.Headers.Misc")]
 
@@ -81,6 +92,7 @@ namespace Aequus
             AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<Fluorescence>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
+            AequusText.NewFromDict("Configuration.Client.NecromancyOutlines", "Label", (s) => AequusText.ItemText<Insurgency>() + "  " + s);
             AequusText.NewFromDict("Configuration.Client.NPCShopQuotes", "Label", (s) => AequusText.ItemText(ItemID.Teacup) + "  " + s);
             AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
         }
