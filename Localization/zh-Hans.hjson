@@ -83,18 +83,16 @@ Mods: {
 		}
 
 		Tooltips: {
-			NecromancyCandle: 吸收被仆从杀死的敌人的灵魂
+			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+			NecromancyCandle: 
+				'''
+				吸收被仆从杀死的敌人的灵魂
+				被召唤的敌人会占据幽魂仆从栏位
+				'''
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
 			UseDarts: 使用种子和飞镖作为弹药
 			UsesLife: "使用{0}点生命"
-			NecromancyStaff: "{0}法杖"
-			NecromancyStaffTooltip: 
-				'''
-				召唤一个幽魂{0}为你而战
-				消耗两倍的死灵召唤栏位
-				'''
-			NecromancyStaffTooltipFriendly: 召唤一个可爱的{0}
 			UsesGel: 使用凝胶作为弹药
 			ExporterQuest: 将此物交付于发货人
 			Concocted: 用于药水调配
@@ -153,13 +151,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			CrimsonCandle: 灼光者
-			CorruptionCandle: 噬光者
-			PixieCandle: 精灵蜡烛
-			BloodZombieCandle: 冥狱之火
-			WretchedCandle: 可悲蜡烛
-			AshCandle: 余烬蜡烛
-
+			PandorasBox: 潘多拉魔盒
 			ReboundNecklace: 回弹项链
 			RabbitsFoot: 兔脚
 			MechsSentry: 哨卫6510型微型处理器
@@ -178,6 +170,15 @@ Mods: {
 
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
+
+			DisturbanceStaff: 扰乱法杖
+
+			CrimsonCandle: 灼光者
+			CorruptionCandle: 噬光者
+			PixieCandle: 堕落天使
+			BloodZombieCandle: 火河
+			WretchedCandle: 不幸
+			AshCandle: 炼狱
 			
 			NecromancyStaff: 死灵法杖
 			Insurgency: 叛乱
@@ -527,35 +528,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			CrimsonCandle:
+			PandorasBox: 
 				'''
-				召唤一只血爬虫为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			CorruptionCandle:
-				'''
-				召唤一只灵魂吞噬者为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			PixieCandle:
-				'''
-				召唤一只精灵为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			BloodZombieCandle:
-				'''
-				召唤一只血僵尸为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			WretchedCandle:
-				'''
-				召唤一颗诅咒颅骨为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			AshCandle:
-				'''
-				召唤一只恶魔为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				增加幽魂仆从弹幕的速度
 				'''
 			ReboundNecklace: 
 				'''
@@ -628,28 +603,65 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			DisturbanceStaff:
+				'''
+				召唤一个神秘的红色精灵折磨你的敌人
+				被击杀的敌人有几率转化为幽魂仆从
+				'''
+
+			CrimsonCandle:
+				'''
+				召唤一只血爬虫为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			CorruptionCandle:
+				'''
+				召唤一只灵魂吞噬者为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			PixieCandle:
+				'''
+				召唤一只精灵为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			BloodZombieCandle:
+				'''
+				召唤一只血僵尸为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			WretchedCandle:
+				'''
+				召唤一颗诅咒颅骨为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			AshCandle:
+				'''
+				召唤一只恶魔为你而战
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+
 			Insurgency: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
 				被诅咒的敌人会释放会攻击附近敌人的灵魂
-				被击败的敌人会加入你的队伍
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'寂静'
 				'''
 			Osiris: 
 				'''
 				消耗极强敌人的灵魂
-				被击败的敌人会加入你的队伍
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				命中敌人时会爆裂成一群蝗虫群
 				'''
 			Revenant: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
-				被击败的敌人会加入你的队伍
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 			ZombieScepter: 
 				'''
 				消耗弱小敌人的灵魂
-				被击败的敌人会加入你的队伍
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
@@ -1354,6 +1366,8 @@ Mods: {
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			RedSpriteMinionBuff: 神秘精灵
+
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
 
@@ -1412,6 +1426,8 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 			SpicyEelBuff: 大幅度增加移动速度
+
+			RedSpriteMinionBuff: 红色精灵会为你而战!
 
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
