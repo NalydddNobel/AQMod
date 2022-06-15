@@ -25,6 +25,8 @@ namespace Aequus
         public const string BlankTexture = "Aequus/Assets/None";
         public const string AssetsPath = "Aequus/Assets/";
         public const string SoundsPath = AssetsPath + "Sounds/";
+        public const string Debuff = "Aequus/Buffs/Debuffs/Debuff";
+        public const string Buff = "Terraria/Images/Buff";
 
         public static Aequus Instance { get; private set; }
         public static UserInterface InventoryInterface { get; private set; }

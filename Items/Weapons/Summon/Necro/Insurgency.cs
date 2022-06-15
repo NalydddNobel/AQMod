@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(50);
-            Item.SetWeaponValues(25, 0.8f, 0);
+            Item.SetWeaponValues(125, 0.8f, 0);
             Item.shoot = ModContent.ProjectileType<InsurgentSkull>();
             Item.shootSpeed = 30f;
             Item.rare = ItemRarityID.Yellow;

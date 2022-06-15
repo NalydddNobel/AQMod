@@ -18,14 +18,14 @@ namespace Aequus.Graphics
 
         public static bool RenderingNow;
 
-        public static class TargetIDs
+        public static class IDs
         {
             public const int LocalPlayer = 0;
-            public const int FriendlyZombie = 1;
-            public const int FriendlyRevenant = 2;
-            public const int FriendlyOsiris = 3;
-            public const int FriendlyInsurgent = 4;
-            public const int FriendlyBloodSacrifice = 5;
+            public const int Zombie = 1;
+            public const int Revenant = 2;
+            public const int Osiris = 3;
+            public const int Insurgent = 4;
+            public const int BloodRed = 5;
             public const int PVPTeams = 6;
             public const int PVPTeams_Red = 6;
             public const int PVPTeams_Green = 7;
@@ -128,7 +128,7 @@ namespace Aequus.Graphics
             {
                 return Math.Max(suggestedTarget, 0);
             }
-            return player.team + TargetIDs.PVPTeams - 1;
+            return player.team + IDs.PVPTeams - 1;
         }
     }
 }

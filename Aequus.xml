@@ -64,26 +64,6 @@
             Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.redSpritePet">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Pets.RedSpriteBuff"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.spaceSquidPet">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Pets.SpaceSquidBuff"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.familiarPet">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Pets.FamiliarBuff"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.omegaStaritePet">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Pets.OmegaStariteBuff"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.eventGaleStreams">
             <summary>
             Whether or not the player is in the Gale Streams event. Updated using <see cref="M:Aequus.AequusPlayer.CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
@@ -260,6 +240,13 @@
             If the player has too many zombies, it kills the oldest and least prioritized one.
             </summary>
         </member>
+        <member name="M:Aequus.AequusPlayer.NecromancyHit(Terraria.NPC,Terraria.Projectile)">
+            <summary>
+            Inflicts <see cref="T:Aequus.Buffs.Debuffs.SoulStolen"/> if the player is able to get more candle souls
+            </summary>
+            <param name="target"></param>
+            <param name="proj"></param>
+        </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary>
             Called right before all player layers have been drawn
@@ -281,46 +268,46 @@
             <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
             <param name="itemReference"></param>
         </member>
-        <member name="M:Aequus.AequusWorld.OreTiers">
+        <member name="M:Aequus.AequusSystem.OreTiers">
             <summary>
             
             </summary>
             <returns>A bitsbyte instance where 0 is copper, 1 is iron, 2 is silver, 3 is gold. When they are false, they are the alternate world ore.</returns>
         </member>
-        <member name="M:Aequus.AequusWorld.HasCobalt">
+        <member name="M:Aequus.AequusSystem.HasCobalt">
             <summary>
             
             </summary>
             <returns>true if the world has cobalt, false if the world has palladium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="M:Aequus.AequusWorld.HasMythril">
+        <member name="M:Aequus.AequusSystem.HasMythril">
             <summary>
             
             </summary>
             <returns>true if the world has mythril, false if the world has orichalcum, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="M:Aequus.AequusWorld.HasAdamantite">
+        <member name="M:Aequus.AequusSystem.HasAdamantite">
             <summary>
             
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="T:Aequus.AequusWorld.DownedCalls">
+        <member name="T:Aequus.AequusSystem.DownedCalls">
             <summary>
             World Flags:
             <list type="table">
-            <item>Crabson -- <see cref="F:Aequus.AequusWorld.downedCrabson"/></item>
-            <item>OmegaStarite -- <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></item>
-            <item>RedSprite -- <see cref="F:Aequus.AequusWorld.downedRedSprite"/></item>
-            <item>SpaceSquid -- <see cref="F:Aequus.AequusWorld.downedSpaceSquid"/></item>
-            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusWorld.downedEventGaleStreams"/></item>
-            <item>GaleStreams -- <see cref="F:Aequus.AequusWorld.downedEventGaleStreams"/></item>
+            <item>Crabson -- <see cref="F:Aequus.AequusSystem.downedCrabson"/></item>
+            <item>OmegaStarite -- <see cref="F:Aequus.AequusSystem.downedOmegaStarite"/></item>
+            <item>RedSprite -- <see cref="F:Aequus.AequusSystem.downedRedSprite"/></item>
+            <item>SpaceSquid -- <see cref="F:Aequus.AequusSystem.downedSpaceSquid"/></item>
+            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusSystem.downedEventGaleStreams"/></item>
+            <item>GaleStreams -- <see cref="F:Aequus.AequusSystem.downedEventGaleStreams"/></item>
             </list>
             </summary>
         </member>
-        <member name="M:Aequus.AequusWorld.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
+        <member name="M:Aequus.AequusSystem.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
             <summary>
-            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.DownedCalls"/>' summary.
+            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusSystem.DownedCalls"/>' summary.
             <para>Obtaining a flag:</para>
             <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
             <para>Setting a flag:</para>
@@ -432,62 +419,62 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.BehindPlayers">
+        <member name="P:Aequus.Graphics.AequusEffects.BehindPlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
             </summary>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.AbovePlayers">
+        <member name="P:Aequus.Graphics.AequusEffects.AbovePlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
             </summary>
         </member>
-        <member name="T:Aequus.Graphics.GameCamera">
+        <member name="T:Aequus.Graphics.CameraFocus">
             <summary>
             Manages screen panning
             </summary>
         </member>
-        <member name="P:Aequus.Graphics.GameCamera.FocusContext">
+        <member name="P:Aequus.Graphics.CameraFocus.Context">
             <summary>
             A context string for the current focus
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.target">
+        <member name="F:Aequus.Graphics.CameraFocus.target">
             <summary>
             The target position for the camera in the world
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.cameraPosition">
+        <member name="F:Aequus.Graphics.CameraFocus.cameraPosition">
             <summary>
             The camera's position 
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.priority">
+        <member name="F:Aequus.Graphics.CameraFocus.priority">
             <summary>
             A priority for determining whether or not a new camera focus can be added
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.speed">
+        <member name="F:Aequus.Graphics.CameraFocus.speed">
             <summary>
             The speed of the camera
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.cameraProgress">
+        <member name="F:Aequus.Graphics.CameraFocus.cameraProgress">
             <summary>
             The progress of the camera from its original position to its destination
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.hold">
+        <member name="F:Aequus.Graphics.CameraFocus.hold">
             <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.GameCamera.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/>
             </summary>
         </member>
-        <member name="F:Aequus.Graphics.GameCamera.returning">
+        <member name="F:Aequus.Graphics.CameraFocus.returning">
             <summary>
             Whether or not the camera is returning
             </summary>
         </member>
-        <member name="M:Aequus.Graphics.GameCamera.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)">
+        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)">
             <summary>
             Sets the camera target to a position, may return false if your priority is below a current target's priority
             </summary>
@@ -495,10 +482,10 @@
             <param name="target">A world coordinate to point the camera at</param>
             <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.GameCamera.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="F:Aequus.Graphics.NecromancyScreenRenderer.TargetIDs.Count">
+        <member name="F:Aequus.Graphics.GhostOutlineTarget.TargetIDs.Count">
             <summary>
             Use and increase respectively for custom Necromancy Screen Renderer layers.
             </summary>
@@ -557,7 +544,7 @@
                 Whether it was successful at placing a sentry
             </summary>
         </member>
-        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.Players.PlayerFishing,Terraria.Item,System.Single@)">
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
             
             </summary>

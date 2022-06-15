@@ -32,6 +32,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
             Item.useTime = 40;
             Item.useAnimation = 40;
             Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.noMelee = true;
         }
         public void ClearPrefix()
         {

@@ -137,6 +137,10 @@ namespace Aequus.NPCs
             {
                 return true;
             }
+            if (zombie.conversionChance > 0 && Main.rand.NextBool(zombie.conversionChance))
+            {
+                return true;
+            }
             //for (int i = 0; i < players.Count; i++)
             //{
             //    if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))

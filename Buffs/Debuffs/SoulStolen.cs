@@ -1,12 +1,11 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
-using Terraria.ID;
 
 namespace Aequus.Buffs.Debuffs
 {
     public class SoulStolen : ModBuff
     {
-        public override string Texture => Aequus.VanillaTexture + "Buff";
+        public override string Texture => Aequus.Debuff;
 
         public override void SetStaticDefaults()
         {

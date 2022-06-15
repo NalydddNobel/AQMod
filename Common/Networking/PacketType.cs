@@ -3,7 +3,7 @@
     public enum PacketType : byte
     {
         Unused,
-        SyncNecromancyOwnerTier,
+        SyncNecromancyOwner,
         SyncAequusPlayer,
         SoundQueue,
         DemonSiegeSacrificeStatus,

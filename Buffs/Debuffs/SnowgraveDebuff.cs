@@ -5,7 +5,7 @@ namespace Aequus.Buffs.Debuffs
 {
     public class SnowgraveDebuff : ModBuff
     {
-        public override string Texture => Aequus.VanillaTexture + "Buff";
+        public override string Texture => Aequus.Debuff;
 
         public override void SetStaticDefaults()
         {

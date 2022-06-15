@@ -40,6 +40,7 @@ namespace Aequus.Content.Necromancy
         public float zombieDebuffTier;
         public int hitCheckDelay;
         public int slotsConsumed;
+        public int conversionChance;
         public int renderLayer;
 
         public override bool InstancePerEntity => true;
@@ -148,7 +149,7 @@ namespace Aequus.Content.Necromancy
 
             if (sendPacket && Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketHandler.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
+                PacketHandler.SyncNecromancyOwner(npc.whoAmI, player, tier);
             }
         }
         public void ZombifyChild(NPC npc, NPC parentNPC, int player, float tier)
@@ -185,6 +186,11 @@ namespace Aequus.Content.Necromancy
 
         public override void ResetEffects(NPC npc)
         {
+            if (!isZombie)
+            {
+                zombieDebuffTier = 0f;
+            }
+            conversionChance = 0;
             if (zombieDrain > 0)
             {
                 zombieDrain--;
@@ -462,6 +468,34 @@ namespace Aequus.Content.Necromancy
             }
 
             return dmgMultiplier / 2f;
+        }
+
+        public void RenderLayer(int layer)
+        {
+            if (renderLayer < layer)
+            {
+                renderLayer = layer;
+            }
+        }
+
+        public void DebuffTier(float tier)
+        {
+            if (zombieDebuffTier < tier)
+            {
+                zombieDebuffTier = tier;
+            }
+        }
+
+        public void ConversionChance(int amt)
+        {
+            if (conversionChance == 0)
+            {
+                conversionChance = amt;
+            }
+            else
+            {
+                conversionChance = Math.Min(amt, conversionChance);
+            }
         }
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

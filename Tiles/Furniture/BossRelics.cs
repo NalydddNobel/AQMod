@@ -2,7 +2,6 @@
 using Aequus.Items.Placeable.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -29,16 +28,11 @@ namespace Aequus.Tiles.Furniture
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
 
         public static List<Point> RenderPoints { get; private set; }
-        public Asset<Texture2D> RelicOrbs;
-        public Asset<Texture2D> Relic;
-        private string RelicPath => base.Texture;
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                RelicOrbs = ModContent.Request<Texture2D>(RelicPath + "Orbs");
-                Relic = ModContent.Request<Texture2D>(RelicPath);
                 RenderPoints = new List<Point>();
                 On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             }
@@ -57,8 +51,6 @@ namespace Aequus.Tiles.Furniture
         {
             RenderPoints?.Clear();
             RenderPoints = null;
-            RelicOrbs = null;
-            Relic = null;
         }
 
         public override void SetStaticDefaults()
@@ -148,24 +140,20 @@ namespace Aequus.Tiles.Furniture
                 return;
             }
 
-            var texture = Relic.Value;
+            var texture = ModContent.Request<Texture2D>(Texture).Value;
             int frameY = tile.TileFrameX / FrameWidth;
-            Rectangle frame = texture.Frame(1, FrameCount, 0, frameY);
-
-            Vector2 origin = frame.Size() / 2f;
-            Vector2 worldPos = p.ToWorldCoordinates(24f, 64f);
-
-            Color color = Lighting.GetColor(p.X, p.Y);
-
-            bool direction = tile.TileFrameY / FrameHeight != 0;
-            SpriteEffects effects = direction ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            var frame = texture.Frame(1, FrameCount, 0, frameY);
+            var origin = frame.Size() / 2f;
+            var worldPos = p.ToWorldCoordinates(24f, 64f);
+            var color = Lighting.GetColor(p.X, p.Y);
+            var effects = tile.TileFrameY / FrameHeight != 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * MathHelper.TwoPi / 5f);
             Vector2 drawPos = worldPos - Main.screenPosition + new Vector2(0f, -40f) + new Vector2(0f, offset * 4f);
 
             if (frameY == OmegaStarite)
             {
-                var orbTexture = RelicOrbs.Value;
+                var orbTexture = ModContent.Request<Texture2D>(Texture + "Orbs").Value;
                 var orbFrame = orbTexture.Frame(1, 5, 0, 0);
                 var orbOrigin = orbFrame.Size() / 2f;
                 float f = Main.GlobalTimeWrappedHourly % (MathHelper.TwoPi / 5f) - MathHelper.PiOver2;
@@ -176,24 +164,24 @@ namespace Aequus.Tiles.Furniture
                     float z = (float)Math.Sin(f + MathHelper.PiOver2);
                     orbFrame.Y = (int)MathHelper.Clamp(2 + z * 2.5f, 0f, 5f) * orbFrame.Height;
                     k++;
-                    DrawWithGlowEffect(spriteBatch, orbTexture, drawPos + new Vector2(wave * texture.Width / 2f, wave * orbFrame.Height * 0.4f), orbFrame, color, orbOrigin, effects, offset);
+                    DrawGlow(spriteBatch, orbTexture, drawPos + new Vector2(wave * texture.Width / 2f, wave * orbFrame.Height * 0.4f), orbFrame, color, orbOrigin, effects, offset);
                 }
-                DrawWithGlowEffect(spriteBatch, texture, drawPos, frame, color, origin, effects, offset);
+                DrawGlow(spriteBatch, texture, drawPos, frame, color, origin, effects, offset);
                 for (; k < 5; f += MathHelper.TwoPi / 5f)
                 {
                     float wave = (float)Math.Sin(f);
                     float z = (float)Math.Sin(f + MathHelper.PiOver2);
                     orbFrame.Y = (int)MathHelper.Clamp(2 + z * 2.5f, 0f, 5f) * orbFrame.Height;
                     k++;
-                    DrawWithGlowEffect(spriteBatch, orbTexture, drawPos + new Vector2(wave * texture.Width / 2f, wave * orbFrame.Height * 0.4f), orbFrame, color, orbOrigin, effects, offset);
+                    DrawGlow(spriteBatch, orbTexture, drawPos + new Vector2(wave * texture.Width / 2f, wave * orbFrame.Height * 0.4f), orbFrame, color, orbOrigin, effects, offset);
                 }
             }
             else
             {
-                DrawWithGlowEffect(spriteBatch, texture, drawPos, frame, color, origin, effects, offset);
+                DrawGlow(spriteBatch, texture, drawPos, frame, color, origin, effects, offset);
             }
         }
-        private void DrawWithGlowEffect(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPos, Rectangle frame, Color color, Vector2 origin, SpriteEffects effects, float offset)
+        private void DrawGlow(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPos, Rectangle frame, Color color, Vector2 origin, SpriteEffects effects, float offset)
         {
             drawPos /= 4f;
             drawPos.Floor();

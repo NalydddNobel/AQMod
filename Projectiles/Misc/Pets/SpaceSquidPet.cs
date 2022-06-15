@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -45,7 +46,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive(Projectile, ref player.GetModPlayer<AequusPlayer>().spaceSquidPet);
+            AequusHelpers.UpdateProjActive<SpaceSquidBuff>(Projectile);
             var gotoPos = GetIdlePosition();
             Projectile.direction = player.direction;
             var center = Projectile.Center;

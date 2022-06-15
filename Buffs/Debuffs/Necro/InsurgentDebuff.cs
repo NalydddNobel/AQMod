@@ -8,7 +8,8 @@ namespace Aequus.Buffs.Debuffs.Necro
 {
     public class InsurgentDebuff : NecromancyDebuff
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancyDebuff>();
+        public override string Texture => Aequus.Debuff;
+        public override float Tier => 4f;
 
         public override void Update(NPC npc, ref int buffIndex)
         {
@@ -23,17 +24,14 @@ namespace Aequus.Buffs.Debuffs.Necro
             }
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
+            zombie.DebuffTier(Tier);
+            zombie.RenderLayer(GhostOutlineTarget.IDs.Insurgent);
 
             if (Main.myPlayer == zombie.zombieOwner && Main.rand.NextBool(60))
             {
                 var v = Main.rand.NextVector2Unit();
                 var p = Projectile.NewProjectileDirect(npc.GetSource_Buff(buffIndex), npc.Center + v * (npc.Size.Length() / 2f), v * 10f,
                     ModContent.ProjectileType<InsurgentBolt>(), 1, 0f, zombie.zombieOwner, ai1: npc.whoAmI);
-            }
-
-            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyInsurgent)
-            {
-                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyInsurgent;
             }
         }
     }

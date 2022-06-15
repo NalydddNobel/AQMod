@@ -6,7 +6,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Ambience
 {
-    public class CrabGrass3x2 : ModTile
+    public class Ambient3x2 : ModTile
     {
         public override void SetStaticDefaults()
         {

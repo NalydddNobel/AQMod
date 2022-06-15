@@ -72,23 +72,6 @@ namespace Aequus
         /// </summary>
         public bool buffResistHeat;
 
-        /// <summary>
-        /// Applied by <see cref="RedSpriteBuff"/>
-        /// </summary>
-        public bool redSpritePet;
-        /// <summary>
-        /// Applied by <see cref="SpaceSquidBuff"/>
-        /// </summary>
-        public bool spaceSquidPet;
-        /// <summary>
-        /// Applied by <see cref="FamiliarBuff"/>
-        /// </summary>
-        public bool familiarPet;
-        /// <summary>
-        /// Applied by <see cref="OmegaStariteBuff"/>
-        /// </summary>
-        public bool omegaStaritePet;
-
         public bool biomeCrabCrevice;
         /// <summary>
         /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
@@ -479,11 +462,6 @@ namespace Aequus
             buffResistHeat = false;
 
             debuffBlueFire = false;
-
-            redSpritePet = false;
-            spaceSquidPet = false;
-            familiarPet = false;
-            omegaStaritePet = false;
 
             skeletonKey = false;
             shadowKey = false;

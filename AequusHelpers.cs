@@ -77,6 +77,58 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+        public static void GetMinionLeadership(this Projectile projectile, out int leader, out int minionPos, out int count)
+        {
+            leader = -1;
+            minionPos = 0;
+            count = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && Main.projectile[i].type == projectile.type)
+                {
+                    if (leader == -1)
+                    {
+                        leader = i;
+                    }
+                    if (i == projectile.whoAmI)
+                    {
+                        minionPos = count;
+                    }
+                    count++;
+                }
+            }
+        }
+
+        public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f)
+        {
+            if (Main.player[projectile.owner].HasMinionAttackTargetNPC)
+            {
+                distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
+                if (distance < maxDistance)
+                {
+                    return Main.player[projectile.owner].MinionAttackTargetNPC;
+                }
+            }
+            int target = -1;
+            distance = maxDistance;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].CanBeChasedBy(projectile))
+                {
+                    float d = projectile.Distance(Main.npc[i].Center);
+                    if (d < distance)
+                    {
+                        if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
+                        {
+                            distance = d;
+                            target = i;
+                        }
+                    }
+                }
+            }
+            return target;
+        }
+
         public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2)
         {
             projectile.width = size;
@@ -99,7 +151,7 @@ namespace Aequus
                 if (Main.projectile[i].active && i != projectile.whoAmI && projectile.type == Main.projectile[i].type && projectile.owner == Main.projectile[i].owner 
                     && projectile.Colliding(rect, Main.projectile[i].getRect()))
                 {
-                    projectile.velocity += Main.projectile[i].DirectionTo(projectile.Center) * speed;
+                    projectile.velocity += Main.projectile[i].DirectionTo(projectile.Center).UnNaN() * speed;
                 }
             }
         }
@@ -164,7 +216,7 @@ namespace Aequus
 
         public static float UnNaN(this float value)
         {
-            return value == float.NaN ? 0f : value;
+            return float.IsNaN(value) ? 0f : value;
         }
         public static Vector2 UnNaN(this Vector2 value)
         {
@@ -991,6 +1043,24 @@ namespace Aequus
             return true;
         }
 
+        public static bool UpdateProjActive(Projectile projectile, int buff)
+        {
+            if (!Main.player[projectile.owner].active || Main.player[projectile.owner].dead)
+            {
+                Main.player[projectile.owner].ClearBuff(buff);
+                return false;
+            }
+            if (Main.player[projectile.owner].HasBuff(buff))
+            {
+                projectile.timeLeft = 2;
+            }
+            return true;
+        }
+        public static bool UpdateProjActive<T>(Projectile projectile) where T : ModBuff
+        {
+            return UpdateProjActive(projectile, ModContent.BuffType<T>());
+        }
+
         public static bool UpdateProjActive(Projectile projectile, ref bool active)
         {
             if (Main.player[projectile.owner].dead)
@@ -1059,6 +1129,11 @@ namespace Aequus
         public static bool CloseEnough(this float comparison, float intendedValue, float closeEnoughMargin = 1f)
         {
             return (comparison - intendedValue).Abs() <= closeEnoughMargin;
+        }
+
+        public static float WaveCos(float time, float minimum, float maximum)
+        {
+            return minimum + ((float)Math.Cos(time) + 1f) / 2f * (maximum - minimum);
         }
 
         public static float Wave(float time, float minimum, float maximum)

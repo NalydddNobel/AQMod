@@ -20,13 +20,6 @@ namespace Aequus.Tiles.Furniture
         public const int AshGravestoneStyle = 4;
         public const int AshObeliskStyle = 5;
 
-        public static Asset<Texture2D> Glow { get; private set; }
-
-        public override void Load()
-        {
-            Glow = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
-        }
-
         public override void SetStaticDefaults()
         {
             Main.tileSign[Type] = true;
@@ -106,7 +99,7 @@ namespace Aequus.Tiles.Furniture
             {
                 frame.Y = 18;
             }
-            Main.spriteBatch.Draw(Glow.Value, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset,
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset,
                 frame, new Color(200, 100, 100, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 3f, 0.2f, 0.5f), 0f, new Vector2(0f, 0f), 1f, SpriteEffects.None, 0f);
         }
     }

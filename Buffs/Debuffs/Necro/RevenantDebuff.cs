@@ -6,7 +6,8 @@ namespace Aequus.Buffs.Debuffs.Necro
 {
     public class RevenantDebuff : NecromancyDebuff
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancyDebuff>();
+        public override string Texture => Aequus.Debuff;
+        public override float Tier => 2f;
 
         public override void Update(NPC npc, ref int buffIndex)
         {
@@ -21,11 +22,8 @@ namespace Aequus.Buffs.Debuffs.Necro
             }
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
-
-            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyRevenant)
-            {
-                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyRevenant;
-            }
+            zombie.DebuffTier(Tier);
+            zombie.RenderLayer(GhostOutlineTarget.IDs.Revenant);
         }
     }
 }

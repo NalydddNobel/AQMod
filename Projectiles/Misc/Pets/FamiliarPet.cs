@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Buffs.Pets;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -36,7 +37,7 @@ namespace Aequus.Projectiles.Misc.Pets
                 dummyPlayer = new Player();
             }
 
-            AequusHelpers.UpdateProjActive(Projectile, ref parent.GetModPlayer<AequusPlayer>().familiarPet);
+            AequusHelpers.UpdateProjActive<FamiliarBuff>(Projectile);
 
             // copies player attributes
             dummyPlayer.eyeColor = parent.eyeColor;

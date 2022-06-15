@@ -9,7 +9,6 @@ namespace Aequus.Buffs.Pets
     /// </summary>
     public class SpaceSquidBuff : PetBuffBase
     {
-        protected override ref bool ActiveFlag(Player player) => ref player.GetModPlayer<AequusPlayer>().spaceSquidPet;
         protected override int PetProj => ModContent.ProjectileType<SpaceSquidPet>();
     }
 }

@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Buffs.Pets;
+using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -31,7 +32,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive(Projectile, ref player.GetModPlayer<AequusPlayer>().omegaStaritePet);
+            AequusHelpers.UpdateProjActive<OmegaStariteBuff>(Projectile);
             Vector2 gotoPos = player.Center;
             var center = Projectile.Center;
             float distance = (center - gotoPos).Length();

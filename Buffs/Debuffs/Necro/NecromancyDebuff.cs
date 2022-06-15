@@ -9,6 +9,10 @@ namespace Aequus.Buffs.Debuffs.Necro
 {
     public class NecromancyDebuff : ModBuff
     {
+        public override string Texture => Aequus.Debuff;
+
+        public virtual float Tier => 1f;
+
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
@@ -20,15 +24,13 @@ namespace Aequus.Buffs.Debuffs.Necro
         {
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = 2 * AequusHelpers.NPCREGEN;
-
-            if (zombie.renderLayer < GhostOutlineTarget.TargetIDs.FriendlyZombie)
-            {
-                zombie.renderLayer = GhostOutlineTarget.TargetIDs.FriendlyZombie;
-            }
+            zombie.DebuffTier(Tier);
+            zombie.RenderLayer(GhostOutlineTarget.IDs.Zombie);
         }
 
-        public static void ApplyDebuff<T>(NPC npc, int time, int player, float tier) where T : NecromancyDebuff
+        public static void ApplyDebuff<T>(NPC npc, int time, int player) where T : NecromancyDebuff
         {
+            float tier = ModContent.GetInstance<T>().Tier;
             bool cheat = tier >= 100;
             if (cheat)
             {
@@ -38,10 +40,9 @@ namespace Aequus.Buffs.Debuffs.Necro
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
-                npc.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = tier;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    PacketHandler.SyncNecromancyOwnerTier(npc.whoAmI, player, tier);
+                    PacketHandler.SyncNecromancyOwner(npc.whoAmI, player, tier);
                 }
             }
         }

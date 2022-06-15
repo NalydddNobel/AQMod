@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
 
-            NecromancyDebuff.ApplyDebuff<OsirisDebuff>(target, 600, Projectile.owner, 3f);
+            NecromancyDebuff.ApplyDebuff<OsirisDebuff>(target, 600, Projectile.owner);
 
             var source = Projectile.GetSource_OnHit(target, "Aequus:Osiris");
 

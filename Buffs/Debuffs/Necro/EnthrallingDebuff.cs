@@ -6,11 +6,13 @@ namespace Aequus.Buffs.Debuffs.Necro
 {
     public class EnthrallingDebuff : NecromancyDebuff
     {
-        public override string Texture => AequusHelpers.GetPath<NecromancyDebuff>();
+        public override string Texture => Aequus.Debuff;
+        public override float Tier => 100f;
 
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 100 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().DebuffTier(Tier);
         }
 
         public static void ApplyDebuffTest(NPC npc, int time, int player, float tier)

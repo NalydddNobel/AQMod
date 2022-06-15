@@ -30,7 +30,7 @@ namespace Aequus.Tiles.Crab
         {
             if (WorldGen.genRand.NextBool(2))
             {
-				WorldGen.PlaceTile(i, j - 1, ModContent.TileType<CrabGrass3x2>(), mute: true);
+				WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Ambient3x2>(), mute: true);
             }
             else if (Main.tile[i, j - 1].LiquidAmount > 128 && Main.tile[i, j - 1].LiquidType == LiquidID.Water)
             {

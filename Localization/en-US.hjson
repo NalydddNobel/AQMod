@@ -83,18 +83,16 @@ Mods: {
 		}
 
 		Tooltips: {
-			NecromancyCandle: Absorbs the souls of enemies killed by minions
+			NecromancyStaff: Slain enemies may convert into ghost minions
+			NecromancyCandle: 
+				'''
+				Absorbs the souls of enemies killed by minions
+				The summoned enemy will use ghost minion slots
+				'''
 			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
 			UseDarts: Uses seeds and darts as ammo
 			UsesLife: "Uses {0} life"
-			NecromancyStaff: "{0} Staff"
-			NecromancyStaffTooltip: 
-				'''
-				Summons a ghostly {0} to fight for you
-				Consumes twice the amount of necromantic minion slots
-				'''
-			NecromancyStaffTooltipFriendly: Summons a {0} to be cute
 			UsesGel: Uses gel for ammo
 			ExporterQuest: Return this to the exporter
 			Concocted: Used in potion concoctions
@@ -153,13 +151,6 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			CrimsonCandle: Flesh Lighter
-			CorruptionCandle: Light Eater
-			PixieCandle: Pixie Candle
-			BloodZombieCandle: Phlegethon
-			WretchedCandle: Wretched Candle
-			AshCandle: Ash Candle
-
 			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			MechsSentry: Sentinel 6510 N.O.S.
@@ -178,6 +169,15 @@ Mods: {
 
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
+
+			DisturbanceStaff: Disturbance Staff
+
+			CrimsonCandle: Flesh Lighter
+			CorruptionCandle: Light Eater
+			PixieCandle: Pixie Candle
+			BloodZombieCandle: Phlegethon
+			WretchedCandle: Wretched Candle
+			AshCandle: Ash Candle
 
 			NecromancyStaff: Necromancy Staff
 			Insurgency: Insurgency
@@ -527,36 +527,6 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			CrimsonCandle:
-				'''
-				Summons a blood crawler to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			CorruptionCandle:
-				'''
-				Summons an eater of souls to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			PixieCandle:
-				'''
-				Summons a pixie to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			BloodZombieCandle:
-				'''
-				Summons a blood zombie to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			WretchedCandle:
-				'''
-				Summons a cursed skull to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
-			AshCandle:
-				'''
-				Summons a demon to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
-				'''
 			ReboundNecklace: 
 				'''
 				Allows your double jumps to refresh while falling
@@ -628,28 +598,65 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			DisturbanceStaff:
+				'''
+				Summons a mysterious red sprite to haunt your foes
+				Slain enemies have a chance to convert into ghost minions
+				'''
+
+			CrimsonCandle:
+				'''
+				Summons a blood crawler to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			CorruptionCandle:
+				'''
+				Summons an eater of souls to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			PixieCandle:
+				'''
+				Summons a pixie to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			BloodZombieCandle:
+				'''
+				Summons a blood zombie to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			WretchedCandle:
+				'''
+				Summons a cursed skull to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+			AshCandle:
+				'''
+				Summons a demon to fight for you
+				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				'''
+
 			Insurgency: 
 				'''
 				Drains the soul of very powerful enemies, instantly killing weakened enemies
 				While accursed, they release spirits that attack nearby enemies
-				Defeated enemies will join your team
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'Silence'
 				'''
 			Osiris: 
 				'''
 				Drains the soul of powerful enemies
-				Defeated enemies will join your team
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				Bursts into a swarm of locusts on hit
 				'''
 			Revenant: 
 				'''
 				Drains the soul of strong enemies, instantly killing weakened enemies
-				Defeated enemies will join your team
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 			ZombieScepter: 
 				'''
 				Drains the soul of weak enemies
-				Defeated enemies will join your team
+				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"

@@ -100,15 +100,14 @@ namespace Aequus.Common.Networking
             }
         }
 
-        public static void SyncNecromancyOwnerTier(int npc, int player, float tier)
+        public static void SyncNecromancyOwner(int npc, int player, float tier)
         {
             Send((p) =>
                 {
                     p.Write(npc);
                     p.Write(player);
-                    p.Write(tier);
                 },
-                PacketType.SyncNecromancyOwnerTier);
+                PacketType.SyncNecromancyOwner);
         }
 
         public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
@@ -196,11 +195,10 @@ namespace Aequus.Common.Networking
             if (type == PacketType.Unused)
             {
             }
-            else if (type == PacketType.SyncNecromancyOwnerTier)
+            else if (type == PacketType.SyncNecromancyOwner)
             {
                 int npc = reader.ReadInt32();
                 Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = reader.ReadSingle();
             }
             else if (type == PacketType.SyncAequusPlayer)
             {

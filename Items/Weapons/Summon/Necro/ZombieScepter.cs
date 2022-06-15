@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(30);
-            Item.SetWeaponValues(2, 1f, 0);
+            Item.SetWeaponValues(10, 1f, 0);
             Item.shoot = ModContent.ProjectileType<ZombieBolt>();
             Item.shootSpeed = 6f;
             Item.rare = ItemRarityID.Blue;

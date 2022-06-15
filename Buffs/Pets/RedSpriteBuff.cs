@@ -10,7 +10,6 @@ namespace Aequus.Buffs.Pets
     public class RedSpriteBuff : PetBuffBase
     {
         protected override bool LightPet => true;
-        protected override ref bool ActiveFlag(Player player) => ref player.GetModPlayer<AequusPlayer>().redSpritePet;
         protected override int PetProj => ModContent.ProjectileType<RedSpritePet>();
     }
 }
