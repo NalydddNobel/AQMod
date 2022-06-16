@@ -8,7 +8,7 @@ namespace Aequus.Items.Armor.Gravetender
     {
         public override void SetDefaults()
         {
-            Item.defense = 2;
+            Item.defense = 3;
             Item.width = 20;
             Item.height = 20;
             Item.bodySlot = 1;

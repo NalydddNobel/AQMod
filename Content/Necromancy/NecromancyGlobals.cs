@@ -403,7 +403,7 @@ namespace Aequus.Content.Necromancy
             float value = 0f;
             if (aequus.setGravetenderGhost == npc.whoAmI)
             {
-                value += 0.25f;
+                value += 0.5f;
             }
             return value;
         }
