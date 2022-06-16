@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc.Trash;
+using Aequus.Items.Misc;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
@@ -16,6 +16,12 @@ namespace Aequus.Common
     public class PlayerFishing : ModPlayer
     {
         public Item baitUsed;
+
+        public const int HeightLevel_Sky = 0;
+        public const int HeightLevel_Surface = 1;
+        public const int HeightLevel_Underground = 2;
+        public const int HeightLevel_Caverns = 3;
+        public const int HeightLevel_Underworld = 4;
 
         public override void Load()
         {
@@ -118,19 +124,23 @@ namespace Aequus.Common
                 {
                     itemDrop = ModContent.ItemType<TatteredDemonHorn>();
                 }
-                return;
+                goto PostProbeFish;
             }
 
             if (attempt.inHoney)
             {
-                return;
+                goto PostProbeFish;
             }
 
-            if (Player.ZoneBeach && attempt.rare && Main.rand.NextBool(3))
+            if (Player.ZoneBeach && attempt.veryrare && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
             }
-            if (Main.bloodMoon && attempt.heightLevel < 2)
+            if (Player.ZoneSnow && attempt.heightLevel > HeightLevel_Surface && (itemDrop == ItemID.Bass || itemDrop == ItemID.SpecularFish || (attempt.common && Main.rand.NextBool(3))))
+            {
+                itemDrop = ModContent.ItemType<IcebergFish>();
+            }
+            if (Main.bloodMoon && attempt.heightLevel < HeightLevel_Underground)
             {
                 if (attempt.uncommon && Main.rand.NextBool())
                 {
@@ -145,7 +155,7 @@ namespace Aequus.Common
         PostProbeFish:
             if (Main.myPlayer == Player.whoAmI && baitUsed.type == ModContent.ItemType<Omnibait>())
             {
-                Player.UpdateBiomes(); // Kind of cheeky
+                Player.UpdateBiomes(); // Kind of cheaty
             }
         }
 

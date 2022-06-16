@@ -1,8 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Pets;
-using Aequus.Common.Catalogues;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
@@ -116,6 +114,9 @@ namespace Aequus
         /// An amount of regen to add to the player
         /// </summary>
         public int increasedRegen;
+
+        public Item pandorasBoxItem;
+        public int pandorasBoxSpawnChance;
 
         public Item glowCoreItem;
 
@@ -410,6 +411,9 @@ namespace Aequus
                 accExpertItemBoostWormScarfTimer--;
             }
             accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
+
+            pandorasBoxSpawnChance = 0;
+            pandorasBoxItem = null;
 
             glowCoreItem = null;
 

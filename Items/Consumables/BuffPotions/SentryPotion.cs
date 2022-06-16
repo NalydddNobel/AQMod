@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,10 +24,10 @@ namespace Aequus.Items.Consumables.BuffPotions
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient(ItemID.FrostMinnow)
+                .AddIngredient<IcebergFish>()
                 .AddIngredient(ItemID.Shiverthorn)
                 .AddTile(TileID.Bottles)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SummoningPotion));
+                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.SummoningPotion));
         }
     }
 }

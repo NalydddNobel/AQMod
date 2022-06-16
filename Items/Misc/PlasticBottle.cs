@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Trash
+namespace Aequus.Items.Misc
 {
     public class PlasticBottle : ModItem
     {

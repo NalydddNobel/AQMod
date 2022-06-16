@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc.Trash;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;

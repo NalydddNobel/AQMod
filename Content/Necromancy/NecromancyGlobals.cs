@@ -4,6 +4,7 @@ using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -324,6 +325,13 @@ namespace Aequus.Content.Necromancy
                 }
                 var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
                 aequus.ghostSlots += slotsConsumed;
+
+                if (zombieOwner == Main.myPlayer)
+                {
+                    if (aequus.pandorasBoxItem != null)
+                        UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, AI_NPCTarget);
+                }
+
                 if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
                 {
                     Color color = new Color(50, 150, 255, 100);
@@ -341,6 +349,32 @@ namespace Aequus.Content.Necromancy
                 }
             }
             AI_IsZombie = false;
+        }
+
+        public void UsePandorasBox(NPC npc, AequusPlayer aequus, Item pandorasBox, int target)
+        {
+            if (target == -1)
+            {
+                return;
+            }
+
+            if (Main.rand.NextBool(aequus.pandorasBoxSpawnChance))
+            {
+                PandorasBox_SpawnProjectile(npc, aequus, pandorasBox, target, Main.rand.Next(PandorasBox.ProjectileTypesShot));
+            }
+        }
+
+        public void PandorasBox_SpawnProjectile(NPC npc, AequusPlayer aequus, Item pandorasBox, int target, int projectileType)
+        {
+            var to = npc.DirectionTo(Main.npc[target].Center);
+            float speed = 8f;
+            if (projectileType == ProjectileID.DemonScythe)
+            {
+                speed = 0.2f;
+            }
+            int damage = 40;
+            damage += aequus.Player.GetWeaponDamage(pandorasBox);
+            Projectile.NewProjectileDirect(npc.GetSource_Accessory(pandorasBox), npc.Center, to * speed, projectileType, damage, 1f, Main.myPlayer);
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -693,6 +727,10 @@ namespace Aequus.Content.Necromancy
             else if (source is EntitySource_Death death)
             {
                 ZombieCheck(death.Entity, projectile);
+            }
+            else if (source is EntitySource_ItemUse itemUse)
+            {
+                ZombieCheck(itemUse.Entity, projectile);
             }
         }
         public void ZombieCheck(Entity entity, Projectile projectile)

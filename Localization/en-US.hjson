@@ -211,6 +211,7 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
+			IcebergFish: Iceberg Fish
 			Hexoplasm: Hexoplasm
 			SkeletonKey: Skeleton Key
 			UnenchantedStaff: Unenchanted Staff
@@ -530,7 +531,8 @@ Mods: {
 		ItemTooltip: {
 			PandorasBox: 
 				'''
-				Increases the projectile speed of ghost minions
+				Your minions may fire a random projectile at enemies
+				Increases the speed of ghost minion projectiles
 				'''
 			ReboundNecklace: 
 				'''
