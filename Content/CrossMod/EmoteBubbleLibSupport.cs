@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
-    public class EmoteBubbleLibSupport : IPostSetupContent
+    internal class EmoteBubbleLibSupport : IPostSetupContent
     {
         private ModData EmoteBubbleLib;
 

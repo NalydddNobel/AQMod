@@ -152,15 +152,21 @@ Mods: {
 
 		ItemName: {
 			PandorasBox: Pandora's Box
-			ReboundNecklace: Rebound Necklace
-			RabbitsFoot: Rabbit's Foot
 			MechsSentry: Sentinel 6510 N.O.S.
 			SantankSentry: Sentry 6502 N.O.S.
 			BloodiedBucket: Bloodied Bucket
-
-			FlowerCrown: Flower Crown
-			DartTrapHat: Dart Trap Hat
-			SuperDartTrapHat: Super Dart Trap Hat
+			RitualisticSkull: Ritualistic Skull
+			ReboundNecklace: Rebound Necklace
+			RabbitsFoot: Rabbit's Foot
+			FoolsGoldRing: Fool's Gold Ring
+			FaultyCoin: Faulty Coin
+			ForgedCard: Forged Card
+			SentrySquid: Sentry Squid
+			IcebergKraken: Iceberg Kraken
+			GrandReward: Grand Reward
+			Reliefshroom: Reliefshroom
+			Mendshroom: Mendshroom
+			GlowCore: Glow Core
 
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
@@ -187,16 +193,12 @@ Mods: {
 			Revenant: Revenant
 			ZombieScepter: Zombie Scepter
 
-			FoolsGoldRing: Fool's Gold Ring
-			FaultyCoin: Faulty Coin
-			ForgedCard: Forged Card
-			RitualisticSkull: Ritualistic Skull
-			SentrySquid: Sentry Squid
-			IcebergKraken: Iceberg Kraken
-			GrandReward: Grand Reward
-			Reliefshroom: Reliefshroom
-			Mendshroom: Mendshroom
-			GlowCore: Glow Core
+			GravetenderHood: Gravetender Hood
+			GravetenderRobes: Gravetender Robes
+
+			FlowerCrown: Flower Crown
+			DartTrapHat: Dart Trap Hat
+			SuperDartTrapHat: Super Dart Trap Hat
 
 			LegendberryBait: Legendberry Bait
 			Omnibait: Omnibait
@@ -572,23 +574,14 @@ Mods: {
 				Requires a sentry staff in your inventory to work
 				'It's only mildy disturbing'
 				'''
-
-			FlowerCrown: 
+			GrandReward: 
 				'''
-				Ocassionally summons damaging petals which blow in the wind
-				Ignores 10 points of enemy Defense
+				Enemies are more likely to drop rarer items
+				However they no longer drop coins
 				'''
-			DartTrapHat:
-				'''
-				10% increased summon damage
-				Ignores 10 points of enemy Defense
-				'''
-			SuperDartTrapHat:
-				'''
-				50% increased summon damage
-				Increases your max number of minions
-				Ignores 15 points of enemy Defense
-				'''
+			Reliefshroom: Greatly increases regeneration while moving
+			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
+			GlowCore: You and your projectiles emit light
 
 			RockMan: An ancient relic, originally used to cut lemons
 
@@ -671,6 +664,30 @@ Mods: {
 				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 
+			GravetenderHood: 10% increased summon damage
+			GravetenderRobes: 
+				'''
+				15% reduced mana cost
+				Increases your max number of ghosts by 1
+				'''
+
+			FlowerCrown: 
+				'''
+				Ocassionally summons damaging petals which blow in the wind
+				Ignores 10 points of enemy Defense
+				'''
+			DartTrapHat:
+				'''
+				10% increased summon damage
+				Ignores 10 points of enemy Defense
+				'''
+			SuperDartTrapHat:
+				'''
+				50% increased summon damage
+				Increases your max number of minions
+				Ignores 15 points of enemy Defense
+				'''
+
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
 			SpicyEel: 
 				'''
@@ -692,14 +709,6 @@ Mods: {
 				Summons a space squiddy to follow you
 				'Just too cute'
 				'''
-			GrandReward: 
-				'''
-				Enemies are more likely to drop rarer items
-				However they no longer drop coins
-				'''
-			Reliefshroom: Greatly increases regeneration while moving
-			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
-			GlowCore: You and your projectiles emit light
 
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
@@ -1649,6 +1658,10 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Gravetender: 
+				'''
+				Summons a wisp to empower your ghost minions
+				'''
 			Arachnotron:
 				'''
 				12% increased melee and summon damage

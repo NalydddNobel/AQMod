@@ -12,8 +12,6 @@ namespace Aequus.Items
 {
     public class AequusItem : GlobalItem, IAddRecipes
     {
-        public static NecromancyDamageClass Necromancy => new NecromancyDamageClass();
-
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
         public static HashSet<int> BankEquipFuncs { get; private set; }

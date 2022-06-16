@@ -4,6 +4,7 @@ using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Recipes;
+using Aequus.Items.Weapons.Summon;
 using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,6 +38,8 @@ namespace Aequus
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
         public static bool HardmodeTier => Main.hardMode || AequusSystem.downedOmegaStarite;
+
+        public static NecromancyDamageClass NecromancyDamage => new NecromancyDamageClass();
 
         public static float SkiesDarkness;
         public static float SkiesDarknessGoTo;

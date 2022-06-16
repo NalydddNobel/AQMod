@@ -285,7 +285,7 @@ namespace Aequus.Content.Necromancy
                         {
                             float multiplier = GetDamageMultiplier(npc, npc.damage);
                             int noSummonBoostDamage = (int)(npc.damage * multiplier);
-                            int summonDamage = (int)(noSummonBoostDamage * Main.player[zombieOwner].GetTotalDamage(DamageClass.Summon).Multiplicative);
+                            int summonDamage = (int)(noSummonBoostDamage * Main.player[zombieOwner].GetTotalDamage(Aequus.NecromancyDamage).Multiplicative);
                             int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
                             Main.projectile[p].width = npc.width;
                             Main.projectile[p].height = npc.height;
@@ -749,7 +749,7 @@ namespace Aequus.Content.Necromancy
             projectile.hostile = false;
             projectile.friendly = true;
             projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
-            projectile.DamageType = DamageClass.Summon;
+            projectile.DamageType = Aequus.NecromancyDamage;
             isZombie = true;
             zombieNPCOwner = npc;
             zombieDebuffTier = tier;
@@ -896,7 +896,7 @@ namespace Aequus.Content.Necromancy
                 isZombie = true;
                 projectile.hostile = false;
                 projectile.friendly = true;
-                projectile.DamageType = DamageClass.Summon;
+                projectile.DamageType = Aequus.NecromancyDamage;
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();

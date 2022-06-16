@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.penetrate = -1;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
-            Projectile.DamageType = DamageClass.Summon;
+            Projectile.DamageType = Aequus.NecromancyDamage;
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.timeLeft = 70;

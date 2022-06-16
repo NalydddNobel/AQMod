@@ -115,6 +115,8 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public Item setGravetender;
+
         public Item pandorasBoxItem;
         public int pandorasBoxSpawnChance;
 
@@ -411,6 +413,8 @@ namespace Aequus
                 accExpertItemBoostWormScarfTimer--;
             }
             accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
+
+            setGravetender = null;
 
             pandorasBoxSpawnChance = 0;
             pandorasBoxItem = null;

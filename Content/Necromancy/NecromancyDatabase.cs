@@ -188,7 +188,7 @@ namespace Aequus.Content.Necromancy
                 [NPCID.Werewolf] = GhostInfo.Three,
                 [NPCID.Wolf] = GhostInfo.Three,
                 [NPCID.SkeletonArcher] = GhostInfo.Three,
-                [NPCID.WanderingEye] = GhostInfo.Three,
+                [NPCID.WanderingEye] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
                 [NPCID.Clown] = GhostInfo.Three,
                 [NPCID.ChatteringTeethBomb] = GhostInfo.Three,
                 [NPCID.SandShark] = GhostInfo.Three,
