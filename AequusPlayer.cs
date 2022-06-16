@@ -116,6 +116,8 @@ namespace Aequus
         public int increasedRegen;
 
         public Item setGravetender;
+        public int setGravetenderCheck;
+        public int setGravetenderGhost;
 
         public Item pandorasBoxItem;
         public int pandorasBoxSpawnChance;
@@ -623,6 +625,16 @@ namespace Aequus
             ClosestEnemy();
             Team = 0;
 
+            if (setGravetender != null)
+            {
+                Gravetender(setGravetender);
+            }
+            else
+            {
+                setGravetenderCheck = 0;
+                setGravetenderGhost = -1;
+            }
+
             if (sentrySquidItem != null && sentrySquidTimer == 0)
             {
                 UpdateSentrySquid(Player.Aequus().closestEnemy);
@@ -671,6 +683,47 @@ namespace Aequus
                         {
                             distance = d;
                             closestEnemy = i;
+                        }
+                    }
+                }
+            }
+        }
+        
+        public void Gravetender(Item gravetenderHood)
+        {
+            if (gravetenderHood.shoot > ProjectileID.None && Player.ownedProjectileCounts[setGravetender.shoot] <= 0)
+            {
+                Projectile.NewProjectile(Player.GetSource_Accessory(setGravetender), Player.Center, -Vector2.UnitY, setGravetender.shoot,
+                    Player.GetWeaponDamage(setGravetender), Player.GetWeaponKnockback(setGravetender), Player.whoAmI);
+            }
+            if (gravetenderHood.buffType > 0)
+            {
+                Player.AddBuff(setGravetender.buffType, 2, quiet: true);
+            }
+
+            if (setGravetenderCheck > 0)
+            {
+                setGravetenderCheck--;
+                if (setGravetenderGhost > -1 && !Main.npc[setGravetenderGhost].active)
+                {
+                    setGravetenderCheck = 0;
+                }
+            }
+
+            if (setGravetenderCheck <= 0)
+            {
+                setGravetenderGhost = -1;
+                setGravetenderCheck = 20;
+                int power = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].friendly && Player.Distance(Main.npc[i].Center) < 2000f && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI && zombie.slotsConsumed > 0)
+                    {
+                        int npcPower = zombie.DespawnPriority(Main.npc[i]);
+                        if (npcPower > power)
+                        {
+                            setGravetenderGhost = i;
+                            power = npcPower;
                         }
                     }
                 }
@@ -813,7 +866,7 @@ namespace Aequus
                 {
                     if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI && zombie.slotsConsumed > 0)
                     {
-                        int timeComparison = UpdateMaxZombies_GetDespawnComparison(Main.npc[i], zombie); // Prioritize to kill lower tier slaves
+                        int timeComparison = zombie.DespawnPriority(Main.npc[i]); // Prioritize to kill lower tier slaves
                         if (timeComparison < oldestTime)
                         {
                             removeNPC = i;
@@ -834,10 +887,6 @@ namespace Aequus
                     }
                 }
             }
-        }
-        public int UpdateMaxZombies_GetDespawnComparison(NPC npc, NecromancyNPC zombie)
-        {
-            return zombie.DespawnPriority(npc);
         }
 
         public void UpdateSantankSentry()

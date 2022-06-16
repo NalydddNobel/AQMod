@@ -25,6 +25,8 @@ namespace Aequus.Content.Necromancy
 {
     public class NecromancyNPC : GlobalNPC, IGlobalsNetworker, IAddRecipes
     {
+        public static HashSet<int> BlacklistVelocityBoost { get; private set; }
+
         public static bool AI_IsZombie;
         public static int AI_ZombiePlayerOwner;
         public static int AI_NPCTarget;
@@ -47,8 +49,10 @@ namespace Aequus.Content.Necromancy
 
         public override void Load()
         {
+            BlacklistVelocityBoost = new HashSet<int>();
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
+            On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             if (!Main.dedServ)
             {
                 ZombieRecruitSound = Aequus.GetSound("zombierecruit");
@@ -56,6 +60,27 @@ namespace Aequus.Content.Necromancy
         }
 
         #region Hooks
+        private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
+        {
+            if (self.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie)
+            {
+                float velocityBoost = z.DetermineVelocityBoost(self, Main.player[z.zombieOwner], Main.player[z.zombieOwner].Aequus());
+                if (velocityBoost > 0f)
+                {
+                    self.velocity *= 1f + velocityBoost;
+                }
+                orig(self);
+                if (velocityBoost > 0f)
+                {
+                    self.velocity /= 1f + velocityBoost;
+                }
+            }
+            else
+            {
+                orig(self);
+            }
+        }
+
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC self, int newType)
         {
             bool isZombieOld = self.GetGlobalNPC<NecromancyNPC>().isZombie;
@@ -323,32 +348,64 @@ namespace Aequus.Content.Necromancy
                     Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
                     AI_ReturnPlayerLocation = Vector2.Zero;
                 }
-                var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
+                var player = Main.player[zombieOwner];
+                var aequus = player.GetModPlayer<AequusPlayer>();
                 aequus.ghostSlots += slotsConsumed;
 
-                if (zombieOwner == Main.myPlayer)
+                if (zombieOwner == Main.myPlayer && aequus.pandorasBoxItem != null)
                 {
-                    if (aequus.pandorasBoxItem != null)
-                        UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, AI_NPCTarget);
+                    UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, AI_NPCTarget);
                 }
 
-                if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(6))
+                if (npc.noTileCollide)
                 {
-                    Color color = new Color(50, 150, 255, 100);
-                    int index = GhostOutlineTarget.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
-                    if (AequusEffects.necromancyRenderers.Length > index && AequusEffects.necromancyRenderers[index] != null)
+                    float velocityBoost = DetermineVelocityBoost(npc, player, aequus);
+                    if (velocityBoost > 0f)
                     {
-                        color = AequusEffects.necromancyRenderers[index].DrawColor();
-                        color.A = 100;
+                        npc.position += npc.velocity *= velocityBoost;
                     }
-                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: color);
-                    d.velocity *= 0.3f;
-                    d.velocity += npc.velocity * 0.2f;
-                    d.scale *= npc.scale;
-                    d.noGravity = true;
+                }
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    if (Main.rand.NextBool(6))
+                    {
+                        var color = new Color(50, 150, 255, 100);
+                        int index = GhostOutlineTarget.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                        if (AequusEffects.necromancyRenderers.Length > index && AequusEffects.necromancyRenderers[index] != null)
+                        {
+                            color = AequusEffects.necromancyRenderers[index].DrawColor();
+                            color.A = 100;
+                        }
+                        var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: color);
+                        d.velocity *= 0.2f;
+                        d.velocity += npc.velocity * 0.4f;
+                        d.scale *= npc.scale;
+                        d.noGravity = true;
+                    }
+                    if (aequus.setGravetenderGhost == npc.whoAmI && Main.rand.NextBool(6))
+                    {
+                        var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: new Color(200, 50, 128, 100));
+                        d.velocity *= 0.5f;
+                        d.velocity += -npc.velocity * 0.2f;
+                        d.scale *= npc.scale;
+                        d.fadeIn = d.scale + 0.5f;
+                        d.noGravity = true;
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
                 }
             }
             AI_IsZombie = false;
+        }
+
+        public float DetermineVelocityBoost(NPC npc, Player player, AequusPlayer aequus)
+        {
+            float value = 0f;
+            if (aequus.setGravetenderGhost == npc.whoAmI)
+            {
+                value += 0.25f;
+            }
+            return value;
         }
 
         public void UsePandorasBox(NPC npc, AequusPlayer aequus, Item pandorasBox, int target)
@@ -670,7 +727,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (!NecromancyDatabase.TryGetByNetID(i, NPCID.FromNetId(i), out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {
-                    BuffImmunity.AddStaticImmunity(i, false, buffList.ToArray());
+                    AequusBuff.AddStaticImmunity(i, false, buffList.ToArray());
                 }
             }
         }

@@ -1377,6 +1377,8 @@ Mods: {
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			GravetenderMinionBuff: Gravetender
+
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
@@ -1437,6 +1439,8 @@ Mods: {
 			SentryBuff: Increase your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 			SpicyEelBuff: Greatly increases speed
+
+			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
 			RedSpriteMinionBuff: The red sprite will fight for you!
 			SnowflakeBuff: The snowflake will fight for you

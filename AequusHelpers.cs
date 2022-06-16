@@ -230,6 +230,11 @@ namespace Aequus
             proj.velocity = velo;
         }
 
+        public static SpriteEffects GetSpriteEffect(this Projectile projectile)
+        {
+            return (-projectile.spriteDirection).ToSpriteEffect();
+        }
+
         public static SpriteEffects ToSpriteEffect(this int value)
         {
             return value == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

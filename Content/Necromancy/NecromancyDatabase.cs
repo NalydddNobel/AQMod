@@ -475,9 +475,9 @@ namespace Aequus.Content.Necromancy
         {
             if (NPCs.ContainsKey(netID))
             {
-                return Get(netID);
+                return GetOrDefault(netID);
             }
-            return Get(type);
+            return GetOrDefault(type);
         }
         public static GhostInfo GetByNetID(NPC npc)
         {

@@ -15,9 +15,13 @@ namespace Aequus.Projectiles.Summon
             ProjectileID.Sets.CultistIsResistantTo[Type] = true;
         }
 
+        public Vector2 DefaultIdlePosition()
+        {
+            return IdlePosition(Main.player[Projectile.owner], Projectile.whoAmI, 0, 1);
+        }
         public virtual Vector2 IdlePosition(Player player, int leader, int minionPos, int count)
         {
-            return player.MountedCenter;
+            return player.Center;
         }
 
         public override bool? CanCutTiles() => false;
