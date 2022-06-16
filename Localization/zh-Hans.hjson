@@ -152,15 +152,21 @@ Mods: {
 
 		ItemName: {
 			PandorasBox: 潘多拉魔盒
-			ReboundNecklace: 回弹项链
-			RabbitsFoot: 兔脚
 			MechsSentry: 哨卫6510型微型处理器
 			SantankSentry: 哨兵6502型微型处理器
 			BloodiedBucket: 血污桶
-
-			FlowerCrown: 花冠
-			DartTrapHat: 飞镖帽
-			SuperDartTrapHat: 超级飞镖帽
+			RitualisticSkull: 仪式颅骨
+			ReboundNecklace: 回弹项链
+			RabbitsFoot: 兔脚
+			FoolsGoldRing: 愚者之金戒
+			FaultyCoin: 缺陷硬币
+			ForgedCard: 伪造的卡片
+			SentrySquid: 哨兵乌贼
+			IcebergKraken: 冰山海妖
+			GrandReward: 豪华奖励
+			Reliefshroom: 息灵菇
+			Mendshroom: 愈灵菇
+			GlowCore: 发光核心
 
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
@@ -187,16 +193,12 @@ Mods: {
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
-			FoolsGoldRing: 愚者之金戒
-			FaultyCoin: 缺陷硬币
-			ForgedCard: 伪造的卡片
-			RitualisticSkull: 仪式颅骨
-			SentrySquid: 哨兵乌贼
-			IcebergKraken: 冰山海妖
-			GrandReward: 豪华奖励
-			Reliefshroom: 息灵菇
-			Mendshroom: 愈灵菇
-			GlowCore: 发光核心
+			GravetenderHood: 守墓者兜帽
+			GravetenderRobes: 守墓者长袍
+
+			FlowerCrown: 花冠
+			DartTrapHat: 飞镖帽
+			SuperDartTrapHat: 超级飞镖帽
 
 			LegendberryBait: 传奇浆果鱼饵
 			Omnibait: 全能鱼饵
@@ -572,23 +574,14 @@ Mods: {
 				仅在背包中拥有哨兵武器时才会生效
 				'只是轻微的干扰'
 				'''
-
-			FlowerCrown: 
+			GrandReward: 
 				'''
-				偶尔召唤在风中飘动的伤害性花瓣
-				无视敌人10点的防御力
+				敌人更容易掉落稀有物品
+				但不会再掉落钱币
 				'''
-			DartTrapHat:
-				'''
-				增加10%召唤伤害
-				无视敌人10点的防御力
-				'''
-			SuperDartTrapHat:
-				'''
-				增加50%召唤伤害
-				增加最大召唤栏位
-				无视敌人15点的防御力
-				'''
+			Reliefshroom: 移动时会大幅度增加生命恢复速度
+			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
+			GlowCore: 你和你的弹幕会发光
 
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
@@ -671,6 +664,30 @@ Mods: {
 				{$Mods.Aequus.Tooltips.NecromancyStaff}
 				'''
 
+			GravetenderHood: 增加10%召唤伤害
+			GravetenderRobes: 
+				'''
+				减少15%法力消耗
+				增加最大幽魂仆从栏位
+				'''
+
+			FlowerCrown: 
+				'''
+				偶尔召唤在风中飘动的花瓣
+				无视敌人10点的防御力
+				'''
+			DartTrapHat:
+				'''
+				增加10%召唤伤害
+				无视敌人10点的防御力
+				'''
+			SuperDartTrapHat:
+				'''
+				增加50%召唤伤害
+				增加最大召唤栏位
+				无视敌人15点的防御力
+				'''
+
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
 			SpicyEel: 
 				'''
@@ -692,14 +709,6 @@ Mods: {
 				召唤一只跟着你的太空乌贼
 				'太可爱了'
 				'''
-			GrandReward: 
-				'''
-				敌人更容易掉落稀有物品
-				但不会再掉落钱币
-				'''
-			Reliefshroom: 移动时会大幅度增加生命恢复速度
-			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
-			GlowCore: 你和你的弹幕会发光
 
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
@@ -1649,6 +1658,10 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Gravetender: 
+				'''
+				召唤一缕魂灵来强化你的幽魂仆从
+				'''
 			Arachnotron:
 				'''
 				增加12%近战和召唤伤害
