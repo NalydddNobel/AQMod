@@ -14,6 +14,10 @@ namespace Aequus.Common
         public static bool TryGetInstanceOf<T>(Type t, out T instance) where T : class
         {
             instance = null;
+            if (t.IsAbstract || t.IsInterface)
+            {
+                return false;
+            }
             foreach (var i in t.GetInterfaces())
             {
                 if (i.IsAssignableTo(typeof(T)))

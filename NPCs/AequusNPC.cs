@@ -188,55 +188,13 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
-                case NPCID.Harpy:
-                    if (GameplayConfig.Instance.Skyware_Harpies)
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Slingshot>(), 100));
-                    break;
-
-                case NPCID.LavaSlime:
-                    if (GameplayConfig.Instance.LavaCharm_LavaSlime)
-                        npcLoot.Add(ItemDropRule.Common(ItemID.LavaCharm, 50));
-                    break;
-
-                case NPCID.DarkCaster:
-                    if (GameplayConfig.Instance.DungeonNecromancy_DarkCaster)
-                        npcLoot.Add(ItemDropRule.OneFromOptions(50, ModContent.ItemType<Revenant>(), ModContent.ItemType<WretchedCandle>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<PandorasBox>()));
-                    break;
-                case NPCID.Necromancer:
-                case NPCID.NecromancerArmored:
-                    if (GameplayConfig.Instance.DungeonNecromancy_Necromancer)
-                        npcLoot.Add(ItemDropRule.OneFromOptions(50, ModContent.ItemType<Revenant>(), ModContent.ItemType<WretchedCandle>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<PandorasBox>()));
-                    break;
-
-                case NPCID.AngryBones:
-                case NPCID.AngryBonesBig:
-                case NPCID.AngryBonesBigHelmet:
-                case NPCID.AngryBonesBigMuscle:
-                    if (GameplayConfig.Instance.DungeonMisc_AngryBones)
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Valari>(), 100));
-                    break;
-
                 case NPCID.Pixie:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
-                    break;
-
-                case NPCID.UndeadViking:
-                case NPCID.ArmoredViking:
-                    if (GameplayConfig.Instance.FrozenMisc_Vikings)
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CrystalDagger>(), 50));
-                    break;
-
-                case NPCID.Squid:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SentrySquid>(), 5));
                     break;
 
                 case NPCID.BloodZombie:
                 case NPCID.Drippler:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodZombieCandle>(), 100));
-                    break;
-
-                case NPCID.BloodSquid:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<VampireSquid>(), 50));
                     break;
 
                 case NPCID.DevourerHead:

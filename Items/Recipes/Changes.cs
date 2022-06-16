@@ -15,7 +15,11 @@ namespace Aequus.Items.Recipes
             for (int i = 0; i < Main.recipe.Length; i++)
             {
                 Recipe r = Main.recipe[i];
-                if (r.createItem.type == ItemID.MinecartMech)
+                if (r.createItem.type == ItemID.PhoenixBlaster)
+                {
+                    r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
+                }
+                else if (r.createItem.type == ItemID.MinecartMech)
                 {
                     r.AddIngredient(ItemID.Minecart);
                 }

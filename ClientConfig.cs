@@ -12,46 +12,47 @@ using Aequus.Items.Weapons.Summon.Necro;
 
 namespace Aequus
 {
-    public sealed class ClientConfig : ConfigurationBase, IPostSetupContent
+    public sealed class ClientConfig : ConfigurationBase
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
+        protected override string ConfigKey => "Client";
 
         public static ClientConfig Instance;
 
-        [Header(Key + "Client.Headers.Visuals")]
+        [Header(Key + "Client.Visuals.Header")]
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.ScreenshakeIntensityLabel")]
-        [Tooltip(Key + "Client.ScreenshakeIntensityTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.ScreenshakeIntensity")]
+        [Desc("Client.Visuals.ScreenshakeIntensity")]
         [Range(0f, 1f)]
         [DefaultValue(1f)]
         [SliderColor(120, 40, 255, 255)]
         public float ScreenshakeIntensity { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.FlashIntensityLabel")]
-        [Tooltip(Key + "Client.FlashIntensityTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.FlashIntensity")]
+        [Desc("Client.Visuals.FlashIntensity")]
         [Range(0f, 1f)]
         [DefaultValue(1f)]
         [SliderColor(120, 40, 255, 255)]
         public float FlashIntensity { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.HighQualityLabel")]
-        [Tooltip(Key + "Client.HighQualityTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.HighQuality")]
+        [Desc("Client.Visuals.HighQuality")]
         [DefaultValue(true)]
         public bool HighQuality { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.HighQualityShadersLabel")]
-        [Tooltip(Key + "Client.HighQualityShadersTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.HighQualityShaders")]
+        [Desc("Client.Visuals.HighQualityShaders")]
         [DefaultValue(true)]
         [ReloadRequired()]
         public bool HighQualityShaders { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.FlashShaderRepetitionsLabel")]
-        [Tooltip(Key + "Client.FlashShaderRepetitionsTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.FlashShaderRepetitions")]
+        [Desc("Client.Visuals.FlashShaderRepetitions")]
         [Increment(4)]
         [DefaultValue(40)]
         [Range(10, 80)]
@@ -59,50 +60,61 @@ namespace Aequus
         [SliderColor(30, 50, 120, 255)]
         public int FlashShaderRepetitions { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.NecromancyOutlinesLabel")]
-        [Tooltip(Key + "Client.NecromancyOutlinesTooltip")]
+        [MemberBGColor]
+        [Name("Client.Visuals.NecromancyOutlines")]
+        [Desc("Client.Visuals.NecromancyOutlines")]
         [DefaultValue(true)]
         public bool NecromancyOutlines { get; set; }
 
-        [Header(Key + "Client.Headers.Misc")]
+        [Header(Key + "Client.General.Header")]
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.NPCShopQuotesLabel")]
-        [Tooltip(Key + "Client.NPCShopQuotesTooltip")]
+        [MemberBGColor]
+        [Name("Client.General.NPCShopQuotes")]
+        [Desc("Client.General.NPCShopQuotes")]
         [DefaultValue(true)]
         public bool NPCShopQuotes { get; set; }
 
-        [BackgroundColor(80, 80, 130, 180)]
-        [Label(Key + "Client.OtherNPCShopQuotes")]
-        [Tooltip(Key + "Client.OtherNPCShopQuotesTooltip")]
+        [MemberBGColor_Secondary]
+        [Name("Client.General.OtherNPCShopQuotes")]
+        [Desc("Client.General.OtherNPCShopQuotes")]
         [DefaultValue(true)]
         public bool OtherNPCShopQuotes { get; set; }
 
-        [BackgroundColor(47, 29, 140, 180)]
-        [Label(Key + "Client.InfoDebugLogsLabel")]
-        [Tooltip(Key + "Client.InfoDebugLogsTooltip")]
+        [MemberBGColor]
+        [Name("Client.General.InfoDebugLogs")]
+        [Desc("Client.General.InfoDebugLogs")]
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
 
-        void IPostSetupContent.PostSetupContent(Aequus aequus)
+        public override void AddCustomTranslations()
         {
-            AequusText.NewFromDict("Configuration.Client.ScreenshakeIntensity", "Label", (s) => AequusText.ItemText<Baguette>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.FlashIntensity", "Label", (s) => AequusText.ItemText<NoonPotion>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.HighQuality", "Label", (s) => AequusText.ItemText<Fluorescence>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.HighQualityShaders", "Label", (s) => AequusText.ItemText<FrozenTear>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.FlashShaderRepetitions", "Label", (s) => AequusText.ItemText<SupernovaFruit>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.NecromancyOutlines", "Label", (s) => AequusText.ItemText<Insurgency>() + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.NPCShopQuotes", "Label", (s) => AequusText.ItemText(ItemID.Teacup) + "  " + s);
-            AequusText.NewFromDict("Configuration.Client.InfoDebugLogs", "Label", (s) => AequusText.ItemText(ItemID.DontStarveShaderItem) + "  " + s);
-        }
-
-        void ILoadable.Load(Mod mod)
-        {
-        }
-
-        void ILoadable.Unload()
-        {
+            Text("Visuals.ScreenshakeIntensity", new {
+                Baguette = AequusText.ItemText<Baguette>(),
+            });
+            Text("Visuals.FlashIntensity", new {
+                NoonPotion = AequusText.ItemText<NoonPotion>(),
+            });
+            Text("Visuals.HighQuality", new {
+                Fluorescence = AequusText.ItemText<Fluorescence>(),
+            });
+            Text("Visuals.HighQualityShaders", new {
+                FrozenTear = AequusText.ItemText<FrozenTear>(),
+            });
+            Text("Visuals.FlashShaderRepetitions", new {
+                SupernovaFruit = AequusText.ItemText<SupernovaFruit>(),
+            });
+            Text("Visuals.NecromancyOutlines", new {
+                Insurgency = AequusText.ItemText<Insurgency>(),
+            });
+            Text("General.NPCShopQuotes", new {
+                Teacup = AequusText.ItemText(ItemID.Teacup),
+            });
+            Text("General.OtherNPCShopQuotes", new {
+                CoffeeCup = AequusText.ItemText(ItemID.CoffeeCup),
+            });
+            Text("General.InfoDebugLogs", new {
+                RadioThing = AequusText.ItemText(ItemID.DontStarveShaderItem),
+            });
         }
     }
 }

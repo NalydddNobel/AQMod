@@ -1983,81 +1983,62 @@ Mods: {
 			AwakenedOmegaStarite: Omega Starite has awoken!
 		}
 
-		DemonSiege: Demon Siege
-		GlimmerEvent: Glimmer
-
-		EventProgress: {
-			GlimmerEvent: "{0} tiles away from the center"
-			GaleStreams: "{0}mph/{1}mph"
-		}
-
-		EventWarning: {
-			GlimmerEvent: A glimmer appears in the distance...
-		}
-
-		EventEnding: {
-			GlimmerEvent: The glimmer begins to fade away...
-		}
-
 		RecipeGroup: {
 			AnyEctoplasm: Any Ectoplasm
-			AnyEnergy: Any Energy
-			AnyNobleMushroom: Any Noble Mushroom
-			CopperOrTin: Copper or Tin
-			DemoniteBarOrCrimtaneBar: Demonite Bar or Crimtane Bar
-			ShadowScaleOrTissueSample: Shadow Scale or Tissue Sample
-			CascadeOrHelfire: Cascade or Helfire
 		}
 
 		Configuration: {
 			Client: {
-				Headers: {
-					Visuals: "[c/ddddff:Visuals]"
-					Misc: "[c/ddddff:Misc]"
+				Visuals: {
+					Header: "[c/ddddff:Visuals]"
+
+					ScreenshakeIntensity: "{Baguette} Screenshake Intensity"
+					ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
+					FlashIntensity: "{NoonPotion} Flash Intensity"
+					FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
+					HighQuality: "{Fluorescence} High Quality"
+					HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
+					HighQualityShaders: "{FrozenTear} HiDef Shaders"
+					HighQualityShadersTooltip: Disable and reload your mods to use regular shaders, may help with performance.
+					FlashShaderRepetitions: "{SupernovaFruit} HiDef Flash Shader - Repetitions"
+					FlashShaderRepetitionsTooltip: 
+						'''
+						How many repetitions this shader will perform, lower values may help with performance.
+						Only works when HiDef shaders are enabled.
+						'''
+					NecromancyOutlines: "{Insurgency} Ghost Minion Outlines"
+					NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
 				}
 
-				ScreenshakeIntensity: Screenshake Intensity
-				ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
-				FlashIntensity: Flash Intensity
-				FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
-				HighQuality: High Quality
-				HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
-				HighQualityShaders: HiDef Shaders
-				HighQualityShadersTooltip: Disable and reload your mods to use regular shaders, may help with performance.
-				FlashShaderRepetitions: HiDef Flash Shader - Repetitions
-				FlashShaderRepetitionsTooltip: 
-					'''
-					How many repetitions this shader will perform, lower values may help with performance.
-					Only works when HiDef shaders are enabled.
-					'''
-				NecromancyOutlines: Ghost Minion Outlines
-				NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
+				General: {
+					Header: "[c/ddddff:General]"
 
-				NPCShopQuotes: NPC Shop Quotes
-				NPCShopQuotesTooltip: Disable to remove npc item shop quotes.
-				OtherNPCShopQuotes: * Vanilla Shop Quotes
-				OtherNPCShopQuotesTooltip: Disable to remove item shop quotes for vanilla npcs.
-				InfoDebugLogs: Info and Debug Logs
-				InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
+					NPCShopQuotes: "{Teacup} NPC Shop Quotes"
+					NPCShopQuotesTooltip: Disable to remove npc item shop quotes.
+					OtherNPCShopQuotes: "{CoffeeCup} Vanilla Shop Quotes"
+					OtherNPCShopQuotesTooltip: Disable to remove item shop quotes for vanilla npcs.
+					InfoDebugLogs: "{RadioThing} Info and Debug Logs"
+					InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
+				}
 			}
 
 			Gameplay: {
-				Headers: {
-					Recipes: "[c/ddddff:Recipe Changes]"
-					General: "[c/ddddff:General]"
-					Drops: "[c/ddddff:Drops]"
-				}
-				Drops: {
-					DungeonMisc_AngryBones: "{Valari} dropping from Angry Bones"
-					DungeonNecromancy_DarkCaster: "{Revenant}, {WretchedCandle}, & {PandorasBox} dropping from Dark Casters"
-					DungeonNecromancy_Necromancer: "{Revenant}, {WretchedCandle}, & {PandorasBox} dropping from Necromancers"
-					LavaCharm_LavaSlime: "{LavaCharm} dropping from Lava Slimes"
-					Skyware_Harpies: "{Slingshot} dropping from Harpies"
-					FrozenMisc_Vikings: "{CrystalDagger} dropping from Undead Vikings & Armored Vikings"
+				General: {
+					Header: "[c/ddddff:General]"
 				}
 
-				VoidBagRecipe: Void Bag Recipe
-				VoidBagRecipeTooltip: Whether or not to change the void bag and void vault's recipe.
+				Recipes: {
+					Header: "[c/ddddff:Recipe Changes]"
+
+					PhoenixBlaster: "{PhoenixBlaster} Phoenix Blaster Recipe"
+					PhoenixBlasterTooltip: Changes the phoenix blaster's recipe to use Demonic Energy
+					VoidBag: "{VoidVault}/{VoidBag} Void Bag Recipe"
+					VoidBagTooltip: Changes the void bag and vault's recipes to use Demonic Energy and a money trough/safe
+				}
+
+				Drops: {
+					Header: "[c/ddddff:Drops]"
+				}
 			}
 		}
 
