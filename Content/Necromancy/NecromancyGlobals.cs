@@ -362,7 +362,7 @@ namespace Aequus.Content.Necromancy
                     float velocityBoost = DetermineVelocityBoost(npc, player, aequus);
                     if (velocityBoost > 0f)
                     {
-                        npc.position += npc.velocity *= velocityBoost;
+                        npc.position += npc.velocity * velocityBoost;
                     }
                 }
 

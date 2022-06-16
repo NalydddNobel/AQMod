@@ -23,6 +23,11 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.hide = true;
         }
 
+        public override bool? CanCutTiles()
+        {
+            return false;
+        }
+
         public override void Kill(int timeLeft)
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)

@@ -27,6 +27,11 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.timeLeft = 70;
         }
 
+        public override bool? CanCutTiles()
+        {
+            return false;
+        }
+
         public override void AI()
         {
             int npc = (int)Projectile.ai[0];
