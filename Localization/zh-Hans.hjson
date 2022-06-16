@@ -211,6 +211,7 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
+			IcebergFish: 冰川鱼
 			Hexoplasm: 冥狱融质
 			SkeletonKey: 骷髅钥匙
 			UnenchantedStaff: 未附魔的法杖
@@ -530,6 +531,7 @@ Mods: {
 		ItemTooltip: {
 			PandorasBox: 
 				'''
+				你的仆从有几率向敌人发射随机弹幕
 				增加幽魂仆从弹幕的速度
 				'''
 			ReboundNecklace: 
@@ -1983,81 +1985,62 @@ Mods: {
 			AwakenedOmegaStarite: 终末之星已苏醒!
 		}
 
-		DemonSiege: 恶魔围攻
-		GlimmerEvent: 微光
-
-		EventProgress: {
-			GlimmerEvent: "离中心{0}格远."
-			GaleStreams: "{0}mph/{1}mph"
-		}
-
-		EventWarning: {
-			GlimmerEvent: 远处出现了一缕微光...
-		}
-
-		EventEnding: {
-			GlimmerEvent: 微光渐渐消失...
-		}
-
 		RecipeGroup: {
 			AnyEctoplasm: 任意灵质
-			AnyEnergy: 任意能量
-			AnyNobleMushroom: 任意华贵蘑菇
-			CopperOrTin: 铜或铅
-			DemoniteBarOrCrimtaneBar: 魔矿锭或猩红矿锭
-			ShadowScaleOrTissueSample: 暗影鳞片或组织样本
-			CascadeOrHelfire: 喷流球或狱火球
 		}
 
 		Configuration: {
 			Client: {
-				Headers: {
-					Visuals: "[c/ddddff:视觉]"
-					Misc: "[c/ddddff:杂项]"
+				Visuals: {
+					Header: "[c/ddddff:视觉]"
+
+					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
+					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
+					FlashIntensity: "{NoonPotion} 闪光强度"
+					FlashIntensityTooltip: 数值越低, 闪光强度越低.
+					HighQuality: "{Fluorescence} 高品质"
+					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
+					HighQualityShaders: "{FrozenTear} 高品质着色器"
+					HighQualityShadersTooltip: 禁用并重新加载Mod以使用常规着色器, 可能有助于提高性能.
+					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
+					FlashShaderRepetitionsTooltip: 
+						'''
+						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
+						仅会在高品质着色器启用时生效.
+						'''
+					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
+					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
 				}
 
-			ScreenshakeIntensity: 屏幕震动强度
-			ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
-				FlashIntensity: 闪光强度
-				FlashIntensityTooltip: 数值越低, 闪光强度越低.
-				HighQuality: 高品质
-				HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
-				HighQualityShaders: 高品质着色器
-				HighQualityShadersTooltip: 禁用并重新加载Mod以使用常规着色器, 可能有助于提高性能.
-				FlashShaderRepetitions: 高品质闪光着色器 - 重复
-				FlashShaderRepetitionsTooltip: 
-					'''
-					将重复执行多次该着色器, 较低的数值可能有助于提高性能.
-					仅会在高品质着色器启用时生效
-					'''
-				NecromancyOutlines: 幽魂仆从轮廓
-				NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
+			General: {
+					Header: "[c/ddddff:常规]"
 
-				NPCShopQuotes: NPC商店报价
-				NPCShopQuotesTooltip: 禁用以移除NPC商店物品报价.
-				OtherNPCShopQuotes: * 原版商店报价
-				OtherNPCShopQuotesTooltip: 禁用以移除原版城镇NPC商店物品报价.
-				InfoDebugLogs: 信息和调试日志
-				InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用.
-			}
+					NPCShopQuotes: "{Teacup} NPC商店报价"
+					NPCShopQuotesTooltip: 禁用NPC商店物品报价
+					OtherNPCShopQuotes: "{CoffeeCup} 原版商店报价"
+					OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品报价
+					InfoDebugLogs: "{RadioThing} 信息和调试日志"
+					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
+					}
+				}
 
 			Gameplay: {
-				Headers: {
-					Recipes: "[c/ddddff:合成表更改]"
-					General: "[c/ddddff:常规]"
-					Drops: "[c/ddddff:掉落物]"
-				}
-				Drops: {
-					DungeonMisc_AngryBones: "{Valari}掉落自愤怒骷髅"
-					DungeonNecromancy_DarkCaster: "{Revenant}、{WretchedCandle}和{PandorasBox}掉落自黑暗滚轮"
-					DungeonNecromancy_Necromancer: "{Revenant}、{WretchedCandle}和{PandorasBox}掉落自死灵巫师"
-					LavaCharm_LavaSlime: "{LavaCharm}掉落自熔岩史莱姆"
-					Skyware_Harpies: "{Slingshot}掉落自鸟妖"
-					FrozenMisc_Vikings: "{CrystalDagger}掉落自不死维京人和装甲维京人"
+				General: {
+					Header: "[c/ddddff:常规]"
 				}
 
-				VoidBagRecipe: 虚空包裹合成表
-				VoidBagRecipeTooltip: 决定是否会更改虚空包裹和虚空保险箱的合成表配方.
+				Recipes: {
+					Header: "[c/ddddff:合成表更改]"
+
+					PhoenixBlaster: "{PhoenixBlaster} 凤凰爆破枪合成表"
+					PhoenixBlasterTooltip: 更改凤凰爆破枪的合成表以使用恶魔能量
+					VoidBag: "{VoidVault}/{VoidBag} 虚空袋合成表"
+					VoidBagTooltip: 更改虚空袋或虚空保险箱的合成表以使用恶魔能量和钱箱/保险箱
+				}
+
+				Drops: {
+					Header: "[c/ddddff:掉落物]"
+				}
 			}
 		}
 
