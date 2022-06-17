@@ -27,12 +27,12 @@ namespace Aequus.Content.Necromancy
     {
         public static HashSet<int> BlacklistVelocityBoost { get; private set; }
 
+        public static SoundStyle ZombieRecruitSound { get; private set; }
+
         public static bool AI_IsZombie;
         public static int AI_ZombiePlayerOwner;
         public static int AI_NPCTarget;
         public static Vector2 AI_ReturnPlayerLocation;
-
-        public static SoundStyle ZombieRecruitSound { get; private set; }
 
         public int zombieDrain;
         public bool isZombie;
@@ -88,6 +88,7 @@ namespace Aequus.Content.Necromancy
             int timer = -1;
             float tier = -1f;
             int renderLayer = -1;
+            int slotsUsed = -1;
             if (isZombieOld)
             {
                 var zombie = self.GetGlobalNPC<NecromancyNPC>();
@@ -95,6 +96,7 @@ namespace Aequus.Content.Necromancy
                 timer = zombie.zombieTimer;
                 tier = zombie.zombieDebuffTier;
                 renderLayer = zombie.renderLayer;
+                slotsUsed = zombie.slotsConsumed;
             }
 
             orig(self, newType);
@@ -107,6 +109,7 @@ namespace Aequus.Content.Necromancy
                 zombie.zombieTimer = timer;
                 zombie.zombieDebuffTier = tier;
                 zombie.renderLayer = renderLayer;
+                zombie.slotsConsumed = slotsUsed;
             }
         }
 

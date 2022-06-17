@@ -91,7 +91,14 @@ namespace Aequus.Content.Necromancy
                 [NPCID.GoblinThief] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
                 [NPCID.GoblinWarrior] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
                 [NPCID.ServantofCthulhu] = GhostInfo.One,
+                [NPCID.SlimeRibbonRed] = GhostInfo.One,
+                [NPCID.SlimeRibbonGreen] = GhostInfo.One,
+                [NPCID.SlimeRibbonWhite] = GhostInfo.One,
+                [NPCID.SlimeRibbonYellow] = GhostInfo.One,
+                [NPCID.SlimeMasked] = GhostInfo.One,
 
+                [NPCID.CrimsonPenguin] = GhostInfo.Two,
+                [NPCID.CorruptPenguin] = GhostInfo.Two,
                 [NPCID.Crimera] = GhostInfo.Two,
                 [NPCID.EaterofSouls] = GhostInfo.Two,
                 [NPCID.GiantFlyingAntlion] = GhostInfo.Two,
@@ -124,6 +131,8 @@ namespace Aequus.Content.Necromancy
                 [NPCID.TheHungryII] = GhostInfo.Two,
                 [NPCID.Probe] = GhostInfo.Two,
 
+                [NPCID.SwampThing] = GhostInfo.Three,
+                [NPCID.Unicorn] = GhostInfo.Three,
                 [NPCID.AnomuraFungus] = GhostInfo.Three,
                 [NPCID.DoctorBones] = GhostInfo.Three,
                 [NPCID.FungiBulb] = GhostInfo.Three,

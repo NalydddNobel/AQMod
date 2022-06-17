@@ -7,8 +7,6 @@ namespace Aequus.Items.Accessories
 {
     public class FaultyCoin : ModItem, IUpdateBank
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.LuckyCoin;
-
         public float Chance => 0.1f;
 
         public override void SetStaticDefaults()

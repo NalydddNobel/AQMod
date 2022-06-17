@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +27,14 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.zombieDrain = 2 * AequusHelpers.NPCREGEN;
             zombie.DebuffTier(Tier);
             zombie.RenderLayer(GhostOutlineTarget.IDs.Zombie);
+        }
+
+        public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff
+        {
+            if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier)
+            {
+                damage = Math.Min(damage, npc.life / 2);
+            }
         }
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player) where T : NecromancyDebuff

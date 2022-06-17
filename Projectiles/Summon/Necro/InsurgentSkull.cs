@@ -1,7 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Debuffs.Necro;
+﻿using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Graphics.Prims;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,6 +18,8 @@ namespace Aequus.Projectiles.Summon.Necro
         protected PrimRenderer smokePrim;
 
         public int homingDelay;
+
+        public override float Tier => 4f;
 
         public override void SetStaticDefaults()
         {
@@ -132,7 +132,7 @@ namespace Aequus.Projectiles.Summon.Necro
             }
             Projectile.ai[1] = -1f;
 
-            if (homingDelay < 40)
+            if (homingDelay < 20)
             {
                 homingDelay++;
                 if (homingDelay == 20)
@@ -203,6 +203,11 @@ namespace Aequus.Projectiles.Summon.Necro
             height = 10;
             fallThrough = true;
             return true;
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            NecromancyDebuff.ReduceDamageForDebuffApplication<InsurgentDebuff>(Tier, target, ref damage);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

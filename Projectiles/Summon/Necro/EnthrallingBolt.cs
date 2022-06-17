@@ -8,9 +8,16 @@ namespace Aequus.Projectiles.Summon.Necro
     {
         public override string Texture => AequusHelpers.GetPath<ZombieBolt>();
 
+        public override float Tier => 100f;
+
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(100, 225, 255, 255 - Projectile.alpha);
+        }
+
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            NecromancyDebuff.ReduceDamageForDebuffApplication<EnthrallingDebuff>(Tier, target, ref damage);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

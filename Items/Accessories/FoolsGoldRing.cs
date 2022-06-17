@@ -8,8 +8,6 @@ namespace Aequus.Items.Accessories
 {
     public class FoolsGoldRing : ModItem
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.GoldRing;
-
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);

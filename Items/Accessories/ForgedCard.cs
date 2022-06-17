@@ -7,8 +7,6 @@ namespace Aequus.Items.Accessories
 {
     public class ForgedCard : ModItem, IUpdateBank
     {
-        public override string Texture => "Terraria/Images/Item_" + ItemID.DiscountCard;
-
         public int Flat => Item.buyPrice(gold: 2, silver: 50);
 
         public override void SetStaticDefaults()

@@ -1,7 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Debuffs.Necro;
+﻿using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Graphics.Prims;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +16,8 @@ namespace Aequus.Projectiles.Summon.Necro
         protected PrimRenderer prim;
         protected float primScale;
         protected Color primColor;
+
+        public virtual float Tier => 1f;
 
         public override void SetDefaults()
         {
@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            damage = Math.Min(damage, target.life / 2);
+            NecromancyDebuff.ReduceDamageForDebuffApplication<NecromancyDebuff>(Tier, target, ref damage);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
