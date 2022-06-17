@@ -193,8 +193,8 @@ Mods: {
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
-			GravetenderHood: 守墓者兜帽
-			GravetenderRobes: 守墓者长袍
+			GravetenderHood: 守墓人兜帽
+			GravetenderRobes: 守墓人长袍
 
 			FlowerCrown: 花冠
 			DartTrapHat: 飞镖帽
@@ -1377,6 +1377,8 @@ Mods: {
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			GravetenderMinionBuff: 守墓人
+
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
@@ -1437,6 +1439,8 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 			SpicyEelBuff: 大幅度增加移动速度
+
+			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
 			RedSpriteMinionBuff: 红色精灵会为你而战!
 			SnowflakeBuff: 雪花会为你而战
