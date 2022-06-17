@@ -12,12 +12,14 @@ namespace Aequus.Items
 {
     public class AequusItem : GlobalItem, IAddRecipes
     {
+        public static HashSet<int> LegendaryFish { get; private set; }
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
         public static HashSet<int> BankEquipFuncs { get; private set; }
 
         public override void Load()
         {
+            LegendaryFish = new HashSet<int>();
             SummonStaff = new HashSet<int>();
             CritOnlyModifier = new HashSet<int>() 
             {

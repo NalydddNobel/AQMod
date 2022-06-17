@@ -118,11 +118,17 @@ namespace Aequus.Common
                 goto PostProbeFish;
             }
 
+            var aequus = Player.Aequus();
             if (attempt.inLava)
             {
+
                 if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4))
                 {
                     itemDrop = ModContent.ItemType<TatteredDemonHorn>();
+                }
+                else if (aequus.nearGoreNest && Main.rand.NextBool(16))
+                {
+                    itemDrop = ModContent.ItemType<GoreFish>();
                 }
                 goto PostProbeFish;
             }

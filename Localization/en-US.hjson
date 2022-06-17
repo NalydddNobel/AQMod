@@ -219,6 +219,8 @@ Mods: {
 			UnenchantedStaff: Unenchanted Staff
 			Moro: Moro
 			
+			GoreFish: Gore Fish
+
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 
@@ -722,6 +724,8 @@ Mods: {
 
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
+
+			GoreFish: A legendary fish enriched with demonic energy
 
 			SnowRoulette:
 				'''

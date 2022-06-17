@@ -9,6 +9,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
+using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Misc.AshGraves;
@@ -47,13 +48,16 @@ namespace Aequus
         public int candleSouls;
 
         [SaveData("Scammer")]
+        [SaveDataAttribute.IsListedBoolean]
         public bool scammer;
         /// <summary>
         /// Enabled by <see cref="Items.Consumables.Moro"/>
         /// </summary>
         [SaveData("Moro")]
+        [SaveDataAttribute.IsListedBoolean]
         public bool moroUsed;
         [SaveData("GravesDisabled")]
+        [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
 
         /// <summary>
@@ -79,6 +83,7 @@ namespace Aequus
         /// A point determining one of the close gore nests. Goes by on-spawn order.
         /// </summary>
         public Point eventDemonSiege;
+        public bool nearGoreNest;
 
         /// <summary>
         /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="ClosestEnemy"/>
@@ -497,6 +502,7 @@ namespace Aequus
 
             eventGaleStreams = CheckEventGaleStreams();
             eventDemonSiege = FindDemonSiege();
+            nearGoreNest = AequusSystem.GoreNestCount > 0;
             forceDaytime = 0;
         }
         /// <summary>
@@ -1331,6 +1337,21 @@ namespace Aequus
             }
             return new Vector2(Main.rand.Next(10, 30) * 0.1f * hitDirection + num,
                 Main.rand.Next(-40, -20) * 0.1f);
+        }
+
+        public void LegendaryFishRewards(NPC npc, Item item, int i)
+        {
+            int money = Main.rand.Next(Item.gold * 8, Item.gold * 10);
+            var source = npc.GetSource_GiftOrReward();
+            if (item.type == ModContent.ItemType<GoreFish>())
+            {
+                Player.QuickSpawnItem(source, ItemID.LavaFishingHook);
+                if (NPC.downedBoss3 && Main.rand.NextBool())
+                {
+                    Player.QuickSpawnItem(source, Main.hardMode ? ItemID.LavaCrateHard : ItemID.LavaCrate);
+                }
+            }
+            AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }
 
         #region Hooks

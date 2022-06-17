@@ -11,6 +11,7 @@ using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Projectiles;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -25,6 +26,8 @@ namespace Aequus
     public sealed class AequusSystem : ModSystem
     {
         public const int DungeonChestItemTypesMax = 4;
+
+        public static int GoreNestCount;
 
         [SaveData("GaleStreams")]
         [SaveDataAttribute.IsListedBoolean]
@@ -256,6 +259,11 @@ namespace Aequus
                 case 3:
                     return ModContent.ItemType<PandorasBox>();
             }
+        }
+
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
+        {
+            GoreNestCount = tileCounts[ModContent.TileType<GoreNestTile>()];
         }
 
         public override void PostUpdatePlayers()

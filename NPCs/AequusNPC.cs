@@ -2,16 +2,10 @@
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
-using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
-using Aequus.Items.Weapons.Summon.Necro;
-using ModGlobalsNet;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -208,6 +202,32 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
                     break;
             }
+        }
+
+        public override bool PreChatButtonClicked(NPC npc, bool firstButton)
+        {
+            if (npc.type == NPCID.Angler)
+            {
+                if (firstButton)
+                {
+                    var inv = Main.LocalPlayer.inventory;
+                    for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+                    {
+                        if (AequusItem.LegendaryFish.Contains(inv[i].type))
+                        {
+                            Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
+                            inv[i].stack--;
+                            if (inv[i].stack <= 0)
+                            {
+                                inv[i].TurnToAir();
+                            }
+                            SoundEngine.PlaySound(SoundID.Grab);
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
     }
 }
