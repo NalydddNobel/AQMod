@@ -219,6 +219,8 @@ Mods: {
 			UnenchantedStaff: 未附魔的法杖
 			Moro: 摩洛
 
+			GoreFish: 肉块鱼
+
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 
@@ -722,6 +724,8 @@ Mods: {
 
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
+
+			GoreFish: 一种身上带有恶魔能量的传奇鱼类
 
 			SnowRoulette:
 				'''
