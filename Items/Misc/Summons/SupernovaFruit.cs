@@ -53,13 +53,13 @@ namespace Aequus.Items.Misc.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(spriteBatch, Begin.Shader);
+            Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
             var drawData = new DrawData(texture, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<EnchantedDye>());
             effect.Apply(null, drawData);
             drawData.Draw(spriteBatch);
             Main.spriteBatch.End();
-            Begin.UI.Begin(spriteBatch, Begin.Regular);
+            Begin.UI.Begin(spriteBatch, Begin.Regular, useScissorRectangle: true);
             return false;
         }
 

@@ -807,6 +807,11 @@ namespace Aequus.Content.Necromancy
             projectile.friendly = true;
             projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
             projectile.DamageType = Aequus.NecromancyDamage;
+            if (!projectile.usesLocalNPCImmunity)
+            {
+                projectile.usesIDStaticNPCImmunity = true;
+                projectile.idStaticNPCHitCooldown = 10;
+            }
             isZombie = true;
             zombieNPCOwner = npc;
             zombieDebuffTier = tier;
@@ -954,6 +959,11 @@ namespace Aequus.Content.Necromancy
                 projectile.hostile = false;
                 projectile.friendly = true;
                 projectile.DamageType = Aequus.NecromancyDamage;
+                if (!projectile.usesLocalNPCImmunity)
+                {
+                    projectile.usesIDStaticNPCImmunity = true;
+                    projectile.idStaticNPCHitCooldown = 10;
+                }
                 zombieNPCOwner = reader.ReadInt32();
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();

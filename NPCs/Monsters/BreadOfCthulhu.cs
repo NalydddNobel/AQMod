@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Armor.Vanity;
+﻿using Aequus.Content.Necromancy;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
@@ -15,6 +16,8 @@ namespace Aequus.NPCs.Monsters
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
+
+            NecromancyDatabase.NPCs.Add(Type, GhostInfo.One);
         }
 
         public override void SetDefaults()

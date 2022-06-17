@@ -24,8 +24,6 @@ namespace Aequus.NPCs.Monsters
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 6;
-
-            NecromancyDatabase.NPCs.Add(Type, GhostInfo.One.WithAggro(AggroForcer.BloodMoon));
         }
 
         public override void SetDefaults()
@@ -86,12 +84,6 @@ namespace Aequus.NPCs.Monsters
         //        int choice = Main.rand.Next(choices.Count);
         //        Item.NewItem(rect, choices[choice]);
         //    }
-        //}
-
-        //private void randDrops()
-        //{
-        //    if (Main.rand.NextBool(5))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<BloodshedPotion>());
         //}
 
         protected override int GetJumpTimer() => NPC.ai[1] == 0f ? 5 : 10;
@@ -267,7 +259,7 @@ namespace Aequus.NPCs.Monsters
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (Main.bloodMoon && !NPC.AnyNPCs(Type)) ? SpawnCondition.OverworldNightMonster.Chance * 0.05f : 0f;
+            return (Main.bloodMoon && !NPC.AnyNPCs(Type)) ? SpawnCondition.OverworldNightMonster.Chance * 0.005f : 0f;
         }
     }
 }

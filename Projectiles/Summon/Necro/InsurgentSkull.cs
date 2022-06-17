@@ -6,6 +6,7 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -17,6 +18,8 @@ namespace Aequus.Projectiles.Summon.Necro
     public class InsurgentSkull : ZombieBolt
     {
         protected PrimRenderer smokePrim;
+
+        public int homingDelay;
 
         public override void SetStaticDefaults()
         {
@@ -129,11 +132,22 @@ namespace Aequus.Projectiles.Summon.Necro
             }
             Projectile.ai[1] = -1f;
 
-            int target = Projectile.FindTargetWithLineOfSight(600f);
-            if (target != -1)
+            if (homingDelay < 40)
             {
-                float speed = Projectile.velocity.Length();
-                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.125f)) * speed;
+                homingDelay++;
+                if (homingDelay == 20)
+                {
+                    Projectile.netUpdate = true;
+                }
+            }
+            else
+            {
+                int target = Projectile.FindTargetWithLineOfSight(600f);
+                if (target != -1)
+                {
+                    float speed = Projectile.velocity.Length();
+                    Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.125f)) * speed;
+                }
             }
 
             Projectile.rotation = Projectile.velocity.ToRotation();
@@ -193,6 +207,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
             Projectile.damage = 0;
@@ -210,6 +225,16 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.velocity = oldVelocity;
             Projectile.netUpdate = true;
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(homingDelay);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            homingDelay = reader.ReadInt32();
         }
 
         public override bool PreDraw(ref Color lightColor)
