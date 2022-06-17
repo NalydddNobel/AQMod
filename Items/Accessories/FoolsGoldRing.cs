@@ -20,7 +20,6 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 20);
-            Item.color = new Color(255, 200, 200, 255);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
