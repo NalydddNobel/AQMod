@@ -14,7 +14,7 @@ namespace Aequus.Items.Misc
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Batfish);
-            Item.stack = 999;
+            Item.maxStack = 999;
         }
     }
 }
