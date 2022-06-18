@@ -249,6 +249,18 @@ namespace Aequus
             return new Vector2(UnNaN(value.X), UnNaN(value.Y));
         }
 
+        public static Recipe RegisterAfter(this Recipe rec, int itemID)
+        {
+            rec.Register();
+            rec.SortAfterFirstRecipesOf(itemID);
+            return rec;
+        }
+        public static Recipe RegisterBefore(this Recipe rec, int itemID)
+        {
+            rec.Register();
+            rec.SortBeforeFirstRecipesOf(itemID);
+            return rec;
+        }
         public static Recipe Register(this Recipe rec, Action<Recipe> postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh)
         {
             rec.Register();

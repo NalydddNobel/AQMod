@@ -2,6 +2,7 @@
 using Aequus.Items.Consumables.Roulettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -11,6 +12,23 @@ namespace Aequus.Items.Accessories
 {
     public class GlowCore : DyeableAccessory
     {
+        public static HashSet<int> ProjectileBlacklist { get; private set; }
+
+        public override void Load()
+        {
+            ProjectileBlacklist = new HashSet<int>()
+            {
+                ProjectileID.StormTigerGem,
+                ProjectileID.AbigailCounter,
+            };
+        }
+
+        public override void Unload()
+        {
+            ProjectileBlacklist?.Clear();
+            ProjectileBlacklist = null;
+        }
+
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
@@ -110,7 +128,7 @@ namespace Aequus.Items.Accessories
     {
         public override void PostAI(Projectile projectile)
         {
-            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255)
+            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
                 if (glowCore.glowCoreItem != null)

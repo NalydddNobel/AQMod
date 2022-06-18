@@ -140,7 +140,7 @@ namespace Aequus.Tiles.Furniture
                 return;
             }
 
-            var texture = ModContent.Request<Texture2D>(Texture).Value;
+            var texture = ModContent.Request<Texture2D>(base.Texture).Value;
             int frameY = tile.TileFrameX / FrameWidth;
             var frame = texture.Frame(1, FrameCount, 0, frameY);
             var origin = frame.Size() / 2f;
@@ -153,7 +153,7 @@ namespace Aequus.Tiles.Furniture
 
             if (frameY == OmegaStarite)
             {
-                var orbTexture = ModContent.Request<Texture2D>(Texture + "Orbs").Value;
+                var orbTexture = ModContent.Request<Texture2D>(base.Texture + "Orbs").Value;
                 var orbFrame = orbTexture.Frame(1, 5, 0, 0);
                 var orbOrigin = orbFrame.Size() / 2f;
                 float f = Main.GlobalTimeWrappedHourly % (MathHelper.TwoPi / 5f) - MathHelper.PiOver2;

@@ -9,12 +9,6 @@ namespace Aequus.Projectiles.Summon
 {
     public class GravetenderWisp : MinionBase
     {
-        public const int STATE_HAUNTING = 2;
-        public const int STATE_ATTACKING = 1;
-        public const int STATE_IDLE = 0;
-
-        public int State { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
-
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 5;
