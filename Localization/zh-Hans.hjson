@@ -1383,6 +1383,7 @@ Mods: {
 
 			GravetenderMinionBuff: 守墓人
 
+			CorruptPlantBuff: 腐化植物
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
@@ -1446,6 +1447,7 @@ Mods: {
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
+			CorruptPlantBuff: 腐化植物会为你而战!
 			RedSpriteMinionBuff: 红色精灵会为你而战!
 			SnowflakeBuff: 雪花会为你而战
 
