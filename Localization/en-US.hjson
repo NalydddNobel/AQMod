@@ -1383,6 +1383,7 @@ Mods: {
 
 			GravetenderMinionBuff: Gravetender
 
+			CorruptPlantBuff: Corrupt Plant
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
@@ -1446,6 +1447,7 @@ Mods: {
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
+			CorruptPlantBuff: The corrupted plant will fight for you!
 			RedSpriteMinionBuff: The red sprite will fight for you!
 			SnowflakeBuff: The snowflake will fight for you
 

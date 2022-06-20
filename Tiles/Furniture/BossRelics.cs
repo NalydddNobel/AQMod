@@ -133,8 +133,8 @@ namespace Aequus.Tiles.Furniture
             //    offScreen = Vector2.Zero;
             //}
 
-            Point p = new Point(i, j);
-            Tile tile = Main.tile[p.X, p.Y];
+            var p = new Point(i, j);
+            var tile = Main.tile[p.X, p.Y];
             if (!tile.HasTile)
             {
                 return;

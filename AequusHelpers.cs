@@ -120,11 +120,11 @@ namespace Aequus
             }
         }
 
-        public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f)
+        public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f)
         {
             if (Main.player[projectile.owner].HasMinionAttackTargetNPC)
             {
-                distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
+                distance = Vector2.Distance(position, projectile.Center);
                 if (distance < maxDistance)
                 {
                     return Main.player[projectile.owner].MinionAttackTargetNPC;
@@ -136,10 +136,10 @@ namespace Aequus
             {
                 if (Main.npc[i].CanBeChasedBy(projectile))
                 {
-                    float d = projectile.Distance(Main.npc[i].Center);
+                    float d = Vector2.Distance(position, Main.npc[i].Center).UnNaN();
                     if (d < distance)
                     {
-                        if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(projectile.position, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
+                        if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(position - projectile.Size / 2f, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
                         {
                             distance = d;
                             target = i;
@@ -148,6 +148,10 @@ namespace Aequus
                 }
             }
             return target;
+        }
+        public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f)
+        {
+            return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
         }
 
         public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2)
