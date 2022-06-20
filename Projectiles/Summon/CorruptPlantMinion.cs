@@ -3,6 +3,8 @@ using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -12,11 +14,24 @@ namespace Aequus.Projectiles.Summon
 {
     public class CorruptPlantMinion : MinionBase
     {
+        public static HashSet<int> EatBlacklist { get; private set; }
+
         public const int FRAMES_LARGE = 14;
         public const int FRAMES_MED = 10;
 
         public int typeEaten;
         public int eatTimer;
+        public int lick;
+
+        public override void Load()
+        {
+            EatBlacklist = new HashSet<int>()
+            {
+                NPCID.MotherSlime,
+                NPCID.LavaSlime,
+                NPCID.VortexHornetQueen,
+            };
+        }
 
         public override void SetStaticDefaults()
         {
@@ -29,7 +44,7 @@ namespace Aequus.Projectiles.Summon
             this.SetTrail(12);
         }
 
-        public sealed override void SetDefaults()
+        public override void SetDefaults()
         {
             Projectile.width = 30;
             Projectile.height = 30;
@@ -149,6 +164,7 @@ namespace Aequus.Projectiles.Summon
                             if (eatTimer < 1000)
                             {
                                 Projectile.netUpdate = true;
+                                lick = 1;
                                 Burp(typeEaten);
                             }
                             else
@@ -172,7 +188,22 @@ namespace Aequus.Projectiles.Summon
                         Projectile.netUpdate = true;
                     }
                 }
-
+                else
+                {
+                    Projectile.frame = 0;
+                    if (lick > 0)
+                    {
+                        lick++;
+                        if (lick / 5 >= (size == 2 ? 6 : 5))
+                        {
+                            lick = 0;
+                        }
+                        else
+                        {
+                            Projectile.frame = (size == 2 ? 8 : 5) + lick / 5;
+                        }
+                    }
+                }
                 if (Projectile.ai[1] > 0f)
                 {
                     Projectile.ai[1] -= 0.33f;
@@ -241,21 +272,29 @@ namespace Aequus.Projectiles.Summon
             return base.IdlePosition(player, leader, minionPos, count) + new Vector2(0f, -20f + -10f * Math.Min(Range(CountSlots()) / 1.5f, 10));
         }
 
+        public override void ModifyDamageHitbox(ref Rectangle hitbox)
+        {
+            int size = Size();
+            if (size > 0)
+            {
+                hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * size * (1f + size / 2f));
+            }
+        }
+
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             damage = (int)(damage * (1f + CountSlots() * 0.15f));
-            if ((target.life - damage) < 75 + CountSlots() * 15f)
+            if (!target.boss && target.realLife == -1 && (target.life - damage) < 75 + CountSlots() * 15f)
             {
-                typeEaten = target.netID;
-                target.active = false;
-                target.life = -1;
-                target.NPCLoot();
-                SoundEngine.PlaySound(SoundID.Item2, target.Center);
-                if (Main.netMode != NetmodeID.Server)
+                if (!EatBlacklist.Contains(target.type))
                 {
-                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, target.whoAmI);
+                    eatTimer = 0;
+                    typeEaten = target.netID;
+                    target.Aequus().noHitEffect = true;
+                    SoundEngine.PlaySound(SoundID.Item2, target.Center);
                 }
-                damage = 1;
+                damage = target.lifeMax;
+                crit = true;
                 return;
             }
         }
@@ -298,44 +337,7 @@ namespace Aequus.Projectiles.Summon
                 origin = frame.Size() / 2f;
             }
 
-            var chainTexture = ModContent.Request<Texture2D>(Texture + "_Chain").Value;
-            var chainOrigin = new Vector2(chainTexture.Width * 0.5f, 4f);
-            var chainPos = Main.player[Projectile.owner].Center;
-            var chainDir = Vector2.Normalize(new Vector2(Main.player[Projectile.owner].velocity.X / -4f - Projectile.spriteDirection, -2f));
-
-            var vineColor = new Color(80, 195, 100);
-            var v = Main.rgbToHsl(vineColor);
-            v.X += slots / 50f;
-            v.Y *= 0.5f;
-            v.Y += AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -0.1f, 0.1f);
-            vineColor = Main.hslToRgb(v);
-            var chainEnd = Projectile.Center + new Vector2(t.Width * 0.25f * -Projectile.spriteDirection, 0f).RotatedBy(Projectile.rotation);
-            float maxMove = (chainTexture.Height - 4f) * 0.75f;
-            float minMin = 0.06f;
-            var chainLength = (chainEnd - chainPos).Length();
-            float chainLengthStrengthingRange = Range(slots) * 12f; // * 0.75f * 16f;
-            if (chainLength > chainLengthStrengthingRange)
-            {
-                minMin += (chainLength - chainLengthStrengthingRange) / (Range(slots) * 0.25f) * 0.33f;
-                minMin = Math.Min(minMin, 0.4f);
-            }
-            for (int i = 0; i < 100 && (chainPos - chainEnd).Length().UnNaN() > chainTexture.Height / 2f; i++)
-            {
-                float movement = (chainPos - chainEnd).Length().UnNaN();
-                if (movement > maxMove)
-                {
-                    movement = maxMove;
-                }
-                chainPos += chainDir * movement;
-                float length = (chainPos - chainEnd).Length().UnNaN();
-                float min = minMin;
-                if (length < 80f)
-                {
-                    min += length / 240f;
-                }
-                chainDir = Vector2.Lerp(chainDir, Vector2.Normalize(chainEnd - chainPos), Math.Max(1f - AequusHelpers.CalcProgress(100, i), min));
-                Main.EntitySpriteDraw(chainTexture, chainPos.Floor() - Main.screenPosition, null, Lighting.GetColor((int)(chainPos.X / 16f), (int)(chainPos.Y / 16f), vineColor), chainDir.ToRotation() + MathHelper.PiOver2, chainOrigin, Projectile.scale, SpriteEffects.None, 0);
-            }
+            DrawChain(slots, t);
 
             bool drawT = Projectile.ai[1] > 1000f && Projectile.velocity.Length() > 2f && (Projectile.oldPos[1] - Projectile.position).Length() > 2f;
             int endT = trailLength;
@@ -367,6 +369,58 @@ namespace Aequus.Projectiles.Summon
             }
 
             return false;
+        }
+        public void DrawChain(int slots, Texture2D t)
+        {
+            var chainTexture = ModContent.Request<Texture2D>(Texture + "_Chain").Value;
+            var chainOrigin = new Vector2(chainTexture.Width * 0.5f, 4f);
+            var chainPos = Main.player[Projectile.owner].Center;
+            var chainDir = Vector2.Normalize(new Vector2(Main.player[Projectile.owner].velocity.X / -4f - Projectile.spriteDirection, -2f));
+            var vineColor = new Color(80, 195, 100);
+            var v = Main.rgbToHsl(vineColor);
+            v.X += slots / 50f;
+            v.Y *= 0.5f;
+            v.Y += AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -0.1f, 0.1f);
+            vineColor = Main.hslToRgb(v);
+            var chainEnd = Projectile.Center + new Vector2(t.Width * 0.25f * -Projectile.spriteDirection, 0f).RotatedBy(Projectile.rotation);
+            float maxMove = (chainTexture.Height - 4f) * 0.75f;
+            float minMin = 0.06f;
+            var chainLength = (chainEnd - chainPos).Length();
+            float chainLengthStrengthingRange = Range(slots) * 12f; // * 0.75f * 16f;
+            if (chainLength > chainLengthStrengthingRange)
+            {
+                minMin += (chainLength - chainLengthStrengthingRange) / (Range(slots) * 0.25f) * 0.33f;
+                minMin = Math.Min(minMin, 0.5f);
+            }
+            for (int i = 0; i < 100 && (chainPos - chainEnd).Length().UnNaN() > chainTexture.Height * 0.75f; i++)
+            {
+                float movement = (chainPos - chainEnd).Length().UnNaN();
+                if (movement > maxMove)
+                {
+                    movement = maxMove;
+                }
+                chainPos += chainDir * movement;
+                float length = (chainPos - chainEnd).Length().UnNaN();
+                float min = minMin;
+                if (length < 80f)
+                {
+                    min += length / 200f;
+                }
+                chainDir = Vector2.Lerp(chainDir, Vector2.Normalize(chainEnd - chainPos), Math.Max(1f - AequusHelpers.CalcProgress(100, i), min));
+                Main.EntitySpriteDraw(chainTexture, chainPos.Floor() - Main.screenPosition, null, Lighting.GetColor((int)(chainPos.X / 16f), (int)(chainPos.Y / 16f), vineColor), chainDir.ToRotation() + MathHelper.PiOver2, chainOrigin, Projectile.scale, SpriteEffects.None, 0);
+            }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(typeEaten);
+            writer.Write(eatTimer);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            typeEaten = reader.ReadInt32();
+            eatTimer = reader.ReadInt32();
         }
     }
 

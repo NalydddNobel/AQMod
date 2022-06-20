@@ -81,6 +81,36 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static bool HereditarySource(IEntitySource source, out Entity entity)
+        {
+            entity = null;
+            if (source == null)
+            {
+                return false;
+            }
+            if (source is EntitySource_OnHit onHit)
+            {
+                entity = onHit.EntityStruck;
+                return true;
+            }
+            else if (source is EntitySource_Parent parent)
+            {
+                entity = parent.Entity;
+                return true;
+            }
+            else if (source is EntitySource_HitEffect hitEffect)
+            {
+                entity = hitEffect.Entity;
+                return true;
+            }
+            else if (source is EntitySource_Death death)
+            {
+                entity = death.Entity;
+                return true;
+            }
+            return false;
+        }
+
         public static string FormatWith(this string text, object obj)
         {
             string input = text;

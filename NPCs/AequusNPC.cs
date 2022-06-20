@@ -5,9 +5,11 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.NPCs.Monsters;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,6 +22,7 @@ namespace Aequus.NPCs
         public override bool InstancePerEntity => true;
 
         public bool heatDamage;
+        public bool noHitEffect;
 
         public override void Load()
         {
@@ -42,6 +45,13 @@ namespace Aequus.NPCs
         {
             try
             {
+                if (self.TryGetGlobalNPC<AequusNPC>(out var aequus))
+                {
+                    if (aequus.noHitEffect)
+                    {
+                        return;
+                    }
+                }
                 if (Main.netMode != NetmodeID.Server && self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
                     && SnowgraveCorpse.CanFreezeNPC(self))
                 {
@@ -61,6 +71,17 @@ namespace Aequus.NPCs
             if (HeatDamage.Contains(npc.type))
             {
                 heatDamage = true;
+            }
+        }
+
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (npc.type == NPCID.DungeonSpirit && AequusHelpers.HereditarySource(source, out var ent) && ent is NPC parent)
+            {
+                if (Heckto.Spawnable.Contains(parent.type))
+                {
+                    npc.Transform(ModContent.NPCType<Heckto>());
+                }
             }
         }
 

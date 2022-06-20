@@ -34,7 +34,6 @@ namespace Aequus.Items.Weapons.Summon
             Item.UseSound = SoundID.Item44;
             Item.shoot = ModContent.ProjectileType<CorruptPlantCounter>();
             Item.buffType = ModContent.BuffType<CorruptPlantBuff>();
-            Item.autoReuse = true;
         }
 
         public override void HoldStyle(Player player, Rectangle heldItemFrame)
