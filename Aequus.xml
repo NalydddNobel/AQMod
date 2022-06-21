@@ -66,7 +66,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.eventGaleStreams">
             <summary>
-            Whether or not the player is in the Gale Streams event. Updated using <see cref="M:Aequus.AequusPlayer.CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
+            Whether or not the player is in the Gale Streams event. Updated using <see cref="!:CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
@@ -79,7 +79,7 @@
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.forceDaytime">
+        <member name="F:Aequus.AequusPlayer.forceDayState">
             <summary>
             0 = no force, 1 = force day, 2 = force night
             <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
@@ -112,9 +112,9 @@
             An amount of regen to add to the player
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.expertBoost">
+        <member name="F:Aequus.AequusPlayer.accExpertBoost">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
+            Set to true by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.sentryInheritItem">
@@ -122,7 +122,7 @@
             Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.foolsGold">
+        <member name="F:Aequus.AequusPlayer.accFoolsGold">
             <summary>
             Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
             </summary>
@@ -193,18 +193,6 @@
             <summary>
             Helper for whether or not the player is in danger
             </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.CheckEventGaleStreams">
-            <summary>
-            Used to update <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/>
-            </summary>
-            <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
-        </member>
-        <member name="M:Aequus.AequusPlayer.FindDemonSiege">
-            <summary>
-            Finds and returns the closest demon siege
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Aequus.AequusPlayer.UpdateBank(Terraria.Chest,System.Int32)">
             <summary>
@@ -315,6 +303,12 @@
             </summary>
             <param name="aequus"></param>
             <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Biomes.DemonSiegeInvasion.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Finds and returns the closest demon siege
+            </summary>
             <returns></returns>
         </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">

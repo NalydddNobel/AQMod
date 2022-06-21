@@ -157,6 +157,7 @@ namespace Aequus
         public int expertBoostWormScarfTimer;
         public bool expertBoostBoCProbesHurtSignal;
         public int expertBoostBoCProjDefense;
+        public int expertBoostBoCTimer;
         public int expertBoostBoCDefense;
 
         /// <summary>
@@ -631,6 +632,7 @@ namespace Aequus
             if (!accExpertBoost || Player.brainOfConfusionItem == null)
             {
                 expertBoostBoCDefense = 0;
+                expertBoostBoCTimer = 0;
             }
 
             if (accReboundNecklace)
@@ -908,6 +910,7 @@ namespace Aequus
                 if (expertBoostBoCDefense < 5)
                 {
                     expertBoostBoCDefense = 5;
+                    expertBoostBoCTimer = 0;
                     damage -= def;
                 }
                 else
