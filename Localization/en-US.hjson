@@ -536,7 +536,7 @@ Mods: {
 		ItemTooltip: {
 			BoneRing: 
 				'''
-				Attacks may weaken enemies
+				Inflicts weakness on enemies
 				'''
 			PandorasBox: 
 				'''
@@ -608,7 +608,7 @@ Mods: {
 			DisturbanceStaff:
 				'''
 				Summons a mysterious red sprite to haunt your foes
-				Slain enemies have a chance to convert into ghost minions
+				Enemies may convert into ghost minions on death
 				'''
 			HailstormStaff:
 				'''
