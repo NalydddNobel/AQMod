@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().foolsGold = true;
+            player.Aequus().accFoolsGold = true;
             long coinAmt = 0L;
             for (int i = 0; i < Main.InventoryCoinSlotsCount; i++)
             {

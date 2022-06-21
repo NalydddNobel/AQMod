@@ -3,6 +3,7 @@ using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -12,7 +13,6 @@ using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
-using Aequus.Projectiles.Misc.AshGraves;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -95,7 +95,7 @@ namespace Aequus
         /// 0 = no force, 1 = force day, 2 = force night
         /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
         /// </summary>
-        public byte forceDaytime;
+        public byte forceDayState;
 
         /// <summary>
         /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="FaultyCoin"/>
@@ -120,6 +120,8 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public bool accBoneRing;
+
         public Item setGravetender;
         public int setGravetenderCheck;
         public int setGravetenderGhost;
@@ -129,12 +131,12 @@ namespace Aequus
 
         public Item glowCoreItem;
 
-        public bool reboundNecklace;
+        public bool accReboundNecklace;
         public bool reboundNecklaceJump;
         public int reboundNecklaceTimer;
         public int reboundNecklaceFall;
 
-        public bool grandReward;
+        public bool accGrandReward;
 
         public Item sentrySquidItem;
         public int sentrySquidTimer;
@@ -147,16 +149,15 @@ namespace Aequus
         public Item celesteTorusItem;
         public int cCelesteTorus;
 
+        public bool hasExpertBoost;
         /// <summary>
-        /// Set by <see cref="MechsSentry"/>
+        /// Set to true by <see cref="MechsSentry"/>
         /// </summary>
-        public bool expertBoost;
-        public bool hasExpertItemBoost;
-        public int accExpertItemBoostWormScarfTimer;
-        public bool accExpertItemBoostBoCProbesHurtSignal;
-        public int accExpertItemBoostBoCProbesDefenseProjectile;
-        public int accExpertItemBoostBoCProbesDefenseTimer;
-        public int accExpertItemBoostBoCProbesDefense;
+        public bool accExpertBoost;
+        public int expertBoostWormScarfTimer;
+        public bool expertBoostBoCProbesHurtSignal;
+        public int expertBoostBoCProjDefense;
+        public int expertBoostBoCDefense;
 
         /// <summary>
         /// Set by <see cref="SantankSentry"/>
@@ -166,7 +167,7 @@ namespace Aequus
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
-        public bool foolsGold;
+        public bool accFoolsGold;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
@@ -233,7 +234,7 @@ namespace Aequus
 
         public bool MendshroomActive => idleTime >= 60;
 
-        public bool AccExpertItemBoost => hasExpertItemBoost || expertBoost;
+        public bool ExpertBoost => hasExpertBoost || accExpertBoost;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -326,7 +327,7 @@ namespace Aequus
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
             clone.hitTime = hitTime;
-            clone.accExpertItemBoostBoCProbesDefense = accExpertItemBoostBoCProbesDefense;
+            clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
         }
@@ -349,8 +350,8 @@ namespace Aequus
         public override void UpdateDead()
         {
             hitTime = 0;
-            hasExpertItemBoost = false;
-            expertBoost = false;
+            hasExpertBoost = false;
+            accExpertBoost = false;
         }
 
         public override void SetControls()
@@ -415,11 +416,11 @@ namespace Aequus
                 interactionCooldown--;
             }
 
-            if (accExpertItemBoostWormScarfTimer > 0)
+            if (expertBoostWormScarfTimer > 0)
             {
-                accExpertItemBoostWormScarfTimer--;
+                expertBoostWormScarfTimer--;
             }
-            accExpertItemBoostBoCProbesDefenseProjectile = accExpertItemBoostBoCProbesDefense;
+            expertBoostBoCProjDefense = expertBoostBoCDefense;
 
             setGravetender = null;
 
@@ -428,7 +429,7 @@ namespace Aequus
 
             glowCoreItem = null;
 
-            if (reboundNecklace)
+            if (accReboundNecklace)
             {
                 if (reboundNecklaceTimer > 0)
                 {
@@ -441,10 +442,10 @@ namespace Aequus
                     reboundNecklaceFall = fallAmt;
                 }
             }
-            reboundNecklace = false;
+            accReboundNecklace = false;
 
             grandRewardLuck = 0f;
-            grandReward = false;
+            accGrandReward = false;
 
             sentrySquidItem = null;
             if (!InDanger)
@@ -469,9 +470,9 @@ namespace Aequus
             scamChance = 0f;
             flatScamDiscount = 0;
 
-            hasExpertItemBoost = expertBoost;
-            expertBoost = false;
-            foolsGold = false;
+            hasExpertBoost = accExpertBoost;
+            accExpertBoost = false;
+            accFoolsGold = false;
             Team = Player.team;
 
             buffSpicyEel = false;
@@ -482,7 +483,7 @@ namespace Aequus
             skeletonKey = false;
             shadowKey = false;
 
-            forceDaytime = 0;
+            forceDayState = 0;
             ghostSlotsMax = 1;
             ghostProjExtraUpdates = 0;
             ghostLifespan = 3600;
@@ -491,43 +492,19 @@ namespace Aequus
         public override void PreUpdate()
         {
             projectileIdentity = -1;
-            if (forceDaytime == 1)
+            if (forceDayState == 1)
             {
                 AequusHelpers.Main_dayTime.StartCaching(true);
             }
-            else if (forceDaytime == 2)
+            else if (forceDayState == 2)
             {
                 AequusHelpers.Main_dayTime.StartCaching(false);
             }
 
-            eventGaleStreams = CheckEventGaleStreams();
-            eventDemonSiege = FindDemonSiege();
+            eventGaleStreams = GaleStreamsInvasion.CheckActive(Player);
+            eventDemonSiege = DemonSiegeInvasion.FindDemonSiege(Player.Center);
             nearGoreNest = AequusSystem.GoreNestCount > 0;
-            forceDaytime = 0;
-        }
-        /// <summary>
-        /// Used to update <see cref="eventGaleStreams"/>
-        /// </summary>
-        /// <returns>Whether the Gale Streams event is currently active, and the player is in space</returns>
-        public bool CheckEventGaleStreams()
-        {
-            return GaleStreamsInvasion.Status == InvasionStatus.Active && GaleStreamsInvasion.IsThisSpace(Player.position.Y * 1.5f)
-                && Player.townNPCs < 1f && !Player.ZonePeaceCandle && !Player.behindBackWall;
-        }
-        /// <summary>
-        /// Finds and returns the closest demon siege
-        /// </summary>
-        /// <returns></returns>
-        public Point FindDemonSiege()
-        {
-            foreach (var s in DemonSiegeInvasion.Sacrifices)
-            {
-                if (Player.Distance(new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
-                {
-                    return s.Key;
-                }
-            }
-            return Point.Zero;
+            forceDayState = 0;
         }
 
         public override void PreUpdateBuffs()
@@ -651,15 +628,14 @@ namespace Aequus
                 UpdateSantankSentry();
             }
 
-            if (!expertBoost || Player.brainOfConfusionItem == null)
+            if (!accExpertBoost || Player.brainOfConfusionItem == null)
             {
-                accExpertItemBoostBoCProbesDefense = 0;
-                accExpertItemBoostBoCProbesDefenseTimer = 0;
+                expertBoostBoCDefense = 0;
             }
 
-            if (reboundNecklace)
+            if (accReboundNecklace)
             {
-                ReboundNecklace();
+                UseReboundNecklace();
             }
 
             if (AequusHelpers.Main_dayTime.IsCaching)
@@ -694,7 +670,7 @@ namespace Aequus
                 }
             }
         }
-        
+
         public void Gravetender(Item gravetenderHood)
         {
             if (gravetenderHood.shoot > ProjectileID.None && Player.ownedProjectileCounts[setGravetender.shoot] <= 0)
@@ -736,7 +712,7 @@ namespace Aequus
             }
         }
 
-        public void ReboundNecklace()
+        public void UseReboundNecklace()
         {
             int y = (int)(Player.position.Y + Player.height) / 16;
             int fallAmt = y - Player.fallStart;
@@ -925,14 +901,13 @@ namespace Aequus
                 return true;
             }
 
-            if (AccExpertItemBoost && accExpertItemBoostBoCProbesDefense > 60)
+            if (ExpertBoost && expertBoostBoCDefense > 60)
             {
-                int def = accExpertItemBoostBoCProbesDefense;
-                accExpertItemBoostBoCProbesDefense -= damage;
-                if (accExpertItemBoostBoCProbesDefense < 5)
+                int def = expertBoostBoCDefense;
+                expertBoostBoCDefense -= damage;
+                if (expertBoostBoCDefense < 5)
                 {
-                    accExpertItemBoostBoCProbesDefenseTimer = 0;
-                    accExpertItemBoostBoCProbesDefense = 5;
+                    expertBoostBoCDefense = 5;
                     damage -= def;
                 }
                 else
@@ -1315,20 +1290,6 @@ namespace Aequus
             return l;
         }
 
-        public void GetCustomTombstones(int coinsOwned, NetworkText deathText, int hitDirection, out List<int> graves)
-        {
-            graves = new List<int>();
-            if (Player.position.Y > (Main.maxTilesY - 200) * 16f)
-            {
-                graves.Add(ModContent.ProjectileType<AshTombstoneProj>());
-                graves.Add(ModContent.ProjectileType<AshGraveMarkerProj>());
-                graves.Add(ModContent.ProjectileType<AshCrossGraveMarkerProj>());
-                graves.Add(ModContent.ProjectileType<AshHeadstoneProj>());
-                graves.Add(ModContent.ProjectileType<AshGravestoneProj>());
-                graves.Add(ModContent.ProjectileType<AshObeliskProj>());
-            }
-        }
-
         public Vector2 GetRandomTombstoneVelocity(int hitDirection)
         {
             float num;
@@ -1378,11 +1339,10 @@ namespace Aequus
                 return;
             }
 
-            aequus.GetCustomTombstones(coinsOwned, deathText, hitDirection, out var graves);
-            if (graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            var graves = CustomTombstones.ChooseTombstone(self, coinsOwned, deathText, hitDirection);
+            if (graves != null && graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                int t = Main.rand.Next(graves.Count);
-                int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), graves[t], 0, 0f, Main.myPlayer);
+                int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), Main.rand.Next(graves), 0, 0f, Main.myPlayer);
                 Main.projectile[p].miscText = deathText.ToString();
                 return;
             }
@@ -1392,7 +1352,7 @@ namespace Aequus
 
         private static void Hook_NoMoreMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
         {
-            if (closestPlayer.Aequus().grandReward)
+            if (closestPlayer.Aequus().accGrandReward)
             {
                 return;
             }
@@ -1476,7 +1436,7 @@ namespace Aequus
 
         private static int Hook_DropCoinsOnDeath(On.Terraria.Player.orig_DropCoins orig, Player self)
         {
-            if (self.Aequus().foolsGold)
+            if (self.Aequus().accFoolsGold)
             {
                 return FoolsGoldCoinCurse(self);
             }

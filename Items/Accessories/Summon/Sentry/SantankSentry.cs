@@ -138,14 +138,14 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             try
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                dummyPlayer.Aequus().expertBoost = aequus.expertBoost;
+                dummyPlayer.Aequus().accExpertBoost = aequus.accExpertBoost;
                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
                 {
                     if (SantankInteractions.OnAI.TryGetValue(i.type, out var ai))
                     {
                         ai(projectile, this, i.Clone(), Main.player[projectile.owner], aequus);
                     }
-                    else if (aequus.expertBoost)
+                    else if (aequus.accExpertBoost)
                     {
                         MechsSentry.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,7 +23,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().reboundNecklace = true;
+            player.Aequus().accReboundNecklace = true;
         }
     }
 }

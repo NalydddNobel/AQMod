@@ -202,6 +202,12 @@ namespace Aequus.Biomes
             return true;
         }
 
+        public static bool CheckActive(Player player)
+        {
+            return Status == InvasionStatus.Active && IsThisSpace(player.position.Y * 1.5f)
+                && player.townNPCs < 1f && !player.ZonePeaceCandle && !player.behindBackWall;
+        }
+
         public class GaleStreamsSystem : ModSystem
         {
             public override void PreUpdateEntities()

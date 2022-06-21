@@ -114,7 +114,7 @@ namespace Aequus.Projectiles.Misc
                     rotation.Y += 0.01f;
                     rotation.Z += 0.0314f;
 
-                    if (aequus.AccExpertItemBoost)
+                    if (aequus.ExpertBoost)
                     {
                         rotation2.X += 0.0157f;
                         rotation2.Y += 0.0314f;
@@ -122,7 +122,7 @@ namespace Aequus.Projectiles.Misc
                     }
                 }
 
-                show2ndRing = aequus.AccExpertItemBoost;
+                show2ndRing = aequus.ExpertBoost;
             }
         }
 

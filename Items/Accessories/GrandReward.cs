@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().grandRewardLuck += 1f;
-            player.Aequus().grandReward = true;
+            player.Aequus().accGrandReward = true;
         }
     }
 }

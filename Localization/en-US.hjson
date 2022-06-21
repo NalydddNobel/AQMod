@@ -151,6 +151,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			MechsSentry: Sentinel 6510 N.O.S.
 			SantankSentry: Sentry 6502 N.O.S.
@@ -533,6 +534,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			BoneRing: 
+				'''
+				Attacks may weaken enemies
+				'''
 			PandorasBox: 
 				'''
 				Your minions may fire a random projectile at enemies

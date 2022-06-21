@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Furniture;
+﻿using Aequus.Content;
+using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -6,9 +7,9 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.AshGraves
+namespace Aequus.Projectiles.Misc.Tombstones
 {
-    public class AshGraveMarkerProj : TombstoneProjBase
+    public class AshGravestoneProj : TombstoneProjBase
     {
         public static Asset<Texture2D> Glow { get; private set; }
 
@@ -17,13 +18,18 @@ namespace Aequus.Projectiles.Misc.AshGraves
             Glow = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
         }
 
+        public override void SetStaticDefaults()
+        {
+            CustomTombstones.HellTombstones.Add(Type);
+        }
+
         public override void Unload()
         {
             Glow = null;
         }
 
-        public override int TileType => ModContent.TileType<Tombstones>();
-        public override int TileStyle => Tombstones.AshGraveMarkerStyle;
+        public override int TileType => ModContent.TileType<Tiles.Furniture.Tombstones>();
+        public override int TileStyle => Tiles.Furniture.Tombstones.AshGravestoneStyle;
 
         public override string GetTombstoneText()
         {

@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         private static void Hook_NaniteBombs(On.Terraria.Player.orig_SporeSac orig, Player self, Item sourceItem)
         {
-            if (!self.Aequus().AccExpertItemBoost)
+            if (!self.Aequus().ExpertBoost)
             {
                 orig(self, sourceItem);
                 return;
@@ -118,7 +118,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         private static void Hook_ThermiteGel(On.Terraria.Player.orig_VolatileGelatin orig, Player self, Item sourceItem)
         {
-            if (!self.Aequus().AccExpertItemBoost)
+            if (!self.Aequus().ExpertBoost)
             {
                 orig(self, sourceItem);
                 return;
@@ -183,7 +183,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().sentryInheritItem = Item;
-            player.Aequus().expertBoost = true;
+            player.Aequus().accExpertBoost = true;
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
@@ -231,13 +231,13 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         }
         public static void ExpertEffect_WormScarf(Item item, Player player, AequusPlayer aequus)
         {
-            if (aequus.accExpertItemBoostWormScarfTimer <= 0)
+            if (aequus.expertBoostWormScarfTimer <= 0)
             {
                 int target = AequusHelpers.FindTargetWithLineOfSight(player.position, player.width, player.height);
 
                 if (target != -1)
                 {
-                    aequus.accExpertItemBoostWormScarfTimer = 90;
+                    aequus.expertBoostWormScarfTimer = 90;
                     if (Main.myPlayer == player.whoAmI)
                     {
                         var v = player.DirectionTo(Main.npc[target].Center);
@@ -248,19 +248,19 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         }
         public static void ExpertEffect_BrainOfConfusion(Item item, Player player, AequusPlayer aequus)
         {
-            aequus.accExpertItemBoostBoCProbesDefenseTimer++;
-            if (aequus.accExpertItemBoostBoCProbesDefenseTimer > 30)
+            aequus.expertBoostBoCTimer++;
+            if (aequus.expertBoostBoCTimer > 30)
             {
-                aequus.accExpertItemBoostBoCProbesDefenseTimer = 0;
-                aequus.accExpertItemBoostBoCProbesDefense += 5;
-                if (aequus.accExpertItemBoostBoCProbesDefense > ProtectiveProbe.MaxDefenseSlices)
+                aequus.expertBoostBoCTimer = 0;
+                aequus.expertBoostBoCDefense += 5;
+                if (aequus.expertBoostBoCDefense > ProtectiveProbe.MaxDefenseSlices)
                 {
-                    aequus.accExpertItemBoostBoCProbesDefense = ProtectiveProbe.MaxDefenseSlices;
+                    aequus.expertBoostBoCDefense = ProtectiveProbe.MaxDefenseSlices;
                 }
             }
 
             if (Main.myPlayer == player.whoAmI && player.Aequus()
-                .ProjectilesOwned(ModContent.ProjectileType<ProtectiveProbe>()) < aequus.accExpertItemBoostBoCProbesDefense / ProtectiveProbe.DefenseSlices)
+                .ProjectilesOwned(ModContent.ProjectileType<ProtectiveProbe>()) < aequus.expertBoostBoCDefense / ProtectiveProbe.DefenseSlices)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, player.velocity, ModContent.ProjectileType<ProtectiveProbe>(), 0, 1f, player.whoAmI,
                      player.Aequus().projectileIdentity + 1);
@@ -269,7 +269,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public static void OnAI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
-            aequus.expertBoost = true;
+            aequus.accExpertBoost = true;
         }
     }
 
@@ -303,7 +303,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             try
             {
-                if (!Main.LocalPlayer.Aequus().expertBoost || !TooltipItems.TryGetValue(item.type, out var text))
+                if (!Main.LocalPlayer.Aequus().accExpertBoost || !TooltipItems.TryGetValue(item.type, out var text))
                 {
                     return;
                 }
@@ -323,7 +323,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if (player.Aequus().AccExpertItemBoost)
+            if (player.Aequus().ExpertBoost)
             {
                 MechsSentry.ExpertEffect_UpdateAccessory(item, player);
             }
@@ -334,7 +334,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (projectile.type == ProjectileID.BoneGloveProj && source is EntitySource_ItemUse itemUse && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().AccExpertItemBoost)
+            if (projectile.type == ProjectileID.BoneGloveProj && source is EntitySource_ItemUse itemUse && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
             {
                 projectile.Transform(ModContent.ProjectileType<Bonesaw>());
                 projectile.velocity *= 1.25f;

@@ -468,6 +468,22 @@ namespace Aequus.Biomes
         {
         }
 
+        /// <summary>
+        /// Finds and returns the closest demon siege
+        /// </summary>
+        /// <returns></returns>
+        public static Point FindDemonSiege(Vector2 location)
+        {
+            foreach (var s in Sacrifices)
+            {
+                if (Vector2.Distance(location, new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
+                {
+                    return s.Key;
+                }
+            }
+            return Point.Zero;
+        }
+
         public class DemonSiegeBlockProtector : GlobalTile
         {
             public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)

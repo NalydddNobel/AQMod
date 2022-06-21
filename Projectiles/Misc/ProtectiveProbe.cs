@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Misc
             Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.3f, 0.5f));
 
             var sources = Projectile.GetGlobalProjectile<AequusProjectile>();
-            if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].dead || Main.player[Projectile.owner].Aequus().accExpertItemBoostBoCProbesDefense == 0 || sources.MissingProjectileOwner)
+            if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].dead || Main.player[Projectile.owner].Aequus().expertBoostBoCDefense == 0 || sources.MissingProjectileOwner)
             {
                 if (Projectile.ai[1] > 300f)
                 {
@@ -122,9 +122,9 @@ namespace Aequus.Projectiles.Misc
             if (p != null)
             {
                 var aequus = p.Aequus();
-                aequus.accExpertItemBoostBoCProbesDefenseProjectile -= DefenseSlices;
+                aequus.expertBoostBoCProjDefense -= DefenseSlices;
                 int old = (int)Projectile.localAI[0];
-                Projectile.localAI[0] = aequus.accExpertItemBoostBoCProbesDefenseProjectile;
+                Projectile.localAI[0] = aequus.expertBoostBoCProjDefense;
                 if (old > 0)
                 {
                     if ((int)Projectile.localAI[0] <= 0f)

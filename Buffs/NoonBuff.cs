@@ -10,7 +10,7 @@ namespace Aequus.Buffs
         {
             Lighting.AddLight(player.Center, new Vector3(1.2f, 1f, 0.5f));
             player.nightVision = true;
-            player.GetModPlayer<AequusPlayer>().forceDaytime = 1;
+            player.GetModPlayer<AequusPlayer>().forceDayState = 1;
         }
     }
 }
