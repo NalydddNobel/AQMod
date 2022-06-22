@@ -16,7 +16,7 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.AddStaticImmunity(NPCID.WallofFleshEye, false, Type);
             foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (n.Value.boss || (NPCID.Sets.DebuffImmunitySets.TryGetValue(n.Key, out var buff) && buff.SpecificallyImmuneTo.ContainsAny(BuffID.Weak)))
+                if (n.Value.boss || (NPCID.Sets.DebuffImmunitySets.TryGetValue(n.Key, out var buff) && buff != null && buff.SpecificallyImmuneTo != null && buff.SpecificallyImmuneTo.ContainsAny(BuffID.Weak)))
                 {
                     AequusBuff.AddStaticImmunity(n.Key, false, Type);
                 }

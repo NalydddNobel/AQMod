@@ -37,7 +37,7 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.AddStaticImmunity(NPCID.SantaNK1, Type);
             foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (NPCID.Sets.DebuffImmunitySets.TryGetValue(n.Key, out var buff) && buff.SpecificallyImmuneTo.ContainsAny(BuffID.Bleeding))
+                if (NPCID.Sets.DebuffImmunitySets.TryGetValue(n.Key, out var buff) && buff != null && buff.SpecificallyImmuneTo != null && buff.SpecificallyImmuneTo.ContainsAny(BuffID.Bleeding))
                 {
                     AequusBuff.AddStaticImmunity(n.Key, false, Type);
                 }

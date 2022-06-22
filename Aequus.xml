@@ -49,11 +49,6 @@
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.debuffBlueFire">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.Debuffs.BlueFire"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.buffSpicyEel">
             <summary>
             Applied by <see cref="T:Aequus.Buffs.SpicyEelBuff"/>

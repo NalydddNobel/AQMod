@@ -73,14 +73,18 @@ namespace Aequus.Projectiles.Misc
                     proj.netUpdate = true;
                 }
             }
+            DoDust();
+            if (Projectile.timeLeft < 80)
+            {
+                Projectile.alpha += 3;
+            }
+        }
+        public virtual void DoDust()
+        {
             if (Main.rand.NextBool(3))
             {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Color.White.UseA(128) * 0.5f);
                 d.velocity = new Vector2(-Projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeedCurrent, -Projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
-            }
-            if (Projectile.timeLeft < 80)
-            {
-                Projectile.alpha += 3;
             }
         }
 

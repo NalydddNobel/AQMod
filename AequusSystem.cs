@@ -165,6 +165,10 @@ namespace Aequus
                                 case 1:
                                     c.Insert(ModContent.ItemType<BattleAxe>(), 1);
                                     break;
+
+                                case 2:
+                                    c.Insert(ModContent.ItemType<Bellows>(), 1);
+                                    break;
                             }
 
                             if (r.NextBool(6))

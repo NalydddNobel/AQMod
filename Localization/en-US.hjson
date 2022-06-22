@@ -226,6 +226,8 @@ Mods: {
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 
+			Bellows: Bellows
+
 			SnowRoulette: Snow Roulette
 			GlowingMushroomsRoulette: Glowing Mushrooms Roulette
 			DesertRoulette: Desert Roulette
@@ -718,6 +720,8 @@ Mods: {
 				Summons a space squiddy to follow you
 				'Just too cute'
 				'''
+
+			Bellows: Pushes you away
 
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
