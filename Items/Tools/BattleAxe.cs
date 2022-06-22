@@ -8,6 +8,11 @@ namespace Aequus.Items.Tools
 {
     public class BattleAxe : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<BattleAxeProj>(32);

@@ -4,9 +4,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs
 {
-    public class Bleeding : ModBuff
+    public class Weakness : ModBuff
     {
-        public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Bleeding;
+        public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Weak;
 
         public override void SetStaticDefaults()
         {

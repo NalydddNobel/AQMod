@@ -4,6 +4,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -142,7 +143,7 @@ namespace Aequus
             var rockmanChests = new List<int>();
 
             var placedItems = new HashSet<int>();
-
+            var r = WorldGen.genRand;
             for (int k = 0; k < Main.maxChests; k++)
             {
                 Chest c = Main.chest[k];
@@ -155,7 +156,18 @@ namespace Aequus
                         {
                             rockmanChests.Add(k);
 
-                            if (Main.rand.NextBool(6))
+                            switch (r.Next(5))
+                            {
+                                case 0:
+                                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
+                                    break;
+
+                                case 1:
+                                    c.Insert(ModContent.ItemType<BattleAxe>(), 1);
+                                    break;
+                            }
+
+                            if (r.NextBool(6))
                             {
                                 AddGlowCore(c, placedItems);
                             }
@@ -171,9 +183,9 @@ namespace Aequus
                                     choice = item;
                                 }
                             }
-                            if (choice == -1 && WorldGen.genRand.NextBool(DungeonChestItemTypesMax))
+                            if (choice == -1 && r.NextBool(DungeonChestItemTypesMax))
                             {
-                                choice = DungeonChestItem(WorldGen.genRand.Next(DungeonChestItemTypesMax));
+                                choice = DungeonChestItem(r.Next(DungeonChestItemTypesMax));
                             }
 
                             if (choice != -1)
@@ -184,7 +196,7 @@ namespace Aequus
                         }
                         else if (style == ChestTypes.LockedShadow)
                         {
-                            if (!placedItems.Contains(ModContent.ItemType<AshCandle>()) || Main.rand.NextBool(6))
+                            if (!placedItems.Contains(ModContent.ItemType<AshCandle>()) || r.NextBool(6))
                             {
                                 c.Insert(ModContent.ItemType<AshCandle>(), 1);
                                 placedItems.Add(ModContent.ItemType<AshCandle>());
@@ -192,7 +204,7 @@ namespace Aequus
                         }
                         else if (style == ChestTypes.Frozen)
                         {
-                            if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || Main.rand.NextBool(6))
+                            if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || r.NextBool(6))
                             {
                                 c.Insert(ModContent.ItemType<CrystalDagger>(), 1);
                                 placedItems.Add(ModContent.ItemType<CrystalDagger>());
@@ -200,7 +212,7 @@ namespace Aequus
                         }
                         else if (style == ChestTypes.Skyware)
                         {
-                            if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || Main.rand.NextBool())
+                            if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool())
                             {
                                 c.Insert(ModContent.ItemType<Slingshot>(), 1);
                                 placedItems.Add(ModContent.ItemType<Slingshot>());
@@ -213,7 +225,7 @@ namespace Aequus
                         if (style == ChestTypes.deadMans)
                         {
                             rockmanChests.Add(k);
-                            if (Main.rand.NextBool())
+                            if (r.NextBool())
                             {
                                 AddGlowCore(c, placedItems);
                             }
@@ -228,9 +240,9 @@ namespace Aequus
 
             if (rockmanChests.Count > 0)
             {
-                var c = Main.chest[rockmanChests[WorldGen.genRand.Next(rockmanChests.Count)]];
+                var c = Main.chest[rockmanChests[r.Next(rockmanChests.Count)]];
                 Structures.Add("RockManChest", new Point(c.x, c.y));
-                c.Insert(ModContent.ItemType<RockMan>(), WorldGen.genRand.Next(Chest.maxItems - 1));
+                c.Insert(ModContent.ItemType<RockMan>(), r.Next(Chest.maxItems - 1));
             }
         }
         public static bool AddGlowCore(Chest c, HashSet<int> placedItems = null)
@@ -248,7 +260,7 @@ namespace Aequus
         }
         public static int DungeonChestItem(int type)
         {
-            switch (Main.rand.Next(4))
+            switch (WorldGen.genRand.Next(4))
             {
                 default:
                     return ModContent.ItemType<Valari>();

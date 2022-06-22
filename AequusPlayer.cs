@@ -34,6 +34,7 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
+        public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
         public static int Team;
@@ -59,11 +60,6 @@ namespace Aequus
         [SaveData("GravesDisabled")]
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
-
-        /// <summary>
-        /// Applied by <see cref="BlueFire"/>
-        /// </summary>
-        public bool debuffBlueFire;
 
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
@@ -120,7 +116,7 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
-        public bool accBoneRing;
+        public int accBoneRing;
 
         public Item setGravetender;
         public int setGravetenderCheck;
@@ -478,8 +474,6 @@ namespace Aequus
 
             buffSpicyEel = false;
             buffResistHeat = false;
-
-            debuffBlueFire = false;
 
             skeletonKey = false;
             shadowKey = false;
@@ -961,6 +955,11 @@ namespace Aequus
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
+            if (npc.HasBuff<Weakness>())
+            {
+                damage = (int)(damage * WeaknessDamageMultiplier);
+            }
+
             if (buffResistHeat && npc.Aequus().heatDamage)
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
@@ -969,6 +968,14 @@ namespace Aequus
 
         public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
         {
+            var aequus = proj.Aequus();
+            if (aequus.HasNPCOwner)
+            {
+                if (Main.npc[aequus.sourceNPC].HasBuff<Weakness>())
+                {
+                    damage = (int)(damage * WeaknessDamageMultiplier);
+                }
+            }
             if (buffResistHeat && proj.Aequus().heatDamage)
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
@@ -982,6 +989,11 @@ namespace Aequus
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
+            if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
+            {
+                target.AddBuff(ModContent.BuffType<Weakness>(), 360);
+            }
+
             if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
             {
                 NecromancyHit(target, proj);
