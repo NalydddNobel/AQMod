@@ -151,6 +151,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
 			MechsSentry: 哨卫6510型微型处理器
 			SantankSentry: 哨兵6502型微型处理器
@@ -533,6 +534,10 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			BoneRing: 
+				'''
+				攻击会使敌人虚弱
+				'''
 			PandorasBox: 
 				'''
 				你的仆从有几率向敌人发射随机弹幕
