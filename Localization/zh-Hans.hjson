@@ -226,6 +226,8 @@ Mods: {
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 
+			Meathook: 血肉刺钩
+
 			Bellows: 风箱
 
 			SnowRoulette: 雪原转盘
@@ -294,7 +296,6 @@ Mods: {
 			DemoniteBarb: 暗影之缚
 			MetalBarb: 金属刺钩
 			CrabBarb: 螃蟹刺钩
-			Meathook: 血肉刺钩
 			CelesteTorus: 天界圆环
 			VoodooAmulet: 巫毒护符
 			WyvernAmulet: 飞羽护符
@@ -721,6 +722,8 @@ Mods: {
 				'太可爱了'
 				'''
 
+			Meathook: 你的钩爪会抓住敌人
+
 			Bellows: 
 				'''
 				将你向你瞄准的反方向推开
@@ -871,7 +874,6 @@ Mods: {
 			DemoniteBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
 			MetalBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
 			CrabBarb: 你的钩爪会造成中毒和伤害
-			Meathook: 你的钩爪会抓住敌人
 			CelesteTorus:
 				'''
 				在你的周围召唤一圈环绕着你的球体
@@ -1865,29 +1867,6 @@ Mods: {
 			MonthsAgo: 已在{0}月前储存此物品
 		}
 
-		Memorialist: {
-			Concoction: 混合
-			Concoct: 混合
-			StopConcocting: 停止混合
-
-			Chat: {
-				0: 啥? 你认为我是个怪胎? 那你最近肯定没有照过镜子.
-				1: 以撒是谁? 听起来像是个爱哭的孩子的名字.
-				2: 你需要我帮忙吗? 你肯定不是一个好英雄.
-				3: 我在想我的朋友Meru去哪了.
-				4: 你说我看起来像动物学家是什么意思? 我讨厌动物!
-				5: 我曾有个人型的蝙蝠朋友. 他们真的很喜欢谈论关于你们人类的敏感话题, 那简直太棒了. 有一天, 他们想知道我是否想成为一只蝙蝠, 我没法拒绝.
-				Exporter: 那个龙虾的东西...他叫什么名字? {0}? 他几乎和我一样对犯罪上瘾!
-				Physicist: "{0}是个失败者. 甚至不认为我是真实存在的! 她简直是个疯子."
-
-				Mod: {
-					Split: {
-						Sheep: 你有没有看见雪地里有一只毛茸茸的羊? 它看起来非常适合用于献祭.
-					}
-				}
-			}
-		}
-
 		Physicist: {
 			Chat: {
 				Introduction: 哦你好, 我叫 {0}. 我听说宇宙实体正试图拦截一种强大的源后才来这的.
@@ -2565,6 +2544,13 @@ Mods: {
 					零钱从未变得如此致命. 
 					我可以用这个和城堡的财富来对抗整个军队!
 					'''
+				}
+			}
+
+			Occultist: {
+				Basic: {
+					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
+					1: 和我谈话后你的英雄之旅就结束了! 哈哈!
 				}
 			}
 			
