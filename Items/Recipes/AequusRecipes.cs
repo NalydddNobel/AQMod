@@ -50,7 +50,7 @@ namespace Aequus.Items.Recipes
         }
         public static Recipe CreateRecipe(int result, int stack = 1)
         {
-            return Aequus.Instance.CreateRecipe(result, stack);
+            return Recipe.Create(result, stack);
         }
 
         public static Recipe ReplaceItem(this Recipe r, int item, int newItem, int newItemStack = -1)

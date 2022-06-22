@@ -721,7 +721,11 @@ Mods: {
 				'Just too cute'
 				'''
 
-			Bellows: Pushes you away
+			Bellows: 
+				'''
+				Moves you in the opposite direction you are aiming
+				'Quite the pushover'
+				'''
 
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
