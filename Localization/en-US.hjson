@@ -226,6 +226,8 @@ Mods: {
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 
+			Meathook: Meathook
+
 			Bellows: Bellows
 
 			SnowRoulette: Snow Roulette
@@ -294,7 +296,6 @@ Mods: {
 			DemoniteBarb: Dark Tether
 			MetalBarb: Metal Barb
 			CrabBarb: Crab Barb
-			Meathook: Meathook
 			CelesteTorus: Celeste Torus
 			VoodooAmulet: Voodoo Amulet
 			WyvernAmulet: Featherflight Amulet
@@ -721,6 +722,8 @@ Mods: {
 				'Just too cute'
 				'''
 
+			Meathook: Allows you to attach to enemies using your grappling hook
+
 			Bellows: 
 				'''
 				Moves you in the opposite direction you are aiming
@@ -871,7 +874,6 @@ Mods: {
 			DemoniteBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
 			MetalBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
 			CrabBarb: Your grappling hooks inflict poison and damage
-			Meathook: Allows you to attach to enemies using your grappling hook
 			CelesteTorus:
 				'''
 				You obtain rotating orbs which deal contact damage
@@ -1865,29 +1867,6 @@ Mods: {
 			MonthsAgo: Stored this item {0} months ago
 		}
 
-		Memorialist: {
-			Concoction: Concoctions
-			Concoct: Concoct
-			StopConcocting: Stop Concocting
-
-			Chat: {
-				0: What? Do you think I'm a freak? You must have not looked in the mirror recently.
-				1: Who's Issac? Sounds like the name of a crybaby kid.
-				2: You need a service from me? You must not be a good hero.
-				3: I wonder where my friend Meru has gone.
-				4: What do you mean I look like a Zoologist? I hate animals!
-				5: I used to be pals with an anthropomorphic bat. They really liked talking about touchy subjects about you humans, it was so awesome. One day they wanted to see if I wanted to be a bat, I couldn't say no.
-				Exporter: That lobster thing... what's his name? {0}? He's almost as addicted to crime as me!
-				Physicist: "{0} is such a loser. Doesn't even think I am real! She's absolutely insane."
-
-				Mod: {
-					Split: {
-						Sheep: Have you seen one of those fluffy sheep around the snow? They look awfully good for a sacrifice.
-					}
-				}
-			}
-		}
-
 		Physicist: {
 			Chat: {
 				Introduction: Oh hello, my name is {0}. I came here after hearing about a strange phenomenon where cosmic entities try to intercept some sort of powerful source.
@@ -2565,6 +2544,13 @@ Mods: {
 						Loose change has never been so deadly. 
 						I could take on an entire army using this and the castle's riches!
 						'''
+				}
+			}
+
+			Occultist: {
+				Basic: {
+					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
+					1: Your heroic journey ended after you talked to me! Ha ha!
 				}
 			}
 

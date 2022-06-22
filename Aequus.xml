@@ -283,8 +283,8 @@
             <item>OmegaStarite -- <see cref="F:Aequus.AequusSystem.downedOmegaStarite"/></item>
             <item>RedSprite -- <see cref="F:Aequus.AequusSystem.downedRedSprite"/></item>
             <item>SpaceSquid -- <see cref="F:Aequus.AequusSystem.downedSpaceSquid"/></item>
-            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusSystem.downedEventGaleStreams"/></item>
-            <item>GaleStreams -- <see cref="F:Aequus.AequusSystem.downedEventGaleStreams"/></item>
+            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusSystem.downedEventAtmosphere"/></item>
+            <item>GaleStreams -- <see cref="F:Aequus.AequusSystem.downedEventAtmosphere"/></item>
             </list>
             </summary>
         </member>

@@ -13,6 +13,7 @@ using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -496,11 +497,11 @@ namespace Aequus
             {
                 AequusHelpers.Main_dayTime.StartCaching(false);
             }
+            forceDayState = 0;
 
             eventGaleStreams = GaleStreamsInvasion.CheckActive(Player);
             eventDemonSiege = DemonSiegeInvasion.FindDemonSiege(Player.Center);
-            nearGoreNest = AequusSystem.GoreNestCount > 0;
-            forceDayState = 0;
+            nearGoreNest = GoreNestTile.BiomeCount > 0;
         }
 
         public override void PreUpdateBuffs()

@@ -42,7 +42,7 @@ namespace Aequus.Items.Tools
                 tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KBText(Item.knockBack)));
                 index = tooltips.GetIndex("Speed");
                 tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimText(Item.useAnimation)));
-                if (!Main.hardMode || AequusSystem.downedEventGaleStreams)
+                if (!Main.hardMode || AequusSystem.downedEventAtmosphere)
                 {
                     return;
                 }

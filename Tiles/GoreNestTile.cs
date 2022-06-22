@@ -36,6 +36,7 @@ namespace Aequus.Tiles
             }
         }
 
+        public static int BiomeCount;
         public static List<Point> RenderPoints { get; private set; }
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
 

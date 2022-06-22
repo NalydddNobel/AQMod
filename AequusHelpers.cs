@@ -81,6 +81,157 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static void TileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
+        {
+            if (tile.Slope == 0 && !tile.IsHalfBlock)
+            {
+                Main.spriteBatch.Draw(texture, drawCoordinates, new Rectangle(frameX, frameY, width, height), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            }
+            else if (tile.IsHalfBlock)
+            {
+                Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X, drawCoordinates.Y + 10), new Rectangle(frameX, frameY, width, 6), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            }
+            else
+            {
+                byte b = (byte)tile.Slope;
+                for (int i = 0; i < 8; i++)
+                {
+                    int num10 = i << 1;
+                    Rectangle frame = new Rectangle(frameX, frameY + i * 2, num10, 2);
+                    int xOffset = 0;
+                    switch (b)
+                    {
+                        case 2:
+                            frame.X = 16 - num10;
+                            xOffset = 16 - num10;
+                            break;
+                        case 3:
+                            frame.Width = 16 - num10;
+                            break;
+                        case 4:
+                            frame.Width = 14 - num10;
+                            frame.X = num10 + 2;
+                            xOffset = num10 + 2;
+                            break;
+                    }
+                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + (float)xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                }
+            }
+        }
+        public static void Wall(int i, int j, Texture2D texture, Color color)
+        {
+            var tile = Main.tile[i, j];
+            Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + TileDrawOffset, new Rectangle(tile.WallFrameX, tile.WallFrameX + Main.wallFrame[tile.WallType] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
+
+        public static Color GetColor(Vector2 v, Color color)
+        {
+            return Lighting.GetColor((int)(v.X / 16), (int)(v.Y / 16f), color);
+        }
+
+        public static Color GetColor(Vector2 v)
+        {
+            return Lighting.GetColor((int)(v.X / 16), (int)(v.Y / 16f));
+        }
+
+        public static void DrawFishingLine(Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin, Color? customColor = null, Func<Vector2, Color, Color> getLighting = null)
+        {
+            var color = customColor.GetValueOrDefault(Color.White);
+            if (getLighting == null)
+            {
+                getLighting = GetColor;
+            }
+            var bobberCenter = new Vector2(bobberPosition.X + bobberWidth / 2f, bobberPosition.Y + bobberHeight / 2f);
+            int type = player.inventory[player.selectedItem].type;
+
+            Vector2 playerToProjectile = bobberCenter - lineOrigin;
+            bool canDraw = true;
+            if (playerToProjectile.X == 0f && playerToProjectile.Y == 0f)
+                return;
+            float playerToProjectileMagnitude = playerToProjectile.Length();
+            playerToProjectileMagnitude = 12f / playerToProjectileMagnitude;
+            playerToProjectile *= playerToProjectileMagnitude;
+            lineOrigin -= playerToProjectile;
+            playerToProjectile = bobberCenter - lineOrigin;
+            float widthAdd = bobberWidth * 0.5f;
+            float heightAdd = bobberHeight * 0.1f;
+            var texture = TextureAssets.FishingLine.Value;
+            while (canDraw)
+            {
+                float height = 12f;
+                float positionMagnitude = playerToProjectile.Length();
+                if (float.IsNaN(positionMagnitude) || float.IsNaN(positionMagnitude))
+                    break;
+
+                if (positionMagnitude < 20f)
+                {
+                    height = positionMagnitude - 8f;
+                    canDraw = false;
+                }
+                playerToProjectile *= 12f / positionMagnitude;
+                lineOrigin += playerToProjectile;
+                playerToProjectile.X = bobberPosition.X + widthAdd - lineOrigin.X;
+                playerToProjectile.Y = bobberPosition.Y + heightAdd - lineOrigin.Y;
+                if (positionMagnitude > 12f)
+                {
+                    float positionInverseMultiplier = 0.3f;
+                    float absVelocitySum = Math.Abs(bobberVelocity.X) + Math.Abs(bobberVelocity.Y);
+                    if (absVelocitySum > 16f)
+                        absVelocitySum = 16f;
+                    absVelocitySum = 1f - absVelocitySum / 16f;
+                    positionInverseMultiplier *= absVelocitySum;
+                    absVelocitySum = positionMagnitude / 80f;
+                    if (absVelocitySum > 1f)
+                        absVelocitySum = 1f;
+                    positionInverseMultiplier *= absVelocitySum;
+                    if (positionInverseMultiplier < 0f)
+                        positionInverseMultiplier = 0f;
+                    absVelocitySum = 1f - velocitySum / 100f;
+                    positionInverseMultiplier *= absVelocitySum;
+                    if (playerToProjectile.Y > 0f)
+                    {
+                        playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                        playerToProjectile.X *= 1f - positionInverseMultiplier;
+                    }
+                    else
+                    {
+                        absVelocitySum = Math.Abs(bobberVelocity.X) / 3f;
+                        if (absVelocitySum > 1f)
+                            absVelocitySum = 1f;
+                        absVelocitySum -= 0.5f;
+                        positionInverseMultiplier *= absVelocitySum;
+                        if (positionInverseMultiplier > 0f)
+                            positionInverseMultiplier *= 2f;
+                        playerToProjectile.Y *= 1f + positionInverseMultiplier;
+                        playerToProjectile.X *= 1f - positionInverseMultiplier;
+                    }
+                }
+                float rotation = playerToProjectile.ToRotation() - MathHelper.PiOver2;
+                Main.EntitySpriteDraw(texture, new Vector2(lineOrigin.X - Main.screenPosition.X + texture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + texture.Height * 0.5f), 
+                    new Rectangle(0, 0, texture.Width, (int)height), getLighting(lineOrigin, color), rotation, new Vector2(texture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0);
+            }
+        }
+
+        public static void DrawChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos, Func<Vector2, Color> getLighting = null)
+        {
+            if (getLighting == null)
+            {
+                getLighting = GetColor;
+            }
+            int height = chain.Height - 2;
+            Vector2 velocity = endPosition - currentPosition;
+            int length = (int)(velocity.Length() / height);
+            velocity.Normalize();
+            velocity *= height;
+            float rotation = velocity.ToRotation() + MathHelper.PiOver2;
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            for (int i = 0; i < length; i++)
+            {
+                var position = currentPosition + velocity * i;
+                Main.EntitySpriteDraw(chain, position - screenPos, null, getLighting(position), rotation, origin, 1f, SpriteEffects.None, 0);
+            }
+        }
+
         public static bool HereditarySource(IEntitySource source, out Entity entity)
         {
             entity = null;

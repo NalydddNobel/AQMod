@@ -28,12 +28,14 @@ namespace Aequus
     {
         public const int DungeonChestItemTypesMax = 4;
 
-        public static int GoreNestCount;
-
+        [SaveData("DemonSiege")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedEventDemon;
         [SaveData("GaleStreams")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
-        public static bool downedEventGaleStreams;
+        public static bool downedEventAtmosphere;
 
         [SaveData("SpaceSquid")]
         [SaveDataAttribute.IsListedBoolean]
@@ -79,7 +81,7 @@ namespace Aequus
             shadowOrbsBrokenTotal = 0;
             downedSpaceSquid = false;
             downedRedSprite = false;
-            downedEventGaleStreams = false;
+            downedEventAtmosphere = false;
             downedCrabson = false;
             downedOmegaStarite = false;
             downedDustDevil = false;
@@ -113,13 +115,13 @@ namespace Aequus
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             Structures = new Structures();
-            AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
-                var crabCrevice = new CrabCreviceGen();
-                crabCrevice.GenerateCrabCrevice(out var savePoint);
-                Structures.Add("CrabCrevice", savePoint);
-            }, tasks);
+            //AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
+            //{
+            //    progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
+            //    var crabCrevice = new CrabCreviceGen();
+            //    crabCrevice.GenerateCrabCrevice(out var savePoint);
+            //    Structures.Add("CrabCrevice", savePoint);
+            //}, tasks);
 
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
             {
@@ -279,7 +281,7 @@ namespace Aequus
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
-            GoreNestCount = tileCounts[ModContent.TileType<GoreNestTile>()];
+            GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
         }
 
         public override void PostUpdatePlayers()
@@ -366,8 +368,8 @@ namespace Aequus
         /// <item>OmegaStarite -- <see cref="downedOmegaStarite"/></item>
         /// <item>RedSprite -- <see cref="downedRedSprite"/></item>
         /// <item>SpaceSquid -- <see cref="downedSpaceSquid"/></item>
-        /// <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="downedEventGaleStreams"/></item>
-        /// <item>GaleStreams -- <see cref="downedEventGaleStreams"/></item>
+        /// <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="downedEventAtmosphere"/></item>
+        /// <item>GaleStreams -- <see cref="downedEventAtmosphere"/></item>
         /// </list>
         /// </summary>
         public class DownedCalls : IModCallable
@@ -433,8 +435,8 @@ namespace Aequus
                     ["OmegaStarite"] = () => ref downedOmegaStarite,
                     ["RedSprite"] = () => ref downedRedSprite,
                     ["SpaceSquid"] = () => ref downedSpaceSquid,
-                    ["DustDevil"] = () => ref downedEventGaleStreams,
-                    ["GaleStreams"] = () => ref downedEventGaleStreams,
+                    ["DustDevil"] = () => ref downedEventAtmosphere,
+                    ["GaleStreams"] = () => ref downedEventAtmosphere,
                 };
             }
 

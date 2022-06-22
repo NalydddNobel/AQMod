@@ -404,6 +404,11 @@ namespace Aequus.Items
                     new TooltipLine(item.Mod, name, AequusText.GetText(key, args)));
         }
 
+        public static void RemoveCritChance(this List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "CritChance");
+        }
+
         public static void RemoveCritChanceModifier(this List<TooltipLine> tooltips)
         {
             tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "PrefixCritChance");
