@@ -6,6 +6,8 @@ using Aequus.Items;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -52,7 +54,29 @@ namespace Aequus.NPCs
                         return;
                     }
                 }
-                if (Main.netMode != NetmodeID.Server && self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    goto Orig;
+                }
+
+                if (self.HasBuff<Bleeding>())
+                {
+                    int amt = (int)Math.Min(4.0 + dmg / 20.0, 20.0);
+                    for (int i = 0; i < amt; i++)
+                    {
+                        bool foodParticle = Main.rand.NextBool();
+                        var d = Dust.NewDustDirect(self.position, self.width, self.height, foodParticle ? DustID.Blood : DustID.FoodPiece, newColor: foodParticle ? new Color(200, 20, 30, 100) : default);
+                        d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(2f, 5f);
+                        d.velocity += self.velocity * 0.5f;
+                        if (Main.rand.NextBool(3))
+                        {
+                            d.noGravity = true;
+                        }
+                    }
+                }
+
+                if (self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
                     && SnowgraveCorpse.CanFreezeNPC(self))
                 {
                     SoundEngine.PlaySound(SoundID.Item30, self.Center);
@@ -63,6 +87,7 @@ namespace Aequus.NPCs
             {
 
             }
+            Orig:
             orig(self, hitDirection, dmg);
         }
 
@@ -82,6 +107,35 @@ namespace Aequus.NPCs
                 {
                     npc.Transform(ModContent.NPCType<Heckto>());
                 }
+            }
+        }
+
+        public override void DrawEffects(NPC npc, ref Color drawColor)
+        {
+            if (npc.life >= 0 && npc.HasBuff<Bleeding>())
+            {
+                if (Main.rand.NextBool(3))
+                {
+                    if (Main.rand.NextBool(5))
+                        npc.HitEffect(0, 4);
+                    bool foodParticle = Main.rand.NextBool();
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, foodParticle ? DustID.Blood : DustID.FoodPiece, newColor: foodParticle ? new Color(200, 20, 30, 100) : default);
+                    d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(1f, 2f);
+                    d.velocity += npc.velocity * 0.5f;
+                }
+            }
+        }
+
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+            if (npc.HasBuff<Bleeding>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 4;
+                damage += 4;
             }
         }
 

@@ -30,6 +30,11 @@ namespace Aequus.Projectiles.Melee.Swords
             }
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override void AI()
         {
             base.AI();
@@ -65,7 +70,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             return scale;
         }
-        public override float GetVisualOuter(float progress)
+        public override float GetVisualOuter(float progress, float swingProgress)
         {
             //if (progress > 0.8f)
             //{

@@ -10,7 +10,11 @@ namespace Aequus.Buffs.Minion
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = true;
-            AequusBuff.CannotClear.Add(Type);
+        }
+
+        public override bool RightClick(int buffIndex)
+        {
+            return false;
         }
     }
 }

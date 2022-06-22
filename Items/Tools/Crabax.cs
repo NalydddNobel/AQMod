@@ -9,8 +9,8 @@ namespace Aequus.Items.Tools
     {
         public override void SetDefaults()
         {
-            Item.width = 60;
-            Item.height = 60;
+            Item.width = 32;
+            Item.height = 32;
             Item.DamageType = DamageClass.Melee;
             Item.damage = 20;
             Item.useTime = 40;

@@ -169,6 +169,7 @@ Mods: {
 			Mendshroom: Mendshroom
 			GlowCore: Glow Core
 
+			BattleAxe: Battle Axe
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
@@ -590,6 +591,7 @@ Mods: {
 			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
 			GlowCore: You and your projectiles emit light
 
+			BattleAxe: May make enemies bleed on hit
 			RockMan: An ancient relic, originally used to cut lemons
 
 			Slingshot: 

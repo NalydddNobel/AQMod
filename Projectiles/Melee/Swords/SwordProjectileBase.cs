@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -7,6 +9,8 @@ namespace Aequus.Projectiles.Melee.Swords
 {
     public abstract class SwordProjectileBase : ModProjectile
     {
+        public static Asset<Texture2D> SwishTexture => ModContent.Request<Texture2D>(typeof(SwordProjectileBase).Namespace.Replace('.', '/') + "/Swish");
+
         private bool _init;
         public int swingDirection;
         public int hitboxOutwards;
@@ -33,11 +37,6 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.penetrate = -1;
             Projectile.localNPCHitCooldown = 50;
             Projectile.usesLocalNPCImmunity = true;
-        }
-
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.White;
         }
 
         public override bool? CanDamage()
@@ -89,7 +88,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 UpdateSwing(progress, swingProgress);
                 float s = Projectile.scale;
                 Projectile.scale = GetScale(swingProgress);
-                visualOutwards = (int)GetVisualOuter(swingProgress);
+                visualOutwards = (int)GetVisualOuter(progress, swingProgress);
                 SetArmRotation(player, AngleVector);
             }
 
@@ -138,7 +137,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             return scale;
         }
-        public virtual float GetVisualOuter(float progress)
+        public virtual float GetVisualOuter(float progress, float swingProgress)
         {
             return visualOutwards;
         }

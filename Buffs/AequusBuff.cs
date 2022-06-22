@@ -2,34 +2,11 @@
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Buffs
 {
-    public class AequusBuff : ILoadable
+    public class AequusBuff
     {
-        public static HashSet<int> CannotClear { get; private set; }
-
-        void ILoadable.Load(Mod mod)
-        {
-            CannotClear = new HashSet<int>();
-            On.Terraria.Main.TryRemovingBuff += Main_TryRemovingBuff;
-        }
-
-        private void Main_TryRemovingBuff(On.Terraria.Main.orig_TryRemovingBuff orig, int i, int b)
-        {
-            if (CannotClear.Contains(b))
-            {
-                return;
-            }
-
-            orig(i, b);
-        }
-
-        void ILoadable.Unload()
-        {
-        }
-
         public static bool AddStaticImmunity(int npc, bool isWhipBuff, params int[] buffList)
         {
             if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc, out var value))
