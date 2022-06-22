@@ -7,6 +7,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
+using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -100,6 +101,7 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AshCandle>());
             shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());

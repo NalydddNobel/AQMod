@@ -200,14 +200,6 @@ namespace Aequus
                                 placedItems.Add(choice);
                             }
                         }
-                        else if (style == ChestTypes.LockedShadow)
-                        {
-                            if (!placedItems.Contains(ModContent.ItemType<AshCandle>()) || r.NextBool(6))
-                            {
-                                c.Insert(ModContent.ItemType<AshCandle>(), 1);
-                                placedItems.Add(ModContent.ItemType<AshCandle>());
-                            }
-                        }
                         else if (style == ChestTypes.Frozen)
                         {
                             rockmanChests.Add(k);
