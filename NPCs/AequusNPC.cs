@@ -41,7 +41,35 @@ namespace Aequus.NPCs
                 NPCID.BlazingWheel,
             };
 
+            On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
+        }
+        private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
+        {
+            float velocityBoost = VelocityBoost(self);
+
+            if (velocityBoost != 0f)
+            {
+                self.velocity *= 1f + velocityBoost;
+            }
+            orig(self);
+            if (velocityBoost != 0f)
+            {
+                self.velocity /= 1f + velocityBoost;
+            }
+        }
+        public static float VelocityBoost(NPC npc)
+        {
+            float velocityBoost = 0f;
+            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie)
+            {
+                velocityBoost += z.DetermineVelocityBoost(npc, Main.player[z.zombieOwner], Main.player[z.zombieOwner].Aequus());
+            }
+            if (npc.HasBuff<Weakness>())
+            {
+                velocityBoost -= 0.25f;
+            }
+            return velocityBoost;
         }
         private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
@@ -110,8 +138,29 @@ namespace Aequus.NPCs
             }
         }
 
+        public override void PostAI(NPC npc)
+        {
+            if (npc.noTileCollide)
+            {
+                float velocityBoost = VelocityBoost(npc);
+                if (velocityBoost > 0f)
+                {
+                    npc.position += npc.velocity * velocityBoost;
+                }
+            }
+        }
+
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
+            if (npc.HasBuff<Weakness>())
+            {
+                byte a = drawColor.A;
+                drawColor = (drawColor * 0.9f).UseA(a);
+                if (npc.life >= 0 && Main.rand.NextBool(20))
+                {
+                    npc.HitEffect(0, 10);
+                }
+            }
             if (npc.life >= 0 && npc.HasBuff<Bleeding>())
             {
                 if (Main.rand.NextBool(3))

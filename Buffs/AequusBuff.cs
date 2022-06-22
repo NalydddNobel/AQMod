@@ -7,6 +7,10 @@ namespace Aequus.Buffs
 {
     public class AequusBuff
     {
+        public static bool AddStaticImmunity(int npc, params int[] buffList)
+        {
+            return AddStaticImmunity(npc, false, buffList);
+        }
         public static bool AddStaticImmunity(int npc, bool isWhipBuff, params int[] buffList)
         {
             if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc, out var value))

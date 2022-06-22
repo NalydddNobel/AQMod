@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accBoneRing = 4;
+            player.Aequus().accBoneRing += 4;
         }
     }
 }

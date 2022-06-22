@@ -52,7 +52,6 @@ namespace Aequus.Content.Necromancy
             BlacklistVelocityBoost = new HashSet<int>();
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
-            On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             if (!Main.dedServ)
             {
                 ZombieRecruitSound = Aequus.GetSound("zombierecruit");
@@ -60,27 +59,6 @@ namespace Aequus.Content.Necromancy
         }
 
         #region Hooks
-        private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
-        {
-            if (self.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie)
-            {
-                float velocityBoost = z.DetermineVelocityBoost(self, Main.player[z.zombieOwner], Main.player[z.zombieOwner].Aequus());
-                if (velocityBoost > 0f)
-                {
-                    self.velocity *= 1f + velocityBoost;
-                }
-                orig(self);
-                if (velocityBoost > 0f)
-                {
-                    self.velocity /= 1f + velocityBoost;
-                }
-            }
-            else
-            {
-                orig(self);
-            }
-        }
-
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC self, int newType)
         {
             bool isZombieOld = self.GetGlobalNPC<NecromancyNPC>().isZombie;
@@ -358,15 +336,6 @@ namespace Aequus.Content.Necromancy
                 if (zombieOwner == Main.myPlayer && aequus.pandorasBoxItem != null)
                 {
                     UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, AI_NPCTarget);
-                }
-
-                if (npc.noTileCollide)
-                {
-                    float velocityBoost = DetermineVelocityBoost(npc, player, aequus);
-                    if (velocityBoost > 0f)
-                    {
-                        npc.position += npc.velocity * velocityBoost;
-                    }
                 }
 
                 if (Main.netMode != NetmodeID.Server)

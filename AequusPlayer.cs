@@ -439,6 +439,7 @@ namespace Aequus
                     reboundNecklaceFall = fallAmt;
                 }
             }
+            accBoneRing = 0;
             accReboundNecklace = false;
 
             grandRewardLuck = 0f;
@@ -985,6 +986,14 @@ namespace Aequus
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             hitTime = 0;
+        }
+
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
+            {
+                target.AddBuff(ModContent.BuffType<Weakness>(), 360);
+            }
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
