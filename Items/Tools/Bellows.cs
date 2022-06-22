@@ -40,22 +40,32 @@ namespace Aequus.Items.Tools
             if (Main.myPlayer == player.whoAmI)
             {
                 var v = Vector2.Normalize(Main.MouseWorld - player.Center).UnNaN();
-                player.velocity -= v * Item.knockBack;
-                var spawnPos = player.Center + v * (player.width + 10);
-                if (Main.rand.NextBool(4))
+                if (v.Y > 0f)
                 {
-                    var g = Gore.NewGoreDirect(player.GetSource_ItemUse(Item), spawnPos,
-                        v.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(0.5f, 4f), GoreID.Smoke1 + Main.rand.Next(3));
-                    g.scale = Main.rand.NextFloat(0.5f, 1.1f);
-                    g.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    v.Y *= (player.gravity / 0.4f);
                 }
-                var d = Dust.NewDustDirect(spawnPos, 10, 10, DustID.Smoke);
-                d.velocity *= 0.1f;
-                d.velocity += v.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(0.5f, 4f);
-                d.scale = Main.rand.NextFloat(0.8f, 1.5f);
-                d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                player.velocity -= v * Item.knockBack;
+                if (player.velocity.X < 4f)
+                {
+                    player.fallStart = (int)player.position.Y / 16;
+                }
             }
             return player.itemAnimation < 45;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            try
+            {
+                int index = tooltips.GetIndex("Knockback");
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KBText(Item.knockBack)));
+                index = tooltips.GetIndex("Speed");
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimText(Item.useAnimation)));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

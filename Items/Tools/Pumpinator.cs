@@ -38,11 +38,15 @@ namespace Aequus.Items.Tools
         {
             try
             {
+                int index = tooltips.GetIndex("Knockback");
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KBText(Item.knockBack)));
+                index = tooltips.GetIndex("Speed");
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimText(Item.useAnimation)));
                 if (!Main.hardMode || AequusSystem.downedEventGaleStreams)
                 {
                     return;
                 }
-                int index = tooltips.GetIndex("Material");
+                index = tooltips.GetIndex("Material");
                 tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = AequusTooltips.MysteriousGuideTooltip, });
             }
             catch
