@@ -169,6 +169,7 @@ Mods: {
 			Mendshroom: 愈灵菇
 			GlowCore: 发光核心
 
+			BattleAxe: 战斧
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
 			Slice: 利刃
@@ -224,6 +225,8 @@ Mods: {
 
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
+
+			Bellows: 风箱
 
 			SnowRoulette: 雪原转盘
 			GlowingMushroomsRoulette: 发光蘑菇转盘
@@ -536,7 +539,7 @@ Mods: {
 		ItemTooltip: {
 			BoneRing: 
 				'''
-				攻击会使敌人虚弱
+				有几率使敌人虚弱
 				'''
 			PandorasBox: 
 				'''
@@ -590,6 +593,7 @@ Mods: {
 			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
 			GlowCore: 你和你的弹幕会发光
 
+			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
 			Slingshot: 
@@ -716,6 +720,8 @@ Mods: {
 				召唤一只跟着你的太空乌贼
 				'太可爱了'
 				'''
+
+			Bellows: 推开你自己
 
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
