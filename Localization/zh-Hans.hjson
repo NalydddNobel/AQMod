@@ -721,7 +721,11 @@ Mods: {
 				'太可爱了'
 				'''
 
-			Bellows: 推开你自己
+			Bellows: 
+				'''
+				将你向你瞄准的反方向推开
+				'真是太容易了'
+				'''
 
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
