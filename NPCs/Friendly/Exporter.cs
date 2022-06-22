@@ -34,7 +34,7 @@ namespace Aequus.NPCs.Friendly
             NPCID.Sets.AttackType[NPC.type] = 3; // -1 is none? 0 is shoot, 1 is magic shoot?, 2 is dryad aura, 3 is melee
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
-            NPCID.Sets.HatOffsetY[NPC.type] = 8;
+            NPCID.Sets.HatOffsetY[NPC.type] = 4;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Velocity = 1f,

@@ -154,9 +154,14 @@ namespace Aequus
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers)
                     {
                         int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.Gold || style == ChestTypes.Frozen)
+                        if (style == ChestTypes.Gold || style == ChestTypes.Marble || style == ChestTypes.Granite || style == ChestTypes.Mushroom)
                         {
                             rockmanChests.Add(k);
+
+                            if (r.NextBool(6))
+                            {
+                                AddGlowCore(c, placedItems);
+                            }
 
                             switch (r.Next(5))
                             {
@@ -172,13 +177,8 @@ namespace Aequus
                                     c.Insert(ModContent.ItemType<Bellows>(), 1);
                                     break;
                             }
-
-                            if (r.NextBool(6))
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
                         }
-                        if (style == ChestTypes.LockedGold)
+                        else if (style == ChestTypes.LockedGold)
                         {
                             int choice = -1;
                             for (int i = 0; i < DungeonChestItemTypesMax; i++)
@@ -210,6 +210,12 @@ namespace Aequus
                         }
                         else if (style == ChestTypes.Frozen)
                         {
+                            rockmanChests.Add(k);
+
+                            if (r.NextBool(6))
+                            {
+                                AddGlowCore(c, placedItems);
+                            }
                             if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || r.NextBool(6))
                             {
                                 c.Insert(ModContent.ItemType<CrystalDagger>(), 1);
