@@ -84,11 +84,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
-			NecromancyCandle: 
-				'''
-				吸收被仆从杀死的敌人的灵魂
-				被召唤的敌人会占据幽魂仆从栏位
-				'''
+			NecromancyCandle: 吸收被仆从杀死的敌人的灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
 			UseDarts: 使用种子和飞镖作为弹药
@@ -979,9 +975,9 @@ Mods: {
 			Flameblaster:
 				'''
 				右键发射气爆
-				在神圣地形时格外有效
-				{$Mods.Aequus.Tooltips.UsesGel}
+				无视敌人10点的防御力
 				50%几率不消耗弹药
+				{$Mods.Aequus.Tooltips.UsesGel}
 				[c/ee2222:最热的]家用燃烧装置'
 				'''
 			CrusadersCrossbow: 发射可以治疗或伤害敌人的治愈箭矢
@@ -1005,8 +1001,8 @@ Mods: {
 			Lightbulb: 利用恒星的能量散发着光
 			Cauterizer:
 				'''
-				发射会爆炸的恶魔能量冲击波
-				剑身击中敌人时会对其造成猩红狱火减益
+				发射恶魔能量冲击波
+				会对敌人造成猩红狱火减益
 				'''
 			HellsBoon:
 				'''
@@ -2711,6 +2707,23 @@ Mods: {
 		}
 
 		TownNPCMood: {
+			Occultist: {
+				Content: 这个地方挺好的, 虽然我可以在地狱得到更好的服务.
+				NoHome: 嘿? 你是想让我回到血巢中生活吗?
+				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 我会在午夜前到家, 我保证.
+				LoveSpace: 哦是的! 这个地方很不错, 我独有的房间... 还有一些人在附近练习魔法!
+				DislikeCrowded: 额- 这里有很多人. 如果我的咒语能催眠两个人以上就好了.
+				HateCrowded: 我不能忍受这个拥挤的地方! 如果你的一举一动都能被全镇人听到, 那么保密就没有意义了.
+				LikeBiome: "{BiomeName}很好, 但还能更好."
+				LoveBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天, 你应该加入我."
+				DislikeBiome: 啊是的, {BiomeName}, 我最喜欢扔垃圾的地方.
+				HateBiome: 你知道的, 虽然这有点可笑, 但地狱比{BiomeName}更好.
+				LoveNPC: 嘿, 告诉{NPCName}我把巧克力煎饼做好了!- 呵呵- 他们是我最喜欢的人之一.
+				LikeNPC: "当我对他们施火咒时, {NPCName}他从不退缩. 他们一定有着难以置信的疼痛耐受力!" 
+				DislikeNPC: "{NPCName}很烦人, 至少没有一些来自地狱的朋友那么坏."
+				HateNPC: 我字面意义上的把{NPCName}送到地狱然后回来了... 可惜的是, 咒语结束后会抹去被施咒者的记忆.
+			}
+
 			Exporter: {
 				Content: 这地方真不错, 伙计! 但总会有更好的, 呦吼吼!
 				NoHome: 如果没有我的船, 我该怎么储存我的赃物!? 肯定不是挖龙虾裂隙, 肯定不是!
