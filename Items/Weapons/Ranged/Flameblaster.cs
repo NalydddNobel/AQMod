@@ -117,6 +117,7 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient<Pumpinator>()
                 .AddIngredient(ItemID.Flamethrower)
                 .AddIngredient<DemonicEnergy>(3)
+                .AddTile(TileID.MythrilAnvil)
                 .RegisterAfter(ItemID.Flamethrower);
         }
     }

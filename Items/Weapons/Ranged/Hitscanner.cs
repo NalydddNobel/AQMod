@@ -82,15 +82,15 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient(ItemID.Boomstick)
                 .AddIngredient(ItemID.CobaltBar, 10)
                 .AddIngredient<DemonicEnergy>(3)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
+                .AddTile(TileID.Anvils)
+                .RegisterAfter(ItemID.OnyxBlaster);
 
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
                 .AddIngredient(ItemID.PalladiumBar, 10)
                 .AddIngredient<DemonicEnergy>(3)
-                .AddTile(TileID.MythrilAnvil)
-                .Register();
+                .AddTile(TileID.Anvils)
+                .RegisterAfter(ItemID.OnyxBlaster);
         }
     }
 }
