@@ -206,11 +206,14 @@ Mods: {
 
 			CinnamonRoll: 肉桂卷
 
+			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
 			FrostPotion: 冰霜药水
 
 			PotionOfResurrection: 复活药水
 
+			Leecheel: 蛭血鱼
+			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 			Hexoplasm: 冥狱融质
 			SkeletonKey: 骷髅钥匙
@@ -411,7 +414,6 @@ Mods: {
 			OpposingPotion: 对立药水
 			Baguette: 法棍
 			SpoilsPotion: 超量药水
-			BloodthirstPotion: 嗜血药水
 			SpreadPotion: 扩散药水
 			ShadePotion: 暗影药水
 			MysteryGrail: 神秘圣杯
@@ -732,10 +734,13 @@ Mods: {
 			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
 			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
-			PotionOfResurrection: 将你传送至上次死亡时的位置
+			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
+			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
+			PotionOfResurrection: 将你传送至上次死亡时的位置
+			
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
@@ -1172,12 +1177,6 @@ Mods: {
 				可与宝箱混合以定向要传送的箱子
 				'''
 			PotionofContainersTag: 将你传送至世界中的随机一个箱子
-			NoonPotion:
-				'''
-				使你散发范围较大的光芒并强化夜视效果
-				会使仅在白天生效的效果生效
-				阻止仅在夜晚生效的效果生效
-				'''
 			OpposingPotion: 逆转许多事物的效果
 			Baguette:
 				'''
@@ -1190,7 +1189,6 @@ Mods: {
 				敌人死亡时掉落的战利品的数量翻倍
 				'你只是个被惯坏了的坏孩子!'
 				'''
-			BloodthirstPotion: 当你击杀一名敌人时你会回复些许生命值
 			SpreadPotion: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
 			ShadePotion: 站定不动时会使敌人无法以你为攻击目标
 			MysteryGrail:
@@ -1390,6 +1388,7 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
+			Bloodthirst: 嗜血
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
@@ -1421,7 +1420,6 @@ Mods: {
 			Opposing: 对立药水
 			BaguetteBuff: 法棍
 			Spoiled: 超量
-			Bloodthirst: 嗜血
 			DebuffSpread: 减益扩散
 			Shade: 暗影
 			SpeedBoostFood: 速度强化
@@ -1454,11 +1452,24 @@ Mods: {
 		}
 
 		BuffDescription: {
+			BloodthirstBuff: 敌人必定掉落红心
+			NoonBuff:
+				'''
+				使你散发范围较大的光芒并强化夜视效果
+				会使仅在白天生效的效果生效
+				阻止仅在夜晚生效的效果生效
+				'''
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
+
 			SpicyEelBuff: 大幅度增加移动速度
+			BaguetteBuff: 大幅度增加各项属性和生命恢复速度
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
+
+			Vampirism: 在这之后你可能会变成吸血鬼...
+			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
+			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
 
 			CorruptPlantBuff: 腐化植物会为你而战!
 			RedSpriteMinionBuff: 红色精灵会为你而战!
@@ -1477,20 +1488,9 @@ Mods: {
 			Starite: 星之源会为你而战
 			Trapper: 恶魔捕手会为你而战
 			PiranhaPlant: 植物会为你而战
-			Vampirism: 在这之后你可能会变成吸血鬼...
-			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
-			VampirismDay: 你的各项属性大幅度降低, 你无法再通过食物获得增益
 			Harmony: 你的魔法能力大幅度增加
-			NoonBuff:
-				'''
-				使你散发范围较大的光芒并强化夜视效果
-				会使仅在白天生效的效果生效
-				阻止仅在夜晚生效的效果生效
-				'''
 			Opposing: 逆转许多事物的效果
-			BaguetteBuff: 大幅度提升所有属性和生命恢复速度
 			Spoiled: 敌人死亡时掉落的战利品的数量翻倍
-			Bloodthirst: 当你击杀一名敌人时你会回复些许生命值
 			DebuffSpread: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
 			Shade: 站定不动时会使敌人无法以你为攻击目标
 			SpeedBoostFood: 小幅度提升所有属性并且大幅度增加速度
