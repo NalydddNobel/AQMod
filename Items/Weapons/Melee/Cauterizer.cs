@@ -20,11 +20,11 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<CauterizerProj>(48);
-            Item.SetWeaponValues(60, 3f);
+            Item.DefaultToDopeSword<CauterizerProj>(40);
+            Item.SetWeaponValues(75, 6.5f);
             Item.width = 40;
             Item.height = 40;
-            Item.scale = 1.3f;
+            Item.scale = 1.35f;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;

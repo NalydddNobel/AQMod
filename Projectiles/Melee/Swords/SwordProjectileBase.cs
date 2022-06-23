@@ -144,12 +144,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public void UpdateDirection(Player player)
         {
-            if (angleVector.X < 0f)
+            if (angleVector.X < 0f && swingDirection == -1)
             {
                 player.direction = -1;
                 Projectile.direction = -1;
             }
-            else
+            else if (angleVector.X > 0f && swingDirection == 1)
             {
                 player.direction = 1;
                 Projectile.direction = 1;

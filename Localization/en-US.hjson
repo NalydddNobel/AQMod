@@ -1005,8 +1005,8 @@ Mods: {
 			Lightbulb: Emits light using the power of stars
 			Cauterizer:
 				'''
-				Shoots a wave of explosive demonic energy
-				Sword hits inflict crimson hellfire
+				Shoots a wave of demonic energy
+				Inflicts crimson hellfire
 				'''
 			HellsBoon:
 				'''

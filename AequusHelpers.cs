@@ -134,6 +134,18 @@ namespace Aequus
             return Lighting.GetColor((int)(v.X / 16), (int)(v.Y / 16f));
         }
 
+        public static void DrawRectangle(Rectangle rect, Vector2 offset, Color color)
+        {
+            rect.X += (int)offset.X;
+            rect.Y += (int)offset.Y;
+            DrawRectangle(rect, color);
+        }
+
+        public static void DrawRectangle(Rectangle rect, Color color)
+        {
+            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, rect, color);
+        }
+
         public static void DrawFishingLine(Player player, Vector2 bobberPosition, int bobberWidth, int bobberHeight, Vector2 bobberVelocity, float velocitySum, Vector2 lineOrigin, Color? customColor = null, Func<Vector2, Color, Color> getLighting = null)
         {
             var color = customColor.GetValueOrDefault(Color.White);

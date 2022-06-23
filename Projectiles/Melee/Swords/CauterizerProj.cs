@@ -15,9 +15,9 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 100;
-            Projectile.height = 100;
-            hitboxOutwards = 50;
+            Projectile.width = 130;
+            Projectile.height = 130;
+            hitboxOutwards = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -51,8 +51,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 if (Main.myPlayer == Projectile.owner)
                 {
                     Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, 
-                        Vector2.Normalize(Main.MouseWorld - Projectile.Center) * Projectile.velocity.Length() * 6f,
-                        ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.5f ), Projectile.knockBack, Projectile.owner);
+                        Vector2.Normalize(Main.MouseWorld - Projectile.Center) * Projectile.velocity.Length() * 9f,
+                        ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f ), Projectile.knockBack / 4f, Projectile.owner);
                 }
             }
         }
@@ -72,14 +72,16 @@ namespace Aequus.Projectiles.Melee.Swords
         }
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            //if (progress > 0.8f)
-            //{
-            //    return GetVisualOuter(0.8f - (progress - 0.8f));
-            //}
-            //if (progress < 0.2f)
-            //{
-            //    return -20f * SwingProgress(0.2f - progress / 0.2f);
-            //}
+            if (progress > 0.8f)
+            {
+                float p = 1f - (1f - progress) / 0.2f;
+                Projectile.alpha = (int)(p * 255);
+                return -40f * p;
+            }
+            if (progress < 0.2f)
+            {
+                return -10f * (1f - progress / 0.2f);
+            }
             return 0f;
         }
 
@@ -93,7 +95,7 @@ namespace Aequus.Projectiles.Melee.Swords
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
-            var drawColor = Projectile.GetAlpha(lightColor);
+            var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
             var effects = SpriteEffects.None;
@@ -107,7 +109,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
             foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly))
             {
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, new Color(100, 60, 5, 0), Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, new Color(100, 60, 5, 0) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
@@ -120,7 +122,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
                 var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
                 var shineOrigin = shine.Size() / 2f;
-                var shineColor = new Color(200, 120, 40, 0) * intensity * intensity;
+                var shineColor = new Color(200, 120, 40, 0) * intensity * intensity * Projectile.Opacity;
                 var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * ((size - 8f) * Projectile.scale);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, effects, 0);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, effects, 0);
