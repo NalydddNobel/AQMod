@@ -80,9 +80,15 @@ namespace Aequus.Items.Weapons.Ranged
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
-                .AddIngredient(ItemID.MythrilBar, 12)
-                .AddIngredient(ItemID.SoulofNight, 8)
-                .AddIngredient<DemonicEnergy>()
+                .AddIngredient(ItemID.CobaltBar, 10)
+                .AddIngredient<DemonicEnergy>(3)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+
+            CreateRecipe()
+                .AddIngredient(ItemID.Boomstick)
+                .AddIngredient(ItemID.PalladiumBar, 10)
+                .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

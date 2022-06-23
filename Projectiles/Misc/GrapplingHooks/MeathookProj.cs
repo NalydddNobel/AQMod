@@ -169,8 +169,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             AequusHelpers.DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain").Value, Projectile.Center, player.Center, Main.screenPosition);
             var texture = TextureAssets.Projectile[Type].Value;
             var drawPosition = Projectile.Center - Main.screenPosition;
-            Main.EntitySpriteDraw(texture, drawPosition, null, new Color(120, 120, 120, 255), Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(texture, drawPosition, null, new Color(100, 100, 100, 0), Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
             return false;
         }
     }

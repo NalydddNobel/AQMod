@@ -84,11 +84,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: Slain enemies may convert into ghost minions
-			NecromancyCandle: 
-				'''
-				Absorbs the souls of enemies killed by minions
-				The summoned enemy will use ghost minion slots
-				'''
+			NecromancyCandle: Absorbs the souls of enemies killed by minions
 			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
 			UseDarts: Uses seeds and darts as ammo
@@ -979,10 +975,10 @@ Mods: {
 			Flameblaster:
 				'''
 				Right click to shoot an airblast
-				Extra effective in the hallow
-				{$Mods.Aequus.Tooltips.UsesGel}
+				Ignores 10 points of enemy Defense
 				50% chance to not consume ammo
-				'The [c/ee2222:HOTTEST] in Home Incendiary Devices'
+				{$Mods.Aequus.Tooltips.UsesGel}
+				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
 				'''
 			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
 			DoubleShot:
@@ -2711,6 +2707,23 @@ Mods: {
 		}
 
 		TownNPCMood: {
+			Occultist: {
+				Content: This place is good enough, could definitely get better service in the Underworld Domain though.
+				NoHome: Hey? Are you trying to make me go back to living in the Gore Nest?
+				FarFromHome: Oh, you caught me snooping around the place, I'll be home by midnight, I promise.
+				LoveSpace: Oh yes! This place is quite great, my own room... plus some people to practice magic on!
+				DislikeCrowded: Erm- There's quite a lot of people here. That'd be great if my spells could hypnotize more than 2 folks.
+				HateCrowded: I can't stand the croudedness of this place! There's no point in being secretive if your every move can be heard by the entire town.
+				LikeBiome: "{BiomeName} is great, could be better."
+				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+				DislikeBiome: Ah yes, {BiomeName}, my favorite place to throw my garbage.
+				HateBiome: Y'know, it's kind of funny how the Underworld is more enjoyable than {BiomeName}.
+				LoveNPC: Hey, tell {NPCName} I finished making them chocolate pancakes!- Hehe- They're one of my favorite people.
+				LikeNPC: "{NPCName} has never flinched when I tried fire spells on them. They must have incredible pain tolerance!" 
+				DislikeNPC: "{NPCName} is quite annoying, atleast not as bad as some of friends from Hell."
+				HateNPC: I've literally sent {NPCName} to hell and back... too bad that spell wipes there memory after finishing.
+			}
+
 			Exporter: {
 				Content: This place is good matey! Could always be better though, yo ho ho!
 				NoHome: How will I store my stolen goods without me ship!? Definitely not digging up a lobster crevice that's for sure!

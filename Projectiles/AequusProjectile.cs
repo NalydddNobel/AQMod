@@ -203,5 +203,14 @@ namespace Aequus.Projectiles
                 sourceProj = binaryReader.ReadUInt16();
             }
         }
+
+        public static void Scale(Projectile projectile, int amt)
+        {
+            projectile.position.X -= amt / 2f;
+            projectile.position.Y -= amt / 2f;
+            projectile.width += amt;
+            projectile.height += amt;
+            projectile.netUpdate = true;
+        }
     }
 }

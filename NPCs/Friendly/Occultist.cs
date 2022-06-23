@@ -7,6 +7,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;

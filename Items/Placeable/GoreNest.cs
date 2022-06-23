@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<GoreNestTile>());
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 1, silver: 50);
             Item.maxStack = 99;
             Item.rare = ItemRarityID.LightRed;
         }
