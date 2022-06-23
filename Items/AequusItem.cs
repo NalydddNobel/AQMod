@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Items.Weapons.Summon;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace Aequus.Items
         {
             LegendaryFish = new HashSet<int>();
             SummonStaff = new HashSet<int>();
-            CritOnlyModifier = new HashSet<int>() 
+            CritOnlyModifier = new HashSet<int>()
             {
                 PrefixID.Keen,
                 PrefixID.Zealous,

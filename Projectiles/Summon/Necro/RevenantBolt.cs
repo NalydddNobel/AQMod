@@ -1,10 +1,7 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Debuffs.Necro;
-using Aequus.NPCs;
+﻿using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;

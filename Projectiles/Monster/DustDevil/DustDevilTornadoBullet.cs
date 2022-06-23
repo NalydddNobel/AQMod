@@ -79,14 +79,14 @@ namespace Aequus.Projectiles.Monster.DustDevil
             for (int i = 0; i < trailLength; i++)
             {
                 var p = AequusHelpers.CalcProgress(trailLength, i);
-                Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor * p, 
+                Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor * p,
                     Projectile.oldRot[i], origin, Projectile.scale * (0.6f + 0.4f * p), SpriteEffects.None, 0f);
             }
             trailLength /= 2;
             for (int i = 0; i < trailLength; i++)
             {
                 var p = AequusHelpers.CalcProgress(trailLength, i);
-                Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor * p, 
+                Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor * p,
                     Projectile.oldRot[i], origin, Projectile.scale * (0.6f + 0.4f * p) * 1.1f, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(t, Projectile.position + off - Main.screenPosition, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);

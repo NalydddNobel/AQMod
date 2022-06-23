@@ -1,9 +1,4 @@
-﻿using Aequus.NPCs;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
+﻿using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops

@@ -55,7 +55,7 @@ namespace Aequus.Buffs.Debuffs
                     if (t.Mod == "Terraria" && t.Name == "PickPower")
                     {
                         t.Text = item.pick +
-                            AequusText.ColorText("(-" + item.pick / 2 + ")", Color.Gray, alphaPulse: true) + 
+                            AequusText.ColorText("(-" + item.pick / 2 + ")", Color.Gray, alphaPulse: true) +
                             Language.GetTextValue("LegacyTooltip.26");
                     }
                 }

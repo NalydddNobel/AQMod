@@ -1,8 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.CrossMod;
 using Aequus.Items.Misc.Dyes;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
@@ -13,7 +11,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 

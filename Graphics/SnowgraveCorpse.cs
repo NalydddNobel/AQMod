@@ -1,5 +1,4 @@
-﻿using Aequus.Sounds;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace Aequus.Graphics
                 OnFreezeNPC = new Dictionary<int, Action<NPC, NPC>>();
                 CustomDraw = new Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>>();
                 CustomUpdate = new Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>>();
-            
+
                 if (!Main.dedServ)
                 {
                     SizzleSound = Aequus.GetSound("sizzle");

@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Biomes;
-using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Graphics.Prims;

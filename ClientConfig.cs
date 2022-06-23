@@ -1,14 +1,12 @@
-﻿using Aequus.Common;
+﻿using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Summons;
+using Aequus.Items.Weapons.Summon.Necro;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
-using Aequus.Items.Weapons.Summon.Necro;
 
 namespace Aequus
 {
@@ -88,31 +86,40 @@ namespace Aequus
 
         public override void AddCustomTranslations()
         {
-            Text("Visuals.ScreenshakeIntensity", new {
+            Text("Visuals.ScreenshakeIntensity", new
+            {
                 Baguette = AequusText.ItemText<Baguette>(),
             });
-            Text("Visuals.FlashIntensity", new {
+            Text("Visuals.FlashIntensity", new
+            {
                 NoonPotion = AequusText.ItemText<NoonPotion>(),
             });
-            Text("Visuals.HighQuality", new {
+            Text("Visuals.HighQuality", new
+            {
                 Fluorescence = AequusText.ItemText<Fluorescence>(),
             });
-            Text("Visuals.HighQualityShaders", new {
+            Text("Visuals.HighQualityShaders", new
+            {
                 FrozenTear = AequusText.ItemText<FrozenTear>(),
             });
-            Text("Visuals.FlashShaderRepetitions", new {
+            Text("Visuals.FlashShaderRepetitions", new
+            {
                 SupernovaFruit = AequusText.ItemText<SupernovaFruit>(),
             });
-            Text("Visuals.NecromancyOutlines", new {
+            Text("Visuals.NecromancyOutlines", new
+            {
                 Insurgency = AequusText.ItemText<Insurgency>(),
             });
-            Text("General.NPCShopQuotes", new {
+            Text("General.NPCShopQuotes", new
+            {
                 Teacup = AequusText.ItemText(ItemID.Teacup),
             });
-            Text("General.OtherNPCShopQuotes", new {
+            Text("General.OtherNPCShopQuotes", new
+            {
                 CoffeeCup = AequusText.ItemText(ItemID.CoffeeCup),
             });
-            Text("General.InfoDebugLogs", new {
+            Text("General.InfoDebugLogs", new
+            {
                 RadioThing = AequusText.ItemText(ItemID.DontStarveShaderItem),
             });
         }

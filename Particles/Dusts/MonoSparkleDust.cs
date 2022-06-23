@@ -46,7 +46,7 @@ namespace Aequus.Particles.Dusts
                 dust.scale -= 0.01f;
             }
             var tileCoords = dust.position.ToTileCoordinates();
-            if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10) && 
+            if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10) &&
                 WorldGen.SolidTile(Framing.GetTileSafely(tileCoords.X, tileCoords.Y)) && dust.fadeIn == 0f && !dust.noGravity)
             {
                 dust.scale *= 0.9f;

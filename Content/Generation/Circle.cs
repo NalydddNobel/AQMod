@@ -56,20 +56,20 @@ namespace Aequus.Content.Generation
                     }
                 }
             }
-                for (int i = 0; i < testPoints.Count; i++)
+            for (int i = 0; i < testPoints.Count; i++)
+            {
+                int chosenPoint = rand.Next(testPoints.Count);
+                int size = rand.Next(minScale, maxScale);
+                for (int j = size; j >= minScale; j--)
                 {
-                    int chosenPoint = rand.Next(testPoints.Count);
-                    int size = rand.Next(minScale, maxScale);
-                    for (int j = size; j >= minScale; j--)
+                    var c = FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, j);
+                    if (isValid?.Invoke(c) != false)
                     {
-                        var c = FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, j);
-                        if (isValid?.Invoke(c) != false)
-                        {
-                            return c;
-                        }
+                        return c;
                     }
-                    testPoints.RemoveAt(i);
                 }
+                testPoints.RemoveAt(i);
+            }
             return Invalid;
         }
 

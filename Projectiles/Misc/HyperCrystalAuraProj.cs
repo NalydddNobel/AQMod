@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -43,7 +42,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.scale = value.dummyPlayer
                     .GetModPlayer<HyperCrystalPlayer>()._accFocusCrystalDiameter;
             }
-            else 
+            else
             {
                 Projectile.Center = Main.player[Projectile.owner].Center;
                 Projectile.scale = Main.player[Projectile.owner].GetModPlayer<HyperCrystalPlayer>()._accFocusCrystalDiameter;

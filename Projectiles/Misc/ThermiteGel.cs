@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

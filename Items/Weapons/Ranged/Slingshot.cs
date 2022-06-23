@@ -1,6 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Projectiles.Ranged.Birds;
-using Aequus.Tiles;
+﻿using Aequus.Projectiles.Ranged.Birds;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

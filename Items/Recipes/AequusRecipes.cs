@@ -92,7 +92,7 @@ namespace Aequus.Items.Recipes
                 .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
                 .AddIngredient(ModContent.ItemType<AtmosphericEnergy>())
                 .AddTile(TileID.Anvils)
-                .Register((r) => 
+                .Register((r) =>
                     {
                         if (sort)
                         {

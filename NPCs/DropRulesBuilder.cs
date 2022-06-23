@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Misc.Expert;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

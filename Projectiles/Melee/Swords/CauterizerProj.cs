@@ -50,9 +50,9 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 if (Main.myPlayer == Projectile.owner)
                 {
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, 
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
                         Vector2.Normalize(Main.MouseWorld - Projectile.Center) * Projectile.velocity.Length() * 9f,
-                        ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f ), Projectile.knockBack / 4f, Projectile.owner);
+                        ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
                 }
             }
         }
@@ -72,16 +72,16 @@ namespace Aequus.Projectiles.Melee.Swords
         }
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            if (progress > 0.8f)
-            {
-                float p = 1f - (1f - progress) / 0.2f;
-                Projectile.alpha = (int)(p * 255);
-                return -40f * p;
-            }
-            if (progress < 0.2f)
-            {
-                return -10f * (1f - progress / 0.2f);
-            }
+            //if (progress > 0.8f)
+            //{
+            //    float p = 1f - (1f - progress) / 0.2f;
+            //    Projectile.alpha = (int)(p * 255);
+            //    return -40f * p;
+            //}
+            //if (progress < 0.2f)
+            //{
+            //    return -10f * (1f - progress / 0.2f);
+            //}
             return 0f;
         }
 

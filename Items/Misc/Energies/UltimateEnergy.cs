@@ -1,5 +1,4 @@
 ﻿using Aequus.Graphics;
-using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

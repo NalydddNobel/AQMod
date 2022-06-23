@@ -91,7 +91,7 @@ namespace Aequus.Projectiles.Magic
                 if (Projectile.alpha < 200)
                 {
                     var v = Vector2.Normalize(Projectile.velocity);
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity, 
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity,
                         Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.75f, (int)(Projectile.ai[1] + 1f) % 2);
                     Projectile.ai[0] = -21f;
                 }
@@ -141,7 +141,7 @@ namespace Aequus.Projectiles.Magic
             Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, CorruptionHellfire.FireColor * 2f * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             if (_glowy > 0f)
             {
-                Main.spriteBatch.Draw(texture, Projectile.position + offset + glowOffset * _glowy * 4f - Main.screenPosition, frame, CorruptionHellfire.BloomColor * 2f* _glowy * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, Projectile.position + offset + glowOffset * _glowy * 4f - Main.screenPosition, frame, CorruptionHellfire.BloomColor * 2f * _glowy * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, Projectile.position + offset - glowOffset * _glowy * 4f - Main.screenPosition, frame, CorruptionHellfire.BloomColor * 2f * _glowy * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, Projectile.position + offset + glowOffset * _glowy * 8f - Main.screenPosition, frame, CorruptionHellfire.BloomColor * _glowy * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, Projectile.position + offset - glowOffset * _glowy * 8f - Main.screenPosition, frame, CorruptionHellfire.BloomColor * _glowy * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);

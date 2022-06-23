@@ -2,14 +2,12 @@
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Items.Tools;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 

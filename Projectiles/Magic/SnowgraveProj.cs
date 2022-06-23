@@ -1,7 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,7 +19,7 @@ namespace Aequus.Projectiles.Magic
         {
             if (!Main.dedServ)
             {
-                SnowgraveSound = new SoundStyle("Aequus/Sounds/Items/snowgrave") 
+                SnowgraveSound = new SoundStyle("Aequus/Sounds/Items/snowgrave")
                 { Volume = 0.75f, PitchVariance = 0f, Pitch = 0f, };
             }
         }

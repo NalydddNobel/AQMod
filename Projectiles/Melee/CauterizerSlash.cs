@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Melee
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), 
+            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(),
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
         }
 

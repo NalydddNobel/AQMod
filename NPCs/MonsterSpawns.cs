@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Underworld;
@@ -147,7 +146,7 @@ namespace Aequus.NPCs
 
         public static void ForceZen(Vector2 mySpot, float zenningDistance)
         {
-            for (int i =0; i < Main.maxPlayers; i++)
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active)
                 {

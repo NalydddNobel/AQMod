@@ -47,7 +47,7 @@ namespace Aequus.Items.Weapons.Ranged
         {
             position += new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f));
             velocity = Vector2.Normalize(Main.MouseWorld - position) * velocity.Length();
-            type = ModContent.ProjectileType<DeltoidArrow>(); 
+            type = ModContent.ProjectileType<DeltoidArrow>();
         }
     }
 }

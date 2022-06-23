@@ -5,7 +5,6 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace Aequus.Items
 {

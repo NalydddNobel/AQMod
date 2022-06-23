@@ -1,5 +1,4 @@
-﻿using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -116,7 +115,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 1200);
+            target.AddBuff(BuffID.OnFire3, 1200);
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -58,7 +58,7 @@ namespace Aequus.Items.Armor.PassiveSummon
                            : player.position + new Vector2(player.width / 2f + 8f * player.direction, 10f);
                     int w = Math.Max(player.width / 2 - 8, 4);
                     spawnPosition.X += Main.rand.Next(-w, w);
-                    int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition, 
+                    int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition,
                         new Vector2(Main.windSpeedCurrent * 2f + MathHelper.Clamp(player.velocity.X, -10f, 10f), Main.rand.NextFloat(-0.75f, 0.25f) + MathHelper.Clamp(player.velocity.Y, -10f, 10f)), ModContent.ProjectileType<FlowerCrownProj>(), damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI);
                     Main.projectile[p].ArmorPenetration = Item.ArmorPenetration;
                     Main.projectile[p].ai[1] += Main.rand.Next(-120, 10);

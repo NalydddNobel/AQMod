@@ -73,7 +73,7 @@ namespace Aequus.NPCs.Monsters
                 }
                 for (int i = 0; i < 30; i++)
                 {
-                    var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.FoodPiece, 
+                    var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.FoodPiece,
                         newColor: new Color(Main.rand.Next(20, 100), 200, 20, 200));
                     d.velocity = new Vector2(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -6f));
                 }

@@ -1,11 +1,9 @@
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Content;
-using Aequus.Content.CrossMod;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Recipes;
 using Aequus.Items.Weapons.Summon;
-using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

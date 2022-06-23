@@ -89,7 +89,7 @@ namespace Aequus.Graphics
             BehindPlayers = new ParticleRenderer();
             AbovePlayers = new ParticleRenderer();
             necromancyRenderers = new GhostOutlineTarget[]
-            { 
+            {
                 new GhostOutlineTarget(0, GhostOutlineTarget.IDs.LocalPlayer, () => Color.White),
                 new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Zombie, () => new Color(100, 149, 237, 255)),
                 new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Revenant, () => new Color(40, 100, 237, 255)),

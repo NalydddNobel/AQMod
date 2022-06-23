@@ -18,7 +18,7 @@ namespace Aequus.Graphics
 
         internal StaticMiscShaderInfo(string requestPath, string key, string pass, Func<Ref<Effect>, string, TMiscShaderData> initalizer)
         {
-            effect = ModContent.Request<Effect>("Aequus/Assets/Effects/" + requestPath, 
+            effect = ModContent.Request<Effect>("Aequus/Assets/Effects/" + requestPath,
                 (initalizer != null) ? AssetRequestMode.ImmediateLoad : AssetRequestMode.AsyncLoad);
             ShaderDataKey = key;
             if (effect.Value == null)

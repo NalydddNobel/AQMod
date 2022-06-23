@@ -136,7 +136,7 @@ namespace Aequus.Content
                 Player.accRunSpeed *= 1.5f;
                 Player.pickSpeed *= 1.5f;
                 Player.jumpSpeedBoost *= 1.5f;
-                Player.Aequus().ghostSlotsMax++;
+                Player.Aequus().ghostSlotsMax += 2;
             }
             if (daylightBurning)
             {

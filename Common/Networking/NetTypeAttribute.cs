@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
 

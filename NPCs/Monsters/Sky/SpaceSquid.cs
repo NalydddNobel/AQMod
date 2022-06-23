@@ -367,7 +367,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         frameIndex = 8;
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            SoundEngine.PlaySound(SpaceGunSound, NPC.Center);       
+                                            SoundEngine.PlaySound(SpaceGunSound, NPC.Center);
                                         }
                                         var spawnPosition = new Vector2(NPC.position.X + (NPC.direction == 1 ? NPC.width + 20f : -20), NPC.position.Y + NPC.height / 2f);
                                         var velocity = new Vector2(20f * NPC.direction, 0f);

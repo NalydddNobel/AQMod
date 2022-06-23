@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Weapons.Melee;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

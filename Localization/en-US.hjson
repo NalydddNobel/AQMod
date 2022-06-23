@@ -206,11 +206,14 @@ Mods: {
 
 			CinnamonRoll: Cinnamon Roll
 
+			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
 			FrostPotion: Frost Potion
 
 			PotionOfResurrection: Potion of Resurrection
 
+			Leecheel: Leecheel
+			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
 			Hexoplasm: Hexoplasm
 			SkeletonKey: Skeleton Key
@@ -411,7 +414,6 @@ Mods: {
 			OpposingPotion: Opposing Potion
 			Baguette: Baguette
 			SpoilsPotion: Plethora Potion
-			BloodthirstPotion: Bloodthirst Potion
 			SpreadPotion: Spread Potion
 			ShadePotion: Shade Potion
 			MysteryGrail: Mysterious Grail
@@ -732,9 +734,12 @@ Mods: {
 			IchorPopper: Increases bait power by 35% when in the crimson
 			MysticPopper: Increases bait power by 25% when in the hallow
 
-			PotionOfResurrection: Teleports you to the location of your most recent death
+			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
+			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
+
+			PotionOfResurrection: Teleports you to the location of your most recent death
 
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
@@ -1172,12 +1177,6 @@ Mods: {
 				Can be concocted with a chest to target specific chest types
 				'''
 			PotionofContainersTag: Teleports you to random chests in the world
-			NoonPotion:
-				'''
-				Emits a large aura of light and increases night vision
-				You always have daytime-only effects active
-				Prevents nighttime-only effects from working
-				'''
 			OpposingPotion: Reverses the effects of many things
 			Baguette:
 				'''
@@ -1190,7 +1189,6 @@ Mods: {
 				Enemies drop twice as much loot
 				'You are such a spoiled brat!'
 				'''
-			BloodthirstPotion: You drain some life when you kill an enemy
 			SpreadPotion: Enemies will spread their current debuffs to nearby enemies when attacked
 			ShadePotion: Standing still will make enemies unable to target you
 			MysteryGrail:
@@ -1390,6 +1388,7 @@ Mods: {
 		Doubled: Doubled {0}
 
 		BuffName: {
+			BloodthirstBuff: Bloodthirst
 			SentryBuff: Sentry
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
@@ -1421,7 +1420,6 @@ Mods: {
 			Opposing: Opposing
 			BaguetteBuff: Baguette
 			Spoiled: Plethora
-			Bloodthirst: Bloodthirst
 			DebuffSpread: Debuff Spread
 			Shade: Shade
 			SpeedBoostFood: Speed Food
@@ -1454,11 +1452,24 @@ Mods: {
 		}
 
 		BuffDescription: {
+			BloodthirstBuff: Enemies always drop hearts
+			NoonBuff:
+				'''
+				Emits a large aura of light and increases night vision
+				You always have daytime-only effects active
+				Prevents nighttime-only effects from working
+				'''
 			SentryBuff: Increase your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
+
 			SpicyEelBuff: Greatly increases speed
+			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
+
+			Vampirism: You may become a vampire after this...
+			VampirismNight: Greatly increased stats, attacks may lifesteal
+			VampirismDay: Greatly decreased stats, you no longer get buffs from food
 
 			CorruptPlantBuff: The corrupted plant will fight for you!
 			RedSpriteMinionBuff: The red sprite will fight for you!
@@ -1477,20 +1488,9 @@ Mods: {
 			Starite: The starite will fight for you
 			Trapper: The demonic trapper will fight for you
 			PiranhaPlant: The plant will fight for you
-			Vampirism: You may become a vampire after this...
-			VampirismNight: Greatly increased stats, attacks may lifesteal
-			VampirismDay: Greatly decreased stats, you no longer get buffs from food
 			Harmony: Greatly increases your magical powers
-			NoonBuff:
-				'''
-				Emits a large aura of light and increases night vision
-				You always have daytime-only effects active
-				Prevents nighttime-only effects from working
-				'''
 			Opposing: Reverses the effects of many things
-			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 			Spoiled: Enemies drop twice as much loot
-			Bloodthirst: You drain some life when you kill an enemy
 			DebuffSpread: Enemies will spread their current debuffs to nearby enemies when attacked
 			Shade: Standing still will make enemies unable to target you
 			SpeedBoostFood: Minor improvements to all stats and your speed is greatly increased

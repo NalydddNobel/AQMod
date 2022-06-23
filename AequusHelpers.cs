@@ -219,7 +219,7 @@ namespace Aequus
                     }
                 }
                 float rotation = playerToProjectile.ToRotation() - MathHelper.PiOver2;
-                Main.EntitySpriteDraw(texture, new Vector2(lineOrigin.X - Main.screenPosition.X + texture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + texture.Height * 0.5f), 
+                Main.EntitySpriteDraw(texture, new Vector2(lineOrigin.X - Main.screenPosition.X + texture.Width * 0.5f, lineOrigin.Y - Main.screenPosition.Y + texture.Height * 0.5f),
                     new Rectangle(0, 0, texture.Width, (int)height), getLighting(lineOrigin, color), rotation, new Vector2(texture.Width * 0.5f, 0f), 1f, SpriteEffects.None, 0);
             }
         }
@@ -364,9 +364,9 @@ namespace Aequus
         public static void CollideWithOthers(this Projectile projectile, float speed = 0.05f)
         {
             var rect = projectile.getRect();
-            for (int i =0; i < Main.maxProjectiles; i++)
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && i != projectile.whoAmI && projectile.type == Main.projectile[i].type && projectile.owner == Main.projectile[i].owner 
+                if (Main.projectile[i].active && i != projectile.whoAmI && projectile.type == Main.projectile[i].type && projectile.owner == Main.projectile[i].owner
                     && projectile.Colliding(rect, Main.projectile[i].getRect()))
                 {
                     projectile.velocity += Main.projectile[i].DirectionTo(projectile.Center).UnNaN() * speed;
@@ -957,7 +957,7 @@ namespace Aequus
         }
         public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
         {
-            return ContainsAny(en, (t) => 
+            return ContainsAny(en, (t) =>
             {
                 foreach (var t2 in en2)
                 {

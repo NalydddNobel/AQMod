@@ -1,9 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.CrossMod;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

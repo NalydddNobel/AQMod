@@ -164,7 +164,7 @@ namespace Aequus.Content
             var list = new List<NPC>();
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && Main.npc[i].townNPC && !Main.npc[i].homeless && 
+                if (Main.npc[i].active && Main.npc[i].townNPC && !Main.npc[i].homeless &&
                     !NPCTypesNoSpawns.Contains(Main.npc[i].type))
                 {
                     list.Add(Main.npc[i]);

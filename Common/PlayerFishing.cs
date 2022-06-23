@@ -5,6 +5,7 @@ using Aequus.Items.Misc;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
@@ -121,7 +122,6 @@ namespace Aequus.Common
             var aequus = Player.Aequus();
             if (attempt.inLava)
             {
-
                 if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4))
                 {
                     itemDrop = ModContent.ItemType<TatteredDemonHorn>();
@@ -138,13 +138,29 @@ namespace Aequus.Common
                 goto PostProbeFish;
             }
 
+            if (IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(3)))
+            {
+                var chooseableFish = new List<int>();
+                if (attempt.heightLevel < HeightLevel_Underworld)
+                {
+                    if (Player.ZoneCrimson)
+                        chooseableFish.Add(ModContent.ItemType<Leecheel>());
+                    if (Player.ZoneCorrupt)
+                        chooseableFish.Add(ModContent.ItemType<Depthscale>());
+                }
+                if (attempt.heightLevel > HeightLevel_Surface && Player.ZoneSnow)
+                {
+                    chooseableFish.Add(ModContent.ItemType<IcebergFish>());
+                }
+                if (chooseableFish.Count != 0)
+                {
+                    itemDrop = Main.rand.Next(chooseableFish);
+                }
+            }
+
             if (Player.ZoneBeach && attempt.veryrare && Main.rand.NextBool(3))
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
-            }
-            if (Player.ZoneSnow && attempt.heightLevel > HeightLevel_Surface && (itemDrop == ItemID.Bass || itemDrop == ItemID.SpecularFish || (attempt.common && Main.rand.NextBool(3))))
-            {
-                itemDrop = ModContent.ItemType<IcebergFish>();
             }
             if (Main.bloodMoon && attempt.heightLevel < HeightLevel_Underground)
             {
@@ -152,7 +168,7 @@ namespace Aequus.Common
                 {
                     itemDrop = ModContent.ItemType<PalePufferfish>();
                 }
-                else if (attempt.rare && Main.rand.NextBool())
+                else if (attempt.rare && Main.rand.NextBool(4))
                 {
                     itemDrop = ModContent.ItemType<VampireSquid>();
                 }
@@ -163,6 +179,11 @@ namespace Aequus.Common
             {
                 Player.UpdateBiomes(); // Kind of cheaty
             }
+        }
+
+        public static bool IsBasicFish(int itemDrop)
+        {
+            return itemDrop == ItemID.Bass || itemDrop == ItemID.SpecularFish;
         }
 
         public override void ModifyCaughtFish(Item fish)

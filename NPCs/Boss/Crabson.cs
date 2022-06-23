@@ -400,7 +400,7 @@ namespace Aequus.NPCs.Boss
                         NPC.ai[2] = 0f;
                     }
                 }
-                NPC.velocity = Vector2.Lerp(NPC.velocity, difference / 20f, 
+                NPC.velocity = Vector2.Lerp(NPC.velocity, difference / 20f,
                     Math.Max(0.3f - NPC.ai[2], 0f));
             }
         }

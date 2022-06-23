@@ -29,7 +29,7 @@ namespace Aequus.Items.Consumables
                 player.Aequus().moroUsed = true;
                 return true;
             }
-            
+
             return false;
         }
     }

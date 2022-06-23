@@ -40,7 +40,7 @@ namespace Aequus.Common.Utilities
             }
             var tuple = Text[Main.rand.Next(Text.Count)];
             string key = AddKey + tuple.Item1;
-            return tuple.Item2 != null ? 
+            return tuple.Item2 != null ?
                 Language.GetTextValueWith(key, tuple.Item2) : Language.GetTextValue(key);
         }
     }

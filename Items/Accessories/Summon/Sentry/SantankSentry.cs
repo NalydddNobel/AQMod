@@ -123,10 +123,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             PlayerLoader.PreUpdate(dummyPlayer);
             dummyPlayer.ResetEffects();
             dummyPlayer.UpdateDyes();
-            if (Main.myPlayer == projectile.owner)
-            {
-                dummyPlayer.UpdateBiomes();
-            }
             dummyPlayer.whoAmI = projectile.owner;
             dummyPlayer.Aequus().projectileIdentity = projectile.identity;
             dummyPlayer.wet = projectile.wet;
@@ -240,9 +236,9 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             int myCount = 0;
             for (int i = 0; i < 1000; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == ProjectileID.SporeTrap || Main.projectile[i].type == ProjectileID.SporeTrap2 
+                if (Main.projectile[i].active && Main.projectile[i].owner == projectile.owner && (Main.projectile[i].type == ProjectileID.SporeTrap || Main.projectile[i].type == ProjectileID.SporeTrap2
                     || Main.projectile[i].type == ModContent.ProjectileType<NaniteSpore>()))
-                { 
+                {
                     int identity = Main.projectile[i].Aequus().sourceProjIdentity;
                     if (identity >= 0)
                     {

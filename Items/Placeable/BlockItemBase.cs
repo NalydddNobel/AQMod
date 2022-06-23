@@ -58,7 +58,7 @@ namespace Aequus.Items.Placeable
             {
                 randomizedTexture = (byte)(reader.ReadBoolean() ? 2 : 1);
             }
-            else 
+            else
             {
                 randomizedTexture = 0;
             }
@@ -72,7 +72,7 @@ namespace Aequus.Items.Placeable
                 var tileTexture = TextureAssets.Tile[ModContent.TileType<TTile>()].Value;
                 var frame = new Rectangle(180 + (randomizedTexture - 1) * 18, 54, 16, 16);
 
-                spriteBatch.Draw(tileTexture, ItemDefaults.WorldDrawPos(Item, TextureAssets.Item[Type].Value), 
+                spriteBatch.Draw(tileTexture, ItemDefaults.WorldDrawPos(Item, TextureAssets.Item[Type].Value),
                     frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
                 return false;
             }

@@ -475,12 +475,12 @@ namespace Aequus.NPCs.Friendly
             }
             if (ExporterQuests.QuestsCompleted > 5)
             {
-                choices.Add(ModContent.ItemType<GlowingMushroomsRoulette>());;
+                choices.Add(ModContent.ItemType<GlowingMushroomsRoulette>()); ;
                 choices.Add(ModContent.ItemType<SnowRoulette>());
             }
             if (ExporterQuests.QuestsCompleted > 10)
             {
-                choices.Add(ModContent.ItemType<SkyRoulette>());;
+                choices.Add(ModContent.ItemType<SkyRoulette>()); ;
                 choices.Add(ModContent.ItemType<DesertRoulette>());
             }
             return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;

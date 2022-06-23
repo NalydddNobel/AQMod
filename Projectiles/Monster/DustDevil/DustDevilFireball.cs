@@ -77,7 +77,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) , Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Projectiles.Misc.Pets;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Pets

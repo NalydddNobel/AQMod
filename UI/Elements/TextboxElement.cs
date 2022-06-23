@@ -79,7 +79,7 @@ namespace Aequus.UI.Elements
             if (drawnText != "")
             {
                 var measurement = FontAssets.MouseText.Value.MeasureString(drawnText);
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, drawnText, 
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, drawnText,
                     new Vector2(dimensions.X + 8f, dimensions.Y + dimensions.Height / 2f - measurement.Y / 2f + textOffsetY), Color.White, 0f, Vector2.Zero, Vector2.One);
             }
 

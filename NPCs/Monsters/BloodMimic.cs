@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
@@ -56,12 +55,12 @@ namespace Aequus.NPCs.Monsters
             this.CreateLoot(npcLoot)
                 .SetCondition(new LastAliveCondition(Type))
 
-                .AddOptions(chance: 1, 
-                ModContent.ItemType<CrusadersCrossbow>(), 
+                .AddOptions(chance: 1,
+                ModContent.ItemType<CrusadersCrossbow>(),
                 ModContent.ItemType<BloodiedBucket>())
 
-                .AddOptions(chance: 2, 
-                ItemID.MoneyTrough, 
+                .AddOptions(chance: 2,
+                ItemID.MoneyTrough,
                 ItemID.SharkToothNecklace)
 
                 .Add(ItemID.AdhesiveBandage, chance: 8, stack: 1)

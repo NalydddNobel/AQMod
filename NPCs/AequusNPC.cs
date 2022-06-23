@@ -115,7 +115,7 @@ namespace Aequus.NPCs
             {
 
             }
-            Orig:
+        Orig:
             orig(self, hitDirection, dmg);
         }
 

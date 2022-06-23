@@ -1,11 +1,9 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.Catalogues;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles.Dusts;

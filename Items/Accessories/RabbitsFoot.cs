@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

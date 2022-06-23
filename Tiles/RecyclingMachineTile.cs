@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -422,7 +421,7 @@ namespace Aequus.Tiles
 
     public class RecyclingTable : ILoadable
     {
-        public struct Info 
+        public struct Info
         {
             public int item;
             public int minStack;
