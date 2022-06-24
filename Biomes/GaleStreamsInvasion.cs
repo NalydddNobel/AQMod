@@ -16,7 +16,7 @@ namespace Aequus.Biomes
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => "Assets/UI/BestiaryIcons/GaleStreams";
+        public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/GaleStreams";
 
         public override bool IsBiomeActive(Player player)
         {

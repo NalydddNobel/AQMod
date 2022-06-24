@@ -117,7 +117,11 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public bool accGrandReward;
         public int accBoneRing;
+
+        public int accVial;
+        public int vialDelay;
 
         public Item setGravetender;
         public int setGravetenderCheck;
@@ -127,13 +131,6 @@ namespace Aequus
         public int pandorasBoxSpawnChance;
 
         public Item glowCoreItem;
-
-        public bool accReboundNecklace;
-        public bool reboundNecklaceJump;
-        public int reboundNecklaceTimer;
-        public int reboundNecklaceFall;
-
-        public bool accGrandReward;
 
         public Item sentrySquidItem;
         public int sentrySquidTimer;
@@ -352,15 +349,6 @@ namespace Aequus
             accExpertBoost = false;
         }
 
-        public override void SetControls()
-        {
-            if (reboundNecklaceJump)
-            {
-                Player.controlJump = true;
-            }
-            reboundNecklaceJump = false;
-        }
-
         public override void ResetEffects()
         {
             soulCandleLimit = 0;
@@ -427,25 +415,6 @@ namespace Aequus
 
             glowCoreItem = null;
 
-            if (accReboundNecklace)
-            {
-                if (reboundNecklaceTimer > 0)
-                {
-                    reboundNecklaceTimer--;
-                }
-                int y = (int)(Player.position.Y + Player.height) / 16;
-                int fallAmt = y - Player.fallStart;
-                if (fallAmt < reboundNecklaceFall)
-                {
-                    reboundNecklaceFall = fallAmt;
-                }
-            }
-            accBoneRing = 0;
-            accReboundNecklace = false;
-
-            grandRewardLuck = 0f;
-            accGrandReward = false;
-
             sentrySquidItem = null;
             if (!InDanger)
             {
@@ -469,9 +438,16 @@ namespace Aequus
             scamChance = 0f;
             flatScamDiscount = 0;
 
+            if (vialDelay > 0)
+                vialDelay--;
+            accVial = 0;
+            accBoneRing = 0;
+            grandRewardLuck = 0f;
+            accGrandReward = false;
+            accFoolsGold = false;
+
             hasExpertBoost = accExpertBoost;
             accExpertBoost = false;
-            accFoolsGold = false;
             Team = Player.team;
 
             buffSpicyEel = false;
@@ -631,11 +607,6 @@ namespace Aequus
                 expertBoostBoCTimer = 0;
             }
 
-            if (accReboundNecklace)
-            {
-                UseReboundNecklace();
-            }
-
             if (AequusHelpers.Main_dayTime.IsCaching)
             {
                 AequusHelpers.Main_dayTime.EndCaching();
@@ -708,45 +679,6 @@ namespace Aequus
                     }
                 }
             }
-        }
-
-        public void UseReboundNecklace()
-        {
-            int y = (int)(Player.position.Y + Player.height) / 16;
-            int fallAmt = y - Player.fallStart;
-            if (fallAmt - reboundNecklaceFall > 20)
-            {
-                reboundNecklaceFall = fallAmt;
-                RefreshJumpOption();
-            }
-            if (Player.noFallDmg || Player.slowFall || Player.wingTime > 0 || fallAmt < 10)
-            {
-                return;
-            }
-            int x = (int)(Player.position.X + Player.width / 2f) / 16;
-            int tileScanAmt = Math.Min((int)(Player.velocity.Y / 2f), 30);
-            for (int i = 0; i < tileScanAmt; i++)
-            {
-                if (y + i > Main.maxTilesY - 10)
-                {
-                    return;
-                }
-                if (Main.tile[x, y + i].IsSolid())
-                {
-                    ReboundNecklaceFallJump();
-                    break;
-                }
-            }
-        }
-        public void ReboundNecklaceFallJump()
-        {
-            if (reboundNecklaceTimer > 0)
-            {
-                return;
-            }
-            RefreshJumpOption();
-            reboundNecklaceTimer = 60;
-            reboundNecklaceJump = true;
         }
 
         /// <summary>
@@ -991,6 +923,15 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (vialDelay <= 0 && accVial > 0 && Main.rand.NextBool(accVial))
+            {
+                int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
+                if (!target.buffImmune[buff])
+                {
+                    vialDelay = 240;
+                    target.AddBuff(buff, 300);
+                }
+            }
             if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);

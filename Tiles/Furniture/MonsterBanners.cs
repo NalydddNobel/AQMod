@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.Sky;
+﻿using Aequus.NPCs.Monsters.Night;
+using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace Aequus.Tiles.Furniture
 {
     public sealed class MonsterBanners : ModTile
     {
-        public const int Starite = 0;
+        public const int StariteBanner = 0;
         public const int SuperStarite = 1;
         public const int HyperStarite = 2;
         public const int Unused_ArrowCrab = 3;
@@ -175,7 +176,6 @@ namespace Aequus.Tiles.Furniture
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            /*Main.LightingEveryFrame*/
             if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0)
             {
                 AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
@@ -188,6 +188,8 @@ namespace Aequus.Tiles.Furniture
         {
             switch (style)
             {
+                case StariteBanner:
+                    return ModContent.NPCType<Starite>();
                 case CinderaBanner:
                     return ModContent.NPCType<Cindera>();
                 case MagmabubbleBanner:

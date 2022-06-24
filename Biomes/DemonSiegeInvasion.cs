@@ -313,7 +313,7 @@ namespace Aequus.Biomes
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => "Assets/UI/BestiaryIcons/DemonSiege";
+        public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/DemonSiege";
 
         public override void Load()
         {

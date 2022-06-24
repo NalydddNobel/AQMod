@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Items.Accessories;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools.GrapplingHooks;
@@ -92,10 +93,12 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            if (Main.hardMode)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
-            shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
+            shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             if (Main.hardMode)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());

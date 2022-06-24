@@ -11,6 +11,9 @@ Mods: {
 
 			BreadOfCthulhu: Cthulhu's lost lunch, reanimated from the contaminated waters, this loathesome loaf does not intend to be eaten. May be caught instead of trash.
 			
+			DwarfStariteCritter: A harmless starite, although technically the strongest. It simply isn't able to use its powers properly yet, so it just hovers around.
+			Starite: A species originated from the extreme heat of a dying star. Its mystic properties gives it the ability to control magic, and fly.
+			
 			Magmabubble: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lava Slime grew legs after consuming a Blood Crawler, too heavy to climb on walls however.
 			TrapperImp: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Fire Imp uses wicked magic to entrap and rot away Clingers to become its personal pets.
 			Cindera: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lavabat has hinged jaws like a chest used to clamp down on prey.
@@ -147,13 +150,13 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			BlackPhial: Black Phial
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			MechsSentry: Sentinel 6510 N.O.S.
 			SantankSentry: Sentry 6502 N.O.S.
 			BloodiedBucket: Bloodied Bucket
 			RitualisticSkull: Ritualistic Skull
-			ReboundNecklace: Rebound Necklace
 			RabbitsFoot: Rabbit's Foot
 			FoolsGoldRing: Fool's Gold Ring
 			FaultyCoin: Faulty Coin
@@ -204,7 +207,9 @@ Mods: {
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
 
+			NeutronYogurt: Neutron Yogurt
 			CinnamonRoll: Cinnamon Roll
+			SpicyEel: Spicy Eel
 
 			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
@@ -220,6 +225,10 @@ Mods: {
 			UnenchantedStaff: Unenchanted Staff
 			Moro: Moro
 			
+			Snobster: Snobster
+			DwarfStarite: Dwarf Starite
+
+			Blobfish: Blobfish
 			GoreFish: Gore Fish
 
 			LightningRod: Lightning Rod
@@ -369,7 +378,6 @@ Mods: {
 			CrabPot: Crab Pot
 			PalePufferfish: Pale Pufferfish
 			VampireSquid: Vampire Squid
-			Blobfish: Blobfish
 			Fizzler: Fizzler
 			Nessie: Nessie
 			UltraEel: Ultra Eel
@@ -420,8 +428,6 @@ Mods: {
 			ShadePotion: Shade Potion
 			MysteryGrail: Mysterious Grail
 			SaintsFlow: Saint's Flow
-			SpicyEel: Spicy Eel
-			NeutronJuice: Neutron Yogurt
 			RedLicorice: Red Licorice
 			GrapePhanta: Grape Phanta
 			PeeledCarrot: Dragon Carrot
@@ -453,7 +459,6 @@ Mods: {
 			EclipseGlasses: Eclipse Glasses
 			Cosmicanon: Cosmicanon
 			SoliderCrabsBanner: Soldier Crab Banner
-			Snobster: Snobster
 			JeweledChalice: Jeweled Chalice
 			JeweledCandelabra: Jeweled Candelabra
 			JeweledChandelier: Jeweled Chandelier
@@ -484,7 +489,6 @@ Mods: {
 			UltimateEnergy: Ultimate Energy
 			CrabRod: Crab Rod
 			BeeRod: Buzzrod
-			DwarfStariteItem: Dwarf Starite
 			CrabShell: Crab Shell
 			MothmanMask: Mothman Mask
 			MoonlightWall: Moonlight Wall
@@ -538,19 +542,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			BoneRing: 
-				'''
-				Chance to inflict weakness on enemies
-				'''
+			BlackPhial: Chance to inflict a random debuff on enemies
+			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
 				'''
 				Your ghosts may fire a random projectile at enemies
 				Increases the speed of ghost projectiles
-				'''
-			ReboundNecklace: 
-				'''
-				Allows your double jumps to refresh while falling
-				Automatically double jumps to prevent fall damage
 				'''
 			BloodiedBucket: 
 				'''
@@ -700,6 +697,11 @@ Mods: {
 				Ignores 15 points of enemy Defense
 				'''
 
+			NeutronYogurt:
+				'''
+				Greatly increased gravity
+				'Weighs millions of tons... still lighter than putting a safe in a safe'
+				'''
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
 			SpicyEel: 
 				'''
@@ -754,6 +756,11 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
+			Blobfish: 
+				'''
+				A legendary fish blessed with... ugliness
+				'Just... look at it!'
+				'''
 			GoreFish: A legendary fish enriched with demonic energy
 
 			SnowRoulette:
@@ -1105,7 +1112,6 @@ Mods: {
 				Can cure you of many debuffs and vampirism
 				'''
 			VampireSquid: Gives you vampirism
-			Blobfish: "'Looking at it without puking requires you to not have gag reflexes'"
 			UltraEel: The offspring of an ancient Starite species
 			Combfish: Has regenerative properties
 			LarvaEel: Provides life regeneration
@@ -1205,11 +1211,6 @@ Mods: {
 				'''
 				Minor improvements to all stats
 				Greatly increases speed
-				'''
-			NeutronJuice:
-				'''
-				Minor improvements to all stats and you have slightly lower gravity
-				'Weighs millions of tons... still lighter than putting a safe in a safe'
 				'''
 			RedLicorice: Medium improvements to all stats and increases your life by 20
 			GrapePhanta:
@@ -1393,6 +1394,7 @@ Mods: {
 		Doubled: Doubled {0}
 
 		BuffName: {
+			NeutronYogurtBuff: Neutron Yogurt
 			BloodthirstBuff: Bloodthirst
 			SentryBuff: Sentry
 			FrostBuff: Frost
@@ -1430,7 +1432,6 @@ Mods: {
 			DebuffSpread: Debuff Spread
 			Shade: Shade
 			SpeedBoostFood: Speed Food
-			NeutronYogurtBuff: Lower Gravity
 			RedLicoriceBuff: Extra Life
 			GrapePhantaBuff: Extra Mana
 			DragonCarrotBuff: Eyesight
@@ -1828,7 +1829,7 @@ Mods: {
 			HermitCrab: Hermit Crab
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
-			DwarfStarite: Dwarf Starite
+			DwarfStariteCritter: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
 
