@@ -26,7 +26,6 @@ namespace Aequus.Items.Weapons.Melee
             Item.height = 40;
             Item.scale = 1.35f;
             Item.rare = ItemDefaults.RarityDemonSiege;
-            Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
             Item.value = ItemDefaults.DemonSiegeValue;
         }

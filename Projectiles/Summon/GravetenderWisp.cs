@@ -96,17 +96,7 @@ namespace Aequus.Projectiles.Summon
 
             var c = Projectile.GetAlpha(lightColor) * Projectile.Opacity * Projectile.scale;
 
-            var bloom = Images.Bloom[0].Value;
-            var bloomOrigin = bloom.Size() / 2f;
             off -= Main.screenPosition;
-            Main.spriteBatch.Draw(bloom, Projectile.position + off, null, Color.Black * Projectile.Opacity, 0f, bloomOrigin, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
-
-            for (int i = 0; i < trailLength; i++)
-            {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
-                Main.spriteBatch.Draw(bloom, Projectile.oldPos[i] + off, null, Color.Black * Projectile.Opacity * p * (0.8f + 0.2f * p), 0f, bloomOrigin, Projectile.scale * 0.3f * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
-            }
-
             origin.Y += 6f;
             var effects = Projectile.GetSpriteEffect();
             Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cHead);

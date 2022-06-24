@@ -83,7 +83,7 @@ Mods: {
 		}
 
 		Tooltips: {
-			NecromancyStaff: Slain enemies may convert into ghost minions
+			NecromancyStaff: Slain enemies may convert into ghosts
 			NecromancyCandle: Absorbs the souls of enemies killed by minions when held
 			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
@@ -544,8 +544,8 @@ Mods: {
 				'''
 			PandorasBox: 
 				'''
-				Your minions may fire a random projectile at enemies
-				Increases the speed of ghost minion projectiles
+				Your ghosts may fire a random projectile at enemies
+				Increases the speed of ghost projectiles
 				'''
 			ReboundNecklace: 
 				'''
@@ -554,11 +554,11 @@ Mods: {
 				'''
 			BloodiedBucket: 
 				'''
-				Greatly increases the lifespan of ghost minions
+				Greatly increases the lifespan of your ghosts
 				'I know your type: tall, dark, and dead'
 				'''
-			RitualisticSkull: Converts all of your minion slots into ghost minion slots
-			RabbitsFoot: Increases luck for the user
+			RitualisticSkull: Converts all of your minion slots into ghost slots
+			RabbitsFoot: Increases luck for the wearer
 			MechsSentry:
 				'''
 				Increases the strength of expert accessories
@@ -613,7 +613,7 @@ Mods: {
 			DisturbanceStaff:
 				'''
 				Summons a mysterious red sprite to haunt your foes
-				Enemies may convert into ghost minions on death
+				Enemies may convert into ghosts on death
 				'''
 			HailstormStaff:
 				'''
@@ -1692,7 +1692,7 @@ Mods: {
 		ArmorSetBonus: {
 			Gravetender: 
 				'''
-				Summons a wisp to empower your ghost minions
+				Summons a wisp to empower your ghosts
 				'''
 			Arachnotron:
 				'''

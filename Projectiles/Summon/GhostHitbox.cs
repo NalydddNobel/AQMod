@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,7 +25,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.DamageType = Aequus.NecromancyDamage;
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.timeLeft = 70;
+            Projectile.timeLeft = 100;
         }
 
         public override bool? CanCutTiles()
@@ -35,12 +36,17 @@ namespace Aequus.Projectiles.Summon.Necro
         public override void AI()
         {
             int npc = (int)Projectile.ai[0];
-            if (!Main.npc[npc].active)
+            if (Main.npc[npc].active)
             {
-                Projectile.Kill();
-                return;
+                Projectile.timeLeft = 2;
             }
-            Projectile.Center = Main.npc[npc].Center;
+            Projectile.position = Main.npc[npc].position;
+            Projectile.width = Main.npc[npc].width;
+            Projectile.height = Main.npc[npc].height;
+            Projectile.wet = Main.npc[npc].wet;
+            Projectile.lavaWet = Main.npc[npc].lavaWet;
+            Projectile.honeyWet = Main.npc[npc].honeyWet;
+            Projectile.velocity = Vector2.Normalize(Main.npc[npc].velocity) * 0.1f;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

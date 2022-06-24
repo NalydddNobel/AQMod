@@ -20,6 +20,10 @@ namespace Aequus.Items.Tools.Mounts
         public override void SetDefaults()
         {
             Item.DefaultToMount(ModContent.MountType<HotAirBalloonMount>());
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.UseSound = SoundID.Item34;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.buyPrice(gold: 15);
         }
@@ -33,13 +37,13 @@ namespace Aequus.Items.Tools.Mounts
         {
             MountData.jumpHeight = 1;
             MountData.jumpSpeed = 1f;
-            MountData.acceleration = 0.003f;
+            MountData.acceleration = 0.006f;
             MountData.blockExtraJumps = true;
             MountData.constantJump = true;
             MountData.heightBoost = 0;
             MountData.fallDamage = 0f;
-            MountData.runSpeed = 1.25f;
-            MountData.dashSpeed = 1.25f;
+            MountData.runSpeed = 2f;
+            MountData.dashSpeed = 2f;
             MountData.flightTimeMax = 14400;
             MountData.fatigueMax = 14400;
             MountData.fallDamage = 0f;

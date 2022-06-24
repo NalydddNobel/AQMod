@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -41,6 +42,11 @@ namespace Aequus.Projectiles.Melee.Swords
             if (Main.player[Projectile.owner].itemAnimation <= 1)
             {
                 Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+            }
+            if (!playedSound && AnimProgress > 0.4f)
+            {
+                playedSound = true;
+                SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);
             }
         }
 

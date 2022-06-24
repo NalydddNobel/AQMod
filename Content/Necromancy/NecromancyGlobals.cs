@@ -25,14 +25,75 @@ namespace Aequus.Content.Necromancy
 {
     public class NecromancyNPC : GlobalNPC, IGlobalsNetworker, IAddRecipes
     {
+        public class RunningZombieInfo
+        {
+            public int PlayerOwner;
+            public int NPCTarget;
+
+            public bool IsZombieRunning => PlayerOwner > -1;
+
+            public RunningZombieInfo()
+            {
+                PlayerOwner = -1;
+                NPCTarget = -1;
+            }
+
+            public void Reset()
+            {
+                PlayerOwner = -1;
+                NPCTarget = -1;
+            }
+        }
+        public readonly struct PlayerMoveInfo
+        {
+            public static PlayerMoveInfo None => default(PlayerMoveInfo);
+
+            public readonly NPC ZombieNPC;
+            public readonly NPC TargetNPC;
+            public readonly Player Player;
+            public readonly Vector2 NewLocation;
+            public readonly Vector2 OriginalLocation;
+            public readonly bool OriginalWet;
+            public readonly bool OriginalLavaWet;
+            public readonly bool OriginalHoneyWet;
+
+            public bool HasInfo => Player != null;
+
+            public PlayerMoveInfo(NPC zombie, NPC target, Player player, Vector2 newLocation)
+            {
+                ZombieNPC = zombie;
+                TargetNPC = target;
+                Player = player;
+                NewLocation = newLocation;
+                OriginalLocation = player.Center;
+                OriginalWet = player.wet;
+                OriginalLavaWet = player.lavaWet;
+                OriginalHoneyWet = player.honeyWet;
+            }
+
+            public void Move()
+            {
+                Player.Center = TargetNPC.Center;
+                Player.wet = Collision.WetCollision(TargetNPC.position, TargetNPC.width, TargetNPC.height);
+                Player.lavaWet = Collision.LavaCollision(TargetNPC.position, TargetNPC.width, TargetNPC.height);
+                Player.honeyWet = Collision.honey;
+            }
+
+            public void Restore()
+            {
+                Player.Center = OriginalLocation;
+                Player.wet = OriginalWet;
+                Player.lavaWet = OriginalLavaWet;
+                Player.honeyWet = OriginalHoneyWet;
+            }
+        }
+
         public static HashSet<int> BlacklistVelocityBoost { get; private set; }
 
         public static SoundStyle ZombieRecruitSound { get; private set; }
 
-        public static bool AI_IsZombie;
-        public static int AI_ZombiePlayerOwner;
-        public static int AI_NPCTarget;
-        public static Vector2 AI_ReturnPlayerLocation;
+        public static RunningZombieInfo Zombie { get; private set; }
+        public static PlayerMoveInfo Player { get; set; }
 
         public int zombieDrain;
         public bool isZombie;
@@ -50,6 +111,7 @@ namespace Aequus.Content.Necromancy
         public override void Load()
         {
             BlacklistVelocityBoost = new HashSet<int>();
+            Zombie = new RunningZombieInfo();
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
             if (!Main.dedServ)
@@ -93,12 +155,12 @@ namespace Aequus.Content.Necromancy
 
         private static void NPC_SetTargetTrackingValues(On.Terraria.NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
         {
-            if (AI_IsZombie)
+            if (Zombie.IsZombieRunning)
             {
                 self.target = self.GetGlobalNPC<NecromancyNPC>().zombieOwner;
-                if (AI_NPCTarget != -1)
+                if (Zombie.NPCTarget != -1)
                 {
-                    self.targetRect = Main.npc[AI_NPCTarget].getRect();
+                    self.targetRect = Main.npc[Zombie.NPCTarget].getRect();
                 }
                 else
                 {
@@ -212,8 +274,7 @@ namespace Aequus.Content.Necromancy
 
         public override bool PreAI(NPC npc)
         {
-            AI_IsZombie = isZombie;
-            AI_NPCTarget = -1;
+            Zombie.Reset();
             if (isZombie)
             {
                 var stats = NecromancyDatabase.GetByNetID(npc.netID, npc.type);
@@ -242,13 +303,9 @@ namespace Aequus.Content.Necromancy
                     npc.life = (int)Math.Clamp(npc.lifeMax * (zombieTimer / (float)zombieTimerMax), 1f, npc.lifeMax); // Aggros slimes and stuff
                 }
 
-                if (AI_ReturnPlayerLocation != Vector2.Zero)
-                {
-                    Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
-                    AI_ReturnPlayerLocation = Vector2.Zero;
-                }
+                RestorePlayer();
 
-                AI_ZombiePlayerOwner = zombieOwner;
+                Zombie.PlayerOwner = zombieOwner;
 
                 npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
                 npc.friendly = true;
@@ -264,11 +321,11 @@ namespace Aequus.Content.Necromancy
 
                     if (npcTarget != -1)
                     {
-                        AI_ReturnPlayerLocation = Main.player[zombieOwner].position;
-                        AI_NPCTarget = npcTarget;
-                        Main.player[zombieOwner].Center = Main.npc[npcTarget].Center;
-                        UpdateHitbox(npc);
+                        Player = new PlayerMoveInfo(npc, Main.npc[npcTarget], Main.player[zombieOwner], Main.npc[npcTarget].Center);
+                        Player.Move();
+                        Zombie.NPCTarget = npcTarget;
                     }
+                    UpdateHitbox(npc);
                 }
             }
             return true;
@@ -286,23 +343,32 @@ namespace Aequus.Content.Necromancy
                 {
                     if (Main.myPlayer == zombieOwner)
                     {
-                        AI_IsZombie = false;
+                        Zombie.PlayerOwner = -1;
                         try
                         {
+                            for (int i = 0; i < Main.maxProjectiles; i++)
+                            {
+                                if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].type == ModContent.ProjectileType<GhostHitbox>() && Main.projectile[i].TryGetGlobalProjectile<NecromancyProj>(out var zombie))
+                                {
+                                    if (zombie.zombieNPCOwner == npc.whoAmI)
+                                    {
+                                        hitCheckDelay = 300;
+                                        return;
+                                    }
+                                }
+                            }
                             float multiplier = GetDamageMultiplier(npc, npc.damage);
-                            int noSummonBoostDamage = (int)(npc.damage * multiplier);
-                            int summonDamage = (int)(noSummonBoostDamage * Main.player[zombieOwner].GetTotalDamage(Aequus.NecromancyDamage).Multiplicative);
-                            int p = Projectile.NewProjectile(npc.GetSource_FromThis("Aequus:NecromancyNPCHitbox"), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), summonDamage, 1f, zombieOwner, npc.whoAmI);
+                            int damage = (int)(npc.damage * multiplier);
+                            int p = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), damage, 3f, zombieOwner, npc.whoAmI);
                             Main.projectile[p].width = npc.width;
                             Main.projectile[p].height = npc.height;
                             Main.projectile[p].position = npc.position;
-                            Main.projectile[p].originalDamage = noSummonBoostDamage;
+                            Main.projectile[p].originalDamage = damage;
                         }
                         catch
                         {
-
                         }
-                        AI_IsZombie = true;
+                        Zombie.PlayerOwner = zombieOwner;
                     }
                 }
                 catch
@@ -324,18 +390,14 @@ namespace Aequus.Content.Necromancy
                 stats.Aggro?.OnPostAI(npc, this);
 
                 npc.dontTakeDamage = true;
-                if (AI_ReturnPlayerLocation != Vector2.Zero)
-                {
-                    Main.player[zombieOwner].position = AI_ReturnPlayerLocation;
-                    AI_ReturnPlayerLocation = Vector2.Zero;
-                }
+                RestorePlayer();
                 var player = Main.player[zombieOwner];
                 var aequus = player.GetModPlayer<AequusPlayer>();
                 aequus.ghostSlots += slotsConsumed;
 
                 if (zombieOwner == Main.myPlayer && aequus.pandorasBoxItem != null)
                 {
-                    UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, AI_NPCTarget);
+                    UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, Zombie.NPCTarget);
                 }
 
                 if (Main.netMode != NetmodeID.Server)
@@ -367,7 +429,7 @@ namespace Aequus.Content.Necromancy
                     }
                 }
             }
-            AI_IsZombie = false;
+            Zombie.Reset();
         }
 
         public float DetermineVelocityBoost(NPC npc, Player player, AequusPlayer aequus)
@@ -703,6 +765,15 @@ namespace Aequus.Content.Necromancy
                 }
             }
         }
+
+        public static void RestorePlayer()
+        {
+            if (Player.HasInfo)
+            {
+                Player.Restore();
+                Player = PlayerMoveInfo.None;
+            }
+        }
     }
 
     public class NecromancyProj : GlobalProjectile
@@ -728,7 +799,7 @@ namespace Aequus.Content.Necromancy
 
         private static void Projectile_Kill(On.Terraria.Projectile.orig_Kill orig, Projectile self)
         {
-            NecromancyNPC.AI_IsZombie = self.GetGlobalProjectile<NecromancyProj>().isZombie;
+            NecromancyNPC.Zombie.PlayerOwner = self.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner;
             try
             {
                 orig(self);
@@ -736,7 +807,7 @@ namespace Aequus.Content.Necromancy
             catch
             {
             }
-            NecromancyNPC.AI_IsZombie = false;
+            NecromancyNPC.Zombie.Reset();
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
@@ -777,7 +848,7 @@ namespace Aequus.Content.Necromancy
         {
             projectile.hostile = false;
             projectile.friendly = true;
-            projectile.owner = NecromancyNPC.AI_ZombiePlayerOwner;
+            projectile.owner = Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner;
             projectile.DamageType = Aequus.NecromancyDamage;
             if (!projectile.usesLocalNPCImmunity)
             {
@@ -807,8 +878,7 @@ namespace Aequus.Content.Necromancy
 
         public override bool PreAI(Projectile projectile)
         {
-            NecromancyNPC.AI_IsZombie = isZombie;
-            NecromancyNPC.AI_NPCTarget = -1;
+            NecromancyNPC.Zombie.Reset();
             if (isZombie)
             {
                 var aequus = Main.player[projectile.owner].Aequus();
@@ -826,24 +896,20 @@ namespace Aequus.Content.Necromancy
                     projectile.Kill();
                     return true;
                 }
-                if (NecromancyNPC.AI_ReturnPlayerLocation != Vector2.Zero)
-                {
-                    Main.player[projectile.owner].position = NecromancyNPC.AI_ReturnPlayerLocation;
-                    NecromancyNPC.AI_ReturnPlayerLocation = Vector2.Zero;
-                }
 
-                NecromancyNPC.AI_ZombiePlayerOwner = projectile.owner;
+                NecromancyNPC.Zombie.PlayerOwner = projectile.owner;
+                NecromancyNPC.RestorePlayer();
 
-                projectile.hostile = false;
+                    projectile.hostile = false;
                 projectile.friendly = true;
                 projectile.alpha = Math.Max(projectile.alpha, 60);
-                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], Main.npc[zombieNPCOwner].netID, Main.npc[zombieNPCOwner].type);
+                int npcTarget = NecromancyNPC.GetNPCTarget(projectile, Main.player[projectile.owner], Main.npc[zombieNPCOwner].netID, Main.npc[zombieNPCOwner].type);
 
                 if (npcTarget != -1)
                 {
-                    NecromancyNPC.AI_ReturnPlayerLocation = Main.player[projectile.owner].position;
-                    NecromancyNPC.AI_NPCTarget = npcTarget;
-                    Main.player[projectile.owner].Center = Main.npc[npcTarget].Center;
+                    NecromancyNPC.Player = new NecromancyNPC.PlayerMoveInfo(Main.npc[zombieNPCOwner], Main.npc[npcTarget], Main.player[projectile.owner], Main.npc[npcTarget].Center);
+                    NecromancyNPC.Player.Move();
+                    NecromancyNPC.Zombie.NPCTarget = npcTarget;
                 }
 
                 SpecialProjecitleAI(projectile);
@@ -862,11 +928,7 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie)
             {
-                if (NecromancyNPC.AI_ReturnPlayerLocation != Vector2.Zero)
-                {
-                    Main.player[projectile.owner].position = NecromancyNPC.AI_ReturnPlayerLocation;
-                    NecromancyNPC.AI_ReturnPlayerLocation = Vector2.Zero;
-                }
+                NecromancyNPC.RestorePlayer();
                 if (Main.rand.NextBool(6))
                 {
                     int index = GhostOutlineTarget.GetScreenTargetIndex(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
@@ -884,7 +946,7 @@ namespace Aequus.Content.Necromancy
                     d.noGravity = true;
                 }
             }
-            NecromancyNPC.AI_IsZombie = false;
+            NecromancyNPC.Zombie.Reset();
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

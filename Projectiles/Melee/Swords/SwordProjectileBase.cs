@@ -19,6 +19,8 @@ namespace Aequus.Projectiles.Melee.Swords
         public bool forced50;
         public float scale;
 
+        public bool playedSound;
+
         public bool damaging;
         public int damageTime;
 
