@@ -84,7 +84,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
-			NecromancyCandle: 吸收被仆从杀死的敌人的灵魂
+			NecromancyCandle: 持有此物品时会吸收被仆从杀死的敌人的灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
 			UseDarts: 使用种子和飞镖作为弹药
@@ -181,9 +181,9 @@ Mods: {
 			CrimsonCandle: 灼光者
 			CorruptionCandle: 噬光者
 			PixieCandle: 堕落天使
-			BloodZombieCandle: 火河
-			WretchedCandle: 不幸
-			AshCandle: 炼狱
+			BloodMoonCandle: 火河
+			DungeonCandle: 不幸
+			OccultistCandle: 炼狱
 			
 			NecromancyStaff: 死灵法杖
 			Insurgency: 叛乱
@@ -226,6 +226,8 @@ Mods: {
 			ToySpaceGun: 玩具太空枪
 
 			Meathook: 血肉刺钩
+
+			BalloonKit: Zilla的气球装备
 
 			Bellows: 风箱
 
@@ -634,17 +636,17 @@ Mods: {
 				召唤一只精灵为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			BloodZombieCandle:
+			BloodMoonCandle:
 				'''
 				召唤一只血僵尸为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			WretchedCandle:
+			DungeonCandle:
 				'''
 				召唤一颗诅咒颅骨为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			AshCandle:
+			OccultistCandle:
 				'''
 				召唤一只恶魔为你而战
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
@@ -721,6 +723,14 @@ Mods: {
 				'''
 
 			Meathook: 你的钩爪会抓住敌人
+
+			BalloonKit: 允许你骑乘一颗热气球
+
+			Nimrod:
+				'''
+				召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼
+				在下雨时, 捕鱼效果更强
+				'''
 
 			Bellows: 
 				'''
@@ -1120,11 +1130,6 @@ Mods: {
 				可在不击杀向导的情况下召唤血肉墙
 				右键切换以决定是否使所有城镇NPC免疫岩浆
 				'''
-			Nimrod:
-				'''
-				召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼
-				在下雨时, 捕鱼速度更快
-				'''
 			CosmicTelescope: 显示微光之源以及地图上的一些其他相关信息
 			DungeonMap:
 				'''
@@ -1393,6 +1398,9 @@ Mods: {
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			ReliefshroomBuff: 息灵菇
+			MendshroomBuff: 愈灵菇
+
 			GravetenderMinionBuff: 守墓人
 
 			CorruptPlantBuff: 腐化植物
@@ -1402,8 +1410,7 @@ Mods: {
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
 
-			ReliefshroomBuff: 息灵菇
-			MendshroomBuff: 愈灵菇
+			HotAirBalloonBuff: 热气球
 
 			Omori: 朋友
 			PrimeTime: 机械蜘蛛强化
@@ -1462,6 +1469,9 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
+			ReliefshroomBuff: 你正在被治愈!
+			MendshroomBuff: 你正在被队友治愈!
+
 			SpicyEelBuff: 大幅度增加移动速度
 			BaguetteBuff: 大幅度增加各项属性和生命恢复速度
 
@@ -1478,8 +1488,7 @@ Mods: {
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
 
-			ReliefshroomBuff: 你正在被治愈!
-			MendshroomBuff: 你正在被队友治愈!
+			HotAirBalloonBuff: 飞高一点, 飞远一点!!!
 
 			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 			PrimeTime: 防御大幅度提升!
