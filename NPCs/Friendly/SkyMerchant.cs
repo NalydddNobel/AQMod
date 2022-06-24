@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories;
+using Aequus.Items.Tools.FishingRods;
+using Aequus.Items.Tools.Mounts;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,8 +21,9 @@ namespace Aequus.NPCs.Friendly
     [AutoloadHead()]
     public class SkyMerchant : ModNPC
     {
+        public const int BalloonFrames = 5;
+
         public static Asset<Texture2D> BasketTexture { get; private set; }
-        public static Asset<Texture2D> BalloonTexture { get; private set; }
         public static Asset<Texture2D> FleeTexture { get; private set; }
 
         public static SoundStyle WWWWWWWWWWhhhhooooooooopSound { get; private set; }
@@ -35,6 +37,7 @@ namespace Aequus.NPCs.Friendly
         public bool init;
 
         public Item shopBanner;
+        public Item shopAccessory;
 
         public static bool IsActive => Main.WindyEnoughForKiteDrops;
 
@@ -43,7 +46,6 @@ namespace Aequus.NPCs.Friendly
             if (!Main.dedServ)
             {
                 BasketTexture = ModContent.Request<Texture2D>(this.GetPath() + "Basket");
-                BalloonTexture = ModContent.Request<Texture2D>(this.GetPath() + "Balloon");
                 FleeTexture = ModContent.Request<Texture2D>(this.GetPath() + "Flee");
 
                 WWWWWWWWWWhhhhooooooooopSound = Aequus.GetSound("slidewhistle", 0.5f);
@@ -85,7 +87,10 @@ namespace Aequus.NPCs.Friendly
             AnimationType = NPCID.SkeletonMerchant;
             currentAction = 7;
 
+            init = false;
+            setupShop = false;
             shopBanner = null;
+            shopAccessory = null;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -120,37 +125,118 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            if (!setupShop)
+            try
             {
-                SetupShopCache();
-                NPC.netUpdate = true;
-                setupShop = true;
+                if (Main.LocalPlayer.talkNPC == -1 || !(Main.npc[Main.LocalPlayer.talkNPC].ModNPC is SkyMerchant))
+                {
+                    return;
+                }
             }
-            if (shopBanner != null)
+            catch
             {
-                shop.item[nextSlot++] = shopBanner.Clone();
+                return;
             }
-            if (Main.dayTime)
+
+            var npc = Main.npc[Main.LocalPlayer.talkNPC];
+            var mer = (SkyMerchant)npc.ModNPC;
+            if (!mer.setupShop)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ReboundNecklace>());
+                mer.SetupShopCache(Main.LocalPlayer);
+                npc.netUpdate = true;
+                mer.setupShop = true;
+            }
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
+
+            if (mer == null)
+            {
+                return;
+            }
+
+            if (mer.shopAccessory != null)
+            {
+                shop.item[nextSlot] = mer.shopAccessory.Clone();
+                shop.item[nextSlot].shopCustomPrice = (int)(shop.item[nextSlot].value * 1.5f);
+                shop.item[nextSlot].shopCustomPrice /= 100;
+                shop.item[nextSlot].shopCustomPrice *= 100;
+                shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
+                nextSlot++;
+            }
+            if (mer.shopBanner != null)
+            {
+                shop.item[nextSlot] = mer.shopBanner.Clone();
+                shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
+                nextSlot++;
             }
         }
-        public void SetupShopCache()
+        public void SetupShopCache(Player player)
         {
-            shopBanner = SetupShopCache_BannerItem();
+            shopBanner = GetBannerItem();
+            shopAccessory = GetAccessoryItem(player);
         }
-        public Item SetupShopCache_BannerItem()
+        public Item GetAccessoryItem(Player player)
         {
-            var potentialBanners = SetupShopCache_BannerItem_GetPotentialBanners();
+            var selectable = new List<Item>();
+            var searchPrefixes = AccessoryPrefixLookups();
+            int maxPrice = Item.buyPrice(gold: 50);
+            //Main.NewText("Comparison Value: " + maxPrice, Colors.CoinPlatinum);
+            for (int i = 3; i < Player.SupportedSlotsAccs + 3; i++)
+            {
+                if (player.IsAValidEquipmentSlotForIteration(i) && !player.armor[i].IsAir)
+                {
+                    var testItem = player.armor[i].Clone();
+                    int prefix = testItem.prefix;
+                    testItem.SetDefaults(testItem.type);
+                    //Main.NewText(testItem.Name + ": " + testItem.value * 1.5f, (testItem.value * 1.5f > maxPrice) ? Color.Red : Color.Cyan);
+                    if ((testItem.value * 1.5f) > maxPrice)
+                    {
+                        continue;
+                    }
+                    bool add = true;
+
+                    foreach (var p in searchPrefixes)
+                    {
+                        if (!testItem.Prefix(p))
+                        {
+                            add = false;
+                            break;
+                        }
+                    }
+
+                    if (add)
+                    {
+                        testItem.Prefix(prefix);
+                        selectable.Add(testItem);
+                    }
+                }
+            }
+            if (selectable.Count > 0)
+            {
+                var item = Main.rand.Next(selectable);
+                searchPrefixes.Remove(item.prefix);
+                item.SetDefaults(item.type);
+                item.Prefix(Main.rand.Next(searchPrefixes));
+                return item;
+            }
+            return null;
+        }
+        public List<int> AccessoryPrefixLookups()
+        {
+            return new List<int>() { PrefixID.Menacing, PrefixID.Warding, PrefixID.Lucky, };
+        }
+        public Item GetBannerItem()
+        {
+            var potentialBanners = GetPotentialBannerItems();
             if (potentialBanners.Count >= 1)
             {
                 var result = new Item();
-                result.SetDefaults(potentialBanners[Main.rand.Next(potentialBanners.Count)]);
+                result.SetDefaults(Main.rand.Next(potentialBanners));
                 return result;
             }
             return null;
         }
-        public List<int> SetupShopCache_BannerItem_GetPotentialBanners()
+        public List<int> GetPotentialBannerItems()
         {
             var potentialBanners = new List<int>();
             for (int npcID = 0; npcID < NPCLoader.NPCCount; npcID++)
@@ -228,57 +314,13 @@ namespace Aequus.NPCs.Friendly
             }
 
             if (NPC.AnyNPCs(NPCID.Merchant))
-                chat.Add("Merchant", () => new { Merchant = NPC.GetFirstNPCNameOrNull(NPCID.Merchant) });
+                chat.Add("Merchant", new { Merchant = NPC.GetFirstNPCNameOrNull(NPCID.Merchant) });
             if (NPC.AnyNPCs(NPCID.TravellingMerchant))
-                chat.Add("TravellingMerchant", () => new { TravellingMerchant = NPC.GetFirstNPCNameOrNull(NPCID.TravellingMerchant) });
+                chat.Add("TravellingMerchant", new { TravellingMerchant = NPC.GetFirstNPCNameOrNull(NPCID.TravellingMerchant) });
             if (NPC.AnyNPCs(NPCID.Pirate))
-                chat.Add("Pirate", () => new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
+                chat.Add("Pirate", new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
 
             return chat.Get();
-            //if (!GaleStreams.IsActive)
-            //    return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Leaving." + Main.rand.Next(3));
-            //if (!WorldDefeats.HunterIntroduction)
-            //{
-            //    WorldDefeats.HunterIntroduction = true;
-            //    if (Main.netMode != NetmodeID.SinglePlayer)
-            //        NetHelper.Request(NetHelper.PacketType.Flag_AirHunterIntroduction);
-            //    return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Introduction", NPC.GivenName);
-            //}
-            //var potentialText = new List<string>();
-            //var player = Main.LocalPlayer;
-            //if (player.ZoneHoly)
-            //    potentialText.Add("BalloonMerchant.Chat.Hallow");
-            //else if (player.ZoneCorrupt)
-            //{
-            //    return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Corruption");
-            //}
-            //else if (player.ZoneCrimson)
-            //{
-            //    return Language.GetTextValue("Mods.AQMod.BalloonMerchant.Chat.Crimson");
-            //}
-
-            //potentialText.Add("BalloonMerchant.Chat.0");
-            //potentialText.Add("BalloonMerchant.Chat.1");
-            //potentialText.Add("BalloonMerchant.Chat.2");
-            //potentialText.Add("BalloonMerchant.Chat.3");
-            //potentialText.Add("BalloonMerchant.Chat.Vraine");
-            //potentialText.Add("BalloonMerchant.Chat.StreamingBalloon");
-            //potentialText.Add("BalloonMerchant.Chat.WhiteSlime");
-
-            //if (WorldDefeats.SudoHardmode)
-            //{
-            //    potentialText.Add("BalloonMerchant.Chat.RedSprite");
-            //    potentialText.Add("BalloonMerchant.Chat.SpaceSquid");
-            //}
-
-            //if (GaleStreams.MeteorTime())
-            //    potentialText.Add("BalloonMerchant.Chat.MeteorTime");
-
-            //string chosenText = potentialText[Main.rand.Next(potentialText.Count)];
-            //string text = Language.GetTextValue("Mods.AQMod." + chosenText);
-            //if (text == "Mods.AQMod." + chosenText)
-            //    return chosenText;
-            //return text;
         }
 
         public override bool PreAI()
@@ -423,10 +465,9 @@ namespace Aequus.NPCs.Friendly
                         {
                             for (int i = 0; i < Main.maxPlayers; i++)
                             {
-                                if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 150f)
+                                if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 400f)
                                 {
-                                    NPC.velocity.Y *= 0.94f;
-                                    NPC.velocity.X *= 0.96f;
+                                    NPC.velocity *= 0.94f;
                                     foundStoppingSpot = true;
                                     break;
                                 }
@@ -447,8 +488,7 @@ namespace Aequus.NPCs.Friendly
                                     else if (!NPC.noTileCollide)
                                     {
                                         foundStoppingSpot = true;
-                                        NPC.velocity.Y *= 0.92f;
-                                        NPC.velocity.X *= 0.92f;
+                                        NPC.velocity *= 0.975f;
                                     }
                                     break;
                                 }
@@ -588,8 +628,8 @@ namespace Aequus.NPCs.Friendly
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
-            texture = BalloonTexture.Value;
-            frame = GetBalloonFrame(texture);
+            texture = ModContent.Request<Texture2D>(Texture + "Balloon").Value;
+            frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }
         public void DrawBalloon_UpdateBasketFrame(ref int frameX)
@@ -662,10 +702,6 @@ namespace Aequus.NPCs.Friendly
                     }
                 }
             }
-        }
-        public Rectangle GetBalloonFrame(Texture2D balloonTexture)
-        {
-            return new Rectangle(0, balloonTexture.Height / 5 * (balloonColor - 1), balloonTexture.Width, balloonTexture.Height / 5);
         }
         public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

@@ -84,7 +84,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: Slain enemies may convert into ghost minions
-			NecromancyCandle: Absorbs the souls of enemies killed by minions
+			NecromancyCandle: Absorbs the souls of enemies killed by minions when held
 			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
 			UseDarts: Uses seeds and darts as ammo
@@ -181,9 +181,9 @@ Mods: {
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
 			PixieCandle: Fallen Angel
-			BloodZombieCandle: Phlegethon
-			WretchedCandle: Wretchedness
-			AshCandle: Purgatory
+			BloodMoonCandle: Phlegethon
+			DungeonCandle: Wretchedness
+			OccultistCandle: Purgatory
 
 			NecromancyStaff: Necromancy Staff
 			Insurgency: Insurgency
@@ -226,6 +226,8 @@ Mods: {
 			ToySpaceGun: Toy Space Gun
 
 			Meathook: Meathook
+
+			BalloonKit: Zilla's Balloon Kit
 
 			Bellows: Bellows
 
@@ -634,17 +636,17 @@ Mods: {
 				Summons a pixie to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			BloodZombieCandle:
+			BloodMoonCandle:
 				'''
 				Summons a blood zombie to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			WretchedCandle:
+			DungeonCandle:
 				'''
 				Summons a cursed skull to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
-			AshCandle:
+			OccultistCandle:
 				'''
 				Summons a demon to fight for you
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
@@ -721,6 +723,14 @@ Mods: {
 				'''
 
 			Meathook: Allows you to grapple to enemies
+
+			BalloonKit: Allows you to ride a hot air balloon
+
+			Nimrod:
+				'''
+				Casts a fishing cloud which creates 3 lightning bobbers to catch fish
+				Extra powerful during the rain
+				'''
 
 			Bellows: 
 				'''
@@ -1120,11 +1130,6 @@ Mods: {
 				Summons the Wall of Flesh without murdering the Guide
 				Right click to toggle whether villagers are immune to lava
 				'''
-			Nimrod:
-				'''
-				Summons a fishing cloud which spawns 3 lightning bobbers to catch fish
-				Catches fish faster during the rain
-				'''
 			CosmicTelescope: Shows the source of the Glimmer and some other related info on the map
 			DungeonMap:
 				'''
@@ -1393,6 +1398,9 @@ Mods: {
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			ReliefshroomBuff: Reliefshroom
+			MendshroomBuff: Mendshroom
+
 			GravetenderMinionBuff: Gravetender
 
 			CorruptPlantBuff: Corrupt Plant
@@ -1401,9 +1409,8 @@ Mods: {
 
 			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
-
-			ReliefshroomBuff: Reliefshroom
-			MendshroomBuff: Mendshroom
+		
+			HotAirBalloonBuff: Hot Air Balloon
 
 			Omori: Friends
 			PrimeTime: Arachnotron Power
@@ -1462,6 +1469,9 @@ Mods: {
 			SentryBuff: Increase your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 
+			ReliefshroomBuff: You are being healed!
+			MendshroomBuff: You are being healed by a teammate!
+
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
@@ -1478,8 +1488,7 @@ Mods: {
 			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
 
-			ReliefshroomBuff: You are being healed!
-			MendshroomBuff: You are being healed by a teammate!
+			HotAirBalloonBuff: Up, up, and away!!!
 
 			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
 			PrimeTime: Your defense is greatly increased!
@@ -2698,7 +2707,7 @@ Mods: {
 				
 				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
 				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
-				Pirate: Recently, {Pirate} to me talked about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
+				Pirate: Recently, {Pirate} talked to me about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
 
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name

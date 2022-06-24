@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Summon.Candles
 {
-    public class AshCandle : SoulCandle
+    public class OccultistCandle : SoulCandle
     {
         public override void SetStaticDefaults()
         {

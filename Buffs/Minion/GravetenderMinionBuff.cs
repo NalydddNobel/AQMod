@@ -5,8 +5,6 @@ namespace Aequus.Buffs.Minion
 {
     public class GravetenderMinionBuff : ModBuff
     {
-        public override string Texture => Aequus.Buff;
-
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = true;

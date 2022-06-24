@@ -58,10 +58,10 @@ namespace Aequus
                 IOnModLoad.CheckAutoload(this, t);
             }
 
-            On.Terraria.Main.SetBackColor += Main_SetBackColor;
+            On.Terraria.Main.SetBackColor += Hook_DarkenBackground;
         }
 
-        private void Main_SetBackColor(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
+        private void Hook_DarkenBackground(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
         {
             orig(info, out sunColor, out moonColor);
 

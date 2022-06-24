@@ -92,7 +92,7 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AshCandle>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
             shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());

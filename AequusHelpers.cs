@@ -81,6 +81,53 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        /// <summary>
+        /// Gets the mean of light surrounding a point
+        /// </summary>
+        /// <param name="tilePosition">The tile center</param>
+        /// <param name="tilesSize">The size in tile coordinates</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(Point tilePosition, int tilesSize = 10)
+        {
+            Vector3 lighting = Vector3.Zero;
+            float amount = 0f;
+            int realSize = tilesSize / 2;
+            tilePosition.Fluffize(10 + realSize);
+            for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
+            {
+                for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
+                {
+                    lighting += Lighting.GetColor(i, j).ToVector3();
+                    amount++;
+                }
+            }
+            if (amount == 0f)
+                return Color.White;
+            return new Color(lighting / amount);
+
+        }
+        /// <summary>
+        /// Gets the mean of light surrounding a point
+        /// </summary>
+        /// <param name="x">The center tile X</param>
+        /// <param name="y">The center tile Y</param>
+        /// <param name="tilesSize">The size in tile coordinates</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(int x, int y, int tilesSize = 10)
+        {
+            return GetLightingSection(new Point(x, y), tilesSize);
+        }
+        /// <summary>
+        /// Gets the mean of light surrounding a point
+        /// </summary>
+        /// <param name="worldPosition">The center</param>
+        /// <param name="tilesSize">The size in tile coordinates</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(Vector2 worldPosition, int tilesSize = 10)
+        {
+            return GetLightingSection(worldPosition.ToTileCoordinates(), tilesSize);
+        }
+
         public static void TileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
         {
             if (tile.Slope == 0 && !tile.IsHalfBlock)
@@ -1413,6 +1460,13 @@ namespace Aequus
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
         }
 
+        public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
+        {
+            var d = Dust.NewDustPerfect(where, dustType);
+            d.noGravity = true;
+            d.fadeIn = d.scale * 2f;
+            d.velocity = Vector2.Zero;
+        }
         public static void dustDebug(int x, int y, int dustType = DustID.Torch)
         {
             var rect = new Rectangle(x * 16, y * 16, 16, 16);

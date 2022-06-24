@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Catalogues;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;

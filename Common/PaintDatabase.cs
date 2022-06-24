@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Catalogues
+namespace Aequus.Common
 {
     public class PaintDatabase : ILoadable
     {

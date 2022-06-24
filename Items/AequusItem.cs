@@ -1,4 +1,7 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Accessories;
+using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -56,7 +59,6 @@ namespace Aequus.Items
             };
             On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
         }
-
         private bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Weapon self, Item entry)
         {
             return orig(self, entry) || entry.ModItem is SoulCandle;
@@ -124,6 +126,53 @@ namespace Aequus.Items
                 return 2f;
             }
             return 1f;
+        }
+
+        public override void OpenVanillaBag(string context, Player player, int arg)
+        {
+            if (context == "lockBox")
+            {
+                player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.LockBox), AequusSystem.DungeonChestItem(Main.rand.Next(AequusSystem.DungeonChestItemTypesMax)));
+            }
+            else if (context == "crate")
+            {
+                if (arg == ItemID.IronCrate)
+                {
+                    if (Main.rand.NextBool(6))
+                    {
+                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<GlowCore>());
+                    }
+
+                    switch (Main.rand.Next(5))
+                    {
+                        case 0:
+                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<BoneRing>());
+                            break;
+
+                        case 1:
+                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<BattleAxe>());
+                            break;
+
+                        case 2:
+                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Bellows>());
+                            break;
+                    }
+                }
+                else if (arg == ItemID.FloatingIslandFishingCrate || arg == ItemID.FloatingIslandFishingCrateHard)
+                {
+                    if (Main.rand.NextBool(3))
+                    {
+                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Slingshot>());
+                    }
+                }
+                else if (arg == ItemID.FrozenCrate || arg == ItemID.FrozenCrateHard)
+                {
+                    if (Main.rand.NextBool(3))
+                    {
+                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Slingshot>());
+                    }
+                }
+            }
         }
 
         public static int NewItemCloned(IEntitySource source, Vector2 pos, Item item)

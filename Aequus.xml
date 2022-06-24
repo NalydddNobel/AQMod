@@ -44,6 +44,31 @@
             Determines whether or not the mouse has an item
             </summary>
         </member>
+        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusHelpers.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The center tile X</param>
+            <param name="y">The center tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="worldPosition">The center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
         <member name="F:Aequus.AequusPlayer.moroUsed">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>

@@ -2,12 +2,14 @@
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
+using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -235,9 +237,13 @@ namespace Aequus.Common.Networking
             else if (type == PacketType.GiveoutEnemySouls)
             {
                 int amt = reader.ReadInt32();
+                var v = reader.ReadVector2();
                 for (int i = 0; i < amt; i++)
                 {
-                    Main.player[reader.ReadInt32()].GetModPlayer<AequusPlayer>().candleSouls++;
+                    int player = reader.ReadInt32();
+                    if (Main.myPlayer == player)
+                        Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, player);
+                    Main.player[player].GetModPlayer<AequusPlayer>().candleSouls++;
                 }
             }
             else

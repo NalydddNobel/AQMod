@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common
 {
-    public class PlayerLifeSacrifices : ModPlayer
+    public class PlayerLifeCuts : ModPlayer
     {
         public struct Data
         {
@@ -80,7 +80,7 @@ namespace Aequus.Common
 
         public override void clientClone(ModPlayer clientClone)
         {
-            var clone = (PlayerLifeSacrifices)clientClone;
+            var clone = (PlayerLifeCuts)clientClone;
             clone.sacrifices = new List<Data>();
             foreach (var l in sacrifices)
             {

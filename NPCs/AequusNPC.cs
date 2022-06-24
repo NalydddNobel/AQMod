@@ -6,6 +6,7 @@ using Aequus.Items;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
+using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -204,7 +205,7 @@ namespace Aequus.NPCs
             var players = GetCloseEnoughPlayers(npc);
             if (npc.HasBuff<SoulStolen>())
             {
-                CheckSouls(players);
+                CheckSouls(npc, players);
             }
             if (NecromancyDatabase.TryGetByNetID(npc, out var info))
             {
@@ -217,7 +218,7 @@ namespace Aequus.NPCs
 
             return false;
         }
-        public void CheckSouls(List<(Player, AequusPlayer, float)> players)
+        public void CheckSouls(NPC npc, List<(Player, AequusPlayer, float)> players)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
@@ -225,13 +226,14 @@ namespace Aequus.NPCs
                 {
                     if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
                     {
+                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, p.Item1.whoAmI);
                         p.Item2.candleSouls++;
                     }
                 }
             }
             else
             {
-                List<int> candlePlayers = new List<int>();
+                var candlePlayers = new List<int>();
                 foreach (var p in players)
                 {
                     if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
@@ -245,6 +247,7 @@ namespace Aequus.NPCs
                     PacketHandler.Send((p) =>
                     {
                         p.Write(candlePlayers.Count);
+                        p.WriteVector2(npc.Center);
                         for (int i = 0; i < candlePlayers.Count; i++)
                         {
                             p.Write(candlePlayers[i]);
@@ -312,7 +315,7 @@ namespace Aequus.NPCs
 
                 case NPCID.BloodZombie:
                 case NPCID.Drippler:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodZombieCandle>(), 100));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
                     break;
 
                 case NPCID.DevourerHead:

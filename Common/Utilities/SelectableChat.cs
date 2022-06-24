@@ -22,14 +22,14 @@ namespace Aequus.Common.Utilities
             return this;
         }
 
-        public SelectableChat Add(string key)
-        {
-            return Add(key, null);
-        }
-
         public SelectableChat Add(string key, object obj)
         {
             return Add(key, () => obj);
+        }
+
+        public SelectableChat Add(string key)
+        {
+            return Add(key, null);
         }
 
         public string Get()
@@ -41,7 +41,7 @@ namespace Aequus.Common.Utilities
             var tuple = Text[Main.rand.Next(Text.Count)];
             string key = AddKey + tuple.Item1;
             return tuple.Item2 != null ?
-                Language.GetTextValueWith(key, tuple.Item2) : Language.GetTextValue(key);
+                Language.GetTextValueWith(key, tuple.Item2.Invoke()) : Language.GetTextValue(key);
         }
     }
 }

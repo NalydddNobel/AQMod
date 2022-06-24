@@ -271,7 +271,7 @@ namespace Aequus
                 case 1:
                     return ModContent.ItemType<Revenant>();
                 case 2:
-                    return ModContent.ItemType<WretchedCandle>();
+                    return ModContent.ItemType<DungeonCandle>();
                 case 3:
                     return ModContent.ItemType<PandorasBox>();
             }

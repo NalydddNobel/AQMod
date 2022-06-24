@@ -1,17 +1,25 @@
-﻿using Terraria;
+﻿using Aequus.Graphics.PlayerRendering;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.Gravetender
 {
+    [AutoloadEquip(EquipType.Body)]
     public class GravetenderRobes : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            this.SetResearch(1);
+            ForceShirtDraw.BodyForceShirt.Add(Item.bodySlot);
+        }
+
         public override void SetDefaults()
         {
             Item.defense = 3;
             Item.width = 20;
             Item.height = 20;
-            Item.bodySlot = 1;
             Item.rare = ItemRarityID.Blue;
         }
 
@@ -24,13 +32,13 @@ namespace Aequus.Items.Armor.Gravetender
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Cobweb, 12 * 7)
+                .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.RottenChunk, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.GravediggerShovel));
             CreateRecipe()
-                .AddIngredient(ItemID.Cobweb, 12 * 7)
+                .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.Vertebrae, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)

@@ -40,13 +40,22 @@ namespace Aequus.Items.Tools
                 {
                     v.Y *= (player.gravity / 0.4f);
                 }
-                player.velocity -= v * Item.knockBack;
+                player.velocity -= v * GetPushForce(player);
                 if (player.velocity.X < 4f)
                 {
                     player.fallStart = (int)player.position.Y / 16;
                 }
             }
             return player.itemAnimation < 45;
+        }
+        public float GetPushForce(Player player)
+        {
+            float force = Item.knockBack;
+            if (player.mount != null && player.mount.Active && player.mount._data.usesHover)
+            {
+                force *= 0.02f;
+            }
+            return force;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
