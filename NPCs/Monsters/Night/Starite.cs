@@ -307,6 +307,13 @@ namespace Aequus.NPCs.Monsters.Night
             }
         }
 
+        public override float SpawnChance(NPCSpawnInfo spawnInfo)
+        {
+            if (!Main.dayTime && spawnInfo.Player.position.Y < Main.worldSurface * 16f)
+                return 0.005f;
+            return 0f;
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture = TextureAssets.Npc[Type].Value;

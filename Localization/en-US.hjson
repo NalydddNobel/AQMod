@@ -699,7 +699,7 @@ Mods: {
 
 			NeutronYogurt:
 				'''
-				Greatly increased gravity
+				{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}
 				'Weighs millions of tons... still lighter than putting a safe in a safe'
 				'''
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
@@ -1473,6 +1473,7 @@ Mods: {
 			ReliefshroomBuff: You are being healed!
 			MendshroomBuff: You are being healed by a teammate!
 
+			NeutronYogurtBuff: Greatly increased gravity
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
@@ -1504,7 +1505,6 @@ Mods: {
 			DebuffSpread: Enemies will spread their current debuffs to nearby enemies when attacked
 			Shade: Standing still will make enemies unable to target you
 			SpeedBoostFood: Minor improvements to all stats and your speed is greatly increased
-			NeutronYogurtBuff: Minor improvements to all stats and you have slightly lower gravity
 			RedLicoriceBuff: Medium improvements to all stats and increases your life by 20
 			GrapePhantaBuff:
 				'''
