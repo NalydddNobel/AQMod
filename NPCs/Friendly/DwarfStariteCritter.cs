@@ -58,6 +58,11 @@ namespace Aequus.NPCs.Friendly
             this.SetBiome<GlimmerInvasion>();
         }
 
+        public override Color? GetAlpha(Color drawColor)
+        {
+            return new Color(255, 255, 255, 0);
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -258,20 +263,6 @@ namespace Aequus.NPCs.Friendly
             Lighting.AddLight(NPC.Center, new Vector3(0.1f, 0.1f, 0.01f));
         }
 
-        public override bool CheckDead()
-        {
-            if (NPC.ai[1] == -1f)
-                return true;
-            NPC.ai[0] = 0f;
-            NPC.ai[1] = -1f;
-            NPC.ai[2] = 0f;
-            NPC.ai[3] = 0f;
-            NPC.velocity = new Vector2(0f, 0f);
-            NPC.dontTakeDamage = true;
-            NPC.life = NPC.lifeMax;
-            return false;
-        }
-
         public override void FindFrame(int frameHeight)
         {
             if ((int)NPC.ai[1] == -1)
@@ -305,7 +296,7 @@ namespace Aequus.NPCs.Friendly
                 float p = AequusHelpers.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, new Color(200, 200, 200, 0) * p, NPC.oldRot[i], origin, NPC.scale * p, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(255, 255, 255, 255), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.1f, SpriteEffects.None, 0f);
             if ((int)NPC.ai[1] == -1)
             {
