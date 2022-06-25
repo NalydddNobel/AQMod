@@ -947,11 +947,6 @@ Mods: {
 			CrabShell: It's oddly misshapen
 			FishingCraftingStation: Used to craft special fishing items
 			MonoxideHat: "'Became a vanity item due to popular demand'"
-			CelesitalEightBall:
-				'''
-				Right click to use as a normal 8-Ball
-				Has special text depending on the world state
-				'''
 			Bubbler:
 				'''
 				Shoots a constant stream of bubbles
