@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             this.SetResearch(1);
-            CursorDyeManager.Register(Type, new ColorChangeCursor(() => Color.Lerp(Color.Red, Color.White, MathHelper.Clamp(Main.LocalPlayer.statManaMax2 / (float)Main.LocalPlayer.statMana, 0f, 1f))));
+            CursorDyeManager.Register(Type, new ColorChangeCursor(() => Color.Lerp(Color.White, Color.DeepSkyBlue, MathHelper.Clamp(Main.LocalPlayer.statMana / (float)Main.LocalPlayer.statManaMax2, 0f, 1f))));
         }
 
         public override void SetDefaults()
