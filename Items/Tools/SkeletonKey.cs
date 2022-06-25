@@ -14,7 +14,7 @@ namespace Aequus.Items.Tools
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.GoldenKey);
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.buyPrice(gold: 15);
             Item.rare++;
         }
 

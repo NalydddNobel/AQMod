@@ -112,25 +112,27 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            Main.LocalPlayer.discount = false;
+
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
             if (NPC.downedPirates)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
             if (NPC.downedPirates)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.LuckyCoin);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
             if (NPC.downedPirates)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.GoldRing);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 20);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());

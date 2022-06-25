@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(gold: 20);
+            Item.value = Item.buyPrice(gold: 10);
         }
 
         public override void UpdateInventory(Player player)

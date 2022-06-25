@@ -95,7 +95,7 @@ namespace Aequus.Items
             if (item.type == ItemID.ShadowKey)
             {
                 item.rare = ItemRarityID.Blue;
-                item.value = Item.buyPrice(gold: 10);
+                item.value = Item.buyPrice(gold: 15);
             }
             else if (item.type == ItemID.DiscountCard)
             {

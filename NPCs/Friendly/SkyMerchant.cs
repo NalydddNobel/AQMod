@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Mounts;
 using Aequus.UI.States;
@@ -138,34 +139,35 @@ namespace Aequus.NPCs.Friendly
             }
 
             var npc = Main.npc[Main.LocalPlayer.talkNPC];
-            var mer = (SkyMerchant)npc.ModNPC;
-            if (!mer.setupShop)
+            var merchant = (SkyMerchant)npc.ModNPC;
+            if (!merchant.setupShop)
             {
-                mer.SetupShopCache(Main.LocalPlayer);
+                merchant.SetupShopCache(Main.LocalPlayer);
                 npc.netUpdate = true;
-                mer.setupShop = true;
+                merchant.setupShop = true;
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
 
-            if (mer == null)
+            if (merchant == null)
             {
                 return;
             }
 
-            if (mer.shopAccessory != null)
+            if (merchant.shopAccessory != null)
             {
-                shop.item[nextSlot] = mer.shopAccessory.Clone();
+                shop.item[nextSlot] = merchant.shopAccessory.Clone();
                 shop.item[nextSlot].shopCustomPrice = (int)(shop.item[nextSlot].value * 1.5f);
                 shop.item[nextSlot].shopCustomPrice /= 100;
                 shop.item[nextSlot].shopCustomPrice *= 100;
                 shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
                 nextSlot++;
             }
-            if (mer.shopBanner != null)
+            if (merchant.shopBanner != null)
             {
-                shop.item[nextSlot] = mer.shopBanner.Clone();
+                shop.item[nextSlot] = merchant.shopBanner.Clone();
                 shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
                 nextSlot++;
             }

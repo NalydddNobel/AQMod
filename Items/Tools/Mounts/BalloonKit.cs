@@ -25,7 +25,7 @@ namespace Aequus.Items.Tools.Mounts
             Item.useAnimation = 15;
             Item.UseSound = SoundID.Item34;
             Item.rare = ItemRarityID.Yellow;
-            Item.value = Item.buyPrice(gold: 15);
+            Item.value = Item.buyPrice(gold: 10);
         }
     }
 

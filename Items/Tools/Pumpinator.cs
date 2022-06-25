@@ -31,7 +31,7 @@ namespace Aequus.Items.Tools
             Item.shoot = ModContent.ProjectileType<PumpinatorProj>();
             Item.shootSpeed = 9f;
             Item.autoReuse = true;
-            Item.value = Item.buyPrice(gold: 50);
+            Item.value = Item.buyPrice(gold: 10);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
