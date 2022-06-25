@@ -11,6 +11,9 @@ Mods: {
 
 			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
 
+			DwarfStariteCritter: 无害的星源, 虽然在技术上是最强的. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
+			Starite: 这种生物的恒星属性赋予了它控制魔法和飞行的能力.
+
 			Magmabubble: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩史莱姆在吞食了一条血爬行动物后长出了腿, 但它太重了, 爬不上墙壁.
 			TrapperImp: 恶魔能量从血巢的入口中倾泻而出. 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 将其自己的宠物.
 			Cindera: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩蝙蝠有着铰链式的下巴, 就像用来钳制猎物的宝箱.
@@ -83,7 +86,7 @@ Mods: {
 		}
 
 		Tooltips: {
-			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+			NecromancyStaff: 被击杀的敌人有几率转化为幽魂
 			NecromancyCandle: 持有此物品时会吸收被仆从杀死的敌人的灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
@@ -147,13 +150,13 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			BlackPhial: 黑色药瓶
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
 			MechsSentry: 哨卫6510型微型处理器
 			SantankSentry: 哨兵6502型微型处理器
 			BloodiedBucket: 血污桶
 			RitualisticSkull: 仪式颅骨
-			ReboundNecklace: 回弹项链
 			RabbitsFoot: 兔脚
 			FoolsGoldRing: 愚者之金戒
 			FaultyCoin: 缺陷硬币
@@ -204,7 +207,9 @@ Mods: {
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
+			NeutronYogurt: 中子酸奶
 			CinnamonRoll: 肉桂卷
+			SpicyEel: 香辣鳗鱼
 
 			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
@@ -220,6 +225,10 @@ Mods: {
 			UnenchantedStaff: 未附魔的法杖
 			Moro: 摩洛
 
+			Snobster: 势利鬼虾
+			DwarfStarite: 侏儒源星
+
+			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
 			LightningRod: 引雷杖
@@ -263,6 +272,8 @@ Mods: {
 			CensorDye: 监察染料
 			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
+
+			CelesitalEightBall: 星界八号球
 
 			Driftwood: 浮木
 			PlasticBottle: 塑料瓶
@@ -369,7 +380,6 @@ Mods: {
 			CrabPot: 蟹笼
 			PalePufferfish: 苍白河豚
 			VampireSquid: 吸血乌贼
-			Blobfish: 水滴鱼
 			Fizzler: 星灼鱼
 			Nessie: 尼斯湖水怪
 			UltraEel: 超级进化鳗
@@ -420,8 +430,6 @@ Mods: {
 			ShadePotion: 暗影药水
 			MysteryGrail: 神秘圣杯
 			SaintsFlow: 圣贤之流
-			SpicyEel: 香辣鳗鱼
-			NeutronJuice: 中子酸奶
 			RedLicorice: 红甘草
 			GrapePhanta: 幻影葡萄
 			PeeledCarrot: 胡龙卜
@@ -453,7 +461,6 @@ Mods: {
 			EclipseGlasses: 日蚀眼镜
 			Cosmicanon: 星宇律则
 			SoliderCrabsBanner: 兵蟹旗
-			Snobster: 势利鬼虾
 			JeweledChalice: 宝石杯
 			JeweledCandelabra: 宝石烛台
 			JeweledChandelier: 宝石大吊灯
@@ -484,7 +491,6 @@ Mods: {
 			UltimateEnergy: 终极能量
 			CrabRod: 螃蟹钓竿
 			BeeRod: 蜜蜂钓竿
-			DwarfStariteItem: 侏儒源星
 			CrabShell: 蟹壳
 			MothmanMask: 天蛾人面具
 			MoonlightWall: 月光墙
@@ -494,7 +500,6 @@ Mods: {
 			PlaceableShadowOrb:暗影珠 (可放置)
 			PlaceableCrimsonHeart: 猩红之心 (可放置)
 			MonoxideHat: 金乌之巢
-			CelesitalEightBall: 星界八号球
 			SunbaskMirror: 日光魔镜
 			UnityMirror: 月光魔镜
 			Bubbler: 泡泡法杖
@@ -538,27 +543,20 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			BoneRing: 
-				'''
-				有几率使敌人虚弱
-				'''
+			BlackPhial: 有几率对敌人造成随机减益
+			BoneRing: 有几率对敌人造成虚弱效果
 			PandorasBox: 
 				'''
-				你的仆从有几率向敌人发射随机弹幕
-				增加幽魂仆从弹幕的速度
-				'''
-			ReboundNecklace: 
-				'''
-				在下落时会刷新你的二段跳
-				自动进行二段跳以阻止摔落伤害
+				你的幽魂有几率向敌人发射随机弹幕
+				增加幽魂的弹幕速度
 				'''
 			BloodiedBucket: 
 				'''
-				大幅度增加幽魂仆从的存在时间
+				大幅度增加幽魂的存在时间
 				'我知道你的成分: 高大、暗黑以及是死的'
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
-			RabbitsFoot: 增加用户的幸运度
+			RabbitsFoot: 增加佩戴者的幸运度
 			MechsSentry:
 				'''
 				增加专家饰品的强度
@@ -613,7 +611,7 @@ Mods: {
 			DisturbanceStaff:
 				'''
 				召唤一个神秘的红色精灵折磨你的敌人
-				被击杀的敌人有几率转化为幽魂仆从
+				被击杀的敌人有几率转化为幽魂
 				'''
 			HailstormStaff:
 				'''
@@ -700,6 +698,11 @@ Mods: {
 				无视敌人15点的防御力
 				'''
 
+			NeutronYogurt:
+				'''
+				{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}
+				'重达数百万吨...但仍比把保险柜放在保险柜里保险柜的还轻'
+				'''
 			CinnamonRoll: "{$CommonItemTooltip.MajorStats}"
 			SpicyEel: 
 				'''
@@ -754,6 +757,11 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
+			Blobfish: 
+				'''
+				一种传说中的鱼类, 带着...丑陋
+				'只是...看看它!'
+				'''
 			GoreFish: 一种身上带有恶魔能量的传奇鱼类
 
 			SnowRoulette:
@@ -1105,7 +1113,6 @@ Mods: {
 				能治愈你身上的多种减益和血咒
 				'''
 			VampireSquid: 使你获得血咒
-			Blobfish: "'要想看着它而不吐出来需要你没有呕吐反射'"
 			UltraEel: 一种非常古老的星源物种的后代
 			Combfish: 具有再生特性
 			LarvaEel: 提供生命再生
@@ -1205,11 +1212,6 @@ Mods: {
 				'''
 				小幅度提升所有属性
 				大幅度增加速度
-				'''
-			NeutronJuice:
-				'''
-				小幅度提升所有属性并且降低重力效果
-				'重达数百万吨...但仍比放在保险箱里的保险箱还轻'
 				'''
 			RedLicorice: 中幅度提升所有属性并且增加20点生命值
 			GrapePhanta:
@@ -1329,11 +1331,6 @@ Mods: {
 			CrabShell: 畸形, 真是诡异
 			FishingCraftingStation: 用于制作特殊的钓鱼物品
 			MonoxideHat: "'因人们需求而变成一件装饰物品'"
-			CelesitalEightBall:
-				'''
-				右键使用以当做普通的8号球使用
-				特殊文本取决于世界当前状态
-				'''
 			Bubbler:
 				'''
 				不断地发射泡泡
@@ -1393,9 +1390,11 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
+			NeutronYogurtBuff: 中子酸奶
 			Bloodthirst: 嗜血
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
+			NeutronYogurtBuff: 大幅度增加重力
 			SpicyEelBuff: 香辣鳗鱼
 
 			ReliefshroomBuff: 息灵菇
@@ -1430,7 +1429,6 @@ Mods: {
 			DebuffSpread: 减益扩散
 			Shade: 暗影
 			SpeedBoostFood: 速度强化
-			NeutronYogurtBuff: 低重力
 			RedLicoriceBuff: 额外生命
 			GrapePhantaBuff: 额外法力
 			DragonCarrotBuff: 目力
@@ -1503,7 +1501,6 @@ Mods: {
 			DebuffSpread: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
 			Shade: 站定不动时会使敌人无法以你为攻击目标
 			SpeedBoostFood: 小幅度提升所有属性并且大幅度增加速度
-			NeutronYogurtBuff: 小幅度提升所有属性并且降低重力效果
 			RedLicoriceBuff: 中幅度提升所有属性并且生命值增加20点
 			GrapePhantaBuff:
 				'''
@@ -1692,7 +1689,7 @@ Mods: {
 		ArmorSetBonus: {
 			Gravetender: 
 				'''
-				召唤一缕魂灵来强化你的幽魂仆从
+				召唤一缕魂灵来强化你的幽魂
 				'''
 			Arachnotron:
 				'''
@@ -1828,7 +1825,7 @@ Mods: {
 			HermitCrab: 寄居蟹
 			SuperStarite: 极耀源星
 			HyperStarite: 巨耀源星
-			DwarfStarite: 侏儒源星
+			DwarfStariteCritter: 侏儒源星
 			Starite: 星之源
 			UltraStarite: 终耀源星
 
@@ -1965,27 +1962,6 @@ Mods: {
 		Common: {
 			KeyUnbound: "'按键未绑定'"
 			KeyBound: "'{0}'键"
-			EightballAnswer0: 是的
-			EightballAnswer1: 我的消息来源说不
-			EightballAnswer2: 有迹象表明是的
-			EightballAnswer3: 确实如此
-			EightballAnswer4: 毫无疑问
-			EightballAnswer5: 当然可以
-			EightballAnswer6: 你可以相信它
-			EightballAnswer7: 如我所见, 是的
-			EightballAnswer8: 有希望
-			EightballAnswer9: 前景很好
-			EightballAnswer10: 有迹象表明是的
-			EightballAnswer11: 别想了
-			EightballAnswer12: 我的回答是否
-			EightballAnswer13: 前景不妙
-			EightballAnswer14: 令人疑惑
-			EightballAnswer15: 再试一次吧
-			EightballAnswer16: 待会再问
-			EightballAnswer17: 时候未到
-			EightballAnswer18: 现在没法预测
-			EightballAnswer19: 请集中你的精神再问一次
-			EightballAnswer20: 星界8号球上没有显示任何内容
 
 			CrabSeason: 蟹季
 			CrabSeasonWarning: 海洋的温度正在逐渐升高...
@@ -2769,7 +2745,29 @@ Mods: {
 			}
 			NecromancyStaffUsage: "{0}将自己转化为了一个{1}"
 		}
-		UpgradeGrapplingHooks: 升级钩爪
+
+		EightballAnswer: {
+			0: 是的
+			1: 我的消息来源说不
+			2: 有迹象表明是的
+			3: 确实如此
+			4: 毫无疑问
+			5: 当然可以
+			6: 你可以相信它
+			7: 如我所见, 是的
+			8: 有希望
+			9: 前景很好
+			10: 有迹象表明是的
+			11: 别想了
+			12: 我的回答是否
+			13: 前景不妙
+			14: 令人疑惑
+			15: 再试一次吧
+			16: 待会再问
+			17: 时候未到
+			18: 现在没法预测
+			19: 请集中你的精神再问一次
+		}
 
 		Complete: 完成
 		Active: 激活
