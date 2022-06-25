@@ -762,7 +762,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = !AequusSystem.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusWorld.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -788,7 +788,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusSystem.MarkAsDefeated(ref AequusSystem.downedSpaceSquid, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedSpaceSquid, Type);
         }
 
         //public override void NPCLoot()

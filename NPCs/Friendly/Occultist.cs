@@ -111,7 +111,7 @@ namespace Aequus.NPCs.Friendly
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return AequusSystem.downedEventDemon;
+            return AequusWorld.downedEventDemon;
         }
 
         public override List<string> SetNPCNameList()

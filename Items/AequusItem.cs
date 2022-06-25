@@ -132,7 +132,7 @@ namespace Aequus.Items
         {
             if (context == "lockBox")
             {
-                player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.LockBox), AequusSystem.DungeonChestItem(Main.rand.Next(AequusSystem.DungeonChestItemTypesMax)));
+                player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.LockBox), AequusWorld.DungeonChestItem(Main.rand.Next(AequusWorld.DungeonChestItemTypesMax)));
             }
             else if (context == "crate")
             {

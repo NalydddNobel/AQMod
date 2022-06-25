@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Particles;
@@ -62,14 +63,10 @@ namespace Aequus.NPCs.Monsters.Night
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<NeutronYogurt>(chance: 5, stack: 1)
-                .Add<HypnoDye>(chance: 50, stack: 1);
+                .Add<CelesitalEightBall>(chance: 50, stack: 1)
+                .Add<HypnoDye>(chance: 50, stack: 1)
+                .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
-        //public override void NPCLoot()
-        //{
-        //    if (Main.rand.NextBool(50))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<CelesitalEightBall>());
-        //}
 
         public override void SetDefaults()
         {

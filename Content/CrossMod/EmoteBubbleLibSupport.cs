@@ -17,10 +17,10 @@ namespace Aequus.Content.CrossMod
             EmoteBubbleLib = new ModData("EmoteBubbleLib");
             if (EmoteBubbleLib.Enabled)
             {
-                Call("Crabson", "/crabson", "Crabson", 7, () => AequusSystem.downedCrabson);
-                Call("OmegaStarite", "/omegastarite", "OmegaStarite", 7, () => AequusSystem.downedOmegaStarite);
-                Call("RedSprite", "/redsprite", "RedSprite", 7, () => AequusSystem.downedRedSprite);
-                Call("SpaceSquid", "/spacesquid", "SpaceSquid", 7, () => AequusSystem.downedSpaceSquid);
+                Call("Crabson", "/crabson", "Crabson", 7, () => AequusWorld.downedCrabson);
+                Call("OmegaStarite", "/omegastarite", "OmegaStarite", 7, () => AequusWorld.downedOmegaStarite);
+                Call("RedSprite", "/redsprite", "RedSprite", 7, () => AequusWorld.downedRedSprite);
+                Call("SpaceSquid", "/spacesquid", "SpaceSquid", 7, () => AequusWorld.downedSpaceSquid);
             }
         }
 

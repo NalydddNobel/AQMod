@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
         public override void SetDefaults()
         {
             DefaultToCandle(24, 6, NPCID.Demon);
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 3);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;

@@ -273,6 +273,8 @@ Mods: {
 			ScorchingDye: Scorching Dye
 			FrostbiteDye: Frostbite Dye
 
+			CelesitalEightBall: Celestial 8-Ball
+
 			Driftwood: Driftwood
 			PlasticBottle: Plastic Bottle
 
@@ -498,7 +500,6 @@ Mods: {
 			PlaceableShadowOrb: Shadow Orb (Placeable)
 			PlaceableCrimsonHeart: Crimson Heart (Placeable)
 			MonoxideHat: Monoxide Hat
-			CelesitalEightBall: Celestial 8-Ball
 			SunbaskMirror: Sunbask Mirror
 			UnityMirror: Moonluna Mirror
 			Bubbler: Bubbler
@@ -1330,11 +1331,6 @@ Mods: {
 			CrabShell: It's oddly misshapen
 			FishingCraftingStation: Used to craft special fishing items
 			MonoxideHat: "'Became a vanity item due to popular demand'"
-			CelesitalEightBall:
-				'''
-				Right click to use as a normal 8-Ball
-				Has special text depending on the world state
-				'''
 			Bubbler:
 				'''
 				Shoots a constant stream of bubbles
@@ -1966,27 +1962,6 @@ Mods: {
 		Common: {
 			KeyUnbound: "'Unbound Key'"
 			KeyBound: "'{0}' Key"
-			EightballAnswer0: Yes
-			EightballAnswer1: My sources say no
-			EightballAnswer2: It is certain
-			EightballAnswer3: It is decidedly so
-			EightballAnswer4: Without a doubt
-			EightballAnswer5: Yes definitely
-			EightballAnswer6: You may rely on it
-			EightballAnswer7: As I see it yes
-			EightballAnswer8: Most likely
-			EightballAnswer9: Outlook good
-			EightballAnswer10: Signs point to yes
-			EightballAnswer11: Don't count on it
-			EightballAnswer12: My reply is no
-			EightballAnswer13: Outlook not so good
-			EightballAnswer14: Very doubtful
-			EightballAnswer15: Reply hazy try again
-			EightballAnswer16: Ask again later
-			EightballAnswer17: Better not tell you now
-			EightballAnswer18: Cannot predict now
-			EightballAnswer19: Concentrate and ask again
-			EightballAnswer20: Nothing is displayed on the Celestial 8-Ball
 
 			CrabSeason: Crab Season
 			CrabSeasonWarning: The warmth of the oceans increases...
@@ -2770,7 +2745,29 @@ Mods: {
 			}
 			NecromancyStaffUsage: "{0} converted themselves into a {1}"
 		}
-		UpgradeGrapplingHooks: Upgrade Hooks
+
+		EightballAnswer: {
+			0: Yes
+			1: My sources say no
+			2: It is certain
+			3: It is decidedly so
+			4: Without a doubt
+			5: Yes definitely
+			6: You may rely on it
+			7: As I see it yes
+			8: Most likely
+			9: Outlook good
+			10: Signs point to yes
+			11: Don't count on it
+			12: My reply is no
+			13: Outlook not so good
+			14: Very doubtful
+			15: Reply hazy try again
+			16: Ask again later
+			17: Better not tell you now
+			18: Cannot predict now
+			19: Concentrate and ask again
+		}
 
 		Complete: Complete
 		Active: Active

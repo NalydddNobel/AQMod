@@ -1623,7 +1623,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusSystem.MarkAsDefeated(ref AequusSystem.downedOmegaStarite, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
             //bool anyoneNoHit = false;

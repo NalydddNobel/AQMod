@@ -168,7 +168,7 @@ namespace Aequus.Biomes
                     return;
                 }
                 InnerUpdate_OnEnd();
-                AequusSystem.downedEventDemon = true;
+                AequusWorld.downedEventDemon = true;
             }
             public void InnerUpdate_OnStart()
             {

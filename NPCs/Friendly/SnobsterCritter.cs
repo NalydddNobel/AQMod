@@ -97,7 +97,7 @@ namespace Aequus.NPCs.Friendly
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             float chance = SpawnCondition.Ocean.Chance * 0.1f * (SpawnCondition.TownCritter.Chance * 5f + 1f);
-            if (AequusSystem.downedCrabson)
+            if (AequusWorld.downedCrabson)
                 chance *= 5f;
             return chance;
         }

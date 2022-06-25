@@ -49,6 +49,19 @@ namespace Aequus.Items
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
 
+        public static void DefaultToCursorDye(this Item item)
+        {
+            item.width = 20;
+            item.height = 26;
+            item.useStyle = ItemUseStyleID.DrinkLiquid;
+            item.useAnimation = 17;
+            item.useTime = 17;
+            item.useTurn = true;
+            item.UseSound = SoundID.Item3;
+            item.consumable = true;
+            item.maxStack = 999;
+        }
+
         public static void DefaultToNecromancy(this Item item, int timeBetweenShots)
         {
             item.useTime = timeBetweenShots;

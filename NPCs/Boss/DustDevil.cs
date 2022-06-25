@@ -567,8 +567,8 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusSystem.MarkAsDefeated(ref AequusSystem.downedEventAtmosphere, NPC.type);
-            AequusSystem.MarkAsDefeated(ref AequusSystem.downedDustDevil, NPC.type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, NPC.type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, NPC.type);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

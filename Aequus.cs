@@ -35,7 +35,7 @@ namespace Aequus
         public static bool HQ => ClientConfig.Instance.HighQuality;
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
-        public static bool HardmodeTier => Main.hardMode || AequusSystem.downedOmegaStarite;
+        public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
         public static NecromancyDamageClass NecromancyDamage => new NecromancyDamageClass();
 
@@ -124,7 +124,7 @@ namespace Aequus
                     return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
 
                 case "Downed":
-                    return ModContent.GetInstance<AequusSystem.DownedCalls>().HandleModCall(this, args);
+                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
 
                 case "AddShopQuote":
                     return ShopQuotes.Database.HandleModCall(this, args);

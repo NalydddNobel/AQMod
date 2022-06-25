@@ -48,6 +48,8 @@ namespace Aequus
 
         [SaveData("Souls")]
         public int candleSouls;
+        [SaveData("CursorDye")]
+        public int cursorDye;
 
         [SaveData("Scammer")]
         [SaveDataAttribute.IsListedBoolean]
@@ -329,6 +331,9 @@ namespace Aequus
 
         public override void Initialize()
         {
+            cursorDye = -1;
+            candleSouls = 0;
+            ghostTombstones = false;
             moroUsed = false;
             scammer = false;
 

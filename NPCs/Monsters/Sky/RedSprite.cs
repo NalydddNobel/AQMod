@@ -141,7 +141,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 .AddMasterPet<LightningRod>()
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add(new FilledConditionsOtherwiseChanceRule(
-                    new OnFirstKillCondition(() => AequusSystem.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
+                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
@@ -522,7 +522,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                 NPC.HitEffect(0, NPC.lifeMax);
                                 if (NPC.Distance(Main.LocalPlayer.Center) < 2000f)
                                 {
-                                    bool reduceFX = AequusSystem.downedRedSprite || NPC.CountNPCS(Type) > 1;
+                                    bool reduceFX = AequusWorld.downedRedSprite || NPC.CountNPCS(Type) > 1;
                                     ScreenFlash.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
                                     AequusEffects.Shake.Set(reduceFX ? 18f : 20f);
                                 }
@@ -1084,7 +1084,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 return true;
             }
 
-            _importantDeath = !AequusSystem.downedRedSprite && NPC.CountNPCS(Type) <= 1;
+            _importantDeath = !AequusWorld.downedRedSprite && NPC.CountNPCS(Type) <= 1;
             NPC.ai[0] = PHASE_DEAD;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -1097,7 +1097,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public override void OnKill()
         {
-            AequusSystem.MarkAsDefeated(ref AequusSystem.downedRedSprite, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedRedSprite, Type);
         }
 
         //public override void NPCLoot()

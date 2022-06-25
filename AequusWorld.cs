@@ -24,7 +24,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus
 {
-    public sealed class AequusSystem : ModSystem
+    public sealed class AequusWorld : ModSystem
     {
         public const int DungeonChestItemTypesMax = 4;
 

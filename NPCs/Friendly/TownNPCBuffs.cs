@@ -6,11 +6,11 @@ namespace Aequus.NPCs.Friendly
     {
         public override void BuffTownNPC(ref float damageMult, ref int defense)
         {
-            if (AequusSystem.downedCrabson)
+            if (AequusWorld.downedCrabson)
             {
                 GenericBuffs(ref damageMult, ref defense);
             }
-            if (AequusSystem.downedOmegaStarite)
+            if (AequusWorld.downedOmegaStarite)
             {
                 GenericBuffs(ref damageMult, ref defense);
             }

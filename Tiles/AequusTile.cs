@@ -39,7 +39,7 @@ namespace Aequus.Tiles
                 {
                     CrimsonOrbDrops(i, j);
                 }
-                AequusSystem.shadowOrbsBrokenTotal++;
+                AequusWorld.shadowOrbsBrokenTotal++;
             }
             return true;
         }
@@ -67,7 +67,7 @@ namespace Aequus.Tiles
         }
         public int OrbDrop()
         {
-            return AequusSystem.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusSystem.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
+            return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
         }
 
         private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
