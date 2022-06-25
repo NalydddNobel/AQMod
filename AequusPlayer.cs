@@ -64,6 +64,9 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
 
+        public int ears;
+        public int cEars;
+
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
         /// </summary>
@@ -356,6 +359,9 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            ears = 0;
+            cEars = 0;
+
             soulCandleLimit = 0;
 
             if (Player.velocity.Length() < 1f)

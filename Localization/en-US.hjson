@@ -32,6 +32,7 @@ Mods: {
 		}
 
 		BiomeName: {
+			GlimmerInvasion: Glimmer
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsInvasion: Gale Streams
 			DemonSiegeInvasion: Demon Siege

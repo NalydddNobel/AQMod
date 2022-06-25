@@ -79,6 +79,8 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+        public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
+
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
         /// <summary>

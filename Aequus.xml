@@ -276,46 +276,46 @@
             <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
             <param name="itemReference"></param>
         </member>
-        <member name="M:Aequus.AequusSystem.OreTiers">
+        <member name="M:Aequus.AequusWorld.OreTiers">
             <summary>
             
             </summary>
             <returns>A bitsbyte instance where 0 is copper, 1 is iron, 2 is silver, 3 is gold. When they are false, they are the alternate world ore.</returns>
         </member>
-        <member name="M:Aequus.AequusSystem.HasCobalt">
+        <member name="M:Aequus.AequusWorld.HasCobalt">
             <summary>
             
             </summary>
             <returns>true if the world has cobalt, false if the world has palladium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="M:Aequus.AequusSystem.HasMythril">
+        <member name="M:Aequus.AequusWorld.HasMythril">
             <summary>
             
             </summary>
             <returns>true if the world has mythril, false if the world has orichalcum, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="M:Aequus.AequusSystem.HasAdamantite">
+        <member name="M:Aequus.AequusWorld.HasAdamantite">
             <summary>
             
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="T:Aequus.AequusSystem.DownedCalls">
+        <member name="T:Aequus.AequusWorld.DownedCalls">
             <summary>
             World Flags:
             <list type="table">
-            <item>Crabson -- <see cref="F:Aequus.AequusSystem.downedCrabson"/></item>
-            <item>OmegaStarite -- <see cref="F:Aequus.AequusSystem.downedOmegaStarite"/></item>
-            <item>RedSprite -- <see cref="F:Aequus.AequusSystem.downedRedSprite"/></item>
-            <item>SpaceSquid -- <see cref="F:Aequus.AequusSystem.downedSpaceSquid"/></item>
-            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusSystem.downedEventAtmosphere"/></item>
-            <item>GaleStreams -- <see cref="F:Aequus.AequusSystem.downedEventAtmosphere"/></item>
+            <item>Crabson -- <see cref="F:Aequus.AequusWorld.downedCrabson"/></item>
+            <item>OmegaStarite -- <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></item>
+            <item>RedSprite -- <see cref="F:Aequus.AequusWorld.downedRedSprite"/></item>
+            <item>SpaceSquid -- <see cref="F:Aequus.AequusWorld.downedSpaceSquid"/></item>
+            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusWorld.downedEventAtmosphere"/></item>
+            <item>GaleStreams -- <see cref="F:Aequus.AequusWorld.downedEventAtmosphere"/></item>
             </list>
             </summary>
         </member>
-        <member name="M:Aequus.AequusSystem.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
+        <member name="M:Aequus.AequusWorld.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
             <summary>
-            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusSystem.DownedCalls"/>' summary.
+            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.DownedCalls"/>' summary.
             <para>Obtaining a flag:</para>
             <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
             <para>Setting a flag:</para>

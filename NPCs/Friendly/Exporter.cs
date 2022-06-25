@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables.Roulettes;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
@@ -144,6 +145,7 @@ namespace Aequus.NPCs.Friendly
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
         }
 
         //public static bool TryPlaceQuestTile(int x, int y)
