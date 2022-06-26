@@ -10,7 +10,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
 using Aequus.Tiles;
@@ -1288,6 +1288,22 @@ namespace Aequus
                 {
                     Player.QuickSpawnItem(source, Main.hardMode ? ItemID.LavaCrateHard : ItemID.LavaCrate);
                 }
+            }
+            else if (item.type == ModContent.ItemType<ArgonFish>())
+            {
+                Player.QuickSpawnItem(source, ItemID.ArgonMoss, 15);
+            }
+            else if (item.type == ModContent.ItemType<KryptonFish>())
+            {
+                Player.QuickSpawnItem(source, ItemID.KryptonMoss, 15);
+            }
+            else if (item.type == ModContent.ItemType<XenonFish>())
+            {
+                Player.QuickSpawnItem(source, ItemID.XenonMoss, 15);
+            }
+            else if (item.type == ModContent.ItemType<RadonFish>())
+            {
+                Player.QuickSpawnItem(source, ItemID.StinkPotion, 5);
             }
             AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }

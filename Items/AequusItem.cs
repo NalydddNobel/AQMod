@@ -92,6 +92,8 @@ namespace Aequus.Items
 
         public override void SetDefaults(Item item)
         {
+            item.useTime = 1;
+            item.useAnimation *= 10;
             if (item.type == ItemID.ShadowKey)
             {
                 item.rare = ItemRarityID.Blue;

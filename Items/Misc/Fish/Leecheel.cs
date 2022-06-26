@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Fish
 {
     public class Leecheel : ModItem
     {

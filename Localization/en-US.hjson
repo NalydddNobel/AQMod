@@ -229,6 +229,10 @@ Mods: {
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
 
+			XenonFish: Xenon Fish
+			KryptonFish: Krypton Fish
+			ArgonFish: Argon Fish
+			RadonFish: Radon Fish
 			Blobfish: Blobfish
 			GoreFish: Gore Fish
 
@@ -758,7 +762,11 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
-			Blobfish: 
+			ArgonFish: A legendary fish enriched with argon moss
+			KryptonFish: A legendary fish enriched with krypton moss
+			XenonFish: A legendary fish enriched with xenon moss
+			RadonFish: A legendary fish enriched with radon moss
+			Blobfish:
 				'''
 				A legendary fish blessed with... ugliness
 				'Just... look at it!'

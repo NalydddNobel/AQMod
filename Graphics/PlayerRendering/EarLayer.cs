@@ -40,10 +40,10 @@ namespace Aequus.Graphics.PlayerRendering
                     c = drawInfo.drawPlayer.skinColor;
                 }
 
-                if (AequusHelpers.debugKey)
-                {
-                    AequusHelpers.dustDebug(drawInfo.helmetOffset + drawPosition + Main.screenPosition);
-                }
+                //if (AequusHelpers.debugKey)
+                //{
+                //    AequusHelpers.dustDebug(drawInfo.helmetOffset + drawPosition + Main.screenPosition);
+                //}
 
                 drawInfo.DrawDataCache.Add(new DrawData(t.Value, drawInfo.helmetOffset + drawPosition,
                     bodyFrame, AequusHelpers.GetColor(drawInfo.helmetOffset + drawPosition + Main.screenPosition, c), drawInfo.drawPlayer.headRotation, headOrigin, 1f, drawInfo.playerEffect, 0)

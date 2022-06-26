@@ -2,6 +2,8 @@
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
+using Aequus.Items.Misc.Fish;
+using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using MonoMod.RuntimeDetour;
@@ -158,11 +160,33 @@ namespace Aequus.Common
                 }
             }
 
-            if (Player.ZoneBeach && attempt.veryrare && Main.rand.NextBool(3))
+            if (Player.ZoneBeach && attempt.veryrare && Main.rand.NextBool())
             {
                 itemDrop = ModContent.ItemType<SentrySquid>();
             }
-            if (Main.bloodMoon && attempt.heightLevel < HeightLevel_Underground)
+
+            if (attempt.heightLevel >= HeightLevel_Underground && Main.rand.NextBool())
+            {
+                if (attempt.veryrare)
+                {
+                    switch (Main.rand.Next(4))
+                    {
+                        case 0:
+                            itemDrop = ModContent.ItemType<ArgonFish>();
+                            break;
+                        case 1:
+                            itemDrop = ModContent.ItemType<KryptonFish>();
+                            break;
+                        case 2:
+                            itemDrop = ModContent.ItemType<XenonFish>();
+                            break;
+                        case 3:
+                            itemDrop = ModContent.ItemType<RadonFish>();
+                            break;
+                    }
+                }
+            }
+            else if (Main.bloodMoon)
             {
                 if (attempt.uncommon && Main.rand.NextBool())
                 {

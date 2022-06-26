@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Fish;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
