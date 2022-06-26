@@ -229,6 +229,10 @@ Mods: {
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
 
+			XenonFish: 氙鱼
+			KryptonFish: 氪鱼
+			ArgonFish: 氩鱼
+			RadonFish: 氡鱼
 			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
@@ -758,9 +762,13 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
-			Blobfish: 
+			ArgonFish: 一种身上带有氩苔藓的传奇鱼类
+			KryptonFish: 一种身上带有氪苔藓的传奇鱼类
+			XenonFish: 一种身上带有氙苔藓的传奇鱼类
+			RadonFish: 一种身上带有氡苔藓的传奇鱼类
+			Blobfish:
 				'''
-				一种传说中的鱼类, 带着...丑陋
+				一种身上带有...丑陋...的传奇鱼类
 				'只是...看看它!'
 				'''
 			GoreFish: 一种身上带有恶魔能量的传奇鱼类
@@ -2777,6 +2785,7 @@ Mods: {
 		GlimmersPrevented: 阻止微光: {0}
 		EclipsesPrevented: 阻止日蚀: {0}
 		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
+		AnglerHint: 渔夫可能会对此感兴趣...
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
 		OpenedLink: 点击并发送至
 	}
