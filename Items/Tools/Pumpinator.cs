@@ -47,7 +47,7 @@ namespace Aequus.Items.Tools
                     return;
                 }
                 index = tooltips.GetIndex("Material");
-                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = AequusTooltips.MysteriousGuideTooltip, });
+                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = AequusTooltips.HintColor, });
             }
             catch
             {

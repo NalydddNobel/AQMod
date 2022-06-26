@@ -207,7 +207,7 @@ namespace Aequus.Items
                 "Price",
         };
 
-        public static Color MysteriousGuideTooltip => new Color(225, 100, 255, 255);
+        public static Color HintColor => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
 
         public static int GetIndex(this List<TooltipLine> tooltips, string lineName)

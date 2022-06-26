@@ -2785,6 +2785,7 @@ Mods: {
 		GlimmersPrevented: Glimmers Prevented: {0}
 		EclipsesPrevented: Eclipses Prevented: {0}
 		YourCoordinates: Your corrdinates are (X: {0}, Y: {1})
+		AnglerHint: The angler may be interested in this...
 		GaleStreamsHint: Strong space winds may cause new creatures to appear
 		OpenedLink: Clicked and sending to
 	}
