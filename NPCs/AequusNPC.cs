@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
@@ -19,9 +20,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public sealed class AequusNPC : GlobalNPC
+    public sealed class AequusNPC : GlobalNPC, IAddRecipes
     {
         public static HashSet<int> HeatDamage { get; private set; }
+        public static Dictionary<int, BestiarySpawnInfo> BestiarySpawnerInfo { get; private set; }
+
         public override bool InstancePerEntity => true;
 
         public bool heatDamage;
@@ -29,6 +32,7 @@ namespace Aequus.NPCs
 
         public override void Load()
         {
+            BestiarySpawnerInfo = new Dictionary<int, BestiarySpawnInfo>();
             HeatDamage = new HashSet<int>()
             {
                 NPCID.Lavabat,
@@ -118,6 +122,17 @@ namespace Aequus.NPCs
             }
         Orig:
             orig(self, hitDirection, dmg);
+        }
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            foreach (var n in ContentSamples.NpcsByNetId)
+            {
+                if (n.Value.ToBanner() != 0)
+                {
+                    BestiarySpawnerInfo.Add(n.Key, new BestiarySpawnInfo(n.Key));
+                }
+            }
         }
 
         public override void SetDefaults(NPC npc)

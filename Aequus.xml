@@ -69,9 +69,14 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
-        <member name="F:Aequus.AequusPlayer.moroUsed">
+        <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.ghostTombstones">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Misc.GhostlyGrave"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.buffSpicyEel">

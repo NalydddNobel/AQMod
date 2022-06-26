@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics;
+using Terraria.Graphics.Capture;
 using Terraria.Graphics.Renderers;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -270,6 +272,17 @@ namespace Aequus.Graphics
                 ProjsBehindTiles = new DrawList();
                 DustDevil.DrawFront?.Clear();
                 DustDevil.DrawFront = new DrawList();
+            }
+
+            if (Main.placementPreview && BestiaryNotebook.dummyNPC != null && Main.LocalPlayer.HeldItem.ModItem is BestiaryNotebook && !CaptureManager.Instance.Active)
+            {
+                BestiaryNotebook.dummyNPC.position = AequusHelpers.ScaledMouseworld + new Vector2(24f, 24f) * Main.cursorScale;
+                AequusHelpers.DrawRectangle(BestiaryNotebook.dummyNPC.getRect(), Main.screenPosition, Color.Red.UseA(0));
+                float scale = BestiaryNotebook.dummyNPC.scale;
+                BestiaryNotebook.dummyNPC.scale *= Main.cursorScale;
+                Main.instance.DrawNPCDirect(Main.spriteBatch, BestiaryNotebook.dummyNPC, BestiaryNotebook.dummyNPC.behindTiles, Main.screenPosition);
+
+                BestiaryNotebook.dummyNPC.scale = scale;
             }
         }
 

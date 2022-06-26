@@ -11,6 +11,7 @@ using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -284,6 +285,13 @@ namespace Aequus
 
         public override void PostUpdatePlayers()
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                if (Main.BestiaryUI == null)
+                {
+                    BestiaryNotebookElement.InNotebookPage = false;
+                }
+            }
             AequusProjectile.pWhoAmI = -1;
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;

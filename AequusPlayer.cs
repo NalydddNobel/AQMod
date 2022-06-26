@@ -9,7 +9,9 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
@@ -53,13 +55,16 @@ namespace Aequus
 
         [SaveData("Scammer")]
         [SaveDataAttribute.IsListedBoolean]
-        public bool scammer;
+        public bool hasUsedRobsterScamItem;
         /// <summary>
-        /// Enabled by <see cref="Items.Consumables.Moro"/>
+        /// Enabled by <see cref="Moro"/>
         /// </summary>
         [SaveData("Moro")]
         [SaveDataAttribute.IsListedBoolean]
-        public bool moroUsed;
+        public bool moroSummonerFruit;
+        /// <summary>
+        /// Enabled by <see cref="GhostlyGrave"/>
+        /// </summary>
         [SaveData("GravesDisabled")]
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
@@ -256,6 +261,20 @@ namespace Aequus
             Player_ItemCheck_Shoot = null;
         }
 
+        public override void clientClone(ModPlayer clientClone)
+        {
+            var clone = (AequusPlayer)clientClone;
+            clone.itemCombo = itemCombo;
+            clone.itemSwitch = itemSwitch;
+            clone.itemUsage = itemUsage;
+            clone.itemCooldown = itemCooldown;
+            clone.itemCooldownMax = itemCooldownMax;
+            clone.hitTime = hitTime;
+            clone.expertBoostBoCDefense = expertBoostBoCDefense;
+            clone.increasedRegen = increasedRegen;
+            clone.candleSouls = candleSouls;
+        }
+
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
             var clone = (AequusPlayer)clientPlayer;
@@ -293,6 +312,7 @@ namespace Aequus
                         p.Write(candleSouls);
                         sentAnything = true;
                     }, p);
+
                 return sentAnything;
 
             }, PacketType.SyncAequusPlayer);
@@ -318,27 +338,13 @@ namespace Aequus
             }
         }
 
-        public override void clientClone(ModPlayer clientClone)
-        {
-            var clone = (AequusPlayer)clientClone;
-            clone.itemCombo = itemCombo;
-            clone.itemSwitch = itemSwitch;
-            clone.itemUsage = itemUsage;
-            clone.itemCooldown = itemCooldown;
-            clone.itemCooldownMax = itemCooldownMax;
-            clone.hitTime = hitTime;
-            clone.expertBoostBoCDefense = expertBoostBoCDefense;
-            clone.increasedRegen = increasedRegen;
-            clone.candleSouls = candleSouls;
-        }
-
         public override void Initialize()
         {
             cursorDye = -1;
             candleSouls = 0;
             ghostTombstones = false;
-            moroUsed = false;
-            scammer = false;
+            moroSummonerFruit = false;
+            hasUsedRobsterScamItem = false;
 
             sentrySquidTimer = 120;
             itemCooldown = 0;
@@ -865,7 +871,7 @@ namespace Aequus
         {
             if (CheckScam())
             {
-                scammer = true;
+                hasUsedRobsterScamItem = true;
             }
             MoneyBack(vendor, shopInventory, item);
         }

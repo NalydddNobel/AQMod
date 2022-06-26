@@ -71,29 +71,28 @@ namespace Aequus.Items.Weapons.Melee
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            DrawRainbowAura(spriteBatch, TextureAssets.Item[Type].Value, position, frame, 0f, origin, scale, entitySpriteDraw: false);
+            DrawRainbowAura(Main.myPlayer, spriteBatch, TextureAssets.Item[Type].Value, position, frame, 0f, origin, scale, entitySpriteDraw: false);
             return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             var texture = TextureAssets.Item[Type].Value;
-            DrawRainbowAura(spriteBatch, texture, Item.Center + new Vector2(0f, -27f) - Main.screenPosition, null, rotation, texture.Size() / 2f, scale);
+            DrawRainbowAura(Main.myPlayer, spriteBatch, texture, Item.Center + new Vector2(0f, -27f) - Main.screenPosition, null, rotation, texture.Size() / 2f, scale);
             return false;
         }
 
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
+        public static void DrawRainbowAura(int player, SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
             float scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true,
             float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
-            DrawRainbowAura(spriteBatch, texture, vector, frame, rotation, origin, new Vector2(scale), effects, opacity, entitySpriteDraw, drawWhite, rainbowScaleMultiplier, rainbowOffsetScaleMultiplier, rainbowOffsetScaleMultiplier2);
+            DrawRainbowAura(player, spriteBatch, texture, vector, frame, rotation, origin, new Vector2(scale), effects, opacity, entitySpriteDraw, drawWhite, rainbowScaleMultiplier, rainbowOffsetScaleMultiplier, rainbowOffsetScaleMultiplier2);
         }
-        public static void DrawRainbowAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
+        public static void DrawRainbowAura(int player, SpriteBatch spriteBatch, Texture2D texture, Vector2 vector, Rectangle? frame, float rotation, Vector2 origin,
             Vector2 scale, SpriteEffects effects = SpriteEffects.None, float opacity = 1f, bool entitySpriteDraw = true, bool drawWhite = true,
             float rainbowScaleMultiplier = 1f, float rainbowOffsetScaleMultiplier = 4f, float rainbowOffsetScaleMultiplier2 = 1f)
         {
-            var clrs = EightWayRainbow;
-            var v = AequusHelpers.CircularVector(clrs.Length, Main.GlobalTimeWrappedHourly * 5f);
+            var v = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly * 5f);
 
             if (drawWhite)
             {
@@ -111,16 +110,16 @@ namespace Aequus.Items.Weapons.Melee
 
             for (float rainbowOffset = Math.Min(scale.X > scale.Y ? scale.Y : scale.X, 1.01f) * rainbowOffsetScaleMultiplier; rainbowOffset > 0f; rainbowOffset -= 2f)
             {
-                for (int i = 0; i < clrs.Length; i++)
+                for (int i = 0; i < 8; i++)
                 {
-                    clrs[i] = clrs[i].MaxRGBA(1);
+                    float p = 6f / 8f * i;
                     if (entitySpriteDraw)
                     {
-                        spriteBatch.Draw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, clrs[i].UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0f);
+                        spriteBatch.Draw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, AequusHelpers.GetRainbowHue(player, p).MaxRGBA(1).UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0f);
                     }
                     else
                     {
-                        Main.EntitySpriteDraw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, clrs[i].UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0);
+                        Main.EntitySpriteDraw(texture, vector + v[i] * rainbowOffset * rainbowOffsetScaleMultiplier2, frame, AequusHelpers.GetRainbowHue(player, p).MaxRGBA(1).UseA(50) * 0.2f * opacity, rotation, origin, scale * rainbowScaleMultiplier, effects, 0);
                     }
                 }
             }

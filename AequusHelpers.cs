@@ -16,10 +16,12 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 using Terraria.Utilities;
 
 namespace Aequus
@@ -60,6 +62,7 @@ namespace Aequus
         /// Determines whether or not the mouse has an item
         /// </summary>
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
+        public static Vector2 ScaledMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
         public static Matrix WorldViewPoint
         {
             get
@@ -82,6 +85,44 @@ namespace Aequus
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
+
+        public static Color GetRainbowHue(Projectile projectile, float index)
+        {
+            float laserLuminance = 0.5f;
+            float laserAlphaMultiplier = 0f;
+            float lastPrismHue = projectile.GetLastPrismHue(index % 6f, ref laserLuminance, ref laserAlphaMultiplier);
+            return Main.hslToRgb(lastPrismHue, 1f, laserLuminance);
+        }
+        public static Color GetRainbowHue(int player, float position)
+        {
+            return GetRainbowHue(new Projectile() { owner = player }, position);
+        }
+        public static Color GetRainbowHue(Player player, float position)
+        {
+            return GetRainbowHue(player.whoAmI, position);
+        }
+
+        public static T TryFindChildElement<T>(UIElement element) where T : UIElement
+        {
+            foreach (var e in element.Children)
+            {
+                if (e is T value)
+                {
+                    return value;
+                }
+                var v = TryFindChildElement<T>(e);
+                if (v != null)
+                {
+                    return v;
+                }
+            }
+            return null;
+        }
+
+        public static int TryGetNPCNetID(this BestiaryEntry entry)
+        {
+            return (entry.Info[0] as NPCNetIdBestiaryInfoElement).NetId;
+        }
 
         /// <summary>
         /// Gets the mean of light surrounding a point

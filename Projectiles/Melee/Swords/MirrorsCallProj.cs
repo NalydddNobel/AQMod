@@ -59,7 +59,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 bool rightClick = Main.player[Projectile.owner].altFunctionUse == 2;
                 float explosionScale = !rightClick ? 0.66f : 1f;
                 AequusEffects.Shake.Set(8f * explosionScale);
-                MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, explosionScale);
+                MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, explosionScale);
                 float damageScale = !rightClick ? 0.8f : 1.8f;
                 int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * damageScale), Projectile.knockBack, Projectile.owner);
@@ -113,8 +113,7 @@ namespace Aequus.Projectiles.Melee.Swords
             int dustChance = (int)(3 / Projectile.scale);
             if (Main.netMode != NetmodeID.Server && (dustChance <= 1 || Main.rand.NextBool(dustChance)))
             {
-                var clrs = MirrorsCall.EightWayRainbow;
-                var d = Dust.NewDustDirect(player.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AequusHelpers.LerpBetween(clrs, colorProgress).UseA(0) * Main.rand.NextFloat(0.5f, 1.25f), Main.rand.NextFloat(0.75f, 1.5f));
+                var d = Dust.NewDustDirect(player.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * Main.rand.NextFloat(0.5f, 1.25f), Main.rand.NextFloat(0.75f, 1.5f));
                 d.position = player.Center + angleVector * Main.rand.NextFloat(20f, Radius * Projectile.scale);
                 d.velocity *= 0.1f;
                 d.velocity += AngleVector.RotatedBy(MathHelper.PiOver2 * direction + Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(1.5f, 3.5f);
@@ -162,7 +161,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             if (colorPrim == null)
             {
-                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.LerpBetween(MirrorsCall.EightWayRainbow, colorProgress).UseA(0) * (1f - p));
+                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * (1f - p));
             }
             if (reverseTrail)
             {
@@ -189,8 +188,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 intensity = (float)Math.Sin((SwingProgress - 0.25f) * 2f * MathHelper.Pi);
             }
 
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, drawWhite: false, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, drawWhite: false, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
 
             //if (SwingProgress > 0.25f && SwingProgress < 0.75f)
             //{
@@ -257,7 +256,7 @@ namespace Aequus.Projectiles.Melee.Swords
             if (Main.myPlayer == Projectile.owner)
             {
                 AequusEffects.Shake.Set(4f);
-                MirrorsCallExplosion.ExplosionEffects(target.Center, colorProgress, 0.75f);
+                MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, 0.75f);
                 int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * 0.4f), Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].scale = 0.4f;
@@ -273,10 +272,10 @@ namespace Aequus.Projectiles.Melee.Swords
             var texture = TextureAssets.Projectile[Type].Value;
             var bloom = Images.Bloom[0].Value;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.55f, opacity: 0.5f, drawWhite: false, rainbowScaleMultiplier: 0.6f, rainbowOffsetScaleMultiplier: 8f);
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.7f, opacity: 0.25f, drawWhite: false, rainbowScaleMultiplier: 0.75f, rainbowOffsetScaleMultiplier: 8f);
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale);
-            MirrorsCall.DrawRainbowAura(Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale, opacity: 0.5f, drawWhite: false);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.55f, opacity: 0.5f, drawWhite: false, rainbowScaleMultiplier: 0.6f, rainbowOffsetScaleMultiplier: 8f);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.7f, opacity: 0.25f, drawWhite: false, rainbowScaleMultiplier: 0.75f, rainbowOffsetScaleMultiplier: 8f);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale);
+            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale, opacity: 0.5f, drawWhite: false);
             return false;
         }
     }
@@ -300,14 +299,13 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.penetrate = -1;
         }
 
-        public static void ExplosionEffects(Vector2 location, float colorProgress, float scale)
+        public static void ExplosionEffects(int player, Vector2 location, float colorProgress, float scale)
         {
             int amt = (int)(90 * scale);
-            var clrs = MirrorsCall.EightWayRainbow;
             for (int i = 0; i < amt; i++)
             {
                 var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(40 * scale);
-                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, AequusHelpers.LerpBetween(clrs, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
+                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, AequusHelpers.GetRainbowHue(player, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
             }
         }
 

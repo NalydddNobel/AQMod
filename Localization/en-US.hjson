@@ -11,7 +11,7 @@ Mods: {
 
 			BreadOfCthulhu: Cthulhu's lost lunch, reanimated from the contaminated waters, this loathesome loaf does not intend to be eaten. May be caught instead of trash.
 			
-			DwarfStariteCritter: A harmless starite, although technically the strongest. Its small scale doesn't allow it to properly channel its magical ability, so it just hovers around.
+			DwarfStariteCritter: A harmless starite, its small scale doesn't allow it to properly channel its magical ability, so it just hovers around.
 			Starite: This creature's star properties gives it the ability to control magic, and fly.
 			
 			Magmabubble: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lava Slime grew legs after consuming a Blood Crawler, too heavy to climb on walls however.
@@ -25,6 +25,7 @@ Mods: {
 			WhiteSlime: Originally a photosynthetic Jungle Slime, after being blasted with cosmic radiation, it absorbed the properties of the sun. Rumored to taste like cinnamon.
 			Meteor: Similar to barnacles, these things appear to be inanimate but are still living creatures. When pushed out of space using the Pumpinator, they can leave a meteor crater.
 
+			Occultist: Previously a member of a demonic occult, the Occultist is slowly trying to re-integrate themselves back into society. They still have the habit to create rituals and cast dangerous spells though.
 			SkyMerchant: A smart hunter who created a hot air balloon to hunt birds, proceeded to become an avid lover of chicken nuggets after eating a harpy. Can be seen flying around the sky during windy days.
 			Exporter: The Exporter is a thief with a relation to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
 
@@ -218,14 +219,18 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
+			BestiaryNotebook: Maxwell's Notebook
+
 			Leecheel: Leecheel
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
 			Hexoplasm: Hexoplasm
-			SkeletonKey: Skeleton Key
 			UnenchantedStaff: Unenchanted Staff
+			
 			Moro: Moro
 			
+			SkeletonKey: Skeleton Key
+
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
 
@@ -715,6 +720,10 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
+			BestiaryNotebook: 
+				'''
+				Do Not Translate.
+				'''
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes

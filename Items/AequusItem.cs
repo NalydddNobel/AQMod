@@ -77,7 +77,7 @@ namespace Aequus.Items
         }
         public static bool IsSummonStaff(Item item)
         {
-            return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > 0 && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
+            return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > ItemUseStyleID.None && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
         }
 
         public override void Unload()
@@ -113,7 +113,7 @@ namespace Aequus.Items
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroUsed && AequusItem.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
             {
                 mult = 0f;
             }
@@ -121,7 +121,7 @@ namespace Aequus.Items
 
         public override float UseSpeedMultiplier(Item item, Player player)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroUsed && AequusItem.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
             {
                 return 2f;
             }

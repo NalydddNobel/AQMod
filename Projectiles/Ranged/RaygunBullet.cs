@@ -234,7 +234,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (projType == ProjectileID.PartyBullet)
             {
-                return Main.DiscoColor;
+                return AequusHelpers.GetRainbowHue(Projectile, Main.GlobalTimeWrappedHourly % 6f);
             }
             if (RaygunColors.TryGetValue(projType, out var color))
             {

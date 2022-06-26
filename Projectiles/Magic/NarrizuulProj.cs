@@ -86,11 +86,11 @@ namespace Aequus.Projectiles.Magic
             }
             if (Main.rand.NextBool(4))
             {
-                Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<MonoDust>(), Projectile.velocity * -0.05f, 0, NarrizuulRainbow(Projectile.localAI[1]) * 1.5f);
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, NarrizuulRainbow(Projectile.localAI[1]) * 0.3f);
+                Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<MonoDust>(), Projectile.velocity * -0.05f, 0, NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 1.5f);
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 0.3f);
                 Main.dust[d].velocity = Projectile.velocity * 0.125f;
             }
-            Lighting.AddLight(Projectile.Center, (NarrizuulRainbow(Projectile.localAI[1]) * 1.5f).ToVector3() * Projectile.scale);
+            Lighting.AddLight(Projectile.Center, (NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 1.5f).ToVector3() * Projectile.scale);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -105,17 +105,17 @@ namespace Aequus.Projectiles.Magic
             {
                 prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(20f - p * 20f),
-                    (p) => NarrizuulRainbow(Projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTimeWrappedHourly + p * 20f) * 0.1f)) * (1f - p),
+                    (p) => NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTimeWrappedHourly + p * 20f) * 0.1f)) * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
             glow = Images.Bloom[0].Value;
-            Main.spriteBatch.Draw(glow, Projectile.Center - Main.screenPosition, null, NarrizuulRainbow(Projectile.localAI[1]).UseA(0) * 0.5f, Projectile.rotation, glow.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(glow, Projectile.Center - Main.screenPosition, null, NarrizuulRainbow(Projectile, Projectile.localAI[1]).UseA(0) * 0.5f, Projectile.rotation, glow.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             glow = texture;
             var drawPos = Projectile.Center - Main.screenPosition;
             var orig = texture.Size() / 2f;
             Main.spriteBatch.Draw(texture, drawPos, null, new Color(250, 250, 250, 20), Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
-            var clr = Color.Lerp(new Color(250, 250, 250, 20), NarrizuulRainbow(Projectile.localAI[1]), 0.5f);
+            var clr = Color.Lerp(new Color(250, 250, 250, 20), NarrizuulRainbow(Projectile, Projectile.localAI[1]), 0.5f);
             float scale1 = Projectile.scale + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) * 0.4f;
             Main.spriteBatch.Draw(glow, drawPos, null, clr * 0.5f, Projectile.rotation, orig, scale1 + 0.2f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(glow, drawPos, null, clr * 0.32f, Projectile.rotation + MathHelper.PiOver4, orig, scale1 + 0.1f, SpriteEffects.None, 0f);
@@ -135,7 +135,7 @@ namespace Aequus.Projectiles.Magic
                     AequusEffects.Shake.Set((int)(800f - distance) / 32);
                 }
             }
-            Color color = NarrizuulRainbow(Projectile.localAI[1]) * 1.5f;
+            Color color = NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 1.5f;
             for (int i = 0; i < 15; i++)
             {
                 int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>());
@@ -147,7 +147,7 @@ namespace Aequus.Projectiles.Magic
             {
                 int d = Dust.NewDust(Projectile.Center, 0, 0, ModContent.DustType<MonoSparkleDust>());
                 Main.dust[d].scale *= Main.rand.NextFloat(0.8f, 1.4f);
-                Main.dust[d].color = NarrizuulRainbow(Projectile.localAI[1] + i * 0.1f) * 1.5f * Main.dust[d].scale;
+                Main.dust[d].color = NarrizuulRainbow(Projectile, Projectile.localAI[1] + i * 0.1f) * 1.5f * Main.dust[d].scale;
                 Main.dust[d].velocity = new Vector2(Main.rand.NextFloat(3f, 7.5f), 0).RotatedByRandom(MathHelper.TwoPi);
                 Main.dust[d].alpha = Main.rand.Next(30);
             }
@@ -157,6 +157,9 @@ namespace Aequus.Projectiles.Magic
             }
         }
 
-        public static Color NarrizuulRainbow(float position) => AequusHelpers.LerpBetween(new Color[] { Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Blue, Color.Violet, Color.Magenta, }, position);
+        internal static Color NarrizuulRainbow(Projectile projectile, float position)
+        {
+            return AequusHelpers.GetRainbowHue(projectile, position % 6f);
+        }
     }
 }
