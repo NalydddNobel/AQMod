@@ -11,7 +11,7 @@ Mods: {
 
 			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
 
-			DwarfStariteCritter: 无害的星源, 虽然在技术上是最强的. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
+			DwarfStariteCritter: 无害的星源. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
 			Starite: 这种生物的恒星属性赋予了它控制魔法和飞行的能力.
 
 			Magmabubble: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩史莱姆在吞食了一条血爬行动物后长出了腿, 但它太重了, 爬不上墙壁.
@@ -25,6 +25,7 @@ Mods: {
 			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在受到宇宙辐射的冲击后, 它吸收了太阳的能力. 据说味道像肉桂.
 			Meteor: 与藤壶相似, 这些东西看起来是无生命体, 但实际上是活的. 当被吹风机吹离太空, 它们会留下陨石坑.
 
+			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
 			SkyMerchant: 一位聪明的猎人创造了一颗热气球来狩猎鸟类, 在吃了一只鸟妖后他开始热衷于鸡块. 在有风的日子里可以看到他在天空中飞翔.
 			Exporter: 发货人是一个鲜为人知的小偷, 海盗的远亲. 所得的收益都会发放给位于世界各地的那些寻找最佳交易的可疑人士.
 
@@ -218,13 +219,17 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
+			BestiaryNotebook: 麦克斯韦的笔记本
+
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 			Hexoplasm: 冥狱融质
-			SkeletonKey: 骷髅钥匙
 			UnenchantedStaff: 未附魔的法杖
+
 			Moro: 摩洛
+
+			SkeletonKey: 骷髅钥匙
 
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
@@ -714,7 +719,11 @@ Mods: {
 				大幅度增加移动速度
 				'可能会给那些在地下搜索的人带来好运'
 				'''
-
+				
+			BestiaryNotebook: 
+				'''
+				Do Not Translate.
+				'''
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
