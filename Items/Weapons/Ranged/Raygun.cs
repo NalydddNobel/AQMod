@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Ranged;
+﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -26,8 +27,8 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 25;
             Item.DamageType = DamageClass.Ranged;
+            Item.SetWeaponValues(25, 4f, 0);
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.width = 32;
@@ -41,7 +42,6 @@ namespace Aequus.Items.Weapons.Ranged
             Item.UseSound = CapleweySound;
             Item.value = ItemDefaults.OmegaStariteValue;
             Item.knockBack = 1f;
-            Item.useAmmo = AmmoID.Bullet;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -57,6 +57,16 @@ namespace Aequus.Items.Weapons.Ranged
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             type = ModContent.ProjectileType<RaygunBullet>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.PhoenixBlaster)
+                .AddIngredient<CosmicEnergy>()
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddTile(TileID.Anvils)
+                .RegisterAfter(ItemID.PhoenixBlaster);
         }
     }
 }

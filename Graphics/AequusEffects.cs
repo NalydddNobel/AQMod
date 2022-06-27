@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -71,6 +71,7 @@ namespace Aequus.Graphics
         /// </summary>
         public static ParticleRenderer AbovePlayers { get; private set; }
 
+        public static DrawList ProjsBehindProjs { get; private set; }
         public static DrawList ProjsBehindTiles { get; private set; }
         public static DrawList NPCsBehindAllNPCs { get; private set; }
 
@@ -84,6 +85,7 @@ namespace Aequus.Graphics
             }
             VerticalGradient = new StaticMiscShaderInfo("MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
             NPCsBehindAllNPCs = new DrawList();
+            ProjsBehindProjs = new DrawList();
             ProjsBehindTiles = new DrawList();
             Shake = new ScreenShake();
             EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
@@ -116,6 +118,7 @@ namespace Aequus.Graphics
             necromancyRenderers = null;
             BehindProjs = null;
             Shake = null;
+            ProjsBehindProjs = null;
             NPCsBehindAllNPCs = null;
             ProjsBehindTiles = null;
         }
@@ -210,6 +213,14 @@ namespace Aequus.Graphics
         {
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
             BehindProjs.Draw(Main.spriteBatch);
+
+            ProjsBehindProjs.renderingNow = true;
+            for (int i = 0; i < ProjsBehindProjs.Count; i++)
+            {
+                Main.instance.DrawProj(ProjsBehindProjs.Index(i));
+            }
+            ProjsBehindProjs.Clear();
+
             Main.spriteBatch.End();
             orig(self);
         }
@@ -272,17 +283,6 @@ namespace Aequus.Graphics
                 ProjsBehindTiles = new DrawList();
                 DustDevil.DrawFront?.Clear();
                 DustDevil.DrawFront = new DrawList();
-            }
-
-            if (Main.placementPreview && BestiaryNotebook.dummyNPC != null && Main.LocalPlayer.HeldItem.ModItem is BestiaryNotebook && !CaptureManager.Instance.Active)
-            {
-                BestiaryNotebook.dummyNPC.position = AequusHelpers.ScaledMouseworld + new Vector2(24f, 24f) * Main.cursorScale;
-                AequusHelpers.DrawRectangle(BestiaryNotebook.dummyNPC.getRect(), Main.screenPosition, Color.Red.UseA(0));
-                float scale = BestiaryNotebook.dummyNPC.scale;
-                BestiaryNotebook.dummyNPC.scale *= Main.cursorScale;
-                Main.instance.DrawNPCDirect(Main.spriteBatch, BestiaryNotebook.dummyNPC, BestiaryNotebook.dummyNPC.behindTiles, Main.screenPosition);
-
-                BestiaryNotebook.dummyNPC.scale = scale;
             }
         }
 

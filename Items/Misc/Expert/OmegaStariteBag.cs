@@ -1,7 +1,8 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
 using Terraria;
@@ -21,23 +22,22 @@ namespace Aequus.Items.Misc.Expert
             var source = player.GetSource_OpenItem(Type);
 
             player.QuickSpawnItem(source, ModContent.ItemType<CelesteTorus>());
-            DropHelper.OneFromList(source, player, new List<int>()
-            {
-                ModContent.ItemType<Raygun>(),
-            });
             if (player.RollLuck(7) == 0)
             {
                 player.QuickSpawnItem(source, ModContent.ItemType<OmegaStariteMask>());
             }
-            player.QuickSpawnItem(source, ModContent.ItemType<LightMatter>(), Main.rand.Next(7) + 18);
-            player.QuickSpawnItem(source, ItemID.FallenStar, Main.rand.Next(11) + 20);
-
-            //AQMod.AequusDeveloperItems(player, hardmode: true);
-            //if (Main.rand.NextBool(7))
-            //    player.QuickSpawnItem(ModContent.ItemType<OmegaStariteMask>());
-            //player.QuickSpawnItem(ModContent.ItemType<CelesteTorus>());
-            //if (Main.rand.NextBool(3))
-            //    player.QuickSpawnItem(ModContent.ItemType<CosmicTelescope>());
+            if (player.RollLuck(3) == 0)
+            {
+                DropHelper.OneFromList(source, player, new List<int>()
+                {
+                    ModContent.ItemType<EnchantedDye>(),
+                    ModContent.ItemType<DiscoDye>(),
+                    ModContent.ItemType<ScrollDye>(),
+                    ModContent.ItemType<OutlineDye>(),
+                    ModContent.ItemType<RainbowOutlineDye>(),
+                });
+            }
+            player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), 3);
         }
     }
 }

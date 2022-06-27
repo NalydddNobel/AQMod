@@ -5,9 +5,11 @@ using Aequus.Graphics;
 using Aequus.Graphics.Prims;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
+using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
 using Aequus.Items.Misc.Pets;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Items.Weapons.Ranged;
@@ -1615,14 +1617,17 @@ namespace Aequus.NPCs.Boss
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
-                .AddOptions(1, ModContent.ItemType<Raygun>())
-                .Add<LightMatter>(stack: (14, 20))
                 .Add<CosmicEnergy>(stack: 3)
+                .AddOptions(chance: 3, ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<DiscoDye>(), ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>(), ModContent.ItemType<RainbowOutlineDye>())
                 .RegisterCondition();
         }
 
         public override void OnKill()
         {
+            if (!AequusWorld.downedOmegaStarite)
+            {
+                Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ModContent.ItemType<SupernovaFruit>());
+            }
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
             //Glimmer.deactivationDelay = 275;
             //var noHitManager = NPC.GetGlobalNPC<NoHitting>();

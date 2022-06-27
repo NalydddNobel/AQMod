@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using System.Collections.Generic;
@@ -24,26 +26,12 @@ namespace Aequus.Items.Misc.Expert
             {
                 player.QuickSpawnItem(source, ModContent.ItemType<CrabsonMask>());
             }
-            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<CrabCasing>(), Main.rand.Next(4) + 3);
-            DropHelper.OneFromList(source, player, new List<int>() { ModContent.ItemType<Mendshroom>(), });
-            //AQMod.AequusDeveloperItems(player, hardmode: false);
-            //player.QuickSpawnItem(ModContent.ItemType<Crabax>());
-            //if (Main.rand.NextBool(7))
-            //    player.QuickSpawnItem(ModContent.ItemType<CrabsonMask>());
-            //player.QuickSpawnItem(ModContent.ItemType<BreakdownDye>());
-            //player.QuickSpawnItem(ModContent.ItemType<CrustaciumBlob>(), Main.rand.NextVRand(120, 200));
-            //var choices = new List<int>()
-            //{
-            //    ModContent.ItemType<Bubbler>(),
-            //    ModContent.ItemType<CinnabarBow>(),
-            //    ModContent.ItemType<JerryClawFlail>(),
-            //    ModContent.ItemType<Crabsol>(),
-            //};
-            //int choice = Main.rand.Next(choices.Count);
-            //player.QuickSpawnItem(choices[choice]);
-            //choices.RemoveAt(choice);
-            //choice = Main.rand.Next(choices.Count);
-            //player.QuickSpawnItem(choices[choice]);
+            if (player.RollLuck(3) == 0)
+            {
+                player.QuickSpawnItem(source, ModContent.ItemType<BreakdownDye>());
+            }
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<AquaticEnergy>(), 3);
+            player.QuickSpawnItem(player.GetSource_OpenItem(Type), ModContent.ItemType<Mendshroom>());
         }
     }
 }

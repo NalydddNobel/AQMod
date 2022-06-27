@@ -132,7 +132,6 @@ namespace Aequus.Items.Weapons.Melee
                 .AddIngredient(ModContent.ItemType<Slice>())
                 .AddIngredient(ItemID.LunarBar, 10)
                 .AddIngredient(ModContent.ItemType<UltimateEnergy>(), 5)
-                .AddIngredient(ModContent.ItemType<LightMatter>(), 20)
                 .AddIngredient(ItemID.WhitePearl)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();

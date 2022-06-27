@@ -86,6 +86,15 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static void DrawLine(Vector2 start, float rotation, float length, float width, Color color)
+        {
+            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(0f, 1f), new Vector2(width, length), SpriteEffects.None, 0f);
+        }
+        public static void DrawLine(Vector2 start, Vector2 end, float width, Color color)
+        {
+            DrawLine(start, (start - end).ToRotation(), (end - start).Length(), width, color);
+        }
+
         public static Color GetRainbowHue(Projectile projectile, float index)
         {
             float laserLuminance = 0.5f;
@@ -171,7 +180,7 @@ namespace Aequus
             return GetLightingSection(worldPosition.ToTileCoordinates(), tilesSize);
         }
 
-        public static void TileWithSloping(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
+        public static void DrawTile(Tile tile, Texture2D texture, Vector2 drawCoordinates, Color drawColor, int frameX, int frameY, int width, int height)
         {
             if (tile.Slope == 0 && !tile.IsHalfBlock)
             {
@@ -208,7 +217,7 @@ namespace Aequus
                 }
             }
         }
-        public static void Wall(int i, int j, Texture2D texture, Color color)
+        public static void DrawWall(int i, int j, Texture2D texture, Color color)
         {
             var tile = Main.tile[i, j];
             Main.spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X - 8, j * 16 - (int)Main.screenPosition.Y - 8) + TileDrawOffset, new Rectangle(tile.WallFrameX, tile.WallFrameX + Main.wallFrame[tile.WallType] * 180, 32, 32), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

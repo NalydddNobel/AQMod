@@ -219,7 +219,7 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			BestiaryNotebook: Maxwell's Notebook
+			ScribbleNotebook: Maxwell's Notebook
 
 			Leecheel: Leecheel
 			Depthscale: Depthscale
@@ -720,10 +720,7 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
-			BestiaryNotebook: 
-				'''
-				Do Not Translate.
-				'''
+			ScribbleNotebook: Summons an object to fight for you
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
@@ -1408,6 +1405,7 @@ Mods: {
 		Doubled: Doubled {0}
 
 		BuffName: {
+			ScribbleNotebookBuff: Scribble
 			NeutronYogurtBuff: Neutron Yogurt
 			BloodthirstBuff: Bloodthirst
 			SentryBuff: Sentry
@@ -1474,6 +1472,7 @@ Mods: {
 		}
 
 		BuffDescription: {
+			ScribbleNotebookBuff: The object will fight for you!
 			BloodthirstBuff: Enemies always drop hearts
 			NoonBuff:
 				'''

@@ -5,6 +5,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.BossTrophies;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Monster.Crabson;
@@ -837,11 +838,10 @@ namespace Aequus.NPCs.Boss
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
-                .Add<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
-                .Add<CrabCasing>(stack: (3, 6))
+                .Add<AquaticEnergy>(stack: 3)
                 .AddOptions(1, ModContent.ItemType<Mendshroom>())
                 .RegisterCondition();
         }
@@ -871,9 +871,13 @@ namespace Aequus.NPCs.Boss
         public override void OnKill()
         {
             Rectangle rect = NPC.getRect();
-            if (!AequusWorld.downedCrabson && !NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+            if (!AequusWorld.downedCrabson)
             {
-                NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
+                Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ModContent.ItemType<HypnoticPearl>());
+                if (!NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+                {
+                    NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
+                }
             }
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
@@ -885,7 +889,6 @@ namespace Aequus.NPCs.Boss
             //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonMask>(), 7);
             //LootDrops.DropItemChance(npc, ModContent.ItemType<BreakdownDye>(), 2);
             //LootDrops.DropItem(npc, ModContent.ItemType<AquaticEnergy>(), 3, 5);
-            //LootDrops.DropItem(npc, ModContent.ItemType<CrustaciumBlob>(), 50, 120);
             //LootDrops.DropItem(npc, new int[] { ModContent.ItemType<Bubbler>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<Crabsol>() });
         }
     }

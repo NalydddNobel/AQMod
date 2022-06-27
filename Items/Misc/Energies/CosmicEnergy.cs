@@ -3,9 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Energies
 {
+    [LegacyName("LightMatter")]
     public class CosmicEnergy : EnergyItemBase
     {
         public static StaticMiscShaderInfo EnergyShader;

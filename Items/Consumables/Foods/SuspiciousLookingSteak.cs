@@ -28,7 +28,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.buyPrice(gold: 2);
             Item.buffType = BuffID.WellFed;
-            Item.buffTime = 162000;
+            Item.buffTime = 18000;
         }
 
         public override bool? UseItem(Player player)

@@ -142,7 +142,6 @@ namespace Aequus.NPCs.Monsters.Sky
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add(new FilledConditionsOtherwiseChanceRule(
                     new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
-                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));

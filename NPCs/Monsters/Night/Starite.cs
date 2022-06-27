@@ -64,7 +64,6 @@ namespace Aequus.NPCs.Monsters.Night
         {
             this.CreateLoot(npcLoot)
                 .Add<CelesitalEightBall>(chance: 50, stack: 1)
-                .Add<HypnoDye>(chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
 
