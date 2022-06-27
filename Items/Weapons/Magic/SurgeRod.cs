@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
+    [Glowmask]
     public class SurgeRod : ModItem
     {
         public override void SetStaticDefaults()
@@ -26,6 +27,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.UseSound = SoundID.Item66;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.value = ItemDefaults.GaleStreamsValue;
+            Item.SetGlowMask();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

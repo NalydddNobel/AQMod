@@ -43,7 +43,7 @@ namespace Aequus.Graphics.Prims
 
         public static PrimRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
         {
-            return new PrimRenderer(Images.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
+            return new PrimRenderer(TextureCache.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
         }
         public static PrimRenderer NewRenderer(int type, float width, Func<Color> color)
         {

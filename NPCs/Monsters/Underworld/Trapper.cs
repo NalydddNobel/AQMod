@@ -12,19 +12,9 @@ namespace Aequus.NPCs.Monsters.Underworld
 {
     public class Trapper : ModNPC
     {
-        public static Asset<Texture2D> TrapperChainTexture { get; private set; }
+        public Asset<Texture2D> TrapperChainTexture => ModContent.Request<Texture2D>(Texture + "_Chain");
 
         public Vector2 chainsOrigin;
-
-        public override void Load()
-        {
-            TrapperChainTexture = ModContent.Request<Texture2D>(AequusHelpers.GetPath<Trapper>() + "_Chain");
-        }
-
-        public override void Unload()
-        {
-            TrapperChainTexture = null;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -81,11 +71,12 @@ namespace Aequus.NPCs.Monsters.Underworld
                     }
                 }
 
-                if (chainsOrigin != Vector2.Zero && TrapperChainTexture.Value != null)
+                var trapperChain = TrapperChainTexture;
+                if (chainsOrigin != Vector2.Zero && trapperChain.IsLoaded)
                 {
                     var difference = chainsOrigin - NPC.Center;
 
-                    int length = (int)(difference.Length() / TrapperChainTexture.Value.Height);
+                    int length = (int)(difference.Length() / trapperChain.Value.Height);
                     var chainSegment = difference / length;
                     for (int i = length; i > 0; i--)
                     {
@@ -222,9 +213,13 @@ namespace Aequus.NPCs.Monsters.Underworld
             {
                 if (AequusEffects.NPCsBehindAllNPCs.renderingNow)
                 {
-                    var chainTexture = TrapperChainTexture.Value;
+                    var chainTexture = TrapperChainTexture;
+                    if (!chainTexture.IsLoaded)
+                    {
+                        return false;
+                    }
                     int npcOwner = (int)NPC.ai[1] - 1;
-                    int height = chainTexture.Height - 2;
+                    int height = chainTexture.Value.Height - 2;
                     var npcCenter = NPC.Center;
                     var trapImpCenter = Main.npc[npcOwner].Center;
                     var velocity = npcCenter - trapImpCenter;
@@ -232,14 +227,14 @@ namespace Aequus.NPCs.Monsters.Underworld
                     velocity.Normalize();
                     velocity *= height;
                     float rotation = velocity.ToRotation() + MathHelper.PiOver2;
-                    var origin = new Vector2(chainTexture.Width / 2f, chainTexture.Height / 2f);
+                    var origin = new Vector2(chainTexture.Value.Width / 2f, chainTexture.Value.Height / 2f);
                     for (int j = 1; j < length; j++)
                     {
                         var position = trapImpCenter + velocity * j;
                         var color = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
                         if (j < 6)
                             color *= 1f / 6f * j;
-                        spriteBatch.Draw(chainTexture, position - screenPos, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(chainTexture.Value, position - screenPos, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
                     }
                     return false;
                 }

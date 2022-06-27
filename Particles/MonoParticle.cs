@@ -16,7 +16,7 @@ namespace Aequus.Particles
         public Rectangle frame;
         public Vector2 origin;
 
-        public virtual Texture2D Texture => Images.Particle.Value;
+        public virtual Texture2D Texture => TextureCache.Particle.Value;
         public virtual Color ParticleColor => Color;
 
         public bool ShouldBeRemovedFromRenderer { get; private set; }

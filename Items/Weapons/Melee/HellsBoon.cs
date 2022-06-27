@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee
 {
+    [Glowmask]
     public class HellsBoon : ModItem
     {
         public override void SetStaticDefaults()
@@ -34,11 +35,12 @@ namespace Aequus.Items.Weapons.Melee
             Item.shootSpeed = 35f;
             Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
             Item.scale = 1.2f;
+            Item.SetGlowMask();
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return lightColor.MaxRGBA(200);
+            return lightColor.MaxRGBA(50);
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)

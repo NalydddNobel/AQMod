@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.FishingRods
 {
+    [Glowmask]
     public class Nimrod : ModItem
     {
         public override void SetStaticDefaults()
@@ -21,6 +22,7 @@ namespace Aequus.Items.Tools.FishingRods
             Item.shootSpeed = 16f;
             Item.rare = ItemRarityID.LightPurple;
             Item.shoot = ModContent.ProjectileType<NimrodBobber>();
+            Item.SetGlowMask();
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

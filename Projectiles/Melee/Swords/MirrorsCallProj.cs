@@ -270,7 +270,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
-            var bloom = Images.Bloom[0].Value;
+            var bloom = TextureCache.Bloom[0].Value;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
             MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.55f, opacity: 0.5f, drawWhite: false, rainbowScaleMultiplier: 0.6f, rainbowOffsetScaleMultiplier: 8f);
             MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.7f, opacity: 0.25f, drawWhite: false, rainbowScaleMultiplier: 0.75f, rainbowOffsetScaleMultiplier: 8f);

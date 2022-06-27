@@ -76,20 +76,20 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
                 intensity = 1f - playerDistance / 1200f;
             if (prim == null)
             {
-                prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
+                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
             }
             for (int i = 0; i < 4; i++)
                 prim.Draw(Projectile.oldPos);
             if (intensity > 0f)
             {
-                var spotlight = Images.Bloom[0].Value;
+                var spotlight = TextureCache.Bloom[0].Value;
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.8f * intensity, Projectile.rotation, spotlightOrig, Projectile.scale * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.5f * intensity, Projectile.rotation, spotlightOrig, Projectile.scale * 2.5f * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.3f * intensity, Projectile.rotation, spotlightOrig, Projectile.scale * 6f * intensity, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.1f * intensity, Projectile.rotation, spotlightOrig, Projectile.scale * 10f * intensity, SpriteEffects.None, 0f);
-                spotlight = Images.Bloom[4].Value;
+                spotlight = TextureCache.Bloom[4].Value;
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.08f * intensity, (5f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 20f) * 0.5f) * intensity);
                 var spotlightDrawColor = drawColor * intensity;

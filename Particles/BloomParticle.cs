@@ -12,7 +12,7 @@ namespace Aequus.Particles
 
         public Vector2 bloomOrigin;
 
-        public virtual Texture2D BloomTexture => Images.Bloom[0].Value;
+        public virtual Texture2D BloomTexture => TextureCache.Bloom[0].Value;
 
         public BloomParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float bloomScale = 1f, float rotation = 0f) : base(position, velocity, color, scale, rotation)
         {

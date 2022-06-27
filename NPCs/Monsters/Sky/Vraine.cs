@@ -22,17 +22,8 @@ namespace Aequus.NPCs.Monsters.Sky
         public int transitionMax;
         public int temperature;
 
-        public static Asset<Texture2D> HotTexture { get; private set; }
-        public static Asset<Texture2D> ColdTexture { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                HotTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Hot");
-                ColdTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Cold");
-            }
-        }
+        public Asset<Texture2D> HotTexture => ModContent.Request<Texture2D>(Texture + "_Hot");
+        public Asset<Texture2D> ColdTexture => ModContent.Request<Texture2D>(Texture + "_Cold");
 
         public override void SetStaticDefaults()
         {
@@ -44,12 +35,6 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 Rotation = MathHelper.Pi,
             });
-        }
-
-        public override void Unload()
-        {
-            HotTexture = null;
-            ColdTexture = null;
         }
 
         public override void SetDefaults()
@@ -485,15 +470,19 @@ namespace Aequus.NPCs.Monsters.Sky
                 float progress = NPC.ai[3] / transitionMax;
                 progress *= 2f;
                 progress -= 1f;
-                var overlayTexture = ColdTexture.Value;
-                if ((int)NPC.ai[1] == -1)
+                Texture2D overlayTexture;
+                switch (NPC.ai[1])
                 {
-                    progress = 1f - progress;
-                    overlayTexture = HotTexture.Value;
-                }
-                else if ((int)NPC.ai[1] == 1)
-                {
-                    overlayTexture = HotTexture.Value;
+                    case -1:
+                        progress = 1f - progress;
+                        overlayTexture = HotTexture.Value;
+                        break;
+                    case 1:
+                        overlayTexture = HotTexture.Value;
+                        break;
+                    default:
+                        overlayTexture = ColdTexture.Value;
+                        break;
                 }
                 Main.spriteBatch.Draw(overlayTexture, drawPos, NPC.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }

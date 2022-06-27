@@ -70,7 +70,7 @@ namespace Aequus.Projectiles.Magic
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = Images.Bloom[0].Value;
+            var texture = TextureCache.Bloom[0].Value;
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             var origin = frame.Size() / 2f;
             var center = Projectile.Center;

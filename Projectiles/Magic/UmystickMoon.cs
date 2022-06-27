@@ -74,13 +74,13 @@ namespace Aequus.Projectiles.Magic
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass,
+                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(14f - p * 14f) * Projectile.scale, (p) => _glowClr * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
-            Main.spriteBatch.Draw(Images.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, Images.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(Images.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, Images.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

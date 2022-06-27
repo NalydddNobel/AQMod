@@ -39,7 +39,7 @@ namespace Aequus.NPCs.Monsters.Sky
 
         public const int FRAMES_X = 4;
 
-        public static Asset<Texture2D> GlowmaskTexture { get; private set; }
+        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
 
         public static float LightningDrawOpacity;
         public static float LightningDrawProgress;
@@ -60,14 +60,6 @@ namespace Aequus.NPCs.Monsters.Sky
         private Vector2[][] _redSpriteLightningCoords;
 
         private SoundEffectInstance windSoundInstance;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
-            }
-        }
 
         public override void SetStaticDefaults()
         {
@@ -92,11 +84,6 @@ namespace Aequus.NPCs.Monsters.Sky
 
             AequusNPC.HeatDamage.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
-        }
-
-        public override void Unload()
-        {
-            GlowmaskTexture = null;
         }
 
         public override void SetDefaults()
@@ -1251,12 +1238,12 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (prim == null)
             {
-                prim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
+                prim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new PrimRenderer(Images.Trail[1].Value, PrimRenderer.DefaultPass,
+                bloomPrim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }

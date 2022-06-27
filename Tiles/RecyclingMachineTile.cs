@@ -120,8 +120,9 @@ namespace Aequus.Tiles
 
         public void InnerDrawChatBubble(TERecyclingMachine recylcing, Item item, Vector2 where)
         {
-            var chatBubbleFrame = Images.StatusBubble.Value.Frame(horizontalFrames: Images.StatusBubbleFramesX, frameX: 1);
-            Main.spriteBatch.Draw(Images.StatusBubble.Value, where.Floor(),
+            var statusBubble = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/StatusBubble").Value;
+            var chatBubbleFrame = statusBubble.Frame(horizontalFrames: TextureCache.StatusBubbleFramesX, frameX: 1);
+            Main.spriteBatch.Draw(statusBubble, where.Floor(),
                 chatBubbleFrame, Color.White, 0f, new Vector2(chatBubbleFrame.Width / 2f, chatBubbleFrame.Height), 1f, SpriteEffects.None, 0f);
 
             Main.instance.LoadItem(item.type);

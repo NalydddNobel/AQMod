@@ -83,7 +83,7 @@ namespace Aequus.Projectiles.Misc
                 float progress = AequusHelpers.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(60, 60, 60, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + progress * 0.2f), effects, 0);
             }
-            Main.EntitySpriteDraw(Images.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, Images.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
         }

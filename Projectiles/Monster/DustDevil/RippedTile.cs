@@ -184,7 +184,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
         {
             if (AequusEffects.ProjsBehindTiles.renderingNow)
             {
-                var bloom = Images.Bloom[3].Value;
+                var bloom = TextureCache.Bloom[3].Value;
                 var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);
                 var bloomOrigin = new Vector2(bloomFrame.Width / 2f, bloomFrame.Height);
                 var bloomColor = new Color(120, 120, 185, 0);

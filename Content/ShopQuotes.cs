@@ -577,14 +577,15 @@ namespace Aequus.Content
 
         public static void DrawShopQuote(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color, NPC npc)
         {
-            var chatBubbleFrame = Images.StatusBubble.Value.Frame(horizontalFrames: Images.StatusBubbleFramesX, frameX: 2);
+            var statusBubble = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/StatusBubble").Value;
+            var chatBubbleFrame = statusBubble.Frame(horizontalFrames: TextureCache.StatusBubbleFramesX, frameX: 2);
             var chatBubbleScale = baseScale * 0.9f;
             chatBubbleScale.X *= 1.1f;
             var chatBubblePosition = new Vector2(x + chatBubbleFrame.Width / 2f * chatBubbleScale.X, y + chatBubbleFrame.Height / 2f * chatBubbleScale.Y);
 
-            Main.spriteBatch.Draw(Images.StatusBubble.Value, chatBubblePosition + new Vector2(2f) * chatBubbleScale,
+            Main.spriteBatch.Draw(statusBubble, chatBubblePosition + new Vector2(2f) * chatBubbleScale,
                 chatBubbleFrame, Color.Black * 0.4f, 0f, chatBubbleFrame.Size() / 2f, chatBubbleScale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(Images.StatusBubble.Value, chatBubblePosition,
+            Main.spriteBatch.Draw(statusBubble, chatBubblePosition,
                 chatBubbleFrame, Color.White, 0f, chatBubbleFrame.Size() / 2f, chatBubbleScale, SpriteEffects.None, 0f);
 
 

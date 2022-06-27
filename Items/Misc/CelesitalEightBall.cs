@@ -10,6 +10,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Items.Misc
 {
+    [Glowmask]
     public class CelesitalEightBall : ModItem
     {
         public string text;
@@ -27,6 +28,7 @@ namespace Aequus.Items.Misc
             Item.useAnimation = 120;
             Item.useTime = 120;
             Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.SetGlowMask();
             text = "";
         }
 

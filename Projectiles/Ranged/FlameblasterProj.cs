@@ -125,7 +125,7 @@ namespace Aequus.Projectiles.Ranged
             var bloomColor = c * 2;
             c = new Color(c.R - Projectile.alpha, c.G - Projectile.alpha, c.B - Projectile.alpha, c.A - Projectile.alpha);
             bloomColor = new Color(bloomColor.R - Projectile.alpha, bloomColor.G - Projectile.alpha, bloomColor.B - Projectile.alpha, bloomColor.A - Projectile.alpha);
-            Main.spriteBatch.Draw(Images.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, bloomColor, 0f, Images.Bloom[0].Value.Size() / 2f, Projectile.scale * 1.25f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, bloomColor, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 1.25f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, c, Projectile.rotation + Main.GlobalTimeWrappedHourly, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

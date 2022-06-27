@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
+    [Glowmask]
     public class Flameblaster : ModItem
     {
         public override void SetStaticDefaults()
@@ -40,6 +41,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.autoReuse = true;
             Item.knockBack = 1f;
             Item.ArmorPenetration = 10;
+            Item.SetGlowMask();
             DefaultUse();
         }
 

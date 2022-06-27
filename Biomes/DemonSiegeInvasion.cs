@@ -11,6 +11,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -307,7 +308,7 @@ namespace Aequus.Biomes
         internal static Dictionary<int, SacrificeData> registeredSacrifices;
         internal static Dictionary<int, int> upgradeToOriginal;
 
-        public const string ExtraScreenFilter = "Aequus:DemonSiegeFilter";
+        public const string ScreenFilter = "Aequus:DemonSiegeFilter";
 
         public override int Music => MusicData.DemonSiegeEvent.GetID();
 
@@ -322,7 +323,7 @@ namespace Aequus.Biomes
             Sacrifices = new Dictionary<Point, EventSacrifice>();
             if (!Main.dedServ)
             {
-                Filters.Scene[ExtraScreenFilter] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
+                Filters.Scene[ScreenFilter] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
             }
             On.Terraria.Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
         }
@@ -330,9 +331,9 @@ namespace Aequus.Biomes
         private void Main_DrawUnderworldBackground(On.Terraria.Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
         {
             orig(self, flat);
-            if (Filters.Scene[ExtraScreenFilter].Opacity > 0f)
+            if (Filters.Scene[ScreenFilter].Opacity > 0f)
             {
-                Main.spriteBatch.Draw(Images.Pixel.Value, new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20), new Color(20, 2, 2, 180) * Filters.Scene[ExtraScreenFilter].Opacity);
+                Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20), new Color(20, 2, 2, 180) * Filters.Scene[ScreenFilter].Opacity);
             }
         }
 
@@ -607,16 +608,16 @@ namespace Aequus.Biomes
                 var invasion = player.Aequus().eventDemonSiege;
                 if (invasion.X != 0)
                 {
-                    if (!Filters.Scene[ExtraScreenFilter].Active)
+                    if (!Filters.Scene[ScreenFilter].Active)
                     {
-                        Filters.Scene.Activate(ExtraScreenFilter, invasion.ToWorldCoordinates(), null);
+                        Filters.Scene.Activate(ScreenFilter, invasion.ToWorldCoordinates(), null);
                     }
                 }
                 else
                 {
-                    if (Filters.Scene[ExtraScreenFilter].Active)
+                    if (Filters.Scene[ScreenFilter].Active)
                     {
-                        Filters.Scene.Deactivate(ExtraScreenFilter);
+                        Filters.Scene.Deactivate(ScreenFilter);
                     }
                 }
             }

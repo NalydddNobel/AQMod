@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed class Images : ILoadable
+    public sealed class TextureCache : ILoadable
     {
         private sealed class ImgPathAttribute : Attribute
         {
@@ -29,28 +29,20 @@ namespace Aequus
 
         private static BindingFlags SearchFlags => BindingFlags.Public | BindingFlags.Static;
 
-        public static Asset<Texture2D> Pixel { get; private set; }
         [ImgPath("Assets/Particles")]
         public static Asset<Texture2D> Particle { get; private set; }
 
-        public static Asset<Texture2D> LightRay { get; private set; }
-        public static Asset<Texture2D> TextBloom { get; private set; }
-
         public const int StatusBubbleFramesX = 3;
-        [ImgPath("Assets/UI")]
-        public static Asset<Texture2D> StatusBubble { get; private set; }
 
         [ImgArr(5)]
         public static Asset<Texture2D>[] Bloom { get; private set; }
         [ImgPath("Assets/Effects/Prims")]
         [ImgArr(4)]
         public static Asset<Texture2D>[] Trail { get; private set; }
-        [ImgArr(2)]
-        public static Asset<Texture2D>[] Explosion { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
-            foreach (var p in typeof(Images).GetProperties(SearchFlags))
+            foreach (var p in typeof(TextureCache).GetProperties(SearchFlags))
             {
                 if (p.PropertyType == typeof(Asset<Texture2D>[]))
                 {
@@ -91,7 +83,7 @@ namespace Aequus
 
         void ILoadable.Unload()
         {
-            foreach (var p in typeof(Images).GetProperties(SearchFlags))
+            foreach (var p in typeof(TextureCache).GetProperties(SearchFlags))
             {
                 p.SetValue(null, null);
             }

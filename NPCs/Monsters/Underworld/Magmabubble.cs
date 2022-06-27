@@ -31,20 +31,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public const int FRAME_JUMPRECOIL4 = 9;
         public const int FRAME_JUMPRECOIL5 = 10;
 
-        public static Asset<Texture2D> LegsTexture { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                LegsTexture = ModContent.Request<Texture2D>(this.GetPath() + "Legs");
-            }
-        }
-
-        public override void Unload()
-        {
-            LegsTexture = null;
-        }
+        public Asset<Texture2D> LegsTexture => ModContent.Request<Texture2D>(Texture + "Legs");
 
         public override void SetStaticDefaults()
         {
@@ -409,7 +396,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                     progress = timer / 40f;
                 }
                 progress = 1f - progress;
-                var spotlight = Images.Bloom[0].Value;
+                var spotlight = TextureCache.Bloom[0].Value;
                 var color = Color.Lerp(Color.Red, Color.OrangeRed, ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) + 1f) / 2f);
                 color *= progress;
                 var spotlightOrigin = spotlight.Size() / 2f;

@@ -256,14 +256,14 @@ namespace Aequus.Projectiles.Summon.Necro
             {
                 if (smokePrim == null)
                 {
-                    smokePrim = new PrimRenderer(Images.Trail[3].Value, PrimRenderer.DefaultPass, (p) => new Vector2(16f * Projectile.scale) * (1f - p), (p) => new Color(5, 60, 30, 235) * Projectile.Opacity * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
+                    smokePrim = new PrimRenderer(TextureCache.Trail[3].Value, PrimRenderer.DefaultPass, (p) => new Vector2(16f * Projectile.scale) * (1f - p), (p) => new Color(5, 60, 30, 235) * Projectile.Opacity * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
                 }
                 for (int i = 0; i < 3; i++)
                     smokePrim.Draw(Projectile.oldPos);
                 DrawTrail(maxLength: ProjectileID.Sets.TrailCacheLength[Type] / 3 * 2);
             }
 
-            var bloom = Images.Bloom[0].Value;
+            var bloom = TextureCache.Bloom[0].Value;
             Main.EntitySpriteDraw(bloom, Projectile.Center - Main.screenPosition, null, drawColor * 0.5f, Projectile.rotation, bloom.Size() / 2f, Projectile.scale * 0.75f, effects, 0);
             Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;

@@ -284,7 +284,7 @@ namespace Aequus.Items
             var center = size / 2f;
             var transparentColor = color * 0.4f;
             transparentColor.A = 0;
-            var texture = Images.TextBloom.Value;
+            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/NarrizuulBloom").Value;
             var spotlightOrigin = texture.Size() / 2f;
             float spotlightRotation = rotation + MathHelper.PiOver2;
             var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 4f) * 0.145f, center.Y * 0.15f);
@@ -301,7 +301,7 @@ namespace Aequus.Items
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles
-                var particleTexture = Images.Bloom[0].Value;
+                var particleTexture = TextureCache.Bloom[0].Value;
                 var particleOrigin = particleTexture.Size() / 2f;
                 int amt = (int)rand.Rand(size.X / 3, size.X);
                 for (int i = 0; i < amt; i++)

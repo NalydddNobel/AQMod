@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
+    [Glowmask]
     public class Baozhu : ModItem
     {
         public override void SetStaticDefaults()
@@ -31,6 +32,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.knockBack = 7f;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
+            Item.SetGlowMask();
         }
 
         public override void AddRecipes()

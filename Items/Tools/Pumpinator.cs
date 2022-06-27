@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools
 {
+    [Glowmask]
     public class Pumpinator : ModItem
     {
         public override void SetStaticDefaults()
@@ -32,6 +33,7 @@ namespace Aequus.Items.Tools
             Item.shootSpeed = 9f;
             Item.autoReuse = true;
             Item.value = Item.buyPrice(gold: 10);
+            Item.SetGlowMask();
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

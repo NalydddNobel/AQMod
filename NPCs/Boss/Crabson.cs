@@ -2,7 +2,6 @@
 using Aequus.Graphics;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
 using Aequus.Items.Misc.Summons;
@@ -35,8 +34,8 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
 
         public static int BossHeadID_Claw { get; private set; }
-        public static Asset<Texture2D> ClawTexture { get; private set; }
-        public static Asset<Texture2D> ClawChainTexture { get; private set; }
+        public Asset<Texture2D> ClawTexture => ModContent.Request<Texture2D>(Texture + "Claw");
+        public Asset<Texture2D> ClawChainTexture => ModContent.Request<Texture2D>(Texture + "Claw_Chain");
 
         public int leftClaw;
         public int rightClaw;
@@ -55,8 +54,6 @@ namespace Aequus.NPCs.Boss
             if (!Main.dedServ)
             {
                 BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
-                ClawTexture = ModContent.Request<Texture2D>(this.GetPath() + "Claw");
-                ClawChainTexture = ModContent.Request<Texture2D>(this.GetPath() + "Claw_Chain");
             }
         }
 

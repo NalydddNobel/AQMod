@@ -34,9 +34,9 @@ namespace Aequus.NPCs.Monsters.Sky
         public const int PHASE_TRANSITION_CHANGEDIRECTION = 2;
         public const int PHASE_SNOWFLAKESPIRAL = 3;
 
-        public static Asset<Texture2D> GlowmaskTexture { get; private set; }
-        public static Asset<Texture2D> DefeatedTexture { get; private set; }
-        public static Asset<Texture2D> DefeatedTextureGlow { get; private set; }
+        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
+        public Asset<Texture2D> DefeatedTexture => ModContent.Request<Texture2D>(Texture + "Defeated");
+        public Asset<Texture2D> DefeatedGlowTexture => ModContent.Request<Texture2D>(Texture + "Defeated_Glow");
 
         public static SoundStyle SpaceGunSound { get; private set; }
         public static SoundStyle SnowflakeShootSound { get; private set; }
@@ -56,10 +56,6 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (!Main.dedServ)
             {
-                GlowmaskTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
-                DefeatedTexture = ModContent.Request<Texture2D>(this.GetPath() + "Defeated");
-                DefeatedTextureGlow = ModContent.Request<Texture2D>(this.GetPath() + "Defeated_Glow");
-
                 SpaceGunSound = new SoundStyle("Aequus/Sounds/SpaceSquid/spacegun");
                 SnowflakeShootSound = new SoundStyle("Aequus/Sounds/SpaceSquid/snowflakeshoot");
                 AwesomeDeathraySound = new SoundStyle("Aequus/Sounds/SpaceSquid/awesomedeathray");
@@ -88,13 +84,6 @@ namespace Aequus.NPCs.Monsters.Sky
             });
 
             SnowgraveCorpse.NPCBlacklist.Add(Type);
-        }
-
-        public override void Unload()
-        {
-            GlowmaskTexture = null;
-            DefeatedTexture = null;
-            DefeatedTextureGlow = null;
         }
 
         public override void SetDefaults()
@@ -844,14 +833,18 @@ namespace Aequus.NPCs.Monsters.Sky
         private void DrawDeathSequence(SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Color drawColor, SpriteEffects effects)
         {
             int verticalFrames = 6;
-            var texture = DefeatedTexture.Value;
-            var frame = texture.Frame(horizontalFrames: 3, verticalFrames: verticalFrames);
+            var texture = DefeatedTexture;
+            if (!texture.IsLoaded)
+            {
+                return;
+            }
+            var frame = texture.Value.Frame(horizontalFrames: 3, verticalFrames: verticalFrames);
             frame.Y = frameIndex * frame.Height;
 
             if (frame.Y >= frame.Height * verticalFrames)
             {
                 frame.X = frame.Width * (frame.Y / (frame.Height * verticalFrames));
-                frame.Y %= (frame.Height * verticalFrames);
+                frame.Y %= frame.Height * verticalFrames;
             }
             else
             {
@@ -863,10 +856,10 @@ namespace Aequus.NPCs.Monsters.Sky
 
             var origin = frame.Size() / 2f;
 
-            DrawBGAura(spriteBatch, texture, drawPosition, screenPos, frame, NPC.rotation, origin, new Vector2(NPC.scale), effects, NPC.IsABestiaryIconDummy);
+            DrawBGAura(spriteBatch, texture.Value, drawPosition, screenPos, frame, NPC.rotation, origin, new Vector2(NPC.scale), effects, NPC.IsABestiaryIconDummy);
 
-            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
-            spriteBatch.Draw(DefeatedTextureGlow.Value, NPC.Center - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(texture.Value, NPC.Center - screenPos, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(DefeatedGlowTexture.Value, NPC.Center - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
         }
         private void RenderDeathrayTelegraph(SpriteBatch spriteBatch, Vector2 screenPos)
         {

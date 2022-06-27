@@ -1445,7 +1445,7 @@ namespace Aequus.NPCs.Boss
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = Images.Bloom[0].Value;
+            var spotlight = TextureCache.Bloom[0].Value;
             var spotlightOrig = spotlight.Size() / 2f;
             Color spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
@@ -1521,7 +1521,7 @@ namespace Aequus.NPCs.Boss
                     if (prim == null)
                     {
                         float radius = DIAMETER / 2f;
-                        prim = new PrimRenderer(Images.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }
