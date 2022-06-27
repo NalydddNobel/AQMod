@@ -219,7 +219,7 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			BestiaryNotebook: 麦克斯韦的笔记本
+			ScribbleNotebook: 麦克斯韦的笔记本
 
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
@@ -720,10 +720,7 @@ Mods: {
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 				
-			BestiaryNotebook: 
-				'''
-				Do Not Translate.
-				'''
+			ScribbleNotebook: 召唤一件物体为你而战
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
@@ -1408,6 +1405,7 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
+			ScribbleNotebookBuff: 涂鸦
 			NeutronYogurtBuff: 中子酸奶
 			Bloodthirst: 嗜血
 			SentryBuff: 哨兵
@@ -1475,6 +1473,7 @@ Mods: {
 		}
 
 		BuffDescription: {
+			ScribbleNotebookBuff: 物体会为你而战
 			BloodthirstBuff: 敌人必定掉落红心
 			NoonBuff:
 				'''
