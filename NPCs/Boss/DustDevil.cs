@@ -2,6 +2,8 @@
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Expert;
+using Aequus.Items.Placeable.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;
@@ -32,11 +34,6 @@ namespace Aequus.NPCs.Boss
 
         public int SecondaryAction { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
         public float DirectActionTimer { get => NPC.ai[3]; set => NPC.ai[3] = value; }
-
-        //public override bool IsLoadingEnabled(Mod mod)
-        //{
-        //    return false;
-        //}
 
         public List<DustParticle> dust;
         public int effectsTimer;
@@ -114,7 +111,11 @@ namespace Aequus.NPCs.Boss
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<AtmosphericEnergy>(stack: 3);
+                .AddRelic<DustDevilRelic>()
+                .AddBossBag<DustDevilBag>()
+                .SetCondition(DropRulesBuilder.NotExpertCondition)
+                .Add<AtmosphericEnergy>(stack: 3)
+                .RegisterCondition();
         }
 
         public override Color? GetAlpha(Color drawColor)

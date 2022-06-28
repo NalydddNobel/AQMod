@@ -1404,10 +1404,12 @@ namespace Aequus
             return active;
         }
 
+        [Obsolete("Use ModItem.SacrificeTotal instead.")]
         public static void SetResearch(this ModItem modItem, int amt)
         {
             SetResearch(modItem.Type, amt);
         }
+        [Obsolete("Use ModItem.SacrificeTotal instead.")]
         public static void SetResearch(int type, int amt)
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[type] = amt;

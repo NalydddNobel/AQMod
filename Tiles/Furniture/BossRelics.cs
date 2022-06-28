@@ -23,7 +23,8 @@ namespace Aequus.Tiles.Furniture
         public const int Crabson = 1;
         public const int RedSprite = 2;
         public const int SpaceSquid = 3;
-        public const int FrameCount = 4;
+        public const int DustDevil = 4;
+        public const int FrameCount = 5;
 
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
 

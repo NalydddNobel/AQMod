@@ -1,12 +1,11 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.BossTrophies
 {
-    public class RedSpriteRelic : ModItem
+    public class DustDevilRelic : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +14,7 @@ namespace Aequus.Items.Placeable.BossTrophies
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<BossRelics>(), BossRelics.RedSprite);
+            Item.DefaultToPlaceableTile(ModContent.TileType<BossRelics>(), BossRelics.DustDevil);
             Item.width = 30;
             Item.height = 40;
             Item.maxStack = 99;

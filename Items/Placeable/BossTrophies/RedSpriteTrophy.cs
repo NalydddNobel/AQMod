@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.BossTrophies
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

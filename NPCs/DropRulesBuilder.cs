@@ -169,6 +169,8 @@ namespace Aequus.NPCs
             }
         }
 
+        public static Conditions.NotExpert NotExpertCondition => new Conditions.NotExpert();
+
         public static Drops AddLoot(this NPC npc, NPCLoot loot)
         {
             return new Drops(npc.type, loot);
