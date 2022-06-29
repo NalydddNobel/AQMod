@@ -22,6 +22,7 @@ namespace Aequus.NPCs.Friendly
         {
             Main.npcFrameCount[Type] = 2;
             Main.npcCatchable[Type] = true;
+            NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 14;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()

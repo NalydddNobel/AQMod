@@ -34,8 +34,9 @@ namespace Aequus.Tiles.Furniture
         public const int WhiteSlimeBanner = 11;
         public const int Unused_RedSprite = 12;
         public const int Unused_SpaceSquid = 13;
+        public const int Unused_UltraStarite = 14;
 
-        public static List<int> BannerTypesHack;
+        public static List<int> BannerWindHack;
 
         #region Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!
 
@@ -56,7 +57,7 @@ namespace Aequus.Tiles.Furniture
                 Logging.PublicLogger.Debug(e);
             }
 
-            BannerTypesHack = new List<int>();
+            BannerWindHack = new List<int>();
             IL.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVines += TileDrawing_DrawMultiTileVines;
         }
         private static void TileDrawing_DrawMultiTileVines(ILContext il)
@@ -78,7 +79,7 @@ namespace Aequus.Tiles.Furniture
             c.Emit(OpCodes.Ldloc, 9);
             c.EmitDelegate((Tile tile) =>
             {
-                if (BannerTypesHack.Contains(tile.TileType))
+                if (BannerWindHack.Contains(tile.TileType))
                 {
                     return 3;
                 }
@@ -89,8 +90,8 @@ namespace Aequus.Tiles.Furniture
 
         public override void Unload()
         {
-            BannerTypesHack?.Clear();
-            BannerTypesHack = null;
+            BannerWindHack?.Clear();
+            BannerWindHack = null;
             _addSpecialPointSpecialPositions = null;
             _addSpecialPointSpecialsCount = null;
         }
@@ -136,7 +137,7 @@ namespace Aequus.Tiles.Furniture
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
-            BannerTypesHack.Add(Type);
+            BannerWindHack.Add(Type);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

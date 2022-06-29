@@ -24,8 +24,9 @@ namespace Aequus.NPCs.Friendly
     {
         public const int BalloonFrames = 5;
 
-        public static Asset<Texture2D> BasketTexture { get; private set; }
-        public static Asset<Texture2D> FleeTexture { get; private set; }
+        public Asset<Texture2D> BalloonTexture => ModContent.Request<Texture2D>(Texture + "Balloon");
+        public Asset<Texture2D> BasketTexture => ModContent.Request<Texture2D>(Texture + "Basket");
+        public Asset<Texture2D> FleeTexture => ModContent.Request<Texture2D>(Texture + "Flee");
 
         public static SoundStyle WWWWWWWWWWhhhhooooooooopSound { get; private set; }
 
@@ -46,9 +47,6 @@ namespace Aequus.NPCs.Friendly
         {
             if (!Main.dedServ)
             {
-                BasketTexture = ModContent.Request<Texture2D>(this.GetPath() + "Basket");
-                FleeTexture = ModContent.Request<Texture2D>(this.GetPath() + "Flee");
-
                 WWWWWWWWWWhhhhooooooooopSound = Aequus.GetSound("slidewhistle", 0.5f);
             }
         }
@@ -630,7 +628,7 @@ namespace Aequus.NPCs.Friendly
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
-            texture = ModContent.Request<Texture2D>(Texture + "Balloon").Value;
+            texture = BalloonTexture.Value;
             frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }

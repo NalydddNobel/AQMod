@@ -22,7 +22,7 @@ namespace Aequus.Content.CrossMod
         {
             if (Polarities.Enabled)
             {
-                MonsterBanners.BannerTypesHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
+                MonsterBanners.BannerWindHack.Add(TileID.Search.GetId("Polarities/BannerTile"));
             }
         }
 
