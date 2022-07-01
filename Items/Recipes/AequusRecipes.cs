@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Misc;
-using Aequus.Items.Misc.Energies;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -10,11 +9,12 @@ namespace Aequus.Items.Recipes
 {
     public static class AequusRecipes
     {
-        public static RecipeGroup AnyEctoplasm;
+        private static RecipeGroup anyEctoplasm;
+        public static RecipeGroup AnyEctoplasm { get => anyEctoplasm; }
 
         internal static void AddRecipeGroups()
         {
-            NewGroup("AnyEctoplasm", ref AnyEctoplasm,
+            NewGroup("AnyEctoplasm", ref anyEctoplasm,
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
         }
         private static RecipeGroup NewGroup(string name, ref RecipeGroup group, params int[] items)
