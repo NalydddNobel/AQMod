@@ -1473,7 +1473,6 @@ Mods: {
 		}
 
 		BuffDescription: {
-			ScribbleNotebookBuff: 物体会为你而战
 			BloodthirstBuff: 敌人必定掉落红心
 			NoonBuff:
 				'''
@@ -1496,6 +1495,7 @@ Mods: {
 			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
 			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
 
+			ScribbleNotebookBuff: 物体会为你而战
 			CorruptPlantBuff: 腐化植物会为你而战!
 			RedSpriteMinionBuff: 红色精灵会为你而战!
 			SnowflakeBuff: 雪花会为你而战
