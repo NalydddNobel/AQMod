@@ -5,6 +5,7 @@ using ReLogic.Content;
 using ReLogic.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,6 +40,8 @@ namespace Aequus.Graphics
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
+            if (Main.dedServ)
+                return;
             itemIDToGlowMask = new Dictionary<int, short>();
             texturePathToGlowMask = new Dictionary<string, short>();
             var masks = TextureAssets.GlowMask.ToList();
