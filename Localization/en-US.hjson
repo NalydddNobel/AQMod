@@ -1472,7 +1472,6 @@ Mods: {
 		}
 
 		BuffDescription: {
-			ScribbleNotebookBuff: The object will fight for you!
 			BloodthirstBuff: Enemies always drop hearts
 			NoonBuff:
 				'''
@@ -1480,7 +1479,7 @@ Mods: {
 				You always have daytime-only effects active
 				Prevents nighttime-only effects from working
 				'''
-			SentryBuff: Increase your max number of sentries by 1 
+			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 
 			ReliefshroomBuff: You are being healed!
@@ -1496,6 +1495,7 @@ Mods: {
 			VampirismNight: Greatly increased stats, attacks may lifesteal
 			VampirismDay: Greatly decreased stats, you no longer get buffs from food
 
+			ScribbleNotebookBuff: The object will fight for you!
 			CorruptPlantBuff: The corrupted plant will fight for you!
 			RedSpriteMinionBuff: The red sprite will fight for you!
 			SnowflakeBuff: The snowflake will fight for you

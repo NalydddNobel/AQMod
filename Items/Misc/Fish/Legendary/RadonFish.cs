@@ -9,7 +9,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(2);
+            SacrificeTotal = 2;
             AequusItem.LegendaryFish.Add(Type);
         }
 
@@ -18,8 +18,9 @@ namespace Aequus.Items.Misc.Fish.Legendary
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ItemRarityID.Green;
             Item.maxStack = 999;
+            Item.rare = ItemRarityID.Quest;
+            Item.questItem = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

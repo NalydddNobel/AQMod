@@ -21,7 +21,7 @@ namespace Aequus.Content.CrossMod
 
             if (ColoredDamageTypes.Enabled)
             {
-                ColoredDamageTypes.Call("AddDamageType", Aequus.NecromancyDamage, NecromancyColor, NecromancyColor, NecromancyColor * 1.25f);
+                ColoredDamageTypes.Call("AddDamageType", NecromancyDamageClass.Instance, NecromancyColor, NecromancyColor, NecromancyColor * 1.25f);
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using Aequus.Graphics.PlayerRendering;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,7 +10,7 @@ namespace Aequus.Items.Armor.Gravetender
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
             ForceShirtDraw.BodyForceShirt.Add(Item.bodySlot);
         }
 

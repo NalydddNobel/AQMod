@@ -33,7 +33,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.alpha = 250;
             Projectile.extraUpdates = 1;
             Projectile.scale = 0.8f;
-            Projectile.DamageType = Aequus.NecromancyDamage;
+            Projectile.DamageType = NecromancyDamageClass.Instance;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -3,7 +3,6 @@ using Aequus.Common.Networking;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Recipes;
-using Aequus.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -37,8 +36,6 @@ namespace Aequus
 
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
-        public static NecromancyDamageClass NecromancyDamage => new NecromancyDamageClass();
-
         public static float SkiesDarkness;
         public static float SkiesDarknessGoTo;
         public static float SkiesDarknessGoToSpeed;
@@ -61,7 +58,7 @@ namespace Aequus
             On.Terraria.Main.SetBackColor += Hook_DarkenBackground;
         }
 
-        private void Hook_DarkenBackground(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
+        private static void Hook_DarkenBackground(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
         {
             orig(info, out sunColor, out moonColor);
 

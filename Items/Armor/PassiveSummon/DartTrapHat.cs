@@ -15,7 +15,7 @@ namespace Aequus.Items.Armor.PassiveSummon
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 

@@ -2,13 +2,25 @@
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon
+namespace Aequus
 {
     public class NecromancyDamageClass : DamageClass
     {
+        public static NecromancyDamageClass Instance { get; private set; }
+
         protected override string DisplayNameInternal => Language.GetTextValue("LegacyTooltip.53").Substring(1);
 
         public override bool UseStandardCritCalcs => false;
+
+        public override void Load()
+        {
+            Instance = this;
+        }
+
+        public override void Unload()
+        {
+            Instance = null;
+        }
 
         public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
         {

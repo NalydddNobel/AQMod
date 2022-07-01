@@ -9,7 +9,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(2);
+            SacrificeTotal = 2;
             AequusItem.LegendaryFish.Add(Type);
         }
 

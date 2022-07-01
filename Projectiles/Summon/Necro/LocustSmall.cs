@@ -20,7 +20,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.width = 4;
             Projectile.height = 4;
             Projectile.friendly = true;
-            Projectile.DamageType = Aequus.NecromancyDamage;
+            Projectile.DamageType = NecromancyDamageClass.Instance;
             Projectile.aiStyle = -1;
             Projectile.alpha = 200;
             Projectile.timeLeft = 120;

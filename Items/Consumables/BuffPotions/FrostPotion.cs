@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.BuffPotions
         public override void SetStaticDefaults()
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(12, 237, 255, 0), new Color(53, 202, 255, 0), new Color(0, 156, 255, 0), new Color(0, 74, 205, 0), };
-            this.SetResearch(20);
+            SacrificeTotal = 20;
         }
 
         public override void SetDefaults()

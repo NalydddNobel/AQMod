@@ -73,7 +73,7 @@ namespace Aequus.Items
             item.useTime = timeBetweenShots;
             item.useAnimation = timeBetweenShots;
             item.useStyle = ItemUseStyleID.Shoot;
-            item.DamageType = Aequus.NecromancyDamage;
+            item.DamageType = NecromancyDamageClass.Instance;
             item.noMelee = true;
         }
 

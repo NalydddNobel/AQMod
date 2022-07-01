@@ -849,7 +849,7 @@ namespace Aequus.Content.Necromancy
             projectile.hostile = false;
             projectile.friendly = true;
             projectile.owner = Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner;
-            projectile.DamageType = Aequus.NecromancyDamage;
+            projectile.DamageType = NecromancyDamageClass.Instance;
             if (!projectile.usesLocalNPCImmunity)
             {
                 projectile.usesIDStaticNPCImmunity = true;
@@ -992,7 +992,7 @@ namespace Aequus.Content.Necromancy
                 isZombie = true;
                 projectile.hostile = false;
                 projectile.friendly = true;
-                projectile.DamageType = Aequus.NecromancyDamage;
+                projectile.DamageType = NecromancyDamageClass.Instance;
                 if (!projectile.usesLocalNPCImmunity)
                 {
                     projectile.usesIDStaticNPCImmunity = true;
