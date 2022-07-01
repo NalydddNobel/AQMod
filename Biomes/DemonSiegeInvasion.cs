@@ -603,7 +603,7 @@ namespace Aequus.Biomes
                 return true;
             }
 
-            public override void SpecialVisuals(Player player, bool isActive)
+            public override void SpecialVisuals(Player player)
             {
                 var invasion = player.Aequus().eventDemonSiege;
                 if (invasion.X != 0)

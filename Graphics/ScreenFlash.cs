@@ -78,7 +78,7 @@ namespace Aequus.Graphics
             Flash = null;
         }
 
-        public override void SpecialVisuals(Player player, bool isActive)
+        public override void SpecialVisuals(Player player)
         {
             if (Flash.FlashLocation != Vector2.Zero)
             {
