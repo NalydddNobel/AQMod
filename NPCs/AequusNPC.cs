@@ -5,6 +5,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.Projectiles.Summon;
@@ -134,6 +135,7 @@ namespace Aequus.NPCs
                 }
             }
         }
+
 
         public override void SetDefaults(NPC npc)
         {
@@ -324,6 +326,10 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
+                case NPCID.QueenBee:
+                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
+                    break;
+
                 case NPCID.Pixie:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
                     break;

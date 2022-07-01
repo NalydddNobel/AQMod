@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Accessories;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -130,7 +131,16 @@ namespace Aequus.Items
 
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
-            if (context == "lockBox")
+            if (context == "bossBag")
+            {
+                switch (arg) 
+                {
+                    case ItemID.QueenBeeBossBag:
+                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<OrganicEnergy>(), 3);
+                        break;
+                }
+            }
+            else if (context == "lockBox")
             {
                 player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.LockBox), AequusWorld.DungeonChestItem(Main.rand.Next(AequusWorld.DungeonChestItemTypesMax)));
             }

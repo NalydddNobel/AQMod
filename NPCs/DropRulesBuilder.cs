@@ -179,15 +179,5 @@ namespace Aequus.NPCs
         {
             return AddLoot(modNPC.NPC, loot);
         }
-
-        public class VanillaDrops : GlobalNPC
-        {
-            public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-            {
-                if (npc.type == NPCID.Clown)
-                {
-                }
-            }
-        }
     }
 }

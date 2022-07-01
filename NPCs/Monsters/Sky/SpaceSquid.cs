@@ -768,6 +768,7 @@ namespace Aequus.NPCs.Monsters.Sky
             this.CreateLoot(npcLoot)
                 .AddBossLoot<SpaceSquidTrophy, SpaceSquidRelic>()
                 .AddMasterPet<ToySpaceGun>()
+                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<SpaceSquidMask>(chance: 7, stack: 1)
                 .Add<FrozenTear>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))

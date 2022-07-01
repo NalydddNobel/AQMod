@@ -126,6 +126,7 @@ namespace Aequus.NPCs.Monsters.Sky
             this.CreateLoot(npcLoot)
                 .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
                 .AddMasterPet<LightningRod>()
+                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add(new FilledConditionsOtherwiseChanceRule(
                     new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
