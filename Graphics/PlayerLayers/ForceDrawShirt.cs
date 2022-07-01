@@ -2,15 +2,15 @@
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics.PlayerRendering
+namespace Aequus.Graphics.PlayerLayers
 {
-    public class ForceShirtDraw : PlayerDrawLayer
+    public class ForceDrawShirt : PlayerDrawLayer
     {
-        public static HashSet<int> BodyForceShirt { get; private set; }
+        public static HashSet<int> BodyShowShirt { get; private set; }
 
         public override void Load()
         {
-            BodyForceShirt = new HashSet<int>();
+            BodyShowShirt = new HashSet<int>();
         }
 
         public override Position GetDefaultPosition()
@@ -20,7 +20,7 @@ namespace Aequus.Graphics.PlayerRendering
 
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {
-            if (BodyForceShirt.Contains(drawInfo.drawPlayer.body))
+            if (BodyShowShirt.Contains(drawInfo.drawPlayer.body))
             {
                 int old = drawInfo.drawPlayer.body;
                 drawInfo.drawPlayer.body = 0;

@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.PlayerRendering;
+﻿using Aequus.Graphics.PlayerLayers;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +11,7 @@ namespace Aequus.Items.Armor.Gravetender
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ForceShirtDraw.BodyForceShirt.Add(Item.bodySlot);
+            ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 
         public override void SetDefaults()

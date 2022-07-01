@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Graphics.Prims
+namespace Aequus.Graphics.Primitives
 {
     public interface IPrimRenderer
     {

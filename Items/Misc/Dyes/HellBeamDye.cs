@@ -1,5 +1,7 @@
 ﻿using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
@@ -10,6 +12,18 @@ namespace Aequus.Items.Misc.Dyes
         public override int Rarity => ItemRarityID.Green;
 
         public override string Pass => "ShieldBeamsPass";
+
+        public class ArmorShaderDataHellBeams : ArmorShaderDataThirdColor, IShaderDataModifyLightColor
+        {
+            public ArmorShaderDataHellBeams(Ref<Effect> shader, string passName, Vector3 thirdColor) : base(shader, passName, thirdColor)
+            {
+            }
+
+            Vector3 IShaderDataModifyLightColor.ModifyLightColor(Vector3 light)
+            {
+                return light * new Vector3(1f, 0.8f, 0f);
+            }
+        }
 
         public override ArmorShaderData CreateShaderData()
         {

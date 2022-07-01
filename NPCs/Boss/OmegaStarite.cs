@@ -2,7 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
-using Aequus.Graphics.Prims;
+using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;

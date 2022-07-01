@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics;
-using Aequus.Graphics.Prims;
+using Aequus.Graphics.Primitives;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

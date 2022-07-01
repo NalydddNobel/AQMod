@@ -7,7 +7,7 @@ namespace Aequus.Graphics.ShaderData
 {
     public class ArmorCustomTexture : ArmorShaderData
     {
-        private readonly Ref<Texture2D> _texture;
+        public Ref<Texture2D> _texture;
 
         public ArmorCustomTexture(Ref<Effect> shader, string passName, Ref<Texture2D> texture) : base(shader, passName)
         {

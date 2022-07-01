@@ -2,7 +2,7 @@
 using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
-using Aequus.Graphics.Prims;
+using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;

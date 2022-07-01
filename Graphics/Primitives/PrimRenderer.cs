@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics.Prims
+namespace Aequus.Graphics.Primitives
 {
     public class PrimRenderer : IPrimRenderer, ILoadable
     {

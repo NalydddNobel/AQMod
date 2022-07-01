@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Graphics.Prims
+namespace Aequus.Graphics.Primitives
 {
     public sealed class SwordSlashPrimRenderer : PrimRenderer
     {

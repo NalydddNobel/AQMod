@@ -9,7 +9,7 @@ namespace Aequus.Graphics.ShaderData
 {
     public sealed class ArmorShaderDataDynamicColor : ArmorShaderData
     {
-        private Func<Entity, DrawData?, Color> getColor;
+        public Func<Entity, DrawData?, Color> getColor;
 
         public ArmorShaderDataDynamicColor(Ref<Effect> shader, string passName, Func<Entity, DrawData?, Color> func) : base(shader, passName)
         {

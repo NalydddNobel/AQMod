@@ -5,16 +5,16 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Graphics.ShaderData
 {
-    public class ArmorShaderDataLightSourceAsColor : ArmorShaderData
+    public class ArmorShaderDataThirdColor : ArmorShaderData
     {
-        private readonly Vector3 _thirdColor;
+        public Vector3 _thirdColor;
 
-        public ArmorShaderDataLightSourceAsColor(Ref<Effect> shader, string passName, Vector3 thirdColor) : base(shader, passName)
+        public ArmorShaderDataThirdColor(Ref<Effect> shader, string passName, Vector3 thirdColor) : base(shader, passName)
         {
             _thirdColor = thirdColor;
         }
 
-        public ArmorShaderDataLightSourceAsColor(Ref<Effect> shader, string passName, Color thirdColor) : base(shader, passName)
+        public ArmorShaderDataThirdColor(Ref<Effect> shader, string passName, Color thirdColor) : base(shader, passName)
         {
             _thirdColor = thirdColor.ToVector3();
         }
