@@ -31,7 +31,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             if (Main.netMode == NetmodeID.Server)
             {
                 var omegaStarite = Main.npc[(int)Projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.ModNPC is NPCs.Boss.OmegaStarite))
+                if (!omegaStarite.active || (int)omegaStarite.ai[0] == NPCs.Boss.OmegaStarite.ACTION_DEAD || !(omegaStarite.ModNPC is NPCs.Boss.OmegaStarite))
                     return;
                 Projectile.ai[1] = 1f;
                 Projectile.timeLeft = 32;
@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             {
                 Projectile.ai[1] = 1f;
                 var omegaStarite = Main.npc[(int)Projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f)
+                if (!omegaStarite.active || (int)omegaStarite.ai[0] == NPCs.Boss.OmegaStarite.ACTION_DEAD)
                     return;
                 Projectile.timeLeft = 2;
                 Projectile.Center = omegaStarite.Center;

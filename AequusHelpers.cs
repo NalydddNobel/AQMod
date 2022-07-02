@@ -86,6 +86,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static int FixedDamage(this NPC npc)
+        {
+            return Main.masterMode ? npc.damage / 3 : Main.expertMode ? npc.damage / 2 : npc.damage;
+        }
+
         public static void DrawLine(Vector2 start, float rotation, float length, float width, Color color)
         {
             Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(0f, 1f), new Vector2(width, length), SpriteEffects.None, 0f);
