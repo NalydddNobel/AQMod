@@ -39,6 +39,8 @@ namespace Aequus.Projectiles.Misc
 
             GetOwnerValues(out var player, out var aequus, out int projOwner, out var santank);
             int alpha = aequus.InDanger ? 0 : 128;
+            if (projOwner != -1)
+                alpha = 200;
             Projectile.alpha = (int)MathHelper.Lerp(Projectile.alpha, alpha, 0.1f);
             if (aequus?.hyperCrystalItem != null && aequus?.hyperCrystalHidden == false)
             {
