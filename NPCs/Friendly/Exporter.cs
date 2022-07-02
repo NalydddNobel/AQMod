@@ -74,8 +74,7 @@ namespace Aequus.NPCs.Friendly
                 .AddQuote<FoolsGoldRing>()
                 .AddQuote(ItemID.DiscountCard)
                 .AddQuote(ItemID.LuckyCoin)
-                .AddQuote(ItemID.GoldRing)
-                ;
+                .AddQuote(ItemID.GoldRing);
 
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }

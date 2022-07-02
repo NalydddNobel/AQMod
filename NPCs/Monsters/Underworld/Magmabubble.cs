@@ -75,8 +75,7 @@ namespace Aequus.NPCs.Monsters.Underworld
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.Underworld);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void HitEffect(int hitDirection, double damage)

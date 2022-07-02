@@ -18,6 +18,9 @@ namespace Aequus.Biomes
 
         public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/GaleStreams";
 
+        public override string BackgroundPath => Aequus.VanillaTexture + "MapBG33";
+        public override string MapBackground => MapBackground;
+
         public override bool IsBiomeActive(Player player)
         {
             return player.Aequus().eventGaleStreams;

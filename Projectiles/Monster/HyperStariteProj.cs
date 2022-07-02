@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Monsters.Night;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace Aequus.Projectiles.Monster
@@ -16,16 +17,17 @@ namespace Aequus.Projectiles.Monster
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.hide = true;
+            Projectile.penetrate = -1;
         }
 
         protected override bool CheckAttachmentConditions(NPC npc)
         {
-            return (int)npc.ai[0] != -1 && npc.ModNPC is NPCs.Boss.OmegaStarite;
+            return (int)npc.ai[0] != -1 && npc.ModNPC is HyperStarite;
         }
 
         protected override void AIAttached(NPC npc)
         {
-            Projectile.position += (npc.rotation + MathHelper.TwoPi / 5f * Projectile.ai[1] - MathHelper.PiOver2).ToRotationVector2() * (npc.height * npc.scale + npc.ai[3] + 18f);
+            Projectile.position += (npc.rotation + MathHelper.TwoPi / 5f * Projectile.ai[1] - MathHelper.PiOver2).ToRotationVector2() * (npc.height * npc.scale + npc.ai[3] + 50f);
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

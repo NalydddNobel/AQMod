@@ -240,6 +240,11 @@ namespace Aequus.NPCs.Boss
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry);
+        }
+
         public override void SetDefaults()
         {
             NPC.width = 120;
@@ -276,6 +281,8 @@ namespace Aequus.NPCs.Boss
                     SceneEffectPriority = SceneEffectPriority.BossHigh;
                 }
             }
+
+            this.SetBiome<GlimmerInvasion>();
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -423,13 +430,6 @@ namespace Aequus.NPCs.Boss
                 if (Main.rand.NextBool(7))
                     Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
             }
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddSpawn(BestiaryBuilder.NightTime)
-                .AddSpawn(BestiaryBuilder.SurfaceBiome);
         }
 
         public override void AI()

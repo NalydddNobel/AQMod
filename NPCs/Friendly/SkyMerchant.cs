@@ -94,7 +94,8 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateGaleStreamsEntry(database, bestiaryEntry);
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.SkyBiome);
         }
 
         public override void SetChatButtons(ref string button, ref string button2)

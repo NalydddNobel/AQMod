@@ -25,40 +25,20 @@ namespace Aequus.NPCs.Monsters.Night
             NPCID.Sets.TrailCacheLength[Type] = 15;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Confused,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.ShadowFlame,
-                    BuffID.Frostburn,
-                    BuffID.Frostburn2,
-                    BuffID.Ichor,
-                    BuffID.Poisoned,
-                    BuffID.Venom,
-                    BuffID.Bleeding,
-                    BuffID.Weak,
-                    BuffID.Stinky,
-                    BuffID.Lovestruck,
-                    BuffID.Wet,
-                    BuffID.Slimed,
-                    ModContent.BuffType<CrimsonHellfire>(),
-                    ModContent.BuffType<CorruptionHellfire>(),
-                },
+                SpecificallyImmuneTo = Starite.BuffImmunities,
             });
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<NeutronYogurt>(chance: 2, stack: 1)
-                .Add(ItemID.Nazar, chance: 50, stack: 1);
+                .Add(ItemID.Nazar, chance: 50, stack: 1)
+                .Add<NeutronYogurt>(chance: 2, stack: 1);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.NightTime);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void SetDefaults()
@@ -372,14 +352,7 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override void OnKill()
         {
-            if (!AequusWorld.downedEventCosmic)
-            {
-                AequusWorld.downedEventCosmic = true;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    NetMessage.SendData(MessageID.WorldData);
-                }
-            }
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

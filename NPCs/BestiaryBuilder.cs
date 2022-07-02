@@ -73,9 +73,7 @@ namespace Aequus.NPCs
 
         public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false)
         {
-            var entry = CreateEntry(modNPC, database, bestiaryEntry)
-                .AddMainSpawn(SkyBiome)
-                .AddSpawn(WindyDayEvent);
+            var entry = CreateEntry(modNPC, database, bestiaryEntry);
             if (miniBoss)
             {
                 entry.QuickUnlock();

@@ -75,8 +75,6 @@ namespace Aequus.NPCs.Friendly
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
             AnimationType = NPCID.Guide;
-
-            this.SetBiome<DemonSiegeInvasion>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -91,8 +89,7 @@ namespace Aequus.NPCs.Friendly
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.Underground)
-                .AddSpawn(BestiaryBuilder.Underworld);
+                .AddMainSpawn(BestiaryBuilder.Underground);
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)

@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.Healing
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
 
             SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
         }
@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.Healing
             Item.rare = ItemDefaults.RarityCrabCrevice;
             Item.value = ItemDefaults.CrabCreviceValue;
             Item.buffType = ModContent.BuffType<MendshroomBuff>();
-            Item.shoot = ModContent.ProjectileType<MendshroomAuraProj>();
+            Item.shoot = ModContent.ProjectileType<MendshroomProj>();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

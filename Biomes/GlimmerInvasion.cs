@@ -13,5 +13,8 @@ namespace Aequus.Biomes
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
         public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/Glimmer";
+
+        public override string BackgroundPath => Aequus.AssetsPath + "UI/MapBGs/Glimmer";
+        public override string MapBackground => MapBackground;
     }
 }

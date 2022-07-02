@@ -52,7 +52,7 @@ namespace Aequus.Biomes
                 return original;
             }
         }
-        public sealed class EventSacrifice
+        public class EventSacrifice
         {
             public int TileX { get; internal set; }
             public int TileY { get; internal set; }
@@ -315,6 +315,9 @@ namespace Aequus.Biomes
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
         public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/DemonSiege";
+
+        public override string BackgroundPath => Aequus.VanillaTexture + "MapBG3";
+        public override string MapBackground => MapBackground;
 
         public override void Load()
         {

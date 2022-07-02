@@ -15,6 +15,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
+using Aequus.Projectiles.Misc;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -132,6 +133,12 @@ namespace Aequus
 
         public int accVial;
         public int vialDelay;
+
+        public Item hyperCrystalItem;
+        public bool hyperCrystalHidden;
+        public int cHyperCrystal;
+        public float hyperCrystalDamage;
+        public float hyperCrystalDiameter;
 
         public Item setGravetender;
         public int setGravetenderCheck;
@@ -442,6 +449,11 @@ namespace Aequus
                 sentrySquidTimer--;
             }
 
+            cHyperCrystal = 0;
+            hyperCrystalDiameter = 0f;
+            hyperCrystalDamage = 0f;
+            hyperCrystalItem = null;
+
             sentryInheritItem = null;
 
             healingMushroomItem = null;
@@ -579,6 +591,12 @@ namespace Aequus
             if (glowCoreItem != null && glowCoreItem.ModItem is DyeableAccessory)
             {
                 GlowCore.AddLight(Player.Center, Player, this);
+            }
+
+            if (hyperCrystalItem != null && !hyperCrystalHidden && ProjectilesOwned(ModContent.ProjectileType<HyperCrystalProj>()) <= 0)
+            {
+                Projectile.NewProjectile(Player.GetSource_Accessory(hyperCrystalItem), Player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalProj>(),
+                    0, 0f, Player.whoAmI, projectileIdentity + 1);
             }
 
             if (healingMushroomItem != null && healingMushroomItem.shoot > ProjectileID.None
@@ -936,6 +954,22 @@ namespace Aequus
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
             hitTime = 0;
+        }
+
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            HyperCrystalDamage(target.getRect(), ref damage);
+        }
+        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            HyperCrystalDamage(target.getRect(), ref damage);
+        }
+        public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
+        {
+            if (hyperCrystalDiameter > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < hyperCrystalDiameter / 2f)
+            {
+                damage = (int)(damage * (1f + hyperCrystalDamage));
+            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)

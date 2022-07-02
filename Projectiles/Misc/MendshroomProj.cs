@@ -2,34 +2,17 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
 {
-    public class MendshroomAuraProj : ModProjectile
+    public class MendshroomProj : ModProjectile
     {
-        public static Asset<Texture2D> AuraTexture { get; private set; }
-
-        public override void Load()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                AuraTexture = ModContent.Request<Texture2D>(Texture + "Aura");
-            }
-        }
-
-        public override void Unload()
-        {
-            AuraTexture = null;
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 2;
@@ -118,7 +101,7 @@ namespace Aequus.Projectiles.Misc
         public override bool PreDraw(ref Color lightColor)
         {
             Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHealingMushroom);
-            DrawAura(Projectile.Center - Main.screenPosition, Projectile.scale, Projectile.Opacity, AuraTexture.Value, TextureAssets.Projectile[Type].Value);
+            DrawAura(Projectile.Center - Main.screenPosition, Projectile.scale, Projectile.Opacity, ModContent.Request<Texture2D>(Texture + "Aura").Value, TextureAssets.Projectile[Type].Value);
             return false;
         }
 

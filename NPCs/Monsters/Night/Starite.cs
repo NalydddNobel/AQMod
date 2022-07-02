@@ -20,32 +20,34 @@ namespace Aequus.NPCs.Monsters.Night
 {
     public class Starite : ModNPC
     {
+        public static int[] BuffImmunities => new int[]
+        {
+            BuffID.Confused,
+            BuffID.OnFire,
+            BuffID.OnFire3,
+            BuffID.ShadowFlame,
+            BuffID.Frostburn,
+            BuffID.Frostburn2,
+            BuffID.Ichor,
+            BuffID.Poisoned,
+            BuffID.Venom,
+            BuffID.Bleeding,
+            BuffID.Weak,
+            BuffID.Stinky,
+            BuffID.Lovestruck,
+            BuffID.Wet,
+            BuffID.Slimed,
+            ModContent.BuffType<CrimsonHellfire>(),
+            ModContent.BuffType<CorruptionHellfire>(),
+        };
+
         public override void SetStaticDefaults()
         {
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 12;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Confused,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.ShadowFlame,
-                    BuffID.Frostburn,
-                    BuffID.Frostburn2,
-                    BuffID.Ichor,
-                    BuffID.Poisoned,
-                    BuffID.Venom,
-                    BuffID.Bleeding,
-                    BuffID.Weak,
-                    BuffID.Stinky,
-                    BuffID.Lovestruck,
-                    BuffID.Wet,
-                    BuffID.Slimed,
-                    ModContent.BuffType<CrimsonHellfire>(),
-                    ModContent.BuffType<CorruptionHellfire>(),
-                },
+                SpecificallyImmuneTo = BuffImmunities,
             });
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -56,8 +58,7 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.NightTime);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -86,6 +86,14 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static void UpdateCacheList<T>(T[] arr)
+        {
+            for (int i = arr.Length - 1; i > 0; i--)
+            {
+                arr[i] = arr[i - 1];
+            }
+        }
+
         public static int FixedDamage(this NPC npc)
         {
             return Main.masterMode ? npc.damage / 3 : Main.expertMode ? npc.damage / 2 : npc.damage;

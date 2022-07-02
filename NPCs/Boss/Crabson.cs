@@ -77,6 +77,11 @@ namespace Aequus.NPCs.Boss
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry);
+        }
+
         public override void SetDefaults()
         {
             NPC.width = 90;
@@ -136,12 +141,6 @@ namespace Aequus.NPCs.Boss
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)
         {
             return dealContactDamage;
-        }
-
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
         public override void AI()

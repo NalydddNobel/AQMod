@@ -38,8 +38,7 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.NightTime);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void SetDefaults()

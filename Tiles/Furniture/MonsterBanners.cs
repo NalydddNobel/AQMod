@@ -22,21 +22,21 @@ namespace Aequus.Tiles.Furniture
     {
         public const int StariteBanner = 0;
         public const int SuperStariteBanner = 1;
-        public const int HyperStarite = 2;
-        public const int Unused_ArrowCrab = 3;
-        public const int Unused_HermitCrab = 4;
-        public const int SoliderCrabs = 5;
-        public const int Unused_StriderCrab = 6;
+        public const int HyperStariteBanner = 2;
+        public const int arrowCrab = 3;
+        public const int hermitCrab = 4;
+        public const int soliderCrab = 5;
+        public const int striderCrab = 6;
         public const int CinderaBanner = 7;
         public const int MagmabubbleBanner = 8;
         public const int TrapperImpBanner = 9;
         public const int VraineBanner = 10;
         public const int WhiteSlimeBanner = 11;
-        public const int Unused_RedSprite = 12;
-        public const int Unused_SpaceSquid = 13;
-        public const int Unused_UltraStarite = 14;
+        public const int redSprite = 12;
+        public const int spaceSquid = 13;
+        public const int UltraStariteBanner = 14;
 
-        public static List<int> BannerWindHack;
+        public static List<int> bannerWindHack;
 
         #region Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!
 
@@ -57,7 +57,7 @@ namespace Aequus.Tiles.Furniture
                 Logging.PublicLogger.Debug(e);
             }
 
-            BannerWindHack = new List<int>();
+            bannerWindHack = new List<int>();
             IL.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVines += TileDrawing_DrawMultiTileVines;
         }
         private static void TileDrawing_DrawMultiTileVines(ILContext il)
@@ -79,7 +79,7 @@ namespace Aequus.Tiles.Furniture
             c.Emit(OpCodes.Ldloc, 9);
             c.EmitDelegate((Tile tile) =>
             {
-                if (BannerWindHack.Contains(tile.TileType))
+                if (bannerWindHack.Contains(tile.TileType))
                 {
                     return 3;
                 }
@@ -90,8 +90,8 @@ namespace Aequus.Tiles.Furniture
 
         public override void Unload()
         {
-            BannerWindHack?.Clear();
-            BannerWindHack = null;
+            bannerWindHack?.Clear();
+            bannerWindHack = null;
             _addSpecialPointSpecialPositions = null;
             _addSpecialPointSpecialsCount = null;
         }
@@ -137,7 +137,7 @@ namespace Aequus.Tiles.Furniture
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
-            BannerWindHack.Add(Type);
+            bannerWindHack.Add(Type);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -193,6 +193,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<Starite>();
                 case SuperStariteBanner:
                     return ModContent.NPCType<SuperStarite>();
+                case HyperStariteBanner:
+                    return ModContent.NPCType<SuperStarite>();
                 case CinderaBanner:
                     return ModContent.NPCType<Cindera>();
                 case MagmabubbleBanner:
@@ -201,6 +203,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<Vraine>();
                 case WhiteSlimeBanner:
                     return ModContent.NPCType<WhiteSlime>();
+                case UltraStariteBanner:
+                    return ModContent.NPCType<UltraStarite>();
             }
             return 0;
         }

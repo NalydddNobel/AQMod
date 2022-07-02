@@ -538,11 +538,6 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Accessories.HyperCrystalPlayer">
-            <summary>
-            Used by <see cref="T:Aequus.Items.Accessories.HyperCrystal"/>
-            </summary>
-        </member>
         <member name="P:Aequus.Items.Accessories.Summon.Sentry.SantankInteractions.OnAI">
             <summary>
             <para>1) Projectile - the projectile</para>

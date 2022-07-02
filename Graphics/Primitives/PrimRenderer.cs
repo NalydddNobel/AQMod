@@ -120,6 +120,7 @@ namespace Aequus.Graphics.Primitives
                     rotationVectors[i] = rotationArr[i].ToRotationVector2();
                 }
             }
+
             vertices = new List<VertexPositionColorTexture>();
             for (int i = 0; i < arr.Length - 1; i++)
             {
