@@ -1179,7 +1179,7 @@ namespace Aequus.NPCs.Boss
             {
                 int damage = Main.expertMode ? 12 : 15;
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
-                    ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI);
+                    ModContent.ProjectileType<OmegaStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1);
             }
         }
         private bool PlrCheck()

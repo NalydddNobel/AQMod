@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster
 {
-    public class MagmabubbleProj : ModProjectile
+    public class MagmabubbleBullet : ModProjectile
     {
         public override void SetDefaults()
         {

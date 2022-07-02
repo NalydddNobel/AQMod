@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Furniture
     public sealed class MonsterBanners : ModTile
     {
         public const int StariteBanner = 0;
-        public const int SuperStarite = 1;
+        public const int SuperStariteBanner = 1;
         public const int HyperStarite = 2;
         public const int Unused_ArrowCrab = 3;
         public const int Unused_HermitCrab = 4;
@@ -191,6 +191,8 @@ namespace Aequus.Tiles.Furniture
             {
                 case StariteBanner:
                     return ModContent.NPCType<Starite>();
+                case SuperStariteBanner:
+                    return ModContent.NPCType<SuperStarite>();
                 case CinderaBanner:
                     return ModContent.NPCType<Cindera>();
                 case MagmabubbleBanner:

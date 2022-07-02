@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster
 {
-    public class TrapperProj : ModProjectile
+    public class TrapperBullet : ModProjectile
     {
         public override void SetDefaults()
         {

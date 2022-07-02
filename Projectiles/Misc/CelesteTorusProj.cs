@@ -58,14 +58,11 @@ namespace Aequus.Projectiles.Misc
             }
 
             var player = Main.player[Projectile.owner];
-            if (player.active && !player.dead && (aequus?.celesteTorusItem) != null)
-            {
-                Projectile.timeLeft = 2;
-            }
-            else
+            if (!player.active || player.dead || (aequus?.celesteTorusItem) == null)
             {
                 return;
             }
+            Projectile.timeLeft = 2;
 
             if (Projectile.active)
             {

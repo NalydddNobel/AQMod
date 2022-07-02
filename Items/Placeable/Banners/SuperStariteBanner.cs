@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Banners
 {
-    public class StariteBanner : ModItem
+    public class SuperStariteBanner : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Banners
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<MonsterBanners>(), MonsterBanners.StariteBanner);
+            Item.DefaultToPlaceableTile(ModContent.TileType<MonsterBanners>(), MonsterBanners.SuperStariteBanner);
             Item.rare = ItemDefaults.RarityBanner;
             Item.value = Item.sellPrice(silver: 2);
         }

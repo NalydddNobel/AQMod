@@ -358,11 +358,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                         }
                                         var projPosition = new Vector2(center.X + 900f * direction, center.Y + Main.rand.NextFloat(-120f, 60f));
                                         var velocity = Vector2.Normalize(Main.player[NPC.target].Center + new Vector2(0f, -160f) - projPosition);
-                                        int damage = 50;
-                                        if (Main.expertMode)
-                                        {
-                                            damage = 30;
-                                        }
+                                        int damage = NPC.FixedDamage();
                                         int type = ModContent.ProjectileType<RedSpriteCloud>();
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), projPosition, velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 18f, type, damage, 1f, Main.myPlayer);
                                         Main.projectile[p].rotation = Main.projectile[p].velocity.ToRotation();
@@ -447,11 +443,7 @@ namespace Aequus.NPCs.Monsters.Sky
                                     }
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
-                                        int damage = 100;
-                                        if (Main.expertMode)
-                                        {
-                                            damage = 75;
-                                        }
+                                        int damage = NPC.FixedDamage() * 3;
                                         Projectile.NewProjectile(NPC.GetSource_FromAI(), center + new Vector2(0f, 130f), Vector2.Zero, ModContent.ProjectileType<RedSpriteThunderClap>(), damage, 1f, Main.myPlayer);
                                     }
                                 }
@@ -701,7 +693,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 float xOffset = 1500f * NPC.direction;
                 var velocity = new Vector2(4.5f * -NPC.direction, 0f);
-                int damage = NPC.damage;
+                int damage = NPC.FixedDamage();
                 if (Math.Sign(velocity.X) == Math.Sign(Main.player[NPC.target].velocity.X))
                 {
                     velocity.X += Main.player[NPC.target].velocity.X / 3;

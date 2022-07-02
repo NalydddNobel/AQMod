@@ -164,7 +164,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             float projectileSpeed = 10f;
-                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperProj>();
+                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperBullet>();
                             int damage = 20;
                             if (Main.expertMode)
                                 damage = 15;

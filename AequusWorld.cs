@@ -29,6 +29,10 @@ namespace Aequus
     {
         public const int DungeonChestItemTypesMax = 4;
 
+        [SaveData("Glimmer")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedEventCosmic;
         [SaveData("DemonSiege")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]

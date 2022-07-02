@@ -655,6 +655,15 @@
             Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>
         </member>
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Items.Accessories.Summon.Sentry.SantankSentryProjectile@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentryProjectile"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
         <member name="P:Aequus.Sounds.MusicData.CrabsonBoss">
             <summary>
             Used by <see cref="T:Aequus.NPCs.Boss.Crabson"/>

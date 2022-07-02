@@ -251,7 +251,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                             checkPlayerSights(chances: 6);
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                int projectileType = ModContent.ProjectileType<MagmabubbleProj>();
+                                int projectileType = ModContent.ProjectileType<MagmabubbleBullet>();
                                 var spawnPosition = NPC.Center;
                                 int damage = 20;
                                 float speed = 7f;
@@ -274,7 +274,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                             checkPlayerSights(chances: 6);
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
-                                int projectileType = ModContent.ProjectileType<MagmabubbleProj>();
+                                int projectileType = ModContent.ProjectileType<MagmabubbleBullet>();
                                 var spawnPosition = NPC.Center;
                                 int damage = 15;
                                 float speed = 6f;

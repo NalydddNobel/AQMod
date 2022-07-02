@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster.OmegaStarite
 {
-    public class OmegaStariteProj : ModProjectile
+    public class OmegaStariteProj : EnemyAttachedProjBase
     {
-        public float Radius => 84.85f / 2f;
+        public const float HurtRadius = 84.85f / 2f;
 
         public override void SetDefaults()
         {
@@ -26,38 +24,27 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
             return Projectile.ai[1] > 0;
         }
 
+        protected override bool CheckAttachmentConditions(NPC npc)
+        {
+            return (int)npc.ai[0] != NPCs.Boss.OmegaStarite.ACTION_DEAD && npc.ModNPC is NPCs.Boss.OmegaStarite;
+        }
+
         public override void AI()
         {
-            if (Main.netMode == NetmodeID.Server)
-            {
-                var omegaStarite = Main.npc[(int)Projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f || !(omegaStarite.ModNPC is NPCs.Boss.OmegaStarite))
-                    return;
-                Projectile.ai[1] = 1f;
-                Projectile.timeLeft = 32;
-                Projectile.Center = omegaStarite.Center;
-            }
-            else
-            {
-                Projectile.ai[1] = 1f;
-                var omegaStarite = Main.npc[(int)Projectile.ai[0]];
-                if (!omegaStarite.active || omegaStarite.ai[0] == -1f)
-                    return;
-                Projectile.timeLeft = 2;
-                Projectile.Center = omegaStarite.Center;
-            }
+            base.AI();
+            Projectile.ai[1] = 1f;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            var omegaStarite = (NPCs.Boss.OmegaStarite)Main.npc[(int)Projectile.ai[0]].ModNPC;
-            for (int i = 0; i < omegaStarite.rings.Count; i++)
+            var starite = (NPCs.Boss.OmegaStarite)Main.npc[AttachedNPC].ModNPC;
+            for (int i = 0; i < starite.rings.Count; i++)
             {
-                for (int j = 0; j < omegaStarite.rings[i].amountOfSegments; j++)
+                for (int j = 0; j < starite.rings[i].amountOfSegments; j++)
                 {
-                    if (omegaStarite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
+                    if (starite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
                     {
-                        return AequusHelpers.IsRectangleCollidingWithCircle(omegaStarite.rings[i].CachedHitboxes[j].Center.ToVector2(), Radius, targetHitbox);
+                        return AequusHelpers.IsRectangleCollidingWithCircle(starite.rings[i].CachedHitboxes[j].Center.ToVector2(), HurtRadius, targetHitbox);
                     }
                 }
             }
@@ -72,7 +59,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            Main.npc[(int)Projectile.ai[0]].ModNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
+            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
         }
     }
 }

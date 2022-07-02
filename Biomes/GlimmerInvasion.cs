@@ -5,7 +5,7 @@ namespace Aequus.Biomes
 {
     public class GlimmerInvasion : ModBiome
     {
-        public static Color CosmicEnergyColor => new Color(200, 10, 255, 0);
+        public static readonly Color CosmicEnergyColor = new Color(200, 10, 255, 0);
 
         public static InvasionStatus Status { get; set; }
         public static int omegaStarite;
