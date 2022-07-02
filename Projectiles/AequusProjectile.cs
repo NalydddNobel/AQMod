@@ -79,45 +79,55 @@ namespace Aequus.Projectiles
             sourceAmmoUsed = -1;
             sourceNPC = pNPC;
             sourceProjIdentity = pIdentity;
-            if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
+
+            if (Main.gameMenu)
+                return;
+
+            try
             {
-                int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
-                if (projOwner != -1)
+                if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
                 {
-                    sourceProjIdentity = projOwner;
+                    int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
+                    if (projOwner != -1)
+                    {
+                        sourceProjIdentity = projOwner;
+                    }
+                }
+                if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
+                {
+                    sourceItemUsed = itemUse_WithAmmo.Item.netID;
+                    sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+                }
+                else if (source is EntitySource_ItemUse itemUse)
+                {
+                    sourceItemUsed = itemUse.Item.netID;
+                }
+                else if (source is EntitySource_Parent parent)
+                {
+                    if (parent.Entity is NPC)
+                    {
+                        sourceNPC = parent.Entity.whoAmI;
+                    }
+                    else if (parent.Entity is Projectile parentProjectile)
+                    {
+                        sourceProjIdentity = parentProjectile.identity;
+                    }
+                }
+                if (sourceProjIdentity != -1)
+                {
+                    sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                    if (sourceProj == -1)
+                    {
+                        sourceProjIdentity = -1;
+                    }
+                    else
+                    {
+                        sourceProjType = Main.projectile[sourceProj].type;
+                    }
                 }
             }
-            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
+            catch
             {
-                sourceItemUsed = itemUse_WithAmmo.Item.netID;
-                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
-            }
-            else if (source is EntitySource_ItemUse itemUse)
-            {
-                sourceItemUsed = itemUse.Item.netID;
-            }
-            else if (source is EntitySource_Parent parent)
-            {
-                if (parent.Entity is NPC)
-                {
-                    sourceNPC = parent.Entity.whoAmI;
-                }
-                else if (parent.Entity is Projectile parentProjectile)
-                {
-                    sourceProjIdentity = parentProjectile.identity;
-                }
-            }
-            if (sourceProjIdentity != -1)
-            {
-                sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
-                if (sourceProj == -1)
-                {
-                    sourceProjIdentity = -1;
-                }
-                else
-                {
-                    sourceProjType = Main.projectile[sourceProj].type;
-                }
             }
         }
 
