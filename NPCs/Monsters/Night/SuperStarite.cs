@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Biomes;
+using Aequus.Buffs.Debuffs;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
@@ -8,6 +9,7 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -50,7 +52,13 @@ namespace Aequus.NPCs.Monsters.Night
         {
             this.CreateLoot(npcLoot)
                 .Add<NeutronYogurt>(chance: 2, stack: 1)
-                .Add(ItemID.Nazar, chance: 2, stack: 1);
+                .Add(ItemID.Nazar, chance: 50, stack: 1);
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.NightTime);
         }
 
         public override void SetDefaults()
@@ -69,6 +77,8 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.npcSlots = 2f;
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<SuperStariteBanner>();
+
+            this.SetBiome<GlimmerInvasion>();
         }
 
         public override void HitEffect(int hitDirection, double damage)
