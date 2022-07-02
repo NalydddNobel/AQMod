@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Ranged
 {
     public class DeltoidArrow : ModProjectile
     {
-        public PrimRenderer prim;
+        public TrailRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -98,7 +98,7 @@ namespace Aequus.Projectiles.Ranged
 
             if (prim == null)
             {
-                prim = PrimRenderer.NewRenderer(Projectile, 1, 8f, CrimsonHellfire.BloomColor * 3);
+                prim = TrailRenderer.NewRenderer(Projectile, 1, 8f, CrimsonHellfire.BloomColor * 3);
             }
 
             prim.Draw(Projectile.oldPos);

@@ -10,7 +10,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquid
 {
     public class SpaceSquidLaser : ModProjectile
     {
-        private PrimRenderer prim;
+        private TrailRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -46,7 +46,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquid
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[2].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
+                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);

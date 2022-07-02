@@ -17,7 +17,7 @@ namespace Aequus.Projectiles.Magic
     {
         public static Asset<Texture2D> GlowmaskTexture { get; private set; }
 
-        private PrimRenderer prim;
+        private TrailRenderer prim;
 
         public override void Load()
         {
@@ -103,7 +103,7 @@ namespace Aequus.Projectiles.Magic
             int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass,
+                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(20f - p * 20f),
                     (p) => NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTimeWrappedHourly + p * 20f) * 0.1f)) * (1f - p),
                     drawOffset: Projectile.Size / 2f);

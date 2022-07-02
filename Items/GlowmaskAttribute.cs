@@ -2,7 +2,7 @@
 
 namespace Aequus.Items
 {
-    public class GlowmaskAttribute : Attribute
+    public class GlowMaskAttribute : Attribute
     {
     }
 }

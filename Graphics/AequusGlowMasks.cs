@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics
@@ -47,7 +46,7 @@ namespace Aequus.Graphics
             var masks = TextureAssets.GlowMask.ToList();
             foreach (var m in Aequus.Instance.GetContent<ModItem>())
             {
-                if (m?.GetType().GetAttribute<GlowmaskAttribute>() != null)
+                if (m?.GetType().GetAttribute<GlowMaskAttribute>() != null)
                 {
                     string modItemTexture = m.Texture;
                     var texture = ModContent.Request<Texture2D>(modItemTexture + "_Glow", AssetRequestMode.ImmediateLoad);

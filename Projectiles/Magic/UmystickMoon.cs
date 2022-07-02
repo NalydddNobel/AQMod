@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Magic
     {
         public static SoundStyle UmysticDestroyd { get; private set; }
 
-        protected PrimRenderer prim;
+        protected TrailRenderer prim;
         protected Color _glowClr;
 
         public override void Load()
@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Magic
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass,
+                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(14f - p * 14f) * Projectile.scale, (p) => _glowClr * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }

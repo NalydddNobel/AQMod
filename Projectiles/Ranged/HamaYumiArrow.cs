@@ -16,7 +16,7 @@ namespace Aequus.Projectiles.Ranged
 {
     public class HamaYumiArrow : ModProjectile
     {
-        public PrimRenderer prim;
+        public TrailRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -113,7 +113,7 @@ namespace Aequus.Projectiles.Ranged
 
             if (prim == null)
             {
-                prim = PrimRenderer.NewRenderer(Projectile, 1, 8f, CorruptionHellfire.FireColor * 3);
+                prim = TrailRenderer.NewRenderer(Projectile, 1, 8f, CorruptionHellfire.FireColor * 3);
             }
 
             prim.Draw(Projectile.oldPos);

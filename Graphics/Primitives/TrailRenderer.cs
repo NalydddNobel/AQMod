@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.Primitives
 {
-    public class PrimRenderer : IPrimRenderer, ILoadable
+    public class TrailRenderer : IPrimRenderer, ILoadable
     {
         public const string DefaultPass = "Texture";
 
@@ -25,11 +25,11 @@ namespace Aequus.Graphics.Primitives
 
         protected List<VertexPositionColorTexture> vertices;
 
-        public PrimRenderer()
+        public TrailRenderer()
         {
         }
 
-        public PrimRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2))
+        public TrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2))
         {
             Texture = texture;
             Pass = pass;
@@ -41,24 +41,24 @@ namespace Aequus.Graphics.Primitives
             vertices = null;
         }
 
-        public static PrimRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
+        public static TrailRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
         {
-            return new PrimRenderer(TextureCache.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
+            return new TrailRenderer(TextureCache.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
         }
-        public static PrimRenderer NewRenderer(int type, float width, Func<Color> color)
+        public static TrailRenderer NewRenderer(int type, float width, Func<Color> color)
         {
             return NewRenderer(type, () => width, color);
         }
-        public static PrimRenderer NewRenderer(int type, Func<float> width, Color color)
+        public static TrailRenderer NewRenderer(int type, Func<float> width, Color color)
         {
             return NewRenderer(type, width, () => color);
         }
-        public static PrimRenderer NewRenderer(int type, float width, Color color)
+        public static TrailRenderer NewRenderer(int type, float width, Color color)
         {
             return NewRenderer(type, () => width, color);
         }
 
-        public static PrimRenderer NewRenderer(Projectile projectile, int type, float width, Color color)
+        public static TrailRenderer NewRenderer(Projectile projectile, int type, float width, Color color)
         {
             var prim = NewRenderer(type, width, () => color * projectile.Opacity);
             prim.drawOffset = projectile.Size / 2f;

@@ -32,6 +32,7 @@ namespace Aequus.NPCs.Monsters.Night
         public float ArmsLength { get => NPC.ai[3]; set => NPC.ai[3] = value; }
 
         public float[] oldArmsLength;
+        public TrailRenderer armTrail;
 
         public override void SetStaticDefaults()
         {
@@ -347,7 +348,8 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var armTrail = PrimRenderer.NewRenderer(1, 50f, Color.Blue);
+            if (armTrail == null)
+                armTrail = TrailRenderer.NewRenderer(1, 50f, Color.Blue.UseA(0));
             var texture = TextureAssets.Npc[Type].Value;
             var origin = NPC.frame.Size() / 2f;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);

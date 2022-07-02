@@ -180,6 +180,8 @@ Mods: {
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
+			ScribbleNotebook: Maxwell's Notebook
+			CorruptPot: Corrupt Pot
 			DisturbanceStaff: Disturbance Staff
 			HailstormStaff: Hailstorm Staff
 
@@ -219,14 +221,16 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			ScribbleNotebook: Maxwell's Notebook
-
 			Leecheel: Leecheel
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
 			Hexoplasm: Hexoplasm
 			UnenchantedStaff: Unenchanted Staff
 			
+			DustDevilBag: Treasure Bag (Dust Devil)
+			CrabsonBag: Treasure Bag (Crabson)
+			OmegaStariteBag: Treasure Bag (Omega Starite)
+
 			Moro: Moro
 			
 			SkeletonKey: Skeleton Key
@@ -486,10 +490,8 @@ Mods: {
 			BlurryDiscountCard: Blurry Discount Card
 			BusinessCard: Business Card
 			Crabsol: Crabsol
-			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteMask: Omega Starite Mask
 			OmegaStariteTrophy: Omega Starite Trophy
-			OmegaStariteBag: Treasure Bag (Omega Starite)
 			SuspiciousLookingSteak: Suspicious Looking Steak
 			HermitShell: Clamshell Helmet
 			StriderPalms: Strider Palms
@@ -533,7 +535,6 @@ Mods: {
 			SpaceShot: Space Shot
 			LotusStaff: Lotus Staff
 			CrimsonHandStaff: Crimson Hand Staff
-			CorruptPot: Corrupt Pot
 			ATM: ATM
 			SpectralLens: Spectral Lens
 			SpectreSoul: Spectre Soul
@@ -618,6 +619,8 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			ScribbleNotebook: Summons an object to fight for you
+			CorruptPot: Summons a corrupted plant to fight for you
 			DisturbanceStaff:
 				'''
 				Summons a mysterious red sprite to haunt your foes
@@ -720,7 +723,8 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
-			ScribbleNotebook: Summons an object to fight for you
+			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
+			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
@@ -1325,8 +1329,6 @@ Mods: {
 				'HE-HE'
 				'''
 			Crabsol: Only the strongest of people can wield this weapon in honor
-			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
-			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			SuspiciousLookingSteak:
 				'''
 				Gives multiple buffs
@@ -1374,7 +1376,6 @@ Mods: {
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
 			CrimsonHandStaff: Summons a crimson hand to fight for you
-			CorruptPot: Summons a corrupted plant to fight for you
 			ATM:
 				'''
 				Summons a flying safe to store your items

@@ -17,8 +17,8 @@ namespace Aequus.Projectiles.Magic
 
         public static float DrawOpacity;
 
-        private PrimRenderer prim;
-        private PrimRenderer bloomPrim;
+        private TrailRenderer prim;
+        private TrailRenderer bloomPrim;
 
         public int lightningCheck;
 
@@ -257,12 +257,12 @@ namespace Aequus.Projectiles.Magic
         {
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
+                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
+                bloomPrim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(8f), (p) => lightningBloomColor * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
             }
         }

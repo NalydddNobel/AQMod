@@ -157,11 +157,11 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             if (prim == null)
             {
-                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
+                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
             }
             if (colorPrim == null)
             {
-                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * (1f - p));
+                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * (1f - p));
             }
             if (reverseTrail)
             {

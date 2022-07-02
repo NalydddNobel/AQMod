@@ -45,8 +45,8 @@ namespace Aequus.NPCs.Monsters.Sky
         public static float LightningDrawProgress;
 
 
-        private PrimRenderer prim;
-        private PrimRenderer bloomPrim;
+        private TrailRenderer prim;
+        private TrailRenderer bloomPrim;
 
         public int frameIndex;
         public Color lightningBloomColor = new Color(128, 10, 5, 0);
@@ -1231,12 +1231,12 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
+                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass,
+                bloomPrim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }

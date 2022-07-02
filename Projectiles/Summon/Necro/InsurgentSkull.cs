@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class InsurgentSkull : ZombieBolt
     {
-        protected PrimRenderer smokePrim;
+        protected TrailRenderer smokePrim;
 
         public int homingDelay;
 
@@ -256,7 +256,7 @@ namespace Aequus.Projectiles.Summon.Necro
             {
                 if (smokePrim == null)
                 {
-                    smokePrim = new PrimRenderer(TextureCache.Trail[3].Value, PrimRenderer.DefaultPass, (p) => new Vector2(16f * Projectile.scale) * (1f - p), (p) => new Color(5, 60, 30, 235) * Projectile.Opacity * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
+                    smokePrim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(16f * Projectile.scale) * (1f - p), (p) => new Color(5, 60, 30, 235) * Projectile.Opacity * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
                 }
                 for (int i = 0; i < 3; i++)
                     smokePrim.Draw(Projectile.oldPos);

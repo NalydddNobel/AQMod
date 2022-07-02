@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
@@ -93,6 +94,15 @@ namespace Aequus.Items
 
         public override void SetDefaults(Item item)
         {
+            if (item.type >= Main.maxItemTypes)
+            {
+                short id = AequusGlowMasks.GetID(item.type);
+                if (id > 0)
+                {
+                    item.glowMask = id;
+                }
+            }
+
             if (item.type == ItemID.ShadowKey)
             {
                 item.rare = ItemRarityID.Blue;

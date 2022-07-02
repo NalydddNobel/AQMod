@@ -173,7 +173,7 @@ namespace Aequus.NPCs.Boss
         public static SoundStyle OofSound { get; private set; }
         public static SoundStyle StarBulletsSound { get; private set; }
 
-        private PrimRenderer prim;
+        private TrailRenderer prim;
 
         public List<Ring> rings;
         public float starDamageMultiplier;
@@ -1521,7 +1521,7 @@ namespace Aequus.NPCs.Boss
                     if (prim == null)
                     {
                         float radius = DIAMETER / 2f;
-                        prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }

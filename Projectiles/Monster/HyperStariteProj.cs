@@ -35,5 +35,10 @@ namespace Aequus.Projectiles.Monster
             if (target.townNPC || target.life < 5)
                 damage = (int)(damage * 0.1f);
         }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
+        }
     }
 }

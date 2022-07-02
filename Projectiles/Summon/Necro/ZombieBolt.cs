@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class ZombieBolt : ModProjectile
     {
-        protected PrimRenderer prim;
+        protected TrailRenderer prim;
         protected float primScale;
         protected Color primColor;
 
@@ -84,7 +84,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
+                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
             }
 
             int trailLength = maxLength > 0 ? maxLength : ProjectileID.Sets.TrailCacheLength[Type];

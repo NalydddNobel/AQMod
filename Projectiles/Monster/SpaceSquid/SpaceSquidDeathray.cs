@@ -12,8 +12,8 @@ namespace Aequus.Projectiles.Monster.SpaceSquid
 {
     public class SpaceSquidDeathray : ModProjectile
     {
-        private PrimRenderer prim;
-        private PrimRenderer smokePrim;
+        private TrailRenderer prim;
+        private TrailRenderer smokePrim;
 
         public override void SetStaticDefaults()
         {
@@ -126,11 +126,11 @@ namespace Aequus.Projectiles.Monster.SpaceSquid
                     Projectile.Center + new Vector2(Main.screenWidth * 2f * Projectile.direction, 0f) - Main.screenPosition, };
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[1].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (smokePrim == null)
             {
-                smokePrim = new PrimRenderer(TextureCache.Trail[3].Value, PrimRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                smokePrim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p) * (1f - p)), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (Main.LocalPlayer.gravDir == -1)
             {

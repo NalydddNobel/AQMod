@@ -12,7 +12,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
 {
     public class TrollStar : ModProjectile
     {
-        private PrimRenderer prim;
+        private TrailRenderer prim;
 
         public override void SetStaticDefaults()
         {
@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Monster.OmegaStarite
                 intensity = 1f - playerDistance / 1200f;
             if (prim == null)
             {
-                prim = new PrimRenderer(TextureCache.Trail[0].Value, PrimRenderer.DefaultPass,
+                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(20 - p * 20) * (1f + intensity * 2f), (p) => getColor(Main.GlobalTimeWrappedHourly + p) * 0.5f * (1f - p));
             }
             for (int i = 0; i < 4; i++)

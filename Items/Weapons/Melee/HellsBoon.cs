@@ -8,14 +8,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee
 {
-    [Glowmask]
+    [GlowMask]
     public class HellsBoon : ModItem
     {
         public override void SetStaticDefaults()
         {
             DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.LightsBane, Type));
 
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -35,7 +35,6 @@ namespace Aequus.Items.Weapons.Melee
             Item.shootSpeed = 35f;
             Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
             Item.scale = 1.2f;
-            Item.SetGlowMask();
         }
 
         public override Color? GetAlpha(Color lightColor)

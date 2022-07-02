@@ -126,7 +126,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 if (primBlue == null)
                 {
-                    primBlue = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(15, 75, 255, 75) * (1f - p) * (1f - p) * (1f - p));
+                    primBlue = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(15, 75, 255, 75) * (1f - p) * (1f - p) * (1f - p));
                 }
                 if (reverseTrail)
                 {
@@ -143,7 +143,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             if (prim == null)
             {
-                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, PrimRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(75, 180, 255, 0) * (1f - p));
+                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(75, 180, 255, 0) * (1f - p));
             }
             if (reverseTrail)
             {

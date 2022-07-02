@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    [Glowmask]
+    [GlowMask]
     public class Baozhu : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -32,7 +32,6 @@ namespace Aequus.Items.Weapons.Ranged
             Item.knockBack = 7f;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
-            Item.SetGlowMask();
         }
 
         public override void AddRecipes()

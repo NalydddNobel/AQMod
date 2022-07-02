@@ -43,7 +43,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override bool? CanDamage()
         {
-            return (AnimProgress > 0.5f && AnimProgress < 0.8f) ? null : false;
+            return (AnimProgress > 0.25f && AnimProgress < 0.8f) ? null : false;
         }
 
         public override void AI()
