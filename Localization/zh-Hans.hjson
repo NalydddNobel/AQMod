@@ -180,6 +180,8 @@ Mods: {
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 
+			ScribbleNotebook: 麦克斯韦的笔记本
+			CorruptPot: 腐食罐
 			DisturbanceStaff: 扰乱法杖
 			HailstormStaff: 雹暴法杖
 
@@ -219,13 +221,15 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			ScribbleNotebook: 麦克斯韦的笔记本
-
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 			Hexoplasm: 冥狱融质
 			UnenchantedStaff: 未附魔的法杖
+
+			DustDevilBag: 宝藏袋 (沙尘恶魔)
+			CrabsonBag: 宝藏袋 (巨蟹蛤)
+			OmegaStariteBag: 宝藏袋 (终末之星)
 
 			Moro: 摩洛
 
@@ -486,10 +490,8 @@ Mods: {
 			BlurryDiscountCard: 字迹模糊的优惠卡
 			BusinessCard: 商务卡
 			Crabsol: 蟹壳剑
-			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteMask: 终末之星面具
 			OmegaStariteTrophy: 终末之星纪念章
-			OmegaStariteBag: 宝藏袋 (终末之星)
 			SuspiciousLookingSteak: 可疑牛排
 			HermitShell: 蟹壳头盔
 			StriderPalms: 长足护胫
@@ -533,7 +535,6 @@ Mods: {
 			SpaceShot: 太空手枪
 			LotusStaff: 莲花杖
 			CrimsonHandStaff: 猩红血手法杖
-			CorruptPot: 腐食罐
 			ATM: ATM
 			SpectralLens: 幽冥透镜
 			SpectreSoul: 幽冥之魂
@@ -618,6 +619,8 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			ScribbleNotebook: 召唤一件物体为你而战
+			CorruptPot: 召唤一株腐化植物为你而战
 			DisturbanceStaff:
 				'''
 				召唤一个神秘的红色精灵折磨你的敌人
@@ -719,8 +722,9 @@ Mods: {
 				大幅度增加移动速度
 				'可能会给那些在地下搜索的人带来好运'
 				'''
-				
-			ScribbleNotebook: 召唤一件物体为你而战
+
+			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
+			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
@@ -1325,8 +1329,6 @@ Mods: {
 				'HE-HE'
 				'''
 			Crabsol: 只有最强壮的人才能举起这把剑
-			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
-			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			SuspiciousLookingSteak:
 				'''
 				使你获得许多增益
@@ -1374,7 +1376,6 @@ Mods: {
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
 			CrimsonHandStaff: 召唤一个猩红血手为你而战
-			CorruptPot: 召唤一株腐化植物为你而战
 			ATM:
 				'''
 				召唤一个用于存放物品的飞行保险箱
