@@ -170,6 +170,8 @@ Mods: {
 			Mendshroom: Mendshroom
 			GlowCore: Glow Core
 
+			FishyFins: Fishy Fins
+
 			BattleAxe: Battle Axe
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
@@ -348,7 +350,6 @@ Mods: {
 			Extractor: Extractor Cog
 			SparrowWings: Sparrow Wings
 			Thunderbird: Ancient Thunderbird
-			FishyFins: Fish Fins
 			ArachnotronVisor: Arachnotron Visor
 			ArachnotronRibcage: Arachnotron Ribcage
 			ArachnotronRevvers: Arachnotron Revvers
@@ -608,6 +609,8 @@ Mods: {
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
 			GlowCore: You and your projectiles emit light
+
+			FishyFins: "{$Mods.Aequus.nalyd}"
 
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
@@ -1014,7 +1017,6 @@ Mods: {
 				{$CommonItemTooltip.FlightAndSlowfall}
 				Has immense horizontal speed!
 				'''
-			FishyFins: "{$Mods.Aequus.nalyd}"
 			ArachnotronVisor:
 				'''
 				Increases melee damage, crit, and summon damage by 10%

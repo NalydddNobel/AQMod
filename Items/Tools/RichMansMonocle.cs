@@ -13,7 +13,7 @@ namespace Aequus.Items.Tools
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.Radar);
+            Item.CloneDefaults(ItemID.LifeformAnalyzer);
             Item.accessory = false;
         }
 

@@ -143,7 +143,7 @@ namespace Aequus.NPCs.Friendly
 
             var npc = Main.npc[Main.LocalPlayer.talkNPC];
             var merchant = (SkyMerchant)npc.ModNPC;
-            //if (!merchant.setupShop)
+            if (!merchant.setupShop)
             {
                 merchant.SetupShopCache(Main.LocalPlayer);
                 npc.netUpdate = true;
@@ -173,9 +173,7 @@ namespace Aequus.NPCs.Friendly
                 }
                 if (merchant.shopPainting != null)
                 {
-                    shop.item[nextSlot] = merchant.shopPainting.Clone();
-                    shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
-                    nextSlot++;
+                    shop.item[nextSlot++] = merchant.shopPainting.Clone();
                 }
             }
         }
