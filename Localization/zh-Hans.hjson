@@ -170,6 +170,8 @@ Mods: {
 			Mendshroom: 愈灵菇
 			GlowCore: 发光核心
 
+			FishyFins: 可疑鱼鳍
+
 			BattleAxe: 战斧
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
@@ -348,7 +350,6 @@ Mods: {
 			Extractor: 提炼装备
 			SparrowWings: 雀翼
 			Thunderbird: 远古雷鸟
-			FishyFins: 鱼鳍
 			ArachnotronVisor: 机械蜘蛛面具
 			ArachnotronRibcage: 机械蜘蛛胸甲
 			ArachnotronRevvers: 机械蜘蛛护胫
@@ -608,6 +609,8 @@ Mods: {
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
 			GlowCore: 你和你的弹幕会发光
+
+			FishyFins: "{$Mods.Aequus.nalyd}"
 
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
@@ -1014,7 +1017,6 @@ Mods: {
 				{$CommonItemTooltip.FlightAndSlowfall}
 				有着强大的水平速度!
 				'''
-			FishyFins: "{$Mods.Aequus.nalyd}"
 			ArachnotronVisor:
 				'''
 				增加10%近战伤害、暴击率和召唤伤害
