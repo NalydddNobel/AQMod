@@ -252,14 +252,17 @@ Mods: {
 
 			BalloonKit: Zilla的气球装备
 
+			RichMansMonocle: 富翁的单片眼镜
+
+			Pumpinator: 泵风器
 			Bellows: 风箱
 
-			SnowRoulette: 雪原转盘
-			GlowingMushroomsRoulette: 发光蘑菇转盘
-			DesertRoulette: 沙漠转盘
-			SkyRoulette: 天空转盘
-			GoldenRoulette: 黄金转盘
-			Roulette: 转盘
+			SnowRoulette: 雪原老虎机
+			GlowingMushroomsRoulette: 发光蘑菇老虎机
+			DesertRoulette: 沙漠老虎机
+			SkyRoulette: 天空老虎机
+			GoldenRoulette: 黄金老虎机
+			Roulette: 老虎机
 
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
@@ -267,6 +270,12 @@ Mods: {
 
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
+
+			YinYangPainting: 均衡
+			InsurgentPainting: 变革
+			BongBongPainting: 邦邦
+			CatalystPainting: 来自另一个宇宙的岩石
+			OriginPainting: 起源
 
 			RedSpriteTrophy: 红色精灵纪念章
 
@@ -401,7 +410,6 @@ Mods: {
 			LarvaEel: 寄生鳗幼虫
 			CentennialLight: 百年灯
 			Globebulb: 球形灯泡
-			Pumpinator: 吹风机
 			VampireHook: 血族
 			BlackBookofUntoldLegends: "'无名传说'"
 			EquivalenceMachine: 等均仪
@@ -479,8 +487,6 @@ Mods: {
 			JeweledCandelabra: 宝石烛台
 			JeweledChandelier: 宝石大吊灯
 			OmegaStaritePainting: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
-			RockFromAnAlternateUniverse: "'一块来自平行宇宙的石头'"
-			Origin: "'起源'"
 			GhostAmulet: 鬼灵护符
 			CopperSeal: 铜制容器
 			SilverSeal: 银制容器
@@ -750,6 +756,14 @@ Mods: {
 				在下雨时, 捕鱼效果更强
 				'''
 
+			RichMansMonocle: 允许你在NPC商店外查看商品价格
+
+			Pumpinator:
+				'''
+				渐进更改风速
+				可移动镇民、敌人和都那么
+				'手持式灵感来源!'
+				'''
 			Bellows: 
 				'''
 				将你向你瞄准的反方向推开
@@ -815,6 +829,29 @@ Mods: {
 				'''
 
 			RecyclingMachine: 允许你回收垃圾物品
+
+			YinYangPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			BongBongPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			InsurgentPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			CatalystPainting:
+				'''
+				The great might of an interstellar nebula!
+				'N.T... 来自另一个宇宙'
+				'''
+			OriginPainting:
+				'''
+				Aequus之起源
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
 
 			GhostlyGrave: 将你的墓碑变为幽魂
 
@@ -1137,12 +1174,6 @@ Mods: {
 			LarvaEel: 提供生命再生
 			CentennialLight: 大幅度加速时间的流逝
 			Globebulb: 加速时间的流逝
-			Pumpinator:
-				'''
-				用风吹退你面前的东西
-				可更改风的速度
-				'手持灵感!'
-				'''
 			VampireHook:
 				'''
 				自动瞄准附近的敌人
@@ -1263,16 +1294,6 @@ Mods: {
 				'''
 				'你不知道你会得到什么!'
 				{$Mods.Aequus.PaintingSignature.niker}
-				'''
-			RockFromAnAlternateUniverse:
-				'''
-				'星际星云的宏伟之力!'
-				'N.T... 来自另一个宇宙'
-				'''
-			Origin:
-				'''
-				Aequus之起源
-				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 			MothmanMask:
 				'''
