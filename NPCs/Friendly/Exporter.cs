@@ -53,14 +53,14 @@ namespace Aequus.NPCs.Friendly
             });
 
             NPC.Happiness
-            .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
-            .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
-            .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
-            .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
+                .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
             ShopQuotes.Database
                 .AddNPC(Type)
@@ -145,6 +145,7 @@ namespace Aequus.NPCs.Friendly
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RichMansMonocle>());
         }
 
         //public static bool TryPlaceQuestTile(int x, int y)

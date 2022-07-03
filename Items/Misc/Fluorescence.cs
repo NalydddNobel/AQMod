@@ -11,10 +11,10 @@ namespace Aequus.Items.Misc
         public override void SetStaticDefaults()
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
-            ItemID.Sets.SortingPriorityMaterials[Type] = MaterialSort.SoulOfFlight;
+            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.SoulOfFlight;
             ItemID.Sets.ItemNoGravity[Type] = true;
             ItemID.Sets.AnimatesAsSoul[Type] = true;
-            this.SetResearch(25);
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()

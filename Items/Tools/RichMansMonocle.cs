@@ -2,12 +2,10 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Tools
 {
-    public class FaultyCoin : ModItem, Hooks.IUpdateBank
+    public class RichMansMonocle : ModItem, Hooks.IUpdateBank
     {
-        public float Chance => 0.1f;
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -15,20 +13,18 @@ namespace Aequus.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 20;
-            Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.CloneDefaults(ItemID.Radar);
+            Item.accessory = false;
         }
 
         public override void UpdateInventory(Player player)
         {
-            player.Aequus().scamChance += Chance;
+            player.Aequus().showPrices = true;
         }
 
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
-            aequus.scamChance += Chance;
+            aequus.showPrices = true;
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
+using Aequus.Items;
+using Aequus.Items.Placeable.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Mounts;
@@ -38,6 +40,7 @@ namespace Aequus.NPCs.Friendly
         public int balloonColor;
         public bool init;
 
+        public Item shopPainting;
         public Item shopBanner;
         public Item shopAccessory;
 
@@ -90,6 +93,7 @@ namespace Aequus.NPCs.Friendly
             setupShop = false;
             shopBanner = null;
             shopAccessory = null;
+            shopPainting = null;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -139,7 +143,7 @@ namespace Aequus.NPCs.Friendly
 
             var npc = Main.npc[Main.LocalPlayer.talkNPC];
             var merchant = (SkyMerchant)npc.ModNPC;
-            if (!merchant.setupShop)
+            //if (!merchant.setupShop)
             {
                 merchant.SetupShopCache(Main.LocalPlayer);
                 npc.netUpdate = true;
@@ -150,31 +154,49 @@ namespace Aequus.NPCs.Friendly
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
 
-            if (merchant == null)
+            if (merchant != null)
             {
-                return;
-            }
-
-            if (merchant.shopAccessory != null)
-            {
-                shop.item[nextSlot] = merchant.shopAccessory.Clone();
-                shop.item[nextSlot].shopCustomPrice = (int)(shop.item[nextSlot].value * 1.5f);
-                shop.item[nextSlot].shopCustomPrice /= 100;
-                shop.item[nextSlot].shopCustomPrice *= 100;
-                shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
-                nextSlot++;
-            }
-            if (merchant.shopBanner != null)
-            {
-                shop.item[nextSlot] = merchant.shopBanner.Clone();
-                shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
-                nextSlot++;
+                if (merchant.shopAccessory != null)
+                {
+                    shop.item[nextSlot] = merchant.shopAccessory.Clone();
+                    shop.item[nextSlot].shopCustomPrice = (int)(shop.item[nextSlot].value * 1.5f);
+                    shop.item[nextSlot].shopCustomPrice /= 100;
+                    shop.item[nextSlot].shopCustomPrice *= 100;
+                    shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
+                    nextSlot++;
+                }
+                if (merchant.shopBanner != null)
+                {
+                    shop.item[nextSlot] = merchant.shopBanner.Clone();
+                    shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
+                    nextSlot++;
+                }
+                if (merchant.shopPainting != null)
+                {
+                    shop.item[nextSlot] = merchant.shopPainting.Clone();
+                    shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
+                    nextSlot++;
+                }
             }
         }
         public void SetupShopCache(Player player)
         {
             shopBanner = GetBannerItem();
             shopAccessory = GetAccessoryItem(player);
+            shopPainting = GetPaintingItem();
+        }
+        public Item GetPaintingItem()
+        {
+            switch (Main.rand.Next(4))
+            {
+                case 0:
+                    return AequusItem.SetDefaults<CatalystPainting>();
+                case 1:
+                    return AequusItem.SetDefaults<BongBongPainting>();
+                case 2:
+                    return AequusItem.SetDefaults<YinYangPainting>();
+            }
+            return null;
         }
         public Item GetAccessoryItem(Player player)
         {
@@ -184,7 +206,7 @@ namespace Aequus.NPCs.Friendly
             //Main.NewText("Comparison Value: " + maxPrice, Colors.CoinPlatinum);
             for (int i = 3; i < Player.SupportedSlotsAccs + 3; i++)
             {
-                if (player.IsAValidEquipmentSlotForIteration(i) && !player.armor[i].IsAir)
+                if (player.IsAValidEquipmentSlotForIteration(i) && !player.armor[i].IsAir && player.armor[i].accessory)
                 {
                     var testItem = player.armor[i].Clone();
                     int prefix = testItem.prefix;

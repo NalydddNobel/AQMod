@@ -9,9 +9,9 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[Type] = MaterialSort.SoulOfFlight;
+            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.SoulOfFlight;
             ItemID.Sets.ItemNoGravity[Type] = true;
-            this.SetResearch(25);
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()

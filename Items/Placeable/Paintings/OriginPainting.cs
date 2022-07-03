@@ -3,18 +3,19 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable
+namespace Aequus.Items.Placeable.Paintings
 {
-    public class Origin : ModItem
+    [LegacyName("Origin")]
+    public class OriginPainting : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.Origin);
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.OriginPainting);
             Item.maxStack = 99;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;

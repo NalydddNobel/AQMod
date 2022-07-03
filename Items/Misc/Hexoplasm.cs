@@ -9,8 +9,8 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[Type] = MaterialSort.Ectoplasm;
-            this.SetResearch(25);
+            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.Ectoplasm;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()

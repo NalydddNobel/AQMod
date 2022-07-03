@@ -9,24 +9,25 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    //[LegacyName("WallPaintings")]
-    public class WallPaintings : ModTile
+    public class WallPaintings3x2 : ModTile
     {
-        public const int OriginPainting = 0;
-        public const int RockFromAnAlternateUniversePainting = 1;
-        public const int OmegaStaritePainting = 2;
+        public const int InsurgentPainting = 0;
+        public const int BongBongPainting = 1;
+        public const int YinYangPainting = 2;
 
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLavaDeath[Type] = true;
             TileID.Sets.FramesOnKillWall[Type] = true;
+            TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
+            TileObjectData.newTile.Height = 2;
+            TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
             DustType = DustID.WoodFurniture;
-            TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(120, 85, 60), Language.GetText("MapObject.Painting"));
         }
 
@@ -34,11 +35,14 @@ namespace Aequus.Tiles.Furniture
         {
             switch (frameX / 54)
             {
-                case OriginPainting:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<OriginPainting>());
+                case InsurgentPainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<InsurgentPainting>());
                     break;
-                case RockFromAnAlternateUniversePainting:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<CatalystPainting>());
+                case BongBongPainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<BongBongPainting>());
+                    break;
+                case YinYangPainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<YinYangPainting>());
                     break;
             }
         }

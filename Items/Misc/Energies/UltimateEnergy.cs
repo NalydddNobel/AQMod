@@ -16,6 +16,12 @@ namespace Aequus.Items.Misc.Energies
         protected override Vector3 LightColor => new Vector3(0.5f, 0.5f, 0.5f);
         public override int Rarity => ItemRarityID.Pink;
 
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.UltimateEnergy;
+        }
+
         public override void AddRecipes()
         {
             CreateRecipe()

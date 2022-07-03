@@ -70,6 +70,8 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
 
+        public bool showPrices;
+
         public int ears;
         public int cEars;
 
@@ -372,6 +374,8 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            showPrices = false;
+
             ears = 0;
             cEars = 0;
 
@@ -552,7 +556,7 @@ namespace Aequus
                     {
                         update = true;
                     }
-                    else if (bank.item[i].ModItem is IUpdateBank b)
+                    else if (bank.item[i].ModItem is Hooks.IUpdateBank b)
                     {
                         b.UpdateBank(Player, this, i, bankType);
                     }

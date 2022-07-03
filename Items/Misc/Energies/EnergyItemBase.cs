@@ -39,7 +39,8 @@ namespace Aequus.Items.Misc.Energies
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
-            this.SetResearch(3);
+            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.Energies;
+            SacrificeTotal = 3;
         }
 
         public override void SetDefaults()

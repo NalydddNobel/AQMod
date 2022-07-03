@@ -117,7 +117,7 @@ namespace Aequus.Items.Accessories
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
 
             SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
         }
@@ -148,6 +148,11 @@ namespace Aequus.Items.Accessories
         void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cCelesteTorus = dyeItem.dye;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveCritChance();
         }
 
         public override void AddRecipes()

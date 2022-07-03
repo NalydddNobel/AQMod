@@ -195,6 +195,17 @@ namespace Aequus.Items
             }
         }
 
+        public static Item SetDefaults(int type, bool checkMaterial = true)
+        {
+            var i = new Item();
+            i.SetDefaults(type, noMatCheck: !checkMaterial);
+            return i;
+        }
+        public static Item SetDefaults<T>(bool checkMaterial = true) where T : ModItem
+        {
+            return SetDefaults(ModContent.ItemType<T>(), checkMaterial);
+        }
+
         public static int NewItemCloned(IEntitySource source, Vector2 pos, Item item)
         {
             int i = Item.NewItem(source, pos, item.type, item.stack);

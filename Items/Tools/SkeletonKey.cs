@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools
 {
-    public class SkeletonKey : ModItem, IUpdateBank
+    public class SkeletonKey : ModItem, Hooks.IUpdateBank
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

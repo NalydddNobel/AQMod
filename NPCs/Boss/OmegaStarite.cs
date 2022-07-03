@@ -10,8 +10,8 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
 using Aequus.Items.Misc.Pets;
 using Aequus.Items.Misc.Summons;
-using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.BossTrophies;
+using Aequus.Items.Placeable.Paintings;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.OmegaStarite;
@@ -1613,7 +1613,7 @@ namespace Aequus.NPCs.Boss
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
-                .AddFlawless<Origin>()
+                .AddFlawless<OriginPainting>()
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)

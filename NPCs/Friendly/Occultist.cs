@@ -4,6 +4,7 @@ using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Summon.Candles;
 using System.Collections.Generic;
@@ -107,6 +108,10 @@ namespace Aequus.NPCs.Friendly
             if (!Main.dayTime && Main.bloodMoon)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
+            }
+            if (!Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
             }
         }
 

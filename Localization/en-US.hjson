@@ -251,15 +251,18 @@ Mods: {
 			Meathook: Meathook
 
 			BalloonKit: Zilla's Balloon Kit
+						
+			RichMansMonocle: Rich Man's Monocle
 
+			Pumpinator: Pumpinator
 			Bellows: Bellows
 
-			SnowRoulette: Snow Roulette
-			GlowingMushroomsRoulette: Glowing Mushrooms Roulette
-			DesertRoulette: Desert Roulette
-			SkyRoulette: Sky Roulette
-			GoldenRoulette: Golden Roulette
-			Roulette: Roulette
+			SnowRoulette: Snow Slot Machine
+			GlowingMushroomsRoulette: Glowing Mushrooms Slot Machine
+			DesertRoulette: Desert Slot Machine
+			SkyRoulette: Sky Slot Machine
+			GoldenRoulette: Golden Slot Machine
+			Roulette: Slot Machine
 
 			RedSpriteMask: Red Sprite Mask
 			SpaceSquidMask: Space Squid Mask
@@ -267,6 +270,12 @@ Mods: {
 
 			SedimentaryRockWall: Sedimentary Rock Wall
 			SedimentaryRock: Sedimentary Rock
+
+			YinYangPainting: Equalities
+			InsurgentPainting: Revolution
+			BongBongPainting: BongBong
+			CatalystPainting: Rock from an Alternate Universe
+			OriginPainting: Origin
 
 			RedSpriteTrophy: Red Sprite Trophy
 
@@ -401,7 +410,6 @@ Mods: {
 			LarvaEel: Larva Eel
 			CentennialLight: Centennial Light
 			Globebulb: Globebulb
-			Pumpinator: Pumpinator
 			VampireHook: Bloodline
 			BlackBookofUntoldLegends: "'Untold Legends'"
 			EquivalenceMachine: Equivalence Machine
@@ -479,8 +487,6 @@ Mods: {
 			JeweledCandelabra: Jeweled Candelabra
 			JeweledChandelier: Jeweled Chandelier
 			OmegaStaritePainting: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
-			RockFromAnAlternateUniverse: "'Rock from an Alternate Universe'"
-			Origin: "'Origin'"
 			GhostAmulet: Ghost Amulet
 			CopperSeal: Copper Seal
 			SilverSeal: Silver Seal
@@ -750,6 +756,14 @@ Mods: {
 				Extra powerful during the rain
 				'''
 
+			RichMansMonocle: Allows you to view item prices outside of an NPC shop
+
+			Pumpinator:
+				'''
+				Gradually changes the speed of the wind
+				Can move villagers, enemies and projectiles
+				'Handheld inspiration!'
+				'''
 			Bellows: 
 				'''
 				Moves you in the opposite direction you are aiming
@@ -815,6 +829,29 @@ Mods: {
 				'''
 
 			RecyclingMachine: Allows you to recycle trash items
+
+			YinYangPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			BongBongPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			InsurgentPainting:
+				'''
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
+			CatalystPainting:
+				'''
+				The great might of an interstellar nebula!
+				'N.T... from another universe'
+				'''
+			OriginPainting:
+				'''
+				The birthplace of Aequus
+				{$Mods.Aequus.PaintingSignature.NalydT}
+				'''
 
 			GhostlyGrave: Converts your grave into a ghost
 
@@ -1137,12 +1174,6 @@ Mods: {
 			LarvaEel: Provides life regeneration
 			CentennialLight: Greatly speeds up time
 			Globebulb: Speeds up time
-			Pumpinator:
-				'''
-				Gradually changes the speed of the wind
-				Can move villagers, enemies and projectiles
-				'Handheld inspiration!'
-				'''
 			VampireHook:
 				'''
 				Automatically aims towards nearby enemies
@@ -1263,16 +1294,6 @@ Mods: {
 				'''
 				'You have no idea what's in store for you!'
 				{$Mods.Aequus.PaintingSignature.niker}
-				'''
-			RockFromAnAlternateUniverse:
-				'''
-				'The great might of an interstellar nebula!'
-				'N.T... from another universe'
-				'''
-			Origin:
-				'''
-				The birthplace of Aequus
-				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 			MothmanMask:
 				'''
