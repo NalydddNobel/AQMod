@@ -7,15 +7,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
-    public sealed class BallisticScreecher : ModItem
+    [GlowMask]
+    public class BallisticScreecher : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.CrimsonRod, Type));
-
             Item.staff[Item.type] = true;
-
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.CrimsonRod, Type));
         }
 
         public override void SetDefaults()

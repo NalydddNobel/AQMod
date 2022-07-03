@@ -7,13 +7,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
+    [GlowMask]
     public class HamaYumi : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.DemonBow, Type));
-
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.DemonBow, Type));
         }
 
         public override void SetDefaults()

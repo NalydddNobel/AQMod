@@ -420,7 +420,7 @@ namespace Aequus.Biomes
         {
             return registeredSacrifices[netID];
         }
-        public static void Register(SacrificeData sacrifice)
+        public static void RegisterSacrifice(SacrificeData sacrifice)
         {
             registeredSacrifices.Add(sacrifice.OriginalItem, sacrifice);
             upgradeToOriginal.Add(sacrifice.NewItem, sacrifice.OriginalItem);

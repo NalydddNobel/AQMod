@@ -13,9 +13,8 @@ namespace Aequus.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.BloodButcherer, Type));
-
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.BloodButcherer, Type));
         }
 
         public override void SetDefaults()

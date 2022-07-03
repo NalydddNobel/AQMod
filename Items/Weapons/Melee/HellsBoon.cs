@@ -13,9 +13,8 @@ namespace Aequus.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.LightsBane, Type));
-
             SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.LightsBane, Type));
         }
 
         public override void SetDefaults()

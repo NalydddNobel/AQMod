@@ -9,9 +9,8 @@ namespace Aequus.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.Bunny, Type));
-
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.Bunny, Type));
         }
 
         public override void SetDefaults()

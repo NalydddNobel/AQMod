@@ -7,15 +7,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
+    [GlowMask]
     public class Triacanthorn : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DemonSiegeInvasion.Register(DemonSiegeInvasion.PHM(ItemID.Vilethorn, Type));
-
             Item.staff[Type] = true;
-
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.Vilethorn, Type));
         }
 
         public override void SetDefaults()
