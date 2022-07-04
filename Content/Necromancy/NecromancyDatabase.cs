@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Content.Necromancy.Aggression;
 using Aequus.Items.Weapons.Summon.Necro;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,10 @@ namespace Aequus.Content.Necromancy
         public override void Load()
         {
             NecromancyDebuffs = new List<int>();
-            AggroForcer.LoadAggressions();
+            AggressionType.LoadAggressions();
             PopulateEnemyStats();
         }
-        private void PopulateEnemyStats()
+        private static void PopulateEnemyStats()
         {
             NPCs = new Dictionary<int, GhostInfo>()
             {
@@ -86,10 +87,10 @@ namespace Aequus.Content.Necromancy
                 [NPCID.Drippler] = GhostInfo.One,
                 [NPCID.FlyingFish] = GhostInfo.One,
                 [NPCID.Tumbleweed] = GhostInfo.One,
-                [NPCID.GoblinArcher] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
-                [NPCID.GoblinPeon] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
-                [NPCID.GoblinThief] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
-                [NPCID.GoblinWarrior] = GhostInfo.One.WithAggro(AggroForcer.GoblinArmy),
+                [NPCID.GoblinArcher] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
+                [NPCID.GoblinPeon] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
+                [NPCID.GoblinThief] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
+                [NPCID.GoblinWarrior] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
                 [NPCID.ServantofCthulhu] = GhostInfo.One,
                 [NPCID.SlimeRibbonRed] = GhostInfo.One,
                 [NPCID.SlimeRibbonGreen] = GhostInfo.One,
@@ -197,7 +198,7 @@ namespace Aequus.Content.Necromancy
                 [NPCID.Werewolf] = GhostInfo.Three,
                 [NPCID.Wolf] = GhostInfo.Three,
                 [NPCID.SkeletonArcher] = GhostInfo.Three,
-                [NPCID.WanderingEye] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
+                [NPCID.WanderingEye] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
                 [NPCID.Clown] = GhostInfo.Three,
                 [NPCID.ChatteringTeethBomb] = GhostInfo.Three,
                 [NPCID.SandShark] = GhostInfo.Three,
@@ -207,31 +208,31 @@ namespace Aequus.Content.Necromancy
                 [NPCID.BloodSquid] = GhostInfo.Three,
                 [NPCID.AngryNimbus] = GhostInfo.Three,
                 [NPCID.RainbowSlime] = GhostInfo.Three,
-                [NPCID.GoblinSummoner] = GhostInfo.Three.WithAggro(AggroForcer.GoblinArmy),
-                [NPCID.PirateCorsair] = GhostInfo.Three.WithAggro(AggroForcer.PirateInvasion),
-                [NPCID.PirateCrossbower] = GhostInfo.Three.WithAggro(AggroForcer.PirateInvasion),
-                [NPCID.PirateDeadeye] = GhostInfo.Three.WithAggro(AggroForcer.PirateInvasion),
-                [NPCID.PirateDeckhand] = GhostInfo.Three.WithAggro(AggroForcer.PirateInvasion),
-                [NPCID.PirateGhost] = GhostInfo.Three.WithAggro(AggroForcer.PirateInvasion),
-                [NPCID.MothronSpawn] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.MothronEgg] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Butcher] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.CreatureFromTheDeep] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Frankenstein] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Fritz] = GhostInfo.Three.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Splinterling] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.Hellhound] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.Poltergeist] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.ZombieElf] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.ZombieElfBeard] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.ZombieElfGirl] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.GingerbreadMan] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.ElfArcher] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.Yeti] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.Nutcracker] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.NutcrackerSpinning] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.Flocko] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
-                [NPCID.ElfCopter] = GhostInfo.Three.WithAggro(AggroForcer.NightTime),
+                [NPCID.GoblinSummoner] = GhostInfo.Three.WithAggro(AggressionType.GoblinArmy),
+                [NPCID.PirateCorsair] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
+                [NPCID.PirateCrossbower] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
+                [NPCID.PirateDeadeye] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
+                [NPCID.PirateDeckhand] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
+                [NPCID.PirateGhost] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
+                [NPCID.MothronSpawn] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.MothronEgg] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.Butcher] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.CreatureFromTheDeep] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.Frankenstein] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.Fritz] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
+                [NPCID.Splinterling] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.Hellhound] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.Poltergeist] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.ZombieElf] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.ZombieElfBeard] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.ZombieElfGirl] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.GingerbreadMan] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.ElfArcher] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.Yeti] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.Nutcracker] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.NutcrackerSpinning] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.Flocko] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
+                [NPCID.ElfCopter] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
 
                 [NPCID.BoneLee] = GhostInfo.Four,
                 [NPCID.BigMimicCorruption] = GhostInfo.Four,
@@ -262,37 +263,37 @@ namespace Aequus.Content.Necromancy
                 [NPCID.SkeletonCommando] = GhostInfo.Four,
                 [NPCID.SkeletonSniper] = GhostInfo.Four,
                 [NPCID.TacticalSkeleton] = GhostInfo.Four,
-                [NPCID.GoblinShark] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.BloodNautilus] = GhostInfo.Four.WithAggro(AggroForcer.BloodMoon),
+                [NPCID.GoblinShark] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.BloodNautilus] = GhostInfo.Four.WithAggro(AggressionType.BloodMoon),
                 [NPCID.IceGolem] = GhostInfo.Four,
                 [NPCID.SandElemental] = GhostInfo.Four,
-                [NPCID.Mothron] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.DeadlySphere] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.DrManFly] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Eyezor] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Nailhead] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Psycho] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Reaper] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.ThePossessed] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.Vampire] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.VampireBat] = GhostInfo.Four.WithAggro(AggroForcer.Eclipse),
-                [NPCID.BrainScrambler] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.GigaZapper] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.GrayGrunt] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MartianEngineer] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MartianOfficer] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MartianWalker] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.RayGunner] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.Scutlix] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MartianTurret] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MartianSaucerCore] = GhostInfo.Four.WithAggro(AggroForcer.MartianMadness),
-                [NPCID.MourningWood] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.HeadlessHorseman] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.Krampus] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.PresentMimic] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.Everscream] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.SantaNK1] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
-                [NPCID.IceQueen] = GhostInfo.Four.WithAggro(AggroForcer.NightTime),
+                [NPCID.Mothron] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.DeadlySphere] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.DrManFly] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.Eyezor] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.Nailhead] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.Psycho] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.Reaper] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.ThePossessed] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.Vampire] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.VampireBat] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
+                [NPCID.BrainScrambler] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.GigaZapper] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.GrayGrunt] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MartianEngineer] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MartianOfficer] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MartianWalker] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.RayGunner] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.Scutlix] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MartianTurret] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MartianSaucerCore] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
+                [NPCID.MourningWood] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.HeadlessHorseman] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.Krampus] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.PresentMimic] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.Everscream] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.SantaNK1] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
+                [NPCID.IceQueen] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
                 [NPCID.NebulaBeast] = GhostInfo.Four,
                 [NPCID.NebulaBrain] = GhostInfo.Four,
                 [NPCID.NebulaSoldier] = GhostInfo.Four,
@@ -337,11 +338,11 @@ namespace Aequus.Content.Necromancy
 
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Zombie, vanillaOnly: true))
             {
-                NPCs[i] = GhostInfo.One.WithAggro(AggroForcer.NightTime);
+                NPCs[i] = GhostInfo.One.WithAggro(AggressionType.NightTime);
             }
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.DemonEye, vanillaOnly: true))
             {
-                NPCs[i] = GhostInfo.One.WithAggro(AggroForcer.NightTime);
+                NPCs[i] = GhostInfo.One.WithAggro(AggressionType.NightTime);
             }
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Hornet, vanillaOnly: true))
             {
@@ -353,7 +354,7 @@ namespace Aequus.Content.Necromancy
             }
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Scarecrow1, vanillaOnly: true))
             {
-                NPCs[i] = GhostInfo.Three.WithAggro(AggroForcer.NightTime);
+                NPCs[i] = GhostInfo.Three.WithAggro(AggressionType.NightTime);
             }
             foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.BlueArmoredBones, vanillaOnly: true))
             {
@@ -394,7 +395,7 @@ namespace Aequus.Content.Necromancy
         public static void PopulateEnemyStats_Polarities(Mod polarities)
         {
             new DatabaseBuilder<GhostInfo>(NPCs, polarities, NPCID.Search)
-                .TryAddModEntry("BloodBat", GhostInfo.One.WithAggro(AggroForcer.NightTime))
+                .TryAddModEntry("BloodBat", GhostInfo.One.WithAggro(AggressionType.NightTime))
                 .TryAddModEntry("BatSlime", GhostInfo.Two)
                 .TryAddModEntry("ConeShell", GhostInfo.Two)
                 .TryAddModEntry("GreatStellatedSlime", GhostInfo.Three)
@@ -415,11 +416,11 @@ namespace Aequus.Content.Necromancy
             {
                 var g = NPCs[i];
                 var n = ContentSamples.NpcsByNetId[i];
-                g.despawnPriority = CalcPriority(CalcTiering(g.PowerNeeded, n.boss, n.noGravity), n.life, n.damage, n.defense, g.slotsUsed.GetValueOrDefault(1));
+                g.despawnPriority = CalcPriority(CalcDamageTiering(g.PowerNeeded, n.boss, n.noGravity), n.life, n.damage, n.defense, g.slotsUsed.GetValueOrDefault(1));
                 NPCs[i] = g;
             }
         }
-        public static float CalcTiering(float powerNeeded, bool boss, bool flies)
+        public static float CalcDamageTiering(float powerNeeded, bool boss, bool flies)
         {
             float tiering = powerNeeded;
             if (boss)
@@ -480,61 +481,51 @@ namespace Aequus.Content.Necromancy
             return IModCallable.Success;
         }
 
-        public static GhostInfo GetByNetID(int netID, int type)
-        {
-            if (NPCs.ContainsKey(netID))
-            {
-                return GetOrDefault(netID);
-            }
-            return GetOrDefault(type);
-        }
-        public static GhostInfo GetByNetID(NPC npc)
-        {
-            return GetByNetID(npc.netID, npc.type);
-        }
+        /// <summary>
+        /// Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+        /// <para>If you are wanting to use a safer method, please use <see cref="TryGet(int, out GhostInfo)"/></para>
+        /// </summary>
+        /// <param name="type">the NPC ID.</param>
+        /// <returns></returns>
         public static GhostInfo Get(int type)
         {
             return NPCs[type];
         }
+        /// <summary>
+        /// Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+        /// <para>If you are wanting to use a safer method, please use <see cref="TryGet(NPC, out GhostInfo)"/></para>
+        /// </summary>
+        /// <param name="npc">the NPC instance</param>
+        /// <returns></returns>
         public static GhostInfo Get(NPC npc)
         {
             return Get(npc.type);
         }
 
-        public static bool TryGet(int type, out GhostInfo value)
-        {
-            return NPCs.TryGetValue(type, out value);
-        }
-        public static bool TryGet(NPC npc, out GhostInfo value)
-        {
-            return TryGet(npc.type, out value);
-        }
-
-        public static GhostInfo GetOrDefault(int type)
-        {
-            if (!TryGet(type, out var value))
-            {
-                return GhostInfo.Invalid;
-            }
-            return value;
-        }
-        public static GhostInfo GetOrDefault(NPC npc)
-        {
-            return GetOrDefault(npc.type);
-        }
-
-        public static bool TryGetByNetID(int netID, int type, out GhostInfo value)
+        /// <summary>
+        /// Tries to get a <see cref="GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="GhostInfo"/> would be useless.
+        /// </summary>
+        /// <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
+        /// <param name="value">The released <see cref="GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+        /// <returns>Whether or not there is <see cref="GhostInfo"/> related to this NPC Net ID</returns>
+        public static bool TryGet(int netID, out GhostInfo value)
         {
             if (netID < 0 && NPCs.ContainsKey(netID))
             {
                 value = Get(netID);
                 return true;
             }
-            return NPCs.TryGetValue(type, out value);
+            return NPCs.TryGetValue(NPCID.FromNetId(netID), out value);
         }
-        public static bool TryGetByNetID(NPC npc, out GhostInfo value)
+        /// <summary>
+        /// Tries to get a <see cref="GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="GhostInfo"/> would be useless.
+        /// </summary>
+        /// <param name="npc">The NPC instance</param>
+        /// <param name="value">The released <see cref="GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+        /// <returns>Whether or not there is <see cref="GhostInfo"/> related to this NPC Net ID</returns>
+        public static bool TryGet(NPC npc, out GhostInfo value)
         {
-            return TryGetByNetID(npc.netID, npc.type, out value);
+            return TryGet(npc.netID, out value);
         }
     }
 }

@@ -11,7 +11,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Aequus.NPCs
 {
-    public class MonsterSpawns : GlobalNPC
+    public class SpawnManager : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -90,7 +90,7 @@ namespace Aequus.NPCs
             }
         }
 
-        private void AdjustSpawns(IDictionary<int, float> pool, float amt)
+        private static void AdjustSpawns(IDictionary<int, float> pool, float amt)
         {
             var enumerator = pool.GetEnumerator();
             while (enumerator.MoveNext())
@@ -101,17 +101,7 @@ namespace Aequus.NPCs
 
         public static bool IsClose<T>(Player player) where T : ModNPC
         {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<T>())
-                {
-                    if (Main.npc[i].Distance(player.Center) < 2000f)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return player.isNearNPC(ModContent.NPCType<T>(), 2000f);
         }
 
         public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)

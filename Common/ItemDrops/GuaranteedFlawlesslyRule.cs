@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Flawless;
+using Aequus.NPCs;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;

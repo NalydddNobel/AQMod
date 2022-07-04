@@ -145,7 +145,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
-            MonsterSpawns.ForceZen(NPC);
+            SpawnManager.ForceZen(NPC);
             if (NPC.alpha > 0)
             {
                 NPC.alpha -= 5;

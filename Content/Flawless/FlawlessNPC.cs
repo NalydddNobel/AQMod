@@ -1,31 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.NPCs;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
+namespace Aequus.Content.Flawless
 {
-    public class Flawless : ModSystem
-    {
-        public readonly List<byte> DamagedPlayers;
-
-        public Flawless()
-        {
-            DamagedPlayers = new List<byte>();
-        }
-
-        public override void PostUpdatePlayers()
-        {
-            DamagedPlayers.Clear();
-            for (byte i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && Main.player[i].statLife < Main.player[i].statLifeMax2)
-                {
-                    DamagedPlayers.Add(i);
-                }
-            }
-        }
-    }
-
     public class FlawlessNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
@@ -42,7 +20,7 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                var manager = ModContent.GetInstance<Flawless>();
+                var manager = ModContent.GetInstance<FlawlessSystem>();
                 for (int i = 0; i < manager.DamagedPlayers.Count; i++)
                 {
                     damagedPlayers[manager.DamagedPlayers[i]] = true;

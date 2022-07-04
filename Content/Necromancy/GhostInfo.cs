@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CrossMod;
+using Aequus.Content.Necromancy.Aggression;
 using System;
 using Terraria;
 
@@ -21,8 +22,9 @@ namespace Aequus.Content.Necromancy
         public float? PrioritizePlayerMultiplier;
         public float? TimeLeftMultiplier;
         public int? slotsUsed;
-        public AggroForcer.IEnemyAggressor Aggro;
+        public IEnemyAggressor Aggro;
         public int despawnPriority;
+        public bool DontModifyVelocity;
 
         public int SlotsUsed => slotsUsed.GetValueOrDefault(1);
 
@@ -35,9 +37,10 @@ namespace Aequus.Content.Necromancy
             slotsUsed = null;
             Aggro = null;
             despawnPriority = 1;
+            DontModifyVelocity = false;
         }
 
-        public GhostInfo WithAggro(AggroForcer.IEnemyAggressor aggro)
+        public GhostInfo WithAggro(IEnemyAggressor aggro)
         {
             Aggro = aggro;
             return this;
@@ -77,39 +80,39 @@ namespace Aequus.Content.Necromancy
                             return this;
 
                         case "Eclipse":
-                            WithAggro(AggroForcer.Eclipse);
+                            WithAggro(AggressionType.Eclipse);
                             break;
 
                         case "MartianMadness":
-                            WithAggro(AggroForcer.MartianMadness);
+                            WithAggro(AggressionType.MartianMadness);
                             break;
 
                         case "PirateInvasion":
-                            WithAggro(AggroForcer.PirateInvasion);
+                            WithAggro(AggressionType.PirateInvasion);
                             break;
 
                         case "GoblinArmy":
-                            WithAggro(AggroForcer.GoblinArmy);
+                            WithAggro(AggressionType.GoblinArmy);
                             break;
 
                         case "DayTime":
-                            WithAggro(AggroForcer.DayTime);
+                            WithAggro(AggressionType.DayTime);
                             break;
 
                         case "NightTime":
-                            WithAggro(AggroForcer.NightTime);
+                            WithAggro(AggressionType.NightTime);
                             break;
                     }
                 }
                 // Call(..., "Aggro", OnPreAIMethodForNPC);
                 else if (value is Action<NPC> action)
                 {
-                    WithAggro(new AggroForcer.ModCallCustom(action, null));
+                    WithAggro(new AggressionType.ModCallCustom(action, null));
                 }
                 // Call(..., "Aggro", new ValueTuple<Action<NPC>, Action<NPC>>(Method1, Method2));
                 else if (value is ValueTuple<Action<NPC>, Action<NPC>> actionPair)
                 {
-                    WithAggro(new AggroForcer.ModCallCustom(actionPair.Item1, actionPair.Item2));
+                    WithAggro(new AggressionType.ModCallCustom(actionPair.Item1, actionPair.Item2));
                 }
                 else
                 {

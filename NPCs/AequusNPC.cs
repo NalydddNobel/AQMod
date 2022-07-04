@@ -4,17 +4,23 @@ using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
+using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Pets;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
+using Aequus.Particles;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,12 +30,17 @@ namespace Aequus.NPCs
     public sealed class AequusNPC : GlobalNPC, IAddRecipes
     {
         public static HashSet<int> HeatDamage { get; private set; }
+        public static HashSet<int> DontModifyVelocity { get; private set; }
         public static Dictionary<int, BestiarySpawnInfo> BestiarySpawnerInfo { get; private set; }
 
         public override bool InstancePerEntity => true;
 
         public bool heatDamage;
         public bool noHitEffect;
+
+        public byte corruptionHellfireStacks;
+        public byte crimsonHellfireStacks;
+        public byte locustStacks;
 
         public override void Load()
         {
@@ -46,13 +57,24 @@ namespace Aequus.NPCs
                 NPCID.HellArmoredBonesSword,
                 NPCID.BlazingWheel,
             };
+            DontModifyVelocity = new HashSet<int>()
+            {
+                NPCID.CultistBoss,
+                NPCID.HallowBoss,
+            };
 
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
         private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
         {
-            float velocityBoost = VelocityBoost(self);
+            if (DontModifyVelocity.Contains(self.netID))
+            {
+                orig(self);
+                return;
+            }
+
+            float velocityBoost = DetermineVelocityBoost(self);
 
             if (velocityBoost != 0f)
             {
@@ -64,10 +86,11 @@ namespace Aequus.NPCs
                 self.velocity /= 1f + velocityBoost;
             }
         }
-        public static float VelocityBoost(NPC npc)
+        public static float DetermineVelocityBoost(NPC npc)
         {
             float velocityBoost = 0f;
-            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie)
+            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie
+                && (!NecromancyDatabase.TryGet(npc, out var g) || !g.DontModifyVelocity))
             {
                 velocityBoost += z.DetermineVelocityBoost(npc, Main.player[z.zombieOwner], Main.player[z.zombieOwner].Aequus());
             }
@@ -136,6 +159,35 @@ namespace Aequus.NPCs
             }
         }
 
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+        {
+            switch (npc.type)
+            {
+                case NPCID.QueenBee:
+                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
+                    break;
+
+                case NPCID.Pixie:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
+                    break;
+
+                case NPCID.BloodZombie:
+                case NPCID.Drippler:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
+                    break;
+
+                case NPCID.DevourerHead:
+                case NPCID.GiantWormHead:
+                case NPCID.BoneSerpentHead:
+                case NPCID.TombCrawlerHead:
+                case NPCID.DiggerHead:
+                case NPCID.DuneSplicerHead:
+                case NPCID.SeekerHead:
+                case NPCID.BloodEelHead:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
+                    break;
+            }
+        }
 
         public override void SetDefaults(NPC npc)
         {
@@ -160,11 +212,30 @@ namespace Aequus.NPCs
         {
             if (npc.noTileCollide)
             {
-                float velocityBoost = VelocityBoost(npc);
+                float velocityBoost = DetermineVelocityBoost(npc);
                 if (velocityBoost > 0f)
                 {
                     npc.position += npc.velocity * velocityBoost;
                 }
+            }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+
+            if (npc.HasBuff<CorruptionHellfire>())
+            {
+                int amt = (int)(npc.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor, 1.25f, 0.3f));
+            }
+            if (npc.HasBuff<CrimsonHellfire>())
+            {
+                int amt = (int)(npc.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor, 0.9f, 0.35f));
             }
         }
 
@@ -204,6 +275,28 @@ namespace Aequus.NPCs
                 npc.lifeRegen -= 4;
                 damage += 4;
             }
+            UpdateDebuffStack(npc, npc.HasBuff<CorruptionHellfire>(), ref corruptionHellfireStacks, ref damage, 20, 1f);
+            UpdateDebuffStack(npc, npc.HasBuff<CrimsonHellfire>(), ref crimsonHellfireStacks, ref damage, 20, 1.1f);
+            UpdateDebuffStack(npc, npc.HasBuff<LocustDebuff>(), ref locustStacks, ref damage, 20, 1f);
+        }
+        public void UpdateDebuffStack(NPC npc, bool has, ref byte stacks, ref int damageNumbers, byte cap = 20, float dotMultiplier = 1f)
+        {
+            if (!has)
+            {
+                stacks = 0;
+            }
+            else
+            {
+                stacks = Math.Min(stacks, cap);
+                int dot = (int)(stacks * dotMultiplier);
+
+                if (dot >= 0)
+                {
+                    npc.AddRegen(-dot);
+                    if (damageNumbers < dot)
+                        damageNumbers = dot;
+                }
+            }
         }
 
         public override bool SpecialOnKill(NPC npc)
@@ -224,13 +317,11 @@ namespace Aequus.NPCs
             {
                 CheckSouls(npc, players);
             }
-            if (NecromancyDatabase.TryGetByNetID(npc, out var info))
+            var info = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
             {
-                var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
-                {
-                    zombie.SpawnZombie(npc);
-                }
+                zombie.SpawnZombie(npc);
             }
 
             return false;
@@ -322,36 +413,6 @@ namespace Aequus.NPCs
             return list;
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
-            switch (npc.type)
-            {
-                case NPCID.QueenBee:
-                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
-                    break;
-
-                case NPCID.Pixie:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
-                    break;
-
-                case NPCID.BloodZombie:
-                case NPCID.Drippler:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
-                    break;
-
-                case NPCID.DevourerHead:
-                case NPCID.GiantWormHead:
-                case NPCID.BoneSerpentHead:
-                case NPCID.TombCrawlerHead:
-                case NPCID.DiggerHead:
-                case NPCID.DuneSplicerHead:
-                case NPCID.SeekerHead:
-                case NPCID.BloodEelHead:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
-                    break;
-            }
-        }
-
         public override bool PreChatButtonClicked(NPC npc, bool firstButton)
         {
             if (npc.type == NPCID.Angler)
@@ -376,6 +437,103 @@ namespace Aequus.NPCs
                 }
             }
             return true;
+        }
+
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        {
+            if (type == NPCID.Clothier)
+            {
+                if (Aequus.HardmodeTier)
+                {
+                    int slot = -1;
+                    for (int i = 0; i < Chest.maxItems - 1; i++)
+                    {
+                        if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants)
+                        {
+                            slot = i + 1;
+                        }
+                    }
+                    if (slot != -1 && slot != Chest.maxItems - 1)
+                    {
+                        shop.Insert(ModContent.ItemType<FamiliarPickaxe>(), slot);
+                    }
+                    nextSlot++;
+                }
+            }
+            else if (type == NPCID.DyeTrader)
+            {
+                int removerSlot = nextSlot;
+                if (Main.LocalPlayer.statLifeMax >= 200)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HealthCursorDye>());
+                }
+                if (Main.LocalPlayer.statManaMax >= 100)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ManaCursorDye>());
+                }
+                if (LanternNight.LanternsUp)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SwordCursorDye>());
+                }
+                if (AequusWorld.downedEventDemon)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DemonicCursorDye>());
+                }
+                if (nextSlot != removerSlot)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CursorDyeRemover>());
+                }
+            }
+            else if (type == NPCID.Mechanic)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
+            }
+        }
+
+        public void Send(int whoAmI, BinaryWriter writer)
+        {
+            bool flag = Main.npc[whoAmI].HasBuff<LocustDebuff>();
+            writer.Write(flag);
+            if (flag)
+            {
+                writer.Write(locustStacks);
+            }
+            flag = Main.npc[whoAmI].HasBuff<CorruptionHellfire>();
+            writer.Write(flag);
+            if (flag)
+            {
+                writer.Write(corruptionHellfireStacks);
+            }
+            flag = Main.npc[whoAmI].HasBuff<CrimsonHellfire>();
+            writer.Write(flag);
+            if (flag)
+            {
+                writer.Write(crimsonHellfireStacks);
+            }
+        }
+
+        public void Receive(int whoAmI, BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                locustStacks = reader.ReadByte();
+            }
+            if (reader.ReadBoolean())
+            {
+                corruptionHellfireStacks = reader.ReadByte();
+            }
+            if (reader.ReadBoolean())
+            {
+                crimsonHellfireStacks = reader.ReadByte();
+            }
+        }
+
+        public static void Sync(int npc)
+        {
+            if (Main.npc[npc].TryGetGlobalNPC<AequusNPC>(out var debuffs))
+            {
+                PacketHandler.Send((p) => { p.Write((byte)npc); debuffs.Send(npc, p); }, PacketType.SyncAequusNPC);
+            }
         }
     }
 }

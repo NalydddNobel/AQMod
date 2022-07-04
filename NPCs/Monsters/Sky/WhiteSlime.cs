@@ -1,7 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Placeable.Banners;
@@ -306,7 +305,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - progress) * 0.35f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             }
 
-            if (!GhostOutlineTarget.RenderingNow)
+            if (!GhostOutlineRenderer.RenderingNow)
             {
                 float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))

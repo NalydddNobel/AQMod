@@ -404,6 +404,11 @@
             For enemies which cannot be turned into player zombies
             </summary>
         </member>
+        <member name="F:Aequus.Content.Necromancy.GhostOutlineRenderer.IDs.Count">
+            <summary>
+            Use and increase respectively for custom Necromancy Screen Renderer layers.
+            </summary>
+        </member>
         <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
@@ -420,6 +425,38 @@
             <param name="aequus"></param>
             <param name="args"></param>
             <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="type">the NPC ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="npc">the NPC instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="npc">The NPC instance</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
         <member name="M:Aequus.Content.ShopQuotes.QuoteDatabase.AddNPC(System.Int32)">
             <summary>
@@ -448,6 +485,17 @@
             <param name="aequus"></param>
             <param name="args"></param>
             <returns></returns>
+        </member>
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="P:Aequus.Graphics.AequusEffects.BehindPlayers">
             <summary>
@@ -514,11 +562,6 @@
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        </member>
-        <member name="F:Aequus.Graphics.GhostOutlineTarget.IDs.Count">
-            <summary>
-            Use and increase respectively for custom Necromancy Screen Renderer layers.
-            </summary>
         </member>
         <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">
             <summary>
@@ -623,17 +666,6 @@
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
             </summary>
-        </member>
-        <member name="T:Aequus.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries
-            </summary>
-        </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
         </member>
         <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionSpeedup">
             <summary>

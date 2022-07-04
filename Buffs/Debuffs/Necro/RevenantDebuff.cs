@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Terraria;
 
 namespace Aequus.Buffs.Debuffs.Necro
@@ -23,7 +22,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineTarget.IDs.Revenant);
+            zombie.RenderLayer(GhostOutlineRenderer.IDs.Revenant);
         }
     }
 }

@@ -47,8 +47,11 @@ namespace Aequus.Projectiles.Monster.DustDevil
                     return;
                 }
                 float dir = Math.Sign(Projectile.ai[0]);
+                if (dir == 0)
+                    Projectile.ai[0] = 1;
                 float power = Math.Clamp((float)Math.Pow(Projectile.ai[0].Abs() / 120f, 2f), 0.1f, 1f);
 
+                var old = Projectile.velocity;
                 Projectile.velocity = Vector2.Normalize(Projectile.velocity.RotatedBy(0.01f * dir)) * Projectile.ai[1] * power;
                 Projectile.alpha = 0;
                 Projectile.ai[0] += dir;

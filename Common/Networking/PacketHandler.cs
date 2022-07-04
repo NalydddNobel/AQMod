@@ -166,7 +166,7 @@ namespace Aequus.Common.Networking
             }
         }
 
-        public static void SyncNecromancyOwner(int npc, int player, float tier)
+        public static void SyncNecromancyOwner(int npc, int player)
         {
             Send((p) =>
                 {
@@ -289,10 +289,10 @@ namespace Aequus.Common.Networking
             {
                 DemonSiegeInvasion.Sacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
             }
-            else if (type == PacketType.SyncDebuffs)
+            else if (type == PacketType.SyncAequusNPC)
             {
                 byte npc = reader.ReadByte();
-                Main.npc[npc].GetGlobalNPC<NPCDebuffs>().Receive(npc, reader);
+                Main.npc[npc].Aequus().Receive(npc, reader);
             }
             else if (type == PacketType.SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities)
             {

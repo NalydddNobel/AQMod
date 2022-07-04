@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Items;
 using Aequus.NPCs.Friendly;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;

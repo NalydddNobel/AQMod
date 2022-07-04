@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Common.Utilities
 {
     public abstract class LoadableType : ModType
     {

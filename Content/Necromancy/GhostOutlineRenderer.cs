@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Content.Necromancy
 {
-    public sealed class GhostOutlineTarget : ScreenTarget, ILoadable
+    public class GhostOutlineRenderer : ScreenTarget, ILoadable
     {
         public static StaticMiscShaderInfo Necromancy { get; private set; }
 
@@ -39,11 +40,11 @@ namespace Aequus.Graphics
             public static int Count = 11;
         }
 
-        public GhostOutlineTarget()
+        public GhostOutlineRenderer()
         {
         }
 
-        public GhostOutlineTarget(int playerTeam, int index, Func<Color> color)
+        public GhostOutlineRenderer(int playerTeam, int index, Func<Color> color)
         {
             Team = playerTeam;
             Index = index;
@@ -129,7 +130,7 @@ namespace Aequus.Graphics
 
         public static int GetScreenTargetIndex(Player player, int suggestedTarget = 0)
         {
-            if (Main.myPlayer == player.whoAmI || (player.team == 0 && !player.hostile))
+            if (Main.myPlayer == player.whoAmI || player.team == 0 && !player.hostile)
             {
                 return Math.Max(suggestedTarget, 0);
             }

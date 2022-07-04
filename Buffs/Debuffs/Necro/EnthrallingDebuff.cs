@@ -11,7 +11,7 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 100 * AequusHelpers.NPCREGEN;
+            npc.GetGlobalNPC<NecromancyNPC>().zombieDrain = 25000 * AequusHelpers.NPCREGEN;
             npc.GetGlobalNPC<NecromancyNPC>().DebuffTier(Tier);
         }
 

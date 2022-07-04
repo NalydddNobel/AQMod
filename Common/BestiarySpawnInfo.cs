@@ -4,6 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Common
 {
+    [Obsolete]
     public struct BestiarySpawnInfo
     {
         public static int ValueConversionRate => Item.gold * 2;

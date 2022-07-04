@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -26,12 +25,12 @@ namespace Aequus.Buffs.Debuffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = 2 * AequusHelpers.NPCREGEN;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineTarget.IDs.Zombie);
+            zombie.RenderLayer(GhostOutlineRenderer.IDs.Zombie);
         }
 
         public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff
         {
-            if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier)
+            if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGet(npc, out var value) && value.PowerNeeded <= tier)
             {
                 damage = Math.Min(damage, npc.life / 2);
             }
@@ -45,13 +44,13 @@ namespace Aequus.Buffs.Debuffs.Necro
             {
                 npc.buffImmune[ModContent.BuffType<T>()] = false;
             }
-            if (cheat || (NecromancyDatabase.TryGetByNetID(npc, out var value) && value.PowerNeeded <= tier))
+            if (cheat || (NecromancyDatabase.TryGet(npc, out var value) && value.PowerNeeded <= tier))
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    PacketHandler.SyncNecromancyOwner(npc.whoAmI, player, tier);
+                    PacketHandler.SyncNecromancyOwner(npc.whoAmI, player);
                 }
             }
         }

@@ -56,7 +56,7 @@ namespace Aequus.Projectiles.Misc
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
                     Projectile.Colliding(Projectile.getRect(), npc.getRect()) &&
-                    WindMovementDatabase.WindNPCs.Contains(Main.npc[i].type))
+                    PushableDatabase.NPCs.Contains(Main.npc[i].type))
                 {
                     npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 30f;
                     npc.netUpdate = true;
@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Misc
                 var proj = Main.projectile[i];
                 if (i != Projectile.whoAmI && proj.active &&
                     Projectile.Colliding(Projectile.getRect(), proj.getRect()) &&
-                    WindMovementDatabase.WindProjs.Contains(Main.projectile[i].type))
+                    PushableDatabase.Projs.Contains(Main.projectile[i].type))
                 {
                     proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
                     proj.netUpdate = true;

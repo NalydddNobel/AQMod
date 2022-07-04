@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Content.Necromancy;
 using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -55,7 +56,7 @@ namespace Aequus.Graphics
             }
         }
 
-        public static GhostOutlineTarget[] necromancyRenderers;
+        public static GhostOutlineRenderer[] necromancyRenderers;
 
         public static StaticMiscShaderInfo VerticalGradient { get; private set; }
 
@@ -92,14 +93,14 @@ namespace Aequus.Graphics
             BehindProjs = new ParticleRenderer();
             BehindPlayers = new ParticleRenderer();
             AbovePlayers = new ParticleRenderer();
-            necromancyRenderers = new GhostOutlineTarget[]
+            necromancyRenderers = new GhostOutlineRenderer[]
             {
-                new GhostOutlineTarget(0, GhostOutlineTarget.IDs.LocalPlayer, () => Color.White),
-                new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Zombie, () => new Color(100, 149, 237, 255)),
-                new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Revenant, () => new Color(40, 100, 237, 255)),
-                new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Osiris, () => new Color(255, 128, 20, 255)),
-                new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.Insurgent, () => new Color(80, 255, 200, 255)),
-                new GhostOutlineTarget(-1, GhostOutlineTarget.IDs.BloodRed, () => new Color(255, 10, 10, 255)),
+                new GhostOutlineRenderer(0, GhostOutlineRenderer.IDs.LocalPlayer, () => Color.White),
+                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Zombie, () => new Color(100, 149, 237, 255)),
+                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Revenant, () => new Color(40, 100, 237, 255)),
+                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Osiris, () => new Color(255, 128, 20, 255)),
+                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Insurgent, () => new Color(80, 255, 200, 255)),
+                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.BloodRed, () => new Color(255, 10, 10, 255)),
             };
             LoadHooks();
         }

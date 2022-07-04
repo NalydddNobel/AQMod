@@ -434,7 +434,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
-            MonsterSpawns.ForceZen(NPC);
+            SpawnManager.ForceZen(NPC);
             if (Main.dayTime)
             {
                 NPC.life = -1;

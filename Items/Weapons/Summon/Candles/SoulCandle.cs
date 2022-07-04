@@ -55,7 +55,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
             var aequus = player.Aequus();
             if (aequus.candleSouls >= useSouls)
             {
-                var ghost = NecromancyDatabase.GetOrDefault(npcSummon);
+                var ghost = NecromancyDatabase.TryGet(npcSummon, out var g) ? g : default(GhostInfo);
                 int slots = ghost.SlotsUsed;
                 if (aequus.ghostSlots + slots > aequus.ghostSlotsMax)
                 {

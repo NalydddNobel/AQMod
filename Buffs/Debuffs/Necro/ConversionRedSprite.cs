@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,7 +19,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             var ghost = npc.GetGlobalNPC<NecromancyNPC>();
             ghost.DebuffTier(3);
             ghost.ConversionChance(8);
-            ghost.RenderLayer(GhostOutlineTarget.IDs.BloodRed);
+            ghost.RenderLayer(GhostOutlineRenderer.IDs.BloodRed);
         }
     }
 }

@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy
+namespace Aequus.Content.Necromancy.Aggression
 {
-    public sealed class AggroForcer : ILoadable
+    public class AggressionType : ILoadable
     {
         public static IEnemyAggressor BloodMoon { get; private set; }
         public static IEnemyAggressor Eclipse { get; private set; }
@@ -14,13 +14,6 @@ namespace Aequus.Content.Necromancy
         public static IEnemyAggressor GoblinArmy { get; private set; }
         public static IEnemyAggressor DayTime { get; private set; }
         public static IEnemyAggressor NightTime { get; private set; }
-
-        public interface IEnemyAggressor
-        {
-            public abstract void OnPreAI(NPC npc, NecromancyNPC necro);
-
-            public abstract void OnPostAI(NPC npc, NecromancyNPC necro);
-        }
 
         public struct NeedsBloodMoon : IEnemyAggressor
         {

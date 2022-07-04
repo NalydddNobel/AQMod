@@ -17,11 +17,6 @@ namespace Aequus.Buffs.Debuffs
             Main.buffNoSave[Type] = true;
         }
 
-        public override void Update(NPC npc, ref int buffIndex)
-        {
-            npc.GetGlobalNPC<NPCDebuffs>().hasCrimsonHellfire = true;
-        }
-
         public static void AddStack(NPC npc, int time, int stacksAmt, bool inflictOnFireInsteadIfItsImmune = true)
         {
             if (npc.buffImmune[ModContent.BuffType<CrimsonHellfire>()])
@@ -34,12 +29,11 @@ namespace Aequus.Buffs.Debuffs
             else
             {
                 npc.AddBuff(ModContent.BuffType<CrimsonHellfire>(), time);
-                npc.GetGlobalNPC<NPCDebuffs>().hasCrimsonHellfire = true;
-                npc.GetGlobalNPC<NPCDebuffs>().crimsonHellfireStacks += (byte)stacksAmt;
+                npc.Aequus().crimsonHellfireStacks += (byte)stacksAmt;
                 npc.netUpdate = true;
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    NPCDebuffs.SyncDebuffs(npc.whoAmI);
+                    AequusNPC.Sync(npc.whoAmI);
                 }
             }
         }

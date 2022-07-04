@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ModLoader;
@@ -25,7 +24,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.zombieDrain = damageOverTime * AequusHelpers.NPCREGEN;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineTarget.IDs.Insurgent);
+            zombie.RenderLayer(GhostOutlineRenderer.IDs.Insurgent);
 
             if (Main.myPlayer == zombie.zombieOwner && Main.rand.NextBool(60))
             {

@@ -1,25 +1,26 @@
-﻿using System;
+﻿using Aequus.Common.Utilities;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Common
 {
-    public class WindMovementDatabase : LoadableType
+    public class PushableDatabase : LoadableType
     {
-        public static HashSet<int> WindNPCs { get; private set; }
-        public static HashSet<int> WindProjs { get; private set; }
+        public static HashSet<int> NPCs { get; private set; }
+        public static HashSet<int> Projs { get; private set; }
 
         public override void Load()
         {
-            WindNPCs = new HashSet<int>();
-            WindProjs = new HashSet<int>();
+            NPCs = new HashSet<int>();
+            Projs = new HashSet<int>();
         }
 
         public override void SetStaticDefaults()
         {
             AutoEntries();
-            SnipEntries();
+            NPCs.Remove(NPCID.BloodSquid);
         }
         public void AutoEntries()
         {
@@ -158,7 +159,7 @@ namespace Aequus.Common
         {
             foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (WindNPCs.Contains(n.Key))
+                if (NPCs.Contains(n.Key))
                 {
                     continue;
                 }
@@ -167,7 +168,7 @@ namespace Aequus.Common
                     var npc = n.Value;
                     if (hash.Contains(npc.aiStyle))
                     {
-                        WindNPCs.Add(n.Key);
+                        NPCs.Add(n.Key);
                     }
                 }
                 catch (Exception e)
@@ -180,7 +181,7 @@ namespace Aequus.Common
         {
             foreach (var p in ContentSamples.ProjectilesByType)
             {
-                if (WindProjs.Contains(p.Key))
+                if (Projs.Contains(p.Key))
                 {
                     continue;
                 }
@@ -189,7 +190,7 @@ namespace Aequus.Common
                     var projectile = p.Value;
                     if (hash.Contains(projectile.aiStyle))
                     {
-                        WindProjs.Add(p.Key);
+                        Projs.Add(p.Key);
                     }
                 }
                 catch (Exception e)
@@ -199,17 +200,12 @@ namespace Aequus.Common
             }
         }
 
-        public void SnipEntries()
-        {
-            WindNPCs.Remove(NPCID.BloodSquid);
-        }
-
         public override void Unload()
         {
-            WindNPCs?.Clear();
-            WindNPCs = null;
-            WindProjs?.Clear();
-            WindProjs = null;
+            NPCs?.Clear();
+            NPCs = null;
+            Projs?.Clear();
+            Projs = null;
         }
     }
 }

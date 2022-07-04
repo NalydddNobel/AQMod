@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common
+namespace Aequus.Items
 {
     public class ItemNameTag : GlobalItem
     {

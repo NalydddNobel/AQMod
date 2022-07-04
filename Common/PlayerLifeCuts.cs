@@ -6,14 +6,14 @@ namespace Aequus.Common
 {
     public class PlayerLifeCuts : ModPlayer
     {
-        public struct Data
+        public struct HealthSlice
         {
             public int time;
             public int amtTaken;
             public bool physicallyHitPlayer = false;
             public PlayerDeathReason reason = null;
 
-            public Data(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
+            public HealthSlice(int amtTaken, int time = 0, bool hitPlayer = false, PlayerDeathReason reason = null)
             {
                 this.amtTaken = amtTaken;
                 this.time = time;
@@ -22,23 +22,23 @@ namespace Aequus.Common
             }
         }
 
-        public List<Data> sacrifices;
+        public List<HealthSlice> slices;
 
         public override void Initialize()
         {
-            sacrifices = new List<Data>();
+            slices = new List<HealthSlice>();
         }
 
         public override void UpdateDead()
         {
-            sacrifices.Clear();
+            slices.Clear();
         }
 
         public override void PostUpdateEquips()
         {
-            for (int i = 0; i < sacrifices.Count; i++)
+            for (int i = 0; i < slices.Count; i++)
             {
-                var s = sacrifices[i];
+                var s = slices[i];
                 s.time--;
                 if (s.time <= 0)
                 {
@@ -55,11 +55,11 @@ namespace Aequus.Common
                             Player.KillMe(reason, s.amtTaken, -Player.direction);
                         }
                     }
-                    sacrifices.RemoveAt(i);
+                    slices.RemoveAt(i);
                     i--;
                     continue;
                 }
-                sacrifices[i] = s;
+                slices[i] = s;
             }
         }
 
@@ -67,24 +67,24 @@ namespace Aequus.Common
         {
             if (amt < frames || frames < 2)
             {
-                sacrifices.Add(new Data(amt, 0));
+                slices.Add(new HealthSlice(amt, 0));
                 return;
             }
             int lifeTaken = amt / frames;
             for (int i = 0; i < frames - 1; i++)
             {
-                sacrifices.Add(new Data(lifeTaken, i * separation, hitPlayer, reason));
+                slices.Add(new HealthSlice(lifeTaken, i * separation, hitPlayer, reason));
             }
-            sacrifices.Add(new Data(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
+            slices.Add(new HealthSlice(lifeTaken + (amt - lifeTaken * frames), frames * separation, hitPlayer, reason));
         }
 
         public override void clientClone(ModPlayer clientClone)
         {
             var clone = (PlayerLifeCuts)clientClone;
-            clone.sacrifices = new List<Data>();
-            foreach (var l in sacrifices)
+            clone.slices = new List<HealthSlice>();
+            foreach (var l in slices)
             {
-                clone.sacrifices.Add(l);
+                clone.slices.Add(l);
             }
         }
 

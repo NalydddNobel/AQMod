@@ -9,7 +9,7 @@
         DemonSiegeSacrificeStatus,
         RequestDemonSiege,
         RemoveDemonSiege,
-        SyncDebuffs,
+        SyncAequusNPC,
         SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities,
         GiveoutEnemySouls,
         SoulDamage,
