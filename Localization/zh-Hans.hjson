@@ -273,6 +273,12 @@ Mods: {
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
 
+			SkyrimRock3: 推力
+			SkyrimRock2: 平衡
+			SkyrimRock1: 力量
+			HomeworldPainting: 家园
+			YangPainting: 你能感觉到阳光吗?
+			YinPainting: 黑暗, 更加黑暗...
 			YinYangPainting: 均衡
 			InsurgentPainting: 变革
 			BongBongPainting: 邦邦
@@ -833,18 +839,12 @@ Mods: {
 
 			RecyclingMachine: 允许你回收垃圾物品
 
-			YinYangPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
-			BongBongPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
-			InsurgentPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
+			HomeworldPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BongBongPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
 			CatalystPainting:
 				'''
 				The great might of an interstellar nebula!
@@ -1998,6 +1998,7 @@ Mods: {
 		}
 
 		PaintingSignature: {
+			SplitModFrFrWtf: "'Dr.'没有Dr.Cool一样酷'' - 啥"
 			NalydT: "'N.T.'"
 			niker: "'N.'"
 		}
