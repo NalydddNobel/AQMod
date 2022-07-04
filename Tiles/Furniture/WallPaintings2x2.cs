@@ -9,14 +9,10 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public class WallPaintings3x2 : ModTile
+    public class WallPaintings2x2 : ModTile
     {
-        public const int InsurgentPainting = 0;
-        public const int BongBongPainting = 1;
-        public const int YinYangPainting = 2;
-        public const int Fus = 3;
-        public const int Ro = 4;
-        public const int DAH = 5;
+        public const int YinPainting = 0;
+        public const int YangPainting = 1;
 
         public override void SetStaticDefaults()
         {
@@ -25,6 +21,7 @@ namespace Aequus.Tiles.Furniture
             TileID.Sets.FramesOnKillWall[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
+            TileObjectData.newTile.Width = 2;
             TileObjectData.newTile.Height = 2;
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
@@ -36,25 +33,13 @@ namespace Aequus.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            switch (frameX / 54)
+            switch (frameX / 36)
             {
-                case InsurgentPainting:
+                case YinPainting:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<InsurgentPainting>());
                     break;
-                case BongBongPainting:
+                case YangPainting:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<BongBongPainting>());
-                    break;
-                case YinYangPainting:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<YinYangPainting>());
-                    break;
-                case Fus:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<SkyrimRock1>());
-                    break;
-                case Ro:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<SkyrimRock2>());
-                    break;
-                case DAH:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<SkyrimRock3>());
                     break;
             }
         }

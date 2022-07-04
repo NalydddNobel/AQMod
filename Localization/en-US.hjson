@@ -273,6 +273,12 @@ Mods: {
 			SedimentaryRockWall: Sedimentary Rock Wall
 			SedimentaryRock: Sedimentary Rock
 
+			SkyrimRock3: Push
+			SkyrimRock2: Balance
+			SkyrimRock1: Force
+			HomeworldPainting: HOMEWORLD
+			YangPainting: Can you feel the Sunshine?
+			YinPainting: Dark, Darker yet Darker...
 			YinYangPainting: Equalities
 			InsurgentPainting: Revolution
 			BongBongPainting: BongBong
@@ -833,18 +839,12 @@ Mods: {
 
 			RecyclingMachine: Allows you to recycle trash items
 
-			YinYangPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
-			BongBongPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
-			InsurgentPainting:
-				'''
-				{$Mods.Aequus.PaintingSignature.NalydT}
-				'''
+			HomeworldPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BongBongPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
 			CatalystPainting:
 				'''
 				The great might of an interstellar nebula!
@@ -1998,6 +1998,7 @@ Mods: {
 		}
 
 		PaintingSignature: {
+			SplitModFrFrWtf: "'Dr. 'Not As Cool as Dr. Cool'' - What"
 			NalydT: "'N.T.'"
 			niker: "'N.'"
 		}

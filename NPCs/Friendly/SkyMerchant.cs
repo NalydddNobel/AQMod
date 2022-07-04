@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Enums;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
@@ -40,7 +41,6 @@ namespace Aequus.NPCs.Friendly
         public int balloonColor;
         public bool init;
 
-        public Item shopPainting;
         public Item shopBanner;
         public Item shopAccessory;
 
@@ -93,7 +93,6 @@ namespace Aequus.NPCs.Friendly
             setupShop = false;
             shopBanner = null;
             shopAccessory = null;
-            shopPainting = null;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -171,30 +170,61 @@ namespace Aequus.NPCs.Friendly
                     shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
                     nextSlot++;
                 }
-                if (merchant.shopPainting != null)
-                {
-                    shop.item[nextSlot++] = merchant.shopPainting.Clone();
-                }
+            }
+            if (Main.getGoodWorld || Main.GetMoonPhase() == MoonPhase.Full)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BongBongPainting>());
+            }
+            if (NPC.downedMoonlord)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CatalystPainting>());
+            }
+            if (NPC.downedEmpressOfLight && NPC.downedAncientCultist)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YinYangPainting>());
+            }
+            if (AequusWorld.downedEventDemon || NPC.downedAncientCultist)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YinPainting>());
+            }
+            if (NPC.downedQueenSlime || NPC.downedEmpressOfLight)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YangPainting>());
+            }
+            if (NPC.downedGolemBoss)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
+            }
+            if (AequusWorld.downedOmegaStarite)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+            }
+
+            int bossDefeated = 0;
+            if (NPC.downedBoss1)
+                bossDefeated++;
+            if (NPC.downedBoss2)
+                bossDefeated++;
+            if (NPC.downedBoss3)
+                bossDefeated++;
+
+            if (bossDefeated >= 3)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
+            }
+            if (bossDefeated >= 2)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock2>());
+            }
+            if (bossDefeated >= 1)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock1>());
             }
         }
         public void SetupShopCache(Player player)
         {
             shopBanner = GetBannerItem();
             shopAccessory = GetAccessoryItem(player);
-            shopPainting = GetPaintingItem();
-        }
-        public Item GetPaintingItem()
-        {
-            switch (Main.rand.Next(4))
-            {
-                case 0:
-                    return AequusItem.SetDefaults<CatalystPainting>();
-                case 1:
-                    return AequusItem.SetDefaults<BongBongPainting>();
-                case 2:
-                    return AequusItem.SetDefaults<YinYangPainting>();
-            }
-            return null;
         }
         public Item GetAccessoryItem(Player player)
         {

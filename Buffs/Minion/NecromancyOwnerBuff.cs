@@ -1,5 +1,7 @@
 ﻿using System;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion
@@ -13,7 +15,11 @@ namespace Aequus.Buffs.Minion
 
         public override bool RightClick(int buffIndex)
         {
-            Main.LocalPlayer.buffTime[buffIndex] = Math.Min(Main.LocalPlayer.buffTime[buffIndex], 2);
+            if (Main.LocalPlayer.buffTime[buffIndex] > 2)
+            {
+                Main.LocalPlayer.buffTime[buffIndex] = 2;
+                SoundEngine.PlaySound(SoundID.MenuTick);
+            }
             return false;
         }
 
