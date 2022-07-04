@@ -1429,7 +1429,6 @@ Mods: {
 		Doubled: 倍效{0}
 
 		BuffName: {
-			ScribbleNotebookBuff: 涂鸦
 			NeutronYogurtBuff: 中子酸奶
 			Bloodthirst: 嗜血
 			SentryBuff: 哨兵
@@ -1440,8 +1439,11 @@ Mods: {
 			ReliefshroomBuff: 息灵菇
 			MendshroomBuff: 愈灵菇
 
+			NecromancyOwnerBuff: 死灵
+
 			GravetenderMinionBuff: 守墓人
 
+			ScribbleNotebookBuff: 涂鸦
 			CorruptPlantBuff: 腐化植物
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
@@ -1513,11 +1515,13 @@ Mods: {
 			SpicyEelBuff: 大幅度增加移动速度
 			BaguetteBuff: 大幅度增加各项属性和生命恢复速度
 
-			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
-
 			Vampirism: 在这之后你可能会变成吸血鬼...
 			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
 			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
+
+			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
+
+			NecromancyOwnerBuff: 你正掌控死亡
 
 			ScribbleNotebookBuff: 物体会为你而战
 			CorruptPlantBuff: 腐化植物会为你而战!
