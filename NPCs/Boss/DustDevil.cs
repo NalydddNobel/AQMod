@@ -557,7 +557,7 @@ namespace Aequus.NPCs.Boss
 
         public static bool CurrentlyDrawing(float z)
         {
-            return z > 0f ? DrawBack.renderingNow : DrawFront.renderingNow;
+            return z > 0f ? DrawBack.RenderingNow : DrawFront.RenderingNow;
         }
 
         public override void BossLoot(ref string name, ref int potionType)

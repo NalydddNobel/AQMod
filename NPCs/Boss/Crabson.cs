@@ -774,6 +774,11 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public override void DrawBehind(int index)
+        {
+            AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -790,16 +795,12 @@ namespace Aequus.NPCs.Boss
                 RenderClaw(NPC, spriteBatch, screenPos, drawColor);
                 return false;
             }
-            if (AequusEffects.NPCsBehindAllNPCs.renderingNow)
+            if (AequusEffects.NPCsBehindAllNPCs.RenderingNow)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
-            }
-            else
-            {
-                AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
             }
             return true;
         }

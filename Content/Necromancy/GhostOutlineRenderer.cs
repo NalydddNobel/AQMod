@@ -81,6 +81,7 @@ namespace Aequus.Content.Necromancy
                 }
                 Begin.GeneralEntities.Begin(spriteBatch);
                 RenderingNow = true;
+                DrawList.ForceRender = true;
                 NPCs.renderingNow = true;
                 try
                 {
@@ -93,7 +94,8 @@ namespace Aequus.Content.Necromancy
                 {
                 }
                 RenderingNow = false;
-                NPCs.renderingNow = false;
+                DrawList.ForceRender = false;
+                NPCs.Clear();
                 Main.spriteBatch.End();
 
                 var color = Color.White * 0.5f;

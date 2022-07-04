@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Minion;
 using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;

@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Minion;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content;
@@ -809,6 +810,37 @@ namespace Aequus
         /// </summary>
         public void UpdateMaxZombies()
         {
+            if (ghostSlots <= 0)
+            {
+                Player.ClearBuff(ModContent.BuffType<NecromancyOwnerBuff>());
+                return;
+            }
+            int slot = Player.FindBuffIndex(ModContent.BuffType<NecromancyOwnerBuff>());
+            if (slot != -1)
+            {
+                if (Player.buffTime[slot] <= 2)
+                {
+                    for (int i = 0; i < Main.maxNPCs; i++)
+                    {
+                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI)
+                        {
+                            Main.npc[i].life = -1;
+                            Main.npc[i].HitEffect();
+                            Main.npc[i].active = false;
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                            {
+                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999);
+                            }
+                        }
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                if (ghostSlots > 0)
+                    Player.AddBuff(ModContent.BuffType<NecromancyOwnerBuff>(), 30);
+            }
             if (ghostSlots > ghostSlotsMax)
             {
                 int removeNPC = -1;

@@ -182,7 +182,7 @@ namespace Aequus.Projectiles.Monster.DustDevil
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if (AequusEffects.ProjsBehindTiles.renderingNow)
+            if (AequusEffects.ProjsBehindTiles.RenderingNow)
             {
                 var bloom = TextureCache.Bloom[3].Value;
                 var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height / 2);

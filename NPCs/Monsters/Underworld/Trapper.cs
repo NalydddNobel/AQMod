@@ -207,11 +207,16 @@ namespace Aequus.NPCs.Monsters.Underworld
             }
         }
 
+        public override void DrawBehind(int index)
+        {
+            AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (!NPC.IsABestiaryIconDummy)
             {
-                if (AequusEffects.NPCsBehindAllNPCs.renderingNow)
+                if (AequusEffects.NPCsBehindAllNPCs.RenderingNow)
                 {
                     var chainTexture = TrapperChainTexture;
                     if (!chainTexture.IsLoaded)
@@ -236,11 +241,8 @@ namespace Aequus.NPCs.Monsters.Underworld
                             color *= 1f / 6f * j;
                         spriteBatch.Draw(chainTexture.Value, position - screenPos, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
                     }
-                    return false;
-                }
-                else
-                {
-                    AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+                    if (!DrawList.ForceRender)
+                        return false;
                 }
             }
 

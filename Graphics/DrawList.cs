@@ -8,6 +8,8 @@ namespace Aequus.Graphics
 
         internal readonly List<int> List;
         public bool renderingNow;
+        public bool RenderingNow => renderingNow || ForceRender;
+        public static bool ForceRender;
 
         public DrawList()
         {
