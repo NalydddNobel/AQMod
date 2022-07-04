@@ -30,7 +30,7 @@ namespace Aequus.Sounds
         /// </summary>
         public static CustomMusicData GlimmerEvent { get; private set; }
         /// <summary>
-        /// Used when <see cref="AequusPlayer.eventGaleStreams"/> is true
+        /// Used when <see cref="AequusPlayer.EventGaleStreams"/> is true
         /// </summary>
         public static CustomMusicData GaleStreamsEvent { get; private set; }
         public static CustomMusicData DemonSiegeEvent { get; private set; }

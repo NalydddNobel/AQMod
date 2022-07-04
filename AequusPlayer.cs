@@ -87,9 +87,9 @@ namespace Aequus
 
         public bool biomeCrabCrevice;
         /// <summary>
-        /// Whether or not the player is in the Gale Streams event. Updated using <see cref="CheckEventGaleStreams"/> in <see cref="PreUpdate"/>
+        /// Whether or not the player is in the Gale Streams event. Updated using in <see cref="PreUpdate"/>
         /// </summary>
-        public bool eventGaleStreams;
+        public bool EventGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
         /// <summary>
         /// A point determining one of the close gore nests. Goes by on-spawn order.
         /// </summary>
@@ -509,7 +509,6 @@ namespace Aequus
             }
             forceDayState = 0;
 
-            eventGaleStreams = GaleStreamsInvasion.CheckActive(Player);
             eventDemonSiege = DemonSiegeInvasion.FindDemonSiege(Player.Center);
             nearGoreNest = GoreNestTile.BiomeCount > 0;
         }

@@ -89,9 +89,9 @@
             Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.eventGaleStreams">
+        <member name="P:Aequus.AequusPlayer.EventGaleStreams">
             <summary>
-            Whether or not the player is in the Gale Streams event. Updated using <see cref="!:CheckEventGaleStreams"/> in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
+            Whether or not the player is in the Gale Streams event. Updated using in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
@@ -723,7 +723,7 @@
         </member>
         <member name="P:Aequus.Sounds.MusicData.GaleStreamsEvent">
             <summary>
-            Used when <see cref="F:Aequus.AequusPlayer.eventGaleStreams"/> is true
+            Used when <see cref="P:Aequus.AequusPlayer.EventGaleStreams"/> is true
             </summary>
         </member>
         <member name="M:Aequus.Tiles.RecyclingMachineTile.GetTileEntity(System.Int32,System.Int32)">

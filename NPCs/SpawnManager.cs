@@ -32,7 +32,7 @@ namespace Aequus.NPCs
                 spawnRate /= 2;
                 maxSpawns *= 2;
             }
-            if (player.GetModPlayer<AequusPlayer>().eventGaleStreams)
+            if (player.GetModPlayer<AequusPlayer>().EventGaleStreams)
             {
                 spawnRate /= 2;
             }
@@ -62,7 +62,7 @@ namespace Aequus.NPCs
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
-            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().eventGaleStreams && !spawnInfo.PlayerSafe)
+            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().EventGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
                 if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))

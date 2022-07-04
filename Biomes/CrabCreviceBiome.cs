@@ -7,6 +7,6 @@ namespace Aequus.Biomes
         public override string BestiaryIcon => "Aequus/Assets/UI/BestiaryIcons/CrabCrevice";
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG11";
-        public override string MapBackground => MapBackground;
+        public override string MapBackground => BackgroundPath;
     }
 }

@@ -317,7 +317,7 @@ namespace Aequus.Biomes
         public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/DemonSiege";
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG3";
-        public override string MapBackground => MapBackground;
+        public override string MapBackground => BackgroundPath;
 
         public override void Load()
         {
@@ -503,6 +503,7 @@ namespace Aequus.Biomes
                 return true;
             }
         }
+
         public class DemonSiegeSystem : ModSystem
         {
             public static List<Point> RemovalQueue;
@@ -597,6 +598,7 @@ namespace Aequus.Biomes
                 return true;
             }
         }
+
         public class DemonSiegeScene : ModSceneEffect
         {
             public override SceneEffectPriority Priority => SceneEffectPriority.Event;
