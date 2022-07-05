@@ -62,7 +62,6 @@ namespace Aequus.NPCs
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
-            Main.NewText(SpawnCondition.Sky.Chance);
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().EventGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));

@@ -69,7 +69,7 @@ namespace Aequus.NPCs.Monsters.Sky
             //Gore.NewGore(new Vector2(NPC.position.X + NPC.width / 2, NPC.position.Y + 30),
             //    new Vector2(3f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)),
             //    ModGore.GetGoreSlot("AQMod/Gores/GaleStreams/BalloonTextureCopy"));
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode != NetmodeID.MultiplayerClient && (int)NPC.ai[0] > -1 && (int)NPC.ai[0] < Main.maxNPCs)
             {
                 int oldLife = Main.npc[(int)NPC.ai[0]].life;
                 Main.npc[(int)NPC.ai[0]].SetDefaults((int)NPC.ai[2]);
