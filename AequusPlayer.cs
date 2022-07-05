@@ -87,11 +87,11 @@ namespace Aequus
 
         public bool biomeCrabCrevice;
         /// <summary>
-        /// Whether or not the player is in the Gale Streams event. Updated using in <see cref="PreUpdate"/>
+        /// Whether or not the player is in the Gale Streams event
         /// </summary>
         public bool EventGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
         /// <summary>
-        /// A point determining one of the close gore nests. Goes by on-spawn order.
+        /// A point determining one of the close gore nests. Prioritized by their order in <see cref="DemonSiegeInvasion.Sacrifices"/>
         /// </summary>
         public Point eventDemonSiege;
         public bool nearGoreNest;

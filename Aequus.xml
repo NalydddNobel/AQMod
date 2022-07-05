@@ -91,12 +91,12 @@
         </member>
         <member name="P:Aequus.AequusPlayer.EventGaleStreams">
             <summary>
-            Whether or not the player is in the Gale Streams event. Updated using in <see cref="M:Aequus.AequusPlayer.PreUpdate"/>
+            Whether or not the player is in the Gale Streams event
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
-            A point determining one of the close gore nests. Goes by on-spawn order.
+            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiegeInvasion.Sacrifices"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">

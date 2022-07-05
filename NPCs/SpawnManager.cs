@@ -62,6 +62,7 @@ namespace Aequus.NPCs
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
+            Main.NewText(SpawnCondition.Sky.Chance);
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().EventGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
@@ -110,13 +111,16 @@ namespace Aequus.NPCs
             {
                 return true;
             }
-            if (checkMoonSunEvents && AreMoonInvasionsActive(spawnInfo))
+            if (spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneSkyHeight)
             {
-                return true;
-            }
-            if (checkInvasion && AreVanillaInvasionsActive(spawnInfo))
-            {
-                return true;
+                if (checkMoonSunEvents && AreMoonInvasionsActive(spawnInfo))
+                {
+                    return true;
+                }
+                if (checkInvasion && AreVanillaInvasionsActive(spawnInfo))
+                {
+                    return true;
+                }
             }
             return false;
         }
@@ -127,11 +131,11 @@ namespace Aequus.NPCs
         }
         public static bool AreMoonInvasionsActive(NPCSpawnInfo spawnInfo)
         {
-            return (!spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight) || (!Main.eclipse && !Main.pumpkinMoon && !Main.snowMoon);
+            return Main.eclipse || Main.pumpkinMoon || Main.snowMoon;
         }
         public static bool AreVanillaInvasionsActive(NPCSpawnInfo spawnInfo)
         {
-            return !spawnInfo.Player.ZoneOverworldHeight && !spawnInfo.Player.ZoneSkyHeight || Main.invasionType <= 0;
+            return Main.invasionType > 0;
         }
 
         public static void ForceZen(Vector2 mySpot, float zenningDistance)
