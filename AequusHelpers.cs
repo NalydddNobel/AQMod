@@ -1527,12 +1527,17 @@ namespace Aequus
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
         }
 
-        public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
+        public static Dust dustDebugDirect(Vector2 where, int dustType = DustID.Torch)
         {
             var d = Dust.NewDustPerfect(where, dustType);
             d.noGravity = true;
             d.fadeIn = d.scale * 2f;
             d.velocity = Vector2.Zero;
+            return d;
+        }
+        public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
+        {
+            dustDebugDirect(where, dustType);
         }
         public static void dustDebug(int x, int y, int dustType = DustID.Torch)
         {

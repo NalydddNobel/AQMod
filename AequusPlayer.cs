@@ -16,6 +16,8 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
+using Aequus.Particles;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;

@@ -75,7 +75,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SoulStolen>(), 60);
+            target.AddBuff(ModContent.BuffType<SnowgraveDebuff>(), 60);
             if (target.IsTheDestroyer())
             {
                 Projectile.ai[0] += 12.5f;
