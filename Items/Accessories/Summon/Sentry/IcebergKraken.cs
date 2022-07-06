@@ -9,7 +9,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -23,39 +23,15 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<SentrySquidPlayer>().autoSentry = true;
-            player.GetModPlayer<IcebergKrakenPlayer>().frostburnSentry = true;
+            player.Aequus().turretSquidItem = Item;
+            player.Aequus().accFrostburnTurretSquid = true;
             player.maxTurrets++;
         }
 
         public override void AddRecipes()
         {
             AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
-                                .SortAfterFirstRecipesOf(ItemID.PygmyNecklace);
-        }
-    }
-
-    public class IcebergKrakenPlayer : ModPlayer
-    {
-        public bool frostburnSentry;
-
-        public override void ResetEffects()
-        {
-            frostburnSentry = false;
-        }
-    }
-
-    public class IcebergKrakenProjectile : GlobalProjectile
-    {
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
-        {
-            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
-            {
-                if (Main.player[projectile.owner].GetModPlayer<IcebergKrakenPlayer>().frostburnSentry && Main.rand.NextBool(6))
-                {
-                    target.AddBuff(BuffID.Frostburn2, 240);
-                }
-            }
+                .SortAfterFirstRecipesOf(ItemID.PygmyNecklace);
         }
     }
 }

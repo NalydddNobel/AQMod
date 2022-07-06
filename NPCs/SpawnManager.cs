@@ -1,5 +1,5 @@
 ﻿using Aequus.Biomes;
-using Aequus.NPCs.Monsters;
+using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;

@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Aequus.Items.Accessories.Summon.Necro
 {
@@ -7,7 +8,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -15,8 +16,8 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemDefaults.RarityDemoniteCrimtane + 1;
-            Item.value = ItemDefaults.CorruptionValue;
+            Item.rare = ItemRarityID.Green;
+            Item.value = ItemDefaults.BloodMimicItemValue * 3;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

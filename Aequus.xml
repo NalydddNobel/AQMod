@@ -602,7 +602,7 @@
             <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.SentryStaffUsage.customAction">
+        <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
             <para>Item is the item used to summon the sentry</para>

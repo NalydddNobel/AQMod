@@ -152,6 +152,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			HighSteaks: High Steaks
 			BlackPhial: Black Phial
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
@@ -567,6 +568,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HighSteaks: 
+				'''
+				50% more damage from critical strikes
+				[c/{Color}:If you can pay 25 silver]
+				'''
 			BlackPhial: Chance to inflict a random debuff on enemies
 			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
@@ -610,7 +616,7 @@ Mods: {
 			GrandReward: 
 				'''
 				Enemies are more likely to drop rarer items
-				However they no longer drop coins
+				[c/{Color}:However they no longer drop coins]
 				'''
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still

@@ -204,59 +204,6 @@ namespace Aequus.Items
             }
         }
 
-        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool lowerIsGood = false)
-        {
-            if (num == originalNum)
-            {
-                return;
-            }
-
-            float value = num / (float)originalNum;
-            if (value < 1f)
-            {
-                value = 1f - value;
-            }
-            else
-            {
-                value--;
-            }
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
-            { IsModifier = true, IsModifierBad = num < originalNum ? lowerIsGood : !lowerIsGood, });
-        }
-
-        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
-        {
-            float brightness = Main.mouseTextColor / 255f;
-            float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
-            color = Colors.AlphaDarken(color);
-            color.A = 0;
-            var font = FontAssets.MouseText.Value;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
-            {
-                var coords = new Vector2(x, y);
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, coords, new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
-            {
-                var coords = new Vector2(x, y) + f.ToRotationVector2() * (brightness / 2f);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.8f, rotation, origin, baseScale);
-            }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
-            {
-                var coords = new Vector2(x, y) + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 3f);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.2f, rotation, origin, baseScale);
-            }
-        }
-        public static void DrawDedicatedTooltip(string text, int x, int y, Color color)
-        {
-            DrawDedicatedTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
-        }
-        public static void DrawDedicatedTooltip(DrawableTooltipLine line)
-        {
-            DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-        }
-
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
 
         internal static readonly string[] TooltipNames = new string[]
@@ -318,6 +265,60 @@ namespace Aequus.Items
 
         public static Color HintColor => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
+        public static Color ItemDrawbackTooltip => Color.Lerp(Color.Red, Color.White, 0.5f);
+
+        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool lowerIsGood = false)
+        {
+            if (num == originalNum)
+            {
+                return;
+            }
+
+            float value = num / (float)originalNum;
+            if (value < 1f)
+            {
+                value = 1f - value;
+            }
+            else
+            {
+                value--;
+            }
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
+            { IsModifier = true, IsModifierBad = num < originalNum ? lowerIsGood : !lowerIsGood, });
+        }
+
+        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
+        {
+            float brightness = Main.mouseTextColor / 255f;
+            float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
+            color = Colors.AlphaDarken(color);
+            color.A = 0;
+            var font = FontAssets.MouseText.Value;
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
+            {
+                var coords = new Vector2(x, y);
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, coords, new Color(0, 0, 0, 255), rotation, origin, baseScale);
+            }
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
+            {
+                var coords = new Vector2(x, y) + f.ToRotationVector2() * (brightness / 2f);
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.8f, rotation, origin, baseScale);
+            }
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
+            {
+                var coords = new Vector2(x, y) + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 3f);
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.2f, rotation, origin, baseScale);
+            }
+        }
+        public static void DrawDedicatedTooltip(string text, int x, int y, Color color)
+        {
+            DrawDedicatedTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
+        }
+        public static void DrawDedicatedTooltip(DrawableTooltipLine line)
+        {
+            DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
+        }
 
         public static int GetIndex(this List<TooltipLine> tooltips, string lineName)
         {

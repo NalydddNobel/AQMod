@@ -156,6 +156,17 @@ namespace Aequus.Projectiles
             return AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
         }
 
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+            {
+                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid && Main.rand.NextBool(6))
+                {
+                    target.AddBuff(BuffID.Frostburn2, 240);
+                }
+            }
+        }
+
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             bitWriter.WriteBit(defExtraUpdates > 0);

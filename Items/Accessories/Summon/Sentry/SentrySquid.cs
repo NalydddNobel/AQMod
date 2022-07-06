@@ -10,9 +10,9 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 {
     public class SentrySquid : ModItem
     {
-        public struct SentryStaffUsage
+        public struct TurretStaffUsage
         {
-            public static SentryStaffUsage Default => new SentryStaffUsage(isGrounded: false, range: 2000);
+            public static TurretStaffUsage Default => new TurretStaffUsage(isGrounded: false, range: 2000);
 
             public readonly bool IsGrounded;
             public readonly float Range;
@@ -27,11 +27,11 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             /// </summary>
             public Func<Player, Item, NPC, bool> customAction;
 
-            public SentryStaffUsage(bool isGrounded = false, float range = 2000f) : this(null, isGrounded, range)
+            public TurretStaffUsage(bool isGrounded = false, float range = 2000f) : this(null, isGrounded, range)
             {
             }
 
-            public SentryStaffUsage(Func<Player, Item, NPC, bool> customAction, bool isGrounded = false, float range = 2000f)
+            public TurretStaffUsage(Func<Player, Item, NPC, bool> customAction, bool isGrounded = false, float range = 2000f)
             {
                 IsGrounded = isGrounded;
                 Range = range;
@@ -39,7 +39,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 DoNotUse = false;
             }
 
-            public SentryStaffUsage(bool doNotUse)
+            public TurretStaffUsage(bool doNotUse)
             {
                 IsGrounded = false;
                 Range = -1f;
@@ -131,34 +131,34 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
         }
 
-        public static Dictionary<int, SentryStaffUsage> SentryUsage { get; private set; }
+        public static Dictionary<int, TurretStaffUsage> TurretStaffs { get; private set; }
 
         public override void Load()
         {
-            SentryUsage = new Dictionary<int, SentryStaffUsage>()
+            TurretStaffs = new Dictionary<int, TurretStaffUsage>()
             {
-                [ItemID.DD2BallistraTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2BallistraTowerT2Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2BallistraTowerT3Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2ExplosiveTrapT1Popper] = new SentryStaffUsage(isGrounded: true, range: 40f),
-                [ItemID.DD2ExplosiveTrapT2Popper] = new SentryStaffUsage(isGrounded: true, range: 75f),
-                [ItemID.DD2ExplosiveTrapT3Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
-                [ItemID.DD2FlameburstTowerT1Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2FlameburstTowerT2Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2FlameburstTowerT3Popper] = new SentryStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2LightningAuraT1Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
-                [ItemID.DD2LightningAuraT2Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
-                [ItemID.DD2LightningAuraT3Popper] = new SentryStaffUsage(isGrounded: true, range: 100f),
-                [ItemID.QueenSpiderStaff] = new SentryStaffUsage(isGrounded: true, range: 300f),
-                [ItemID.StaffoftheFrostHydra] = new SentryStaffUsage(isGrounded: true, range: 1000f),
-                [ItemID.RainbowCrystalStaff] = new SentryStaffUsage(isGrounded: false, range: 500f),
-                [ItemID.MoonlordTurretStaff] = new SentryStaffUsage(isGrounded: false, range: 1250f),
+                [ItemID.DD2BallistraTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2BallistraTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2BallistraTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2ExplosiveTrapT1Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
+                [ItemID.DD2ExplosiveTrapT2Popper] = new TurretStaffUsage(isGrounded: true, range: 75f),
+                [ItemID.DD2ExplosiveTrapT3Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
+                [ItemID.DD2FlameburstTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2FlameburstTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2FlameburstTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2LightningAuraT1Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
+                [ItemID.DD2LightningAuraT2Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
+                [ItemID.DD2LightningAuraT3Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
+                [ItemID.QueenSpiderStaff] = new TurretStaffUsage(isGrounded: true, range: 300f),
+                [ItemID.StaffoftheFrostHydra] = new TurretStaffUsage(isGrounded: true, range: 1000f),
+                [ItemID.RainbowCrystalStaff] = new TurretStaffUsage(isGrounded: false, range: 500f),
+                [ItemID.MoonlordTurretStaff] = new TurretStaffUsage(isGrounded: false, range: 1250f),
             };
         }
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -172,34 +172,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<SentrySquidPlayer>().autoSentry = true;
-        }
-    }
-
-    public class SentrySquidPlayer : ModPlayer
-    {
-        public bool autoSentry;
-        public ushort autoSentryCooldown;
-
-        public override void Initialize()
-        {
-            autoSentryCooldown = 120;
-        }
-
-        public override void UpdateDead()
-        {
-            autoSentry = false;
-            autoSentryCooldown = 120;
-        }
-
-        public override void ResetEffects()
-        {
-            autoSentry = false;
-            if (!Player.Aequus().InDanger)
-            {
-                autoSentryCooldown = Math.Min(autoSentryCooldown, (ushort)240);
-            }
-            AequusHelpers.TickDown(ref autoSentryCooldown);
+            player.Aequus().turretSquidItem = Item;
         }
     }
 }

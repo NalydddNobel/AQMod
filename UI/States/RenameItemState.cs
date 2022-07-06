@@ -16,7 +16,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.UI.States
 {
-    public sealed class RenameItemState : UIState, ILoadable
+    public class RenameItemState : UIState, ILoadable
     {
         public static Asset<Texture2D> RenameBackIconTexture { get; private set; }
         public static SoundStyle SelectSound { get; private set; }

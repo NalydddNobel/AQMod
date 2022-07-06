@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
@@ -12,7 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.NPCs.Monsters
+namespace Aequus.NPCs.Monsters.Night
 {
     public class BloodMimic : LegacyAIMimic
     {
@@ -56,8 +57,9 @@ namespace Aequus.NPCs.Monsters
                 .SetCondition(new LastAliveCondition(Type))
 
                 .AddOptions(chance: 1,
-                ModContent.ItemType<CrusadersCrossbow>(),
-                ModContent.ItemType<BloodiedBucket>())
+                ModContent.ItemType<HighSteaks>(),
+                ModContent.ItemType<BloodiedBucket>(),
+                ModContent.ItemType<CrusadersCrossbow>())
 
                 .AddOptions(chance: 2,
                 ItemID.MoneyTrough,
@@ -258,7 +260,7 @@ namespace Aequus.NPCs.Monsters
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return (Main.bloodMoon && !NPC.AnyNPCs(Type)) ? SpawnCondition.OverworldNightMonster.Chance * 0.005f : 0f;
+            return Main.bloodMoon && !NPC.AnyNPCs(Type) ? SpawnCondition.OverworldNightMonster.Chance * 0.005f : 0f;
         }
     }
 }

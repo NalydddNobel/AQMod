@@ -131,6 +131,9 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public bool accFrostburnTurretSquid;
+        public float accBloodDiceDamage;
+        public int accBloodDiceMoney;
         public bool accGrandReward;
         public int accBoneRing;
 
@@ -152,8 +155,8 @@ namespace Aequus
 
         public Item glowCoreItem;
 
-        public Item sentrySquidItem;
-        public int sentrySquidTimer;
+        public Item turretSquidItem;
+        public int turretSquidTimer;
 
         public Item healingMushroomItem;
         public int healingMushroomRegeneration;
@@ -356,7 +359,7 @@ namespace Aequus
             moroSummonerFruit = false;
             hasUsedRobsterScamItem = false;
 
-            sentrySquidTimer = 120;
+            turretSquidTimer = 120;
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -444,15 +447,18 @@ namespace Aequus
 
             glowCoreItem = null;
 
-            sentrySquidItem = null;
+            turretSquidItem = null;
             if (!InDanger)
             {
-                sentrySquidTimer = Math.Min(sentrySquidTimer, (ushort)240);
+                turretSquidTimer = Math.Min(turretSquidTimer, (ushort)240);
             }
-            if (sentrySquidTimer > 0)
+            if (turretSquidTimer > 0)
             {
-                sentrySquidTimer--;
+                turretSquidTimer--;
             }
+
+            accBloodDiceMoney = 0;
+            accBloodDiceDamage = 0f;
 
             cHyperCrystal = 0;
             hyperCrystalDiameter = 0f;
@@ -630,7 +636,7 @@ namespace Aequus
                 setGravetenderGhost = -1;
             }
 
-            if (sentrySquidItem != null && sentrySquidTimer == 0)
+            if (turretSquidItem != null && turretSquidTimer == 0)
             {
                 UpdateSentrySquid(Player.Aequus().closestEnemy);
             }
@@ -727,14 +733,14 @@ namespace Aequus
         {
             if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
             {
-                sentrySquidTimer = 30;
+                turretSquidTimer = 30;
                 return;
             }
 
             var item = SentrySquid_GetStaff();
             if (item == null)
             {
-                sentrySquidTimer = 30;
+                turretSquidTimer = 30;
                 return;
             }
 
@@ -757,24 +763,24 @@ namespace Aequus
                 {
                     Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
                 }
-                sentrySquidTimer = 30;
+                turretSquidTimer = 30;
                 return;
             }
 
-            if (!SentrySquid.SentryUsage.TryGetValue(item.type, out var sentryUsage))
+            if (!SentrySquid.TurretStaffs.TryGetValue(item.type, out var sentryUsage))
             {
-                sentryUsage = SentrySquid.SentryStaffUsage.Default;
+                sentryUsage = SentrySquid.TurretStaffUsage.Default;
             }
             if (sentryUsage.TrySummoningThisSentry(Player, item, Main.npc[closestEnemy]))
             {
                 Player.UpdateMaxTurrets();
                 if (Player.maxTurrets > 1)
                 {
-                    sentrySquidTimer = 240;
+                    turretSquidTimer = 240;
                 }
                 else
                 {
-                    sentrySquidTimer = 3000;
+                    turretSquidTimer = 3000;
                 }
                 if (Main.netMode != NetmodeID.Server && item.UseSound != null)
                 {
@@ -783,7 +789,7 @@ namespace Aequus
             }
             else
             {
-                sentrySquidTimer = 30;
+                turretSquidTimer = 30;
             }
         }
         /// <summary>
@@ -993,11 +999,34 @@ namespace Aequus
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            if (target.type != NPCID.TargetDummy)
+            {
+                if (crit)
+                {
+                    CheckBloodDice(ref damage);
+                }
+            }
             HyperCrystalDamage(target.getRect(), ref damage);
         }
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (target.type != NPCID.TargetDummy)
+            {
+                if (crit)
+                {
+                    CheckBloodDice(ref damage);
+                }
+            }
             HyperCrystalDamage(target.getRect(), ref damage);
+        }
+        public void CheckBloodDice(ref int damage)
+        {
+            if (accBloodDiceDamage > 0f && Player.CanBuyItem(accBloodDiceMoney))
+            {
+                SoundEngine.PlaySound(SoundID.Coins);
+                Player.BuyItem(accBloodDiceMoney);
+                damage = (int)(damage * (1f + accBloodDiceDamage / 2f));
+            }
         }
         public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
         {
