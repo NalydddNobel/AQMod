@@ -762,7 +762,7 @@ Mods: {
 				'Just too cute'
 				'''
 
-			LeechHook: May latch onto enemies, hit the host restore life
+			LeechHook: Latches onto enemies, hit the host restore life
 			Meathook: Allows you to grapple to enemies
 
 			BalloonKit: Allows you to ride a hot air balloon
