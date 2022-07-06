@@ -9,7 +9,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(gold: 10);
         }
 

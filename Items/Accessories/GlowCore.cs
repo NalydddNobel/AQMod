@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
             GoldenRoulette.Table.Add(Type);
         }
 
@@ -40,7 +40,7 @@ namespace Aequus.Items.Accessories
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(silver: 5);
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
         }
 

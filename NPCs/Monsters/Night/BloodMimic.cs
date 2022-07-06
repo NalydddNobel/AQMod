@@ -63,10 +63,8 @@ namespace Aequus.NPCs.Monsters.Night
                 ModContent.ItemType<BloodiedBucket>(),
                 ModContent.ItemType<CrusadersCrossbow>())
 
-                .AddOptions(chance: 2,
-                ItemID.MoneyTrough,
-                ItemID.SharkToothNecklace)
-
+                .Add(ItemID.MoneyTrough, chance: 8, stack: 1)
+                .Add(ItemID.SharkToothNecklace, chance: 8, stack: 1)
                 .Add(ItemID.AdhesiveBandage, chance: 8, stack: 1)
                 .RegisterCondition()
 

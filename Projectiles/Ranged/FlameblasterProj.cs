@@ -35,7 +35,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 100, 20, 20);
+            return new Color(255, 150, 20, 100);
         }
 
         public override void AI()

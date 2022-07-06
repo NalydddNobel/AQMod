@@ -16,7 +16,7 @@ namespace Aequus.Items.Accessories
         public override void SetDefaults()
         {
             Item.DefaultToAccessory(16, 16);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.BloodMimicItemValue;
         }
 

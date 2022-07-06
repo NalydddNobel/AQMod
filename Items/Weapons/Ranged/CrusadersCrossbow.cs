@@ -23,12 +23,12 @@ namespace Aequus.Items.Weapons.Ranged
             Item.height = 30;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.Green;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
             Item.shootSpeed = 3f;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
-            Item.value = Item.sellPrice(gold: 2);
+            Item.value = ItemDefaults.BloodMimicItemValue;
             Item.noMelee = true;
             Item.knockBack = 0.1f;
             Item.autoReuse = true;

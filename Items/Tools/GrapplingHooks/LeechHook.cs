@@ -20,7 +20,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.shootSpeed = 16f;
             Item.noUseGraphic = true;
             Item.UseSound = SoundID.Item1;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
             Item.noMelee = true;
             Item.value = ItemDefaults.BloodMimicItemValue;
         }
