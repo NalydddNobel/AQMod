@@ -1044,14 +1044,16 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            CheckLeechHook(target, damage);
+            if (target.type != NPCID.TargetDummy)
+                CheckLeechHook(target, damage);
             CheckBlackVial(target);
             CheckBoneRing(target);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            CheckLeechHook(target, damage);
+            if (target.type != NPCID.TargetDummy)
+                CheckLeechHook(target, damage);
             CheckBlackVial(target);
             CheckBoneRing(target);
 

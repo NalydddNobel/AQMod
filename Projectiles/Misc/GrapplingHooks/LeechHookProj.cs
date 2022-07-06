@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override bool PreAI()
         {
-            if (connectedNPC > -1 && !Main.npc[connectedNPC].active)
+            if (connectedNPC > -1 && (!Main.npc[connectedNPC].active || ProjectileLoader.GrappleOutOfRange(Projectile.Distance(Main.player[Projectile.owner].Center) * 0.75f, Projectile)))
             {
                 connectedNPC = -1;
             }
@@ -56,7 +56,8 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                 }
                 Projectile.velocity = Vector2.Zero;
                 Projectile.Center = Main.npc[connectedNPC].Center;
-                return true;
+                Projectile.rotation = (Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + MathHelper.PiOver2;
+                return false;
             }
             else
             {
@@ -124,20 +125,30 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             velocity *= height;
             float rotation = velocity.ToRotation() + MathHelper.PiOver2;
             var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
-            for (int i = 0; i < 150; i++)
+            for (int i = 0; i < 650; i++)
             {
-                float length = (currentPosition - endPosition).Length();
-                float progress = MathHelper.Clamp(length / range, 0.1f, 1f);
+                var diff = endPosition - currentPosition;
+                float length = diff.Length();
+                float progress = MathHelper.Clamp(1f - length / range, 0.1f, 1f);
                 float scale = Projectile.scale;
                 var color = AequusHelpers.GetColor(currentPosition);
-                if (progress < 0.95f)
+                if (progress > 0.25f)
                 {
-                    scale *= Math.Max(progress, 0.35f);
+                    scale *= Math.Max(1f - (progress - 0.25f) / 0.75f, 0.35f);
                 }
-                currentPosition += velocity.RotatedBy(Math.Sin(i * 0.1f + Main.GlobalTimeWrappedHourly * 6f + Projectile.Center.Length() / 64f) * 0.1f * scale) * scale;
+                var addVelocity = velocity;
+                if (progress <= 0.5f)
+                {
+                    addVelocity = Vector2.Normalize(Vector2.Lerp(addVelocity, diff, (progress - 0.1f) / 0.2f) * 0.02f) * height;
+                }
+                else
+                {
+                    addVelocity = addVelocity.RotatedBy(Math.Sin(i * 0.1f + Main.GlobalTimeWrappedHourly * 6f + Projectile.Center.Length() / 64f) * 0.1f * scale);
+                }
+                currentPosition += addVelocity * scale;
                 if (length <= height)
                     break;
-                Main.EntitySpriteDraw(chain, currentPosition - Main.screenPosition, null, color, rotation, origin, scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(chain, currentPosition - Main.screenPosition, null, color, addVelocity.ToRotation() + MathHelper.PiOver2, origin, scale, SpriteEffects.None, 0);
             }
         }
     }
