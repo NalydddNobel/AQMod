@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Ranged
 {
-    public sealed class CrusadersCrossbowBolt : ModProjectile
+    public class CrusadersCrossbowBolt : ModProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -36,14 +36,17 @@ namespace Aequus.Projectiles.Ranged
                     if (Main.player[plr].team == Main.player[Projectile.owner].team)
                     {
                         int healing = Main.DamageVar(Projectile.damage / 2f);
-                        //Main.player[plr].HealEffect(healing, broadcast: false);
+                        Main.player[plr].HealEffect(healing, broadcast: false);
                         Main.player[plr].statLife += healing;
                         if (Main.player[plr].statLife > Main.player[plr].statLifeMax2)
                         {
                             Main.player[plr].statLife = Main.player[plr].statLifeMax2;
                         }
-                        NetMessage.SendData(MessageID.PlayerHeal, -1, -1, null, plr, healing);
-                        NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, plr, healing);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.PlayerHeal, -1, -1, null, plr, healing);
+                            NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, plr, healing);
+                        }
                         Projectile.Kill();
                     }
                 }

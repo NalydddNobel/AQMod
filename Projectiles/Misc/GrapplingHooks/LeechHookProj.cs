@@ -8,13 +8,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.GrapplingHooks
 {
-    public class MeathookProj : ModProjectile
+    public class LeechHookProj : MeathookProj
     {
-        public int connectedNPC;
-
-        public MeathookProj()
+        public LeechHookProj() : base()
         {
-            connectedNPC = -1;
         }
 
         public override void SetDefaults()
@@ -27,13 +24,12 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.timeLeft *= 10;
-            Projectile.extraUpdates = 1;
             connectedNPC = -1;
         }
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
-            hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 5f);
+            hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 3.5f);
         }
 
         public override bool PreAI()
@@ -42,6 +38,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             {
                 connectedNPC = -1;
             }
+            Main.player[Projectile.owner].Aequus().leechHookNPC = connectedNPC;
             if (connectedNPC != -1)
             {
                 Projectile.ai[0] = 2f;
@@ -57,24 +54,9 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                     Projectile.Kill();
                     return false;
                 }
+                Projectile.velocity = Vector2.Zero;
                 Projectile.Center = Main.npc[connectedNPC].Center;
-                float distance = Projectile.Distance(Main.player[Projectile.owner].Center);
-                if (Main.player[Projectile.owner].grapCount < 10)
-                {
-                    if (distance < Main.npc[connectedNPC].Size.Length() * 2f)
-                    {
-                        Main.player[Projectile.owner].immune = true;
-                        Main.player[Projectile.owner].immuneTime = 12;
-                    }
-                    if (distance < 64f)
-                    {
-                        Projectile.Kill();
-                        return false;
-                    }
-                    Main.player[Projectile.owner].grappling[Main.player[Projectile.owner].grapCount] = Projectile.whoAmI;
-                    Main.player[Projectile.owner].grapCount++;
-                }
-                return false;
+                return true;
             }
             else
             {
@@ -90,52 +72,9 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             return true;
         }
 
-        public override bool? SingleGrappleHook(Player player)
-        {
-            return true;
-        }
-
-        public override bool? CanUseGrapple(Player player)
-        {
-            for (int l = 0; l < Main.maxProjectiles; l++)
-            {
-                if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type)
-                {
-                    return (int)Main.projectile[l].ai[0] == 2;
-                }
-            }
-            return true;
-        }
-
-        public override void UseGrapple(Player player, ref int type)
-        {
-            int hooksOut = 0;
-            int oldestHookIndex = -1;
-            int oldestHookTimeLeft = 100000;
-            for (int i = 0; i < 1000; i++)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.whoAmI && Main.projectile[i].type == Projectile.type)
-                {
-                    hooksOut++;
-                    if (Main.projectile[i].timeLeft < oldestHookTimeLeft)
-                    {
-                        oldestHookIndex = i;
-                        oldestHookTimeLeft = Main.projectile[i].timeLeft;
-                    }
-                }
-            }
-            if (hooksOut > 1)
-                Main.projectile[oldestHookIndex].Kill();
-        }
-
         public override float GrappleRange()
         {
-            return 500f;
-        }
-
-        public override void NumGrappleHooks(Player player, ref int numHooks)
-        {
-            numHooks = 1;
+            return 320f;
         }
 
         public override void GrappleRetreatSpeed(Player player, ref float speed)
@@ -145,7 +84,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override void GrapplePullSpeed(Player player, ref float speed)
         {
-            speed = 18f;
+            speed = 10f;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -169,11 +108,37 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
         {
             var player = Main.player[Projectile.owner];
             float playerLength = (player.Center - Projectile.Center).Length();
-            AequusHelpers.DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain").Value, Projectile.Center, player.Center, Main.screenPosition);
             var texture = TextureAssets.Projectile[Type].Value;
             var drawPosition = Projectile.Center - Main.screenPosition;
+            DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain").Value, Projectile.Center, player.Center);
             Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
             return false;
+        }
+
+        public void DrawChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition)
+        {
+            float range = GrappleRange();
+            int height = chain.Height - 2;
+            var velocity = endPosition - currentPosition;
+            velocity.Normalize();
+            velocity *= height;
+            float rotation = velocity.ToRotation() + MathHelper.PiOver2;
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            for (int i = 0; i < 150; i++)
+            {
+                float length = (currentPosition - endPosition).Length();
+                float progress = MathHelper.Clamp(length / range, 0.1f, 1f);
+                float scale = Projectile.scale;
+                var color = AequusHelpers.GetColor(currentPosition);
+                if (progress < 0.95f)
+                {
+                    scale *= Math.Max(progress, 0.35f);
+                }
+                currentPosition += velocity.RotatedBy(Math.Sin(i * 0.1f + Main.GlobalTimeWrappedHourly * 6f + Projectile.Center.Length() / 64f) * 0.1f * scale) * scale;
+                if (length <= height)
+                    break;
+                Main.EntitySpriteDraw(chain, currentPosition - Main.screenPosition, null, color, rotation, origin, scale, SpriteEffects.None, 0);
+            }
         }
     }
 }

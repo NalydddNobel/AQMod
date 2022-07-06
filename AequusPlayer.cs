@@ -17,6 +17,7 @@ using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -75,6 +76,8 @@ namespace Aequus
 
         public int ears;
         public int cEars;
+
+        public int leechHookNPC;
 
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
@@ -382,6 +385,9 @@ namespace Aequus
 
             ears = 0;
             cEars = 0;
+
+            if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
+                leechHookNPC = -1;
 
             soulCandleLimit = 0;
 
@@ -1038,6 +1044,47 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            CheckLeechHook(target, damage);
+            CheckBlackVial(target);
+            CheckBoneRing(target);
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            CheckLeechHook(target, damage);
+            CheckBlackVial(target);
+            CheckBoneRing(target);
+
+            if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
+            {
+                NecromancyHit(target, proj);
+            }
+        }
+        public void CheckLeechHook(NPC target, int damage)
+        {
+            if (leechHookNPC == target.whoAmI && Player.statLife < Player.statLifeMax2)
+            {
+                Main.NewText(Player.lifeSteal);
+                int lifeHealed = Math.Min(Math.Max(damage / 5, 1), (int)Player.lifeSteal);
+                if (lifeHealed + Player.statLife > Player.statLifeMax2)
+                {
+                    lifeHealed = Player.statLifeMax2 - Player.statLife;
+                }
+                if (lifeHealed > 0)
+                {
+                    Player.lifeSteal -= lifeHealed;
+                    Player.statLife += lifeHealed;
+                    Player.HealEffect(lifeHealed);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendData(MessageID.PlayerHeal, -1, -1, null, Player.whoAmI, lifeHealed);
+                        NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, Player.whoAmI, lifeHealed);
+                    }
+                }
+            }
+        }
+        public void CheckBlackVial(NPC target)
+        {
             if (vialDelay <= 0 && accVial > 0 && Main.rand.NextBool(accVial))
             {
                 int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
@@ -1047,22 +1094,12 @@ namespace Aequus
                     target.AddBuff(buff, 300);
                 }
             }
-            if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
-            {
-                target.AddBuff(ModContent.BuffType<Weakness>(), 360);
-            }
         }
-
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public void CheckBoneRing(NPC target)
         {
             if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);
-            }
-
-            if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
-            {
-                NecromancyHit(target, proj);
             }
         }
         /// <summary>

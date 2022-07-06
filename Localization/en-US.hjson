@@ -251,6 +251,7 @@ Mods: {
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 
+			LeechHook: Super Long Leech
 			Meathook: Meathook
 
 			BalloonKit: Zilla's Balloon Kit
@@ -761,6 +762,7 @@ Mods: {
 				'Just too cute'
 				'''
 
+			LeechHook: May latch onto enemies, hit the host restore life
 			Meathook: Allows you to grapple to enemies
 
 			BalloonKit: Allows you to ride a hot air balloon

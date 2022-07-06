@@ -3,6 +3,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
@@ -57,6 +58,7 @@ namespace Aequus.NPCs.Monsters.Night
                 .SetCondition(new LastAliveCondition(Type))
 
                 .AddOptions(chance: 1,
+                ModContent.ItemType<LeechHook>(),
                 ModContent.ItemType<HighSteaks>(),
                 ModContent.ItemType<BloodiedBucket>(),
                 ModContent.ItemType<CrusadersCrossbow>())

@@ -46,7 +46,7 @@ namespace Aequus.Items
         public static int PotionsValue => Item.sellPrice(silver: 2);
         public static int CorruptionValue => Item.sellPrice(silver: 50);
         public static int CrimsonValue => Item.sellPrice(silver: 55);
-        public static int BloodMimicItemValue => Item.sellPrice(silver: 75);
+        public static int BloodMimicItemValue => Item.sellPrice(gold: 1);
         public static int DungeonValue => Item.sellPrice(gold: 1, silver: 75);
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
