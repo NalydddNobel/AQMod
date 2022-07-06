@@ -152,6 +152,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			HighSteaks: 高级牛排
 			BlackPhial: 黑色药瓶
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
@@ -250,6 +251,7 @@ Mods: {
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 
+			LeechHook: 超级长的水蛭
 			Meathook: 血肉刺钩
 
 			BalloonKit: Zilla的气球装备
@@ -567,6 +569,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HighSteaks: 
+				'''
+				暴击额外造成50%伤害
+				[c/{Color}:如果你能支付25银币]
+				'''
 			BlackPhial: 有几率对敌人造成随机减益
 			BoneRing: 有几率对敌人造成虚弱效果
 			PandorasBox: 
@@ -610,7 +617,7 @@ Mods: {
 			GrandReward: 
 				'''
 				敌人更容易掉落稀有物品
-				但不会再掉落钱币
+				[c/{Color}:但敌人不再掉落钱币]
 				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
@@ -755,6 +762,7 @@ Mods: {
 				'太可爱了'
 				'''
 
+			LeechHook: 吸住敌人, 伤害被吸住的敌人并回复生命值
 			Meathook: 你的钩爪会抓住敌人
 
 			BalloonKit: 允许你骑乘一颗热气球
