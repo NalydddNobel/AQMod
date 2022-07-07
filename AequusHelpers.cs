@@ -101,7 +101,7 @@ namespace Aequus
 
         public static void DrawLine(Vector2 start, float rotation, float length, float width, Color color)
         {
-            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(0f, 1f), new Vector2(width, length), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);
         }
         public static void DrawLine(Vector2 start, Vector2 end, float width, Color color)
         {

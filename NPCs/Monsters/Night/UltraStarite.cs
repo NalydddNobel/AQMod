@@ -1,15 +1,18 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Particles;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -19,18 +22,18 @@ namespace Aequus.NPCs.Monsters.Night
 {
     public class UltraStarite : ModNPC
     {
+        public const int STATE_DEATHRAY = 3;
+        public const int STATE_SPINNY = 2;
         public const int STATE_FLYUP = 1;
         public const int STATE_IDLE = 0;
         public const int STATE_GOODBYE = -1;
-
-        public static readonly Color SpotlightColor = new Color(100, 100, 10, 0);
-
-        public override string Texture => AequusHelpers.GetPath<HyperStarite>();
 
         public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
         public float ArmsLength { get => NPC.ai[3]; set => NPC.ai[3] = value; }
 
         public float[] oldArmsLength;
+        public TrailRenderer armTrail;
+        public TrailRenderer armTrailSmoke;
 
         public override void SetStaticDefaults()
         {
@@ -64,9 +67,9 @@ namespace Aequus.NPCs.Monsters.Night
         {
             NPC.width = 50;
             NPC.height = 50;
-            NPC.lifeMax = 900;
-            NPC.damage = 80;
-            NPC.defense = 12;
+            NPC.lifeMax = 1200;
+            NPC.damage = 50;
+            NPC.defense = 20;
             NPC.HitSound = SoundID.NPCHit5;
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.aiStyle = -1;
@@ -172,7 +175,6 @@ namespace Aequus.NPCs.Monsters.Night
 
             Player player = Main.player[NPC.target];
             Vector2 plrCenter = player.Center;
-            float armsWantedLength = 400f;
             oldArmsLength[0] = NPC.ai[3];
             AequusHelpers.UpdateCacheList(oldArmsLength);
             switch (State)
@@ -189,7 +191,8 @@ namespace Aequus.NPCs.Monsters.Night
                                 for (int i = 0; i < 5; i++)
                                 {
                                     int damage = Main.expertMode ? 45 : 75;
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<HyperStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<UltraStariteInnerArms>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<UltraStariteOuterArms>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
                                 }
                                 NPC.netUpdate = true;
                             }
@@ -232,14 +235,158 @@ namespace Aequus.NPCs.Monsters.Night
                         NPC.velocity.Y -= 0.45f;
                         if (NPC.ai[1] > 20f && PlayerCheck())
                         {
-                            State = STATE_FLYUP;
+                            State = 2;
+                            NPC.ai[1] = 0f;
+                        }
+                    }
+                    break;
+
+                case STATE_SPINNY:
+                    {
+                        NPC.velocity *= 0.9f;
+                        NPC.ai[1]++;
+                        if (NPC.ai[1] >= 90f)
+                        {
+                            if ((int)NPC.ai[1] == 90f)
+                                WrapRotations();
+                            float multiplier = 1f;
+                            if (NPC.ai[1] > 100f)
+                                multiplier = 1f - (NPC.ai[1] - 100f) / 40f;
+                            NPC.rotation += MathHelper.TwoPi / 25f * multiplier;
+                            if (NPC.ai[1] > 140f)
+                            {
+                                NPC.ai[0] = 3f;
+                                NPC.ai[1] = 0f;
+                                ArmsLength = 0f;
+                            }
+                            else
+                            {
+                                float x = (NPC.ai[1] - 90f) / 50f * MathHelper.TwoPi;
+                                ArmsLength = (float)Math.Sin(x) * 175f;
+                                if (ArmsLength < 0f)
+                                    ArmsLength *= 0.1f;
+                            }
+                        }
+                        else
+                        {
+                            NPC.rotation += 0.02f;
+                        }
+                    }
+                    break;
+
+                case STATE_DEATHRAY:
+                    {
+                        NPC.velocity *= 0.9f;
+                        if (NPC.ai[1] == 0f)
+                        {
+                            int armID = 0;
+                            float closestArm = float.MaxValue;
+                            WrapRotations();
+                            for (int i = 0; i < 5; i++)
+                            {
+                                var comparisonPoint = center + GetArmRotation(i).ToRotationVector2() * 180f;
+                                float d = Vector2.Distance(comparisonPoint, plrCenter);
+                                if (d < closestArm)
+                                {
+                                    closestArm = d;
+                                    armID = i;
+                                }
+                            }
+                            NPC.rotation += MathHelper.TwoPi / 5f * armID;
+                        }
+                        NPC.ai[1]++;
+                        if (NPC.ai[1] > 500f)
+                        {
+                            State = 5;
+                            NPC.ai[1] = 0f;
+                        }
+                        if (NPC.ai[1] < 200f)
+                        {
+                            var comparisonPoint = center + GetArmRotation(0).ToRotationVector2() * 180f;
+                            NPC.ai[2] = Math.Sign(comparisonPoint.X - plrCenter.X);
+                            NPC.rotation = Utils.AngleLerp(NPC.rotation, NPC.DirectionTo(plrCenter).ToRotation(), (1f - NPC.ai[1] / 200f) * 0.05f);
+                        }
+                        if ((int)NPC.ai[1] == 197 && AequusHelpers.ShouldDoEffects(NPC.Center))
+                        {
+                            ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.9f);
+                            AequusEffects.Shake.Set(18f, 0.9f);
+                        }
+                        if ((int)NPC.ai[1] == 200)
+                        {
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<UltraStariteDeathray>(), 40, 1f, Main.myPlayer, NPC.whoAmI + 1f);
+                            SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen.WithPitch(0.5f), NPC.Center);
+                        }
+                        NPC.rotation += (Main.expertMode ? 0.015f : 0.065f) * NPC.ai[2];
+                    }
+                    break;
+
+                case 4:
+                    {
+                        if (!PlayerCheck())
+                        {
+                            return;
+                        }
+                        NPC.ai[1]++;
+                        if (NPC.ai[1] < 50f)
+                        {
+                            NPC.velocity *= 0.96f;
+                        }
+                        else
+                        {
+                            float wantedDistance = 250f;
+                            var difference = Main.player[NPC.target].Center - NPC.Center;
+                            if (difference.Length() > wantedDistance)
+                            {
+                                NPC.velocity = Vector2.Lerp(NPC.velocity, difference / 90f, 0.05f);
+                            }
+                            else
+                            {
+                                NPC.velocity *= 0.98f;
+                                NPC.ai[1] += 4;
+                            }
+                        }
+                        if (NPC.ai[1] > 300f)
+                        {
+                            State = STATE_SPINNY;
+                            NPC.ai[1] = 0f;
+                        }
+                        NPC.rotation += 0.01f + NPC.velocity.Length() * 0.01f;
+                    }
+                    break;
+
+                case 5:
+                    {
+                        NPC.velocity *= 0.8f;
+                        NPC.ai[1]++;
+                        if (NPC.ai[1] > 90f)
+                        {
+                            State = 4;
                             NPC.ai[1] = 0f;
                         }
                     }
                     break;
             }
-            if (NPC.velocity.Length() < 1.5f && center.Y + 160f > plrCenter.Y && Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
-                NPC.velocity.Y -= 0.6f;
+            if (NPC.velocity.Length() < 1.5f)
+            {
+                if (center.Y + 400f < plrCenter.Y)
+                    NPC.velocity.Y += 1f;
+                else if (center.Y + 300f > plrCenter.Y && Collision.SolidCollision(NPC.position, NPC.width, NPC.height + 200))
+                    NPC.velocity.Y -= 1f;
+            }
+        }
+        public void WrapRotations()
+        {
+            NPC.rotation %= MathHelper.TwoPi / 5f;
+            float diff = NPC.oldRot[0] - NPC.oldRot[0] % (MathHelper.TwoPi / 5f);
+            for (int i = 0; i < NPC.oldRot.Length; i++)
+            {
+                NPC.oldRot[i] -= diff;
+            }
+        }
+        public float GetArmRotation(int i)
+        {
+            return NPC.rotation + MathHelper.TwoPi / 5f * i - MathHelper.PiOver2;
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
@@ -274,7 +421,17 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var armTrail = TrailRenderer.NewRenderer(1, 50f, Color.Blue);
+            float innerRotation = Main.GlobalTimeWrappedHourly * 6f;
+
+            if (armTrail == null)
+            armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow((1f - p), 2f));
+
+            if (armTrailSmoke == null)
+            armTrailSmoke = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
+            {
+                coord1 = 0f,
+                coord2 = 1f
+            };
             var texture = TextureAssets.Npc[Type].Value;
             var origin = NPC.frame.Size() / 2f;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
@@ -285,17 +442,25 @@ namespace Aequus.NPCs.Monsters.Night
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
-            var armLength = (NPC.height + 56f) * NPC.scale;
+            var armLength = (NPC.height + 156f) * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
-                armLength -= 24f * NPC.scale;
+                armLength -= 90f * NPC.scale;
             }
 
-            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
-            if (!NPC.IsABestiaryIconDummy)
+            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, HyperStarite.SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
+            if (!NPC.IsABestiaryIconDummy && (int)NPC.ai[0] == 2)
             {
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
-                int armTrailLength = (int)(trailLength * MathHelper.Clamp((float)Math.Pow(ArmsLength / 240f, 1.2f), 0f, 1f));
+                int armTrailLength = trailLength;
+                if (NPC.ai[1] < 90f)
+                {
+                    armTrailLength = 0;
+                }
+                else if (NPC.ai[1] > 120f)
+                {
+                    armTrailLength = (int)(armTrailLength * (1f - (NPC.ai[1] - 120f) / 20f));
+                }
                 var armPositions = new List<Vector2>[5];
 
                 for (int j = 0; j < 5; j++)
@@ -308,38 +473,91 @@ namespace Aequus.NPCs.Monsters.Night
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                    if (i > armTrailLength || (i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.002f))
+                    if (i >= armTrailLength || (i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f))
                         continue;
                     for (int j = 0; j < 5; j++)
                     {
                         float rotation = NPC.oldRot[i] + MathHelper.TwoPi / 5f * j;
                         var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + oldArmsLength[i]) - screenPos;
                         armPositions[j].Add(armPos + screenPos);
-                        //Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, color, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                        if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15))
+                        {
+                            float scale = Main.rand.NextFloat(0.4f, 1.5f);
+                            AequusEffects.AbovePlayers.Add(
+                                new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f, 
+                                ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
+                                Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                        }
                     }
                 }
 
                 for (int j = 0; j < 5; j++)
-                    armTrail.Draw(armPositions[j].ToArray());
+                {
+                    var arr = armPositions[j].ToArray();
+                    armTrail.Draw(arr);
+                    armTrailSmoke.Draw(arr, uvAdd: -Main.GlobalTimeWrappedHourly);
+                }
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
-            float segmentLength = (NPC.height - 10f) * NPC.scale;
+            float segmentLength = (NPC.height + 50f) * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
-                segmentLength -= 10f * NPC.scale;
+                segmentLength -= 75f * NPC.scale;
             }
-            for (int i = 0; i < 5; i++)
+            if (ArmsLength < 0f)
             {
-                float rotation = NPC.rotation + MathHelper.TwoPi / 5f * i;
-                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
+                segmentLength += ArmsLength;
+            }
+            for (int i = -2; i < 3; i++)
+            {
+                int armID = i;
+                if (armID >= 0)
+                {
+                    armID++;
+                }
+                if (armID == 3)
+                {
+                    armID = 0;
+                }
+                float armsPullIn = 1f;
+                float lengthMultiplier = 1f;
+                if (State == 3)
+                {
+                    float progress = Math.Min(NPC.ai[1] / 300f, 1f);
+                    float waveFunction = (float)Math.Sin((1f - progress) * MathHelper.Pi * 1.5f - MathHelper.Pi);
+                    if (waveFunction < 0f)
+                    {
+                        waveFunction *= 0.2f;
+                    }
+                    armsPullIn = Math.Clamp(waveFunction, 0.05f, 1.1f);
+                }
+                else if (State == 5)
+                {
+                    float progress = Math.Clamp((NPC.ai[1] - 10f) / 75f, 0f, 1f);
+                    armsPullIn = Math.Clamp(progress, 0.05f, 1.1f);
+                }
+                lengthMultiplier += (1f - armsPullIn) * 0.6f;
+                lengthMultiplier -= Math.Abs(armID) * 0.2f * (1f - armsPullIn);
+                float rotation = NPC.rotation + MathHelper.TwoPi / 5f * armID * armsPullIn;
+                    var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
-                rotation += MathHelper.TwoPi / 10f;
+                rotation = innerRotation + MathHelper.TwoPi / 5f * armID;
                 armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * segmentLength - screenPos;
-                Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale * 0.75f, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+
+            var toPlayer = NPC.DirectionTo(Main.player[NPC.target].Center);
+
+            //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + toPlayer * 100f - screenPos, 4f, Color.Red);
+
+            //for (int i = 1; i < 5; i++)
+            //    AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation + MathHelper.TwoPi / 5f * i).ToRotationVector2() * 100f - screenPos, 4f, Color.Blue);
+
+            //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + NPC.rotation.ToRotationVector2() * 100f - screenPos, 4f, Color.Red);
+            //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation).ToRotationVector2() * 100f - screenPos, 4f, Color.Lime);
             return false;
         }
     }
