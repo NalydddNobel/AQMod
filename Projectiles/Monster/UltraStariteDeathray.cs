@@ -12,7 +12,7 @@ namespace Aequus.Projectiles.Monster
     {
         public const float DEATHRAY_SIZE = 60f;
         public const float DEATHRAY_LENGTH = 2000f;
-        public const int DEATHRAY_KILL_TIME = 14;
+        public const int DEATHRAY_KILL_TIME = 25;
 
         public override string Texture => Aequus.BlankTexture;
 
@@ -87,10 +87,10 @@ namespace Aequus.Projectiles.Monster
                     drawPos + n * Main.screenWidth * Projectile.direction,
                     drawPos + n * Main.screenWidth * 2f * Projectile.direction, };
             //if (prim == null)
-                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
 
             //if (smokePrim == null)
-                smokePrim = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(30f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+                smokePrim = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
                 {
                     coord1 = 0f,
                     coord2 = 1f

@@ -22,6 +22,8 @@ namespace Aequus.NPCs.Monsters.Night
 {
     public class UltraStarite : ModNPC
     {
+        public const int STATE_DEATHRAY_TRANSITION_END = 5;
+        public const int STATE_CHASE = 4;
         public const int STATE_DEATHRAY = 3;
         public const int STATE_SPINNY = 2;
         public const int STATE_FLYUP = 1;
@@ -67,7 +69,7 @@ namespace Aequus.NPCs.Monsters.Night
         {
             NPC.width = 50;
             NPC.height = 50;
-            NPC.lifeMax = 1200;
+            NPC.lifeMax = 1800;
             NPC.damage = 50;
             NPC.defense = 20;
             NPC.HitSound = SoundID.NPCHit5;
@@ -308,8 +310,8 @@ namespace Aequus.NPCs.Monsters.Night
                         }
                         if ((int)NPC.ai[1] == 197 && AequusHelpers.ShouldDoEffects(NPC.Center))
                         {
-                            ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.9f);
-                            AequusEffects.Shake.Set(18f, 0.9f);
+                            ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.93f);
+                            AequusEffects.Shake.Set(18f, 0.93f);
                         }
                         if ((int)NPC.ai[1] == 200)
                         {
@@ -317,11 +319,11 @@ namespace Aequus.NPCs.Monsters.Night
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity, ModContent.ProjectileType<UltraStariteDeathray>(), 40, 1f, Main.myPlayer, NPC.whoAmI + 1f);
                             SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen.WithPitch(0.5f), NPC.Center);
                         }
-                        NPC.rotation += (Main.expertMode ? 0.015f : 0.065f) * NPC.ai[2];
+                        NPC.rotation += (Main.expertMode ? 0.02f : 0.009f) * NPC.ai[2];
                     }
                     break;
 
-                case 4:
+                case STATE_CHASE:
                     {
                         if (!PlayerCheck())
                         {
@@ -355,13 +357,13 @@ namespace Aequus.NPCs.Monsters.Night
                     }
                     break;
 
-                case 5:
+                case STATE_DEATHRAY_TRANSITION_END:
                     {
                         NPC.velocity *= 0.8f;
                         NPC.ai[1]++;
                         if (NPC.ai[1] > 90f)
                         {
-                            State = 4;
+                            State = STATE_CHASE;
                             NPC.ai[1] = 0f;
                         }
                     }
@@ -421,17 +423,17 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            float innerRotation = Main.GlobalTimeWrappedHourly * 6f;
+            float innerArmsRotation = Main.GlobalTimeWrappedHourly * 6f;
 
             if (armTrail == null)
-            armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow((1f - p), 2f));
+                armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow((1f - p), 2f));
 
             if (armTrailSmoke == null)
-            armTrailSmoke = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
-            {
-                coord1 = 0f,
-                coord2 = 1f
-            };
+                armTrailSmoke = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
+                {
+                    coord1 = 0f,
+                    coord2 = 1f
+                };
             var texture = TextureAssets.Npc[Type].Value;
             var origin = NPC.frame.Size() / 2f;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
@@ -449,7 +451,7 @@ namespace Aequus.NPCs.Monsters.Night
             }
 
             Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, HyperStarite.SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
-            if (!NPC.IsABestiaryIconDummy && (int)NPC.ai[0] == 2)
+            if (!NPC.IsABestiaryIconDummy && State == STATE_SPINNY)
             {
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = trailLength;
@@ -484,7 +486,7 @@ namespace Aequus.NPCs.Monsters.Night
                         {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
                             AequusEffects.AbovePlayers.Add(
-                                new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f, 
+                                new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
                                 ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
                                 Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi)));
                         }
@@ -509,6 +511,22 @@ namespace Aequus.NPCs.Monsters.Night
             {
                 segmentLength += ArmsLength;
             }
+            float armsPullIn = 1f;
+            if (State == STATE_DEATHRAY)
+            {
+                float progress = Math.Min(NPC.ai[1] / 300f, 1f);
+                float waveFunction = (float)Math.Sin((1f - progress) * MathHelper.Pi * 1.5f - MathHelper.Pi);
+                if (waveFunction < 0f)
+                {
+                    waveFunction *= 0.2f;
+                }
+                armsPullIn = Math.Clamp(waveFunction, 0.05f, 1.1f);
+            }
+            else if (State == STATE_DEATHRAY_TRANSITION_END)
+            {
+                float progress = Math.Clamp((NPC.ai[1] - 10f) / 75f, 0f, 1f);
+                armsPullIn = Math.Clamp(progress, 0.05f, 1.1f);
+            }
             for (int i = -2; i < 3; i++)
             {
                 int armID = i;
@@ -520,36 +538,82 @@ namespace Aequus.NPCs.Monsters.Night
                 {
                     armID = 0;
                 }
-                float armsPullIn = 1f;
                 float lengthMultiplier = 1f;
-                if (State == 3)
-                {
-                    float progress = Math.Min(NPC.ai[1] / 300f, 1f);
-                    float waveFunction = (float)Math.Sin((1f - progress) * MathHelper.Pi * 1.5f - MathHelper.Pi);
-                    if (waveFunction < 0f)
-                    {
-                        waveFunction *= 0.2f;
-                    }
-                    armsPullIn = Math.Clamp(waveFunction, 0.05f, 1.1f);
-                }
-                else if (State == 5)
-                {
-                    float progress = Math.Clamp((NPC.ai[1] - 10f) / 75f, 0f, 1f);
-                    armsPullIn = Math.Clamp(progress, 0.05f, 1.1f);
-                }
-                lengthMultiplier += (1f - armsPullIn) * 0.6f;
-                lengthMultiplier -= Math.Abs(armID) * 0.2f * (1f - armsPullIn);
+                lengthMultiplier += (1f - armsPullIn) * 0.1f;
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * armID * armsPullIn;
-                    var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
+
+                if (armsPullIn <= 0.6f)
+                {
+                    float lerpValue = 1f - (armsPullIn - 0.05f) / 0.55f;
+
+                    float time = Main.GlobalTimeWrappedHourly + MathHelper.TwoPi / 5f * armID;
+                    time *= 2f;
+                    time %= MathHelper.TwoPi;
+                    float waveFunction = (float)Math.Sin(time);
+
+                    lengthMultiplier = MathHelper.Lerp(lengthMultiplier, lengthMultiplier - 1f * (1f - ((float)Math.Sin(time * 0.5f + MathHelper.Pi)).Abs() * 0.2f) + 1f, lerpValue);
+                    rotation = MathHelper.Lerp(rotation, NPC.rotation + waveFunction * 0.275f, lerpValue);
+                }
+                else
+                {
+                    lengthMultiplier -= Math.Abs(armID) * 0.05f * (1f - armsPullIn);
+                }
+
+                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
-                rotation = innerRotation + MathHelper.TwoPi / 5f * armID;
+                rotation = innerArmsRotation + MathHelper.TwoPi / 5f * armID;
                 armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * segmentLength - screenPos;
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale * 0.75f, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
 
-            var toPlayer = NPC.DirectionTo(Main.player[NPC.target].Center);
+            var drawCoords = (NPC.position + offset - screenPos).Floor();
+            float bloomProgress = 0f;
+            if (State == STATE_DEATHRAY)
+            {
+                bloomProgress = Math.Min(NPC.ai[1] / 200f, 1f);
+                if (NPC.ai[1] > 400f)
+                {
+                    bloomProgress -= (NPC.ai[1] - 400f) / 100f * 0.25f;
+                }
+            }
+            if (State == STATE_DEATHRAY_TRANSITION_END)
+            {
+                bloomProgress = Math.Min((1f - NPC.ai[1] / 90f) * 0.75f, 1f);
+            }
+            bloomProgress *= bloomProgress;
+
+            var ray = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay");
+            if (ray.IsLoaded)
+            {
+                float rayProgress = Math.Max(bloomProgress, 0.4f);
+                var r = AequusEffects.EffectRand;
+                int seed = r.SetRand(0);
+                var rayOrigin = ray.Size() / 2f;
+                for (int i = 0; i < 20; i++)
+                {
+                    float rotation = r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(0.4f, 2f) * r.RandChance(2).ToDirectionInt();
+                    float wave = (float)Math.Sin(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(0.02f, 1f));
+                    var scale = new Vector2(r.Rand(0.8f, 1.1f) * wave, NPC.scale * rayProgress * r.Rand(1f, 6f) * wave) * 0.5f;
+                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 233, 200, 0) * rayProgress, rotation, rayOrigin, scale, SpriteEffects.None, 0f);
+                    scale.X *= 1.1f;
+                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 120, 20, 0) * rayProgress, rotation, rayOrigin, scale * r.Rand(1.1f, 1.35f), SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 20, 200, 0) * 0.5f * rayProgress, rotation, rayOrigin, scale * r.Rand(1.9f, 2.2f), SpriteEffects.None, 0f);
+                }
+                r.SetRand(seed);
+            }
+
+            Main.spriteBatch.Draw(texture, drawCoords, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+
+            if (armsPullIn < 0.8f)
+            {
+                bloom = TextureCache.Bloom[3].Value;
+
+                Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 233, 200, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 120, 20, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.35f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 20, 200, 0) * 0.5f * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 2.2f, SpriteEffects.None, 0f);
+            }
+            //var toPlayer = NPC.DirectionTo(Main.player[NPC.target].Center);
 
             //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + toPlayer * 100f - screenPos, 4f, Color.Red);
 
