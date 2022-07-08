@@ -7,11 +7,17 @@ namespace Aequus.Items.Accessories.Vanity
 {
     public class FishyFins : ModItem, Hooks.IUpdateItemDye
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToAccessory(20, 10);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 20);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.vanity = true;
         }
 
@@ -23,8 +29,11 @@ namespace Aequus.Items.Accessories.Vanity
 
         void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
-            player.Aequus().ears = Type;
-            player.Aequus().cEars = dyeItem.dye;
+            if (!isSetToHidden || !isNotInVanitySlot)
+            {
+                player.Aequus().equippedEars = Type;
+                player.Aequus().cEars = dyeItem.dye;
+            }
         }
     }
 }

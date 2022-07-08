@@ -1,42 +1,15 @@
 Mods: {
 	Aequus: {
-		Bestiary: {
-			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
-			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
-			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
-
-			BloodMimic: Unlucky chest looters who were slain while stealing may mutate with the chest, creating a monster.
-			
-			Heckto: The Molten Legion betrayed their kin, allowing their souls to be consumed by the Gore Nest. Hexoplasm is the result of their spirits being combined with demonic energy.
-
-			BreadOfCthulhu: Cthulhu's lost lunch, reanimated from the contaminated waters, this loathesome loaf does not intend to be eaten. May be caught instead of trash.
-			
-			DwarfStariteCritter: A harmless starite, its small scale doesn't allow it to properly channel its magical ability, so it just hovers around.
-			Starite: This creature's star properties gives it the ability to control magic, and fly.
-			
-			Magmabubble: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lava Slime grew legs after consuming a Blood Crawler, too heavy to climb on walls however.
-			TrapperImp: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Fire Imp uses wicked magic to entrap and rot away Clingers to become its personal pets.
-			Cindera: Withdrawn from the Gore Nest as demonic energy pours from its portal. This Lavabat has hinged jaws like a chest used to clamp down on prey.
-			
-			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
-			RedSprite: A mysterious thunderous discharge once struck a nimbus. Both the thunder and the nimbus' living souls were combined to create an evil monster.
-			Vraine: Extraordinarily aerodynamic birds which come in packs of 3-9, temperature sensative beaks determine how aggressive they are. Their name is based off their v-arc anatomy and group flight pattern.
-			StreamingBalloon: Extra resourceful slimes ride miniature hot air balloons to sail higher currents to find food. They purposely fly over and pop their own balloons to fall atop their prey.
-			WhiteSlime: Originally a photosynthetic Jungle Slime, after being blasted with cosmic radiation, it absorbed the properties of the sun. Rumored to taste like cinnamon.
-			Meteor: Similar to barnacles, these things appear to be inanimate but are still living creatures. When pushed out of space using the Pumpinator, they can leave a meteor crater.
-
-			Occultist: Previously a member of a demonic occult, the Occultist is slowly trying to re-integrate themselves back into society. They still have the habit to create rituals and cast dangerous spells though.
-			SkyMerchant: A smart hunter who created a hot air balloon to hunt birds, proceeded to become an avid lover of chicken nuggets after eating a harpy. Can be seen flying around the sky during windy days.
-			Exporter: The Exporter is a thief with a relation to pirates. All proceeds sold will be exported around the world to questionable folks looking for the best deals.
-
-			SnobsterCritter: A snobster lobster, this one's particularly snobby.
-		}
-
 		BiomeName: {
 			GlimmerInvasion: Glimmer
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsInvasion: Gale Streams
 			DemonSiegeInvasion: Demon Siege
+		}
+
+		Announcement: {
+			GlimmerStart: A glimmer appears in the sky...
+			GlimmerEnd: The glimmer begins to fade away...
 		}
 
 		Achievement: {
@@ -173,6 +146,7 @@ Mods: {
 
 			FishyFins: Fishy Fins
 
+			UltimateSword: Ultimate Sword
 			BattleAxe: Battle Axe
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
@@ -180,6 +154,7 @@ Mods: {
 
 			Slingshot: Slingshot
 
+			Snowgrave: Snowgrave
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
@@ -400,8 +375,6 @@ Mods: {
 			PiranhaPot: Piranha Pot
 			Skrawler: Skrawler
 			SnowflakeCannon: Snowflake Cannon
-			Snowgrave: Snowgrave
-			UltimateSword: Ultimate Sword
 			Fluorescence: Fluorescence
 			FrozenTear: Frozen Tear
 			CrustaciumBar: Crustacium Bar
@@ -627,6 +600,11 @@ Mods: {
 
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
+			UltimateSword:
+				'''
+				Temporarily increases your stats on critical hits
+				Inflicts cosmic radiation on hit
+				'''
 
 			Slingshot: 
 				'''
@@ -634,7 +612,12 @@ Mods: {
 				Uses birds as ammo
 				'''
 
-			BallisticScreecher: Shoots magma balls
+			Snowgrave:
+				'''
+				Summons a deadly snowblast from below
+				'Watch what happens when I cast a spell I don't know!'
+				'''
+			BallisticScreecher: Spews burning magma balls
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils
@@ -962,8 +945,8 @@ Mods: {
 			CrabBarb: Your grappling hooks inflict poison and damage
 			CelesteTorus:
 				'''
-				You obtain rotating orbs which deal contact damage
-				The radius, speed, are all determined by various stats
+				You obtain damaging orbiting spheres
+				Their radius and speed are determined by various stats
 				'''
 			VoodooAmulet:
 				'''
@@ -1157,16 +1140,6 @@ Mods: {
 			PiranhaPot: Summons a vicious plant to fight for you
 			Skrawler: Shoots a deadly flame bolt
 			SnowflakeCannon: 66% chance to not consume ammo
-			Snowgrave:
-				'''
-				Summons a deadly snowblast from below
-				'Watch what happens when I cast a spell I don't know!'
-				'''
-			UltimateSword:
-				'''
-				Temporarily increases your stats on critical hits
-				Inflicts cosmic radiation on hit
-				'''
 			LightMatter: Radiates light and interstellar power
 			NuclearFeather:
 				'''
@@ -1763,12 +1736,6 @@ Mods: {
 				'''
 		}
 
-		ItemTooltipExtra: {
-			UltimateSword: {
-				0: Only obtainable from Omega Starite while there is a glimmer in the sky
-			}
-		}
-
 		GhostlyGrave: {
 			False: You will now drop graves again
 			True: You will no longer drop graves
@@ -1897,6 +1864,41 @@ Mods: {
 			SnobsterCritter: Snobster
 		}
 
+		Bestiary: {
+			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
+			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
+
+			BloodMimic: Due to the blood moon's dominance over corpses, unlucky looters who were slain while stealing may mutate with chests, creating a monster.
+			
+			Heckto: The Molten Legion betrayed their kin, allowing their souls to be consumed by a gore nest. Hexoplasm is the result of their spirits being combined with demonic energy.
+
+			BreadOfCthulhu: Cthulhu's lost lunch, reanimated from the contaminated waters, this loathesome loaf does not intend to be eaten. May be caught instead of trash.
+			
+			DwarfStariteCritter: A harmless starite, its small scale prevents its magic from being lethal, so it just hovers around.
+			OmegaStarite: Sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
+			UltraStarite: As super starites age, they gain the ability to channel their bullets into an aimable beam. Combining the pros and cons of super and hyper starites.
+			HyperStarite: A fierce starite, obtaining super speed and extending arms in order to eliminate groups of prey. Although this evolution sacrifices the range and utility of bullets.
+			SuperStarite: As starites get older, they get better at sustaining their magic energy, allowing them to grow in size and shoot energy bullets.
+			Starite: A fragment of a long ago supernova, its strong magical force gave it life. Must replenish its mystic energy to stay alive.
+			
+			Magmabubble: Grew legs after consuming a blood crawler, its lava body is too heavy to climb on walls however.
+			TrapperImp: This Fire Imp uses wicked magic to entrap and rot away clingers to become its personal pets.
+			Cindera: Has a disgusting, yet deadly face, similar to that of a face monster.
+			
+			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
+			RedSprite: A mysterious thunderous discharge struck a nimbus, both the thunder and the nimbus' souls were combined to create an evil abomination.
+			Vraine: Aerodynamic birds which come in packs of 3-9. Their temperature sensative beaks determine how aggressive they are.
+			StreamingBalloon: Resourceful slimes may ride miniature hot air balloons to find food. They fly above their pray and explode their own balloons to fall atop them.
+			WhiteSlime: Originally a jungle slime, it absorbed the properties of the sun through a 24-hour tanning session. Rumored to taste like cinnamon.
+			Meteor: Early in the morning, floating meteors appear to eat debris in space. May leave a crater on the planet if pushed out of orbit.
+
+			Occultist: Previously a member of a demonic occult, the Occultist is trying to re-integrate themselves back into society. Still has the habit to create rituals and cast dangerous spells.
+			SkyMerchant: A smart hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
+			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
+
+			SnobsterCritter: Slimes naturally evolve to their environment, looks like this one decided that becoming a lobster is the right way to go.
+		}
+
 		HermitCrab: {
 			Storage: Storage
 			StorageFull: Your storage is full!
@@ -2021,8 +2023,6 @@ Mods: {
 			CrabSeasonWarning: The warmth of the oceans increases...
 			CrabSeasonEnding: The oceans become neutral again...
 			GlimmerEvent: Glimmer Event
-			GlimmerEventWarning: A glimmer appears in the sky...
-			GlimmerEventEnding: The glimmer begins to fade away...
 			WorksInInventoryAndPiggyBank: Works in your inventory or piggy bank
 			FavoriteOnly: Only works when favorited
 			DoesntMinionTarget: Does not obey minion targetting

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class SentrySquid : ModItem
+    public class SentrySquid : ModItem, Hooks.IUpdateItemDye
     {
         public struct TurretStaffUsage
         {
@@ -167,12 +167,22 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = Item.sellPrice(gold: 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().turretSquidItem = Item;
+        }
+
+        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            if (!isSetToHidden || !isNotInVanitySlot)
+            {
+                player.Aequus().equippedHat = Type;
+                player.Aequus().cHat = dyeItem.dye;
+            }
         }
     }
 }

@@ -69,6 +69,14 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.AequusHelpers.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
         <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
@@ -665,6 +673,36 @@
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
             </summary>
         </member>
         <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionSpeedup">

@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class IcebergKraken : ModItem
+    public class IcebergKraken : ModItem, Hooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -18,6 +18,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityGaleStreams;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = ItemDefaults.GaleStreamsValue;
         }
 
@@ -32,6 +33,15 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
                 .SortAfterFirstRecipesOf(ItemID.PygmyNecklace);
+        }
+
+        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            if (!isSetToHidden || !isNotInVanitySlot)
+            {
+                player.Aequus().equippedHat = Type;
+                player.Aequus().cHat = dyeItem.dye;
+            }
         }
     }
 }

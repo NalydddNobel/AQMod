@@ -16,8 +16,6 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
-using Aequus.Particles;
-using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
@@ -76,7 +74,11 @@ namespace Aequus
 
         public bool showPrices;
 
-        public int ears;
+        public int equippedHat;
+        public int cHat;
+        public int equippedEyes;
+        public int cEyes;
+        public int equippedEars;
         public int cEars;
 
         public int leechHookNPC;
@@ -210,6 +212,7 @@ namespace Aequus
         /// </summary>
         public bool shadowKey;
 
+        public int itemHits;
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
         /// </summary>
@@ -385,7 +388,11 @@ namespace Aequus
         {
             showPrices = false;
 
-            ears = 0;
+            equippedHat = 0;
+            cHat = 0;
+            equippedEyes = 0;
+            cEyes = 0;
+            equippedEars = 0;
             cEars = 0;
 
             if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
@@ -600,6 +607,7 @@ namespace Aequus
                 lastSelectedItem = Player.selectedItem;
                 itemSwitch = 30;
                 itemUsage = 0;
+                itemHits = 0;
             }
             CountSentries();
         }

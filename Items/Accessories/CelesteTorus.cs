@@ -98,7 +98,7 @@ namespace Aequus.Items.Accessories
                     if (rule(layerValue))
                     {
                         var center = render.Position + new Vector2(v.X, v.Y);
-                        Main.spriteBatch.Draw(texture, OrthographicView.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)), 0f, orig,
+                        Main.spriteBatch.Draw(texture, OrthographicView.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)).UseA(200), 0f, orig,
                             OrthographicView.GetViewScale(render.Scale, v.Z * DimensionZMultiplier), SpriteEffects.None, 0);
                     }
                 }

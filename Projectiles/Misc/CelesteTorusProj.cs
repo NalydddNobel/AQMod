@@ -48,14 +48,13 @@ namespace Aequus.Projectiles.Misc
 
                 aequus = value.dummyPlayer?.GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.projectile[projIdentity].Center;
-                Projectile.scale = 2f;
             }
             else
             {
                 aequus = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.player[Projectile.owner].Center;
-                Projectile.scale = 2f;
             }
+            Projectile.scale = 1f;
 
             var player = Main.player[Projectile.owner];
             if (!player.active || player.dead || (aequus?.celesteTorusItem) == null)

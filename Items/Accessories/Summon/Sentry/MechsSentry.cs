@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class MechsSentry : ModItem
+    public class MechsSentry : ModItem, Hooks.IUpdateItemDye
     {
         public override void Load()
         {
@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             int damage = 70;
             float knockBack = 1.5f;
-            if (Main.rand.Next(15) != 0)
+            if (!Main.rand.NextBool(15))
             {
                 return;
             }
@@ -167,7 +167,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void SetStaticDefaults()
         {
             SantankInteractions.OnAI.Add(Type, OnAI);
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -177,6 +177,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(gold: 12);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.expert = true;
         }
 
@@ -270,6 +271,15 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public static void OnAI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
         {
             aequus.accExpertBoost = true;
+        }
+
+        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            if (!isSetToHidden || !isNotInVanitySlot)
+            {
+                player.Aequus().equippedEyes = Type;
+                player.Aequus().cEyes = dyeItem.dye;
+            }
         }
     }
 

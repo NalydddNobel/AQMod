@@ -86,6 +86,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static bool HasOwner(this Projectile projectile)
+        {
+            return projectile.owner > -1 && projectile.owner < Main.maxPlayers;
+        }
+
         public static void UpdateCacheList<T>(T[] arr)
         {
             for (int i = arr.Length - 1; i > 0; i--)
@@ -761,6 +766,12 @@ namespace Aequus
             }
         }
 
+        /// <summary>
+        /// Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="identity"></param>
+        /// <returns></returns>
         public static int FindProjectileIdentity(int owner, int identity)
         {
             for (int i = 0; i < 1000; i++)

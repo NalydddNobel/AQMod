@@ -20,11 +20,29 @@ namespace Aequus.Projectiles
 
         public int defExtraUpdates;
 
+        /// <summary>
+        /// The item source used to spawn this projectile. Defaults to 0 (<see cref="ItemID.None"/>)
+        /// </summary>
         public int sourceItemUsed;
+        /// <summary>
+        /// The ammo source used to spawn this projectile. Defaults to 0 (<see cref="ItemID.None"/>)
+        /// </summary>
         public int sourceAmmoUsed;
+        /// <summary>
+        /// The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+        /// </summary>
         public int sourceNPC;
+        /// <summary>
+        /// The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="ProjectileID.None"/>).
+        /// </summary>
         public int sourceProjType;
+        /// <summary>
+        /// The identity (<see cref="Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+        /// </summary>
         public int sourceProjIdentity;
+        /// <summary>
+        /// An approximated index of the projectile which spawned this projectile. Defaults to -1.
+        /// </summary>
         public int sourceProj;
 
         public override bool InstancePerEntity => true;
@@ -85,7 +103,7 @@ namespace Aequus.Projectiles
 
             try
             {
-                if (!projectile.hostile && projectile.owner > -1 && projectile.owner < Main.maxPlayers)
+                if (!projectile.hostile && projectile.HasOwner())
                 {
                     int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
                     if (projOwner != -1)
@@ -123,11 +141,26 @@ namespace Aequus.Projectiles
                     else
                     {
                         sourceProjType = Main.projectile[sourceProj].type;
+                        InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
                     }
                 }
             }
             catch
             {
+            }
+        }
+        public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
+        {
+            if (parent.TryGetGlobalProjectile<AequusProjectile>(out var aequus))
+            {
+                if (aequus.sourceItemUsed != 0)
+                {
+                    sourceItemUsed = aequus.sourceItemUsed;
+                }
+                if (aequus.sourceAmmoUsed != 0)
+                {
+                    sourceAmmoUsed = aequus.sourceAmmoUsed;
+                }
             }
         }
 
@@ -158,6 +191,14 @@ namespace Aequus.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if (sourceItemUsed != 0 && projectile.friendly && projectile.HasOwner())
+            {
+                var i = Main.player[projectile.owner].HeldItem;
+                if (sourceItemUsed == i.type)
+                {
+                    Main.player[projectile.owner].Aequus().itemHits++;
+                }
+            }
             if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
             {
                 if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid && Main.rand.NextBool(6))
@@ -203,6 +244,10 @@ namespace Aequus.Projectiles
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
+            if (bitReader.ReadBit())
+            {
+                defExtraUpdates = binaryReader.ReadUInt16();
+            }
             if (bitReader.ReadBit())
             {
                 sourceItemUsed = binaryReader.ReadUInt16();
