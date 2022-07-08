@@ -193,6 +193,9 @@ Mods: {
 			CinnamonRoll: Cinnamon Roll
 			SpicyEel: Spicy Eel
 
+			StuffedConcoctionPotionName: Stuffed {ItemName}
+			StuffedConcoction: Stuffed Concoction
+
 			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
 			FrostPotion: Frost Potion
@@ -290,8 +293,6 @@ Mods: {
 
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
-			Molite: Starbyte
-			MoliteTag: Doubled Potion
 			HypnoticPearl: Hypnotic Pearl
 			SupernovaFruit: Supernova Fruit
 			GalacticStarfruit: Galactic Starfruit
@@ -1405,9 +1406,6 @@ Mods: {
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 		}
-
-		Lingering: Lingering {0}
-		Doubled: Doubled {0}
 
 		BuffName: {
 			NeutronYogurtBuff: Neutron Yogurt
@@ -2823,6 +2821,8 @@ Mods: {
 			19: Concentrate and ask again
 		}
 
+		Concoct: Concoct Potions
+		StopConcocting: Stop Concocting
 		Complete: Complete
 		Active: Active
 		Inactive: Inactive

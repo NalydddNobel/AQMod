@@ -24,7 +24,7 @@ namespace Aequus.Items
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (CanShowButton(AequusUI.ItemSlotContext))
+            if (CanShowButton(AequusUI.itemSlotContext))
             {
                 var buttonTexture = ModContent.Request<Texture2D>("Terraria/Images/UI/ButtonPlay", AssetRequestMode.ImmediateLoad);
                 float buttonScale = Main.inventoryScale * 0.8f;

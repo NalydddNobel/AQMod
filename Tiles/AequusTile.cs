@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Summon.Candles;
+﻿using Aequus.Common.Utilities;
+using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -25,6 +26,37 @@ namespace Aequus.Tiles
         {
             ResetTileRenderPoints = null;
             DrawSpecialTilePoints = null;
+        }
+
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            switch (type)
+            {
+                case TileID.Meteorite:
+                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(50))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
+                    }
+                    break;
+            }
+        }
+        public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile)
+        {
+            for (int y = j - 1; y > 20; y--)
+            {
+                if (!Main.tile[i, y].HasTile && Main.tile[i, y + 1].HasTile)
+                {
+                    for (int k = 0; k < validTile.Length; k++)
+                    {
+                        if (Main.tile[i, y + 1].TileType == validTile[k] && !CheckForType(new Rectangle(i - 6, y - 6, 12, 12).Fluffize(20), tile))
+                        {
+                            WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
+                            return Main.tile[i, y].TileType == tile;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         public override bool Drop(int i, int j, int type)
@@ -84,6 +116,25 @@ namespace Aequus.Tiles
             {
                 ResetTileRenderPoints?.Invoke();
             }
+        }
+
+        public static bool CheckForType(Rectangle rect, ArrayInterpreter<int> type)
+        {
+            return CheckTiles(rect, (i, j, tile) => type.Arr.ContainsAny(tile.TileType));
+        }
+        public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
+        {
+            for (int i = rect.X; i < rect.X + rect.Width; i++)
+            {
+                for (int j = rect.Y; j < rect.Y + rect.Height; j++)
+                {
+                    if (!function(i, j, Main.tile[i, j]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
+    [AutoloadEquip(EquipType.Waist)]
     public class HighSteaks : ModItem
     {
         public override void SetStaticDefaults()
@@ -32,7 +32,8 @@ namespace Aequus.Items.Accessories
             {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { 
+                    t.Text = AequusHelpers.FormatWith(t.Text, new
+                    {
                         Color = Colors.AlphaDarken(AequusTooltips.ItemDrawbackTooltip).Hex3(),
                         CoinColor = Colors.AlphaDarken(Colors.CoinSilver).Hex3(),
                     });

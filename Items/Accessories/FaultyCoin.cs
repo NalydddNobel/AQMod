@@ -6,8 +6,6 @@ namespace Aequus.Items.Accessories
 {
     public class FaultyCoin : ModItem, Hooks.IUpdateBank
     {
-        public float Chance => 0.1f;
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -23,12 +21,12 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateInventory(Player player)
         {
-            player.Aequus().scamChance += Chance;
+            player.Aequus().scamChance += 0.1f;
         }
 
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
-            aequus.scamChance += Chance;
+            aequus.scamChance += 0.1f;
         }
     }
 }

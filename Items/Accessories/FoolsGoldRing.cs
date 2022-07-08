@@ -5,11 +5,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
+    [AutoloadEquip(EquipType.HandsOn)]
     public class FoolsGoldRing : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

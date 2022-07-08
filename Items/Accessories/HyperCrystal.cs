@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
+    [AutoloadEquip(EquipType.Waist)]
     public class HyperCrystal : ModItem
     {
         public override void SetStaticDefaults()

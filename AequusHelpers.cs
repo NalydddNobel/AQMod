@@ -86,6 +86,53 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)
+        {
+            var arr2 = new T2[arr.Count];
+            for (int i = 0; i < arr.Count; i++)
+            {
+                arr2[i] = get(arr[i]);
+            }
+            return arr2;
+        }
+        public static T2[] GetSpecific<T, T2>(this T[] arr, Func<T, T2> get)
+        {
+            var arr2 = new T2[arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr2[i] = get(arr[i]);
+            }
+            return arr2;
+        }
+
+        public static int Mean(this List<int> arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Count; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Count;
+        }
+        public static int Mean(this byte[] arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Length;
+        }
+        public static int Mean(this int[] arr)
+        {
+            int num = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                num += arr[i];
+            }
+            return num / arr.Length;
+        }
+
         public static bool HasOwner(this Projectile projectile)
         {
             return projectile.owner > -1 && projectile.owner < Main.maxPlayers;

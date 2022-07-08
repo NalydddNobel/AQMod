@@ -16,8 +16,7 @@ namespace Aequus.UI
         public static byte linkClickDelay;
         public static byte specialLeftClickDelay;
         public static byte disableItemLeftClick;
-
-        public static int ItemSlotContext { get; private set; }
+        public static int itemSlotContext;
 
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
 
@@ -56,7 +55,7 @@ namespace Aequus.UI
 
         private void Hook_UpdateStaticContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
-            ItemSlotContext = context;
+            itemSlotContext = context;
             orig(spriteBatch, inv, context, slot, position, lightColor);
         }
 

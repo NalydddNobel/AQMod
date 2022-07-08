@@ -1,10 +1,16 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs
 {
     public class SpicyEelBuff : ModBuff
     {
+        public override void SetStaticDefaults()
+        {
+            BuffID.Sets.IsWellFed[Type] = true;
+        }
+
         public override void Update(Player player, ref int buffIndex)
         {
             player.Aequus().buffSpicyEel = true;
