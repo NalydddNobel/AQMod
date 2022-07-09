@@ -1,42 +1,15 @@
 Mods: {
 	Aequus: {
-		Bestiary: {
-			DustDevil: 一种几乎可以控制所有元素的强大元素. 操纵气流从而形成强大的旋风! 它的名字源于它强大的吸力吸入了很多灰尘.
-			OmegaStarite: 从外太空被派去寻找有价值的资源. 星源生命周期中的一种异常现象, 需要来自其外壳的持续生命支持, 作为交换, 它可以产生大量的能量.
-			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
-			
-			BloodMimic: 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
-			
-			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
-
-			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
-
-			DwarfStariteCritter: 无害的星源. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
-			Starite: 这种生物的恒星属性赋予了它控制魔法和飞行的能力.
-
-			Magmabubble: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩史莱姆在吞食了一条血爬行动物后长出了腿, 但它太重了, 爬不上墙壁.
-			TrapperImp: 恶魔能量从血巢的入口中倾泻而出. 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 将其自己的宠物.
-			Cindera: 恶魔能量从血巢的入口中倾泻而出. 这只熔岩蝙蝠有着铰链式的下巴, 就像用来钳制猎物的宝箱.
-
-			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
-			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
-			Vraine: 非常符合空气动力学的鸟类, 一群通常有3-9只, 对温度敏感的喙决定了它们的攻击性. 它们的名字基于它们的V字弧形结构和群体飞行模式而来.
-			StreamingBalloon: 更机智的史莱姆乘坐着微型热气球在更高的天空中寻找着食物. 它们故意飞近猎物, 而后击破自己的气球, 落在猎物身上.
-			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在受到宇宙辐射的冲击后, 它吸收了太阳的能力. 据说味道像肉桂.
-			Meteor: 与藤壶相似, 这些东西看起来是无生命体, 但实际上是活的. 当被吹风机吹离太空, 它们会留下陨石坑.
-
-			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
-			SkyMerchant: 一位聪明的猎人创造了一颗热气球来狩猎鸟类, 在吃了一只鸟妖后他开始热衷于鸡块. 在有风的日子里可以看到他在天空中飞翔.
-			Exporter: 发货人是一个鲜为人知的小偷, 海盗的远亲. 所得的收益都会发放给位于世界各地的那些寻找最佳交易的可疑人士.
-
-			SnobsterCritter: 一种势利的虾, 这只特别势利.
-		}
-
 		BiomeName: {
 			GlimmerInvasion: 微光
 			CrabCreviceBiome: 蟹状裂隙
 			GaleStreamsInvasion: 紊流风暴
 			DemonSiegeInvasion: 恶魔围攻
+		}
+
+		Announcement: {
+			GlimmerStart: 一缕微光出现在了天空中...
+			GlimmerEnd: 微光渐渐消失...
 		}
 
 		Achievement: {
@@ -173,6 +146,7 @@ Mods: {
 
 			FishyFins: 可疑鱼鳍
 
+			UltimateSword: 最终之剑
 			BattleAxe: 战斧
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
@@ -180,6 +154,7 @@ Mods: {
 
 			Slingshot: 弹弓
 
+			Snowgrave: 雪墓
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 
@@ -217,6 +192,9 @@ Mods: {
 			NeutronYogurt: 中子酸奶
 			CinnamonRoll: 肉桂卷
 			SpicyEel: 香辣鳗鱼
+
+			StuffedConcoctionPotionName:填充{ItemName}
+			StuffedConcoction: 填充混合物
 
 			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
@@ -315,8 +293,6 @@ Mods: {
 
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
-			Molite: 元星鱼
-			MoliteTag: 倍效药水
 			HypnoticPearl: 催眠珍珠
 			SupernovaFruit: 超新星果
 			GalacticStarfruit: 星河杨桃
@@ -400,8 +376,6 @@ Mods: {
 			PiranhaPot: 食人罐
 			Skrawler: 皮肤焚烧者
 			SnowflakeCannon: 雪花大炮
-			Snowgrave: 雪墓
-			UltimateSword: 最终之剑
 			Fluorescence: 荧光
 			FrozenTear: 冰霜之泪
 			CrustaciumBar: 硬壳锭
@@ -627,6 +601,11 @@ Mods: {
 
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
+			UltimateSword:
+				'''
+				攻击造成暴击时会短暂强化你的属性一段时间
+				击中敌人时会对其造成宇宙辐射减益
+				'''
 
 			Slingshot: 
 				'''
@@ -634,6 +613,11 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			Snowgrave:
+				'''
+				在下方召唤向上喷涌的致命冰雪风暴
+				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
+				'''
 			BallisticScreecher: 发射熔火球
 			Triacanthorn: 
 				'''
@@ -1157,16 +1141,6 @@ Mods: {
 			PiranhaPot: 召唤一株邪恶的植物为你而战
 			Skrawler: 发射致命的火焰弹幕
 			SnowflakeCannon: 66%几率不消耗弹药
-			Snowgrave:
-				'''
-				在下方召唤向上喷涌的致命冰雪风暴
-				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
-				'''
-			UltimateSword:
-				'''
-				攻击造成暴击时强化你的各项属性一小段时间
-				击中敌人时会对其造成宇宙辐射减益
-				'''
 			LightMatter: 散发着光芒和星际能量
 			NuclearFeather:
 				'''
@@ -1433,15 +1407,11 @@ Mods: {
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 		}
 
-		Lingering: 长效{0}
-		Doubled: 倍效{0}
-
 		BuffName: {
 			NeutronYogurtBuff: 中子酸奶
-			Bloodthirst: 嗜血
+			BloodthirstBuff: 嗜血
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
-			NeutronYogurtBuff: 大幅度增加重力
 			SpicyEelBuff: 香辣鳗鱼
 
 			ReliefshroomBuff: 息灵菇
@@ -1520,6 +1490,7 @@ Mods: {
 			ReliefshroomBuff: 你正在被治愈!
 			MendshroomBuff: 你正在被队友治愈!
 
+			NeutronYogurtBuff: 大幅度增加重力
 			SpicyEelBuff: 大幅度增加移动速度
 			BaguetteBuff: 大幅度增加各项属性和生命恢复速度
 
@@ -1763,12 +1734,6 @@ Mods: {
 				'''
 		}
 
-		ItemTooltipExtra: {
-			UltimateSword: {
-				0: 仅能在天空中闪烁微光时才能在终末之星处获得
-			}
-		}
-
 		GhostlyGrave: {
 			False: 你现在会掉落墓碑
 			True: 你现在不会掉落墓碑
@@ -1896,6 +1861,41 @@ Mods: {
 
 			SnobsterCritter: 势利鬼虾
 		}
+		
+		Bestiary: {
+			DustDevil: 一种几乎可以控制所有元素的强大元素. 被操纵的气流形成的强大旋风! 它的名字源于它强大的吸力吸入了很多灰尘.
+			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
+
+			BloodMimic: 由于血月对尸体的影响, 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
+
+			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
+
+			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
+
+			DwarfStariteCritter: 一种无害的星源. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
+			OmegaStarite: 从外太空被派去寻找有价值的资源. 星源生命周期中的一种异常现象, 需要来自其外壳的持续生命支持, 作为交换, 它可以产生大量的能量.
+			UltraStarite: 随着超级星源的衰老, 它们获得了可将子弹引导进可瞄准的光束的能力. 结合了极耀源星和巨耀源星的优缺点.
+			HyperStarite: 一种凶猛的星源, 获得超高的速度并可伸出肢体以消灭成群的猎物. 尽管这种演化牺牲了子弹的射程和效果.
+			SuperStarite: 随着星源变得更加衰老, 它们更善于维持它们的魔法能量, 允许它们扩大规模并发射能量子弹.
+			Starite: 很久以前的超新星碎片, 强大的魔法力赋予了它生命. 必须补充其神秘能量才能生存.
+
+			Magmabubble: 在吞食了一条血爬行动物后长出了腿, 但它的熔岩身躯太重了, 爬不上墙壁.
+			TrapperImp: 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 并将其作为自己的宠物.
+			Cindera: 有一张令人厌恶且致命的脸, 类似于脸怪.
+
+			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
+			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
+			Vraine: 一群通常有3-9只的非常符合空气动力学的鸟类. 对温度敏感的喙决定了它们的攻击性.
+			StreamingBalloon: 更机智的史莱姆乘坐着微型热气球在更高的天空中寻找着食物. 它们故意飞近猎物, 而后击破自己的气球, 落在猎物身上.
+			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在通过24小时的日光浴后, 它吸收了太阳的能力. 据说味道像肉桂.
+			Meteor: 清晨, 漂浮的流星似乎吞噬了太空中的碎片. 当被推离轨道时可能会留下陨石坑.
+
+			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
+			SkyMerchant: 一位聪明的猎人创造了热气球来捕猎飞行生物. 在有风的日子里可以看到他在天空中飞翔.
+			Exporter: 发货人是一位与海盗有着历史渊源的销赃犯. 所得的收益都会发放给位于世界各地的那些寻找'最佳交易'的可疑人士.
+
+			SnobsterCritter: 史莱姆自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
+		}
 
 		HermitCrab: {
 			Storage: 存储
@@ -2021,8 +2021,6 @@ Mods: {
 			CrabSeasonWarning: 海洋的温度正在逐渐升高...
 			CrabSeasonEnding: 海洋再度变得冰冷...
 			GlimmerEvent: 微光事件
-			GlimmerEventWarning: 天空中闪烁着微光...
-			GlimmerEventEnding: 微光渐渐消失...
 			WorksInInventoryAndPiggyBank: 放置在背包或猪猪存钱罐中即可生效
 			FavoriteOnly: 仅将其标记为收藏时才会生效
 			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
@@ -2823,6 +2821,8 @@ Mods: {
 			19: 请集中你的精神再问一次
 		}
 
+		Concoct: 调制药水
+		StopConcocting: 停止调制
 		Complete: 完成
 		Active: 激活
 		Inactive: 失效
