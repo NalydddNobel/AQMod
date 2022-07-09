@@ -33,6 +33,11 @@ namespace Aequus.Graphics.PlayerLayers
                 DrawHeadTexture(ref drawInfo, earsTexture.Value, (v) => AequusHelpers.GetColor(v, c), aequus.cEars);
             }
 
+            if (aequus.equippedMask >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedMask).Texture + "_Mask", out var maskTexture))
+            {
+                DrawHeadTexture(ref drawInfo, maskTexture.Value, (v) => AequusHelpers.GetColor(v), aequus.cMask);
+            }
+
             if (aequus.equippedEyes >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEyes).Texture + "_Eyes", out var foreHeadTexture))
             {
                 DrawHeadTexture(ref drawInfo, foreHeadTexture.Value, (v) => AequusHelpers.GetColor(v), aequus.cEyes);

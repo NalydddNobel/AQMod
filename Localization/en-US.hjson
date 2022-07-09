@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
 			BoneRing: Bone Hawk Ring
@@ -493,7 +494,6 @@ Mods: {
 			CrabRod: Crab Rod
 			BeeRod: Buzzrod
 			CrabShell: Crab Shell
-			MothmanMask: Mothman Mask
 			MoonlightWall: Moonlight Wall
 			ExoticCoral: Exotic Coral
 			ExoticStarfish: Exotic Starfish
@@ -543,6 +543,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			MothmanMask:
+				'''
+				15% increased damage and critical strike chance
+				Increases the knockback of your minions
+				Crits inflicts blue fire to nearby enemies
+				[c/{Color}:...if you are at max health]
+				'''
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
@@ -603,8 +610,7 @@ Mods: {
 			RockMan: An ancient relic, originally used to cut lemons
 			UltimateSword:
 				'''
-				Temporarily increases your stats on critical hits
-				Inflicts cosmic radiation on hit
+				Do not translate.
 				'''
 
 			Slingshot: 
@@ -1279,13 +1285,6 @@ Mods: {
 				'You have no idea what's in store for you!'
 				{$Mods.Aequus.PaintingSignature.niker}
 				'''
-			MothmanMask:
-				'''
-				All effects only occur if you are at max health
-				15% increased damage and critical strike chance
-				Increases the knockback of your minions
-				Crits inflicts blue fire to nearby enemies
-				'''
 			MoonlightWall: NPCs in front of the wall will think it's night
 			SunbaskMirror:
 				'''
@@ -1653,9 +1652,7 @@ Mods: {
 			TrapperMinion: Trapper
 			TrapperMinionBlast: Trapper
 			TrapperMinionExplosion: Trapper
-			PiranhaPlant: Plant
 			Skrawler: Skrawler
-			UltimateSword: Ultimate Sword
 			DwarfStaritePet: Dwarf Starite
 			OmegaStaritePet: Omega Starite
 			SuperStariteBullet: Super Starite Bullet

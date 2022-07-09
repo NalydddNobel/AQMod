@@ -16,6 +16,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
+using Aequus.Particles;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
@@ -74,6 +75,8 @@ namespace Aequus
 
         public bool showPrices;
 
+        public int equippedMask;
+        public int cMask;
         public int equippedHat;
         public int cHat;
         public int equippedEyes;
@@ -146,6 +149,8 @@ namespace Aequus
 
         public int accVial;
         public int vialDelay;
+
+        public Item mothmanMaskItem;
 
         public Item hyperCrystalItem;
         public bool hyperCrystalHidden;
@@ -388,6 +393,8 @@ namespace Aequus
         {
             showPrices = false;
 
+            equippedMask = 0;
+            cMask = 0;
             equippedHat = 0;
             cHat = 0;
             equippedEyes = 0;
@@ -614,6 +621,19 @@ namespace Aequus
 
         public override void PostUpdate()
         {
+            if (Player.HasBuff<BlueFire>())
+            {
+                if (Main.rand.NextBool(3))
+                AequusEffects.AbovePlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
+                    new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Main.rand.NextBool(3))
+                        AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+            }
+
             if (glowCoreItem != null && glowCoreItem.ModItem is DyeableAccessory)
             {
                 GlowCore.AddLight(Player.Center, Player, this);
@@ -916,6 +936,12 @@ namespace Aequus
             increasedRegen = 0;
         }
 
+        public override void UpdateBadLifeRegen()
+        {
+            if (Player.HasBuff<BlueFire>())
+                Player.AddLifeRegen(-6);
+        }
+
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
         {
             if (damage > 1000)
@@ -1054,6 +1080,10 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
+            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
+            {
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
+            }
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
             CheckBlackVial(target);
@@ -1062,6 +1092,10 @@ namespace Aequus
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
+            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
+            {
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
+            }
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
             CheckBlackVial(target);
@@ -1076,7 +1110,6 @@ namespace Aequus
         {
             if (leechHookNPC == target.whoAmI && Player.statLife < Player.statLifeMax2)
             {
-                Main.NewText(Player.lifeSteal);
                 int lifeHealed = Math.Min(Math.Max(damage / 5, 1), (int)Player.lifeSteal);
                 if (lifeHealed + Player.statLife > Player.statLifeMax2)
                 {

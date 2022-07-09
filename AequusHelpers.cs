@@ -1066,6 +1066,16 @@ namespace Aequus
 
         public static void AddLifeRegen(this Player player, int regen)
         {
+            if (regen < 0)
+            {
+                if (player.lifeRegen > 0)
+                {
+                    player.lifeRegen = 0;
+                    player.lifeRegenTime = 0;
+                }
+                player.lifeRegen += regen;
+                return;
+            }
             bool badRegen = player.lifeRegen < 0;
             player.lifeRegen += regen;
             if (badRegen && player.lifeRegen > 0)

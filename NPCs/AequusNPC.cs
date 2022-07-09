@@ -4,6 +4,7 @@ using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
+using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
@@ -186,6 +187,12 @@ namespace Aequus.NPCs
                 case NPCID.BloodEelHead:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
                     break;
+
+                case NPCID.CultistBoss:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
+                    }
+                    break;
             }
         }
 
@@ -218,11 +225,26 @@ namespace Aequus.NPCs
                     npc.position += npc.velocity * velocityBoost;
                 }
             }
+
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
             }
 
+            if (npc.HasBuff<BlueFire>())
+            {
+                int amt = (int)(npc.Size.Length() / 20f);
+                for (int i = 0; i < amt / 2; i++)
+                {
+                    AequusEffects.BehindPlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
+                        new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+                for (int i = 0; i < amt; i++)
+                {
+                    AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+            }
             if (npc.HasBuff<CorruptionHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
@@ -266,13 +288,22 @@ namespace Aequus.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (npc.HasBuff<BlueFire>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 16;
+                damage += 8;
+            }
             if (npc.HasBuff<Bleeding>())
             {
                 if (npc.lifeRegen > 0)
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 4;
+                npc.lifeRegen -= 8;
                 damage += 4;
             }
             UpdateDebuffStack(npc, npc.HasBuff<CorruptionHellfire>(), ref corruptionHellfireStacks, ref damage, 20, 1f);

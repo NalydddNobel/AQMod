@@ -149,7 +149,7 @@ namespace Aequus.NPCs
 
             public Drops AddFlawless(int itemID)
             {
-                return Add(ItemDropRule.ByCondition(new FlawlessCondition(), itemID));
+                return Add(ItemDropRule.ByCondition(FlawlessCondition, itemID));
             }
             public Drops AddFlawless<T>() where T : ModItem
             {
@@ -170,6 +170,7 @@ namespace Aequus.NPCs
         }
 
         public static Conditions.NotExpert NotExpertCondition => new Conditions.NotExpert();
+        public static FlawlessCondition FlawlessCondition => new FlawlessCondition();
 
         public static Drops AddLoot(this NPC npc, NPCLoot loot)
         {
