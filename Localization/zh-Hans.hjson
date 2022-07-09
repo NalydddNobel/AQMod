@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			MothmanMask: 天蛾人面具
 			HighSteaks: 高级牛排
 			BlackPhial: 黑色药瓶
 			BoneRing: 骨鹰之戒
@@ -493,7 +494,6 @@ Mods: {
 			CrabRod: 螃蟹钓竿
 			BeeRod: 蜜蜂钓竿
 			CrabShell: 蟹壳
-			MothmanMask: 天蛾人面具
 			MoonlightWall: 月光墙
 			ExoticCoral: 奇异珊瑚
 			ExoticStarfish: 奇异海星
@@ -543,6 +543,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			MothmanMask:
+				'''
+				增加15%伤害和暴击率
+				增加召唤物击退
+				攻击造成暴击时对敌人造成碧蓝之火减益
+				[c/{Color}:...在你的生命值为满的前提下]
+				'''
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
@@ -603,8 +610,7 @@ Mods: {
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 			UltimateSword:
 				'''
-				攻击造成暴击时会短暂强化你的属性一段时间
-				击中敌人时会对其造成宇宙辐射减益
+				Do not translate.
 				'''
 
 			Slingshot: 
@@ -1279,13 +1285,6 @@ Mods: {
 				'你不知道你会得到什么!'
 				{$Mods.Aequus.PaintingSignature.niker}
 				'''
-			MothmanMask:
-				'''
-				所有效果仅在你的生命值为满时生效
-				增加15%伤害和暴击率
-				增加召唤物击退
-				攻击造成暴击时对敌人造成碧蓝之火减益
-				'''
 			MoonlightWall: 墙壁前的NPC会认为现在处于晚上
 			SunbaskMirror:
 				'''
@@ -1653,9 +1652,7 @@ Mods: {
 			TrapperMinion: 捕手
 			TrapperMinionBlast: 捕手
 			TrapperMinionExplosion: 捕手
-			PiranhaPlant: 植物
 			Skrawler: 皮肤焚烧者
-			UltimateSword: 最终之剑
 			DwarfStaritePet: 侏儒源星
 			OmegaStaritePet: 迷你终末之星
 			SuperStariteBullet: 极耀源星弹幕
