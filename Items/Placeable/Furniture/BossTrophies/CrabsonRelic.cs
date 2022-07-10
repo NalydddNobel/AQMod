@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.BossTrophies
+namespace Aequus.Items.Placeable.Furniture.BossTrophies
 {
     public class CrabsonRelic : ModItem
     {

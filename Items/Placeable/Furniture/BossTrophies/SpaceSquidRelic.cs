@@ -1,10 +1,9 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.BossTrophies
+namespace Aequus.Items.Placeable.Furniture.BossTrophies
 {
     public class SpaceSquidRelic : ModItem
     {

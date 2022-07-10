@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.BossTrophies
+namespace Aequus.Items.Placeable.Furniture.BossTrophies
 {
-    public class OmegaStariteTrophy : ModItem
+    public class RedSpriteTrophy : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.BossTrophies
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.OmegaStarite);
+            Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.RedSprite);
             Item.maxStack = 99;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;

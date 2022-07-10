@@ -1,18 +1,19 @@
-﻿using Terraria.ID;
+﻿using Aequus.Tiles.Furniture.Jeweled;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Jeweled
+namespace Aequus.Items.Placeable.Furniture.Jeweled
 {
-    public class JeweledChandelier : ModItem
+    public class JeweledChalice : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(TileID.Chandeliers/*ModContent.TileType<JeweledChandelierTile>()*/);
+            Item.DefaultToPlaceableTile(ModContent.TileType<JeweledChaliceTile>());
             Item.width = 16;
             Item.height = 24;
             Item.rare = ItemRarityID.Quest;

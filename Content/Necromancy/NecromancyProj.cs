@@ -36,7 +36,12 @@ namespace Aequus.Content.Necromancy
 
         private static void Projectile_Kill(On.Terraria.Projectile.orig_Kill orig, Projectile self)
         {
-            NecromancyNPC.Zombie.PlayerOwner = self.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner;
+            if (!self.TryGetGlobalProjectile<NecromancyProj>(out var zombie) || !zombie.isZombie)
+            {
+                orig(self);
+                return;
+            }
+            NecromancyNPC.Zombie.PlayerOwner = self.owner;
             try
             {
                 orig(self);

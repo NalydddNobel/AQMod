@@ -3,7 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
-using Aequus.Items.Placeable.BossTrophies;
+using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevil;
 using Microsoft.Xna.Framework;

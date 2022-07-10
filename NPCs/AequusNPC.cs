@@ -361,7 +361,7 @@ namespace Aequus.NPCs
                 }
                 if (npc.value > (Item.copper * 20) && tuple.Item2.ammoBackpackItem != null)
                 {
-                    tuple.Item2.AmmoBackpack(npc, tuple.Item2.ammoBackpackItem);
+                    tuple.Item2.UseAmmoBackpack(npc, tuple.Item2.ammoBackpackItem);
                 }
             }
             return false;

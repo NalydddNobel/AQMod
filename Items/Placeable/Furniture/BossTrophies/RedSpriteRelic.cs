@@ -1,12 +1,11 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.BossTrophies
+namespace Aequus.Items.Placeable.Furniture.BossTrophies
 {
-    public class OmegaStariteRelic : ModItem
+    public class RedSpriteRelic : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +14,7 @@ namespace Aequus.Items.Placeable.BossTrophies
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<BossRelics>(), BossRelics.OmegaStarite);
+            Item.DefaultToPlaceableTile(ModContent.TileType<BossRelics>(), BossRelics.RedSprite);
             Item.width = 30;
             Item.height = 40;
             Item.maxStack = 99;

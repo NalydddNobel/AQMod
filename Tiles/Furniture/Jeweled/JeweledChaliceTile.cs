@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Placeable.Jeweled;
+using Aequus.Items.Placeable.Furniture.Jeweled;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

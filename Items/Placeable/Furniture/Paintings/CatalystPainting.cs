@@ -1,10 +1,11 @@
 ﻿using Aequus.Tiles.Furniture;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.BossTrophies
+namespace Aequus.Items.Placeable.Furniture.Paintings
 {
-    public class CrabsonTrophy : ModItem
+    public class CatalystPainting : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +14,9 @@ namespace Aequus.Items.Placeable.BossTrophies
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.Crabson);
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.RockFromAnAlternateUniversePainting);
             Item.maxStack = 99;
-            Item.value = 50000;
+            Item.value = Item.buyPrice(gold: 2);
             Item.rare = ItemRarityID.Blue;
         }
     }

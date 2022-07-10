@@ -1,7 +1,8 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Items;
-using Aequus.Items.Placeable.Paintings;
+using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Mounts;

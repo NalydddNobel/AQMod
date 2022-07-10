@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Paintings
+namespace Aequus.Items.Placeable.Furniture.Paintings
 {
-    public class HomeworldPainting : ModItem
+    public class YinYangPainting : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Paintings
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings6x4>(), WallPaintings6x4.HomeworldPainting);
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings3x2>(), WallPaintings3x2.YinYangPainting);
             Item.maxStack = 99;
             Item.value = Item.buyPrice(gold: 2);
         }

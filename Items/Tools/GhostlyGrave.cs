@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Tools
 {
     public class GhostlyGrave : ModItem
     {
@@ -12,7 +12,7 @@ namespace Aequus.Items.Misc
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -47,7 +47,7 @@ namespace Aequus.Items.Misc
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Add(new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
+            tooltips.Insert(AequusTooltips.GetIndex(tooltips, "BestiaryNotes"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
         }
 
         public override bool? UseItem(Player player)
@@ -56,14 +56,7 @@ namespace Aequus.Items.Misc
             aequus.ghostTombstones = !aequus.ghostTombstones;
             if (Main.myPlayer == player.whoAmI)
             {
-                if (aequus.ghostTombstones)
-                {
-                    Main.NewText(AequusText.GetText("GhostlyGrave.True"), TextColor);
-                }
-                else
-                {
-                    Main.NewText(AequusText.GetText("GhostlyGrave.False"), TextColor);
-                }
+                Main.NewText(AequusText.GetText("GhostlyGrave." + (aequus.ghostTombstones ? "True" : "False")), TextColor);
             }
             return true;
         }

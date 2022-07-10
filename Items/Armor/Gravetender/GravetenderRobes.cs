@@ -20,6 +20,7 @@ namespace Aequus.Items.Armor.Gravetender
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(silver: 30);
         }
 
         public override void UpdateEquip(Player player)

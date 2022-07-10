@@ -5,7 +5,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
 using Aequus.Items.Misc.Summons;
-using Aequus.Items.Placeable.BossTrophies;
+using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly;
 using Aequus.Projectiles.Monster.Crabson;
 using Microsoft.Xna.Framework;

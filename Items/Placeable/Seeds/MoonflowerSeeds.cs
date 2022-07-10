@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable
+namespace Aequus.Items.Placeable.Seeds
 {
     public class MoonflowerSeeds : ModItem
     {

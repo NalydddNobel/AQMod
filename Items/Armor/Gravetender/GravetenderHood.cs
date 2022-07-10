@@ -22,6 +22,7 @@ namespace Aequus.Items.Armor.Gravetender
             Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<GravetenderWisp>();
             Item.buffType = ModContent.BuffType<GravetenderMinionBuff>();
+            Item.value = Item.sellPrice(silver: 20);
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)

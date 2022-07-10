@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable.Paintings;
+﻿using Aequus.Items.Placeable.Furniture.Paintings;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,6 +28,7 @@ namespace Aequus.Tiles.Furniture
             DustType = DustID.WoodFurniture;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(120, 85, 60), Language.GetText("MapObject.Painting"));
+
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

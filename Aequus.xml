@@ -84,7 +84,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Misc.GhostlyGrave"/>
+            Enabled by <see cref="T:Aequus.Items.Tools.GhostlyGrave"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.buffSpicyEel">

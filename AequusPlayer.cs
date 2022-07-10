@@ -13,7 +13,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly;
@@ -1338,7 +1337,7 @@ namespace Aequus
             return npc.type != ModContent.NPCType<Exporter>();
         }
 
-        public void AmmoBackpack(NPC npc, Item ammoBackpack)
+        public void UseAmmoBackpack(NPC npc, Item ammoBackpack)
         {
             var neededAmmoTypes = AmmoBackpack_GetAmmoTypesToSpawn(npc, ammoBackpack);
             if (neededAmmoTypes.Count > 0)
@@ -1369,9 +1368,9 @@ namespace Aequus
                 {
                     continue;
                 }
-                if (!Items.Accessories.AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
+                if (!AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
                     l.Add(item.ammo);
-                if (!Items.Accessories.AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
+                if (!AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
                     l.Add(item.type);
             }
 

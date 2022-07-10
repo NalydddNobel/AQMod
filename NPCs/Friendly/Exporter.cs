@@ -4,7 +4,9 @@ using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables.Roulettes;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -144,8 +146,12 @@ namespace Aequus.NPCs.Friendly
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RichMansMonocle>());
+
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrabClock>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoticPearl>());
+            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
         }
 
         //public static bool TryPlaceQuestTile(int x, int y)

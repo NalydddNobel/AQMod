@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Paintings
+namespace Aequus.Items.Placeable.Furniture.Paintings
 {
-    public class SkyrimRock2 : ModItem
+    public class InsurgentPainting : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Paintings
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings3x2>(), WallPaintings3x2.Ro);
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings3x2>(), WallPaintings3x2.InsurgentPainting);
             Item.maxStack = 99;
             Item.value = Item.buyPrice(gold: 2);
         }

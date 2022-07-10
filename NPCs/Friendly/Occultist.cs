@@ -2,9 +2,8 @@
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
-using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
-using Aequus.Items.Placeable.Paintings;
+using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Summon.Candles;

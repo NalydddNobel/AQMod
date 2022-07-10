@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Items.Placeable.BossTrophies;
+using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

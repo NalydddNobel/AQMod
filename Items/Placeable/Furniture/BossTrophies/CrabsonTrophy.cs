@@ -1,12 +1,10 @@
 ﻿using Aequus.Tiles.Furniture;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Paintings
+namespace Aequus.Items.Placeable.Furniture.BossTrophies
 {
-    [LegacyName("Origin")]
-    public class OriginPainting : ModItem
+    public class CrabsonTrophy : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,7 +13,7 @@ namespace Aequus.Items.Placeable.Paintings
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.OriginPainting);
+            Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.Crabson);
             Item.maxStack = 99;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;

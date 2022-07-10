@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Misc;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Seeds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

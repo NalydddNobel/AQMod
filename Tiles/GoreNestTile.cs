@@ -205,21 +205,6 @@ namespace Aequus.Tiles
                     }
                 }
             }
-            //if (DemonSiege.IsActive && DemonSiege.BaseItem != null && DemonSiege.BaseItem.type > ItemID.None && DemonSiege.AltarCorner() == new Point(tileX[k], tileY[k]))
-            //{
-            //    var texture = TextureGrabber.GetItem(DemonSiege.BaseItem.type);
-            //    var frame = new Rectangle(0, 0, texture.Width, texture.Height);
-            //    var origin = frame.Size() / 2f;
-            //    float scale = DemonSiege.BaseItem.scale;
-            //    float rotation = (float)Math.Sin(Main.GlobalTime) * 0.05f;
-            //    var drawPosition = new Vector2(portalPosition.X, portalPosition.Y);
-            //    float y2 = texture.Height / 2f;
-            //    if (y2 > 24f)
-            //        drawPosition.Y += 24f - y2;
-            //    if (ItemLoader.PreDrawInWorld(DemonSiege.BaseItem, Main.spriteBatch, Color.White, Color.White, ref rotation, ref scale, 666))
-            //        Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
-            //    ItemLoader.PostDrawInWorld(DemonSiege.BaseItem, Main.spriteBatch, Color.White, Color.White, rotation, scale, 666);
-            //}
         }
         public static void InnerDrawPorter_DoDust(Vector2 where, DemonSiegeSacrifice invasion)
         {

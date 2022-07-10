@@ -55,7 +55,6 @@ namespace Aequus.NPCs.Monsters.Night
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<HyperCrystal>(chance: 4, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
