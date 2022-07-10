@@ -396,15 +396,6 @@ namespace Aequus.NPCs.Monsters.Underworld
                 .Add(new Conditions.DontStarveIsNotUp(), ItemID.BatBat, chance: 250, stack: 1)
                 .Add(new Conditions.DontStarveIsUp(), ItemID.BatBat, chance: 100, stack: 1);
         }
-        //public override void NPCLoot()
-        //{
-        //    if (!DemonSiege.IsActive)
-        //    {
-        //        return;
-        //    }
-        //    if (Main.rand.NextBool(Main.expertMode ? 12 : 16))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<DegenerationRing>());
-        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

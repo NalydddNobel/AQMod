@@ -145,14 +145,14 @@
             An amount of regen to add to the player
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accExpertBoost">
-            <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.sentryInheritItem">
             <summary>
             Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accExpertBoost">
+            <summary>
+            Set to true by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGold">

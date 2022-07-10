@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
@@ -33,6 +34,7 @@ namespace Aequus.NPCs.Monsters.Night
         {
             this.CreateLoot(npcLoot)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
+                .Add<AmmoBackpack>(chance: 25, stack: 1)
                 .Add<NeutronYogurt>(chance: 2, stack: 1);
         }
 

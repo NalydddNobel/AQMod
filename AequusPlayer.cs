@@ -151,8 +151,6 @@ namespace Aequus
         public int accVial;
         public int vialDelay;
 
-        public Item mothmanMaskItem;
-
         public Item hyperCrystalItem;
         public bool hyperCrystalHidden;
         public int cHyperCrystal;
@@ -166,8 +164,6 @@ namespace Aequus
         public Item pandorasBoxItem;
         public int pandorasBoxSpawnChance;
 
-        public Item glowCoreItem;
-
         public Item turretSquidItem;
         public int turretSquidTimer;
 
@@ -178,6 +174,14 @@ namespace Aequus
 
         public Item celesteTorusItem;
         public int cCelesteTorus;
+
+        /// <summary>
+        /// Set by <see cref="SantankSentry"/>
+        /// </summary>
+        public Item sentryInheritItem;
+        public Item ammoBackpackItem;
+        public Item mothmanMaskItem;
+        public Item glowCoreItem;
 
         public bool hasExpertBoost;
         /// <summary>
@@ -190,10 +194,6 @@ namespace Aequus
         public int expertBoostBoCTimer;
         public int expertBoostBoCDefense;
 
-        /// <summary>
-        /// Set by <see cref="SantankSentry"/>
-        /// </summary>
-        public Item sentryInheritItem;
 
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
@@ -468,7 +468,6 @@ namespace Aequus
             pandorasBoxSpawnChance = 0;
             pandorasBoxItem = null;
 
-            glowCoreItem = null;
 
             turretSquidItem = null;
             if (!InDanger)
@@ -488,8 +487,6 @@ namespace Aequus
             hyperCrystalDamage = 0f;
             hyperCrystalItem = null;
 
-            sentryInheritItem = null;
-
             healingMushroomItem = null;
             mendshroomDiameter = 0f;
             healingMushroomRegeneration = 0;
@@ -497,6 +494,11 @@ namespace Aequus
 
             celesteTorusItem = null;
             cCelesteTorus = 0;
+
+            glowCoreItem = null;
+            ammoBackpackItem = null;
+            mothmanMaskItem = null;
+            sentryInheritItem = null;
 
             scamChance = 0f;
             flatScamDiscount = 0;
@@ -1334,6 +1336,53 @@ namespace Aequus
         public static bool CanScamNPC(NPC npc)
         {
             return npc.type != ModContent.NPCType<Exporter>();
+        }
+
+        public void AmmoBackpack(NPC npc, Item ammoBackpack)
+        {
+            var neededAmmoTypes = AmmoBackpack_GetAmmoTypesToSpawn(npc, ammoBackpack);
+            if (neededAmmoTypes.Count > 0)
+            {
+                int chosenType = Main.rand.Next(neededAmmoTypes);
+                int stack = AmmoBackpack_DetermineStack(chosenType, npc, ammoBackpack);
+                //Main.NewText("Dropping " + AequusText.ItemText(chosenType) + "(" + stack + ") from " + npc.FullName, Color.LightBlue);
+                //Main.NewText((int)(AmmoBackpack_StackMultiplier(chosenType, npc, ammoBackpack) * 10000) / 100f + "% NPC Value: " + npc.value + " Item Value: " + ContentSamples.ItemsByType[chosenType].value);
+                //Main.NewText((int)(30 * AmmoBackpack_StackMultiplier(chosenType, npc, ammoBackpack)) + " is the max amount of ammo dropable.");
+                Item.NewItem(Player.GetSource_Accessory(ammoBackpack), npc.getRect(), chosenType, stack);
+            }
+        }
+        public int AmmoBackpack_DetermineStack(int itemToSpawn, NPC npc, Item ammoBackpack)
+        {
+            return (int)Math.Max((Main.rand.Next(30) + 1) * AmmoBackpack_StackMultiplier(itemToSpawn, npc, ammoBackpack), 1);
+        }
+        public float AmmoBackpack_StackMultiplier(int itemToSpawn, NPC npc, Item ammoBackpack)
+        {
+            return 1f - Math.Clamp(ContentSamples.ItemsByType[itemToSpawn].value / (Item.silver * (npc.value / (Item.silver * 5f))), 0f, 1f);
+        }
+        public List<int> AmmoBackpack_GetAmmoTypesToSpawn(NPC npc, Item ammoBackpack)
+        {
+            var l = new List<int>();
+            for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
+            {
+                var item = Player.inventory[i];
+                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0)
+                {
+                    continue;
+                }
+                if (!Items.Accessories.AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
+                    l.Add(item.ammo);
+                if (!Items.Accessories.AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
+                    l.Add(item.type);
+            }
+
+            for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
+            {
+                if (!Player.inventory[i].consumable)
+                {
+                    l.Remove(Player.inventory[i].type);
+                }
+            }
+            return l;
         }
 
         public void Mendshroom()

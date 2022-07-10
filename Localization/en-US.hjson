@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			AmmoBackpack: Ammo Renewal Pack
 			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
@@ -303,7 +304,6 @@ Mods: {
 			DreamCatcher: Dream Catcher
 			MagikaAmulet: Magika Amulet
 			JellyAmulet: Jelly Amulet
-			Terraroot: Ammo Renewal Pack
 			Quasicrystal: Quasicrystal Amulet
 			HyperCrystal: Hyper Crystal
 			ExtractorHelmet: Head Plate
@@ -545,6 +545,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			AmmoBackpack: Enemies drop ammo you have consumed
 			MothmanMask:
 				'''
 				15% increased damage and critical strike chance
@@ -906,7 +907,6 @@ Mods: {
 				10% increased ranged critical strike chance while underwater
 				Enemies drop ammo you have consumed
 				'''
-			Terraroot: Enemies drop ammo you have consumed
 			Quasicrystal:
 				'''
 				Nearby enemies take 25% extra damage

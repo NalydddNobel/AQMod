@@ -189,9 +189,7 @@ namespace Aequus.NPCs
                     break;
 
                 case NPCID.CultistBoss:
-                    {
-                        npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
-                    }
+                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
                     break;
             }
         }
@@ -355,6 +353,17 @@ namespace Aequus.NPCs
                 zombie.SpawnZombie(npc);
             }
 
+            foreach (var tuple in players)
+            {
+                if (!npc.playerInteraction[tuple.Item1.whoAmI])
+                {
+                    continue;
+                }
+                if (npc.value > (Item.copper * 20) && tuple.Item2.ammoBackpackItem != null)
+                {
+                    tuple.Item2.AmmoBackpack(npc, tuple.Item2.ammoBackpackItem);
+                }
+            }
             return false;
         }
         public void CheckSouls(NPC npc, List<(Player, AequusPlayer, float)> players)
