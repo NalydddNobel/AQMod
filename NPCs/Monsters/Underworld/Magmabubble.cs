@@ -362,7 +362,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         {
             this.CreateLoot(npcLoot)
                 .Add<DemonicEnergy>(chance: 20, stack: 1)
-                .Add(ItemID.LavaCharm, chance: 16, stack: 1);
+                .Add(ItemID.LavaCharm, chance: 25, stack: 1);
         }
         //public override void NPCLoot()
         //{
