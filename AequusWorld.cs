@@ -84,9 +84,11 @@ namespace Aequus
         {
             Aequus.SkiesDarkness = 1f;
             shadowOrbsBrokenTotal = 0;
+            downedEventCosmic = false;
+            downedEventDemon = false;
+            downedEventAtmosphere = false;
             downedSpaceSquid = false;
             downedRedSprite = false;
-            downedEventAtmosphere = false;
             downedCrabson = false;
             downedOmegaStarite = false;
             downedDustDevil = false;

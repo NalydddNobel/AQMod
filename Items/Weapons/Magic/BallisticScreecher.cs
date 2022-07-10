@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -14,7 +15,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.staff[Item.type] = true;
             SacrificeTotal = 1;
-            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.CrimsonRod, Type));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.CrimsonRod, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

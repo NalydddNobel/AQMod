@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes.DemonSiege;
+using Aequus.Common.Utilities;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System;
@@ -57,6 +58,21 @@ namespace Aequus.Tiles
                 }
             }
             return false;
+        }
+
+        public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
+        {
+            if (WorldGen.gen)
+                return true;
+
+            foreach (var s in DemonSiegeSystem.ActiveSacrifices)
+            {
+                if (s.Value.ProtectedTiles().Contains(i, j))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public override bool Drop(int i, int j, int type)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
@@ -101,7 +102,7 @@ namespace Aequus
         /// </summary>
         public bool EventGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
         /// <summary>
-        /// A point determining one of the close gore nests. Prioritized by their order in <see cref="DemonSiegeInvasion.Sacrifices"/>
+        /// A point determining one of the close gore nests. Prioritized by their order in <see cref="DemonSiegeSystem.ActiveSacrifices"/>
         /// </summary>
         public Point eventDemonSiege;
         public bool nearGoreNest;
@@ -260,7 +261,7 @@ namespace Aequus
         public int ghostProjExtraUpdates;
         public int ghostLifespan;
 
-        public int hitTime;
+        public int timeSinceLastHit;
         public int idleTime;
 
         public bool MendshroomActive => idleTime >= 60;
@@ -295,7 +296,7 @@ namespace Aequus
             clone.itemUsage = itemUsage;
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
-            clone.hitTime = hitTime;
+            clone.timeSinceLastHit = timeSinceLastHit;
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
@@ -325,10 +326,10 @@ namespace Aequus
                         sentAnything = true;
                     }, p);
 
-                PacketHandler.FlaggedSend((clone.hitTime - hitTime).Abs() > 10,
+                PacketHandler.FlaggedSend((clone.timeSinceLastHit - timeSinceLastHit).Abs() > 10,
                 (p) =>
                     {
-                        p.Write(hitTime);
+                        p.Write(timeSinceLastHit);
                         sentAnything = true;
                     }, p);
 
@@ -356,7 +357,7 @@ namespace Aequus
             }
             if (reader.ReadBoolean())
             {
-                hitTime = reader.ReadInt32();
+                timeSinceLastHit = reader.ReadInt32();
             }
             if (reader.ReadBoolean())
             {
@@ -384,7 +385,7 @@ namespace Aequus
 
         public override void UpdateDead()
         {
-            hitTime = 0;
+            timeSinceLastHit = 0;
             hasExpertBoost = false;
             accExpertBoost = false;
         }
@@ -537,13 +538,13 @@ namespace Aequus
             }
             forceDayState = 0;
 
-            eventDemonSiege = DemonSiegeInvasion.FindDemonSiege(Player.Center);
+            eventDemonSiege = DemonSiegeSystem.FindDemonSiege(Player.Center);
             nearGoreNest = GoreNestTile.BiomeCount > 0;
         }
 
         public override void PreUpdateBuffs()
         {
-            hitTime++;
+            timeSinceLastHit++;
         }
 
         public override void PostUpdateEquips()
@@ -1036,7 +1037,7 @@ namespace Aequus
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
         {
-            hitTime = 0;
+            timeSinceLastHit = 0;
         }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)

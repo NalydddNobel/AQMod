@@ -15,7 +15,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.damage = 35;
             Item.knockBack = 1f;
             Item.shoot = ModContent.ProjectileType<MeathookProj>();
-            Item.shootSpeed = 16f;
+            Item.shootSpeed = 12f;
             Item.noUseGraphic = true;
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.LightRed;

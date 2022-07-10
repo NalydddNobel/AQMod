@@ -104,7 +104,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
-            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiegeInvasion.Sacrifices"/>
+            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -338,7 +338,7 @@
             <param name="args"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Biomes.DemonSiegeInvasion.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:Aequus.Biomes.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Finds and returns the closest demon siege
             </summary>

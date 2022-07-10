@@ -4,7 +4,7 @@ Mods: {
 			GlimmerInvasion: Glimmer
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsInvasion: Gale Streams
-			DemonSiegeInvasion: Demon Siege
+			DemonSiegeBiome: Demon Siege
 		}
 
 		Announcement: {
@@ -234,7 +234,9 @@ Mods: {
 			Meathook: Meathook
 
 			BalloonKit: Zilla's Balloon Kit
-						
+
+			UnholyCore: Unholy Core
+
 			RichMansMonocle: Rich Man's Monocle
 
 			Pumpinator: Pumpinator
@@ -763,6 +765,8 @@ Mods: {
 				Extra powerful during the rain
 				'''
 
+			UnholyCore: Halves the length of a Demon Siege event
+
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
 			Pumpinator:
@@ -854,7 +858,7 @@ Mods: {
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 
-			GhostlyGrave: Converts your grave into a ghost
+			GhostlyGrave: When used, your graves convert into a ghost on death
 
 			MirrorsCall:
 				'''

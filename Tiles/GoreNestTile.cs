@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Items.Placeable;
@@ -77,7 +78,7 @@ namespace Aequus.Tiles
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
         {
-            if (DemonSiegeInvasion.Sacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
+            if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
             {
                 return false;
             }
@@ -86,7 +87,7 @@ namespace Aequus.Tiles
 
         public override void MouseOver(int i, int j)
         {
-            if (DemonSiegeInvasion.Sacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
+            if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0)
             {
                 return;
             }
@@ -102,7 +103,7 @@ namespace Aequus.Tiles
 
         public override bool AutoSelect(int i, int j, Item item)
         {
-            return DemonSiegeInvasion.registeredSacrifices.ContainsKey(item.type);
+            return DemonSiegeSystem.RegisteredSacrifices.ContainsKey(item.type);
         }
 
         public override bool RightClick(int i, int j)
@@ -113,11 +114,11 @@ namespace Aequus.Tiles
             {
                 return false;
             }
-            if (DemonSiegeInvasion.NewInvasion(topLeft.X, topLeft.Y, item, Main.myPlayer))
+            if (DemonSiegeSystem.NewInvasion(topLeft.X, topLeft.Y, item, Main.myPlayer))
             {
                 goto ConsumeItem;
             }
-            if (DemonSiegeInvasion.Sacrifices.TryGetValue(topLeft, out var sacrifice))
+            if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(topLeft, out var sacrifice))
             {
                 sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
                 if (Main.netMode != NetmodeID.SinglePlayer)
@@ -167,7 +168,7 @@ namespace Aequus.Tiles
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
-            if (DemonSiegeInvasion.Sacrifices.TryGetValue(ij, out var invasion))
+            if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(ij, out var invasion))
             {
                 InnerDrawPorter_DoDust(position + Main.screenPosition, invasion);
 
@@ -220,7 +221,7 @@ namespace Aequus.Tiles
             //    ItemLoader.PostDrawInWorld(DemonSiege.BaseItem, Main.spriteBatch, Color.White, Color.White, rotation, scale, 666);
             //}
         }
-        public static void InnerDrawPorter_DoDust(Vector2 where, DemonSiegeInvasion.EventSacrifice invasion)
+        public static void InnerDrawPorter_DoDust(Vector2 where, DemonSiegeSacrifice invasion)
         {
             if (Aequus.GameWorldActive)
             {
@@ -271,7 +272,7 @@ namespace Aequus.Tiles
 
             if (upgradeOpacity > 0f)
             {
-                DemonSiegeInvasion.TryFromID(i.netID, out var upgrade);
+                DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var upgrade);
                 Main.instance.LoadItem(upgrade.NewItem);
 
                 texture = TextureAssets.Item[upgrade.NewItem].Value;
@@ -301,18 +302,27 @@ namespace Aequus.Tiles
 
         public static Item GetUsableDemonSiegeItem(Player player)
         {
-            if (DemonSiegeInvasion.registeredSacrifices.ContainsKey(player.HeldItem.type))
+            if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.HeldItem.type))
             {
                 return player.HeldItem;
             }
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
             {
-                if (DemonSiegeInvasion.registeredSacrifices.ContainsKey(player.inventory[i].type))
+                if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.inventory[i].type))
                 {
                     return player.inventory[i];
                 }
             }
             return null;
+        }
+
+        public static bool IsGoreNest(Point p)
+        {
+            return IsGoreNest(p.X, p.Y);
+        }
+        public static bool IsGoreNest(int x, int y)
+        {
+            return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<GoreNestTile>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
@@ -14,7 +15,7 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.BloodButcherer, Type));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

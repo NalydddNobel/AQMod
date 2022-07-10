@@ -140,12 +140,12 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override void GrappleRetreatSpeed(Player player, ref float speed)
         {
-            speed = 14f;
+            speed = 12f;
         }
 
         public override void GrapplePullSpeed(Player player, ref float speed)
         {
-            speed = 18f;
+            speed = 14f;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

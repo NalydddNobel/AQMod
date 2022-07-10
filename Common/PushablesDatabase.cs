@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace Aequus.Common
 {
-    public class PushableDatabase : LoadableType
+    public class PushablesDatabase : LoadableType
     {
         public static HashSet<int> NPCs { get; private set; }
         public static HashSet<int> Projs { get; private set; }

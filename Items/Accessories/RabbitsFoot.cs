@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Biomes.DemonSiege;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.Bunny, Type));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Bunny, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

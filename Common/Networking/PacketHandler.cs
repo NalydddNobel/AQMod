@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
@@ -279,15 +280,15 @@ namespace Aequus.Common.Networking
             }
             else if (type == PacketType.DemonSiegeSacrificeStatus)
             {
-                DemonSiegeInvasion.EventSacrifice.ReadPacket(reader);
+                DemonSiegeSacrifice.ReadPacket(reader);
             }
             else if (type == PacketType.RequestDemonSiege)
             {
-                DemonSiegeInvasion.HandleStartRequest(reader);
+                DemonSiegeSystem.HandleStartRequest(reader);
             }
             else if (type == PacketType.RemoveDemonSiege)
             {
-                DemonSiegeInvasion.Sacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
+                DemonSiegeSystem.ActiveSacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
             }
             else if (type == PacketType.SyncAequusNPC)
             {

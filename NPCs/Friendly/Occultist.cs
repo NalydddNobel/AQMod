@@ -5,6 +5,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Paintings;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Summon.Candles;
 using System.Collections.Generic;
@@ -95,23 +96,24 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            if (Main.hardMode)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());
             if (Main.hardMode)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
             }
-            if (!Main.dayTime && Main.bloodMoon)
-            {
-                shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
-            }
             if (!Main.dayTime)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
+            }
+            if (Main.hardMode)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
+            if (!Main.dayTime && Main.bloodMoon)
+            {
+                shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
             }
         }
 
@@ -159,7 +161,6 @@ namespace Aequus.NPCs.Friendly
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            //button2 = AequusText.GetText("Chat.Exporter.ThieveryButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)

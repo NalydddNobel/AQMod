@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,7 +14,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            DemonSiegeInvasion.RegisterSacrifice(DemonSiegeInvasion.PHM(ItemID.DemonBow, Type));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.DemonBow, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

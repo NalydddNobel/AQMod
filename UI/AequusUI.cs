@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.UI.EventProgressBars;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -93,6 +94,7 @@ namespace Aequus.UI
             leftInvOffset = 0;
             IntoLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
+                EventProgressBarLoader.Draw();
                 Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 Aequus.InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 return true;

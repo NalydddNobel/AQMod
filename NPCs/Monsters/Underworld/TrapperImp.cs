@@ -55,7 +55,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<TrapperImpBanner>();
 
-            this.SetBiome<DemonSiegeInvasion>();
+            this.SetBiome<DemonSiegeBiome>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
