@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			AmmoBackpack: 弹药恢复包
 			MothmanMask: 天蛾人面具
 			HighSteaks: 高级牛排
 			BlackPhial: 黑色药瓶
@@ -303,7 +304,6 @@ Mods: {
 			DreamCatcher: 捕梦者
 			MagikaAmulet: 神奇护符
 			JellyAmulet: 水母护符
-			Terraroot: 弹药恢复包
 			Quasicrystal: 准晶体护符
 			HyperCrystal: 超晶体
 			ExtractorHelmet: 顶板
@@ -545,6 +545,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			AmmoBackpack: 敌人会掉落你所消耗的弹药
 			MothmanMask:
 				'''
 				增加15%伤害和暴击率
@@ -906,7 +907,6 @@ Mods: {
 				在水中时增加10%远程暴击率
 				敌人会掉落你所消耗的弹药
 				'''
-			Terraroot: 敌人会掉落你所消耗的弹药
 			Quasicrystal:
 				'''
 				附近的敌人会受到25%额外伤害
