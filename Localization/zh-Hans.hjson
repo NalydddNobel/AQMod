@@ -4,7 +4,7 @@ Mods: {
 			GlimmerInvasion: 微光
 			CrabCreviceBiome: 蟹状裂隙
 			GaleStreamsInvasion: 紊流风暴
-			DemonSiegeInvasion: 恶魔围攻
+			DemonSiegeBiome: 恶魔围攻
 		}
 
 		Announcement: {
@@ -234,6 +234,8 @@ Mods: {
 			Meathook: 血肉刺钩
 
 			BalloonKit: Zilla的气球装备
+
+			UnholyCore: 不洁核心
 
 			RichMansMonocle: 富翁的单片眼镜
 
@@ -763,6 +765,8 @@ Mods: {
 				在下雨时, 捕鱼效果更强
 				'''
 
+			UnholyCore: 减半恶魔围攻事件的长度
+
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
 			Pumpinator:
@@ -854,7 +858,7 @@ Mods: {
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 
-			GhostlyGrave: 将你的墓碑变为幽魂
+			GhostlyGrave: 使用时会将你的墓碑变为幽魂
 
 			MirrorsCall:
 				'''
