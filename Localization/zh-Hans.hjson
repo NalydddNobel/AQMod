@@ -1,7 +1,7 @@
 Mods: {
 	Aequus: {
 		BiomeName: {
-			GlimmerInvasion: 微光
+			GlimmerBiome: 微光
 			CrabCreviceBiome: 蟹状裂隙
 			GaleStreamsInvasion: 紊流风暴
 			DemonSiegeBiome: 恶魔围攻
@@ -191,6 +191,7 @@ Mods: {
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
+			HolographicMeatloaf: 全息肉饼
 			NeutronYogurt: 中子酸奶
 			CinnamonRoll: 肉桂卷
 			SpicyEel: 香辣鳗鱼
@@ -726,6 +727,12 @@ Mods: {
 				无视敌人15点的防御力
 				'''
 
+			HolographicMeatloaf:
+				'''
+				{$Mods.Aequus.Common.NotConsumable}
+				'哦, 好极了. 又是全息肉饼! 我什么时候才能吃到真正的食物?'
+				{$CommonItemTooltip.MajorStats}
+				'''
 			NeutronYogurt:
 				'''
 				{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}
