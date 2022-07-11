@@ -41,6 +41,7 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
+        public const int BoundBowRegenerationDelay = 60;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
@@ -193,7 +194,6 @@ namespace Aequus
         public int expertBoostBoCTimer;
         public int expertBoostBoCDefense;
 
-
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
@@ -216,6 +216,9 @@ namespace Aequus
         /// Set by <see cref="ItemID.ShadowKey"/>
         /// </summary>
         public bool shadowKey;
+
+        public int boundBowAmmo;
+        public int boundBowAmmoTimer;
 
         public int itemHits;
         /// <summary>
@@ -366,6 +369,8 @@ namespace Aequus
 
         public override void Initialize()
         {
+            boundBowAmmo = 10;
+            boundBowAmmoTimer = 60;
             cursorDye = -1;
             candleSouls = 0;
             ghostTombstones = false;
@@ -391,6 +396,18 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            if (boundBowAmmoTimer > 0)
+                boundBowAmmoTimer--;
+            if (boundBowAmmoTimer == 0)
+            {
+                boundBowAmmo++;
+                boundBowAmmoTimer = BoundBowRegenerationDelay;
+            }
+            if (boundBowAmmo >= 10)
+            {
+                boundBowAmmoTimer = BoundBowRegenerationDelay;
+            }
+                
             showPrices = false;
 
             equippedMask = 0;
@@ -1361,6 +1378,9 @@ namespace Aequus
         public List<int> AmmoBackpack_GetAmmoTypesToSpawn(NPC npc, Item ammoBackpack)
         {
             var l = new List<int>();
+            bool fullSlots = !Player.inventory[Main.InventoryAmmoSlotsStart].IsAir && !Player.inventory[Main.InventoryAmmoSlotsStart + 1].IsAir
+                && !Player.inventory[Main.InventoryAmmoSlotsStart + 2].IsAir && !Player.inventory[Main.InventoryAmmoSlotsStart + 3].IsAir;
+
             for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
             {
                 var item = Player.inventory[i];
@@ -1368,9 +1388,9 @@ namespace Aequus
                 {
                     continue;
                 }
-                if (!AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
+                if ((!fullSlots || item.type == item.ammo) && !AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
                     l.Add(item.ammo);
-                if (!AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
+                if (item.stack < item.maxStack && !AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
                     l.Add(item.type);
             }
 
@@ -1378,6 +1398,7 @@ namespace Aequus
             {
                 if (!Player.inventory[i].consumable)
                 {
+                    l.Remove(Player.inventory[i].ammo);
                     l.Remove(Player.inventory[i].type);
                 }
             }

@@ -29,7 +29,7 @@ namespace Aequus.Projectiles.Melee.Swords
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
-        public float AnimProgress => 1f - Main.player[Projectile.owner].itemAnimation / (float)Main.player[Projectile.owner].itemAnimationMax;
+        public float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
 
         public override void SetDefaults()
         {
@@ -43,7 +43,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override bool? CanDamage()
         {
-            return (AnimProgress > 0.25f && AnimProgress < 0.8f) ? null : false;
+            return (AnimProgress > 0.4f && AnimProgress < 0.6f) ? null : false;
         }
 
         public override void AI()

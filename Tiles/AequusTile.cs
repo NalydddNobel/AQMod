@@ -34,7 +34,7 @@ namespace Aequus.Tiles
             switch (type)
             {
                 case TileID.Meteorite:
-                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(50))
+                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
                     }
@@ -136,7 +136,7 @@ namespace Aequus.Tiles
 
         public static bool CheckForType(Rectangle rect, ArrayInterpreter<int> type)
         {
-            return CheckTiles(rect, (i, j, tile) => type.Arr.ContainsAny(tile.TileType));
+            return !CheckTiles(rect, (i, j, tile) => !type.Arr.ContainsAny(tile.TileType));
         }
         public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
         {
