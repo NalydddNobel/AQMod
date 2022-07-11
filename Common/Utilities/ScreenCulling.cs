@@ -24,7 +24,7 @@ namespace Aequus.Common.Utilities
             return renderBox.Intersects(rectangle);
         }
 
-        internal static void SetFluff(int padding = 20)
+        internal static void Init(int padding = 20)
         {
             renderBox = new Rectangle(-padding, -padding, Main.screenWidth + padding * 2, Main.screenHeight + padding * 2);
         }

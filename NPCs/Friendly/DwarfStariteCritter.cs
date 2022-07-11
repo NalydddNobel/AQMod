@@ -55,7 +55,7 @@ namespace Aequus.NPCs.Friendly
             NPC.noGravity = true;
             NPC.catchItem = (short)ModContent.ItemType<DwarfStarite>();
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -280,8 +280,6 @@ namespace Aequus.NPCs.Friendly
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!Main.dayTime && spawnInfo.Player.position.Y < Main.worldSurface * 16f)
-                return 0.005f;
             return 0f;
         }
 

@@ -4,7 +4,6 @@ using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
@@ -12,7 +11,7 @@ using Aequus.Items.Misc.Pets;
 using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.OmegaStarite;
 using Aequus.Sounds;
@@ -282,7 +281,7 @@ namespace Aequus.NPCs.Boss
                 }
             }
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -320,7 +319,7 @@ namespace Aequus.NPCs.Boss
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
-                ScreenCulling.SetFluff();
+                ScreenCulling.Init();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -402,7 +401,7 @@ namespace Aequus.NPCs.Boss
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
-                ScreenCulling.SetFluff();
+                ScreenCulling.Init();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -438,13 +437,13 @@ namespace Aequus.NPCs.Boss
             if (Main.dayTime)
             {
                 NPC.life = -1;
-                GlimmerInvasion.omegaStarite = -1;
+                GlimmerBiome.omegaStarite = -1;
                 NPC.HitEffect();
                 SoundEngine.PlaySound(SoundID.Dig, NPC.Center);
                 NPC.active = false;
                 return;
             }
-            GlimmerInvasion.omegaStarite = (short)NPC.whoAmI;
+            GlimmerBiome.omegaStarite = (short)NPC.whoAmI;
             var center = NPC.Center;
             var player = Main.player[NPC.target];
             var plrCenter = player.Center;
@@ -694,9 +693,9 @@ namespace Aequus.NPCs.Boss
                                 const int width = (int)(DIAMETER * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerInvasion.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
                             }
                         }
                     }
@@ -1617,10 +1616,15 @@ namespace Aequus.NPCs.Boss
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
-                .Add<CosmicEnergy>(stack: 3)
-                .AddOptions(chance: 3, ModContent.ItemType<EnchantedDye>(), ModContent.ItemType<DiscoDye>(), ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>(), ModContent.ItemType<RainbowOutlineDye>())
+                .Add<UltimateSword>(chance: 1, stack: 1)
+                .Add<CosmicEnergy>(chance: 1, stack: 3)
+                .AddOptions(chance: 3, ModContent.ItemType<DiscoDye>(), ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>(), ModContent.ItemType<RainbowOutlineDye>())
                 .RegisterCondition();
         }
+
+        //    var rect = NPC.getRect();
+        //    if (Main.rand.NextBool(3))
+        //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
 
         public override void OnKill()
         {
@@ -1629,113 +1633,6 @@ namespace Aequus.NPCs.Boss
                 Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ModContent.ItemType<SupernovaFruit>());
             }
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
-            //Glimmer.deactivationDelay = 275;
-            //var noHitManager = NPC.GetGlobalNPC<NoHitting>();
-            //bool anyoneNoHit = false;
-            //for (int i = 0; i < Main.maxPlayers; i++)
-            //{
-            //    if (NoHitting.HasBeenNoHit(npc, i))
-            //    {
-            //        anyoneNoHit = true;
-            //        AQItem.DropInstancedItem(i, NPC.getRect(), ModContent.ItemType<AStrangeIdea>());
-            //    }
-            //}
-            //if (anyoneNoHit || Main.rand.NextBool(10))
-            //    Item.NewItem(NPC.getRect(), ModContent.ItemType<OmegaStariteTrophy>());
-
-            //if (Main.expertMode)
-            //{
-            //    NPC.DropBossBags();
-            //    if (Main.netMode == NetmodeID.Server)
-            //    {
-            //        int item = Item.NewItem(NPC.getRect(), ModContent.ItemType<DragonBall>(), 1, noBroadcast: true);
-            //        Main.itemLockoutTime[item] = 54000;
-            //        for (int i = 0; i < 255; i++)
-            //        {
-            //            var plr = Main.player[i];
-            //            if (plr.active && NPC.playerInteraction[i] && (!noHitManager.damagedPlayers[i] || Main.rand.NextBool(4)))
-            //            {
-            //                NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
-            //            }
-            //        }
-            //        Main.item[item].active = false;
-            //    }
-            //    else if (Main.netMode == NetmodeID.SinglePlayer)
-            //    {
-            //        Item.NewItem(NPC.getRect(), ModContent.ItemType<DragonBall>());
-            //    }
-            //}
-            //else
-            //{
-            //    var rect = NPC.getRect();
-            //    if (Main.rand.NextBool(3))
-            //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
-            //    if (Main.rand.NextBool(7))
-            //        Item.NewItem(rect, ModContent.ItemType<OmegaStariteMask>());
-            //    int[] choices = new int[]
-            //    {
-            //        ModContent.ItemType<MagicWand>(),
-            //        ModContent.ItemType<Raygun>(),
-            //    };
-            //    Item.NewItem(rect, choices[Main.rand.Next(choices.Length)]);
-            //    Item.NewItem(rect, ItemID.FallenStar, Main.rand.NextVRand(15, 20));
-            //    Item.NewItem(rect, ModContent.ItemType<SaintsFlow>(), Main.rand.NextVRand(1, 3));
-            //    Item.NewItem(rect, ModContent.ItemType<CosmicEnergy>(), Main.rand.NextVRand(6, 10));
-            //    Item.NewItem(rect, ModContent.ItemType<LightMatter>(), Main.rand.NextVRand(10, 18));
-            //}
-            //WorldDefeats.DownedStarite = true;
-            //WorldDefeats.DownedGlimmer = true;
-            //if (Glimmer.IsGlimmerEventCurrentlyActive())
-            //{
-            //    switch (Main.rand.Next(3))
-            //    {
-            //        default:
-            //            {
-            //                NPC.DropItemInstanced(NPC.position, new Vector2(NPC.width, NPC.height), ModContent.ItemType<EnchantedDye>());
-            //            }
-            //            break;
-
-            //        case 1:
-            //            {
-            //                NPC.DropItemInstanced(NPC.position, new Vector2(NPC.width, NPC.height), ModContent.ItemType<RainbowOutlineDye>());
-            //            }
-            //            break;
-
-            //        case 2:
-            //            {
-            //                NPC.DropItemInstanced(NPC.position, new Vector2(NPC.width, NPC.height), ModContent.ItemType<DiscoDye>());
-            //            }
-            //            break;
-            //    }
-
-            //    if (Main.netMode == NetmodeID.SinglePlayer)
-            //    {
-            //        for (int i = 0; i < Main.maxPlayers; i++)
-            //        {
-            //            var plr = Main.player[i];
-            //            if (plr.active && NPC.playerInteraction[i])
-            //            {
-            //                WorldDefeats.ObtainedUltimateSword = true;
-            //                int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(2f, 6f) * (Main.rand.NextBool() ? -1f : 1f), -18f), ModContent.ProjectileType<UltimateSwordDrop>(), 0, 0f, i, ModContent.ItemType<UltimateSword>());
-            //                Main.projectile[p].netUpdate = true;
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        int item = Item.NewItem(new EntitySource_Parent(NPC), NPC.getRect(), ModContent.ItemType<UltimateSword>(), 1, noBroadcast: true);
-            //        Main.itemLockoutTime[item] = 54000;
-            //        for (int i = 0; i < 255; i++)
-            //        {
-            //            var plr = Main.player[i];
-            //            if (plr.active && NPC.playerInteraction[i])
-            //            {
-            //                NetMessage.SendData(MessageID.InstancedItem, i, -1, null, item);
-            //            }
-            //        }
-            //        Main.item[item].active = false;
-            //    }
-            //}
         }
 
         public override void SendExtraAI(BinaryWriter writer)

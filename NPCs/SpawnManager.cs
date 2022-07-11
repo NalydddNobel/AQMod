@@ -1,5 +1,8 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
+using Aequus.NPCs.Friendly;
 using Aequus.NPCs.Monsters.Night;
+using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
@@ -56,6 +59,34 @@ namespace Aequus.NPCs
             if (DontAddNewSpawns(spawnInfo))
             {
                 return;
+            }
+            if (!Main.dayTime && spawnInfo.Player.position.Y < Main.worldSurface * 16f)
+            {
+                if (GlimmerBiome.EventActive)
+                {
+                    int tiles = GlimmerSystem.CalcTiles(spawnInfo.Player);
+                    if (tiles < GlimmerBiome.MaxTiles)
+                    {
+                        if (tiles < GlimmerBiome.SuperStariteTile)
+                        {
+                            pool.Clear();
+                            pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiome.SuperStariteSpawn);
+                        }
+                        pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 2f);
+                        pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
+                        int hyperStariteCount = tiles < GlimmerBiome.UltraStariteTile ? 2 : 1;
+                        if (tiles < GlimmerBiome.HyperStariteTile && NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
+                        {
+                            pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
+                        }
+                        if (tiles < GlimmerBiome.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
+                        {
+                            pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
+                        }
+                        return;
+                    }
+                }
+                pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 0.005f);
             }
             if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsInvasion.TimeForMeteorSpawns())
             {

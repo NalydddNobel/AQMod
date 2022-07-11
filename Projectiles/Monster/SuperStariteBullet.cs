@@ -32,7 +32,7 @@ namespace Aequus.Projectiles.Monster
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return GlimmerInvasion.CosmicEnergyColor;
+            return GlimmerBiome.CosmicEnergyColor;
         }
 
         public override void AI()
@@ -90,7 +90,7 @@ namespace Aequus.Projectiles.Monster
             SoundEngine.PlaySound(SoundID.Item9.WithVolume(0.35f).WithPitch(0.15f + Main.rand.NextFloat(-0.025f, 0.15f)), Projectile.Center);
             for (int i = 0; i < 20; i++)
             {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: GlimmerInvasion.CosmicEnergyColor);
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: GlimmerBiome.CosmicEnergyColor);
                 d.color = new Color(d.color.R + Main.rand.Next(-100, 0), d.color.G + Main.rand.Next(-100, 0), d.color.B, d.color.A);
                 d.velocity *= Main.rand.NextFloat(0.4f, 1.5f);
                 d.velocity += -Projectile.oldVelocity * Main.rand.NextFloat(0.5f, 2f);

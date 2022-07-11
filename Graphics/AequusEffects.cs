@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes.Glimmer;
+using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Boss;
@@ -230,6 +231,7 @@ namespace Aequus.Graphics
         {
             try
             {
+                GlimmerScene.Draw();
                 NPCsBehindAllNPCs.renderingNow = true;
                 for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
                 {

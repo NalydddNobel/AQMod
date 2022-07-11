@@ -15,7 +15,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night
+namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class HyperStarite : ModNPC
     {
@@ -78,7 +78,7 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.value = Item.buyPrice(gold: 2, silver: 50);
             NPC.npcSlots = 3f;
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<HyperStariteBanner>();
@@ -383,7 +383,7 @@ namespace Aequus.NPCs.Monsters.Night
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                    if (i > armTrailLength || (i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.002f))
+                    if (i > armTrailLength || i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.002f)
                         continue;
                     for (int j = 0; j < 5; j++)
                     {

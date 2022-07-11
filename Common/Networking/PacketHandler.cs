@@ -112,6 +112,27 @@ namespace Aequus.Common.Networking
                     }
                     NPC.NewNPCDirect(new EntitySource_Sync(syncSource), location, netID, 0, ai[0], ai[1], ai[2], ai[3]);
                 }),
+                [PacketType.GlimmerEventUpdate] = new Procedure
+                ((p, o) =>
+                {
+                    p.Write(GlimmerBiome.EventActive);
+                    if (GlimmerBiome.EventActive)
+                    {
+                        p.Write((ushort)GlimmerBiome.TileLocation.X);
+                        p.Write((ushort)GlimmerBiome.TileLocation.Y);
+                    }
+                },
+                (r) =>
+                {
+                    if (r.ReadBoolean())
+                    {
+                        GlimmerBiome.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
+                    }
+                    else
+                    {
+                        GlimmerBiome.TileLocation = Point.Zero;
+                    }
+                }),
             };
         }
 

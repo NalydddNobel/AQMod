@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
 
             AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(187, 142, 42, 255));
 

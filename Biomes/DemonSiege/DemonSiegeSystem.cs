@@ -23,17 +23,20 @@ namespace Aequus.Biomes.DemonSiege
 
         public override void Load()
         {
-            EventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
-            {
-                EventKey = "Mods.Aequus.BiomeName.DemonSiegeBiome",
-                Icon = Aequus.AssetsPath + "UI/EventIcons/DemonSiege",
-                backgroundColor = new Color(180, 100, 20, 128),
-            });
-
             RegisteredSacrifices = new Dictionary<int, SacrificeData>();
             SacrificeResultItemIDToOriginalItemID = new Dictionary<int, int>();
             ActiveSacrifices = new Dictionary<Point, DemonSiegeSacrifice>();
             SacrificeRemovalQueue = new List<Point>();
+
+            if (!Main.dedServ)
+            {
+                EventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
+                {
+                    EventKey = "Mods.Aequus.BiomeName.DemonSiegeBiome",
+                    Icon = Aequus.AssetsPath + "UI/EventIcons/DemonSiege",
+                    backgroundColor = new Color(180, 100, 20, 128),
+                });
+            }
         }
 
         public override void Unload()

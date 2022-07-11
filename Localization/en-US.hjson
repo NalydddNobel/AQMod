@@ -1,7 +1,7 @@
 Mods: {
 	Aequus: {
 		BiomeName: {
-			GlimmerInvasion: Glimmer
+			GlimmerBiome: Glimmer
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsInvasion: Gale Streams
 			DemonSiegeBiome: Demon Siege
@@ -191,6 +191,7 @@ Mods: {
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
 
+			HolographicMeatloaf: Holographic Meatloaf
 			NeutronYogurt: Neutron Yogurt
 			CinnamonRoll: Cinnamon Roll
 			SpicyEel: Spicy Eel
@@ -726,6 +727,12 @@ Mods: {
 				Ignores 15 points of enemy Defense
 				'''
 
+			HolographicMeatloaf:
+				'''
+				{$Mods.Aequus.Common.NotConsumable}
+				'Oh, goody. Holographic meatloaf again! When am I gonna get some real food?'
+				{$CommonItemTooltip.MajorStats}
+				'''
 			NeutronYogurt:
 				'''
 				{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}

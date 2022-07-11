@@ -3,6 +3,7 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
+using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content;
@@ -44,6 +45,8 @@ namespace Aequus
         public const int BoundBowRegenerationDelay = 60;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
+
+        public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
         public static int Team;
         public static float? PlayerDrawScale;
@@ -282,11 +285,13 @@ namespace Aequus
         public override void Load()
         {
             LoadHooks();
+            SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
 
         public override void Unload()
         {
+            SpawnEnchantmentDusts_Custom = null;
             Player_ItemCheck_Shoot = null;
         }
 
@@ -1765,5 +1770,128 @@ namespace Aequus
             }
         }
         #endregion
+
+        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player)
+        {
+            if (player.magmaStone)
+            {
+                var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
+                d.noGravity = true;
+            }
+            switch (player.meleeEnchant) 
+            {
+                case FlasksID.Venom:
+                    {
+                        if (Main.rand.NextBool(3))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.Venom, velocity * 2f, Alpha: 100);
+                            d.noGravity = true;
+                            d.fadeIn = 1.5f;
+                            d.velocity *= 0.25f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.CursedInferno:
+                    {
+                        if (Main.rand.NextBool(2))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.CursedTorch, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                            d.noGravity = true;
+                            d.velocity *= 0.7f;
+                            d.velocity.Y -= 0.5f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Fire:
+                    {
+                        if (Main.rand.NextBool(2))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.Torch, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                            d.noGravity = true;
+                            d.velocity *= 0.7f;
+                            d.velocity.Y -= 0.5f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Midas:
+                    {
+                        if (Main.rand.NextBool(2))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.Enchanted_Gold, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                            d.noGravity = true;
+                            d.velocity *= 0.7f;
+                            d.velocity.Y -= 0.5f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Ichor:
+                    {
+                        if (Main.rand.NextBool(2))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.IchorTorch, velocity, Alpha: 100, Scale: 2.5f);
+                            d.velocity.X += player.direction;
+                            d.velocity.Y -= 0.2f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Nanites:
+                    {
+                        if (Main.rand.NextBool(2))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.IceTorch, velocity, Alpha: 100, Scale: 2.5f);
+                            d.velocity.X += player.direction;
+                            d.velocity.Y -= 0.2f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Party:
+                    {
+                        if (Main.rand.NextBool(40))
+                        {
+                            var g = Gore.NewGorePerfect(player.GetSource_ItemUse(player.HeldItem), position, velocity, Main.rand.Next(276, 283));
+                            g.velocity.X *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                            g.velocity.Y *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                            g.scale *= 1f + Main.rand.Next(-20, 21) * 0.01f;
+                            g.velocity.X += Main.rand.Next(-50, 51) * 0.05f;
+                            g.velocity.Y += Main.rand.Next(-50, 51) * 0.05f;
+                        }
+                        else if (Main.rand.NextBool(20))
+                        {
+                            var d = Dust.NewDustPerfect(position, Main.rand.Next(139, 143), velocity, Scale: 1.2f);
+                            d.velocity.X *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                            d.velocity.Y *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                            d.velocity.X += Main.rand.Next(-50, 51) * 0.05f;
+                            d.velocity.Y += Main.rand.Next(-50, 51) * 0.05f;
+                            d.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
+                        }
+                    }
+                    break;
+
+                case FlasksID.Poison:
+                    {
+                        if (Main.rand.NextBool(3))
+                        {
+                            var d = Dust.NewDustPerfect(position, DustID.Poisoned, velocity * 2f, Alpha: 100);
+                            d.noGravity = true;
+                            d.fadeIn = 1.5f;
+                            d.velocity *= 0.25f;
+                        }
+                    }
+                    break;
+            }
+            foreach (var c in SpawnEnchantmentDusts_Custom)
+            {
+                if (c.Item2(player))
+                {
+                    c.Item3(Dust.NewDustPerfect(position, c.Item1, velocity));
+                }
+            }
+        }
     }
 }

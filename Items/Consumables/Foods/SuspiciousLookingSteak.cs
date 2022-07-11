@@ -9,7 +9,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(5);
+            SacrificeTotal = 5;
             this.StaticDefaultsToFood(Color.Red, Color.DarkRed);
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Red, };
         }

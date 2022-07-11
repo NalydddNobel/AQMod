@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Monsters.Night;
+﻿using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Networking;
+﻿using Aequus.Biomes.Glimmer;
+using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
@@ -78,6 +79,15 @@ namespace Aequus
         public override void Load()
         {
             GoreNests = new GoreNestGen();
+            On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
+        }
+        private void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
+        {
+            orig(ref stopEvents);
+            if (!stopEvents)
+            {
+                GlimmerSystem.OnTransitionToNight();
+            }
         }
 
         public override void OnWorldLoad()

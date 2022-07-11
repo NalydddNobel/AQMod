@@ -8,9 +8,9 @@ namespace Aequus.Biomes
 {
     public class GaleStreamsInvasion : ModBiome
     {
-        public static InvasionStatus Status { get; set; }
-        public static byte updateTimer;
+        public static bool EventActive => Aequus.HardmodeTier && Main.WindyEnoughForKiteDrops;
         public static bool SupressWindUpdates { get; set; }
+        public static byte updateTimer;
 
         public override int Music => MusicData.GaleStreamsEvent.GetID();
 
@@ -23,7 +23,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return Status == InvasionStatus.Active && IsThisSpace(player.position.Y * 1.5f)
+            return EventActive && IsThisSpace(player.position.Y * 1.5f)
                 && player.townNPCs < 1f && !player.ZonePeaceCandle && !player.behindBackWall;
         }
 
@@ -210,27 +210,12 @@ namespace Aequus.Biomes
         {
             public override void PreUpdateEntities()
             {
-                if (!Aequus.HardmodeTier)
+                if (EventActive)
                 {
-                    Status = InvasionStatus.Inactive;
-                    return;
-                }
-                if (Main.WindyEnoughForKiteDrops)
-                {
-                    Status = InvasionStatus.Active;
-                }
-                else
-                {
-                    Status = InvasionStatus.Inactive;
-                }
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    if (Status == InvasionStatus.Active)
-                    {
-                        InnerUpdateActive();
-                    }
+                    InnerUpdateActive();
                 }
             }
+
             public void InnerUpdateActive()
             {
                 if (updateTimer == 1)

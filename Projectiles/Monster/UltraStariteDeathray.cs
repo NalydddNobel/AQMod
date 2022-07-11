@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics.Primitives;
-using Aequus.NPCs.Monsters.Night;
+using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -1,22 +1,24 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night
+namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class Starite : ModNPC
     {
@@ -40,6 +42,9 @@ namespace Aequus.NPCs.Monsters.Night
             ModContent.BuffType<CrimsonHellfire>(),
             ModContent.BuffType<CorruptionHellfire>(),
         };
+
+        public bool fallenStar;
+        public int fallenStarPulseDir;
 
         public override void SetStaticDefaults()
         {
@@ -79,12 +84,23 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
+            NPC.noTileCollide = true;
             NPC.knockBackResist = 1.1f;
             NPC.value = Item.buyPrice(silver: 2);
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<StariteBanner>();
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return fallenStar;
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return fallenStar;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -154,6 +170,12 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override void AI()
         {
+            if (!fallenStar)
+            {
+                FallenStarAI();
+                return;
+            }
+            NPC.noTileCollide = false;
             if (Main.dayTime)
             {
                 NPC.life = -1;
@@ -308,6 +330,113 @@ namespace Aequus.NPCs.Monsters.Night
                 }
             }
         }
+        public void FallenStarAI()
+        {
+            if (!NPC.noGravity)
+            {
+                NPC.velocity.X *= 0.97f;
+                NPC.velocity.Y -= 0.2f;
+                if (NPC.velocity.X.Abs() < 0.1f)
+                {
+                    NPC.velocity.X = 0f;
+                    NPC.noGravity = true;
+                    fallenStar = true;
+                }
+                NPC.rotation = NPC.velocity.X * 0.2f;
+                return;
+            }
+
+            if (NPC.velocity == Vector2.Zero)
+            {
+                NPC.TargetClosest(faceTarget: false);
+                float y;
+                if (NPC.HasValidTarget)
+                {
+                    y = Main.player[NPC.target].position.Y;
+                }
+                else
+                {
+                    y = NPC.position.Y;
+                }
+                NPC.position.Y = y - 1000f;
+                NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 24f;
+            }
+
+            if (NPC.noTileCollide)
+            {
+                bool noTileCollide = NPC.noTileCollide;
+                NPC.noTileCollide = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
+                if (noTileCollide != NPC.noTileCollide)
+                {
+                    NPC.netUpdate = true;
+                }
+            }
+
+            if (NPC.soundDelay == 0)
+            {
+                NPC.soundDelay = 20 + Main.rand.Next(40);
+                SoundEngine.PlaySound(SoundID.Item9, NPC.position);
+            }
+
+            NPC.alpha += (int)(25f * fallenStarPulseDir);
+            if (NPC.alpha > 200)
+            {
+                NPC.alpha = 200;
+                fallenStarPulseDir = -1;
+            }
+            if (NPC.alpha < 0)
+            {
+                NPC.alpha = 0;
+                fallenStarPulseDir = 1;
+            }
+
+            NPC.rotation += (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y)) * 0.01f * NPC.direction;
+            ScreenCulling.Init();
+            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
+            {
+                Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, NPC.velocity * 0.2f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17));
+            }
+            if (Main.rand.NextBool(20))
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f, 150, default(Color), 1.2f);
+            }
+            Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
+
+            if (NPC.collideX || NPC.collideY)
+            {
+                FallenStarAI_OnTileCollide();
+            }
+        }
+        public void FallenStarAI_OnTileCollide()
+        {
+            SoundEngine.PlaySound(SoundID.Item10, NPC.position);
+
+            for (int i = 0; i < 7; i++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
+            }
+            for (float f = 0f; f < 1f; f += 0.125f)
+            {
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, new Color(40, 160, 255, 0)).noGravity = true;
+            }
+            for (float f = 0f; f < 1f; f += 0.25f)
+            {
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(150, 255, 50, 0)).noGravity = true;
+            }
+            ScreenCulling.Init();
+            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
+            {
+                for (int i = 0; i < 7; i++)
+                {
+                    Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                }
+            }
+            fallenStarPulseDir = 0;
+            NPC.rotation = 0f;
+            NPC.netUpdate = true;
+            NPC.velocity = -(Main.rand.NextFloat(MathHelper.PiOver2) + MathHelper.PiOver4).ToRotationVector2() * 3f;
+            NPC.noGravity = false;
+        }
 
         private void OnHit(int plr, int damage)
         {
@@ -363,13 +492,17 @@ namespace Aequus.NPCs.Monsters.Night
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (!Main.dayTime && spawnInfo.Player.position.Y < Main.worldSurface * 16f)
-                return 0.005f;
             return 0f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (!fallenStar && NPC.noGravity && !NPC.IsABestiaryIconDummy)
+            {
+                DrawFallenStarForm(spriteBatch, screenPos, drawColor);
+                return false;
+            }
+
             Texture2D texture = TextureAssets.Npc[Type].Value;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
             Vector2 origin = NPC.frame.Size() / 2f;
@@ -393,7 +526,7 @@ namespace Aequus.NPCs.Monsters.Night
                 int i = 0;
                 foreach (float f in AequusHelpers.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
                 {
-                    var rayScale = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)(NPC.position.Y), 0.3f, 1f));
+                    var rayScale = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
                     rayScale.X *= 0.5f;
                     rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
                     Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);
@@ -413,6 +546,56 @@ namespace Aequus.NPCs.Monsters.Night
                 Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * scale, SpriteEffects.None, 0);
             }
             return false;
+        }
+        public void DrawFallenStarForm(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            var projectileTexture = TextureAssets.Npc[Type].Value;
+            var frame = new Rectangle(0, 0, projectileTexture.Width, projectileTexture.Height);
+            var origin = frame.Size() / 2f;
+            var alpha = NPC.GetAlpha(drawColor);
+            var trailThing = TextureAssets.Extra[ExtrasID.FallingStar].Value;
+            var trailFrame = trailThing.Frame();
+            var trailOrigin = new Vector2((float)trailFrame.Width / 2f, 10f);
+            var gfxOff = new Vector2(0f, NPC.gfxOffY);
+            var spinningpoint = new Vector2(0f, -10f);
+            float visualEffectsTimer = Main.GlobalTimeWrappedHourly;
+            var vector36 = NPC.Center + NPC.velocity;
+            var trailColor = new Color(30, 80, 160, 0);
+            var trailColorWhite = new Color(200, 255, 255, 255);
+            trailColorWhite.A = 0;
+            float num189 = 0f;
+            var color45 = trailColor;
+            color45.A = 0;
+            var color46 = trailColor;
+            color46.A = 0;
+            var color47 = trailColor;
+            color47.A = 0;
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer), trailFrame, color45, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.5f + num189, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + (float)Math.PI * 2f / 3f), trailFrame, color46, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.1f + num189, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + 4.18879032f), trailFrame, color47, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.3f + num189, SpriteEffects.None, 0);
+            var vector37 = NPC.Center - NPC.velocity * 0.5f;
+            for (float num190 = 0f; num190 < 1f; num190 += 0.5f)
+            {
+                float num191 = visualEffectsTimer % 0.5f / 0.5f;
+                num191 = (num191 + num190) % 1f;
+                float num192 = num191 * 2f;
+                if (num192 > 1f)
+                {
+                    num192 = 2f - num192;
+                }
+                Main.spriteBatch.Draw(trailThing, vector37 - Main.screenPosition + gfxOff, trailFrame, trailColorWhite * num192, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 0.3f + num191 * 0.5f, SpriteEffects.None, 0);
+            }
+            Main.spriteBatch.Draw(projectileTexture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), frame, alpha, NPC.rotation, origin, NPC.scale + 0.1f, NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(fallenStar);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            fallenStar = reader.ReadBoolean();
         }
     }
 }

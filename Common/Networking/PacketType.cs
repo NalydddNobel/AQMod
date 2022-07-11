@@ -24,6 +24,7 @@
         /// <para>6) float, AI[3], optional</para>
         /// </summary>
         ClientNPCSpawn,
+        GlimmerEventUpdate,
         Count,
     }
 }

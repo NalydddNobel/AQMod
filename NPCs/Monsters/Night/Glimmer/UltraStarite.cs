@@ -18,7 +18,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night
+namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class UltraStarite : ModNPC
     {
@@ -55,6 +55,7 @@ namespace Aequus.NPCs.Monsters.Night
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
+                .Add<HolographicMeatloaf>(chance: 1, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
@@ -80,7 +81,7 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.value = Item.buyPrice(gold: 2, silver: 50);
             NPC.npcSlots = 5f;
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<UltraStariteBanner>();
@@ -305,7 +306,7 @@ namespace Aequus.NPCs.Monsters.Night
                         {
                             var comparisonPoint = center + GetArmRotation(0).ToRotationVector2() * 180f;
                             NPC.ai[2] = Math.Sign(comparisonPoint.X - plrCenter.X);
-                            NPC.rotation = Utils.AngleLerp(NPC.rotation, NPC.DirectionTo(plrCenter).ToRotation(), (1f - NPC.ai[1] / 200f) * 0.05f);
+                            NPC.rotation = NPC.rotation.AngleLerp(NPC.DirectionTo(plrCenter).ToRotation(), (1f - NPC.ai[1] / 200f) * 0.05f);
                         }
                         if ((int)NPC.ai[1] == 197 && AequusHelpers.ShouldDoEffects(NPC.Center))
                         {
@@ -425,7 +426,7 @@ namespace Aequus.NPCs.Monsters.Night
             float innerArmsRotation = Main.GlobalTimeWrappedHourly * 6f;
 
             if (armTrail == null)
-                armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow((1f - p), 2f));
+                armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
 
             if (armTrailSmoke == null)
                 armTrailSmoke = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
@@ -474,7 +475,7 @@ namespace Aequus.NPCs.Monsters.Night
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                    if (i >= armTrailLength || (i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f))
+                    if (i >= armTrailLength || i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f)
                         continue;
                     for (int j = 0; j < 5; j++)
                     {

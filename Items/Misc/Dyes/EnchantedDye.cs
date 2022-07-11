@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics.ShaderData;
+using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -18,6 +19,15 @@ namespace Aequus.Items.Misc.Dyes
         {
             return new ArmorCustomTexture(Effect, Pass,
                 new Ref<Texture2D>(ModContent.Request<Texture2D>("Aequus/Assets/EnchantGlimmer", AssetRequestMode.ImmediateLoad).Value)).UseOpacity(0.8f);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.SilverDye)
+                .AddIngredient<CosmicEnergy>()
+                .AddTile(TileID.DyeVat)
+                .RegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

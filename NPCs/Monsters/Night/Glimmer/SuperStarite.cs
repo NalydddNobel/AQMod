@@ -14,7 +14,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night
+namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class SuperStarite : ModNPC
     {
@@ -60,7 +60,7 @@ namespace Aequus.NPCs.Monsters.Night
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<SuperStariteBanner>();
 
-            this.SetBiome<GlimmerInvasion>();
+            this.SetBiome<GlimmerBiome>();
         }
 
         public override void HitEffect(int hitDirection, double damage)

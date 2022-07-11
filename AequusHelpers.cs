@@ -86,6 +86,15 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static bool IsSectionLoaded(Point p)
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                return true;
+            }
+            return Main.sectionManager.SectionLoaded(p.X, p.Y);
+        }
+
         public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)
         {
             var arr2 = new T2[arr.Count];
