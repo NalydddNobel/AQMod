@@ -1431,6 +1431,7 @@ Mods: {
 
 			GravetenderMinionBuff: 守墓人
 
+			StariteBuff: 星之源
 			ScribbleNotebookBuff: 涂鸦
 			CorruptPlantBuff: 腐化植物
 			RedSpriteMinionBuff: 神秘精灵
@@ -1445,7 +1446,6 @@ Mods: {
 			PrimeTime: 机械蜘蛛强化
 			ArachnotronCooldown: 机械蜘蛛冷却
 			MonoxiderBuff: 一氧化物
-			Starite: 星之源
 			Trapper: 捕手
 			PiranhaPlant: 植物
 			Vampirism: 血咒
@@ -1512,6 +1512,7 @@ Mods: {
 
 			NecromancyOwnerBuff: 你正掌控死亡
 
+			StariteBuff: 星之源会为你而战
 			ScribbleNotebookBuff: 物体会为你而战
 			CorruptPlantBuff: 腐化植物会为你而战!
 			RedSpriteMinionBuff: 红色精灵会为你而战!
@@ -1526,7 +1527,6 @@ Mods: {
 			PrimeTime: 防御大幅度提升!
 			ArachnotronCooldown: 你现在无法使用机械蜘蛛套装的效果
 			MonoxiderBuff: 一氧化物雀会为你而战
-			Starite: 星之源会为你而战
 			Trapper: 恶魔捕手会为你而战
 			PiranhaPlant: 植物会为你而战
 			Harmony: 你的魔法能力大幅度增加
@@ -1623,6 +1623,7 @@ Mods: {
 			NarrizuulProj: 耀宇遗光
 			CrusadersCrossbowBolt: 十字军弩矢
 
+			StariteMinion: 星之源
 			ZombieBolt: 僵尸弹幕
 			RevenantBolt: 复仇
 			OsirisBolt: 欧西里斯
@@ -1699,8 +1700,6 @@ Mods: {
 			Chomper: 食人花
 			Lotus: 莲花
 			LotusShot: 莲花
-			Starite: 星之源
-			StariteLeader: 星之源
 			CrimsonHand: 猩红血手
 			FertilePowder: 丰饶之尘
 			FriendlyWind: 友善的风
