@@ -14,6 +14,7 @@ namespace Aequus.Items.Weapons.Summon
     {
         public override void SetStaticDefaults()
         {
+            SacrificeTotal = 1;
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
         }
 

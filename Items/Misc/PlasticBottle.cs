@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Common;
+using Aequus.Tiles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +18,9 @@ namespace Aequus.Items.Misc
                 new RecyclingTable.Info(ItemID.ClayPot, 1, 3),
             });
 
-            this.SetResearch(1);
+            PlayerFishing.TrashItemIDs.Add(Type);
+
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

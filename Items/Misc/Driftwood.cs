@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Common;
+using Aequus.Tiles;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -23,7 +24,9 @@ namespace Aequus.Items.Misc
                 WoodInfo(ItemID.Pearlwood, () => Main.hardMode),
             });
 
-            this.SetResearch(1);
+            PlayerFishing.TrashItemIDs.Add(Type);
+
+            SacrificeTotal = 1;
         }
 
         private RecyclingTable.Info WoodInfo(int item, Func<bool> canObtain = null)

@@ -17,6 +17,11 @@ namespace Aequus.Projectiles.Misc.Bobbers
             DrawOriginOffsetY = -8;
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override void PostAI()
         {
             if (Projectile.wet)
@@ -25,7 +30,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
             }
             else
             {
-                Projectile.extraUpdates = 2;
+                Projectile.extraUpdates = 1;
             }
 
             int mainBobber = -1;
@@ -75,14 +80,26 @@ namespace Aequus.Projectiles.Misc.Bobbers
             var player = Main.player[Projectile.owner];
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            for (int i = 0; i < Main.maxProjectiles; i++)
+            int cloud = -1;
+            if (Projectile.Aequus().HasProjectileOwner)
             {
-                if (Main.projectile[i].active && Main.projectile[i].bobber && Main.projectile[i].owner == Projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<NimrodCloudBobber>())
+                cloud = Projectile.Aequus().sourceProj;
+            }
+            else
+            {
+                for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.projectile[i].Center + new Vector2(Main.projectile[i].width / -2f, 0f),
-                        getLighting: (v, c) => new Color(0, 172, 255, 200));
-                    break;
+                    if (Main.projectile[i].active && Main.projectile[i].bobber && Main.projectile[i].owner == Projectile.owner && Main.projectile[i].type == ModContent.ProjectileType<NimrodCloudBobber>())
+                    {
+                        cloud = i;
+                        break;
+                    }
                 }
+            }
+            if (cloud != -1)
+            {
+                AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.projectile[cloud].Center + new Vector2(-8f, 0f),
+                    getLighting: (v, c) => Color.Lerp(new Color(75, 120, 255, 128) * 0.5f, new Color(100, 235, 255, 180) * 0.8f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + cloud, 0f, 1f)));
             }
             return false;
         }
@@ -108,6 +125,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.BobberWooden);
+            Projectile.width = 40;
+            Projectile.height = 40;
         }
 
         public Vector2 gotoPosition = new Vector2(0f, 0f);
@@ -122,6 +141,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
 
             if ((int)gotoPosition.X == -2f)
             {
+                Projectile.tileCollide = false;
                 Projectile.frame = 0;
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.player[Projectile.owner].Center - Projectile.Center) * 12f, 0.6f);
                 Projectile.timeLeft = 10;
@@ -132,6 +152,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
                 Projectile.rotation += 0.1f;
                 return false;
             }
+
+            Projectile.CollideWithOthers(0.15f);
 
             if ((int)gotoPosition.X == -1f)
             {
@@ -152,10 +174,11 @@ namespace Aequus.Projectiles.Misc.Bobbers
                         {
                             gotoPosition.Y = -20;
                             SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
-                            var s = Main.player[Projectile.owner].GetSource_ItemUse(Main.player[Projectile.owner].HeldItem);
-                            Projectile.NewProjectile(s, Projectile.Center, new Vector2(0f, 1f), ModContent.ProjectileType<NimrodBobber>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            Projectile.NewProjectile(s, Projectile.Center + new Vector2(20f, 0f), new Vector2(1f, 1f), ModContent.ProjectileType<NimrodBobber>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            Projectile.NewProjectile(s, Projectile.Center + new Vector2(-20f, 0f), new Vector2(-1f, 1f), ModContent.ProjectileType<NimrodBobber>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            var s = Projectile.GetSource_FromThis();
+                            for (int i = -1; i <= 1; i++)
+                            {
+                                Projectile.NewProjectile(s, Projectile.Center + new Vector2(20f, 0f), new Vector2(i * 4f, 1f), ModContent.ProjectileType<NimrodBobber>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            }
                         }
                     }
                     else
@@ -199,6 +222,18 @@ namespace Aequus.Projectiles.Misc.Bobbers
             }
             else
             {
+                var rect = Projectile.getRect();
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && i != Projectile.whoAmI && Projectile.type == Main.projectile[i].type && Projectile.owner == Main.projectile[i].owner
+                        && Projectile.Colliding(rect, Main.projectile[i].getRect()))
+                    {
+                        var velocityAddition = Main.projectile[i].DirectionTo(Projectile.Center).UnNaN() * 0.05f;
+                        gotoPosition += velocityAddition * 50f;
+                        gotoPosition.Y -= 2f;
+                        Projectile.velocity += velocityAddition;
+                    }
+                }
                 Projectile.velocity = Vector2.Normalize(gotoPosition - Projectile.Center) * Main.player[Projectile.owner].HeldItem.shootSpeed;
                 Projectile.rotation += 0.1f;
             }
@@ -228,7 +263,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
             var player = Main.player[Projectile.owner];
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(50f * Main.player[Projectile.owner].direction, -38f), getLighting: (v, c) => new Color(0, 172, 255, 200));
+            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(50f * Main.player[Projectile.owner].direction, -38f),
+                getLighting: (v, c) => Color.Lerp(new Color(30, 60, 200, 128) * 0.5f, new Color(70, 155, 185, 180) * 0.8f, AequusHelpers.Wave(-(Main.GlobalTimeWrappedHourly * 5f + Projectile.whoAmI), 0f, 1f)));
             return false;
         }
 

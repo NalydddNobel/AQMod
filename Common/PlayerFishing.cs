@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
+﻿using Aequus.Items;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
@@ -26,10 +27,18 @@ namespace Aequus.Common
         public const int HeightLevel_Caverns = 3;
         public const int HeightLevel_Underworld = 4;
 
+        public static List<int> TrashItemIDs { get; private set; }
+
         public override void Load()
         {
             On.Terraria.Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
 
+            TrashItemIDs = new List<int>()
+            {
+                ItemID.FishingSeaweed,
+                ItemID.TinCan,
+                ItemID.OldShoe,
+            };
             MonoModHooks.RequestNativeAccess();
 
             new Hook(
@@ -50,40 +59,54 @@ namespace Aequus.Common
                 return;
             }
 
-            if (itemDrop > 0 && ContentSamples.ItemsByType[itemDrop].rare == -1) // trash drop tables
+            if (itemDrop > 0) // trash drop tables
             {
-                int breadMonsterChance = 30;
-                if (!Main.dayTime)
+                var item = ContentSamples.ItemsByType[itemDrop];
+                if (npcSpawn <= 0 && item.rare != -1)
                 {
-                    breadMonsterChance /= 2; // 1/15
-
-                    if (Main.bloodMoon)
+                    if (player.Aequus().devilFishing && ((item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1)) || (!attempt.legendary && !attempt.veryrare && !attempt.rare)))
                     {
-                        breadMonsterChance /= 4; // 1/3
+                        itemDrop = Main.rand.Next(TrashItemIDs);
+                        item = ContentSamples.ItemsByType[itemDrop];
                     }
                 }
-                if (Main.rand.NextBool(breadMonsterChance))
-                {
-                    itemDrop = 0;
-                    npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
-                }
-                else if (Main.rand.NextBool())
-                {
-                    switch (Main.rand.Next(2))
-                    {
-                        case 0:
-                            {
-                                itemDrop = ModContent.ItemType<PlasticBottle>();
-                            }
-                            break;
 
-                        case 1:
-                            {
-                                itemDrop = ModContent.ItemType<Driftwood>();
-                            }
-                            break;
+                if (item.rare == -1)
+                {
+                    int breadMonsterChance = 30;
+                    if (!Main.dayTime)
+                    {
+                        breadMonsterChance /= 2; // 1/15
+
+                        if (Main.bloodMoon)
+                        {
+                            breadMonsterChance /= 4; // 1/3
+                        }
+                    }
+                    if (Main.rand.NextBool(breadMonsterChance))
+                    {
+                        itemDrop = 0;
+                        npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
+                    }
+                    else if (Main.rand.NextBool())
+                    {
+                        switch (Main.rand.Next(2))
+                        {
+                            case 0:
+                                {
+                                    itemDrop = ModContent.ItemType<PlasticBottle>();
+                                }
+                                break;
+
+                            case 1:
+                                {
+                                    itemDrop = ModContent.ItemType<Driftwood>();
+                                }
+                                break;
+                        }
                     }
                 }
+
             }
         }
 
@@ -102,7 +125,11 @@ namespace Aequus.Common
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {
-            if (bait.ModItem is IModifyFishingPower modBait)
+            if (fishingRod.ModItem is Hooks.IModifyFishingPower modFishingRod)
+            {
+                modFishingRod.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
+            }
+            if (bait.ModItem is Hooks.IModifyFishingPower modBait)
             {
                 modBait.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
             }

@@ -125,6 +125,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Ramishroom: Ramishroom
+			DevilsTongue: Devil's Tongue
 			AmmoBackpack: Ammo Renewal Pack
 			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
@@ -185,6 +187,7 @@ Mods: {
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
 
+			RegrowingBait: Regenerating Bait
 			LegendberryBait: Legendberry Bait
 			Omnibait: Omnibait
 			CursedPopper: Cursed Popper
@@ -236,6 +239,10 @@ Mods: {
 			Meathook: Meathook
 
 			BalloonKit: Zilla's Balloon Kit
+
+			Starcatcher: Starcatcher
+			Buzzer: Buzzer
+			Nimrod: Nimrod
 
 			UnholyCore: Unholy Core
 
@@ -402,7 +409,6 @@ Mods: {
 			EquivalenceMachine: Equivalence Machine
 			Stardrop: Stardrop
 			IWillBeBack: "'I'll Be Back'"
-			Nimrod: Nimrod
 			CosmicTelescope: Cosmic Telescope
 			DungeonMap: Vial of Blood
 			LihzahrdMap: Cabbage
@@ -495,7 +501,6 @@ Mods: {
 			AquaticEnergy: Aquatic Energy
 			UltimateEnergy: Ultimate Energy
 			CrabRod: Crab Rod
-			BeeRod: Buzzrod
 			CrabShell: Crab Shell
 			MoonlightWall: Moonlight Wall
 			ExoticCoral: Exotic Coral
@@ -546,6 +551,8 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Ramishroom: Fishing rods cast an extra bobber
+			DevilsTongue: Non-rare catches turn into trash
 			AmmoBackpack: Enemies drop ammo you have consumed
 			MothmanMask:
 				'''
@@ -767,6 +774,8 @@ Mods: {
 
 			BalloonKit: Allows you to ride a hot air balloon
 
+			Starcatcher: Extra powerful when the stars are out
+			Buzzer: Casts a flying bee bobber
 			Nimrod:
 				'''
 				Casts a fishing cloud which creates 3 lightning bobbers to catch fish
@@ -789,6 +798,7 @@ Mods: {
 				'Quite the pushover'
 				'''
 
+			RegrowingBait: "{$Mods.Aequus.Tooltips.NotConsumable}"
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
 			CursedPopper: Increases bait power by 30% when in the corruption
@@ -1354,11 +1364,6 @@ Mods: {
 				'''
 				Increases minion damage by 10%
 				Increases the stats of the Strider Hook
-				'''
-			BeeRod:
-				'''
-				Throws flying bee bobbers
-				Throws 3 lines when using the Hive Pack
 				'''
 			CrabShell: It's oddly misshapen
 			FishingCraftingStation: Used to craft special fishing items

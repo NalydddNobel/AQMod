@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.Bait
 {
-    public class CursedPopper : ModItem, IModifyFishingPower
+    public class CursedPopper : ModItem, Hooks.IModifyFishingPower
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(50);
+            SacrificeTotal = 50;
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Bait
             Item.rare = ItemRarityID.Green;
         }
 
-        void IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
+        void Hooks.IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
         {
             if (player.ZoneCorrupt)
                 fishingLevel += 0.3f;

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,18 +20,6 @@ namespace Aequus.Items.Misc.Fish.Legendary
             Item.maxStack = 999;
             Item.rare = ItemRarityID.Quest;
             Item.questItem = true;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            try
-            {
-                if (NPC.AnyNPCs(NPCID.Angler))
-                    tooltips.Insert(tooltips.GetIndex("Tooltip#"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("AnglerHint")) { OverrideColor = AequusTooltips.HintColor, });
-            }
-            catch
-            {
-            }
         }
     }
 }

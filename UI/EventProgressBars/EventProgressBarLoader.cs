@@ -43,7 +43,7 @@ namespace Aequus.UI.EventProgressBars
 
         internal static void Draw()
         {
-            if (_progressBars == null || Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)
+            if (_progressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f))
             {
                 ActiveBar = 255;
                 return;

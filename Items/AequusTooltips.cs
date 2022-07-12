@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common;
+using Aequus.Content;
 using Aequus.Content.PotionConcoctions;
 using Aequus.Graphics;
 using Aequus.NPCs.Friendly;
@@ -46,35 +47,48 @@ namespace Aequus.Items
 
             public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
             {
-                var player = Main.LocalPlayer;
-                var aequus = player.Aequus();
+                try
+                {
+                    var player = Main.LocalPlayer;
+                    var aequus = player.Aequus();
 
-                if (Dedicated.TryGetValue(item.type, out var dedication))
-                {
-                    tooltips.Insert(GetIndex(tooltips, "Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
-                }
-
-                if (Main.npcShop > 0)
-                {
-                    if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
-                        ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
-                }
-                else if (aequus.showPrices)
-                {
-                    if ((item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin)) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
+                    if (Dedicated.TryGetValue(item.type, out var dedication))
                     {
-                        AddPriceTooltip(player, item, tooltips);
+                        tooltips.Insert(GetIndex(tooltips, "Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
+                    }
+
+                    if (Main.npcShop > 0)
+                    {
+                        if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
+                            ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
+                    }
+                    else if (aequus.showPrices)
+                    {
+                        if ((item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin)) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
+                        {
+                            AddPriceTooltip(player, item, tooltips);
+                        }
+                    }
+
+                    if (item.ModItem is Hooks.IUpdateBank || (AequusItem.BankEquipFuncs.Contains(item.type) && item.type != ItemID.CellPhone))
+                    {
+                        tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
+                    }
+
+                    if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
+                    {
+                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
+                    }
+
+                    if (AequusItem.LegendaryFish.Contains(item.type))
+                    {
+                        if (NPC.AnyNPCs(NPCID.Angler))
+                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("AnglerHint")) { OverrideColor = HintColor, });
+                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                     }
                 }
-
-                if (item.ModItem is Hooks.IUpdateBank || (AequusItem.BankEquipFuncs.Contains(item.type) && item.type != ItemID.CellPhone))
+                catch
                 {
-                    tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
-                }
-
-                if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
-                {
-                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
                 }
             }
             public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)

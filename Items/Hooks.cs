@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
@@ -13,6 +14,18 @@ namespace Aequus.Items
 
         void ILoadable.Unload()
         {
+        }
+
+        public interface IModifyFishingPower
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="player"></param>
+            /// <param name="fishing"></param>
+            /// <param name="fishingRod"></param>
+            /// <param name="fishingLevel"></param>
+            void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel);
         }
 
         public interface IUpdateBank

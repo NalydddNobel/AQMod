@@ -1,27 +1,9 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 
 namespace Aequus.Items.Consumables.Bait
 {
-    internal interface IModifyFishingPower
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="fishing"></param>
-        /// <param name="fishingRod"></param>
-        /// <param name="fishingLevel"></param>
-        void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel);
-        //public virtual void OnEnterWater(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
-        //{
-        //}
-        //public virtual void OnCatchEffect(Player player, PlayerFishing fishing, Projectile bobber, Tile tile)
-        //{
-        //}
-    }
     internal interface IModifyCatchFish
     {
         /// <summary>

@@ -11,11 +11,13 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Fishing;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
+using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Friendly;
 using Aequus.Particles;
 using Aequus.Projectiles.Misc;
@@ -153,6 +155,10 @@ namespace Aequus
 
         public int accVial;
         public int vialDelay;
+
+        public bool devilFishing;
+
+        public Item doubleBobbersItem;
 
         public Item hyperCrystalItem;
         public bool hyperCrystalHidden;
@@ -487,9 +493,10 @@ namespace Aequus
 
             setGravetender = null;
 
+            doubleBobbersItem = null;
+
             pandorasBoxSpawnChance = 0;
             pandorasBoxItem = null;
-
 
             turretSquidItem = null;
             if (!InDanger)
@@ -530,12 +537,12 @@ namespace Aequus
             accVial = 0;
             accBoneRing = 0;
             grandRewardLuck = 0f;
+            devilFishing = false;
             accGrandReward = false;
             accFoolsGold = false;
 
             hasExpertBoost = accExpertBoost;
             accExpertBoost = false;
-            Team = Player.team;
 
             buffSpicyEel = false;
             buffResistHeat = false;
@@ -547,6 +554,7 @@ namespace Aequus
             ghostSlotsMax = 1;
             ghostProjExtraUpdates = 0;
             ghostLifespan = 3600;
+            Team = Player.team;
         }
 
         public override void PreUpdate()
@@ -689,7 +697,7 @@ namespace Aequus
 
             if (setGravetender != null)
             {
-                Gravetender(setGravetender);
+                GravetenderSetBonus(setGravetender);
             }
             else
             {
@@ -746,7 +754,7 @@ namespace Aequus
             }
         }
 
-        public void Gravetender(Item gravetenderHood)
+        public void GravetenderSetBonus(Item gravetenderHood)
         {
             if (gravetenderHood.shoot > ProjectileID.None && Player.ownedProjectileCounts[setGravetender.shoot] <= 0)
             {
@@ -1177,6 +1185,15 @@ namespace Aequus
             }
         }
 
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (doubleBobbersItem != null && item.fishingPole > 0 && !Ramishroom.RodsBlacklist.Contains(item.type))
+            {
+                Projectile.NewProjectile(Player.GetSource_Accessory(doubleBobbersItem), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)), type, damage, knockback, Player.whoAmI);
+            }
+            return true;
+        }
+
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
         {
             if (Main.rand.Next(50) <= Player.anglerQuestsFinished - 15)
@@ -1535,7 +1552,11 @@ namespace Aequus
         {
             int money = Main.rand.Next(Item.gold * 8, Item.gold * 10);
             var source = npc.GetSource_GiftOrReward();
-            if (item.type == ModContent.ItemType<GoreFish>())
+            if (item.type == ModContent.ItemType<Blobfish>())
+            {
+                Player.QuickSpawnItem(source, ModContent.ItemType<Starcatcher>());
+            }
+            else if (item.type == ModContent.ItemType<GoreFish>())
             {
                 Player.QuickSpawnItem(source, ItemID.LavaFishingHook);
                 if (NPC.downedBoss3 && Main.rand.NextBool())
@@ -1545,19 +1566,22 @@ namespace Aequus
             }
             else if (item.type == ModContent.ItemType<ArgonFish>())
             {
-                Player.QuickSpawnItem(source, ItemID.ArgonMoss, 15);
+                Player.QuickSpawnItem(source, ModContent.ItemType<DevilsTongue>());
+                Player.QuickSpawnItem(source, ItemID.ArgonMoss, Main.rand.Next(10, 25) + 1);
             }
             else if (item.type == ModContent.ItemType<KryptonFish>())
             {
-                Player.QuickSpawnItem(source, ItemID.KryptonMoss, 15);
+                Player.QuickSpawnItem(source, ModContent.ItemType<Ramishroom>());
+                Player.QuickSpawnItem(source, ItemID.KryptonMoss, Main.rand.Next(10, 25) + 1);
             }
             else if (item.type == ModContent.ItemType<XenonFish>())
             {
-                Player.QuickSpawnItem(source, ItemID.XenonMoss, 15);
+                Player.QuickSpawnItem(source, ModContent.ItemType<RegrowingBait>());
+                Player.QuickSpawnItem(source, ItemID.XenonMoss, Main.rand.Next(10, 25) + 1);
             }
             else if (item.type == ModContent.ItemType<RadonFish>())
             {
-                Player.QuickSpawnItem(source, ItemID.StinkPotion, 5);
+                Player.QuickSpawnItem(source, Main.rand.Next(new List<int>() { ModContent.ItemType<DevilsTongue>(), ModContent.ItemType<Ramishroom>(), ModContent.ItemType<RegrowingBait>() }));
             }
             AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }

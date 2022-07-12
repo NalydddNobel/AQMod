@@ -18,20 +18,9 @@ namespace Aequus.Items.Misc.Fish.Legendary
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 1);
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Quest;
             Item.maxStack = 999;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            try
-            {
-                if (NPC.AnyNPCs(NPCID.Angler))
-                    tooltips.Insert(tooltips.GetIndex("Tooltip#"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("AnglerHint")) { OverrideColor = AequusTooltips.HintColor, });
-            }
-            catch
-            {
-            }
+            Item.questItem = true;
         }
     }
 }

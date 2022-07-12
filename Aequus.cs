@@ -65,7 +65,7 @@ namespace Aequus
 
             if (SkiesDarkness != 1f)
             {
-                SkiesDarkness = MathHelper.Clamp(SkiesDarkness, 0.1f, 1f);
+                SkiesDarkness = Math.Clamp(SkiesDarkness, 0.1f, 1f);
 
                 byte a = Main.ColorOfTheSkies.A;
                 Main.ColorOfTheSkies *= SkiesDarkness;
