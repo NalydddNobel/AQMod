@@ -798,7 +798,7 @@ Mods: {
 				'真是太容易了'
 				'''
 
-			RegrowingBait: "{$Mods.Aequus.Tooltips.NotConsumable}"
+			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
 			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
