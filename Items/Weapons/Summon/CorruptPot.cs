@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Summon
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
             Item.knockBack = 4f;
-            Item.value = ItemDefaults.RarityDemoniteCrimtane;
+            Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.LightRed;
             Item.UseSound = SoundID.Item44;
             Item.shoot = ModContent.ProjectileType<CorruptPlantCounter>();

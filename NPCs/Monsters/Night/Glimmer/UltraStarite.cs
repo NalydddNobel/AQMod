@@ -6,6 +6,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Particles;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,6 +30,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public const int STATE_FLYUP = 1;
         public const int STATE_IDLE = 0;
         public const int STATE_GOODBYE = -1;
+        public const int STATE_DEAD = -2;
 
         public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
         public float ArmsLength { get => NPC.ai[3]; set => NPC.ai[3] = value; }
@@ -142,6 +144,54 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
+            //if (AequusHelpers.debugKey)
+            //{
+            //    if (State != STATE_DEAD)
+            //    {
+            //        NPC.localAI[1] = NPC.ai[0];
+            //        NPC.localAI[2] = Main.GlobalTimeWrappedHourly;
+            //        State = STATE_DEAD;
+            //        NPC.ai[2] = 0f;
+            //        NPC.velocity *= 0.5f;
+            //        NPC.dontTakeDamage = true;
+            //        NPC.life = NPC.lifeMax;
+            //    }
+            //}
+            if (State == STATE_DEAD)
+            {
+                if (NPC.localAI[0] == 0)
+                {
+                    NPC.localAI[0] = Main.rand.Next(100);
+                }
+                NPC.velocity *= 0.9f;
+                if (NPC.ai[2] > 0f)
+                    NPC.ai[2] = 0f;
+                NPC.ai[2] -= 3f;
+                for (int i = 0; i < Main.rand.Next(2, 14); i++)
+                {
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
+                    d.velocity *= 0.2f;
+                    d.velocity += (NPC.Center - d.position) / 8f;
+                    d.scale = Main.rand.NextFloat(0.3f, 2f);
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                }
+                if (NPC.ai[2] < -60f)
+                {
+                    for (int i = 0; i < 200; i++)
+                    {
+                        var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * 80f * Main.rand.NextFloat(0.01f, 1f), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Main.rand.NextFloat(1f)).UseA(0));
+                        d.velocity *= 0.2f;
+                        d.velocity += (d.position - NPC.Center) / 2f;
+                        d.scale = Main.rand.NextFloat(0.3f, 2.5f);
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+                    NPC.life = -33333;
+                    NPC.HitEffect();
+                    NPC.checkDead();
+                }
+                return;
+            }
+
             if (Main.dayTime)
             {
                 NPC.life = -1;
@@ -411,9 +461,24 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
+        public override bool CheckDead()
+        {
+            if (State == STATE_DEAD)
+                return true;
+            NPC.localAI[1] = NPC.ai[0];
+            NPC.localAI[2] = Main.GlobalTimeWrappedHourly;
+            State = STATE_DEAD;
+            NPC.ai[2] = 0f;
+            NPC.velocity *= 0.5f;
+            NPC.dontTakeDamage = true;
+            NPC.life = NPC.lifeMax;
+            return false;
+        }
+
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedUltraStarite, Type);
+            AequusWorld.downedEventCosmic = true;
         }
 
         public override int SpawnNPC(int tileX, int tileY)
@@ -444,6 +509,18 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
+            int state = State;
+
+            bool dying = State == STATE_DEAD;
+            float deathScaleShake = 0f;
+            float deathScaleBloom = 1f;
+            if (dying)
+            {
+                innerArmsRotation = NPC.localAI[2];
+                state = (int)NPC.localAI[1];
+                deathScaleShake = NPC.ai[2] / 60f;
+                deathScaleBloom = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 3f;
+            }
             var armLength = (NPC.height + 156f) * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
@@ -451,7 +528,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
 
             Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, HyperStarite.SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
-            if (!NPC.IsABestiaryIconDummy && State == STATE_SPINNY)
+            if (!NPC.IsABestiaryIconDummy && !dying && State == STATE_SPINNY)
             {
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = trailLength;
@@ -512,7 +589,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 segmentLength += ArmsLength;
             }
             float armsPullIn = 1f;
-            if (State == STATE_DEATHRAY)
+            if (state == STATE_DEATHRAY)
             {
                 float progress = Math.Min(NPC.ai[1] / 300f, 1f);
                 float waveFunction = (float)Math.Sin((1f - progress) * MathHelper.Pi * 1.5f - MathHelper.Pi);
@@ -522,7 +599,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 }
                 armsPullIn = Math.Clamp(waveFunction, 0.05f, 1.1f);
             }
-            else if (State == STATE_DEATHRAY_TRANSITION_END)
+            else if (state == STATE_DEATHRAY_TRANSITION_END)
             {
                 float progress = Math.Clamp((NPC.ai[1] - 10f) / 75f, 0f, 1f);
                 armsPullIn = Math.Clamp(progress, 0.05f, 1.1f);
@@ -541,6 +618,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 float lengthMultiplier = 1f;
                 lengthMultiplier += (1f - armsPullIn) * 0.1f;
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * armID * armsPullIn;
+                if (dying)
+                    rotation += Main.rand.NextFloat(-0.76f, 0.76f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
 
                 if (armsPullIn <= 0.6f)
                 {
@@ -560,10 +639,16 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 }
 
                 var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
+                if (dying)
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 2f), Main.rand.NextFloat(NPC.ai[2] / 2f));
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
                 rotation = innerArmsRotation + MathHelper.TwoPi / 5f * armID;
                 armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * segmentLength - screenPos;
+                if (dying)
+                    rotation += Main.rand.NextFloat(-0.1f, 0.1f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
+                if (dying)
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale * 0.75f, SpriteEffects.None, 0f);
             }
 
@@ -582,6 +667,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 bloomProgress = Math.Min((1f - NPC.ai[1] / 90f) * 0.75f, 1f);
             }
             bloomProgress *= bloomProgress;
+            if (dying)
+                bloomProgress += deathScaleBloom;
 
             var ray = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay");
             if (ray.IsLoaded)
@@ -605,8 +692,10 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
             Main.spriteBatch.Draw(texture, drawCoords, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
 
-            if (armsPullIn < 0.8f)
+            if (bloomProgress > 0f)
             {
+                if (dying)
+                    bloomProgress -= deathScaleBloom * 0.5f;
                 bloom = TextureCache.Bloom[3].Value;
 
                 Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 233, 200, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.1f, SpriteEffects.None, 0f);

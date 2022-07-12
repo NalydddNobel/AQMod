@@ -1,8 +1,11 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.NPCs.Friendly;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -117,32 +120,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
-            if (Main.dayTime)
-            {
-                NPC.life = -1;
-                NPC.HitEffect();
-                NPC.active = false;
-                return;
-            }
-
-            if (Main.rand.NextBool(20))
-            {
-                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
-                Main.dust[d].velocity = NPC.velocity * 0.01f;
-            }
-            if (Main.rand.NextBool(40))
-            {
-                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
-                Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
-                Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
-            }
-            if (Main.rand.NextBool(40))
-            {
-                int g = Gore.NewGore(NPC.GetSource_FromThis(), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 16 + Main.rand.Next(2));
-                Main.gore[g].scale *= 0.6f;
-            }
-            Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0.8f, 0.45f));
-
             Vector2 center = NPC.Center;
             const float collisionMult = 0.75f;
             bool collisonEffects = false;
@@ -170,6 +147,67 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     Main.dust[d].velocity = NPC.velocity * 0.65f;
                 }
             }
+
+            if (NPC.ai[0] == -2f)
+            {
+                if (NPC.localAI[0] == 0)
+                {
+                    NPC.localAI[0] = Main.rand.Next(100);
+                }
+                NPC.velocity *= 0.9f;
+                if (NPC.ai[3] > 0f)
+                    NPC.ai[3] = 0f;
+                NPC.ai[3] -= 2f;
+                for (int i = 0; i < Main.rand.Next(2, 6); i++)
+                {
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[3] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[3] / 60f, 1f)).UseA(0));
+                    d.velocity *= 0.2f;
+                    d.velocity += (NPC.Center - d.position) / 8f;
+                    d.scale = Main.rand.NextFloat(0.3f, 2f);
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                }
+                if (NPC.ai[3] < -60f)
+                {
+                    for (int i = 0; i < 60; i++)
+                    {
+                        var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * 50f * Main.rand.NextFloat(0.01f, 1f), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Main.rand.NextFloat(1f)).UseA(0));
+                        d.velocity *= 0.2f;
+                        d.velocity += (d.position - NPC.Center) / 2f;
+                        d.scale = Main.rand.NextFloat(0.3f, 2.5f);
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+                    NPC.life = -33333;
+                    NPC.HitEffect();
+                    NPC.checkDead();
+                }
+                return;
+            }
+
+            if (Main.dayTime)
+            {
+                NPC.life = -1;
+                NPC.HitEffect();
+                NPC.active = false;
+                return;
+            }
+
+            if (Main.rand.NextBool(20))
+            {
+                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                Main.dust[d].velocity = NPC.velocity * 0.01f;
+            }
+            if (Main.rand.NextBool(40))
+            {
+                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
+                Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
+                Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
+            }
+            if (Main.rand.NextBool(40))
+            {
+                int g = Gore.NewGore(NPC.GetSource_FromThis(), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), 16 + Main.rand.Next(2));
+                Main.gore[g].scale *= 0.6f;
+            }
+            Lighting.AddLight(NPC.Center, new Vector3(0.8f, 0.8f, 0.45f));
 
             if (NPC.ai[0] == -1f)
             {
@@ -352,9 +390,24 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
+        public override bool CheckDead()
+        {
+            if (NPC.ai[0] == -2f)
+                return true;
+            NPC.ai[0] = -2f;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.velocity *= 0.5f;
+            NPC.dontTakeDamage = true;
+            NPC.life = NPC.lifeMax;
+            return false;
+        }
+
         public override void OnKill()
         {
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
+            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStariteCritter>());
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -388,7 +441,45 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+            if ((int)NPC.ai[0] == -2)
+            {
+                DrawDeathExplosion(NPC.position + offset - screenPos);
+            }
             return false;
+        }
+
+        public void DrawDeathExplosion(Vector2 drawPos)
+        {
+            float scale = (float)Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f) * 3f;
+            var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
+
+            var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
+            var lightRayOrigin = lightRay.Size() / 2f;
+
+            var r = AequusEffects.EffectRand;
+            int seed = r.SetRand((int)NPC.localAI[0]);
+            int i = 0;
+            foreach (float f in AequusHelpers.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
+            {
+                var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 1.25f));
+                rayScale.X *= 0.1f;
+                rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
+                Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
+                i++;
+            }
+            r.SetRand(seed);
+            var bloom = TextureCache.Bloom[0].Value;
+            var bloomOrigin = bloom.Size() / 2f;
+            scale *= 0.5f;
+            Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, bloomOrigin, scale * 1.4f, SpriteEffects.None, 0f);
+
+            Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+            var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+            var shineOrigin = shine.Size() / 2f;
+            Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * scale, SpriteEffects.None, 0);
         }
     }
 }

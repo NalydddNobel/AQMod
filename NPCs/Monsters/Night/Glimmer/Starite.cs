@@ -390,6 +390,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 fallenStarPulseDir = 1;
             }
 
+            NPC.direction = Math.Sign(NPC.velocity.X);
             NPC.rotation += (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y)) * 0.01f * NPC.direction;
             ScreenCulling.Init();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
@@ -421,7 +422,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
             for (float f = 0f; f < 1f; f += 0.25f)
             {
-                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(150, 255, 50, 0)).noGravity = true;
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(255, 150, 50, 0)).noGravity = true;
             }
             ScreenCulling.Init();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
@@ -490,11 +491,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             return false;
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return 0f;
-        }
-
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (!fallenStar && NPC.noGravity && !NPC.IsABestiaryIconDummy)
@@ -552,7 +548,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var projectileTexture = TextureAssets.Npc[Type].Value;
             var frame = new Rectangle(0, 0, projectileTexture.Width, projectileTexture.Height);
             var origin = frame.Size() / 2f;
-            var alpha = NPC.GetAlpha(drawColor);
+            var alpha = Color.White;
             var trailThing = TextureAssets.Extra[ExtrasID.FallingStar].Value;
             var trailFrame = trailThing.Frame();
             var trailOrigin = new Vector2((float)trailFrame.Width / 2f, 10f);

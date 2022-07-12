@@ -1,9 +1,13 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Weapons.Summon;
+using Aequus.NPCs.Friendly;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,6 +29,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public const int STATE_FLYUP = 1;
         public const int STATE_IDLE = 0;
         public const int STATE_GOODBYE = -1;
+        public const int STATE_DEAD = -2;
 
         public static readonly Color SpotlightColor = new Color(100, 100, 10, 0);
 
@@ -52,7 +57,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<HyperCrystal>(chance: 4, stack: 1)
+                .AddOptions(chance: 6, ModContent.ItemType<HyperCrystal>(), ModContent.ItemType<StariteStaff>())
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
@@ -139,6 +144,41 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
+            if (State == STATE_DEAD)
+            {
+                if (NPC.localAI[0] == 0)
+                {
+                    NPC.localAI[0] = Main.rand.Next(100);
+                }
+                NPC.velocity *= 0.9f;
+                if (NPC.ai[2] > 0f)
+                    NPC.ai[2] = 0f;
+                NPC.ai[2] -= 2f;
+                for (int i = 0; i < Main.rand.Next(2, 6); i++)
+                {
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
+                    d.velocity *= 0.2f;
+                    d.velocity += (NPC.Center - d.position) / 8f;
+                    d.scale = Main.rand.NextFloat(0.3f, 2f);
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                }
+                if (NPC.ai[2] < -60f)
+                {
+                    for (int i = 0; i < 60; i++)
+                    {
+                        var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * 50f * Main.rand.NextFloat(0.01f, 1f), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Main.rand.NextFloat(1f)).UseA(0));
+                        d.velocity *= 0.2f;
+                        d.velocity += (d.position - NPC.Center) / 2f;
+                        d.scale = Main.rand.NextFloat(0.3f, 2.5f);
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+                    NPC.life = -33333;
+                    NPC.HitEffect();
+                    NPC.checkDead();
+                }
+                return;
+            }
+
             if (Main.dayTime)
             {
                 NPC.life = -1;
@@ -336,9 +376,24 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
+        public override bool CheckDead()
+        {
+            if (State == STATE_DEAD)
+                return true;
+            State = STATE_DEAD;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.velocity *= 0.5f;
+            NPC.dontTakeDamage = true;
+            NPC.life = NPC.lifeMax;
+            return false;
+        }
+
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedHyperStarite, Type);
+            AequusWorld.downedEventCosmic = true;
+            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStariteCritter>());
         }
 
         public override int SpawnNPC(int tileX, int tileY)
@@ -366,8 +421,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 armLength -= 24f * NPC.scale;
             }
 
+            bool dying = State == STATE_DEAD;
             Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
-            if (!NPC.IsABestiaryIconDummy)
+            if (!dying && !NPC.IsABestiaryIconDummy)
             {
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = (int)(trailLength * MathHelper.Clamp((float)Math.Pow(ArmsLength / 240f, 1.2f), 0f, 1f));
@@ -407,15 +463,62 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             for (int i = 0; i < 5; i++)
             {
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * i;
-                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
+                if (dying)
+                    rotation += Main.rand.NextFloat(-0.2f, 0.2f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
+                    var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
+                if (dying)
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
                 rotation += MathHelper.TwoPi / 10f;
                 armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * segmentLength - screenPos;
+                if (dying)
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
+            if (dying)
+                offset += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
+
             Main.spriteBatch.Draw(texture, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+            if (dying)
+            {
+                DrawDeathExplosion(NPC.position + offset - screenPos);
+            }
             return false;
+        }
+
+        public void DrawDeathExplosion(Vector2 drawPos)
+        {
+            float scale = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 3f;
+            var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
+
+            var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
+            var lightRayOrigin = lightRay.Size() / 2f;
+
+            var r = AequusEffects.EffectRand;
+            int seed = r.SetRand((int)NPC.localAI[0]);
+            int i = 0;
+            foreach (float f in AequusHelpers.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
+            {
+                var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
+                rayScale.X *= 0.05f;
+                rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
+                Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
+                i++;
+            }
+            r.SetRand(seed);
+            var bloom = TextureCache.Bloom[2].Value;
+            var bloomOrigin = bloom.Size() / 2f;
+            scale *= 0.7f;
+            Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, bloomOrigin, scale * 1.4f, SpriteEffects.None, 0f);
+
+            Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+            var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+            var shineOrigin = shine.Size() / 2f;
+            Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * scale, SpriteEffects.None, 0);
         }
     }
 }

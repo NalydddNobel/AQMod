@@ -1,4 +1,6 @@
-﻿using Aequus.NPCs.Boss;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
+using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Events;
@@ -28,7 +30,7 @@ namespace Aequus.Items.Misc.Summons
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime /*&& !Glimmer.IsGlimmerEventCurrentlyActive()*/ && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerBiome.EventActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool? UseItem(Player player)
@@ -36,11 +38,13 @@ namespace Aequus.Items.Misc.Summons
             if (Main.myPlayer == player.whoAmI)
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
-                Main.hardMode = !Main.hardMode;
-                LanternNight.GenuineLanterns = !LanternNight.GenuineLanterns;
-                player.Teleport(AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(Microsoft.Xna.Framework.Point.Zero).ToWorldCoordinates());
+                if (GlimmerSystem.BeginEvent())
+                {
+                    AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+                    return true;
+                }
             }
-            return true;
+            return false;
         }
     }
 }

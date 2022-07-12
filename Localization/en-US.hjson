@@ -1431,6 +1431,7 @@ Mods: {
 
 			GravetenderMinionBuff: Gravetender
 
+			StariteBuff: Starite
 			ScribbleNotebookBuff: Scribble
 			CorruptPlantBuff: Corrupt Plant
 			RedSpriteMinionBuff: Mysterious Sprite
@@ -1445,7 +1446,6 @@ Mods: {
 			PrimeTime: Arachnotron Power
 			ArachnotronCooldown: Arachnotron Cooldown
 			MonoxiderBuff: Monoxider
-			Starite: Starite
 			Trapper: Trapper
 			PiranhaPlant: Plant
 			Vampirism: Vampirism
@@ -1512,6 +1512,7 @@ Mods: {
 
 			NecromancyOwnerBuff: You are controlling the dead
 
+			StariteBuff: The starite will fight for you
 			ScribbleNotebookBuff: The object will fight for you
 			CorruptPlantBuff: The corrupted plant will fight for you
 			RedSpriteMinionBuff: The red sprite will fight for you
@@ -1526,7 +1527,6 @@ Mods: {
 			PrimeTime: Your defense is greatly increased!
 			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore
 			MonoxiderBuff: The monoxider will fight for you
-			Starite: The starite will fight for you
 			Trapper: The demonic trapper will fight for you
 			PiranhaPlant: The plant will fight for you
 			Harmony: Greatly increases your magical powers
@@ -1623,6 +1623,7 @@ Mods: {
 			NarrizuulProj: Narrizuul
 			CrusadersCrossbowBolt: Crusader's Crossbow Bolt
 
+			StariteMinion: Starite
 			ZombieBolt: Zombie Bolt
 			RevenantBolt: Revenant
 			OsirisBolt: Osiris
@@ -1699,8 +1700,6 @@ Mods: {
 			Chomper: Chomper
 			Lotus: Lotus
 			LotusShot: Lotus
-			Starite: Starite
-			StariteLeader: Starite
 			CrimsonHand: Crimson Hand
 			FertilePowder: Fertile Powder
 			FriendlyWind: Friendly Wind

@@ -9,11 +9,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon
 {
+    [GlowMask]
     public class ScribbleNotebook : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
         }
 
         public override void SetDefaults()

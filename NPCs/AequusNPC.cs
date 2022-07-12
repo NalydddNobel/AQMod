@@ -292,7 +292,7 @@ namespace Aequus.NPCs
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 16;
+                npc.lifeRegen -= 8 * 8;
                 damage += 8;
             }
             if (npc.HasBuff<Bleeding>())

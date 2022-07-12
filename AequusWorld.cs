@@ -57,6 +57,14 @@ namespace Aequus
         [NetBool]
         public static bool downedCrabson;
 
+        [SaveData("HyperStarite")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedHyperStarite;
+        [SaveData("UltraStarite")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedUltraStarite;
         [SaveData("OmegaStarite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]

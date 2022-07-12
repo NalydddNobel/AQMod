@@ -272,6 +272,7 @@ namespace Aequus
         public bool MendshroomActive => idleTime >= 60;
 
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
+        public bool MaxLife => Player.statLife >= Player.statLifeMax2;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -1104,26 +1105,16 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
-            {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
-            }
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
-            CheckBlackVial(target);
-            CheckBoneRing(target);
+            InflictDebuffs(target, damage, knockback, crit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
-            {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
-            }
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
-            CheckBlackVial(target);
-            CheckBoneRing(target);
+            InflictDebuffs(target, damage, knockback, crit);
 
             if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
             {
@@ -1152,8 +1143,13 @@ namespace Aequus
                 }
             }
         }
-        public void CheckBlackVial(NPC target)
+        public void InflictDebuffs(NPC target, int damage, float knockback, bool crit)
         {
+            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
+            {
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
+            }
             if (vialDelay <= 0 && accVial > 0 && Main.rand.NextBool(accVial))
             {
                 int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
@@ -1163,9 +1159,6 @@ namespace Aequus
                     target.AddBuff(buff, 300);
                 }
             }
-        }
-        public void CheckBoneRing(NPC target)
-        {
             if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);
