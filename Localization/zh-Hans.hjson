@@ -125,6 +125,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Ramishroom: 分支菇
+			DevilsTongue: 魔鬼之舌
 			AmmoBackpack: 弹药恢复包
 			MothmanMask: 天蛾人面具
 			HighSteaks: 高级牛排
@@ -185,6 +187,7 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
+			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果鱼饵
 			Omnibait: 全能鱼饵
 			CursedPopper: 诅咒响饵
@@ -236,6 +239,10 @@ Mods: {
 			Meathook: 血肉刺钩
 
 			BalloonKit: Zilla的气球装备
+
+			Starcatcher: 捕星者
+			Buzzer: 蜂鸣钓竿
+			Nimrod: 猎手
 
 			UnholyCore: 不洁核心
 
@@ -402,7 +409,6 @@ Mods: {
 			EquivalenceMachine: 等均仪
 			Stardrop: 星落果
 			IWillBeBack: "'我将归来'"
-			Nimrod: 猎手
 			CosmicTelescope: 宇宙望远镜
 			DungeonMap: 血瓶
 			LihzahrdMap: 卷心菜
@@ -495,7 +501,6 @@ Mods: {
 			AquaticEnergy: 海蓝能量
 			UltimateEnergy: 终极能量
 			CrabRod: 螃蟹钓竿
-			BeeRod: 蜜蜂钓竿
 			CrabShell: 蟹壳
 			MoonlightWall: 月光墙
 			ExoticCoral: 奇异珊瑚
@@ -546,6 +551,8 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Ramishroom: 钓竿会额外扔出一个浮标
+			DevilsTongue: 将非稀有渔获转化为垃圾
 			AmmoBackpack: 敌人会掉落你所消耗的弹药
 			MothmanMask:
 				'''
@@ -767,6 +774,8 @@ Mods: {
 
 			BalloonKit: 允许你骑乘一颗热气球
 
+			Starcatcher: 当星星出现时会变得更强效
+			Buzzer: 扔出一个飞行的蜜蜂浮标
 			Nimrod:
 				'''
 				召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼
@@ -789,6 +798,7 @@ Mods: {
 				'真是太容易了'
 				'''
 
+			RegrowingBait: "{$Mods.Aequus.Tooltips.NotConsumable}"
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
 			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
@@ -1354,11 +1364,6 @@ Mods: {
 				'''
 				增加10%召唤伤害
 				强化长足蟹钩的各项属性
-				'''
-			BeeRod:
-				'''
-				扔出飞行的蜜蜂浮标
-				在佩戴蜂巢背包时会扔出3枚浮标
 				'''
 			CrabShell: 畸形, 真是诡异
 			FishingCraftingStation: 用于制作特殊的钓鱼物品
