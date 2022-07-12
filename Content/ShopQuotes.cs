@@ -36,6 +36,15 @@ namespace Aequus.Content
                 ItemToQuote = new Dictionary<int, Func<string>>();
             }
 
+            internal NPCQuotes AddQuote(int item)
+            {
+                return AddQuote(KeyFromIDs("Aequus", NPC, item), item);
+            }
+            internal NPCQuotes AddQuote<T>() where T : ModItem
+            {
+                return AddQuote(ModContent.ItemType<T>());
+            }
+
             public NPCQuotes AddQuote(Func<string> key, int item)
             {
                 ItemToQuote.Add(item, key);
@@ -51,19 +60,19 @@ namespace Aequus.Content
             }
             public NPCQuotes AddQuote(Mod mod, int item)
             {
-                return AddQuote(KeyFromIDs(mod.Name, NPC, item), item);
+                return AddQuote(LegacyKeyFromIDs(mod.Name, NPC, item), item);
             }
             public NPCQuotes AddQuote<T>(Mod mod) where T : ModItem
             {
                 return AddQuote(mod, ModContent.ItemType<T>());
             }
-            internal NPCQuotes AddQuote(int item)
+            internal NPCQuotes LegacyAddQuote(int item)
             {
-                return AddQuote(KeyFromIDs("Aequus", NPC, item), item);
+                return AddQuote(LegacyKeyFromIDs("Aequus", NPC, item), item);
             }
-            internal NPCQuotes AddQuote<T>() where T : ModItem
+            internal NPCQuotes LegacyAddQuote<T>() where T : ModItem
             {
-                return AddQuote(ModContent.ItemType<T>());
+                return LegacyAddQuote(ModContent.ItemType<T>());
             }
 
             public NPCQuotes AddQuoteWithSubstitutions(string key, int item, Func<object> substitutions)
@@ -72,7 +81,7 @@ namespace Aequus.Content
             }
             internal NPCQuotes AddQuoteWithSubstitutions(int item, Func<object> substitutions)
             {
-                return AddQuoteWithSubstitutions(KeyFromIDs("Aequus", NPC, item), item, substitutions);
+                return AddQuoteWithSubstitutions(LegacyKeyFromIDs("Aequus", NPC, item), item, substitutions);
             }
 
             public NPCQuotes AddQuoteWithSubstitutions(string key, int item, object substitutions)
@@ -81,12 +90,12 @@ namespace Aequus.Content
             }
             internal NPCQuotes AddQuoteWithSubstitutions(int item, object substitutions)
             {
-                return AddQuoteWithSubstitutions(KeyFromIDs("Aequus", NPC, item), item, substitutions);
+                return AddQuoteWithSubstitutions(LegacyKeyFromIDs("Aequus", NPC, item), item, substitutions);
             }
 
             public NPCQuotes MaleFemaleQuote(string mod, int item)
             {
-                string baseQuote = KeyFromIDs(mod, NPC, item);
+                string baseQuote = LegacyKeyFromIDs(mod, NPC, item);
                 return AddQuote(() =>
                 {
                     return baseQuote + (Main.LocalPlayer.Male ? "_Male" : "_Female");
@@ -98,7 +107,7 @@ namespace Aequus.Content
             }
             internal NPCQuotes MaleFemaleQuote(int item)
             {
-                string baseQuote = KeyFromIDs("Aequus", NPC, item);
+                string baseQuote = LegacyKeyFromIDs("Aequus", NPC, item);
                 return AddQuote(() =>
                 {
                     return baseQuote + (Main.LocalPlayer.Male ? "_Male" : "_Female");
@@ -121,11 +130,11 @@ namespace Aequus.Content
             }
             public NPCQuotes AddQuotesWithConditions(Mod mod, int item, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditions(item, KeyFromIDs(mod.Name, NPC, item), rules);
+                return AddQuotesWithConditions(item, LegacyKeyFromIDs(mod.Name, NPC, item), rules);
             }
             internal NPCQuotes AddQuotesWithConditions(string mod, int item, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditions(item, KeyFromIDs(mod, NPC, item), rules);
+                return AddQuotesWithConditions(item, LegacyKeyFromIDs(mod, NPC, item), rules);
             }
             internal NPCQuotes AddQuotesWithConditions(int item, params (Func<bool> condition, string quote)[] rules)
             {
@@ -148,11 +157,11 @@ namespace Aequus.Content
             }
             public NPCQuotes AddQuotesWithConditionsWithSubsitution(Mod mod, int item, Func<object> subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditionsWithSubsitution(item, KeyFromIDs(mod.Name, NPC, item), subsitutions, rules);
+                return AddQuotesWithConditionsWithSubsitution(item, LegacyKeyFromIDs(mod.Name, NPC, item), subsitutions, rules);
             }
             internal NPCQuotes AddQuotesWithConditionsWithSubsitution(string mod, int item, Func<object> subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditionsWithSubsitution(item, KeyFromIDs(mod, NPC, item), subsitutions, rules);
+                return AddQuotesWithConditionsWithSubsitution(item, LegacyKeyFromIDs(mod, NPC, item), subsitutions, rules);
             }
             internal NPCQuotes AddQuotesWithConditionsWithSubsitution(int item, Func<object> subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
@@ -175,11 +184,11 @@ namespace Aequus.Content
             }
             public NPCQuotes AddQuotesWithConditionsWithSubsitution(Mod mod, int item, object subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditionsWithSubsitution(item, KeyFromIDs(mod.Name, NPC, item), subsitutions, rules);
+                return AddQuotesWithConditionsWithSubsitution(item, LegacyKeyFromIDs(mod.Name, NPC, item), subsitutions, rules);
             }
             internal NPCQuotes AddQuotesWithConditionsWithSubsitution(string mod, int item, object subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
-                return AddQuotesWithConditionsWithSubsitution(item, KeyFromIDs(mod, NPC, item), subsitutions, rules);
+                return AddQuotesWithConditionsWithSubsitution(item, LegacyKeyFromIDs(mod, NPC, item), subsitutions, rules);
             }
             internal NPCQuotes AddQuotesWithConditionsWithSubsitution(int item, object subsitutions, params (Func<bool> condition, string quote)[] rules)
             {
@@ -188,9 +197,9 @@ namespace Aequus.Content
 
             internal NPCQuotes AddZoologistQuote(int item)
             {
-                string key = KeyFromIDs("Aequus", NPC, item);
+                string key = LegacyKeyFromIDs("Aequus", NPC, item);
                 string altKey = key + ".Lycantrope";
-                return Language.GetTextValue(altKey) == altKey ? AddQuote(item)
+                return Language.GetTextValue(altKey) == altKey ? LegacyAddQuote(item)
                     : AddQuote(() => ZoologistAltText(TalkingNPC()) ? altKey : key, item);
             }
 
@@ -229,114 +238,153 @@ namespace Aequus.Content
                 {
                     [NPCID.Merchant] = new NPCQuotes(NPCID.Merchant)
                     .WithColor(Color.Yellow)
-                    .AddQuote(ItemID.MiningHelmet)
+                    .LegacyAddQuote(ItemID.MiningHelmet)
                     .AddQuotesWithConditions(ItemID.PiggyBank,
                     (() => Main.GetMoonPhase() == MoonPhase.Full && LanternNight.LanternsUp, "_Goober"))
-                    .AddQuote(ItemID.IronAnvil)
-                    .AddQuote(ItemID.LeadAnvil)
-                    .AddQuote(ItemID.BugNet)
-                    .AddQuote(ItemID.CopperPickaxe)
-                    .AddQuote(ItemID.CopperAxe)
+                    .LegacyAddQuote(ItemID.IronAnvil)
+                    .LegacyAddQuote(ItemID.LeadAnvil)
+                    .LegacyAddQuote(ItemID.BugNet)
+                    .LegacyAddQuote(ItemID.CopperPickaxe)
+                    .LegacyAddQuote(ItemID.CopperAxe)
                     .AddQuote("LegacyDialog.5", ItemID.Torch)
-                    .AddQuote(ItemID.LesserHealingPotion)
-                    .AddQuote(ItemID.LesserManaPotion)
-                    .AddQuote(ItemID.WoodenArrow)
-                    .AddQuote(ItemID.Shuriken)
-                    .AddQuote(ItemID.Rope)
-                    .AddQuote(ItemID.Marshmallow)
-                    .AddQuote(ItemID.Furnace)
-                    .AddQuote(ItemID.PinWheel)
-                    .AddQuote(ItemID.ThrowingKnife)
-                    .AddQuote(ItemID.Glowstick)
-                    .AddQuote(ItemID.SharpeningStation)
-                    .AddQuote(ItemID.Safe)
+                    .LegacyAddQuote(ItemID.LesserHealingPotion)
+                    .LegacyAddQuote(ItemID.LesserManaPotion)
+                    .LegacyAddQuote(ItemID.WoodenArrow)
+                    .LegacyAddQuote(ItemID.Shuriken)
+                    .LegacyAddQuote(ItemID.Rope)
+                    .LegacyAddQuote(ItemID.Marshmallow)
+                    .LegacyAddQuote(ItemID.Furnace)
+                    .LegacyAddQuote(ItemID.PinWheel)
+                    .LegacyAddQuote(ItemID.ThrowingKnife)
+                    .LegacyAddQuote(ItemID.Glowstick)
+                    .LegacyAddQuote(ItemID.SharpeningStation)
+                    .LegacyAddQuote(ItemID.Safe)
                     .AddQuotesWithConditionsWithSubsitution(ItemID.DiscoBall, () => new { PartyGirl = NPC.GetFirstNPCNameOrNull(NPCID.PartyGirl), },
                     (() => NPC.AnyNPCs(NPCID.PartyGirl), "_PartyGirl"))
-                    .AddQuote(ItemID.Flare)
-                    .AddQuote(ItemID.BlueFlare)
-                    .AddQuote(ItemID.Sickle)
-                    .AddQuote(ItemID.GoldDust)
-                    .AddQuote(ItemID.DrumSet)
-                    .AddQuote(ItemID.DrumStick)
-                    .AddQuote(ItemID.Nail)
+                    .LegacyAddQuote(ItemID.Flare)
+                    .LegacyAddQuote(ItemID.BlueFlare)
+                    .LegacyAddQuote(ItemID.Sickle)
+                    .LegacyAddQuote(ItemID.GoldDust)
+                    .LegacyAddQuote(ItemID.DrumSet)
+                    .LegacyAddQuote(ItemID.DrumStick)
+                    .LegacyAddQuote(ItemID.Nail)
                     ,
 
                     [NPCID.ArmsDealer] = new NPCQuotes(NPCID.ArmsDealer)
                     .WithColor(Color.Gray * 1.45f)
                     .AddQuote("LegacyDialog.67", ItemID.MusketBall)
-                    .AddQuote(ItemID.SilverBullet)
-                    .AddQuote(ItemID.TungstenBullet)
-                    .AddQuote(ItemID.UnholyArrow)
-                    .AddQuote(ItemID.FlintlockPistol)
+                    .LegacyAddQuote(ItemID.SilverBullet)
+                    .LegacyAddQuote(ItemID.TungstenBullet)
+                    .LegacyAddQuote(ItemID.UnholyArrow)
+                    .LegacyAddQuote(ItemID.FlintlockPistol)
                     .AddQuote("LegacyDialog.66", ItemID.Minishark)
-                    .AddQuote(ItemID.IllegalGunParts)
-                    .AddQuote(ItemID.Shotgun)
-                    .AddQuote(ItemID.EmptyBullet)
-                    .AddQuote(ItemID.StyngerBolt)
-                    .AddQuote(ItemID.Stake)
+                    .LegacyAddQuote(ItemID.IllegalGunParts)
+                    .LegacyAddQuote(ItemID.Shotgun)
+                    .LegacyAddQuote(ItemID.EmptyBullet)
+                    .LegacyAddQuote(ItemID.StyngerBolt)
+                    .LegacyAddQuote(ItemID.Stake)
                     .AddQuotesWithConditionsWithSubsitution(ItemID.Nail, () => new { Merchant = NPC.GetFirstNPCNameOrNull(NPCID.Merchant), },
                     (() => NPC.AnyNPCs(NPCID.Merchant), "_Merchant"))
-                    .AddQuote(ItemID.CandyCorn)
-                    .AddQuote(ItemID.ExplosiveJackOLantern)
+                    .LegacyAddQuote(ItemID.CandyCorn)
+                    .LegacyAddQuote(ItemID.ExplosiveJackOLantern)
                     .AddQuote(NurseOutfitText, ItemID.NurseHat)
                     .AddQuote(NurseOutfitText, ItemID.NurseShirt)
                     .AddQuote(NurseOutfitText, ItemID.NursePants)
-                    .AddQuote(ItemID.QuadBarrelShotgun)
+                    .LegacyAddQuote(ItemID.QuadBarrelShotgun)
                     ,
 
                     [NPCID.Demolitionist] = new NPCQuotes(NPCID.Demolitionist)
                     .WithColor(Color.Gray * 1.45f)
-                    .AddQuote(ItemID.Grenade)
+                    .LegacyAddQuote(ItemID.Grenade)
                     .AddQuoteWithSubstitutions("LegacyDialog.93", ItemID.Bomb,
                     new { WorldEvilStone = WorldGen.crimson ? Language.GetTextValue("Misc.Crimstone") : Language.GetTextValue("Misc.Ebonstone"), })
                     .AddQuote("LegacyDialog.101", ItemID.Dynamite)
-                    .AddQuote(ItemID.HellfireArrow)
-                    .AddQuote(ItemID.LandMine)
-                    .AddQuote(ItemID.ExplosivePowder)
-                    .AddQuote(ItemID.DryBomb)
-                    .AddQuote(ItemID.WetBomb)
-                    .AddQuote(ItemID.LavaBomb)
-                    .AddQuote(ItemID.HoneyBomb)
+                    .LegacyAddQuote(ItemID.HellfireArrow)
+                    .LegacyAddQuote(ItemID.LandMine)
+                    .LegacyAddQuote(ItemID.ExplosivePowder)
+                    .LegacyAddQuote(ItemID.DryBomb)
+                    .LegacyAddQuote(ItemID.WetBomb)
+                    .LegacyAddQuote(ItemID.LavaBomb)
+                    .LegacyAddQuote(ItemID.HoneyBomb)
                     ,
 
                     [NPCID.GoblinTinkerer] = new NPCQuotes(NPCID.GoblinTinkerer)
                     .WithColor(new Color(200, 70, 105, 255))
-                    .AddQuote(ItemID.RocketBoots)
-                    .AddQuote(ItemID.Ruler)
-                    .AddQuote(ItemID.TinkerersWorkshop)
-                    .AddQuote(ItemID.GrapplingHook)
-                    .AddQuote(ItemID.Toolbelt)
-                    .AddQuote(ItemID.SpikyBall)
-                    ,
+                    .LegacyAddQuote(ItemID.RocketBoots)
+                    .LegacyAddQuote(ItemID.Ruler)
+                    .LegacyAddQuote(ItemID.TinkerersWorkshop)
+                    .LegacyAddQuote(ItemID.GrapplingHook)
+                    .LegacyAddQuote(ItemID.Toolbelt)
+                    .LegacyAddQuote(ItemID.SpikyBall),
 
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
-                    .AddQuote(ItemID.RocketI)
-                    .AddQuote(ItemID.RocketII)
-                    .AddQuote(ItemID.RocketIII)
-                    .AddQuote(ItemID.RocketIV)
-                    .AddQuote(ItemID.DryRocket)
-                    .AddQuote(ItemID.ProximityMineLauncher)
-                    .AddQuote(ItemID.Nanites)
-                    .AddQuote(ItemID.ClusterRocketI)
-                    .AddQuote(ItemID.ClusterRocketII)
-                    .AddQuote(ItemID.HiTekSunglasses)
-                    .AddQuote(ItemID.NightVisionHelmet)
-                    .AddQuote(ItemID.PortalGunStation)
-                    .AddQuote(ItemID.EchoBlock)
-                    .AddQuote(ItemID.SpectreGoggles),
+                    .LegacyAddQuote(ItemID.RocketI)
+                    .LegacyAddQuote(ItemID.RocketII)
+                    .LegacyAddQuote(ItemID.RocketIII)
+                    .LegacyAddQuote(ItemID.RocketIV)
+                    .LegacyAddQuote(ItemID.DryRocket)
+                    .LegacyAddQuote(ItemID.ProximityMineLauncher)
+                    .LegacyAddQuote(ItemID.Nanites)
+                    .LegacyAddQuote(ItemID.ClusterRocketI)
+                    .LegacyAddQuote(ItemID.ClusterRocketII)
+                    .LegacyAddQuote(ItemID.HiTekSunglasses)
+                    .LegacyAddQuote(ItemID.NightVisionHelmet)
+                    .LegacyAddQuote(ItemID.PortalGunStation)
+                    .LegacyAddQuote(ItemID.EchoBlock)
+                    .LegacyAddQuote(ItemID.SpectreGoggles),
+
+                    [NPCID.Painter] = new NPCQuotes(NPCID.Painter)
+                    .WithColor(() => AequusHelpers.LerpBetween(new Color[] 
+                    {
+                        Color.Red,
+                        Color.Orange,
+                        Color.Yellow,
+                        Color.Lime,
+                        Color.Green,
+                        Color.Teal,
+                        Color.Cyan,
+                        Color.SkyBlue,
+                        Color.Blue,
+                        Color.Purple,
+                        Color.Violet,
+                        Color.Pink,
+                    }, Main.GlobalTimeWrappedHourly * 0.2f))
+                    //.AddQuote(ItemID.Paintbrush)
+                    //.AddQuote(ItemID.PaintRoller)
+                    //.AddQuote(ItemID.PaintScraper)
+                    //.AddQuote(ItemID.RedPaint)
+                    //.AddQuote(ItemID.OrangePaint)
+                    //.AddQuote(ItemID.YellowPaint)
+                    //.AddQuote(ItemID.LimePaint)
+                    //.AddQuote(ItemID.GreenPaint)
+                    //.AddQuote(ItemID.TealPaint)
+                    //.AddQuote(ItemID.CyanPaint)
+                    //.AddQuote(ItemID.SkyBluePaint)
+                    //.AddQuote(ItemID.BluePaint)
+                    //.AddQuote(ItemID.PurplePaint)
+                    //.AddQuote(ItemID.VioletPaint)
+                    //.AddQuote(ItemID.PinkPaint)
+                    //.AddQuote(ItemID.BlackPaint)
+                    //.AddQuote(ItemID.GrayPaint)
+                    //.AddQuote(ItemID.WhitePaint)
+                    //.AddQuote(ItemID.BrownPaint)
+                    //.AddQuote(ItemID.ShadowPaint)
+                    //.AddQuote(ItemID.NegativePaint)
+                    //.AddQuote(ItemID.GlowPaint)
+                    ,
 
                     [NPCID.Pirate] = new NPCQuotes(NPCID.Pirate)
                     .WithColor(Color.Orange * 1.2f)
-                    .AddQuote(ItemID.Cannon)
-                    .AddQuote(ItemID.Cannonball)
-                    .AddQuote(ItemID.PirateHat)
-                    .AddQuote(ItemID.PirateShirt)
-                    .AddQuote(ItemID.PiratePants)
-                    .AddQuote(ItemID.Sail)
-                    .AddQuote(ItemID.ParrotCracker)
-                    .AddQuote(ItemID.BunnyCannon)
-                    .AddQuote(ItemID.ExplosiveBunny)
+                    .LegacyAddQuote(ItemID.Cannon)
+                    .LegacyAddQuote(ItemID.Cannonball)
+                    .LegacyAddQuote(ItemID.PirateHat)
+                    .LegacyAddQuote(ItemID.PirateShirt)
+                    .LegacyAddQuote(ItemID.PiratePants)
+                    .LegacyAddQuote(ItemID.Sail)
+                    .LegacyAddQuote(ItemID.ParrotCracker)
+                    .LegacyAddQuote(ItemID.BunnyCannon)
+                    .LegacyAddQuote(ItemID.ExplosiveBunny)
                     ,
 
                     [NPCID.BestiaryGirl] = new NPCQuotes(NPCID.BestiaryGirl)
@@ -378,40 +426,40 @@ namespace Aequus.Content
 
                     [NPCID.Princess] = new NPCQuotes(NPCID.Princess)
                     .WithColor(Main.creativeModeColor * 1.25f)
-                    .AddQuote(ItemID.RoyalTiara)
-                    .AddQuote(ItemID.RoyalDressTop)
-                    .AddQuote(ItemID.RoyalDressBottom)
-                    .AddQuote(ItemID.RoyalScepter)
+                    .LegacyAddQuote(ItemID.RoyalTiara)
+                    .LegacyAddQuote(ItemID.RoyalDressTop)
+                    .LegacyAddQuote(ItemID.RoyalDressBottom)
+                    .LegacyAddQuote(ItemID.RoyalScepter)
                     .MaleFemaleQuote(ItemID.GlassSlipper)
-                    .AddQuote(ItemID.PrinceUniform)
-                    .AddQuote(ItemID.PrincePants)
-                    .AddQuote(ItemID.PrinceCape)
-                    .AddQuote(ItemID.PottedCrystalPlantFern)
-                    .AddQuote(ItemID.PottedCrystalPlantSpiral)
-                    .AddQuote(ItemID.PottedCrystalPlantTeardrop)
-                    .AddQuote(ItemID.PottedCrystalPlantTree)
-                    .AddQuote(ItemID.Princess64)
-                    .AddQuote(ItemID.PaintingOfALass)
-                    .AddQuote(ItemID.DarkSideHallow)
-                    .AddQuote(ItemID.BerniePetItem)
+                    .LegacyAddQuote(ItemID.PrinceUniform)
+                    .LegacyAddQuote(ItemID.PrincePants)
+                    .LegacyAddQuote(ItemID.PrinceCape)
+                    .LegacyAddQuote(ItemID.PottedCrystalPlantFern)
+                    .LegacyAddQuote(ItemID.PottedCrystalPlantSpiral)
+                    .LegacyAddQuote(ItemID.PottedCrystalPlantTeardrop)
+                    .LegacyAddQuote(ItemID.PottedCrystalPlantTree)
+                    .LegacyAddQuote(ItemID.Princess64)
+                    .LegacyAddQuote(ItemID.PaintingOfALass)
+                    .LegacyAddQuote(ItemID.DarkSideHallow)
+                    .LegacyAddQuote(ItemID.BerniePetItem)
                     .AddQuotesWithConditions(ItemID.MusicBoxCredits,
                     (() =>
                     {
                         int guide = NPC.FindFirstNPC(NPCID.Guide);
                         return guide != -1 ? Main.npc[guide].GivenName == "Andrew" : false;
                     }, "_GuideAndrew"))
-                    .AddQuote(ItemID.SlimeStaff)
-                    .AddQuote(ItemID.HeartLantern)
+                    .LegacyAddQuote(ItemID.SlimeStaff)
+                    .LegacyAddQuote(ItemID.HeartLantern)
                     .AddQuotesWithConditionsWithSubsitution(ItemID.FlaskofParty, () => new { PartyGirl = NPC.GetFirstNPCNameOrNull(NPCID.PartyGirl), },
                     (() => NPC.AnyNPCs(NPCID.PartyGirl), "_PartyGirl"))
-                    .AddQuote(ItemID.SandstorminaBottle)
-                    .AddQuote(ItemID.Terragrim)
-                    .AddQuote(ItemID.PirateStaff)
+                    .LegacyAddQuote(ItemID.SandstorminaBottle)
+                    .LegacyAddQuote(ItemID.Terragrim)
+                    .LegacyAddQuote(ItemID.PirateStaff)
                     .AddQuotesWithConditionsWithSubsitution(ItemID.DiscountCard, () => new { Exporter = NPC.GetFirstNPCNameOrNull(ModContent.NPCType<Exporter>()), },
                     (() => NPC.AnyNPCs(ModContent.NPCType<Exporter>()), "_Exporter"))
                     .AddQuotesWithConditionsWithSubsitution(ItemID.LuckyCoin, () => new { Exporter = NPC.GetFirstNPCNameOrNull(ModContent.NPCType<Exporter>()), },
                     (() => NPC.AnyNPCs(ModContent.NPCType<Exporter>()), "_Exporter"))
-                    .AddQuote(ItemID.CoinGun)
+                    .LegacyAddQuote(ItemID.CoinGun)
                     ,
                 };
             }
@@ -635,7 +683,16 @@ namespace Aequus.Content
 
         public static string KeyFromIDs(string mod, int npc, int item)
         {
-            return $"Mods.{mod}.Chat.{AequusText.CreateSearchNameFromNPC(npc)}.ShopQuote.{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item))}";
+            string npcName = npc > Main.maxNPCTypes ? AequusText.CreateKeyNameFromSearch(ModContent.GetModNPC(npc).FullName) : NPCID.Search.GetName(npc);
+            return $"Mods.{mod}.Chat.{npcName}.ShopQuote.{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item))}";
+        }
+
+        public static string LegacyKeyFromIDs(string mod, int npc, int item)
+        {
+            string npcName = AequusText.CreateSearchNameFromNPC(npc);
+            string itemName = (item < Main.maxItemTypes ? "Terraria_" : "") + AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item));
+
+            return $"Mods.{mod}.Chat.{npcName}.ShopQuote.{itemName}";
         }
 
         public static NPC TalkingNPC()

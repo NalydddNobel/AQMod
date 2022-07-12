@@ -798,7 +798,7 @@ Mods: {
 				'Quite the pushover'
 				'''
 
-			RegrowingBait: "{$Mods.Aequus.Tooltips.NotConsumable}"
+			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
 			CursedPopper: Increases bait power by 30% when in the corruption

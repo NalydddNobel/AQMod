@@ -232,10 +232,10 @@ namespace Aequus
                     name += split[i];
                 }
             }
-            else if (!name.Contains('/'))
-            {
-                name = "Terraria_" + name;
-            }
+            //else if (!name.Contains('/'))
+            //{
+            //    name = "Terraria_" + name;
+            //}
 
             return name.Replace('/', '_');
         }

@@ -67,16 +67,16 @@ namespace Aequus.NPCs.Friendly
             ShopQuotes.Database
                 .AddNPC(Type)
                 .WithColor(Color.Orange * 1.2f)
-                .AddQuote<GrandReward>()
-                .AddQuote<SkeletonKey>()
-                .AddQuote(ItemID.ShadowKey)
-                .AddQuote<RecyclingMachine>()
-                .AddQuote<ForgedCard>()
-                .AddQuote<FaultyCoin>()
-                .AddQuote<FoolsGoldRing>()
-                .AddQuote(ItemID.DiscountCard)
-                .AddQuote(ItemID.LuckyCoin)
-                .AddQuote(ItemID.GoldRing);
+                .LegacyAddQuote<GrandReward>()
+                .LegacyAddQuote<SkeletonKey>()
+                .LegacyAddQuote(ItemID.ShadowKey)
+                .LegacyAddQuote<RecyclingMachine>()
+                .LegacyAddQuote<ForgedCard>()
+                .LegacyAddQuote<FaultyCoin>()
+                .LegacyAddQuote<FoolsGoldRing>()
+                .LegacyAddQuote(ItemID.DiscountCard)
+                .LegacyAddQuote(ItemID.LuckyCoin)
+                .LegacyAddQuote(ItemID.GoldRing);
 
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }
