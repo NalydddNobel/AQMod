@@ -48,7 +48,7 @@ namespace Aequus
     public class AequusPlayer : ModPlayer
     {
         public const int BoundBowMaxAmmo = 15;
-        public const int BoundBowRegenerationDelay = 60;
+        public const int BoundBowRegenerationDelay = 50;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
