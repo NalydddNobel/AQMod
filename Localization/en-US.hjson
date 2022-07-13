@@ -2596,6 +2596,104 @@ Mods: {
 						'''
 				}
 			}
+			
+			Painter: {
+				ShopQuote: {
+					Paintbrush: Every knight has his sword, and this is mine. It could be yours too!
+					PaintRoller: This long tool is perfect for those walls you just can't reach otherwise.
+					PaintScraper:
+						'''
+						There are no mistakes, only happy accidents.
+						Destroy them.
+						'''
+					RedPaint: Ahh... Alabama Crimson... a beautiful color. Reminds me of apples.
+					OrangePaint: Ahh... Atomic Tangerine... a beautiful color. Reminds me of tangerines, heh.
+					YellowPaint: Ahh... Mustard Yellow... a beautiful color. Reminds me of bananas.
+					LimePaint: Ahh... Bitter Lime... a beautiful color. Reminds me of limes, heh.
+					GreenPaint: Ahh... Indubitably Green... a beautiful color. Reminds me of pears.
+					TealPaint: Ahh... Medium Aquamarine... a beautiful color. Reminds me of... something?
+					CyanPaint: Ahh... Carribean Current... a beautiful color. Reminds me of... something?
+					SkyBluePaint: Ahh... Winter Wizard... a beautiful color. Reminds me of... crystals.
+					BluePaint: Ahh... Bayern Blue... a beautiful color. Reminds me of... blueberries.
+					PurplePaint: Ahh... Purple Mountain's Majesty... a beautiful color. Reminds me of... plums.
+					PinkPaint: Ahh... Pink as Hell... a beautiful color. Reminds me of... pink lemonade, heh.
+					VioletPaint: Ahh... French Violet... a beautiful color. Reminds me of... violets, heh.
+					BlackPaint: Ahh... A Distinctive Lack of Hue... a beautiful color. Reminds me of... blackberries, heh.
+					GrayPaint: Ahh... Aged Moustache Gray... a beautiful color. Reminds me of... old people.
+					WhitePaint: Ahh... Titanium White... a beautiful color. Reminds me of... glue.
+					BrownPaint: Ahh... Almond Brown... a beautiful color. Reminds me of... sticks.
+					ShadowPaint: Ahh... Vantablack... a... color for sure. Or not.
+					NegativePaint: Ahh... uhh... this isn't a color. This flips color. No clue how this works.
+					GlowPaint: Ahh... uh... this isn't a color. This just makes stuff brighter. Is this even a paint?
+					
+					//paintings
+					
+					Painting: A true work of art.
+					Daylight: Moura depicts the beauty of daytime well.
+					FirstEncounter: Moura well portrays the plight of man.
+					GoodMorning: Moura's sunflower is exquisitely brushed.
+					UndergroundReward: Moura perfectly depicts the intricate surface of Heart Crystals.
+					ThroughtheWindow: We can see through the eyes of Moura as if we were he.
+					DeadlandComesAlive: Moura stylistically depicts the baroque nature of the bloody Crimson.
+					LightlessChasms: Moura stylistically depicts the baroque nature of the brutal Corruption.
+					TheLandofDecievingLooks: Moura stylistically depicts the baroque nature of the conspicuous Hallow.
+					DoNotStepontheGrass: Moura stylistically depicts the romantic nature of the lush Jungle.
+					ColdWatersintheWhiteLand: Moura stylistically depicts the romantic nature of the frigid Tundra.
+					SecretoftheSands: Moura stylistically depicts the secretive shadowy nature of the Pharoah's Curse.
+					EvilPresence: Moura really shows the lack of privacy we must face in this world.
+					PlaceAbovetheClouds: Moura stylistically depicts the impressionistic nature of the airy skies.
+					SkyGuardian: Moura realistically depicts the twists and turns of a wyvern's body.
+					Nevermore: Moura shows the hopelessness and ineviability of death that comes to life after love.
+					Reborn: One can only imagine what the hand is reaching for. Music? Revenge? We will never know.
+					Graveyard: Moura stylistically depicts the horrifying nature of the dark graveyard.
+					GhostManifestation: 
+						'''
+						Moura creates his own style of painting-
+						seeming to advertise a fictional monster.
+						'''
+					WickedUndead: 
+						'''
+						Moura creates his own style of painting-
+						seeming to advertise a show at an opera house.
+						'''
+					BloodyGoblet: Moura depicts a baroque goblet and has a unique stylistic decision to spill the blood.
+					StillLife: 
+						'''
+						Moura creates a fun twist on the still-life genre-
+						the skull is an example of true still-life.
+						'''
+					
+					//wallpaper
+					
+					BubbleWallpaper: This wallpaper has fun bubbles all over. Useful for a pool establishment.
+					CopperPipeWallpaper: This wallpaper has steampunky pipes all over. Useful for a machine building.
+					DuckyWallpaper: This wallpaper has duckies all over. Very, very useful.
+					FancyGreyWallpaper: This wallpaper is very fancy. Useful for Victorian housing.
+					IceFloeWallpaper: This wallpaper is reminiscent of a glacial mass. Useful for a tundra build.
+					MusicWallpaper: This wallpaper has musical notes all over. Useful for your band's next gig.
+					PurpleRainWallpaper: This wallpaper depicts a deluge of violet water. Useful for a Prince's palace.
+					RainbowWallpaper: This wallpaper depicts a colorful rainbow. Useful for a fairy unicorn zone.
+					SparkleStoneWallpaper: This wallpaper depicts some shiny rocks. Looks kind of tasty...
+					StarlitHeavenWallpaper: This wallpaper depicts the beautiful starry sky. I wonder what resides above...
+					
+					ChristmasWallpapers: This wallpaper gets me in a festive mood.
+					ChristmasTreeWallpaper: I love christmas trees!
+					OrnamentWallpaper: I love ornaments!
+					CandyCaneWallpaper: I love candy canes!
+					
+					FestiveWallpaper: 
+					BluegreenWallpaper: 
+					//these are just "this wallpaper gets me in a festive mood"
+					
+					StarsWallpaper: I love stars!
+					SquigglesWallpaper: I love squiggles!
+					SnowflakeWallpaper: I love snowflakes!
+					
+					//the following are exceptions to the christmas wallpaper heading
+					KrampusHornWallpaper: This wallpaper gets me out of a festive mood. I hate Krampus!
+					GrinchFingerWallpaper: This wallpaper gets me out of a festive mood. I hate the Grinch!
+				}
+			}
 
 			Occultist: {
 				Basic: {
