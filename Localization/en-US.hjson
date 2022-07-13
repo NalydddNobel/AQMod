@@ -2694,6 +2694,50 @@ Mods: {
 					GrinchFingerWallpaper: This wallpaper gets me out of a festive mood. I hate the Grinch!
 				}
 			}
+			
+			WitchDoctor: {
+				ShopQuote: {
+					InbuingStation: One finds their blade and spirit empowered when they consume a flask from an Imbuing Station.
+					Blowgun: Some say that this weapon "blows", but on the contrary, you blow the weapon.
+					StyngerBolt: You're lucky that I happen to have some of these left over. Normally you'd have to perform a sacrifice.
+					Stake: An interesting fact: without these stakes at hand, your life would be at stakes.
+					Cauldron: 
+						'''
+						I have used this many a time to create potions of incredible power. 
+						I also make chicken soup!
+						'''
+					TikiTotem: 
+						'''
+						This talisman summons a little being to be at your side. 
+						Not very useful, but a great companion.
+						'''
+					LeafWings: 
+						'''
+						Some would say that leaves wouldn't make good wings. 
+						The power of nature always prevails.
+						'''
+					VialofVenom: A small amount of very deadly fluid. Drink at your own risk.
+					TikiMask: An ancient mask with spiritual power. I can only hand it over for a very high price.
+					TikiShirt: An ancient shirt with spiritual power. I can only hand it over for a very high price.
+					TikiPants: Ancient pants with spiritual power. I can only hand them over for a very high price.
+					PygmyNecklace: This old talisman can give you greater control over helpful spirits.
+					HerculesBeetle: Beetles are associated with a greater connection between spirits and physical objects.
+					
+					Fountains: A beautiful fountain.
+					PureWaterFountain: Spreads the essence of purity through the waters.
+					DesertWaterFountain: Spreads the essence of aridity through the waters.
+					JungleWaterFountain: Spreads the essence of nature through the waters.
+					IcyWaterFountain: Spreads the essence of frigidity through the waters.
+					CorruptWaterFountain: Spreads the essence of corruption through the waters.
+					CrimsonWaterFountain: Spreads the essence of violence through the waters.
+					HallowedWaterFountain: Spreads the essence of light through the waters.
+					BloodWaterFountain: Spreads the essence of blood through the waters.
+					CavernFountain: Spreads the essence of solidity through the waters.
+					OasisFountain: Spreads the essence of refuge through the waters.
+					
+					BewitchingTable: This table has the ultimate connection to the spirit realm.
+				}
+			}
 
 			Occultist: {
 				Basic: {
