@@ -333,6 +333,9 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.Toolbelt)
                     .LegacyAddQuote(ItemID.SpikyBall),
 
+                    [NPCID.Wizard] = new NPCQuotes(NPCID.Wizard)
+                    .WithColor(Color.BlueViolet),
+
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
                     .LegacyAddQuote(ItemID.RocketI)
@@ -365,7 +368,7 @@ namespace Aequus.NPCs
                         Color.Purple,
                         Color.Violet,
                         Color.Pink,
-                    }, Main.GlobalTimeWrappedHourly * 0.08f))
+                    }, Main.GlobalTimeWrappedHourly * 0.08f).MaxRGBA(100))
                     .AddQuote(ItemID.Paintbrush)
                     .AddQuote(ItemID.PaintRoller)
                     .AddQuote(ItemID.PaintScraper)
@@ -419,16 +422,44 @@ namespace Aequus.NPCs
                     .AddPaintingPainterQuote(ItemID.RainbowWallpaper)
                     .AddPaintingPainterQuote(ItemID.SparkleStoneWallpaper)
                     .AddPaintingPainterQuote(ItemID.StarlitHeavenWallpaper)
-                    .AddQuoteWithPrefix(ItemID.ChristmasTreeWallpaper, "Chat.Painter.ChristmasWallpapers")
-                    .AddQuoteWithPrefix(ItemID.OrnamentWallpaper, "Chat.Painter.ChristmasWallpapers")
-                    .AddQuoteWithPrefix(ItemID.CandyCaneWallpaper, "Chat.Painter.ChristmasWallpapers")
-                    .AddQuote("Mods.Aequus.Chat.Painter.ChristmasWallpapers", ItemID.FestiveWallpaper)
-                    .AddQuote("Mods.Aequus.Chat.Painter.ChristmasWallpapers", ItemID.BluegreenWallpaper)
-                    .AddQuoteWithPrefix(ItemID.StarsWallpaper, "Chat.Painter.ChristmasWallpapers")
-                    .AddQuoteWithPrefix(ItemID.SquigglesWallpaper, "Chat.Painter.ChristmasWallpapers")
-                    .AddQuoteWithPrefix(ItemID.SnowflakeWallpaper, "Chat.Painter.ChristmasWallpapers")
+                    .AddQuoteWithPrefix(ItemID.ChristmasTreeWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
+                    .AddQuoteWithPrefix(ItemID.OrnamentWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
+                    .AddQuoteWithPrefix(ItemID.CandyCaneWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
+                    .AddQuote("Mods.Aequus.Chat.Painter.ShopQuote.ChristmasWallpapers", ItemID.FestiveWallpaper)
+                    .AddQuote("Mods.Aequus.Chat.Painter.ShopQuote.ChristmasWallpapers", ItemID.BluegreenWallpaper)
+                    .AddQuoteWithPrefix(ItemID.StarsWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
+                    .AddQuoteWithPrefix(ItemID.SquigglesWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
+                    .AddQuoteWithPrefix(ItemID.SnowflakeWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
                     .AddQuote(ItemID.KrampusHornWallpaper)
                     .AddQuote(ItemID.GrinchFingerWallpaper)
+                    ,
+
+                    [NPCID.WitchDoctor] = new NPCQuotes(NPCID.WitchDoctor)
+                    .WithColor(Color.GreenYellow)
+                    .AddQuote(ItemID.ImbuingStation)
+                    .AddQuote(ItemID.Blowgun)
+                    .AddQuote(ItemID.StyngerBolt)
+                    .AddQuote(ItemID.Stake)
+                    .AddQuote(ItemID.Cauldron)
+                    .AddQuote(ItemID.TikiTotem)
+                    .AddQuote(ItemID.LeafWings)
+                    .AddQuote(ItemID.VialofVenom)
+                    .AddQuote(ItemID.TikiMask)
+                    .AddQuote(ItemID.TikiShirt)
+                    .AddQuote(ItemID.TikiPants)
+                    .AddQuote(ItemID.PygmyNecklace)
+                    .AddQuote(ItemID.HerculesBeetle)
+                    .AddQuoteWithPrefix(ItemID.PureWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.DesertWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.JungleWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.IcyWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.CorruptWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.CrimsonWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.HallowedWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.BloodWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.CavernFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuoteWithPrefix(ItemID.OasisFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
+                    .AddQuote(ItemID.BewitchingTable)
                     ,
 
                     [NPCID.Pirate] = new NPCQuotes(NPCID.Pirate)

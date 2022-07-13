@@ -386,7 +386,7 @@ namespace Aequus
 
         public override void Initialize()
         {
-            boundBowAmmo = 10;
+            boundBowAmmo = 25;
             boundBowAmmoTimer = 60;
             cursorDye = -1;
             candleSouls = 0;
@@ -423,7 +423,7 @@ namespace Aequus
                     float volume = 0.2f;
                     if (selected)
                     {
-                        volume = 0.8f;
+                        volume = 0.55f;
                         AequusEffects.Shake.Set(4);
                     }
                     SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
@@ -461,7 +461,7 @@ namespace Aequus
                 boundBowAmmo++;
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
             }
-            if (boundBowAmmo >= 10)
+            if (boundBowAmmo >= 25)
             {
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
             }

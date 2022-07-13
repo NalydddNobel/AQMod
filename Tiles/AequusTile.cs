@@ -94,7 +94,6 @@ namespace Aequus.Tiles
         public void CrimsonOrbDrops(int i, int j)
         {
             int c = OrbDrop();
-            Main.NewText(c);
             switch (c)
             {
                 case 1:
@@ -105,7 +104,6 @@ namespace Aequus.Tiles
         public void CorruptionOrbDrops(int i, int j)
         {
             int c = OrbDrop();
-            Main.NewText(c);
             switch (c)
             {
                 case 1:

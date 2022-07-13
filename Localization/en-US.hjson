@@ -2618,7 +2618,7 @@ Mods: {
 					PurplePaint: Ahh... Purple Mountain's Majesty... a beautiful color. Reminds me of... plums.
 					PinkPaint: Ahh... Pink as Hell... a beautiful color. Reminds me of... pink lemonade, heh.
 					VioletPaint: Ahh... French Violet... a beautiful color. Reminds me of... violets, heh.
-					BlackPaint: Ahh... A Distinctive Lack of Hue... a beautiful color. Reminds me of... blackberries, heh.
+					BlackPaint: Ahh... A Distinctive Lack of Color... Reminds me of... blackberries, heh.
 					GrayPaint: Ahh... Aged Moustache Gray... a beautiful color. Reminds me of... old people.
 					WhitePaint: Ahh... Titanium White... a beautiful color. Reminds me of... glue.
 					BrownPaint: Ahh... Almond Brown... a beautiful color. Reminds me of... sticks.
@@ -2626,7 +2626,7 @@ Mods: {
 					NegativePaint: Ahh... uhh... this isn't a color. This flips color. No clue how this works.
 					GlowPaint: Ahh... uh... this isn't a color. This just makes stuff brighter. Is this even a paint?
 					
-					//paintings
+					// Paintings
 					
 					Painting: A true work of art.
 					Daylight: Moura depicts the beauty of daytime well.
@@ -2636,7 +2636,7 @@ Mods: {
 					ThroughtheWindow: We can see through the eyes of Moura as if we were he.
 					DeadlandComesAlive: Moura stylistically depicts the baroque nature of the bloody Crimson.
 					LightlessChasms: Moura stylistically depicts the baroque nature of the brutal Corruption.
-					TheLandofDecievingLooks: Moura stylistically depicts the baroque nature of the conspicuous Hallow.
+					TheLandofDeceivingLooks: Moura stylistically depicts the baroque nature of the conspicuous Hallow.
 					DoNotStepontheGrass: Moura stylistically depicts the romantic nature of the lush Jungle.
 					ColdWatersintheWhiteLand: Moura stylistically depicts the romantic nature of the frigid Tundra.
 					SecretoftheSands: Moura stylistically depicts the secretive shadowy nature of the Pharoah's Curse.
@@ -2663,7 +2663,7 @@ Mods: {
 						the skull is an example of true still-life.
 						'''
 					
-					//wallpaper
+					// Wallpaper
 					
 					BubbleWallpaper: This wallpaper has fun bubbles all over. Useful for a pool establishment.
 					CopperPipeWallpaper: This wallpaper has steampunky pipes all over. Useful for a machine building.
@@ -2681,15 +2681,15 @@ Mods: {
 					OrnamentWallpaper: I love ornaments!
 					CandyCaneWallpaper: I love candy canes!
 					
-					FestiveWallpaper: 
-					BluegreenWallpaper: 
-					//these are just "this wallpaper gets me in a festive mood"
+					// These are just "this wallpaper gets me in a festive mood"
+					FestiveWallpaper: No Text.
+					BluegreenWallpaper: No Text.
 					
 					StarsWallpaper: I love stars!
 					SquigglesWallpaper: I love squiggles!
 					SnowflakeWallpaper: I love snowflakes!
 					
-					//the following are exceptions to the christmas wallpaper heading
+					// Exceptions to the christmas wallpaper heading
 					KrampusHornWallpaper: This wallpaper gets me out of a festive mood. I hate Krampus!
 					GrinchFingerWallpaper: This wallpaper gets me out of a festive mood. I hate the Grinch!
 				}
@@ -2697,7 +2697,7 @@ Mods: {
 			
 			WitchDoctor: {
 				ShopQuote: {
-					InbuingStation: One finds their blade and spirit empowered when they consume a flask from an Imbuing Station.
+					ImbuingStation: One finds their blade and spirit empowered when they consume a flask from an Imbuing Station.
 					Blowgun: Some say that this weapon "blows", but on the contrary, you blow the weapon.
 					StyngerBolt: You're lucky that I happen to have some of these left over. Normally you'd have to perform a sacrifice.
 					Stake: An interesting fact: without these stakes at hand, your life would be at stakes.
@@ -2981,6 +2981,7 @@ Mods: {
 				6: Spectra
 				7: Square
 				8: Terra
+				9: Chill
 			}
 
 			// EXAMPLE: Fry's Sword of Darkness

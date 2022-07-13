@@ -1,8 +1,8 @@
 using Aequus.Common;
 using Aequus.Common.Networking;
-using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Recipes;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

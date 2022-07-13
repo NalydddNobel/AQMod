@@ -19,17 +19,18 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 50;
+            Item.damage = 70;
+            Item.crit = 21;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 24;
-            Item.useAnimation = 24;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.width = 30;
             Item.height = 30;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.LightRed;
             Item.shoot = ProjectileID.UnholyArrow;
-            Item.shootSpeed = 16.5f;
+            Item.shootSpeed = 24.5f;
             Item.UseSound = SoundID.Item5;
             Item.value = Item.sellPrice(gold: 2, silver: 75);
             Item.noMelee = true;

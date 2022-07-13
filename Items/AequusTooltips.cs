@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
-using Aequus.Content;
 using Aequus.Content.PotionConcoctions;
 using Aequus.Graphics;
+using Aequus.NPCs;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
