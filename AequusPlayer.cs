@@ -417,10 +417,16 @@ namespace Aequus
                 boundBowAmmoTimer--;
             if (boundBowAmmoTimer <= 0)
             {
-                if (Player.HeldItem.ModItem is BoundBow && Main.netMode != NetmodeID.Server)
+                bool selected = Player.HeldItem.ModItem is BoundBow;
+                if (Main.netMode != NetmodeID.Server)
                 {
-                    AequusEffects.Shake.Set(4);
-                    SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(0.8f));
+                    float volume = 0.2f;
+                    if (selected)
+                    {
+                        volume = 0.8f;
+                        AequusEffects.Shake.Set(4);
+                    }
+                    SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
 
                     Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
                     Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
