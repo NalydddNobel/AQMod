@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -11,6 +12,8 @@ namespace Aequus.Items
 {
     public class ItemNameTag : GlobalItem
     {
+        public const char LanguageKeyChar = '$';
+
         public static HashSet<int> CannotBeRenamed { get; private set; }
 
         public override void Load()
@@ -32,6 +35,41 @@ namespace Aequus.Items
         public int RenameCount;
 
         public bool HasNameTag => NameTag != null;
+        public string GetDecodedName()
+        {
+            if (!HasNameTag)
+                return null;
+            if (NameTag.Length == 0)
+                return NameTag;
+            return decodeName(NameTag);
+        }
+        public static string decodeName(string nameTag)
+        {
+            string newName = "";
+            for (int i = 0; i < nameTag.Length; i++)
+            {
+                if (nameTag[i] == LanguageKeyChar)
+                {
+                    string keyText = "";
+                    int j = i + 1;
+                    for (; j < nameTag.Length; j++)
+                    {
+                        if (nameTag[j] == ' ')
+                        {
+                            break;
+                        }
+                        keyText += nameTag[j];
+                    }
+                    i = j - 1;
+                    newName += Language.GetText(keyText).FormatWith(Lang.CreateDialogSubstitutionObject());
+                }
+                else
+                {
+                    newName += nameTag[i];
+                }
+            }
+            return newName;
+        }
 
         public ItemNameTag()
         {
@@ -130,7 +168,7 @@ namespace Aequus.Items
                 {
                     if (t.Mod == "Terraria" && t.Name == "ItemName")
                     {
-                        t.Text = NameTag;
+                        t.Text = GetDecodedName();
                     }
                 }
             }
@@ -146,7 +184,7 @@ namespace Aequus.Items
                 }
                 else
                 {
-                    item.SetNameOverride(NameTag);
+                    item.SetNameOverride(GetDecodedName()); // Hope that name overrides aren't important to some other mod lul
                 }
             }
             else

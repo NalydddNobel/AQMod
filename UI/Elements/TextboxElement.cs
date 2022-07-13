@@ -14,6 +14,7 @@ namespace Aequus.UI.Elements
         public int textOffsetY = 5;
 
         public string text;
+        public string ShowText;
         public bool focused;
 
         public TextboxElement(Color color = default(Color), int maxText = -1, int textOffsetY = 5)
@@ -68,7 +69,8 @@ namespace Aequus.UI.Elements
                 Main.instance.DrawWindowsIMEPanel(new Vector2(98f, Main.screenHeight - 36), 0f);
             }
 
-            string drawnText = text;
+            string drawnText = ShowText != null ? ShowText : text;
+            ShowText = null;
             if (focused && Main.GameUpdateCount % 50 < 25)
             {
                 drawnText += "|";

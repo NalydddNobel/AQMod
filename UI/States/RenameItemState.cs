@@ -3,6 +3,7 @@ using Aequus.NPCs.Friendly;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
@@ -25,6 +26,9 @@ namespace Aequus.UI.States
         public bool initItemSlot;
         public TextboxElement textBox;
         public ItemSlotElement slot;
+
+        public static Color CorrectKeyColor = new Color(255, 255, 80, 255);
+        public static Color IncorrectKeyColor = new Color(60, 60, 150, 255);
 
         void ILoadable.Load(Mod mod)
         {
@@ -132,7 +136,8 @@ namespace Aequus.UI.States
             {
                 if (!initItemSlot)
                 {
-                    textBox.text = slot.item.Name;
+                    var nameTag = slot.item.GetGlobalItem<ItemNameTag>();
+                    textBox.text = nameTag.HasNameTag ? nameTag.NameTag : slot.item.Name;
                     initItemSlot = true;
                 }
 
@@ -205,6 +210,48 @@ namespace Aequus.UI.States
                 initItemSlot = false;
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, AequusText.GetText("Chat.SkyMerchant.PlaceHere"), new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             }
+
+            if (textBox.text != null)
+            {
+                textBox.ShowText = ChatBoxDecodeText(textBox.text, Main.keyState.IsKeyDown(Keys.LeftControl));
+            }
+        }
+
+        public static string ChatBoxDecodeText(string text, bool showKeys = false)
+        {
+            string newName = "";
+            for (int i = 0; i < text.Length; i++)
+            {
+                if (text[i] == ItemNameTag.LanguageKeyChar)
+                {
+                    string keyText = "";
+                    int j = i + 1;
+                    for (; j < text.Length; j++)
+                    {
+                        if (text[j] == ' ')
+                        {
+                            break;
+                        }
+                        keyText += text[j];
+                    }
+                    i = j - 1;
+                    var langOrFormatedText = Language.GetText(keyText).FormatWith(Lang.CreateDialogSubstitutionObject());
+                    var color = CorrectKeyColor;
+                    if (langOrFormatedText == keyText || langOrFormatedText == "")
+                    {
+                        langOrFormatedText = keyText;
+                        color = IncorrectKeyColor;
+                    }
+                    if (langOrFormatedText != "")
+                        langOrFormatedText = AequusText.ColorText((showKeys ? keyText : langOrFormatedText), color, alphaPulse: true);
+                    newName += AequusText.ColorText("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
+                }
+                else
+                {
+                    newName += text[i];
+                }
+            }
+            return newName;
         }
 
         private static bool CanSwapItem(Item slotItem, Item mouseItem)
