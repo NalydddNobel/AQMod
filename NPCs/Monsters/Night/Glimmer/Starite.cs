@@ -95,12 +95,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override bool? CanBeHitByItem(Player player, Item item)
         {
-            return fallenStar;
+            return fallenStar ? null : false;
         }
 
         public override bool? CanBeHitByProjectile(Projectile projectile)
         {
-            return fallenStar;
+            return fallenStar ? null : false;
         }
 
         public override void HitEffect(int hitDirection, double damage)
