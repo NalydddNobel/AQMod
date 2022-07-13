@@ -156,6 +156,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			BoundBow: 界限弓
 			Slingshot: 弹弓
 
 			Snowgrave: 雪墓
@@ -428,7 +429,7 @@ Mods: {
 			SedimentSandBlock: 沉积沙块
 			SeaPickle: 海泡菜
 			CrabsonTrophy: 巨蟹蛤纪念章
-			HellTombstone: 地狱墓碑
+			HellstoneTombstone: 地狱墓碑
 			GoreNest: 血巢
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
@@ -624,6 +625,10 @@ Mods: {
 				Do not translate.
 				'''
 
+			BoundBow: 
+				'''
+				随时间流逝会不断再生弹药
+				'''
 			Slingshot: 
 				'''
 				向射击的拉动移动光标以增加射击强度
@@ -789,7 +794,7 @@ Mods: {
 			Pumpinator:
 				'''
 				渐进更改风速
-				可移动镇民、敌人和都那么
+				可移动镇民、敌人和弹幕
 				'手持式灵感来源!'
 				'''
 			Bellows: 
@@ -2592,6 +2597,148 @@ Mods: {
 				}
 			}
 
+			Painter: {
+				ShopQuote: {
+					Paintbrush: 每位骑士都有着他独有的剑, 这把是我的. 但它也可能是你的!
+					PaintRoller: 这个长工具非常适合那些你碰不到的墙壁.
+					PaintScraper:
+						'''
+						没有错误, 只有快乐的意外.
+						摧毁他们.
+						'''
+					RedPaint: 啊... 阿拉巴马猩红... 美丽的颜色. 让我想起了苹果.
+					OrangePaint: 啊...原子柑橘... 美丽的颜色. 让我想起了橘子, 呵.
+					YellowPaint: 啊...芥末黄... 美丽的颜色. 让我想起了香蕉.
+					LimePaint: 啊...酸橙... 美丽的颜色. 让我想起了柠檬, 呵.
+					GreenPaint: 啊...毫无疑问的绿色...美丽的颜色. 让我想起了梨.
+					TealPaint: 啊...适中的碧绿色...美丽的颜色. 让我想起了... 某些东西?
+					CyanPaint: 啊...加勒比风潮...美丽的颜色. 让我想起了... 某些东西?
+					SkyBluePaint: 啊...冬季向导...美丽的颜色. 让我想起了...水晶.
+					BluePaint: 啊...拜恩蓝...美丽的颜色. 让我想起了...蓝莓.
+					PurplePaint: 啊...紫金山的威严...美丽的颜色. 让我想起了...李子.
+					PinkPaint: 啊...粉得要命...美丽的颜色. 让我想起了...粉红色柠檬水, 呵.
+					VioletPaint: 啊...法国紫罗兰...美丽的颜色. 让我想起了...紫罗兰, 呵.
+					BlackPaint: 啊...明显的缺乏色彩...让我想起了...黑莓, 呵.
+					GrayPaint: 啊...老胡子灰...美丽的颜色. 让我想起了...老人.
+					WhitePaint: 啊...钛白...美丽的颜色. 让我想起了...胶.
+					BrownPaint: 啊...杏仁棕...美丽的颜色. 让我想起了...木棍.
+					ShadowPaint: 啊...梵塔黑...绝对是一种...颜色. 或者不是.
+					NegativePaint: 啊...额...这不是颜色. 这会反转颜色. 不知道它是怎么生效的.
+					GlowPaint: 啊...额...这不是颜色. 这只会让东西更亮. 这是画作吗?
+
+					// Paintings
+
+					Painting: 一件真正的艺术品.
+					Daylight: 穆拉很好地画出了白天的美丽.
+					FirstEncounter: 穆拉很好地画出了人类的困境.
+					GoodMorning: 穆拉画的向日葵很精致.
+					UndergroundReward: 穆拉完美地画出了心形水晶的复杂表面.
+					ThroughtheWindow: 我们可以透过穆拉的眼睛看, 就好像我们是他一样.
+					DeadlandComesAlive: 穆拉画出了巴洛克风的格血腥猩红.
+					LightlessChasms: 穆拉画出了巴洛克风格的野蛮腐化.
+					TheLandofDeceivingLooks: 穆拉画出了巴洛克风格的显目神圣.
+					DoNotStepontheGrass: 穆拉画出了浪漫风格的繁茂丛林.
+					ColdWatersintheWhiteLand: 穆拉画出了浪漫风格的寒冷苔原.
+					SecretoftheSands: 穆拉画出了黑暗风格的法老诅咒.
+					EvilPresence: 穆拉确实表明了我们在这个世界上必须面对的缺乏隐私.
+					PlaceAbovetheClouds: 穆拉画出了印象派风格的风盈天空.
+					SkyGuardian: 穆拉真实地画了一只飞龙身体的曲折.
+					Nevermore: 穆拉展现了爱情之后的生命中出现的死亡的绝望和无能.
+					Reborn: 人们只能想象手想要触及什么. 音乐? 复仇? 我们不得而知.
+					Graveyard: 穆拉画出了恐怖风格的恐怖墓地.
+					GhostManifestation: 
+						'''
+						穆拉创造出了自己的绘画风格-
+						似乎在为虚构的怪物做广告.
+						'''
+					WickedUndead: 
+						'''
+						穆拉创造出了自己的绘画风格-
+						似乎在为歌剧院的演出做广告.
+						'''
+					BloodyGoblet: 穆拉画出了一个巴洛克风格的高脚杯, 并用一个独特的风格画出了溢出的血液.
+					StillLife: 
+						'''
+						莫拉在静物类型上创造了一个有趣的转折点-
+						头骨是真实静物的一个例子.
+						'''
+
+					// Wallpaper
+
+					BubbleWallpaper: 这张壁纸到处都是有趣的泡泡. 适用于泳池.
+					CopperPipeWallpaper: 这张壁纸上到处都是蒸汽管道. 适用于机器.
+					DuckyWallpaper: 这张壁纸上到处都是鸭子. 非常, 非常的有用.
+					FancyGreyWallpaper: 这壁纸很漂亮. 适用于维多利亚式住宅.
+					IceFloeWallpaper: 这张壁纸让人想起了杂乱的冰川. 适用于苔原.
+					MusicWallpaper: 这张壁纸上到处都是音符. 适用于乐队的下一场演出.
+					PurpleRainWallpaper: 这张壁纸描绘了一股紫罗兰色的洪水. 适用于公主的宫殿.
+					RainbowWallpaper: 这张壁纸描绘了一条五颜六色的彩虹. 适用于精灵独角兽区.
+					SparkleStoneWallpaper: 这张壁纸描绘了一些闪闪发光的岩石. 看起来有点好吃...
+					StarlitHeavenWallpaper: 这张壁纸描绘了美丽的星空. 我想知道上面住着什么...
+
+					ChristmasWallpapers: 这张壁纸让我感受到了节日的气氛.
+					ChristmasTreeWallpaper: 我爱圣诞树!
+					OrnamentWallpaper: 我爱装饰品!
+					CandyCaneWallpaper: 我爱甘蔗糖!
+
+					// These are just "this wallpaper gets me in a festive mood"
+					FestiveWallpaper: No Text.
+					BluegreenWallpaper: No Text.
+
+					StarsWallpaper: 我爱星星!
+					SquigglesWallpaper: 我爱波浪!
+					SnowflakeWallpaper: 我爱雪花!
+
+					// Exceptions to the christmas wallpaper heading
+					KrampusHornWallpaper: 这张壁纸让我摆脱了节日的气氛. 我讨厌坎卜斯!
+					GrinchFingerWallpaper: 这张壁纸让我摆脱了节日的气氛. 我讨厌坎格林奇!
+				}
+			}
+
+			WitchDoctor: {
+				ShopQuote: {
+					ImbuingStation: 当他们喝下来自灌注站的烧瓶时, 就会发现他们的刀锋和灵魂被赋予了力量.
+					Blowgun: 有人说这武器是"吹"的, 但恰恰相反, 是你吹的这武器.
+					StyngerBolt: 你很幸运, 我碰巧还剩下一些. 通常情况下, 你必须做出牺牲.
+					Stake: 一个有趣的事实: 如果没有这些赌注, 你的生命将岌岌可危.
+					Cauldron: 
+						'''
+						我已经用了这个很多次, 以创造不可思议的力量药剂.
+						我也用它来做鸡汤!
+						'''
+					TikiTotem: 
+						'''
+						这个护身符会召唤一个小生命在你身边.
+						不是很有用, 但是很好的伴侣.
+						'''
+					LeafWings: 
+						'''
+						有人会说树叶做不好翅膀.
+						大自然的力量总是占上风.
+						'''
+					VialofVenom: 少量非常致命的液体. 饮酒风险自负.
+					TikiMask: 具有精神力量的远古面具. 我只能以很高的价格把它卖出去.
+					TikiShirt: 具有精神力量的远古衣服. 我只能以很高的价格把它卖出去.
+					TikiPants: 具有精神力量的远古裤子. 我只能以很高的价格把它卖出去.
+					PygmyNecklace: 这个旧护身符可以让你更好地控制有用的精神.
+					HerculesBeetle: 甲虫与精神和物质之间的联系更为密切.
+
+					Fountains: 美丽的喷泉.
+					PureWaterFountain: 在水中传播纯净的精华.
+					DesertWaterFountain: 在水中传播干旱的精华.
+					JungleWaterFountain: 在水中传播自然的精华.
+					IcyWaterFountain: 在水中传播寒冷的精华.
+					CorruptWaterFountain: 在水中传播腐化的精华.
+					CrimsonWaterFountain: 在水中传播暴力的精华.
+					HallowedWaterFountain: 在水中传播光明的精华.
+					BloodWaterFountain: 在水中传播血红的精华.
+					CavernFountain: 在水中传播固化的精华.
+					OasisFountain: 在水中传播庇护的精华.
+
+					BewitchingTable: 这张桌子与精神境界有着终极的联系.
+				}
+			}
+
 			Occultist: {
 				Basic: {
 					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
@@ -2807,7 +2954,38 @@ Mods: {
 				11: ...被迫在路西法的冷眼下永远冻结.
 				12: ...的余生都将被锁在异教徒的棺材中.
 			}
-			NecromancyStaffUsage: "{0}将自己转化为了一个{1}"
+		}
+
+		GoreNestTombstones: {
+			0: "{Name}被撕成了碎片."
+			1: "{Name}被抹去了存在."
+			2: "{Name}被控制了."
+			3: "怪力撕碎了{Name}."
+
+			Hint: {
+				0: ...恶魔...它们到处都是...根本就没有机会...
+				1: .屠戮者的印记...留下武器, 任由其腐烂.
+				2: .让他们被血巢吞噬, 他们的传说黑暗剑会被它的黑暗能量吸引.
+				3: .夜之圣刃的预言之力在这次并未被填满...
+				4: ...尸体被扔进入口后, 就再也看不到了.
+				5: ...他们的命运不得而知.
+			}
+
+			Names: {
+				0: Starlight
+				1: Dylan
+				2: Gerd
+				3: Triangle
+				4: Someone
+				5: Fry
+				6: Spectra
+				7: Square
+				8: Terra
+				9: Chill
+			}
+
+			// EXAMPLE: Fry's Sword of Darkness
+			Sword: "'的黑暗剑"
 		}
 
 		EightballAnswer: {
