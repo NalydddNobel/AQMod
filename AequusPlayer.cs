@@ -47,6 +47,7 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
+        public const int BoundBowMaxAmmo = 15;
         public const int BoundBowRegenerationDelay = 60;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
@@ -386,7 +387,7 @@ namespace Aequus
 
         public override void Initialize()
         {
-            boundBowAmmo = 25;
+            boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
             cursorDye = -1;
             candleSouls = 0;
@@ -461,7 +462,7 @@ namespace Aequus
                 boundBowAmmo++;
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
             }
-            if (boundBowAmmo >= 25)
+            if (boundBowAmmo >= BoundBowMaxAmmo)
             {
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
             }

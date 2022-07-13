@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 70;
+            Item.damage = 68;
             Item.crit = 21;
             Item.DamageType = DamageClass.Ranged;
             Item.useTime = 30;
