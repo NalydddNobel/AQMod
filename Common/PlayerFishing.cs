@@ -143,12 +143,12 @@ namespace Aequus.Common
                 return;
             }
 
+            var aequus = Player.Aequus();
             if (npcSpawn > 0)
             {
                 goto PostProbeFish;
             }
 
-            var aequus = Player.Aequus();
             if (attempt.inLava)
             {
                 if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4))
@@ -228,6 +228,7 @@ namespace Aequus.Common
         PostProbeFish:
             if (Main.myPlayer == Player.whoAmI && baitUsed.type == ModContent.ItemType<Omnibait>())
             {
+                aequus.omnibait = false;
                 Player.UpdateBiomes(); // Kind of cheaty
             }
         }

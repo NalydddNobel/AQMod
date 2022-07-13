@@ -156,6 +156,7 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			BoundBow: Bound Bow
 			Slingshot: Slingshot
 
 			Snowgrave: Snowgrave
@@ -624,6 +625,10 @@ Mods: {
 				Do not translate.
 				'''
 
+			BoundBow: 
+				'''
+				Infinitely regenerates ammo over time
+				'''
 			Slingshot: 
 				'''
 				Bring your cursor out in order to charge the shot more
@@ -2807,7 +2812,37 @@ Mods: {
 				11: ...Forced to freeze under the cold gaze of Lucifer forever.
 				12: ...Locked in the coffins of the heretics for the rest of time.
 			}
-			NecromancyStaffUsage: "{0} converted themselves into a {1}"
+		}
+
+		GoreNestTombstones: {
+			0: "{Name} was torn into shreds"
+			1: "{Name} was obliterated"
+			2: "{Name} was possessed"
+			3: "Eldritch forces tore apart {Name}"
+
+			Hint: {
+				0: ... the demons... they were everywhere... didn't stand a chance...
+				1: . A mark of the slayer... leaving their weaponry left to rot.
+				2: . Left them to be consumed by the Gore Nest, their legendary blade of darkness was attracted to its dark energy.
+				3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
+				4: ... body thrown into the portal, never to be seen again.
+				5: ... their fate left unknown
+			}
+
+			Names: {
+				0: Starlight
+				1: Dylan
+				2: Gerd
+				3: Triangle
+				4: Someone
+				5: Fry
+				6: Spectra
+				7: Square
+				8: Terra
+			}
+
+			// EXAMPLE: Fry's Sword of Darkness
+			Sword: "'s Sword of Darkness"
 		}
 
 		EightballAnswer: {

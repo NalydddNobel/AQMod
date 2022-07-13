@@ -28,13 +28,13 @@ namespace Aequus.Items
         }
 
         public override bool InstancePerEntity => true;
+        public bool HasNameTag => NameTag != null;
 
         [SaveData("NameTag")]
         public string NameTag;
         [SaveData("RenameCount")]
         public int RenameCount;
 
-        public bool HasNameTag => NameTag != null;
         public string GetDecodedName()
         {
             if (!HasNameTag)
@@ -54,6 +54,11 @@ namespace Aequus.Items
                     int j = i + 1;
                     for (; j < nameTag.Length; j++)
                     {
+                        if (nameTag[j] == '|')
+                        {
+                            j++;
+                            break;
+                        }
                         if (nameTag[j] == ' ')
                         {
                             break;

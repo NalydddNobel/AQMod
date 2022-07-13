@@ -28,7 +28,7 @@ namespace Aequus.UI.States
         public ItemSlotElement slot;
 
         public static Color CorrectKeyColor = new Color(255, 255, 80, 255);
-        public static Color IncorrectKeyColor = new Color(60, 60, 150, 255);
+        public static Color IncorrectKeyColor = new Color(255, 120, 120, 255);
 
         void ILoadable.Load(Mod mod)
         {
@@ -228,6 +228,11 @@ namespace Aequus.UI.States
                     int j = i + 1;
                     for (; j < text.Length; j++)
                     {
+                        if (text[j] == '|')
+                        {
+                            j++;
+                            break;
+                        }
                         if (text[j] == ' ')
                         {
                             break;
@@ -243,7 +248,13 @@ namespace Aequus.UI.States
                         color = IncorrectKeyColor;
                     }
                     if (langOrFormatedText != "")
+                    {
                         langOrFormatedText = AequusText.ColorText((showKeys ? keyText : langOrFormatedText), color, alphaPulse: true);
+                    }
+                    if (text[i] == '|')
+                    {
+                        langOrFormatedText += AequusText.ColorText("|", Color.Gray, alphaPulse: true);
+                    }
                     newName += AequusText.ColorText("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
                 }
                 else

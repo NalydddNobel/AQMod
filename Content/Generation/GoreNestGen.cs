@@ -1,5 +1,8 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Items;
+using Aequus.Items.Consumables.Roulettes;
+using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
+using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -45,7 +48,7 @@ namespace Aequus.Content.Generation
                 if (TryGrowGoreNest(x, y))
                 {
                     goreNestCount++;
-                    if (goreNestCount > 4)
+                    if (goreNestCount > Main.maxTilesX / 1500)
                         break;
                 }
             }
@@ -68,7 +71,7 @@ namespace Aequus.Content.Generation
             {
                 return false;
             }
-            if (InnerGoreNestGenCheckForBlacklistedTiles(x, y))
+            if (CheckForBlacklistedTiles(x, y))
             {
                 return false;
             }
@@ -105,10 +108,12 @@ namespace Aequus.Content.Generation
                 return false;
             }
             GenerateSurroundingGoreNestHill(x, y);
+            GenerateChests(x, y);
+            GenerateSigns(x, y);
             GenerateAmbientTiles(x, y);
             return true;
         }
-        public bool InnerGoreNestGenCheckForBlacklistedTiles(int x, int y)
+        public bool CheckForBlacklistedTiles(int x, int y)
         {
             for (int i = x - 25; i < x + 25; i++)
             {
@@ -124,7 +129,7 @@ namespace Aequus.Content.Generation
         }
         public void GenerateSurroundingGoreNestHill(int x, int y)
         {
-            GenerateHill_SpawnAsh(x, y);
+            HillSpawnAsh(x, y);
             int k = 0;
             while (y < MaxY)
             {
@@ -133,8 +138,8 @@ namespace Aequus.Content.Generation
                     y++;
                 }
 
-                GenerateHill_SpawnAsh(x + k + 1, y);
-                GenerateHill_SpawnAsh(x - k - 1, y);
+                HillSpawnAsh(x + k + 1, y);
+                HillSpawnAsh(x - k - 1, y);
                 k++;
                 if (k > 45 || (k > 20 && WorldGen.genRand.NextBool(15)))
                 {
@@ -142,10 +147,10 @@ namespace Aequus.Content.Generation
                 }
             }
 
-            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
-            GenerateHill_TryToSmoothyGoIntoRegularGeneration(x, y, k, -1);
+            HillTryToSmoothyGoIntoRegularGeneration(x, y, k, 1);
+            HillTryToSmoothyGoIntoRegularGeneration(x, y, k, -1);
         }
-        public void GenerateHill_TryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir)
+        public void HillTryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir)
         {
             k *= dir;
             if (y < Main.maxTilesY)
@@ -164,7 +169,7 @@ namespace Aequus.Content.Generation
                 {
                     break;
                 }
-                GenerateHill_SpawnAsh(x + k, y, kill: true);
+                HillSpawnAsh(x + k, y, kill: true);
             }
             x -= dir;
             while (true)
@@ -179,10 +184,10 @@ namespace Aequus.Content.Generation
                 {
                     break;
                 }
-                GenerateHill_SpawnAsh(x + k, y, kill: false);
+                HillSpawnAsh(x + k, y, kill: false);
             }
         }
-        public void GenerateHill_SpawnAsh(int x, int y, bool kill = true)
+        public void HillSpawnAsh(int x, int y, bool kill = true)
         {
             int l = 0;
             while (true)
@@ -210,6 +215,24 @@ namespace Aequus.Content.Generation
                 Main.tile[x, y + l].HalfBrick(value: false);
             }
         }
+        public void GenerateChests(int x, int y)
+        {
+            var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
+            for (int i = 0; i < 1250; i++)
+            {
+                var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
+                if (!Main.tile[v.X, v.Y].HasTile)
+                {
+                    AequusHelpers.dustDebug(v.X, v.Y);
+                    int c = WorldGen.PlaceChest(v.X, v.Y, style: ChestTypes.Shadow);
+                    if (c != -1)
+                    {
+                        FillChest(Main.chest[c]);
+                        break;
+                    }
+                }
+            }
+        }
         public void GenerateAmbientTiles(int x, int y)
         {
             var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
@@ -217,6 +240,78 @@ namespace Aequus.Content.Generation
             {
                 var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
                 WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<GoreNestStalagmite>(), style: WorldGen.genRand.Next(6));
+            }
+        }
+        public void GenerateSigns(int x, int y)
+        {
+            var genTangle = new Rectangle(x - 60, y - 20, 120, 40);
+            for (int i = 0; i < 1250; i++)
+            {
+                var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
+                if (!Main.tile[v.X, v.Y].HasTile)
+                {
+                    WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(6));
+                    if (Main.tile[v.X, v.Y].HasTile)
+                    {
+                        int sign = Sign.ReadSign(v.X, v.Y);
+                        if (sign >= 0)
+                        {
+                            string text = AequusText.GetTextWith("GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = AequusText.GetText("GoreNestTombstones.Names." + WorldGen.genRand.Next(9)) });
+                            Sign.TextSign(sign, text + AequusText.GetText("GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
+                        }
+                        i += 400;
+                    }
+                }
+            }
+        }
+
+        public void FillChest(Chest c)
+        {
+            int slot = 0;
+            c.item[slot].SetDefaults(WorldGen.crimson ? ItemID.LightsBane : ItemID.BloodButcherer); // Opposite evil sword
+            c.item[slot++].GetGlobalItem<ItemNameTag>().NameTag = "$Mods.Aequus.GoreNestTombstones.Names." + WorldGen.genRand.Next(9) + "|$Mods.Aequus.GoreNestTombstones.Sword";
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverPickaxe, ItemID.TungstenPickaxe, ItemID.GoldPickaxe, ItemID.PlatinumPickaxe));
+            }
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverAxe, ItemID.TungstenAxe, ItemID.GoldAxe, ItemID.PlatinumAxe, ItemID.WarAxeoftheNight, ItemID.BloodLustCluster));
+            }
+            if (WorldGen.genRand.NextBool(3))
+            {
+                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverHammer, ItemID.TungstenHammer, ItemID.GoldHammer, ItemID.PlatinumHammer));
+            }
+            c.item[slot].SetDefaults(ItemID.HealingPotion);
+            c.item[slot++].stack = WorldGen.genRand.Next(10, 25);
+
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, GoldenRoulette.Table.ToArray()));
+            }
+
+            if (WorldGen.genRand.NextBool(3))
+            {
+                c.item[slot++].SetDefaults(ItemID.ObsidianSkull);
+            }
+
+            if (WorldGen.genRand.NextBool(3))
+            {
+                c.item[slot++].SetDefaults(ItemID.MagicMirror);
+            }
+            else
+            {
+                int recallStack = WorldGen.genRand.Next(10);
+                if (recallStack > 0)
+                {
+                    c.item[slot].SetDefaults(ItemID.RecallPotion);
+                    c.item[slot++].stack = recallStack;
+                }
+            }
+
+            if (WorldGen.genRand.NextBool())
+            {
+                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.StarStatue, ItemID.HeartStatue, ItemID.AngelStatue));
             }
         }
 
@@ -228,7 +323,6 @@ namespace Aequus.Content.Generation
                 {
                     if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == ModContent.TileType<GoreNestTile>())
                     {
-                        Aequus.Instance.Logger.Debug("Cleaning lava");
                         CleanLava(i, j);
                     }
                 }

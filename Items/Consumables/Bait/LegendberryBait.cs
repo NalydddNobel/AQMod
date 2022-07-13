@@ -9,7 +9,7 @@ namespace Aequus.Items.Consumables.Bait
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(5);
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Tiles;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,7 @@ namespace Aequus.Items.Consumables.Bait
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(5);
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()
@@ -26,6 +27,8 @@ namespace Aequus.Items.Consumables.Bait
         bool IModifyFishAttempt.OnItemRoll(Projectile bobber, ref FishingAttempt fisher)
         {
             var p = Main.player[bobber.owner];
+            var aequus = p.Aequus();
+            aequus.omnibait = true;
             p.zone1 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
             p.zone2 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
             p.zone3 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
@@ -38,10 +41,17 @@ namespace Aequus.Items.Consumables.Bait
             {
                 fisher.CanFishInLava = true;
                 fisher.inLava = true;
+                aequus.nearGoreNest = Main.rand.NextBool();
             }
             else if (Main.rand.NextBool(8))
             {
+                fisher.inLava = false;
                 fisher.inHoney = true;
+            }
+            else if (Main.rand.NextBool(8))
+            {
+                fisher.inLava = false;
+                fisher.inHoney = false;
             }
             return true;
         }

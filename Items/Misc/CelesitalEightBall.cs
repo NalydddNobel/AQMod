@@ -33,6 +33,7 @@ namespace Aequus.Items.Misc
 
         public override bool? UseItem(Player player)
         {
+            //AequusWorld.GoreNests.GenerateChests(player.Center.ToTileCoordinates().X, player.Center.ToTileCoordinates().Y);
             if (Main.myPlayer == player.whoAmI)
             {
                 text = "Mods.Aequus.EightballAnswer." + Main.rand.Next(20);

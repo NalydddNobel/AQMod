@@ -16,12 +16,12 @@ namespace Aequus.Graphics.Primitives
         public static Effect Shader => shader.Value;
 
         public Vector2 drawOffset;
-        protected readonly Texture2D Texture;
-        protected readonly string Pass;
-        protected readonly Func<float, Vector2> GetWidth;
-        protected readonly Func<float, Color> GetColor;
-        protected readonly bool ObeyReversedGravity;
-        protected readonly bool WorldTrail;
+        public Texture2D Texture;
+        public string Pass;
+        public Func<float, Vector2> GetWidth;
+        public Func<float, Color> GetColor;
+        public bool ObeyReversedGravity;
+        public bool WorldTrail;
 
         protected List<VertexPositionColorTexture> vertices;
 
