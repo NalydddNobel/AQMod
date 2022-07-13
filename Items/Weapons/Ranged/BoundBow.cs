@@ -1,4 +1,5 @@
-﻿using Aequus.UI;
+﻿using Aequus.Items.Misc.Energies;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -74,11 +75,13 @@ namespace Aequus.Items.Weapons.Ranged
             CreateRecipe()
                 .AddIngredient(ItemID.EbonwoodBow)
                 .AddIngredient(ItemID.SoulofNight, 8)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
                 .RegisterBefore(ItemID.OnyxBlaster);
             CreateRecipe()
                 .AddIngredient(ItemID.ShadewoodBow)
                 .AddIngredient(ItemID.SoulofNight, 8)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
                 .RegisterBefore(ItemID.OnyxBlaster);
         }
