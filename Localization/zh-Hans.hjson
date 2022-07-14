@@ -620,10 +620,7 @@ Mods: {
 
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
-			UltimateSword:
-				'''
-				Do not translate.
-				'''
+			UltimateSword: '只是真正潜能的一小部分'
 
 			BoundBow: 
 				'''
@@ -2779,6 +2776,112 @@ Mods: {
 						'''
 					EmptyDropper: 我用它来矫正视力, 但我相信你可以用它做些更神奇的事情.
 					WizardsHat: 我...不知道我为什么有这个. 为什么...我穿...成这样吗?
+				}
+			}
+
+			Mechanic: {
+				ShopQuote: {
+					Wrench: 你说管钳不适用于电线是什么意思? 我用这些设置了各种电路!
+					ColoredWrench: 不要让你的电线交叉, 只需要把它们涂成不同的颜色, 你就有了完美的电线管理.
+					WireCutter: 如果你仍然不能很好地管理电线, 你可以试着用剪钳.
+					Wire_CreeperSuit: 不, 这不是灰尘, 你知道那有多不安全吗? 
+					Lever: 杠杆和开关有什么区别? 杠杆看起来很酷.
+					Switch:杠杆和开关有什么区别? 开关更有效率.
+					PressurePlates: 这像一个开关, 但要踩上去! 
+					ProjectilePressurePad: 这像一个开关, 但要射击!
+					BoosterTrack: 一直认为地雷车可以跑得快一点, 准确地说可能快20英里.
+					Actuator: 哦, 如果你想知道的话, 我没在地下设陷阱.
+					WirePipe: 现在你真的不会把你的线交叉了!
+					LaserRuler: 尺子当然很好用, 但是全息尺子能覆盖你的整个视野吗?
+					MechanicalLens: 我以前总是看不到我的电线, 所以我做了这些!
+					EngineeringHelmet: 非常适合解决实际问题!
+					WireBulb: 你知道我曾经用灯泡而不是蜡烛做蛋糕吗?
+					MechanicsRod: "{Angler}告诉我要做一个'给钓鱼大师的超级钓竿'...好吧, 我没法拒绝."
+					Timer5Second: 5秒规则!
+					Timer3Second: 还是3秒规则?
+					Timer1Second: 用于设置闪光灯.
+					TimerOneHalfSecond: 绝对适合设置闪光灯.
+					TimerOneFourthSecond: Hm...也许每秒闪烁的次数太多了.
+
+					SantankSentry: 我设法从一个旧的高斯炮塔上捞到了这个, 你可以在你自己的哨兵身上使用它!
+				}
+			}
+
+			Truffle: {
+				ShopQuote: {
+					MushroomCap: Don’t worry, they grow back.
+					StrangeGlowingMushroom: It seems like one of my kind has taken a liking to you.
+					DarkBlueSolution: Would you be so kind as to spread the spores of my kind across the world?
+					MushroomSpear: I forged this spear with my own sweat and glistering mycelium.
+					Hammush: Behold the mighty ham-mush!
+					Autohammer: I use this station to forge my own weapons, perhaps you could use it to infuse your arsenal with the power of blue too.
+				}
+			}
+
+			DD2Bartender: {
+				ShopQuote: {
+					Ale: 过来喝点酒? 这真是个好主意, 笨蛋!
+					DD2ElderCrystal: 这可能只是一块普通的宝石, 但在我的家乡, 人们用生命捍卫着这颗水晶!
+					DD2ElderCrystalStand: 可装载永恒水晶的金色底座, 归还时请确保上面没有划痕!
+					DefendersForge: 在来到这里之前, 我决定抢走其中一个锻造炉, 但现在对我来说似乎没有用了...
+
+					// Weapons 
+
+					DD2FlameburstTowerT1Popper: 这根魔杖会给予你炽热火力, 明智地使用它!
+					DD2FlameburstTowerT2Popper: 用这根手杖, 你的烈焰哨兵会获得更多的火力!
+					DD2FlameburstTowerT3Popper: 这是学徒和暗黑艺术家的必需品!
+
+					DD2BallistraTowerT1Popper: 这根魔杖会给予你弹道学火力, 明智地使用它!
+					DD2BallistraTowerT2Popper: 用这根手杖, 你的弩炮哨兵会获得更多的火力!
+					DD2BallistraTowerT3Popper: 这是侍卫和英灵殿骑士的必需品!
+
+					DD2ExplosiveTrapT1Popper: 这根魔杖会给予你爆炸火力, 明智地使用它!
+					DD2ExplosiveTrapT2Popper: 用这根手杖, 你的爆炸陷阱哨兵会获得更多的爆炸火力!
+					DD2ExplosiveTrapT3Popper: 这是女猎人和红色游骑兵的必需品!
+
+					DD2LightningAuraT1Popper: 这根魔杖会给予你眩晕能力, 明智地使用它!
+					DD2LightningAuraT2Popper: 用这根手杖, 你的闪电光环哨兵会获得更多的电击火力!
+					DD2LightningAuraT3Popper: 这是武僧和渗透忍者的必需品!
+
+					// Monk Armor
+					MonkBrows: 这款眉毛非常适合眉毛爱好者, 甚至连莫来管队长都嫉妒了!
+					MonkShirt: 真的是武僧的衬衫.
+					MonkPants: 真的是武僧的裤子.
+
+					// Shnobi Infiltrator Armor
+					MonkAltHead: 永恒之地最强的忍者曾经戴过的头盔!
+					MonkAltShirt: 永恒之地最强的忍者曾经穿过的衣服!
+					MonkAltPants: 永恒之地最强的忍者曾经穿过的裤子!
+
+					// Squire Armor
+					SquireGreatHelm: 这个锡罐不可小觑, 它很有冲击力!
+					SquirePlating: 这个胸甲会让你在未来的战斗中感觉更安全!
+					SquireGreaves: 这些护胫会让你在未来的战斗中感觉更安全!
+
+					// Valhalla Knight Armor
+					SquireAltHead: 永恒之地最强的骑士曾经戴过的头盔!
+					SquireAltShirt: 永恒之地最强的骑士曾经穿过的胸甲!
+					SquireAltPants: 永恒之地最强的骑士曾经穿过的护胫!
+
+					// Apprentice Armor
+					ApprenticeHat: 我来之前在酒馆的衣柜里找到了这个.
+					ApprenticeRobe: 这可能也在酒馆的衣柜里.
+					ApprenticeTrousers: 我想裤子也在衣柜里?
+
+					// Dark Artist Armor
+					ApprenticeAltHead: 永恒之地最强的法师曾经戴过的帽子!
+					ApprenticeAltShirt: 永恒之地最强的法师曾经穿过的法袍!
+					ApprenticeAltPants: 永恒之地最强的法师曾经穿过的护胫!
+
+					// Huntress Armor
+					HuntressWig: 如果这只是一个假发, 这意味着女猎手是否和我一样秃顶?!
+					HuntressJerkin: 真的是女猎手的衬衫.
+					HuntressPants: 真的是武僧的裤子.
+
+					// Red Riding Artist Armor
+					HuntressAltHead: 永恒之地最强的女猎手曾经戴过的兜帽!
+					HuntressAltShirt: 永恒之地最强的女猎手曾经穿过的衣服!
+					HuntressAltPants: 永恒之地最强的女猎手曾经穿过的护胫!
 				}
 			}
 
