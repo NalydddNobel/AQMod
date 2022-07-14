@@ -466,14 +466,25 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="M:Aequus.Content.ShopQuotes.QuoteDatabase.AddNPC(System.Int32)">
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.AddNPC(System.Int32)">
             <summary>
             Adds an NPC entry if one doesn't exist already
             </summary>
             <param name="npc"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Content.ShopQuotes.QuoteDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
+        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
             <summary>
             Adds shop quote data for an npc
             <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
@@ -493,17 +504,6 @@
             <param name="aequus"></param>
             <param name="args"></param>
             <returns></returns>
-        </member>
-        <member name="T:Aequus.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries
-            </summary>
-        </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
         </member>
         <member name="P:Aequus.Graphics.AequusEffects.BehindPlayers">
             <summary>

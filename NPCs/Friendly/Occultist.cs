@@ -7,6 +7,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Summon.Candles;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -58,6 +59,11 @@ namespace Aequus.NPCs.Friendly
             .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
             .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
+
+            ShopQuotes.Database
+                .AddNPC(Type)
+                .WithColor(Color.DarkRed * 1.25f)
+                .LegacyAddQuote<GhostlyGrave>();
 
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }

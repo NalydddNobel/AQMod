@@ -334,7 +334,18 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.SpikyBall),
 
                     [NPCID.Wizard] = new NPCQuotes(NPCID.Wizard)
-                    .WithColor(Color.BlueViolet),
+                    .WithColor(Color.BlueViolet * 1.5f)
+                    .AddQuote(ItemID.CrystalBall)
+                    .AddQuote(ItemID.IceRod)
+                    .AddQuote(ItemID.GreaterManaPotion)
+                    .AddQuote(ItemID.Bell)
+                    .AddQuote(ItemID.Harp)
+                    .AddQuote(ItemID.SpellTome)
+                    .AddQuote(ItemID.Book)
+                    .AddQuote(ItemID.MusicBox)
+                    .AddQuote(ItemID.EmptyDropper)
+                    .AddQuote(ItemID.WizardsHat)
+                    ,
 
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)

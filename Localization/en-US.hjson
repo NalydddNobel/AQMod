@@ -2697,7 +2697,11 @@ Mods: {
 			
 			WitchDoctor: {
 				ShopQuote: {
-					ImbuingStation: One finds their blade and spirit empowered when they consume a flask from an Imbuing Station.
+					ImbuingStation: 
+						'''
+						One finds their blade and spirit empowered 
+						when they consume a flask from an Imbuing Station.
+						'''
 					Blowgun: Some say that this weapon "blows", but on the contrary, you blow the weapon.
 					StyngerBolt: You're lucky that I happen to have some of these left over. Normally you'd have to perform a sacrifice.
 					Stake: An interesting fact: without these stakes at hand, your life would be at stakes.
@@ -2766,7 +2770,7 @@ Mods: {
 					Book: 
 						'''
 						Behold! The Fiend Folio! This magical tome has the ability to summon any creature! 
-						Wait... this is just a book.
+						Wait... this is just a regular old book.
 						'''
 					MusicBox: 
 						'''
@@ -2782,6 +2786,14 @@ Mods: {
 				Basic: {
 					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
 					1: Your heroic journey ended after you talked to me! Ha ha!
+				}
+
+				ShopQuote: {
+					GhostlyGrave: 
+						'''
+						Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
+						Like all living things however, I have to put their suffering to an end.
+						'''
 				}
 			}
 
