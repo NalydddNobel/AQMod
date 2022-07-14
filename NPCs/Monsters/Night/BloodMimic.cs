@@ -257,10 +257,5 @@ namespace Aequus.NPCs.Monsters.Night
             }
             target.AddBuff(BuffID.Bleeding, 60);
         }
-
-        public override float SpawnChance(NPCSpawnInfo spawnInfo)
-        {
-            return Main.bloodMoon && !NPC.AnyNPCs(Type) ? SpawnCondition.OverworldNightMonster.Chance * 0.005f : 0f;
-        }
     }
 }
