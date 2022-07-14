@@ -2738,6 +2738,45 @@ Mods: {
 					BewitchingTable: This table has the ultimate connection to the spirit realm.
 				}
 			}
+			
+			Wizard: {
+				ShopQuote: {
+					CrystalBall: 
+						'''
+						Ah! My magical ball! It contains untold wonders and magical spirits!
+						...I don't remember where I got it from.
+						'''
+					IceRod: Aye, this rod seems to turn air into ice. Quite magical. Why do I have this?
+					GreaterManaPotion: 
+						'''
+						Alas, the ultimate magical supplement. 
+						5 whole hours of celestial energy in one quick dose!
+						'''
+					Bell: 
+						'''
+						This little instrument doesn't do a whole lot, 
+						but I bet with a little magic you could make something wonderful!
+						'''
+					Harp:
+						'''
+						This large instrument doesn't do a whole lot, 
+						but I bet with a little magic you could make something wonderful!
+						'''
+					SpellTome: I was supposed to turn this into a grimoire yesterday, but I forgot.
+					Book: 
+						'''
+						Behold! The Fiend Folio! This magical tome has the ability to summon any creature! 
+						Wait... this is just a book.
+						'''
+					MusicBox: 
+						'''
+						Ah... a music box can hold beautiful forgotten melodies from around the world.
+						Record me a beautiful song, will you? I long to hear the music of my childhood.
+						'''
+					EmptyDropper: I've used this for my eyesight, but I'm sure you could do something more magic with it.
+					WizardsHat: I... don't know why I have this. Why... am I... dressed like this?
+				}
+			}
 
 			Occultist: {
 				Basic: {
