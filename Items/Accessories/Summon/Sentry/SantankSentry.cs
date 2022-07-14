@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.NPCs;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
@@ -50,6 +51,11 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 player.Aequus().equippedEyes = Type;
                 player.Aequus().cEyes = dyeItem.dye;
             }
+        }
+
+        public override void AddRecipes()
+        {
+            ShopQuotes.Database[NPCID.Mechanic].AddQuote(Type);
         }
     }
 

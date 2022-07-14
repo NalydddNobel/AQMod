@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -45,10 +46,14 @@ namespace Aequus.NPCs
             {
                 return AddQuote(() => key, item);
             }
+            public NPCQuotes AddShopQuoteKey(string key, int item)
+            {
+                return AddQuote(NPCShopQuoteKey("Aequus", NPC) + key, item);
+            }
 
             internal NPCQuotes AddQuote(int item)
             {
-                return AddQuote(KeyFromIDs("Aequus", NPC, item), item);
+                return AddQuote(ShopQuoteItemKey("Aequus", NPC, item), item);
             }
             internal NPCQuotes AddQuote<T>() where T : ModItem
             {
@@ -57,7 +62,7 @@ namespace Aequus.NPCs
 
             internal NPCQuotes AddQuoteWithPrefix(int item, string prefix)
             {
-                string key = KeyFromIDs("Aequus", NPC, item);
+                string key = ShopQuoteItemKey("Aequus", NPC, item);
                 return AddQuote(() => AequusText.GetText(prefix) + " " + Language.GetTextValue(key), item);
             }
             internal NPCQuotes AddQuoteWithPrefix<T>(string prefix) where T : ModItem
@@ -346,6 +351,48 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.EmptyDropper)
                     .AddQuote(ItemID.WizardsHat),
 
+                    [NPCID.Mechanic] = new NPCQuotes(NPCID.Mechanic)
+                    .WithColor(Color.Lerp(Color.Red, Color.White, 0.33f))
+                    .AddQuote(ItemID.Wrench)
+                    .AddShopQuoteKey("ColoredWrench", ItemID.BlueWrench)
+                    .AddShopQuoteKey("ColoredWrench", ItemID.GreenWrench)
+                    .AddShopQuoteKey("ColoredWrench", ItemID.YellowWrench)
+                    .AddQuote(ItemID.WireCutter)
+                    .AddQuote(() => Main.LocalPlayer.WearingSet(ArmorIDs.Head.CreeperMask, ArmorIDs.Body.CreeperShirt, ArmorIDs.Legs.CreeperPants) ?
+                    Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.Mechanic) + "Wire_CreeperSuit") : Language.GetTextValue("LegacyDialog.167"), ItemID.Wire)
+                    .AddQuote(ItemID.Lever)
+                    .AddQuote(ItemID.Switch)
+                    .AddShopQuoteKey("PressurePlates", ItemID.RedPressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.GreenPressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.GrayPressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.BrownPressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.BluePressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.YellowPressurePlate)
+                    .AddShopQuoteKey("PressurePlates", ItemID.OrangePressurePlate)
+                    .AddQuote(ItemID.ProjectilePressurePad)
+                    .AddQuote(ItemID.BoosterTrack)
+                    .AddQuote(ItemID.Actuator)
+                    .AddQuote(ItemID.WirePipe)
+                    .AddQuote(ItemID.LaserRuler)
+                    .AddQuote(ItemID.MechanicalLens)
+                    .AddQuote(ItemID.EngineeringHelmet)
+                    .AddQuote(ItemID.WireBulb)
+                    .AddQuoteWithSubstitutions(ItemID.MechanicsRod, new { Angler = NPC.GetFirstNPCNameOrNull(NPCID.Angler) })
+                    .AddQuote(ItemID.Timer5Second)
+                    .AddQuote(ItemID.Timer3Second)
+                    .AddQuote(ItemID.Timer1Second)
+                    .AddQuote(ItemID.TimerOneHalfSecond)
+                    .AddQuote(ItemID.TimerOneFourthSecond),
+
+                    [NPCID.Truffle] = new NPCQuotes(NPCID.Truffle)
+                    .WithColor(Color.Lerp(Color.Blue, Color.White, 0.4f))
+                    .AddQuote(ItemID.MushroomCap)
+                    .AddQuote(ItemID.StrangeGlowingMushroom)
+                    .AddQuote(ItemID.DarkBlueSolution)
+                    .AddQuote(ItemID.MushroomSpear)
+                    .AddQuote(ItemID.Hammush)
+                    .AddQuote(ItemID.Autohammer),
+
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
                     .LegacyAddQuote(ItemID.RocketI)
@@ -435,8 +482,8 @@ namespace Aequus.NPCs
                     .AddQuoteWithPrefix(ItemID.ChristmasTreeWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
                     .AddQuoteWithPrefix(ItemID.OrnamentWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
                     .AddQuoteWithPrefix(ItemID.CandyCaneWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
-                    .AddQuote("Mods.Aequus.Chat.Painter.ShopQuote.ChristmasWallpapers", ItemID.FestiveWallpaper)
-                    .AddQuote("Mods.Aequus.Chat.Painter.ShopQuote.ChristmasWallpapers", ItemID.BluegreenWallpaper)
+                    .AddShopQuoteKey("ChristmasWallpapers", ItemID.FestiveWallpaper)
+                    .AddShopQuoteKey("ChristmasWallpapers", ItemID.BluegreenWallpaper)
                     .AddQuoteWithPrefix(ItemID.StarsWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
                     .AddQuoteWithPrefix(ItemID.SquigglesWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
                     .AddQuoteWithPrefix(ItemID.SnowflakeWallpaper, "Chat.Painter.ShopQuote.ChristmasWallpapers")
@@ -821,10 +868,14 @@ namespace Aequus.NPCs
             return TextureAssets.NpcHead[headType];
         }
 
-        public static string KeyFromIDs(string mod, int npc, int item)
+        public static string NPCShopQuoteKey(string mod, int npc)
         {
             string npcName = npc > Main.maxNPCTypes ? AequusText.CreateKeyNameFromSearch(ModContent.GetModNPC(npc).FullName) : NPCID.Search.GetName(npc);
-            return $"Mods.{mod}.Chat.{npcName}.ShopQuote.{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item))}";
+            return $"Mods.{mod}.Chat.{npcName}.ShopQuote.";
+        }
+        public static string ShopQuoteItemKey(string mod, int npc, int item)
+        {
+            return $"{NPCShopQuoteKey(mod, npc)}{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(item))}";
         }
 
         public static string LegacyKeyFromIDs(string mod, int npc, int item)

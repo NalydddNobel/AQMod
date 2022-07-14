@@ -176,7 +176,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
-            Item.value = Item.sellPrice(gold: 12);
+            Item.value = Item.buyPrice(gold: 35);
             Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.expert = true;
         }
