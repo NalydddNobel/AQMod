@@ -51,9 +51,9 @@ namespace Aequus
                 NPCTalkInterface = new UserInterface();
             }
 
-            foreach (var t in AutoloadHelper.GetTypes(Code))
+            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IOnModLoad>(Code))
             {
-                IOnModLoad.CheckAutoload(this, t);
+                t.OnModLoad(this);
             }
 
             On.Terraria.Main.SetBackColor += Hook_DarkenBackground;
@@ -86,9 +86,9 @@ namespace Aequus
 
         public override void PostSetupContent()
         {
-            foreach (var t in AutoloadHelper.GetTypes(Code))
+            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IPostSetupContent>(Code))
             {
-                IPostSetupContent.CheckAutoload(this, t);
+                t.PostSetupContent(this);
             }
         }
 
@@ -99,12 +99,18 @@ namespace Aequus
 
         public override void AddRecipes()
         {
-            AutoloadHelper.AutoloadOfType<IAddRecipes>(Code, this);
+            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IAddRecipes>(Code))
+            {
+                t.AddRecipes(this);
+            }
         }
 
         public override void PostAddRecipes()
         {
-            AutoloadHelper.AutoloadOfType<IPostAddRecipes>(Code, this);
+            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IPostAddRecipes>(Code))
+            {
+                t.PostAddRecipes(this);
+            }
         }
 
         public override void Unload()

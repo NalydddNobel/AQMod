@@ -16,6 +16,7 @@ namespace Aequus.Content.Necromancy
         public static GhostInfo Two => new GhostInfo(2f, 800f);
         public static GhostInfo Three => new GhostInfo(3f, 1000f);
         public static GhostInfo Four => new GhostInfo(4f, 1250f);
+        public static GhostInfo Five => new GhostInfo(4f, 2000f);
 
         public float PowerNeeded;
         public float ViewDistance;
@@ -126,6 +127,14 @@ namespace Aequus.Content.Necromancy
             }
             IModCallArgSettable.SuccessReport(name, value, this);
             return this;
+        }
+
+        public override string ToString()
+        {
+            return AequusHelpers.ValueText("PowerNeeded", PowerNeeded)
+                .c().valueText("slotsUsed", slotsUsed)
+                .c().valueText("despawnPriority", despawnPriority)
+                .c().valueText("Aggro", Aggro);
         }
     }
 }

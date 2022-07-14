@@ -21,7 +21,15 @@ namespace Aequus.Common.Utilities
         {
             if (IDs.TryGetId(Mod.Name + "/" + name, out int modID))
             {
-                Dict.Add(modID, value);
+                try
+                {
+                    Dict.Add(modID, value);
+                }
+                catch
+                {
+                    string valueText = value == null ? "Null" : value.ToString();
+                    Aequus.Instance.Logger.Error(Mod.Name + "/" + name + " already exists with " + valueText);
+                }
                 return this;
             }
             Aequus.Instance.Logger.Error(Mod.Name + " does not contain " + name);

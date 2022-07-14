@@ -344,8 +344,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.Book)
                     .AddQuote(ItemID.MusicBox)
                     .AddQuote(ItemID.EmptyDropper)
-                    .AddQuote(ItemID.WizardsHat)
-                    ,
+                    .AddQuote(ItemID.WizardsHat),
 
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
@@ -483,7 +482,50 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.Sail)
                     .LegacyAddQuote(ItemID.ParrotCracker)
                     .LegacyAddQuote(ItemID.BunnyCannon)
-                    .LegacyAddQuote(ItemID.ExplosiveBunny)
+                    .LegacyAddQuote(ItemID.ExplosiveBunny),
+
+                    [NPCID.DD2Bartender] = new NPCQuotes(NPCID.DD2Bartender)
+                    .WithColor(Color.Lerp(Color.Orange, Color.White, 0.66f))
+                    .AddQuote(ItemID.Ale)
+                    .AddQuote(ItemID.DD2ElderCrystal)
+                    .AddQuote(ItemID.DD2ElderCrystalStand)
+                    .AddQuote(ItemID.DefendersForge)
+                    .AddQuote(ItemID.DD2FlameburstTowerT1Popper)
+                    .AddQuote(ItemID.DD2FlameburstTowerT2Popper)
+                    .AddQuote(ItemID.DD2FlameburstTowerT3Popper)
+                    .AddQuote(ItemID.DD2BallistraTowerT1Popper)
+                    .AddQuote(ItemID.DD2BallistraTowerT2Popper)
+                    .AddQuote(ItemID.DD2BallistraTowerT3Popper)
+                    .AddQuote(ItemID.DD2ExplosiveTrapT1Popper)
+                    .AddQuote(ItemID.DD2ExplosiveTrapT2Popper)
+                    .AddQuote(ItemID.DD2ExplosiveTrapT3Popper)
+                    .AddQuote(ItemID.DD2LightningAuraT1Popper)
+                    .AddQuote(ItemID.DD2LightningAuraT2Popper)
+                    .AddQuote(ItemID.DD2LightningAuraT3Popper)
+                    .AddQuote(ItemID.MonkBrows)
+                    .AddQuote(ItemID.MonkShirt)
+                    .AddQuote(ItemID.MonkPants)
+                    .AddQuote(ItemID.MonkAltHead)
+                    .AddQuote(ItemID.MonkAltShirt)
+                    .AddQuote(ItemID.MonkAltPants)
+                    .AddQuote(ItemID.SquireGreatHelm)
+                    .AddQuote(ItemID.SquirePlating)
+                    .AddQuote(ItemID.SquireGreaves)
+                    .AddQuote(ItemID.SquireAltHead)
+                    .AddQuote(ItemID.SquireAltShirt)
+                    .AddQuote(ItemID.SquireAltPants)
+                    .AddQuote(ItemID.ApprenticeHat)
+                    .AddQuote(ItemID.ApprenticeRobe)
+                    .AddQuote(ItemID.ApprenticeTrousers)
+                    .AddQuote(ItemID.ApprenticeAltHead)
+                    .AddQuote(ItemID.ApprenticeAltShirt)
+                    .AddQuote(ItemID.ApprenticeAltPants)
+                    .AddQuote(ItemID.HuntressWig)
+                    .AddQuote(ItemID.HuntressJerkin)
+                    .AddQuote(ItemID.HuntressPants)
+                    .AddQuote(ItemID.HuntressAltHead)
+                    .AddQuote(ItemID.HuntressAltShirt)
+                    .AddQuote(ItemID.HuntressAltPants)
                     ,
 
                     [NPCID.BestiaryGirl] = new NPCQuotes(NPCID.BestiaryGirl)
@@ -520,8 +562,7 @@ namespace Aequus.NPCs
                     .AddZoologistQuote(ItemID.TreeGlobe)
                     .AddZoologistQuote(ItemID.LightningCarrot)
                     .AddZoologistQuote(ItemID.DiggingMoleMinecart)
-                    .AddZoologistQuote(ItemID.BallOfFuseWire)
-                    ,
+                    .AddZoologistQuote(ItemID.BallOfFuseWire),
 
                     [NPCID.Princess] = new NPCQuotes(NPCID.Princess)
                     .WithColor(Main.creativeModeColor * 1.25f)
@@ -676,7 +717,7 @@ namespace Aequus.NPCs
                 return;
             }
 
-            if (item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.LocalPlayer.talkNPC != -1)
+            if (item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.LocalPlayer.talkNPC != -1)
             {
                 try
                 {

@@ -364,6 +364,20 @@
             Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
             </summary>
         </member>
+        <member name="M:Aequus.Common.ILoadBefore.SortBefore(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.ILoadAfter.SortAfter(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
+            <returns></returns>
+        </member>
         <member name="F:Aequus.Common.Networking.PacketType.ClientNPCSpawn">
             <summary>
             0) string, Sync Context

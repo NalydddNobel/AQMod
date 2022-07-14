@@ -19,10 +19,6 @@ namespace Aequus.Content.CrossMod
             Mod = null;
             try
             {
-                if (ModLoader.TryGetMod(name, out var modValue))
-                {
-                    Mod = modValue;
-                }
             }
             catch (Exception ex)
             {

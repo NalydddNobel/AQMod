@@ -319,7 +319,7 @@ namespace Aequus.NPCs.Boss
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
-                ScreenCulling.Init();
+                ScreenCulling.SetPadding();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -401,7 +401,7 @@ namespace Aequus.NPCs.Boss
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
                 }
-                ScreenCulling.Init();
+                ScreenCulling.SetPadding();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)

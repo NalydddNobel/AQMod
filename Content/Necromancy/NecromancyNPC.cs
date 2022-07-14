@@ -126,15 +126,17 @@ namespace Aequus.Content.Necromancy
                     parentNPC = Main.npc[parentProjectile.GetGlobalProjectile<NecromancyProj>().zombieNPCOwner];
                 }
 
-                if (parentNPC != null)
+                if (parentNPC != null && parentNPC.TryGetGlobalNPC<NecromancyNPC>(out var parentZombie) && npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie))
                 {
-                    var zombie = npc.GetGlobalNPC<NecromancyNPC>();
                     var info = GhostSyncInfo.GetInfo(parentNPC);
-                    info.SetZombieNPCInfo(npc, zombie);
-                    zombie.OnSpawnZombie(npc);
-                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    if (parentZombie.isZombie)
                     {
-                        PacketHandler.SyncNecromancyOwner(npc.whoAmI, info.Player);
+                        info.SetZombieNPCInfo(npc, zombie);
+                        zombie.OnSpawnZombie(npc);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            PacketHandler.SyncNecromancyOwner(npc.whoAmI, info.Player);
+                        }
                     }
                 }
             }

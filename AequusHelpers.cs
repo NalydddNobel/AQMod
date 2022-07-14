@@ -62,7 +62,8 @@ namespace Aequus
         /// Determines whether or not the mouse has an item
         /// </summary>
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
-        public static Vector2 ScaledMouseworld => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix)) + Main.screenPosition;
+        public static Vector2 ScaledMouseScreen => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix));
+        public static Vector2 ScaledMouseworld => ScaledMouseScreen + Main.screenPosition;
         public static Matrix WorldViewPoint
         {
             get
@@ -86,13 +87,40 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
-        public static bool IsSectionLoaded(Point p)
+        public static string c(this string text)
+        {
+            return text + ",";
+        }
+
+        public static string valueText(this string text, string name, object value)
+        {
+            return text + ValueText(name, value);
+        }
+
+        public static string ValueText(string name, object value)
+        {
+            return name + ": " + ToStringOrReturnNull(value);
+        }
+
+        public static string ToStringOrReturnNull(object value)
+        {
+            if (value == null)
+                return "Null";
+            return value.ToString();
+        }
+
+        public static bool IsSectionLoaded(int tileX, int tileY)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 return true;
             }
-            return Main.sectionManager.SectionLoaded(p.X, p.Y);
+            return Main.sectionManager.SectionLoaded(Netplay.GetSectionX(tileX), Netplay.GetSectionY(tileY));
+        }
+
+        public static bool IsSectionLoaded(Point p)
+        {
+            return IsSectionLoaded(p.X, p.Y);
         }
 
         public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)

@@ -166,7 +166,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 NPC.velocity *= 0.9f;
                 if (NPC.ai[2] > 0f)
                     NPC.ai[2] = 0f;
-                NPC.ai[2] -= 3f;
+                NPC.ai[2] -= 1.5f;
                 for (int i = 0; i < Main.rand.Next(2, 14); i++)
                 {
                     var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));

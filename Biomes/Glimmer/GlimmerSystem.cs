@@ -44,19 +44,24 @@ namespace Aequus.Biomes.Glimmer
             }
         }
 
-        public override void PostUpdateWorld()
+        public override void PreUpdatePlayers()
         {
+            GlimmerBiome.omegaStarite = -1;
+            if (GlimmerScene.cantTouchThis > 0)
+                GlimmerScene.cantTouchThis--;
+
             if (GlimmerBiome.EventActive)
             {
                 if (Main.dayTime)
                 {
-                    if (EndEvent())
+                    if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         AequusText.Broadcast("Announcement.GlimmerEnd", GlimmerBiome.TextColor);
                     }
                     return;
                 }
 
+                var x = GlimmerBiome.TileLocation.X;
                 if (GlimmerBiome.TileLocation.Y == -1 || GlimmerBiome.TileLocation.Y == (int)Main.worldSurface)
                 {
                     GlimmerBiome.TileLocation = FindGroundFor(GlimmerBiome.TileLocation);
@@ -67,6 +72,11 @@ namespace Aequus.Biomes.Glimmer
                     {
                         GlimmerBiome.TileLocation = FindGroundFor(GlimmerBiome.TileLocation);
                     }
+                }
+
+                if (GlimmerBiome.TileLocation.X != x)
+                {
+                    PacketHandler.SendProcedure(PacketType.GlimmerEventUpdate);
                 }
             }
         }
@@ -117,7 +127,7 @@ namespace Aequus.Biomes.Glimmer
             }
 
             GlimmerBiome.TileLocation = Point.Zero;
-            if (Main.netMode != NetmodeID.SinglePlayer)
+            if (Main.netMode == NetmodeID.Server)
             {
                 PacketHandler.SendProcedure(PacketType.GlimmerEventUpdate);
             }
@@ -135,11 +145,12 @@ namespace Aequus.Biomes.Glimmer
             {
                 p.Y = 30;
             }
-            if (!AequusHelpers.IsSectionLoaded(GlimmerBiome.TileLocation))
-                return p;
 
             for (ushort j = 180; j <= Main.worldSurface; j++)
             {
+                if (!AequusHelpers.IsSectionLoaded(p.X, j))
+                    continue;
+
                 if (Main.tile[p.X, j].IsSolid())
                 {
                     p.Y = j;
@@ -152,6 +163,9 @@ namespace Aequus.Biomes.Glimmer
                 {
                     for (ushort k = 0; k < 10; k++)
                     {
+                        if (!AequusHelpers.IsSectionLoaded(p.X, j - k))
+                            continue;
+
                         if (Main.tile[p.X, j - k].IsSolid())
                         {
                             goto FoundInvalidSpot;
@@ -161,7 +175,7 @@ namespace Aequus.Biomes.Glimmer
                     return p;
 
                     FoundInvalidSpot:
-                    continue;
+                        continue;
                 }
             }
             p.Y = (ushort)Main.worldSurface;

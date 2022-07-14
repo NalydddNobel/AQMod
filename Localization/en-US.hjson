@@ -620,10 +620,7 @@ Mods: {
 
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
-			UltimateSword:
-				'''
-				Do not translate.
-				'''
+			UltimateSword: 'Just a fragment of true potential'
 
 			BoundBow: 
 				'''
@@ -2779,6 +2776,73 @@ Mods: {
 						'''
 					EmptyDropper: I've used this for my eyesight, but I'm sure you could do something more magic with it.
 					WizardsHat: I... don't know why I have this. Why... am I... dressed like this?
+				}
+			}
+
+			DD2Bartender: {
+				ShopQuote: {
+					Ale: Stopping by for some booze? That's a good decision here chump!
+					DD2ElderCrystal: This may be just a regular gem, but from where I come from people defend this crystal with their lives!
+					DD2ElderCrystalStand: The golden socket that holds the Eternia Crystal, just make sure to return it without a scratch!
+					DefendersForge: Before getting here I decided to snatch one of those forges, but now it seems of no use to me...
+
+					// Weapons 
+
+					DD2FlameburstTowerT1Popper: This rod gives you blazing firepower, use it wisely!
+					DD2FlameburstTowerT2Popper: With this cane your flameburst sentries gain more firepower!
+					DD2FlameburstTowerT3Popper: It's a must have for Apprentices and Dark Artists!
+
+					DD2BallistraTowerT1Popper: This rod gives you ballistic firepower, use it wisely!
+					DD2BallistraTowerT2Popper: With this cane your ballista sentries gain more burst power!
+					DD2BallistraTowerT3Popper: It's a must have for Squires and Valhalla Knights!
+
+					DD2ExplosiveTrapT1Popper: This rod gives you explosive firepower, use it wisely!
+					DD2ExplosiveTrapT2Popper: With this cane your explosive trap sentries gain more boom power!
+					DD2ExplosiveTrapT3Popper: It's a must have for Huntresses and Red Riders!
+
+					DD2LightningAuraT1Popper: This rod gives you stunning powers, use it wisely!
+					DD2LightningAuraT2Popper: With this cane your lightning aura sentries gain more zap power!
+					DD2LightningAuraT3Popper: It's a must have for Monks and Shinobi Infiltrators!
+
+					// Monk Armor
+					MonkBrows: This brow is point perfect for brow lovers, even Major Monogram got jealous!
+					MonkShirt: Truly the shirt of the Monk.
+					MonkPants: Truly the pants of the Monk.
+
+					// Shnobi Infiltrator Armor
+					MonkAltHead: A helmet once worn by Etheria's strongest shinobi!
+					MonkAltShirt: A torso once worn by Etheria's strongest shinobi!
+					MonkAltPants: Pants once worn by Etheria's strongest shinobi!
+
+					// Squire Armor
+					SquireGreatHelm: This tin can is not to be underestimated, it quite packs some punches!
+					SquirePlating: This chestplate makes you feel more protected for future battles!
+					SquireGreaves: Those greaves make you feel more protected for future battles!
+
+					// Valhalla Knight Armor
+					SquireAltHead: A hat once worn by Etheria's strongest knight!
+					SquireAltShirt: A breastplate once worn by Etheria's strongest knight!
+					SquireAltPants: Greaves once worn by Etheria's strongest knight!
+
+					// Apprentice Armor
+					ApprenticeHat: Found this in the Taverns wardrobe before I got here.
+					ApprenticeRobe: This was also probably in the Taverns wardrobe.
+					ApprenticeTrousers: And the trousers were in the wardrobe aswell I suppose?
+
+					// Dark Artist Armor
+					ApprenticeAltHead: A hat once worn by Etheria's strongest mage!
+					ApprenticeAltShirt: Robes once worn by Etheria's strongest mage!
+					ApprenticeAltPants: Leggings once worn by Etheria's strongest mage!
+
+					// Huntress Armor
+					HuntressWig: So if this is just a wig, does that mean that the Huntress is bald just like me?!
+					HuntressJerkin: Truly the jerkin of the Huntress.
+					HuntressPants: Truly the pants of the Huntress.
+
+					// Red Riding Artist Armor
+					HuntressAltHead: A hood once worn by Etheria's strongest huntress!
+					HuntressAltShirt: A dress once worn by Etheria's strongest huntress!
+					HuntressAltPants: Leggings once worn by Etheria's strongest huntress!
 				}
 			}
 

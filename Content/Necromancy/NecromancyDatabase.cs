@@ -387,28 +387,9 @@ namespace Aequus.Content.Necromancy
             {
                 if (Aequus.LogMore)
                     Aequus.Instance.Logger.Info("Adding necromancy entries for " + polarities.Name);
-                PopulateEnemyStats_Polarities(polarities);
             }
 
             SetupPriorities();
-        }
-        public static void PopulateEnemyStats_Polarities(Mod polarities)
-        {
-            new DatabaseBuilder<GhostInfo>(NPCs, polarities, NPCID.Search)
-                .TryAddModEntry("BloodBat", GhostInfo.One.WithAggro(AggressionType.NightTime))
-                .TryAddModEntry("BatSlime", GhostInfo.Two)
-                .TryAddModEntry("ConeShell", GhostInfo.Two)
-                .TryAddModEntry("GreatStellatedSlime", GhostInfo.Three)
-                .TryAddModEntry("Alkalabomination", GhostInfo.Three)
-                .TryAddModEntry("AlkaliSpirit", GhostInfo.One)
-                .TryAddModEntry("FlowWorm", GhostInfo.One)
-                .TryAddModEntry("Limeshell", GhostInfo.Three)
-                .TryAddModEntry("Slimey", GhostInfo.Three)
-                .TryAddModEntry("StalagBeetle", GhostInfo.One)
-                .TryAddModEntry("NestGuardian", GhostInfo.One)
-                .TryAddModEntry("Rattler", GhostInfo.One)
-                .TryAddModEntry("BrineDweller", GhostInfo.Three)
-                .TryAddModEntry("Mussel", GhostInfo.Three);
         }
         public static void SetupPriorities()
         {

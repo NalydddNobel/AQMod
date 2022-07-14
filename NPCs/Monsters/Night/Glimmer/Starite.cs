@@ -359,7 +359,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     y = NPC.position.Y;
                 }
                 NPC.position.Y = y - 1000f;
-                NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 24f;
+                NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 15f;
+                NPC.oldVelocity = NPC.velocity;
             }
 
             if (NPC.noTileCollide)
@@ -392,7 +393,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
             NPC.direction = Math.Sign(NPC.velocity.X);
             NPC.rotation += (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y)) * 0.01f * NPC.direction;
-            ScreenCulling.Init();
+            ScreenCulling.SetPadding();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
             {
                 Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, NPC.velocity * 0.2f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17));
@@ -403,7 +404,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 
-            if (NPC.collideX || NPC.collideY)
+            if (NPC.collideX || NPC.collideY || NPC.velocity != NPC.oldVelocity)
             {
                 FallenStarAI_OnTileCollide();
             }
@@ -424,7 +425,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(255, 150, 50, 0)).noGravity = true;
             }
-            ScreenCulling.Init();
+            ScreenCulling.SetPadding();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
             {
                 for (int i = 0; i < 7; i++)
