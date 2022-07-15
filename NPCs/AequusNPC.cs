@@ -10,6 +10,7 @@ using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Pets;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.Particles;
@@ -481,7 +482,12 @@ namespace Aequus.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (type == NPCID.Clothier)
+            if (type == NPCID.Dryad)
+            {
+                if (AequusWorld.downedOmegaStarite)
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
+            }
+            else if (type == NPCID.Clothier)
             {
                 if (Aequus.HardmodeTier)
                 {

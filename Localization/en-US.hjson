@@ -159,6 +159,7 @@ Mods: {
 			BoundBow: Bound Bow
 			Slingshot: Slingshot
 
+			WowHat: "'Wow-zer' Hat"
 			Snowgrave: Snowgrave
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
@@ -632,6 +633,7 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+			WowHat: Casts a variety of spells
 			Snowgrave:
 				'''
 				Summons a deadly snowblast from below

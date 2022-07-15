@@ -1,12 +1,15 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -57,8 +60,9 @@ namespace Aequus.Biomes.Glimmer
 
         public static void Draw()
         {
-            if (!GlimmerBiome.EventActive)
+            if (!GlimmerBiome.EventActive || (GlimmerBiome.omegaStarite != -1 && (int)Main.npc[GlimmerBiome.omegaStarite].ai[0] != AequusBoss.ACTION_INTRO && (int)Main.npc[GlimmerBiome.omegaStarite].ai[0] != AequusBoss.ACTION_INIT))
             {
+                EatenAlpha = 255;
                 renderedUltimateSword = false;
                 ultimateSwordWorldDrawLocation = Vector2.Zero;
                 return;
@@ -108,13 +112,18 @@ namespace Aequus.Biomes.Glimmer
             ScreenCulling.SetPadding(400);
             if (!ScreenCulling.OnScreenWorld(ultimateSwordWorldDrawLocation) && !ScreenCulling.OnScreenWorld(gotoPosition))
             {
+                EatenAlpha = 0;
                 return;
+            }
+            if (EatenAlpha > 0)
+            {
+                EatenAlpha -= 2;
             }
 
             var drawCoords = ultimateSwordWorldDrawLocation - Main.screenPosition + new Vector2(0f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.5f, -10f, 10f));
             Main.instance.LoadItem(ModContent.ItemType<UltimateSword>());
             var texture = TextureAssets.Item[ModContent.ItemType<UltimateSword>()].Value;
-            Main.spriteBatch.Draw(texture, drawCoords, null, Color.White, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0f);
+
             var interactionRect = new Rectangle((int)drawCoords.X - 12, (int)drawCoords.Y - 70, 24, 70);
             if (Main.SmartCursorIsUsed)
             {
@@ -125,7 +134,8 @@ namespace Aequus.Biomes.Glimmer
             }
             var mouseScreen = AequusHelpers.ScaledMouseScreen;
             bool hovering = interactionRect.Contains(mouseScreen.ToPoint());
-            AequusHelpers.DrawRectangle(interactionRect, hovering ? Color.Yellow * 0.2f : Color.Red * 0.2f);
+            //AequusHelpers.DrawRectangle(interactionRect, hovering ? Color.Yellow * 0.2f : Color.Red * 0.2f);
+            float opacity = 1f - EatenAlpha / 255f;
             if (hovering)
             {
                 if (Main.SmartCursorIsUsed)
@@ -153,14 +163,31 @@ namespace Aequus.Biomes.Glimmer
                         {
                             NPC.SpawnBoss((int)drawCoords.X, (int)drawCoords.Y - 1600, ModContent.NPCType<OmegaStarite>(), Main.myPlayer);
                         }
-                        else
-                        {
-
-                        }
                         SoundEngine.PlaySound(SoundID.Roar, Main.LocalPlayer.Center);
                     }
+
+                    Main.spriteBatch.End();
+                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    try
+                    {
+                        var s= GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
+                        var dd = new DrawData(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0);
+                        foreach (var c in AequusHelpers.CircularVector(4))
+                        {
+                            dd.position = drawCoords + c * 2f;
+                            s.Apply(null, dd);
+                            dd.Draw(Main.spriteBatch);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+                    Main.spriteBatch.End();
+                    Begin.GeneralEntities.Begin(Main.spriteBatch);
                 }
             }
+            Main.spriteBatch.Draw(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0f);
             renderedUltimateSword = true;
         }
     }

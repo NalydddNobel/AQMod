@@ -5,6 +5,7 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Friendly;
 using Aequus.Particles.Dusts;
@@ -57,7 +58,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddOptions(chance: 6, ModContent.ItemType<HyperCrystal>(), ModContent.ItemType<StariteStaff>())
+                .AddOptions(chance: 3, ModContent.ItemType<HyperCrystal>(), ModContent.ItemType<WowHat>(), ModContent.ItemType<StariteStaff>())
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }

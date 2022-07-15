@@ -1,9 +1,12 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
@@ -1611,6 +1614,7 @@ namespace Aequus.NPCs.Boss
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
+                .Add<SupernovaFruit>(new OnFirstKillCondition(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<OriginPainting>()
 
@@ -1618,7 +1622,7 @@ namespace Aequus.NPCs.Boss
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
                 .Add<CosmicEnergy>(chance: 1, stack: 3)
-                .AddOptions(chance: 3, ModContent.ItemType<DiscoDye>(), ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>(), ModContent.ItemType<RainbowOutlineDye>())
+                .AddOptions(chance: 3, ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>())
                 .RegisterCondition();
         }
 
@@ -1628,10 +1632,7 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            if (!AequusWorld.downedOmegaStarite)
-            {
-                Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ModContent.ItemType<SupernovaFruit>());
-            }
+            GlimmerSystem.EndEvent();
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
         }
 

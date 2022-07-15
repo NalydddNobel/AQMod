@@ -24,7 +24,7 @@ namespace Aequus.Biomes.Glimmer
             {
                 if (Opacity < 1f)
                 {
-                    Opacity = Math.Min(Opacity + 0.001f + Opacity * Opacity, 1f);
+                    Opacity = Math.Min(Opacity + 0.02f, 1f);
                 }
             }
             else
@@ -34,8 +34,17 @@ namespace Aequus.Biomes.Glimmer
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
             }
-            float distance = 1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles;
-            opacityBasedOnDistance = Opacity * Math.Max(distance, 0f);
+            float wantedOpacity;
+            if (GlimmerBiome.omegaStarite != -1)
+            {
+                wantedOpacity = Opacity;
+            }
+            else
+            {
+                float distance = 1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles;
+                wantedOpacity = Opacity * Math.Max(distance, 0f);
+            }
+            opacityBasedOnDistance = MathHelper.Lerp(opacityBasedOnDistance, wantedOpacity, 0.05f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
@@ -43,7 +52,7 @@ namespace Aequus.Biomes.Glimmer
             int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
             var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
             destinationRectangle.Height -= y;
-            Color clr = GlimmerBiome.omegaStarite == -1 ? Color.White * opacityBasedOnDistance : Color.White;
+            Color clr = Color.White * opacityBasedOnDistance;
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
                 spriteBatch.Draw(skyTexture.Value, destinationRectangle, clr.UseA(0));

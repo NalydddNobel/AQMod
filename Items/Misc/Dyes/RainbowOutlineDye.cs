@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics.ShaderData;
+using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -14,6 +15,15 @@ namespace Aequus.Items.Misc.Dyes
         public override ArmorShaderData CreateShaderData()
         {
             return new ArmorShaderDataDynamicColor(Effect, Pass, (e, d) => Main.DiscoColor);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<OutlineDye>()
+                .AddIngredient<UltimateEnergy>()
+                .AddTile(TileID.DyeVat)
+                .RegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

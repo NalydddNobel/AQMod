@@ -30,11 +30,8 @@ namespace Aequus.Items.Misc.Expert
             {
                 DropHelper.OneFromList(source, player, new List<int>()
                 {
-                    ModContent.ItemType<EnchantedDye>(),
-                    ModContent.ItemType<DiscoDye>(),
                     ModContent.ItemType<ScrollDye>(),
                     ModContent.ItemType<OutlineDye>(),
-                    ModContent.ItemType<RainbowOutlineDye>(),
                 });
             }
             player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), 3);

@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics.ShaderData;
+using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -21,6 +22,15 @@ namespace Aequus.Items.Misc.Dyes
                 float rainbowTime = Main.GlobalTimeWrappedHourly * 6 + (v.X + v.Y + v.Z);
                 return new Vector3((float)Math.Sin(rainbowTime), (float)Math.Sin(rainbowTime + MathHelper.TwoPi / 3f), (float)Math.Sin(rainbowTime + MathHelper.TwoPi / 3f * 2f)) * multiplier;
             }).UseOpacity(1f);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.SilverDye)
+                .AddIngredient<UltimateEnergy>()
+                .AddTile(TileID.DyeVat)
+                .RegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

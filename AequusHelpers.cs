@@ -87,6 +87,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static bool PointCollision(Vector2 where, int width = 2, int height = 2)
+        {
+            return Collision.SolidCollision(where - new Vector2(width / 2f, height / 2f), width, height);
+        }
+
         public static bool WearingSet(this Player player, int head, int body, int legs)
         {
             return player.head == head && player.body == body && player.legs == legs;
