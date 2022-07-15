@@ -2809,12 +2809,12 @@ Mods: {
 
 			Truffle: {
 				ShopQuote: {
-					MushroomCap: Don’t worry, they grow back.
-					StrangeGlowingMushroom: It seems like one of my kind has taken a liking to you.
-					DarkBlueSolution: Would you be so kind as to spread the spores of my kind across the world?
-					MushroomSpear: I forged this spear with my own sweat and glistering mycelium.
-					Hammush: Behold the mighty ham-mush!
-					Autohammer: I use this station to forge my own weapons, perhaps you could use it to infuse your arsenal with the power of blue too.
+					MushroomCap: 别担心, 他们会长回来的.
+					StrangeGlowingMushroom: 好像我的同类喜欢上了你.
+					DarkBlueSolution: 你能把我的孢子传播到全世界吗?
+					MushroomSpear: 我用自己的汗水和发光菌丝锻造了这把矛.
+					Hammush: 看啊, 强大的蘑菇锤!
+					Autohammer: 我用这个锻造站来打造我自己的武器, 也许你也可以用它给你的武器注入蓝色的力量.
 				}
 			}
 
