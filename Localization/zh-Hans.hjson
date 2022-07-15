@@ -159,6 +159,7 @@ Mods: {
 			BoundBow: 界限弓
 			Slingshot: 弹弓
 
+			WowHat: "'哇巫'帽"
 			Snowgrave: 雪墓
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
@@ -632,6 +633,7 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			WowHat: 施放各种法术
 			Snowgrave:
 				'''
 				在下方召唤向上喷涌的致命冰雪风暴
