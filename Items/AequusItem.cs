@@ -21,6 +21,11 @@ namespace Aequus.Items
         public static HashSet<int> CritOnlyModifier { get; private set; }
         public static HashSet<int> BankEquipFuncs { get; private set; }
 
+        public override bool InstancePerEntity => true;
+        protected override bool CloneNewInstances => true;
+
+        public byte shopQuoteType;
+
         public override void Load()
         {
             LegendaryFish = new HashSet<int>();

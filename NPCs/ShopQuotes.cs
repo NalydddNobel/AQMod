@@ -22,6 +22,12 @@ namespace Aequus.NPCs
 {
     public class ShopQuotes : GlobalItem
     {
+        public class QuoteType
+        {
+            public const byte Banner = 1;
+            public const byte EquippedAcc = 2;
+        }
+
         public class NPCQuotes
         {
             public static Func<Color> DefaultColor => () => Colors.RarityBlue;
@@ -49,6 +55,10 @@ namespace Aequus.NPCs
             public NPCQuotes AddShopQuoteKey(string key, int item)
             {
                 return AddQuote(NPCShopQuoteKey("Aequus", NPC) + key, item);
+            }
+            public NPCQuotes AddShopQuoteKey<T>(string key) where T : ModItem
+            {
+                return AddShopQuoteKey(key, ModContent.ItemType<T>());
             }
 
             internal NPCQuotes AddQuote(int item)
@@ -808,27 +818,52 @@ namespace Aequus.NPCs
                 return;
             }
 
-            if (TryGetQuote(talkNPC, item, out string text, out var textColor))
+            string text = null;
+            if (Database.TryGetValue(talkNPC.type, out var quotes))
             {
-                string lineText = "";
-                lineText += Language.GetTextValue(text);
-                int index = tooltips.GetIndex("JourneyResearch");
-                tooltips.Insert(index, new TooltipLine(Mod, "Fake", "_"));
-                tooltips.Insert(index, new TooltipLine(Mod, "ShopQuote", FixNewlines(lineText)) { OverrideColor = textColor, });
+                if (item.TryGetGlobalItem<AequusItem>(out var aequus))
+                {
+                    switch (aequus.shopQuoteType)
+                    {
+                        case 0:
+                            {
+                                if (TryGetItemQuoteData(talkNPC, item, quotes, out text))
+                                {
+                                    text = Language.GetTextValue(text);
+                                    break;
+                                }
+                                text = null;
+                            }
+                            break;
+
+                        case 1:
+                            {
+                                text = Language.GetTextValue("Mods.Aequus.Chat.SkyMerchant.ShopQuote.Banners");
+                            }
+                            break;
+
+                        case 2:
+                            {
+                                text = Language.GetTextValue("Mods.Aequus.Chat.SkyMerchant.ShopQuote.EquippedAcc");
+                            }
+                            break;
+                    }
+                }
+                if (text != null)
+                {
+                    int index = tooltips.GetIndex("JourneyResearch");
+                    tooltips.Insert(index, new TooltipLine(Mod, "Fake", "_"));
+                    tooltips.Insert(index, new TooltipLine(Mod, "ShopQuote", FixNewlines(text)) { OverrideColor = quotes.GetColor(), });
+                }
             }
         }
-        public bool TryGetQuote(NPC talkNPC, Item item, out string text, out Color color)
+        public bool TryGetItemQuoteData(NPC talkNPC, Item item, NPCQuotes quotes, out string text)
         {
             text = "";
-            color = default(Color);
-            if (Database.TryGetValue(talkNPC.type, out var value))
+            if (quotes.ItemToQuote.TryGetValue(item.type, out var itemQuote))
             {
-                if (value.ItemToQuote.TryGetValue(item.type, out var itemQuote))
-                {
-                    text = itemQuote();
-                    color = value.GetColor();
-                    return true;
-                }
+                text = itemQuote();
+                return true;
             }
             return false;
         }

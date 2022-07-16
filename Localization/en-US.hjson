@@ -871,7 +871,7 @@ Mods: {
 			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
-			BongBongPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			BongBongPainting: "{$Mods.Aequus.PaintingSignature.Water}"
 			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
 			CatalystPainting:
 				'''
@@ -2028,6 +2028,7 @@ Mods: {
 		}
 
 		PaintingSignature: {
+			Water: "'W. Ter'"
 			SplitModFrFrWtf: "'Dr. Uncool'"
 			NalydT: "'N.T.'"
 			niker: "'N.'"
@@ -3090,7 +3091,6 @@ Mods: {
 			}
 
 			SkyMerchant: {
-
 				Basic: {
 					0: Some of my items sell like they're on the fly
 					1: Our most satisfied customers are the harpies. Come check out my items for lightweight prices!
@@ -3103,6 +3103,28 @@ Mods: {
 				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
 				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
 				Pirate: Recently, {Pirate} talked to me about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
+
+				ShopQuote: {
+					BalloonKit: Old and hardy, portable hot air ballons have been sought after for quite a while, and here they are!
+					Pumpinator: A strange piece of tech I purchased from an airship. The sucking feature doesn't work unfortunately, what a scam!
+					Nimrod: 
+						'''
+						Lightning striking a lake can kill hundreds of fish, unfortunately this fishing rod can only catch about 3 fish per strike.
+						Or maybe the wizard who crafted this is concerned about the trout population.
+						'''
+					EquippedAcc: Hm, that accessory equipped on your person is quite nice, maybe this one has better craftmanship however?
+					Banners:
+						'''
+						Ah yes, creating carpets and rugs out of your prey's corpses is quite out of balloon fashion.
+						Hangable banners are so much better in my opinion.
+						'''
+					BongBongPainting: An abnormal creature is depicted in this art, someone may apprieciate this creature's style though.
+					CatalystPainting: The artist who painted this must hate lunatic cultists, which is fair.
+					YinYangPainting: Dark and evils forces depicted to act in harmony, some believe this is true.
+					YinYangPaintingsSeparate: The strange name of this painting and mysterious figure must elude to something...
+					HomeworldPainting: An incredible piece of artwork showing what theorists believe the Starite's homeworld looks like.
+					SkyrimRocks: Rocks with words encrypted in an ancient dragon language, unfortunately I don't know many who can translate it.
+				}
 
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name

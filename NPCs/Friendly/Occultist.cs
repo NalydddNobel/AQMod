@@ -51,18 +51,18 @@ namespace Aequus.NPCs.Friendly
             });
 
             NPC.Happiness
-            .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Love)
-            .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
-            .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Love)
-            .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Like)
-            .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-            .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
+                .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Love)
+                .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
+                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
 
             ShopQuotes.Database
                 .AddNPC(Type)
-                .WithColor(Color.DarkRed * 1.25f)
+                .WithColor(Color.DarkRed * 1.5f)
                 .AddQuote<GhostlyGrave>()
                 .AddQuote<OccultistCandle>()
                 .AddQuote<Meathook>()

@@ -73,6 +73,23 @@ namespace Aequus.NPCs.Friendly
                 Velocity = -1f,
                 Direction = -1
             });
+
+            ShopQuotes.Database
+                .AddNPC(Type)
+                .WithColor(Color.DarkOliveGreen * 1.75f)
+                .AddQuote<BalloonKit>()
+                .AddQuote<Pumpinator>()
+                .AddQuote<Nimrod>()
+                .AddQuote<BongBongPainting>()
+                .AddQuote<CatalystPainting>()
+                .AddQuote<YinYangPainting>()
+                .AddShopQuoteKey<YinPainting>("YinYangPaintingsSeparate")
+                .AddShopQuoteKey<YangPainting>("YinYangPaintingsSeparate")
+                .AddQuote<HomeworldPainting>()
+                .AddShopQuoteKey<SkyrimRock1>("SkyrimRocks")
+                .AddShopQuoteKey<SkyrimRock2>("SkyrimRocks")
+                .AddShopQuoteKey<SkyrimRock3>("SkyrimRocks")
+                .AddQuote(ItemID.WhoopieCushion);
         }
 
         public override void SetDefaults()
@@ -122,11 +139,6 @@ namespace Aequus.NPCs.Friendly
             }
         }
 
-        public override void BossHeadSpriteEffects(ref SpriteEffects spriteEffects)
-        {
-            spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-        }
-
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             try
@@ -163,12 +175,14 @@ namespace Aequus.NPCs.Friendly
                     shop.item[nextSlot].shopCustomPrice /= 100;
                     shop.item[nextSlot].shopCustomPrice *= 100;
                     shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
+                    shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotes.QuoteType.EquippedAcc;
                     nextSlot++;
                 }
                 if (merchant.shopBanner != null)
                 {
                     shop.item[nextSlot] = merchant.shopBanner.Clone();
                     shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
+                    shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotes.QuoteType.Banner;
                     nextSlot++;
                 }
             }
@@ -192,10 +206,6 @@ namespace Aequus.NPCs.Friendly
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YangPainting>());
             }
-            if (NPC.downedGolemBoss)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
-            }
             if (AequusWorld.downedOmegaStarite)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
@@ -209,17 +219,17 @@ namespace Aequus.NPCs.Friendly
             if (NPC.downedBoss3)
                 bossDefeated++;
 
-            if (bossDefeated >= 3)
+            if (bossDefeated >= 1)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock1>());
             }
             if (bossDefeated >= 2)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock2>());
             }
-            if (bossDefeated >= 1)
+            if (bossDefeated >= 3)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock1>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
             }
         }
         public void SetupShopCache(Player player)
