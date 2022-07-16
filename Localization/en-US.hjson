@@ -2936,6 +2936,71 @@ Mods: {
 					MagicLantern: I don't know what's up with this lantern. No matter how many times I hit it with a torch it doesn't light up. Maybe I'm missing something.
 				}
 			}
+			
+			Golfer: {
+				ShopQuote: {
+					//clubbys
+					GolfClubStoneIron: This iron is a bit out of shape, but it'll do.
+					GolfClubRustyPutter: This putter is a bit out of shape, but it'll do.
+					GolfClubBronzeWedge: This wedge is a bit out of shape, but it'll do.
+					GolfClubWoodDriver: This driver is a bit out of shape, but it'll do.
+					
+					GolfClubIron: This iron works well and hits nicely.
+					GolfClubPutter: This putter works well and hits nicely.
+					GolfClubWedge: This wedge works well and hits nicely.
+					GolfClubDriver: This driver works well and hits nicely.
+					
+					GolfClubMythrilIron: This iron is absolutely decked out! I suppose it hits better too.
+					GolfClubLeadPutter: This putter is absolutely decked out! I suppose it hits better too.
+					GolfClubGoldWedge: This wedge is absolutely decked out! I suppose it hits better too.
+					GolfClubPearlwoodDriver: This driver is absolutely decked out! I suppose it hits better too.
+					
+					GolfClubTitaniumIron: This iron is just top-of-the-line! Peak performance!
+					GolfClubShroomitePutter: This putter is just top-of-the-line! Peak performance!
+					GolfClubDiamondWedge: This wedge is just top-of-the-line! Peak performance!
+					GolfClubChlorophyteDriver: This driver is just top-of-the-line! Peak performance!
+					
+					//trophies
+					GolfTrophyBronze: Congratulations on your improvement! You still have plenty to go, however.
+					GolfTrophySilver: Congratulations on your improvement! You're almost better than I am, heh...
+					GolfTrophyGold: Congratulations on you improvement! I'd hate to be opposing you in any world tour!
+					
+					//flags
+					GolfCupFlagWhite: How are you gonna know where the hole is without one of these?
+					GolfCupFlagRed: How are you gonna know where the hole is without one of these?
+					GolfCupFlagGreen: How are you gonna know where the hole is without one of these?
+					GolfCupFlagBlue: How are you gonna know where the hole is without one of these?
+					GolfCupFlagYellow: How are you gonna know where the hole is without one of these?
+					GolfCupFlagPurple: How are you gonna know where the hole is without one of these?
+					
+					//misc
+					GolfTee: The quintessential golfing tool. How will you hit the ball if it's covered by grass?
+					GolfBall: Rubber around rubber around rubber... all surrounded by plastic. Golf balls are pretty cool.
+					GolfWhistle: 
+						'''
+						I found this thing laying around the other day... 
+						didn't know anyone with magic cared enough to use it on golf.
+						'''
+					GolfCup: 
+						'''
+						You might think this you could just use a normal cup, but it has confetti shooters installed!
+						I like confetti.
+						'''
+					ArrowSign: Can't golf if you don't know where to hit towards!
+					PaintedArrowSign: Can't golf if you don't know where to hit towards!
+					GolfHat: Gotta look the part!
+					GolfShirt: Gotta look the part!
+					GolfPants: Gotta look the part!
+					GolfVisor: Gotta look the part!
+					LawnMower: Lawnmowers are super useful, whether you're smoothing grass or fending off zombies!
+					GolfCart: I think you're skilled enough now that you need these more than I do.
+					GolfPainting1: I love this painting! Don't care much for the art, but I can get behind the subject matter!
+					GolfPainting2: I love this painting! Don't care much for the art, but I can get behind the subject matter!
+					GolfPainting3: I love this painting! Don't care much for the art, but I can get behind the subject matter!
+					GolfPainting4: I love this painting! Don't care much for the art, but I can get behind the subject matter!
+					GolfChest: Useful for storing all matter of golf memorabilia, or anything else.
+				}
+			}
 
 			Occultist: {
 				Basic: {
