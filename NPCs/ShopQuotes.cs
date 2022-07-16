@@ -403,6 +403,21 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.Hammush)
                     .AddQuote(ItemID.Autohammer),
 
+                    [NPCID.DyeTrader] = new NPCQuotes(NPCID.DyeTrader)
+                    .WithColor(Color.Lerp(Color.BlueViolet, Color.White, 0.5f))
+                    .AddQuote(ItemID.DyeVat)
+                    .AddQuote(() => Main.LocalPlayer.head > 0 ?
+                    Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye_Helmet", new { Helmet = DyeTraderFindHelmetName() }) 
+                    : Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye"), ItemID.SilverDye)
+                    .AddQuote(ItemID.TeamDye)
+                    .AddQuote("DyeTradersClothes", ItemID.DyeTraderRobe)
+                    .AddQuote("DyeTradersClothes", ItemID.DyeTraderTurban)
+                    .AddQuote(ItemID.ShadowDye)
+                    .AddQuote(ItemID.NegativeDye)
+                    .AddQuote(ItemID.BrownDye)
+                    .AddQuote(ItemID.FogboundDye)
+                    .AddQuote(ItemID.BloodbathDye),
+
                     [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
                     .LegacyAddQuote(ItemID.RocketI)
@@ -644,6 +659,51 @@ namespace Aequus.NPCs
                     .AddZoologistQuote(ItemID.DiggingMoleMinecart)
                     .AddZoologistQuote(ItemID.BallOfFuseWire),
 
+                    [NPCID.Golfer] = new NPCQuotes(NPCID.Golfer)
+                    .WithColor(Color.Lerp(Color.SkyBlue, Color.White, 0.5f))
+                    .AddQuote(ItemID.GolfClubStoneIron)
+                    .AddQuote(ItemID.GolfClubRustyPutter)
+                    .AddQuote(ItemID.GolfClubBronzeWedge)
+                    .AddQuote(ItemID.GolfClubWoodDriver)
+                    .AddQuote(ItemID.GolfClubIron)
+                    .AddQuote(ItemID.GolfClubPutter)
+                    .AddQuote(ItemID.GolfClubWedge)
+                    .AddQuote(ItemID.GolfClubDriver)
+                    .AddQuote(ItemID.GolfClubMythrilIron)
+                    .AddQuote(ItemID.GolfClubLeadPutter)
+                    .AddQuote(ItemID.GolfClubGoldWedge)
+                    .AddQuote(ItemID.GolfClubPearlwoodDriver)
+                    .AddQuote(ItemID.GolfClubTitaniumIron)
+                    .AddQuote(ItemID.GolfClubShroomitePutter)
+                    .AddQuote(ItemID.GolfClubDiamondWedge)
+                    .AddQuote(ItemID.GolfClubChlorophyteDriver)
+                    .AddQuote(ItemID.GolfTrophyBronze)
+                    .AddQuote(ItemID.GolfTrophySilver)
+                    .AddQuote(ItemID.GolfTrophyGold)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagBlue)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagGreen)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagPurple)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagRed)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagWhite)
+                    .AddShopQuoteKey("GolfCupFlag", ItemID.GolfCupFlagYellow)
+                    .AddQuote(ItemID.GolfTee)
+                    .AddQuote(ItemID.GolfBall)
+                    .AddQuote(ItemID.GolfWhistle)
+                    .AddQuote(ItemID.GolfCup)
+                    .AddQuote(ItemID.ArrowSign)
+                    .AddQuote(ItemID.PaintedArrowSign)
+                    .AddShopQuoteKey("GolfOutfit", ItemID.GolfHat)
+                    .AddShopQuoteKey("GolfOutfit", ItemID.GolfShirt)
+                    .AddShopQuoteKey("GolfOutfit", ItemID.GolfPants)
+                    .AddQuote(ItemID.LawnMower)
+                    .AddQuote(ItemID.GolfCart)
+                    .AddShopQuoteKey("GolfPaintings", ItemID.GolfPainting1)
+                    .AddShopQuoteKey("GolfPaintings", ItemID.GolfPainting2)
+                    .AddShopQuoteKey("GolfPaintings", ItemID.GolfPainting3)
+                    .AddShopQuoteKey("GolfPaintings", ItemID.GolfPainting4)
+                    .AddQuote(ItemID.GolfChest)
+                    ,
+
                     [NPCID.Princess] = new NPCQuotes(NPCID.Princess)
                     .WithColor(Main.creativeModeColor * 1.25f)
                     .LegacyAddQuote(ItemID.RoyalTiara)
@@ -682,6 +742,18 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.CoinGun)
                     ,
                 };
+            }
+            public static string DyeTraderFindHelmetName()
+            {
+                var arr = Main.LocalPlayer.armor;
+                for (int i = arr.Length - 1; i >= 0; i--)
+                {
+                    if (arr[i] != null && !arr[i].IsAir && arr[i].headSlot == Main.LocalPlayer.head)
+                    {
+                        return arr[i].Name;
+                    }
+                }
+                return "Helmet";
             }
 
             public string NurseOutfitText()

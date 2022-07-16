@@ -2939,7 +2939,7 @@ Mods: {
 
 			Golfer: {
 				ShopQuote: {
-					//clubbys
+					// Clubs
 					GolfClubStoneIron: This iron is a bit out of shape, but it'll do.
 					GolfClubRustyPutter: This putter is a bit out of shape, but it'll do.
 					GolfClubBronzeWedge: This wedge is a bit out of shape, but it'll do.
@@ -2983,7 +2983,6 @@ Mods: {
 						'''
 					ArrowSign: Can't golf if you don't know where to hit towards!
 					PaintedArrowSign: Can't golf if you don't know where to hit towards!
-					GolfHat: Gotta look the part!
 					GolfOutfit: Gotta look the part!
 					LawnMower: Lawnmowers are super useful, whether you're smoothing grass or fending off zombies!
 					GolfCart: I think you're skilled enough now that you need these more than I do.
