@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables.Foods
         {
             SacrificeTotal = 1;
 
-            this.StaticDefaultsToFood(Color.Brown, Color.RosyBrown, Color.Red);
+            this.StaticDefaultsToFood(Color.Brown.UseA(0) * 0.75f, Color.RosyBrown.UseA(0) * 0.75f, Color.Red.UseA(0) * 0.75f);
         }
 
         public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace Aequus.Items.Consumables.Foods
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return lightColor * 0.75f;
+            return lightColor.MaxRGBA(128).UseA(150) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0.66f, 1f);
         }
     }
 }

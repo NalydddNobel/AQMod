@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
@@ -35,6 +36,7 @@ namespace Aequus.Items.Misc.Expert
                 });
             }
             player.QuickSpawnItem(source, ModContent.ItemType<CosmicEnergy>(), 3);
+            player.QuickSpawnItem(source, ModContent.ItemType<AstralCookie>());
         }
     }
 }

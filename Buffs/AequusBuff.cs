@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Buffs
 {
-    public class AequusBuff
+    public class AequusBuff : GlobalBuff
     {
+        public static HashSet<int> IsWellFedButDoesntIncreaseLifeRegen { get; private set; }
+
+        public override void Load()
+        {
+            IsWellFedButDoesntIncreaseLifeRegen = new HashSet<int>();
+        }
+
         public static bool AddStaticImmunity(int npc, params int[] buffList)
         {
             return AddStaticImmunity(npc, false, buffList);

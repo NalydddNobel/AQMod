@@ -1,4 +1,5 @@
-﻿using Aequus.Common;
+﻿using Aequus.Buffs;
+using Aequus.Common;
 using Aequus.Content.PotionConcoctions;
 using Aequus.Graphics;
 using Aequus.NPCs;
@@ -85,6 +86,11 @@ namespace Aequus.Items
                         if (NPC.AnyNPCs(NPCID.Angler))
                             tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("AnglerHint")) { OverrideColor = HintColor, });
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+                    }
+
+                    if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Contains(item.buffType))
+                    {
+                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
                     }
                 }
                 catch

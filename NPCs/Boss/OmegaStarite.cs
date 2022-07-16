@@ -7,6 +7,7 @@ using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
@@ -16,7 +17,7 @@ using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Monster.OmegaStarite;
+using Aequus.Projectiles.Monster.OmegaStariteProjs;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1622,6 +1623,7 @@ namespace Aequus.NPCs.Boss
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
                 .Add<CosmicEnergy>(chance: 1, stack: 3)
+                .Add<AstralCookie>(chance: 1, stack: 1)
                 .AddOptions(chance: 3, ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>())
                 .RegisterCondition();
         }

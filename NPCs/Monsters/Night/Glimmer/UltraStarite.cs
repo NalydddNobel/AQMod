@@ -64,7 +64,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry);
+            this.CreateEntry(database, bestiaryEntry)
+                .QuickUnlock();
         }
 
         public override void SetDefaults()

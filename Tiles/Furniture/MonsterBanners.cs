@@ -1,5 +1,5 @@
 ﻿using Aequus.NPCs.Monsters.Night.Glimmer;
-using Aequus.NPCs.Monsters.Sky;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

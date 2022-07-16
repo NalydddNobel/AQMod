@@ -7,7 +7,7 @@ using Aequus.Items.Misc.Expert;
 using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly;
-using Aequus.Projectiles.Monster.Crabson;
+using Aequus.Projectiles.Monster.CrabsonProjs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

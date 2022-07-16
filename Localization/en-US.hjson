@@ -196,6 +196,8 @@ Mods: {
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
 
+			TubOfCookieDough: Tub of Cookie Dough
+			AstralCookie: Astral Cookie
 			HolographicMeatloaf: Holographic Meatloaf
 			NeutronYogurt: Neutron Yogurt
 			CinnamonRoll: Cinnamon Roll
@@ -738,6 +740,8 @@ Mods: {
 				Ignores 15 points of enemy Defense
 				'''
 
+			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			HolographicMeatloaf:
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
@@ -1427,6 +1431,7 @@ Mods: {
 		}
 
 		BuffName: {
+			AstralCookieBuff: Astral Cookie
 			NeutronYogurtBuff: Neutron Yogurt
 			BloodthirstBuff: Bloodthirst
 			SentryBuff: Sentry
@@ -1509,6 +1514,7 @@ Mods: {
 			ReliefshroomBuff: You are being healed!
 			MendshroomBuff: You are being healed by a teammate!
 
+			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
 			NeutronYogurtBuff: Greatly increased gravity
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration

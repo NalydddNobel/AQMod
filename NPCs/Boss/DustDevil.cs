@@ -5,7 +5,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Expert;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Monster.DustDevil;
+using Aequus.Projectiles.Monster.DustDevilProjs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

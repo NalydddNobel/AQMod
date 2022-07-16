@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace Aequus.Items.Consumables.Foods
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
+            this.StaticDefaultsToDrink(Color.Yellow);
         }
 
         public override void SetDefaults()
