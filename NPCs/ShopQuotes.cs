@@ -706,11 +706,11 @@ namespace Aequus.NPCs
             }
 
             /// <summary>
-            /// Adds an NPC entry if one doesn't exist already
+            /// Gets an NPC entry. If one doesn't exist already, it will be added to the database.
             /// </summary>
             /// <param name="npc"></param>
             /// <returns></returns>
-            public NPCQuotes AddNPC(int npc)
+            public NPCQuotes GetNPC(int npc)
             {
                 if (TryGetValue(npc, out var quote))
                 {
@@ -743,7 +743,7 @@ namespace Aequus.NPCs
             {
                 int npc = (int)args[1];
 
-                AddNPC(npc);
+                GetNPC(npc);
                 if (args[2] is Color color)
                 {
                     this[npc].WithColor(color);

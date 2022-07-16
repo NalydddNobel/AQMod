@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CursorDyes;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +11,8 @@ namespace Aequus.Items.Consumables.CursorDyes
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddQuote(Type);
             CursorDyeManager.Register(Type, new ColorChangeCursor(() => Color.Lerp(Color.Black, Color.Red, MathHelper.Clamp(Main.LocalPlayer.statLife / (float)Main.LocalPlayer.statLifeMax2, 0f, 1f))));
         }
 

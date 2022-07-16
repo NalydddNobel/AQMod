@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CursorDyes;
+using Aequus.NPCs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +10,8 @@ namespace Aequus.Items.Consumables.CursorDyes
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddQuote(Type);
             CursorDyeManager.Register(Type, new TextureChangeCursor(Aequus.AssetsPath + "UI/Cursor/DemonCursor"));
         }
 

@@ -75,7 +75,7 @@ namespace Aequus.NPCs.Friendly
             });
 
             ShopQuotes.Database
-                .AddNPC(Type)
+                .GetNPC(Type)
                 .WithColor(Color.DarkOliveGreen * 1.75f)
                 .AddQuote<BalloonKit>()
                 .AddQuote<Pumpinator>()

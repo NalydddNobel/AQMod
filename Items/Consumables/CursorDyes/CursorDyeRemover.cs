@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.NPCs;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,7 +9,8 @@ namespace Aequus.Items.Consumables.CursorDyes
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
+            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddQuote(Type);
         }
 
         public override void SetDefaults()

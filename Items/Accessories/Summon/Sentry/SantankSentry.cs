@@ -18,6 +18,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            ShopQuotes.Database.GetNPC(NPCID.Mechanic).AddQuote(Type);
         }
 
         public override void SetDefaults()
@@ -51,11 +52,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 player.Aequus().equippedEyes = Type;
                 player.Aequus().cEyes = dyeItem.dye;
             }
-        }
-
-        public override void AddRecipes()
-        {
-            ShopQuotes.Database[NPCID.Mechanic].AddQuote(Type);
         }
     }
 

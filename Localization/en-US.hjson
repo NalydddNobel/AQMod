@@ -2936,7 +2936,7 @@ Mods: {
 					MagicLantern: I don't know what's up with this lantern. No matter how many times I hit it with a torch it doesn't light up. Maybe I'm missing something.
 				}
 			}
-			
+
 			Golfer: {
 				ShopQuote: {
 					//clubbys
@@ -2960,20 +2960,15 @@ Mods: {
 					GolfClubDiamondWedge: This wedge is just top-of-the-line! Peak performance!
 					GolfClubChlorophyteDriver: This driver is just top-of-the-line! Peak performance!
 					
-					//trophies
+					// Trophies
 					GolfTrophyBronze: Congratulations on your improvement! You still have plenty to go, however.
 					GolfTrophySilver: Congratulations on your improvement! You're almost better than I am, heh...
 					GolfTrophyGold: Congratulations on you improvement! I'd hate to be opposing you in any world tour!
 					
-					//flags
-					GolfCupFlagWhite: How are you gonna know where the hole is without one of these?
-					GolfCupFlagRed: How are you gonna know where the hole is without one of these?
-					GolfCupFlagGreen: How are you gonna know where the hole is without one of these?
-					GolfCupFlagBlue: How are you gonna know where the hole is without one of these?
-					GolfCupFlagYellow: How are you gonna know where the hole is without one of these?
-					GolfCupFlagPurple: How are you gonna know where the hole is without one of these?
+					// Flags
+					GolfCupFlag: How are you gonna know where the hole is without one of these?
 					
-					//misc
+					// Misc
 					GolfTee: The quintessential golfing tool. How will you hit the ball if it's covered by grass?
 					GolfBall: Rubber around rubber around rubber... all surrounded by plastic. Golf balls are pretty cool.
 					GolfWhistle: 
@@ -2989,16 +2984,48 @@ Mods: {
 					ArrowSign: Can't golf if you don't know where to hit towards!
 					PaintedArrowSign: Can't golf if you don't know where to hit towards!
 					GolfHat: Gotta look the part!
-					GolfShirt: Gotta look the part!
-					GolfPants: Gotta look the part!
-					GolfVisor: Gotta look the part!
+					GolfOutfit: Gotta look the part!
 					LawnMower: Lawnmowers are super useful, whether you're smoothing grass or fending off zombies!
 					GolfCart: I think you're skilled enough now that you need these more than I do.
-					GolfPainting1: I love this painting! Don't care much for the art, but I can get behind the subject matter!
-					GolfPainting2: I love this painting! Don't care much for the art, but I can get behind the subject matter!
-					GolfPainting3: I love this painting! Don't care much for the art, but I can get behind the subject matter!
-					GolfPainting4: I love this painting! Don't care much for the art, but I can get behind the subject matter!
+					GolfPaintings: I love this painting! Don't care much for the art, but I can get behind the subject matter!
 					GolfChest: Useful for storing all matter of golf memorabilia, or anything else.
+				}
+			}
+
+			DyeTrader: {
+				ShopQuote: {
+					DyeVat: A machine which greatly simplifies the dye mixing process, a must have for coloring enthusiasts
+					SilverDye: A beautiful color for your attire.
+					SilverDye_Helmet: A beautiful color for your attire, your {Helmet} could use some silver coloring in it.
+					TeamDye: Needing help dicerning team members? This liquified and stainable material dynamically changes color depending on your team.
+					DyeTradersClothes: The exotic blue dye I used to make this robe makes it quite an expensive purchase, if you want it.
+					ShadowDye: Representing the darkness of the night, this dye is almost as powerful as vantablack!
+					NegativeDye: Specially crafted to reverse the colors of whatever is applied to it! Only works with the colors visible on the light spectrum though.
+					BrownDye: Materials used to craft brown dye are unavailable on this island, so I imported some over from my homelands.
+					FogboundDye: 
+						'''
+						When checking one of my empty dye bottles, I noticed a ghost was trapped in one! 
+						It left magical fog essense which I mixed in with regular dye materials to create this.
+						'''
+					BloodbathDye: Using a tissue sample from a Blood Zombie and the strange properties of the Blood Moon, I was able to create a living blood dye! Quite amazing.
+					CursorDyeRemover: Cleans off your cursor of any dyes applied to it, extremely magical.
+					HealthCursorDye: 
+						'''
+						They say we all have a 'Cursor', a magical point in space which we put extreme focus into. 
+						Using mystic materials and a special bottle, I've been able to create a dye which effects this 'Cursor'.
+						This coloring tracks your life through the connection between you and your 'Cursor'.
+						'''
+					ManaCursorDye: This coloring tracks your mana supply through the connection between you and your 'Cursor'.
+					SwordCursorDye: 
+						'''
+						After much experimenting with materials and magic of all types,
+						I've been able to create a dye for your 'Cursor' which morphs the shape into a sword!
+						'''
+					DemonicCursorDye: 
+						'''
+						After much experimenting with materials and magic of all types,
+						I've been able to create a dye for your 'Cursor' which shows your true self.
+						'''
 				}
 			}
 

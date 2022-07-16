@@ -61,7 +61,7 @@ namespace Aequus.NPCs.Friendly
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
 
             ShopQuotes.Database
-                .AddNPC(Type)
+                .GetNPC(Type)
                 .WithColor(Color.DarkRed * 1.5f)
                 .AddQuote<GhostlyGrave>()
                 .AddQuote<OccultistCandle>()

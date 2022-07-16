@@ -65,7 +65,7 @@ namespace Aequus.NPCs.Friendly
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
             ShopQuotes.Database
-                .AddNPC(Type)
+                .GetNPC(Type)
                 .WithColor(Color.Orange * 1.2f)
                 .LegacyAddQuote<GrandReward>()
                 .LegacyAddQuote<SkeletonKey>()
