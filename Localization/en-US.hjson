@@ -2886,6 +2886,54 @@ Mods: {
 					HuntressAltPants: Leggings once worn by Etheria's strongest huntress!
 				}
 			}
+			
+			SkeletonMerchant: {
+				ShopQuote: {
+					StrangeBrew: 
+						'''
+						I don't know what's in here. Drink it, or don't...
+						you can't kill me in a way that matters if it turns you into a toad!
+						'''
+					LesserHealingPotion: I've heard these are very good for your health. I wouldn't know... I don't have health!
+					SpelunkerGlowsticks: The best way to mine without breaking your backbone getting up close to rocks to see if they shine!
+					Glowstick: 
+						'''
+						Very useful for lighting up a dark cave. Doesn't matter to me...
+						I don't have eyes.
+						'''
+					BoneTorch: 
+						'''
+						Well... I have flaming bits of my brothers in my bag.
+						Interested?
+						'''
+					Torch: It glows! It shines! It... produces light. It's... the torch! And it could be yours for 2 easy payments of 25 copper!
+					BoneArrow: Just don't ask why I have these.
+					WoodenArrow: For all your casual untraceable projectile-weaponry needs! You didn't get it from me.
+					
+					//reference to literally every youtuber doing calamity yoyo run #5346
+					BlueCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					RedCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					PurpleCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					GreenCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					
+					//demolitionist reference
+					Bomb: 
+						'''
+						Listen, I can explain. I met up with some dwarves down here and while they were asleep... unvoluntarily... 
+						I decided to borrow some in case I needed to get out of any hard places.
+						'''
+					Rope: Great for climbing up the hign cliffs of the caves! Or for holding yourself together when your bones get loose. Osteoporosis...
+					
+					//reference to gradients in sprites looking shit
+					Gradient: I know they don't look the best, but this gradient at least has some serious tricks in it! Whoosh... swish...
+					
+					//reference to windows command format C: you guys should totally run it on your computer
+					FormatC: Be careful when researching this yoyo... when I looked it up in my encyclopedia, it destroyed the entire book! Must've looked in the wrong place.
+					YoyoGlove: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					SlapHand: Hehe... this is just too funny. Ha! Oh, I can't control it. Please, take this off me, I beg you... chuckle...
+					MagicLantern: I don't know what's up with this lantern. No matter how many times I hit it with a torch it doesn't light up. Maybe I'm missing something.
+				}
+			}
 
 			Occultist: {
 				Basic: {
