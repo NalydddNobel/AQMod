@@ -63,7 +63,15 @@ namespace Aequus.NPCs.Friendly
             ShopQuotes.Database
                 .AddNPC(Type)
                 .WithColor(Color.DarkRed * 1.25f)
-                .LegacyAddQuote<GhostlyGrave>();
+                .AddQuote<GhostlyGrave>()
+                .AddQuote<OccultistCandle>()
+                .AddQuote<Meathook>()
+                .AddQuote(ItemID.ShadowKey)
+                .AddQuote<UnholyCore>()
+                .AddQuote<GoreNest>()
+                .AddQuote<InsurgentPainting>()
+                .AddQuote<BlackPhial>()
+                .AddQuote(ItemID.WhoopieCushion);
 
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }

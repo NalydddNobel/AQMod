@@ -69,7 +69,6 @@ namespace Aequus.NPCs.Friendly
                 .WithColor(Color.Orange * 1.2f)
                 .LegacyAddQuote<GrandReward>()
                 .LegacyAddQuote<SkeletonKey>()
-                .LegacyAddQuote(ItemID.ShadowKey)
                 .LegacyAddQuote<RecyclingMachine>()
                 .LegacyAddQuote<ForgedCard>()
                 .LegacyAddQuote<FaultyCoin>()
@@ -142,7 +141,6 @@ namespace Aequus.NPCs.Friendly
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
-                shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());

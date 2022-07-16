@@ -2901,7 +2901,7 @@ Mods: {
 						you can't kill me in a way that matters if it turns you into a toad!
 						'''
 					LesserHealingPotion: I've heard these are very good for your health. I wouldn't know... I don't have health!
-					SpelunkerGlowsticks: The best way to mine without breaking your backbone getting up close to rocks to see if they shine!
+					SpelunkerGlowstick: The best way to mine without breaking your backbone getting up close to rocks to see if they shine!
 					Glowstick: 
 						'''
 						Very useful for lighting up a dark cave. Doesn't matter to me...
@@ -2916,13 +2916,10 @@ Mods: {
 					BoneArrow: Just don't ask why I have these.
 					WoodenArrow: For all your casual untraceable projectile-weaponry needs! You didn't get it from me.
 					
-					//reference to literally every youtuber doing calamity yoyo run #5346
-					BlueCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
-					RedCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
-					PurpleCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
-					GreenCounterweight: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					// Reference to literally every youtuber doing calamity yoyo run #5346
+					Counterweights: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
 					
-					//demolitionist reference
+					// Demolitionist reference
 					Bomb: 
 						'''
 						Listen, I can explain. I met up with some dwarves down here and while they were asleep... unvoluntarily... 
@@ -2930,12 +2927,10 @@ Mods: {
 						'''
 					Rope: Great for climbing up the hign cliffs of the caves! Or for holding yourself together when your bones get loose. Osteoporosis...
 					
-					//reference to gradients in sprites looking shit
 					Gradient: I know they don't look the best, but this gradient at least has some serious tricks in it! Whoosh... swish...
-					
-					//reference to windows command format C: you guys should totally run it on your computer
+					// Reference to windows command format C: you guys should totally run it on your computer
 					FormatC: Be careful when researching this yoyo... when I looked it up in my encyclopedia, it destroyed the entire book! Must've looked in the wrong place.
-					YoyoGlove: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
+					YoYoGlove: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
 					SlapHand: Hehe... this is just too funny. Ha! Oh, I can't control it. Please, take this off me, I beg you... chuckle...
 					MagicLantern: I don't know what's up with this lantern. No matter how many times I hit it with a torch it doesn't light up. Maybe I'm missing something.
 				}
@@ -2953,6 +2948,14 @@ Mods: {
 						Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
 						Like all living things however, I have to put their suffering to an end.
 						'''
+					OccultistCandle: I find it useful for rituals, tehe-
+					Meathook: A hook extracted from my arch rival's weaponry... he won't find me here right?
+					ShadowKey: Used for unlocking the loot of the Underworld, weird that the demons didn't give each chest a different keyhole so pillaging isn't as easy.
+					UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
+					GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
+					InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
+					BlackPhial: Black magic sustains the liquid within this phial, a single drop can make an elephant deathly ill.
+					WhoopieCushion: *Poomf*
 				}
 			}
 
@@ -3065,11 +3068,6 @@ Mods: {
 						'''
 						Littering is a crime worse than bein' a pirate. 
 						Keep yeself safe with this cheap recycler!
-						'''
-					Terraria_ShadowKey: 
-						'''
-						Like ye skeleton key, but can unlock even more than landlubber booty! 
-						Purchase now!
 						'''
 					SkeletonKey: 
 						'''

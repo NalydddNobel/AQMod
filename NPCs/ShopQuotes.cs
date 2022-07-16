@@ -531,6 +531,29 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.BunnyCannon)
                     .LegacyAddQuote(ItemID.ExplosiveBunny),
 
+                    [NPCID.SkeletonMerchant] = new NPCQuotes(NPCID.SkeletonMerchant)
+                    .WithColor(Color.Gray * 1.2f)
+                    .AddQuote(ItemID.StrangeBrew)
+                    .AddQuote(ItemID.LesserHealingPotion)
+                    .AddQuote(ItemID.SpelunkerGlowstick)
+                    .AddQuote(ItemID.Glowstick)
+                    .AddQuote(ItemID.BoneTorch)
+                    .AddQuote(ItemID.Torch)
+                    .AddQuote(ItemID.BoneArrow)
+                    .AddQuote(ItemID.WoodenArrow)
+                    .AddQuote(ItemID.ExplosiveBunny)
+                    .AddShopQuoteKey("Counterweights", ItemID.BlueCounterweight)
+                    .AddShopQuoteKey("Counterweights", ItemID.RedCounterweight)
+                    .AddShopQuoteKey("Counterweights", ItemID.PurpleCounterweight)
+                    .AddShopQuoteKey("Counterweights", ItemID.GreenCounterweight)
+                    .AddQuote(ItemID.Bomb)
+                    .AddQuote(ItemID.Rope)
+                    .AddQuote(ItemID.Gradient)
+                    .AddQuote(ItemID.FormatC)
+                    .AddQuote(ItemID.YoYoGlove)
+                    .AddQuote(ItemID.SlapHand)
+                    .AddQuote(ItemID.MagicLantern),
+
                     [NPCID.DD2Bartender] = new NPCQuotes(NPCID.DD2Bartender)
                     .WithColor(Color.Lerp(Color.Orange, Color.White, 0.66f))
                     .AddQuote(ItemID.Ale)
@@ -859,6 +882,10 @@ namespace Aequus.NPCs
             if (npc.type == NPCID.BestiaryGirl && ZoologistAltText(npc))
             {
                 return ModContent.Request<Texture2D>("Aequus/Assets/UI/ZoologistAltHead");
+            }
+            if (npc.type == NPCID.SkeletonMerchant)
+            {
+                return ModContent.Request<Texture2D>("Aequus/Assets/UI/SkeletonMerchantHead");
             }
 
             int headType = TownNPCProfiles.Instance.GetProfile(npc, out var npcProfile)
