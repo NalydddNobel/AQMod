@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
@@ -20,7 +21,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.NPCs
 {
-    public class ShopQuotes : GlobalItem
+    public class ShopQuotes : GlobalItem, IAddRecipes
     {
         public class QuoteType
         {
@@ -35,12 +36,28 @@ namespace Aequus.NPCs
             private readonly int NPC;
             private Func<Color> getColor;
             public readonly Dictionary<int, Func<string>> ItemToQuote;
+            private readonly QuoteDatabase database;
 
-            internal NPCQuotes(int npc)
+            internal NPCQuotes(QuoteDatabase database, int npc)
             {
+                this.database = database;
                 NPC = npc;
                 getColor = DefaultColor;
                 ItemToQuote = new Dictionary<int, Func<string>>();
+            }
+
+            public NPCQuotes AddModItemQuote(Action action)
+            {
+                database.addModdedQuotes.Add(action);
+                return this;
+            }
+            public NPCQuotes AddModItemQuote(int item)
+            {
+                return AddModItemQuote(() => AddQuote(item));
+            }
+            public NPCQuotes AddModItemQuote(Mod mod, int item)
+            {
+                return AddModItemQuote(() => AddQuote(mod, item));
             }
 
             public NPCQuotes AddQuote(Func<string> key, int item)
@@ -253,10 +270,12 @@ namespace Aequus.NPCs
         public class QuoteDatabase : IModCallable
         {
             private Dictionary<int, NPCQuotes> database;
+            internal readonly List<Action> addModdedQuotes;
 
             public QuoteDatabase(bool init = true)
             {
                 database = new Dictionary<int, NPCQuotes>();
+                addModdedQuotes = new List<Action>();
                 if (init)
                 {
                     Initalize();
@@ -267,7 +286,7 @@ namespace Aequus.NPCs
             {
                 database = new Dictionary<int, NPCQuotes>()
                 {
-                    [NPCID.Merchant] = new NPCQuotes(NPCID.Merchant)
+                    [NPCID.Merchant] = new NPCQuotes(this, NPCID.Merchant)
                     .WithColor(Color.Yellow)
                     .LegacyAddQuote(ItemID.MiningHelmet)
                     .AddQuotesWithConditions(ItemID.PiggyBank,
@@ -301,7 +320,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.Nail)
                     ,
 
-                    [NPCID.ArmsDealer] = new NPCQuotes(NPCID.ArmsDealer)
+                    [NPCID.ArmsDealer] = new NPCQuotes(this, NPCID.ArmsDealer)
                     .WithColor(Color.Gray * 1.45f)
                     .AddQuote("LegacyDialog.67", ItemID.MusketBall)
                     .LegacyAddQuote(ItemID.SilverBullet)
@@ -324,7 +343,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.QuadBarrelShotgun)
                     ,
 
-                    [NPCID.Demolitionist] = new NPCQuotes(NPCID.Demolitionist)
+                    [NPCID.Demolitionist] = new NPCQuotes(this, NPCID.Demolitionist)
                     .WithColor(Color.Gray * 1.45f)
                     .LegacyAddQuote(ItemID.Grenade)
                     .AddQuoteWithSubstitutions("LegacyDialog.93", ItemID.Bomb,
@@ -339,7 +358,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.HoneyBomb)
                     ,
 
-                    [NPCID.GoblinTinkerer] = new NPCQuotes(NPCID.GoblinTinkerer)
+                    [NPCID.GoblinTinkerer] = new NPCQuotes(this, NPCID.GoblinTinkerer)
                     .WithColor(new Color(200, 70, 105, 255))
                     .LegacyAddQuote(ItemID.RocketBoots)
                     .LegacyAddQuote(ItemID.Ruler)
@@ -348,7 +367,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.Toolbelt)
                     .LegacyAddQuote(ItemID.SpikyBall),
 
-                    [NPCID.Wizard] = new NPCQuotes(NPCID.Wizard)
+                    [NPCID.Wizard] = new NPCQuotes(this, NPCID.Wizard)
                     .WithColor(Color.BlueViolet * 1.5f)
                     .AddQuote(ItemID.CrystalBall)
                     .AddQuote(ItemID.IceRod)
@@ -361,7 +380,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.EmptyDropper)
                     .AddQuote(ItemID.WizardsHat),
 
-                    [NPCID.Mechanic] = new NPCQuotes(NPCID.Mechanic)
+                    [NPCID.Mechanic] = new NPCQuotes(this, NPCID.Mechanic)
                     .WithColor(Color.Lerp(Color.Red, Color.White, 0.33f))
                     .AddQuote(ItemID.Wrench)
                     .AddShopQuoteKey("ColoredWrench", ItemID.BlueWrench)
@@ -394,7 +413,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.TimerOneHalfSecond)
                     .AddQuote(ItemID.TimerOneFourthSecond),
 
-                    [NPCID.Truffle] = new NPCQuotes(NPCID.Truffle)
+                    [NPCID.Truffle] = new NPCQuotes(this, NPCID.Truffle)
                     .WithColor(Color.Lerp(Color.Blue, Color.White, 0.4f))
                     .AddQuote(ItemID.MushroomCap)
                     .AddQuote(ItemID.StrangeGlowingMushroom)
@@ -403,11 +422,11 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.Hammush)
                     .AddQuote(ItemID.Autohammer),
 
-                    [NPCID.DyeTrader] = new NPCQuotes(NPCID.DyeTrader)
+                    [NPCID.DyeTrader] = new NPCQuotes(this, NPCID.DyeTrader)
                     .WithColor(Color.Lerp(Color.BlueViolet, Color.White, 0.5f))
                     .AddQuote(ItemID.DyeVat)
                     .AddQuote(() => Main.LocalPlayer.head > 0 ?
-                    Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye_Helmet", new { Helmet = DyeTraderFindHelmetName() }) 
+                    Language.GetTextValueWith(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye_Helmet", new { Helmet = DyeTraderFindHelmetName() }) 
                     : Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye"), ItemID.SilverDye)
                     .AddQuote(ItemID.TeamDye)
                     .AddQuote("DyeTradersClothes", ItemID.DyeTraderRobe)
@@ -418,7 +437,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.FogboundDye)
                     .AddQuote(ItemID.BloodbathDye),
 
-                    [NPCID.Cyborg] = new NPCQuotes(NPCID.Cyborg)
+                    [NPCID.Cyborg] = new NPCQuotes(this, NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
                     .LegacyAddQuote(ItemID.RocketI)
                     .LegacyAddQuote(ItemID.RocketII)
@@ -435,7 +454,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.EchoBlock)
                     .LegacyAddQuote(ItemID.SpectreGoggles),
 
-                    [NPCID.Painter] = new NPCQuotes(NPCID.Painter)
+                    [NPCID.Painter] = new NPCQuotes(this, NPCID.Painter)
                     .WithColor(() => AequusHelpers.LerpBetween(new Color[]
                     {
                         Color.Red,
@@ -516,7 +535,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.GrinchFingerWallpaper)
                     ,
 
-                    [NPCID.WitchDoctor] = new NPCQuotes(NPCID.WitchDoctor)
+                    [NPCID.WitchDoctor] = new NPCQuotes(this, NPCID.WitchDoctor)
                     .WithColor(Color.GreenYellow)
                     .AddQuote(ItemID.ImbuingStation)
                     .AddQuote(ItemID.Blowgun)
@@ -544,7 +563,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.BewitchingTable)
                     ,
 
-                    [NPCID.Pirate] = new NPCQuotes(NPCID.Pirate)
+                    [NPCID.Pirate] = new NPCQuotes(this, NPCID.Pirate)
                     .WithColor(Color.Orange * 1.2f)
                     .LegacyAddQuote(ItemID.Cannon)
                     .LegacyAddQuote(ItemID.Cannonball)
@@ -556,7 +575,7 @@ namespace Aequus.NPCs
                     .LegacyAddQuote(ItemID.BunnyCannon)
                     .LegacyAddQuote(ItemID.ExplosiveBunny),
 
-                    [NPCID.SkeletonMerchant] = new NPCQuotes(NPCID.SkeletonMerchant)
+                    [NPCID.SkeletonMerchant] = new NPCQuotes(this, NPCID.SkeletonMerchant)
                     .WithColor(Color.Gray * 1.2f)
                     .AddQuote(ItemID.StrangeBrew)
                     .AddQuote(ItemID.LesserHealingPotion)
@@ -579,7 +598,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.SlapHand)
                     .AddQuote(ItemID.MagicLantern),
 
-                    [NPCID.DD2Bartender] = new NPCQuotes(NPCID.DD2Bartender)
+                    [NPCID.DD2Bartender] = new NPCQuotes(this, NPCID.DD2Bartender)
                     .WithColor(Color.Lerp(Color.Orange, Color.White, 0.66f))
                     .AddQuote(ItemID.Ale)
                     .AddQuote(ItemID.DD2ElderCrystal)
@@ -623,7 +642,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.HuntressAltPants)
                     ,
 
-                    [NPCID.BestiaryGirl] = new NPCQuotes(NPCID.BestiaryGirl)
+                    [NPCID.BestiaryGirl] = new NPCQuotes(this, NPCID.BestiaryGirl)
                     .WithColor(() => ZoologistAltText(TalkingNPC()) ? Color.Red : new Color(255, 140, 160, 255))
                     .AddZoologistQuote(ItemID.DontHurtCrittersBook)
                     .AddZoologistQuote(ItemID.SquirrelHook)
@@ -659,7 +678,7 @@ namespace Aequus.NPCs
                     .AddZoologistQuote(ItemID.DiggingMoleMinecart)
                     .AddZoologistQuote(ItemID.BallOfFuseWire),
 
-                    [NPCID.Golfer] = new NPCQuotes(NPCID.Golfer)
+                    [NPCID.Golfer] = new NPCQuotes(this, NPCID.Golfer)
                     .WithColor(Color.Lerp(Color.SkyBlue, Color.White, 0.5f))
                     .AddQuote(ItemID.GolfClubStoneIron)
                     .AddQuote(ItemID.GolfClubRustyPutter)
@@ -693,6 +712,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.ArrowSign)
                     .AddQuote(ItemID.PaintedArrowSign)
                     .AddShopQuoteKey("GolfOutfit", ItemID.GolfHat)
+                    .AddShopQuoteKey("GolfOutfit", ItemID.GolfVisor)
                     .AddShopQuoteKey("GolfOutfit", ItemID.GolfShirt)
                     .AddShopQuoteKey("GolfOutfit", ItemID.GolfPants)
                     .AddQuote(ItemID.LawnMower)
@@ -704,7 +724,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.GolfChest)
                     ,
 
-                    [NPCID.Princess] = new NPCQuotes(NPCID.Princess)
+                    [NPCID.Princess] = new NPCQuotes(this, NPCID.Princess)
                     .WithColor(Main.creativeModeColor * 1.25f)
                     .LegacyAddQuote(ItemID.RoyalTiara)
                     .LegacyAddQuote(ItemID.RoyalDressTop)
@@ -743,6 +763,19 @@ namespace Aequus.NPCs
                     ,
                 };
             }
+
+            internal void AddModdedQuotes()
+            {
+                if (addModdedQuotes != null)
+                {
+                    foreach (var a in addModdedQuotes)
+                    {
+                        a.Invoke();
+                    }
+                    addModdedQuotes.Clear();
+                }
+            }
+
             public static string DyeTraderFindHelmetName()
             {
                 var arr = Main.LocalPlayer.armor;
@@ -788,7 +821,7 @@ namespace Aequus.NPCs
                 {
                     return quote;
                 }
-                database.Add(npc, new NPCQuotes(npc));
+                database.Add(npc, new NPCQuotes(this, npc));
                 return this[npc];
             }
 
@@ -821,25 +854,21 @@ namespace Aequus.NPCs
                     this[npc].WithColor(color);
                     return IModCallable.Success;
                 }
-                int[] items = new int[1];
-                if (args[3] is int[] arr)
-                {
-                    items = arr;
-                }
-                else
-                {
-                    items[0] = (int)args[3];
-                }
+                var items = args[3] is int[] arr ? arr : new int[] { (int)args[3] };
 
                 foreach (var item in items)
                 {
                     if (args[2] is string quoteText)
                     {
-                        this[npc].AddQuote(quoteText, item);
+                        this[npc].AddModItemQuote(() => this[npc].AddQuote(quoteText, item));
                     }
                     else if (args[2] is Mod mod)
                     {
-                        this[npc].AddQuote(mod, item);
+                        this[npc].AddModItemQuote(() => this[npc].AddQuote(mod, item));
+                    }
+                    else if (args[2] is Func<string> getText)
+                    {
+                        this[npc].AddModItemQuote(() => this[npc].AddQuote(getText, item));
                     }
                 }
 
@@ -860,6 +889,16 @@ namespace Aequus.NPCs
         public override void Load()
         {
             Database = new QuoteDatabase(init: true);
+        }
+
+        public void AddRecipes(Aequus aequus)
+        {
+            Database.AddModdedQuotes();
+        }
+
+        public override void Unload()
+        {
+            Database = null;
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

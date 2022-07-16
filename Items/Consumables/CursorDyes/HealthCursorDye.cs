@@ -12,7 +12,7 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddQuote(Type);
+            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddModItemQuote(Type);
             CursorDyeManager.Register(Type, new ColorChangeCursor(() => Color.Lerp(Color.Black, Color.Red, MathHelper.Clamp(Main.LocalPlayer.statLife / (float)Main.LocalPlayer.statLifeMax2, 0f, 1f))));
         }
 

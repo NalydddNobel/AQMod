@@ -491,9 +491,9 @@
             </summary>
             <param name="reader"></param>
         </member>
-        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.AddNPC(System.Int32)">
+        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.GetNPC(System.Int32)">
             <summary>
-            Adds an NPC entry if one doesn't exist already
+            Gets an NPC entry. If one doesn't exist already, it will be added to the database.
             </summary>
             <param name="npc"></param>
             <returns></returns>

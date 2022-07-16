@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddQuote(Type);
+            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddModItemQuote(Type);
         }
 
         public override void SetDefaults()

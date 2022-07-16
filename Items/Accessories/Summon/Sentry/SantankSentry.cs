@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.Mechanic).AddQuote(Type);
+            ShopQuotes.Database.GetNPC(NPCID.Mechanic).AddModItemQuote(Type);
         }
 
         public override void SetDefaults()
