@@ -159,7 +159,7 @@ Mods: {
 			BoundBow: 界限弓
 			Slingshot: 弹弓
 
-			WowHat: "'哇巫'帽"
+			WowHat: "'喔师'帽"
 			Snowgrave: 雪墓
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
@@ -2884,6 +2884,54 @@ Mods: {
 					HuntressAltHead: 永恒之地最强的女猎手曾经戴过的兜帽!
 					HuntressAltShirt: 永恒之地最强的女猎手曾经穿过的衣服!
 					HuntressAltPants: 永恒之地最强的女猎手曾经穿过的护胫!
+				}
+			}
+
+			SkeletonMerchant: {
+				ShopQuote: {
+					StrangeBrew: 
+						'''
+						我不知道这里面是什么...要么喝, 要么不喝.
+						如果它把你变成了一只青蛙的话, 你不能用有意义的方式杀我!
+						'''
+					LesserHealingPotion: 我听说这些对你的生命很好. 我不知道...我没有生命!
+					SpelunkerGlowsticks: 不伤脊梁挖矿的最好办法, 靠近岩石看看它们是否发光!
+					Glowstick: 
+						'''
+						对于照亮黑暗的洞穴非常有用. 但对我来说无关紧要...
+						我没有眼睛.
+						'''
+					BoneTorch: 
+						'''
+						好吧...我的包里有我兄弟的燃烧碎片.
+						有兴趣吗?
+						'''
+					Torch: 它在发光! 它在闪耀! 它...提供光亮. 它是...火把! 并且它可能是你的, 两只火把只要25铜币!
+					BoneArrow: 别问我为什么有这些.
+					WoodenArrow: 满足你所有不经意间无法追踪的弹幕武器需求! 你不会从我这得到它的.
+
+					//reference to literally every youtuber doing calamity yoyo run #5346
+					BlueCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					RedCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					PurpleCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					GreenCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+
+					//demolitionist reference
+					Bomb: 
+						'''
+						听着, 我可以解释. 我在这里遇到了一些小矮人, 当他们睡着的时候...非自愿的... 
+						我决定借一些, 以备不时之需.
+						'''
+					Rope: 非常适合攀登洞穴高处的悬崖! 或是当你骨质疏松时让你可以站起来. 骨质疏松症...
+
+					//reference to gradients in sprites looking shit
+					Gradient: 我知道它们看起来不是最好的, 但这个渐变至少有一些把戏! 嗖...嗖嗖...
+
+					//reference to windows command format C: you guys should totally run it on your computer
+					FormatC: 研究这个悠悠球时要小心点...当我在我的百科全书里查到它的时候, 它毁了整本书! 一定找错地方了.
+					YoyoGlove: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					SlapHand: 呵呵...这很有趣. 哈! 哦, 我没法控制它. 请把这个从我身上拿下来, 我求你...咯咯...
+					MagicLantern: 我不知道这个灯笼怎么了. 不管我用手电筒打它多少次, 它都不亮. 也许我漏了什么.
 				}
 			}
 
