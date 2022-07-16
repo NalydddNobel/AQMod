@@ -196,6 +196,8 @@ Mods: {
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
+			TubOfCookieDough: 一桶饼干面团
+			AstralCookie: 星体饼干
 			HolographicMeatloaf: 全息肉饼
 			NeutronYogurt: 中子酸奶
 			CinnamonRoll: 肉桂卷
@@ -738,6 +740,8 @@ Mods: {
 				无视敌人15点的防御力
 				'''
 
+			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			HolographicMeatloaf:
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
@@ -867,7 +871,7 @@ Mods: {
 			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
-			BongBongPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			BongBongPainting: "{$Mods.Aequus.PaintingSignature.Water}"
 			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
 			CatalystPainting:
 				'''
@@ -1427,6 +1431,7 @@ Mods: {
 		}
 
 		BuffName: {
+			AstralCookieBuff: 星体饼干
 			NeutronYogurtBuff: 中子酸奶
 			BloodthirstBuff: 嗜血
 			SentryBuff: 哨兵
@@ -1509,12 +1514,13 @@ Mods: {
 			ReliefshroomBuff: 你正在被治愈!
 			MendshroomBuff: 你正在被队友治愈!
 
+			AstralCookieBuff: 大幅度提升魔法属性, 小幅度提升其他属性
 			NeutronYogurtBuff: 大幅度增加重力
 			SpicyEelBuff: 大幅度增加移动速度
-			BaguetteBuff: 大幅度增加各项属性和生命恢复速度
+			BaguetteBuff: 大幅度提升各项属性和生命恢复速度
 
 			Vampirism: 在这之后你可能会变成吸血鬼...
-			VampirismNight: 大幅度增加属性, 攻击有几率汲取生命值
+			VampirismNight: 大幅度提升属性, 攻击有几率汲取生命值
 			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
@@ -2022,6 +2028,7 @@ Mods: {
 		}
 
 		PaintingSignature: {
+			Water: "'W.特尔'"
 			SplitModFrFrWtf: "'Dr.不酷'"
 			NalydT: "'N.T.'"
 			niker: "'N.'"
@@ -2895,7 +2902,7 @@ Mods: {
 						如果它把你变成了一只青蛙的话, 你不能用有意义的方式杀我!
 						'''
 					LesserHealingPotion: 我听说这些对你的生命很好. 我不知道...我没有生命!
-					SpelunkerGlowsticks: 不伤脊梁挖矿的最好办法, 靠近岩石看看它们是否发光!
+					SpelunkerGlowstick: 不伤脊梁挖矿的最好办法, 靠近岩石看看它们是否发光!
 					Glowstick: 
 						'''
 						对于照亮黑暗的洞穴非常有用. 但对我来说无关紧要...
@@ -2910,13 +2917,10 @@ Mods: {
 					BoneArrow: 别问我为什么有这些.
 					WoodenArrow: 满足你所有不经意间无法追踪的弹幕武器需求! 你不会从我这得到它的.
 
-					//reference to literally every youtuber doing calamity yoyo run #5346
-					BlueCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
-					RedCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
-					PurpleCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
-					GreenCounterweight: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					// Reference to literally every youtuber doing calamity yoyo run #5346
+					Counterweights: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
 
-					//demolitionist reference
+					// Demolitionist reference
 					Bomb: 
 						'''
 						听着, 我可以解释. 我在这里遇到了一些小矮人, 当他们睡着的时候...非自愿的... 
@@ -2924,17 +2928,106 @@ Mods: {
 						'''
 					Rope: 非常适合攀登洞穴高处的悬崖! 或是当你骨质疏松时让你可以站起来. 骨质疏松症...
 
-					//reference to gradients in sprites looking shit
 					Gradient: 我知道它们看起来不是最好的, 但这个渐变至少有一些把戏! 嗖...嗖嗖...
-
-					//reference to windows command format C: you guys should totally run it on your computer
+					// Reference to windows command format C: you guys should totally run it on your computer
 					FormatC: 研究这个悠悠球时要小心点...当我在我的百科全书里查到它的时候, 它毁了整本书! 一定找错地方了.
-					YoyoGlove: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
+					YoYoGlove: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
 					SlapHand: 呵呵...这很有趣. 哈! 哦, 我没法控制它. 请把这个从我身上拿下来, 我求你...咯咯...
 					MagicLantern: 我不知道这个灯笼怎么了. 不管我用手电筒打它多少次, 它都不亮. 也许我漏了什么.
 				}
 			}
 
+			Golfer: {
+				ShopQuote: {
+					// Clubs
+					GolfClubStoneIron: 这根铁杆有点变形了, 但这样就够了.
+					GolfClubRustyPutter: 这根推杆有点变形了, 但这样就够了.
+					GolfClubBronzeWedge: 这根挖起杆有点变形了, 但这样就够了.
+					GolfClubWoodDriver: 这根木杆有点变形了, 但这样就够了.
+
+					GolfClubIron: 这根铁杆很好用并且打击效果很好.
+					GolfClubPutter: 这根推杆很好用并且打击效果很好.
+					GolfClubWedge: 这根挖起杆很好用并且打击效果很好.
+					GolfClubDriver: 这根木杆很好用并且打击效果很好.
+
+					GolfClubMythrilIron: 这根铁杆装扮的很好! 我想它的打击效果也很好.
+					GolfClubLeadPutter: 这根推杆装扮的很好! 我想它的打击效果也很好.
+					GolfClubGoldWedge: 这根挖起杆装扮的很好! 我想它的打击效果也很好.
+					GolfClubPearlwoodDriver: 这根木杆装扮的很好! 我想它的打击效果也很好.
+
+					GolfClubTitaniumIron: 这根铁杆是最顶尖的! 峰值性能!
+					GolfClubShroomitePutter: 这根推杆是最顶尖的! 峰值性能!
+					GolfClubDiamondWedge: 这根挖起杆是最顶尖的! 峰值性能!
+					GolfClubChlorophyteDriver: 这根木杆是最顶尖的! 峰值性能!
+
+					// Trophies
+					GolfTrophyBronze: 恭喜你进步了! 然而, 你还有很多事情要做.
+					GolfTrophySilver: 恭喜你进步了! 你几乎要比我强了, 呵呵...
+					GolfTrophyGold: 恭喜你的进步! 我不想在任何世界巡回赛中当你的对手!
+
+					// Flags
+					GolfCupFlag: 没有这些你怎么知道洞在哪里?
+
+					// Misc
+					GolfTee: 典型的高尔夫工具. 如果球被草覆盖了, 你该怎么击球?
+					GolfBall: 橡胶周围的橡胶周围的橡胶...全部被塑料包围. 高尔夫球很酷.
+					GolfWhistle: 
+						'''
+						前几天我发现这东西就在附近... 
+						不知道有谁会在高尔夫上使用魔法.
+						'''
+					GolfCup: 
+						'''
+						你可能认为你可以用一个普通的球洞, 但它安装了五彩纸屑发射器!
+						我喜欢五彩纸屑.
+						'''
+					ArrowSign: 如果你不知道往哪里打, 就不能打高尔夫球!
+					PaintedArrowSign: 如果你不知道往哪里打, 就不能打高尔夫球!
+					GolfOutfit: 看看这部分!
+					LawnMower: 割草机非常有用, 无论你是在剃平草坪还是击退僵尸!
+					GolfCart: 我认为你现在已经足够熟练了, 你比我更需要这些.
+					GolfPaintings: 我爱这幅画! 我不太喜欢艺术，但我可以深入主题!
+					GolfChest: 用于存储所有高尔夫纪念品或任何其他物品.
+				}
+			}
+
+
+			DyeTrader: {
+				ShopQuote: {
+					DyeVat: 大大简化染料混合过程的机器, 着色爱好者的必备品.
+					SilverDye: 适合你服装的漂亮颜色.
+					SilverDye_Helmet: 适合你服装的漂亮颜色, 你的{Helmet}可能需要一些银色.
+					TeamDye: 需要队伍成员的帮助? 这种液化且可染色的材料会根据你的队伍动态改变颜色.
+					DyeTradersClothes: 我用来做这件长袍的异国情调的蓝色染料使它相当昂贵, 如果你想要它话.
+					ShadowDye: 代表夜晚的黑暗, 这种染料几乎和梵塔黑一样强大!
+					NegativeDye: 精心制作, 可反转应用于其上的任何颜色! 但只适用于光谱上可见的颜色.
+					BrownDye: 这个岛上没有用于制作棕色染料的材料, 所以我从家乡引进了一些.
+					FogboundDye: 
+						'''
+						在检查我的一个空染色瓶时, 我注意到一个瓶子里有一个鬼! 
+						它留下了神奇的雾精华, 我把它和普通的染料混合在一起, 创造了这个.
+						'''
+					BloodbathDye: 利用血僵尸的组织样本和血月的奇怪特性, 我创造了一种活的血液染料! 挺神奇的.
+					CursorDyeRemover: 清除光标上的任何染料, 非常神奇.
+					HealthCursorDye: 
+						'''
+						他们说我们都有一个'光标', 空间中一个神奇的点, 我们的注意力都在上面. 
+						使用神秘的材料和特殊的瓶子, 我已经能够创造出一种影响这个'光标'的染料.
+						这种颜色通过你和你的'光标'之间的连接来追踪你的生命.
+						'''
+					ManaCursorDye: 这种颜色通过你和你的'光标'之间的连接来追踪你的法力供给.
+					SwordCursorDye: 
+						'''
+						在对各种材料和魔法进行了大量实验之后,
+						我已经能够为你的'光标'创建一种染料, 它会将其形状变形为一把剑!
+						'''
+					DemonicCursorDye: 
+						'''
+						在对各种材料和魔法进行了大量实验之后,
+						我已经能够为你的'光标'创建一种染料, 它会显示你真实的自我.
+						'''
+				}
+			}
 			Occultist: {
 				Basic: {
 					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
@@ -2947,6 +3040,14 @@ Mods: {
 						在墓地测试复活咒语, 似乎这个墓地想要有一个活着的灵魂.
 						然而, 就像所有生物一样, 我必须结束他们的痛苦.
 						'''
+					OccultistCandle: 我觉得它对仪式很有用, 这-
+					Meathook: 从我劲敌的武器上拿出来的钩子...他不会知道我在这的, 对吧?
+					ShadowKey: 用于解锁地狱的战利品, 奇怪的是, 恶魔没有给每个箱子一个不同的钥匙孔, 所以抢劫并不是很容易.
+					UnholyCore: 我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
+					GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
+					InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
+					BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使大象病入膏肓.
+					WhoopieCushion: *Poomf*
 				}
 			}
 			
@@ -3060,11 +3161,6 @@ Mods: {
 					乱扔垃圾是比当海盗更严重的罪行. 
 					用这个廉价的回收机保证恁自己的安全吧!
 					'''
-					Terraria_ShadowKey: 
-					'''
-					就像恁的骷髅钥匙一样, 但可以解锁比旱鸭子战利品更多的物品! 
-					买一个吧!
-					'''
 					SkeletonKey: 
 					'''
 					恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 
@@ -3086,7 +3182,6 @@ Mods: {
 			}
 
 			SkyMerchant: {
-
 				Basic: {
 					0: 我卖某些物品的速度跟它们飞的一样快.
 					1: 我们最满意的客户是鹰身女妖. 来看看我的商品, 价格便宜!
@@ -3099,6 +3194,28 @@ Mods: {
 				Merchant: 呃, {Merchant}总是谈论他的销售额有多高, 他不是一个天空商人, 真是讽刺, 但等下, 我是.
 				TravellingMerchant: 我很好奇{TravellingMerchant}是如何比我做得更好的. 他甚至不用航空邮寄!
 				Pirate: 最近, {Pirate}对我谈到了他的船员. 我对他提到的那艘飞艇很感兴趣. 可以为我们的配送服务提供极大的承载能力!
+
+				ShopQuote: {
+					BalloonKit: 老态龙钟, 便携式热气球一直是人们追求的目标, 并且它们就在这!
+					Pumpinator: 我从飞艇上买的一种奇怪的技术. 很不幸, 吸气功能不起作用, 真是个骗局!
+					Nimrod: 
+						'''
+						雷击湖面可以杀死数百条鱼, 不幸的是, 这种鱼竿每次只能钓3条鱼.
+						或者是制作这个鱼竿的巫师担心鳟鱼的数量.
+						'''
+					EquippedAcc: 嗯, 你身上的那个饰品很好, 不过, 也许这件的工艺更好?
+					Banners:
+						'''
+						啊是的, 用猎物的尸体制作地毯已经过时了.
+						在我看来, 悬挂横幅更好.
+						'''
+					BongBongPainting: 这幅画描绘了一种不正常的生物, 不过有人可能会欣赏这种生物的风格.
+					CatalystPainting: 画这幅画的艺术家肯定憎恨疯狂的邪教, 这是公平的.
+					YinYangPainting: 黑暗和邪恶力量的和谐相处, 有人认为这是真的.
+					YinYangPaintingsSeparate: 这幅画奇怪的名字和怪异的图像一定在逃避着什么...
+					HomeworldPainting: 这是一幅令人难以置信的艺术品, 展示了理论家们认为星源的家园是什么样子.
+					SkyrimRocks: 岩石上有用古代龙语加密的文字, 不幸的是, 我不知道有谁能翻译它.
+				}
 
 				PlaceHere: 放置于此处来重命名你的物品
 				PressHere: 按下来设置你物品的名字
