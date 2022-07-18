@@ -33,6 +33,8 @@ namespace Aequus
     public static class AequusHelpers
     {
         public const int NPCREGEN = 8;
+        public const char AirCharacter = '⠀';
+        public const string AirString = "⠀";
 
         /// <summary>
         /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.

@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Prefixes.SoulCandles
+namespace Aequus.Items.Prefixes.SoulCandles
 {
     public abstract class SoulCandlePrefix : ModPrefix
     {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -7,6 +8,7 @@ namespace Aequus
     public class NecromancyDamageClass : DamageClass
     {
         public static NecromancyDamageClass Instance { get; private set; }
+        public static Color NecromancyDamageColor = new Color(200, 120, 230);
 
         protected override string DisplayNameInternal => Language.GetTextValue("LegacyTooltip.53").Substring(1);
 

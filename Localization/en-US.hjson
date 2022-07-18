@@ -289,6 +289,10 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
+			ForceGravityBlock: Gravity Block
+			ForceAntiGravityBlock: Anti Gravity Block
+			GoreNest: Gore Nest
+
 			AshCrossGraveMarker: Ash Cross Grave Marker
 			AshGraveMarker: Ash Grave Marker
 			AshGravestone: Ash Gravestone
@@ -433,7 +437,6 @@ Mods: {
 			SeaPickle: Sea Pickle
 			CrabsonTrophy: Crabson Trophy
 			HellTombstone: Hell Tombstone
-			GoreNest: Gore Nest
 			ArgonMushroom: Argon Mushroom
 			KryptonMushroom: Krypton Mushroom
 			XenonMushroom: Xenon Mushroom
@@ -868,6 +871,14 @@ Mods: {
 
 			RecyclingMachine: Allows you to recycle trash items
 
+			ForceGravityBlock: Forces players above to obey gravity
+			ForceAntiGravityBlock: Forces players below to flip gravity
+			GoreNest:
+				'''
+				May upgrade evil weapons
+				Counts as a demon/crimson altar
+				'''
+
 			HomeworldPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
@@ -1231,11 +1242,6 @@ Mods: {
 			GlimmeringStatue: Used to craft powerful items made of energy
 			SedimentSandBlock: Does not fall
 			SeaPickle: "'You hear a voice telling you to flip it over'"
-			GoreNest:
-				'''
-				May upgrade evil weapons
-				Counts as a demon/crimson altar
-				'''
 			ArgonMushroom:
 				'''
 				Emits red light
@@ -3108,7 +3114,7 @@ Mods: {
 						'''
 					Terraria_DiscountCard: 
 						'''
-						Grabbed this of one of me maties' corpses, 
+						Took this of one of me maties' corpses, 
 						you two look similar enough eh?
 						'''
 					FoolsGoldRing: 

@@ -480,45 +480,6 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="T:Aequus.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries
-            </summary>
-        </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
-        </member>
-        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.GetNPC(System.Int32)">
-            <summary>
-            Gets an NPC entry. If one doesn't exist already, it will be added to the database.
-            </summary>
-            <param name="npc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
-            <summary>
-            Adds shop quote data for an npc
-            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
-            <para>Parameter 2: Key (<see cref="T:System.String"/>)</para>
-            <para>Parameter 2 (Alternative): Mod (<see cref="T:Terraria.ModLoader.Mod"/>) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
-            <para>Parameter 3: Item Type (<see cref="T:System.Int32"/>) OR (<see cref="T:System.Int32"/>[])</para>
-            <para>To make a town npc use a specific quote color:</para>
-            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
-            <para>Parameter 2: Color (<see cref="T:Microsoft.Xna.Framework.Color"/>)</para>
-            <para>A successful mod call would look like:</para>
-            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, <see cref="T:Microsoft.Xna.Framework.Color"/>);</code> OR
-            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, this, <see cref="T:Terraria.ID.ItemID"/>);</code> OR
-            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", <see cref="T:Terraria.ID.ItemID"/>);</code>
-            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", new int[] { <see cref="T:Terraria.ID.ItemID"/>, });</code>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>.</para>
-            </summary>
-            <param name="aequus"></param>
-            <param name="args"></param>
-            <returns></returns>
-        </member>
         <member name="P:Aequus.Graphics.AequusEffects.BehindPlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
@@ -688,6 +649,45 @@
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
             </summary>
+        </member>
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.GetNPC(System.Int32)">
+            <summary>
+            Gets an NPC entry. If one doesn't exist already, it will be added to the database.
+            </summary>
+            <param name="npc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.NPCs.ShopQuotes.QuoteDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
+            <summary>
+            Adds shop quote data for an npc
+            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
+            <para>Parameter 2: Key (<see cref="T:System.String"/>)</para>
+            <para>Parameter 2 (Alternative): Mod (<see cref="T:Terraria.ModLoader.Mod"/>) Would generate a key which looks like: <code>Mods.MYMODNAME.Chat.(NPCKEY).ShopQuotes.(ITEMKEY)</code></para>
+            <para>Parameter 3: Item Type (<see cref="T:System.Int32"/>) OR (<see cref="T:System.Int32"/>[])</para>
+            <para>To make a town npc use a specific quote color:</para>
+            <para>Parameter 1: NPC Type (<see cref="T:System.Int32"/>)</para>
+            <para>Parameter 2: Color (<see cref="T:Microsoft.Xna.Framework.Color"/>)</para>
+            <para>A successful mod call would look like:</para>
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, <see cref="T:Microsoft.Xna.Framework.Color"/>);</code> OR
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, this, <see cref="T:Terraria.ID.ItemID"/>);</code> OR
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", <see cref="T:Terraria.ID.ItemID"/>);</code>
+            <code>aequus.Call("AddShopQuote", <see cref="T:Terraria.ID.NPCID"/>, "This is text. I can also use language keys here.", new int[] { <see cref="T:Terraria.ID.ItemID"/>, });</code>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>.</para>
+            </summary>
+            <param name="aequus"></param>
+            <param name="args"></param>
+            <returns></returns>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>

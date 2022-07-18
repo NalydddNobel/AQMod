@@ -123,14 +123,19 @@ namespace Aequus.NPCs.Friendly
 
         public override void AI()
         {
-            int npcOwnerIndex = NPC.FindFirstNPC(ModContent.NPCType<Physicist>());
-            if (npcOwnerIndex == -1)
+            int npcOwnerIndex = (int)NPC.ai[0];
+            if (!Main.npc[npcOwnerIndex].active || Main.npc[npcOwnerIndex].type != ModContent.NPCType<Physicist>())
+            {
+                npcOwnerIndex = NPC.FindFirstNPC(ModContent.NPCType<Physicist>());
+            }
+            if (npcOwnerIndex > NPC.whoAmI || npcOwnerIndex == -1) // Ensures the npc is in a slot after their parent.
             {
                 NPC.life = -1;
                 NPC.HitEffect();
                 NPC.active = false;
                 return;
             }
+
             var npcOwner = Main.npc[npcOwnerIndex];
             var gotoLocation = npcOwner.Center + new Vector2(npcOwner.width * 1.5f * npcOwner.direction, 0f);
 
@@ -152,7 +157,7 @@ namespace Aequus.NPCs.Friendly
             else
             {
                 NPC.velocity += difference / 600f;
-                if (difference.Length()  > 2000f)
+                if (difference.Length() > 2000f)
                 {
                     NPC.Center = npcOwner.Center;
                 }
@@ -164,7 +169,7 @@ namespace Aequus.NPCs.Friendly
                 if (Collision.SolidCollision(NPC.position, NPC.width, NPC.height))
                 {
                     NPC.velocity.X *= 0.95f;
-                    NPC.velocity.Y -= 0.3f;
+                    NPC.velocity.Y -= 0.05f;
                 }
             }
             var rect = NPC.getRect();
@@ -196,12 +201,42 @@ namespace Aequus.NPCs.Friendly
         {
             if (!string.IsNullOrEmpty(NPC.GivenName))
                 tag["Name"] = NPC.GivenName;
+            int physIndex = -1;
+            int myPhysWhoAmI = (int)NPC.ai[0];
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<Physicist>())
+                {
+                    physIndex++;
+                }
+                if (i >= myPhysWhoAmI)
+                {
+                    break;
+                }
+            }
+            tag["ParentApparentID"] = physIndex;
         }
 
         public override void LoadData(TagCompound tag)
         {
             if (tag.TryGet<string>("Name", out var value))
                 NPC.GivenName = value;
+            if (tag.TryGet<int>("ParentApparentID", out int findPhys))
+            {
+                int physIndex = -1;
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<Physicist>())
+                    {
+                        physIndex++;
+                    }
+                    if (physIndex >= findPhys)
+                    {
+                        NPC.ai[0] = i;
+                        break;
+                    }
+                }
+            }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

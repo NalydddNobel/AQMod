@@ -3,14 +3,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
+    [Obsolete("Use Terraria.ModLoader.Mod and the ModSupport class for various functions.")]
     internal struct ModData
     {
         public readonly string Name;
         public readonly string CodeName;
         public Mod Mod { get; private set; }
         public bool Enabled => Mod != null;
-
-        public static ModData Unloaded => new ModData();
 
         public ModData(string name)
         {

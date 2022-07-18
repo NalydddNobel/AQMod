@@ -1,8 +1,8 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Flawless
+namespace Aequus.NPCs
 {
     public class FlawlessNPC : GlobalNPC
     {

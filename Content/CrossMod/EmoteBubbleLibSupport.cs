@@ -4,9 +4,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
+    [Obsolete("Emote Bubble Lib is discontinued.")]
     internal class EmoteBubbleLibSupport : IPostSetupContent
     {
-        private ModData EmoteBubbleLib;
+        public static ModData EmoteBubbleLib;
 
         void ILoadable.Load(Mod mod)
         {

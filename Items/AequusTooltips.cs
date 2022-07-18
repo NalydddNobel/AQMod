@@ -1,6 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Common;
-using Aequus.Content.PotionConcoctions;
 using Aequus.Graphics;
 using Aequus.NPCs;
 using Aequus.NPCs.Friendly;

@@ -83,6 +83,8 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
 
+        public sbyte antiGravityTile;
+
         public bool showPrices;
 
         public int equippedMask;
@@ -389,6 +391,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
             cursorDye = -1;
@@ -416,6 +419,22 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            if (antiGravityTile < 0)
+                antiGravityTile++;
+            else if (antiGravityTile > 0)
+                antiGravityTile--;
+            if (antiGravityTile != 0)
+            {
+                int newGravity = Math.Sign(antiGravityTile);
+                if (Player.gravDir != newGravity)
+                {
+                    Player.gravDir = newGravity;
+                    SoundEngine.PlaySound(SoundID.Item8, Player.position);
+                }
+                Player.gravControl = false;
+                Player.gravControl2 = false;
+            }
+
             antiGravityItemRadius = 0f;
             if (boundBowAmmoTimer > 0)
                 boundBowAmmoTimer--;
@@ -1652,6 +1671,7 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.JumpMovement += Player_JumpMovement;
             On.Terraria.Player.DropTombstone += Hook_ModifyTombstone;
             On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
             On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
@@ -1659,6 +1679,15 @@ namespace Aequus
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+        }
+
+        private static void Player_JumpMovement(On.Terraria.Player.orig_JumpMovement orig, Player self)
+        {
+            if (self.Aequus().antiGravityTile != 0)
+            {
+                self.gravDir = Math.Sign(self.Aequus().antiGravityTile);
+            }
+            orig(self);
         }
 
         private static void Hook_ModifyTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)

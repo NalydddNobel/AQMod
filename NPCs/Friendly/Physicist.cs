@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Summons;
+using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Projectiles.Misc;
 using System.Collections.Generic;
@@ -108,6 +109,8 @@ namespace Aequus.NPCs.Friendly
                 shop.item[nextSlot].SetDefaults(ItemID.SolarTablet);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
             if (!Main.dayTime)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
         }
@@ -204,11 +207,14 @@ namespace Aequus.NPCs.Friendly
             else
             {
                 spawnPet = 0;
-                int pet = NPC.FindFirstNPC(ModContent.NPCType<PhysicistPet>());
-                if (pet == -1 && Main.netMode != NetmodeID.MultiplayerClient)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI);
+                    if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<PhysicistPet>() && Main.npc[i].ai[0] == NPC.whoAmI)
+                    {
+                        return;
+                    }
                 }
+                NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI, NPC.whoAmI);
             }
         }
 

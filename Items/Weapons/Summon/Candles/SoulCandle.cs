@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
-using Aequus.Content.Prefixes.SoulCandles;
+using Aequus.Items.Prefixes.SoulCandles;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

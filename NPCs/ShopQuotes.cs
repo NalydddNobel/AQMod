@@ -980,7 +980,7 @@ namespace Aequus.NPCs
                     {
                         case 0:
                             {
-                                if (FargowiltasSupport.Fargowiltas != null)
+                                if (ModSupport.Fargowiltas != null)
                                 {
                                     var squirrelID = ItemID.Search.GetId("Fargowiltas/Squirrel");
                                     if (talkNPC.type == squirrelID)
@@ -1014,7 +1014,7 @@ namespace Aequus.NPCs
                 if (text != null)
                 {
                     int index = tooltips.GetIndex("JourneyResearch");
-                    tooltips.Insert(index, new TooltipLine(Mod, "Fake", "_"));
+                    tooltips.Insert(index, new TooltipLine(Mod, "Fake", AequusHelpers.AirString));
                     tooltips.Insert(index, new TooltipLine(Mod, "ShopQuote", FixNewlines(text)) { OverrideColor = quotes.GetColor(), });
                 }
             }
@@ -1055,6 +1055,11 @@ namespace Aequus.NPCs
                     headFrame, Color.Black * 0.4f, 0f, headOrigin, 1f, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(headTexture.Value, chatBubblePosition,
                     headFrame, Color.White, 0f, headOrigin, 1f, SpriteEffects.None, 0f);
+            }
+
+            if (ModLoader.TryGetMod("TrueTooltips", out _))
+            {
+                return;
             }
 
             var font = FontAssets.MouseText.Value;

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.PotionConcoctions
+namespace Aequus.Content
 {
     public class ConcoctionDatabase : ModSystem
     {

@@ -51,7 +51,7 @@ namespace Aequus.Items.Consumables.Roulettes
         {
             for (int i = 0; i < 3; i++)
             {
-                tooltips.Add(new TooltipLine(Mod, "None" + i, "-"));
+                tooltips.Add(new TooltipLine(Mod, "None" + i, AequusHelpers.AirString));
             }
         }
 

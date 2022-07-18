@@ -1,4 +1,4 @@
-﻿using Aequus.Content.PotionConcoctions;
+﻿using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items.Misc;
 using Aequus.Particles.Dusts;
