@@ -289,6 +289,10 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			ForceGravityBlock: 重力块
+			ForceAntiGravityBlock: 反重力块
+			GoreNest: 血巢
+
 			AshCrossGraveMarker: 余烬十字碑
 			AshGraveMarker: 余烬墓标
 			AshGravestone: 余烬墓碑
@@ -432,8 +436,7 @@ Mods: {
 			SedimentSandBlock: 沉积沙块
 			SeaPickle: 海泡菜
 			CrabsonTrophy: 巨蟹蛤纪念章
-			HellstoneTombstone: 地狱墓碑
-			GoreNest: 血巢
+			HellTombstone: 地狱墓碑
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
 			XenonMushroom: 氙蘑菇
@@ -868,6 +871,14 @@ Mods: {
 
 			RecyclingMachine: 允许你回收垃圾物品
 
+			ForceGravityBlock: 迫使上方的玩家服从重力
+			ForceAntiGravityBlock: 迫使下方的玩家翻转重力
+			GoreNest:
+				'''
+				可升级邪恶武器
+				视作恶魔/猩红祭坛
+				'''
+
 			HomeworldPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
@@ -1231,11 +1242,6 @@ Mods: {
 			GlimmeringStatue: 用于制作由能量构成的强大物品
 			SedimentSandBlock: 不会坠落
 			SeaPickle: "'你听到一个声音告诉你把它翻过来'"
-			GoreNest:
-				'''
-				可升级邪恶武器
-				视作恶魔/猩红祭坛
-				'''
 			ArgonMushroom:
 				'''
 				散发着红光
