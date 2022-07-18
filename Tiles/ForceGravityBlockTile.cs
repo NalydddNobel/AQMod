@@ -36,7 +36,15 @@ namespace Aequus.Tiles
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            int tileHeight = GetTileHeight(i, j, 13);
+            if (Main.tile[i, j].IsActuated)
+                return true;
+
+            int tileHeightMax = 13;
+            if (Main.tile[i, j].WallType == WallID.SapphireGemspark)
+            {
+                tileHeightMax *= 2;
+            }
+            int tileHeight = GetTileHeight(i, j, tileHeightMax);
             if (tileHeight == 0)
                 return true;
 
@@ -44,8 +52,8 @@ namespace Aequus.Tiles
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
             var scale = new Vector2(16f, (tileHeight * 16 + 32) / frame.Height);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(10, 90, 200, 0) * 0.2f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(20, 167, 255, 0) * 0.1f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, drawCoords, frame, new Color(10, 90, 200, 0) * 0.35f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, drawCoords, frame, new Color(20, 167, 255, 0) * 0.15f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
 
             DrawParticles(i, j, tileHeight, spriteBatch);
             
@@ -67,11 +75,11 @@ namespace Aequus.Tiles
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
             for (int k = 0; k < dustAmt; k++)
             {
-                float p = rand.Rand(22f) + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5.2f);
-                p %= 22f;
-                p /= 22f;
+                float p = rand.Rand(50f) + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5.2f);
+                p %= 50f;
+                p /= 50f;
                 p = (float)Math.Pow(p, 3f);
-                p *= 22f;
+                p *= 50f;
                 p -= 2f;
                 var frame = new Rectangle(0, 10 * (int)rand.Rand(3), 8, 8);
                 var dustDrawOffset = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.45f, 1f), 0f, 16f), p * 16f);

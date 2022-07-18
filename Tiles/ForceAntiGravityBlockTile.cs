@@ -37,7 +37,15 @@ namespace Aequus.Tiles
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            int tileHeight = GetTileHeight(i, j, 13);
+            if (Main.tile[i, j].IsActuated)
+                return true;
+
+            int tileHeightMax = 13;
+            if (Main.tile[i, j].WallType == WallID.AmberGemspark)
+            {
+                tileHeightMax *= 2;
+            }
+            int tileHeight = GetTileHeight(i, j, tileHeightMax);
             if (tileHeight == 0)
                 return true;
 
@@ -68,11 +76,11 @@ namespace Aequus.Tiles
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
             for (int k = 0; k < dustAmt; k++)
             {
-                float p = rand.Rand(22f) + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5.2f);
-                p %= 22f;
-                p /= 22f;
+                float p = rand.Rand(50f) + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5.2f);
+                p %= 50f;
+                p /= 50f;
                 p = (float)Math.Pow(p, 3f);
-                p *= 22f;
+                p *= 50f;
                 p -= 2f;
                 var frame = new Rectangle(0, 10 * (int)rand.Rand(3), 8, 8);
                 var dustDrawOffset = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.45f, 1f), 0f, 16f), tileHeight * 16f - p * 16f);
