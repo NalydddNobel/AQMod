@@ -7,7 +7,7 @@ Please report bugs to the steam workshop page, forums page, or discord server.
 [c/7EC8E3:Content]
 [c/7EC8E3:>] 200+ Items
 [c/7EC8E3:>] 15+ Enemies
-[c/7EC8E3:>] 3 Friendly NPCs
+[c/7EC8E3:>] 4 Shop NPCs
 [c/7EC8E3:>] 2 Bosses
 [c/7EC8E3:>] 2 Events
 [c/7EC8E3:>] A ton of bugs.. and more!
