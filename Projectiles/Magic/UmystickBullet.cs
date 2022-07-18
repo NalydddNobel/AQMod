@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Magic
 {
-    public class UmystickMoon : ModProjectile
+    public class UmystickBullet : ModProjectile
     {
         public static SoundStyle UmysticDestroyd { get; private set; }
 

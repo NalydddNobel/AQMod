@@ -3,7 +3,6 @@ using Aequus.Biomes.Glimmer;
 using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +13,7 @@ namespace Aequus.Items.Misc.Summons
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.WormFood];
-            this.SetResearch(3);
+            SacrificeTotal = 3;
         }
 
         public override void SetDefaults()
@@ -25,7 +24,7 @@ namespace Aequus.Items.Misc.Summons
             Item.rare = ItemRarityID.Green;
             Item.consumable = true;
             Item.maxStack = 999;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 2);
         }
 
         public override bool CanUseItem(Player player)

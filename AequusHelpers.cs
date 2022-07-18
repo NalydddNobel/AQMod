@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs;
 using Aequus.Projectiles;
@@ -86,6 +87,15 @@ namespace Aequus
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
+
+        public static int NPCType(Mod mod, string name)
+        {
+            if (NPCID.Search.TryGetId(mod.Name + "/" + name, out var value))
+            {
+                return value;
+            }
+            return 0;
+        }
 
         public static bool PointCollision(Vector2 where, int width = 2, int height = 2)
         {
@@ -1093,6 +1103,10 @@ namespace Aequus
             return npc2;
         }
 
+        public static AequusItem Aequus(this Item item)
+        {
+            return item.GetGlobalItem<AequusItem>();
+        }
         public static AequusNPC Aequus(this NPC npc)
         {
             return npc.GetGlobalNPC<AequusNPC>();

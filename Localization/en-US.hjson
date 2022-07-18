@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			HaltingMachine: Halting Machine
 			Ramishroom: Ramishroom
 			DevilsTongue: Devil's Tongue
 			AmmoBackpack: Ammo Renewal Pack
@@ -410,7 +411,6 @@ Mods: {
 			Globebulb: Globebulb
 			VampireHook: Bloodline
 			BlackBookofUntoldLegends: "'Untold Legends'"
-			EquivalenceMachine: Equivalence Machine
 			Stardrop: Stardrop
 			IWillBeBack: "'I'll Be Back'"
 			CosmicTelescope: Cosmic Telescope
@@ -555,6 +555,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HaltingMachine: Nearby items float instead of falling
 			Ramishroom: Fishing rods cast an extra bobber
 			DevilsTongue: Non-rare catches turn into trash
 			AmmoBackpack: Enemies drop ammo you have consumed
@@ -1199,7 +1200,6 @@ Mods: {
 				When attached to an enemy, it drains its life
 				'''
 			BlackBookofUntoldLegends: Summons the Hermit Crab merchant
-			EquivalenceMachine: Nearby items float instead of falling
 			Stardrop: Toggles whether town NPCs can move in during night
 			IWillBeBack:
 				'''
@@ -1878,6 +1878,7 @@ Mods: {
 
 			SkyMerchant: Sky Merchant
 			Memorialist: Memorialist
+			PhysicistPet: Drone
 			Physicist: Physicist
 			Exporter: Exporter
 
@@ -1914,6 +1915,7 @@ Mods: {
 
 			Occultist: Previously a member of a demonic occult, the Occultist is trying to re-integrate themselves back into society. Still has the habit to create rituals and cast dangerous spells.
 			SkyMerchant: A smart hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
+			Physicist: Coming from a neighboring planet, the Physicist observed unnatural phenomena on your world, and is here to investigate. Doesn't believe in magic or fairy tales.
 			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
 
 			SnobsterCritter: Slimes naturally evolve to their environment, looks like this one decided that becoming a lobster is the right way to go.
@@ -1942,89 +1944,6 @@ Mods: {
 			DaysAgo: Stored this item {0} days ago
 			MonthAgo: Stored this item {0} month ago
 			MonthsAgo: Stored this item {0} months ago
-		}
-
-		Physicist: {
-			Chat: {
-				Introduction: Oh hello, my name is {0}. I came here after hearing about a strange phenomenon where cosmic entities try to intercept some sort of powerful source.
-				0: "{0}, in the flesh – or, rather, in a {1}"
-				1: Well, it does seem there is something to chaos theory after all, yes?
-				2: The Administrator is very concerned that we get a conclusive analysis of today's sample. I gather they went to some lengths to get it.
-				3: Power to stage one emitters in three... two... one...
-				4: Stage two emitters activating... now.
-				5: I'm seeing predictable phase arrays.
-				6: "{0}, we cannot predict how long the system can operate at this level, nor how long the reading will take. Please work as quickly as you can."
-				7: Shutting down. Attempting shut down. It's not...it's-it's not...it's not shutting down...it's not...
-				8: Testing... testing... Everything seems to be in order.
-				9: Get away from there, {0}! I'm expecting an important message from {1}!
-
-				BloodMoon: {
-					0: This total lunar eclipse is very chaotic, nothing like on my original planet.
-					1: Why would anyone go so crazy over this natural event of Rayleigh scattering?
-					2: No, this is not the end of the world. Not yet atleast.
-
-					KillRequest: {
-						0: This dumb {0} is getting annoying and destroying my science equipment! Go kill it, {1}.
-						1: Could you kill that {0} outside? I haven't been able to do anything tonight because of them.
-						2: I'm tired of the door getting torn down on by {0}s.
-						3: Hey {1}, there's a {0} out there killing people! I'd like you to manage that thing instead of trying to have small talk with me.
-					}
-
-					EvilBunny: These evil bunnies are so much more interesting than the cute ones! I should keep one as a pet.
-					CrimsonWarning: I wouldn't go to the crimson if I were you... I sense something bad happens when the bloody, living hive mind merges with the magical essense of this world's blood moons.
-					NewMoon: Interesting, I thought blood moons couldn't happen during the new moon?
-				}
-
-				GlimmerEvent: {
-					0: Hmm, interesting, I didn't know that stars are somehow able to create intelligence from pure chaos...
-					1: Why do I feel like the floor is sparkly, no one has mopped the floor in a while...
-					2: Before nightfall, I saw a falling star which looked like it was going towards the ground... now that this event is happening, I'm pretty sure that it's one of those powerful sources.
-					3: Sometimes I look into the sky and see another solar system... but it must be a mirage from the amount of light reflecting off the surface of the planet, even if I cannot prove that it is a mirage.
-
-					Source: {
-						East: Somewhere to the east, there seems to be a powerful source which I would like to invesigate.
-						West: Somewhere to the west, there seems to be a powerful source which I would like to invesigate.
-					}
-				}
-
-				Purity: {
-					0: These woods are very calm... but also very susceptible to the spreading infections.
-					1: I once saw a little bunny... it died.
-					2: While this place is very interesting and calm, it definetly doesn't fit my criteria for work.
-				}
-
-				Hallow: {
-					0: This place is such an insult to my beliefs...
-					1: Fairies? Unicorns? Wizards!? This is such a hellhole!
-					2: There's too much magic here, I can't stand it!
-					3: I wish I could get out of here...
-					4: What's next? The Great Mighty Poo is real?
-					5: You cannot tell me that the core of Terraria contained THIS inside itself!
-				}
-
-				Corruption: Get me out of this stinky, vile place.
-				Crimson: Get me out of this stinky, gorey place.
-
-				Mod: {
-					Split: {
-						LowTechRemote: Have you ever picked up one of those Low-tech remotes? I tried upgrading one of them to contact a strong alien force, but still I get "Connecting... Please, stay on the line."
-						Spirit: One time I adventured in the jungle and found a funny lady, we enjoyed some nice cooked fish together
-						Menace: Me and that Astrologist lady get along quite well, even if she has some strange beliefs.
-						Vulcan: In one of my journeys in the underworld, I found an interesting person named Vulcan, they sounded sad...
-					}
-
-					Polarities: {
-						FractalDimension: I have noticed that a mathmatical structure has generated somewhere in the sky... I'd like to check it out someday
-						Rapture: Somehow the light from the hallow is even stronger than before! Why does it feel like this world is always against me...
-					}
-
-					Fargowiltas: {
-						Mutant: You just buy boss summons from a weird looking monster? Weirdo.
-						Abominationn: You just buy event summons from a creepy looking reaper? Weirdo.
-						Deviantt: You just buy rare enemy summons from a dumb looking child? Weirdo.
-					}
-				}
-			}
 		}
 
 		PaintingSignature: {
@@ -3028,6 +2947,57 @@ Mods: {
 				}
 			}
 
+			PartyGirl: {
+				ShopQuote: {
+					ConfettiGun: Good for celebrating durning parties and celebrations!
+					Confetti: Fun little pieces of colorful paper, great for parties!
+					SmokeBomb: Feeling like surprising someone? with these you can!
+					BubbleMachine: A machine that will blow bubbles for a great party atmosphere!
+					FogMachine: The spooky fog will help in setting a good atmosphere in halloween!
+					BubbleWand: Want to make your own bubbles? Take this and make some!
+					BeachBall: A good way to spend time with friends on a good summer day
+					LavaLamp: A lamp which dosen't grant wishes, but does look cool
+					PlasmaLamp: This strange thing manages to amaze me every time I see it!
+					FireworksBox: Take some fireworks from this and watch them explode into beautiful lights on the sky!
+					FireworkFountain: The sparks from this fountain makes any party call the attention of anyone nearby!
+					PartyMinecart: Ride the wildest of rollercoasters with this, and a festive spirit!
+					KiteSpectrum: Watch all colors of the rainbow in the windy sky with this!
+					PogoStick: Step on and jump high above with this Pogo Stick!
+					ColoredRockets: A colorful rocket for a great end to a party!
+					PartyGirlGrenade: Throw these and watch foes turn into a walking party!
+					ConfettiCannon: How do pirates celebrate parties? With a confetti cannon of course!
+					Bubble: A very strong bubble, it can stop any liquids you put besides it!
+					SmokeBlock: Thinking smoke bombs don't last long enough? Try out some forever lasting smoke blocks!
+					PartyMonolith: Want to party? Get this and start the celebration!
+					PartyHat: Wanna join the party? Just take this and start partying
+					SillyBalloonMachine: It makes many ballons fly in the sky, I wonder where the ballons are stored
+					PartyPresent: A present box for whoever you want, just remember to fill it before giving an empty box
+					Pigronata: Hang it and start spinning, the prize inside will be shown after hitting it. Isn't it fun?
+					ColoredStreamers: A line of colored silk, has a ribbon at the top too!
+					SillyBalloons: These ballons will work nicely on any party!
+					SillyTiedBalloons: A ballon tied for it to not fly away, we aren't making a party in space are we?
+					FireworksLauncher: A cool rocket launcher to celebrate your victories!
+					ReleaseDoves: Don't ask how you can hold so many doves in your hand
+					ReleaseLanterns: Get one and throw it in the sky to celebrate the defeat of a strong foe!
+					Football: Good at games? Try this to impress your friends!
+				}
+			}
+
+			PhysicistPet: {
+				0: Beep boop.
+				1: Beep bop.
+			}
+
+			Physicist: {
+				Basic: {
+					0: Quite the exotic gravity, my homeworld's gravitational pull is 62.5% less stronger.
+					1: Well, it does seem there is something to chaos theory after all, yes?
+				}
+
+				ShopQuote: {
+				}
+			}
+
 			Occultist: {
 				Basic: {
 					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
@@ -3099,7 +3069,7 @@ Mods: {
 				Stylist: One time I asked {Stylist} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
 
 				PhysicistTownNPC: No Text, do not translate
-				MemorialistTownNPC: No Text, do not translate
+				OccultistTownNPC: No Text, do not translate
 
 				Crabson: Shiver me timbers! Ye killed that god-forsaken crab monster. That beastie be the same one who sunk me ship last year!
 
@@ -3221,9 +3191,32 @@ Mods: {
 				PressHere: Press to set the item's name
 				RenameChatButton: Rename Item
 			}
+
+			Fargowiltas_Squirrel: {
+				ShopQuote: {
+					LiterallyEverything: *Squeak*
+				}
+			}
 		}
 
 		TownNPCMood: {
+			Physicist: {
+				Content: In practice, this place is quite nice, however in theory, probably not.
+				NoHome: Are you the king of this world? If so, I would like to request a usable home and laboratory for my experiments.
+				FarFromHome: Similar to an electron, I suddenly seem to appear far from home.
+				LoveSpace: It's now scientific rule that this space is quite amazing.
+				DislikeCrowded: The increased amount of living specimens in this town is starting to become too much.
+				HateCrowded: I have heard about your species... you like cramping others into tight spaces and give them the bare minimum to survive yet still produce what you want. I don't like how you are seemingly proving this correct.
+				LikeBiome: This place, {BiomeName}, is quite good. I will add it to my catalogue of 'Locations to spend a large amount of time in'
+				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
+				DislikeBiome: I am generally not a fan of {BiomeName}, but it does work for doing studies I guess.
+				HateBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+				LoveNPC: I greatly adore {NPCName}, their parts are so highly functional!
+				LikeNPC: "{NPCName} is quite nice. Although they aren't the best in science experiments, too busy with their less important stuff I guess."
+				DislikeNPC: I do not have the greatest opinion on {NPCName}. Atleast they aren't decorated in a dumb outfit.
+				HateNPC: Ew, {NPCName}? I can't stand them, they have to stop pretending to be all 'whimsical and magical'.
+			}
+
 			Occultist: {
 				Content: This place is good enough, could definitely get better service in the Underworld Domain though.
 				NoHome: Hey? Are you trying to make me go back to living in the Gore Nest?

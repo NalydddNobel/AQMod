@@ -78,6 +78,10 @@ namespace Aequus
         [SaveData("ShadowOrbs")]
         public static int shadowOrbsBrokenTotal;
 
+        public static bool BloodMoonDisabled;
+        public static bool GlimmerDisabled;
+        public static bool EclipseDisabled;
+
         public static Structures Structures { get; private set; }
 
         public static GoreNestGen GoreNests { get; private set; }
@@ -305,6 +309,13 @@ namespace Aequus
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
+        }
+
+        public override void PreUpdatePlayers()
+        {
+            BloodMoonDisabled = false;
+            GlimmerDisabled = false;
+            EclipseDisabled = false;
         }
 
         public override void PostUpdatePlayers()

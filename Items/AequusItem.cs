@@ -7,6 +7,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -25,6 +26,7 @@ namespace Aequus.Items
         protected override bool CloneNewInstances => true;
 
         public byte shopQuoteType;
+        public byte noGravityTime;
 
         public override void Load()
         {
@@ -121,10 +123,31 @@ namespace Aequus.Items
 
         public override void UpdateInventory(Item item, Player player)
         {
+            noGravityTime = 0;
             if (item.type == ItemID.DiscountCard && !player.discount)
             {
                 player.ApplyEquipFunctional(item, false);
             }
+        }
+
+        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        {
+            if (noGravityTime > 0)
+            {
+                item.velocity.Y *= 0.95f;
+                gravity = 0f;
+                noGravityTime--;
+            }
+        }
+
+        public override void NetSend(Item item, BinaryWriter writer)
+        {
+            writer.Write(noGravityTime);
+        }
+
+        public override void NetReceive(Item item, BinaryReader reader)
+        {
+            noGravityTime = reader.ReadByte();
         }
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
@@ -220,6 +243,18 @@ namespace Aequus.Items
             Main.item[i].Center = pos;
             Main.item[i].stack = item.stack;
             return i;
+        }
+
+        public static void AntiGravityNearbyItems(Vector2 position, float distance)
+        {
+            for (int i = 0; i < Main.maxItems; i++)
+            {
+                if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type]
+                    && Vector2.Distance(Main.item[i].Center, position) < distance)
+                {
+                    Main.item[i].Aequus().noGravityTime = 30;
+                }
+            }
         }
     }
 }

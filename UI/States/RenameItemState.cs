@@ -20,8 +20,8 @@ namespace Aequus.UI.States
     public class RenameItemState : UIState, ILoadable
     {
         public static Asset<Texture2D> RenameBackIconTexture { get; private set; }
-        public static SoundStyle SelectSound { get; private set; }
-        public static SoundStyle SqueakSound { get; private set; }
+        public static readonly SoundStyle SelectSound = Aequus.GetSound("select", volume: 0.5f);
+        public static readonly SoundStyle SqueakSound = Aequus.GetSound("squeak", volume: 0.5f);
 
         public bool initItemSlot;
         public TextboxElement textBox;
@@ -35,8 +35,6 @@ namespace Aequus.UI.States
             if (!Main.dedServ)
             {
                 RenameBackIconTexture = ModContent.Request<Texture2D>("Aequus/Assets/UI/RenameBackIcon");
-                SelectSound = Aequus.GetSound("select", volume: 0.5f);
-                SqueakSound = Aequus.GetSound("squeak", volume: 0.5f);
             }
         }
 

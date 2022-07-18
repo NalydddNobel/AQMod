@@ -153,6 +153,8 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public float antiGravityItemRadius;
+
         public bool accFrostburnTurretSquid;
         public float accBloodDiceDamage;
         public int accBloodDiceMoney;
@@ -414,6 +416,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            antiGravityItemRadius = 0f;
             if (boundBowAmmoTimer > 0)
                 boundBowAmmoTimer--;
             if (boundBowAmmoTimer <= 0)
@@ -701,17 +704,11 @@ namespace Aequus
 
         public override void PostUpdate()
         {
-            if (Player.HasBuff<BlueFire>())
+            DoDebuffEffects();
+
+            if (antiGravityItemRadius > 0f)
             {
-                if (Main.rand.NextBool(3))
-                AequusEffects.AbovePlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
-                    new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                for (int i = 0; i < 3; i++)
-                {
-                    if (Main.rand.NextBool(3))
-                        AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                }
+                AequusItem.AntiGravityNearbyItems(Player.Center, antiGravityItemRadius);
             }
 
             if (glowCoreItem != null && glowCoreItem.ModItem is DyeableAccessory)
@@ -771,6 +768,21 @@ namespace Aequus
             if (AequusHelpers.Main_dayTime.IsCaching)
             {
                 AequusHelpers.Main_dayTime.EndCaching();
+            }
+        }
+        public void DoDebuffEffects()
+        {
+            if (Player.HasBuff<BlueFire>())
+            {
+                if (Main.rand.NextBool(3))
+                    AequusEffects.AbovePlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
+                        new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Main.rand.NextBool(3))
+                        AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
             }
         }
         /// <summary>

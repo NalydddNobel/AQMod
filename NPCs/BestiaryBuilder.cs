@@ -57,6 +57,8 @@ namespace Aequus.NPCs
 
         public static SpawnConditionBestiaryInfoElement SurfaceBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface;
         public static SpawnConditionBestiaryInfoElement CavernsBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Caverns;
+        public static SpawnConditionBestiaryInfoElement DesertBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert;
+        public static SpawnConditionBestiaryInfoElement SnowBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Snow;
         public static SpawnConditionBestiaryInfoElement SkyBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Sky;
         public static SpawnConditionBestiaryInfoElement OceanBiome => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Ocean;
         public static SpawnConditionBestiaryInfoElement Dungeon => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon;

@@ -437,6 +437,50 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.FogboundDye)
                     .AddQuote(ItemID.BloodbathDye),
 
+                    [NPCID.PartyGirl] = new NPCQuotes(this, NPCID.PartyGirl)
+                    .WithColor(Color.HotPink)
+                    .AddQuote(ItemID.ConfettiGun)
+                    .AddQuote(ItemID.Confetti)
+                    .AddQuote(ItemID.SmokeBomb)
+                    .AddQuote(ItemID.BubbleMachine)
+                    .AddQuote(ItemID.FogMachine)
+                    .AddQuote(ItemID.BubbleWand)
+                    .AddQuote(ItemID.BeachBall)
+                    .AddQuote(ItemID.LavaLamp)
+                    .AddQuote(ItemID.PlasmaLamp)
+                    .AddQuote(ItemID.FireworksBox)
+                    .AddQuote(ItemID.FireworkFountain)
+                    .AddQuote(ItemID.PartyMinecart)
+                    .AddQuote(ItemID.KiteSpectrum)
+                    .AddQuote(ItemID.PogoStick)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.RedRocket)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.GreenRocket)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.BlueRocket)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.YellowRocket)
+                    .AddQuote(ItemID.PartyGirlGrenade)
+                    .AddQuote(ItemID.ConfettiCannon)
+                    .AddQuote(ItemID.Bubble)
+                    .AddQuote(ItemID.SmokeBlock)
+                    .AddQuote(ItemID.PartyMonolith)
+                    .AddQuote(ItemID.PartyHat)
+                    .AddQuote(ItemID.SillyBalloonMachine)
+                    .AddQuote(ItemID.PartyPresent)
+                    .AddQuote(ItemID.Pigronata)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.SillyStreamerPink)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.SillyStreamerGreen)
+                    .AddShopQuoteKey("ColoredRockets", ItemID.SillyStreamerBlue)
+                    .AddShopQuoteKey("SillyBalloons", ItemID.SillyBalloonPurple)
+                    .AddShopQuoteKey("SillyBalloons", ItemID.SillyBalloonGreen)
+                    .AddShopQuoteKey("SillyBalloons", ItemID.SillyBalloonPink)
+                    .AddShopQuoteKey("SillyTiedBalloons", ItemID.SillyBalloonTiedGreen)
+                    .AddShopQuoteKey("SillyTiedBalloons", ItemID.SillyBalloonTiedPurple)
+                    .AddShopQuoteKey("SillyTiedBalloons", ItemID.SillyBalloonTiedPink)
+                    .AddQuote(ItemID.FireworksLauncher)
+                    .AddQuote(ItemID.ReleaseDoves)
+                    .AddQuote(ItemID.ReleaseLantern)
+                    .AddQuote(ItemID.Football)
+                    ,
+
                     [NPCID.Cyborg] = new NPCQuotes(this, NPCID.Cyborg)
                     .WithColor(Color.Cyan * 1.5f)
                     .LegacyAddQuote(ItemID.RocketI)
@@ -560,8 +604,7 @@ namespace Aequus.NPCs
                     .AddQuoteWithPrefix(ItemID.BloodWaterFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
                     .AddQuoteWithPrefix(ItemID.CavernFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
                     .AddQuoteWithPrefix(ItemID.OasisFountain, "Chat.WitchDoctor.ShopQuote.Fountains")
-                    .AddQuote(ItemID.BewitchingTable)
-                    ,
+                    .AddQuote(ItemID.BewitchingTable),
 
                     [NPCID.Pirate] = new NPCQuotes(this, NPCID.Pirate)
                     .WithColor(Color.Orange * 1.2f)
@@ -639,8 +682,7 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.HuntressPants)
                     .AddQuote(ItemID.HuntressAltHead)
                     .AddQuote(ItemID.HuntressAltShirt)
-                    .AddQuote(ItemID.HuntressAltPants)
-                    ,
+                    .AddQuote(ItemID.HuntressAltPants),
 
                     [NPCID.BestiaryGirl] = new NPCQuotes(this, NPCID.BestiaryGirl)
                     .WithColor(() => ZoologistAltText(TalkingNPC()) ? Color.Red : new Color(255, 140, 160, 255))
@@ -938,6 +980,15 @@ namespace Aequus.NPCs
                     {
                         case 0:
                             {
+                                if (FargowiltasSupport.Fargowiltas != null)
+                                {
+                                    var squirrelID = ItemID.Search.GetId("Fargowiltas/Squirrel");
+                                    if (talkNPC.type == squirrelID)
+                                    {
+                                        text = Language.GetTextValue("Mods.Aequus.Chat.Fargowiltas_Squirrel.ShopQuote.LiterallyEverything");
+                                        break;
+                                    }
+                                }
                                 if (TryGetItemQuoteData(talkNPC, item, quotes, out text))
                                 {
                                     text = Language.GetTextValue(text);
