@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			HaltingMachine: 凝滞仪
 			Ramishroom: 分支菇
 			DevilsTongue: 魔鬼之舌
 			AmmoBackpack: 弹药恢复包
@@ -410,7 +411,6 @@ Mods: {
 			Globebulb: 球形灯泡
 			VampireHook: 血族
 			BlackBookofUntoldLegends: "'无名传说'"
-			EquivalenceMachine: 等均仪
 			Stardrop: 星落果
 			IWillBeBack: "'我将归来'"
 			CosmicTelescope: 宇宙望远镜
@@ -555,6 +555,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HaltingMachine: 附近的物品会现在漂浮而非下落
 			Ramishroom: 钓竿会额外扔出一个浮标
 			DevilsTongue: 将非稀有渔获转化为垃圾
 			AmmoBackpack: 敌人会掉落你所消耗的弹药
@@ -1199,7 +1200,6 @@ Mods: {
 				钩中敌人时会汲取其生命
 				'''
 			BlackBookofUntoldLegends: 召唤寄居蟹商人
-			EquivalenceMachine: 附近的物品会现在漂浮而非下落
 			Stardrop: 切换以决定是否允许城镇NPC在夜间入住
 			IWillBeBack:
 				'''
@@ -1878,6 +1878,7 @@ Mods: {
 
 			SkyMerchant: 天空商人
 			Memorialist: 请愿者
+			PhysicistPet: 无人机
 			Physicist: 物理学家
 			Exporter: 发货人
 
@@ -1914,6 +1915,7 @@ Mods: {
 
 			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
 			SkyMerchant: 一位聪明的猎人创造了热气球来捕猎飞行生物. 在有风的日子里可以看到他在天空中飞翔.
+			Physicist: 来自邻近行星, 物理学家在你的世界上观察到了非自然现象, 是来调查的. 不相信魔法或童话.
 			Exporter: 发货人是一位与海盗有着历史渊源的销赃犯. 所得的收益都会发放给位于世界各地的那些寻找'最佳交易'的可疑人士.
 
 			SnobsterCritter: 史莱姆自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
@@ -1942,89 +1944,6 @@ Mods: {
 			DaysAgo: 已在{0}天前储存此物品
 			MonthAgo: 已在{0}月前储存此物品
 			MonthsAgo: 已在{0}月前储存此物品
-		}
-
-		Physicist: {
-			Chat: {
-				Introduction: 哦你好, 我叫 {0}. 我听说宇宙实体正试图拦截一种强大的源后才来这的.
-				0: "{0}, 在血肉之中 – 更准确的说应该是, 在 {1}"
-				1: 好吧, 看起来混沌理论还是有点道理的, 不是吗?
-				2: 管理员非常关心我们对今天的样本进行结论性的分析. 我猜他们肯定花了不少时间才弄到它.
-				3: 第一级发射器激活三... 二... 一...
-				4: 第二级发射器激活... 就是现在.
-				5: 我正在观看可观测的相位阵列.
-				6: "{0}, 我们无法预测该系统能在这个水平上运行多久, 观测并不会花上多长时间. 请尽可能快地工作."
-				7: 闭嘴. 正在尝试闭嘴. 它不是...它是-它不是...它不是闭嘴...它不...
-				8: 测试... 测试... 一切看起来似乎都井然有序.
-				9: 走开, {0}! 我正等着从 {1} 那发来的重要讯息!
-
-				BloodMoon: {
-					0: 这次的月全食非常混乱, 一点也不像我原来的那颗星球.
-					1: 为什么会有人对瑞利散射这一自然事件如此狂热?
-					2: 不, 这并不是世界末日. 至少现在还不是.
-
-					KillRequest: {
-						0: 愚蠢的 {0} 越来越烦人了并且正在摧毁我的科学设备, 去杀了它, {1}.
-						1: 你能杀了外面的那个 {0} 吗? 因为它们, 我今晚什么都做不了.
-						2: 我厌倦了大门总是被 {0} 拆下来.
-						3: 嘿 {1}, 外面有个 {0} 在杀人! 我希望你能处理好那件事, 而不是试着和我在这闲聊.
-					}
-
-					EvilBunny: 这些邪恶的兔子比可爱的兔子有趣多了! 我应该养一只作为宠物.
-					CrimsonWarning: 如果我是你, 我是不会去猩红之地的... 我能感觉到当血腥的、活生生的虫群意识与这个世界上血月的魔法精华融合在一起时将会发生一些不好的事情.
-					NewMoon: 有趣, 我曾认为血月不会在新月时出现?
-				}
-
-				GlimmerEvent: {
-					0: Hmm, 有趣, 我并不知道原来星辰在某种程度上能够从纯粹的混沌中创造智慧...
-					1: 为什么我觉得地板在发光, 很久都没有人擦过地板了...
-					2: 在夜幕来临之前, 我曾看到一颗流星砸向地面... 现在, 这种事件发生了, 我敢肯定, 这是其中一个源.
-					3:有时我仰望天空时, 我会看到另一个太阳系... 但从地球表面反射的光的数量来看, 这一定是海市蜃楼, 即使我无法证明这是海市蜃楼.
-
-					Source: {
-						East: 在东边的某个敌方, 有一个强大的源, 我想去调查一下.
-						West: 在西边的某个敌方, 有一个强大的源, 我想去调查一下.
-					}
-				}
-
-				Purity: {
-					0: 这些树林非常的宁静... 但也很容易受到腐化的感染.
-					1: 我曾看到过一只小兔子... 它死了.
-					2: 虽然这个地方有趣又平静, 但绝对不符合我的工作标准.
-				}
-
-				Hallow: {
-					0: 这个地方是对我信仰的侮辱...
-					1: 仙灵? 独角兽? 巫师!? 这简直是炼狱!
-					2: 这里有太多的魔法了, 我受不了了!
-					3: 我希望我能离开这里...
-					4: 下一个是什么? 超巨型大便是真的吗?
-					5: 别告诉我泰拉瑞亚的本源包括这个!
-				}
-
-				Corruption: 把我从这个肮脏邪恶的地方弄出去.
-				Crimson: 把我从这个肮脏血腥的地方弄出去.
-
-				Mod: {
-					Split: {
-						LowTechRemote: 你有没有使用过那些低技术力的遥控器? 我曾试着升级其中一个来接触强大的外星人, 但我得到的回复只有"连接中... 请不要挂断连接."
-						Spirit: 有一次我在丛林里探险, 发现了一位有趣的女士, 我们一起吃了一些美味的熟鱼.
-						Menace: 我和那位占星女士相处的很好, 即便她有一些奇怪的信仰.
-						Vulcan: 在我的一次地狱之旅中, 我发现了一位名字为火神的有趣的人, 他看起来很悲伤...
-					}
-
-					Polarities: {
-						FractalDimension: 我注意到在天空的某个地方出现了一个数学结构... 改天我得去看看.
-						Rapture: 来自神圣之地的光芒比以前要亮很多! 我感觉这个世界总是在针对我...
-					}
-
-					Fargowiltas: {
-						Mutant: 你刚刚从一个看起来很诡异的怪物那买了Boss召唤物? 真是个怪人.
-						Abominationn: 你刚刚从一个看起来很惊悚的收割者那买了Boss召唤物? 真是个怪人.
-						Deviantt: 你刚刚从一个看起来很愚蠢的小孩那买了Boss召唤物? 真是个怪人.
-					}
-				}
-			}
 		}
 
 		PaintingSignature: {
@@ -2991,7 +2910,6 @@ Mods: {
 				}
 			}
 
-
 			DyeTrader: {
 				ShopQuote: {
 					DyeVat: 大大简化染料混合过程的机器, 着色爱好者的必备品.
@@ -3028,6 +2946,58 @@ Mods: {
 						'''
 				}
 			}
+
+			PartyGirl: {
+				ShopQuote: {
+					ConfettiGun: 适合在派对和庆祝活动中庆祝!
+					Confetti: 有趣的彩色小纸片, 适合派对!
+					SmokeBomb: 想给别人一个惊喜吗? 有了这些你就可以!
+					BubbleMachine: 一台可以吹泡泡的机器, 营造一个很棒的派对氛围!
+					FogMachine: 鬼雾有助于在万圣节营造良好的气氛!
+					BubbleWand: 想做属于自己的泡泡吗? 拿着这个做一些!
+					BeachBall: 这是一个在夏日与朋友共度时光的好方法!
+					LavaLamp: 一盏不能实现愿望的灯, 但看起来确实很酷!
+					PlasmaLamp: 每次看到这个奇怪的东西, 我都感到惊奇!
+					FireworksBox: 从这里拿一些烟花然后看它们在天空中爆炸成美丽的光!
+					FireworkFountain: 这个喷泉喷出的火花会引起附近所有人的注意!
+					PartyMinecart: 带着这个和喜庆的气氛, 坐最疯狂的过山车!
+					KiteSpectrum: 用这个看大风天空中彩虹的所有颜色!
+					PogoStick: 踩上蹦蹦跷并蹦的高高的!
+					ColoredRockets: 一枚五颜六色的火箭为派对划上了圆满的句号!
+					PartyGirlGrenade: 扔出这些并看着敌人变为行走派对!
+					ConfettiCannon: 海盗如何庆祝派对? W当然是用五彩纸屑加农炮!
+					Bubble: 非常强力的泡沫, 它可以阻挡你放在它旁边的任何液体!
+					SmokeBlock: 认为烟雾弹持续时间不够长? 试试一些持久的烟雾方块!
+					PartyMonolith: 想去派对吗? 拿着这个开始庆祝吧!
+					PartyHat: 想加入派对吗? 拿着这个然后开始派对吧!
+					SillyBalloonMachine: 它能使许多气球在空中飞, 但我不知道气球存放在哪里.
+					PartyPresent: 给你想要的人的礼物盒, 记得在给空盒子之前先把它装满.
+					Pigronata: 拿着它并开始摇晃, 击中后会显示内部奖品. 很有趣不是吗?
+					ColoredStreamers: 一条彩色丝绸, 顶部也有一条缎带!
+					SillyBalloons: 这些气球在任何派对上都会很好用!
+					SillyTiedBalloons: 一堆绑在一起的气球不会飞走, 我们不是在太空派对吧?
+					FireworksLauncher: 一个很酷的火箭发射器来庆祝你的胜利!
+					ReleaseDoves: 不要问你怎么能手里拿着这么多鸽子!
+					ReleaseLanterns: 拿一个扔到天上, 庆祝打败了强大的敌人!
+					Football: 擅长玩游戏吗? 试试用这个给你的朋友留下深刻印象!
+				}
+			}
+
+			PhysicistPet: {
+				0: 哔哔啵.
+				1: 哔啵.
+			}
+
+			Physicist: {
+				Basic: {
+					0: 很怪的重力, 我家乡的引力比现在弱62.5%.
+					1: 好吧, 看来混沌理论是有点道理的, 对吗?
+				}
+
+				ShopQuote: {
+				}
+			}
+
 			Occultist: {
 				Basic: {
 					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
@@ -3099,7 +3069,7 @@ Mods: {
 				Stylist: 有一次我要求{Stylist}给我修剪头发. 但她却砍掉了我的触角! 我是说我的感知头发!
 
 				PhysicistTownNPC: No Text, do not translate
-				MemorialistTownNPC: No Text, do not translate
+				OccultistTownNPC: No Text, do not translate
 
 				Crabson: 吓我一跳! 恁杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
 
@@ -3221,9 +3191,32 @@ Mods: {
 				PressHere: 按下来设置你物品的名字
 				RenameChatButton: 重命名物品
 			}
+
+			Fargowiltas_Squirrel: {
+				ShopQuote: {
+					LiterallyEverything: *尖叫声*
+				}
+			}
 		}
 
 		TownNPCMood: {
+			Physicist: {
+				Content: 事实上这个地方很不错, 但理论上可能不是.
+				NoHome: 你是这个世界的国王吗? 如果是, 我想为我的实验申请一个可用的家和实验室.
+				FarFromHome: 类似于电子, 我突然好像离家很远.
+				LoveSpace: 现在的科学规则是来看, 这个空间相当神奇.
+				DislikeCrowded: 这个城镇中的活体标本越来越多了.
+				HateCrowded: 我听说过你这个物种...你喜欢把别人挤在狭小的空间里, 给他们最低限度的生存空间, 但仍然生产你想要的东西. 我不喜欢你是如何证明这一点的.
+				LikeBiome: 这个地方, {BiomeName}, 挺好的. 我将把它添加到我的'地点目录'中, 花大量时间在其中.
+				LoveBiome: 住在{BiomeName}对我和我的无人机来说都很好, 让我想起了我的家乡.
+				DislikeBiome: 我一般不喜欢{BiomeName}, 但我想它确实对学习有用.
+				HateBiome: 真的， 我不相信我面前的地方是真实的， 一定是你为外来游客搭建的海市蜃楼.
+				LoveNPC: 我非常崇拜{NPCName}, 他们的部分功能非常强大!
+				LikeNPC: "{NPCName}很不错. 虽然他们在科学实验中不是最好的, 我想他们太忙于不太重要的事情了."
+				DislikeNPC: 我对{NPCName}的看法不是很好. 至少他们没有穿愚蠢的衣服.
+				HateNPC: 额, {NPCName}? 我无法忍受他们, 他们必须停止假装自己是'异想天开和神奇的'.
+			}
+
 			Occultist: {
 				Content: 这个地方挺好的, 虽然我可以在地狱得到更好的服务.
 				NoHome: 嘿? 你是想让我回到血巢中生活吗?
