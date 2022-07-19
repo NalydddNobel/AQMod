@@ -22,9 +22,4 @@
     <None Include="Assets\Effects\.compiler\ParentDyeShader.fx" />
     <None Include="Assets\Effects\.compiler\wcfxcompiler.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ModGlobalsNet">
-      <HintPath>..\ModGlobalsNet.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 </Project>

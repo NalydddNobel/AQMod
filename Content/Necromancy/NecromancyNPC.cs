@@ -8,7 +8,6 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ModGlobalsNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,7 +20,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class NecromancyNPC : GlobalNPC, IGlobalsNetworker, IAddRecipes
+    public class NecromancyNPC : GlobalNPC, IAddRecipes
     {
         public class ActiveZombieInfo
         {
@@ -59,6 +58,8 @@ namespace Aequus.Content.Necromancy
         public int hitCheckDelay;
         public int slotsConsumed;
         public int renderLayer;
+
+        public int netUpdateTimer;
 
         public override bool InstancePerEntity => true;
 
@@ -327,6 +328,16 @@ namespace Aequus.Content.Necromancy
                         d.fadeIn = d.scale + 0.5f;
                         d.noGravity = true;
                         d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+                }
+                else
+                {
+                    netUpdateTimer--;
+                    if (netUpdateTimer <= -10 || npc.netUpdate)
+                    {
+                        npc.netUpdate = true;
+                        netUpdateTimer = 300;
+                        Sync(npc);
                     }
                 }
             }
@@ -619,47 +630,52 @@ namespace Aequus.Content.Necromancy
             return (int)(zombieTimer / (float)zombieTimerMax * priority);
         }
 
-        void IGlobalsNetworker.Send(int whoAmI, BinaryWriter writer)
+        public void Send(BinaryWriter writer)
         {
-            writer.Write(Main.npc[whoAmI].active);
-            if (Main.npc[whoAmI].active)
+            writer.Write(isZombie);
+            if (isZombie)
             {
-                writer.Write(isZombie);
-                if (isZombie)
-                {
-                    writer.Write(zombieTimer);
-                    writer.Write(zombieTimerMax);
-                    writer.Write(slotsConsumed);
-                }
-                else
-                {
-                    writer.Write(zombieDrain);
-                }
-                writer.Write(zombieOwner);
-                writer.Write(zombieDebuffTier);
-                writer.Write((byte)renderLayer);
+                writer.Write(zombieTimer);
+                writer.Write(zombieTimerMax);
+                writer.Write(slotsConsumed);
             }
+            else
+            {
+                writer.Write(zombieDrain);
+            }
+            writer.Write(zombieOwner);
+            writer.Write(zombieDebuffTier);
+            writer.Write((byte)renderLayer);
         }
 
-        void IGlobalsNetworker.Receive(int whoAmI, BinaryReader reader)
+        public void Receive(BinaryReader reader)
         {
             if (reader.ReadBoolean())
             {
-                if (reader.ReadBoolean())
-                {
-                    isZombie = true;
-                    zombieTimer = reader.ReadInt32();
-                    zombieTimerMax = reader.ReadInt32();
-                    slotsConsumed = reader.ReadInt32();
-                }
-                else
-                {
-                    zombieDrain = reader.ReadInt32();
-                }
-                zombieOwner = reader.ReadInt32();
-                zombieDebuffTier = reader.ReadSingle();
-                renderLayer = reader.ReadByte();
+                isZombie = true;
+                zombieTimer = reader.ReadInt32();
+                zombieTimerMax = reader.ReadInt32();
+                slotsConsumed = reader.ReadInt32();
             }
+            else
+            {
+                zombieDrain = reader.ReadInt32();
+            }
+            zombieOwner = reader.ReadInt32();
+            zombieDebuffTier = reader.ReadSingle();
+            renderLayer = reader.ReadByte();
+        }
+
+        public static void Sync(NPC npc)
+        {
+            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie))
+            {
+                PacketHandler.Send((p) => { p.Write((byte)npc.whoAmI); zombie.Send(p); }, PacketType.SyncNecromancyNPC);
+            }
+        }
+        public static void Sync(int npc)
+        {
+            Sync(Main.npc[npc]);
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)

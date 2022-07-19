@@ -133,7 +133,7 @@ namespace Aequus
 
         public static bool IsSectionLoaded(int tileX, int tileY)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            if (Main.netMode == NetmodeID.SinglePlayer || Main.sectionManager == null)
             {
                 return true;
             }

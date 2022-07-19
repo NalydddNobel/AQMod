@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -237,6 +238,16 @@ namespace Aequus.NPCs.Friendly
                     }
                 }
             }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(NPC.GivenName ?? "No Name");
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            NPC.GivenName = reader.ReadString();
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

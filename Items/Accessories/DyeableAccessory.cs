@@ -32,6 +32,10 @@ namespace Aequus.Items.Accessories
             }
             return WorldGen.paintColor(dye);
         }
+        public static Color DyeColor(Item item, Player player)
+        {
+            return ((item?.ModItem as DyeableAccessory)?.DyeColor()).GetValueOrDefault(Color.White);
+        }
 
         public override void SaveData(TagCompound tag)
         {

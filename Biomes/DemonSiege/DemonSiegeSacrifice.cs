@@ -244,7 +244,7 @@ namespace Aequus.Biomes.DemonSiege
             }
         }
 
-        public static void ReadPacket(BinaryReader reader)
+        public static void ReceiveStatus(BinaryReader reader)
         {
             int x = reader.ReadUInt16();
             int y = reader.ReadUInt16();

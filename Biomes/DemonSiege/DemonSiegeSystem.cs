@@ -181,7 +181,7 @@ namespace Aequus.Biomes.DemonSiege
                         InnerWritePlayerSpecificRequest(s, Main.player[player], p);
                     }
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
-                }, PacketType.RequestDemonSiege);
+                }, PacketType.StartDemonSiege);
             }
             if (player != 255)
             {
@@ -195,7 +195,7 @@ namespace Aequus.Biomes.DemonSiege
         {
         }
 
-        public static void HandleStartRequest(BinaryReader reader)
+        public static void ReceiveStartRequest(BinaryReader reader)
         {
             int x = reader.ReadUInt16();
             int y = reader.ReadUInt16();
@@ -222,7 +222,7 @@ namespace Aequus.Biomes.DemonSiege
                         InnerWritePlayerSpecificRequest(s, Main.player[player], p);
                     }
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
-                }, PacketType.RequestDemonSiege, ignore: player);
+                }, PacketType.StartDemonSiege, ignore: player);
             }
         }
         public static void InnerReadPlayerSpecificRequest(DemonSiegeSacrifice s, BinaryReader reader)

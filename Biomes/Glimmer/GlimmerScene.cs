@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
@@ -163,7 +164,17 @@ namespace Aequus.Biomes.Glimmer
                         {
                             NPC.SpawnBoss((int)drawCoords.X, (int)drawCoords.Y - 1600, ModContent.NPCType<OmegaStarite>(), Main.myPlayer);
                         }
+                        else
+                        {
+                            PacketHandler.Send((p) =>
+                            {
+                                p.Write((int)drawCoords.X);
+                                p.Write((int)drawCoords.Y);
+                                p.Write(Main.myPlayer);
+                            }, PacketType.SpawnOmegaStarite);
+                        }
                         SoundEngine.PlaySound(SoundID.Roar, Main.LocalPlayer.Center);
+                        drawCoords -= Main.screenPosition;
                     }
 
                     Main.spriteBatch.End();

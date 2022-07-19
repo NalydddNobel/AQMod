@@ -505,12 +505,12 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                     ScreenFlash.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
                                     AequusEffects.Shake.Set(reduceFX ? 18f : 20f);
                                 }
-                                _deathEffect = true;
                             }
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 NPC.NPCLoot();
                             }
+                            _deathEffect = true;
                         }
                         if ((int)NPC.ai[1] > 140f)
                         {

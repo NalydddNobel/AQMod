@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
@@ -75,9 +76,9 @@ namespace Aequus.Biomes.Glimmer
                     }
                 }
 
-                if (GlimmerBiome.TileLocation.X != x)
+                if (Main.netMode == NetmodeID.Server && GlimmerBiome.TileLocation.X != x)
                 {
-                    PacketHandler.SendProcedure(PacketType.GlimmerEventUpdate);
+                    SendGlimmerEventUpdate();
                 }
             }
         }
@@ -88,7 +89,7 @@ namespace Aequus.Biomes.Glimmer
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketHandler.SendProcedure(PacketType.GlimmerEventUpdate);
+                SendGlimmerEventUpdate();
             }
         }
 
@@ -130,7 +131,7 @@ namespace Aequus.Biomes.Glimmer
             GlimmerBiome.TileLocation = Point.Zero;
             if (Main.netMode == NetmodeID.Server)
             {
-                PacketHandler.SendProcedure(PacketType.GlimmerEventUpdate);
+                SendGlimmerEventUpdate();
             }
             return true;
         }
@@ -202,6 +203,49 @@ namespace Aequus.Biomes.Glimmer
         {
             if (tag.TryGet("GlimmerX", out int x) && tag.TryGet("GlimmerY", out int y))
                 GlimmerBiome.TileLocation = new Point(x, y);
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(GlimmerBiome.EventActive);
+            if (GlimmerBiome.EventActive)
+            {
+                writer.Write((ushort)GlimmerBiome.TileLocation.X);
+                writer.Write((ushort)GlimmerBiome.TileLocation.Y);
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            if (reader.ReadBoolean())
+            {
+                GlimmerBiome.TileLocation = new Point(reader.ReadUInt16(), reader.ReadUInt16());
+            }
+        }
+
+        public static void SendGlimmerEventUpdate()
+        {
+            PacketHandler.Send((p) =>
+            {
+                p.Write(GlimmerBiome.EventActive);
+                if (GlimmerBiome.EventActive)
+                {
+                    p.Write((ushort)GlimmerBiome.TileLocation.X);
+                    p.Write((ushort)GlimmerBiome.TileLocation.Y);
+                }
+            }, PacketType.GlimmerEventUpdate);
+        }
+
+        public static void RecieveGlimmerEventUpdate(BinaryReader r)
+        {
+            if (r.ReadBoolean())
+            {
+                GlimmerBiome.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
+            }
+            else
+            {
+                GlimmerBiome.TileLocation = Point.Zero;
+            }
         }
     }
 }

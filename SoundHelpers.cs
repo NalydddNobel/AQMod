@@ -42,7 +42,7 @@ namespace Aequus
             }, PacketType.SoundQueue);
         }
 
-        public static void ReadSoundQueue(BinaryReader reader)
+        public static void ReceiveSoundQueue(BinaryReader reader)
         {
             byte queueType = reader.ReadByte();
             var location = new Vector2(-1f, -1f);

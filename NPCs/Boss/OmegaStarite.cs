@@ -1640,6 +1640,11 @@ namespace Aequus.NPCs.Boss
 
         public override void SendExtraAI(BinaryWriter writer)
         {
+            if (rings == null)
+            {
+                writer.Write(0);
+                return;
+            }
             writer.Write(rings.Count);
             for (int i = 0; i < rings.Count; i++)
             {

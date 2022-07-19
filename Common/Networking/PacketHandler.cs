@@ -1,8 +1,8 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
+using Aequus.Biomes.Glimmer;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
-using Aequus.NPCs;
+using Aequus.NPCs.Boss;
 using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -12,6 +12,7 @@ using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -39,16 +40,7 @@ namespace Aequus.Common.Networking
         {
             procedures = new Dictionary<PacketType, Procedure>()
             {
-                [PacketType.SetExporterQuestsCompleted] = new Procedure
-                ((p, o) =>
-                {
-                    p.Write((ushort)ExporterQuests.QuestsCompleted);
-                },
-                (r) =>
-                {
-                    ExporterQuests.QuestsCompleted = r.ReadUInt16();
-                }),
-                [PacketType.ClientNPCSpawn] = new Procedure
+                [PacketType.SpawnOmegaStarite] = new Procedure
                 ((p, o) =>
                 {
                     if (o[0] != null && o[0] is string)
@@ -112,31 +104,10 @@ namespace Aequus.Common.Networking
                     }
                     NPC.NewNPCDirect(new EntitySource_Sync(syncSource), location, netID, 0, ai[0], ai[1], ai[2], ai[3]);
                 }),
-                [PacketType.GlimmerEventUpdate] = new Procedure
-                ((p, o) =>
-                {
-                    p.Write(GlimmerBiome.EventActive);
-                    if (GlimmerBiome.EventActive)
-                    {
-                        p.Write((ushort)GlimmerBiome.TileLocation.X);
-                        p.Write((ushort)GlimmerBiome.TileLocation.Y);
-                    }
-                },
-                (r) =>
-                {
-                    if (r.ReadBoolean())
-                    {
-                        GlimmerBiome.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
-                    }
-                    else
-                    {
-                        GlimmerBiome.TileLocation = Point.Zero;
-                    }
-                }),
             };
         }
 
-        public static void SendProcedure(PacketType packetType, params object[] obj)
+        public static void SendLegacyProcedure(PacketType packetType, params object[] obj)
         {
             Send((p) =>
             {
@@ -144,12 +115,18 @@ namespace Aequus.Common.Networking
             }, packetType);
         }
 
-        public static void ReadProcedure(PacketType packetType, BinaryReader reader)
+        public static void ReadLegacyProcedure(PacketType packetType, BinaryReader reader)
         {
             if (procedures.TryGetValue(packetType, out var p))
             {
                 p.Read(reader);
             }
+        }
+
+        public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
+        {
+            var packet = Aequus.Instance.GetPacket(capacity);
+            packet.Write((byte)type);
         }
 
         public static void Send(Func<ModPacket, bool> func, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
@@ -276,65 +253,91 @@ namespace Aequus.Common.Networking
             var type = ReadPacketType(reader);
 
             var l = Aequus.Instance.Logger;
-            if (type != PacketType.Unused && type != PacketType.SyncAequusPlayer)
+            if (type != PacketType.SyncAequusPlayer)
             {
                 l.Debug("Recieving Packet: " + type);
             }
-            if (type == PacketType.Unused)
+            switch (type)
             {
-            }
-            else if (type == PacketType.SyncNecromancyOwner)
-            {
-                int npc = reader.ReadInt32();
-                Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
-            }
-            else if (type == PacketType.SyncAequusPlayer)
-            {
-                if (Main.player[reader.ReadByte()].TryGetModPlayer<AequusPlayer>(out var aequus))
-                {
-                    aequus.RecieveChanges(reader);
-                }
-            }
-            else if (type == PacketType.SoundQueue)
-            {
-                SoundHelpers.ReadSoundQueue(reader);
-            }
-            else if (type == PacketType.DemonSiegeSacrificeStatus)
-            {
-                DemonSiegeSacrifice.ReadPacket(reader);
-            }
-            else if (type == PacketType.RequestDemonSiege)
-            {
-                DemonSiegeSystem.HandleStartRequest(reader);
-            }
-            else if (type == PacketType.RemoveDemonSiege)
-            {
-                DemonSiegeSystem.ActiveSacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
-            }
-            else if (type == PacketType.SyncAequusNPC)
-            {
-                byte npc = reader.ReadByte();
-                Main.npc[npc].Aequus().Receive(npc, reader);
-            }
-            else if (type == PacketType.SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities)
-            {
-                TERecyclingMachine.NetReceive2(reader);
-            }
-            else if (type == PacketType.GiveoutEnemySouls)
-            {
-                int amt = reader.ReadInt32();
-                var v = reader.ReadVector2();
-                for (int i = 0; i < amt; i++)
-                {
-                    int player = reader.ReadInt32();
-                    if (Main.myPlayer == player)
-                        Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, player);
-                    Main.player[player].GetModPlayer<AequusPlayer>().candleSouls++;
-                }
-            }
-            else
-            {
-                ReadProcedure(type, reader);
+                case PacketType.SyncNecromancyNPC:
+                    {
+                        byte npc = reader.ReadByte();
+                        Main.npc[npc].GetGlobalNPC<NecromancyNPC>().Receive(reader);
+                    }
+                    break;
+
+                case PacketType.SpawnOmegaStarite:
+                    NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
+                    break;
+
+                case PacketType.SetExporterQuestsCompleted:
+                    ExporterQuests.QuestsCompleted = reader.ReadUInt16();
+                    break;
+
+                case PacketType.GlimmerEventUpdate:
+                    GlimmerSystem.RecieveGlimmerEventUpdate(reader);
+                    break;
+
+                case PacketType.GiveoutEnemySouls:
+                    {
+                        int amt = reader.ReadInt32();
+                        var v = reader.ReadVector2();
+                        for (int i = 0; i < amt; i++)
+                        {
+                            int player = reader.ReadInt32();
+                            if (Main.myPlayer == player)
+                                Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, player);
+                            Main.player[player].GetModPlayer<AequusPlayer>().candleSouls++;
+                        }
+                    }
+                    break;
+
+                case PacketType.SyncRecyclingMachine:
+                    TERecyclingMachine.NetReceive2(reader);
+                    break;
+
+                case PacketType.SyncAequusNPC:
+                    {
+                        byte npc = reader.ReadByte();
+                        Main.npc[npc].Aequus().Receive(npc, reader);
+                    }
+                    break;
+
+                case PacketType.RemoveDemonSiege:
+                    DemonSiegeSystem.ActiveSacrifices.Remove(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
+                    break;
+
+                case PacketType.StartDemonSiege:
+                    DemonSiegeSystem.ReceiveStartRequest(reader);
+                    break;
+
+                case PacketType.DemonSiegeSacrificeStatus:
+                    DemonSiegeSacrifice.ReceiveStatus(reader);
+                    break;
+
+                case PacketType.SoundQueue:
+                    SoundHelpers.ReceiveSoundQueue(reader);
+                    break;
+
+                case PacketType.SyncAequusPlayer:
+                    {
+                        if (Main.player[reader.ReadByte()].TryGetModPlayer<AequusPlayer>(out var aequus))
+                        {
+                            aequus.RecieveChanges(reader);
+                        }
+                    }
+                    break;
+
+                case PacketType.SyncNecromancyOwner:
+                    {
+                        int npc = reader.ReadInt32();
+                        Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
+                    }
+                    break;
+
+                default:
+                    ReadLegacyProcedure(type, reader);
+                    break;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Items.Accessories;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -182,6 +183,18 @@ namespace Aequus.Projectiles
                 }
             }
             return true;
+        }
+
+        public override void PostAI(Projectile projectile)
+        {
+            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
+            {
+                var glowCore = Main.player[projectile.owner].Aequus();
+                if (glowCore.glowCoreItem != null)
+                {
+                    GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
+                }
+            }
         }
 
         public int ProjectileOwner(Projectile projectile)

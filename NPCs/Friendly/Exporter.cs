@@ -470,7 +470,7 @@ namespace Aequus.NPCs.Friendly
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketHandler.SendProcedure(PacketType.SetExporterQuestsCompleted);
+                PacketHandler.Send(PacketType.SetExporterQuestsCompleted);
             }
         }
         public int SpawnLoot_ChooseRoulette(Player player, int i)

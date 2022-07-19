@@ -783,12 +783,14 @@ namespace Aequus.NPCs.Friendly
         {
             writer.Write(currentAction);
             PacketHandler.WriteNullableItem(shopBanner, writer, writeStack: true);
+            PacketHandler.WriteNullableItem(shopAccessory, writer, writeStack: true);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             currentAction = reader.ReadInt32();
             shopBanner = PacketHandler.ReadNullableItem(reader, readStack: true);
+            shopAccessory = PacketHandler.ReadNullableItem(reader, readStack: true);
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

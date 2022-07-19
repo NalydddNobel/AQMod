@@ -723,7 +723,8 @@ namespace Aequus
 
         public override void PostUpdate()
         {
-            DoDebuffEffects();
+            if (Main.netMode != NetmodeID.Server)
+                DoDebuffEffects();
 
             if (antiGravityItemRadius > 0f)
             {

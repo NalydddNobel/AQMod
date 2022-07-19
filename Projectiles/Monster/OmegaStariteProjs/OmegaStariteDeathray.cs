@@ -3,6 +3,7 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
@@ -122,6 +123,16 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
                 Main.dust[d].velocity = dustVelocityNormal * Main.rand.NextFloat(3f, 9.5f) * dir;
             }
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(Projectile.scale);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            Projectile.scale = reader.ReadSingle();
         }
     }
 }

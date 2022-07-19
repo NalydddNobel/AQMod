@@ -50,9 +50,11 @@ namespace Aequus.NPCs.Friendly
                 .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Hate)
-                .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate);
+                .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate)
+                .SetNPCAffection<Occultist>(AffectionLevel.Hate);
         }
 
         public override void SetDefaults()

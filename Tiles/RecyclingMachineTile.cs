@@ -381,7 +381,7 @@ namespace Aequus.Tiles
                     ItemIO.Send(item, p, writeStack: true);
                     p.Write(timeLeft);
                 }
-            }, PacketType.SyncRecyclingMachine_CauseForSomeReasonNetRecieveIsntWorkingOnTileEntities);
+            }, PacketType.SyncRecyclingMachine);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -392,6 +392,12 @@ namespace Aequus.Tiles
         {
             bool hasItem = reader.ReadBoolean();
             int id = reader.ReadInt32();
+            if (!ByID.ContainsKey(id))
+            {
+                ItemIO.Receive(reader, readStack: true);
+                reader.ReadUInt16();
+                return;
+            }
             var recyclingMachine = (TERecyclingMachine)ByID[id];
             ByPosition[recyclingMachine.Position] = recyclingMachine;
             if (hasItem)

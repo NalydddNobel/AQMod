@@ -27,6 +27,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
             Projectile.height = 40;
             Projectile.hostile = true;
             Projectile.aiStyle = -1;
+            Projectile.penetrate = -1;
             Projectile.timeLeft = 360;
             Projectile.ignoreWater = true;
             Projectile.tileCollide = false;
@@ -41,7 +42,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
             {
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Projectile.direction = -1;
+                    Projectile.direction = Main.npc[(int)(Projectile.ai[0] - 1)].direction;
                 }
                 Projectile.netUpdate = true;
             }

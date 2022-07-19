@@ -576,9 +576,9 @@ namespace Aequus.NPCs
 
         public static void Sync(int npc)
         {
-            if (Main.npc[npc].TryGetGlobalNPC<AequusNPC>(out var debuffs))
+            if (Main.npc[npc].TryGetGlobalNPC<AequusNPC>(out var aequus))
             {
-                PacketHandler.Send((p) => { p.Write((byte)npc); debuffs.Send(npc, p); }, PacketType.SyncAequusNPC);
+                PacketHandler.Send((p) => { p.Write((byte)npc); aequus.Send(npc, p); }, PacketType.SyncAequusNPC);
             }
         }
     }

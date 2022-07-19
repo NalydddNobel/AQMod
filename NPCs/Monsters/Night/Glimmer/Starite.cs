@@ -340,13 +340,14 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 {
                     NPC.velocity.X = 0f;
                     NPC.noGravity = true;
+                    NPC.netUpdate = true;
                     fallenStar = true;
                 }
                 NPC.rotation = NPC.velocity.X * 0.2f;
                 return;
             }
 
-            if (NPC.velocity == Vector2.Zero)
+            if (NPC.velocity == Vector2.Zero && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.TargetClosest(faceTarget: false);
                 float y;
@@ -361,6 +362,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 NPC.position.Y = y - 1000f;
                 NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 15f;
                 NPC.oldVelocity = NPC.velocity;
+                NPC.netUpdate = true;
             }
 
             if (NPC.noTileCollide)

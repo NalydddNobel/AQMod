@@ -378,15 +378,10 @@
             <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
             <returns></returns>
         </member>
-        <member name="F:Aequus.Common.Networking.PacketType.ClientNPCSpawn">
+        <member name="T:Aequus.Common.Networking.IGlobalNPCNetworker">
             <summary>
-            0) string, Sync Context
-            <para>1) int, NetID</para>
-            <para>2) Vector2, Spawn Location</para>
-            <para>3) float, AI[0], optional</para>
-            <para>4) float, AI[1], optional</para>
-            <para>5) float, AI[2], optional</para>
-            <para>6) float, AI[3], optional</para>
+            Allows GlobalNPCs to send extra data when packets related to syncing NPCs
+            <para>Be sure to have your global be instanced</para>
             </summary>
         </member>
         <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
