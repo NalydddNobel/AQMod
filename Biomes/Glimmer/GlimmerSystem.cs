@@ -27,7 +27,6 @@ namespace Aequus.Biomes.Glimmer
 
         public static void OnTransitionToNight()
         {
-            return;
             int chance = 9;
             if (Main.tenthAnniversaryWorld)
             {
