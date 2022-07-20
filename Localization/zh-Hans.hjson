@@ -151,6 +151,7 @@ Mods: {
 
 			FishyFins: 可疑鱼鳍
 
+			SuperStarSword: 超级星剑
 			UltimateSword: 最终之剑
 			BattleAxe: 战斧
 			RockMan: 摇滚者
@@ -165,6 +166,7 @@ Mods: {
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 
+			StariteStaff: 星源法杖
 			ScribbleNotebook: 麦克斯韦的笔记本
 			CorruptPot: 腐食罐
 			DisturbanceStaff: 扰乱法杖
@@ -379,10 +381,7 @@ Mods: {
 			SeltzerRain: 污浊腐雨
 			FizzlingFire: 超级火焰喷射器
 			Valari: 回旋镰
-			StariteBlade: 星剑
-			StariteSpinner: 脉冲星
 			Resonance: 共振
-			StariteStaff: 星源法杖
 			VineSword: 棒槌
 			KryptonSword: 氪制回旋镖
 			Vrang: 镰刃
@@ -625,9 +624,14 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			SuperStarSword: 
+			'''
+			生命值为满时会发射剑气
+			'会动的东西我砍, 动的很欢的我照样会砍'
+			'''
+			UltimateSword: '只是真正潜能的一小部分'
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
-			UltimateSword: '只是真正潜能的一小部分'
 
 			BoundBow: 
 				'''
@@ -652,6 +656,7 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			StariteStaff: 召唤一颗迅捷星源为你而战
 			ScribbleNotebook: 召唤一件物体为你而战
 			CorruptPot: 召唤一株腐化植物为你而战
 			DisturbanceStaff:
@@ -1134,22 +1139,6 @@ Mods: {
 			SeltzerRain: 发射许多腐蚀球体
 			FizzlingFire: 在你拥有耐魔性减益时无法使用
 			Valari: 可以拾取物品
-			StariteBlade:
-				'''
-				击中敌人时会对其造成碧蓝之火减益
-				'邪恶永远无法触及的神圣之刃'
-				'''
-			StariteSpinner:
-				'''
-				击中敌人时偶尔会对其造成碧蓝之火减益
-				'它在旋转吗? 还是我们在绕着它旋转?'
-				'''
-			Resonance:
-				'''
-				击中敌人时偶尔会使其被灼烧
-				'你不觉得我们该重新计算那些共振阻尼因子吗?'
-				'''
-			StariteStaff: 召唤一颗迅捷星之源为你而战
 			VineSword:
 				'''
 				打击你光标附近的敌人
