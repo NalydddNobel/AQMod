@@ -68,8 +68,6 @@ namespace Aequus.Projectiles.Melee.Swords
             if (!_init)
             {
                 Initialize(player, player.Aequus());
-                UpdateDirection(player);
-                swingDirection *= Projectile.direction;
                 scale = Projectile.scale;
             }
 
@@ -152,12 +150,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public void UpdateDirection(Player player)
         {
-            if (angleVector.X < 0f && swingDirection == -1)
+            if (angleVector.X < 0f)
             {
                 player.direction = -1;
                 Projectile.direction = -1;
             }
-            else if (angleVector.X > 0f && swingDirection == 1)
+            else if (angleVector.X > 0f)
             {
                 player.direction = 1;
                 Projectile.direction = 1;
@@ -170,6 +168,8 @@ namespace Aequus.Projectiles.Melee.Swords
             combo = aequus.itemCombo;
             AequusHelpers.MeleeScale(Projectile);
             swingDirection = 1;
+            UpdateDirection(player);
+            swingDirection *= Projectile.direction;
         }
 
         protected virtual void SetArmRotation(Player player, Vector2 rotation)

@@ -345,7 +345,7 @@ namespace Aequus
 
         public static void MarkAsDefeated(ref bool defeated, int npcID)
         {
-            NPC.SetEventFlagCleared(ref defeated, -npcID);
+            NPC.SetEventFlagCleared(ref defeated, -1);
         }
 
         public static bool Outer(int x, int iths)

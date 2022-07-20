@@ -34,6 +34,8 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 swingDirection *= -1;
             }
+            //Main.NewText(swingDirection);
+            //Main.NewText(Projectile.direction, Main.DiscoColor);
         }
 
         public override Color? GetAlpha(Color lightColor)

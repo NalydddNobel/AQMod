@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             NPC.width = 50;
             NPC.height = 50;
-            NPC.lifeMax = 225;
+            NPC.lifeMax = 125;
             NPC.damage = 80;
             NPC.defense = 8;
             NPC.HitSound = SoundID.NPCHit5;
@@ -231,7 +231,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                                 NPC.ai[1] = 0f;
                                 for (int i = 0; i < 5; i++)
                                 {
-                                    int damage = Main.expertMode ? 45 : 75;
+                                    int damage = Main.expertMode ? 30 : 55;
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<HyperStariteProj>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
                                 }
                                 NPC.netUpdate = true;
