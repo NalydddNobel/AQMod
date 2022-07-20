@@ -215,7 +215,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
             Player player = Main.player[NPC.target];
             Vector2 plrCenter = player.Center;
-            float armsWantedLength = 400f;
+            float armsWantedLength = 320f;
             oldArmsLength[0] = NPC.ai[3];
             AequusHelpers.UpdateCacheList(oldArmsLength);
             switch (State)

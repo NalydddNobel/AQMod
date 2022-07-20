@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.height = 16;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

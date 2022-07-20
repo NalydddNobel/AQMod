@@ -117,6 +117,7 @@ namespace Aequus.NPCs.Friendly
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
             if (!Main.dayTime)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)

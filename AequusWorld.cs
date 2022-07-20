@@ -202,7 +202,7 @@ namespace Aequus
                                 AddGlowCore(c, placedItems);
                             }
 
-                            switch (r.Next(5))
+                            switch (r.Next(6))
                             {
                                 case 0:
                                     c.Insert(ModContent.ItemType<BoneRing>(), 1);

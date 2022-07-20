@@ -20,7 +20,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.maxStack = 1;
             Item.consumable = false;
             Item.rare = ItemRarityID.LightRed;
-            Item.value = Item.buyPrice(silver: 80);
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override Color? GetAlpha(Color lightColor)
