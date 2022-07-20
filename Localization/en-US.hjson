@@ -151,6 +151,7 @@ Mods: {
 
 			FishyFins: Fishy Fins
 
+			SuperStarSword: Super Star Sword
 			UltimateSword: Ultimate Sword
 			BattleAxe: Battle Axe
 			RockMan: Rock Man
@@ -165,6 +166,7 @@ Mods: {
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
+			StariteStaff: Starite Staff
 			ScribbleNotebook: Maxwell's Notebook
 			CorruptPot: Corrupt Pot
 			DisturbanceStaff: Disturbance Staff
@@ -379,10 +381,7 @@ Mods: {
 			SeltzerRain: Tainted Rain
 			FizzlingFire: Super Scorcher
 			Valari: Valari
-			StariteBlade: Star Blade
-			StariteSpinner: Pulsar
 			Resonance: Resonance
-			StariteStaff: Starite Staff
 			VineSword: Mallet
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
@@ -625,9 +624,14 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			SuperStarSword: 
+			'''
+			Fires a slash when at full health
+			'If they zig, I cut 'em (If they zag, I cut 'em too)'
+			'''
+			UltimateSword: 'Just a fragment of true potential'
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
-			UltimateSword: 'Just a fragment of true potential'
 
 			BoundBow: 
 				'''
@@ -652,6 +656,7 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			StariteStaff: Summons a speedy starite to fight for you
 			ScribbleNotebook: Summons an object to fight for you
 			CorruptPot: Summons a corrupted plant to fight for you
 			DisturbanceStaff:
@@ -1134,22 +1139,6 @@ Mods: {
 			SeltzerRain: Shoots many corrupted orbs
 			FizzlingFire: Cannot be used if you have mana sickness
 			Valari: Can pick up items
-			StariteBlade:
-				'''
-				Inflicts blue fire on hit
-				'The sacred blade that evil can never touch'
-				'''
-			StariteSpinner:
-				'''
-				Occasionally inflicts blue fire on hit
-				'Is it rotating? Or are we just orbiting around it?'
-				'''
-			Resonance:
-				'''
-				Occasionally burns enemies on hit
-				'Don't you think we should recalculate those resonance dampening factors again?'
-				'''
-			StariteStaff: Summons a speedy starite to fight for you
 			VineSword:
 				'''
 				Whack nearby enemies using your mouse

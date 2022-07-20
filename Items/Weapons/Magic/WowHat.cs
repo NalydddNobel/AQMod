@@ -118,7 +118,7 @@ namespace Aequus.Items.Weapons.Magic
                         break;
 
                     case 2:
-                        velocity = -velocity;
+                        //velocity = -velocity;
                         break;
                 }
             }

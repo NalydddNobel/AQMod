@@ -378,12 +378,6 @@
             <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Common.Networking.IGlobalNPCNetworker">
-            <summary>
-            Allows GlobalNPCs to send extra data when packets related to syncing NPCs
-            <para>Be sure to have your global be instanced</para>
-            </summary>
-        </member>
         <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
             <summary>
             Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>

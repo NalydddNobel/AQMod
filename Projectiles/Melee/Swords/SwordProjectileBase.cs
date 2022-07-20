@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords
@@ -10,6 +11,9 @@ namespace Aequus.Projectiles.Melee.Swords
     public abstract class SwordProjectileBase : ModProjectile
     {
         public static Asset<Texture2D> SwishTexture => ModContent.Request<Texture2D>(typeof(SwordProjectileBase).Namespace.Replace('.', '/') + "/Swish");
+        public static Asset<Texture2D> Swish2Texture => ModContent.Request<Texture2D>(typeof(SwordProjectileBase).Namespace.Replace('.', '/') + "/Swish2");
+
+        public static SoundStyle HeavySwing => Aequus.GetSounds("heavysword_", 4, 0.66f, -0.2f);
 
         private bool _init;
         public int swingDirection;
@@ -30,6 +34,8 @@ namespace Aequus.Projectiles.Melee.Swords
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
         public float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
+
+        public virtual bool SwingSwitchDir => AnimProgress > 0.4f && AnimProgress < 0.6f;
 
         public override void SetDefaults()
         {
@@ -67,7 +73,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 scale = Projectile.scale;
             }
 
-            if (AnimProgress > 0.4f && AnimProgress < 0.6f)
+            if (SwingSwitchDir)
             {
                 UpdateDirection(player);
             }

@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,6 +8,8 @@ namespace Aequus.Buffs.Debuffs
     public class Bleeding : ModBuff
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Bleeding;
+
+        public static SoundStyle InflictDebuffSound => Aequus.GetSound("inflict_blood");
 
         public override void SetStaticDefaults()
         {

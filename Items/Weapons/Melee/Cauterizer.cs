@@ -44,11 +44,5 @@ namespace Aequus.Items.Weapons.Melee
         {
             CrimsonHellfire.AddStack(target, 240, 1);
         }
-
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            damage = (int)(damage * 0.75f);
-            position += Vector2.Normalize(velocity) * 32f;
-        }
     }
 }

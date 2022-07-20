@@ -4,6 +4,7 @@ using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Friendly;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -36,8 +37,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
+                .AddOptions(chance: 5, ModContent.ItemType<AmmoBackpack>(), ModContent.ItemType<SuperStarSword>())
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
-                .Add<AmmoBackpack>(chance: 25, stack: 1)
                 .Add<NeutronYogurt>(chance: 2, stack: 1);
         }
 
