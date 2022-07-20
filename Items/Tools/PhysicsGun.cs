@@ -62,11 +62,6 @@ namespace Aequus.Items.Tools
 
                 var coloring = Main.LocalPlayer.Aequus().SyncedMouseColor;
                 var glowTexture = GlowTexture.Value;
-                if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
-                {
-                    Main.player[Item.playerIndexTheItemIsReservedFor].Aequus().RequestToSyncMouseColor = true;
-                    coloring = Main.player[Item.playerIndexTheItemIsReservedFor].Aequus().SyncedMouseColor;
-                }
 
                 spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
 

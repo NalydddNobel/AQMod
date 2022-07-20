@@ -4,6 +4,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
+using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
 using System.Collections.Generic;
 using Terraria;
@@ -90,6 +91,7 @@ namespace Aequus.NPCs.Friendly
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
