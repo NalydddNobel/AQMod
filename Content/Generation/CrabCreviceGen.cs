@@ -43,7 +43,7 @@ namespace Aequus.Content.Generation
                         {
                             for (int l = -wallSize; l <= wallSize; l++)
                             {
-                                if ((!Main.tile[x + k, y + l].HasTile || !Main.tile[x + k, y + l].Solid()) && CanOverwriteTile(Main.tile[x + k, y + l]))
+                                if ((!Main.tile[x + k, y + l].HasTile || !Main.tile[x + k, y + l].SolidType()) && CanOverwriteTile(Main.tile[x + k, y + l]))
                                 {
                                     return false;
                                 }
@@ -115,7 +115,7 @@ namespace Aequus.Content.Generation
                     {
                         for (int n = -2; n <= 2; n++)
                         {
-                            if (!Main.tile[x2 + m, y2 + n].HasTile && !Main.tile[x2 + m, y2 + n].Solid() && Main.tile[x2 + m, y2 + n].LiquidAmount > 0)
+                            if (!Main.tile[x2 + m, y2 + n].HasTile && !Main.tile[x2 + m, y2 + n].SolidType() && Main.tile[x2 + m, y2 + n].LiquidAmount > 0)
                             {
                                 continue;
                             }
@@ -234,7 +234,7 @@ namespace Aequus.Content.Generation
                         if (validCircles[k].Inside(x2, y2))
                         {
                             Main.tile[x2, y2].Active(value: false);
-                            if (minWater > 100 && Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].Solid())
+                            if (minWater > 100 && Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].SolidType())
                             {
                                 Main.tile[x2, y2].LiquidAmount = 255;
                             }
@@ -295,8 +295,8 @@ namespace Aequus.Content.Generation
                 {
                     continue;
                 }
-                if (Main.tile[chestX, chestY + 1].HasTile && Main.tile[chestX, chestY + 1].Solid()
-                    && Main.tile[chestX + 1, chestY + 1].HasTile && Main.tile[chestX + 1, chestY + 1].Solid() && Main.tile[chestX, chestY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
+                if (Main.tile[chestX, chestY + 1].HasTile && Main.tile[chestX, chestY + 1].SolidType()
+                    && Main.tile[chestX + 1, chestY + 1].HasTile && Main.tile[chestX + 1, chestY + 1].SolidType() && Main.tile[chestX, chestY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
                 {
                     bool validSpot = true;
                     for (int k = 0; k < 2; k++)
@@ -905,7 +905,7 @@ namespace Aequus.Content.Generation
                         if (finalCaveCircles[k].Inside(x2, y2))
                         {
                             Main.tile[x2, y2].Active(value: false);
-                            if (Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].Solid())
+                            if (Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].SolidType())
                             {
                                 Main.tile[x2, y2].LiquidAmount = 255;
                             }

@@ -150,13 +150,13 @@ namespace Aequus.Common.Networking
             Send((p) =>
             {
                 p.Write(name);
-                FlaggedSend(location != null, (p) => p.WriteVector2(location.Value), p);
-                FlaggedSend(volume != null, (p) => p.Write(volume.Value), p);
-                FlaggedSend(pitch != null, (p) => p.Write(pitch.Value), p);
+                FlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
+                FlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
+                FlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
             }, PacketType.SoundQueue);
         }
 
-        public static void FlaggedSend(bool flag, Action<ModPacket> writeAction, ModPacket p)
+        public static void FlaggedWrite(bool flag, Action<ModPacket> writeAction, ModPacket p)
         {
             p.Write(flag);
             if (flag)

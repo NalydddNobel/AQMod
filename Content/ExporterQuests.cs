@@ -86,11 +86,11 @@ namespace Aequus.Content
                 {
                     if (Main.tile[x, y].HasTile)
                     {
-                        if (Main.tile[x, y].SolidTop() && !Main.tile[x, y - 1].HasTile)
+                        if (Main.tile[x, y].SolidTopType() && !Main.tile[x, y - 1].HasTile)
                         {
                             points.Add(new Point(x, y));
                         }
-                        else if (Main.tile[x, y].Solid())
+                        else if (Main.tile[x, y].SolidType())
                         {
                             break;
                         }

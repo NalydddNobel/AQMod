@@ -36,9 +36,9 @@ namespace Aequus
             PacketHandler.Send((p) =>
             {
                 p.Write(type);
-                PacketHandler.FlaggedSend(location != null, (p) => p.WriteVector2(location.Value), p);
-                PacketHandler.FlaggedSend(volume != null, (p) => p.Write(volume.Value), p);
-                PacketHandler.FlaggedSend(pitch != null, (p) => p.Write(pitch.Value), p);
+                PacketHandler.FlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
+                PacketHandler.FlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
+                PacketHandler.FlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
             }, PacketType.SoundQueue);
         }
 

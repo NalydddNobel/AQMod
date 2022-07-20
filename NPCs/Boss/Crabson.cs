@@ -431,11 +431,11 @@ namespace Aequus.NPCs.Boss
                 var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
                 if (tile.HasTile)
                 {
-                    if (bubbleTile == 40 && tile.Solid())
+                    if (bubbleTile == 40 && tile.SolidType())
                     {
                         bubbleTile = j;
                     }
-                    if (j > 20 && (tile.Solid() || tile.SolidTop()))
+                    if (j > 20 && (tile.SolidType() || tile.SolidTopType()))
                     {
                         GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f + NPC.height + 20f));
                         toPlayer = false;
@@ -618,7 +618,7 @@ namespace Aequus.NPCs.Boss
             for (j = 7; j < 36; j++)
             {
                 var tile = Main.tile[tileCoordinates.X, tileCoordinates.Y + j];
-                if (tile.HasTile && (tile.Solid() || tile.SolidTop()))
+                if (tile.HasTile && (tile.SolidType() || tile.SolidTopType()))
                 {
                     GroundMovement(new Vector2(tileCoordinates.X * 16f + 8f, (tileCoordinates.Y + j) * 16f));
                     toPlayer = false;

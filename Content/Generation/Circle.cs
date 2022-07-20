@@ -48,7 +48,7 @@ namespace Aequus.Content.Generation
                     int y = Y + j - Radius;
                     if (Distance(x, y) < Radius - minDistanceFromEdge)
                     {
-                        if (!Main.tile[x, y].HasTile || !Main.tile[x, y].Solid())
+                        if (!Main.tile[x, y].HasTile || !Main.tile[x, y].SolidType())
                         {
                             continue;
                         }
@@ -84,7 +84,7 @@ namespace Aequus.Content.Generation
                     int y = Y + j - Radius;
                     if (Distance(x, y) < Radius - minDistanceFromEdge)
                     {
-                        if (!Main.tile[x, y].HasTile || !Main.tile[x, y].Solid())
+                        if (!Main.tile[x, y].HasTile || !Main.tile[x, y].SolidType())
                         {
                             continue;
                         }

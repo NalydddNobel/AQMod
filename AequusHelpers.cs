@@ -90,6 +90,13 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Color HueShift(Color color, float hueShift)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.X += hueShift;
+            return Main.hslToRgb(hsl);
+        }
+
         public static int NPCType(Mod mod, string name)
         {
             if (NPCID.Search.TryGetId(mod.Name + "/" + name, out var value))
@@ -1621,19 +1628,24 @@ namespace Aequus
             return minimum + ((float)Math.Sin(time) + 1f) / 2f * (maximum - minimum);
         }
 
-        public static bool SolidTop(this Tile tile)
+        public static bool SolidTopType(this Tile tile)
         {
             return Main.tileSolidTop[tile.TileType];
         }
 
-        public static bool IsSolid(this Tile tile)
-        {
-            return tile.HasTile && !tile.IsActuated && Main.tileSolid[tile.TileType];
-        }
-
-        public static bool Solid(this Tile tile)
+        public static bool SolidType(this Tile tile)
         {
             return Main.tileSolid[tile.TileType];
+        }
+
+        public static bool IsSolid(this Tile tile)
+        {
+            return tile.HasTile && SolidType(tile) && !tile.IsActuated;
+        }
+
+        public static bool IsFullySolid(this Tile tile)
+        {
+            return tile.HasTile && !tile.IsActuated && Main.tileSolid[tile.TileType] && !SolidTopType(tile);
         }
 
         public static int Abs(this int value)

@@ -51,7 +51,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             {
                 for (int j = 0; j < 25; j++)
                 {
-                    if (Main.tile[x, y + j].HasTile && Main.tile[x, y + j].Solid())
+                    if (Main.tile[x, y + j].HasTile && Main.tile[x, y + j].SolidType())
                     {
                         return new Vector2(x * 16f + 8f, (y + j) * 16f - 32f);
                     }

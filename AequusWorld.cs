@@ -102,9 +102,8 @@ namespace Aequus
             }
         }
 
-        public override void OnWorldLoad()
+        public void ResetWorldData()
         {
-            Aequus.SkiesDarkness = 1f;
             shadowOrbsBrokenTotal = 0;
             downedEventCosmic = false;
             downedEventDemon = false;
@@ -115,6 +114,17 @@ namespace Aequus
             downedOmegaStarite = false;
             downedDustDevil = false;
             Structures = new Structures();
+        }
+
+        public override void OnWorldLoad()
+        {
+            Aequus.SkiesDarkness = 1f;
+            ResetWorldData();
+        }
+
+        public override void OnWorldUnload()
+        {
+            ResetWorldData();
         }
 
         public override void SaveWorldData(TagCompound tag)
