@@ -13,6 +13,9 @@ namespace Aequus.Projectiles.Melee
 {
     public class HellsBoonProj : ModProjectile
     {
+
+        private const int goOutTime = 15;
+
         private float _portaloffset = 0f;
 
         public static StaticMiscShaderInfo SpikeFade { get; private set; }
@@ -43,15 +46,13 @@ namespace Aequus.Projectiles.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
-            Projectile.timeLeft = 240;
+            Projectile.timeLeft = 60;
             Projectile.penetrate = -1;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
         }
-
-        private const int goOutTime = 15;
 
         public override bool? CanCutTiles() => Projectile.ai[1] > 15f && Projectile.ai[1] < 15f + goOutTime;
 
@@ -76,16 +77,20 @@ namespace Aequus.Projectiles.Melee
                     Projectile.ai[1] += Main.rand.NextFloat(1f, 2.5f);
                     if (Main.netMode != NetmodeID.Server && (int)Projectile.ai[1] >= 15 + goOutTime)
                     {
-                        SoundEngine.PlaySound(SoundID.Tink.WithVolume(0.5f).WithPitch(1f), Projectile.Center);
+                        SoundEngine.PlaySound(SoundID.Tink.WithVolume(0.5f).WithPitchOffset(0.05f), Projectile.Center);
                     }
                     float progress = (Projectile.ai[1] - 15f) / goOutTime;
                     Projectile.ai[0] = MathHelper.Lerp(0f, 80f, progress);
-                    Projectile.timeLeft += Main.rand.Next(6) - 1;
+                    Projectile.timeLeft += Main.rand.Next(12);
                 }
             }
             else
             {
-                Projectile.ai[1] += Main.rand.NextFloat(0f, 1f);
+                if (Projectile.ai[1] == 0f)
+                {
+                    Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f));
+                }
+                Projectile.ai[1] += Main.rand.NextFloat(1f) + 0.01f;
                 if (Main.rand.NextBool(6))
                 {
                     int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17);
@@ -104,11 +109,15 @@ namespace Aequus.Projectiles.Melee
                 return;
             }
 
-            SoundEngine.PlaySound(SoundID.Dig.WithVolume(0.25f).WithPitch(1f), Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Dig.WithVolume(0.25f).WithPitch(0.5f), Projectile.Center);
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17);
+                var d = Dust.NewDustDirect(Projectile.position - Vector2.Normalize(Projectile.velocity) * Main.rand.NextFloat(90f), Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17, Scale: Main.rand.NextFloat(0.6f, 1f));
+                if (Main.rand.NextBool())
+                {
+                    d.noGravity = true;
+                }
             }
         }
 

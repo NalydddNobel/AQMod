@@ -2996,14 +2996,14 @@ Mods: {
 				}
 
 				ShopQuote: {
-					PhysicsGun: Something I created in my kindergarten science fair, quite high tech compared to your creations.
+					PhysicsGun: A zero point energy field manipulator I created for my kindergarten science fair, quite high tech compared to the dirt rod.
 					HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
 					HolographicMeatloaf: A massive hit with photosynthetic creatures, this meatloaf is cooked with the most delicious tasting light.
 					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon' event.
 					GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
 					SolarTablet: Lihzahrds and their ability to control the sun and moon are something to admire.
-					ForceAntiGravityBlock: Using strong antimatter, I can completely reverse the effect of gravity.
-					ForceGravityBlock: Using strong gravitational matter, I can negate the effects of reversed gravity.
+					ForceAntiGravityBlock: A special type of plating manufactured for 'flying saucers'. Features an anti-gravity beam shooting below.
+					ForceGravityBlock: A special type of plating manufactured for 'flying saucers'. It generates its own gravitational pull and negates all anti-gravity effects.
 					HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
 					SupernovaFruit: Powerful radiation is being emitted from this apple, I wouldn't expect you to be alive next week.
 				}

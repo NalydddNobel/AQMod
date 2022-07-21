@@ -1,8 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Items.Placeable;
-using Aequus.Items.Placeable.Crab;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Ambience;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -48,15 +46,15 @@ namespace Aequus.Tiles
             if (tileHeight == 0)
                 return true;
 
-            var texture = TextureCache.Bloom[2].Value;
+            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura");
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
             var scale = new Vector2(16f, (tileHeight * 16 + 32) / frame.Height);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(10, 90, 200, 0) * 0.35f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(20, 167, 255, 0) * 0.15f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, drawCoords, frame, Color.White.UseA(0) * 0.35f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura2"), drawCoords, frame, Color.White.UseA(0) * 0.15f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
 
             DrawParticles(i, j, tileHeight, spriteBatch);
-            
+
             foreach (var p in GetInteractiblePlayers(i, j, tileHeight))
             {
                 p.Aequus().antiGravityTile = 20;
@@ -69,7 +67,7 @@ namespace Aequus.Tiles
             var rand = AequusEffects.EffectRand;
             int seed = rand.SetRand(i * j + j - i);
 
-            var texture = ModContent.Request<Texture2D>(AequusHelpers.GetPath<MonoDust>());
+            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, AequusHelpers.GetPath<MonoDust>());
             var origin = new Vector2(4f, 4f);
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f - tileHeight * 16f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
@@ -93,8 +91,8 @@ namespace Aequus.Tiles
                         opacity *= progress;
                         scale *= progress;
                     }
-                    spriteBatch.Draw(texture.Value, drawCoords + dustDrawOffset, frame,
-                        Color.DeepSkyBlue.UseA(0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture, drawCoords + dustDrawOffset, frame,
+                        Color.White.UseA(0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
             }
 
@@ -106,7 +104,7 @@ namespace Aequus.Tiles
             var r = new Rectangle(i * 16, j * 16, 16, tileHeight * 16);
             r.Y -= tileHeight * 16;
             var p = new List<Player>();
-            for (int k= 0; k < Main.maxPlayers; k++)
+            for (int k = 0; k < Main.maxPlayers; k++)
             {
                 if (Main.player[k].active && !Main.player[k].dead && !Main.player[k].ghost)
                 {

@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -49,12 +48,12 @@ namespace Aequus.Tiles
             if (tileHeight == 0)
                 return true;
 
-            var texture = TextureCache.Bloom[2].Value;
+            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura");
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
             var scale = new Vector2(16f, (tileHeight * 16 + 32) / frame.Height);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(200, 50, 10, 0) * 0.5f, MathHelper.Pi, new Vector2(frame.Width, frame.Height), scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(texture, drawCoords, frame, new Color(255, 100, 20, 0) * 0.33f, MathHelper.Pi, new Vector2(frame.Width, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, drawCoords, frame, Color.White.UseA(0) * 0.5f, MathHelper.Pi, new Vector2(frame.Width, frame.Height), scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura2"), drawCoords, frame, Color.White.UseA(0) * 0.33f, MathHelper.Pi, new Vector2(frame.Width, frame.Height), scale, SpriteEffects.None, 0f);
 
             DrawParticles(i, j, tileHeight, spriteBatch);
 
@@ -70,7 +69,7 @@ namespace Aequus.Tiles
             var rand = AequusEffects.EffectRand;
             int seed = rand.SetRand(i * j + j - i);
 
-            var texture = ModContent.Request<Texture2D>(AequusHelpers.GetPath<MonoDust>());
+            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, AequusHelpers.GetPath<MonoDust>());
             var origin = new Vector2(4f, 4f);
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
@@ -94,8 +93,8 @@ namespace Aequus.Tiles
                         opacity *= progress;
                         scale *= progress;
                     }
-                    spriteBatch.Draw(texture.Value, drawCoords + dustDrawOffset, frame, 
-                        Color.Orange.UseA(0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture, drawCoords + dustDrawOffset, frame,
+                        Color.White.UseA(0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
             }
 

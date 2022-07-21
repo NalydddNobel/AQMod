@@ -56,7 +56,7 @@ namespace Aequus.Biomes.DemonSiege
             {
                 if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var value))
                 {
-                    int newTime = 3600 * (int)value.Progression;
+                    int newTime = 3600 * (int)(value.Progression + 1);
                     if (!unholyCoreUsed)
                     {
                         newTime *= 2;
