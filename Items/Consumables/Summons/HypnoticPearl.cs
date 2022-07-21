@@ -4,14 +4,14 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Summons
+namespace Aequus.Items.Consumables.Summons
 {
     public class HypnoticPearl : ModItem
     {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Item.type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SlimeCrown];
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

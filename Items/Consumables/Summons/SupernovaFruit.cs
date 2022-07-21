@@ -1,6 +1,6 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Biomes;
+using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
-using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,14 +12,14 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Summons
+namespace Aequus.Items.Consumables.Summons
 {
     public class SupernovaFruit : ModItem/*, GlowmaskData.IPlayerHeld*/
     {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.Abeemination];
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -28,11 +28,12 @@ namespace Aequus.Items.Misc.Summons
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Pink;
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime /*&& !Glimmer.IsGlimmerEventCurrentlyActive()*/ && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerBiome.EventActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool? UseItem(Player player)

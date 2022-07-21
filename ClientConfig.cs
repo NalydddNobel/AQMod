@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Summons;
 using Aequus.Items.Weapons.Summon.Necro;
 using System;
 using System.ComponentModel;

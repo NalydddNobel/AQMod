@@ -1,4 +1,5 @@
-﻿using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
@@ -33,7 +34,6 @@ namespace Aequus.Common.Networking
             }
         }
 
-        private static Dictionary<PacketType, LegacyProcedure> proceduresLegacy;
         private static HashSet<PacketType> logPacketType;
 
         public override void Load()
@@ -47,90 +47,6 @@ namespace Aequus.Common.Networking
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
             };
-
-            proceduresLegacy = new Dictionary<PacketType, LegacyProcedure>()
-            {
-                [PacketType.SpawnOmegaStarite] = new LegacyProcedure
-             ((p, o) =>
-             {
-                 if (o[0] != null && o[0] is string)
-                 {
-                     p.Write((string)o[0]);
-                 }
-                 else
-                 {
-                     p.Write("");
-                 }
-                 p.Write((int)o[1]);
-                 p.WriteVector2((Vector2)o[2]);
-                 var b = new BitsByte();
-
-                 b[0] = o.Length > 3 && o[3] is float && (float)o[3] == 0f;
-                 b[1] = o.Length > 4 && o[4] is float && (float)o[4] == 0f;
-                 b[2] = o.Length > 5 && o[5] is float && (float)o[5] == 0f;
-                 b[3] = o.Length > 6 && o[6] is float && (float)o[6] == 0f;
-
-                 p.Write(b);
-
-                 if (b[0])
-                 {
-                     p.Write((float)o[3]);
-                 }
-                 if (b[1])
-                 {
-                     p.Write((float)o[4]);
-                 }
-                 if (b[2])
-                 {
-                     p.Write((float)o[5]);
-                 }
-                 if (b[3])
-                 {
-                     p.Write((float)o[6]);
-                 }
-             },
-             (r) =>
-             {
-                 float[] ai = new float[4];
-                 string syncSource = r.ReadString();
-                 int netID = r.ReadInt32();
-                 var location = r.ReadVector2();
-                 var b = (BitsByte)r.ReadByte();
-                 if (b[0])
-                 {
-                     ai[0] = r.ReadSingle();
-                 }
-                 if (b[1])
-                 {
-                     ai[1] = r.ReadSingle();
-                 }
-                 if (b[2])
-                 {
-                     ai[2] = r.ReadSingle();
-                 }
-                 if (b[3])
-                 {
-                     ai[3] = r.ReadSingle();
-                 }
-                 NPC.NewNPCDirect(new EntitySource_Sync(syncSource), location, netID, 0, ai[0], ai[1], ai[2], ai[3]);
-             }),
-            };
-        }
-
-        public static void SendLegacyProcedure(PacketType packetType, params object[] obj)
-        {
-            Send((p) =>
-            {
-                proceduresLegacy[packetType].Send(p, obj);
-            }, packetType);
-        }
-
-        public static void ReadLegacyProcedure(PacketType packetType, BinaryReader reader)
-        {
-            if (proceduresLegacy.TryGetValue(packetType, out var p))
-            {
-                p.Read(reader);
-            }
         }
 
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
@@ -277,6 +193,7 @@ namespace Aequus.Common.Networking
                     break;
 
                 case PacketType.SpawnOmegaStarite:
+                    AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
                     NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
                     break;
 
@@ -346,7 +263,6 @@ namespace Aequus.Common.Networking
                     break;
 
                 default:
-                    ReadLegacyProcedure(type, reader);
                     break;
             }
         }

@@ -1,11 +1,12 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -56,6 +57,20 @@ namespace Aequus.NPCs.Friendly
                 .SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate)
                 .SetNPCAffection<Occultist>(AffectionLevel.Hate);
+
+            ShopQuotes.Database
+                .GetNPC(Type)
+                .WithColor(Color.SkyBlue * 1.2f)
+                .AddQuote<PhysicsGun>()
+                .AddQuote<HaltingMachine>()
+                .AddQuote<HolographicMeatloaf>()
+                .AddQuote(ItemID.BloodMoonStarter)
+                .AddQuote<GalacticStarfruit>()
+                .AddQuote(ItemID.SolarTablet)
+                .AddQuote<ForceAntiGravityBlock>()
+                .AddQuote<ForceGravityBlock>()
+                .AddQuote<HomeworldPainting>()
+                .AddQuote<SupernovaFruit>();
         }
 
         public override void SetDefaults()

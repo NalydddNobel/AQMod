@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Summons
+namespace Aequus.Items.Consumables.Summons
 {
     public class GalacticStarfruit : ModItem
     {
@@ -39,11 +39,23 @@ namespace Aequus.Items.Misc.Summons
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
                 if (GlimmerSystem.BeginEvent())
                 {
-                    AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
                     return true;
                 }
             }
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+            }
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddIngredient(ItemID.DemoniteBar, 1)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }
