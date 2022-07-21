@@ -79,6 +79,11 @@ namespace Aequus.Content
                 {
                     for (int i = 1; i < 10; i++)
                     {
+                        if (!WorldGen.InWorld(x, y - 1, 10))
+                        {
+                            break;
+                        }
+
                         if (Main.tile[x, y - i].HasTile
                             && !Main.tileSolidTop[Main.tile[x, y - i].TileType]
                             && Main.tileSolid[Main.tile[x, y - i].TileType])

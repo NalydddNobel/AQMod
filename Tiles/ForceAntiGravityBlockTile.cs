@@ -21,8 +21,11 @@ namespace Aequus.Tiles
             AddMapEntry(Color.Orange);
             DustType = DustID.OrangeStainedGlass;
             ItemDrop = ModContent.ItemType<ForceAntiGravityBlock>();
-            HitSound = SoundID.Tink;
-            MineResist = 1.5f;
+        }
+
+        public override bool Slope(int i, int j)
+        {
+            return false;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

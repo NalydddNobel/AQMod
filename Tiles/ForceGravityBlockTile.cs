@@ -23,6 +23,11 @@ namespace Aequus.Tiles
             ItemDrop = ModContent.ItemType<ForceGravityBlock>();
         }
 
+        public override bool Slope(int i, int j)
+        {
+            return false;
+        }
+
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -46,6 +51,7 @@ namespace Aequus.Tiles
             if (tileHeight == 0)
                 return true;
 
+            //Main.NewText((i + j) == (54 * 2));
             var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura");
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
