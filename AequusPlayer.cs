@@ -437,58 +437,6 @@ namespace Aequus
             }
 
             antiGravityItemRadius = 0f;
-            if (boundBowAmmoTimer > 0)
-                boundBowAmmoTimer--;
-            if (boundBowAmmoTimer <= 0)
-            {
-                bool selected = Player.HeldItem.ModItem is BoundBow;
-                if (Main.netMode != NetmodeID.Server)
-                {
-                    float volume = 0.2f;
-                    if (selected)
-                    {
-                        volume = 0.55f;
-                        AequusEffects.Shake.Set(4);
-                    }
-                    SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
-
-                    Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
-                    Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        var d = Dust.NewDustPerfect(Player.position + new Vector2(Player.width * 2f * Main.rand.NextFloat(1f) - Player.width / 2f, Player.height * Main.rand.NextFloat(0.2f, 1.2f)), ModContent.DustType<MonoSparkleDust>(),
-                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(0), Scale: Main.rand.NextFloat(0.5f, 1.25f));
-                        d.fadeIn = d.scale + 0.5f;
-                        d.color *= d.scale;
-                    }
-                    for (int i = 0; i < 3; i++)
-                    {
-                        var prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
-                        var particle = new TrailshaderMonoParticle(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)), 
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                        particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
-                        AequusEffects.AbovePlayers.Add(particle);
-                        if (i < 2)
-                        {
-                            prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                            particle = new TrailshaderMonoParticle(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                            particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                            particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
-                            AequusEffects.BehindPlayers.Add(particle);
-                        }
-                    }
-                }
-                boundBowAmmo++;
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
-            }
-            if (boundBowAmmo >= BoundBowMaxAmmo)
-            {
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
-            }
                 
             showPrices = false;
 
@@ -786,6 +734,8 @@ namespace Aequus
                 expertBoostBoCTimer = 0;
             }
 
+            UpdateBoundBowRecharge();
+
             if (AequusHelpers.Main_dayTime.IsCaching)
             {
                 AequusHelpers.Main_dayTime.EndCaching();
@@ -831,6 +781,62 @@ namespace Aequus
                         }
                     }
                 }
+            }
+        }
+
+        public void UpdateBoundBowRecharge()
+        {
+            if (boundBowAmmoTimer > 0)
+                boundBowAmmoTimer--;
+            if (boundBowAmmoTimer <= 0)
+            {
+                bool selected = Main.myPlayer == Player.whoAmI && Player.HeldItem.ModItem is BoundBow;
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    float volume = 0.2f;
+                    if (selected)
+                    {
+                        volume = 0.55f;
+                        AequusEffects.Shake.Set(4);
+                    }
+                    SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
+
+                    Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
+                    Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
+
+                    for (int i = 0; i < 8; i++)
+                    {
+                        var d = Dust.NewDustPerfect(Player.position + new Vector2(Player.width * 2f * Main.rand.NextFloat(1f) - Player.width / 2f, Player.height * Main.rand.NextFloat(0.2f, 1.2f)), ModContent.DustType<MonoSparkleDust>(),
+                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(0), Scale: Main.rand.NextFloat(0.5f, 1.25f));
+                        d.fadeIn = d.scale + 0.5f;
+                        d.color *= d.scale;
+                    }
+                    for (int i = 0; i < 3; i++)
+                    {
+                        var prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
+                        var particle = new TrailshaderMonoParticle(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)),
+                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
+                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
+                        particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
+                        AequusEffects.AbovePlayers.Add(particle);
+                        if (i < 2)
+                        {
+                            prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                            particle = new TrailshaderMonoParticle(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
+                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
+                            particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
+                            particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
+                            AequusEffects.BehindPlayers.Add(particle);
+                        }
+                    }
+                }
+                boundBowAmmo++;
+                boundBowAmmoTimer = BoundBowRegenerationDelay;
+            }
+            if (boundBowAmmo >= BoundBowMaxAmmo)
+            {
+                boundBowAmmoTimer = BoundBowRegenerationDelay;
             }
         }
 

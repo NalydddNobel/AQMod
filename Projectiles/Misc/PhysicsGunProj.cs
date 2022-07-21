@@ -1,7 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
-using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -62,12 +61,6 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
-            if (Main.myPlayer != Projectile.owner)
-            {
-                var d = AequusHelpers.dustDebugDirect(mouseWorld, ModContent.DustType<MonoDust>());
-                d.color = mouseColor;
-            }
-
             if (Main.myPlayer == Projectile.owner)
             {
                 var oldMouseWorld = mouseWorld;
