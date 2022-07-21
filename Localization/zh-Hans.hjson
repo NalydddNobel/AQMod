@@ -255,6 +255,7 @@ Mods: {
 
 			RichMansMonocle: 富翁的单片眼镜
 
+			PhysicsGun: 物理枪
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
@@ -803,6 +804,11 @@ Mods: {
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
+			PhysicsGun: 
+				'''
+				可以抓取并扔出物块
+				'全能泥土法杖'
+				'''
 			Pumpinator:
 				'''
 				渐进更改风速
