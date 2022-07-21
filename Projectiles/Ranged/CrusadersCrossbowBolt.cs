@@ -54,7 +54,6 @@ namespace Aequus.Projectiles.Ranged
                         }
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            NetMessage.SendData(MessageID.PlayerHeal, -1, -1, null, plr, healing);
                             NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, plr, healing);
                         }
                         Projectile.Kill();

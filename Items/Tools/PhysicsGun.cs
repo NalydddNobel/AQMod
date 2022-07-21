@@ -60,7 +60,7 @@ namespace Aequus.Items.Tools
             {
                 var texture = TextureAssets.Item[Type].Value;
 
-                var coloring = Main.LocalPlayer.Aequus().SyncedMouseColor;
+                var coloring = Main.mouseColor;
                 var glowTexture = GlowTexture.Value;
 
                 spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -88,13 +88,8 @@ namespace Aequus.Items.Tools
                 var drawCoordinates = Item.position - Main.screenPosition + origin + new Vector2(Item.width / 2 - origin.X, Item.height - frame.Height);
                 var itemOrigin = frame.Size() / 2f;
 
-                var coloring = Color.White;
+                var coloring = Main.mouseColor;
                 var glowTexture = GlowTexture.Value;
-                if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
-                {
-                    Main.player[Item.playerIndexTheItemIsReservedFor].Aequus().RequestToSyncMouseColor = true;
-                    coloring = Main.player[Item.playerIndexTheItemIsReservedFor].Aequus().SyncedMouseColor;
-                }
 
                 spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
 

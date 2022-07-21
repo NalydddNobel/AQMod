@@ -1,10 +1,12 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -20,6 +22,7 @@ namespace Aequus.Projectiles.Misc
         public override string Texture => Aequus.BlankTexture;
 
         public Vector2 mouseWorld;
+        public Color mouseColor;
 
         public override void SetDefaults()
         {
@@ -28,6 +31,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
+            Projectile.netImportant = true;
         }
 
         public override bool? CanDamage()
@@ -58,6 +62,12 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
+            if (Main.myPlayer != Projectile.owner)
+            {
+                var d = AequusHelpers.dustDebugDirect(mouseWorld, ModContent.DustType<MonoDust>());
+                d.color = mouseColor;
+            }
+
             if (Main.myPlayer == Projectile.owner)
             {
                 var oldMouseWorld = mouseWorld;
@@ -66,6 +76,14 @@ namespace Aequus.Projectiles.Misc
                 {
                     Projectile.netUpdate = true;
                 }
+                mouseColor = Main.mouseColor;
+            }
+            if (mouseColor == Color.Transparent)
+            {
+                if (Main.myPlayer == Projectile.owner)
+                    Projectile.netUpdate = true;
+
+                mouseColor = Color.White;
             }
 
             var player = Main.player[Projectile.owner];
@@ -158,6 +176,10 @@ namespace Aequus.Projectiles.Misc
                         Projectile.ai[0] = Main.tile[tileCoords].TileType;
                         Projectile.ai[1] = 2f;
                         WorldGen.KillTile(tileCoords.X, tileCoords.Y, noItem: true);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendTileSquare(-1, tileCoords.X, tileCoords.Y);
+                        }
                         break;
                     }
                 }
@@ -170,7 +192,7 @@ namespace Aequus.Projectiles.Misc
 
         public void GunLight()
         {
-            var beamColor = AequusHelpers.HueShift(Main.player[Projectile.owner].Aequus().SyncedMouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
+            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
             Lighting.AddLight(Projectile.Center, beamColor.ToVector3() * 0.66f);
         }
         public void TileLight()
@@ -218,13 +240,13 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var beamColor = AequusHelpers.HueShift(Main.player[Projectile.owner].Aequus().SyncedMouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
+            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
             if ((int)Projectile.ai[1] != 3)
             {
                 var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
-                var difference = Main.player[Projectile.owner].MountedCenter - Main.MouseWorld;
+                var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;
                 var dir = Vector2.Normalize(difference);
                 var list = new List<Vector2>
                 {
@@ -247,7 +269,7 @@ namespace Aequus.Projectiles.Misc
                         break;
                     if (length <= 400f)
                         lerpAmt += (float)Math.Pow((1f - length / 400f), 2f) * 2f;
-                    
+
                     pos += segmentVector;
                     segmentVector = Vector2.Normalize(Vector2.Lerp(segmentVector, toBlockVector, Math.Max(lerpAmt * 0.44f, 0.01f))) * segmentVector.Length();
                     list.Add(pos);
@@ -306,14 +328,26 @@ namespace Aequus.Projectiles.Misc
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
             var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun>().Texture + "_Glow");
-            var coloring = Main.player[Projectile.owner].Aequus().SyncedMouseColor;
+            var coloring = mouseColor;
             foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
             {
-                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100), 
+                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
                     rotation, origin, Projectile.scale, spriteEffects, 0);
             }
             Main.EntitySpriteDraw(glowTexture.Value, drawCoords - Main.screenPosition, null, coloring,
                 rotation, origin, Projectile.scale, spriteEffects, 0);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.WriteVector2(mouseWorld);
+            writer.WriteRGB(mouseColor);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            mouseWorld = reader.ReadVector2();
+            mouseColor = reader.ReadRGB();
         }
     }
 }

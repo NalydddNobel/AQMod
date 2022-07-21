@@ -299,9 +299,6 @@ namespace Aequus
         /// </summary>
         public bool InDanger => closestEnemy != -1;
 
-        public bool RequestToSyncMouseColor;
-        public Color SyncedMouseColor;
-
         public override void Load()
         {
             LoadHooks();
@@ -327,7 +324,6 @@ namespace Aequus
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
-            clone.SyncedMouseColor = SyncedMouseColor;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -369,18 +365,6 @@ namespace Aequus
                         sentAnything = true;
                     }, p);
 
-                PacketHandler.FlaggedWrite(Main.myPlayer == Player.whoAmI && (clone.RequestToSyncMouseColor || RequestToSyncMouseColor),
-                (p) =>
-                {
-                    p.Write(SyncedMouseColor.R);
-                    p.Write(SyncedMouseColor.G);
-                    p.Write(SyncedMouseColor.B);
-                    sentAnything = true;
-                }, p);
-
-                clone.RequestToSyncMouseColor = false;
-                RequestToSyncMouseColor = false;
-
                 return sentAnything;
 
             }, PacketType.SyncAequusPlayer);
@@ -404,18 +388,10 @@ namespace Aequus
             {
                 candleSouls = reader.ReadInt32();
             }
-            if (reader.ReadBoolean())
-            {
-                SyncedMouseColor.R = reader.ReadByte();
-                SyncedMouseColor.G = reader.ReadByte();
-                SyncedMouseColor.B = reader.ReadByte();
-                SyncedMouseColor.A = 255;
-            }
         }
 
         public override void Initialize()
         {
-            SyncedMouseColor = Color.White;
             antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
@@ -444,19 +420,6 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                RequestToSyncMouseColor = false;
-            }
-            if (Main.myPlayer == Player.whoAmI)
-            {
-                SyncedMouseColor = Main.mouseColor;
-            }
-            else
-            {
-                RequestToSyncMouseColor = false;
-            }
-
             if (antiGravityTile < 0)
                 antiGravityTile++;
             else if (antiGravityTile > 0)

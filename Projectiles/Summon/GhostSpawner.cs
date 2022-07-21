@@ -42,6 +42,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         protected virtual void OnSpawnZombie(NPC npc, NecromancyNPC zombie)
         {
+            zombie.zombieOwner = Projectile.owner;
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
             zombie.zombieTimerMax *= 5;
             zombie.zombieTimer *= 5;
