@@ -215,6 +215,8 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
+			GunnerDronePack: 火炮无人机包
+
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
@@ -770,6 +772,8 @@ Mods: {
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 
+			GunnerDronePack: 在塔架附近使用以召唤防御火炮无人机
+
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
@@ -804,11 +808,7 @@ Mods: {
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
-			PhysicsGun: 
-				'''
-				可以抓取并扔出物块
-				'全能泥土法杖'
-				'''
+			PhysicsGun: 可以抓取并扔出物块
 			Pumpinator:
 				'''
 				渐进更改风速
