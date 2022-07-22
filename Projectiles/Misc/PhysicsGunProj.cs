@@ -269,6 +269,8 @@ namespace Aequus.Projectiles.Misc
                 }
                 list.Add(Projectile.Center);
                 prim.Draw(list.ToArray());
+
+                DrawGun();
             }
 
             if ((int)Projectile.ai[1] >= 2)
@@ -300,8 +302,6 @@ namespace Aequus.Projectiles.Misc
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
-
-            DrawGun();
             return false;
         }
 

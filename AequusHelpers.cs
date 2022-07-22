@@ -86,6 +86,10 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
+        public static Point tile => Main.MouseWorld.ToTileCoordinates();
+        public static int tileX => Main.MouseWorld.ToTileCoordinates().X;
+        public static int tileY => Main.MouseWorld.ToTileCoordinates().Y;
+
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
@@ -1190,6 +1194,16 @@ namespace Aequus
             return false;
         }
 
+        public static bool ContainsAll<T>(this IEnumerable<T> en, IEnumerable<T> en2)
+        {
+            foreach (var item in en2)
+            {
+                if (!en.ContainsAny(item))
+                    return false;
+            }
+            return true;
+        }
+
         public static bool ContainsAny<T>(this IEnumerable<T> en, Func<T, bool> search)
         {
             foreach (var t in en)
@@ -1201,7 +1215,7 @@ namespace Aequus
             }
             return false;
         }
-        public static bool ContainsAny<T>(this IEnumerable<T> en, int en2)
+        public static bool ContainsAny<T>(this IEnumerable<T> en, T en2)
         {
             return ContainsAny(en, (t) => t.Equals(en2));
         }

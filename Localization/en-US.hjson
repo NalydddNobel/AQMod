@@ -215,6 +215,8 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
+			GunnerDronePack: Gunner Drone Pack
+
 			Leecheel: Leecheel
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
@@ -770,6 +772,8 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
+			GunnerDronePack: Use near a pylon to summon a defensive gunner drone
+
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
@@ -804,11 +808,7 @@ Mods: {
 
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
-			PhysicsGun: 
-				'''
-				Can grab and throw blocks
-				'Omni Dirt Rod'
-				'''
+			PhysicsGun: Can grab and throw blocks
 			Pumpinator:
 				'''
 				Gradually changes the speed of the wind

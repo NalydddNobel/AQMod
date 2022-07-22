@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Placeable;
@@ -130,6 +131,7 @@ namespace Aequus.NPCs.Friendly
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GunnerDronePack>());
             if (!Main.dayTime)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());

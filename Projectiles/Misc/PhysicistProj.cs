@@ -11,6 +11,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.width = 24;
             Projectile.height = 24;
             Projectile.friendly = true;
+            Projectile.npcProj = true;
         }
     }
 }
