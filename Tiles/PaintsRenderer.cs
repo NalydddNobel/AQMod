@@ -114,11 +114,20 @@ namespace Aequus.Tiles
 
         public static void Reset()
         {
-            foreach (var value in Renderers.Values)
+            Main.QueueMainThreadAction(() =>
             {
-                value.Clear();
-            }
-            Renderers.Clear();
+                try
+                {
+                    foreach (var value in Renderers.Values)
+                    {
+                        value.Clear();
+                    }
+                    Renderers.Clear();
+                }
+                catch
+                {
+                }
+            });
         }
 
         public static void RequestTile(ref TextureVariantKey lookupKey)

@@ -64,6 +64,7 @@ namespace Aequus.Content.DronePylons
                     d.numGunners = tag.Get<int>("Gunners");
                     d.numHealers = tag.Get<int>("Healers");
                     d.numCleaners = tag.Get<int>("Cleaners");
+                    return d;
                 }
                 return null;
             }
@@ -190,10 +191,10 @@ namespace Aequus.Content.DronePylons
             {
                 foreach (var t in pylons)
                 {
-                    //foreach (var pair in t)
-                    //{
-                    //    Mod.Logger.Info(pair.Key + ": " + pair.Value);
-                    //}
+                    foreach (var pair in t)
+                    {
+                        Mod.Logger.Info(pair.Key + ": " + pair.Value);
+                    }
                     var p = DronePylonData.DeserializeData(t);
                     if (p != null)
                         Drones.Add(p.Location, p);
