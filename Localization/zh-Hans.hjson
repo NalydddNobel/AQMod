@@ -294,6 +294,8 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			EmancipationGrill: 解放栅格
+			PhysicsBlock: 物理学块
 			ForceGravityBlock: 重力块
 			ForceAntiGravityBlock: 反重力块
 			GoreNest: 血巢
@@ -882,6 +884,13 @@ Mods: {
 
 			RecyclingMachine: 允许你回收垃圾物品
 
+			EmancipationGrill: 
+				'''
+				会抹去与其接触的传送门
+				被物理学枪抓取的物块在接触此物块时会被抹去
+				阻止物理学枪和传送门枪的弹幕穿过
+				'''
+			PhysicsBlock: 无法被物理学枪抓取
 			ForceGravityBlock: 迫使上方的玩家服从重力
 			ForceAntiGravityBlock: 迫使下方的玩家翻转重力
 			GoreNest:
@@ -2997,13 +3006,15 @@ Mods: {
 
 				ShopQuote: {
 					PhysicsGun: 我在幼儿园科学展上创造的零点能量场操纵仪, 与泥土法杖相比, 它的科技含量相当地高.
+					ForceAntiGravityBlock: 一种为'飞碟'制造的特殊镀层. 下方会发射反重力光束.
+					ForceGravityBlock:  一种为'飞碟'制造的特殊镀层. 它的自身会产生引力并抵消所有反重力效果.
+					PhysicsBlock: 一种为'飞碟'制造的特殊镀层. 其独特的成分会阻隔物理学枪的抓取效果.
+					EmancipationGrill: 闪耀的、半透明的粒子场将抹去任何经过它的未经授权的设备
 					HaltingMachine: 解决无法解决的问题, 如果你不喜欢下落的东西, 它可能会有用.
 					HolographicMeatloaf: 对光合作用生物的巨大打击, 这种肉饼是用最美味的清淡食物烹制的.
 					BloodMoonStarter: 我在一次'血月'事件的观察中在这个世界时发现了一件奇怪的人工制品.
 					GalacticStarfruit: 谁会知道地球上的果实可以控制宇宙中的恒星呢?
 					SolarTablet: 神庙蜥蜴及其控制太阳和月亮的能力令人钦佩.
-					ForceAntiGravityBlock: 一种为'飞碟'制造的特殊镀层, 下方会发射反重力光束.
-					ForceGravityBlock: 一种为'飞碟'制造的特殊镀层, 它的自身会产生引力并抵消所有反重力效果.
 					HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
 					SupernovaFruit: 这个苹果正在释放出强大的辐射, 我不指望你能活到下周.
 				}
