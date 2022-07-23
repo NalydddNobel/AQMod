@@ -614,7 +614,7 @@
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
         </member>
-        <member name="M:Aequus.Items.Hooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.PlayerFishing,Terraria.Item,System.Single@)">
+        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
             
             </summary>
@@ -623,7 +623,7 @@
             <param name="fishingRod"></param>
             <param name="fishingLevel"></param>
         </member>
-        <member name="M:Aequus.Items.Hooks.IUpdateItemDye.Hook_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
             <summary>
             
             </summary>

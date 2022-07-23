@@ -4,16 +4,43 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public class Hooks : ILoadable
+    public class ItemHooks : ILoadable
     {
         void ILoadable.Load(Mod mod)
         {
-            On.Terraria.Player.UpdateItemDye += IUpdateItemDye.Hook_UpdateItemDye;
+            On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
+            On.Terraria.Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
         }
 
 
         void ILoadable.Unload()
         {
+        }
+
+        public interface ICustomCanPlace
+        {
+            bool? CheckCanPlace(Player player, int i, int j);
+
+            public static bool BubbleTilePlacement(int i, int j)
+            {
+                return Main.tile[i + 1, j].HasTile || Main.tile[i + 1, j].WallType > 0 
+                    || Main.tile[i - 1, j].HasTile || Main.tile[i - 1, j].WallType > 0 
+                    || Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].WallType > 0
+                    || Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].WallType > 0;
+            }
+
+            internal static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player self, bool canPlace)
+            {
+                if (self.inventory[self.selectedItem].ModItem is ItemHooks.ICustomCanPlace customCanPlace)
+                {
+                    var flag = customCanPlace.CheckCanPlace(self, Player.tileTargetX, Player.tileTargetY);
+                    if (flag.HasValue)
+                    {
+                        return flag.Value;
+                    }
+                }
+                return orig(self, canPlace);
+            }
         }
 
         public interface IModifyFishingPower
@@ -46,7 +73,7 @@ namespace Aequus.Items
             /// <param name="isSetToHidden"></param>
             /// <param name="armorItem">If you are an equipped item, this is you.</param>
             /// <param name="dyeItem">If you are a dye, this is you.</param>
-            internal static void Hook_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+            internal static void Player_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
             {
                 orig(self, isNotInVanitySlot, isSetToHidden, armorItem, dyeItem);
                 if (armorItem.ModItem is IUpdateItemDye armorDye)

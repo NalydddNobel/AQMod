@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class SantankSentry : ModItem, Hooks.IUpdateItemDye
+    public class SantankSentry : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -45,7 +45,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             return item.type != ModContent.ItemType<MechsSentry>();
         }
 
-        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             if (!isSetToHidden || !isNotInVanitySlot)
             {

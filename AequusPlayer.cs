@@ -635,7 +635,7 @@ namespace Aequus
                     {
                         update = true;
                     }
-                    else if (bank.item[i].ModItem is Hooks.IUpdateBank b)
+                    else if (bank.item[i].ModItem is ItemHooks.IUpdateBank b)
                     {
                         b.UpdateBank(Player, this, i, bankType);
                     }
@@ -1679,6 +1679,8 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
+            On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
             On.Terraria.Player.DropTombstone += Hook_ModifyTombstone;
             On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
@@ -1687,6 +1689,23 @@ namespace Aequus
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+        }
+
+        private static void FancyGolfPredictionLine_Update(On.Terraria.GameContent.Golf.FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
+        {
+            bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
+            orig(self, golfBall, impactVelocity, roughLandResistance);
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
+        }
+
+        private static bool Player_CheckSpawn(On.Terraria.Player.orig_CheckSpawn orig, int x, int y)
+        {
+            bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
+            bool originalValue = orig(x, y);
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
+            return originalValue;
         }
 
         private static void Player_JumpMovement(On.Terraria.Player.orig_JumpMovement orig, Player self)

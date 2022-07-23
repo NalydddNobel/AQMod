@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Vanity
 {
-    public class FishyFins : ModItem, Hooks.IUpdateItemDye
+    public class FishyFins : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -27,7 +27,7 @@ namespace Aequus.Items.Accessories.Vanity
             return null;
         }
 
-        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             if (!isSetToHidden || !isNotInVanitySlot)
             {

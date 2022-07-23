@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class FaultyCoin : ModItem, Hooks.IUpdateBank
+    public class FaultyCoin : ModItem, ItemHooks.IUpdateBank
     {
         public override void SetStaticDefaults()
         {

@@ -56,7 +56,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, target.position, target.width, target.height))
                 {
                     Projectile.ai[0]++;
-                    if (Projectile.ai[0] > 10f)
+                    if (Projectile.ai[0] > 15f)
                     {
                         Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Normalize(target.Center - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 10f, ProjectileID.Bullet,
                             Projectile.damage, Projectile.knockBack, Projectile.owner);
@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Misc.Drones
             {
                 gotoVelocityY = -0.5f;
             }
-            else if (targetDistance > minDistance)
+            else if (target == null || targetDistance < minDistance)
             {
                 if (gotoVelocityYResetTimer <= 0)
                 {
@@ -100,7 +100,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 }
             }
 
-            if (targetDistance > minDistance)
+            if (target == null || targetDistance < minDistance)
             {
                 if (gotoVelocityXResetTimer <= 0)
                 {

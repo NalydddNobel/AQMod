@@ -294,6 +294,8 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
+			EmancipationGrill: Emancipation Grill
+			PhysicsBlock: Physics Block
 			ForceGravityBlock: Gravity Block
 			ForceAntiGravityBlock: Anti Gravity Block
 			GoreNest: Gore Nest
@@ -882,6 +884,13 @@ Mods: {
 
 			RecyclingMachine: Allows you to recycle trash items
 
+			EmancipationGrill: 
+				'''
+				When touched, all owned portals will be removed
+				Blocks carried by the physics gun dissolve when touched
+				Prevents the physic gun's laser or portal gun's bolts from passing through
+				'''
+			PhysicsBlock: Cannot be carried by the physics gun
 			ForceGravityBlock: Forces players above to obey gravity
 			ForceAntiGravityBlock: Forces players below to flip gravity
 			GoreNest:
@@ -2997,13 +3006,15 @@ Mods: {
 
 				ShopQuote: {
 					PhysicsGun: A zero point energy field manipulator I created for my kindergarten science fair, quite high tech compared to the dirt rod.
+					ForceAntiGravityBlock: A special type of plating manufactured for 'flying saucers'. Features an anti-gravity beam shooting below.
+					ForceGravityBlock: A special type of plating manufactured for 'flying saucers'. It generates its own gravitational pull and negates all anti-gravity effects.
+					PhysicsBlock: A special type of plating manufactured for 'flying saucers'. Its unique composition prevents it from being carried by the physics gun.
+					EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
 					HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
 					HolographicMeatloaf: A massive hit with photosynthetic creatures, this meatloaf is cooked with the most delicious tasting light.
 					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon' event.
 					GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
 					SolarTablet: Lihzahrds and their ability to control the sun and moon are something to admire.
-					ForceAntiGravityBlock: A special type of plating manufactured for 'flying saucers'. Features an anti-gravity beam shooting below.
-					ForceGravityBlock: A special type of plating manufactured for 'flying saucers'. It generates its own gravitational pull and negates all anti-gravity effects.
 					HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
 					SupernovaFruit: Powerful radiation is being emitted from this apple, I wouldn't expect you to be alive next week.
 				}

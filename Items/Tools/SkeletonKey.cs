@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools
 {
-    public class SkeletonKey : ModItem, Hooks.IUpdateBank
+    public class SkeletonKey : ModItem, ItemHooks.IUpdateBank
     {
         public override void SetStaticDefaults()
         {

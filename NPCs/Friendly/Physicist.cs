@@ -63,13 +63,15 @@ namespace Aequus.NPCs.Friendly
                 .GetNPC(Type)
                 .WithColor(Color.SkyBlue * 1.2f)
                 .AddQuote<PhysicsGun>()
+                .AddQuote<ForceAntiGravityBlock>()
+                .AddQuote<ForceGravityBlock>()
+                .AddQuote<PhysicsBlock>()
+                .AddQuote<EmancipationGrill>()
                 .AddQuote<HaltingMachine>()
                 .AddQuote<HolographicMeatloaf>()
                 .AddQuote(ItemID.BloodMoonStarter)
                 .AddQuote<GalacticStarfruit>()
                 .AddQuote(ItemID.SolarTablet)
-                .AddQuote<ForceAntiGravityBlock>()
-                .AddQuote<ForceGravityBlock>()
                 .AddQuote<HomeworldPainting>()
                 .AddQuote<SupernovaFruit>();
         }
@@ -108,6 +110,11 @@ namespace Aequus.NPCs.Friendly
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmancipationGrill>());
+
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
@@ -124,16 +131,18 @@ namespace Aequus.NPCs.Friendly
             shop.item[nextSlot].SetDefaults(ItemID.BloodMoonStarter);
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 2);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GalacticStarfruit>());
+
             if (Main.hardMode && NPC.downedPlantBoss)
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SolarTablet);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
+
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GunnerDronePack>());
+
             if (!Main.dayTime)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
         }
 

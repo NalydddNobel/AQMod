@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class SentrySquid : ModItem, Hooks.IUpdateItemDye
+    public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye
     {
         public struct TurretStaffUsage
         {
@@ -176,7 +176,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             player.Aequus().turretSquidItem = Item;
         }
 
-        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             if (!isSetToHidden || !isNotInVanitySlot)
             {

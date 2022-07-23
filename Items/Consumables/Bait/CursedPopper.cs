@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.Bait
 {
-    public class CursedPopper : ModItem, Hooks.IModifyFishingPower
+    public class CursedPopper : ModItem, ItemHooks.IModifyFishingPower
     {
         public override void SetStaticDefaults()
         {
@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Bait
             Item.rare = ItemRarityID.Green;
         }
 
-        void Hooks.IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
+        void ItemHooks.IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
         {
             if (player.ZoneCorrupt)
                 fishingLevel += 0.3f;

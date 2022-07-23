@@ -326,6 +326,7 @@ namespace Aequus
             BloodMoonDisabled = false;
             GlimmerDisabled = false;
             EclipseDisabled = false;
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;
         }
 
         public override void PostUpdatePlayers()
@@ -342,6 +343,11 @@ namespace Aequus
             AequusProjectile.pNPC = -1;
             AequusHelpers.EndCaches();
 
+        }
+
+        public override void PostUpdateTime()
+        {
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
         }
 
         public static void MarkAsDefeated(ref bool defeated, int npcID)

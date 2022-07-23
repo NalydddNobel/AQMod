@@ -125,11 +125,11 @@ namespace Aequus.Common
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {
-            if (fishingRod.ModItem is Hooks.IModifyFishingPower modFishingRod)
+            if (fishingRod.ModItem is ItemHooks.IModifyFishingPower modFishingRod)
             {
                 modFishingRod.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
             }
-            if (bait.ModItem is Hooks.IModifyFishingPower modBait)
+            if (bait.ModItem is ItemHooks.IModifyFishingPower modBait)
             {
                 modBait.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
             }

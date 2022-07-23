@@ -47,7 +47,7 @@ namespace Aequus.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int pickPower = 0;
+            int pickPower = 35;
             var pick = Main.LocalPlayer.GetBestPickaxe();
             if (pick != null)
                 pickPower = pick.pick;

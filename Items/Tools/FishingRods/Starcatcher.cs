@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.FishingRods
 {
-    public class Starcatcher : ModItem, Hooks.IModifyFishingPower
+    public class Starcatcher : ModItem, ItemHooks.IModifyFishingPower
     {
         public override void SetStaticDefaults()
         {

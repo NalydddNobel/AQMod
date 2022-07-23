@@ -1293,6 +1293,10 @@ namespace Aequus
         {
             tile.IsHalfBlock = value;
         }
+        public static void Actuated(this Tile tile, bool value)
+        {
+            tile.IsActuated = value;
+        }
         public static void Active(this Tile tile, bool value)
         {
             tile.HasTile = value;

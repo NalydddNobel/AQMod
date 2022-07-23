@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Healing
 {
-    public class Mendshroom : ModItem, Hooks.IUpdateItemDye
+    public class Mendshroom : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {

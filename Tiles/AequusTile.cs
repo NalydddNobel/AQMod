@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Items.Weapons.Summon.Candles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -19,8 +20,17 @@ namespace Aequus.Tiles
 
         public override void Load()
         {
+            On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
+        }
+
+        private void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)
+        {
+            bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
+            orig(npc);
+            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
         }
 
         public override void Unload()

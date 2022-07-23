@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Sentry
 {
-    public class MechsSentry : ModItem, Hooks.IUpdateItemDye
+    public class MechsSentry : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void Load()
         {
@@ -273,7 +273,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             aequus.accExpertBoost = true;
         }
 
-        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             if (!isSetToHidden || !isNotInVanitySlot)
             {

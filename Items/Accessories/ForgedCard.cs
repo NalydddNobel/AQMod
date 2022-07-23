@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class ForgedCard : ModItem, Hooks.IUpdateBank
+    public class ForgedCard : ModItem, ItemHooks.IUpdateBank
     {
         public int Flat => Item.buyPrice(gold: 2, silver: 50);
 

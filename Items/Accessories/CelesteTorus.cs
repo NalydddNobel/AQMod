@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class CelesteTorus : ModItem, Hooks.IUpdateItemDye
+    public class CelesteTorus : ModItem, ItemHooks.IUpdateItemDye
     {
         public struct RenderData
         {
@@ -145,7 +145,7 @@ namespace Aequus.Items.Accessories
             }
         }
 
-        void Hooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cCelesteTorus = dyeItem.dye;
         }

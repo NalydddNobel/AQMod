@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,10 +19,22 @@ namespace Aequus.Projectiles.Misc
 {
     public class PhysicsGunProj : ModProjectile
     {
+        public static HashSet<int> TilePickupBlacklist { get; private set; }
+        public static HashSet<int> TileBlocksLaser { get; private set; }
+
         public override string Texture => Aequus.BlankTexture;
 
         public Vector2 mouseWorld;
         public Color mouseColor;
+
+        public override void Load()
+        {
+            TilePickupBlacklist = new HashSet<int>()
+            {
+                TileID.AntiPortalBlock,
+            };
+            TileBlocksLaser = new HashSet<int>();
+        }
 
         public override void SetDefaults()
         {
@@ -40,10 +53,19 @@ namespace Aequus.Projectiles.Misc
 
         public void PlaceTile()
         {
+            var player = Main.player[Projectile.owner];
+            for (int k = 0; k < 50; k++)
+            {
+                if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun)
+                {
+                    player.inventory[k].pick = 35;
+                }
+            }
+
             var tileCoords = Projectile.Center.ToTileCoordinates();
             if (!Main.tile[tileCoords].HasTile || WorldGen.CanKillTile(tileCoords.X, tileCoords.Y))
             {
-                if (Main.player[Projectile.owner].HasEnoughPickPowerToHurtTile(tileCoords.X, tileCoords.Y))
+                if (!Main.tile[tileCoords].HasTile || Main.player[Projectile.owner].HasEnoughPickPowerToHurtTile(tileCoords.X, tileCoords.Y))
                 {
                     WorldGen.KillTile(tileCoords.X, tileCoords.Y);
                     if (!WorldGen.PlaceTile(tileCoords.X, tileCoords.Y, (int)Projectile.ai[0], forced: true))
@@ -57,10 +79,47 @@ namespace Aequus.Projectiles.Misc
                     NetMessage.SendTileSquare(-1, tileCoords.X, tileCoords.Y);
                 }
             }
+
+            for (int k = 0; k < 50; k++)
+            {
+                if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun)
+                {
+                    player.inventory[k].pick = 0;
+                }
+            }
         }
 
         public override void AI()
         {
+            if ((int)Projectile.ai[1] == 4)
+            {
+                Projectile.extraUpdates = 1;
+                if (Projectile.timeLeft < 60)
+                {
+                    Projectile.alpha += 255 / 60;
+                }
+                Projectile.rotation += Projectile.direction * ((0.1f + Projectile.velocity.Length() * 0.02f) / (1 + Projectile.extraUpdates));
+                Projectile.scale -= 0.006f;
+                if (Projectile.alpha < 100 && Main.rand.NextBool(6))
+                {
+                    Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.AncientLight);
+                }
+                return;
+            }
+
+            var player = Main.player[Projectile.owner];
+            if ((int)Projectile.ai[1] == 3)
+            {
+                if (CheckEmancipationGrills())
+                {
+                    return;
+                }
+                Projectile.velocity.Y += 0.03f;
+                Projectile.rotation += Projectile.direction * ((0.1f + Projectile.velocity.Length() * 0.02f) / (1 + Projectile.extraUpdates));
+                TileLight();
+                return;
+            }
+
             if (Main.myPlayer == Projectile.owner)
             {
                 var oldMouseWorld = mouseWorld;
@@ -79,39 +138,29 @@ namespace Aequus.Projectiles.Misc
                 mouseColor = Color.White;
             }
 
-            var player = Main.player[Projectile.owner];
-            if ((int)Projectile.ai[1] == 3)
+            if (!player.channel || !player.controlUseItem)
             {
-                Projectile.velocity.Y += 0.03f;
-                Projectile.rotation += Projectile.direction * ((0.1f + Projectile.velocity.Length() * 0.02f) / (1 + Projectile.extraUpdates));
-                TileLight();
+                if (Projectile.ai[1] == 0)
+                {
+                    Projectile.Kill();
+                }
+                else
+                {
+                    Projectile.tileCollide = true;
+                    Projectile.timeLeft = 2400;
+                    Projectile.extraUpdates = 3;
+                    Projectile.velocity *= 0.5f;
+                    if (Projectile.velocity.Length() > 24f)
+                    {
+                        Projectile.velocity.Normalize();
+                        Projectile.velocity *= 24f;
+                    }
+                    Projectile.velocity /= (1 + Projectile.extraUpdates);
+                    Projectile.ai[1] = 3f;
+                }
                 return;
             }
-            else
-            {
-                if (!player.channel || !player.controlUseItem)
-                {
-                    if (Projectile.ai[1] == 0)
-                    {
-                        Projectile.Kill();
-                    }
-                    else
-                    {
-                        Projectile.tileCollide = true;
-                        Projectile.timeLeft = 2400;
-                        Projectile.extraUpdates = 3;
-                        Projectile.velocity *= 0.5f;
-                        if (Projectile.velocity.Length() > 24f)
-                        {
-                            Projectile.velocity.Normalize();
-                            Projectile.velocity *= 24f;
-                        }
-                        Projectile.velocity /= (1 + Projectile.extraUpdates);
-                        Projectile.ai[1] = 3f;
-                    }
-                    return;
-                }
-            }
+
             Main.player[Projectile.owner].heldProj = Projectile.whoAmI;
             Main.player[Projectile.owner].itemTime = 2;
             Main.player[Projectile.owner].itemAnimation = 2;
@@ -119,6 +168,11 @@ namespace Aequus.Projectiles.Misc
 
             if ((int)Projectile.ai[1] == 2)
             {
+                if (CheckEmancipationGrills())
+                {
+                    return;
+                }
+
                 Projectile.tileCollide = true;
                 var localMouseWorld = mouseWorld;
                 player.LimitPointToPlayerReachableArea(ref localMouseWorld);
@@ -150,37 +204,94 @@ namespace Aequus.Projectiles.Misc
             }
 
             var checkCoords = Projectile.Center;
+            for (int k = 0; k < 50; k++)
+            {
+                if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun)
+                {
+                    player.inventory[k].pick = 35;
+                }
+            }
+
             for (int i = 0; i < 300; i++)
             {
                 var old = checkCoords;
                 player.LimitPointToPlayerReachableArea(ref checkCoords);
                 if (old.X != checkCoords.X || old.Y != checkCoords.Y)
                     break;
-                var tileCoords = checkCoords.ToTileCoordinates();
-                bool inWorld = WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10);
+                var checkTileCoords = checkCoords.ToTileCoordinates();
+                bool inWorld = WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10);
                 if (inWorld)
                 {
-                    if (Main.tile[tileCoords].IsFullySolid() && !Main.tileFrameImportant[Main.tile[tileCoords].TileType])
+                    if (Main.tile[checkTileCoords].HasTile)
                     {
-                        if (!Main.player[Projectile.owner].HasEnoughPickPowerToHurtTile(tileCoords.X, tileCoords.Y) || !WorldGen.CanKillTile(tileCoords.X, tileCoords.Y))
+                        if (TileBlocksLaser.Contains(Main.tile[checkTileCoords].TileType))
                         {
                             break;
                         }
-                        Projectile.ai[0] = Main.tile[tileCoords].TileType;
-                        Projectile.ai[1] = 2f;
-                        WorldGen.KillTile(tileCoords.X, tileCoords.Y, noItem: true);
-                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        if (Main.tile[checkTileCoords].IsFullySolid() && !Main.tileFrameImportant[Main.tile[checkTileCoords].TileType])
                         {
-                            NetMessage.SendTileSquare(-1, tileCoords.X, tileCoords.Y);
+                            if (TilePickupBlacklist.Contains(Main.tile[checkTileCoords].TileType) || !player.HasEnoughPickPowerToHurtTile(checkTileCoords.X, checkTileCoords.Y) || !WorldGen.CanKillTile(checkTileCoords.X, checkTileCoords.Y))
+                            {
+                                break;
+                            }
+                            Projectile.ai[0] = Main.tile[checkTileCoords].TileType;
+                            Projectile.ai[1] = 2f;
+                            WorldGen.KillTile(checkTileCoords.X, checkTileCoords.Y, noItem: true);
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                            {
+                                NetMessage.SendTileSquare(-1, checkTileCoords.X, checkTileCoords.Y);
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
                 checkCoords += Projectile.velocity * 4f;
             }
+
+            for (int k = 0; k < 50; k++)
+            {
+                if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun)
+                {
+                    player.inventory[k].pick = 0;
+                }
+            }
+
             Projectile.Center = checkCoords;
             SetArmRotation();
             GunLight();
+        }
+
+        public bool CheckEmancipationGrills()
+        {
+            var diff = Projectile.Center - (Projectile.oldPosition + Projectile.Size / 2f);
+            int checkLength = Math.Max((int)(diff.Length() / 4f), 2);
+            var checkCoords = Projectile.oldPosition;
+            var velocity = Vector2.Normalize(diff);
+            for (int i = 0; i < checkLength; i++)
+            {
+                var checkTileCoords = checkCoords.ToTileCoordinates();
+                bool inWorld = WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10);
+                if (inWorld)
+                {
+                    if (Main.tile[checkTileCoords].HasTile && !Main.tile[checkTileCoords].IsActuated && Main.tile[checkTileCoords].TileType == ModContent.TileType<EmancipationGrillTile>())
+                    {
+                        Projectile.ai[1] = 4f;
+                        Projectile.velocity *= Projectile.extraUpdates + 1;
+                        Projectile.velocity /= 4f;
+                        Projectile.timeLeft = 120;
+                        if (Projectile.velocity.Length() > 2f)
+                        {
+                            Projectile.velocity.Normalize();
+                            Projectile.velocity *= 2f;
+                        }
+                        Projectile.netUpdate = true;
+                        SoundEngine.PlaySound(SoundID.Item122.WithVolume(0.33f).WithPitch(0.8f), Projectile.Center);
+                        return true;
+                    }
+                }
+                checkCoords += velocity * 4f;
+            }
+            return false;
         }
 
         public void GunLight()
@@ -234,7 +345,7 @@ namespace Aequus.Projectiles.Misc
         public override bool PreDraw(ref Color lightColor)
         {
             var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
-            if ((int)Projectile.ai[1] != 3)
+            if ((int)Projectile.ai[1] < 3)
             {
                 var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
@@ -283,13 +394,18 @@ namespace Aequus.Projectiles.Misc
 
                 var drawCoords = Projectile.Center - Main.screenPosition;
 
-                if ((int)Projectile.ai[1] == 2)
+                if ((int)Projectile.ai[1] == 2 || (int)Projectile.ai[1] == 4)
                 {
                     Main.spriteBatch.End();
                     Begin.GeneralEntities.BeginShader(Main.spriteBatch);
 
                     var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                     var dd = new DrawData(t, Projectile.Center - Main.screenPosition, frame, beamColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+                    if ((int)Projectile.ai[1] == 4)
+                    {
+                        drawColor = Color.Black * Projectile.Opacity;
+                        dd.color = Color.White * Projectile.Opacity * Projectile.Opacity * Projectile.Opacity;
+                    }
                     foreach (var c in AequusHelpers.CircularVector(4))
                     {
                         dd.position = drawCoords + c * 2f;
@@ -302,6 +418,7 @@ namespace Aequus.Projectiles.Misc
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
+
             return false;
         }
 

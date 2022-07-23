@@ -1,4 +1,7 @@
 ﻿using Aequus.Items.Accessories;
+using Aequus.Tiles;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -193,6 +196,20 @@ namespace Aequus.Projectiles
                 if (glowCore.glowCoreItem != null)
                 {
                     GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
+                }
+            }
+
+            if (projectile.type == ProjectileID.PortalGunBolt)
+            {
+                var checkTileCoords = projectile.Center.ToTileCoordinates();
+                bool inWorld = WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10);
+                if (inWorld)
+                {
+                    if (Main.tile[checkTileCoords].HasTile && !Main.tile[checkTileCoords].IsActuated && Main.tile[checkTileCoords].TileType == ModContent.TileType<EmancipationGrillTile>())
+                    {
+                        projectile.Kill();
+                        return;
+                    }
                 }
             }
         }

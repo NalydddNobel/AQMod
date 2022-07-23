@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class MothmanMask : ModItem, Hooks.IUpdateItemDye
+    public class MothmanMask : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
