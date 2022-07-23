@@ -34,7 +34,7 @@ namespace Aequus.Items.Consumables
 
             bool closeToAPylon = false;
 
-            foreach (var p in DronePylonSystem.Drones)
+            foreach (var p in DroneSystem.Drones)
             {
                 if (Vector2.Distance(p.Key.ToWorldCoordinates(), player.Center) < 1000f)
                 {
@@ -57,14 +57,9 @@ namespace Aequus.Items.Consumables
                         continue;
                     }
 
-                    if (DronePylonSystem.ValidSpot(x, y))
+                    if (DroneSystem.ValidSpot(x, y))
                     {
-                        var d = DronePylonSystem.FindOrAddDrone(x, y);
-                        if (d.numGunners < DronePylonSystem.DronePylonData.MaxGunners)
-                        {
-                            d.numGunners++;
-                        }
-                        return true;
+                        return DroneSystem.FindOrAddDrone(x, y)?.AddDrone<GunnerDroneType>();
                     }
                 }
             }

@@ -42,10 +42,7 @@ namespace Aequus.Items.Consumables.Summons
             {
                 NPC.SpawnBoss((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), player.whoAmI);
             }
-            else
-            {
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
-            }
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
         }
 

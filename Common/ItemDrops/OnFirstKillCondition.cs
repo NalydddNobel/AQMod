@@ -17,7 +17,7 @@ namespace Aequus.Common.ItemDrops
 
         public bool CanDrop(DropAttemptInfo info)
         {
-            return wasDefeated();
+            return !wasDefeated();
         }
 
         public bool CanShowItemDropInUI()

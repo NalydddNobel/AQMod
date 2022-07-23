@@ -34,9 +34,9 @@ namespace Aequus.Items.Consumables.Summons
 
         public override bool? UseItem(Player player)
         {
+            SoundEngine.PlaySound(SoundID.Roar, player.position);
             if (Main.myPlayer == player.whoAmI)
             {
-                SoundEngine.PlaySound(SoundID.Roar, player.position);
                 if (GlimmerSystem.BeginEvent())
                 {
                     return true;

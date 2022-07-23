@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Misc.Drones
             if (pylonSpot == Point.Zero)
             {
                 float closestPylon = 1000f;
-                foreach (var p in DronePylonSystem.Drones.Keys)
+                foreach (var p in DroneSystem.Drones.Keys)
                 {
                     float d = Vector2.Distance(Projectile.Center, p.ToWorldCoordinates());
                     if (d < closestPylon)
@@ -39,13 +39,13 @@ namespace Aequus.Projectiles.Misc.Drones
                 if (div != 0)
                     Projectile.damage /= div;
             }
-            if (pylonSpot == Point.Zero || !DronePylonSystem.ValidSpot(pylonSpot.X, pylonSpot.Y))
+            if (pylonSpot == Point.Zero || !DroneSystem.ValidSpot(pylonSpot.X, pylonSpot.Y))
             {
                 Projectile.localAI[0] = 0f;
                 Projectile.Kill();
                 return;
             }
-            if (!DronePylonSystem.Drones.TryGetValue(pylonSpot, out var drone))
+            if (!DroneSystem.Drones.TryGetValue(pylonSpot, out var drone))
             {
                 Projectile.localAI[0] = 1f;
                 Projectile.Kill();
@@ -72,8 +72,22 @@ namespace Aequus.Projectiles.Misc.Drones
             {
                 case 0:
                     return new Color(100, 255, 128, 255);
+                case 1:
+                    return new Color(200, 255, 65, 255);
+                case 2:
+                    return Color.HotPink * 1.5f;
+                case 3:
+                    return new Color(230, 165, 255, 255);
+                case 4:
+                    return Color.SkyBlue * 1.125f;
+                case 5:
+                    return new Color(255, 222, 120, 255);
+                case 6:
+                    return new Color(120, 222, 255, 255);
                 case 7:
                     return new Color(100, 128, 255, 255);
+                case 8:
+                    return Color.FloralWhite;
             }
 
             return Color.White;

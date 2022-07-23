@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -58,8 +59,14 @@ namespace Aequus.Projectiles.Misc.Drones
                     Projectile.ai[0]++;
                     if (Projectile.ai[0] > 15f)
                     {
-                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Normalize(target.Center - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 10f, ProjectileID.Bullet,
-                            Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        var shootPosition = Projectile.Center + new Vector2(0f, 12f);
+                        if (Main.myPlayer == Projectile.owner)
+                        {
+                            var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), shootPosition, Vector2.Normalize(target.Center - shootPosition).RotatedBy(Main.rand.NextFloat(-0.04f, 0.04f)) * 10f, ProjectileID.Bullet,
+                                Projectile.damage, Projectile.knockBack, Projectile.owner);
+                            p.ArmorPenetration += Projectile.damage / 2;
+                        }
+                        SoundEngine.PlaySound(SoundID.Item11, Projectile.Center);
                         Projectile.ai[0] = 0f;
                     }
                 }
@@ -100,6 +107,26 @@ namespace Aequus.Projectiles.Misc.Drones
                 }
             }
 
+            var pylonWorld = pylonSpot.ToWorldCoordinates();
+            float yLerp = 0.02f;
+            if (!Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+            {
+                if (pylonWorld.Y < Projectile.position.Y || Main.rand.NextBool(30))
+                {
+                    for (int i = 0; i > -4; i--)
+                    {
+                        if (WorldGen.InWorld(tileX, tileY + i, 10) && AequusHelpers.IsSolid(Main.tile[tileX, tileY + i]))
+                        {
+                            //AequusHelpers.dustDebug(tileX, tileY + i);
+                            gotoVelocityY = Math.Abs(gotoVelocityY);
+                            yLerp = 0.125f;
+                            Projectile.netUpdate = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
             if (target == null || targetDistance < minDistance)
             {
                 if (gotoVelocityXResetTimer <= 0)
@@ -125,7 +152,7 @@ namespace Aequus.Projectiles.Misc.Drones
                     gotoVelocityY = gotoVector.Y;
                 }
                 Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoVelocityX, 0.02f);
-                Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, gotoVelocityY, 0.02f);
+                Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, gotoVelocityY, yLerp);
                 if (target != null && Projectile.velocity.Length() > 2f)
                 {
                     Projectile.velocity *= 0.95f;
@@ -153,7 +180,7 @@ namespace Aequus.Projectiles.Misc.Drones
         {
             if (Projectile.velocity.X != oldVelocity.X)
             {
-                gotoVelocityY = -gotoVelocityY;
+                gotoVelocityX = -gotoVelocityX;
                 Projectile.velocity.X = Projectile.oldVelocity.X * 0.8f;
             }
             if (Projectile.velocity.Y != oldVelocity.Y)
@@ -167,7 +194,7 @@ namespace Aequus.Projectiles.Misc.Drones
 
         public override void Kill(int timeLeft)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextFloat() < 0.8f)
+            if ((int)Projectile.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextFloat() < 0.8f)
             {
                 Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<GunnerDronePack>());
             }
@@ -187,7 +214,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 turretRotation = (Main.npc[npcTarget].Center - Projectile.Center).ToRotation() + MathHelper.PiOver2;
             }
             Main.EntitySpriteDraw(gunTexture.Value, Projectile.position + off +
-                (Projectile.rotation + MathHelper.PiOver2).ToRotationVector2() * texture.Height / 2f - Main.screenPosition, null, lightingColor,
+                (Projectile.rotation + MathHelper.PiOver2).ToRotationVector2() * texture.Height / 2f - Main.screenPosition + new Vector2(1f, 0f), null, lightingColor,
                 turretRotation - MathHelper.PiOver2, new Vector2(gunTexture.Value.Width / 2f, 4f), Projectile.scale, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + off - Main.screenPosition, frame, lightingColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);

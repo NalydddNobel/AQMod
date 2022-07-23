@@ -153,9 +153,9 @@ namespace Aequus.Biomes.Glimmer
                     plr.cursorItemIconID = ModContent.ItemType<UltimateSword>();
                     //var highlightTexture = ModContent.GetTexture(AQUtils.GetPath<UltimateSword>("_Highlight"));
                     //Main.spriteBatch.Draw(highlightTexture, drawPos - Main.screenPosition, frame, new Color(255, 255, 255, 255), MathHelper.PiOver4 * 3f, origin, 1f, SpriteEffects.None, 0f);
-                    if (Main.mouseRight && Main.mouseRightRelease)
+                    if (Main.mouseRight && Main.mouseRightRelease && cantTouchThis <= 0)
                     {
-                        cantTouchThis = 480;
+                        cantTouchThis = 240;
                         plr.tileInteractAttempted = true;
                         plr.tileInteractionHappened = true;
                         plr.releaseUseTile = false;
