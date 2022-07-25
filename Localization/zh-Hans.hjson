@@ -215,7 +215,9 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			GunnerDronePack: 火炮无人机包
+			InactivePylonCleanser: 未激活的水晶塔清扫机
+			InactivePylonHealer: 未激活的水晶塔治疗机
+			InactivePylonGunner: 未激活的水晶塔火炮机
 
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
@@ -774,7 +776,9 @@ Mods: {
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 
-			GunnerDronePack: 在塔架附近使用以召唤防御火炮无人机
+			InactivePylonCleanser: 扔到水晶塔附近以重新激活它
+			InactivePylonHealer: 扔到水晶塔附近以重新激活它
+			InactivePylonGunner: 扔到水晶塔附近以重新激活它
 
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
