@@ -156,7 +156,7 @@ namespace Aequus.Projectiles.Misc.Drones
             float yLerp = 0.02f;
             if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
             {
-                if (pylonWorld.Y < Projectile.position.Y || Main.rand.NextBool(30))
+                if (pylonWorld.Y > Projectile.position.Y || Main.rand.NextBool(30))
                 {
                     for (int i = 0; i > -4; i--)
                     {
