@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables;
+﻿using Aequus.Items.Consumables.Critters;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;

@@ -72,14 +72,6 @@ namespace Aequus.Content.DronePylons
 
         public override void PostUpdatePlayers()
         {
-            if (AequusHelpers.debugKey && Main.GameUpdateCount % 120 == 0)
-            {
-                if (ValidSpot(AequusHelpers.tileX, AequusHelpers.tileY))
-                {
-                    AddDrone(AequusHelpers.tileX, AequusHelpers.tileY);
-                }
-            }
-
             foreach (var d in Drones.Values)
             {
                 d.SoftUpdate();
@@ -112,8 +104,7 @@ namespace Aequus.Content.DronePylons
                 }
                 var d = pair.Value;
                 d.CheckActive(p);
-                if (d.isActive || Main.rand.NextBool(Math.Clamp(60 - Main.frameRate, 5, 25)))
-                    d.HardUpdate();
+                d.HardUpdate();
             }
             foreach (var d in remove)
             {
@@ -145,6 +136,11 @@ namespace Aequus.Content.DronePylons
                 return data;
             }
             return AddDrone(i, j);
+        }
+
+        public static DronePylonManager FindOrAddDrone(Point p)
+        {
+            return FindOrAddDrone(p.X, p.Y);
         }
 
         public static Point FixedPoint(int i, int j)

@@ -1,12 +1,13 @@
 ﻿using Aequus.Content.DronePylons;
+using Aequus.Projectiles.Misc.Drones;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
+namespace Aequus.Items.Consumables.Drones
 {
-    public class GunnerDronePack : ModItem
+    public class InactivePylonGunner : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,12 +20,14 @@ namespace Aequus.Items.Consumables
             Item.height = 14;
             Item.consumable = true;
             Item.maxStack = 20;
-            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.noUseGraphic = true;
             Item.useAnimation = 50;
             Item.useTime = 50;
-            Item.UseSound = SoundID.Item4;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = Item.buyPrice(gold: 25);
+            Item.UseSound = SoundID.Item1;
+            Item.rare = ItemRarityID.Green;
+            Item.value = Item.buyPrice(gold: 15);
+            Item.shootSpeed = 4f;
         }
 
         public override bool? UseItem(Player player)
@@ -46,9 +49,9 @@ namespace Aequus.Items.Consumables
                 }
             }
 
-            for (int i = -10; i < 10; i++)
+            for (int i = -25; i < 25; i++)
             {
-                for (int j = -10; j < 10; j++)
+                for (int j = -25; j < 25; j++)
                 {
                     int x = tileX + i;
                     int y = tileY + j;
@@ -59,11 +62,23 @@ namespace Aequus.Items.Consumables
 
                     if (DroneSystem.ValidSpot(x, y))
                     {
-                        return DroneSystem.FindOrAddDrone(x, y)?.AddDrone<GunnerDroneType>();
+                        if (DroneSystem.FindOrAddDrone(x, y)?.AddDrone<GunnerDroneType>() == true)
+                        {
+                            if (Main.myPlayer == player.whoAmI)
+                            {
+                                var spawnPosition = player.Center;
+                                var mousePosition = Main.MouseWorld;
+                                var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), spawnPosition,
+                                    Vector2.Normalize(mousePosition - spawnPosition) * Item.shootSpeed, ModContent.ProjectileType<GunnerDrone>(), 0, 0f, Main.myPlayer);
+                                p.ModProjectile<TownDroneBase>().spawnInAnimation = -1;
+                            }
+                            return true;
+                        }
+                        return false;
                     }
                 }
             }
-            return true;
+            return false;
         }
     }
 }

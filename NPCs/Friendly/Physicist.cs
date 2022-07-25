@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Consumables;
+using Aequus.Items.Consumables.Drones;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Placeable;
@@ -138,7 +138,9 @@ namespace Aequus.NPCs.Friendly
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GunnerDronePack>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonGunner>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonHealer>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
 
             if (!Main.dayTime)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());

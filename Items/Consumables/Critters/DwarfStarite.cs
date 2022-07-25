@@ -3,20 +3,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
+namespace Aequus.Items.Consumables.Critters
 {
-    public class Snobster : ModItem
+    public class DwarfStarite : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(5);
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToCapturedCritter((short)ModContent.NPCType<SnobsterCritter>());
+            Item.DefaultToCapturedCritter((short)ModContent.NPCType<DwarfStariteCritter>());
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(silver: 5);
+            Item.value = Item.sellPrice(silver: 10);
         }
     }
 }

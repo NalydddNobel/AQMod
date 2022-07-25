@@ -181,7 +181,7 @@ namespace Aequus.Biomes.Glimmer
                     Begin.GeneralEntities.BeginShader(Main.spriteBatch);
                     try
                     {
-                        var s= GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
+                        var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                         var dd = new DrawData(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0);
                         foreach (var c in AequusHelpers.CircularVector(4))
                         {

@@ -94,6 +94,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Point Home(this NPC npc)
+        {
+            return new Point(npc.homeTileX, npc.homeTileY);
+        }
+
         public static Color HueShift(Color color, float hueShift)
         {
             var hsl = Main.rgbToHsl(color);
@@ -1699,6 +1704,10 @@ namespace Aequus
         public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
         {
             dustDebugDirect(where, dustType);
+        }
+        public static void dustDebug(Point where, int dustType = DustID.Torch)
+        {
+            dustDebug(where.X, where.Y, dustType);
         }
         public static void dustDebug(int x, int y, int dustType = DustID.Torch)
         {

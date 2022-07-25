@@ -1,6 +1,8 @@
 ﻿using Aequus.Content.DronePylons;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,9 +11,27 @@ namespace Aequus.Projectiles.Misc.Drones
     public abstract class TownDroneBase : ModProjectile
     {
         public Point pylonSpot;
+        public int spawnInAnimation;
+
+        public float gotoVelocityX;
+        public float gotoVelocityY;
+        public int gotoVelocityXResetTimer;
+        public int gotoVelocityYResetTimer;
+
+        public DronePylonManager PylonManager => DroneSystem.Drones[pylonSpot];
+
+        protected float SpawnInOpacity => spawnInAnimation == 0 ? 1f : -spawnInAnimation / 60f;
 
         public override void AI()
         {
+            if (spawnInAnimation < 0)
+            {
+                spawnInAnimation--;
+                if (spawnInAnimation < -60)
+                {
+                    spawnInAnimation = 0;
+                }
+            }
             if (pylonSpot == Point.Zero)
             {
                 float closestPylon = 1000f;
@@ -24,17 +44,16 @@ namespace Aequus.Projectiles.Misc.Drones
                         pylonSpot = p;
                     }
                 }
-                int div = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
+                if (pylonSpot == Point.Zero)
                 {
-                    if (Main.npc[i].active && Main.npc[i].townNPC)
-                    {
-                        float d = Vector2.Distance(Projectile.Center, Main.npc[i].Center);
-                        if (d < 1000f)
-                        {
-                            Projectile.damage += Main.npc[i].damage;
-                        }
-                    }
+                    Projectile.Kill();
+                    return;
+                }
+                var townNPCs = PylonManager.NearbyTownNPCs;
+                int div = townNPCs.Count;
+                foreach (var n in townNPCs)
+                {
+                    Projectile.damage += n.damage;
                 }
                 if (div != 0)
                     Projectile.damage /= div;
@@ -68,7 +87,7 @@ namespace Aequus.Projectiles.Misc.Drones
 
         public Color GetDrawColor()
         {
-            switch ((int)Projectile.localAI[1] - 1) 
+            switch ((int)Projectile.localAI[1] - 1)
             {
                 case 0:
                     return new Color(100, 255, 128, 255);
@@ -91,6 +110,40 @@ namespace Aequus.Projectiles.Misc.Drones
             }
 
             return Color.White;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(pylonSpot.X);
+            writer.Write(pylonSpot.Y);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            pylonSpot.X = reader.ReadInt32();
+            pylonSpot.Y = reader.ReadInt32();
+        }
+
+        public void CheckDead()
+        {
+            if ((int)Projectile.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                OnDeath();
+            }
+        }
+
+        public virtual void OnDeath()
+        {
+            if (Main.netMode == NetmodeID.Server)
+                return;
+            SoundEngine.PlaySound(SoundID.NPCDeath43.WithVolume(0.25f), Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
+
+            for (int i = 0; i < 10; i++)
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
+                d.noGravity = true;
+            }
         }
     }
 }

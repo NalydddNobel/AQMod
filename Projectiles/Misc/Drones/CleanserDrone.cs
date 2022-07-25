@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Drones
 {
-    public class GunnerDrone : TownDroneBase
+    public class CleanserDrone : TownDroneBase
     {
         public override void SetDefaults()
         {
@@ -20,7 +20,6 @@ namespace Aequus.Projectiles.Misc.Drones
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.npcProj = true;
-            Projectile.tileCollide = false;
         }
 
         public override void AI()
@@ -57,12 +56,11 @@ namespace Aequus.Projectiles.Misc.Drones
                     if (Projectile.ai[0] > 15f)
                     {
                         var shootPosition = Projectile.Center + new Vector2(0f, 12f);
-                        if (Main.netMode != NetmodeID.MultiplayerClient || Main.myPlayer == Projectile.owner)
+                        if (Main.myPlayer == Projectile.owner)
                         {
                             var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), shootPosition, Vector2.Normalize(target.Center - shootPosition).RotatedBy(Main.rand.NextFloat(-0.04f, 0.04f)) * 10f, ProjectileID.Bullet,
                                 Projectile.damage, Projectile.knockBack, Projectile.owner);
                             p.ArmorPenetration += Projectile.damage / 2;
-                            p.npcProj = true;
                         }
                         SoundEngine.PlaySound(SoundID.Item11, Projectile.Center);
                         Projectile.ai[0] = 0f;
@@ -70,7 +68,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 }
                 else
                 {
-                    minDistance = 20f;
+                    minDistance = 100f;
                 }
                 targetDistance = Projectile.Distance(target.Center);
             }
@@ -115,7 +113,6 @@ namespace Aequus.Projectiles.Misc.Drones
                     {
                         if (WorldGen.InWorld(tileX, tileY + i, 10) && AequusHelpers.IsSolid(Main.tile[tileX, tileY + i]))
                         {
-                            //AequusHelpers.dustDebug(tileX, tileY + i);
                             gotoVelocityY = Math.Abs(gotoVelocityY);
                             yLerp = 0.125f;
                             Projectile.netUpdate = true;
@@ -158,7 +155,7 @@ namespace Aequus.Projectiles.Misc.Drones
             }
             else
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(target.Center - Projectile.Center + new Vector2(0f, tileHeight < 10 ? -30f : 0f)) * 6f, 0.01f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(target.Center - Projectile.Center + new Vector2(0f, tileHeight < 10 ? -100f : 0f)) * 6f, 0.01f);
             }
             if (target != null)
             {
@@ -199,24 +196,14 @@ namespace Aequus.Projectiles.Misc.Drones
         {
             base.OnDeath();
             if (Main.rand.NextFloat() < 0.8f)
-                Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<InactivePylonGunner>());
+                Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<InactivePylonCleanser>());
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
-            var gunTexture = ModContent.Request<Texture2D>(Texture + "Gun");
 
             var color = GetDrawColor();
-            float turretRotation = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -1f, 1f);
-            int npcTarget = (int)Projectile.ai[1] - 1;
-            if (npcTarget > -1)
-            {
-                turretRotation = (Main.npc[npcTarget].Center - Projectile.Center).ToRotation() + MathHelper.PiOver2;
-            }
-            Main.EntitySpriteDraw(gunTexture.Value, Projectile.position + off +
-                (Projectile.rotation + MathHelper.PiOver2).ToRotationVector2() * texture.Height / 2f - Main.screenPosition + new Vector2(1f, 0f), null, lightColor,
-                turretRotation - MathHelper.PiOver2, new Vector2(gunTexture.Value.Width / 2f, 4f), Projectile.scale, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + off - Main.screenPosition, frame, lightColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,

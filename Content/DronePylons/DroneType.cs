@@ -11,25 +11,6 @@ namespace Aequus.Content.DronePylons
     {
         public abstract int ProjectileType { get; }
         public virtual int ProjectileAmt => 1;
-        public int Count
-        {
-            get
-            {
-                int numOwned = 0;
-                for (int i = 0; i < Main.maxProjectiles; i++)
-                {
-                    if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<GunnerDrone>())
-                    {
-                        var gunner = Main.projectile[i].ModProjectile<GunnerDrone>();
-                        if (gunner.pylonSpot == Location)
-                        {
-                            numOwned++;
-                        }
-                    }
-                }
-                return numOwned;
-            }
-        }
 
         public Point Location { get; internal set; }
 
@@ -68,9 +49,47 @@ namespace Aequus.Content.DronePylons
             return l;
         }
 
+        public virtual void DeserializeData(TagCompound tag)
+        {
+        }
+
         public virtual object Clone()
         {
             return MemberwiseClone();
+        }
+
+        public virtual void OnAdd()
+        {
+        }
+
+        public virtual void OnRemove()
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == ProjectileType && Main.projectile[i].ModProjectile is TownDroneBase townDrone)
+                {
+                    if (townDrone.pylonSpot == Location)
+                    {
+                        Main.projectile[i].localAI[0] = 0f;
+                        Main.projectile[i].Kill();
+                        break;
+                    }
+                }
+            }
+        }
+
+        public virtual void OnSoftUpdate()
+        {
+
+        }
+
+        public virtual void OnHardUpdate()
+        {
+        }
+
+        public DronePylonManager GetDroneManager()
+        {
+            return DroneSystem.FindOrAddDrone(Location);
         }
     }
 }

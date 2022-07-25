@@ -184,11 +184,16 @@ namespace Aequus.Graphics
             orig();
             for (int i = 0; i < necromancyRenderers.Length; i++)
             {
-                if (necromancyRenderers[i] != null)
+                if (necromancyRenderers[i] != null && necromancyRenderers[i].NPCs.Count > 0)
                 {
                     necromancyRenderers[i].Request();
                     necromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
                 }
+            }
+            if (HealerDroneRenderer.Instance.HealPairs.Count > 0)
+            {
+                HealerDroneRenderer.Instance.Request();
+                HealerDroneRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             }
         }
 
@@ -247,6 +252,18 @@ namespace Aequus.Graphics
                         Main.instance.DrawProj(DustDevil.DrawBack.Index(i));
                     }
                     DustDevil.DrawBack.Clear();
+
+                    try
+                    {
+                        if (HealerDroneRenderer.Instance.IsReady)
+                        {
+                            HealerDroneRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
             catch

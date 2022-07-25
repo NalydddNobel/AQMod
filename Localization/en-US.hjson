@@ -215,7 +215,9 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			GunnerDronePack: Gunner Drone Pack
+			InactivePylonCleanser: Inactive Pylon Cleanser
+			InactivePylonHealer: Inactive Pylon Healer
+			InactivePylonGunner: Inactive Pylon Gunner
 
 			Leecheel: Leecheel
 			Depthscale: Depthscale
@@ -774,7 +776,9 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
-			GunnerDronePack: Use near a pylon to summon a defensive gunner drone
+			InactivePylonCleanser: Throw near a pylon to reactivate it
+			InactivePylonHealer: Throw near a pylon to reactivate it
+			InactivePylonGunner: Throw near a pylon to reactivate it
 
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
