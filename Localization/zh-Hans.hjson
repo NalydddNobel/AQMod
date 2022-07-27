@@ -215,9 +215,9 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			InactivePylonCleanser: 未激活的水晶塔清扫机
-			InactivePylonHealer: 未激活的水晶塔治疗机
-			InactivePylonGunner: 未激活的水晶塔火炮机
+			InactivePylonCleanser: 未激活的晶塔清扫机
+			InactivePylonHealer: 未激活的晶塔治疗机
+			InactivePylonGunner: 未激活的晶塔火炮机
 
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
@@ -776,9 +776,9 @@ Mods: {
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 
-			InactivePylonCleanser: 扔到水晶塔附近以重新激活它
-			InactivePylonHealer: 扔到水晶塔附近以重新激活它
-			InactivePylonGunner: 扔到水晶塔附近以重新激活它
+			InactivePylonCleanser: 扔到晶塔附近以重新激活它
+			InactivePylonHealer: 扔到晶塔附近以重新激活它
+			InactivePylonGunner: 扔到晶塔附近以重新激活它
 
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -3006,6 +3006,9 @@ Mods: {
 				Basic: {
 					0: 很怪的重力, 我家乡的引力比现在弱62.5%.
 					1: 好吧, 看来混沌理论是有点道理的, 对吗?
+					2: 晶塔并不是魔法, 不然镇民们是如何到达你的城镇的? 用脚? 不, 是通过呼叫'星河出租车'. 晶塔基本上只是外星人的'电话亭'.
+					3: 在我们的星球上, 晶塔根本不可能存在, 它的'幸福'净值为-30mw.
+					4: 你没有和任何像猫一样的生物做过交易...对吗?
 				}
 
 				ShopQuote: {
@@ -3019,6 +3022,9 @@ Mods: {
 					BloodMoonStarter: 我在一次'血月'事件的观察中在这个世界时发现了一件奇怪的人工制品.
 					GalacticStarfruit: 谁会知道地球上的果实可以控制宇宙中的恒星呢?
 					SolarTablet: 神庙蜥蜴及其控制太阳和月亮的能力令人钦佩.
+					InactivePylonGunner: 如果没有与网络连接, 它就无法正常工作. 幸运的是, 你的'晶塔'会直接连接到那个网络.
+					InactivePylonHealer: 如果没有与网络连接, 它就无法正常工作. 幸运的是, 你的'晶塔'会直接连接到那个网络.
+					InactivePylonCleanser: 如果没有与网络连接, 它就无法正常工作. 幸运的是, 你的'晶塔'会直接连接到那个网络.
 					HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
 					SupernovaFruit: 这个苹果正在释放出强大的辐射, 我不指望你能活到下周.
 				}
