@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.DronePylons
 {
-    public class HealerDroneType : DroneType
+    public class HealerDroneSlot : DroneSlot
     {
         public override int ProjectileType => ModContent.ProjectileType<HealerDrone>();
 
@@ -16,7 +16,7 @@ namespace Aequus.Content.DronePylons
                 return;
             }
 
-            var droneManager = GetDroneManager();
+            var droneManager = GetDronePoint();
             if (!droneManager.isActive)
             {
                 var townNPCs = droneManager.NearbyTownNPCs;

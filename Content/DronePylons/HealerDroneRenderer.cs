@@ -1,10 +1,8 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,7 +14,6 @@ namespace Aequus.Content.Necromancy
         public readonly List<(int, int, float)> HealPairs;
 
         public static bool RenderingNow;
-        
 
         public static HealerDroneRenderer Instance { get; private set; }
 
@@ -46,8 +43,10 @@ namespace Aequus.Content.Necromancy
             {
                 RenderingNow = true;
                 DrawList.ForceRender = true;
+                var targets = device.GetRenderTargets();
                 try
                 {
+                    bool cleared = false;
                     foreach (var pair in HealPairs)
                     {
                         Begin.GeneralEntities.BeginShader(Main.spriteBatch);
@@ -64,7 +63,11 @@ namespace Aequus.Content.Necromancy
 
                         Main.spriteBatch.End();
                         device.SetRenderTarget(_target);
-                        device.Clear(Color.Transparent);
+                        if (!cleared)
+                        {
+                            cleared = true;
+                            device.Clear(Color.Transparent);
+                        }
                         Main.spriteBatch.Begin();
 
                         var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly * 2f);
@@ -80,11 +83,14 @@ namespace Aequus.Content.Necromancy
                         Main.spriteBatch.Draw(helperTarget, new Vector2(0f, 0f), Color.White * pair.Item3);
 
                         Main.spriteBatch.End();
+                        device.SetRenderTarget(helperTarget);
+                        device.Clear(Color.Transparent);
                     }
                 }
                 catch
                 {
                 }
+                device.SetRenderTargets(targets);
                 RenderingNow = false;
                 DrawList.ForceRender = false;
                 HealPairs.Clear();

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CursorDyes
 {
-    public class CursorDyeManager : ModSystem
+    public class CursorDyeSystem : ModSystem
     {
         public static Color cursorColorOld;
 

@@ -18,6 +18,8 @@ namespace Aequus.Projectiles.Misc.Drones
 {
     public class HealerDrone : TownDroneBase
     {
+        public override int ItemDrop => ModContent.ItemType<InactivePylonHealer>();
+
         public float healingAuraOpacity;
         public int healingTarget;
 
@@ -34,6 +36,7 @@ namespace Aequus.Projectiles.Misc.Drones
 
         public override void AI()
         {
+
             base.AI();
 
             healingAuraOpacity = Math.Clamp(healingAuraOpacity, 0f, 1f);
@@ -66,6 +69,7 @@ namespace Aequus.Projectiles.Misc.Drones
                         {
                             healingTarget = target.whoAmI + 1;
                             healingAuraOpacity = 0f;
+                            Projectile.netUpdate = true;
                         }
                         bool end = (int)Projectile.ai[0] >= 30;
                         var shootPosition = Projectile.Center + new Vector2(0f, 12f);
@@ -75,17 +79,19 @@ namespace Aequus.Projectiles.Misc.Drones
                             healAmt = target.lifeMax - target.life;
                         }
                         target.life += healAmt;
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                        if (Main.netMode != NetmodeID.Server)
                         {
                             int c = CombatText.NewText(new Rectangle((int)target.position.X, (int)target.position.Y, target.width, target.height), CombatText.HealLife, healAmt, dot: true);
                             Main.combatText[c].scale *= 0.5f;
                             Main.combatText[c].velocity.X += Main.rand.NextFloat(2f, 4f) * ((int)Projectile.ai[0] % 2 == 0 ? -1 : 1);
-                            target.netUpdate = true;
                         }
+                        Projectile.netUpdate = true;
+                        target.netUpdate = true;
                         SoundEngine.PlaySound(SoundID.Item4.WithPitch(0.75f).WithVolume(0.5f), Projectile.Center);
                         if (end)
                         {
                             Projectile.ai[0] = 0f;
+                            Projectile.netUpdate = true;
                         }
                     }
 
@@ -298,18 +304,6 @@ namespace Aequus.Projectiles.Misc.Drones
             return false;
         }
 
-        public override void Kill(int timeLeft)
-        {
-            CheckDead();
-        }
-
-        public override void OnDeath()
-        {
-            base.OnDeath();
-            if (Main.rand.NextFloat() < 0.8f)
-                Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<InactivePylonHealer>());
-        }
-
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
@@ -382,19 +376,15 @@ namespace Aequus.Projectiles.Misc.Drones
         public override void SendExtraAI(BinaryWriter writer)
         {
             base.SendExtraAI(writer);
-            writer.Write(gotoVelocityX);
-            writer.Write(gotoVelocityY);
-            writer.Write(gotoVelocityXResetTimer);
-            writer.Write(gotoVelocityYResetTimer);
+            writer.Write(healingTarget);
+            writer.Write(healingAuraOpacity);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             base.ReceiveExtraAI(reader);
-            gotoVelocityX = reader.ReadSingle();
-            gotoVelocityY = reader.ReadSingle();
-            gotoVelocityXResetTimer = reader.ReadInt32();
-            gotoVelocityYResetTimer = reader.ReadInt32();
+            healingTarget = reader.ReadInt32();
+            healingAuraOpacity = reader.ReadSingle();
         }
     }
 }

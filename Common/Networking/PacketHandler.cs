@@ -2,6 +2,7 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content;
+using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs.Boss;
 using Aequus.Projectiles.Summon;
@@ -46,6 +47,7 @@ namespace Aequus.Common.Networking
                 PacketType.SetExporterQuestsCompleted,
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
+                PacketType.SyncDronePoint,
             };
         }
 
@@ -185,6 +187,15 @@ namespace Aequus.Common.Networking
             }
             switch (type)
             {
+                case PacketType.SyncDronePoint:
+                    {
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+
+                        DroneWorld.RecievePacket(reader, new Point(x, y));
+                    }
+                    break;
+
                 case PacketType.SyncNecromancyNPC:
                     {
                         byte npc = reader.ReadByte();

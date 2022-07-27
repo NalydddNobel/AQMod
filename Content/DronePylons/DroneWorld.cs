@@ -1,7 +1,7 @@
-﻿using Aequus.Projectiles.Misc.Drones;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,20 +9,21 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DronePylons
 {
-    public class DroneSystem : ModSystem
+    public class DroneWorld : ModSystem
     {
-        public static Dictionary<Point, DronePylonManager> Drones { get; private set; }
+        public static Dictionary<Point, PylonDronePoint> Drones { get; private set; }
         public static int HardUpdateDelay;
 
         public override void Load()
         {
-            Drones = new Dictionary<Point, DronePylonManager>();
-            DronePylonManager.DefaultMaxDrones = 2;
+            Drones = new Dictionary<Point, PylonDronePoint>();
+            PylonDronePoint.DefaultMaxDrones = 2;
         }
 
         public override void Unload()
         {
             Clear();
+            DroneSlot.NextNetID = 0;
             Drones = null;
         }
 
@@ -63,7 +64,7 @@ namespace Aequus.Content.DronePylons
                     {
                         Mod.Logger.Info(pair.Key + ": " + pair.Value);
                     }
-                    var p = DronePylonManager.DeserializeData(t);
+                    var p = PylonDronePoint.DeserializeData(t);
                     if (p != null)
                         Drones.Add(p.Location, p);
                 }
@@ -112,7 +113,7 @@ namespace Aequus.Content.DronePylons
             }
         }
 
-        public static bool TryGetDroneData(int i, int j, out DronePylonManager drones)
+        public static bool TryGetDroneData(int i, int j, out PylonDronePoint drones)
         {
             drones = null;
             if (!ValidSpot(i, j))
@@ -122,14 +123,14 @@ namespace Aequus.Content.DronePylons
             return Drones.TryGetValue(FixedPoint(i, j), out drones);
         }
 
-        public static DronePylonManager AddDrone(int i, int j)
+        public static PylonDronePoint AddDrone(int i, int j)
         {
-            var d = new DronePylonManager() { location = FixedPoint(i, j), };
+            var d = new PylonDronePoint() { location = FixedPoint(i, j), };
             Drones.Add(d.Location, d);
             return d;
         }
 
-        public static DronePylonManager FindOrAddDrone(int i, int j)
+        public static PylonDronePoint FindOrAddDrone(int i, int j)
         {
             if (TryGetDroneData(i, j, out var data))
             {
@@ -138,7 +139,7 @@ namespace Aequus.Content.DronePylons
             return AddDrone(i, j);
         }
 
-        public static DronePylonManager FindOrAddDrone(Point p)
+        public static PylonDronePoint FindOrAddDrone(Point p)
         {
             return FindOrAddDrone(p.X, p.Y);
         }
@@ -153,6 +154,33 @@ namespace Aequus.Content.DronePylons
         public static bool ValidSpot(int i, int j)
         {
             return Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.TeleportationPylon;
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write(Drones.Count);
+            foreach (var d in Drones.Values)
+            {
+                d.SendData(writer);
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            int amt = reader.ReadInt32();
+            for (int i = 0; i < amt; i++)
+            {
+                int x = reader.ReadInt32();
+                int y = reader.ReadInt32();
+                RecievePacket(reader, new Point(x, y));
+            }
+        }
+
+        public static void RecievePacket(BinaryReader reader, Point dronePoint)
+        {
+            Aequus.Instance.Logger.Debug($"Syncing drone data at point: {dronePoint}");
+            var d = FindOrAddDrone(dronePoint);
+            d.RecieveData(reader);
         }
     }
 }

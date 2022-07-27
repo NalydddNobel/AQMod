@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.DronePylons
 {
-    public class GunnerDroneType : DroneType
+    public class GunnerDroneSlot : DroneSlot
     {
         public override int ProjectileType => ModContent.ProjectileType<GunnerDrone>();
     }

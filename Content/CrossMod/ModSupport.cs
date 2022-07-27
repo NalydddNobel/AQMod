@@ -1,7 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
@@ -10,8 +9,6 @@ namespace Aequus.Content.CrossMod
     {
         public static Mod CalamityMod => CalamityModSupport.CalamityMod;
         public static Mod Polarities => PolaritiesSupport.Polarities;
-        [Obsolete("Emote Bubble Lib is discontinued.")]
-        public static Mod EmoteBubbleLib => EmoteBubbleLibSupport.EmoteBubbleLib.Mod;
         public static Mod TrueTooltips { get; private set; }
         public static Mod Fargowiltas { get; private set; }
         public static Mod ColoredDamageTypes { get; private set; }

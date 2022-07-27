@@ -1,7 +1,9 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.Common.Networking;
+using Aequus.Projectiles.Misc.Drones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +11,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DronePylons
 {
-    public class DronePylonManager : TagSerializable
+    public class PylonDronePoint : TagSerializable
     {
         public static int DefaultMaxDrones;
 
@@ -18,6 +20,8 @@ namespace Aequus.Content.DronePylons
         public int MaxDrones;
 
         public int hardUpdates;
+        public int netUpdates;
+        public int netUpdateSkip;
 
         internal Point location;
         public Point Location
@@ -26,16 +30,16 @@ namespace Aequus.Content.DronePylons
 
             set
             {
-                if (!DroneSystem.Drones.ContainsKey(location))
-                {
-                    //throw new Exception("Tried to set location for unlisted pylon data. Add DronePylonData to DronePylonSystem.Pylons before adjusting Location.");
-                }
-                if (DroneSystem.Drones.ContainsKey(value))
+                //if (!DroneWorld.Drones.ContainsKey(location))
+                //{
+                //    throw new Exception("Tried to set location for unlisted pylon data. Add DronePylonData to DronePylonSystem.Pylons before adjusting Location.");
+                //}
+                if (DroneWorld.Drones.ContainsKey(value))
                 {
                     throw new Exception("There is already pylon drone data at " + value);
                 }
-                DroneSystem.Drones.Remove(location);
-                DroneSystem.Drones.Add(value, this);
+                DroneWorld.Drones.Remove(location);
+                DroneWorld.Drones.Add(value, this);
                 location = value;
             }
         }
@@ -47,7 +51,7 @@ namespace Aequus.Content.DronePylons
             }
         }
         
-        public List<DroneType> ActiveDrones { get; private set; }
+        public List<DroneSlot> ActiveDrones { get; private set; }
 
         public int Count
         {
@@ -106,9 +110,9 @@ namespace Aequus.Content.DronePylons
             }
         }
 
-        public DronePylonManager()
+        public PylonDronePoint()
         {
-            ActiveDrones = new List<DroneType>();
+            ActiveDrones = new List<DroneSlot>();
             MaxDrones = DefaultMaxDrones;
             location = Point.Zero;
             isActive = true;
@@ -121,7 +125,7 @@ namespace Aequus.Content.DronePylons
             {
                 ["Location"] = Location.ToVector2(),
             };
-            var droneSaveData = DroneType.SerializeData(ActiveDrones);
+            var droneSaveData = DroneSlot.SerializeData(ActiveDrones);
             if (droneSaveData != null)
                 tag["Drones"] = droneSaveData;
             if (MaxDrones != DefaultMaxDrones)
@@ -129,11 +133,11 @@ namespace Aequus.Content.DronePylons
             return tag;
         }
 
-        public static DronePylonManager DeserializeData(TagCompound tag)
+        public static PylonDronePoint DeserializeData(TagCompound tag)
         {
             if (tag.TryGet<Vector2>("Location", out var loc))
             {
-                var d = new DronePylonManager();
+                var d = new PylonDronePoint();
                 d.location = loc.ToPoint();
                 if (tag.TryGet("maxDrones", out int maxDrones))
                 {
@@ -143,9 +147,9 @@ namespace Aequus.Content.DronePylons
                 {
                     foreach (var droneTag in droneSaves)
                     {
-                        if (DroneType.KeyToDroneType.TryGetValue(droneTag.Get<string>("Mod") + "/" + droneTag.Get<string>("Name"), out var droneType))
+                        if (DroneSlot.KeyToDroneType.TryGetValue(droneTag.Get<string>("Mod") + "/" + droneTag.Get<string>("Name"), out var droneType))
                         {
-                            var droneInstance = (DroneType)droneType.Clone();
+                            var droneInstance = (DroneSlot)droneType.Clone();
                             droneInstance.Location = d.Location;
                             droneInstance.DeserializeData(droneTag);
                             d.ActiveDrones.Add(droneInstance);
@@ -172,6 +176,14 @@ namespace Aequus.Content.DronePylons
         {
             if (isActive || Main.netMode != NetmodeID.SinglePlayer || Main.rand.NextBool(Math.Clamp(60 - Main.frameRate, 5, 25)))
             {
+                if (netUpdates > 5)
+                {
+                    netUpdates = 0;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        Sync();
+                    }
+                }
                 if (ActiveDrones.Count > 0)
                 {
                     var quickList = new List<Point>();
@@ -221,13 +233,25 @@ namespace Aequus.Content.DronePylons
 
                     var spawnLocation = Location.ToWorldCoordinates() + new Vector2(24f);
 
-                    foreach (var p in quickList)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        for (int i = 0; i < p.Y; i++)
-                            Projectile.NewProjectile(null, spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), Main.rand.NextVector2Unit() * 5f, p.X, 20, 1f, Main.myPlayer);
+                        foreach (var p in quickList)
+                        {
+                            for (int i = 0; i < p.Y; i++)
+                                Projectile.NewProjectile(null, spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), Main.rand.NextVector2Unit() * 5f, p.X, 20, 1f, Main.myPlayer);
+                        }
                     }
                 }
                 hardUpdates = 1;
+                if (netUpdateSkip > 5 || Main.rand.NextBool())
+                {
+                    netUpdates++;
+                    netUpdateSkip = 0;
+                }
+                else
+                {
+                    netUpdateSkip++;
+                }
             }
             else
             {
@@ -274,7 +298,7 @@ namespace Aequus.Content.DronePylons
         {
         }
 
-        public bool AddDrone<T>() where T : DroneType
+        public bool ConsumeSlot<T>(Player player = null) where T : DroneSlot
         {
             if (ActiveDrones.Count >= MaxDrones)
             {
@@ -284,17 +308,69 @@ namespace Aequus.Content.DronePylons
                     {
                         continue;
                     }
-                    ActiveDrones[i].OnRemove();
-                    ActiveDrones[i] = (DroneType)ModContent.GetInstance<T>().Clone();
+                    ActiveDrones[i].OnRemove(player);
+                    ActiveDrones[i] = (DroneSlot)ModContent.GetInstance<T>().Clone();
+                    ActiveDrones[i].OnAdd(player);
+                    if (player == null || Main.myPlayer == player.whoAmI)
+                        Sync();
                     return true;
                 }
                 return false;
             }
-            var d = (DroneType)ModContent.GetInstance<T>().Clone();
+            var d = (DroneSlot)ModContent.GetInstance<T>().Clone();
             d.Location = Location;
-            d.OnAdd();
+            d.OnAdd(player);
             ActiveDrones.Add(d);
+            if (player == null || Main.myPlayer == player.whoAmI)
+                Sync();
             return true;
+        }
+
+        public void Sync() // Epic fail L
+        {
+            if (Main.netMode == NetmodeID.SinglePlayer)
+                return;
+
+            PacketHandler.Send((p) =>
+            {
+                SendData(p);
+            }, PacketType.SyncDronePoint);
+        }
+
+        public void SendData(BinaryWriter p)
+        {
+            p.Write(location.X);
+            p.Write(location.Y);
+            p.Write(MaxDrones);
+            p.Write(ActiveDrones.Count);
+            foreach (var d in ActiveDrones)
+            {
+                p.Write(d.NetID);
+                d.SendData(p);
+            }
+        }
+
+        public void RecieveData(BinaryReader reader)
+        {
+            MaxDrones = reader.ReadInt32();
+            int amt = reader.ReadInt32();
+            Aequus.Instance.Logger.Debug($"Has {amt} drones");
+            for (int i = 0; i < amt; i++)
+            {
+                int netID = reader.ReadInt32();
+                Aequus.Instance.Logger.Debug($"NetID: {netID} ({DroneSlot.NetIDToDroneType[netID].FullName})");
+                if (ActiveDrones.Count <= i)
+                {
+                    ActiveDrones.Add((DroneSlot)DroneSlot.NetIDToDroneType[netID].Clone());
+                }
+                if (ActiveDrones[i].NetID != netID)
+                {
+                    ActiveDrones[i] = (DroneSlot)DroneSlot.NetIDToDroneType[netID].Clone();
+                }
+
+                ActiveDrones[i].Location = location;
+                ActiveDrones[i].ReceiveData(reader);
+            }
         }
     }
 }

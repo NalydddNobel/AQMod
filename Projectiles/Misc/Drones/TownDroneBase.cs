@@ -18,9 +18,11 @@ namespace Aequus.Projectiles.Misc.Drones
         public int gotoVelocityXResetTimer;
         public int gotoVelocityYResetTimer;
 
-        public DronePylonManager PylonManager => DroneSystem.Drones[pylonSpot];
+        public PylonDronePoint PylonManager => DroneWorld.Drones[pylonSpot];
 
         protected float SpawnInOpacity => spawnInAnimation == 0 ? 1f : -spawnInAnimation / 60f;
+
+        public virtual int ItemDrop => 0;
 
         public override void AI()
         {
@@ -35,7 +37,7 @@ namespace Aequus.Projectiles.Misc.Drones
             if (pylonSpot == Point.Zero)
             {
                 float closestPylon = 1000f;
-                foreach (var p in DroneSystem.Drones.Keys)
+                foreach (var p in DroneWorld.Drones.Keys)
                 {
                     float d = Vector2.Distance(Projectile.Center, p.ToWorldCoordinates());
                     if (d < closestPylon)
@@ -47,6 +49,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 if (pylonSpot == Point.Zero)
                 {
                     Projectile.Kill();
+                    Projectile.netUpdate = true;
                     return;
                 }
                 var townNPCs = PylonManager.NearbyTownNPCs;
@@ -58,13 +61,13 @@ namespace Aequus.Projectiles.Misc.Drones
                 if (div != 0)
                     Projectile.damage /= div;
             }
-            if (pylonSpot == Point.Zero || !DroneSystem.ValidSpot(pylonSpot.X, pylonSpot.Y))
+            if (pylonSpot == Point.Zero || !DroneWorld.ValidSpot(pylonSpot.X, pylonSpot.Y))
             {
                 Projectile.localAI[0] = 0f;
                 Projectile.Kill();
                 return;
             }
-            if (!DroneSystem.Drones.TryGetValue(pylonSpot, out var drone))
+            if (!DroneWorld.Drones.TryGetValue(pylonSpot, out var drone))
             {
                 Projectile.localAI[0] = 1f;
                 Projectile.Kill();
@@ -114,14 +117,29 @@ namespace Aequus.Projectiles.Misc.Drones
 
         public override void SendExtraAI(BinaryWriter writer)
         {
+            writer.Write((int)Projectile.localAI[0]);
             writer.Write(pylonSpot.X);
             writer.Write(pylonSpot.Y);
+            writer.Write(gotoVelocityX);
+            writer.Write(gotoVelocityY);
+            writer.Write(gotoVelocityXResetTimer);
+            writer.Write(gotoVelocityYResetTimer);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
+            Projectile.localAI[0] = reader.ReadInt32();
             pylonSpot.X = reader.ReadInt32();
             pylonSpot.Y = reader.ReadInt32();
+            gotoVelocityX = reader.ReadSingle();
+            gotoVelocityY = reader.ReadSingle();
+            gotoVelocityXResetTimer = reader.ReadInt32();
+            gotoVelocityYResetTimer = reader.ReadInt32();
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            CheckDead();
         }
 
         public void CheckDead()
@@ -143,6 +161,15 @@ namespace Aequus.Projectiles.Misc.Drones
             {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
                 d.noGravity = true;
+            }
+
+            if (Main.myPlayer == Projectile.owner && Main.rand.NextFloat() < 0.8f)
+            {
+                int i = Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ItemDrop);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i);
+                }
             }
         }
     }

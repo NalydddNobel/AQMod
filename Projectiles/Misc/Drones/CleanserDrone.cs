@@ -1,10 +1,10 @@
-﻿using Aequus.Items.Consumables.Drones;
+﻿using Aequus.Content.DronePylons;
+using Aequus.Items.Consumables.Drones;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Misc.Drones
 {
     public class CleanserDrone : TownDroneBase
     {
+        public override int ItemDrop => ModContent.ItemType<InactivePylonCleanser>();
+
         public override void SetDefaults()
         {
             Projectile.width = 20;
@@ -38,41 +40,6 @@ namespace Aequus.Projectiles.Misc.Drones
                 }
             }
 
-            var target = Projectile.FindTargetWithinRange(800f, checkCanHit: false);
-            if (target == null)
-            {
-                int t = Projectile.FindTargetWithLineOfSight(1600f);
-                if (t != -1)
-                    target = Main.npc[t];
-            }
-
-            float targetDistance = 1600f;
-            float minDistance = 600f;
-            if (target != null)
-            {
-                if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, target.position, target.width, target.height))
-                {
-                    Projectile.ai[0]++;
-                    if (Projectile.ai[0] > 15f)
-                    {
-                        var shootPosition = Projectile.Center + new Vector2(0f, 12f);
-                        if (Main.myPlayer == Projectile.owner)
-                        {
-                            var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), shootPosition, Vector2.Normalize(target.Center - shootPosition).RotatedBy(Main.rand.NextFloat(-0.04f, 0.04f)) * 10f, ProjectileID.Bullet,
-                                Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            p.ArmorPenetration += Projectile.damage / 2;
-                        }
-                        SoundEngine.PlaySound(SoundID.Item11, Projectile.Center);
-                        Projectile.ai[0] = 0f;
-                    }
-                }
-                else
-                {
-                    minDistance = 100f;
-                }
-                targetDistance = Projectile.Distance(target.Center);
-            }
-
             if (tileHeight >= 30)
             {
                 gotoVelocityY = 3f;
@@ -89,7 +56,7 @@ namespace Aequus.Projectiles.Misc.Drones
             {
                 gotoVelocityY = -0.5f;
             }
-            else if (target == null || targetDistance < minDistance)
+            else
             {
                 if (gotoVelocityYResetTimer <= 0)
                 {
@@ -122,53 +89,73 @@ namespace Aequus.Projectiles.Misc.Drones
                 }
             }
 
-            if (target == null || targetDistance < minDistance)
+            if (gotoVelocityXResetTimer <= 0)
             {
-                if (gotoVelocityXResetTimer <= 0)
-                {
-                    gotoVelocityX = Main.rand.NextFloat(-2f, 2f);
-                    gotoVelocityXResetTimer = Main.rand.Next(60, 500);
-                    Projectile.netUpdate = true;
-                }
-                else
-                {
-                    gotoVelocityXResetTimer--;
-                }
+                gotoVelocityX = Main.rand.NextFloat(-2f, 2f);
+                gotoVelocityXResetTimer = Main.rand.Next(60, 500);
+                Projectile.netUpdate = true;
+            }
+            else
+            {
+                gotoVelocityXResetTimer--;
+            }
 
-                if (Projectile.wet)
-                {
-                    gotoVelocityY = -gotoVelocityY.Abs();
-                }
-                var diffFromPylon = pylonSpot.ToWorldCoordinates() - Projectile.Center;
-                if (diffFromPylon.Length() > 1000f)
-                {
-                    var gotoVector = Vector2.Normalize(diffFromPylon) * (float)Math.Sqrt(gotoVelocityX * gotoVelocityX + gotoVelocityY * gotoVelocityY);
-                    gotoVelocityX = gotoVector.X;
-                    gotoVelocityY = gotoVector.Y;
-                }
-                Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoVelocityX, 0.02f);
-                Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, gotoVelocityY, yLerp);
-                if (target != null && Projectile.velocity.Length() > 2f)
-                {
-                    Projectile.velocity *= 0.95f;
-                }
-            }
-            else
+            if (Projectile.wet)
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(target.Center - Projectile.Center + new Vector2(0f, tileHeight < 10 ? -100f : 0f)) * 6f, 0.01f);
+                gotoVelocityY = -gotoVelocityY.Abs();
             }
-            if (target != null)
+            var diffFromPylon = pylonSpot.ToWorldCoordinates() - Projectile.Center;
+            if (diffFromPylon.Length() > 1000f)
             {
-                Projectile.ai[1] = target.whoAmI + 1;
+                var gotoVector = Vector2.Normalize(diffFromPylon) * (float)Math.Sqrt(gotoVelocityX * gotoVelocityX + gotoVelocityY * gotoVelocityY);
+                gotoVelocityX = gotoVector.X;
+                gotoVelocityY = gotoVector.Y;
             }
-            else
-            {
-                Projectile.ai[1] = 0f;
-            }
+            Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoVelocityX, 0.02f);
+            Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, gotoVelocityY, yLerp);
 
             Projectile.rotation = Projectile.velocity.X * 0.1f;
             Projectile.spriteDirection = Projectile.direction;
             Projectile.CollideWithOthers(0.1f);
+
+            Projectile.ai[1]++;
+            if (Projectile.ai[1] < 90f)
+                return;
+
+            for (int i = 0; i < 100; i++)
+            {
+                var p = FindConvertibleTile();
+                if (p == Point.Zero || Main.myPlayer != Projectile.owner)
+                    return;
+
+                Projectile.ai[1] = 0f;
+                int pylonStyle = (int)Projectile.localAI[1] - 1;
+                int tileType = Main.tile[p].TileType;
+                int solution = 0;
+                foreach (var drones in PylonManager.ActiveDrones)
+                {
+                    if (drones is CleanserDroneSlot cleanserSlot)
+                    {
+                        solution = cleanserSlot.GetSolutionProjectileID(tileType);
+                        if (solution > 0)
+                            break;
+                    }
+                }
+
+                if (solution > 0)
+                {
+                    var spawnPosition = Projectile.Center;
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), spawnPosition, Vector2.Normalize(p.ToWorldCoordinates() + new Vector2(8f) - spawnPosition) * 7.5f, solution, 0, 0, Projectile.owner);
+                    return;
+                }
+            }
+            Projectile.ai[1] = 86f;
+        }
+
+        public Point FindConvertibleTile()
+        {
+            var tilePos = Projectile.Center.ToTileCoordinates();
+            return CleanserDroneSlot.FindConvertibleTile(tilePos);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
@@ -187,18 +174,6 @@ namespace Aequus.Projectiles.Misc.Drones
             return false;
         }
 
-        public override void Kill(int timeLeft)
-        {
-            CheckDead();
-        }
-
-        public override void OnDeath()
-        {
-            base.OnDeath();
-            if (Main.rand.NextFloat() < 0.8f)
-                Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<InactivePylonCleanser>());
-        }
-
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
@@ -209,24 +184,6 @@ namespace Aequus.Projectiles.Misc.Drones
             Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            base.SendExtraAI(writer);
-            writer.Write(gotoVelocityX);
-            writer.Write(gotoVelocityY);
-            writer.Write(gotoVelocityXResetTimer);
-            writer.Write(gotoVelocityYResetTimer);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            base.ReceiveExtraAI(reader);
-            gotoVelocityX = reader.ReadSingle();
-            gotoVelocityY = reader.ReadSingle();
-            gotoVelocityXResetTimer = reader.ReadInt32();
-            gotoVelocityYResetTimer = reader.ReadInt32();
         }
     }
 }

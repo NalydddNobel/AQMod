@@ -1,29 +1,48 @@
 ﻿using Aequus.Projectiles.Misc.Drones;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DronePylons
 {
-    public abstract class DroneType : ModType, TagSerializable
+    public abstract class DroneSlot : ModType, TagSerializable
     {
         public abstract int ProjectileType { get; }
         public virtual int ProjectileAmt => 1;
 
         public Point Location { get; internal set; }
+        public Vector2 WorldLocation
+        {
+            get
+            {
+                return Location.ToWorldCoordinates() + new Vector2(24f);
+            }
+        }
 
-        internal static Dictionary<string, DroneType> KeyToDroneType { get; private set; }
+        internal static int NextNetID;
+        public int NetID { get; private set; }
+
+        public static Dictionary<string, DroneSlot> KeyToDroneType { get; private set; }
+        public static Dictionary<int, DroneSlot> NetIDToDroneType { get; private set; }
 
         protected sealed override void Register()
         {
-            ModTypeLookup<DroneType>.Register(this);
+            ModTypeLookup<DroneSlot>.Register(this);
+            NetID = NextNetID;
+            NextNetID++;
             if (KeyToDroneType == null)
             {
-                KeyToDroneType = new Dictionary<string, DroneType>();
+                KeyToDroneType = new Dictionary<string, DroneSlot>();
+            }
+            if (NetIDToDroneType == null)
+            {
+                NetIDToDroneType = new Dictionary<int, DroneSlot>();
             }
             KeyToDroneType.Add(FullName, this);
+            NetIDToDroneType.Add(NetID, this);
         }
 
         public virtual TagCompound SerializeData()
@@ -35,7 +54,7 @@ namespace Aequus.Content.DronePylons
             };
         }
 
-        public static List<TagCompound> SerializeData(List<DroneType> drones)
+        public static List<TagCompound> SerializeData(List<DroneSlot> drones)
         {
             if (drones == null || drones.Count == 0)
             {
@@ -58,11 +77,11 @@ namespace Aequus.Content.DronePylons
             return MemberwiseClone();
         }
 
-        public virtual void OnAdd()
+        public virtual void OnAdd(Player player)
         {
         }
 
-        public virtual void OnRemove()
+        public virtual void OnRemove(Player player)
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
@@ -87,9 +106,17 @@ namespace Aequus.Content.DronePylons
         {
         }
 
-        public DronePylonManager GetDroneManager()
+        public virtual void SendData(BinaryWriter packet)
         {
-            return DroneSystem.FindOrAddDrone(Location);
+        }
+
+        public virtual void ReceiveData(BinaryReader reader)
+        {
+        }
+
+        public PylonDronePoint GetDronePoint()
+        {
+            return DroneWorld.FindOrAddDrone(Location);
         }
     }
 }

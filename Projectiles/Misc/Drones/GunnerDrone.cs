@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Misc.Drones
 {
     public class GunnerDrone : TownDroneBase
     {
+        public override int ItemDrop => ModContent.ItemType<InactivePylonGunner>(); 
+
         public override void SetDefaults()
         {
             Projectile.width = 20;
@@ -190,18 +192,6 @@ namespace Aequus.Projectiles.Misc.Drones
             return false;
         }
 
-        public override void Kill(int timeLeft)
-        {
-            CheckDead();
-        }
-
-        public override void OnDeath()
-        {
-            base.OnDeath();
-            if (Main.rand.NextFloat() < 0.8f)
-                Item.NewItem(Projectile.GetSource_Death(), Projectile.getRect(), ModContent.ItemType<InactivePylonGunner>());
-        }
-
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
@@ -222,24 +212,6 @@ namespace Aequus.Projectiles.Misc.Drones
             Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
-        }
-
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            base.SendExtraAI(writer);
-            writer.Write(gotoVelocityX);
-            writer.Write(gotoVelocityY);
-            writer.Write(gotoVelocityXResetTimer);
-            writer.Write(gotoVelocityYResetTimer);
-        }
-
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            base.ReceiveExtraAI(reader);
-            gotoVelocityX = reader.ReadSingle();
-            gotoVelocityY = reader.ReadSingle();
-            gotoVelocityXResetTimer = reader.ReadInt32();
-            gotoVelocityYResetTimer = reader.ReadInt32();
         }
     }
 }

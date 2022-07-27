@@ -72,6 +72,9 @@ namespace Aequus.NPCs.Friendly
                 .AddQuote(ItemID.BloodMoonStarter)
                 .AddQuote<GalacticStarfruit>()
                 .AddQuote(ItemID.SolarTablet)
+                .AddQuote<InactivePylonGunner>()
+                .AddQuote<InactivePylonHealer>()
+                .AddQuote<InactivePylonCleanser>()
                 .AddQuote<HomeworldPainting>()
                 .AddQuote<SupernovaFruit>();
         }
@@ -187,6 +190,7 @@ namespace Aequus.NPCs.Friendly
 
             chat.Add("Basic.0");
             chat.Add("Basic.1");
+            chat.Add("Basic.2");
 
             return chat.Get();
         }

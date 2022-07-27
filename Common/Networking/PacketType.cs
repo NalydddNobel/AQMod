@@ -17,6 +17,7 @@
         SpawnOmegaStarite,
         GlimmerEventUpdate,
         SyncNecromancyNPC,
+        SyncDronePoint,
         Count,
     }
 }
