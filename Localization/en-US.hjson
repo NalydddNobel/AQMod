@@ -3020,9 +3020,9 @@ Mods: {
 					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon' event.
 					GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
 					SolarTablet: Lihzahrds and their ability to control the sun and moon are something to admire.
-					InactivePylonGunner: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to the martian network.
-					InactivePylonHealer: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to the martian network.
-					InactivePylonCleanser: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to the martian network.
+					InactivePylonGunner: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
+					InactivePylonHealer: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
+					InactivePylonCleanser: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
 					HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
 					SupernovaFruit: Powerful radiation is being emitted from this apple, I wouldn't expect you to be alive next week.
 				}
