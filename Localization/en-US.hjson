@@ -3007,6 +3007,8 @@ Mods: {
 					0: Quite the exotic gravity, my homeworld's gravitational pull is 62.5% less stronger.
 					1: Well, it does seem there is something to chaos theory after all, yes?
 					2: Pylons aren't actually magic, how else do villagers arrive to your towns? By foot? No, by calling the 'galactic taxi'. Pylons are just alien 'telephone booths' basically.
+					3: On our home planet, pylons simply cannot exist, the net amount of 'happy' energy on it is -30mw.
+					4: You haven't been making deals with any cat-like creatures... right?
 				}
 
 				ShopQuote: {
