@@ -1,8 +1,8 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
+using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Expert;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevilProjs;

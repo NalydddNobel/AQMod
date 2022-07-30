@@ -36,7 +36,7 @@ namespace Aequus.Common.ItemDrops
 
             if (Condition.CanDrop(info) || info.rng.NextBool(Chance))
             {
-                CommonCode.DropItemFromNPC(info.npc, ItemType, 1);
+                CommonCode.DropItem(info, ItemType, 1);
                 result.State = ItemDropAttemptResultState.Success;
             }
             return result;

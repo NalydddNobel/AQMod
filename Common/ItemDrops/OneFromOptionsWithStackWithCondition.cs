@@ -40,7 +40,7 @@ namespace Aequus.Common.ItemDrops
             if (info.player.RollLuck(chanceDenominator) < chanceNumerator)
             {
                 int chosen = info.rng.Next(itemDrops.Length);
-                CommonCode.DropItemFromNPC(info.npc, itemDrops[chosen].item, itemDrops[chosen].RollStack(info.rng));
+                CommonCode.DropItem(info, itemDrops[chosen].item, itemDrops[chosen].RollStack(info.rng));
                 result = default(ItemDropAttemptResult);
                 result.State = ItemDropAttemptResultState.Success;
                 return result;

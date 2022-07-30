@@ -191,6 +191,8 @@ namespace Aequus.NPCs.Friendly
             chat.Add("Basic.0");
             chat.Add("Basic.1");
             chat.Add("Basic.2");
+            chat.Add("Basic.3");
+            chat.Add("Basic.4");
 
             return chat.Get();
         }

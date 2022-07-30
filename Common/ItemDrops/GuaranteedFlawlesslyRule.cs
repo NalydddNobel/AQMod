@@ -42,7 +42,7 @@ namespace Aequus.Common.ItemDrops
             }
             if (anyoneNoHit || info.player.RollLuck(10) <= 1)
             {
-                CommonCode.DropItemFromNPC(info.npc, Item, 1);
+                CommonCode.DropItem(info, Item, 1);
                 result = default(ItemDropAttemptResult);
                 result.State = ItemDropAttemptResultState.Success;
                 return result;

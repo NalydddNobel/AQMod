@@ -322,7 +322,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             parentSentry.dummyPlayer.boneGloveTimer = 60;
             var center = parent.Center;
             var vector = parent.DirectionTo(player.ApplyRangeCompensation(0.2f, center, center + Vector2.Normalize(projectile.velocity) * 100f)) * 10f;
-            Projectile.NewProjectile(player.GetSource_Accessory(item), center.X, center.Y, vector.X, vector.Y, 532, 25, 5f, player.whoAmI);
+            Projectile.NewProjectile(player.GetSource_Accessory(item), center.X, center.Y, vector.X, vector.Y, ProjectileID.BoneGloveProj, 25, 5f, player.whoAmI);
         }
     }
 }

@@ -74,7 +74,7 @@ namespace Aequus.Tiles
                 var center = new Vector2(i * 16f + 8f, j * 16f + 4f);
                 for (int k = 0; k < 12; k++)
                 {
-                    var d = Dust.NewDustDirect(new Vector2(i * 16f, j * 16f), 16, 16, 173);
+                    var d = Dust.NewDustDirect(new Vector2(i * 16f, j * 16f), 16, 16, DustID.ShadowbeamStaff);
                     var n = (MathHelper.TwoPi / 12f * k + Main.rand.NextFloat(-0.15f, 0.15f)).ToRotationVector2();
                     d.position = center + n * 4f;
                     d.velocity = n * 7.5f;
@@ -82,7 +82,7 @@ namespace Aequus.Tiles
             }
             for (int k = 0; k < petals; k++)
             {
-                Dust.NewDust(new Vector2(i * 16f, j * 16f), 16, 16, 249);
+                Dust.NewDust(new Vector2(i * 16f, j * 16f), 16, 16, DustID.Grubby);
             }
             return false;
         }

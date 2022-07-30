@@ -1,5 +1,4 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Consumables.Roulettes;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;
@@ -284,11 +283,6 @@ namespace Aequus.Content.Generation
             }
             c.item[slot].SetDefaults(ItemID.HealingPotion);
             c.item[slot++].stack = WorldGen.genRand.Next(10, 25);
-
-            if (WorldGen.genRand.NextBool())
-            {
-                c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, GoldenRoulette.Table.ToArray()));
-            }
 
             if (WorldGen.genRand.NextBool(3))
             {

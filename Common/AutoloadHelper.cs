@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Aequus.Items.Recipes;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
 namespace Aequus.Common
 {
-    internal class AutoloadHelper
+    internal class AutoloadHelper : ModSystem
     {
         public static List<T> GetAndOrganizeOfType<T>(Assembly ass) where T : class, ILoadable
         {
@@ -138,6 +139,38 @@ namespace Aequus.Common
                 m.Invoke(null, new object[] { aequus, t });
             }
         }
+
+        public override void PostSetupContent()
+        {
+            foreach (var t in GetAndOrganizeOfType<IPostSetupContent>(Aequus.Instance.Code))
+            {
+                t.PostSetupContent(Aequus.Instance);
+            }
+        }
+
+        public override void AddRecipeGroups()
+        {
+            foreach (var t in GetAndOrganizeOfType<IAddRecipeGroups>(Aequus.Instance.Code))
+            {
+                t.AddRecipeGroups(Aequus.Instance);
+            }
+        }
+
+        public override void AddRecipes()
+        {
+            foreach (var t in GetAndOrganizeOfType<IAddRecipes>(Aequus.Instance.Code))
+            {
+                t.AddRecipes(Aequus.Instance);
+            }
+        }
+
+        public override void PostAddRecipes()
+        {
+            foreach (var t in GetAndOrganizeOfType<IPostAddRecipes>(Aequus.Instance.Code))
+            {
+                t.PostAddRecipes(Aequus.Instance);
+            }
+        }
     }
     internal interface ILoadBefore
     {
@@ -174,6 +207,10 @@ namespace Aequus.Common
     internal interface IPostSetupContent : ILoadable
     {
         void PostSetupContent(Aequus aequus);
+    }
+    internal interface IAddRecipeGroups : ILoadable
+    {
+        void AddRecipeGroups(Aequus aequus);
     }
     internal interface IAddRecipes : ILoadable
     {

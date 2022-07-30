@@ -1,13 +1,15 @@
 ﻿using Aequus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Expert
+namespace Aequus.Items.Consumables.LootBags
 {
     public abstract class TreasureBagBase : ModItem
     {

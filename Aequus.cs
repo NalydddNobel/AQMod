@@ -84,35 +84,6 @@ namespace Aequus
             }
         }
 
-        public override void PostSetupContent()
-        {
-            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IPostSetupContent>(Code))
-            {
-                t.PostSetupContent(this);
-            }
-        }
-
-        public override void AddRecipeGroups()
-        {
-            AequusRecipes.AddRecipeGroups();
-        }
-
-        public override void AddRecipes()
-        {
-            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IAddRecipes>(Code))
-            {
-                t.AddRecipes(this);
-            }
-        }
-
-        public override void PostAddRecipes()
-        {
-            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IPostAddRecipes>(Code))
-            {
-                t.PostAddRecipes(this);
-            }
-        }
-
         public override void Unload()
         {
             Instance = null;

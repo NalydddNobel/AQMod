@@ -296,6 +296,16 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
+			StariteBanner: Starite Banner
+			SuperStariteBanner: Super Starite Banner
+			HyperStariteBanner: Hyper Starite Banner
+			UltraStariteBanner: Ultra Starite Banner
+			CinderaBanner: Cindera Banner
+			MagmabubbleBanner: Magmabubble Banner
+			TrapperImpBanner: Trapper Imp Banner
+			VraineBanner: Vraine Banner
+			WhiteSlimeBanner: White Slime Banner
+
 			EmancipationGrill: Emancipation Grill
 			PhysicsBlock: Physics Block
 			ForceGravityBlock: Gravity Block
@@ -552,14 +562,6 @@ Mods: {
 			FertilePowder: Fertile Powder
 			Crabax: Crabax
 			Floatstick: Floatstick
-			StariteBanner: Starite Banner
-			SuperStariteBanner: Super Starite Banner
-			HyperStariteBanner: Hyper Starite Banner
-			CinderaBanner: Cindera Banner
-			MagmabubbleBanner: Magmabubble Banner
-			TrapperImpBanner: Trapper Imp Banner
-			VraineBanner: Vraine Banner
-			WhiteSlimeBanner: White Slime Banner
 			SpaceSquidTrophy: Space Squid Trophy
 		}
 
@@ -887,6 +889,16 @@ Mods: {
 				'''
 
 			RecyclingMachine: Allows you to recycle trash items
+
+			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
+			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
+			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
+			UltraStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.UltraStarite}"
+			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
+			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
+			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
+			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
+			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
 			EmancipationGrill: 
 				'''
@@ -1434,14 +1446,6 @@ Mods: {
 				Works when wet
 				'I think you can guess what this does from the name'
 				'''
-			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
-			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
-			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
-			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
-			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
-			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
-			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
-			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 		}
 
 		BuffName: {

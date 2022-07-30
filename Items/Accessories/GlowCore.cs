@@ -1,12 +1,10 @@
 ﻿using Aequus;
-using Aequus.Items.Consumables.Roulettes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
@@ -32,7 +30,6 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            GoldenRoulette.Table.Add(Type);
         }
 
         public override void SetDefaults()

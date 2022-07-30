@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Common;
+using Aequus.Items.Misc;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -12,11 +13,23 @@ namespace Aequus.Items.Recipes
         private static RecipeGroup anyEctoplasm;
         public static RecipeGroup AnyEctoplasm { get => anyEctoplasm; }
 
-        internal static void AddRecipeGroups()
+        private class Loader : IAddRecipeGroups
         {
-            NewGroup("AnyEctoplasm", ref anyEctoplasm,
-                ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+            void ILoadable.Load(Mod mod)
+            {
+            }
+
+            void IAddRecipeGroups.AddRecipeGroups(Aequus aequus)
+            {
+                NewGroup("AnyEctoplasm", ref anyEctoplasm,
+                    ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+            }
+
+            void ILoadable.Unload()
+            {
+            }
         }
+
         private static RecipeGroup NewGroup(string name, ref RecipeGroup group, params int[] items)
         {
             group = new RecipeGroup(

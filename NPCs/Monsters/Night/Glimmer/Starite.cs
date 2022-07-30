@@ -153,7 +153,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 55);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Pixie);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(5f, 12f);
                 }
@@ -402,7 +402,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
             if (Main.rand.NextBool(20))
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, 58, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f, 150, default(Color), 1.2f);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f, 150, default(Color), 1.2f);
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 

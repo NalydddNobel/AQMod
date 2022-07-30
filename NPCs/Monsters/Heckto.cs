@@ -118,7 +118,7 @@ namespace Aequus.NPCs.Monsters
             Main.dust[d].noGravity = true;
             if (Main.netMode == NetmodeID.Server)
                 return;
-            if (Main.rand.Next(400) == 0)
+            if (Main.rand.NextBool(400))
             {
                 SoundEngine.PlaySound(HeckoMoan_wtfDidIJustWrite, NPC.Center);
             }

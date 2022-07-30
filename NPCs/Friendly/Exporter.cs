@@ -3,7 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity;
-using Aequus.Items.Consumables.Roulettes;
+using Aequus.Items.Consumables.LootBags.Roulettes;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture;

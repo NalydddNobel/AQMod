@@ -7,8 +7,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Recipes
 {
-    public class Changes : GlobalRecipe, IPostAddRecipes
+    public class Changes : IPostAddRecipes
     {
+        void ILoadable.Load(Mod mod)
+        {
+        }
+
         void IPostAddRecipes.PostAddRecipes(Aequus aequus)
         {
             var register = new List<Recipe>();
@@ -64,6 +68,10 @@ namespace Aequus.Items.Recipes
             {
                 r.Register();
             }
+        }
+
+        void ILoadable.Unload()
+        {
         }
     }
 }

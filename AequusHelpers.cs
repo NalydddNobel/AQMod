@@ -23,6 +23,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Terraria.UI.Chat;
 using Terraria.Utilities;
 
 namespace Aequus
@@ -1693,6 +1694,10 @@ namespace Aequus
             return t.Namespace.Replace('.', '/') + "/" + t.Name;
         }
 
+        public static void debugTextDraw(string text, Vector2 where)
+        {
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
+        }
         public static Dust dustDebugDirect(Vector2 where, int dustType = DustID.Torch)
         {
             var d = Dust.NewDustPerfect(where, dustType);

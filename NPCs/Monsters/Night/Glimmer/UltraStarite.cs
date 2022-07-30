@@ -98,7 +98,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(2f, 6f);
                 }
@@ -117,7 +117,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 for (int i = 0; i < 7; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(5f, 12f);
                 }
@@ -552,7 +552,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                    if (i >= armTrailLength || i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f)
+                    if (i >= armTrailLength || (i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f))
                         continue;
                     for (int j = 0; j < 5; j++)
                     {

@@ -37,7 +37,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddOptions(chance: 5, ModContent.ItemType<AmmoBackpack>(), ModContent.ItemType<SuperStarSword>())
+                .Add<SuperStarSword>(chance: 5, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 2, stack: 1);
         }
@@ -74,7 +74,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 for (int i = 0; i < 35; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(2f, 6f);
                 }
@@ -93,7 +93,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 for (int i = 0; i < 6; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(5f, 12f);
                 }
@@ -194,12 +194,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
             if (Main.rand.NextBool(20))
             {
-                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 15);
+                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                 Main.dust[d].velocity = NPC.velocity * 0.01f;
             }
             if (Main.rand.NextBool(40))
             {
-                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 58);
+                int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
                 Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
                 Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
             }

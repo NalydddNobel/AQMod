@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -90,9 +91,60 @@ namespace Aequus.Items
                     {
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
                     }
+
+                    //TestLootBagTooltip(item, tooltips);
                 }
                 catch
                 {
+                }
+            }
+            public void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
+            {
+                var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
+
+                if (dropTable.Count == 0)
+                {
+                    return;
+                }
+
+                var drops = new List<DropRateInfo>();
+                foreach (var rule in dropTable)
+                {
+                    rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
+                }
+                foreach (var drop in drops)
+                {
+                    string text = AequusText.ItemText(drop.itemId);
+                    if (drop.stackMin == drop.stackMax)
+                    {
+                        if (drop.stackMin > 1)
+                        {
+                            text += $" ({drop.stackMin})";
+                        }
+                    }
+                    else
+                    {
+                        text += $" ({drop.stackMin} - {drop.stackMax})";
+                    }
+                    text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
+                    tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId), text));
+                    if (drop.conditions != null && drop.conditions.Count > 0)
+                    {
+                        foreach (var cond in drop.conditions)
+                        {
+                            if (cond == null)
+                            {
+                                continue;
+                            }
+
+                            string extraDesc = cond.GetConditionDescription();
+                            string condText = cond.GetType().FullName;
+                            if (!string.IsNullOrEmpty(extraDesc))
+                                condText += " '" + extraDesc + "'";
+
+                            tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
+                        }
+                    }
                 }
             }
             public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)

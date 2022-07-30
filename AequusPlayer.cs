@@ -1061,7 +1061,7 @@ namespace Aequus
                 Player.AddLifeRegen(-6);
         }
 
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
             if (damage > 1000)
             {
@@ -1085,6 +1085,11 @@ namespace Aequus
                 }
             }
             return true;
+        }
+
+        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        {
+            timeSinceLastHit = 0;
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
@@ -1155,11 +1160,6 @@ namespace Aequus
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
             }
-        }
-
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
-        {
-            timeSinceLastHit = 0;
         }
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)

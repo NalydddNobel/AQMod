@@ -36,6 +36,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemDefaults.RarityOmegaStarite;
+            Item.ammo = AmmoID.Bullet;
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 7.5f;
             Item.autoReuse = true;

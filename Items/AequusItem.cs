@@ -1,15 +1,19 @@
 ﻿using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Items.Weapons.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -167,6 +171,31 @@ namespace Aequus.Items
             return 1f;
         }
 
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            switch (item.type) 
+            {
+                case ItemID.QueenBeeBossBag:
+                    {
+                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
+                    }
+                    break;
+
+                case ItemID.IronCrate:
+                case ItemID.IronCrateHard:
+                    {
+                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
+                        itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
+                    }
+                    break;
+
+                case ItemID.LockBox:
+                    {
+                        itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
+                    }
+                    break;
+            }
+        }
         public override void OpenVanillaBag(string context, Player player, int arg)
         {
             if (context == "bossBag")

@@ -175,13 +175,13 @@ namespace Aequus.Projectiles.Summon
             }
             if (Main.rand.NextBool(40))
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 15);
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror);
                 Main.dust[d].velocity = Projectile.velocity * 0.01f;
                 Main.dust[d].noGravity = true;
             }
             if (Main.rand.NextBool(80))
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 58);
+                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink);
                 Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
                 Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
                 Main.dust[d].noGravity = true;

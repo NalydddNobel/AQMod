@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

@@ -1,23 +1,21 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Items.Consumables.LootBags;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
+namespace Aequus.Items.Consumables.LootBags
 {
-    public static class DropRulesBuilder
+    public static class ItemLootBuilder
     {
         public struct Drops
         {
-            public readonly int NPC;
-            public readonly NPCLoot Loot;
+            public readonly int Item;
+            public readonly ItemLoot Loot;
             public LeadingConditionRule LeadingConditionRule;
 
-            public Drops(int npc, NPCLoot loot)
+            public Drops(int item, ItemLoot loot)
             {
-                NPC = npc;
+                Item = item;
                 Loot = loot;
                 LeadingConditionRule = null;
             }
@@ -38,6 +36,10 @@ namespace Aequus.NPCs
             public Drops Add(int itemID, int chance = 1, (int min, int max) stack = default((int, int)))
             {
                 stack.Max(1);
+                if (stack.min != stack.max)
+                {
+                    return Add(ItemDropRule.NotScalingWithLuck(itemID, chance, stack.min, stack.max));
+                }
                 return Add(ItemDropRule.Common(itemID, chance, stack.min, stack.max));
             }
             public Drops Add<T>(int chance = 1, (int min, int max) stack = default((int, int))) where T : ModItem
@@ -93,67 +95,13 @@ namespace Aequus.NPCs
                 return Add(condition, ModContent.ItemType<T>(), (chance, 1), (stack, stack));
             }
 
-            public Drops AddBossBag(int itemID)
+            public Drops Coins(int npcID)
             {
-                return Add(ItemDropRule.BossBag(itemID));
+                return Add(ItemDropRule.CoinsBasedOnNPCValue(npcID));
             }
-            public Drops AddBossBag<T>() where T : TreasureBagBase
+            public Drops Coins<T>() where T : ModNPC
             {
-                return AddBossBag(ModContent.ItemType<T>());
-            }
-
-            public Drops AddRelic(int itemID)
-            {
-                return Add(ItemDropRule.MasterModeCommonDrop(itemID));
-            }
-            public Drops AddRelic<T>() where T : ModItem
-            {
-                return AddRelic(ModContent.ItemType<T>());
-            }
-
-            public Drops AddMasterPet(int itemID)
-            {
-                return Add(ItemDropRule.MasterModeDropOnAllPlayers(itemID, 4));
-            }
-            public Drops AddMasterPet<T>() where T : ModItem
-            {
-                return AddMasterPet(ModContent.ItemType<T>());
-            }
-
-            public Drops AddBossLoot(int trophy, int relic, int bossBag = ItemID.None, int masterPet = ItemID.None)
-            {
-                Add(new GuaranteedFlawlesslyRule(trophy, 10));
-                if (bossBag > 0)
-                {
-                    AddBossBag(bossBag);
-                }
-                AddRelic(relic);
-                if (masterPet > 0)
-                {
-                    AddMasterPet(masterPet);
-                }
-                return this;
-            }
-            public Drops AddBossLoot<TTrophy, TRelic, TBossBag, TMasterPet>() where TTrophy : ModItem where TRelic : ModItem where TBossBag : ModItem where TMasterPet : ModItem
-            {
-                return AddBossLoot(ModContent.ItemType<TTrophy>(), ModContent.ItemType<TRelic>(), ModContent.ItemType<TBossBag>(), ModContent.ItemType<TMasterPet>());
-            }
-            public Drops AddBossLoot<TTrophy, TRelic, TBossBag>() where TTrophy : ModItem where TRelic : ModItem where TBossBag : TreasureBagBase
-            {
-                return AddBossLoot(ModContent.ItemType<TTrophy>(), ModContent.ItemType<TRelic>(), ModContent.ItemType<TBossBag>());
-            }
-            public Drops AddBossLoot<TTrophy, TRelic>() where TTrophy : ModItem where TRelic : ModItem
-            {
-                return AddBossLoot(ModContent.ItemType<TTrophy>(), ModContent.ItemType<TRelic>());
-            }
-
-            public Drops AddFlawless(int itemID)
-            {
-                return Add(ItemDropRule.ByCondition(FlawlessCondition, itemID));
-            }
-            public Drops AddFlawless<T>() where T : ModItem
-            {
-                return AddFlawless(ModContent.ItemType<T>());
+                return Coins(ModContent.NPCType<T>());
             }
 
             public Drops SetCondition(IItemDropRuleCondition rule)
@@ -172,13 +120,13 @@ namespace Aequus.NPCs
         public static Conditions.NotExpert NotExpertCondition => new Conditions.NotExpert();
         public static FlawlessCondition FlawlessCondition => new FlawlessCondition();
 
-        public static Drops AddLoot(this NPC npc, NPCLoot loot)
+        public static Drops AddLoot(this Item npc, ItemLoot loot)
         {
             return new Drops(npc.type, loot);
         }
-        public static Drops CreateLoot(this ModNPC modNPC, NPCLoot loot)
+        public static Drops CreateLoot(this ModItem modItem, ItemLoot loot)
         {
-            return AddLoot(modNPC.NPC, loot);
+            return modItem.Item.AddLoot(loot);
         }
     }
 }

@@ -71,7 +71,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         int num7 = (int)center.X / 16;
                         int num8 = (int)center.Y / 16;
                         bool flag = false;
-                        if (Main.rand.Next(3) == 0 && Main.tile[num7, num8] != null && Main.tile[num7, num8].WallType > 0)
+                        if (Main.rand.NextBool(3)&& Main.tile[num7, num8] != null && Main.tile[num7, num8].WallType > 0)
                         {
                             flag = true;
                         }
