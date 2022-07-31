@@ -296,6 +296,16 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			StariteBanner: 星之源旗
+			SuperStariteBanner: 极耀源星旗
+			HyperStariteBanner: 巨耀源星旗
+			UltraStariteBanner: 终耀源星旗
+			CinderaBanner: 幻形蝠旗
+			MagmabubbleBanner: 熔火喷吐者旗
+			TrapperImpBanner: 捕魂小鬼旗
+			VraineBanner: 镰鸟旗
+			WhiteSlimeBanner: 白色史莱姆旗
+
 			EmancipationGrill: 解放栅格
 			PhysicsBlock: 物理学块
 			ForceGravityBlock: 重力块
@@ -552,14 +562,6 @@ Mods: {
 			FertilePowder: 丰饶之尘
 			Crabax: 蟹斧
 			Floatstick: 浮光棒
-			StariteBanner: 星之源旗
-			SuperStariteBanner: 极耀源星旗
-			HyperStariteBanner: 巨耀源星旗
-			CinderaBanner: 幻形蝠旗
-			MagmabubbleBanner: 熔火喷吐者旗
-			TrapperImpBanner: 捕魂小鬼旗
-			VraineBanner: 镰鸟旗
-			WhiteSlimeBanner: 白色史莱姆旗
 			SpaceSquidTrophy: 太空乌贼纪念章
 		}
 
@@ -887,6 +889,16 @@ Mods: {
 				'''
 
 			RecyclingMachine: 允许你回收垃圾物品
+
+			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
+			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
+			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
+			UltraStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.UltraStarite}"
+			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
+			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
+			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
+			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
+			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
 			EmancipationGrill: 
 				'''
@@ -1434,14 +1446,6 @@ Mods: {
 				仅在潮湿情况下生效
 				'我想你应该可以从名字中猜出这是做什么的'
 				'''
-			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
-			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
-			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
-			CinderaBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
-			MagmabubbleBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
-			TrapperImpBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
-			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
-			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 		}
 
 		BuffName: {
