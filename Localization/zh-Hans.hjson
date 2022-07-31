@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			FlashwayNecklace: 晖耀项链
 			HaltingMachine: 凝滞仪
 			Ramishroom: 分支菇
 			DevilsTongue: 魔鬼之舌
@@ -566,6 +567,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FlashwayNecklace: 允许你在受到攻击之前无敌一小段时间
 			HaltingMachine: 附近的物品会现在漂浮而非下落
 			Ramishroom: 钓竿会额外扔出一个浮标
 			DevilsTongue: 将非稀有渔获转化为垃圾
@@ -1456,6 +1458,7 @@ Mods: {
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			FlashwayNecklaceCooldown: 晖耀项链冷却
 			ReliefshroomBuff: 息灵菇
 			MendshroomBuff: 愈灵菇
 
@@ -1529,6 +1532,7 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
+			FlashwayNecklaceCooldown: 暂时禁用晖耀项链
 			ReliefshroomBuff: 你正在被治愈!
 			MendshroomBuff: 你正在被队友治愈!
 
