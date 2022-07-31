@@ -41,7 +41,6 @@ namespace Aequus.Items.Consumables.Bait
             {
                 fisher.CanFishInLava = true;
                 fisher.inLava = true;
-                aequus.nearGoreNest = Main.rand.NextBool();
             }
             else if (Main.rand.NextBool(8))
             {

@@ -1,15 +1,15 @@
-﻿[c/7EC8E3:Overview]
+﻿[b]Overview[/b]
 Aequus is a mod full of experimental features and content, I make this mod for fun, and don't have much of a goal.
 Please report bugs to the steam workshop page, forums page, or discord server.
 
 ~ Some content from the 1.3 version is NOT ported yet, sorry! ~
 
-[c/7EC8E3:Content]
-[c/7EC8E3:>] 200+ Items
-[c/7EC8E3:>] 15+ Enemies
-[c/7EC8E3:>] 4 Shop NPCs
-[c/7EC8E3:>] 2 Bosses
-[c/7EC8E3:>] 2 Events
-[c/7EC8E3:>] A ton of bugs.. and more!
+[b]Content[/b]
+[b]>[/b] 220+ Items
+[b]>[/b] 15+ Enemies
+[b]>[/b] 4 Shop NPCs
+[b]>[/b] 2 Bosses
+[b]>[/b] 2 Events
+[b]>[/b] A ton of bugs.. and more!
 
 The mod updates each month with new content, and also to continue working after preview and stable merge.

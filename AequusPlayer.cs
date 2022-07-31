@@ -9,6 +9,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using Aequus.Graphics.PlayerLayers;
 using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
@@ -27,6 +28,7 @@ using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -109,22 +111,29 @@ namespace Aequus
         /// </summary>
         public bool buffResistHeat;
 
-        public bool biomeCrabCrevice;
-        /// <summary>
-        /// Whether or not the player is in the Gale Streams event
-        /// </summary>
-        public bool EventGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
+        public bool ZoneCrabCrevice;
+        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
+        public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
+        public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();
+        public bool ZoneGoreNest => Player.InModBiome<GoreNestBiome>();
+
         /// <summary>
         /// A point determining one of the close gore nests. Prioritized by their order in <see cref="DemonSiegeSystem.ActiveSacrifices"/>
         /// </summary>
         public Point eventDemonSiege;
-        public bool nearGoreNest;
+
+        public bool hurt;
 
         /// <summary>
         /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="ClosestEnemy"/>
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
+
+        public int instaShieldTime;
+        public int instaShieldTimeMax;
+        public int instaShieldCooldown;
+        public float instaShieldAlpha;
 
         /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
@@ -392,6 +401,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            instaShieldAlpha = 0f;
             antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
@@ -420,6 +430,46 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            if (hurt)
+            {
+                if (instaShieldTime > 0)
+                {
+                    instaShieldTime--;
+                    if (instaShieldAlpha < 1f)
+                    {
+                        instaShieldAlpha += 0.035f;
+                        if (instaShieldAlpha > 1f)
+                        {
+                            instaShieldAlpha = 1f;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (instaShieldTime < instaShieldTimeMax)
+                {
+                    instaShieldTime = 0;
+                    int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
+                    if (instaShieldCooldownBuffIndex == -1)
+                    {
+                        Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
+                    }
+                    else if (Player.buffTime[instaShieldCooldownBuffIndex] <= 2)
+                    {
+                        instaShieldTime = instaShieldTimeMax;
+                    }
+                }
+                if (instaShieldAlpha > 0f)
+                {
+                    instaShieldAlpha -= 0.035f;
+                    if (instaShieldAlpha < 0f)
+                    {
+                        instaShieldAlpha = 0f;
+                    }
+                }
+            }
+            instaShieldTimeMax = 0;
             if (antiGravityTile < 0)
                 antiGravityTile++;
             else if (antiGravityTile > 0)
@@ -437,7 +487,7 @@ namespace Aequus
             }
 
             antiGravityItemRadius = 0f;
-                
+
             showPrices = false;
 
             equippedMask = 0;
@@ -573,6 +623,7 @@ namespace Aequus
             ghostProjExtraUpdates = 0;
             ghostLifespan = 3600;
             Team = Player.team;
+            hurt = false;
         }
 
         public override void PreUpdate()
@@ -589,7 +640,6 @@ namespace Aequus
             forceDayState = 0;
 
             eventDemonSiege = DemonSiegeSystem.FindDemonSiege(Player.Center);
-            nearGoreNest = GoreNestTile.BiomeCount > 0;
         }
 
         public override void PreUpdateBuffs()
@@ -1063,9 +1113,15 @@ namespace Aequus
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
-            if (damage > 1000)
+            hurt = true;
+            if (damage >= 1000)
             {
                 return true;
+            }
+
+            if (instaShieldTime > 0)
+            {
+                return false;
             }
 
             if (ExpertBoost && expertBoostBoCDefense > 60)
@@ -1356,6 +1412,50 @@ namespace Aequus
         /// <param name="info"></param>
         public void PreDraw(ref PlayerDrawSet info)
         {
+            if (PlayerDrawScale != null)
+            {
+                var drawPlayer = info.drawPlayer;
+                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+                to -= Main.screenPosition;
+                for (int i = 0; i < info.DrawDataCache.Count; i++)
+                {
+                    DrawData data = info.DrawDataCache[i];
+                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
+                    data.scale *= PlayerDrawScale.Value;
+                    info.DrawDataCache[i] = data;
+                }
+            }
+            if (PlayerDrawForceDye != null)
+            {
+                var drawPlayer = info.drawPlayer;
+                for (int i = 0; i < info.DrawDataCache.Count; i++)
+                {
+                    DrawData data = info.DrawDataCache[i];
+                    data.shader = PlayerDrawForceDye.Value;
+                    info.DrawDataCache[i] = data;
+                }
+            }
+            if (PostRenderEffects.Instance.IsReady)
+            {
+                PostRenderEffects.Instance.DrawBackOntoScreen(Main.spriteBatch);
+            }
+            //instaShieldAlpha = (float)Math.Sin(Main.GlobalTimeWrappedHourly) / 2f + 0.5f;
+            if (instaShieldTime == instaShieldTimeMax)
+            {
+                PostRenderEffects.Prepare(Player.whoAmI, ref info);
+                PostRenderEffects.PlayerRenderInfo[Player.whoAmI].backRotationalAuras.Add(
+                    new PostRenderEffects.Data.RotationalAura()
+                    {
+                        amt = 4,
+                        multiplier = new Vector2(2f),
+                        color = Color.SkyBlue.UseA(0) * 0.05f,
+                    });
+            }
+            if (instaShieldAlpha > 0f)
+            {
+                PostRenderEffects.Prepare(Player.whoAmI, ref info);
+                PostRenderEffects.FullBodyColorOnly = Color.Lerp(PostRenderEffects.FullBodyColorOnly, Color.SkyBlue * 2f, instaShieldAlpha);
+            }
         }
 
         /// <summary>
@@ -1364,6 +1464,10 @@ namespace Aequus
         /// <param name="info"></param>
         public void PostDraw(ref PlayerDrawSet info)
         {
+            if (PostRenderEffects.Instance.IsReady)
+            {
+                PostRenderEffects.Instance.DrawOntoScreen(Main.spriteBatch);
+            }
         }
 
         public void RefreshJumpOption()
@@ -1688,7 +1792,7 @@ namespace Aequus
             On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
-            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += Hook_OnRenderPlayer;
+            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
         }
 
         private static void FancyGolfPredictionLine_Update(On.Terraria.GameContent.Golf.FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
@@ -1871,39 +1975,11 @@ namespace Aequus
             calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
         }
 
-        private static void Hook_OnRenderPlayer(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
         {
-            AdjustPlayerRender(PlayerDrawScale, PlayerDrawForceDye, ref drawinfo);
-
             drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
             orig(ref drawinfo);
             drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
-        }
-        public static void AdjustPlayerRender(float? drawScale, int? drawForceDye, ref PlayerDrawSet drawinfo)
-        {
-            if (drawScale != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
-                to -= Main.screenPosition;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
-                    data.scale *= PlayerDrawScale.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
-            if (drawForceDye != null)
-            {
-                var drawPlayer = drawinfo.drawPlayer;
-                for (int i = 0; i < drawinfo.DrawDataCache.Count; i++)
-                {
-                    DrawData data = drawinfo.DrawDataCache[i];
-                    data.shader = PlayerDrawForceDye.Value;
-                    drawinfo.DrawDataCache[i] = data;
-                }
-            }
         }
         #endregion
 
@@ -1914,7 +1990,7 @@ namespace Aequus
                 var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
                 d.noGravity = true;
             }
-            switch (player.meleeEnchant) 
+            switch (player.meleeEnchant)
             {
                 case FlasksID.Venom:
                     {

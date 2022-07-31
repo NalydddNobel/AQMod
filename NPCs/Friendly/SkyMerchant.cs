@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Items;
+using Aequus.Items.Accessories;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
@@ -165,6 +166,10 @@ namespace Aequus.NPCs.Friendly
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
+            if (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || NPC.downedSlimeKing || AequusWorld.downedCrabson)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FlashwayNecklace>());
+            }
 
             if (merchant != null)
             {

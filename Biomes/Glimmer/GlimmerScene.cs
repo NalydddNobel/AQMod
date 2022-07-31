@@ -33,7 +33,7 @@ namespace Aequus.Biomes.Glimmer
 
         public override bool IsSceneEffectActive(Player player)
         {
-            return player.InModBiome<GlimmerBiome>() || GlimmerBiome.omegaStarite != -1;
+            return player.Aequus().ZoneGlimmer || GlimmerBiome.omegaStarite != -1;
         }
 
         public override float GetWeight(Player player)

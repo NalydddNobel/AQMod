@@ -8,7 +8,7 @@ namespace Aequus.Biomes.DemonSiege
     {
         public override bool IsActive()
         {
-            return Main.LocalPlayer.InModBiome<DemonSiegeBiome>();
+            return Main.LocalPlayer.Aequus().ZoneDemonSiege;
         }
 
         public override float GetEventProgress()

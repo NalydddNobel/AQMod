@@ -43,7 +43,6 @@ namespace Aequus.Content.Necromancy
             {
                 RenderingNow = true;
                 DrawList.ForceRender = true;
-                var targets = device.GetRenderTargets();
                 try
                 {
                     bool cleared = false;
@@ -90,7 +89,6 @@ namespace Aequus.Content.Necromancy
                 catch
                 {
                 }
-                device.SetRenderTargets(targets);
                 RenderingNow = false;
                 DrawList.ForceRender = false;
                 HealPairs.Clear();

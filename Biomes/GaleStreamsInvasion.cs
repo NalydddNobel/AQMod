@@ -223,7 +223,7 @@ namespace Aequus.Biomes
                     SupressWindUpdates = false;
                     for (int i = 0; i < Main.maxPlayers; i++)
                     {
-                        if (Main.player[i].active && Main.player[i].Aequus().EventGaleStreams)
+                        if (Main.player[i].active && Main.player[i].Aequus().ZoneGaleStreams)
                         {
                             SupressWindUpdates = true;
                             break;

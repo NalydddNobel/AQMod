@@ -15,10 +15,11 @@ namespace Aequus.Graphics
             PrepareARenderTarget_AndListenToEvents(ref _target, device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.PreserveContents);
             PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.DiscardContents);
 
+            var targets = device.GetRenderTargets();
             device.SetRenderTarget(helperTarget);
             device.Clear(Color.Transparent);
             DrawOntoTarget(device, spriteBatch);
-            device.SetRenderTarget(null);
+            device.SetRenderTargets(targets);
         }
 
         protected virtual void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)

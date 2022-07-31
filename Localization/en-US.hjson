@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			FlashwayNecklace: Flashway Necklace
 			HaltingMachine: Halting Machine
 			Ramishroom: Ramishroom
 			DevilsTongue: Devil's Tongue
@@ -566,6 +567,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FlashwayNecklace: Gives you a brief period of invulnerability before allowing you to be struck
 			HaltingMachine: Nearby items float instead of falling
 			Ramishroom: Fishing rods cast an extra bobber
 			DevilsTongue: Non-rare catches turn into trash
@@ -1456,6 +1458,7 @@ Mods: {
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
 			ReliefshroomBuff: Reliefshroom
 			MendshroomBuff: Mendshroom
 
@@ -1529,6 +1532,7 @@ Mods: {
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 
+			FlashwayNecklaceCooldown: Temporarily disables the flashway necklace
 			ReliefshroomBuff: You are being healed!
 			MendshroomBuff: You are being healed by a teammate!
 

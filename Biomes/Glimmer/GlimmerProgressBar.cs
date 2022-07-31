@@ -8,7 +8,7 @@ namespace Aequus.Biomes.Glimmer
     {
         public override bool IsActive()
         {
-            return Main.LocalPlayer.InModBiome<GlimmerBiome>() && GlimmerBiome.omegaStarite == -1;
+            return Main.LocalPlayer.Aequus().ZoneGlimmer && GlimmerBiome.omegaStarite == -1;
         }
 
         public override float GetEventProgress()

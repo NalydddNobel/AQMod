@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Graphics.PlayerLayers;
 using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -182,19 +183,23 @@ namespace Aequus.Graphics
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
-            for (int i = 0; i < necromancyRenderers.Length; i++)
+            if (necromancyRenderers != null)
             {
-                if (necromancyRenderers[i] != null && necromancyRenderers[i].NPCs.Count > 0)
+                for (int i = 0; i < necromancyRenderers.Length; i++)
                 {
-                    necromancyRenderers[i].Request();
-                    necromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                    if (necromancyRenderers[i] != null && necromancyRenderers[i].NPCs.Count > 0)
+                    {
+                        necromancyRenderers[i].Request();
+                        necromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                    }
                 }
             }
-            if (HealerDroneRenderer.Instance.HealPairs.Count > 0)
+            if (HealerDroneRenderer.Instance != null && HealerDroneRenderer.Instance.HealPairs.Count > 0)
             {
                 HealerDroneRenderer.Instance.Request();
                 HealerDroneRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             }
+            PostRenderEffects.Instance?.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
         }
 
         private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)

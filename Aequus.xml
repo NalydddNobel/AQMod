@@ -97,11 +97,6 @@
             Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
             </summary>
         </member>
-        <member name="P:Aequus.AequusPlayer.EventGaleStreams">
-            <summary>
-            Whether or not the player is in the Gale Streams event
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
             A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
@@ -788,7 +783,7 @@
         </member>
         <member name="P:Aequus.Sounds.MusicData.GaleStreamsEvent">
             <summary>
-            Used when <see cref="P:Aequus.AequusPlayer.EventGaleStreams"/> is true
+            Used when <see cref="P:Aequus.AequusPlayer.ZoneGaleStreams"/> is true
             </summary>
         </member>
         <member name="M:Aequus.Tiles.RecyclingMachineTile.GetTileEntity(System.Int32,System.Int32)">

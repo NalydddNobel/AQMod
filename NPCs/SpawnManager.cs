@@ -19,7 +19,7 @@ namespace Aequus.NPCs
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
-            if (player.GetModPlayer<AequusPlayer>().eventDemonSiege.X != 0)
+            if (player.GetModPlayer<AequusPlayer>().ZoneDemonSiege)
             {
                 spawnRate = 100;
                 maxSpawns = 8;
@@ -36,7 +36,7 @@ namespace Aequus.NPCs
                 spawnRate /= 2;
                 maxSpawns *= 2;
             }
-            if (player.GetModPlayer<AequusPlayer>().EventGaleStreams)
+            if (player.GetModPlayer<AequusPlayer>().ZoneGaleStreams)
             {
                 spawnRate /= 2;
             }
@@ -49,7 +49,7 @@ namespace Aequus.NPCs
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.Aequus().eventDemonSiege.X != 0)
+            if (spawnInfo.Player.Aequus().ZoneDemonSiege)
             {
                 pool.Clear();
                 pool.Add(ModContent.NPCType<TrapperImp>(), 0.33f);
@@ -94,7 +94,7 @@ namespace Aequus.NPCs
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
-            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().EventGaleStreams && !spawnInfo.PlayerSafe)
+            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
             {
                 AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
                 if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))

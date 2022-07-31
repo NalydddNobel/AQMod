@@ -155,7 +155,7 @@ namespace Aequus.Common
                 {
                     itemDrop = ModContent.ItemType<TatteredDemonHorn>();
                 }
-                else if (aequus.nearGoreNest && Main.rand.NextBool(16))
+                else if (aequus.ZoneGoreNest && Main.rand.NextBool(16))
                 {
                     itemDrop = ModContent.ItemType<GoreFish>();
                 }
