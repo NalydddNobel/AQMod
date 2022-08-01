@@ -34,9 +34,7 @@ namespace Aequus.Items
             public override void Load()
             {
                 Dedicated = new Dictionary<int, ItemDedication>();
-                //[ModContent.ItemType<MothmanMask>()] = new ItemDedication(new Color(50, 75, 250, 255)),
                 //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
-                //[ModContent.ItemType<Thunderbird>()] = new ItemDedication(new Color(200, 125, 255, 255)),
             }
 
             public override void Unload()
