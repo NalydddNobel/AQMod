@@ -28,7 +28,6 @@ using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -430,26 +429,35 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            if (hurt)
+            if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
-                if (instaShieldTime > 0)
+                if (instaShieldTime == instaShieldTimeMax)
                 {
-                    instaShieldTime--;
-                    if (instaShieldAlpha < 1f)
+                    SoundEngine.PlaySound(SoundID.Item75.WithPitch(1f).WithVolume(0.75f), Player.Center);
+                }
+                instaShieldTime--;
+                if (instaShieldTime == 0)
+                {
+                    instaShieldTime = -1;
+                }
+                if (instaShieldAlpha < 1f)
+                {
+                    instaShieldAlpha += 0.035f;
+                    if (instaShieldAlpha > 1f)
                     {
-                        instaShieldAlpha += 0.035f;
-                        if (instaShieldAlpha > 1f)
-                        {
-                            instaShieldAlpha = 1f;
-                        }
+                        instaShieldAlpha = 1f;
                     }
                 }
             }
             else
             {
+                if (instaShieldTime == 0)
+                {
+                    instaShieldTime = instaShieldTimeMax;
+                }
                 if (instaShieldTime < instaShieldTimeMax)
                 {
-                    instaShieldTime = 0;
+                    instaShieldTime = -1;
                     int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
                     if (instaShieldCooldownBuffIndex == -1)
                     {
@@ -1412,6 +1420,10 @@ namespace Aequus
         /// <param name="info"></param>
         public void PreDraw(ref PlayerDrawSet info)
         {
+            if (info.headOnlyRender)
+            {
+                return;
+            }
             if (PlayerDrawScale != null)
             {
                 var drawPlayer = info.drawPlayer;
@@ -1435,26 +1447,29 @@ namespace Aequus
                     info.DrawDataCache[i] = data;
                 }
             }
-            if (PostRenderEffects.Instance.IsReady)
+            if (instaShieldTimeMax != 0 && instaShieldTime == instaShieldTimeMax)
             {
-                PostRenderEffects.Instance.DrawBackOntoScreen(Main.spriteBatch);
-            }
-            //instaShieldAlpha = (float)Math.Sin(Main.GlobalTimeWrappedHourly) / 2f + 0.5f;
-            if (instaShieldTime == instaShieldTimeMax)
-            {
-                PostRenderEffects.Prepare(Player.whoAmI, ref info);
-                PostRenderEffects.PlayerRenderInfo[Player.whoAmI].backRotationalAuras.Add(
-                    new PostRenderEffects.Data.RotationalAura()
+                int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
+                int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
+                var info2 = info;
+                info2.DrawDataCache = new List<DrawData>(info.DrawDataCache);
+                for (int i = heldItemEnd; i >= heldItemStart; i--)
+                {
+                    info2.DrawDataCache.RemoveAt(i);
+                }
+                var ddCache = new List<DrawData>(info2.DrawDataCache);
+                foreach (var c in AequusHelpers.CircularVector(4))
+                {
+                    for (int i = 0; i < info2.DrawDataCache.Count; i++)
                     {
-                        amt = 4,
-                        multiplier = new Vector2(2f),
-                        color = Color.SkyBlue.UseA(0) * 0.05f,
-                    });
-            }
-            if (instaShieldAlpha > 0f)
-            {
-                PostRenderEffects.Prepare(Player.whoAmI, ref info);
-                PostRenderEffects.FullBodyColorOnly = Color.Lerp(PostRenderEffects.FullBodyColorOnly, Color.SkyBlue * 2f, instaShieldAlpha);
+                        var dd = ddCache[i];
+                        dd.position += c * 2f;
+                        dd.color = Color.SkyBlue.UseA(0) * 0.1f;
+                        dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                        info2.DrawDataCache[i] = dd;
+                    }
+                    PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
+                }
             }
         }
 
@@ -1464,9 +1479,29 @@ namespace Aequus
         /// <param name="info"></param>
         public void PostDraw(ref PlayerDrawSet info)
         {
-            if (PostRenderEffects.Instance.IsReady)
+            if (info.headOnlyRender)
             {
-                PostRenderEffects.Instance.DrawOntoScreen(Main.spriteBatch);
+                return;
+            }
+            if (instaShieldAlpha > 0f)
+            {
+                int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
+                int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
+                var info2 = info;
+                info2.DrawDataCache = new List<DrawData>(info.DrawDataCache);
+                for (int i = heldItemEnd; i >= heldItemStart; i--)
+                {
+                    info2.DrawDataCache.RemoveAt(i);
+                }
+                var ddCache = new List<DrawData>(info2.DrawDataCache);
+                for (int i = 0; i < info2.DrawDataCache.Count; i++)
+                {
+                    var dd = ddCache[i];
+                    dd.color = Color.SkyBlue * 2f * instaShieldAlpha;
+                    dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                    info2.DrawDataCache[i] = dd;
+                }
+                PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
             }
         }
 
@@ -1975,11 +2010,26 @@ namespace Aequus
             calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
         }
 
+        private static bool customDraws;
         private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
         {
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
-            orig(ref drawinfo);
-            drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
+            try
+            {
+                if (customDraws)
+                {
+                    orig(ref drawinfo);
+                    return;
+                }
+                customDraws = true;
+                drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PreDraw(ref drawinfo);
+                orig(ref drawinfo);
+                drawinfo.drawPlayer.GetModPlayer<AequusPlayer>().PostDraw(ref drawinfo);
+            }
+            catch
+            {
+
+            }
+            customDraws = false;
         }
         #endregion
 

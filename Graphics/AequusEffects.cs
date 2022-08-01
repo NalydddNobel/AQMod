@@ -199,7 +199,6 @@ namespace Aequus.Graphics
                 HealerDroneRenderer.Instance.Request();
                 HealerDroneRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             }
-            PostRenderEffects.Instance?.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
         }
 
         private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)

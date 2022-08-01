@@ -91,7 +91,8 @@ namespace Aequus
         public static int tileX => Main.MouseWorld.ToTileCoordinates().X;
         public static int tileY => Main.MouseWorld.ToTileCoordinates().Y;
 
-        public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
+        public static int ColorOnlyShaderIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
+        public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderIndex, Main.LocalPlayer);
 
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
