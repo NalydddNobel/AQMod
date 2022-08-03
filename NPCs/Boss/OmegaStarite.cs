@@ -142,14 +142,6 @@ namespace Aequus.NPCs.Boss
                 Scale *= scale;
             }
 
-            public static void SendNetPackage(BinaryWriter writer, Ring[] rings)
-            {
-                for (byte i = 0; i < rings.Length; i++)
-                {
-                    rings[i].SendNetPackage(writer);
-                }
-            }
-
             public void SendNetPackage(BinaryWriter writer)
             {
                 writer.Write(pitch);
@@ -1153,6 +1145,10 @@ namespace Aequus.NPCs.Boss
                 NPC.TargetClosest(faceTarget: false);
             else if (!Main.getGoodWorld)
                 NPC.scale *= 0.5f;
+            Initalize_Rings();
+        }
+        public void Initalize_Rings()
+        {
             var center = NPC.Center;
             rings = new List<Ring>();
             if (Main.expertMode)
@@ -1178,7 +1174,7 @@ namespace Aequus.NPCs.Boss
                 rings[i].MultScale(NPC.scale);
                 rings[i].Update(center);
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient && !bestiaryDummy)
+            if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.IsABestiaryIconDummy)
             {
                 int damage = Main.expertMode ? 12 : 15;
                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero,
@@ -1648,21 +1644,28 @@ namespace Aequus.NPCs.Boss
             writer.Write(rings.Count);
             for (int i = 0; i < rings.Count; i++)
             {
-                writer.Write(rings[i].pitch);
-                writer.Write(rings[i].roll);
-                writer.Write(rings[i].yaw);
                 rings[i].SendNetPackage(writer);
             }
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
+            if (rings == null)
+            {
+                rings = new List<Ring>();
+            }
             int amt = reader.ReadInt32();
+            if (rings.Count != amt)
+            {
+                rings.Clear();
+                Initalize_Rings();
+            }
             for (int i = 0; i < rings.Count; i++)
             {
-                rings[i].pitch = reader.ReadSingle();
-                rings[i].roll = reader.ReadSingle();
-                rings[i].yaw = reader.ReadSingle();
+                if (rings.Count < i || rings[i] == null)
+                {
+                    Initalize_Rings();
+                }
                 rings[i].RecieveNetPackage(reader);
             }
         }

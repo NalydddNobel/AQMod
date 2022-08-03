@@ -72,8 +72,18 @@ namespace Aequus.Graphics.Primitives
             {
                 if (arr[i] == Vector2.Zero || arr[i].HasNaNs())
                     break;
-                if (i != 0 && arr[i - 1] == arr[i])
-                    continue;
+                if (i != 0)
+                {
+                    if (arr[i - 1] == arr[i])
+                        continue;
+
+                    var d = arr[i - 1] - arr[i];
+                    if (d.X < -1000f || d.X > 1000f || d.Y < -1000f || d.Y > 1000f)
+                    {
+                        Main.NewText(d + " = " + arr[i - 1] + " - " + arr[i]);
+                        continue;
+                    }
+                }
                 valid.Add(arr[i] + offset);
             }
             return valid.ToArray();

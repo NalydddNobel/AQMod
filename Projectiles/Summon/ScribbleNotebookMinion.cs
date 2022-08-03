@@ -4,6 +4,7 @@ using Aequus.NPCs.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -188,6 +189,7 @@ namespace Aequus.Projectiles.Summon
             if (texture == 0)
             {
                 texture = Main.rand.Next(Textures.Count);
+                Projectile.netUpdate = true;
             }
             if (Projectile.tileCollide)
             {
@@ -226,27 +228,30 @@ namespace Aequus.Projectiles.Summon
                 }
                 else
                 {
-                    int chance = 400;
-                    int target = Projectile.FindTargetWithLineOfSight();
-                    if (target != -1)
+                    if (Main.myPlayer == Projectile.owner)
                     {
-                        chance /= 5;
-                    }
-                    else
-                    {
-                        if (Projectile.velocity.Length() > 4f)
-                            chance *= 5;
-                        if (Main.player[Projectile.owner].HeldItem.buffType > 0 && BuffID.Sets.IsWellFed[Main.player[Projectile.owner].HeldItem.buffType])
-                            chance /= 4;
-                    }
-                    if (Main.rand.NextBool(chance))
-                    {
-                        var l = PickEmojis(target != -1);
-                        if (l.Count > 0)
+                        int chance = 400;
+                        int target = Projectile.FindTargetWithLineOfSight();
+                        if (target != -1)
                         {
-                            emoji = Main.rand.Next(l);
-                            SoundEngine.PlaySound(SoundID.Chat, Projectile.Center);
-                            Projectile.netUpdate = true;
+                            chance /= 5;
+                        }
+                        else
+                        {
+                            if (Projectile.velocity.Length() > 4f)
+                                chance *= 5;
+                            if (Main.player[Projectile.owner].HeldItem.buffType > 0 && BuffID.Sets.IsWellFed[Main.player[Projectile.owner].HeldItem.buffType])
+                                chance /= 4;
+                        }
+                        if (Main.rand.NextBool(chance))
+                        {
+                            var l = PickEmojis(target != -1);
+                            if (l.Count > 0)
+                            {
+                                emoji = Main.rand.Next(l);
+                                SoundEngine.PlaySound(SoundID.Chat, Projectile.Center);
+                                Projectile.netUpdate = true;
+                            }
                         }
                     }
                 }
@@ -396,6 +401,20 @@ namespace Aequus.Projectiles.Summon
                 frame = textureData.Frame.Value;
             }
             image = assetImage.Value;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(emoji);
+            writer.Write(emojiTime);
+            writer.Write(texture);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            emoji = reader.ReadInt32();
+            emojiTime = reader.ReadInt32();
+            texture = reader.ReadInt32();
         }
     }
 }
