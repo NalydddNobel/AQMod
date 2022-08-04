@@ -31,6 +31,7 @@ namespace Aequus
 
         [ImgPath("Assets/Particles")]
         public static Asset<Texture2D> Particle { get; private set; }
+        public static Asset<Texture2D> DyeSample { get; private set; }
 
         public const int StatusBubbleFramesX = 3;
 

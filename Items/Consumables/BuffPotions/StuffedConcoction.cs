@@ -56,7 +56,7 @@ namespace Aequus.Items.Consumables.BuffPotions
             if (Main.netMode != NetmodeID.Server)
             {
                 Main.instance.LoadItem(original.type);
-                var color = BuffColorDatabase.GetColorFromItemID(original.type);
+                var color = ColorExtractor.GetColorFromItemID(original.type);
                 color.A = 0;
                 var color2 = color * 4;
                 var rectangle = new Rectangle((int)player.position.X - 2, (int)player.position.Y - 2, player.width + 4, player.height + 4);
@@ -110,7 +110,7 @@ namespace Aequus.Items.Consumables.BuffPotions
             origin = drawData.origin;
             scale = drawData.scale * drawData.scale2;
 
-            var auraClr = BuffColorDatabase.GetColorFromItemID(original.type);
+            var auraClr = ColorExtractor.GetColorFromItemID(original.type);
             auraClr *= 0.75f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f, -0.1f, 0.1f);
             auraClr.A = 0;
 
@@ -142,7 +142,7 @@ namespace Aequus.Items.Consumables.BuffPotions
 
             var item2 = original;
             item2.position = Item.position;
-            var auraClr = BuffColorDatabase.GetColorFromItemID(original.type);
+            var auraClr = ColorExtractor.GetColorFromItemID(original.type);
             auraClr *= 0.75f;
             auraClr.A = 0;
             var itemTexture = TextureAssets.Item[original.type].Value;

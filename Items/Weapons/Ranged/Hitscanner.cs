@@ -10,24 +10,9 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public sealed class Hitscanner : ModItem
     {
-        public static SoundStyle? DOOMShotgun { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                DOOMShotgun = Aequus.GetSound("doomshotgun");
-            }
-        }
-
-        public override void Unload()
-        {
-            DOOMShotgun = null;
-        }
-
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -42,9 +27,8 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 16f;
             Item.useAmmo = AmmoID.Bullet;
-            Item.UseSound = DOOMShotgun;
+            Item.UseSound = Aequus.GetSound("doomshotgun");
             Item.value = Item.sellPrice(gold: 7, silver: 50);
-            Item.noMelee = true;
             Item.autoReuse = true;
             Item.knockBack = 1f;
             Item.useTime = 60;

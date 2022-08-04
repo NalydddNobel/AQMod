@@ -7,16 +7,15 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public class BuffColorDatabase : ILoadable
+    public class ColorExtractor : ILoadable
     {
-        internal static List<Color> ItemColorBlacklist;
-
-        public static Dictionary<int, Color> ItemToColor { get; private set; }
+        internal static List<Color> ItemColorForBuffsBlacklist;
+        public static Dictionary<int, Color> ItemToBuffColor { get; private set; }
         public static Dictionary<int, Color> BuffToColor { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
-            ItemColorBlacklist = new List<Color>()
+            ItemColorForBuffsBlacklist = new List<Color>()
             {
                 new Color(0, 0, 0, 255),
                 new Color(255, 255, 255, 255),
@@ -52,7 +51,7 @@ namespace Aequus.Graphics
                 [BuffID.ShadowFlame] = new Color(200, 60, 255, 255),
             };
 
-            ItemToColor = new Dictionary<int, Color>()
+            ItemToBuffColor = new Dictionary<int, Color>()
             {
                 [ItemID.ObsidianSkinPotion] = BuffToColor[BuffID.ObsidianSkin],
                 [ItemID.RegenerationPotion] = BuffToColor[BuffID.Regeneration],
@@ -65,18 +64,18 @@ namespace Aequus.Graphics
                 [ItemID.ThornsPotion] = BuffToColor[BuffID.Thorns],
             };
 
-            ItemToColor = new Dictionary<int, Color>();
+            ItemToBuffColor = new Dictionary<int, Color>();
         }
 
         void ILoadable.Unload()
         {
-            ItemToColor?.Clear();
-            ItemToColor = null;
+            ItemToBuffColor?.Clear();
+            ItemToBuffColor = null;
         }
 
         public static Color GetColorFromItemID(int item)
         {
-            if (ItemToColor.TryGetValue(item, out var color))
+            if (ItemToBuffColor.TryGetValue(item, out var color))
                 return color;
             return TryGetColorFromItemSprite(item);
         }
@@ -118,7 +117,7 @@ namespace Aequus.Graphics
                     for (int j = frame.Y; j < frame.Y + frame.Height; j++)
                     {
                         int index = j * texture.Width + i;
-                        if (clrs[index].A == 255 && !ItemColorBlacklist.Contains(clrs[index]))
+                        if (clrs[index].A == 255 && !ItemColorForBuffsBlacklist.Contains(clrs[index]))
                             colors.Add(clrs[index]);
                     }
                 }
@@ -129,7 +128,7 @@ namespace Aequus.Graphics
                     B = (byte)AequusHelpers.Mean(colors.GetSpecific((b) => b.B))
                 };
 
-                ItemToColor.Add(item, color);
+                ItemToBuffColor.Add(item, color);
                 return color;
             }
             catch (Exception e)
@@ -138,20 +137,9 @@ namespace Aequus.Graphics
                 log.Error("Error when trying to get a color from {ItemID:" + item + "}");
                 log.Error(e);
 
-                ItemToColor.Add(item, defaultColor);
+                ItemToBuffColor.Add(item, defaultColor);
                 return defaultColor;
             }
-        }
-
-        public static Color GetColorFromBuffID(int buff)
-        {
-            return GetColorFromBuffID(buff, Color.White);
-        }
-        public static Color GetColorFromBuffID(int buff, Color defaultColor)
-        {
-            if (BuffToColor.TryGetValue(buff, out var color2))
-                return color2;
-            return defaultColor;
         }
     }
 }

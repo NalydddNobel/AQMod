@@ -98,6 +98,34 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Color[,] Get2DColorArr(this Texture2D texture, Rectangle frame)
+        {
+            var arr = Get1DColorArr(texture);
+            var clrs = new Color[frame.Width, frame.Height];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                clrs[i % frame.Width, i / frame.Width] = arr[i];
+            }
+            return clrs;
+        }
+
+        public static Color[,] Get2DColorArr(this Texture2D texture)
+        {
+            return Get2DColorArr(texture, texture.Frame());
+        }
+
+        public static Color[] Get1DColorArr(this Texture2D texture, Rectangle frame)
+        {
+            var clrs = new Color[frame.Width * frame.Height];
+            texture.GetData(clrs, frame.X + frame.Y * frame.Width, clrs.Length);
+            return clrs;
+        }
+
+        public static Color[] Get1DColorArr(this Texture2D texture)
+        {
+            return Get1DColorArr(texture, texture.Frame());
+        }
+
         public static Point Home(this NPC npc)
         {
             return new Point(npc.homeTileX, npc.homeTileY);

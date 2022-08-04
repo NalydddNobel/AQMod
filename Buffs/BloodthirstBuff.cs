@@ -8,7 +8,7 @@ namespace Aequus.Buffs
     {
         public override void SetStaticDefaults()
         {
-            BuffColorDatabase.BuffToColor.Add(Type, new Color(200, 60, 255, 255));
+            ColorExtractor.BuffToColor.Add(Type, new Color(200, 60, 255, 255));
         }
     }
 }

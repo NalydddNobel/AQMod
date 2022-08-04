@@ -197,12 +197,12 @@ namespace Aequus
                         {
                             rockmanChests.Add(k);
 
-                            if (r.NextBool(6))
+                            if (r.NextBool(5))
                             {
                                 AddGlowCore(c, placedItems);
                             }
 
-                            switch (r.Next(6))
+                            switch (r.Next(5))
                             {
                                 case 0:
                                     c.Insert(ModContent.ItemType<BoneRing>(), 1);

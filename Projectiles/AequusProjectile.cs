@@ -1,7 +1,8 @@
 ﻿using Aequus.Items.Accessories;
+using Aequus.Items.Weapons.Ranged;
+using Aequus.Projectiles.Ranged;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -152,18 +153,30 @@ namespace Aequus.Projectiles
             catch
             {
             }
+
+            if (sourceItemUsed > 0)
+            {
+                if (sourceItemUsed == ModContent.ItemType<Raygun>())
+                {
+                    projectile.extraUpdates++;
+                    projectile.extraUpdates *= 6;
+                }
+            }
         }
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
         {
-            if (parent.TryGetGlobalProjectile<AequusProjectile>(out var aequus))
+            if (projectile.owner == parent.owner && parent.TryGetGlobalProjectile<AequusProjectile>(out var aequus))
             {
-                if (aequus.sourceItemUsed != 0)
+                if (projectile.friendly && projectile.timeLeft > 4)
                 {
-                    sourceItemUsed = aequus.sourceItemUsed;
-                }
-                if (aequus.sourceAmmoUsed != 0)
-                {
-                    sourceAmmoUsed = aequus.sourceAmmoUsed;
+                    if (aequus.sourceItemUsed != 0)
+                    {
+                        sourceItemUsed = aequus.sourceItemUsed;
+                    }
+                    if (aequus.sourceAmmoUsed != 0)
+                    {
+                        sourceAmmoUsed = aequus.sourceAmmoUsed;
+                    }
                 }
             }
         }
@@ -185,6 +198,21 @@ namespace Aequus.Projectiles
                     }
                 }
             }
+
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                if (Main.myPlayer == projectile.owner && projectile.numUpdates == -1 && projectile.velocity.Length() > 1f)
+                {
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(projectile.velocity) * 0.01f, ModContent.ProjectileType<RaygunTrailProj>(), 0, 0f, projectile.owner);
+                    Main.projectile[p].rotation = projectile.velocity.ToRotation();
+                    Main.projectile[p].netUpdate = true;
+                    Main.projectile[p].ModProjectile<RaygunTrailProj>().color = Raygun.GetColor(projectile).UseA(0);
+                }
+                if (projectile.type == ProjectileID.ChlorophyteBullet)
+                {
+                    projectile.alpha = 255;
+                }
+            }
             return true;
         }
 
@@ -193,7 +221,7 @@ namespace Aequus.Projectiles
             if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
-                if (glowCore.glowCoreItem != null)
+                if (glowCore.glowCore != -1)
                 {
                     GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
                 }
@@ -236,6 +264,32 @@ namespace Aequus.Projectiles
                     target.AddBuff(BuffID.Frostburn2, 240);
                 }
             }
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                Raygun.SpawnExplosion(projectile.GetSource_OnHit(target), projectile);
+            }
+        }
+
+        public override void Kill(Projectile projectile, int timeLeft)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                Raygun.SpawnExplosion(projectile.GetSource_Death(), projectile);
+            }
+        }
+
+        public override bool PreDraw(Projectile projectile, ref Color lightColor)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                if (!Raygun.BulletColor.ContainsKey(projectile.type))
+                {
+                    var clr = Raygun.CheckRayColor(projectile);
+                    Raygun.BulletColor[projectile.type] = (p) => p.GetAlpha(clr);
+                }
+                return projectile.velocity.Length() > 1f;
+            }
+            return true;
         }
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)

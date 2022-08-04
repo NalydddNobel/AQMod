@@ -1,14 +1,16 @@
 ﻿using Aequus;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    public class GlowCore : DyeableAccessory
+    public class GlowCore : ModItem, ItemHooks.IUpdateItemDye
     {
         public static HashSet<int> ProjectileBlacklist { get; private set; }
 
@@ -39,16 +41,12 @@ namespace Aequus.Items.Accessories
             Item.value = Item.sellPrice(silver: 5);
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(255, 255, 255, 255);
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
-            player.Aequus().glowCoreItem = Item;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -57,9 +55,7 @@ namespace Aequus.Items.Accessories
             {
                 var texture = TextureAssets.Item[Type].Value;
 
-                AequusPlayer.Team = Main.LocalPlayer.team;
-                var coloring = DyeColor();
-                AequusPlayer.Team = 0;
+                var coloring = Color.White;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -84,17 +80,7 @@ namespace Aequus.Items.Accessories
                 var drawCoordinates = Item.position - Main.screenPosition + origin + new Vector2(Item.width / 2 - origin.X, Item.height - frame.Height);
                 var itemOrigin = frame.Size() / 2f;
 
-                if (Item.playerIndexTheItemIsReservedFor >= 0 && Item.playerIndexTheItemIsReservedFor != 255)
-                {
-                    AequusPlayer.Team = Main.player[Item.playerIndexTheItemIsReservedFor].team;
-                }
-                else
-                {
-                    AequusPlayer.Team = 0;
-                }
-
-                var coloring = DyeColor();
-                AequusPlayer.Team = 0;
+                var coloring = Color.White;
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -110,14 +96,27 @@ namespace Aequus.Items.Accessories
             return false;
         }
 
-        public override void AddRecipes()
-        {
-            ColorRecipes<GlowCore>();
-        }
-
         public static void AddLight(Vector2 location, Player player, AequusPlayer aequus)
         {
-            Lighting.AddLight(location, DyeColor(((aequus.glowCoreItem.ModItem as DyeableAccessory)?.color).GetValueOrDefault(0)).ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
+            var clr = new Vector3(1f);
+            if (aequus.glowCore > 0)
+            {
+                clr = DyeColorSampler.GetColor(aequus.glowCore, player.whoAmI).ToVector3();
+            }
+            float largest = clr.X;
+            if (largest < clr.Y)
+                largest = clr.Y;
+            if (largest < clr.Z)
+                largest = clr.Z;
+
+            float multiplier = 1f / largest;
+            clr *= multiplier;
+            Lighting.AddLight(location, clr * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
+        }
+
+        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            player.Aequus().glowCore = dyeItem.dye;
         }
     }
 }

@@ -208,8 +208,8 @@ namespace Aequus
         public Item sentryInheritItem;
         public Item ammoBackpackItem;
         public Item mothmanMaskItem;
-        public Item glowCoreItem;
 
+        public int glowCore;
         public bool hasExpertBoost;
         /// <summary>
         /// Set to true by <see cref="MechsSentry"/>
@@ -400,6 +400,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            glowCore = -1;
             instaShieldAlpha = 0f;
             antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
@@ -429,6 +430,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            glowCore = -1;
             if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
                 if (instaShieldTime == instaShieldTimeMax)
@@ -600,7 +602,6 @@ namespace Aequus
             celesteTorusItem = null;
             cCelesteTorus = 0;
 
-            glowCoreItem = null;
             ammoBackpackItem = null;
             mothmanMaskItem = null;
             sentryInheritItem = null;
@@ -738,7 +739,7 @@ namespace Aequus
                 AequusItem.AntiGravityNearbyItems(Player.Center, antiGravityItemRadius);
             }
 
-            if (glowCoreItem != null && glowCoreItem.ModItem is DyeableAccessory)
+            if (glowCore != -1)
             {
                 GlowCore.AddLight(Player.Center, Player, this);
             }
