@@ -68,22 +68,6 @@ namespace Aequus
         public static bool HasMouseItem => Main.mouseItem != null && !Main.mouseItem.IsAir;
         public static Vector2 ScaledMouseScreen => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix));
         public static Vector2 ScaledMouseworld => ScaledMouseScreen + Main.screenPosition;
-        public static Matrix WorldViewPoint
-        {
-            get
-            {
-                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
-                Vector2 screenZoom = Main.GameViewMatrix.Zoom;
-                int width = graphics.Viewport.Width;
-                int height = graphics.Viewport.Height;
-
-                var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-                    Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
-                    Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
-                var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-                return zoom * projection;
-            }
-        }
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
