@@ -1,8 +1,6 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics.PlayerLayers;
-using Aequus.Items.Weapons.Summon;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +8,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics;
-using Terraria.Graphics.Capture;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Renderers;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -58,8 +56,6 @@ namespace Aequus.Graphics
             }
         }
 
-        public static GhostOutlineRenderer[] necromancyRenderers;
-
         public static StaticMiscShaderInfo VerticalGradient { get; private set; }
 
         public static MiniRandom EffectRand { get; private set; }
@@ -80,6 +76,8 @@ namespace Aequus.Graphics
 
         public static ScreenShake Shake { get; private set; }
 
+        public static List<ScreenTarget> Renderers { get; internal set; }
+
         public override void Load()
         {
             if (Main.dedServ)
@@ -95,15 +93,7 @@ namespace Aequus.Graphics
             BehindProjs = new ParticleRenderer();
             BehindPlayers = new ParticleRenderer();
             AbovePlayers = new ParticleRenderer();
-            necromancyRenderers = new GhostOutlineRenderer[]
-            {
-                new GhostOutlineRenderer(0, GhostOutlineRenderer.IDs.LocalPlayer, () => Color.White),
-                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Zombie, () => new Color(100, 149, 237, 255)),
-                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Revenant, () => new Color(40, 100, 237, 255)),
-                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Osiris, () => new Color(255, 128, 20, 255)),
-                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.Insurgent, () => new Color(80, 255, 200, 255)),
-                new GhostOutlineRenderer(-1, GhostOutlineRenderer.IDs.BloodRed, () => new Color(255, 10, 10, 255)),
-            };
+            Renderers = new List<ScreenTarget>();
             LoadHooks();
         }
         private void LoadHooks()
@@ -118,12 +108,13 @@ namespace Aequus.Graphics
         public override void Unload()
         {
             VerticalGradient = null;
-            necromancyRenderers = null;
             BehindProjs = null;
             Shake = null;
             ProjsBehindProjs = null;
             NPCsBehindAllNPCs = null;
             ProjsBehindTiles = null;
+            Renderers?.Clear();
+            Renderers = null;
         }
 
         public override void OnWorldLoad()
@@ -147,12 +138,34 @@ namespace Aequus.Graphics
                 BehindProjs.Update();
                 BehindPlayers.Update();
                 AbovePlayers.Update();
+                GamestarRenderer.Particles.Update();
             }
         }
 
         internal static void UpdateScreenPosition()
         {
             Main.screenPosition += Shake.GetScreenOffset() * ClientConfig.Instance.ScreenshakeIntensity;
+        }
+
+        private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
+        {
+            orig();
+            if (GhostOutlineRenderer.NecromancyRenderers != null)
+            {
+                for (int i = 0; i < GhostOutlineRenderer.NecromancyRenderers.Length; i++)
+                {
+                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null && GhostOutlineRenderer.NecromancyRenderers[i].NPCs.Count > 0)
+                    {
+                        GhostOutlineRenderer.NecromancyRenderers[i].Request();
+                        GhostOutlineRenderer.NecromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                    }
+                }
+            }
+            foreach (var r in Renderers)
+            {
+                r.CheckSelfRequest();
+                r.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+            }
         }
 
         private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
@@ -180,38 +193,28 @@ namespace Aequus.Graphics
             Main.spriteBatch.End();
         }
 
-        private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
-        {
-            orig();
-            if (necromancyRenderers != null)
-            {
-                for (int i = 0; i < necromancyRenderers.Length; i++)
-                {
-                    if (necromancyRenderers[i] != null && necromancyRenderers[i].NPCs.Count > 0)
-                    {
-                        necromancyRenderers[i].Request();
-                        necromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
-                    }
-                }
-            }
-            if (HealerDroneRenderer.Instance != null && HealerDroneRenderer.Instance.HealPairs.Count > 0)
-            {
-                HealerDroneRenderer.Instance.Request();
-                HealerDroneRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
-            }
-        }
-
         private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
         {
             orig(self);
             try
             {
-                for (int i = 0; i < necromancyRenderers.Length; i++)
+                for (int i = 0; i < GhostOutlineRenderer.NecromancyRenderers.Length; i++)
                 {
-                    if (necromancyRenderers[i] != null && necromancyRenderers[i].IsReady)
+                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null && GhostOutlineRenderer.NecromancyRenderers[i].IsReady)
                     {
-                        necromancyRenderers[i].DrawOntoScreen(Main.spriteBatch);
+                        GhostOutlineRenderer.NecromancyRenderers[i].DrawOntoScreen(Main.spriteBatch);
                     }
+                }
+                if (GamestarRenderer.Instance.IsReady)
+                {
+                    Filters.Scene.Activate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
+                    Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(1f);
+                    //GamestarTargetRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
+                }
+                else
+                {
+                    Filters.Scene.Deactivate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
+                    Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
             }
             catch

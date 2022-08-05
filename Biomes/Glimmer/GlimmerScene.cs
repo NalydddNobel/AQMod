@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Networking;
-using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;

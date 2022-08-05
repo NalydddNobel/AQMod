@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
@@ -16,6 +15,7 @@ using Aequus.NPCs.Monsters;
 using Aequus.Particles;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,11 +29,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public sealed class AequusNPC : GlobalNPC, IAddRecipes
+    public sealed class AequusNPC : GlobalNPC
     {
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> DontModifyVelocity { get; private set; }
-        public static Dictionary<int, BestiarySpawnInfo> BestiarySpawnerInfo { get; private set; }
 
         public override bool InstancePerEntity => true;
 
@@ -46,7 +45,6 @@ namespace Aequus.NPCs
 
         public override void Load()
         {
-            BestiarySpawnerInfo = new Dictionary<int, BestiarySpawnInfo>();
             HeatDamage = new HashSet<int>()
             {
                 NPCID.Lavabat,
@@ -65,9 +63,38 @@ namespace Aequus.NPCs
                 NPCID.HallowBoss,
             };
 
+            On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
+
+        private void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
+        {
+            if (AequusHelpers.iterations == 0 && self.HasBuff<BitCrushedDebuff>())
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    return;
+                }
+                int rate = 7;
+                if (Main.GameUpdateCount % rate == 0)
+                {
+                    for (int k = 0; k < rate - 1; k++)
+                    {
+                        AequusHelpers.iterations = k + 1;
+                        orig(self, i);
+                    }
+                    AequusHelpers.iterations = 0;
+                }
+                return;
+            }
+            orig(self, i);
+        }
+
+        private static void NPC_UpdateNPC(On.Terraria.NPC.orig_UpdateNPC orig, NPC self, int i)
+        {
+        }
+
         private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
         {
             if (DontModifyVelocity.Contains(self.netID))
@@ -150,17 +177,6 @@ namespace Aequus.NPCs
             orig(self, hitDirection, dmg);
         }
 
-        void IAddRecipes.AddRecipes(Aequus aequus)
-        {
-            foreach (var n in ContentSamples.NpcsByNetId)
-            {
-                if (n.Value.ToBanner() != 0)
-                {
-                    BestiarySpawnerInfo.Add(n.Key, new BestiarySpawnInfo(n.Key));
-                }
-            }
-        }
-
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             switch (npc.type)
@@ -197,6 +213,7 @@ namespace Aequus.NPCs
 
         public override void SetDefaults(NPC npc)
         {
+           // On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
             if (HeatDamage.Contains(npc.type))
             {
                 heatDamage = true;
@@ -283,6 +300,24 @@ namespace Aequus.NPCs
                     d.velocity += npc.velocity * 0.5f;
                 }
             }
+        }
+
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (npc.HasBuff<BitCrushedDebuff>())
+            {
+                var r = AequusEffects.EffectRand;
+                r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
+                int amt = Math.Max((npc.width + npc.height) / 20, 1);
+                for (int k = 0; k < amt; k++)
+                {
+                    var dd = new DrawData(SquareParticle.SquareParticleTexture.Value, npc.Center - Main.screenPosition, null, Color.White, 0f, SquareParticle.SquareParticleTexture.Value.Size() / 2f, (int)r.Rand(amt * 2, amt * 5), SpriteEffects.None, 0);
+                    dd.position.X += (int)r.Rand(-npc.width, npc.width);
+                    dd.position.Y += (int)r.Rand(-npc.height, npc.height);
+                    GamestarRenderer.DrawData.Add(dd);
+                }
+            }
+            return true;
         }
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)

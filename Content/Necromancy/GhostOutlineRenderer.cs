@@ -8,16 +8,18 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class GhostOutlineRenderer : ScreenTarget, ILoadable
+    public class GhostOutlineRenderer : ScreenTarget
     {
         public static StaticMiscShaderInfo Necromancy { get; private set; }
+        public static GhostOutlineRenderer[] necromancyRenderers;
+        public static GhostOutlineRenderer[] NecromancyRenderers { get => necromancyRenderers; }
 
         public readonly DrawList NPCs;
         public readonly int Team;
         public int Index;
         public Func<Color> DrawColor;
 
-        public static bool RenderingNow;
+        public static bool RenderingNow { get; set; }
 
         public static class IDs
         {
@@ -52,17 +54,27 @@ namespace Aequus.Content.Necromancy
             NPCs = new DrawList();
         }
 
-        void ILoadable.Load(Mod mod)
+        public override void Load(Mod mod)
         {
             if (!Main.dedServ)
             {
                 Necromancy = new StaticMiscShaderInfo("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+                necromancyRenderers = new GhostOutlineRenderer[]
+                {
+                    new GhostOutlineRenderer(0, IDs.LocalPlayer, () => Color.White),
+                    new GhostOutlineRenderer(-1, IDs.Zombie, () => new Color(100, 149, 237, 255)),
+                    new GhostOutlineRenderer(-1, IDs.Revenant, () => new Color(40, 100, 237, 255)),
+                    new GhostOutlineRenderer(-1, IDs.Osiris, () => new Color(255, 128, 20, 255)),
+                    new GhostOutlineRenderer(-1, IDs.Insurgent, () => new Color(80, 255, 200, 255)),
+                    new GhostOutlineRenderer(-1, IDs.BloodRed, () => new Color(255, 10, 10, 255)),
+                };
             }
         }
 
-        void ILoadable.Unload()
+        public override void Unload()
         {
             Necromancy = null;
+            necromancyRenderers = null;
         }
 
         public void Add(int whoAmI)

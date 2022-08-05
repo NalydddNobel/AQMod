@@ -125,7 +125,6 @@ namespace Aequus.Content.DronePylons
         public override void ReceiveData(BinaryReader reader)
         {
             cleanseType = (CleanseType)reader.ReadByte();
-            Aequus.Instance.Logger.Debug($"Synced cleanse type of: {cleanseType}");
         }
     }
 

@@ -170,9 +170,9 @@ namespace Aequus.Content.Necromancy
                 {
                     int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
                     var color = new Color(50, 150, 255, 100);
-                    if (AequusEffects.necromancyRenderers.Length > index && AequusEffects.necromancyRenderers[index] != null)
+                    if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                     {
-                        color = AequusEffects.necromancyRenderers[index].DrawColor();
+                        color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
                         color.A = 100;
                     }
 

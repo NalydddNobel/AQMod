@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class HealerDroneRenderer : ScreenTarget, ILoadable
+    public class HealerDroneRenderer : ScreenTarget
     {
         public readonly List<(int, int, float)> HealPairs;
 
@@ -22,12 +22,13 @@ namespace Aequus.Content.Necromancy
             HealPairs = new List<(int, int, float)>();
         }
 
-        void ILoadable.Load(Mod mod)
+        public override void Load(Mod mod)
         {
+            base.Load(mod);
             Instance = this;
         }
 
-        void ILoadable.Unload()
+        public override void Unload()
         {
             Instance = null;
         }
@@ -35,6 +36,7 @@ namespace Aequus.Content.Necromancy
         public void AddHealingAura(int npc, int proj, float opacity)
         {
             HealPairs.Add((npc, proj, opacity));
+            Request();
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
@@ -73,7 +75,7 @@ namespace Aequus.Content.Necromancy
 
                         for (int i = 0; i < circular.Length; i++)
                         {
-                            Main.spriteBatch.Draw(helperTarget, circular[i] * Main.GameViewMatrix.Zoom * 8f, Color.White * 0.25f * pair.Item3);
+                            Main.spriteBatch.Draw(helperTarget, circular[i] * Main.GameViewMatrix.Zoom * 8f, Color.White * 0.15f * pair.Item3);
                         }
                         foreach (var v in AequusHelpers.CircularVector(4))
                         {

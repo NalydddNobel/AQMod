@@ -162,6 +162,7 @@ Mods: {
 			BoundBow: Bound Bow
 			Slingshot: Slingshot
 
+			Gamestar: Gamestar
 			WowHat: "'Wow-zer' Hat"
 			Snowgrave: Snowgrave
 			BallisticScreecher: Ballistic Screecher
@@ -653,7 +654,8 @@ Mods: {
 				Bring your cursor out in order to charge the shot more
 				Uses birds as ammo
 				'''
-
+				
+			Gamestar: Sends a stream of compressed data
 			WowHat: Casts a variety of spells
 			Snowgrave:
 				'''

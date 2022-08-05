@@ -1,12 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Graphics.Renderers;
+using Terraria.ModLoader;
 
 namespace Aequus.Particles
 {
     public class MonoParticle : IParticle
     {
+        private static Texture2D texture;
+        public static Asset<Texture2D> ParticleTexture { get; private set; }
+        public static Rectangle ParticleFrame { get; private set; }
+        public static Vector2 ParticleOrigin { get; private set; }
+
+        private class Loader : ILoadable
+        {
+            void ILoadable.Load(Mod mod)
+            {
+                ParticleTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Particles/Particle", AssetRequestMode.ImmediateLoad);
+                texture = ParticleTexture.Value;
+                ParticleFrame = ParticleTexture.Frame();
+                ParticleOrigin = ParticleFrame.Size() / 2f;
+            }
+
+            void ILoadable.Unload()
+            {
+                ParticleTexture = null;
+                texture = null;
+            }
+        }
+
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Color;
@@ -16,7 +40,7 @@ namespace Aequus.Particles
         public Rectangle frame;
         public Vector2 origin;
 
-        public virtual Texture2D Texture => TextureCache.Particle.Value;
+        public virtual Texture2D Texture => texture;
         public virtual Color ParticleColor => Color;
 
         public bool ShouldBeRemovedFromRenderer { get; private set; }
@@ -33,8 +57,9 @@ namespace Aequus.Particles
 
         public virtual void OnAdd()
         {
-            frame = new Rectangle(0, 10 * Main.rand.Next(3), 10, 10);
-            origin = frame.Size() / 2f;
+            frame = ParticleFrame;
+            frame.Y = frame.Height * Main.rand.Next(3);
+            origin = ParticleOrigin;
         }
 
         public virtual void Update(ref ParticleRendererSettings settings)

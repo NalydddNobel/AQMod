@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
