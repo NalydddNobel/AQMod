@@ -233,6 +233,7 @@ Mods: {
 
 			Moro: 摩洛
 
+			AdventuringMap: 冒险地图
 			SkeletonKey: 骷髅钥匙
 
 			Snobster: 势利鬼虾
@@ -790,6 +791,11 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
+			AdventuringMap: 
+			{
+				"$parentVal": 在标记'X'的下方挖掘可能会获得奖励
+				"InvalidWorld": 这个世界和地图不匹配
+			}
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
 			UnenchantedStaff: 可被附魔
 
