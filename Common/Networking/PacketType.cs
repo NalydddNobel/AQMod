@@ -2,7 +2,7 @@
 {
     public enum PacketType : byte
     {
-        Unused,
+        RequestTileSectionFromServer,
         SyncNecromancyOwner,
         SyncAequusPlayer,
         SoundQueue,

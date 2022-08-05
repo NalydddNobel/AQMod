@@ -262,7 +262,7 @@ namespace Aequus.Items
             {
                 if (line.Mod == "Aequus")
                 {
-                    if (line.Name == "Fake")
+                    if (line.Name.StartsWith("Fake"))
                     {
                         return false;
                     }

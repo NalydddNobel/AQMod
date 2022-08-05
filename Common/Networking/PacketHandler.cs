@@ -21,20 +21,6 @@ namespace Aequus.Common.Networking
 {
     public sealed class PacketHandler : ModSystem
     {
-        public delegate void SendProcedureMethod(ModPacket packet, object[] args);
-        public delegate void ReadProcedureMethod(BinaryReader reader);
-        public struct LegacyProcedure
-        {
-            public SendProcedureMethod Send;
-            public ReadProcedureMethod Read;
-
-            public LegacyProcedure(SendProcedureMethod send, ReadProcedureMethod read)
-            {
-                Send = send;
-                Read = read;
-            }
-        }
-
         private static HashSet<PacketType> logPacketType;
 
         public override void Load()
@@ -187,6 +173,18 @@ namespace Aequus.Common.Networking
             }
             switch (type)
             {
+                case PacketType.RequestTileSectionFromServer:
+                    {
+                        int plr = reader.ReadInt32();
+                        int sectionX = reader.ReadInt32();
+                        int sectionY = reader.ReadInt32();
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendSection(plr, sectionX, sectionY);
+                        }
+                    }
+                    break;
+
                 case PacketType.SyncDronePoint:
                     {
                         int x = reader.ReadInt32();

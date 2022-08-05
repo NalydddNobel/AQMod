@@ -233,6 +233,7 @@ Mods: {
 
 			Moro: Moro
 			
+			AdventuringMap: Adventuring Map
 			SkeletonKey: Skeleton Key
 
 			Snobster: Snobster
@@ -790,6 +791,11 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
 
+			AdventuringMap: 
+			{
+				"$parentVal": Digging below the marked 'X' may lead to a reward
+				"InvalidWorld": This world and map do not match
+			}
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
 			UnenchantedStaff: May be enchanted
 
