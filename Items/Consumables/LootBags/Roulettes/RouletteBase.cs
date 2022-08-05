@@ -15,6 +15,31 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
 {
     public abstract class RouletteBase : ModItem
     {
+        private class Loader : ILoadable
+        {
+            void ILoadable.Load(Mod mod)
+            {
+                DefaultPotions = new List<int>()
+                {
+                    ItemID.ShinePotion,
+                    ItemID.NightOwlPotion,
+                    ItemID.SwiftnessPotion,
+                    ItemID.ArcheryPotion,
+                    ItemID.GillsPotion,
+                    ItemID.HunterPotion,
+                    ItemID.MiningPotion,
+                    ItemID.TrapsightPotion,
+                    ItemID.RegenerationPotion,
+                };
+            }
+
+            void ILoadable.Unload()
+            {
+                DefaultPotions?.Clear();
+                DefaultPotions = null;
+            }
+        }
+
         public static List<int> DefaultPotions { get; private set; }
 
         protected virtual List<int> LootTable
@@ -41,31 +66,6 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
                     }
                 }
                 return l;
-            }
-        }
-
-        private class Loader : ILoadable
-        {
-            void ILoadable.Load(Mod mod)
-            {
-                DefaultPotions = new List<int>()
-                {
-                    ItemID.ShinePotion,
-                    ItemID.NightOwlPotion,
-                    ItemID.SwiftnessPotion,
-                    ItemID.ArcheryPotion,
-                    ItemID.GillsPotion,
-                    ItemID.HunterPotion,
-                    ItemID.MiningPotion,
-                    ItemID.TrapsightPotion,
-                    ItemID.RegenerationPotion,
-                };
-            }
-
-            void ILoadable.Unload()
-            {
-                DefaultPotions?.Clear();
-                DefaultPotions = null;
             }
         }
 
@@ -164,7 +164,7 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
 
             Main.spriteBatch.End();
             Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
-            Main.graphics.GraphicsDevice.ScissorRectangle = new Rectangle((int)x, (int)y - 16, back.Width, back.Height + 32);
+            Main.graphics.GraphicsDevice.ScissorRectangle = new Rectangle((int)(x * Main.UIScale), (int)((y - 16) * Main.UIScale), (int)(back.Width * Main.UIScale), (int)((back.Height + 32) * Main.UIScale));
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = true;
 
             float rollY = DefaultTime() % 1f;

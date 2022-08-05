@@ -29,7 +29,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public sealed class AequusNPC : GlobalNPC
+    public class AequusNPC : GlobalNPC
     {
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> DontModifyVelocity { get; private set; }
@@ -89,10 +89,6 @@ namespace Aequus.NPCs
                 return;
             }
             orig(self, i);
-        }
-
-        private static void NPC_UpdateNPC(On.Terraria.NPC.orig_UpdateNPC orig, NPC self, int i)
-        {
         }
 
         private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)

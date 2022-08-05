@@ -1,10 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Magic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,7 +14,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 50;
+            Item.damage = 40;
             Item.DamageType = DamageClass.Magic;
             Item.useTime = 20;
             Item.useAnimation = 20;
