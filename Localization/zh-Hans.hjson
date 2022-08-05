@@ -162,6 +162,7 @@ Mods: {
 			BoundBow: 界限弓
 			Slingshot: 弹弓
 
+			Gamestar: 游戏之星
 			WowHat: "'喔师'帽"
 			Snowgrave: 雪墓
 			BallisticScreecher: 弹道尖嚎者
@@ -654,6 +655,7 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			Gamestar: 发送压缩数据流
 			WowHat: 施放各种法术
 			Snowgrave:
 				'''
