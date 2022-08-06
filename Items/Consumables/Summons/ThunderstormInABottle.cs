@@ -29,7 +29,7 @@ namespace Aequus.Items.Consumables.Summons
 
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneSkyHeight;
+            return player.ZoneSkyHeight && !NPC.AnyNPCs(ModContent.NPCType<DustDevil>());
         }
 
         public override bool? UseItem(Player player)

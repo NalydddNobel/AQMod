@@ -376,7 +376,7 @@ namespace Aequus.NPCs.Friendly
             }
             foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
             {
-                Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 50, 20, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 30, 10, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
             var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel").Value;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
