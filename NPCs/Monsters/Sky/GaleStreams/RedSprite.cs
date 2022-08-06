@@ -103,7 +103,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
             _brightness = 0.2f;
 
-            this.SetBiome<GaleStreamsInvasion>();
+            this.SetBiome<GaleStreamsBiome>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -181,7 +181,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public override void AI()
         {
             bool leave = (int)NPC.ai[0] == -1;
-            if (!leave && !GaleStreamsInvasion.IsThisSpace(Main.player[NPC.target].position.Y))
+            if (!leave && !GaleStreamsBiome.IsThisSpace(Main.player[NPC.target].position.Y))
             {
                 leave = true;
             }

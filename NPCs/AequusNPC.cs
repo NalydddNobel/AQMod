@@ -68,7 +68,7 @@ namespace Aequus.NPCs
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
 
-        private void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
+        private static void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
         {
             if (AequusHelpers.iterations == 0 && self.HasBuff<BitCrushedDebuff>())
             {

@@ -70,7 +70,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 NPC.localAI[0] = Main.rand.Next(Main.npcFrameCount[NPC.type]) + 1f;
             }
-            if (!GaleStreamsInvasion.IsThisSpace(NPC.position.Y))
+            if (!GaleStreamsBiome.IsThisSpace(NPC.position.Y))
             {
                 NPC.noGravity = false;
                 if (NPC.collideX || NPC.collideY)
@@ -99,11 +99,11 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     if (Main.netMode != NetmodeID.MultiplayerClient && NPC.oldVelocity.Length() > 7.5f)
                     {
-                        GaleStreamsInvasion.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
+                        GaleStreamsBiome.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
                 }
             }
-            else if (!GaleStreamsInvasion.IsThisSpace(NPC.position.Y + 600f))
+            else if (!GaleStreamsBiome.IsThisSpace(NPC.position.Y + 600f))
             {
                 NPC.velocity.Y -= 0.01f;
             }
@@ -121,7 +121,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 for (int i = 0; i < 25; i++)
                 {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                    Main.dust[d].noGravity = GaleStreamsInvasion.IsThisSpace(NPC.position.Y);
+                    Main.dust[d].noGravity = GaleStreamsBiome.IsThisSpace(NPC.position.Y);
                     Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
                 }
                 for (int i = 0; i < 10; i++)
@@ -138,7 +138,7 @@ namespace Aequus.NPCs.Monsters.Sky
             else
             {
                 int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                Main.dust[d].noGravity = GaleStreamsInvasion.IsThisSpace(NPC.position.Y);
+                Main.dust[d].noGravity = GaleStreamsBiome.IsThisSpace(NPC.position.Y);
                 Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
             }
         }

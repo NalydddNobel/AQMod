@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Bunny, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Bunny, Type, UpgradeProgressionType.PreHardmode) { Hide = true, });
         }
 
         public override void SetDefaults()

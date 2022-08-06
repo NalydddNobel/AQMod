@@ -51,14 +51,20 @@ namespace Aequus.NPCs.Friendly
             });
 
             NPC.Happiness
-                .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<HallowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
+
+            NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.ArmsDealer).SetNPCAffection(Type, AffectionLevel.Like);
+            NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Dislike);
+            NPCHappiness.Get(NPCID.Demolitionist).SetNPCAffection(Type, AffectionLevel.Hate);
+            NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ShopQuotes.Database
                 .GetNPC(Type)

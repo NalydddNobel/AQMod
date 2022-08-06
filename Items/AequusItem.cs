@@ -202,66 +202,25 @@ namespace Aequus.Items
                     }
                     break;
 
+                case ItemID.FloatingIslandFishingCrate:
+                case ItemID.FloatingIslandFishingCrateHard:
+                    {
+                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Slingshot>(), 3));
+                    }
+                    break;
+
+                case ItemID.FrozenCrate:
+                case ItemID.FrozenCrateHard:
+                    {
+                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrystalDagger>(), 3));
+                    }
+                    break;
+
                 case ItemID.LockBox:
                     {
                         itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
                     }
                     break;
-            }
-        }
-        public override void OpenVanillaBag(string context, Player player, int arg)
-        {
-            if (context == "bossBag")
-            {
-                switch (arg) 
-                {
-                    case ItemID.QueenBeeBossBag:
-                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<OrganicEnergy>(), 3);
-                        break;
-                }
-            }
-            else if (context == "lockBox")
-            {
-                player.QuickSpawnItem(player.GetSource_OpenItem(ItemID.LockBox), AequusWorld.DungeonChestItem(Main.rand.Next(AequusWorld.DungeonChestItemTypesMax)));
-            }
-            else if (context == "crate")
-            {
-                if (arg == ItemID.IronCrate)
-                {
-                    if (Main.rand.NextBool(6))
-                    {
-                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<GlowCore>());
-                    }
-
-                    switch (Main.rand.Next(5))
-                    {
-                        case 0:
-                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<BoneRing>());
-                            break;
-
-                        case 1:
-                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<BattleAxe>());
-                            break;
-
-                        case 2:
-                            player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Bellows>());
-                            break;
-                    }
-                }
-                else if (arg == ItemID.FloatingIslandFishingCrate || arg == ItemID.FloatingIslandFishingCrateHard)
-                {
-                    if (Main.rand.NextBool(3))
-                    {
-                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Slingshot>());
-                    }
-                }
-                else if (arg == ItemID.FrozenCrate || arg == ItemID.FrozenCrateHard)
-                {
-                    if (Main.rand.NextBool(3))
-                    {
-                        player.QuickSpawnItem(player.GetSource_OpenItem(arg), ModContent.ItemType<Slingshot>());
-                    }
-                }
             }
         }
 

@@ -3,7 +3,7 @@ Mods: {
 		BiomeName: {
 			GlimmerBiome: Glimmer
 			CrabCreviceBiome: Crab Crevice
-			GaleStreamsInvasion: Gale Streams
+			GaleStreamsBiome: Gale Streams
 			DemonSiegeBiome: Demon Siege
 		}
 
@@ -327,6 +327,10 @@ Mods: {
 			ScorchingDye: Scorching Dye
 			FrostbiteDye: Frostbite Dye
 
+			HypnoticPearl: Hypnotic Pearl
+			SupernovaFruit: Supernova Fruit
+			ThunderstormInABottle: Thunderstorm in a Bottle
+
 			CelesitalEightBall: Celestial 8-Ball
 
 			Driftwood: Driftwood
@@ -336,8 +340,6 @@ Mods: {
 
 			MoonflowerPollen: Moonflower Pollen
 			LingeringPotion: Lingering Potion
-			HypnoticPearl: Hypnotic Pearl
-			SupernovaFruit: Supernova Fruit
 			GalacticStarfruit: Galactic Starfruit
 			MoonLeech: Moon Leech
 			DreamCatcher: Dream Catcher
@@ -787,6 +789,7 @@ Mods: {
 			InactivePylonHealer: Throw near a pylon to reactivate it
 			InactivePylonGunner: Throw near a pylon to reactivate it
 
+			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
@@ -942,6 +945,24 @@ Mods: {
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 
+			HypnoticPearl:
+				'''
+				Summons Crabson at the ocean
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+			SupernovaFruit:
+				'''
+				Summons Omega Starite at night
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+			ThunderstormInABottle:
+				'''
+				Summons the Dust Devil in space
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+
+			GalacticStarfruit: Creates a strange glimmer
+
 			GhostlyGrave: When used, your graves convert into a ghost on death
 
 			MirrorsCall:
@@ -959,17 +980,6 @@ Mods: {
 			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: Has double the length
-			HypnoticPearl:
-				'''
-				Summons Crabson at the ocean
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			SupernovaFruit:
-				'''
-				Summons Omega Starite at night
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			GalacticStarfruit: Creates a strange glimmer
 			MoonLeech: Attacks drain mana from enemies
 			DreamCatcher:
 				'''
@@ -1899,6 +1909,7 @@ Mods: {
 			Starite: Starite
 			UltraStarite: Ultra Starite
 
+			OblivisonCritter: Oblivison
 			Magmabubble: Magmabubble
 			TrapperImp: Trapper Imp
 			Trapper: Trapper
@@ -3373,6 +3384,21 @@ Mods: {
 			19: Concentrate and ask again
 		}
 
+				
+		BossChecklist: {
+			Crabson: Summoned with the {HypnoticPearl}
+			OmegaStarite: Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the {SupernovaFruit}
+			DustDevil: Summoned with the {ThunderstormInABottle}
+			
+			RedSprite: Fought during the Gale Streams.
+			SpaceSquid: Fought during the Gale Streams.
+
+			Glimmer: Started with a {GalacticStarfruit}.
+			DemonSiege: Use: ({ItemList}) at a Gore Nest.
+			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
+		}
+
+		OblivisonEasterEgg: <Oblivison> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
 		Concoct: Concoct Potions
 		StopConcocting: Stop Concocting
 		Complete: Complete

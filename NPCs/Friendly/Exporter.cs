@@ -55,14 +55,20 @@ namespace Aequus.NPCs.Friendly
             });
 
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
+
+            NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.Angler).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.Pirate).SetNPCAffection(Type, AffectionLevel.Like);
+            NPCHappiness.Get(NPCID.ArmsDealer).SetNPCAffection(Type, AffectionLevel.Like);
+            NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ShopQuotes.Database
                 .GetNPC(Type)

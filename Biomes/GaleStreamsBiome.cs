@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Biomes
 {
-    public class GaleStreamsInvasion : ModBiome
+    public class GaleStreamsBiome : ModBiome
     {
         public static bool EventActive => Aequus.HardmodeTier && Main.WindyEnoughForKiteDrops;
         public static bool SupressWindUpdates { get; set; }

@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<WhiteSlimeBanner>();
 
-            this.SetBiome<GaleStreamsInvasion>();
+            this.SetBiome<GaleStreamsBiome>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

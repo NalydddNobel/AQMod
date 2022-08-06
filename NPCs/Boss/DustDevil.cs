@@ -75,7 +75,7 @@ namespace Aequus.NPCs.Boss
         {
             NPC.width = 100;
             NPC.height = 100;
-            NPC.lifeMax = 14500;
+            NPC.lifeMax = 18500;
             NPC.damage = 25;
             NPC.defense = 12;
             NPC.aiStyle = -1;
@@ -94,7 +94,7 @@ namespace Aequus.NPCs.Boss
                 NPC.height *= 10;
             }
 
-            this.SetBiome<GaleStreamsInvasion>();
+            this.SetBiome<GaleStreamsBiome>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

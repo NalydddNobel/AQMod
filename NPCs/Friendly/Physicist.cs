@@ -42,9 +42,8 @@ namespace Aequus.NPCs.Friendly
             });
 
             NPC.Happiness
-                .SetBiomeAffection<DesertBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<SnowBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<HallowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
@@ -58,6 +57,11 @@ namespace Aequus.NPCs.Friendly
                 .SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate)
                 .SetNPCAffection<Occultist>(AffectionLevel.Hate);
+
+            NPCHappiness.Get(NPCID.GoblinTinkerer).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.Cyborg).SetNPCAffection(Type, AffectionLevel.Like);
+            NPCHappiness.Get(NPCID.Steampunker).SetNPCAffection(Type, AffectionLevel.Dislike);
+            NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ShopQuotes.Database
                 .GetNPC(Type)

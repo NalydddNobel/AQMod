@@ -111,7 +111,7 @@ namespace Aequus
         public bool buffResistHeat;
 
         public bool ZoneCrabCrevice;
-        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsInvasion>();
+        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
         public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
         public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();
         public bool ZoneGoreNest => Player.InModBiome<GoreNestBiome>();

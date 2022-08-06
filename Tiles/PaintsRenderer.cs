@@ -108,7 +108,19 @@ namespace Aequus.Tiles
         void ILoadable.Unload()
         {
             if (Renderers != null)
-                Reset();
+            {
+                try
+                {
+                    foreach (var value in Renderers.Values)
+                    {
+                        value.Clear();
+                    }
+                    Renderers.Clear();
+                }
+                catch
+                {
+                }
+            }
             Renderers = null;
         }
 

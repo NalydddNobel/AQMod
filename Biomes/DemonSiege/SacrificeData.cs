@@ -7,12 +7,14 @@ namespace Aequus.Biomes.DemonSiege
         public readonly int OriginalItem;
         public readonly int NewItem;
         public UpgradeProgressionType Progression;
+        public bool Hide;
 
         public SacrificeData(int oldItem, int newItem, UpgradeProgressionType progression)
         {
             OriginalItem = oldItem;
             NewItem = newItem;
             Progression = progression;
+            Hide = false;
         }
 
         public Item Convert(Item original)

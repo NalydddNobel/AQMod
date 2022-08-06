@@ -56,7 +56,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.noGravity = true;
             NPC.noTileCollide = true;
 
-            this.SetBiome<GaleStreamsInvasion>();
+            this.SetBiome<GaleStreamsBiome>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

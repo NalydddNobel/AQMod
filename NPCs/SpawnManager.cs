@@ -31,7 +31,7 @@ namespace Aequus.NPCs
                 maxSpawns = 0;
                 return;
             }
-            if (player.ZoneSkyHeight && GaleStreamsInvasion.TimeForMeteorSpawns())
+            if (player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
             {
                 spawnRate /= 2;
                 maxSpawns *= 2;
@@ -89,7 +89,7 @@ namespace Aequus.NPCs
                 }
                 pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 0.005f);
             }
-            if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsInvasion.TimeForMeteorSpawns())
+            if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
             {
                 AdjustSpawns(pool, 0.75f);
                 pool.Add(ModContent.NPCType<Meteor>(), 2f);
