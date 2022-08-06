@@ -3,7 +3,7 @@ Mods: {
 		BiomeName: {
 			GlimmerBiome: 微光
 			CrabCreviceBiome: 蟹状裂隙
-			GaleStreamsInvasion: 紊流风暴
+			GaleStreamsBiome: 紊流风暴
 			DemonSiegeBiome: 恶魔围攻
 		}
 
@@ -327,6 +327,10 @@ Mods: {
 			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
 
+			HypnoticPearl: 催眠珍珠
+			SupernovaFruit: 超新星果
+			ThunderstormInABottle: 瓶中雷暴
+
 			CelesitalEightBall: 星界八号球
 
 			Driftwood: 浮木
@@ -336,8 +340,6 @@ Mods: {
 
 			MoonflowerPollen: 月光花粉
 			LingeringPotion: 长效药水
-			HypnoticPearl: 催眠珍珠
-			SupernovaFruit: 超新星果
 			GalacticStarfruit: 星河杨桃
 			MoonLeech: 月噬
 			DreamCatcher: 捕梦者
@@ -787,6 +789,7 @@ Mods: {
 			InactivePylonHealer: 扔到晶塔附近以重新激活它
 			InactivePylonGunner: 扔到晶塔附近以重新激活它
 
+			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
@@ -942,6 +945,24 @@ Mods: {
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 
+			HypnoticPearl:
+				'''
+				在海洋使用以召唤巨蟹蛤
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+			SupernovaFruit:
+				'''
+				在夜晚使用以召唤终末之星
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+			ThunderstormInABottle:
+				'''
+				在太空使用以尘暴
+				{$Mods.Aequus.Common.NotConsumable}
+				'''
+
+			GalacticStarfruit: 创造一道奇异微光
+
 			GhostlyGrave: 使用时会将你的墓碑变为幽魂
 
 			MirrorsCall:
@@ -959,17 +980,6 @@ Mods: {
 			LingeringPotion: 给予你和队友一个较为持久的增益效果
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: 具有双倍的效力
-			HypnoticPearl:
-				'''
-				在海洋处使用以召唤巨蟹蛤
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			SupernovaFruit:
-				'''
-				在夜晚使用以召唤终末之星
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			GalacticStarfruit: 创造一道奇异微光
 			MoonLeech: 攻击会汲取敌人的法力
 			DreamCatcher:
 				'''
@@ -1899,6 +1909,7 @@ Mods: {
 			Starite: 星之源
 			UltraStarite: 终耀源星
 
+			OblivisonCritter: 遗忘者
 			Magmalbubble: 熔火喷吐者
 			TrapImp: 捕魂小鬼
 			Trapper: 捕魂钩
@@ -3373,6 +3384,20 @@ Mods: {
 			19: 请集中你的精神再问一次
 		}
 
+		BossChecklist: {
+			Crabson: 使用{HypnoticPearl}召唤
+			OmegaStarite: 通过与微光之源中心处的剑交互召唤. 也可以通过使用{SupernovaFruit}召唤
+			DustDevil: 使用{ThunderstormInABottle}召唤
+
+			RedSprite: 风暴紊流的战斗期间.
+			SpaceSquid: 风暴紊流的战斗期间.
+
+			Glimmer: 使用{GalacticStarfruit}开始.
+			DemonSiege: 在血巢处使用: ({ItemList}).
+			GaleStreams: 风速大于 30 mph 时开始, 可以通过使用{Pumpinator}更改风速.
+		}
+
+		OblivisonEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Concoct: 调制药水
 		StopConcocting: 停止调制
 		Complete: 完成
