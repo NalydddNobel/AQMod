@@ -10,6 +10,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
@@ -326,6 +327,52 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 _setupFrame = true;
                 NPC.frame.Width /= FramesX;
                 _balloonFrame = Main.rand.Next(FramesX - 1);
+            }
+        }
+
+        public class StreamingBalloonSlimeInsideDropRule : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
+        {
+            public int Item;
+            public int Chance;
+
+            public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
+
+            public StreamingBalloonSlimeInsideDropRule(int item, int chance = 2)
+            {
+                Item = item;
+                Chance = chance;
+                ChainedRules = new List<IItemDropRuleChainAttempt>();
+            }
+
+            public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
+            {
+                float num = 1f / Chance;
+                float dropRate = num * ratesInfo.parentDroprateChance;
+                ratesInfo.conditions = new List<IItemDropRuleCondition>() { this, };
+                drops.Add(new DropRateInfo(Item, 1, 1, dropRate, ratesInfo.conditions));
+                Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo);
+            }
+
+            public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
+            {
+                var result = default(ItemDropAttemptResult);
+                result.State = ItemDropAttemptResultState.DidNotRunCode;
+                return result;
+            }
+
+            public bool CanDrop(DropAttemptInfo info)
+            {
+                return false;
+            }
+
+            public bool CanShowItemDropInUI()
+            {
+                return true;
+            }
+
+            public string GetConditionDescription()
+            {
+                return null;
             }
         }
 

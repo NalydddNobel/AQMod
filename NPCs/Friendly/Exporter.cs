@@ -226,78 +226,6 @@ namespace Aequus.NPCs.Friendly
         public override void AI()
         {
             NPC.breath = 200;
-            //try
-            //{
-            //    if (Main.netMode != NetmodeID.MultiplayerClient)
-            //    {
-            //        NPCCheck++;
-            //        if (NPCCheck >= 240)
-            //        {
-            //            if (NPCCheck >= 241 || Main.rand.NextBool(50))
-            //            {
-            //                List<int> townNPCs = new List<int>();
-            //                for (int i = 0; i < Main.maxNPCs; i++)
-            //                {
-            //                    if (Main.npc[i] != null && Main.npc[i].active && Main.npc[i].townNPC && !Main.npc[i].homeless && Main.npc[i].type != NPC.type)
-            //                    {
-            //                        townNPCs.Add(i);
-            //                    }
-            //                }
-            //                if (townNPCs.Count <= 0)
-            //                {
-            //                    NPCCheck = 0;
-            //                }
-            //                else
-            //                {
-            //                    for (int i = 0; i < 10; i++)
-            //                    {
-            //                        byte npc = (byte)townNPCs[Main.rand.Next(townNPCs.Count)];
-            //                        int x = Main.npc[npc].homeTileX;
-            //                        int y = Main.npc[npc].homeTileY;
-            //                        var checkRectangle = new Rectangle(x - 75, y - 75, 150, 150).KeepInWorld();
-            //                        for (int k = checkRectangle.X; k < checkRectangle.X + checkRectangle.Width; k++)
-            //                        {
-            //                            for (int l = checkRectangle.Y; l < checkRectangle.Y + checkRectangle.Height; l++)
-            //                            {
-            //                                if (Main.tile[k, l] == null)
-            //                                {
-            //                                    Main.tile[k, l] = new Tile();
-            //                                    continue;
-            //                                }
-            //                                if (Main.tile[k, l].active() && AQTile.Sets.Instance.ExporterQuestFurniture.Contains(Main.tile[k, l].type))
-            //                                {
-            //                                    return;
-            //                                }
-            //                            }
-            //                        }
-            //                        checkRectangle = new Rectangle(x - 8, y - 8, 16, 16).KeepInWorld();
-            //                        for (int k = checkRectangle.X; k < checkRectangle.X + checkRectangle.Width; k++)
-            //                        {
-            //                            for (int l = checkRectangle.Y; l < checkRectangle.Y + checkRectangle.Height; l++)
-            //                            {
-            //                                int randomX = checkRectangle.X + Main.rand.Next(checkRectangle.Width);
-            //                                int randomY = checkRectangle.Y + Main.rand.Next(checkRectangle.Height);
-            //                                if (TryPlaceQuestTile(randomX, randomY))
-            //                                {
-            //                                    NPCCheck = 0;
-            //                                    return;
-            //                                }
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                NPCCheck = 0;
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    AQMod.Instance.Logger.Error(ex);
-            //}
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
@@ -430,7 +358,7 @@ namespace Aequus.NPCs.Friendly
         }
         public bool QuestItem(Player player, int i)
         {
-            return !player.inventory[i].IsAir && player.inventory[i].createTile >= TileID.Dirt && ExporterQuests.TilePlacements.ContainsKey(player.inventory[i].createTile);
+            return !player.inventory[i].IsAir && player.inventory[i].createTile >= TileID.Dirt && ExporterQuests.QuestItems.Contains(player.inventory[i].type);
         }
         public void OnQuestCompleted(Player player, int i)
         {

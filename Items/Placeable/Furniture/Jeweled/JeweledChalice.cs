@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Furniture.Jeweled;
+﻿using Aequus.Content;
+using Aequus.Tiles.Furniture.Jeweled;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,7 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
+            ExporterQuests.QuestItems.Add(Type);
         }
 
         public override void SetDefaults()

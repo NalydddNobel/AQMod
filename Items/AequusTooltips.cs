@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.NPCs;
 using Aequus.NPCs.Friendly;
@@ -78,10 +79,16 @@ namespace Aequus.Items
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
                     }
 
+                    if (ExporterQuests.QuestItems.Contains(item.type))
+                    {
+                        if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
+                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+                    }
                     if (AequusItem.LegendaryFish.Contains(item.type))
                     {
                         if (NPC.AnyNPCs(NPCID.Angler))
-                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("AnglerHint")) { OverrideColor = HintColor, });
+                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                     }
 

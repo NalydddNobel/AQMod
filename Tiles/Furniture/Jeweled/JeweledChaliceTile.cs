@@ -14,6 +14,8 @@ namespace Aequus.Tiles.Furniture.Jeweled
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
+            Main.tileShine[Type] = 5000;
+            Main.tileShine2[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleOnTable1x1);
             TileObjectData.newTile.CoordinatePadding = 2;

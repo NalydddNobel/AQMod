@@ -100,6 +100,7 @@ namespace Aequus.Content
         }
 
         public static Dictionary<int, IPlacementData> TilePlacements { get; private set; }
+        public static HashSet<int> QuestItems { get; private set; }
         public static HashSet<int> NPCTypesNoSpawns { get; private set; }
 
         public static int PlaceCheck;
@@ -109,6 +110,7 @@ namespace Aequus.Content
         public override void Load()
         {
             TilePlacements = new Dictionary<int, IPlacementData>();
+            QuestItems = new HashSet<int>();
             NPCTypesNoSpawns = new HashSet<int>()
             {
                 NPCID.Guide,
@@ -201,6 +203,7 @@ namespace Aequus.Content
 
                 WorldGen.PlaceTile(points[selectedPoint].X, points[selectedPoint].Y - 1, tileID, mute: true);
 
+                AequusHelpers.dustDebug(points[selectedPoint]);
                 if (Main.tile[points[selectedPoint].X, points[selectedPoint].Y - 1].TileType == tileID)
                 {
                     return true;

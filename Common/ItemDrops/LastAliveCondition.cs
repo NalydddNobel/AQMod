@@ -24,7 +24,7 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return AequusText.GetText("DropCondition.LastAlive");
+            return null;
         }
     }
 }

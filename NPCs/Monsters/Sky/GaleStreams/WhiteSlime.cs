@@ -13,6 +13,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -334,19 +335,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<Umystick>(new HardmodeTierCondition(), chance: 15, stack: 1)
+                .Add<Umystick>(new Conditions.IsHardmode(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15))
                 .Add<CensorDye>(chance: 10, stack: 1)
                 .Add<CinnamonRoll>(chance: 15, stack: 1);
         }
-
-        //public override void NPCLoot()
-        //{
-        //    if (Main.rand.NextBool(8))
-        //    {
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<CinnamonRoll>());
-        //    }
-        //}
     }
 }

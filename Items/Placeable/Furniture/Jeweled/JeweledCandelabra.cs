@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Aequus.Tiles.Furniture.Jeweled;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Jeweled
@@ -8,11 +9,12 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
+            ExporterQuests.QuestItems.Add(Type);
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(TileID.Candelabras/*ModContent.TileType<JeweledCandelabraTile>()*/);
+            Item.DefaultToPlaceableTile(ModContent.TileType<JeweledCandelabraTile>());
             Item.width = 16;
             Item.height = 24;
             Item.rare = ItemRarityID.Quest;

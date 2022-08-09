@@ -37,15 +37,8 @@ Mods: {
 		}
 
 		DropCondition: {
-			OtherwiseChance: Will 100% drop if '{0}' conditions are met
-			LastAlive: Only dropped by the last remaining enemy
-			OnFirstKill: Only drops on first kill
-			StreamingBalloonKill: 
-			'''
-			    Only dropped when the slime killed is attached to the balloon 
-			    Only dropped after Omega Starite or Wall of Flesh is defeated
-			'''
-			StreamingBalloonSlime: Can only dropped from Red, Purple, Black, or Jungle Slimes
+			OtherwiseChance: 100% droprate if '{0}' conditions are met
+			OnFirstKill: Dropped only on first kill
 			OreTier: { 
 				0: Only dropped in worlds with copper ore
 				1: Only dropped in worlds with tin ore
@@ -56,19 +49,21 @@ Mods: {
 				6: Only dropped in worlds with gold ore
 				7: Only dropped in worlds with platinum ore
 			}
-			Flawless: Drops when defeated flawlessly
-			Trophy: Will 100% drop when defeated flawlessly
+			Flawless: Dropped when defeated flawlessly
+			Trophy: 100% droprate when defeated flawlessly
 		}
 
 		Tooltips: {
 			NecromancyStaff: Slain enemies may convert into ghosts
 			NecromancyCandle: Absorbs the souls of enemies killed by minions when held
-			CarryingSouls: Carrying {0} of {1} souls
 			UseSouls: Uses {0} souls
+			CarryingSouls: Carrying {0} of {1} souls
+
+			UsesLife: Uses {0} life
+
 			UseDarts: Uses seeds and darts as ammo
-			UsesLife: "Uses {0} life"
 			UsesGel: Uses gel for ammo
-			ExporterQuest: Return this to the exporter
+
 			Concocted: Used in potion concoctions
 			RouletteDrop: The item below is guaranteed to drop
 			EffectActive: Disabled
@@ -571,6 +566,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Misc: {
+				AnglerHint: The Angler may be interested in this...
+				ExporterHint: The Exporter may be interested in this...
+			}
+
 			FlashwayNecklace: Gives you a brief period of invulnerability before allowing you to be struck
 			HaltingMachine: Nearby items float instead of falling
 			Ramishroom: Fishing rods cast an extra bobber
@@ -1917,6 +1917,7 @@ Mods: {
 			BloodMimic: Blood Mimic
 			Heckto: Heckto
 
+			Carpenter: Carpenter
 			SkyMerchant: Sky Merchant
 			Memorialist: Memorialist
 			PhysicistPet: Drone
@@ -1943,6 +1944,7 @@ Mods: {
 			SuperStarite: As starites get older, they get better at sustaining their magic energy, allowing them to grow in size and shoot energy bullets.
 			Starite: A fragment of a long ago supernova, its strong magical force gave it life. Must replenish its mystic energy to stay alive.
 			
+			OblivisonCritter: Demonic tears caused by the disruptive portals of the gore nests. While harmless, they seem to observe and study nearby creatures, who knows why...
 			Magmabubble: Grew legs after consuming a blood crawler, its lava body is too heavy to climb on walls however.
 			TrapperImp: This Fire Imp uses wicked magic to entrap and rot away clingers to become its personal pets.
 			Cindera: Has a disgusting, yet deadly face, similar to that of a face monster.
@@ -3408,7 +3410,6 @@ Mods: {
 		GlimmersPrevented: Glimmers Prevented: {0}
 		EclipsesPrevented: Eclipses Prevented: {0}
 		YourCoordinates: Your corrdinates are (X: {0}, Y: {1})
-		AnglerHint: The angler may be interested in this...
 		GaleStreamsHint: Strong space winds may cause new creatures to appear
 		OpenedLink: Clicked and sending to
 	}
