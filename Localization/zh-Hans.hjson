@@ -37,15 +37,8 @@ Mods: {
 		}
 
 		DropCondition: {
-			OtherwiseChance: 满足'{0}'条件时100%掉落
-			LastAlive: 仅会掉落自残存的敌人
-			OnFirstKill: 仅会在首次击杀时掉落
-			StreamingBalloonKill: 
-			'''
-			    仅会在击杀身上有着气球的史莱姆时掉落
-			    仅会在终末之星或血肉墙被击败后掉落
-			'''
-			StreamingBalloonSlime: 只有红、紫、黑或丛林史莱姆掉落
+			OtherwiseChance: 在'{0}'满足条件时拥有100%掉落几率
+			OnFirstKill: 仅在首次击败时掉落
 			OreTier: { 
 				0: 仅会在世界中有着铜矿石时掉落
 				1: 仅会在世界中有着锡矿石时掉落
@@ -57,18 +50,20 @@ Mods: {
 				7: 仅会在世界中有着铂金矿石时掉落
 			}
 			Flawless: 仅在无伤击败时掉落
-			Trophy: 在无伤击败时100%掉落
+			Trophy: 在无伤击败时拥有100%掉落几率
 		}
 
 		Tooltips: {
 			NecromancyStaff: 被击杀的敌人有几率转化为幽魂
 			NecromancyCandle: 持有此物品时会吸收被仆从杀死的敌人的灵魂
-			CarryingSouls: 携带{1}个灵魂中的{0}个
 			UseSouls: 使用{0}个灵魂
+			CarryingSouls: 携带{1}个灵魂中的{0}个
+
+			UsesLife: 使用{0}点生命
+
 			UseDarts: 使用种子和飞镖作为弹药
-			UsesLife: "使用{0}点生命"
 			UsesGel: 使用凝胶作为弹药
-			ExporterQuest: 将此物交付于发货人
+
 			Concocted: 用于药水调配
 			RouletteDrop: 下列物品必定掉落
 			EffectActive: 禁用
@@ -571,6 +566,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Misc: {
+				AnglerHint: 渔夫可能会对此感兴趣...
+				ExporterHint: 发货人可能会对此感兴趣...
+			}
+
 			FlashwayNecklace: 允许你在受到攻击之前无敌一小段时间
 			HaltingMachine: 附近的物品会现在漂浮而非下落
 			Ramishroom: 钓竿会额外扔出一个浮标
@@ -1917,6 +1917,7 @@ Mods: {
 			BloodMimic: 血红模仿者
 			Heckto: 冥狱之魂
 
+			Carpenter: 木匠
 			SkyMerchant: 天空商人
 			Memorialist: 请愿者
 			PhysicistPet: 无人机
@@ -1943,6 +1944,7 @@ Mods: {
 			SuperStarite: 随着星源变得更加衰老, 它们更善于维持它们的魔法能量, 允许它们扩大规模并发射能量子弹.
 			Starite: 很久以前的超新星碎片, 强大的魔法力赋予了它生命. 必须补充其神秘能量才能生存.
 
+			OblivisonCritter: 恶魔之泪是由血巢的破坏性传送门造成的. 虽然无害, 但它们似乎在观察和研究附近的生物, 没人知道为什么...
 			Magmabubble: 在吞食了一条血爬行动物后长出了腿, 但它的熔岩身躯太重了, 爬不上墙壁.
 			TrapperImp: 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 并将其作为自己的宠物.
 			Cindera: 有一张令人厌恶且致命的脸, 类似于脸怪.
@@ -3384,6 +3386,7 @@ Mods: {
 			19: 请集中你的精神再问一次
 		}
 
+
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
 			OmegaStarite: 通过与微光之源中心处的剑交互召唤. 也可以通过使用{SupernovaFruit}召唤
@@ -3407,7 +3410,6 @@ Mods: {
 		GlimmersPrevented: 阻止微光: {0}
 		EclipsesPrevented: 阻止日蚀: {0}
 		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
-		AnglerHint: 渔夫可能会对此感兴趣...
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
 		OpenedLink: 点击并发送至
 	}
