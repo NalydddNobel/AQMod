@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;

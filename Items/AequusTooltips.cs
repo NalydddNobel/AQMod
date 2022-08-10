@@ -2,7 +2,7 @@
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.NPCs;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -151,6 +151,107 @@ namespace Aequus.Items
                         }
                     }
                 }
+            }
+            public TooltipLine GetPriceTooltipLine(Player player, Item item)
+            {
+                player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
+                int value = (item.isAShopItem || item.buyOnce) ? calcForBuying : calcForSelling;
+                if (item.shopSpecialCurrency != -1)
+                {
+                    string[] text = new string[1];
+                    int line = 0;
+                    CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
+                    return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
+                }
+                else if (value > 0)
+                {
+                    string text = "";
+                    int platinum = 0;
+                    int gold = 0;
+                    int silver = 0;
+                    int copper = 0;
+                    int itemValue = value * item.stack;
+                    if (!item.buy)
+                    {
+                        itemValue = value / 5;
+                        if (itemValue < 1)
+                        {
+                            itemValue = 1;
+                        }
+                        int num3 = itemValue;
+                        itemValue *= item.stack;
+                        int amount = Main.shopSellbackHelper.GetAmount(item);
+                        if (amount > 0)
+                        {
+                            itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
+                        }
+                    }
+                    if (itemValue < 1)
+                    {
+                        itemValue = 1;
+                    }
+                    if (itemValue >= 1000000)
+                    {
+                        platinum = itemValue / 1000000;
+                        itemValue -= platinum * 1000000;
+                    }
+                    if (itemValue >= 10000)
+                    {
+                        gold = itemValue / 10000;
+                        itemValue -= gold * 10000;
+                    }
+                    if (itemValue >= 100)
+                    {
+                        silver = itemValue / 100;
+                        itemValue -= silver * 100;
+                    }
+                    if (itemValue >= 1)
+                    {
+                        copper = itemValue;
+                    }
+
+                    if (platinum > 0)
+                    {
+                        text = text + platinum + " " + Lang.inter[15].Value + " ";
+                    }
+                    if (gold > 0)
+                    {
+                        text = text + gold + " " + Lang.inter[16].Value + " ";
+                    }
+                    if (silver > 0)
+                    {
+                        text = text + silver + " " + Lang.inter[17].Value + " ";
+                    }
+                    if (copper > 0)
+                    {
+                        text = text + copper + " " + Lang.inter[18].Value + " ";
+                    }
+
+                    var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+
+                    if (platinum > 0)
+                    {
+                        t.OverrideColor = Colors.CoinPlatinum;
+                    }
+                    else if (gold > 0)
+                    {
+                        t.OverrideColor = Colors.CoinGold;
+                    }
+                    else if (silver > 0)
+                    {
+                        t.OverrideColor = Colors.CoinSilver;
+                    }
+                    else if (copper > 0)
+                    {
+                        t.OverrideColor = Colors.CoinCopper;
+                    }
+                    return t;
+                }
+                else if (item.type != ItemID.DefenderMedal)
+                {
+                    return new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
+                }
+                return null;
             }
             public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
             {

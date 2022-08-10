@@ -323,6 +323,11 @@ namespace Aequus
 
         public override void PreUpdatePlayers()
         {
+            if (WorldGen.prioritizedTownNPCType > 0)
+            {
+                //Main.NewText($"{WorldGen.prioritizedTownNPCType}: {Lang.GetNPCNameValue(WorldGen.prioritizedTownNPCType)} spawnDelay: {WorldGen.spawnDelay} (hiScore: {WorldGen.hiScore}, canSpawn:{WorldGen.canSpawn}, X:{WorldGen.roomX1},{WorldGen.roomX2} Y:{WorldGen.roomY1},{WorldGen.roomY2})");
+                //Main.LocalPlayer.Center = new Vector2((WorldGen.roomX1 + WorldGen.roomX2) * 8f, (WorldGen.roomY1 + WorldGen.roomY2) * 8f);
+            }
             BloodMoonDisabled = false;
             GlimmerDisabled = false;
             EclipseDisabled = false;

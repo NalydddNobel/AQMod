@@ -10,7 +10,7 @@ using Terraria.Map;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
     public class AdventuringMap : ModItem
     {
@@ -62,7 +62,7 @@ namespace Aequus.Items.Tools
                 Randomize();
             }
 
-            int index = AequusTooltips.GetIndex(tooltips, "Tooltip#");
+            int index = tooltips.GetIndex("Tooltip#");
             if (worldID != Main.worldID)
             {
                 tooltips.Insert(index + 1, new TooltipLine(Mod, "InvalidWorld", AequusText.GetText("ItemTooltip.AdventuringMap.InvalidWorld")) { OverrideColor = new Color(255, 100, 100, 255) });

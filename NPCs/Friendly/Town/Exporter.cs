@@ -23,7 +23,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
     public class Exporter : ModNPC
@@ -323,7 +323,7 @@ namespace Aequus.NPCs.Friendly
                 chat.Add("Crabson");
             }
 
-            if (Main.invasionType == InvasionID.PirateInvasion || (Main.rand.NextBool(4) && NPC.downedPirates))
+            if (Main.invasionType == InvasionID.PirateInvasion || Main.rand.NextBool(4) && NPC.downedPirates)
             {
                 chat.Add("PirateInvasion");
             }

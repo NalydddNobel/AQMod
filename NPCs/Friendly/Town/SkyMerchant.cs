@@ -22,7 +22,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
     public class SkyMerchant : ModNPC
@@ -136,7 +136,7 @@ namespace Aequus.NPCs.Friendly
             {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                Aequus.NPCTalkInterface.SetState(new RenameItemState());
+                Aequus.NPCTalkInterface.SetState(new RenameItemUI());
             }
         }
 
@@ -256,7 +256,7 @@ namespace Aequus.NPCs.Friendly
                     int prefix = testItem.prefix;
                     testItem.SetDefaults(testItem.type);
                     //Main.NewText(testItem.Name + ": " + testItem.value * 1.5f, (testItem.value * 1.5f > maxPrice) ? Color.Red : Color.Cyan);
-                    if ((testItem.value * 1.5f) > maxPrice)
+                    if (testItem.value * 1.5f > maxPrice)
                     {
                         continue;
                     }
@@ -484,7 +484,7 @@ namespace Aequus.NPCs.Friendly
                 return;
             }
             if (NPC.position.X <= 240f || NPC.position.X + NPC.width > Main.maxTilesX * 16f - 240f
-                || (currentAction == 7 && offscreen && Main.rand.NextBool(1500)))
+                || currentAction == 7 && offscreen && Main.rand.NextBool(1500))
             {
                 NPC.active = false;
                 NPC.netUpdate = true;

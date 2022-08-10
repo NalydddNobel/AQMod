@@ -6,7 +6,7 @@ using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Monster.CrabsonProjs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

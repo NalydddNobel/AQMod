@@ -21,7 +21,7 @@ using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;

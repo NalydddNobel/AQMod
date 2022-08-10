@@ -152,10 +152,10 @@ namespace Aequus.Content.CrossMod
                 {
                     ModContent.ItemType<DustDevilRelic>(),
                     ModContent.ItemType<DustDevilBag>(),
-                    ModContent.ItemType<ThunderstormInABottle>(),
+                    ModContent.ItemType<TornadoInABottle>(),
                     ModContent.ItemType<AtmosphericEnergy>(),
                 },
-                new List<int>() { ModContent.ItemType<ThunderstormInABottle>(), });
+                new List<int>() { ModContent.ItemType<TornadoInABottle>(), });
 
             const float GaleStreams = 8.1f;
 
@@ -275,7 +275,7 @@ namespace Aequus.Content.CrossMod
 
             AequusText.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = AequusText.ItemText<HypnoticPearl>(), });
             AequusText.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = AequusText.ItemText<SupernovaFruit>(), });
-            AequusText.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = AequusText.ItemText<ThunderstormInABottle>(), });
+            AequusText.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = AequusText.ItemText<TornadoInABottle>(), });
 
             AequusText.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = AequusText.ItemText<GalacticStarfruit>(), });
             string demonSiegeItemList = "";

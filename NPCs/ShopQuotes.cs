@@ -3,7 +3,7 @@ using Aequus.Common;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

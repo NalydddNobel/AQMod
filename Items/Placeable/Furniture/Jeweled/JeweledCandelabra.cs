@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Furniture.Jeweled;
+﻿using Aequus.Content;
+using Aequus.Tiles.Furniture.Jeweled;
 using Terraria.ID;
 using Terraria.ModLoader;
 

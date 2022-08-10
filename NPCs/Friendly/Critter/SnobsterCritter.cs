@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Critter
 {
     public class SnobsterCritter : ModNPC
     {

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
@@ -93,6 +94,18 @@ namespace Aequus.Projectiles.Misc
                         break;
                     }
                 }
+
+                if (Main.myPlayer == Projectile.owner && Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    if (rotation.X.Abs() > MathHelper.TwoPi || rotation.Y.Abs() > MathHelper.TwoPi || rotation.Z.Abs() > MathHelper.TwoPi || Main.GameUpdateCount % 60 == 0)
+                    {
+                        Projectile.netUpdate = true;
+                    }
+                }
+
+                rotation.X %= MathHelper.TwoPi;
+                rotation.Y %= MathHelper.TwoPi;
+                rotation.Z %= MathHelper.TwoPi;
 
                 if (danger)
                 {

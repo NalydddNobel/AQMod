@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Friendly;
+﻿using Aequus.NPCs.Friendly.Critter;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

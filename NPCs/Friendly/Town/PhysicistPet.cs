@@ -11,7 +11,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Town
 {
     public class PhysicistPet : ModNPC
     {
@@ -113,7 +113,7 @@ namespace Aequus.NPCs.Friendly
         {
             if (firstButton)
             {
-                SoundEngine.PlaySound(RenameItemState.SqueakSound);
+                SoundEngine.PlaySound(RenameItemUI.SqueakSound);
             }
         }
 
@@ -222,7 +222,7 @@ namespace Aequus.NPCs.Friendly
         {
             if (tag.TryGet<string>("Name", out var value))
                 NPC.GivenName = value;
-            if (tag.TryGet<int>("ParentApparentID", out int findPhys))
+            if (tag.TryGet("ParentApparentID", out int findPhys))
             {
                 int physIndex = -1;
                 for (int i = 0; i < Main.maxNPCs; i++)

@@ -27,6 +27,10 @@ namespace Aequus.UI
 
         public static bool CanDoLeftClickItemActions => specialLeftClickDelay == 0;
 
+        public const float invBackColorMultipler = 0.785f;
+        public static readonly Color invBackColor = new Color(63, 65, 151, 255);
+        public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
+
         public override void Load()
         {
             LoadHooks();

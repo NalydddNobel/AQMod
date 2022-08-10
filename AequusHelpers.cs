@@ -82,6 +82,20 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Color SaturationMultiply(this Color color, float saturation)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.Y *= saturation;
+            return Main.hslToRgb(hsl);
+        }
+
+        public static Color SaturationSet(this Color color, float saturation)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.Y = saturation;
+            return Main.hslToRgb(hsl);
+        }
+
         public static Color[,] Get2DColorArr(this Texture2D texture, Rectangle frame)
         {
             var arr = Get1DColorArr(texture);
@@ -1670,6 +1684,11 @@ namespace Aequus
         public static bool SolidTopType(this Tile tile)
         {
             return Main.tileSolidTop[tile.TileType];
+        }
+
+        public static bool IsIncludedIn(this Tile tile, int[] arr)
+        {
+            return arr.ContainsAny(tile.TileType);
         }
 
         public static bool SolidType(this Tile tile)

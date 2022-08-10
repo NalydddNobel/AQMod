@@ -17,7 +17,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
     public class Physicist : ModNPC

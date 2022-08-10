@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.Summons
 {
-    public class ThunderstormInABottle : ModItem
+    public class TornadoInABottle : ModItem
     {
         public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.LightningBuginaBottle;
 

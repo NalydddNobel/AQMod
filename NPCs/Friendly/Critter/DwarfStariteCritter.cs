@@ -12,15 +12,15 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Critter
 {
-    public class OblivisonCritter : ModNPC
+    public class DwarfStariteCritter : ModNPC
     {
         public float rotationSpeed;
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 10;
+            Main.npcFrameCount[Type] = 2;
             Main.npcCatchable[Type] = true;
             NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TrailingMode[Type] = 7;
@@ -29,12 +29,16 @@ namespace Aequus.NPCs.Friendly
             {
                 ImmuneToAllBuffsThatAreNotWhips = true,
             });
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Position = new Vector2(0f, 23f),
+                PortraitPositionYOverride = 42,
+            });
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.Underworld);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void SetDefaults()
@@ -50,11 +54,13 @@ namespace Aequus.NPCs.Friendly
             NPC.npcSlots = 0.5f;
             NPC.noGravity = true;
             NPC.catchItem = (short)ModContent.ItemType<DwarfStarite>();
+
+            this.SetBiome<GlimmerBiome>();
         }
 
         public override Color? GetAlpha(Color drawColor)
         {
-            return new Color(255, 255, 255, 255);
+            return new Color(255, 255, 255, 0);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -126,6 +132,13 @@ namespace Aequus.NPCs.Friendly
 
         public override void AI()
         {
+            if (Main.dayTime)
+            {
+                NPC.life = -1;
+                NPC.HitEffect();
+                NPC.active = false;
+                return;
+            }
             if ((int)NPC.ai[1] == -1)
             {
                 if (NPC.ai[3] > 0f)
@@ -150,7 +163,7 @@ namespace Aequus.NPCs.Friendly
             int tileY = ((int)NPC.position.Y + NPC.height) / 16;
             for (int i = 0; i < 10; i++)
             {
-                if (WorldGen.InWorld(tileX, tileY + i, 10) && AequusHelpers.IsSolid(Main.tile[tileX, tileY + i]))
+                if (WorldGen.InWorld(tileX, tileY + i, 10) && Main.tile[tileX, tileY + i].IsSolid())
                 {
                     tileHeight = i + 1;
                     break;
@@ -191,170 +204,83 @@ namespace Aequus.NPCs.Friendly
                     NPC.velocity.X = NPC.oldVelocity.X * 0.8f;
                 }
             }
-
-            int eyeTargetFriendlyNPC = -1;
-            float eyeTargetDistance = 2000f;
-            int eyeTargetPlayer = -1;
-            for (int i = 0; i < Main.maxPlayers; i++)
+            NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, NPC.ai[2], 0.05f);
+            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, NPC.ai[0], 0.05f);
+            NPC.rotation += NPC.velocity.X * 0.004f;
+            if ((int)NPC.frameCounter == 0 && Main.rand.NextBool(400))
             {
-                if (Main.player[i].active)
+                rotationSpeed = 1f;
+            }
+            if (rotationSpeed <= 0.01f)
+            {
+                rotationSpeed = 0f;
+            }
+            else
+            {
+                rotationSpeed *= 0.95f;
+                NPC.rotation += rotationSpeed * 0.1f;
+            }
+            if (rotationSpeed > 0.1f)
+            {
+                if (Main.rand.NextBool(10))
                 {
-                    if (!Main.player[i].dead)
-                    {
-                        var d = NPC.Distance(Main.player[i].Center);
-                        if (d < eyeTargetDistance)
-                        {
-                            eyeTargetDistance = d;
-                            eyeTargetPlayer = i;
-                        }
-                    }
-                    if (Main.player[i].ghost && Main.myPlayer == i && Main.rand.NextBool(600))
-                    {
-                        Main.NewText(AequusText.GetTextWith("OblivisonEasterEgg", new { PlayerName = Main.player[i].name }));
-                    }
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
+                    Main.dust[d].velocity = NPC.velocity * 0.01f;
+                }
+                if (Main.rand.NextBool(20))
+                {
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
+                    Main.dust[d].velocity.X = Main.rand.NextFloat(-4f, 4f);
+                    Main.dust[d].velocity.Y = Main.rand.NextFloat(-4f, 4f);
+                }
+                if (Main.rand.NextBool(20))
+                {
+                    int g = Gore.NewGore(NPC.GetSource_FromThis(), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), 16 + Main.rand.Next(2));
+                    Main.gore[g].scale *= 0.6f;
                 }
             }
-
-            eyeTargetDistance = 2000f;
-            for (int i = 0; i < Main.maxNPCs; i++)
+            else
             {
-                if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].friendly)
+                if (Main.rand.NextBool(20))
                 {
-                    var d = NPC.Distance(Main.npc[i].Center);
-                    if (d < eyeTargetDistance)
-                    {
-                        eyeTargetDistance = d;
-                        eyeTargetFriendlyNPC = i;
-                    }
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
+                    Main.dust[d].velocity = NPC.velocity * 0.1f;
+                    Main.dust[d].scale = Main.rand.NextFloat(0.4f, 0.8f);
+                }
+                if (Main.rand.NextBool(120))
+                {
+                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
+                    Main.dust[d].velocity.X = Main.rand.NextFloat(-1f, 1f);
+                    Main.dust[d].velocity.Y = Main.rand.NextFloat(-1f, 1f);
+                    Main.dust[d].scale = Main.rand.NextFloat(0.4f, 0.8f);
+                }
+                if (Main.rand.NextBool(120))
+                {
+                    int g = Gore.NewGore(NPC.GetSource_FromThis(), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-0.5f, 0.5f)), 16 + Main.rand.Next(2));
+                    Main.gore[g].scale *= 0.3f;
                 }
             }
-
-            if (NPC.frame.Y == 0 && Main.rand.NextBool(400))
-            {
-                NPC.frame.Y += NPC.frame.Height;
-            }
-            if (NPC.frame.Y >= NPC.frame.Height * 4 && Main.rand.NextBool(400))
-            {
-                NPC.frameCounter = -1.0;
-            }
-
-            if (rotationSpeed == 0f && Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(100))
-            {
-                if (eyeTargetFriendlyNPC != -1 && eyeTargetPlayer != -1)
-                {
-                    rotationSpeed = Main.rand.NextBool() ? -1f : 1f;
-                }
-                else if (eyeTargetFriendlyNPC != -1)
-                {
-                    rotationSpeed = -1f;
-                }
-                else if (eyeTargetPlayer != -1)
-                {
-                    rotationSpeed = 1f;
-                }
-                NPC.netUpdate = true;
-            }
-
-            if (rotationSpeed != 0f)
-            {
-                if (rotationSpeed < 0f)
-                {
-                    if (rotationSpeed > -1000f && Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(600))
-                    {
-                        rotationSpeed -= 1000f;
-                    }
-                    if (eyeTargetFriendlyNPC != -1 && rotationSpeed > -1000f)
-                    {
-                        float val = -rotationSpeed % 1000f - 1f;
-                        float rotation = val % MathHelper.TwoPi;
-                        int distance = (int)(val / MathHelper.TwoPi);
-                        if (distance < 32)
-                        {
-                            distance++;
-                        }
-                        rotation = Utils.AngleLerp(rotation, (Main.npc[eyeTargetFriendlyNPC].Center - NPC.Center).ToRotation(), 0.05f);
-                        if (rotation < 0f)
-                        {
-                            rotation += MathHelper.TwoPi;
-                        }
-                        rotationSpeed = -(1f + rotation + distance * MathHelper.TwoPi);
-                    }
-                    else
-                    {
-                        rotationSpeed += MathHelper.TwoPi;
-                        if (rotationSpeed >= -1000f)
-                        {
-                            rotationSpeed = 0f;
-                        }
-                    }
-                }
-                if (rotationSpeed > 0f)
-                {
-                    if (rotationSpeed < 1000f && Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(600))
-                    {
-                        rotationSpeed += 1000f;
-                    }
-                    if (eyeTargetPlayer != -1 && rotationSpeed < 1000f)
-                    {
-                        float val = rotationSpeed % 1000f - 1f;
-                        float rotation = val % MathHelper.TwoPi;
-                        int distance = (int)(val / MathHelper.TwoPi);
-                        if (distance < 32)
-                        {
-                            distance++;
-                        }
-                        rotation = Utils.AngleLerp(rotation, (Main.player[eyeTargetPlayer].Center - NPC.Center).ToRotation(), 0.05f);
-                        if (rotation < 0f)
-                        {
-                            rotation += MathHelper.TwoPi;
-                        }
-                        rotationSpeed = 1f + rotation + (distance * MathHelper.TwoPi);
-                    }
-                    else
-                    {
-                        rotationSpeed -= MathHelper.TwoPi;
-                        if (rotationSpeed <= 1000f)
-                        {
-                            rotationSpeed = 0f;
-                        }
-                    }
-                }
-            }
-
-            NPC.velocity.X = MathHelper.Lerp(NPC.velocity.X, NPC.ai[2] / 2f, 0.01f);
-            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, NPC.ai[0] / 4f, 0.01f);
-            NPC.rotation += Main.rand.NextFloat(-0.01f, 0.01f);
-            Lighting.AddLight(NPC.Center, new Vector3(0.3f, 0.01f, 0.01f));
+            Lighting.AddLight(NPC.Center, new Vector3(0.1f, 0.1f, 0.01f));
         }
 
         public override void FindFrame(int frameHeight)
         {
-            if (NPC.frame.Y > 0)
+            if ((int)NPC.ai[1] == -1)
             {
-                if (NPC.frameCounter < 0.0)
-                {
-                    NPC.frameCounter--;
-                    if (NPC.frameCounter < -2.0)
-                    {
-                        NPC.frame.Y -= NPC.frame.Height;
-                        NPC.frameCounter = NPC.frame.Y == 0 ? 0.0 : -1.0;
-                    }
-                }
-                else if (NPC.frame.Y < NPC.frame.Height * 4)
-                {
-                    NPC.frameCounter++;
-                    if (NPC.frameCounter >= 2.0)
-                    {
-                        NPC.frameCounter = 0.0;
-                        NPC.frame.Y += NPC.frame.Height;
-                    }
-                }
+                return;
+            }
+
+            NPC.frameCounter++;
+            if (NPC.frameCounter >= 10.0)
+            {
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = (NPC.frame.Y + frameHeight) % (frameHeight * Main.npcFrameCount[Type]);
             }
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.Player.Aequus().ZoneGoreNest ? 0.25f : 0f;
+            return 0f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -363,38 +289,43 @@ namespace Aequus.NPCs.Friendly
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
             var origin = NPC.frame.Size() / 2f;
             var drawPos = NPC.Center - screenPos;
-            var whiteFrame = NPC.frame;
-            whiteFrame.Y += 150;
             for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
             {
                 float p = AequusHelpers.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, new Color(200, 200, 200, 0) * p, NPC.oldRot[i], origin, NPC.scale * p, SpriteEffects.None, 0f);
             }
-            foreach (var v in AequusHelpers.CircularVector(8, NPC.rotation + Main.GlobalTimeWrappedHourly))
-            {
-                Main.spriteBatch.Draw(texture, drawPos + v * 8f * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f), whiteFrame, Color.Red * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.1f, 0.2f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-            }
-            foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
-            {
-                Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 30, 10, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-            }
-            var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel").Value;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-
-            var eyeOffset = Vector2.Zero;
-
-            int eyeFrame = NPC.frame.Y / NPC.frame.Height;
-            if (rotationSpeed != 0f)
+            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.1f, SpriteEffects.None, 0f);
+            if ((int)NPC.ai[1] == -1)
             {
-                float val = rotationSpeed.Abs() % 1000f - 1f;
-                float rotation = val % MathHelper.TwoPi;
-                float distance = (int)(val / MathHelper.TwoPi);
-                float div = 8f;
-                distance *= (1f - eyeFrame / 5f);
-                eyeOffset += rotation.ToRotationVector2() * distance / div;
-            }
+                float scale = (float)Math.Pow(Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f), 3f) * 1.25f;
+                var shineColor = new Color(120, 120, 180, 0) * scale * NPC.Opacity;
 
-            Main.spriteBatch.Draw(pixel, drawPos + eyeOffset, null, NPC.GetAlpha(drawColor) * (1f - eyeFrame / 5f), NPC.rotation, pixel.Size() / 2f, NPC.scale * 4f, SpriteEffects.None, 0f);
+                var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
+                var lightRayOrigin = lightRay.Size() / 2f;
+
+                int i = 0;
+                foreach (float f in AequusHelpers.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
+                {
+                    var rayScale = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
+                    rayScale.X *= 0.5f;
+                    rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
+                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
+                    i++;
+                }
+
+                var spotlightTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Bloom_20x20").Value;
+                var spotlightOrigin = spotlightTexture.Size() / 2f;
+                Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * scale * NPC.Opacity, 0f, spotlightOrigin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, spotlightOrigin, scale * 2f, SpriteEffects.None, 0f);
+
+                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+                var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+                var shineOrigin = shine.Size() / 2f;
+                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * scale, SpriteEffects.None, 0);
+            }
             return false;
         }
     }

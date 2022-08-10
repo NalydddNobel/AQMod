@@ -229,6 +229,7 @@ Mods: {
 			Moro: Moro
 			
 			AdventuringMap: Adventuring Map
+			CarpenterBountyItem: Housing Bounty
 			SkeletonKey: Skeleton Key
 
 			Snobster: Snobster
@@ -324,7 +325,7 @@ Mods: {
 
 			HypnoticPearl: Hypnotic Pearl
 			SupernovaFruit: Supernova Fruit
-			ThunderstormInABottle: Thunderstorm in a Bottle
+			TornadoInABottle: Tornado in a Bottle
 
 			CelesitalEightBall: Celestial 8-Ball
 
@@ -955,7 +956,7 @@ Mods: {
 				Summons Omega Starite at night
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
-			ThunderstormInABottle:
+			TornadoInABottle:
 				'''
 				Summons the Dust Devil in space
 				{$Mods.Aequus.Common.NotConsumable}
@@ -3059,6 +3060,22 @@ Mods: {
 				}
 			}
 
+			Carpenter: {
+				Basic: {
+					0: Do not translate!
+					1: Do not translate!
+				}
+
+				ShopQuote: {
+					GrayBrick: Do not translate!
+				}
+
+				UI: {
+					Reward: "Reward:"
+					PurchaseBounty: "Purchase a copy of this bounty for: {Coins}"
+				}
+			}
+
 			Occultist: {
 				Basic: {
 					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
@@ -3386,7 +3403,19 @@ Mods: {
 			19: Concentrate and ask again
 		}
 
-				
+		Bounty: {
+			PirateShipBounty: {
+				"$parentVal": Pirate's Ship
+				Description: Build a pirate ship
+				Requirements:
+					'''
+					Walls must be partially submerged underwater
+					Suitable for 2 town NPCs
+					15+ Furniture
+					'''
+			}
+		}
+
 		BossChecklist: {
 			Crabson: Summoned with the {HypnoticPearl}
 			OmegaStarite: Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the {SupernovaFruit}

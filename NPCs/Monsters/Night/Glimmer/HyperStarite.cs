@@ -7,7 +7,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Summon;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;

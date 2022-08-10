@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly
+namespace Aequus.NPCs.Friendly.Town
 {
     public class TownNPCBuffs : GlobalNPC
     {
@@ -11,6 +11,10 @@ namespace Aequus.NPCs.Friendly
                 GenericBuffs(ref damageMult, ref defense);
             }
             if (AequusWorld.downedOmegaStarite)
+            {
+                GenericBuffs(ref damageMult, ref defense);
+            }
+            if (AequusWorld.downedDustDevil)
             {
                 GenericBuffs(ref damageMult, ref defense);
             }

@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,7 +17,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.UI.States
 {
-    public class RenameItemState : UIState, ILoadable
+    public class RenameItemUI : UIState, ILoadable
     {
         public static Asset<Texture2D> RenameBackIconTexture { get; private set; }
         public static readonly SoundStyle SelectSound = Aequus.GetSound("select", volume: 0.5f);
