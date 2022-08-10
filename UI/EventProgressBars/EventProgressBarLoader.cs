@@ -41,7 +41,7 @@ namespace Aequus.UI.EventProgressBars
             NextIndex++;
         }
 
-        internal static void Draw()
+        internal static void LegacyDraw()
         {
             if (_progressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f))
             {

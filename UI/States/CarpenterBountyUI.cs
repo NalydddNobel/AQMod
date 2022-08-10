@@ -4,6 +4,8 @@ using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -15,7 +17,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.UI.States
 {
-    public class CarpenterBountyUI : UIState
+    public class CarpenterBountyUI : UIState, IChooseInterfaceLayer
     {
         public class CarpenterBountyUIElement : UIElement
         {
@@ -45,7 +47,7 @@ namespace Aequus.UI.States
             {
                 listItem.buy = true;
                 panel = new UIPanel();
-                panel.Width.Set(Width.Pixels + 40, Width.Percent);
+                panel.Width.Set(Width.Pixels + 60, Width.Percent);
                 panel.Height.Set(Height.Pixels, Height.Percent);
                 Append(panel);
 
@@ -101,6 +103,7 @@ namespace Aequus.UI.States
                     TextOriginY = 0f,
                 };
                 textPanel.Append(requirements);
+                requirements.IsWrapped = true;
             }
 
             protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -255,6 +258,7 @@ namespace Aequus.UI.States
             public float DrawScale { get; private set; }
 
             public bool recalculate;
+            public Action OnRecalculateTextureSize;
 
             public CarpenterBountyTextureUIElement(Asset<Texture2D> texture)
             {
@@ -284,6 +288,8 @@ namespace Aequus.UI.States
                 {
                     DrawScale = maxSize / (float)largestSide;
                 }
+                OnRecalculateTextureSize();
+                recalculate = false;
             }
 
             protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -297,17 +303,27 @@ namespace Aequus.UI.States
                     var d = GetDimensions();
                     var drawCoords = new Vector2(d.X + d.Width / 2f, d.Y + d.Height / 2f);
                     var drawOrigin = texture.Value.Size() / 2f;
-                    spriteBatch.Draw(texture.Value, drawCoords + new Vector2(4f), null, Color.Black * 0.35f, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
+                    drawCoords.Y += (d.Height / 2f - drawOrigin.Y) * 0.9f;
 
+                    var black = Color.Black.UseA(150);
                     if (Aequus.HQ)
                     {
                         foreach (var c in AequusHelpers.CircularVector(4))
                         {
-                            spriteBatch.Draw(texture.Value, drawCoords + new Vector2(4f) + c * 2f, null, Color.Black * 0.1f, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
+                            spriteBatch.Draw(texture.Value, drawCoords + new Vector2(2f) + c * 2f, null, black * 0.1f, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
                         }
+                        //foreach (var c in AequusHelpers.CircularVector(8))
+                        //{
+                        //    spriteBatch.Draw(texture.Value, drawCoords + c * 4f, null, black * 0.2f, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
+                        //}
+                    }
+                    foreach (var c in AequusHelpers.CircularVector(4))
+                    {
+                        spriteBatch.Draw(texture.Value, drawCoords + c * 2f, null, black, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
                     }
                     spriteBatch.Draw(texture.Value, drawCoords, null, Color.White, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
                 }
+                //AequusHelpers.DrawRectangle(GetDimensions().ToRectangle(), Color.Red * 0.1f);
                 base.DrawSelf(spriteBatch);
             }
         }
@@ -324,14 +340,16 @@ namespace Aequus.UI.States
 
             OverrideSamplerState = SamplerState.LinearClamp;
 
-            Width.Set(100, 0.4f);
+            Width.Set(100, 0.526f);
             Height.Set(0, 0.526f);
             MinWidth.Set(400, 0f);
             MaxWidth.Set(1000, 0f);
             MinHeight.Set(400, 0f);
             MaxHeight.Set(1000, 0f);
-            Top.Set(0, 0.33f - Height.Precent / 2f);
-            Left.Set(0, 0.5f - Width.Precent / 2f);
+            Top.Set(100, 0f);
+            Left.Set(120, 0f);
+            HAlign = 0.5f;
+            //VAlign = 0.33f;
 
             bountyList = new UIList();
             bountyList.Left.Set(20, 0f);
@@ -396,6 +414,7 @@ namespace Aequus.UI.States
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+            Main.playerInventory = !Main.mouseItem.IsAir;
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<Carpenter>())
             {
                 Aequus.NPCTalkInterface.SetState(null);
@@ -446,13 +465,30 @@ namespace Aequus.UI.States
                 return;
             }
             element.HoverColor(true);
+            PopulateSideList(element);
+            selected = element;
+        }
+
+        public void PopulateSideList(CarpenterBountyUIElement element)
+        {
+            PopulateSideList_TitleAndDescription(element);
+            PopulateSideList_Requirements(element);
+
+            PopulateSideList_AddSeparator();
+
+            PopulateSideList_Blueprint(element);
+
+            PopulateSideList_AddSeparator();
+        }
+        public void PopulateSideList_TitleAndDescription(CarpenterBountyUIElement element)
+        {
             var panel = new UIPanel()
             {
                 Top = new StyleDimension(0, 0f),
                 Left = new StyleDimension(0, 0f),
                 Width = new StyleDimension(0, 1f),
-                Height = new StyleDimension(64, 0f),
-                BackgroundColor = (AequusUI.invBackColor * 0.6f).UseA(255),
+                Height = new StyleDimension(56, 0f),
+                BackgroundColor = (AequusUI.invBackColor * 0.85f).UseA(255),
                 BorderColor = Color.Transparent,
                 PaddingLeft = 0f,
                 PaddingTop = 0f,
@@ -463,7 +499,7 @@ namespace Aequus.UI.States
                 Height = panel.Height,
                 TextOriginX = 0.5f,
                 TextOriginY = 0.25f,
-                TextColor = Color.Lerp(Color.Yellow, Color.White, 0.66f),
+                TextColor = Color.Lerp(Color.Yellow, Color.White, 0.45f),
             });
             panel.Append(new UIText(element.listItem.ModItem<CarpenterBountyItem>().BountyDescription, textScale: 0.85f)
             {
@@ -474,8 +510,10 @@ namespace Aequus.UI.States
                 TextOriginY = 0.25f,
             });
             selectionPanelList.Add(panel);
-
-            panel = new UIPanel()
+        }
+        public void PopulateSideList_Requirements(CarpenterBountyUIElement element)
+        {
+            var panel = new UIPanel()
             {
                 Top = new StyleDimension(0, 0f),
                 Left = new StyleDimension(0, 0f),
@@ -486,7 +524,6 @@ namespace Aequus.UI.States
                 PaddingLeft = 0f,
                 PaddingTop = 0f,
             };
-
             selectionPanelList.Add(panel);
 
             string requirementText = element.listItem.ModItem<CarpenterBountyItem>().BountyRequirements;
@@ -498,7 +535,6 @@ namespace Aequus.UI.States
                     requirementText += "\n";
                 requirementText += "• " + FontAssets.MouseText.Value.CreateWrappedText(s, panel.GetInnerDimensions().Width);
             }
-
             var uiText = new UIText(requirementText, textScale: 0.8f)
             {
                 Width = panel.Width,
@@ -510,20 +546,92 @@ namespace Aequus.UI.States
             };
             panel.Append(uiText);
             panel.Height.Set((int)FontAssets.MouseText.Value.MeasureString(uiText.Text).Y * 0.8f + uiText.Top.Pixels, 0f);
+            uiText.IsWrapped = true;
+        }
+        public void PopulateSideList_Blueprint(CarpenterBountyUIElement element)
+        {
+            var panel = new UIPanel()
+            {
+                Width = new StyleDimension(0, 1f),
+                BackgroundColor = (AequusUI.invBackColor * 0.6f).UseA(255),
+                BorderColor = Color.Transparent,
+                PaddingLeft = 0f,
+                PaddingTop = 0f,
+            };
+
+            panel.Append(new UIText("Blueprint", 0.85f)
+            {
+                Width = panel.Width,
+                Height = panel.Height,
+                TextOriginX = 0f,
+                PaddingLeft = 6f,
+                PaddingTop = 10f,
+            });
+
+            panel.Append(new UIText("Ⓒ 2022 Carpenter Ant, Inc. All rights reserved", 0.6f)
+            {
+                Width = panel.Width,
+                Height = panel.Height,
+                TextOriginX = 0f,
+                PaddingLeft = 6f,
+                PaddingTop = 30f,
+            });
 
             string texture = element.ListItem.BountyTexture;
             if (!ModContent.HasAsset(texture))
             {
                 texture = "Aequus/Assets/UI/Carpenter/Blueprints/Error";
             }
-            selectionPanelList.Add(new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture))
+
+            selectionPanelList.Add(panel);
+
+            var textureElement = new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture))
             {
                 Width = new StyleDimension(0, 1f),
+                Top = new StyleDimension(44, 0f),
+            };
+            textureElement.OnRecalculateTextureSize += () => panel.Height = new StyleDimension(textureElement.Height.Pixels + textureElement.Top.Pixels, 0f);
+            panel.Append(textureElement);
+        }
+
+        public void PopulateSideList_AddSeparator()
+        {
+            selectionPanelList.Add(new UIHorizontalSeparator()
+            {
+                Left = new StyleDimension(12f, 0f),
+                Width = new StyleDimension(-24f, 1f),
+                Color = AequusUI.invBackColor * 2f * AequusUI.invBackColorMultipler,
             });
+        }
 
-            uiText.IsWrapped = true;
+        public void DisableAnnoyingUI(List<GameInterfaceLayer> layers)
+        {
+            int inventoryLayer = layers.FindIndex((g) => g.Name.Equals("Vanilla: Info Accessories Bar"));
+            for (int i = inventoryLayer; i >= 0; i--)
+            {
+                if (!layers[i].Name.StartsWith("Vanilla: Interface Logic") && !layers[i].Name.Equals("Vanilla: Achievement Complete Popups")
+                    && !layers[i].Name.Equals("Vanilla: Invasion Progress Bars") && layers[i].ScaleType == InterfaceScaleType.UI)
+                    layers[i].Active = false;
+            }
+            if (Main.playerInventory)
+            {
+                foreach (var g in layers)
+                {
+                    if (g.Name.Equals(AequusUI.InterfaceLayers.Inventory))
+                    {
+                        g.Active = true;
+                    }
+                }
+            }
+        }
 
-            selected = element;
+        public int GetLayerIndex(List<GameInterfaceLayer> layers)
+        {
+            DisableAnnoyingUI(layers);
+            int index = layers.FindIndex((l) => l.Name.Equals(AequusUI.InterfaceLayers.Inventory));
+            if (index == -1)
+                return -1;
+            return index + 1;
         }
     }
 }

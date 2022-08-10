@@ -11,6 +11,11 @@ namespace Aequus.UI
 {
     public sealed class AequusUI : ModSystem
     {
+        public class InterfaceLayers
+        {
+            public const string Inventory = "Vanilla: Inventory";
+        }
+
         public const int LeftInv = 20;
 
         public static int leftInvOffset;
@@ -96,15 +101,34 @@ namespace Aequus.UI
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             leftInvOffset = 0;
-            IntoLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
+            InsertInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
+            LegacyInsertInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
-                EventProgressBarLoader.Draw();
-                Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
-                Aequus.InventoryInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                EventProgressBarLoader.LegacyDraw();
                 return true;
             });
         }
-        private void IntoLayer(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI)
+        private void InsertInterfaceLayer(List<GameInterfaceLayer> layers, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
+        {
+            int layer = -1;
+            if (Aequus.NPCTalkInterface.CurrentState is IChooseInterfaceLayer chooseLayer)
+            {
+                layer = chooseLayer.GetLayerIndex(layers);
+            }
+            if (layer == -1)
+            {
+                layer = layers.FindIndex((g) => g.Name.Equals(defaultLayer));
+            }
+            if (layer != -1)
+            {
+                layers.Insert(layer, new LegacyGameInterfaceLayer("Aequus: Inventory", () =>
+                {
+                    Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                    return true;
+                }, scaleType));
+            }
+        }
+        private void LegacyInsertInterfaceLayer(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI)
         {
             int index = layers.FindIndex((l) => l.Name.Equals(name));
             if (index != -1)
@@ -142,7 +166,6 @@ namespace Aequus.UI
                     PlayerInput.Triggers.JustPressed.Grapple = false;
                 }
                 Aequus.NPCTalkInterface.SetState(null);
-                Aequus.InventoryInterface.SetState(null);
             }
         }
 

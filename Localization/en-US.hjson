@@ -229,7 +229,7 @@ Mods: {
 			Moro: Moro
 			
 			AdventuringMap: Adventuring Map
-			CarpenterBountyItem: Housing Bounty
+			CarpenterBountyItem: Carpenter Bounty
 			SkeletonKey: Skeleton Key
 
 			Snobster: Snobster
@@ -3071,8 +3071,9 @@ Mods: {
 				}
 
 				UI: {
+					BountyButton: View Bounties
 					Reward: "Reward:"
-					PurchaseBounty: "Purchase a copy of this bounty for: {Coins}"
+					PurchaseBounty: Purchase a copy of this bounty for: {Coins}
 				}
 			}
 
