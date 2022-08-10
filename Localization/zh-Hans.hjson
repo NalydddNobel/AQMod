@@ -229,7 +229,7 @@ Mods: {
 			Moro: 摩洛
 
 			AdventuringMap: 冒险地图
-			CarpenterBountyItem: 住房奖励
+			CarpenterBountyItem: 木匠赏金
 			SkeletonKey: 骷髅钥匙
 
 			Snobster: 势利鬼虾
@@ -3071,8 +3071,9 @@ Mods: {
 				}
 
 				UI: {
+					BountyButton: 查看赏金
 					Reward: "奖励:"
-					PurchaseBounty: "以{Coins}的价格购买此奖励的副本"
+					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
 				}
 			}
 
