@@ -229,6 +229,7 @@ Mods: {
 			Moro: 摩洛
 
 			AdventuringMap: 冒险地图
+			CarpenterBountyItem: 住房奖励
 			SkeletonKey: 骷髅钥匙
 
 			Snobster: 势利鬼虾
@@ -324,7 +325,7 @@ Mods: {
 
 			HypnoticPearl: 催眠珍珠
 			SupernovaFruit: 超新星果
-			ThunderstormInABottle: 瓶中雷暴
+			TornadoInABottle: 瓶中风暴
 
 			CelesitalEightBall: 星界八号球
 
@@ -955,7 +956,7 @@ Mods: {
 				在夜晚使用以召唤终末之星
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
-			ThunderstormInABottle:
+			TornadoInABottle:
 				'''
 				在太空使用以尘暴
 				{$Mods.Aequus.Common.NotConsumable}
@@ -3059,6 +3060,22 @@ Mods: {
 				}
 			}
 
+			Carpenter: {
+				Basic: {
+					0: Do not translate!
+					1: Do not translate!
+				}
+
+				ShopQuote: {
+					GrayBrick: Do not translate!
+				}
+
+				UI: {
+					Reward: "奖励:"
+					PurchaseBounty: "以{Coins}的价格购买此奖励的副本"
+				}
+			}
+
 			Occultist: {
 				Basic: {
 					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
@@ -3386,6 +3403,18 @@ Mods: {
 			19: 请集中你的精神再问一次
 		}
 
+		Bounty: {
+			PirateShipBounty: {
+				"$parentVal": 海盗船
+				Description: 建造一艘海盗船
+				Requirements:
+					'''
+					部分墙壁必须浸没在水下
+					适合2位城镇NPC
+					15+家具
+					'''
+			}
+		}
 
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
