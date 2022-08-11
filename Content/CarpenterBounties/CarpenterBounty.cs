@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Tools.Misc;
+﻿using Aequus.Common;
+using Aequus.Items.Tools.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -24,11 +25,11 @@ namespace Aequus.Content.CarpenterBounties
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="rect"></param>
+        /// <param name="map"></param>
         /// <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
         /// <param name="carpenter">Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.</param>
         /// <returns></returns>
-        public abstract bool CheckConditions(Rectangle rect, out string message, NPC carpenter = null);
+        public abstract bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null);
 
         public virtual bool IsBountyAvailable()
         {

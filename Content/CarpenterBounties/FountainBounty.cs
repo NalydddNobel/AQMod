@@ -3,7 +3,6 @@ using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 
@@ -11,16 +10,15 @@ namespace Aequus.Content.CarpenterBounties
 {
     public class FountainBounty : CarpenterBounty
     {
-        public override bool CheckConditions(Rectangle rect, out string message, NPC carpenter = null)
+        public override bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null)
         {
             message = "";
             //AequusHelpers.dustDebug(new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16), DustID.FrostHydra);
-            var map = new TileMapCache(rect);
             if (!FindWaterfallsPass(map, out var waterfalls))
             {
                 return false;
             }
-            var surroundingRectangle = new Rectangle(rect.Width, rect.Height, 1, 1);
+            var surroundingRectangle = new Rectangle(map.Width, map.Height, 1, 1);
             foreach (var w in waterfalls)
             {
                 //AequusHelpers.dustDebug(rect.X + w.X, rect.Y + w.Y, DustID.CursedTorch);
@@ -73,7 +71,7 @@ namespace Aequus.Content.CarpenterBounties
                 return false;
             }
 
-            surroundingRectangle = new Rectangle(rect.Width, rect.Height, 1, 1);
+            surroundingRectangle = new Rectangle(map.Width, map.Height, 1, 1);
             foreach (var t in tiles)
             {
                 if (surroundingRectangle.X > t.X)

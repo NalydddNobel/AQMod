@@ -1,5 +1,5 @@
-﻿using Aequus.Items;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Aequus.Items;
 using Terraria;
 using Terraria.ID;
 
@@ -7,7 +7,7 @@ namespace Aequus.Content.CarpenterBounties
 {
     public class PirateShipBounty : CarpenterBounty
     {
-        public override bool CheckConditions(Rectangle rect, out string message, NPC carpenter = null)
+        public override bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null)
         {
             message = "";
             return true;
