@@ -1,30 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoMod.Utils;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content
+namespace Aequus.Common
 {
     public class TileMapCache : TagSerializable
     {
-        public readonly Rectangle OriginalAreaInWorld;
+        public readonly Rectangle Area;
         public readonly int WorldID;
 
-        private TileDataCache[,] cachedInfo;
+        public TileDataCache[,] cachedInfo;
 
-        internal TileMapCache(Rectangle area, TileDataCache[,] cachedInfo, int worldID)
+        public int Width => Area.Width;
+        public int Height => Area.Height;
+
+        public TileMapCache(Rectangle area, TileDataCache[,] cachedInfo, int worldID)
         {
-            OriginalAreaInWorld = area;
+            Area = area;
             WorldID = worldID;
             this.cachedInfo = cachedInfo;
         }
 
         public TileMapCache(Rectangle worldFrame)
         {
-            OriginalAreaInWorld = worldFrame;
+            Area = worldFrame;
             WorldID = Main.worldID;
             cachedInfo = new TileDataCache[worldFrame.Width, worldFrame.Height];
             Setup();
@@ -58,18 +60,31 @@ namespace Aequus.Content
 
         public bool InMap(int x, int y)
         {
-            return x > -1 && x < OriginalAreaInWorld.Width && y > -1 && y < OriginalAreaInWorld.Height;
+            return x > -1 && x < Area.Width && y > -1 && y < Area.Height;
         }
 
         public void Setup()
         {
-            for (int i = 0; i < OriginalAreaInWorld.Width; i++)
+            for (int i = 0; i < Area.Width; i++)
             {
-                for (int j = 0; j < OriginalAreaInWorld.Height; j++)
+                for (int j = 0; j < Area.Height; j++)
                 {
-                    cachedInfo[i, j] = new TileDataCache(Main.tile[OriginalAreaInWorld.X + i, OriginalAreaInWorld.Y + j]);
+                    cachedInfo[i, j] = new TileDataCache(Main.tile[Area.X + i, Area.Y + j]);
                 }
             }
+        }
+
+        public TileMapCache Clone()
+        {
+            var tileMapCache = new TileMapCache(Area, new TileDataCache[Width, Height], WorldID);
+            for (int i = 0; i < Width; i++)
+            {
+                for (int j = 0; j < Height; j++)
+                {
+                    tileMapCache.cachedInfo[i, j] = cachedInfo[i, j];
+                }
+            }
+            return tileMapCache;
         }
 
         public virtual TagCompound SerializeData()
@@ -94,40 +109,61 @@ namespace Aequus.Content
 
         public int[] CompressArea()
         {
-            return new int[] { OriginalAreaInWorld.X, OriginalAreaInWorld.Y, OriginalAreaInWorld.Width, OriginalAreaInWorld.Height, };
+            return new int[] { Area.X, Area.Y, Area.Width, Area.Height, };
         }
 
         public byte[] CompressTileArray()
         {
-            int bytesUsedByTiles = OriginalAreaInWorld.Width * OriginalAreaInWorld.Height * 12;
+            int bytesUsedByTiles = Area.Width * Area.Height * 12;
             using (var stream = new MemoryStream())
             {
                 var writer = new BinaryWriter(stream);
                 writer.Write(Main.maxTileSets);
-                var conversionTable = new Dictionary<int, string>();
-                for (int i = 0; i < OriginalAreaInWorld.Width; i++)
+                writer.Write(Main.maxWallTypes);
+                var tileConversionTable = new Dictionary<int, string>();
+                for (int i = 0; i < Area.Width; i++)
                 {
-                    for (int j = 0; j < OriginalAreaInWorld.Height; j++)
+                    for (int j = 0; j < Area.Height; j++)
                     {
-                        if (cachedInfo[i, j].Type.Type >= Main.maxTileSets && !conversionTable.ContainsKey(cachedInfo[i, j].Type.Type))
+                        if (cachedInfo[i, j].Type.Type >= Main.maxTileSets && !tileConversionTable.ContainsKey(cachedInfo[i, j].Type.Type))
                         {
-                            conversionTable.Add(cachedInfo[i, j].Type.Type, TileLoader.GetTile(cachedInfo[i, j].Type.Type).FullName);
+                            tileConversionTable.Add(cachedInfo[i, j].Type.Type, TileLoader.GetTile(cachedInfo[i, j].Type.Type).FullName);
                         }
                     }
                 }
 
-                writer.Write(conversionTable.Count);
-                foreach (var pair in conversionTable)
+                var wallConversionTable = new Dictionary<int, string>();
+                for (int i = 0; i < Area.Width; i++)
+                {
+                    for (int j = 0; j < Area.Height; j++)
+                    {
+                        if (cachedInfo[i, j].Wall.Type >= Main.maxWallTypes && !wallConversionTable.ContainsKey(cachedInfo[i, j].Wall.Type))
+                        {
+                            wallConversionTable.Add(cachedInfo[i, j].Wall.Type, TileLoader.GetTile(cachedInfo[i, j].Wall.Type).FullName);
+                        }
+                    }
+                }
+
+                writer.Write(tileConversionTable.Count);
+                foreach (var pair in tileConversionTable)
                 {
                     writer.Write(pair.Key);
                     writer.Write(pair.Value);
                 }
+
+                writer.Write(wallConversionTable.Count);
+                foreach (var pair in wallConversionTable)
+                {
+                    writer.Write(pair.Key);
+                    writer.Write(pair.Value);
+                }
+
                 long position = writer.BaseStream.Position;
                 writer.Write((long)0);
 
-                for (int i = 0; i < OriginalAreaInWorld.Width; i++)
+                for (int i = 0; i < Area.Width; i++)
                 {
-                    for (int j = 0; j < OriginalAreaInWorld.Height; j++)
+                    for (int j = 0; j < Area.Height; j++)
                     {
                         writer.Write(cachedInfo[i, j].Type.Type);
                         writer.Write(cachedInfo[i, j].Liquid.Amount);
@@ -135,6 +171,7 @@ namespace Aequus.Content
                         writer.Write(cachedInfo[i, j].Misc.TileFrameX);
                         writer.Write(cachedInfo[i, j].Misc.TileFrameY);
                         writer.Write(TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.GetValue<int>(cachedInfo[i, j].Misc));
+                        writer.Write(cachedInfo[i, j].Wall.Type);
                     }
                 }
 
@@ -151,10 +188,12 @@ namespace Aequus.Content
             {
                 var info = new TileDataCache[width, height];
                 int maxTiles = reader.ReadInt32();
-                int conversionCount = reader.ReadInt32();
-                var conversionTable = new Dictionary<int, int>();
-                
-                for (int i = 0; i < conversionCount; i++)
+                int maxWalls = reader.ReadInt32();
+
+                int tileConversionCount = reader.ReadInt32();
+                var tileConversionTable = new Dictionary<int, int>();
+
+                for (int i = 0; i < tileConversionCount; i++)
                 {
                     int tileResultID = -1;
                     int tileConversionKey = reader.ReadInt32();
@@ -169,7 +208,28 @@ namespace Aequus.Content
                                 continue;
                         }
                     }
-                    conversionTable.Add(tileConversionKey, tileResultID);
+                    tileConversionTable.Add(tileConversionKey, tileResultID);
+                }
+
+                int wallConversionCount = reader.ReadInt32();
+                var wallConversionTable = new Dictionary<int, int>();
+
+                for (int i = 0; i < wallConversionCount; i++)
+                {
+                    int wallResultID = -1;
+                    int wallConversionID = reader.ReadInt32();
+                    var wallKey = reader.ReadString();
+                    var split = wallKey.Split('/');
+                    if (ModLoader.TryGetMod(split[0], out var mod))
+                    {
+                        if (mod.TryFind<ModWall>(split[1], out var modWall))
+                        {
+                            wallResultID = modWall.Type;
+                            if (wallResultID == wallConversionID)
+                                continue;
+                        }
+                    }
+                    wallConversionTable.Add(wallConversionID, wallResultID);
                 }
 
                 long uselessMaxBytes = reader.ReadInt64();
@@ -182,7 +242,7 @@ namespace Aequus.Content
                         {
                             Type = reader.ReadUInt16(),
                         };
-                        if (tileType.Type >= maxTiles && conversionTable.TryGetValue(tileType.Type, out int val))
+                        if (tileType.Type >= maxTiles && tileConversionTable.TryGetValue(tileType.Type, out int val))
                         {
                             tileType.Type = (ushort)val;
                         }
@@ -202,7 +262,15 @@ namespace Aequus.Content
                         box = misc;
                         TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.SetValue(box, val2);
                         misc = (TileWallWireStateData)box;
-                        info[i, j] = new TileDataCache(tileType, liquid, misc);
+                        var wall = new WallTypeData()
+                        {
+                            Type = reader.ReadUInt16(),
+                        };
+                        if (wall.Type >= maxTiles && wallConversionTable.TryGetValue(wall.Type, out int wallVal))
+                        {
+                            wall.Type = (ushort)wallVal;
+                        }
+                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall);
                     }
                 }
                 return info;

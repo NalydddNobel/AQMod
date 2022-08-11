@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -76,7 +77,7 @@ namespace Aequus.Graphics
 
         public static ScreenShake Shake { get; private set; }
 
-        public static List<ScreenTarget> Renderers { get; internal set; }
+        public static List<RequestableRenderTarget> Renderers { get; internal set; }
 
         public override void Load()
         {
@@ -93,7 +94,8 @@ namespace Aequus.Graphics
             BehindProjs = new ParticleRenderer();
             BehindPlayers = new ParticleRenderer();
             AbovePlayers = new ParticleRenderer();
-            Renderers = new List<ScreenTarget>();
+            if (Renderers == null)
+                Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
         }
         private void LoadHooks()

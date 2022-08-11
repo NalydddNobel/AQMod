@@ -23,6 +23,8 @@ namespace Aequus.Common.Networking
     {
         private static HashSet<PacketType> logPacketType;
 
+        public static ModPacket NewPacket => Aequus.Instance.GetPacket();
+
         public override void Load()
         {
             logPacketType = new HashSet<PacketType>()

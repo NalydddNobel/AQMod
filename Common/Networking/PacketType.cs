@@ -1,4 +1,6 @@
-﻿namespace Aequus.Common.Networking
+﻿using System.IO;
+
+namespace Aequus.Common.Networking
 {
     public enum PacketType : byte
     {
@@ -19,5 +21,17 @@
         SyncNecromancyNPC,
         SyncDronePoint,
         Count,
+    }
+
+    public static class PacketTypeExtensions
+    {
+        public static void Write(this BinaryWriter writer, PacketType packetType)
+        {
+            writer.Write((byte)packetType);
+        }
+        public static PacketType ReadPacketType(this BinaryReader reader)
+        {
+            return (PacketType)reader.ReadByte();
+        }
     }
 }

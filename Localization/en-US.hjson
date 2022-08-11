@@ -258,6 +258,9 @@ Mods: {
 
 			RichMansMonocle: Rich Man's Monocle
 
+			Citysnapper: Citysnapper
+			CitysnapperClip: Citysnapper Clip
+			CitysnapperClipAmmo: Citysnapper Clip
 			PhysicsGun: Physics Gun
 			Pumpinator: Pumpinator
 			Bellows: Bellows
@@ -829,6 +832,9 @@ Mods: {
 			UnholyCore: Halves the length of a Demon Siege event
 
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
+
+			Citysnapper: Used to take photos with citysnapper clips
+			CitysnapperClipAmmo: Photos printed onto these clips can be reviewed by the carpenter
 
 			PhysicsGun: Can grab and throw blocks
 			Pumpinator:

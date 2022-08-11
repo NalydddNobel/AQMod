@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -142,11 +143,11 @@ namespace Aequus.Content.CarpenterBounties
         private bool FindWaterfallsPass(TileMapCache map, out List<Point> waterfalls)
         {
             waterfalls = new List<Point>();
-            int x = map.OriginalAreaInWorld.X;
-            int y = map.OriginalAreaInWorld.Y;
-            for (int i = 0; i < map.OriginalAreaInWorld.Width; i++)
+            int x = map.Area.X;
+            int y = map.Area.Y;
+            for (int i = 0; i < map.Area.Width; i++)
             {
-                for (int j = 0; j < map.OriginalAreaInWorld.Height; j++)
+                for (int j = 0; j < map.Area.Height; j++)
                 {
                     var checkPoint = new Point(i, j);
                     var tile = map.Get(checkPoint);

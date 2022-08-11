@@ -1,4 +1,4 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
@@ -29,24 +29,6 @@ namespace Aequus.Items
         public override bool? UseItem(Player player)
         {
             Main.NewText(CarpenterSystem.BountiesByID[0].CheckConditions(Utils.CenteredRectangle(player.Center.ToTileCoordinates().ToVector2(), new Vector2(30f, 20f)).Fluffize(10), out string dnc, null));
-            return true;
-            var map = new TileMapCache(new Rectangle(AequusHelpers.tileX + 10, AequusHelpers.tileY, 8, 8));
-            //DebugCompressedTile(map);
-            //return true;
-
-            var tag = map.SerializeData();
-            map = TileMapCache.DeserializeData(tag);
-            //DebugCompressedTile(map);
-            for (int i = 0; i < map.OriginalAreaInWorld.Width; i++)
-            {
-                for (int j = 0; j < map.OriginalAreaInWorld.Height; j++)
-                {
-                    var p = new Point(AequusHelpers.tileX + i, AequusHelpers.tileY + j);
-                    Main.tile[p].Get<TileTypeData>() = map.Get(i, j).Type;
-                    Main.tile[p].Get<LiquidData>() = map.Get(i, j).Liquid;
-                    Main.tile[p].Get<TileWallWireStateData>() = map.Get(i, j).Misc;
-                }
-            }
             return true;
         }
 

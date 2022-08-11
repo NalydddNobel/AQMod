@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
 using ReLogic.Content;
 
-namespace Aequus.Graphics
+namespace Aequus.Graphics.RenderTargets
 {
     public class GamestarRenderer : ScreenTarget
     {

@@ -14,7 +14,6 @@ namespace Aequus.Items.Weapons.Summon
         {
             SacrificeTotal = 1;
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
-            ItemID.Sets.LockOnIgnoresCollision[Type] = true;
         }
 
         public override void SetDefaults()

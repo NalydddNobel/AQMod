@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Items.Tools.CarpenterTools;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
@@ -99,7 +100,8 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot++].SetDefaults(ItemID.GrayBrick);
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Citysnapper>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CitysnapperClipAmmo>());
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom)

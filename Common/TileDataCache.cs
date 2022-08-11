@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content
+namespace Aequus.Common
 {
     public struct TileDataCache
     {
@@ -24,6 +24,7 @@ namespace Aequus.Content
         }
 
         public readonly TileTypeData Type;
+        public readonly WallTypeData Wall;
         public readonly LiquidData Liquid;
         public readonly TileWallWireStateData Misc;
 
@@ -33,20 +34,19 @@ namespace Aequus.Content
         public bool IsFullySolid => HasTile && Main.tileSolid[TileType];
         public bool IsHalfBlock => Misc.IsHalfBlock;
         public SlopeType Slope => Misc.Slope;
+        public short TileFrameX => Misc.TileFrameX;
+        public short TileFrameY => Misc.TileFrameY;
         public byte LiquidAmount => Liquid.Amount;
 
-
-        public ushort LiquidPacked => MergeBytes(Liquid.Amount, TileReflectionHelper.LiquidData_typeAndFlags.GetValue<byte>(Liquid));
-        public long MiscPacked => MergeInts(MergeShorts(Misc.TileFrameX, Misc.TileFrameY), TileReflectionHelper.TileWallWireStateData_bitpack.GetValue<byte>(Misc));
-
-        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc)
+        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall)
         {
             Type = type;
             Liquid = liquid;
             Misc = misc;
+            Wall = wall;
         }
 
-        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>())
+        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>())
         {
         }
 
@@ -55,21 +55,6 @@ namespace Aequus.Content
             tile.Get<TileTypeData>() = Type;
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
-        }
-
-        public ushort MergeBytes(byte byte1, byte byte2)
-        {
-            return (ushort)(byte1 + byte2 * byte.MaxValue);
-        }
-
-        public int MergeShorts(short short1, short short2)
-        {
-            return short1 + short2 * ushort.MaxValue;
-        }
-
-        public long MergeInts(int int1, int int2)
-        {
-            return int1 + (long)int2 * int.MaxValue;
         }
     }
 }

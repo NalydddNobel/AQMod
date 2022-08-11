@@ -2,6 +2,7 @@
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;

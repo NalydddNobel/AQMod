@@ -2,20 +2,22 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Graphics.RenderTargets
 {
-    public abstract class ScreenTarget : ARenderTargetContentByRequest, ILoadable
+    public abstract class RequestableRenderTarget : ARenderTargetContentByRequest, ILoadable
     {
         protected RenderTarget2D helperTarget;
 
+        protected virtual void PrepareRenderTargetsForDrawing(GraphicsDevice device, SpriteBatch spriteBatch)
+        {
+        }
+
         protected override void HandleUseReqest(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            PrepareARenderTarget_AndListenToEvents(ref _target, device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.PreserveContents);
-            PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.DiscardContents);
+            PrepareRenderTargetsForDrawing(device, spriteBatch);
 
             var targets = device.GetRenderTargets();
             device.SetRenderTarget(helperTarget);
@@ -40,7 +42,7 @@ namespace Aequus.Graphics
         public virtual void Load(Mod mod)
         {
             if (AequusEffects.Renderers == null)
-                AequusEffects.Renderers = new List<ScreenTarget>();
+                AequusEffects.Renderers = new List<RequestableRenderTarget>();
             AequusEffects.Renderers.Add(this);
         }
         public virtual void Unload()
