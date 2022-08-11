@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus.UI.EventProgressBars
 {
-    public interface IEventProgressBar
+    public interface ILegacyEventProgressBar
     {
         string Icon { get; set; }
         string EventKey { get; set; }

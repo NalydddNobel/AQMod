@@ -3415,6 +3415,16 @@ Mods: {
 					15+ Furniture
 					'''
 			}
+			FountainBounty: {
+				"$parentVal": Grand Fountain
+				Description: Build a nice looking fountain
+				Requirements:
+					'''
+					Must be mirrored horizontally
+					Waterfalls must flow down atleast 7 blocks
+					Must be made out of craftable blocks (Ex: Gray Brick)
+					'''
+			}
 		}
 
 		BossChecklist: {

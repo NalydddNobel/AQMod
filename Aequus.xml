@@ -373,6 +373,15 @@
             <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Content.CarpenterBounties.CarpenterBounty.CheckConditions(Microsoft.Xna.Framework.Rectangle,System.String@,Terraria.NPC)">
+            <summary>
+            
+            </summary>
+            <param name="rect"></param>
+            <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
+            <param name="carpenter">Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.</param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
             <summary>
             Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>

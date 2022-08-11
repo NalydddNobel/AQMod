@@ -113,9 +113,6 @@ namespace Aequus.NPCs.Friendly.Town
             //Main.NewText($"Elapsed Time: {stopWatch.Elapsed.TotalMilliseconds}ms");
             return decorAmt >= 5;
         }
-        private void conditionDebug(int left, int right, int top, int bottom)
-        {
-        }
 
         public static List<Point> GetHouseInsideTiles(int x, int y)
         {

@@ -9,29 +9,29 @@ using Terraria.ModLoader;
 
 namespace Aequus.UI.EventProgressBars
 {
-    public class EventProgressBarLoader : ILoadable
+    public class LegacyEventProgressBarLoader : ILoadable
     {
         public static byte ActiveBar { get; internal set; } = 255;
         public static bool PlayerSafe { get; internal set; }
 
         private static int NextIndex;
-        private static IEventProgressBar[] _progressBars;
+        private static ILegacyEventProgressBar[] _progressBars;
 
         private static float _invasionProgressAlpha = 0f;
         private static float _invasionProgress = 0f;
 
         public static int Count => NextIndex;
-        public static IEventProgressBar GetProgressBar(int type)
+        public static ILegacyEventProgressBar GetProgressBar(int type)
         {
             return _progressBars[type];
         }
 
-        internal static void AddBar(IEventProgressBar bar)
+        internal static void AddBar(ILegacyEventProgressBar bar)
         {
             if (_progressBars == null)
             {
                 NextIndex = 0;
-                _progressBars = new IEventProgressBar[1];
+                _progressBars = new ILegacyEventProgressBar[1];
             }
             else
             {
@@ -41,7 +41,7 @@ namespace Aequus.UI.EventProgressBars
             NextIndex++;
         }
 
-        internal static void LegacyDraw()
+        internal static void Draw()
         {
             if (_progressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f))
             {
@@ -52,7 +52,7 @@ namespace Aequus.UI.EventProgressBars
             byte currentInvasionType = 255;
             for (byte i = 0; i < _progressBars.Length; i++)
             {
-                IEventProgressBar b = _progressBars[i];
+                ILegacyEventProgressBar b = _progressBars[i];
                 if (b.IsActive())
                 {
                     currentInvasionType = i;
@@ -132,7 +132,7 @@ namespace Aequus.UI.EventProgressBars
         void ILoadable.Load(Mod mod)
         {
             if (_progressBars == null)
-                _progressBars = Array.Empty<IEventProgressBar>();
+                _progressBars = Array.Empty<ILegacyEventProgressBar>();
         }
 
         void ILoadable.Unload()

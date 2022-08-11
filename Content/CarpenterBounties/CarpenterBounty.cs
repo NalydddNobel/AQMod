@@ -21,11 +21,14 @@ namespace Aequus.Content.CarpenterBounties
 
         public abstract Item ProvideBountyRewardItem();
 
-        public virtual bool CheckConditions(Rectangle rect, out string message)
-        {
-            message = "";
-            return true;
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
+        /// <param name="carpenter">Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.</param>
+        /// <returns></returns>
+        public abstract bool CheckConditions(Rectangle rect, out string message, NPC carpenter = null);
 
         public virtual bool IsBountyAvailable()
         {

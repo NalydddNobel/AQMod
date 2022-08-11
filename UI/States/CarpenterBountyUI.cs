@@ -17,7 +17,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.UI.States
 {
-    public class CarpenterBountyUI : UIState, IChooseInterfaceLayer
+    public class CarpenterBountyUI : AequusUIState
     {
         public class CarpenterBountyUIElement : UIElement
         {
@@ -415,7 +415,7 @@ namespace Aequus.UI.States
         {
             base.Update(gameTime);
             Main.playerInventory = !Main.mouseItem.IsAir;
-            if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<Carpenter>())
+            if (IsTalkingTo<Carpenter>())
             {
                 Aequus.NPCTalkInterface.SetState(null);
             }
@@ -442,6 +442,19 @@ namespace Aequus.UI.States
         protected override void DrawChildren(SpriteBatch spriteBatch)
         {
             base.DrawChildren(spriteBatch);
+            debugcheckforbutton(spriteBatch);
+        }
+        private void debugcheckforbutton(SpriteBatch spriteBatch)
+        {
+            foreach (var c in selectionPanelList.Children)
+            {
+                foreach (var c2 in c.Children)
+                {
+                    if (c2 is UIColoredImageButton && c2.IsMouseHovering && Main.mouseLeft && Main.mouseLeftRelease)
+                    {
+                    }
+                }
+            }
         }
 
         public void Select(CarpenterBountyUIElement element)
@@ -473,6 +486,14 @@ namespace Aequus.UI.States
         {
             PopulateSideList_TitleAndDescription(element);
             PopulateSideList_Requirements(element);
+
+            PopulateSideList_AddSeparator();
+
+            selectionPanelList.Add(new UIColoredImageButton(TextureAssets.Item[element.listItem.type])
+            {
+                HAlign = 0.5f,
+                Height = new StyleDimension(48, 0f),
+            });
 
             PopulateSideList_AddSeparator();
 
@@ -604,34 +625,18 @@ namespace Aequus.UI.States
             });
         }
 
-        public void DisableAnnoyingUI(List<GameInterfaceLayer> layers)
+        public override int GetLayerIndex(List<GameInterfaceLayer> layers)
         {
-            int inventoryLayer = layers.FindIndex((g) => g.Name.Equals("Vanilla: Info Accessories Bar"));
-            for (int i = inventoryLayer; i >= 0; i--)
-            {
-                if (!layers[i].Name.StartsWith("Vanilla: Interface Logic") && !layers[i].Name.Equals("Vanilla: Achievement Complete Popups")
-                    && !layers[i].Name.Equals("Vanilla: Invasion Progress Bars") && layers[i].ScaleType == InterfaceScaleType.UI)
-                    layers[i].Active = false;
-            }
-            if (Main.playerInventory)
-            {
-                foreach (var g in layers)
-                {
-                    if (g.Name.Equals(AequusUI.InterfaceLayers.Inventory))
-                    {
-                        g.Active = true;
-                    }
-                }
-            }
-        }
-
-        public int GetLayerIndex(List<GameInterfaceLayer> layers)
-        {
-            DisableAnnoyingUI(layers);
             int index = layers.FindIndex((l) => l.Name.Equals(AequusUI.InterfaceLayers.Inventory));
             if (index == -1)
                 return -1;
             return index + 1;
+        }
+
+        public override bool ModifyInterfaceLayers(List<GameInterfaceLayer> layers, ref InterfaceScaleType scaleType)
+        {
+            DisableAnnoyingInventoryLayeringStuff(layers);
+            return true;
         }
     }
 }

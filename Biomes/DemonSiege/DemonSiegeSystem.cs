@@ -30,7 +30,7 @@ namespace Aequus.Biomes.DemonSiege
 
             if (!Main.dedServ)
             {
-                EventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
+                LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
                 {
                     EventKey = "Mods.Aequus.BiomeName.DemonSiegeBiome",
                     Icon = Aequus.AssetsPath + "UI/EventIcons/DemonSiege",

@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus.Biomes.Glimmer
 {
-    public class GlimmerProgressBar : EventProgressBar
+    public class GlimmerProgressBar : LegacyEventProgressBar
     {
         public override bool IsActive()
         {

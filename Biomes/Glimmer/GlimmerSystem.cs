@@ -16,7 +16,7 @@ namespace Aequus.Biomes.Glimmer
         {
             if (!Main.dedServ)
             {
-                EventProgressBarLoader.AddBar(new GlimmerProgressBar()
+                LegacyEventProgressBarLoader.AddBar(new GlimmerProgressBar()
                 {
                     EventKey = "Mods.Aequus.BiomeName.GlimmerBiome",
                     Icon = Aequus.AssetsPath + "UI/EventIcons/Glimmer",

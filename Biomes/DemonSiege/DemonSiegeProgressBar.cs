@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus.Biomes.DemonSiege
 {
-    public class DemonSiegeProgressBar : EventProgressBar
+    public class DemonSiegeProgressBar : LegacyEventProgressBar
     {
         public override bool IsActive()
         {

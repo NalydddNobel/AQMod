@@ -101,19 +101,23 @@ namespace Aequus.UI
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             leftInvOffset = 0;
-            InsertInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
+            ManageInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
             LegacyInsertInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
-                EventProgressBarLoader.LegacyDraw();
+                LegacyEventProgressBarLoader.Draw();
                 return true;
             });
         }
-        private void InsertInterfaceLayer(List<GameInterfaceLayer> layers, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
+        private void ManageInterfaceLayer(List<GameInterfaceLayer> layers, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
         {
             int layer = -1;
-            if (Aequus.NPCTalkInterface.CurrentState is IChooseInterfaceLayer chooseLayer)
+            if (Aequus.NPCTalkInterface.CurrentState is AequusUIState aequusUIState)
             {
-                layer = chooseLayer.GetLayerIndex(layers);
+                if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType))
+                {
+                    return;
+                }
+                layer = aequusUIState.GetLayerIndex(layers);
             }
             if (layer == -1)
             {
@@ -121,7 +125,7 @@ namespace Aequus.UI
             }
             if (layer != -1)
             {
-                layers.Insert(layer, new LegacyGameInterfaceLayer("Aequus: Inventory", () =>
+                layers.Insert(layer, new LegacyGameInterfaceLayer(layerName, () =>
                 {
                     Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                     return true;

@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CarpenterBounties
@@ -8,7 +10,21 @@ namespace Aequus.Content.CarpenterBounties
         internal static List<CarpenterBounty> BountiesByID;
         internal static Dictionary<string, CarpenterBounty> BountiesByName;
 
+        public static Dictionary<int, bool> CraftableTileLookup { get; private set; }
+
         public static int BountyCount => BountiesByID.Count;
+
+        public override void Load()
+        {
+            CraftableTileLookup = new Dictionary<int, bool>();
+        }
+
+        public override void Unload()
+        {
+            BountiesByID?.Clear();
+            BountiesByName?.Clear();
+            CraftableTileLookup?.Clear();
+        }
 
         public static void RegisterBounty(CarpenterBounty bounty)
         {
@@ -25,6 +41,38 @@ namespace Aequus.Content.CarpenterBounties
             ModTypeLookup<CarpenterBounty>.Register(bounty);
             BountiesByID.Add(bounty);
             BountiesByName.Add(name, bounty);
+        }
+
+        public static bool IsTileIDCraftable(int tileID)
+        {
+            if (CraftableTileLookup.TryGetValue(tileID, out var val))
+            {
+                return val;
+            }
+
+            foreach (var rec in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.createTile == tileID))
+            {
+                foreach (var i in rec.requiredItem)
+                {
+                    foreach (var rec2 in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.type == i.type))
+                    {
+                        foreach (var i2 in rec2.requiredItem)
+                        {
+                            if (i2.type == rec.createItem.type)
+                            {
+                                goto Continue;
+                            }
+                        }
+                    }
+                }
+                CraftableTileLookup.Add(tileID, true);
+                return true;
+
+            Continue:
+                continue;
+            }
+            CraftableTileLookup.Add(tileID, false);
+            return false;
         }
 
         public static CarpenterBounty GetBounty(int type)

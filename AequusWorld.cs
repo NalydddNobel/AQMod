@@ -336,18 +336,10 @@ namespace Aequus
 
         public override void PostUpdatePlayers()
         {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                if (Main.BestiaryUI == null)
-                {
-                    BestiaryNotebookElement.InNotebookPage = false;
-                }
-            }
             AequusProjectile.pWhoAmI = -1;
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;
             AequusHelpers.EndCaches();
-
         }
 
         public override void PostUpdateTime()
