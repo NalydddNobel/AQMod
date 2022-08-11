@@ -3415,6 +3415,16 @@ Mods: {
 					15+家具
 					'''
 			}
+			FountainBounty: {
+				"$parentVal": 大喷泉
+				Description: 建一个漂亮的喷泉
+				Requirements:
+					'''
+					必须水平镜像
+					瀑布必须向下流过至少7个物块
+					必须是由可制作的物块组成的 (例如: 灰砖)
+					'''
+			}
 		}
 
 		BossChecklist: {
