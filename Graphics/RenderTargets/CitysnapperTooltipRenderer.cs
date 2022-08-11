@@ -24,21 +24,22 @@ namespace Aequus.Graphics.RenderTargets
 
         public override void Unload()
         {
-            tileSize = 12;
-            tilePadding = 6;
+            tileSize = 16;
+            tilePadding = 12;
             renderRequests?.Clear();
         }
 
         protected override void PrepareRenderTargetsForDrawing(GraphicsDevice device, SpriteBatch spriteBatch)
         {
             tileSize = 16;
-            tilePadding = 6;
+            tilePadding = 12;
             if (renderRequests.Count == 0 || renderRequests[0].tileMap == null || renderRequests[0].TooltipTexture == null)
                 return;
 
-            int size = tileSize - tilePadding;
-            PrepareARenderTarget_WithoutListeningToEvents(ref _target, device, renderRequests[0].tileMap.Width * size, renderRequests[0].tileMap.Height * size, RenderTargetUsage.PreserveContents);
-            PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, renderRequests[0].tileMap.Width * size, renderRequests[0].tileMap.Height * size, RenderTargetUsage.DiscardContents);
+            int size = tileSize;
+            int sub = tilePadding * tileSize;
+            PrepareARenderTarget_WithoutListeningToEvents(ref _target, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.PreserveContents);
+            PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.DiscardContents);
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
@@ -157,6 +158,9 @@ namespace Aequus.Graphics.RenderTargets
             renderArea.Width -= tilePadding;
             renderArea.Height -= tilePadding;
 
+            //AequusHelpers.dustDebug(area.WorldRectangle());
+            //AequusHelpers.dustDebug(renderArea.WorldRectangle(), DustID.CursedTorch);
+
             var oldMap = new TileMapCache(area);
 
             for (int i = 0; i < map.Width; i++)
@@ -169,6 +173,7 @@ namespace Aequus.Graphics.RenderTargets
                         Main.tile[p].Get<TileTypeData>() = new TileTypeData() { Type = TileID.DiamondGemsparkOff, };
                         Main.tile[p].Get<LiquidData>() = map[i, j].Liquid;
                         Main.tile[p].Get<TileWallWireStateData>() = map[i, j].Misc;
+                        Main.tile[p].Get<WallTypeData>() = map[i, j].Wall;
                         Main.tile[p].Active(value: true);
                         continue;
                     }
@@ -183,8 +188,6 @@ namespace Aequus.Graphics.RenderTargets
             {
                 for (int j = 0; j < area.Height; j++)
                 {
-                    WorldGen.SquareTileFrame(area.X + i, area.Y + j);
-                    WorldGen.SquareWallFrame(area.X + i, area.Y + j);
                 }
             }
 
@@ -222,8 +225,8 @@ namespace Aequus.Graphics.RenderTargets
             {
                 for (int j = 0; j < area.Height; j++)
                 {
-                    WorldGen.SquareTileFrame(area.X + i, area.Y + j);
                     WorldGen.SquareWallFrame(area.X + i, area.Y + j);
+                    WorldGen.SquareTileFrame(area.X + i, area.Y + j);
                 }
             }
 

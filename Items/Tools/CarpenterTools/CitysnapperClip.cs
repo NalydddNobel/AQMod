@@ -55,7 +55,7 @@ namespace Aequus.Items.Tools.CarpenterTools
         {
             if (!Main.gameMenu && Main.netMode != NetmodeID.Server)
             {
-                SetClip(Utils.CenteredRectangle(Main.LocalPlayer.Center.ToTileCoordinates().ToVector2(), new Vector2(28f + CitysnapperTooltipRenderer.tilePadding, 28f + CitysnapperTooltipRenderer.tilePadding)));
+                SetClip(Utils.CenteredRectangle(Main.LocalPlayer.Center.ToTileCoordinates().ToVector2(), new Vector2(36f + CitysnapperTooltipRenderer.tilePadding, 36f + CitysnapperTooltipRenderer.tilePadding)));
             }
             Item.width = 16;
             Item.height = 16;
@@ -130,8 +130,8 @@ namespace Aequus.Items.Tools.CarpenterTools
             var font = FontAssets.MouseText.Value;
             var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
             string t = "";
-            int textW = (int)(tileMap.Width * 28 * Main.inventoryScale / measurement.X);
-            int textH = (int)(tileMap.Height * 28 * Main.inventoryScale / measurement.Y);
+            int textW = (int)(tileMap.Width * 16f * Main.inventoryScale / measurement.X);
+            int textH = (int)(tileMap.Height * 16f * Main.inventoryScale / measurement.Y);
             for (int i = 0; i < textW + 2; i++)
             {
                 t += AequusHelpers.AirCharacter;

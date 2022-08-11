@@ -82,6 +82,15 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Rectangle WorldRectangle(this Rectangle rectangle)
+        {
+            rectangle.X *= 16;
+            rectangle.Y *= 16;
+            rectangle.Width *= 16;
+            rectangle.Height *= 16;
+            return rectangle;
+        }
+
         public static Color SaturationMultiply(this Color color, float saturation)
         {
             var hsl = Main.rgbToHsl(color);
