@@ -258,6 +258,9 @@ Mods: {
 
 			RichMansMonocle: 富翁的单片眼镜
 
+			Citysnapper: 城市摄像机
+			CitysnapperClip: 城市摄像机剪片
+			CitysnapperClipAmmo: 城市摄像机剪片
 			PhysicsGun: 物理枪
 			Pumpinator: 泵风器
 			Bellows: 风箱
@@ -829,6 +832,9 @@ Mods: {
 			UnholyCore: 减半恶魔围攻事件的长度
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
+
+			Citysnapper: 与城市摄像机剪片一起使用以拍摄照片
+			CitysnapperClipAmmo: 打印在这些剪片上的照片可在木匠处查看
 
 			PhysicsGun: 可以抓取并扔出物块
 			Pumpinator:
