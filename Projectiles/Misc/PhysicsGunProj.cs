@@ -305,16 +305,7 @@ namespace Aequus.Projectiles.Misc
         }
         public void SetArmRotation()
         {
-            float value = MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f);
-            float angle = Math.Abs(value);
-            int dir = Math.Sign(value);
-            if (dir != Main.player[Projectile.owner].direction)
-            {
-                Main.player[Projectile.owner].direction = dir;
-            }
-            // arm angling code, thanks Split!
-            int frame = (angle <= 0.6f) ? 2 : ((angle >= (MathHelper.PiOver2 - 0.1f) && angle <= MathHelper.PiOver4 * 3f) ? 3 : ((!(angle > MathHelper.Pi * 3f / 4f)) ? 3 : 4));
-            Main.player[Projectile.owner].bodyFrame.Y = Main.player[Projectile.owner].bodyFrame.Height * frame;
+            AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

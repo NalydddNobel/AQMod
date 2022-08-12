@@ -20,6 +20,7 @@ namespace Aequus.Common.Networking
         GlimmerEventUpdate,
         SyncNecromancyNPC,
         SyncDronePoint,
+        CarpenterBountiesCompleted,
         Count,
     }
 

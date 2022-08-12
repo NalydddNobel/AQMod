@@ -10,34 +10,30 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.RenderTargets
 {
-    public class CitysnapperTooltipRenderer : RequestableRenderTarget
+    public class ShutterstockerSceneRenderer : RequestableRenderTarget
     {
-        public static List<CitysnapperClip> renderRequests;
-        public static int tileSize = 16;
-        public static int tilePadding = 6;
+        public static List<ShutterstockerClip> renderRequests;
+        public const int TileSize = 16;
+        public const int TilePadding = 12;
 
         public override void Load(Mod mod)
         {
             base.Load(mod);
-            renderRequests = new List<CitysnapperClip>();
+            renderRequests = new List<ShutterstockerClip>();
         }
 
         public override void Unload()
         {
-            tileSize = 16;
-            tilePadding = 12;
             renderRequests?.Clear();
         }
 
         protected override void PrepareRenderTargetsForDrawing(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            tileSize = 16;
-            tilePadding = 12;
             if (renderRequests.Count == 0 || renderRequests[0].tileMap == null || renderRequests[0].TooltipTexture == null)
                 return;
 
-            int size = tileSize;
-            int sub = tilePadding * tileSize;
+            int size = TileSize;
+            int sub = TilePadding * TileSize;
             PrepareARenderTarget_WithoutListeningToEvents(ref _target, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.PreserveContents);
             PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.DiscardContents);
         }
@@ -73,7 +69,7 @@ namespace Aequus.Graphics.RenderTargets
             renderRequests.RemoveAt(0);
 
         }
-        private void DrawCapture(GraphicsDevice device, SpriteBatch spriteBatch, TileMapCache map, CitysnapperClip clip)
+        private void DrawCapture(GraphicsDevice device, SpriteBatch spriteBatch, TileMapCache map, ShutterstockerClip clip)
         {
             var area = map.Area;
 
@@ -153,10 +149,10 @@ namespace Aequus.Graphics.RenderTargets
             }
 
             var renderArea = area;
-            renderArea.X += tilePadding / 2;
-            renderArea.Y += tilePadding / 2;
-            renderArea.Width -= tilePadding;
-            renderArea.Height -= tilePadding;
+            renderArea.X += TilePadding / 2;
+            renderArea.Y += TilePadding / 2;
+            renderArea.Width -= TilePadding;
+            renderArea.Height -= TilePadding;
 
             //AequusHelpers.dustDebug(area.WorldRectangle());
             //AequusHelpers.dustDebug(renderArea.WorldRectangle(), DustID.CursedTorch);

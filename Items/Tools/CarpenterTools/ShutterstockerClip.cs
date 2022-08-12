@@ -5,14 +5,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Items.Tools.CarpenterTools
 {
-    public class CitysnapperClip : ModItem
+    public class ShutterstockerClip : ModItem
     {
         private static TileMapCache DefaultTileMap;
 
@@ -32,8 +31,8 @@ namespace Aequus.Items.Tools.CarpenterTools
 
         private void InitDefaultMap()
         {
-            var mapData = new TileDataCache[36 + CitysnapperTooltipRenderer.tilePadding, 36 + CitysnapperTooltipRenderer.tilePadding];
-            var rect = new Rectangle(0, 0, 36 + CitysnapperTooltipRenderer.tilePadding, 36 + CitysnapperTooltipRenderer.tilePadding);
+            var mapData = new TileDataCache[36 + ShutterstockerSceneRenderer.TilePadding, 36 + ShutterstockerSceneRenderer.TilePadding];
+            var rect = new Rectangle(0, 0, 36 + ShutterstockerSceneRenderer.TilePadding, 36 + ShutterstockerSceneRenderer.TilePadding);
             var t = new TileDataCache(new TileTypeData() { Type = TileID.Grass, }, new LiquidData(), new TileWallWireStateData() { HasTile = true, }, new WallTypeData());
             for (int i = 0; i < rect.Width; i++)
             {
@@ -55,7 +54,7 @@ namespace Aequus.Items.Tools.CarpenterTools
         {
             if (!Main.gameMenu && Main.netMode != NetmodeID.Server)
             {
-                SetClip(Utils.CenteredRectangle(Main.LocalPlayer.Center.ToTileCoordinates().ToVector2(), new Vector2(36f + CitysnapperTooltipRenderer.tilePadding, 36f + CitysnapperTooltipRenderer.tilePadding)));
+                SetClip(Utils.CenteredRectangle(Main.LocalPlayer.Center.ToTileCoordinates().ToVector2(), new Vector2(36f + ShutterstockerSceneRenderer.TilePadding, 36f + ShutterstockerSceneRenderer.TilePadding)));
             }
             Item.width = 16;
             Item.height = 16;
@@ -96,7 +95,7 @@ namespace Aequus.Items.Tools.CarpenterTools
 
         public override ModItem Clone(Item newEntity)
         {
-            var clone = (CitysnapperClip)base.Clone(newEntity);
+            var clone = (ShutterstockerClip)base.Clone(newEntity);
 
             if (tileMap == null)
                 tileMap = DefaultTileMap.Clone();
@@ -122,25 +121,12 @@ namespace Aequus.Items.Tools.CarpenterTools
                 if (TooltipTexture == null)
                     TooltipTexture = new Ref<RenderTarget2D>();
 
-                CitysnapperTooltipRenderer.renderRequests.Add(this);
+                ShutterstockerSceneRenderer.renderRequests.Add(this);
                 return;
             }
 
             int index = tooltips.GetIndex("Tooltip#");
-            var font = FontAssets.MouseText.Value;
-            var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
-            string t = "";
-            int textW = (int)(tileMap.Width * 16f * Main.inventoryScale / measurement.X);
-            int textH = (int)(tileMap.Height * 16f * Main.inventoryScale / measurement.Y);
-            for (int i = 0; i < textW + 2; i++)
-            {
-                t += AequusHelpers.AirCharacter;
-            }
-            for (int i = 0; i < textH + 1; i++)
-            {
-                tooltips.Insert(index, new TooltipLine(Mod, "Fake" + (textH - i - 1), t));
-            }
-            tooltips.Insert(index, new TooltipLine(Mod, "Image", t));
+            Item.AequusTooltips().FitTooltipBackground(tooltips, TooltipTexture.Value.Width, TooltipTexture.Value.Height, index, "Image");
         }
 
         public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)

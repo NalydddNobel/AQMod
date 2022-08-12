@@ -1,4 +1,6 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
+using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Tools.CarpenterTools;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
@@ -64,7 +66,8 @@ namespace Aequus.NPCs.Friendly.Town
             ShopQuotes.Database
                 .GetNPC(Type)
                 .WithColor(new Color(165, 140, 190))
-                .AddQuote(ItemID.GrayBrick);
+                .AddQuote<Shutterstocker>()
+                .AddQuote<ShutterstockerClipAmmo>();
         }
 
         public override void SetDefaults()
@@ -100,8 +103,17 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Citysnapper>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CitysnapperClipAmmo>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
+
+            var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
+            foreach (var bounty in CarpenterSystem.BountiesByID)
+            {
+                if (bountyPlayer.CompletedBounties.Contains(bounty.FullName))
+                {
+                    shop.item[nextSlot++] = bounty.ProvideBountyRewardItem();
+                }
+            }
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom)
@@ -109,10 +121,8 @@ namespace Aequus.NPCs.Friendly.Town
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             var houseInsideTiles = GetHouseInsideTiles((left + right) / 2, (top + bottom) / 2);
-            //GetHouseWallTiles(houseInsideTiles, out var leftPoints, out var rightPoints, out var topPoints, out var bottomPoints);
             int decorAmt = CountDecorInsideHouse(houseInsideTiles);
             stopWatch.Stop();
-            //Main.NewText($"Elapsed Time: {stopWatch.Elapsed.TotalMilliseconds}ms");
             return decorAmt >= 5;
         }
 
@@ -250,8 +260,26 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Carpenter.");
 
-            chat.Add("Basic.0");
-            chat.Add("Basic.1");
+
+            if (GlimmerBiome.EventActive && Main.rand.NextBool())
+            {
+                chat.Add("Glimmer");
+            }
+            else if (Main.bloodMoon && Main.rand.NextBool())
+            {
+                chat.Add("BloodMoon");
+            }
+            else
+            {
+                chat.Add("Basic.0");
+                chat.Add("Basic.1");
+                chat.Add("Basic.2");
+            }
+
+            if (NPC.downedGoblins || Main.invasionType == InvasionID.GoblinArmy)
+            {
+                chat.Add("GoblinArmy");
+            }
 
             return chat.Get();
         }
@@ -270,9 +298,18 @@ namespace Aequus.NPCs.Friendly.Town
             }
             else
             {
-                Main.playerInventory = false;
-                Main.npcChatText = "";
-                Aequus.NPCTalkInterface.SetState(new CarpenterBountyUI());
+                var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
+                foreach (var bounty in CarpenterSystem.BountiesByID)
+                {
+                    if (bounty.IsBountyAvailable() && !bountyPlayer.CompletedBounties.Contains(bounty.FullName))
+                    {
+                        Main.playerInventory = false;
+                        Main.npcChatText = "";
+                        Aequus.NPCTalkInterface.SetState(new CarpenterBountyUI());
+                        return;
+                    }
+                }
+                Main.npcChatText = AequusText.TryGetText("Chat.Carpenter.NoBounty");
             }
         }
 

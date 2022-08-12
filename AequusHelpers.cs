@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs;
@@ -81,6 +82,31 @@ namespace Aequus
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
+
+
+        public static bool InSceneRenderedMap(this TileMapCache map, int x, int y)
+        {
+            return x > ShutterstockerSceneRenderer.TilePadding / 2 && x < map.Width - ShutterstockerSceneRenderer.TilePadding / 2 && y > ShutterstockerSceneRenderer.TilePadding / 2 && y < map.Width - ShutterstockerSceneRenderer.TilePadding / 2;
+        }
+
+        public static Vector2 MouseWorld(this Player player)
+        {
+            var mouseWorld = Main.MouseWorld;
+            player.LimitPointToPlayerReachableArea(ref mouseWorld);
+            return mouseWorld;
+        }
+
+        public static void ShootRotation(Projectile projectile, float rotation)
+        {
+            float angle = Math.Abs(rotation);
+            int dir = Math.Sign(rotation);
+            if (dir != Main.player[projectile.owner].direction)
+            {
+                Main.player[projectile.owner].direction = dir;
+            }
+            int frame = (angle <= 0.6f) ? 2 : ((angle >= (MathHelper.PiOver2 - 0.1f) && angle <= MathHelper.PiOver4 * 3f) ? 3 : ((!(angle > MathHelper.Pi * 3f / 4f)) ? 3 : 4));
+            Main.player[projectile.owner].bodyFrame.Y = Main.player[projectile.owner].bodyFrame.Height * frame;
+        }
 
         public static Rectangle WorldRectangle(this Rectangle rectangle)
         {
@@ -1160,6 +1186,10 @@ namespace Aequus
             return npc2;
         }
 
+        public static AequusTooltips.TooltipsGlobal AequusTooltips(this Item item)
+        {
+            return item.GetGlobalItem<AequusTooltips.TooltipsGlobal>();
+        }
         public static AequusItem Aequus(this Item item)
         {
             return item.GetGlobalItem<AequusItem>();

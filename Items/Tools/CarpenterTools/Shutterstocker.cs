@@ -1,10 +1,11 @@
-﻿using Terraria;
+﻿using Aequus.Projectiles.Misc;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.CarpenterTools
 {
-    public class Citysnapper : ModItem
+    public class Shutterstocker : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -19,7 +20,14 @@ namespace Aequus.Items.Tools.CarpenterTools
             Item.height = 20;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 5);
-            Item.useAmmo = CitysnapperClipAmmo.AmmoID;
+            Item.useAmmo = ShutterstockerClipAmmo.AmmoID;
+            Item.shoot = ModContent.ProjectileType<ShutterstockerProj>();
+            Item.shootSpeed = 1f;
+            Item.useTime = 28;
+            Item.useAnimation = 28;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.channel = true;
+            Item.noUseGraphic = true;
         }
 
         public override bool? UseItem(Player player)

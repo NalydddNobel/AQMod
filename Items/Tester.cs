@@ -26,6 +26,7 @@ namespace Aequus.Items
 
         public override bool? UseItem(Player player)
         {
+            player.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Clear();
             Main.NewText(CarpenterSystem.BountiesByID[0].CheckConditions(new TileMapCache(Utils.CenteredRectangle(player.Center.ToTileCoordinates().ToVector2(), new Vector2(30f, 20f)).Fluffize(10)), out string dnc, null));
             return true;
         }

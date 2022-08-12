@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace Aequus.Content.CarpenterBounties
 {
@@ -13,15 +14,14 @@ namespace Aequus.Content.CarpenterBounties
         public override bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null)
         {
             message = "";
-            //AequusHelpers.dustDebug(new Rectangle(rect.X * 16, rect.Y * 16, rect.Width * 16, rect.Height * 16), DustID.FrostHydra);
             if (!FindWaterfallsPass(map, out var waterfalls))
             {
+                message = Language.GetTextValue(LanguageKey + ".Reply.NoWaterfalls");
                 return false;
             }
             var surroundingRectangle = new Rectangle(map.Width, map.Height, 1, 1);
             foreach (var w in waterfalls)
             {
-                //AequusHelpers.dustDebug(rect.X + w.X, rect.Y + w.Y, DustID.CursedTorch);
                 if (surroundingRectangle.X > w.X)
                 {
                     surroundingRectangle.X = w.X;
@@ -51,23 +51,11 @@ namespace Aequus.Content.CarpenterBounties
             surroundingRectangle.Y--;
             surroundingRectangle.Height += 2;
 
-            //var debugRect = surroundingRectangle;
-            //debugRect.X += rect.X;
-            //debugRect.Y += rect.Y;
-            //debugRect.X *= 16;
-            //debugRect.Y *= 16;
-            //debugRect.Width *= 16;
-            //debugRect.Height *= 16;
-            //AequusHelpers.dustDebug(debugRect);
+            FindCraftableTilesPass(map, surroundingRectangle, out var tiles);
 
-            FindCraftableTiles(map, surroundingRectangle, out var tiles);
-            //foreach (var t in tiles)
-            //{
-            //    AequusHelpers.dustDebug(rect.X + t.X, rect.Y + t.Y, DustID.PurpleCrystalShard);
-            //}
-
-            if (tiles.Count == 0)
+            if (tiles.Count == 0 || tiles.Count < 12)
             {
+                message = Language.GetTextValue(LanguageKey + ".Reply.NoCraftedBlocks");
                 return false;
             }
 
@@ -99,16 +87,6 @@ namespace Aequus.Content.CarpenterBounties
                 }
             }
 
-            //debugRect = surroundingRectangle;
-            //debugRect.X += rect.X;
-            //debugRect.Y += rect.Y;
-            //debugRect.X *= 16;
-            //debugRect.Y *= 16;
-            //debugRect.Width *= 16;
-            //debugRect.Height *= 16;
-
-            //AequusHelpers.dustDebug(debugRect, DustID.PurpleCrystalShard);
-
             int middleWidth = (int)Math.Round(surroundingRectangle.Width / 2f);
             for (int i = 0; i < middleWidth; i++)
             {
@@ -118,27 +96,20 @@ namespace Aequus.Content.CarpenterBounties
                     var point2 = new Point(surroundingRectangle.X + surroundingRectangle.Width - 1 - i, surroundingRectangle.Y + j);
                     if (tiles.Contains(point1) || tiles.Contains(point2))
                     {
-                        //if (map[point1].TileType == map[point2].TileType)
-                        //{
-                        //    AequusHelpers.dustDebug(rect.X + point1.X, rect.Y + point1.Y, DustID.CursedTorch);
-                        //    AequusHelpers.dustDebug(rect.X + point2.X, rect.Y + point2.Y, DustID.CursedTorch);
-                        //}
-                        //else
-                        //{
-                        //    AequusHelpers.dustDebug(rect.X + point1.X, rect.Y + point1.Y, DustID.Clentaminator_Red);
-                        //    AequusHelpers.dustDebug(rect.X + point2.X, rect.Y + point2.Y, DustID.Clentaminator_Red);
-                        //}
                         if (map[point1].TileType != map[point2].TileType)
                         {
+                            message = Language.GetTextValue(LanguageKey + ".Reply.NotSymmetric");
                             return false;
                         }
                     }
                 }
             }
 
+            message = Language.GetTextValue(LanguageKey + ".Reply.Completed");
             return true;
         }
-        private bool FindWaterfallsPass(TileMapCache map, out List<Point> waterfalls)
+
+        public bool FindWaterfallsPass(TileMapCache map, out List<Point> waterfalls)
         {
             waterfalls = new List<Point>();
             int x = map.Area.X;
@@ -154,16 +125,16 @@ namespace Aequus.Content.CarpenterBounties
                         for (int k = -1; k <= 1; k += 2)
                         {
                             bool successfullyGotWaterfalls = false;
-                            if (map.InMap(i + k, j) && map[i + k, j].IsHalfBlock)
+                            if (map.InSceneRenderedMap(i + k, j) && map[i + k, j].IsHalfBlock)
                             {
                                 int waterfallX = i + k;
                                 int waterfallY = j;
                                 int dir = k;
                                 for (int l = 0; l < 80; l++)
                                 {
-                                    if ((map[waterfallX, waterfallY].HasTile && map[waterfallX, waterfallY].IsHalfBlock) || (map.InMap(waterfallX, waterfallY + 1) && map[waterfallX, waterfallY + 1].IsFullySolid))
+                                    if ((map[waterfallX, waterfallY].HasTile && map[waterfallX, waterfallY].IsHalfBlock) || (map.InSceneRenderedMap(waterfallX, waterfallY + 1) && map[waterfallX, waterfallY + 1].IsFullySolid))
                                     {
-                                        if (map.InMap(waterfallX + dir, waterfallY) && map[waterfallX + dir, waterfallY].IsFullySolid && !map[waterfallX + dir, waterfallY].IsHalfBlock)
+                                        if (map.InSceneRenderedMap(waterfallX + dir, waterfallY) && map[waterfallX + dir, waterfallY].IsFullySolid && !map[waterfallX + dir, waterfallY].IsHalfBlock)
                                         {
                                             dir = -dir;
                                         }
@@ -173,7 +144,7 @@ namespace Aequus.Content.CarpenterBounties
                                     {
                                         waterfallY++;
                                     }
-                                    if (!map.InMap(waterfallX, waterfallY))
+                                    if (!map.InSceneRenderedMap(waterfallX, waterfallY))
                                     {
                                         break;
                                     }
@@ -181,7 +152,6 @@ namespace Aequus.Content.CarpenterBounties
                                     {
                                         continue;
                                     }
-                                    //AequusHelpers.dustDebug(x + waterfallX, y + waterfallY, DustID.CursedTorch);
                                     successfullyGotWaterfalls = true;
                                     waterfalls.Add(new Point(waterfallX, waterfallY));
                                 }
@@ -190,7 +160,7 @@ namespace Aequus.Content.CarpenterBounties
                             {
                                 waterfalls.Add(checkPoint);
                                 waterfalls.Add(new Point(i + k, j));
-                                AddWaterPool2(map, waterfalls, checkPoint);
+                                AddWaterPool(map, waterfalls, checkPoint);
                             }
                         }
                     }
@@ -198,8 +168,7 @@ namespace Aequus.Content.CarpenterBounties
             }
             return waterfalls.Count > 0;
         }
-
-        private void AddWaterPool2(TileMapCache map, List<Point> waterfalls, Point checkPoint)
+        public void AddWaterPool(TileMapCache map, List<Point> waterfalls, Point checkPoint)
         {
             var addPoints = new List<Point>();
             var checkedPoints = new List<Point>() { checkPoint };
@@ -219,7 +188,7 @@ namespace Aequus.Content.CarpenterBounties
                     for (int m = 0; m < offsets.Length; m++)
                     {
                         var newPoint = new Point(checkedPoints[l].X + offsets[m].X, checkedPoints[l].Y + offsets[m].Y);
-                        if (map.InMap(newPoint.X, newPoint.Y) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) &&
+                        if (map.InSceneRenderedMap(newPoint.X, newPoint.Y) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) &&
                             map[newPoint].LiquidAmount > 0 && !map[newPoint].IsFullySolid)
                         {
                             addPoints.Add(newPoint);
@@ -236,14 +205,14 @@ namespace Aequus.Content.CarpenterBounties
             waterfalls.AddRange(checkedPoints);
         }
 
-        private void FindCraftableTiles(TileMapCache map, Rectangle surroundingRectangle, out List<Point> tiles)
+        public void FindCraftableTilesPass(TileMapCache map, Rectangle surroundingRectangle, out List<Point> tiles)
         {
             tiles = new List<Point>();
             for (int i = surroundingRectangle.X; i < surroundingRectangle.X + surroundingRectangle.Width; i++)
             {
                 for (int j = surroundingRectangle.Y; j < surroundingRectangle.Y + surroundingRectangle.Height; j++)
                 {
-                    if (map.InMap(i, j) && map[i, j].IsFullySolid && CarpenterSystem.IsTileIDCraftable(map[i, j].TileType))
+                    if (map.InSceneRenderedMap(i, j) && map[i, j].IsFullySolid && CarpenterSystem.IsTileIDCraftable(map[i, j].TileType))
                     {
                         tiles.Add(new Point(i, j));
                     }
@@ -253,7 +222,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public override Item ProvideBountyRewardItem()
         {
-            return AequusItem.SetDefaults(ItemID.BottomlessBucket);
+            return AequusItem.SetDefaults(ItemID.LaserRuler);
         }
     }
 }

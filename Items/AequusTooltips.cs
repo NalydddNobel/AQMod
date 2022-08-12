@@ -365,6 +365,34 @@ namespace Aequus.Items
                 }
                 return false;
             }
+            public void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
+            {
+                var font = FontAssets.MouseText.Value;
+                var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
+                string t = "";
+                var stringSize = Vector2.Zero;
+                for (int i = 0; i < width; i++)
+                {
+                    t += AequusHelpers.AirCharacter;
+                    stringSize = ChatManager.GetStringSize(font, t, Vector2.One);
+                    if (stringSize.X > width)
+                    {
+                        break;
+                    }
+                }
+
+                if (index == -1)
+                {
+                    index = lines.Count - 1;
+                }
+
+                int linesY = Math.Max((int)(height / stringSize.Y), 1);
+                for (int i = 0; i < linesY; i++)
+                {
+                    lines.Insert(index, new TooltipLine(Mod, "Fake_" + i, t));
+                }
+                lines.Insert(index, new TooltipLine(Mod, firstBoxName, t));
+            }
 
             public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
             {

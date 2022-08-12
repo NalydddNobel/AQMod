@@ -69,6 +69,21 @@ namespace Aequus
             return Text["Mods.Aequus." + key];
         }
 
+        public static string TryGetText(string key)
+        {
+            key = "Mods.Aequus." + key;
+            if (Text.TryGetValue(key, out var translation))
+            {
+                return translation.GetTranslation(Language.ActiveCulture);
+            }
+            return key;
+        }
+
+        public static string Chat<T>(string key) where T : ModNPC
+        {
+            return GetText($"Chat.{typeof(T).Name}." + key);
+        }
+
         public static string GetText(string key)
         {
             return GetTranslation(key).GetTranslation(Language.ActiveCulture);

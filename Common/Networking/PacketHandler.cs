@@ -2,6 +2,7 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content;
+using Aequus.Content.CarpenterBounties;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs.Boss;
@@ -175,6 +176,13 @@ namespace Aequus.Common.Networking
             }
             switch (type)
             {
+                case PacketType.CarpenterBountiesCompleted:
+                    {
+                        int player = reader.ReadInt32();
+                        Main.player[player].GetModPlayer<CarpenterBountyPlayer>().RecieveClientChanges(reader);
+                    }
+                    break;
+
                 case PacketType.RequestTileSectionFromServer:
                     {
                         int plr = reader.ReadInt32();

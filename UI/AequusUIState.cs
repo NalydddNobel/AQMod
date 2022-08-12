@@ -25,7 +25,7 @@ namespace Aequus.UI
         {
         }
 
-        protected bool IsTalkingTo<T>() where T : ModNPC
+        protected bool NotTalkingTo<T>() where T : ModNPC
         {
             return Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<T>();
         }

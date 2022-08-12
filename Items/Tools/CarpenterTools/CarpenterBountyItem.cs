@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Tools.Misc
+namespace Aequus.Items.Tools.CarpenterTools
 {
     public class CarpenterBountyItem : ModItem
     {
@@ -78,17 +78,22 @@ namespace Aequus.Items.Tools.Misc
 
             tooltips.Insert(index + 1, new TooltipLine(Mod, "BountyDescription", BountyDescription));
 
-            tooltips.Insert(index + 2, new TooltipLine(Mod, "BountyRequirements", BountyFancyRequirements));
+            string requirementText = BountyRequirements;
+            var split = requirementText.Split('\n');
+            string arrow = AequusText.ColorText(">", Color.Lerp(Color.Yellow, Color.White, 0.4f));
+            for (int i = 0; i < split.Length; i++)
+            {
+                tooltips.Insert(index + 2 + i, new TooltipLine(Mod, "BountyRequirements" + i, $"{arrow} {split[i]}"));
+            }
 
-            if (!Item.buy)
+            if (!Item.buy || Main.npcShop != -1)
                 return;
 
             var ttLine = Item.GetGlobalItem<AequusTooltips.TooltipsGlobal>().GetPriceTooltipLine(Main.LocalPlayer, Item);
 
             ttLine.Text = AequusText.GetTextWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = AequusText.ColorText(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
             ttLine.OverrideColor = null;
-            if (ttLine != null)
-                tooltips.Insert(index + 3, ttLine);
+            tooltips.Insert(tooltips.GetIndex("Price"), ttLine);
         }
 
         public override void NetSend(BinaryWriter writer)

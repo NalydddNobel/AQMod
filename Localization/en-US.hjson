@@ -258,9 +258,9 @@ Mods: {
 
 			RichMansMonocle: Rich Man's Monocle
 
-			Citysnapper: Citysnapper
-			CitysnapperClip: Citysnapper Clip
-			CitysnapperClipAmmo: Citysnapper Clip
+			Shutterstocker: Shutterstocker
+			ShutterstockerClip: Shutterstocker Clip
+			ShutterstockerClipAmmo: Shutterstocker Clip
 			PhysicsGun: Physics Gun
 			Pumpinator: Pumpinator
 			Bellows: Bellows
@@ -833,8 +833,8 @@ Mods: {
 
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
-			Citysnapper: Used to take photos with citysnapper clips
-			CitysnapperClipAmmo: Photos printed onto these clips can be reviewed by the carpenter
+			Shutterstocker: Used to take photos with shutterstocker clips
+			ShutterstockerClipAmmo: Photos printed onto these clips can be reviewed by the carpenter
 
 			PhysicsGun: Can grab and throw blocks
 			Pumpinator:
@@ -3066,18 +3066,36 @@ Mods: {
 				}
 			}
 
+			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
+
 			Carpenter: {
 				Basic: {
-					0: Do not translate!
-					1: Do not translate!
+					0: As I scurry and I hurry I worry I might miss out on nice, hot, curry! 
+					1: Each block and each brick contributes to a beautiful blooming building!
+					2: Pesky pesticides prepared to poison passive peaceful plecopteras
 				}
 
+				BloodMoon: The Moon is red, up comes the dead! Surely we don't lose our heads!
+				Glimmer: The sky shimmers, the ground glimmers, you think the stars will be sweet or bitter?
+				Eclipse: The night is back to take day's time! Don't look at the sun, it may stare back!
+				GoblinArmy: As they start a war and break through your door, you'd v know to not mess with those Goblins ashore!
+
+				NoBounty: It's very unfortunate to say that I'm all out of bounties to give, maybe come back later?
+
 				ShopQuote: {
-					GrayBrick: Do not translate!
+					Shutterstocker: With a snap and a shutter it allows clips to take in just enough light to make an image!
+					ShutterstockerClipAmmo: 
+						'''
+						Used with the Shutterstocker™ to capture images.
+						Save your best buildings with the most captivating clips!
+						'''
 				}
 
 				UI: {
 					BountyButton: View Bounties
+					SubmitPhoto: Submit Photo
+					Blueprint: Blueprint
+					BlueprintFakeCopyright: Ⓒ 2022 Carpenter Ant, Zinc. All rights reserved
 					Reward: "Reward:"
 					PurchaseBounty: Purchase a copy of this bounty for: {Coins}
 				}
@@ -3421,6 +3439,7 @@ Mods: {
 					15+ Furniture
 					'''
 			}
+
 			FountainBounty: {
 				"$parentVal": Grand Fountain
 				Description: Build a nice looking fountain
@@ -3430,6 +3449,13 @@ Mods: {
 					Waterfalls must flow down atleast 7 blocks
 					Must be made out of craftable blocks (Ex: Gray Brick)
 					'''
+
+				Reply: {
+					NoWaterfalls: Oh dear I see no waterfalls in this photo, you can't have a fountain without water! Then it's just a fancy statue.
+					NoCraftedBlocks: You are getting there but do remember to use crafted blocks! Maybe pile up some stone and turn them into nice bricks?
+					NotSymmetric: Your fountain is quite close to being great! But make sure the tiles completely symmetric!
+					Completed: That fountain is quite spectactular! You have great potential as a builder, I can see it in you.
+				}
 			}
 		}
 

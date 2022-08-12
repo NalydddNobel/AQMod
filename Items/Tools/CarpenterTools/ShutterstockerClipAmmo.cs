@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.CarpenterTools
 {
-    public class CitysnapperClipAmmo : ModItem
+    public class ShutterstockerClipAmmo : ModItem
     {
-        public static int AmmoID => ModContent.ItemType<CitysnapperClipAmmo>();
+        public static int AmmoID => ModContent.ItemType<ShutterstockerClipAmmo>();
 
-        public override string Texture => AequusHelpers.GetPath<CitysnapperClip>();
+        public override string Texture => AequusHelpers.GetPath<ShutterstockerClip>();
 
         public override void SetStaticDefaults()
         {

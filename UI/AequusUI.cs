@@ -101,17 +101,23 @@ namespace Aequus.UI
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             leftInvOffset = 0;
-            ManageInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
-            LegacyInsertInterfaceLayer(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
+            ManageUserInterfaceLayer(layers, Aequus.NPCTalkInterface, "Vanilla: Inventory", "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
+
+            InsertInterfaceDrawMethod(layers, "Vanilla: MP Player Names", "Aequus: ShutterstockerInterface", () =>
+            {
+                ShutterstockerInterface.RenderAll(Main.spriteBatch);
+                return true;
+            });
+            InsertInterfaceDrawMethod(layers, "Vanilla: Inventory", "Aequus: Inventory", () =>
             {
                 LegacyEventProgressBarLoader.Draw();
                 return true;
             });
         }
-        private void ManageInterfaceLayer(List<GameInterfaceLayer> layers, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
+        private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
         {
             int layer = -1;
-            if (Aequus.NPCTalkInterface.CurrentState is AequusUIState aequusUIState)
+            if (userInterface.CurrentState is AequusUIState aequusUIState)
             {
                 if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType))
                 {
@@ -127,12 +133,12 @@ namespace Aequus.UI
             {
                 layers.Insert(layer, new LegacyGameInterfaceLayer(layerName, () =>
                 {
-                    Aequus.NPCTalkInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
+                    userInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                     return true;
                 }, scaleType));
             }
         }
-        private void LegacyInsertInterfaceLayer(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI)
+        private void InsertInterfaceDrawMethod(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI)
         {
             int index = layers.FindIndex((l) => l.Name.Equals(name));
             if (index != -1)
