@@ -6,8 +6,6 @@ namespace Aequus.Buffs.Debuffs
 {
     public class BitCrushedDebuff : ModBuff
     {
-        public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Bleeding;
-
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;

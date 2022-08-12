@@ -168,7 +168,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<ConversionRedSprite>(), 200);
+            target.AddBuffToHeadOrSelf(ModContent.BuffType<ConversionRedSprite>(), 200);
             SoundEngine.PlaySound(SoundID.Item14, target.Center);
             Projectile.ai[1] = Main.rand.NextFloat(-60f, 0f);
             if (Main.myPlayer == Projectile.owner)

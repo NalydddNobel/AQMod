@@ -32,6 +32,13 @@ namespace Aequus.NPCs
 {
     public class AequusNPC : GlobalNPC
     {
+        public struct OnKillPlayerInfo
+        {
+            public Player player;
+            public AequusPlayer aequus;
+            public float distance;
+        }
+
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> DontModifyVelocity { get; private set; }
 
@@ -375,40 +382,43 @@ namespace Aequus.NPCs
             }
 
             var players = GetCloseEnoughPlayers(npc);
-            if (npc.HasBuff<SoulStolen>())
-            {
-                CheckSouls(npc, players);
-            }
-            var info = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
-            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-            if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
-            {
-                zombie.SpawnZombie(npc);
-            }
 
-            foreach (var tuple in players)
+            if (npc.realLife == -1)
             {
-                if (!npc.playerInteraction[tuple.Item1.whoAmI])
+                if (npc.HasBuff<SoulStolen>())
                 {
-                    continue;
+                    CheckSouls(npc, players);
                 }
-                if (npc.value > (Item.copper * 20) && tuple.Item2.ammoBackpackItem != null)
+                var info = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
+                var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
                 {
-                    tuple.Item2.UseAmmoBackpack(npc, tuple.Item2.ammoBackpackItem);
+                    zombie.SpawnZombie(npc);
+                }
+                foreach (var tuple in players)
+                {
+                    if (!npc.playerInteraction[tuple.player.whoAmI])
+                    {
+                        continue;
+                    }
+                    if (npc.value > (Item.copper * 20) && tuple.aequus.ammoBackpackItem != null)
+                    {
+                        tuple.aequus.UseAmmoBackpack(npc, tuple.aequus.ammoBackpackItem);
+                    }
                 }
             }
             return false;
         }
-        public void CheckSouls(NPC npc, List<(Player, AequusPlayer, float)> players)
+        public void CheckSouls(NPC npc, List<OnKillPlayerInfo> players)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 foreach (var p in players)
                 {
-                    if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                    if (p.aequus.candleSouls < p.aequus.soulCandleLimit)
                     {
-                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, p.Item1.whoAmI);
-                        p.Item2.candleSouls++;
+                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, p.player.whoAmI);
+                        p.aequus.candleSouls++;
                     }
                 }
             }
@@ -417,9 +427,9 @@ namespace Aequus.NPCs
                 var candlePlayers = new List<int>();
                 foreach (var p in players)
                 {
-                    if (p.Item2.candleSouls < p.Item2.soulCandleLimit)
+                    if (p.aequus.candleSouls < p.aequus.soulCandleLimit)
                     {
-                        candlePlayers.Add(p.Item1.whoAmI);
+                        candlePlayers.Add(p.player.whoAmI);
                     }
                 }
 
@@ -437,7 +447,7 @@ namespace Aequus.NPCs
                 }
             }
         }
-        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<(Player, AequusPlayer, float)> players)
+        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<OnKillPlayerInfo> players)
         {
             if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
             {
@@ -465,13 +475,13 @@ namespace Aequus.NPCs
                 AequusEffects.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
             }
         }
-        public List<(Player, AequusPlayer, float)> GetCloseEnoughPlayers(NPC npc)
+        public List<OnKillPlayerInfo> GetCloseEnoughPlayers(NPC npc)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                return new List<(Player, AequusPlayer, float)>() { (Main.LocalPlayer, Main.LocalPlayer.Aequus(), npc.Distance(Main.LocalPlayer.Center)), };
+                return new List<OnKillPlayerInfo>() { new OnKillPlayerInfo { player = Main.LocalPlayer, aequus = Main.LocalPlayer.Aequus(), distance = npc.Distance(Main.LocalPlayer.Center) }, };
             }
-            var list = new List<(Player, AequusPlayer, float)>();
+            var list = new List<OnKillPlayerInfo>();
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active && !Main.player[i].dead)
@@ -479,7 +489,7 @@ namespace Aequus.NPCs
                     float d = npc.Distance(Main.player[i].Center);
                     if (d < 2000f)
                     {
-                        list.Add((Main.player[i], Main.player[i].Aequus(), d));
+                        list.Add(new OnKillPlayerInfo { player = Main.player[i], aequus = Main.player[i].Aequus(), distance = d, });
                     }
                 }
             }

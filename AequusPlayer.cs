@@ -1336,7 +1336,7 @@ namespace Aequus
         {
             if (candleSouls < soulCandleLimit)
             {
-                target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
+                target.AddBuffToHeadOrSelf(ModContent.BuffType<SoulStolen>(), 300);
             }
         }
 

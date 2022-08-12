@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Content.Necromancy;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -214,6 +215,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
+
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;

@@ -2,6 +2,7 @@
 using Aequus.Content.Necromancy.Aggression;
 using System;
 using Terraria;
+using Terraria.ID;
 
 namespace Aequus.Content.Necromancy
 {
@@ -12,11 +13,26 @@ namespace Aequus.Content.Necromancy
         /// </summary>
         public static GhostInfo Invalid => new GhostInfo(0f);
         public static GhostInfo Critter => new GhostInfo(0.1f, 800f);
+        /// <summary>
+        /// Tier for pre-Evil enemies
+        /// </summary>
         public static GhostInfo One => new GhostInfo(1f, 800f);
+        /// <summary>
+        /// Tier for post-Evils/Skeletron/Underworld enemies
+        /// </summary>
         public static GhostInfo Two => new GhostInfo(2f, 800f);
+        /// <summary>
+        /// Tier for pre-Golem enemies, and pre-Hardmode minibosses
+        /// </summary>
         public static GhostInfo Three => new GhostInfo(3f, 1000f);
+        /// <summary>
+        /// Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
+        /// </summary>
         public static GhostInfo Four => new GhostInfo(4f, 1250f);
-        public static GhostInfo Five => new GhostInfo(4f, 2000f);
+        /// <summary>
+        /// Tier for post-Golem Minibosses and post-ML enemies
+        /// </summary>
+        public static GhostInfo Five => new GhostInfo(5f, 2000f);
 
         public float PowerNeeded;
         public float ViewDistance;
@@ -45,6 +61,52 @@ namespace Aequus.Content.Necromancy
         {
             Aggro = aggro;
             return this;
+        }
+
+        public static GhostInfo Autogenerate(NPC npc)
+        {
+            if (npc.boss)
+                return Invalid;
+
+            if (NPCID.Sets.CountsAsCritter[npc.type])
+            {
+                return Critter;
+            }
+
+            int calcedTier = TierCalc(npc);
+
+            switch (calcedTier)
+            {
+                case 0:
+                    return One;
+
+                case 1:
+                    return Two;
+
+                case 2:
+                    return Three;
+
+                case 3:
+                    return Four;
+
+                default:
+                    if (calcedTier >= 4)
+                    {
+                        return new GhostInfo(5, 2000f);
+                    }
+                    break;
+            }
+
+            return Invalid;
+        }
+        public static int TierCalc(NPC npc)
+        {
+            int c = (int)((1f - Math.Pow(1f - Math.Sqrt(npc.lifeMax + npc.defense * 5 + npc.damage) / 100f, 2f)) * 100f) / 20;
+            if (c > 3)
+            {
+                c--;
+            }
+            return c;
         }
 
         public IModCallArgSettable HandleArg(string name, object value)

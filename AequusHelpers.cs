@@ -83,6 +83,16 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static void AddBuffToHeadOrSelf(this NPC npc, int buffID, int buffDuration)
+        {
+            if (npc.realLife != -1)
+            {
+                Main.npc[npc.realLife].AddBuff(buffID, buffDuration);
+                return;
+            }
+
+            npc.AddBuff(buffID, buffDuration);
+        }
 
         public static bool InSceneRenderedMap(this TileMapCache map, int x, int y)
         {

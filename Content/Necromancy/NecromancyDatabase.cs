@@ -15,17 +15,22 @@ namespace Aequus.Content.Necromancy
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }
+        public static HashSet<string> AutogeneratorIgnoreMods { get; private set; }
 
         public override void Load()
         {
             NecromancyDebuffs = new List<int>();
             AggressionType.LoadAggressions();
             PopulateEnemyStats();
+            AutogeneratorIgnoreMods = new HashSet<string>();
         }
         private static void PopulateEnemyStats()
         {
             NPCs = new Dictionary<int, GhostInfo>()
             {
+                [NPCID.GiantWormHead] = GhostInfo.One,
+                [NPCID.DevourerHead] = GhostInfo.One,
+                [NPCID.TombCrawlerHead] = GhostInfo.One,
                 [NPCID.BlueSlime] = GhostInfo.One,
                 [NPCID.ZombieRaincoat] = GhostInfo.One,
                 [NPCID.ZombieEskimo] = GhostInfo.One,
@@ -98,6 +103,7 @@ namespace Aequus.Content.Necromancy
                 [NPCID.SlimeRibbonYellow] = GhostInfo.One,
                 [NPCID.SlimeMasked] = GhostInfo.One,
 
+                [NPCID.BoneSerpentHead] = GhostInfo.Two,
                 [NPCID.CrimsonPenguin] = GhostInfo.Two,
                 [NPCID.CorruptPenguin] = GhostInfo.Two,
                 [NPCID.Crimera] = GhostInfo.Two,
@@ -132,6 +138,8 @@ namespace Aequus.Content.Necromancy
                 [NPCID.TheHungryII] = GhostInfo.Two,
                 [NPCID.Probe] = GhostInfo.Two,
 
+                [NPCID.DuneSplicerHead] = GhostInfo.Three,
+                [NPCID.DiggerHead] = GhostInfo.Three,
                 [NPCID.SwampThing] = GhostInfo.Three,
                 [NPCID.Unicorn] = GhostInfo.Three,
                 [NPCID.AnomuraFungus] = GhostInfo.Three,
@@ -313,18 +321,16 @@ namespace Aequus.Content.Necromancy
                 [NPCID.BigMimicJungle] = GhostInfo.Four,
                 [NPCID.GoldenSlime] = GhostInfo.Four,
 
+                [NPCID.DuneSplicerBody] = GhostInfo.Invalid,
+                [NPCID.DuneSplicerTail] = GhostInfo.Invalid,
                 [NPCID.Gnome] = GhostInfo.Invalid,
                 [NPCID.MotherSlime] = GhostInfo.Invalid,
-                [NPCID.GiantWormHead] = GhostInfo.Invalid,
                 [NPCID.GiantWormBody] = GhostInfo.Invalid,
                 [NPCID.GiantWormTail] = GhostInfo.Invalid,
-                [NPCID.BoneSerpentHead] = GhostInfo.Invalid,
                 [NPCID.BoneSerpentBody] = GhostInfo.Invalid,
                 [NPCID.BoneSerpentTail] = GhostInfo.Invalid,
-                [NPCID.DevourerHead] = GhostInfo.Invalid,
                 [NPCID.DevourerBody] = GhostInfo.Invalid,
                 [NPCID.DevourerTail] = GhostInfo.Invalid,
-                [NPCID.TombCrawlerHead] = GhostInfo.Invalid,
                 [NPCID.TombCrawlerBody] = GhostInfo.Invalid,
                 [NPCID.TombCrawlerTail] = GhostInfo.Invalid,
                 [NPCID.DungeonGuardian] = GhostInfo.Invalid,
@@ -376,22 +382,24 @@ namespace Aequus.Content.Necromancy
         }
         public static void InnerFinalizeContent()
         {
-            for (int i = 0; i < NPCLoader.NPCCount; i++)
-            {
-                if (NPCID.Sets.CountsAsCritter[i])
-                {
-                    NPCs[i] = GhostInfo.Critter;
-                }
-            }
-            if (ModLoader.TryGetMod("Polarities", out var polarities))
-            {
-                if (Aequus.LogMore)
-                    Aequus.Instance.Logger.Info("Adding necromancy entries for " + polarities.Name);
-            }
-
-            SetupPriorities();
+            AutogenEntries();
+            AutogenPriorities();
         }
-        public static void SetupPriorities()
+        public static void AutogenEntries()
+        {
+            for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++) 
+            {
+                var n = ContentSamples.NpcsByNetId[i];
+                var md = n.ModNPC;
+                if (AutogeneratorIgnoreMods.Contains(md.Mod.Name) || NPCs.ContainsKey(n.type))
+                {
+                    continue;
+                }
+
+                NPCs.Add(i, GhostInfo.Autogenerate(n));
+            }
+        }
+        public static void AutogenPriorities()
         {
             foreach (int i in NPCs.Keys)
             {
@@ -436,6 +444,24 @@ namespace Aequus.Content.Necromancy
         /// <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
         public object HandleModCall(Aequus aequus, object[] args)
         {
+            if (args[1] is string option)
+            {
+                if (option == "AddToBlacklist")
+                {
+                    if (args[2] is Mod ignoreMod)
+                    {
+                        AutogeneratorIgnoreMods.Add(ignoreMod.Name);
+                        return IModCallable.Success;
+                    }
+                    else if (args[2] is string ignoreModName)
+                    {
+                        AutogeneratorIgnoreMods.Add(ignoreModName);
+                        return IModCallable.Success;
+                    }
+                }
+                return IModCallable.Failure;
+            }
+
             int npc = 0;
             try
             {

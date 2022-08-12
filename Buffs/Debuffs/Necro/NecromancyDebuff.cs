@@ -38,6 +38,8 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public static void ApplyDebuff<T>(NPC npc, int time, int player) where T : NecromancyDebuff
         {
+            npc = npc.realLife == -1 ? npc : Main.npc[npc.realLife];
+
             float tier = ModContent.GetInstance<T>().Tier;
             bool cheat = tier >= 100;
             if (cheat)
