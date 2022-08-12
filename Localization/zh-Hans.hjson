@@ -258,9 +258,9 @@ Mods: {
 
 			RichMansMonocle: 富翁的单片眼镜
 
-			Citysnapper: 城市摄像机
-			CitysnapperClip: 城市摄像机剪片
-			CitysnapperClipAmmo: 城市摄像机剪片
+			Shutterstocker: 快门储像机
+			ShutterstockerClip: 快门储像机剪片
+			ShutterstockerClipAmmo: 快门储像机剪片
 			PhysicsGun: 物理枪
 			Pumpinator: 泵风器
 			Bellows: 风箱
@@ -833,8 +833,8 @@ Mods: {
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
-			Citysnapper: 与城市摄像机剪片一起使用以拍摄照片
-			CitysnapperClipAmmo: 打印在这些剪片上的照片可在木匠处查看
+			Shutterstocker: 与快门储像机剪片一起使用以拍摄照片
+			ShutterstockerClipAmmo: 打印在这些剪片上的照片可在木匠处查看
 
 			PhysicsGun: 可以抓取并扔出物块
 			Pumpinator:
@@ -3066,18 +3066,36 @@ Mods: {
 				}
 			}
 
+			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
+
 			Carpenter: {
 				Basic: {
-					0: Do not translate!
-					1: Do not translate!
+					0: 每当我匆忙做事的时候, 我都会担心我可能会错过又好又热的咖喱!
+					1: 每个砖与块都有助于构成一栋美妙建筑!
+					2: 讨厌的杀虫剂准备毒害被动和平的襀翅目
 				}
 
+				BloodMoon: 月亮是红色的, 死神来了! 希望我们不会失去我们的脑袋!
+				Glimmer: 天空与大地都在闪烁, 你认为星星是甜的还是苦的?
+				Eclipse: 黑夜回来替代了白天的时间! 不要看太阳, 它可能会回以注视!
+				GoblinArmy: 当他们发动战争并闯入你的门时, 你应该知道不要惹那些地上的哥布林!
+
+				NoBounty: 很不幸的是, 我已经没有钱了, 也许以后再来吧?
+
 				ShopQuote: {
-					GrayBrick: Do not translate!
+					Shutterstocker: 只需要一个按钮和一个快门, 它会允许剪片吸收足够的光线来制作图像!
+					ShutterstockerClipAmmo: 
+						'''
+						与快门储像机™一起使用以捕获图像
+						用最吸引人的剪片来保存你最好的建筑!
+						'''
 				}
 
 				UI: {
 					BountyButton: 查看赏金
+					SubmitPhoto: 提交照片
+					Blueprint: 蓝图
+					BlueprintFakeCopyright: Ⓒ 2022 木工蚁, 锌. 版权所有
 					Reward: "奖励:"
 					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
 				}
@@ -3421,6 +3439,7 @@ Mods: {
 					15+家具
 					'''
 			}
+
 			FountainBounty: {
 				"$parentVal": 大喷泉
 				Description: 建一个漂亮的喷泉
@@ -3430,6 +3449,13 @@ Mods: {
 					瀑布必须向下流过至少7个物块
 					必须是由可制作的物块组成的 (例如: 灰砖)
 					'''
+
+			Reply: {
+					NoWaterfalls: 哦, 天哪, 我在这张照片里没有看到瀑布, 没有水就没有喷泉! 那它只是一尊精美的雕像.
+					NoCraftedBlocks: 你就快要达成目标了, 但一定要记住使用可制作的物块! 也许可以堆放一些石头并把它们变成漂亮的砖块?
+					NotSymmetric: 你的喷泉非常棒! 但要确保物块完全对称!
+					Completed: 喷泉非常壮观! 作为一名建筑工人, 你有很大的潜力, 我能从你的身上看到它.
+				}
 			}
 		}
 
