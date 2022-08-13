@@ -104,10 +104,25 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            int dustAmount = NPC.life > 0 ? 1 : 5;
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
             for (int k = 0; k < dustAmount; k++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, newColor: new Color(200, 200, 200, 100));
+            }
+            if (NPC.life <= 0)
+            {
+                for (int i = -1; i <= 1; i += 2)
+                {
+                    GoreHelper.DeathGore(NPC, "Exporter_5", new Vector2(NPC.width / 2f * i, NPC.height / 2f));
+                    GoreHelper.DeathGore(NPC, "Exporter_5", new Vector2(NPC.width / 4f * i, NPC.height / 2f));
+                    GoreHelper.DeathGore(NPC, "Exporter_4", new Vector2(NPC.width / 2f * i, 0f));
+                }
+
+
+                GoreHelper.DeathGore(NPC, "Exporter_3");
+                GoreHelper.DeathGore(NPC, "Exporter_2");
+                GoreHelper.DeathGore(NPC, "Exporter_1");
+                GoreHelper.DeathGore(NPC, "Exporter_0", new Vector2(0f, -NPC.height / 2f));
             }
         }
 

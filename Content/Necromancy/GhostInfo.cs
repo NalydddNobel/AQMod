@@ -193,10 +193,7 @@ namespace Aequus.Content.Necromancy
 
         public override string ToString()
         {
-            return AequusHelpers.ValueText("PowerNeeded", PowerNeeded)
-                .c().valueText("slotsUsed", slotsUsed)
-                .c().valueText("despawnPriority", despawnPriority)
-                .c().valueText("Aggro", Aggro);
+            return $"{nameof(PowerNeeded)}:{PowerNeeded}, {nameof(slotsUsed)}:{slotsUsed}, {nameof(despawnPriority)}:{despawnPriority}, {nameof(Aggro)}:{Aggro}";
         }
     }
 }

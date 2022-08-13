@@ -200,22 +200,7 @@ namespace Aequus
             return player.head == head && player.body == body && player.legs == legs;
         }
 
-        public static string c(this string text)
-        {
-            return text + ",";
-        }
-
-        public static string valueText(this string text, string name, object value)
-        {
-            return text + ValueText(name, value);
-        }
-
-        public static string ValueText(string name, object value)
-        {
-            return name + ": " + ToStringOrReturnNull(value);
-        }
-
-        public static string ToStringOrReturnNull(object value)
+        public static string ToStringNull(object value)
         {
             if (value == null)
                 return "Null";

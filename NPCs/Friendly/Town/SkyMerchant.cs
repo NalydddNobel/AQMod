@@ -320,7 +320,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            int dustAmount = NPC.life > 0 ? 1 : 5;
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
             for (int k = 0; k < dustAmount; k++)
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);

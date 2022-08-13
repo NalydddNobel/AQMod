@@ -8,6 +8,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -101,10 +102,10 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            int dustAmount = NPC.life > 0 ? 1 : 5;
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
             for (int k = 0; k < dustAmount; k++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MartianHit);
             }
         }
 

@@ -5,6 +5,7 @@ using Aequus.Items.Tools.CarpenterTools;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
@@ -88,7 +89,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            int dustAmount = NPC.life > 0 ? 1 : 5;
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
             for (int k = 0; k < dustAmount; k++)
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, newColor: new Color(Main.rand.Next(100, 155), 255, 255, 255));
