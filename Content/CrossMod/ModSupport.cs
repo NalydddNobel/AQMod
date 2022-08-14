@@ -227,7 +227,7 @@ namespace Aequus.Content.CrossMod
             AddEventEntry(
                 "Glimmer",
                 new List<int>() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>(), },
-                1.75f,
+                2.75f,
                 () => AequusWorld.downedEventCosmic,
                 null,
                 new List<int>()
