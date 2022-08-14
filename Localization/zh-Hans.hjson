@@ -834,6 +834,9 @@ Mods: {
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
 			Shutterstocker: 与快门储像机剪片一起使用以拍摄照片
+			ShutterstockerClip: {
+				Reviewed: 这张剪片已经被木匠查看过了
+			}
 			ShutterstockerClipAmmo: 打印在这些剪片上的照片可在木匠处查看
 
 			PhysicsGun: 可以抓取并扔出物块
@@ -3078,7 +3081,7 @@ Mods: {
 				BloodMoon: 月亮是红色的, 死神来了! 希望我们不会失去我们的脑袋!
 				Glimmer: 天空与大地都在闪烁, 你认为星星是甜的还是苦的?
 				Eclipse: 黑夜回来替代了白天的时间! 不要看太阳, 它可能会回以注视!
-				GoblinArmy: 当他们发动战争并闯入你的门时, 你应该知道不要惹那些地上的哥布林!
+				GoblinArmy: 当他们发动战争并闯入你的门时, 你就应该知道不要与那些地上的哥布林混在一起!
 
 				NoBounty: 很不幸的是, 我已经没有钱了, 也许以后再来吧?
 
@@ -3438,6 +3441,13 @@ Mods: {
 					适合2位城镇NPC
 					15+家具
 					'''
+
+				Reply: {
+					NotEnoughRooms: 你忘了让这个建筑有合适的住房, 我不认为海盗船员会想在甲板上睡觉, 哦, 以及赏金上写着需要房间.
+					NotEnoughWater: 墙壁没有浸没在水中, 不幸的是, 我很难将其称呼为船.
+					NotEnoughFurniture: 在房间里多放些装饰和家具, 感觉平平无奇且缺乏
+					Completed: 船造得不错! 它应该很快就能出海了! 嗯, 或许不是现在, 我没
+				}
 			}
 
 			FountainBounty: {
@@ -3450,8 +3460,9 @@ Mods: {
 					必须是由可制作的物块组成的 (例如: 灰砖)
 					'''
 
-			Reply: {
+				Reply: {
 					NoWaterfalls: 哦, 天哪, 我在这张照片里没有看到瀑布, 没有水就没有喷泉! 那它只是一尊精美的雕像.
+					ShortWaterfalls: 这个喷泉的瀑布实在太短了, 请确保水流向下流过了七格物块!
 					NoCraftedBlocks: 你就快要达成目标了, 但一定要记住使用可制作的物块! 也许可以堆放一些石头并把它们变成漂亮的砖块?
 					NotSymmetric: 你的喷泉非常棒! 但要确保物块完全对称!
 					Completed: 喷泉非常壮观! 作为一名建筑工人, 你有很大的潜力, 我能从你的身上看到它.
