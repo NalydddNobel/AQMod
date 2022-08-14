@@ -15,6 +15,7 @@ namespace Aequus.Graphics.RenderTargets
         public static List<ShutterstockerClip> renderRequests;
         public const int TileSize = 16;
         public const int TilePadding = 12;
+        public static int TilePaddingForChecking => TilePadding - 2;
 
         public override void Load(Mod mod)
         {

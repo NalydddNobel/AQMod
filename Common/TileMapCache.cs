@@ -17,6 +17,10 @@ namespace Aequus.Common
         public int Width => Area.Width;
         public int Height => Area.Height;
 
+        public Point WorldPointDebug(int x, int y) => new Point(Area.X + x, Area.Y + y);
+
+        public Point WorldPointDebug(Point p) => WorldPointDebug(p.X, p.Y);
+
         public TileMapCache(Rectangle area, TileDataCache[,] cachedInfo, int worldID)
         {
             Area = area;
@@ -48,6 +52,10 @@ namespace Aequus.Common
             {
                 return cachedInfo[i, j];
             }
+            set
+            {
+                cachedInfo[i, j] = value;
+            }
         }
 
         public TileDataCache this[Point point]
@@ -55,6 +63,10 @@ namespace Aequus.Common
             get
             {
                 return cachedInfo[point.X, point.Y];
+            }
+            set
+            {
+                cachedInfo[point.X, point.Y] = value;
             }
         }
 

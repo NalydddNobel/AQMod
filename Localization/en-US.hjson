@@ -834,6 +834,9 @@ Mods: {
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
 			Shutterstocker: Used to take photos with shutterstocker clips
+			ShutterstockerClip: {
+				Reviewed: This clip has been reviewed by the Carpenter
+			}
 			ShutterstockerClipAmmo: Photos printed onto these clips can be reviewed by the carpenter
 
 			PhysicsGun: Can grab and throw blocks
@@ -3078,7 +3081,7 @@ Mods: {
 				BloodMoon: The Moon is red, up comes the dead! Surely we don't lose our heads!
 				Glimmer: The sky shimmers, the ground glimmers, you think the stars will be sweet or bitter?
 				Eclipse: The night is back to take day's time! Don't look at the sun, it may stare back!
-				GoblinArmy: As they start a war and break through your door, you'd v know to not mess with those Goblins ashore!
+				GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
 
 				NoBounty: It's very unfortunate to say that I'm all out of bounties to give, maybe come back later?
 
@@ -3438,6 +3441,13 @@ Mods: {
 					Suitable for 2 town NPCs
 					15+ Furniture
 					'''
+
+				Reply: {
+					NotEnoughRooms: You forgot to make this build have suitable housing, I don't think a pirate crew would want to sleep on the deck, oh, and it's written on the bounty that it needs rooms.
+					NotEnoughWater: The walls are not submerged in water, unfortunately I find it hard to call this a ship.
+					NotEnoughFurniture: Place some more decoration and furniture in the rooms, it's feeling very bland and lacking
+					Completed: Good job on creating a ship! It should be able to sail out to sea in no-time! Well, probably not, I haven
+				}
 			}
 
 			FountainBounty: {
@@ -3452,6 +3462,7 @@ Mods: {
 
 				Reply: {
 					NoWaterfalls: Oh dear I see no waterfalls in this photo, you can't have a fountain without water! Then it's just a fancy statue.
+					ShortWaterfalls: The waterfalls shown in this fountain are simply too short, be sure they go down by 7 blocks!
 					NoCraftedBlocks: You are getting there but do remember to use crafted blocks! Maybe pile up some stone and turn them into nice bricks?
 					NotSymmetric: Your fountain is quite close to being great! But make sure the tiles completely symmetric!
 					Completed: That fountain is quite spectactular! You have great potential as a builder, I can see it in you.

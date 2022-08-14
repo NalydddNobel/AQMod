@@ -23,6 +23,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
@@ -83,6 +84,28 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static int GetTileStyle(int tileID, int frameX, int frameY)
+        {
+            var tileObjectData = TileObjectData.GetTileData(tileID, 0, 0);
+            if (tileObjectData == null)
+            {
+                return -1;
+            }
+
+            int num = frameX / tileObjectData.CoordinateFullWidth;
+            int num2 = frameY / tileObjectData.CoordinateFullHeight;
+            int num3 = tileObjectData.StyleWrapLimit;
+            if (num3 == 0)
+            {
+                num3 = 1;
+            }
+
+            int num4 = (!tileObjectData.StyleHorizontal) ? (num * num3 + num2) : (num2 * num3 + num);
+            int result = num4 / tileObjectData.StyleMultiplier;
+            _ = num4 % tileObjectData.StyleMultiplier;
+            return result;
+        }
+
         public static void AddBuffToHeadOrSelf(this NPC npc, int buffID, int buffDuration)
         {
             if (npc.realLife != -1)
@@ -94,9 +117,15 @@ namespace Aequus
             npc.AddBuff(buffID, buffDuration);
         }
 
+        public static bool InSceneRenderedMap(this TileMapCache map, Point p)
+        {
+            return InSceneRenderedMap(map, p.X, p.Y);
+        }
+
         public static bool InSceneRenderedMap(this TileMapCache map, int x, int y)
         {
-            return x > ShutterstockerSceneRenderer.TilePadding / 2 && x < map.Width - ShutterstockerSceneRenderer.TilePadding / 2 && y > ShutterstockerSceneRenderer.TilePadding / 2 && y < map.Width - ShutterstockerSceneRenderer.TilePadding / 2;
+            return x > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
+                && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
         }
 
         public static Vector2 MouseWorld(this Player player)
@@ -1718,6 +1747,11 @@ namespace Aequus
         public static bool SolidTopType(this Tile tile)
         {
             return Main.tileSolidTop[tile.TileType];
+        }
+
+        public static bool IsIncludedIn(this TileDataCache tile, int[] arr)
+        {
+            return arr.ContainsAny(tile.TileType);
         }
 
         public static bool IsIncludedIn(this Tile tile, int[] arr)

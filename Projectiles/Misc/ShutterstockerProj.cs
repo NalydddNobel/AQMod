@@ -18,7 +18,7 @@ namespace Aequus.Projectiles.Misc
     {
         public Vector2 mouseWorld;
 
-        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 1f, 40f); }
+        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 60f); }
         public int CalculatedPhotoSize => (int)Projectile.ai[0];
 
         public override void SetDefaults()
@@ -41,6 +41,12 @@ namespace Aequus.Projectiles.Misc
 
             if (Main.myPlayer == Projectile.owner)
             {
+                if (Main.mouseRight && Main.mouseRightRelease)
+                {
+                    Projectile.Kill();
+                    return;
+                }
+
                 var oldMouseWorld = player.MouseWorld();
                 mouseWorld = player.MouseWorld();
                 if (mouseWorld.X != oldMouseWorld.X || mouseWorld.Y != oldMouseWorld.Y)

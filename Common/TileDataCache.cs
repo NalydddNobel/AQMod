@@ -31,12 +31,14 @@ namespace Aequus.Common
         public ushort TileType => Type.Type;
         public bool HasTile => Misc.HasTile;
         public bool IsSolid => Main.tileSolid[TileType];
-        public bool IsFullySolid => HasTile && Main.tileSolid[TileType];
+        public bool IsSolidTop => Main.tileSolidTop[TileType];
+        public bool IsFullySolid => HasTile && IsSolid;
         public bool IsHalfBlock => Misc.IsHalfBlock;
         public SlopeType Slope => Misc.Slope;
         public short TileFrameX => Misc.TileFrameX;
         public short TileFrameY => Misc.TileFrameY;
         public byte LiquidAmount => Liquid.Amount;
+        public ushort WallType => Wall.Type;
 
         public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall)
         {

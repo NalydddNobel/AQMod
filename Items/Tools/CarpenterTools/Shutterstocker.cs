@@ -7,7 +7,6 @@ namespace Aequus.Items.Tools.CarpenterTools
 {
     public class Shutterstocker : ModItem
     {
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.GamepadExtraRange[Type] = 400;
@@ -30,9 +29,9 @@ namespace Aequus.Items.Tools.CarpenterTools
             Item.noUseGraphic = true;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            return true;
+            return false;
         }
     }
 }

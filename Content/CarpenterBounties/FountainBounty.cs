@@ -46,6 +46,11 @@ namespace Aequus.Content.CarpenterBounties
                         surroundingRectangle.Height = height;
                 }
             }
+            if (surroundingRectangle.Height < 7)
+            {
+                message = Language.GetTextValue(LanguageKey + ".Reply.ShortWaterfalls");
+                return false;
+            }
             surroundingRectangle.X--;
             surroundingRectangle.Width += 2;
             surroundingRectangle.Y--;
@@ -98,6 +103,14 @@ namespace Aequus.Content.CarpenterBounties
                     {
                         if (map[point1].TileType != map[point2].TileType)
                         {
+                            var misc = map[point1].Misc;
+                            misc.TileColor = PaintID.DeepRedPaint;
+                            map[point1] = new TileDataCache(map[point1].Type, map[point1].Liquid, misc, map[point1].Wall);
+
+                            misc = map[point2].Misc;
+                            misc.TileColor = PaintID.DeepRedPaint;
+                            map[point2] = new TileDataCache(map[point2].Type, map[point2].Liquid, misc, map[point2].Wall);
+
                             message = Language.GetTextValue(LanguageKey + ".Reply.NotSymmetric");
                             return false;
                         }

@@ -118,7 +118,6 @@ namespace Aequus.NPCs.Friendly.Town
                     GoreHelper.DeathGore(NPC, "Exporter_4", new Vector2(NPC.width / 2f * i, 0f));
                 }
 
-
                 GoreHelper.DeathGore(NPC, "Exporter_3");
                 GoreHelper.DeathGore(NPC, "Exporter_2");
                 GoreHelper.DeathGore(NPC, "Exporter_1");
@@ -173,71 +172,6 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
         }
 
-        //public static bool TryPlaceQuestTile(int x, int y)
-        //{
-        //    int choice = Main.rand.Next(3);
-        //    if (choice == 2)
-        //    {
-        //        if (!Framing.GetTileSafely(x, y - 1).active() || !Main.tile[x, y - 1].Solid())
-        //        {
-        //            return false;
-        //        }
-        //        for (int i = -1; i <= 1; i++)
-        //        {
-        //            for (int j = 0; j < 3; j++)
-        //            {
-        //                if (Framing.GetTileSafely(x + i, y + j).active())
-        //                {
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //        for (int i = -1; i <= 1; i++)
-        //        {
-        //            for (int j = 0; j < 3; j++)
-        //            {
-        //                var t = Main.tile[x + i, y + j];
-        //                t.active(active: true);
-        //                t.type = (ushort)ModContent.TileType<JeweledChandlierTile>();
-        //                t.frameX = (short)(18 * (i + 1));
-        //                t.frameY = (short)(18 * j);
-        //                t.slope(slope: 0);
-        //                t.halfBrick(halfBrick: false);
-        //                t.color(color: 0);
-        //            }
-        //        }
-        //        if (Main.netMode == NetmodeID.Server)
-        //            NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
-        //        return true;
-        //    }
-        //    else if (choice == 1)
-        //    {
-        //        if (!Framing.GetTileSafely(x, y).active() && !Framing.GetTileSafely(x, y + 1).active() && !Framing.GetTileSafely(x + 1, y).active() && !Framing.GetTileSafely(x + 1, y + 1).active() && Framing.GetTileSafely(x, y + 2).active() && Main.tileSolidTop[Main.tile[x, y + 2].type] && Framing.GetTileSafely(x + 1, y + 2).active() && Main.tileSolidTop[Main.tile[x + 1, y + 2].type])
-        //        {
-        //            WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledCandelabraTile>(), true, false, -1, 0);
-        //            if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledCandelabraTile>())
-        //            {
-        //                if (Main.netMode == NetmodeID.Server)
-        //                    NetMessage.SendTileSquare(-1, x - 2, y - 2, 4);
-        //                return true;
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (!Framing.GetTileSafely(x, y).active() && Framing.GetTileSafely(x, y + 1).active() && Main.tileSolidTop[Main.tile[x, y + 1].type])
-        //        {
-        //            WorldGen.PlaceTile(x, y, ModContent.TileType<JeweledChaliceTile>(), true, false, -1, 0);
-        //            if (Framing.GetTileSafely(x, y).type == ModContent.TileType<JeweledChaliceTile>())
-        //            {
-        //                if (Main.netMode == NetmodeID.Server)
-        //                    NetMessage.SendTileSquare(-1, x - 1, y - 1, 3);
-        //                return true;
-        //            }
-        //        }
-        //    }
-        //    return false;
-        //}
         public override void AI()
         {
             NPC.breath = 200;

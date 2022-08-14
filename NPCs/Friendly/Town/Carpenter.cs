@@ -120,10 +120,8 @@ namespace Aequus.NPCs.Friendly.Town
         public override bool CheckConditions(int left, int right, int top, int bottom)
         {
             var stopWatch = new Stopwatch();
-            stopWatch.Start();
             var houseInsideTiles = GetHouseInsideTiles((left + right) / 2, (top + bottom) / 2);
             int decorAmt = CountDecorInsideHouse(houseInsideTiles);
-            stopWatch.Stop();
             return decorAmt >= 5;
         }
 
@@ -147,7 +145,7 @@ namespace Aequus.NPCs.Friendly.Town
                     {
                         var newPoint = new Point(checkedPoints[l].X + offsets[m].X, checkedPoints[l].Y + offsets[m].Y);
                         if (WorldGen.InWorld(newPoint.X, newPoint.Y, 10) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) &&
-                            (!Main.tile[newPoint].HasTile || (!Main.tile[newPoint].SolidType() && !Main.tile[newPoint].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor))))
+                            (!Main.tile[newPoint].HasTile || (!Main.tile[newPoint].SolidType() && !Main.tile[newPoint].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor))) && Main.tile[newPoint].WallType != WallID.None && Main.wallHouse[Main.tile[newPoint].WallType])
                         {
                             addPoints.Add(newPoint);
                             addedAny = true;
@@ -199,7 +197,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 if (Main.tile[p].HasTile)
                 {
-                    if (Main.tile[p].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsTable) || Main.tile[p].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsChair) || Main.tile[p].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsTorch))
+                    if (Main.tile[p].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsTable) || Main.tile[p].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsChair) || TileID.Sets.Torch[Main.tile[p].TileType])
                     {
                         continue;
                     }

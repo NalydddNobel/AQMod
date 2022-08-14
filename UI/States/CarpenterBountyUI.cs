@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CarpenterBounties;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Items.Tools.CarpenterTools;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
@@ -410,6 +411,8 @@ namespace Aequus.UI.States
                         Main.mouseLeftRelease = false;
 
                         bool completed = selected.bounty.CheckConditions(clip.tileMap, out string responseMessage, Main.npc[Main.LocalPlayer.talkNPC]);
+                        ShutterstockerSceneRenderer.renderRequests.Add(clip);
+                        clip.reviewed = true;
                         SoundEngine.PlaySound(SoundID.Chat);
                         Main.playerInventory = true;
                         Main.npcChatText = responseMessage;
@@ -713,7 +716,7 @@ namespace Aequus.UI.States
                 return;
             }
 
-            if (Main.mouseItem.ModItem is ShutterstockerClip)
+            if (Main.mouseItem.ModItem is ShutterstockerClip clip && !clip.reviewed)
             {
                 Utils.Swap(ref Main.mouseItem, ref submissionSlot.item);
                 SoundEngine.PlaySound(SoundID.Grab);

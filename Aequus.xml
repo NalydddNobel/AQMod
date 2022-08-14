@@ -405,6 +405,31 @@
             For enemies which cannot be turned into player zombies
             </summary>
         </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
+            <summary>
+            Tier for pre-Evil enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
+            <summary>
+            Tier for post-Evils/Skeletron/Underworld enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
+            <summary>
+            Tier for pre-Golem enemies, and pre-Hardmode minibosses
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
+            <summary>
+            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
+            <summary>
+            Tier for post-Golem Minibosses and post-ML enemies
+            </summary>
+        </member>
         <member name="F:Aequus.Content.Necromancy.GhostOutlineRenderer.IDs.Count">
             <summary>
             Use and increase respectively for custom Necromancy Screen Renderer layers.
