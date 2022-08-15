@@ -84,7 +84,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Tools.GhostlyGrave"/>
+            Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.buffSpicyEel">
@@ -167,7 +167,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.skeletonKey">
             <summary>
-            Set by <see cref="T:Aequus.Items.Tools.SkeletonKey"/>
+            Set by <see cref="T:Aequus.Items.Tools.Misc.SkeletonKey"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.shadowKey">
@@ -341,22 +341,22 @@
         </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.Pets.FamiliarPickaxe"/>
+            Applied by <see cref="T:Aequus.Items.Pets.FamiliarPickaxe"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.Pets.DragonBall"/>
+            Applied by <see cref="T:Aequus.Items.Pets.DragonBall"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.RedSpriteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
+            Applied by <see cref="T:Aequus.Items.Pets.LightningRod"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Misc.Pets.ToySpaceGun"/>
+            Applied by <see cref="T:Aequus.Items.Pets.ToySpaceGun"/>
             </summary>
         </member>
         <member name="M:Aequus.Common.ILoadBefore.SortBefore(System.Type)">

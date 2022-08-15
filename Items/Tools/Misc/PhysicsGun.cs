@@ -9,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
     public class PhysicsGun : ModItem
     {
@@ -51,7 +51,7 @@ namespace Aequus.Items.Tools
             var pick = Main.LocalPlayer.GetBestPickaxe();
             if (pick != null)
                 pickPower = pick.pick;
-            tooltips.Insert(AequusTooltips.GetIndex(tooltips, "PickPower"), new TooltipLine(Mod, "PickPower", pickPower + Lang.tip[26].Value));
+            tooltips.Insert(tooltips.GetIndex("PickPower"), new TooltipLine(Mod, "PickPower", pickPower + Lang.tip[26].Value));
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

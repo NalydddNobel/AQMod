@@ -1,14 +1,16 @@
-﻿using Terraria;
+﻿using Aequus.Biomes.DemonSiege;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Consumables
 {
     public class UnholyCore : ModItem
     {
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 3;
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(Type, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

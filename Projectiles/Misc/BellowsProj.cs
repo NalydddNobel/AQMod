@@ -14,6 +14,7 @@ namespace Aequus.Projectiles.Misc
             base.SetDefaults();
             Projectile.width = 20;
             Projectile.height = 20;
+            Projectile.timeLeft = 4;
         }
 
         public override bool? CanCutTiles()

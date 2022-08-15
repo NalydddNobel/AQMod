@@ -10,7 +10,7 @@ using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Pets;
+using Aequus.Items.Pets;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.Particles;

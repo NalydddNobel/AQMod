@@ -1,17 +1,18 @@
 ﻿using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
     public class Bellows : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -38,7 +39,7 @@ namespace Aequus.Items.Tools
                 var v = Vector2.Normalize(Main.MouseWorld - player.Center).UnNaN();
                 if (v.Y > 0f)
                 {
-                    v.Y *= (player.gravity / 0.4f);
+                    v.Y *= player.gravity / 0.4f;
                 }
                 player.velocity -= v * GetPushForce(player);
                 if (player.velocity.X < 4f)
@@ -53,8 +54,9 @@ namespace Aequus.Items.Tools
             float force = Item.knockBack;
             if (player.mount != null && player.mount.Active && player.mount._data.usesHover)
             {
-                force *= 0.02f;
+                force *= 0.33f;
             }
+            force /= Math.Max(player.velocity.Length().UnNaN() / 8f, 1f);
             return force;
         }
 

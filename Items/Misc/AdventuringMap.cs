@@ -10,7 +10,7 @@ using Terraria.Map;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Misc
 {
     public class AdventuringMap : ModItem
     {

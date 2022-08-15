@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
     public class SkeletonKey : ModItem, ItemHooks.IUpdateBank
     {

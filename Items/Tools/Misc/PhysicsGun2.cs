@@ -9,15 +9,16 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
-    public class SuperPhysicsGun : ModItem
+    public class PhysicsGun2 : ModItem
     {
         public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
 
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            DisplayName.SetDefault("Super Physics Gun");
             Tooltip.SetDefault("Testing Item");
         }
 
@@ -36,7 +37,7 @@ namespace Aequus.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Insert(AequusTooltips.GetIndex(tooltips, "PickPower"), new TooltipLine(Mod, "PickPower", "Infinite" + Lang.tip[26].Value));
+            tooltips.Insert(tooltips.GetIndex("PickPower"), new TooltipLine(Mod, "PickPower", "Infinite" + Lang.tip[26].Value));
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

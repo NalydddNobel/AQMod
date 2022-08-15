@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Tools;
+using Aequus.Items.Tools.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -375,7 +375,7 @@ namespace Aequus.Projectiles.Misc
 
         public void DrawSuperGun()
         {
-            int itemID = ModContent.ItemType<SuperPhysicsGun>();
+            int itemID = ModContent.ItemType<PhysicsGun2>();
             Main.instance.LoadItem(itemID);
             var texture = TextureAssets.Item[itemID];
 
@@ -388,7 +388,7 @@ namespace Aequus.Projectiles.Misc
             Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<SuperPhysicsGun>().Texture + "_Glow");
+            var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun2>().Texture + "_Glow");
             var coloring = mouseColor;
             foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly + Projectile.rotation))
             {

@@ -27,7 +27,7 @@ namespace Aequus.Items.Weapons.Magic
 
             AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
 
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         private void DefaultUse()

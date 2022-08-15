@@ -6,18 +6,18 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Pets
+namespace Aequus.Items.Pets
 {
-    public class LightningRod : ModItem
+    public class ToySpaceGun : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToVanitypet(ModContent.ProjectileType<RedSpritePet>(), ModContent.BuffType<RedSpriteBuff>());
+            Item.DefaultToVanitypet(ModContent.ProjectileType<SpaceSquidPet>(), ModContent.BuffType<SpaceSquidBuff>());
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 5);

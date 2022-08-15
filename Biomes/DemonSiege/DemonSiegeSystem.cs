@@ -183,11 +183,11 @@ namespace Aequus.Biomes.DemonSiege
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
                 }, PacketType.StartDemonSiege);
             }
+            s.Items.Add(sacrifice);
             if (player != 255)
             {
                 s.OnPlayerActivate(Main.player[player]);
             }
-            s.Items.Add(sacrifice);
             ActiveSacrifices.Add(new Point(x, y), s);
             return true;
         }

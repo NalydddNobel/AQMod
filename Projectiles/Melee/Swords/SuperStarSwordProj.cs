@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Melee.Swords
             if (!playedSound && AnimProgress > 0.4f)
             {
                 playedSound = true;
-                SoundEngine.PlaySound(HeavySwing.WithPitch(0.2f), Projectile.Center);
+                SoundEngine.PlaySound(HeavySwing.WithPitchOffset(0.2f), Projectile.Center);
             }
 
             if (AnimProgress < 0.3f)

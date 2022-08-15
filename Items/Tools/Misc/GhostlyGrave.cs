@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Tools.Misc
 {
     public class GhostlyGrave : ModItem
     {
@@ -47,7 +47,7 @@ namespace Aequus.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Insert(AequusTooltips.GetIndex(tooltips, "BestiaryNotes"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
+            tooltips.Insert(tooltips.GetIndex("BestiaryNotes"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
         }
 
         public override bool? UseItem(Player player)

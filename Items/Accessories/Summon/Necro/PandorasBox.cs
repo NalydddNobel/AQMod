@@ -48,7 +48,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void Unload()

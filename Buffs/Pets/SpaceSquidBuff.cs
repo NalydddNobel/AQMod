@@ -1,10 +1,11 @@
-﻿using Aequus.Projectiles.Misc.Pets;
+﻿using Aequus.Items.Pets;
+using Aequus.Projectiles.Misc.Pets;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Pets
 {
     /// <summary>
-    /// Applied by <see cref="Items.Misc.Pets.ToySpaceGun"/>
+    /// Applied by <see cref="ToySpaceGun"/>
     /// </summary>
     public class SpaceSquidBuff : PetBuffBase
     {

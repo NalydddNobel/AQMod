@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Utility
 {
-    public class HaltingMachine : ModItem
+    public class HaltingMagnet : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -18,14 +18,24 @@ namespace Aequus.Items.Accessories.Utility
             Item.width = 16;
             Item.height = 16;
             Item.accessory = true;
-            Item.rare = ItemDefaults.RarityOmegaStarite;
+            Item.rare = ItemDefaults.RarityOmegaStarite + 1;
             Item.canBePlacedInVanityRegardlessOfConditions = true;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 6);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().antiGravityItemRadius = 300f;
+            player.Aequus().antiGravityItemRadius = 360f;
+            player.treasureMagnet = true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.TreasureMagnet)
+                .AddIngredient<HaltingMachine>()
+                .AddTile(TileID.TinkerersWorkbench)
+                .RegisterAfter(ItemID.ArchitectGizmoPack);
         }
     }
 }

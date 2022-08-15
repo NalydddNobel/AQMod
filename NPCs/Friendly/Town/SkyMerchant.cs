@@ -2,11 +2,11 @@
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
-using Aequus.Items.Tools.Mounts;
+using Aequus.Items.Tools.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

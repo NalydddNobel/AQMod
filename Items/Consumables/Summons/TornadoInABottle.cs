@@ -10,8 +10,6 @@ namespace Aequus.Items.Consumables.Summons
 {
     public class TornadoInABottle : ModItem
     {
-        public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.LightningBuginaBottle;
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.QueenSlimeCrystal];

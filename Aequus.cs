@@ -124,13 +124,13 @@ namespace Aequus
             SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
         }
 
-        internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f)
+        internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
-            return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = 0f, };
+            return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
         }
-        internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f)
+        internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
-            return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = 0f, };
+            return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
         }
     }
 }

@@ -91,7 +91,7 @@ namespace Aequus.Tiles
         {
             if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
             {
-                SoundEngine.PlaySound(Aequus.GetSound("moonflower"), new Vector2(i * 16f, j * 16f));
+                SoundEngine.PlaySound(Aequus.GetSound("moonflower", variance: 0.1f), new Vector2(i * 16f, j * 16f));
                 return false;
             }
             return base.KillSound(i, j, fail);

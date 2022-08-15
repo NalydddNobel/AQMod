@@ -121,6 +121,7 @@ Mods: {
 
 		ItemName: {
 			FlashwayNecklace: Flashway Necklace
+			HaltingMagnet: Halting Magnet
 			HaltingMachine: Halting Machine
 			Ramishroom: Ramishroom
 			DevilsTongue: Devil's Tongue
@@ -570,12 +571,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Misc: {
-				AnglerHint: The Angler may be interested in this...
-				ExporterHint: The Exporter may be interested in this...
-			}
-
 			FlashwayNecklace: Gives you a brief period of invulnerability before allowing you to be struck
+			HaltingMagnet: 
+				'''
+				{$ItemTooltip.TreasureMagnet}
+				{$Mods.Aequus.ItemTooltip.HaltingMachine}
+				'''
 			HaltingMachine: Nearby items float instead of falling
 			Ramishroom: Fishing rods cast an extra bobber
 			DevilsTongue: Non-rare catches turn into trash
@@ -1476,6 +1477,11 @@ Mods: {
 				Works when wet
 				'I think you can guess what this does from the name'
 				'''
+
+			Misc: {
+				AnglerHint: The Angler may be interested in this...
+				ExporterHint: The Exporter may be interested in this...
+			}
 		}
 
 		BuffName: {

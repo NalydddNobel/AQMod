@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
             CooldownItems.HasWeaponCooldown.Add(Type);
         }
 

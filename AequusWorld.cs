@@ -5,7 +5,8 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Tools;
+using Aequus.Items.Tools.Axes;
+using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -323,6 +324,10 @@ namespace Aequus
 
         public override void PreUpdatePlayers()
         {
+            if (Main.LocalPlayer.position.HasNaNs())
+            {
+                Main.LocalPlayer.Spawn(PlayerSpawnContext.ReviveFromDeath);
+            }
             if (WorldGen.prioritizedTownNPCType > 0)
             {
                 //Main.NewText($"{WorldGen.prioritizedTownNPCType}: {Lang.GetNPCNameValue(WorldGen.prioritizedTownNPCType)} spawnDelay: {WorldGen.spawnDelay} (hiScore: {WorldGen.hiScore}, canSpawn:{WorldGen.canSpawn}, X:{WorldGen.roomX1},{WorldGen.roomX2} Y:{WorldGen.roomY1},{WorldGen.roomY2})");

@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         {
             Item.staff[Type] = true;
 
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override bool AllowPrefix(int pre)

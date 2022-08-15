@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
-using Aequus.Items.Tools;
+using Aequus.Items.Tools.Misc;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

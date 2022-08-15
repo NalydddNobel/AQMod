@@ -293,7 +293,14 @@ namespace Aequus.Tiles
             }
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
             {
-                if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.inventory[i].type))
+                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem)
+                {
+                    return player.inventory[i];
+                }
+            }
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(player.inventory[i].type, out var val))
                 {
                     return player.inventory[i];
                 }

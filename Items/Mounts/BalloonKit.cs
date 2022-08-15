@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Mounts;
+﻿using Aequus;
+using Aequus.Buffs.Mounts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Mounts
+namespace Aequus.Items.Mounts
 {
     public class BalloonKit : ModItem
     {
         public override void SetStaticDefaults()
         {
-            this.SetResearch(1);
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

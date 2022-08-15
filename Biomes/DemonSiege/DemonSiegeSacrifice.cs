@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Items;
-using Aequus.Items.Tools;
+using Aequus.Items.Consumables;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -44,7 +44,7 @@ namespace Aequus.Biomes.DemonSiege
         }
         public void OnPlayerActivate(Player player)
         {
-            if (player.ConsumeItem(ModContent.ItemType<UnholyCore>()))
+            if (Items.ContainsAny((i) => i.type == ModContent.ItemType<UnholyCore>()) || player.ConsumeItem(ModContent.ItemType<UnholyCore>()))
             {
                 unholyCoreUsed = true;
             }
@@ -59,7 +59,7 @@ namespace Aequus.Biomes.DemonSiege
                     int newTime = 3600 * (int)(value.Progression + 1);
                     if (!unholyCoreUsed)
                     {
-                        newTime *= 2;
+                        newTime = (int)(newTime * 1.33f);
                     }
                     if (!NPC.downedBoss3)
                     {
@@ -177,6 +177,9 @@ namespace Aequus.Biomes.DemonSiege
                 foreach (var i in Items)
                 {
                     DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var value);
+                    if (i.type == value.NewItem)
+                        continue;
+
                     var item = value.Convert(i);
                     int newItem = AequusItem.NewItemCloned(source, itemSpawn, item);
                     Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
