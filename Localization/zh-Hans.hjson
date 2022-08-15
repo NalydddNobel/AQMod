@@ -121,6 +121,7 @@ Mods: {
 
 		ItemName: {
 			FlashwayNecklace: 晖耀项链
+			HaltingMagnet: 凝滞磁铁
 			HaltingMachine: 凝滞仪
 			Ramishroom: 分支菇
 			DevilsTongue: 魔鬼之舌
@@ -570,12 +571,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Misc: {
-				AnglerHint: 渔夫可能会对此感兴趣...
-				ExporterHint: 发货人可能会对此感兴趣...
-			}
-
 			FlashwayNecklace: 允许你在受到攻击之前无敌一小段时间
+			HaltingMagnet: 
+				'''
+				{$ItemTooltip.TreasureMagnet}
+				{$Mods.Aequus.ItemTooltip.HaltingMachine}
+				'''
 			HaltingMachine: 附近的物品会现在漂浮而非下落
 			Ramishroom: 钓竿会额外扔出一个浮标
 			DevilsTongue: 将非稀有渔获转化为垃圾
@@ -1476,6 +1477,11 @@ Mods: {
 				仅在潮湿情况下生效
 				'我想你应该可以从名字中猜出这是做什么的'
 				'''
+
+			Misc: {
+				AnglerHint: 渔夫可能会对此感兴趣...
+				ExporterHint: 发货人可能会对此感兴趣...
+			}
 		}
 
 		BuffName: {
