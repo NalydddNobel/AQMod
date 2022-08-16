@@ -3,7 +3,7 @@ using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Tools.Axes;
+using Aequus.Items.Tools.Mining;
 using Aequus.NPCs.Boss;
 using Terraria.ID;
 using Terraria.ModLoader;

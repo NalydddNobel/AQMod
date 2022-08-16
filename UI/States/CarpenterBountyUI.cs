@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.CarpenterBounties;
 using Aequus.Graphics.RenderTargets;
-using Aequus.Items.Tools.CarpenterTools;
+using Aequus.Items.Misc;
+using Aequus.Items.Tools.Camera;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
@@ -94,7 +95,7 @@ namespace Aequus.UI.States
                 };
                 textPanel.Append(description);
 
-                var requirements = new UIText(ListItem.BountyFancyRequirements, 0.7f)
+                var text = new UIText(ListItem.BountyFancyRequirements, 0.7f)
                 {
                     HAlign = 0f,
                     VAlign = 0f,
@@ -106,8 +107,33 @@ namespace Aequus.UI.States
                     TextOriginX = 0f,
                     TextOriginY = 0f,
                 };
-                textPanel.Append(requirements);
-                requirements.IsWrapped = true;
+                textPanel.Append(text);
+                text.IsWrapped = true;
+
+                string hintKey = bounty.LanguageKey + ".Hint";
+                string hintText = Language.GetTextValue(hintKey);
+                if (hintText == hintKey)
+                {
+                    return;
+                }
+
+                int height = (int)(text.MinHeight.Pixels * 0.7f);
+                Main.NewText(height);
+                text = new UIText(hintText, 0.66f)
+                {
+                    HAlign = 0f,
+                    VAlign = 0f,
+                    Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                    Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                    Top = new StyleDimension(32 + height, 0f),
+                    PaddingLeft = 4f,
+                    PaddingTop = 0f,
+                    TextOriginX = 0f,
+                    TextOriginY = 0f,
+                    TextColor = Color.Lerp(Color.Teal, Color.White, 0.8f),
+                };
+                textPanel.Append(text);
+                text.IsWrapped = true;
             }
 
             public override void OnInitialize()
@@ -782,7 +808,7 @@ namespace Aequus.UI.States
 
         public override int GetLayerIndex(List<GameInterfaceLayer> layers)
         {
-            int index = layers.FindIndex((l) => l.Name.Equals(AequusUI.InterfaceLayers.Inventory));
+            int index = layers.FindIndex((l) => l.Name.Equals(AequusUI.InterfaceLayers.Inventory_28));
             if (index == -1)
                 return -1;
             return index + 1;

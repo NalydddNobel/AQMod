@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Axes
+namespace Aequus.Items.Tools.Mining
 {
     public class Crabax : ModItem
     {

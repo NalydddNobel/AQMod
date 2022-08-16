@@ -39,6 +39,41 @@ namespace Aequus
         public const char AirCharacter = '⠀';
         public const string AirString = "⠀";
 
+        public class Lookups : ILoadable, IPostSetupContent
+        {
+            public static Dictionary<TileKey, int> TileToItem { get; private set; }
+
+            void ILoadable.Load(Mod mod)
+            {
+                TileToItem = new Dictionary<TileKey, int>();
+            }
+
+            void IPostSetupContent.PostSetupContent(Aequus aequus)
+            {
+                foreach (var i in ContentSamples.ItemsByType)
+                {
+                    if (i.Value.createTile > -1)
+                    {
+                        var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle);
+                        if (TileToItem.ContainsKey(tileID))
+                        {
+                            if (!i.Value.consumable || i.Key == TileToItem[tileID])
+                            {
+                                continue;
+                            }
+
+                            aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileToItem[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
+                            continue;
+                        }
+                    }
+                }
+            }
+
+            void ILoadable.Unload()
+            {
+            }
+        }
+
         /// <summary>
         /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
         /// </summary>

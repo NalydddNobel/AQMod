@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.CarpenterTools
+namespace Aequus.Items.Tools.Camera
 {
     public class Shutterstocker : ModItem
     {

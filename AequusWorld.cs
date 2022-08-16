@@ -5,7 +5,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Tools.Axes;
+using Aequus.Items.Tools.Mining;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
@@ -13,6 +13,7 @@ using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using Aequus.UI;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using System;
@@ -120,11 +121,20 @@ namespace Aequus
         public override void OnWorldLoad()
         {
             Aequus.SkiesDarkness = 1f;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AdvancedRulerInterface.Instance.Reset();
+            }
             ResetWorldData();
         }
 
         public override void OnWorldUnload()
         {
+            Aequus.SkiesDarkness = 1f;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AdvancedRulerInterface.Instance.Reset();
+            }
             ResetWorldData();
         }
 
@@ -324,6 +334,11 @@ namespace Aequus
 
         public override void PreUpdatePlayers()
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                AdvancedRulerInterface.Instance.Enabled = false;
+                AdvancedRulerInterface.Instance.Holding = false;
+            }
             if (Main.LocalPlayer.position.HasNaNs())
             {
                 Main.LocalPlayer.Spawn(PlayerSpawnContext.ReviveFromDeath);

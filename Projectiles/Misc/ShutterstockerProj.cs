@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
-using Aequus.Items.Tools.CarpenterTools;
+using Aequus.Items.Tools.Camera;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

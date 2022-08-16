@@ -43,7 +43,7 @@ namespace Aequus.UI
             {
                 foreach (var g in layers)
                 {
-                    if (g.Name.Equals(AequusUI.InterfaceLayers.Inventory))
+                    if (g.Name.Equals(AequusUI.InterfaceLayers.Inventory_28))
                     {
                         g.Active = true;
                     }

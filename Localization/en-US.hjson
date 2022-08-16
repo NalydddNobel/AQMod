@@ -229,8 +229,9 @@ Mods: {
 
 			Moro: Moro
 			
-			AdventuringMap: Adventuring Map
+			AdvancedRuler: Advanced Ruler
 			CarpenterBountyItem: Carpenter Bounty
+			AdventuringMap: Adventuring Map
 			SkeletonKey: Skeleton Key
 
 			Snobster: Snobster
@@ -799,6 +800,15 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
 
+			AdvancedRuler:
+				'''
+				When held:
+				* Press left click to place a ruler node
+				* Placing a ruler node on another ruler node will remove the ruler node at that spot
+				* Hold left click and press right click to place a ruler node at your current position
+				* Hold shift and press left click remove the last placed ruler node
+				* Hold ctrl and press left click to swap between Line and Grid ruler modes
+				'''
 			AdventuringMap: 
 			{
 				"$parentVal": Digging below the marked 'X' may lead to a reward
@@ -3438,6 +3448,21 @@ Mods: {
 		}
 
 		Bounty: {
+			BiomePaletteBounty: {
+				"$parentVal": Delicious Palette 
+				Description: Build a house which fits in
+				Requirements:
+					'''
+					House must be constructed using blocks and walls which match the biome's color
+					Suitable for 1 town NPC
+					5+ Furniture
+					'''
+				Hint: (Hint: Use Biome Hair Dye to discover biome color)
+
+				Reply: {
+				}
+			}
+
 			PirateShipBounty: {
 				"$parentVal": Pirate's Ship
 				Description: Build a pirate ship
@@ -3451,8 +3476,8 @@ Mods: {
 				Reply: {
 					NotEnoughRooms: You forgot to make this build have suitable housing, I don't think a pirate crew would want to sleep on the deck, oh, and it's written on the bounty that it needs rooms.
 					NotEnoughWater: The walls are not submerged in water, unfortunately I find it hard to call this a ship.
-					NotEnoughFurniture: Place some more decoration and furniture in the rooms, it's feeling very bland and lacking
-					Completed: Good job on creating a ship! It should be able to sail out to sea in no-time! Well, probably not, I haven
+					NotEnoughFurniture: Place some more decoration and furniture in these rooms! It is feeling very bland and lacking.
+					Completed: Good job on creating a ship! It should be able to sail out to sea in no-time! Well, probably not, I don't think ships of that type can set sail.
 				}
 			}
 

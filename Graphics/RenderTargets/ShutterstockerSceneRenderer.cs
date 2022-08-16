@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Items.Tools.CarpenterTools;
+using Aequus.Items.Tools.Camera;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

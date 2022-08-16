@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items.Tools.CarpenterTools
+namespace Aequus.Items.Tools.Camera
 {
     public class ShutterstockerClip : ModItem
     {
@@ -155,7 +155,7 @@ namespace Aequus.Items.Tools.CarpenterTools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (!HasTooltipTexture || (Main.mouseRight && Main.mouseRightRelease))
+            if (!HasTooltipTexture || Main.mouseRight && Main.mouseRightRelease)
             {
                 if (TooltipTexture == null)
                     TooltipTexture = new Ref<RenderTarget2D>();

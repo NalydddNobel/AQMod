@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Tools.CarpenterTools
+namespace Aequus.Items.Misc
 {
     public class CarpenterBountyItem : ModItem
     {

@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
-using Aequus.Items.Tools.CarpenterTools;
+using Aequus.Items.Tools.Camera;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
