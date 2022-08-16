@@ -158,6 +158,7 @@ Mods: {
 			BoundBow: 界限弓
 			Slingshot: 弹弓
 
+			PentalScythe: 回旋魔镰
 			Gamestar: 游戏之星
 			WowHat: "'喔师'帽"
 			Snowgrave: 雪墓
@@ -229,8 +230,9 @@ Mods: {
 
 			Moro: 摩洛
 
-			AdventuringMap: 冒险地图
+			AdvancedRuler: 高级标尺
 			CarpenterBountyItem: 木匠赏金
+			AdventuringMap: 冒险地图
 			SkeletonKey: 骷髅钥匙
 
 			Snobster: 势利鬼虾
@@ -542,7 +544,6 @@ Mods: {
 			Bubbler: 泡泡法杖
 			GebulbaStaff: 弹球法杖
 			MagmalbulbiaStaff: 邪弹法杖
-			PentalScythe: 回旋魔镰
 			PowPunch: 链拳
 			CrystalDagger: 水晶匕首
 			ArgonSpear: 氩制长枪
@@ -663,6 +664,11 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			PentalScythe: 
+				'''
+				发射会爆炸的烈焰魔镰
+				会多次命中大型目标
+				'''
 			Gamestar: 发送压缩数据流
 			WowHat: 施放各种法术
 			Snowgrave:
@@ -799,6 +805,15 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
+			AdvancedRuler:
+				'''
+				当手持此物品时:
+				* 单击左键以放置标尺节点
+				* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
+				* 长按左键时单击右键以在你的当前位置放置标尺节点
+				* 长按Shift键时单击左键以移除最后一个被放置的标尺节点
+				* 长按Ctrl键时单击左键以在直线标尺和网格标尺模式之间切换
+				'''
 			AdventuringMap: 
 			{
 				"$parentVal": 在标记'X'的下方挖掘可能会获得奖励
@@ -1448,7 +1463,6 @@ Mods: {
 				发射击中物块时会爆炸的弹跳火焰弹
 				'艺术就是爆炸!'
 				'''
-			PentalScythe: 发射追踪敌人的烈焰魔镰
 			ArgonSpear: 会不断的瞄准你的光标位置
 			HamaYumi: 接近敌人时会爆裂成腐败狱火
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
@@ -3438,6 +3452,21 @@ Mods: {
 		}
 
 		Bounty: {
+			BiomePaletteBounty: {
+				"$parentVal": 美味调色板
+				Description: 建一座适合自己的房子
+				Requirements:
+					'''
+					房屋必须使用符合生物群落颜色的物块和墙壁建造
+					适合1位城镇NPC
+					5+家具
+					'''
+				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
+
+				Reply: {
+				}
+			}
+
 			PirateShipBounty: {
 				"$parentVal": 海盗船
 				Description: 建造一艘海盗船
@@ -3451,8 +3480,8 @@ Mods: {
 				Reply: {
 					NotEnoughRooms: 你忘了让这个建筑有合适的住房, 我不认为海盗船员会想在甲板上睡觉, 哦, 以及赏金上写着需要房间.
 					NotEnoughWater: 墙壁没有浸没在水中, 不幸的是, 我很难将其称呼为船.
-					NotEnoughFurniture: 在房间里多放些装饰和家具, 感觉平平无奇且缺乏
-					Completed: 船造得不错! 它应该很快就能出海了! 嗯, 或许不是现在, 我没
+					NotEnoughFurniture: 在这些房间里多放些装饰和家具! 这令人感觉平淡无奇.
+					Completed: 船造得不错! 它应该很快就能出海了! 嗯, 或许不是现在, 我认为那种船不能起航.
 				}
 			}
 
