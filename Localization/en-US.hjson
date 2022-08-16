@@ -158,6 +158,7 @@ Mods: {
 			BoundBow: Bound Bow
 			Slingshot: Slingshot
 
+			PentalScythe: Pental Scythe
 			Gamestar: Gamestar
 			WowHat: "'Wow-zer' Hat"
 			Snowgrave: Snowgrave
@@ -543,7 +544,6 @@ Mods: {
 			Bubbler: Bubbler
 			GebulbaStaff: Gebulba Staff
 			MagmalbulbiaStaff: Magmalbulbia Staff
-			PentalScythe: Pental Scythe
 			PowPunch: Pow Punch
 			CrystalDagger: Crystal Dagger
 			ArgonSpear: Argon Spear
@@ -664,7 +664,12 @@ Mods: {
 				Uses birds as ammo
 				'''
 				
-			Gamestar: Sends a stream of compressed data
+			PentalScythe: 
+				'''
+				Casts firey demon scythes that explode
+				Hits large targets multiple times
+				'''
+			Gamestar: Shoots a stream of compressed data
 			WowHat: Casts a variety of spells
 			Snowgrave:
 				'''
@@ -1458,7 +1463,6 @@ Mods: {
 				Shoots firey magmaballs that explode off tiles
 				'EXPLOSION! EXPLOSION! EXPLOSION!'
 				'''
-			PentalScythe: Shoots firey demon scythes that target your enemies
 			ArgonSpear: Redirects itself to your cursor
 			HamaYumi: Close enemies explode into corruption hellfire
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"

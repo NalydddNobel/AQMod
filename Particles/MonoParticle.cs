@@ -20,7 +20,7 @@ namespace Aequus.Particles
             {
                 ParticleTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Particles/Particle", AssetRequestMode.ImmediateLoad);
                 texture = ParticleTexture.Value;
-                ParticleFrame = ParticleTexture.Frame();
+                ParticleFrame = ParticleTexture.Frame(verticalFrames: 3, frameY: 0);
                 ParticleOrigin = ParticleFrame.Size() / 2f;
             }
 

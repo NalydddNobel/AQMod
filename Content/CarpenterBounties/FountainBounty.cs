@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items;
+using Aequus.Items.Tools.Builder;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -235,7 +236,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public override Item ProvideBountyRewardItem()
         {
-            return AequusItem.SetDefaults(ItemID.LaserRuler);
+            return AequusItem.SetDefaults<AdvancedRuler>();
         }
     }
 }

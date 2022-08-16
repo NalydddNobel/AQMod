@@ -95,7 +95,6 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            //target.buffImmune[ModContent.BuffType<BitCrushedDebuff>()] = false;
             target.AddBuff(ModContent.BuffType<BitCrushedDebuff>(), 240);
             if (Projectile.ai[0] + 1f <= target.whoAmI)
             {
