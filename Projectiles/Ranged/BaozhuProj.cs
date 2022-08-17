@@ -154,7 +154,7 @@ namespace Aequus.Projectiles.Ranged
                         shootTo = -shootTo;
                     }
                     int p = Projectile.NewProjectile(Projectile.GetSource_Death(), shootLocation, shootTo, ProjectileID.MolotovFire + Main.rand.Next(3), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                    Main.projectile[p].extraUpdates += 4;
+                    Main.projectile[p].extraUpdates += 2;
                 }
             }
         }

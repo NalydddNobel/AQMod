@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 13;
+            Item.damage = 14;
             Item.DamageType = DamageClass.Ranged;
             Item.width = 30;
             Item.height = 30;

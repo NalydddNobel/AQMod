@@ -97,7 +97,7 @@ namespace Aequus.Graphics.Primitives
                     var d = arr[i - 1] - arr[i];
                     if (d.X < -1000f || d.X > 1000f || d.Y < -1000f || d.Y > 1000f)
                     {
-                        Main.NewText(d + " = " + arr[i - 1] + " - " + arr[i]);
+                        //Main.NewText(d + " = " + arr[i - 1] + " - " + arr[i]);
                         continue;
                     }
                 }

@@ -155,9 +155,12 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			Raygun: Raygun
 			BoundBow: Bound Bow
+			Slingsaber: Slingsaber
 			Slingshot: Slingshot
 
+			SurgeRod: Surge Rod
 			PentalScythe: Pental Scythe
 			Gamestar: Gamestar
 			WowHat: "'Wow-zer' Hat"
@@ -410,7 +413,6 @@ Mods: {
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
 			AirBlade: Air Blade
-			SurgeRod: Surge Rod
 			ThunderClap: Thunder Clap
 			Umystick: Umystick
 			Narrizuul: Narrizuul
@@ -557,7 +559,6 @@ Mods: {
 			SpiralingTwilight: Spiraling Twilight
 			Sprinkler: Sprinkler
 			StarPhish: Star Phish
-			Raygun: Raygun
 			SpaceShot: Space Shot
 			LotusStaff: Lotus Staff
 			CrimsonHandStaff: Crimson Hand Staff
@@ -654,16 +655,27 @@ Mods: {
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 
+			Raygun: Converts bullets into extremely fast rays
 			BoundBow: 
 				'''
 				Infinitely regenerates ammo over time
+				'''
+			Slingsaber: 
+				'''
+				Bring your cursor out in order to charge the shot more
+				Uses birds as ammo
 				'''
 			Slingshot: 
 				'''
 				Bring your cursor out in order to charge the shot more
 				Uses birds as ammo
 				'''
-				
+
+			SurgeRod:
+				'''
+				Casts a create a thundercloud net to fry your foes
+				Allows 6 to be out at once
+				'''
 			PentalScythe: 
 				'''
 				Casts firey demon scythes that explode
@@ -1228,11 +1240,6 @@ Mods: {
 				'''
 			Vrang: Throws boomerangs in a v-shape
 			AirBlade: Summons magical air blades
-			SurgeRod:
-				'''
-				Allows you to create a thundercloud net to fry your foes
-				Twelve clouds can be casted at once
-				'''
 			ThunderClap: Spawns two giant hands to slap your enemies
 			Umystick:
 				'''
@@ -1467,7 +1474,6 @@ Mods: {
 			HamaYumi: Close enemies explode into corruption hellfire
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
 			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
-			Raygun: Converts most bullets into a ray
 			SpaceShot: Shoots a star which then shoots bullets
 			LotusStaff:
 				'''
@@ -1693,8 +1699,6 @@ Mods: {
 			CauterizerProj: Demonic Energy Wave
 
 			SnowflakeCannonProj: Snowflake Cannon
-			RayExplosion: Raygun
-			RaygunBullet: Raygun
 			HamaYumiArrow: Hama Yumi Arrow
 			DeltoidArrow: Deltoid Arrow
 			BaozhuProj: Baozhu

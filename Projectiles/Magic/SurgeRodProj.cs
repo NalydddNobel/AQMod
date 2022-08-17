@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Magic
     public class SurgeRodProj : ModProjectile
     {
         public const int LightningCheckRate = 12;
-        public const int Amount = 12;
+        public const int Amount = 6;
 
         public static float DrawOpacity;
 

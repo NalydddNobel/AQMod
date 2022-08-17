@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Ranged.Birds;
+﻿using Aequus.Projectiles.Ranged;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -24,9 +24,9 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.Green;
-            Item.shoot = ModContent.ProjectileType<SlingshotBirdProj>();
+            Item.shoot = ModContent.ProjectileType<SlingshotProj>();
+            Item.noUseGraphic = true;
             Item.shootSpeed = 7.5f;
-            Item.autoReuse = true;
             Item.UseSound = new SoundStyle("Aequus/Sounds/Items/Slingshot/stretch") { Volume = 0.2f, };
             Item.value = Item.sellPrice(gold: 2);
             Item.knockBack = 1f;

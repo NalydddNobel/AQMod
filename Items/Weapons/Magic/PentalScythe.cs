@@ -1,7 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Magic;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,10 +17,10 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 30;
+            Item.damage = 45;
             Item.DamageType = DamageClass.Magic;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = 30;
+            Item.useAnimation = 30;
             Item.width = 32;
             Item.height = 32;
             Item.noMelee = true;
@@ -36,16 +35,12 @@ namespace Aequus.Items.Weapons.Magic
             Item.knockBack = 2f;
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-        }
-
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DemonScythe)
+                .AddIngredient<Hexoplasm>(6)
                 .AddIngredient<DemonicEnergy>(3)
-                .AddIngredient<Hexoplasm>(8)
                 .AddTile(TileID.Bookcases)
                 .RegisterAfter(ItemID.GoldenShower);
         }
