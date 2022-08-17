@@ -845,7 +845,7 @@ Mods: {
 				在下雨时, 捕鱼效果更强
 				'''
 
-			UnholyCore: 减半恶魔围攻事件的长度
+			UnholyCore: 降低恶魔围攻事件的进攻时间
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
