@@ -155,9 +155,12 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			Raygun: 射线枪
 			BoundBow: 界限弓
+			Slingsaber: 弹剑弓
 			Slingshot: 弹弓
 
+			SurgeRod: 电涌杖
 			PentalScythe: 回旋魔镰
 			Gamestar: 游戏之星
 			WowHat: "'喔师'帽"
@@ -410,7 +413,6 @@ Mods: {
 			KryptonSword: 氪制回旋镖
 			Vrang: 镰刃
 			AirBlade: 风之刃
-			SurgeRod: 电涌杖
 			ThunderClap: 雷霆一击
 			Umystick: 秘伞
 			Narrizuul: 耀宇遗光
@@ -557,7 +559,6 @@ Mods: {
 			SpiralingTwilight: 暮光螺旋
 			Sprinkler: 喷水器
 			StarPhish: 螺旋吹筒
-			Raygun: 射线枪
 			SpaceShot: 太空手枪
 			LotusStaff: 莲花杖
 			CrimsonHandStaff: 猩红血手法杖
@@ -654,9 +655,15 @@ Mods: {
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
+			Raygun: 将子弹转化为快速射线
 			BoundBow: 
 				'''
 				随时间流逝会不断再生弹药
+				'''
+			Slingsaber: 
+				'''
+				向射击的拉动移动光标以增加射击强度
+				使用鸟作为弹药
 				'''
 			Slingshot: 
 				'''
@@ -664,6 +671,11 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			SurgeRod:
+				'''
+				投射雷云网来轰击你的敌人
+				至多同时存在6朵雷云
+				'''
 			PentalScythe: 
 				'''
 				发射会爆炸的烈焰魔镰
@@ -1228,11 +1240,6 @@ Mods: {
 				'''
 			Vrang: 扔出V型移动回旋镖
 			AirBlade: 召唤魔法风刃
-			SurgeRod:
-				'''
-				允许你创造雷云网来轰击你的敌人
-				至多同时存在12朵雷云
-				'''
 			ThunderClap: 召唤两个大手拍打你的敌人
 			Umystick:
 				'''
@@ -1467,7 +1474,6 @@ Mods: {
 			HamaYumi: 接近敌人时会爆裂成腐败狱火
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
 			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
-			Raygun: 将大多数子弹转化为射线
 			SpaceShot: 发射一颗星星, 随后再发射其使用的子弹
 			LotusStaff:
 				'''
@@ -1693,8 +1699,6 @@ Mods: {
 			CauterizerProj: 恶魔能量波
 
 			SnowflakeCannonProj: 雪花大炮
-			RayExplosion: 射线枪
-			RaygunBullet: 射线枪
 			HamaYumiArrow: 破魔矢
 			DeltoidArrow: 增量矢
 			BaozhuProj: 爆竹
