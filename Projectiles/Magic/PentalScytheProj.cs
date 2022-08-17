@@ -32,7 +32,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            Projectile.rotation += (0.35f + Projectile.velocity.Length() * 0.01f) * Projectile.direction;
+            Projectile.rotation += (0.35f + Projectile.velocity.Length() * 0.025f) * Projectile.direction;
             if (Projectile.ai[1] == 0f)
             {
                 Projectile.ai[1] = Projectile.velocity.Length();
@@ -110,6 +110,7 @@ namespace Aequus.Projectiles.Magic
         public override void SetDefaults()
         {
             Projectile.DefaultToExplosion(90, DamageClass.Magic, 20);
+            Projectile.scale = 1.2f;
         }
 
         public override Color? GetAlpha(Color lightColor)

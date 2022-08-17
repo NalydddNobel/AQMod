@@ -51,8 +51,6 @@ namespace Aequus.Items.Misc
         }
         public virtual string BountyTexture => $"{bountyMod}/Assets/UI/Carpenter/" + bountyName;
 
-        public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.WireKite;
-
         protected override bool CloneNewInstances => false;
 
         public override ModItem Clone(Item newEntity)

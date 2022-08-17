@@ -118,7 +118,6 @@ namespace Aequus.UI.States
                 }
 
                 int height = (int)(text.MinHeight.Pixels * 0.7f);
-                Main.NewText(height);
                 text = new UIText(hintText, 0.66f)
                 {
                     HAlign = 0f,
@@ -615,10 +614,7 @@ namespace Aequus.UI.States
             PopulateSideList_Submission(element);
 
             PopulateSideList_AddSeparator();
-
             PopulateSideList_Blueprint(element);
-
-            PopulateSideList_AddSeparator();
         }
         public void PopulateSideList_TitleAndDescription(CarpenterBountyUIElement element)
         {
@@ -751,6 +747,12 @@ namespace Aequus.UI.States
 
         public void PopulateSideList_Blueprint(CarpenterBountyUIElement element)
         {
+            string texture = element.ListItem.BountyTexture;
+            if (!ModContent.HasAsset(texture))
+            {
+                return;
+            }
+
             var panel = new UIPanel()
             {
                 Width = new StyleDimension(0, 0.9f),
@@ -779,12 +781,6 @@ namespace Aequus.UI.States
                 PaddingTop = 30f,
             });
 
-            string texture = element.ListItem.BountyTexture;
-            if (!ModContent.HasAsset(texture))
-            {
-                texture = "Aequus/Assets/UI/Carpenter/Blueprints/Error";
-            }
-
             selectionPanelList.Add(panel);
 
             var textureElement = new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture))
@@ -794,6 +790,8 @@ namespace Aequus.UI.States
             };
             textureElement.OnRecalculateTextureSize += () => panel.Height = new StyleDimension(textureElement.Height.Pixels + textureElement.Top.Pixels, 0f);
             panel.Append(textureElement);
+
+            PopulateSideList_AddSeparator();
         }
 
         public void PopulateSideList_AddSeparator()

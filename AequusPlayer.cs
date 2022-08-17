@@ -1606,9 +1606,6 @@ namespace Aequus
             {
                 int chosenType = Main.rand.Next(neededAmmoTypes);
                 int stack = AmmoBackpack_DetermineStack(chosenType, npc, ammoBackpack);
-                //Main.NewText("Dropping " + AequusText.ItemText(chosenType) + "(" + stack + ") from " + npc.FullName, Color.LightBlue);
-                //Main.NewText((int)(AmmoBackpack_StackMultiplier(chosenType, npc, ammoBackpack) * 10000) / 100f + "% NPC Value: " + npc.value + " Item Value: " + ContentSamples.ItemsByType[chosenType].value);
-                //Main.NewText((int)(30 * AmmoBackpack_StackMultiplier(chosenType, npc, ammoBackpack)) + " is the max amount of ammo dropable.");
                 Item.NewItem(Player.GetSource_Accessory(ammoBackpack), npc.getRect(), chosenType, stack);
             }
         }

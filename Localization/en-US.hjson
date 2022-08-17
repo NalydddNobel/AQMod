@@ -845,7 +845,7 @@ Mods: {
 				Extra powerful during the rain
 				'''
 
-			UnholyCore: Halves the length of a Demon Siege event
+			UnholyCore: Decreases the length of a Demon Siege event
 
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
