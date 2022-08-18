@@ -37,6 +37,8 @@ namespace Aequus.Common
         public SlopeType Slope => Misc.Slope;
         public short TileFrameX => Misc.TileFrameX;
         public short TileFrameY => Misc.TileFrameY;
+        public ushort TileColor => Misc.TileColor;
+        public ushort WallColor => Misc.WallColor;
         public byte LiquidAmount => Liquid.Amount;
         public ushort WallType => Wall.Type;
 

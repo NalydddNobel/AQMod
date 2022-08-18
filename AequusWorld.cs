@@ -19,6 +19,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -31,6 +32,9 @@ namespace Aequus
     public class AequusWorld : ModSystem
     {
         public const int DungeonChestItemTypesMax = 4;
+        public static int TileCountsMultiplier;
+
+        private static FieldInfo SceneMetrics__tileCounts;
 
         [SaveData("Glimmer")]
         [SaveDataAttribute.IsListedBoolean]
@@ -94,8 +98,11 @@ namespace Aequus
         {
             GoreNests = new GoreNestGen();
             On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
+            On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
+            SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
         }
-        private void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
+
+        private static void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
         {
             orig(ref stopEvents);
             if (!stopEvents)
@@ -103,9 +110,22 @@ namespace Aequus
                 GlimmerSystem.OnTransitionToNight();
             }
         }
+        private static void SceneMetrics_ExportTileCountsToMain(On.Terraria.SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self)
+        {
+            if (TileCountsMultiplier > 1)
+            {
+                var arr = (int[])SceneMetrics__tileCounts.GetValue(self);
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] *= 5;
+                }
+            }
+            orig(self);
+        }
 
         public void ResetWorldData()
         {
+            TileCountsMultiplier = 0;
             shadowOrbsBrokenTotal = 0;
             downedEventCosmic = false;
             downedEventDemon = false;
@@ -330,6 +350,7 @@ namespace Aequus
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
+            TileCountsMultiplier = 1;
         }
 
         public override void PreUpdatePlayers()

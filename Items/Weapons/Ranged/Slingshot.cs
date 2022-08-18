@@ -48,7 +48,7 @@ namespace Aequus.Items.Weapons.Ranged
         {
             if (item.type == ItemID.Bird || item.type == ItemID.Cardinal || item.type == ItemID.BlueJay ||
                 item.type == ItemID.Duck || item.type == ItemID.MallardDuck || item.type == ItemID.Seagull ||
-                item.type == ItemID.Grebe)
+                item.type == ItemID.Grebe || item.type == ItemID.GoldBird)
             {
                 item.ammo = BirdAmmo;
             }

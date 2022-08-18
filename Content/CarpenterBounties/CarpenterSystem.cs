@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CarpenterBounties
@@ -93,6 +96,101 @@ namespace Aequus.Content.CarpenterBounties
         public static CarpenterBounty GetBounty<T>() where T : CarpenterBounty
         {
             return ModContent.GetInstance<T>();
+        }
+
+        public static List<Point> FindWallTiles(TileMapCache map, int x, int y)
+        {
+            var addPoints = new List<Point>();
+            var checkedPoints = new List<Point>() { new Point(x, y) };
+            var offsets = new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), };
+            for (int k = 0; k < 1000; k++)
+            {
+                checkedPoints.AddRange(addPoints);
+                addPoints.Clear();
+                bool addedAny = false;
+                if (checkedPoints.Count > 1000)
+                {
+                    return checkedPoints;
+                }
+                for (int l = 0; l < checkedPoints.Count; l++)
+                {
+                    for (int m = 0; m < offsets.Length; m++)
+                    {
+                        var newPoint = new Point(checkedPoints[l].X + offsets[m].X, checkedPoints[l].Y + offsets[m].Y);
+                        if (map.InSceneRenderedMap(newPoint.X, newPoint.Y) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) && map[newPoint].WallType != WallID.None && Main.wallHouse[map[newPoint].WallType])
+                        {
+                            var slopeType = SlopeType.Solid;
+                            if (offsets[m].X != 0)
+                            {
+                                slopeType = map[newPoint].Slope;
+                                if (TileID.Sets.Platforms[map[newPoint].TileType])
+                                {
+                                    if (map[newPoint].TileFrameX == 144)
+                                    {
+                                        slopeType = SlopeType.SlopeDownLeft;
+                                    }
+                                    if (map[newPoint].TileFrameX == 180)
+                                    {
+                                        slopeType = SlopeType.SlopeDownRight;
+                                    }
+                                }
+                            }
+
+                            if (!map[newPoint].HasTile || ((!map[newPoint].IsSolid || map[newPoint].IsSolidTop) && (!map[newPoint].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor) || slopeType != SlopeType.Solid)))
+                            {
+                                for (int n = 0; n < offsets.Length; n++)
+                                {
+                                    var checkWallPoint = newPoint + offsets[n];
+                                    if (!map.InSceneRenderedMap(checkWallPoint) || (!map[checkWallPoint].IsFullySolid && (map[checkWallPoint].WallType == WallID.None || !Main.wallHouse[map[checkWallPoint].WallType])))
+                                    {
+                                        return new List<Point>() { new Point(x, y) };
+                                    }
+                                }
+                                addPoints.Add(newPoint);
+                                addedAny = true;
+                            }
+                        }
+                    }
+                }
+                if (!addedAny)
+                {
+                    return checkedPoints;
+                }
+            }
+            return checkedPoints;
+        }
+
+        public static int CountDecorInsideHouse(TileMapCache map, List<Point> house, Dictionary<int, List<int>> tileStyleData = null)
+        {
+            int decorAmt = 0;
+            if (tileStyleData == null)
+                tileStyleData = new Dictionary<int, List<int>>();
+
+            foreach (var p in house)
+            {
+                if (map[p].HasTile)
+                {
+                    if (!map[p].IsSolid)
+                    {
+                        int style = AequusHelpers.GetTileStyle(map[p].TileType, map[p].TileFrameX, map[p].TileFrameY);
+                        if (tileStyleData.TryGetValue(map[p].TileType, out List<int> compareStyle))
+                        {
+                            if (compareStyle.Contains(style))
+                            {
+                                continue;
+                            }
+                            compareStyle.Add(style);
+                        }
+                        else
+                        {
+                            tileStyleData.Add(map[p].TileType, new List<int>() { style });
+                        }
+
+                        decorAmt++;
+                    }
+                }
+            }
+            return decorAmt;
         }
     }
 }

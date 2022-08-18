@@ -12,19 +12,15 @@ namespace Aequus.Content.CarpenterBounties
 {
     public class PirateShipBounty : CarpenterBounty
     {
-        public override bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null)
+        public override bool CheckConditions(ConditionInfo info, out string message)
         {
             int padding = ShutterstockerSceneRenderer.TilePaddingForChecking / 2;
             var housingWalls = new Dictionary<Point, List<Point>>();
-            for (int i = 0; i < Main.maxDust; i++)
+            for (int i = padding; i < info.Width - padding; i++)
             {
-                Main.dust[i].active = false;
-            }
-            for (int i = padding; i < map.Width - padding; i++)
-            {
-                for (int j = padding; j < map.Height - padding; j++)
+                for (int j = padding; j < info.Height - padding; j++)
                 {
-                    if (map[i, j].IsFullySolid || map[i, j].WallType == WallID.None || !Main.wallHouse[map[i, j].WallType] || map[i, j].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor))
+                    if (info[i, j].IsFullySolid || info[i, j].WallType == WallID.None || !Main.wallHouse[info[i, j].WallType] || info[i, j].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor))
                     {
                         continue;
                     }
@@ -35,7 +31,7 @@ namespace Aequus.Content.CarpenterBounties
                             goto Continue;
                     }
 
-                    var pendingList = FindWallTiles(map, i, j);
+                    var pendingList = CarpenterSystem.FindWallTiles(info.Map, i, j);
                     if (pendingList.Count < 30)
                         continue;
                     housingWalls.Add(new Point(i, j), pendingList);
@@ -50,13 +46,13 @@ namespace Aequus.Content.CarpenterBounties
                 message = Language.GetTextValue(LanguageKey + ".Reply.NotEnoughRooms");
                 return false;
             }
-            int waterLine = GetWaterLine(map, housingWalls);
+            int waterLine = GetWaterLine(info.Map, housingWalls);
             if (waterLine < 5)
             {
                 message = Language.GetTextValue(LanguageKey + ".Reply.NotEnoughWater");
                 return false;
             }
-            int decorCount = CountDecorInsideHouse(map, housingWalls);
+            int decorCount = CountDecorInsideHouse(info.Map, housingWalls);
             if (decorCount < 15)
             {
                 message = Language.GetTextValueWith(LanguageKey + ".Reply.NotEnoughFurniture", new { FurnitureAmt = decorCount });
@@ -64,68 +60,6 @@ namespace Aequus.Content.CarpenterBounties
             }
             message = Language.GetTextValue(LanguageKey + ".Reply.Completed");
             return true;
-        }
-
-        public static List<Point> FindWallTiles(TileMapCache map, int x, int y)
-        {
-            var addPoints = new List<Point>();
-            var checkedPoints = new List<Point>() { new Point(x, y) };
-            var offsets = new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), };
-            for (int k = 0; k < 1000; k++)
-            {
-                checkedPoints.AddRange(addPoints);
-                addPoints.Clear();
-                bool addedAny = false;
-                if (checkedPoints.Count > 1000)
-                {
-                    return checkedPoints;
-                }
-                for (int l = 0; l < checkedPoints.Count; l++)
-                {
-                    for (int m = 0; m < offsets.Length; m++)
-                    {
-                        var newPoint = new Point(checkedPoints[l].X + offsets[m].X, checkedPoints[l].Y + offsets[m].Y);
-                        if (map.InSceneRenderedMap(newPoint.X, newPoint.Y) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) && map[newPoint].WallType != WallID.None && Main.wallHouse[map[newPoint].WallType])
-                        {
-                            var slopeType = SlopeType.Solid;
-                            if (offsets[m].X != 0)
-                            {
-                                slopeType = map[newPoint].Slope;
-                                if (TileID.Sets.Platforms[map[newPoint].TileType])
-                                {
-                                    if (map[newPoint].TileFrameX == 144)
-                                    {
-                                        slopeType = SlopeType.SlopeDownLeft;
-                                    }
-                                    if (map[newPoint].TileFrameX == 180)
-                                    {
-                                        slopeType = SlopeType.SlopeDownRight;
-                                    }
-                                }
-                            }
-
-                            if (!map[newPoint].HasTile || ((!map[newPoint].IsSolid || map[newPoint].IsSolidTop) && (!map[newPoint].IsIncludedIn(TileID.Sets.RoomNeeds.CountsAsDoor) || slopeType != SlopeType.Solid)))
-                            {
-                                for (int n = 0; n < offsets.Length; n++)
-                                {
-                                    var checkWallPoint = newPoint + offsets[n];
-                                    if (!map.InSceneRenderedMap(checkWallPoint) || (!map[checkWallPoint].IsFullySolid && (map[checkWallPoint].WallType == WallID.None || !Main.wallHouse[map[checkWallPoint].WallType])))
-                                    {
-                                        return new List<Point>() { new Point(x, y) };
-                                    }
-                                }
-                                addPoints.Add(newPoint);
-                                addedAny = true;
-                            }
-                        }
-                    }
-                }
-                if (!addedAny)
-                {
-                    return checkedPoints;
-                }
-            }
-            return checkedPoints;
         }
 
         public static int GetWaterLine(TileMapCache map, Dictionary<Point, List<Point>> houses)

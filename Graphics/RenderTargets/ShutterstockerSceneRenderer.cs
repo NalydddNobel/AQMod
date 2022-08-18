@@ -79,6 +79,7 @@ namespace Aequus.Graphics.RenderTargets
 
             area = area.Fluffize(10);
 
+            var screenPos = Main.screenPosition;
             var entities = new List<Entity>();
             for (int i = 0; i < Main.maxItems; i++)
             {
@@ -110,6 +111,7 @@ namespace Aequus.Graphics.RenderTargets
             var myPlayer = Main.LocalPlayer.position;
             Main.BlackFadeIn = 255;
             Main.LocalPlayer.position = new Vector2(area.X * 16 - Main.LocalPlayer.width * 2f, area.Y * 16 - Main.LocalPlayer.height * 2f);
+            Main.screenPosition = Main.LocalPlayer.position.Floor();
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active)
@@ -181,13 +183,6 @@ namespace Aequus.Graphics.RenderTargets
                 }
             }
 
-            for (int i = 0; i < area.Width; i++)
-            {
-                for (int j = 0; j < area.Height; j++)
-                {
-                }
-            }
-
             var time = Main.time;
             bool daytime = Main.dayTime;
             Main.dayTime = clip.daytime;
@@ -203,6 +198,7 @@ namespace Aequus.Graphics.RenderTargets
             {
             }
 
+            Main.screenPosition = screenPos;
             Main.dayTime = daytime;
             Main.time = time;
 

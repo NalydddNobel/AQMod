@@ -5,6 +5,7 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -1842,6 +1843,11 @@ namespace Aequus
             d.fadeIn = d.scale * 2f;
             d.velocity = Vector2.Zero;
             return d;
+        }
+        public static void dustDebugColor(Vector2 where, Color color)
+        {
+            var d = dustDebugDirect(where, ModContent.DustType<MonoSparkleDust>());
+            d.color = color;
         }
         public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
         {

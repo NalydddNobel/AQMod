@@ -3456,6 +3456,10 @@ Mods: {
 		}
 
 		Bounty: {
+			Common: {
+				NotEnoughFurniture: Place some more decoration and furniture in this build! It is feeling very bland and lacking.
+			}
+
 			BiomePaletteBounty: {
 				"$parentVal": Delicious Palette 
 				Description: Build a house which fits in
@@ -3468,6 +3472,9 @@ Mods: {
 				Hint: (Hint: Use Biome Hair Dye to discover biome color)
 
 				Reply: {
+					NoHouses: I don't see any houses in this image, try taking a better snip of what you want to show me. 
+					ImproperlyColoredHouses: Unfortunately this house don't fit the coloring criteria of the bounty, try painting the building or using blocks which fit the biome's color.
+					Complete: Oh that structure fits in perfectly with the biome, perfect choice of colors! I should hang this clip up on my wall- oh I'm going too far aren't I...
 				}
 			}
 
@@ -3484,7 +3491,7 @@ Mods: {
 				Reply: {
 					NotEnoughRooms: You forgot to make this build have suitable housing, I don't think a pirate crew would want to sleep on the deck, oh, and it's written on the bounty that it needs rooms.
 					NotEnoughWater: The walls are not submerged in water, unfortunately I find it hard to call this a ship.
-					NotEnoughFurniture: Place some more decoration and furniture in these rooms! It is feeling very bland and lacking.
+					NotEnoughFurniture: "{$Mods.Aequus.Bounty.Common.NotEnoughFurniture}"
 					Completed: Good job on creating a ship! It should be able to sail out to sea in no-time! Well, probably not, I don't think ships of that type can set sail.
 				}
 			}

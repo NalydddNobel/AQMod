@@ -435,7 +435,7 @@ namespace Aequus.UI.States
                     {
                         Main.mouseLeftRelease = false;
 
-                        bool completed = selected.bounty.CheckConditions(clip.tileMap, out string responseMessage, Main.npc[Main.LocalPlayer.talkNPC]);
+                        bool completed = selected.bounty.CheckConditions(new CarpenterBounty.ConditionInfo(clip, Main.npc[Main.LocalPlayer.talkNPC]), out string responseMessage);
                         ShutterstockerSceneRenderer.renderRequests.Add(clip);
                         clip.reviewed = true;
                         SoundEngine.PlaySound(SoundID.Chat);
@@ -738,7 +738,7 @@ namespace Aequus.UI.States
                 return;
             }
 
-            if (Main.mouseItem.ModItem is ShutterstockerClip clip && !clip.reviewed)
+            if (Main.mouseItem.ModItem is ShutterstockerClip clip)
             {
                 Utils.Swap(ref Main.mouseItem, ref submissionSlot.item);
                 SoundEngine.PlaySound(SoundID.Grab);

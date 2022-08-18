@@ -12,15 +12,15 @@ namespace Aequus.Content.CarpenterBounties
 {
     public class FountainBounty : CarpenterBounty
     {
-        public override bool CheckConditions(TileMapCache map, out string message, NPC carpenter = null)
+        public override bool CheckConditions(ConditionInfo info, out string message)
         {
             message = "";
-            if (!FindWaterfallsPass(map, out var waterfalls))
+            if (!FindWaterfallsPass(info.Map, out var waterfalls))
             {
                 message = Language.GetTextValue(LanguageKey + ".Reply.NoWaterfalls");
                 return false;
             }
-            var surroundingRectangle = new Rectangle(map.Width, map.Height, 1, 1);
+            var surroundingRectangle = new Rectangle(info.Width, info.Height, 1, 1);
             foreach (var w in waterfalls)
             {
                 if (surroundingRectangle.X > w.X)
@@ -57,7 +57,7 @@ namespace Aequus.Content.CarpenterBounties
             surroundingRectangle.Y--;
             surroundingRectangle.Height += 2;
 
-            FindCraftableTilesPass(map, surroundingRectangle, out var tiles);
+            FindCraftableTilesPass(info.Map, surroundingRectangle, out var tiles);
 
             if (tiles.Count == 0 || tiles.Count < 12)
             {
@@ -65,7 +65,7 @@ namespace Aequus.Content.CarpenterBounties
                 return false;
             }
 
-            surroundingRectangle = new Rectangle(map.Width, map.Height, 1, 1);
+            surroundingRectangle = new Rectangle(info.Width, info.Height, 1, 1);
             foreach (var t in tiles)
             {
                 if (surroundingRectangle.X > t.X)
@@ -102,15 +102,15 @@ namespace Aequus.Content.CarpenterBounties
                     var point2 = new Point(surroundingRectangle.X + surroundingRectangle.Width - 1 - i, surroundingRectangle.Y + j);
                     if (tiles.Contains(point1) || tiles.Contains(point2))
                     {
-                        if (map[point1].TileType != map[point2].TileType)
+                        if (info[point1].TileType != info[point2].TileType)
                         {
-                            var misc = map[point1].Misc;
+                            var misc = info[point1].Misc;
                             misc.TileColor = PaintID.DeepRedPaint;
-                            map[point1] = new TileDataCache(map[point1].Type, map[point1].Liquid, misc, map[point1].Wall);
+                            info[point1] = new TileDataCache(info[point1].Type, info[point1].Liquid, misc, info[point1].Wall);
 
-                            misc = map[point2].Misc;
+                            misc = info[point2].Misc;
                             misc.TileColor = PaintID.DeepRedPaint;
-                            map[point2] = new TileDataCache(map[point2].Type, map[point2].Liquid, misc, map[point2].Wall);
+                            info[point2] = new TileDataCache(info[point2].Type, info[point2].Liquid, misc, info[point2].Wall);
 
                             message = Language.GetTextValue(LanguageKey + ".Reply.NotSymmetric");
                             return false;
