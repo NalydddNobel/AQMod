@@ -3456,6 +3456,10 @@ Mods: {
 		}
 
 		Bounty: {
+			Common: {
+				NotEnoughFurniture: 在这些房间里多放些装饰和家具! 这令人感觉平淡无奇.
+			}
+
 			BiomePaletteBounty: {
 				"$parentVal": 美味调色板
 				Description: 建一座适合自己的房子
@@ -3468,6 +3472,9 @@ Mods: {
 				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
 
 				Reply: {
+					NoHouses: 我在这张照片中没有看到任何房子, 试着把你想给我看的东西照下来.
+					ImproperlyColoredHouses: 不幸的是, 这座房子不符合赏金的着色标准, 请尝试粉刷建筑或使用符合生物群落颜色的物块.
+					Complete: 哦, 这个建筑与生物群落完美契合, 颜色的选择也很完美! 我应该把这个剪片挂在墙上——哦, 我有点太过了, 不是吗...
 				}
 			}
 
@@ -3484,7 +3491,7 @@ Mods: {
 				Reply: {
 					NotEnoughRooms: 你忘了让这个建筑有合适的住房, 我不认为海盗船员会想在甲板上睡觉, 哦, 以及赏金上写着需要房间.
 					NotEnoughWater: 墙壁没有浸没在水中, 不幸的是, 我很难将其称呼为船.
-					NotEnoughFurniture: 在这些房间里多放些装饰和家具! 这令人感觉平淡无奇.
+					NotEnoughFurniture: "{$Mods.Aequus.Bounty.Common.NotEnoughFurniture}"
 					Completed: 船造得不错! 它应该很快就能出海了! 嗯, 或许不是现在, 我认为那种船不能起航.
 				}
 			}
