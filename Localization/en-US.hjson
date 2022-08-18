@@ -155,6 +155,7 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			SnowflakeCannon: Snowflake Cannon
 			Raygun: Raygun
 			BoundBow: Bound Bow
 			Slingsaber: Slingsaber
@@ -420,7 +421,6 @@ Mods: {
 			CursedKey: Cursed Key
 			PiranhaPot: Piranha Pot
 			Skrawler: Skrawler
-			SnowflakeCannon: Snowflake Cannon
 			Fluorescence: Fluorescence
 			FrozenTear: Frozen Tear
 			CrustaciumBar: Crustacium Bar
@@ -655,6 +655,11 @@ Mods: {
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 
+			SnowflakeCannon: 
+				'''
+				Shoots charged snowflakes which arc off of enemies
+				66% chance to not consume ammo
+				'''
 			Raygun: Converts bullets into extremely fast rays
 			BoundBow: 
 				'''
@@ -1260,7 +1265,6 @@ Mods: {
 			CursedKey: Summons a demonic trapper to fight for you
 			PiranhaPot: Summons a vicious plant to fight for you
 			Skrawler: Shoots a deadly flame bolt
-			SnowflakeCannon: 66% chance to not consume ammo
 			LightMatter: Radiates light and interstellar power
 			NuclearFeather:
 				'''
@@ -3075,21 +3079,57 @@ Mods: {
 				}
 
 				ShopQuote: {
-					PhysicsGun: A zero point energy field manipulator I created for my kindergarten science fair, quite high tech compared to the dirt rod.
-					ForceAntiGravityBlock: A special type of plating manufactured for 'flying saucers'. Features an anti-gravity beam shooting below.
-					ForceGravityBlock: A special type of plating manufactured for 'flying saucers'. It generates its own gravitational pull and negates all anti-gravity effects.
-					PhysicsBlock: A special type of plating manufactured for 'flying saucers'. Its unique composition prevents it from being carried by the physics gun.
-					EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
+					PhysicsGun: 
+						'''
+						A zero point energy field manipulator I created for my kindergarten science fair.
+						Much more high-tech compared to the dirt rod.
+						'''
 					HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
-					HolographicMeatloaf: A massive hit with photosynthetic creatures, this meatloaf is cooked with the most delicious tasting light.
-					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon' event.
+					HolographicMeatloaf: 
+						'''
+						A massive hit with photosynthetic creatures.
+						This meatloaf is cooked with the most delicious tasting light.
+						'''
+					
+					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon'.
 					GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
-					SolarTablet: Lihzahrds and their ability to control the sun and moon are something to admire.
-					InactivePylonGunner: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
-					InactivePylonHealer: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
-					InactivePylonCleanser: Without a connection to the net, it cannot function. Fortunately your 'pylons' connect directly to that network.
+					SolarTablet: 
+						'''
+						A strange artifact I discovered when observing a recently opened ancient temple.
+						My scanners sense a strange amount of dark matter present inside the artifact.
+						'''
+
+					InactivePylonGunner: 
+						'''
+						Without a connection to the net, it cannot function. 
+						Fortunately your 'pylons' connect directly to that network.
+						'''
+					InactivePylonHealer: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
+					InactivePylonCleanser: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
+					
+					ForceAntiGravityBlock: 
+						'''
+						A special type of plating manufactured for 'flying saucers'. 
+						Features an anti-gravity beam shooting below.
+						'''
+					ForceGravityBlock: 
+						'''
+						A special type of plating manufactured for 'flying saucers'. 
+						It generates its own gravitational pull and negates all anti-gravity effects.
+						'''
+					PhysicsBlock: 
+						'''
+						A special type of plating manufactured for 'flying saucers'. 
+						Its unique composition prevents it from being carried by the physics gun.
+						'''
+					EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
+
+					SupernovaFruit: 
+						'''
+						Powerful radiation is being emitted from this apple.
+						Now that you are touching it, I would expect you to be dead before next week.
+						'''
 					HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
-					SupernovaFruit: Powerful radiation is being emitted from this apple, I wouldn't expect you to be alive next week.
 				}
 			}
 

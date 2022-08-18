@@ -18,18 +18,17 @@ namespace Aequus.Items.Weapons.Ranged
         {
             Item.width = 20;
             Item.height = 20;
-            Item.useTime = 16;
-            Item.useAnimation = 16;
+            Item.SetWeaponValues(30, 3f);
+            Item.useTime = 18;
+            Item.useAnimation = 18;
             Item.autoReuse = true;
-            Item.damage = 50;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.DamageType = DamageClass.Ranged;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.shoot = ProjectileID.SnowBallFriendly;
-            Item.shootSpeed = 8f;
+            Item.shoot = ModContent.ProjectileType<SnowflakeCannonProj>();
+            Item.shootSpeed = 4.5f;
             Item.value = ItemDefaults.GaleStreamsValue;
             Item.useAmmo = AmmoID.Snowball;
-            Item.knockBack = 2.6f;
             Item.UseSound = SoundID.Item11;
             Item.noMelee = true;
         }

@@ -1,7 +1,9 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common.ItemDrops;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Consumables.LootBags;
+using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles.Dusts;
@@ -112,6 +114,7 @@ namespace Aequus.NPCs.Boss
             this.CreateLoot(npcLoot)
                 .AddRelic<DustDevilRelic>()
                 .AddBossBag<DustDevilBag>()
+                .Add<TornadoInABottle>(new OnFirstKillCondition(() => AequusWorld.downedDustDevil, "DustDevil"), chance: 1, stack: 3)
                 .SetCondition(DropRulesBuilder.NotExpertCondition)
                 .Add<AtmosphericEnergy>(stack: 3)
                 .RegisterCondition();

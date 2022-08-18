@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -235,6 +236,11 @@ namespace Aequus.NPCs.Friendly.Town
             if (bossDefeated >= 3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
+            }
+
+            if (AequusWorld.downedDustDevil)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TornadoInABottle>());
             }
         }
         public void SetupShopCache(Player player)

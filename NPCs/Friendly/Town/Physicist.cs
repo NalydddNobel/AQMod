@@ -118,10 +118,6 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmancipationGrill>());
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
@@ -150,10 +146,19 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonHealer>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
 
-            if (!Main.dayTime)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsBlock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmancipationGrill>());
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
+            if (AequusWorld.downedDustDevil)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TornadoInABottle>());
+            }
+
+            if (!Main.dayTime)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)

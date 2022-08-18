@@ -27,7 +27,7 @@ namespace Aequus.Items.Consumables.Summons
             Item.DefaultToHoldUpItem();
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 5);
         }
 
