@@ -64,6 +64,7 @@ namespace Aequus.Projectiles.Melee
                 OnSpawn_NewProj(source, Projectile.Center + Vector2.Normalize(Projectile.velocity).RotatedBy(rotationAmt) * offset, Projectile.velocity, leftTemperature, 1);
                 OnSpawn_NewProj(source, Projectile.Center + Vector2.Normalize(Projectile.velocity).RotatedBy(-rotationAmt) * offset, Projectile.velocity, rightTemperature, -1);
             }
+            Projectile.netUpdate = true;
         }
         public void OnSpawn_DetermineTemperatureValues(Player player, out sbyte temperature, out sbyte temperature2)
         {

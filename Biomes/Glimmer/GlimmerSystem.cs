@@ -240,11 +240,9 @@ namespace Aequus.Biomes.Glimmer
             if (r.ReadBoolean())
             {
                 GlimmerBiome.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
+                return;
             }
-            else
-            {
-                GlimmerBiome.TileLocation = Point.Zero;
-            }
+            GlimmerBiome.TileLocation = Point.Zero;
         }
     }
 }

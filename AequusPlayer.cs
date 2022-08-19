@@ -184,6 +184,8 @@ namespace Aequus
         public float hyperCrystalDamage;
         public float hyperCrystalDiameter;
 
+        public Item setSeraphim;
+
         public Item setGravetender;
         public int setGravetenderCheck;
         public int setGravetenderGhost;
@@ -227,11 +229,11 @@ namespace Aequus
         public bool accFoolsGold;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>
+        /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>
         /// </summary>
         public bool wearingSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 
@@ -344,10 +346,10 @@ namespace Aequus
                 p.Write((byte)Player.whoAmI);
 
                 PacketHandler.FlaggedWrite(
-                    (clone.itemCombo - itemCombo).Abs() > 10 ||
-                    (clone.itemSwitch - itemSwitch).Abs() > 10 ||
-                    (clone.itemUsage - itemUsage).Abs() > 10 ||
-                    (clone.itemCooldown - itemCooldown).Abs() > 10 ||
+                    (clone.itemCombo - itemCombo).Abs() > 3 ||
+                    (clone.itemSwitch - itemSwitch).Abs() > 3 ||
+                    (clone.itemUsage - itemUsage).Abs() > 3 ||
+                    (clone.itemCooldown - itemCooldown).Abs() > 3 ||
                     clone.itemCooldownMax != itemCooldownMax,
                 (p) =>
                     {
@@ -359,10 +361,17 @@ namespace Aequus
                         sentAnything = true;
                     }, p);
 
-                PacketHandler.FlaggedWrite((clone.timeSinceLastHit - timeSinceLastHit).Abs() > 10,
+                PacketHandler.FlaggedWrite((clone.timeSinceLastHit - timeSinceLastHit).Abs() > 3,
                 (p) =>
                     {
                         p.Write(timeSinceLastHit);
+                        sentAnything = true;
+                    }, p);
+
+                PacketHandler.FlaggedWrite(clone.instaShieldTime != instaShieldTime,
+                (p) =>
+                    {
+                        p.Write(instaShieldTime);
                         sentAnything = true;
                     }, p);
 
@@ -391,6 +400,10 @@ namespace Aequus
             if (reader.ReadBoolean())
             {
                 timeSinceLastHit = reader.ReadInt32();
+            }
+            if (reader.ReadBoolean())
+            {
+                instaShieldTime = reader.ReadInt32();
             }
             if (reader.ReadBoolean())
             {
@@ -430,6 +443,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            luckRerolls = 0;
             glowCore = -1;
             if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
@@ -463,7 +477,8 @@ namespace Aequus
                     int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
                     if (instaShieldCooldownBuffIndex == -1)
                     {
-                        Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
+                        if (Main.myPlayer == Player.whoAmI)
+                            Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
                     }
                     else if (Player.buffTime[instaShieldCooldownBuffIndex] <= 2)
                     {
@@ -1626,7 +1641,7 @@ namespace Aequus
             for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
             {
                 var item = Player.inventory[i];
-                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0)
+                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.damage == 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0)
                 {
                     continue;
                 }

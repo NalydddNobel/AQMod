@@ -14,19 +14,11 @@ namespace Aequus.Projectiles.Ranged
 {
     public class SlingshotProj : ModProjectile
     {
-        public SoundStyle ShootSound { get; protected set; }
 
         public int ItemTexture = ItemID.Bird;
+        public bool _playedSound;
 
         public virtual float Gravity => 0.1f;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                ShootSound = new SoundStyle("Aequus/Sounds/Items/Slingshot/shoot", 2);
-            }
-        }
 
         public override void SetDefaults()
         {
@@ -71,7 +63,10 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.Center = position - new Vector2(-4f * Projectile.spriteDirection, 20f).RotatedBy(rotation);
                 if (Main.myPlayer == Projectile.owner)
                 {
+                    var v = Projectile.velocity;
                     Projectile.velocity = Vector2.Normalize(Main.MouseWorld - Projectile.Center);
+                    if (v.X != Projectile.velocity.X || v.Y != Projectile.velocity.Y)
+                        Projectile.netUpdate = true;
 
                     GetShootingStats(out int predictiveTrailType, out float speed, out float ai0);
 
@@ -100,12 +95,13 @@ namespace Aequus.Projectiles.Ranged
                         }
                         Projectile.velocity *= cursorSpeed / 320f;
                     }
-                    if (Main.netMode != NetmodeID.Server)
-                    {
-                        SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Slingshot/shoot", 2), player.Center);
-                    }
                     Projectile.ai[0] = 1f;
                     Projectile.netUpdate = true;
+                }
+                if (!_playedSound)
+                {
+                    SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Slingshot/shoot", 2), player.Center);
+                    _playedSound = true;
                 }
                 Projectile.velocity.Y += Gravity;
                 if (Projectile.velocity.Y > 20f)

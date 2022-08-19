@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -98,6 +99,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             Projectile.ai[0] = 0f;
             connectedNPC = target.whoAmI;
             Projectile.tileCollide = false;
+            Projectile.netUpdate = true;
         }
 
         public override bool PreDrawExtras()
@@ -150,6 +152,16 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                     break;
                 Main.EntitySpriteDraw(chain, currentPosition - Main.screenPosition, null, color, addVelocity.ToRotation() + MathHelper.PiOver2, origin, scale, SpriteEffects.None, 0);
             }
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(connectedNPC);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            connectedNPC = reader.ReadInt32();
         }
     }
 }

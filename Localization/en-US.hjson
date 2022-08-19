@@ -191,6 +191,9 @@ Mods: {
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
 
+			SeraphimHood: Seraphim Hood
+			SeraphimRobes: Seraphim Robes
+
 			FlowerCrown: Flower Crown
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
@@ -774,6 +777,18 @@ Mods: {
 				'''
 				15% reduced mana cost
 				Increases your max number of ghosts by 1
+				'''
+
+			SeraphimHood: 
+				'''
+				20% increased summon damage
+				Increases your max number of ghosts by 1
+				'''
+			SeraphimRobes: 
+				'''
+				25% reduced mana cost
+				20% increased summon damage
+				Increases your max number of ghosts by 2
 				'''
 
 			FlowerCrown: 
@@ -1811,6 +1826,13 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Seraphim: 
+				'''
+				Increases your max number of ghosts by 2
+				Instantly kill and convert powerful enemies to ghost minions when in need
+				Take reduced damage when you have no ghost minions active
+				While below 20% health, your ghost minions will sacrificed to heal you
+				'''
 			Gravetender: 
 				'''
 				Summons a wisp to empower your ghosts

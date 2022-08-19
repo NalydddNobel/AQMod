@@ -59,7 +59,7 @@ namespace Aequus.Projectiles.Melee
                 if ((int)Projectile.ai[0] == 0)
                 {
                     Projectile.ai[0] = 25f;
-                    Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[0];
+                    Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
                     AequusHelpers.MeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
@@ -73,13 +73,13 @@ namespace Aequus.Projectiles.Melee
 
                     var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
                     d.velocity *= 0.1f;
-                    d.velocity += Vector2.Normalize(-Projectile.velocity) * 1.35f;
+                    d.velocity += Vector2.Normalize(-Projectile.velocity).UnNaN() * 1.35f;
                 }
             }
             if (player.itemAnimation == 0)
                 Projectile.Kill();
             if (Main.myPlayer == player.whoAmI && lerpAmount > 0f)
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.ai[0], lerpAmount * 0.4f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0], lerpAmount * 0.4f);
             Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;

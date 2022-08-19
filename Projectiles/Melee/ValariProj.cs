@@ -57,6 +57,10 @@ namespace Aequus.Projectiles.Melee
                 {
                     Main.item[i].Center = Projectile.Center;
                     Main.timeItemSlotCannotBeReusedFor[i] = 2;
+                    if (!Main.item[i].instanced)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i);
+                    }
                     if (Projectile.ai[0] < 400f)
                         Projectile.ai[0] = 400f;
                     break;

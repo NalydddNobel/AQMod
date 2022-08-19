@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
@@ -69,6 +70,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 Initialize(player, player.Aequus());
                 scale = Projectile.scale;
+                Projectile.netUpdate = true;
             }
 
             if (SwingSwitchDir)
@@ -184,6 +186,18 @@ namespace Aequus.Projectiles.Melee.Swords
             // arm angling code, thanks Split!
             int frame = (angle <= 0.6f) ? 1 : ((angle >= (MathHelper.PiOver2 - 0.1f) && angle <= MathHelper.PiOver4 * 3f) ? 3 : ((!(angle > MathHelper.Pi * 3f / 4f)) ? 2 : 4));
             player.bodyFrame.Y = player.bodyFrame.Height * frame;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(swingDirection == -1);
+            writer.Write(combo);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            swingDirection = reader.ReadBoolean() ? -1 : 1;
+            combo = reader.ReadInt32();
         }
     }
 }

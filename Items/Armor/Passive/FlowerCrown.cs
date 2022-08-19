@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.PassiveSummon
+namespace Aequus.Items.Armor.Passive
 {
     [AutoloadEquip(EquipType.Head)]
     public class FlowerCrown : ModItem

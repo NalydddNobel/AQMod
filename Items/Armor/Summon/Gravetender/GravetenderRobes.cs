@@ -1,56 +1,44 @@
-﻿using Aequus.Buffs.Minion;
-using Aequus.Projectiles.Summon;
+﻿using Aequus.Graphics.PlayerLayers;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Gravetender
+namespace Aequus.Items.Armor.Summon.Gravetender
 {
-    [AutoloadEquip(EquipType.Head)]
-    public class GravetenderHood : ModItem
+    [AutoloadEquip(EquipType.Body)]
+    public class GravetenderRobes : ModItem
     {
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 
         public override void SetDefaults()
         {
-            Item.defense = 2;
+            Item.defense = 3;
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
-            Item.shoot = ModContent.ProjectileType<GravetenderWisp>();
-            Item.buffType = ModContent.BuffType<GravetenderMinionBuff>();
-            Item.value = Item.sellPrice(silver: 20);
-        }
-
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return body.type == ModContent.ItemType<GravetenderRobes>();
-        }
-
-        public override void UpdateArmorSet(Player player)
-        {
-            player.setBonus = AequusText.GetText("ArmorSetBonus.Gravetender");
-            player.Aequus().setGravetender = Item;
+            Item.value = Item.sellPrice(silver: 30);
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage<SummonDamageClass>() += 0.1f;
+            player.manaCost -= 0.15f;
+            player.Aequus().ghostSlotsMax++;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Cobweb, 50)
+                .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.RottenChunk, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.GravediggerShovel));
             CreateRecipe()
-                .AddIngredient(ItemID.Cobweb, 50)
+                .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.Vertebrae, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)

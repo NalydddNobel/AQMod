@@ -62,14 +62,12 @@ namespace Aequus.Projectiles.Magic
 
         public override void Kill(int timeLeft)
         {
-            SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.33f), Projectile.Center);
             Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f,
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.33f), Projectile.Center);
             target.AddBuff(BuffID.OnFire3, 360);
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f, 
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner, target.whoAmI + 1);
@@ -127,6 +125,7 @@ namespace Aequus.Projectiles.Magic
         {
             if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server)
             {
+                SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.1f), Projectile.Center);
                 for (int i = 0; i < 10; i++)
                 {
                     var v = Main.rand.NextVector2Unit();

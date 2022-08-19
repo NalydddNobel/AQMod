@@ -157,12 +157,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.FlowerCrown"/>
+            Set to true by <see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
-            Used by summon helmets (<see cref="T:Aequus.Items.Armor.PassiveSummon.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.PassiveSummon.FlowerCrown"/>) to time projectile spawns and such.
+            Used by summon helmets (<see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.skeletonKey">

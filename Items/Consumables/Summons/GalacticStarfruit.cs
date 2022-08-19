@@ -35,18 +35,16 @@ namespace Aequus.Items.Consumables.Summons
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(SoundID.Roar, player.position);
+            bool result = false;
             if (Main.myPlayer == player.whoAmI)
             {
-                if (GlimmerSystem.BeginEvent())
-                {
-                    return true;
-                }
+                result = GlimmerSystem.BeginEvent();
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
             }
-            return false;
+            return result;
         }
 
         public override void AddRecipes()

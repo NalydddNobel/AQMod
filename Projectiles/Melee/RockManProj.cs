@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Melee
                 if ((int)Projectile.ai[0] == 0)
                 {
                     Projectile.ai[0] = 25f;
-                    Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[0];
+                    Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
                     AequusHelpers.MeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Melee
             }
             if (player.itemAnimation == 0)
                 Projectile.Kill();
-            Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[0];
+            Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
             Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
