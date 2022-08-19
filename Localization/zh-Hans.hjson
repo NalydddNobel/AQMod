@@ -657,7 +657,7 @@ Mods: {
 
 			SnowflakeCannon: 
 				'''
-				发射命中敌人时会回弹的电弧雪花
+				发射击中敌人时会回弹的电弧雪花
 				66%几率不消耗弹药
 				'''
 			Raygun: 将子弹转化为快速射线
@@ -756,7 +756,7 @@ Mods: {
 				'''
 				消耗极强敌人的灵魂
 				{$Mods.Aequus.Tooltips.NecromancyStaff}
-				命中敌人时会爆裂成一群蝗虫群
+				击中敌人时会爆裂成一群蝗虫群
 				'''
 			Revenant: 
 				'''
@@ -1185,7 +1185,7 @@ Mods: {
 				增加最大召唤栏位
 				'..于是它来了'
 				'''
-			Hitscanner: 发射一大片会瞬间命中的子弹
+			Hitscanner: 发射一大片会瞬间命中敌人的子弹
 			XenonBasher:
 				'''
 				打击你光标附近的敌人
@@ -2568,10 +2568,10 @@ Mods: {
 					'''
 					Terraria_FlaskofParty: 
 					'''
-					使用你的剑在命中时进行派对! 
+					使用你的剑在击中敌人时进行派对!
 					别告诉派对女孩我在转售她的东西!
 					'''
-					Terraria_FlaskofParty_PartyGirl: 使用你的剑在命中时进行派对! 别告诉{PartyGirl}我在转售她的东西!
+					Terraria_FlaskofParty_PartyGirl: 使用你的剑在击中敌人时进行派对! 别告诉{PartyGirl}我在转售她的东西!
 					Terraria_SandstorminaBottle: 
 					'''
 					比金字塔还要古老的古代遗物! 
