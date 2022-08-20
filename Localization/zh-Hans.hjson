@@ -191,6 +191,9 @@ Mods: {
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
 
+			SeraphimHood: 六翼天使兜帽
+			SeraphimRobes: 六翼天使长袍
+
 			FlowerCrown: 花冠
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
@@ -774,6 +777,18 @@ Mods: {
 				'''
 				减少15%法力消耗
 				增加最大幽魂仆从栏位
+				'''
+
+			SeraphimHood: 
+				'''
+				增加20%召唤伤害
+				增加最大幽魂仆从栏位
+				'''
+			SeraphimRobes: 
+				'''
+				减少25%法力消耗
+				增加20%召唤伤害
+				增加2格最大幽魂仆从栏位
 				'''
 
 			FlowerCrown: 
@@ -1811,6 +1826,12 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Seraphim: 
+				'''
+				增加2格最大幽魂仆从栏位
+				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
+				当你没有任何幽魂仆从时你所受到的伤害降低
+				'''
 			Gravetender: 
 				'''
 				召唤一缕魂灵来强化你的幽魂
