@@ -617,7 +617,7 @@ namespace Aequus.Content.Necromancy
                 healthAdditions -= 1f;
             }
 
-            return dmgMultiplier / 2f;
+            return Math.Max(dmgMultiplier / 2f, !Main.expertMode ? 1.33f : 1f);
         }
 
         public int DespawnPriority(NPC npc)

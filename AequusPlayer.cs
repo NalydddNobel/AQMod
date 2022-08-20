@@ -299,6 +299,7 @@ namespace Aequus
 
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
         public bool MaxLife => Player.statLife >= Player.statLifeMax2;
+        public float LifeRatio => Player.statLife / (float)Player.statLifeMax2;
 
         /// <summary>
         /// Helper for whether or not the player currently has a cooldown
@@ -677,6 +678,10 @@ namespace Aequus
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
             UpdateBank(Player.bank4, 3);
+            if (setSeraphim != null && ghostSlots == 0)
+            {
+                Player.endurance += 0.3f;
+            }
         }
         /// <summary>
         /// 
@@ -1253,6 +1258,24 @@ namespace Aequus
             }
             HyperCrystalDamage(target.getRect(), ref damage);
         }
+
+        public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)
+        {
+            if (setSeraphim != null && ghostSlots < ghostSlotsMax && target.lifeMax < 1000 && target.defense < 100)
+            {
+                float threshold = 1f - ghostSlots * 0.2f;
+                if (threshold > 0 && LifeRatio <= threshold && NecromancyDatabase.TryGet(target, out var info) && info.PowerNeeded <= 3.1f)
+                {
+                    var zombie = target.GetGlobalNPC<NecromancyNPC>();
+                    zombie.conversionChance = 1;
+                    zombie.zombieDebuffTier = 3f;
+                    zombie.zombieOwner = Player.whoAmI;
+                    zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+                    damage = 2500;
+                }
+            }
+        }
+
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             if (target.type != NPCID.TargetDummy)
@@ -1263,6 +1286,7 @@ namespace Aequus
                 }
             }
             HyperCrystalDamage(target.getRect(), ref damage);
+            CheckSeraphimSet(target, proj, ref damage);
         }
         public void CheckBloodDice(ref int damage)
         {
@@ -1294,7 +1318,7 @@ namespace Aequus
                 CheckLeechHook(target, damage);
             InflictDebuffs(target, damage, knockback, crit);
 
-            if (proj.DamageType == DamageClass.Summon || proj.minion || proj.sentry)
+            if (proj.DamageType.CountsAsClass(DamageClass.Summon) || proj.minion || proj.sentry)
             {
                 NecromancyHit(target, proj);
             }
@@ -1834,7 +1858,7 @@ namespace Aequus
             On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
             On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
-            On.Terraria.Player.DropTombstone += Hook_ModifyTombstone;
+            On.Terraria.Player.DropTombstone += Player_DropTombstone;
             On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
             On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
             On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
@@ -1869,25 +1893,24 @@ namespace Aequus
             orig(self);
         }
 
-        private static void Hook_ModifyTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
+        private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
         {
-            var aequus = self.Aequus();
-            if (aequus.ghostTombstones)
+            if (self.Aequus().ghostTombstones)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NPC.NewNPCDirect(self.GetSource_Death("GhostlyGrave"), self.Center, NPCID.Ghost);
+                    NPC.NewNPCDirect(self.GetSource_Death("Ghostly Grave"), self.Center, NPCID.Ghost);
                 }
                 return;
             }
 
-            var graves = CustomTombstones.ChooseTombstone(self, coinsOwned, deathText, hitDirection);
-            if (graves != null && graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), Main.rand.Next(graves), 0, 0f, Main.myPlayer);
-                Main.projectile[p].miscText = deathText.ToString();
-                return;
-            }
+            //var graves = CustomTombstones.ChooseTombstone(self, coinsOwned, deathText, hitDirection);
+            //if (graves != null && graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            //{
+            //    int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), Main.rand.Next(graves), 0, 0f, Main.myPlayer);
+            //    Main.projectile[p].miscText = deathText.ToString();
+            //    return;
+            //}
 
             orig(self, coinsOwned, deathText, hitDirection);
         }

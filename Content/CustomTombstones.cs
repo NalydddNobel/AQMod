@@ -22,10 +22,6 @@ namespace Aequus.Content
 
         public static List<int> ChooseTombstone(Player player, int coinsOwned, NetworkText deathText, int hitDirection)
         {
-            if (player.position.Y > Main.UnderworldLayer * 16f)
-            {
-                return HellTombstones;
-            }
             return null;
         }
     }

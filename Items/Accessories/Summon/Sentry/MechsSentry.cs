@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -344,12 +345,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            if (projectile.type == ProjectileID.BoneGloveProj && source is EntitySource_ItemUse itemUse && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
-            {
-                projectile.Transform(ModContent.ProjectileType<Bonesaw>());
-                projectile.velocity *= 1.25f;
-                projectile.damage = (int)(projectile.damage * 1.5f);
-            }
         }
     }
 }

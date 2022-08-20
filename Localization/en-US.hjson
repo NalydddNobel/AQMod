@@ -1831,7 +1831,6 @@ Mods: {
 				Increases your max number of ghosts by 2
 				Instantly kill and convert powerful enemies to ghost minions when in need
 				Take reduced damage when you have no ghost minions active
-				While below 20% health, your ghost minions will sacrificed to heal you
 				'''
 			Gravetender: 
 				'''

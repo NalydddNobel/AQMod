@@ -66,7 +66,6 @@ namespace Aequus.Projectiles.Summon.Necro
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Main.player[Projectile.owner].Aequus().NecromancyHit(target, Projectile);
             NecromancyDebuff.ApplyDebuff<NecromancyDebuff>(target, 600, Projectile.owner);
         }
 

@@ -1,8 +1,11 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Content;
+using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Ranged;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -50,6 +53,8 @@ namespace Aequus.Projectiles
         /// </summary>
         public int sourceProj;
 
+        public int transform;
+
         public override bool InstancePerEntity => true;
 
         public bool FromItem => sourceItemUsed > 0;
@@ -95,74 +100,6 @@ namespace Aequus.Projectiles
             }
         }
 
-        public override void OnSpawn(Projectile projectile, IEntitySource source)
-        {
-            defExtraUpdates = projectile.extraUpdates;
-            sourceItemUsed = -1;
-            sourceAmmoUsed = -1;
-            sourceNPC = pNPC;
-            sourceProjIdentity = pIdentity;
-
-            if (Main.gameMenu)
-                return;
-
-            try
-            {
-                if (!projectile.hostile && projectile.HasOwner())
-                {
-                    int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
-                    if (projOwner != -1)
-                    {
-                        sourceProjIdentity = projOwner;
-                    }
-                }
-                if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
-                {
-                    sourceItemUsed = itemUse_WithAmmo.Item.netID;
-                    sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
-                }
-                else if (source is EntitySource_ItemUse itemUse)
-                {
-                    sourceItemUsed = itemUse.Item.netID;
-                }
-                else if (source is EntitySource_Parent parent)
-                {
-                    if (parent.Entity is NPC)
-                    {
-                        sourceNPC = parent.Entity.whoAmI;
-                    }
-                    else if (parent.Entity is Projectile parentProjectile)
-                    {
-                        sourceProjIdentity = parentProjectile.identity;
-                    }
-                }
-                if (sourceProjIdentity != -1)
-                {
-                    sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
-                    if (sourceProj == -1)
-                    {
-                        sourceProjIdentity = -1;
-                    }
-                    else
-                    {
-                        sourceProjType = Main.projectile[sourceProj].type;
-                        InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
-                    }
-                }
-            }
-            catch
-            {
-            }
-
-            if (sourceItemUsed > 0)
-            {
-                if (sourceItemUsed == ModContent.ItemType<Raygun>())
-                {
-                    projectile.extraUpdates++;
-                    projectile.extraUpdates *= 6;
-                }
-            }
-        }
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
         {
             if (projectile.owner == parent.owner && parent.TryGetGlobalProjectile<AequusProjectile>(out var aequus))
@@ -180,9 +117,125 @@ namespace Aequus.Projectiles
                 }
             }
         }
+        public void OnSpawn_Inherit(Projectile projectile, IEntitySource source)
+        {
+            if (!projectile.hostile && projectile.HasOwner())
+            {
+                int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
+                if (projOwner != -1)
+                {
+                    sourceProjIdentity = projOwner;
+                }
+            }
+            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
+            {
+                sourceItemUsed = itemUse_WithAmmo.Item.netID;
+                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+            }
+            else if (source is EntitySource_ItemUse itemUse)
+            {
+                sourceItemUsed = itemUse.Item.netID;
+            }
+            else if (source is EntitySource_Parent parent)
+            {
+                if (parent.Entity is NPC)
+                {
+                    sourceNPC = parent.Entity.whoAmI;
+                }
+                else if (parent.Entity is Projectile parentProjectile)
+                {
+                    sourceProjIdentity = parentProjectile.identity;
+                }
+            }
+            if (sourceProjIdentity != -1)
+            {
+                sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                if (sourceProj == -1)
+                {
+                    sourceProjIdentity = -1;
+                }
+                else
+                {
+                    sourceProjType = Main.projectile[sourceProj].type;
+                    InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
+                }
+            }
+        }
+        
+        public void OnSpawn_CheckRaygun(Projectile projectile)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                projectile.extraUpdates++;
+                projectile.extraUpdates *= 6;
+            }
+        }
+
+        public void OnSpawn_CheckBonesaw(Projectile projectile, EntitySource_ItemUse itemUse)
+        {
+            if (projectile.type == ProjectileID.BoneGloveProj && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
+            {
+                transform = ModContent.ProjectileType<Bonesaw>();
+                projectile.velocity *= 1.25f;
+                projectile.damage = (int)(projectile.damage * 1.5f);
+            }
+        }
+
+        public void OnSpawn_CheckTombstones(Projectile projectile, EntitySource_Misc misc)
+        {
+            if (misc.Context == "PlayerDeath_TombStone")
+            {
+                var player = Main.player[projectile.owner];
+                if (player.position.Y > Main.UnderworldLayer * 16f)
+                {
+                    transform = Main.rand.Next(CustomTombstones.HellTombstones);
+                }
+                player.respawnTimer = Math.Min(35, player.respawnTimer);
+            }
+        }
+
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            defExtraUpdates = projectile.extraUpdates;
+            sourceItemUsed = -1;
+            sourceAmmoUsed = -1;
+            sourceNPC = pNPC;
+            sourceProjIdentity = pIdentity;
+
+            if (Main.gameMenu)
+                return;
+
+            try
+            {
+                OnSpawn_Inherit(projectile, source);
+
+                if (source is EntitySource_ItemUse itemUse)
+                {
+                    OnSpawn_CheckBonesaw(projectile, itemUse);
+                }
+                else if (source is EntitySource_Misc misc)
+                {
+                    OnSpawn_CheckTombstones(projectile, misc);
+                }
+                if (sourceItemUsed > 0)
+                {
+                    OnSpawn_CheckRaygun(projectile);
+                }
+            }
+            catch
+            {
+            }
+        }
 
         public override bool PreAI(Projectile projectile)
         {
+            if (transform > 0)
+            {
+                int p = Projectile.NewProjectile(new EntitySource_Misc($"Aequus: Transform"), projectile.Center, projectile.velocity, transform,
+                    projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+                Main.projectile[p].miscText = projectile.miscText;
+                projectile.Kill();
+            }
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
             {
                 if (sourceProjIdentity > 0)
