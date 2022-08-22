@@ -3,6 +3,7 @@ using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -180,6 +181,18 @@ namespace Aequus.Projectiles.Melee.Swords
             }
 
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            base.SendExtraAI(writer);
+            writer.Write(Projectile.scale);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            base.ReceiveExtraAI(reader);
+            Projectile.scale = reader.ReadSingle();
         }
     }
 }

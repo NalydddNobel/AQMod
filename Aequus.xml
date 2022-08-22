@@ -308,7 +308,7 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="T:Aequus.AequusWorld.DownedCalls">
+        <member name="T:Aequus.AequusWorld.ModCalls">
             <summary>
             World Flags:
             <list type="table">
@@ -321,9 +321,9 @@
             </list>
             </summary>
         </member>
-        <member name="M:Aequus.AequusWorld.DownedCalls.HandleModCall(Aequus.Aequus,System.Object[])">
+        <member name="M:Aequus.AequusWorld.ModCalls.HandleModCall(Aequus.Aequus,System.Object[])">
             <summary>
-            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.DownedCalls"/>' summary.
+            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.ModCalls"/>' summary.
             <para>Obtaining a flag:</para>
             <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
             <para>Setting a flag:</para>

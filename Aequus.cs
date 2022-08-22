@@ -99,7 +99,7 @@ namespace Aequus
                     return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
 
                 case "Downed":
-                    return ModContent.GetInstance<AequusWorld.DownedCalls>().HandleModCall(this, args);
+                    return ModContent.GetInstance<AequusWorld.ModCalls>().HandleModCall(this, args);
 
                 case "AddShopQuote":
                     return ShopQuotes.Database.HandleModCall(this, args);

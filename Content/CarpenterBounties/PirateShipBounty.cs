@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
+using Aequus.Items.Tools.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -185,7 +186,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public override Item ProvideBountyRewardItem()
         {
-            return AequusItem.SetDefaults(ItemID.PirateHat);
+            return AequusItem.SetDefaults<WhiteFlag>();
         }
     }
 }

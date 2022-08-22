@@ -4,6 +4,7 @@ using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -40,7 +41,7 @@ namespace Aequus.Projectiles.Melee.Swords
         protected override void Initialize(Player player, AequusPlayer aequus)
         {
             base.Initialize(player, aequus);
-            Projectile.scale += Main.rand.NextFloat(-0.4f, 0.5f);
+            Projectile.scale += Main.rand.NextFloat(-0.1f, 0.1f);
             Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f));
             if (aequus.itemCombo > 0)
             {
@@ -205,6 +206,18 @@ namespace Aequus.Projectiles.Melee.Swords
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(glowmask.Value, handPosition - Main.screenPosition, null, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            base.SendExtraAI(writer);
+            writer.Write(Projectile.scale);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            base.ReceiveExtraAI(reader);
+            Projectile.scale = reader.ReadSingle();
         }
     }
 }

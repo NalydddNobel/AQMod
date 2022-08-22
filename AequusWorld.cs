@@ -14,7 +14,6 @@ using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Projectiles;
 using Aequus.Tiles;
 using Aequus.UI;
-using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -35,6 +34,11 @@ namespace Aequus
         public static int TileCountsMultiplier;
 
         private static FieldInfo SceneMetrics__tileCounts;
+
+        [SaveData("WhiteFlag")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool whiteFlag;
 
         [SaveData("Glimmer")]
         [SaveDataAttribute.IsListedBoolean]
@@ -97,9 +101,15 @@ namespace Aequus
         public override void Load()
         {
             GoreNests = new GoreNestGen();
+            On.Terraria.Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
             On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
             On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
             SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
+        }
+
+        private bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
+        {
+            return !whiteFlag && orig();
         }
 
         private static void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
@@ -125,6 +135,7 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            whiteFlag = false;
             TileCountsMultiplier = 0;
             shadowOrbsBrokenTotal = 0;
             downedEventCosmic = false;
@@ -463,12 +474,12 @@ namespace Aequus
         /// <item>GaleStreams -- <see cref="downedEventAtmosphere"/></item>
         /// </list>
         /// </summary>
-        public class DownedCalls : IModCallable
+        public class ModCalls : IModCallable
         {
             private Dictionary<string, RefFunc<bool>> providers;
 
             /// <summary>
-            /// Obtains or sets a world flag, a list of world flags are provided in <see cref="DownedCalls"/>' summary.
+            /// Obtains or sets a world flag, a list of world flags are provided in <see cref="ModCalls"/>' summary.
             /// <para>Obtaining a flag:</para>
             /// <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
             /// <para>Setting a flag:</para>
@@ -522,11 +533,16 @@ namespace Aequus
             {
                 providers = new Dictionary<string, RefFunc<bool>>()
                 {
+                    ["WhiteFlag"] = () => ref whiteFlag,
+                    ["HyperStarite"] = () => ref downedHyperStarite,
+                    ["UltraStarite"] = () => ref downedUltraStarite,
+                    ["Glimmer"] = () => ref downedEventCosmic,
+                    ["DemonSiege"] = () => ref downedEventDemon,
                     ["Crabson"] = () => ref downedCrabson,
                     ["OmegaStarite"] = () => ref downedOmegaStarite,
                     ["RedSprite"] = () => ref downedRedSprite,
                     ["SpaceSquid"] = () => ref downedSpaceSquid,
-                    ["DustDevil"] = () => ref downedEventAtmosphere,
+                    ["DustDevil"] = () => ref downedDustDevil,
                     ["GaleStreams"] = () => ref downedEventAtmosphere,
                 };
             }

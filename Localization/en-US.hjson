@@ -347,6 +347,7 @@ Mods: {
 			Driftwood: Driftwood
 			PlasticBottle: Plastic Bottle
 
+			WhiteFlag: White Flag
 			GhostlyGrave: Ghostly Grave
 
 			MoonflowerPollen: Moonflower Pollen
@@ -1032,6 +1033,7 @@ Mods: {
 
 			GalacticStarfruit: Creates a strange glimmer
 
+			WhiteFlag: When used, natural invasions will be disabled
 			GhostlyGrave: When used, your graves convert into a ghost on death
 
 			MirrorsCall:
@@ -1866,6 +1868,11 @@ Mods: {
 				Hunter and dangersense is always active
 				Traps deal 30% less damage
 				'''
+		}
+
+		WhiteFlag: {
+			False: Invasions have been disabled
+			True: Invasions have been enabled
 		}
 
 		GhostlyGrave: {

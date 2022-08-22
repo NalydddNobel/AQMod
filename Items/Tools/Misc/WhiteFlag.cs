@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.Misc
 {
-    public class GhostlyGrave : ModItem
+    public class WhiteFlag : ModItem
     {
-        public static Color TextColor => new Color(211, 200, 200, 255);
+        public static Color TextColor => new Color(222, 222, 222, 255);
 
         public override void SetStaticDefaults()
         {
@@ -27,24 +27,6 @@ namespace Aequus.Items.Tools.Misc
             Item.UseSound = SoundID.Item8;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
-            if (lightColor.R < 60)
-            {
-                lightColor.R = 60;
-            }
-            if (lightColor.G < 60)
-            {
-                lightColor.G = 60;
-            }
-            if (lightColor.B < 60)
-            {
-                lightColor.B = 60;
-            }
-            lightColor.A = 200;
-            return lightColor;
-        }
-
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.Insert(tooltips.GetIndex("JourneyResearch"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
@@ -52,11 +34,10 @@ namespace Aequus.Items.Tools.Misc
 
         public override bool? UseItem(Player player)
         {
-            var aequus = player.Aequus();
-            aequus.ghostTombstones = !aequus.ghostTombstones;
-            if (Main.myPlayer == player.whoAmI)
+            AequusWorld.whiteFlag = !AequusWorld.whiteFlag;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.NewText(AequusText.GetText("GhostlyGrave." + (aequus.ghostTombstones ? "True" : "False")), TextColor);
+                AequusText.Broadcast($"WhiteFlag.{(AequusWorld.whiteFlag ? "True" : "False")}", TextColor);
             }
             return true;
         }

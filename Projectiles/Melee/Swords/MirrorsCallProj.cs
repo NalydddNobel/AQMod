@@ -319,5 +319,17 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
             }
         }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            base.SendExtraAI(writer);
+            writer.Write(Projectile.scale);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            base.ReceiveExtraAI(reader);
+            Projectile.scale = reader.ReadSingle();
+        }
     }
 }

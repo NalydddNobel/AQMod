@@ -1,10 +1,10 @@
-﻿using Aequus.Items.Armor.Summon.Gravetender;
+﻿using Aequus.Items.Armor.Gravetender;
 using Aequus.Items.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Summon.Seraphim
+namespace Aequus.Items.Armor.Seraphim
 {
     [AutoloadEquip(EquipType.Body)]
     public class SeraphimRobes : ModItem
