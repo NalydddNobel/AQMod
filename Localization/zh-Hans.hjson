@@ -169,6 +169,7 @@ Mods: {
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 
+			MindfungusStaff: 心灵真菌法杖
 			StariteStaff: 星源法杖
 			ScribbleNotebook: 麦克斯韦的笔记本
 			CorruptPot: 腐食罐
@@ -332,6 +333,7 @@ Mods: {
 			AshTombstone: 余烬墓碑
 			RecyclingMachine: 回收机
 
+			TidalDye: 潮汐染料
 			CensorDye: 监察染料
 			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
@@ -703,6 +705,11 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			MindfungusStaff:
+				'''
+				召唤一颗猩红眠菇为你而战
+				敌人在死亡时有几率转化为幽魂
+				'''
 			StariteStaff: 召唤一颗迅捷星源为你而战
 			ScribbleNotebook: 召唤一件物体为你而战
 			CorruptPot: 召唤一株腐化植物为你而战
@@ -877,7 +884,11 @@ Mods: {
 				在下雨时, 捕鱼效果更强
 				'''
 
-			UnholyCore: 降低恶魔围攻事件的进攻时间
+			UnholyCore: 
+				'''
+				可在血巢处使用
+				降低恶魔围攻事件的进攻时间
+				'''
 
 			RichMansMonocle: 允许你在NPC商店外查看商品价格
 
@@ -1539,6 +1550,7 @@ Mods: {
 
 			GravetenderMinionBuff: 守墓人
 
+			MindfungusBuff: 心灵真菌
 			StariteBuff: 星之源
 			ScribbleNotebookBuff: 涂鸦
 			CorruptPlantBuff: 腐化植物
@@ -1622,10 +1634,11 @@ Mods: {
 
 			NecromancyOwnerBuff: 你正掌控死亡
 
+			MindfungusBuff: 心灵真菌会为你而战
 			StariteBuff: 星之源会为你而战
 			ScribbleNotebookBuff: 物体会为你而战
-			CorruptPlantBuff: 腐化植物会为你而战!
-			RedSpriteMinionBuff: 红色精灵会为你而战!
+			CorruptPlantBuff: 腐化植物会为你而战
+			RedSpriteMinionBuff: 红色精灵会为你而战
 			SnowflakeBuff: 雪花会为你而战
 
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
