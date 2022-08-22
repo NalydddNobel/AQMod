@@ -120,6 +120,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static float GetMinionReturnSpeed(this Projectile projectile, float minSpeed = 10f, float playerSpeedThreshold = 1.25f)
+        {
+            return Math.Max(Math.Max(Main.player[projectile.owner].velocity.Length() * playerSpeedThreshold, minSpeed), (Main.player[projectile.owner].Center - projectile.Center).Length() / 32f * playerSpeedThreshold);
+        }
+
         public static int GetTileStyle(int tileID, int frameX, int frameY)
         {
             var tileObjectData = TileObjectData.GetTileData(tileID, 0, 0);

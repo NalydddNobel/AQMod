@@ -169,6 +169,7 @@ Mods: {
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
+			MindfungusStaff: Mindfungus Staff
 			StariteStaff: Starite Staff
 			ScribbleNotebook: Maxwell's Notebook
 			CorruptPot: Corrupt Pot
@@ -332,6 +333,7 @@ Mods: {
 			AshTombstone: Ash Tombstone
 			RecyclingMachine: Recycling Machine
 
+			TidalDye: Tidal Dye
 			CensorDye: Censor Dye
 			ScorchingDye: Scorching Dye
 			FrostbiteDye: Frostbite Dye
@@ -703,6 +705,11 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			MindfungusStaff:
+				'''
+				Summons a crimson hypnoshroom to fight for you
+				Enemies may convert into ghosts on death
+				'''
 			StariteStaff: Summons a speedy starite to fight for you
 			ScribbleNotebook: Summons an object to fight for you
 			CorruptPot: Summons a corrupted plant to fight for you
@@ -877,7 +884,11 @@ Mods: {
 				Extra powerful during the rain
 				'''
 
-			UnholyCore: Decreases the length of a Demon Siege event
+			UnholyCore: 
+				'''
+				Can be used at the Gore Nest
+				Decreases the length of the Demon Siege event
+				'''
 
 			RichMansMonocle: Allows you to view item prices outside of an NPC shop
 
@@ -1539,6 +1550,7 @@ Mods: {
 
 			GravetenderMinionBuff: Gravetender
 
+			MindfungusBuff: Mindfungus
 			StariteBuff: Starite
 			ScribbleNotebookBuff: Scribble
 			CorruptPlantBuff: Corrupt Plant
@@ -1622,6 +1634,7 @@ Mods: {
 
 			NecromancyOwnerBuff: You are controlling the dead
 
+			MindfungusBuff: The mindfungus will fight for you			
 			StariteBuff: The starite will fight for you
 			ScribbleNotebookBuff: The object will fight for you
 			CorruptPlantBuff: The corrupted plant will fight for you

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -7,9 +8,9 @@ namespace Aequus.Graphics.ShaderData
 {
     public class ArmorCustomTexture : ArmorShaderData
     {
-        public Ref<Texture2D> _texture;
+        public Asset<Texture2D> _texture;
 
-        public ArmorCustomTexture(Ref<Effect> shader, string passName, Ref<Texture2D> texture) : base(shader, passName)
+        public ArmorCustomTexture(Ref<Effect> shader, string passName, Asset<Texture2D> texture) : base(shader, passName)
         {
             _texture = texture;
         }

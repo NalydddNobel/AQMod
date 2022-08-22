@@ -24,7 +24,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override void SetStaticDefaults()
         {
-            this.SetResearch(3);
+            SacrificeTotal = 3;
             if (!Main.dedServ)
             {
                 GameShaders.Armor.BindShader(Type, CreateShaderData());

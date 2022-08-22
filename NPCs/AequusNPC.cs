@@ -47,6 +47,7 @@ namespace Aequus.NPCs
         public bool heatDamage;
         public bool noHitEffect;
 
+        public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
@@ -326,6 +327,19 @@ namespace Aequus.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (npc.HasBuff<MindfungusDebuff>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 16 + 8 * mindfungusStacks;
+                damage += 8 + mindfungusStacks;
+            }
+            else
+            {
+                mindfungusStacks = 0;
+            }
             if (npc.HasBuff<BlueFire>())
             {
                 if (npc.lifeRegen > 0)
@@ -598,6 +612,12 @@ namespace Aequus.NPCs
             {
                 writer.Write(crimsonHellfireStacks);
             }
+            flag = Main.npc[whoAmI].HasBuff<MindfungusDebuff>();
+            writer.Write(flag);
+            if (flag)
+            {
+                writer.Write(mindfungusStacks);
+            }
         }
 
         public void Receive(int whoAmI, BinaryReader reader)
@@ -613,6 +633,10 @@ namespace Aequus.NPCs
             if (reader.ReadBoolean())
             {
                 crimsonHellfireStacks = reader.ReadByte();
+            }
+            if (reader.ReadBoolean())
+            {
+                mindfungusStacks = reader.ReadByte();
             }
         }
 

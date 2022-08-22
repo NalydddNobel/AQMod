@@ -444,6 +444,7 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            setSeraphim = null;
             luckRerolls = 0;
             glowCore = -1;
             if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)

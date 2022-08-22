@@ -27,7 +27,7 @@ float2 FrameFix(float2 coords)
 {
     float frameSizeX = uSourceRect.z / uImageSize0.x;
     float x = coords.x % frameSizeX;
-    float frameSizeY = uSourceRect.w / uImageSize0.y;
+    float frameSizeY = uLegacyArmorSourceRect.w / uImageSize0.y;
     float y = coords.y % frameSizeY;
     return float2(x * 1 / frameSizeX, y * 1 / frameSizeY);
 }
@@ -35,6 +35,24 @@ float2 FrameFix(float2 coords)
 float2 RotationToVector2(float f)
 {
     return float2(cos(f), sin(f));
+}
+
+float4 AquaticShader(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float2 frameCoords = FrameFix(coords);
+    float2 upVal = float2(0, 4 / uImageSize0.y);
+    float4 color = frameCoords.y - upVal.y < 0.1 ? float4(0, 0, 0, 0) : tex2D(uImage0, coords - upVal);
+    float2 ratio = uImageSize0 / 4;
+
+    //return float4(frameCoords.y, 0, 0, 1);
+    float4 color2 = tex2D(uImage0, coords);
+    float time = frameCoords.x * 20 + uTime * 2 + frameCoords.y * 2;
+    float wave = (sin(time) + 1) * 0.25f;
+    float val = abs((frameCoords.y * 3 + wave - uTime * 1.5) % 1);
+    val = val > 0.5 ? pow(val, 2) + 0.5f : val;
+    float4 endColor = tex2D(uImage1, float2(frameCoords.x, val));
+    float flerp = endColor.r + endColor.g + endColor.b;
+    return lerp(color2, pow(endColor, 2), flerp / 2 * (color.a + color2.a) / 2 - frameCoords.y * 0.4) * sampleColor;
 }
 
 float4 TextureScrolling(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
@@ -492,6 +510,10 @@ float4 SpikeFade(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 
 technique Technique1
 {
+    pass AquaticShaderPass
+    {
+        PixelShader = compile ps_3_0 AquaticShader();
+    }   
     pass TextureScrollingPass
     {
         PixelShader = compile ps_3_0 TextureScrolling();
