@@ -10,6 +10,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.Items.Weapons.Ranged
 {
+    [GlowMask]
     public class BoundBow : ModItem
     {
         public override void SetStaticDefaults()
@@ -40,7 +41,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, 80);
+            return new Color(lightColor.R, lightColor.G, lightColor.B, lightColor.A - 80);
         }
 
         public override bool CanUseItem(Player player)
@@ -54,6 +55,11 @@ namespace Aequus.Items.Weapons.Ranged
             aequus.boundBowAmmo--;
             aequus.boundBowAmmoTimer = 120;
             return true;
+        }
+
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(6f);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
