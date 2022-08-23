@@ -347,6 +347,7 @@ Mods: {
 			Driftwood: 浮木
 			PlasticBottle: 塑料瓶
 
+			WhiteFlag: 白色旗帜
 			GhostlyGrave: 幽魂冢
 
 			MoonflowerPollen: 月光花粉
@@ -1032,7 +1033,8 @@ Mods: {
 
 			GalacticStarfruit: 创造一道奇异微光
 
-			GhostlyGrave: 使用时会将你的墓碑变为幽魂
+			WhiteFlag: 使用后会禁用自然入侵
+			GhostlyGrave: 使用后会当你死亡时会将你的墓碑转化为幽魂
 
 			MirrorsCall:
 				'''
@@ -1866,6 +1868,11 @@ Mods: {
 				你现在拥有危险感和猎人增益
 				陷阱对你造成的伤害降低30%
 				'''
+		}
+
+		WhiteFlag: {
+			False: 入侵已禁用
+			True: 入侵已启用
 		}
 
 		GhostlyGrave: {
