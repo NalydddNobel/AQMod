@@ -169,6 +169,7 @@ Mods: {
 			BallisticScreecher: 弹道尖嚎者
 			Triacanthorn: 三棘卷须
 
+			BrainwaveStaff: 脑波法杖
 			MindfungusStaff: 心灵真菌法杖
 			StariteStaff: 星源法杖
 			ScribbleNotebook: 麦克斯韦的笔记本
@@ -706,6 +707,7 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			BrainwaveStaff: 召唤一颗恶魔菜花控制你的敌人
 			MindfungusStaff:
 				'''
 				召唤一颗猩红眠菇为你而战
@@ -1552,6 +1554,7 @@ Mods: {
 
 			GravetenderMinionBuff: 守墓人
 
+			BrainCauliflowerBuff: 脑菜花
 			MindfungusBuff: 心灵真菌
 			StariteBuff: 星之源
 			ScribbleNotebookBuff: 涂鸦
@@ -1636,6 +1639,7 @@ Mods: {
 
 			NecromancyOwnerBuff: 你正掌控死亡
 
+			BrainCauliflowerBuff: 脑菜花会为你而战
 			MindfungusBuff: 心灵真菌会为你而战
 			StariteBuff: 星之源会为你而战
 			ScribbleNotebookBuff: 物体会为你而战
