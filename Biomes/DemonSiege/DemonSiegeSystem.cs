@@ -88,7 +88,7 @@ namespace Aequus.Biomes.DemonSiege
 
         public override void PostDrawTiles()
         {
-            if (GoreNestTile.RenderPoints.Count > 0)
+            if (GoreNestTile.DrawPointsCache.Count > 0)
             {
                 var auraTexture = ModContent.Request<Texture2D>("Aequus/Assets/GoreNestAura");
                 if (!auraTexture.IsLoaded)
@@ -108,7 +108,7 @@ namespace Aequus.Biomes.DemonSiege
 
         public bool DrawDemonSiegeRanges(Texture2D auraTexture)
         {
-            foreach (var v in GoreNestTile.RenderPoints)
+            foreach (var v in GoreNestTile.DrawPointsCache)
             {
                 if (ActiveSacrifices.TryGetValue(v, out var sacrifice) && sacrifice._auraScale > 0f)
                 {

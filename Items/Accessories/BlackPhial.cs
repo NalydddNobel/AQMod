@@ -42,7 +42,9 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accVial = 3;
+            var aequus = player.Aequus();
+            aequus.accVial = 4;
+            aequus.enemyDebuffDuration += 1f;
         }
     }
 }

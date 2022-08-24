@@ -28,6 +28,7 @@ namespace Aequus.Projectiles.Magic
             if (!_playedSound)
             {
                 controlMouseRight = true;
+                _playedSound = true;
                 SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Umystick/jump", 0, 2), Main.player[Projectile.owner].Center);
             }
 

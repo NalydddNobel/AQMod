@@ -254,31 +254,24 @@ namespace Aequus.NPCs
 
             if (npc.HasBuff<BlueFire>())
             {
-                int amt = (int)(npc.Size.Length() / 20f);
-                for (int i = 0; i < amt / 2; i++)
-                {
-                    AequusEffects.BehindPlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
-                        new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                }
+                int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                {
-                    AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                }
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
             if (npc.HasBuff<CorruptionHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor, 1.25f, 0.3f));
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
             if (npc.HasBuff<CrimsonHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()), -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor, 0.9f, 0.35f));
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
 

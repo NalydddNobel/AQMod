@@ -602,7 +602,11 @@ Mods: {
 				50% more damage from critical strikes
 				[c/{Color}:If you can pay 25 silver]
 				'''
-			BlackPhial: Chance to inflict a random debuff on enemies
+			BlackPhial: 
+				'''
+				Chance to inflict a random debuff on enemies on hit
+				Enemy debuffs last twice as long
+				'''
 			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
 				'''

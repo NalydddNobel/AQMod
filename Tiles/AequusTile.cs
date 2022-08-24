@@ -21,8 +21,6 @@ namespace Aequus.Tiles
         public override void Load()
         {
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
-            On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
-            On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
         }
 
         private void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)
@@ -35,8 +33,6 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
-            ResetTileRenderPoints = null;
-            DrawSpecialTilePoints = null;
         }
 
         public override void RandomUpdate(int i, int j, int type)
@@ -126,21 +122,6 @@ namespace Aequus.Tiles
             return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
         }
 
-        private void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
-        {
-            orig(self);
-            DrawSpecialTilePoints?.Invoke();
-        }
-
-        private void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
-        {
-            orig(self, solidLayer, forRenderTargets, intoRenderTargets);
-            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
-            if (!solidLayer && flag)
-            {
-                ResetTileRenderPoints?.Invoke();
-            }
-        }
 
         public static bool CheckForType(Rectangle rect, ArrayInterpreter<int> type)
         {

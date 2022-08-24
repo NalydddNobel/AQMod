@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.width = 26;
             Item.height = 26;
-            Item.damage = 47;
+            Item.damage = 36;
             Item.useTime = 24;
             Item.useAnimation = 24;
             Item.rare = ItemDefaults.RarityGaleStreams;

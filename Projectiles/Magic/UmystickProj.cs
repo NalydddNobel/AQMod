@@ -16,10 +16,6 @@ namespace Aequus.Projectiles.Magic
 
         public override void Load()
         {
-            if (!Main.dedServ)
-            {
-                UmysticShoot = new SoundStyle("Aequus/Sounds/Items/Umystick/shoot", 2) { Volume = 0.6f, };
-            }
         }
 
         public override void SetStaticDefaults()
@@ -44,12 +40,32 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            if ((int)Projectile.ai[0] == -1)
-                return;
             var player = Main.player[Projectile.owner];
+            if ((int)Projectile.ai[0] == -1)
+            {
+                if (Projectile.timeLeft < 14)
+                {
+                    float progress = 1f - Projectile.timeLeft / 14f;
+                    _gfxOffY = progress * 36f;
+                    Projectile.alpha = (int)((progress) * 255f);
+
+                    if (Projectile.frame < Main.projFrames[Type])
+                    {
+                        Projectile.frame++;
+                    }
+                }
+                else if (Projectile.frame > 0)
+                {
+                    Projectile.frame--;
+                }
+                Projectile.Center = player.Center + Projectile.velocity * 36f;
+                return;
+            }
+            var aequus = Main.player[Projectile.owner].Aequus();
             player.heldProj = Projectile.whoAmI;
             Vector2 rotatedRelativePoint = player.RotatedRelativePoint(player.MountedCenter);
-            bool ignoreChannel = false;
+            bool ignoreChannel = (int)Projectile.localAI[0] < 100;
+
             if ((int)Projectile.ai[1] < 0)
             {
                 ignoreChannel = true;
@@ -60,8 +76,9 @@ namespace Aequus.Projectiles.Magic
                 }
                 if (timer == 0)
                 {
+                    Projectile.localAI[0] = 100f;
                     _gfxOffY = 14f;
-                    SoundEngine.PlaySound(UmysticShoot, Projectile.Center);
+                    SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Umystick/shoot", 2) { Volume = 0.44f, PitchVariance = 0.33f }, Projectile.Center);
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var shootPosition = Projectile.Center;
@@ -69,7 +86,12 @@ namespace Aequus.Projectiles.Magic
                         {
                             shootPosition = player.Center;
                         }
-                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), shootPosition, Projectile.velocity * 27.5f, ModContent.ProjectileType<UmystickBullet>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        if (aequus.itemCombo > 0)
+                        {
+                            aequus.itemCombo = 10;
+                        }
+                        Projectile.NewProjectile(Projectile.GetSource_FromAI(), shootPosition, Projectile.velocity.RotatedBy((Projectile.ai[1] + 10f) * 0.01f * (aequus.itemCombo > 0 ? -1 : 1)) * 27.5f / 3f,
+                            ModContent.ProjectileType<UmystickBullet>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     }
                     Projectile.netUpdate = true;
                 }
@@ -89,6 +111,10 @@ namespace Aequus.Projectiles.Magic
                         return;
                     }
                     Projectile.ai[1] = 24f;
+                    if (aequus.itemCombo <= 0)
+                    {
+                        Main.player[Projectile.owner].Aequus().itemCombo = 120;
+                    }
                 }
             }
             else
@@ -99,13 +125,20 @@ namespace Aequus.Projectiles.Magic
                 }
                 _gfxOffY *= 0.94f;
             }
-            Projectile.ai[1]--;
+            if (Projectile.localAI[0] >= 8f)
+                Projectile.ai[1]--;
+
+            AI_UpdateHeldTimes(player);
+
             if (Main.myPlayer == Projectile.owner)
             {
                 if (ignoreChannel || (player.channel && !player.noItems && !player.CCed))
                 {
-                    var difference = Main.MouseWorld - player.Center;
-                    Projectile.velocity = Vector2.Normalize(difference);
+                    if (ignoreChannel)
+                    {
+                        var difference = Main.MouseWorld - player.Center;
+                        Projectile.velocity = Vector2.Normalize(difference);
+                    }
                 }
                 else
                 {
@@ -115,13 +148,35 @@ namespace Aequus.Projectiles.Magic
                 Projectile.netUpdate = true;
             }
             Projectile.rotation = Projectile.velocity.ToRotation();
-            Projectile.Center = player.Center + Projectile.velocity * 32f;
+            Projectile.Center = player.Center + Projectile.velocity * 36f;
             player.ChangeDir(Math.Sign(Projectile.velocity.X));
             Projectile.hide = false;
-            if (player.itemTime <= 2)
+
+            if (Projectile.localAI[0] < 8f)
             {
-                player.itemTime = 2;
-                if (Projectile.ai[1] > 2)
+                if ((int)Projectile.localAI[0] == 0)
+                {
+                    Projectile.frame = Main.projFrames[Type];
+                }
+                else if (Projectile.frame > 0)
+                {
+                    Projectile.frame--;
+                }
+                float progress = 1f - Projectile.localAI[0] / 8f;
+                _gfxOffY = progress * 36f;
+                Projectile.alpha = (int)((progress) * 255f);
+
+                Projectile.localAI[0]++;
+            }
+        }
+
+        public void AI_UpdateHeldTimes(Player player)
+        {
+            int minTime = 16;
+            if (player.itemTime <= minTime)
+            {
+                player.itemTime = minTime;
+                if (Projectile.ai[1] > minTime)
                 {
                     player.itemTime = (int)Projectile.ai[1];
                 }
@@ -130,10 +185,10 @@ namespace Aequus.Projectiles.Magic
             {
                 Projectile.friendly = false;
             }
-            if (player.itemAnimation <= 2)
+            if (player.itemAnimation <= minTime)
             {
-                player.itemAnimation = 2;
-                if (Projectile.ai[1] > 2)
+                player.itemAnimation = minTime;
+                if (Projectile.ai[1] > minTime)
                 {
                     player.itemTime = (int)Projectile.ai[1];
                 }
@@ -153,7 +208,7 @@ namespace Aequus.Projectiles.Magic
             var player = Main.player[Projectile.owner];
             origin.X += Projectile.spriteDirection * 4f;
             center += Projectile.velocity * -_gfxOffY;
-            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, effects, 0f);
+            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, lightColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0f);
             return false;
         }
     }

@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -28,7 +29,7 @@ namespace Aequus.Projectiles.Magic
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 3;
-            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         }
 
@@ -38,14 +39,15 @@ namespace Aequus.Projectiles.Magic
             Projectile.height = 24;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.scale = 0.75f;
+            Projectile.extraUpdates = 2;
+            Projectile.scale = 0.85f;
+            Projectile.timeLeft = 120;
         }
 
         public override void AI()
         {
             if ((int)Projectile.ai[0] == 0)
             {
-                Projectile.ai[0] = 1f;
                 Projectile.frame = Main.rand.Next(Main.projFrames[Projectile.type]);
                 Projectile.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
                 _glowClr = new Color(128, 70, 70, 0);
@@ -53,8 +55,31 @@ namespace Aequus.Projectiles.Magic
                     _glowClr = new Color(90, 128, 50, 0);
                 else if (Projectile.frame == 2)
                     _glowClr = new Color(70, 70, 128, 0);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowClr * 2f, 1f);
+                }
             }
-            Projectile.rotation += Projectile.velocity.Length() * 0.0157f;
+            if ((int)Projectile.ai[0] < 40f)
+            {
+                Projectile.ai[0]++;
+                if (Projectile.ai[1] > 40f)
+                {
+                    Projectile.ai[0] = 0;
+                }
+
+                int target = Projectile.FindTargetWithLineOfSight(450f);
+                if (target != -1)
+                {
+                    Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, (Main.npc[target].Center - Projectile.Center) * 0.1f, 0.015f)) * Projectile.velocity.Length();
+                }
+            }
+            if (Main.rand.NextBool(9))
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowClr * 2f, 1f);
+            }
+            Projectile.rotation += Projectile.velocity.Length() * Main.rand.NextFloat(0.01f, 0.0157f);
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -68,21 +93,30 @@ namespace Aequus.Projectiles.Magic
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
-            var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
+            var frame = texture.Frame(verticalFrames: Main.projFrames[Projectile.type], frameY: Projectile.frame);
             var origin = frame.Size() / 2f;
             var center = Projectile.Center;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
-                    (p) => new Vector2(14f - p * 14f) * Projectile.scale, (p) => _glowClr * (1f - p),
+                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                    (p) => new Vector2((float)Math.Pow(1f - p, 2f) * 16f) * Projectile.scale, GetTrailColor,
                     drawOffset: Projectile.Size / 2f);
             }
+            new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass,
+                (p) => new Vector2((1f - p) * 12f) * Projectile.scale, (p) => GetTrailColor(p) * 4f,
+                drawOffset: Projectile.Size / 2f).Draw(Projectile.oldPos);
             prim.Draw(Projectile.oldPos);
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            //Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, Color.White, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
+        }
+
+        public Color GetTrailColor(float progress)
+        {
+            return (_glowClr * 2f).UseA(20).HueAdd((Projectile.frame != 0 ? progress : -progress) * 0.33f) * (1f - progress);
         }
 
         public override void Kill(int timeLeft)

@@ -364,6 +364,11 @@ namespace Aequus
             TileCountsMultiplier = 1;
         }
 
+        public override void PreUpdateEntities()
+        {
+            ResetCaches();
+        }
+
         public override void PreUpdatePlayers()
         {
             if (Main.netMode != NetmodeID.Server)
@@ -383,9 +388,15 @@ namespace Aequus
 
         public override void PostUpdatePlayers()
         {
+            ResetCaches();
+        }
+
+        public void ResetCaches()
+        {
             AequusProjectile.pWhoAmI = -1;
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;
+            AequusPlayer.PlayerContext = -1;
             AequusHelpers.EndCaches();
         }
 

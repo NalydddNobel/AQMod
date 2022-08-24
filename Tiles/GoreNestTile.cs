@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Networking;
 using Aequus.Graphics;
+using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -19,7 +19,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles
 {
-    public class GoreNestTile : ModTile
+    public class GoreNestTile : ModTile, ISpecialTileRenderer
     {
         public class GoreNestShaderData : MiscShaderData
         {
@@ -38,26 +38,16 @@ namespace Aequus.Tiles
         }
 
         public static int BiomeCount;
-        public static List<Point> RenderPoints { get; private set; }
+        public static List<Point> DrawPointsCache;
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                RenderPoints = new List<Point>();
+                DrawPointsCache = new List<Point>();
                 GoreNestPortal = new StaticMiscShaderInfo<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
-
-                AequusTile.ResetTileRenderPoints += () => RenderPoints.Clear();
-                AequusTile.DrawSpecialTilePoints += DrawPortals;
             }
-        }
-
-        public override void Unload()
-        {
-            RenderPoints?.Clear();
-            RenderPoints = null;
-            GoreNestPortal = null;
         }
 
         public override void SetStaticDefaults()
@@ -74,6 +64,17 @@ namespace Aequus.Tiles
             DustType = DustID.Blood;
             AdjTiles = new int[] { TileID.DemonAltar };
             AddMapEntry(new Color(175, 15, 15), CreateMapEntryName("GoreNest"));
+
+            if (!Main.dedServ)
+            {
+                SpecialTileRenderer.PreDrawTiles += () => DrawPointsCache.Clear();
+            }
+        }
+
+        public override void Unload()
+        {
+            DrawPointsCache?.Clear();
+            GoreNestPortal = null;
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
@@ -148,17 +149,11 @@ namespace Aequus.Tiles
         {
             if (drawData.tileFrameX % 48 == 0 && drawData.tileFrameY % 48 == 0)
             {
-                RenderPoints.Add(new Point(i, j));
+                SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
+                DrawPointsCache.Add(new Point(i, j));
             }
         }
 
-        public static void DrawPortals()
-        {
-            foreach (var p in RenderPoints)
-            {
-                InnerDrawPortal(p, p.ToWorldCoordinates() + new Vector2(16f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
-            }
-        }
         public static void InnerDrawPortal(Point ij, Vector2 position)
         {
             Main.spriteBatch.End();
@@ -315,6 +310,11 @@ namespace Aequus.Tiles
         public static bool IsGoreNest(int x, int y)
         {
             return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<GoreNestTile>();
+        }
+
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
+        {
+            InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
         }
     }
 }

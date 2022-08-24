@@ -24,6 +24,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
+using Aequus.Projectiles;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
@@ -52,6 +53,8 @@ namespace Aequus
         public const int BoundBowRegenerationDelay = 50;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
+
+        public static int PlayerContext;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
@@ -128,6 +131,8 @@ namespace Aequus
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
+
+        public float enemyDebuffDuration;
 
         public int instaShieldTime;
         public int instaShieldTimeMax;
@@ -444,6 +449,9 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            PlayerContext = Player.whoAmI;
+
+            enemyDebuffDuration = 1f;
             setSeraphim = null;
             luckRerolls = 0;
             glowCore = -1;
@@ -815,6 +823,8 @@ namespace Aequus
             }
 
             UpdateBoundBowRecharge();
+
+            PlayerContext = -1;
 
             if (AequusHelpers.Main_dayTime.IsCaching)
             {
@@ -1353,13 +1363,24 @@ namespace Aequus
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
                 SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
             }
-            if (vialDelay <= 0 && accVial > 0 && Main.rand.NextBool(accVial))
+            if (accVial > 0)
             {
-                int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
-                if (!target.buffImmune[buff])
+                int buffCount = 0;
+                for (int i = 0; i < NPC.maxBuffs; i++)
                 {
-                    vialDelay = 240;
-                    target.AddBuff(buff, 300);
+                    if (target.buffType[i] > 0 && Main.debuff[target.buffType[i]])
+                    {
+                        buffCount++;
+                    }
+                }
+                if (Main.rand.NextBool(accVial + vialDelay / 5 + buffCount * 2))
+                {
+                    int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
+                    if (!target.buffImmune[buff])
+                    {
+                        vialDelay += 30;
+                        target.AddBuff(buff, 150);
+                    }
                 }
             }
             if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
@@ -2191,6 +2212,19 @@ namespace Aequus
                     c.Item3(Dust.NewDustPerfect(position, c.Item1, velocity));
                 }
             }
+        }
+
+        public static Player FindPlayerContext()
+        {
+            if (PlayerContext > -1)
+            {
+                return Main.player[PlayerContext];
+            }
+            if (AequusProjectile.pWhoAmI != -1 && Main.projectile[AequusProjectile.pWhoAmI].friendly)
+            {
+                return Main.player[Main.projectile[AequusProjectile.pWhoAmI].owner];
+            }
+            return null;
         }
     }
 }

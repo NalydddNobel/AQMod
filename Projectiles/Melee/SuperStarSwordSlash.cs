@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -81,6 +82,11 @@ namespace Aequus.Projectiles.Melee
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(),
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            BlueFire.InflictAndPlaySound(target, 120, 12);
         }
 
         public override bool PreDraw(ref Color lightColor)

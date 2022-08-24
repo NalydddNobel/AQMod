@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Aequus.Projectiles;
+using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +15,22 @@ namespace Aequus.Buffs
         public override void Load()
         {
             IsWellFedButDoesntIncreaseLifeRegen = new HashSet<int>();
+            On.Terraria.NPC.AddBuff += NPC_AddBuff;
+        }
+
+        private static void NPC_AddBuff(On.Terraria.NPC.orig_AddBuff orig, NPC self, int type, int time, bool quiet)
+        {
+            if (Main.debuff[type])
+            {
+                Player player = AequusPlayer.FindPlayerContext();
+
+                if (player != null)
+                {
+                    time = (int)(time * player.Aequus().enemyDebuffDuration);
+                }
+
+            }
+            orig(self, type, time, quiet);
         }
 
         public static bool AddStaticImmunity(int npc, params int[] buffList)

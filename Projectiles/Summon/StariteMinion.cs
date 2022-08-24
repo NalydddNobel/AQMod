@@ -206,11 +206,10 @@ namespace Aequus.Projectiles.Summon
             {
                 dustAmount *= 2;
             }
-            if (target.life > 0 && !target.buffImmune[ModContent.BuffType<BlueFire>()] && Main.rand.NextBool(12))
+
+            if (BlueFire.InflictAndPlaySound(target, 120, 12))
             {
                 dustAmount *= 2;
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 120);
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
             }
             for (int i = 0; i < dustAmount; i++)
             {

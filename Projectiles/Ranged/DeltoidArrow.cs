@@ -29,7 +29,6 @@ namespace Aequus.Projectiles.Ranged
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
-            Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 12;
             Projectile.timeLeft = 120;
@@ -53,6 +52,12 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.velocity.Y += 0.45f;
             }
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+
+            if (Main.rand.NextBool(6))
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 
+                    Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, new Color(255, 120, Main.rand.Next(70), 0), 1f);
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

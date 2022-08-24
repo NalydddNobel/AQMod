@@ -197,6 +197,27 @@ namespace Aequus
             return rectangle;
         }
 
+        public static Color HueMultiply(this Color color, float multiplier)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.X *= multiplier;
+            return Main.hslToRgb(hsl);
+        }
+
+        public static Color HueAdd(this Color color, float hueAdd)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.X += hueAdd;
+            return Main.hslToRgb(hsl);
+        }
+
+        public static Color HueSet(this Color color, float hue)
+        {
+            var hsl = Main.rgbToHsl(color);
+            hsl.X = hue;
+            return Main.hslToRgb(hsl);
+        }
+
         public static Color SaturationMultiply(this Color color, float saturation)
         {
             var hsl = Main.rgbToHsl(color);
@@ -975,9 +996,14 @@ namespace Aequus
             trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
         }
 
+        public static Vector2 NextFromRect(this UnifiedRandom rand, Rectangle rectangle)
+        {
+            return rectangle.Center.ToVector2() + new Vector2(rand.NextFloat(rectangle.Width), rand.NextFloat(rectangle.Height));
+        }
+
         public static Vector2 NextCircularFromRect(this UnifiedRandom rand, Rectangle rectangle)
         {
-            return rectangle.Center.ToVector2() + rand.NextVector2Unit() * rand.NextFloat(rectangle.Size().Length() / 2f);
+            return rectangle.Center.ToVector2() + rand.NextVector2Unit() * new Vector2(rand.NextFloat(rectangle.Width / 2f), rand.NextFloat(rectangle.Height / 2f));
         }
 
         public static Point FluffizePoint(Point point, int fluff = 10)

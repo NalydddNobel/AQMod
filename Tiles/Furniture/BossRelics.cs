@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,7 +15,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public sealed class BossRelics : ModTile
+    public sealed class BossRelics : ModTile, ISpecialTileRenderer
     {
         private const int FrameWidth = 18 * 3;
         private const int FrameHeight = 18 * 4;
@@ -27,32 +28,6 @@ namespace Aequus.Tiles.Furniture
         public const int FrameCount = 5;
 
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
-
-        public static List<Point> RenderPoints { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                RenderPoints = new List<Point>();
-                On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
-            }
-        }
-
-        private void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
-        {
-            orig(self);
-            foreach (var p in RenderPoints)
-            {
-                DrawRelic(p.X, p.Y, Main.spriteBatch);
-            }
-        }
-
-        public override void Unload()
-        {
-            RenderPoints?.Clear();
-            RenderPoints = null;
-        }
 
         public override void SetStaticDefaults()
         {
@@ -78,11 +53,6 @@ namespace Aequus.Tiles.Furniture
             AdjTiles = new int[] { TileID.MasterTrophyBase, };
 
             AddMapEntry(new Color(233, 207, 94, 255), Language.GetText("MapObject.Relic"));
-
-            if (!Main.dedServ)
-            {
-                AequusTile.ResetTileRenderPoints += () => RenderPoints.Clear();
-            }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -122,7 +92,7 @@ namespace Aequus.Tiles.Furniture
         {
             if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0)
             {
-                RenderPoints.Add(new Point(i, j));
+                SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
             }
         }
 
@@ -197,6 +167,11 @@ namespace Aequus.Tiles.Furniture
             {
                 spriteBatch.Draw(texture, drawPos + (MathHelper.TwoPi * num5).ToRotationVector2() * (6f + offset * 2f), frame, effectColor, 0f, origin, 1f, effects, 0f);
             }
+        }
+
+        public void Render(int i, int j, TileRenderLayer layer)
+        {
+            DrawRelic(i, j, Main.spriteBatch);
         }
     }
 }
