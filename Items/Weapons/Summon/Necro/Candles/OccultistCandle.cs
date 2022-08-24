@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Summon.Candles
+namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public class PixieCandle : SoulCandle
+    public class OccultistCandle : BaseSoulCandle
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +13,9 @@ namespace Aequus.Items.Weapons.Summon.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(32, 8, NPCID.Pixie);
-            Item.rare = ItemRarityID.LightRed;
-            Item.value = Item.sellPrice(gold: 1);
+            DefaultToCandle(24, 6, NPCID.Demon);
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(gold: 3);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }

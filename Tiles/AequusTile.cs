@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities;
-using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

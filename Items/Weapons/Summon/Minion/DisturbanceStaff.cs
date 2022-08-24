@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon
+namespace Aequus.Items.Weapons.Summon.Minion
 {
     public class DisturbanceStaff : ModItem
     {

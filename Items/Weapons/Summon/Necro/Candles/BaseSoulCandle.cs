@@ -8,9 +8,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Items.Weapons.Summon.Candles
+namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public abstract class SoulCandle : ModItem
+    public abstract class BaseSoulCandle : ModItem
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 

@@ -169,6 +169,7 @@ Mods: {
 			BallisticScreecher: Ballistic Screecher
 			Triacanthorn: Triacanthorn
 
+			BrainwaveStaff: Brainwave Staff
 			MindfungusStaff: Mindfungus Staff
 			StariteStaff: Starite Staff
 			ScribbleNotebook: Maxwell's Notebook
@@ -706,6 +707,7 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			BrainwaveStaff: Summons a demonic cauliflower to control enemies for you
 			MindfungusStaff:
 				'''
 				Summons a crimson hypnoshroom to fight for you
@@ -1552,6 +1554,7 @@ Mods: {
 
 			GravetenderMinionBuff: Gravetender
 
+			BrainCauliflowerBuff: Brain Cauliflower
 			MindfungusBuff: Mindfungus
 			StariteBuff: Starite
 			ScribbleNotebookBuff: Scribble
@@ -1636,6 +1639,7 @@ Mods: {
 
 			NecromancyOwnerBuff: You are controlling the dead
 
+			BrainCauliflowerBuff: The brain cauliflower will fight for you			
 			MindfungusBuff: The mindfungus will fight for you			
 			StariteBuff: The starite will fight for you
 			ScribbleNotebookBuff: The object will fight for you

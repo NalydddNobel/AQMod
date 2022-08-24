@@ -1,13 +1,12 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon
+namespace Aequus.Items.Weapons.Summon.Minion
 {
     [GlowMask]
     public class StariteStaff : ModItem

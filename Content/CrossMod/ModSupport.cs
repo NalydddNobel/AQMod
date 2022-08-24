@@ -17,7 +17,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Summon;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters.Night.Glimmer;

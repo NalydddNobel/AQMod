@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon.Candles;
+﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
 using System;
 using Terraria;
 
@@ -8,7 +8,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
     {
         public override void Apply(Item item)
         {
-            if (item.ModItem is SoulCandle candle)
+            if (item.ModItem is BaseSoulCandle candle)
             {
                 candle.ClearPrefix();
                 candle.soulLimit = Math.Max((int)(candle.soulLimit * 1.25f), candle.soulLimit + 1);

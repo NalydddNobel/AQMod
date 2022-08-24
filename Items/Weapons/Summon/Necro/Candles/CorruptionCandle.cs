@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Summon.Candles
+namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public class DungeonCandle : SoulCandle
+    public class CorruptionCandle : BaseSoulCandle
     {
         public override void SetStaticDefaults()
         {
@@ -13,9 +13,9 @@ namespace Aequus.Items.Weapons.Summon.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(24, 6, NPCID.CursedSkull);
-            Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.DungeonValue;
+            DefaultToCandle(24, 6, NPCID.EaterofSouls);
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }
@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
             player.itemLocation.X += -4f * player.direction;
             player.itemLocation.Y += 8f;
 
-            Lighting.AddLight(player.itemLocation, Color.Blue.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
+            Lighting.AddLight(player.itemLocation, Color.Violet.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
         }
     }
 }

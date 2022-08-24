@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon.Candles;
+﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -30,7 +30,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
 
         public override bool CanRoll(Item item)
         {
-            return item.ModItem is SoulCandle;
+            return item.ModItem is BaseSoulCandle;
         }
 
         public static ModPrefix ChoosePrefix(Item item, UnifiedRandom rand)

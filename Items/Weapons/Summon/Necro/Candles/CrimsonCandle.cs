@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Summon.Candles
+namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public class CrimsonCandle : SoulCandle
+    public class CrimsonCandle : BaseSoulCandle
     {
         public override void SetStaticDefaults()
         {

@@ -3,13 +3,13 @@ using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Tools.Mining;
 using Aequus.Items.Tools.Info;
+using Aequus.Items.Tools.Mining;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Necro;
+using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -89,7 +89,7 @@ namespace Aequus.Items
 
         private bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Weapon self, Item entry)
         {
-            return orig(self, entry) || entry.ModItem is SoulCandle;
+            return orig(self, entry) || entry.ModItem is BaseSoulCandle;
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)
@@ -188,7 +188,7 @@ namespace Aequus.Items
 
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
-            switch (item.type) 
+            switch (item.type)
             {
                 case ItemID.QueenBeeBossBag:
                     {

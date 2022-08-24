@@ -11,7 +11,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
-using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.Particles;
 using Aequus.Projectiles.Summon;

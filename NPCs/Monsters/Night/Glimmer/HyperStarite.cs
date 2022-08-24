@@ -6,7 +6,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Summon;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -47,7 +47,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPCID.Sets.TrailCacheLength[Type] = 15;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
-                SpecificallyImmuneTo = Starite.BuffImmunities,
+                SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),
             });
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -58,7 +58,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddOptions(chance: 3, ModContent.ItemType<HyperCrystal>(), ModContent.ItemType<WowHat>(), ModContent.ItemType<StariteStaff>())
+                .AddOptions(chance: 4, Starite.DefaultItemDrops())
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }

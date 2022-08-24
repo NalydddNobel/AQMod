@@ -2,9 +2,13 @@
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
+using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -22,27 +26,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class Starite : ModNPC
     {
-        public static int[] BuffImmunities => new int[]
-        {
-            BuffID.Confused,
-            BuffID.OnFire,
-            BuffID.OnFire3,
-            BuffID.ShadowFlame,
-            BuffID.Frostburn,
-            BuffID.Frostburn2,
-            BuffID.Ichor,
-            BuffID.Poisoned,
-            BuffID.Venom,
-            BuffID.Bleeding,
-            BuffID.Weak,
-            BuffID.Stinky,
-            BuffID.Lovestruck,
-            BuffID.Wet,
-            BuffID.Slimed,
-            ModContent.BuffType<CrimsonHellfire>(),
-            ModContent.BuffType<CorruptionHellfire>(),
-        };
-
         public bool fallenStar;
         public int fallenStarPulseDir;
 
@@ -52,7 +35,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPCID.Sets.TrailCacheLength[Type] = 12;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
-                SpecificallyImmuneTo = BuffImmunities,
+                SpecificallyImmuneTo = DefaultBuffImmunities(),
             });
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
@@ -69,6 +52,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
+                .AddOptions(chance: 50, DefaultItemDrops())
                 .Add<CelesitalEightBall>(chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
@@ -595,6 +579,41 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             fallenStar = reader.ReadBoolean();
+        }
+
+        public static int[] DefaultBuffImmunities()
+        {
+            return new int[]
+                {
+                    BuffID.Confused,
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.ShadowFlame,
+                    BuffID.Frostburn,
+                    BuffID.Frostburn2,
+                    BuffID.Ichor,
+                    BuffID.Poisoned,
+                    BuffID.Venom,
+                    BuffID.Bleeding,
+                    BuffID.Weak,
+                    BuffID.Stinky,
+                    BuffID.Lovestruck,
+                    BuffID.Wet,
+                    BuffID.Slimed,
+                    ModContent.BuffType<CrimsonHellfire>(),
+                    ModContent.BuffType<CorruptionHellfire>(),
+                };
+        }
+
+        public static int[] DefaultItemDrops()
+        {
+            return new int[]
+                {
+                    ModContent.ItemType<SuperStarSword>(),
+                    ModContent.ItemType<WowHat>(),
+                    ModContent.ItemType<StariteStaff>(),
+                    ModContent.ItemType<HyperCrystal>(), 
+                };
         }
     }
 }

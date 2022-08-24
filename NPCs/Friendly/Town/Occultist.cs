@@ -7,7 +7,7 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
