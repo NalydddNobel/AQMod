@@ -11,6 +11,11 @@ namespace Aequus.Items
     {
         public override string Texture => AequusHelpers.GetPath<Gamestar>();
 
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return true;
+        }
+
         public override void SetStaticDefaults()
         {
         }
@@ -22,10 +27,16 @@ namespace Aequus.Items
             Item.useAnimation = 2;
             Item.width = 20;
             Item.height = 20;
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Crab.CrabAlgae>());
+            Item.consumable = false;
+            Item.maxStack = 1;
         }
 
         public override bool? UseItem(Player player)
         {
+            WorldGen.PlaceTile(AequusHelpers.tileX, AequusHelpers.tileY, Item.createTile, plr: player.whoAmI);
+            Main.tile[AequusHelpers.tileX, AequusHelpers.tileY].TileFrameX = (short)(28 * Main.rand.Next(4));
+            return true;
             player.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Clear();
             var rect = Utils.CenteredRectangle(player.Center.ToTileCoordinates().ToVector2(), new Vector2(40f, 40f)).Fluffize(10);
             AequusHelpers.dustDebug(rect.WorldRectangle());

@@ -13,8 +13,9 @@ namespace Aequus.Items
         public const int RarityCrabCrevice = ItemRarityID.Blue;
         public const int RarityGlimmer = ItemRarityID.Green;
         public const int RarityDemonSiege = ItemRarityID.LightRed;
-        public const int RarityOmegaStarite = ItemRarityID.Pink;
-        public const int RarityGaleStreams = ItemRarityID.LightPurple;
+        public const int RarityOmegaStarite = ItemRarityID.LightRed;
+        public const int RarityGaleStreams = ItemRarityID.Orange;
+        public const int RarityDustDevil = ItemRarityID.LightRed;
 
         public const int RarityBanner = ItemRarityID.Blue;
         public const int RarityBossMasks = ItemRarityID.Blue;
@@ -42,6 +43,7 @@ namespace Aequus.Items
         public static int MemorialistItemBuyValue => Item.buyPrice(gold: 20);
         public static int OmegaStariteValue => Item.sellPrice(gold: 4, silver: 50);
         public static int GaleStreamsValue => Item.sellPrice(gold: 4);
+        public static int DustDevilValue => Item.sellPrice(gold: 5);
 
         public static int PotionsValue => Item.sellPrice(silver: 2);
         public static int CorruptionValue => Item.sellPrice(silver: 50);

@@ -284,6 +284,8 @@ namespace Aequus.Projectiles.Misc
             var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f)) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 25f, 1f, 1.25f);
             if ((int)Projectile.ai[1] < 3)
             {
+                DrawSuperGun();
+
                 var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
@@ -317,8 +319,6 @@ namespace Aequus.Projectiles.Misc
                 }
                 list.Add(Projectile.Center);
                 prim.Draw(list.ToArray());
-
-                DrawSuperGun();
             }
 
             if ((int)Projectile.ai[1] >= 2)

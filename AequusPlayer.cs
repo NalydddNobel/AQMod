@@ -20,6 +20,7 @@ using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Misc;
+using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
@@ -86,6 +87,8 @@ namespace Aequus
         [SaveData("GravesDisabled")]
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
+
+        public ShatteringVenus.ItemInfo shatteringVenus;
 
         public sbyte antiGravityTile;
 
@@ -340,6 +343,7 @@ namespace Aequus
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
+            clone.shatteringVenus = shatteringVenus.Clone();
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -388,6 +392,13 @@ namespace Aequus
                         sentAnything = true;
                     }, p);
 
+                PacketHandler.FlaggedWrite(clone.candleSouls != candleSouls,
+                (p) =>
+                    {
+                        if (shatteringVenus.SendClientChanges(p, clone.shatteringVenus))
+                            sentAnything = true;
+                    }, p);
+
                 return sentAnything;
 
             }, PacketType.SyncAequusPlayer);
@@ -415,10 +426,15 @@ namespace Aequus
             {
                 candleSouls = reader.ReadInt32();
             }
+            if (reader.ReadBoolean())
+            {
+                shatteringVenus = ShatteringVenus.ItemInfo.RecieveChanges(reader);
+            }
         }
 
         public override void Initialize()
         {
+            shatteringVenus = new ShatteringVenus.ItemInfo();
             glowCore = -1;
             instaShieldAlpha = 0f;
             antiGravityTile = 0;
@@ -835,15 +851,10 @@ namespace Aequus
         {
             if (Player.HasBuff<BlueFire>())
             {
-                if (Main.rand.NextBool(3))
-                    AequusEffects.AbovePlayers.Add(new MonoParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-5f, 5f), -Main.rand.NextFloat(2f, 14f)),
-                        new Color(10, 20, Main.rand.Next(100, 255), 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                for (int i = 0; i < 3; i++)
-                {
-                    if (Main.rand.NextBool(3))
-                        AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + new Vector2(0f, 10f), -Player.velocity * Main.rand.NextFloat(0.1f, 0.4f) + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(2f, 12f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(15, 40, 80, 10), Main.rand.NextFloat(1.25f, 2f), Main.rand.NextFloat(0.2f, 0.5f), Main.rand.NextFloat(MathHelper.TwoPi)));
-                }
+                int amt = (int)(Player.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                    AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
         /// <summary>

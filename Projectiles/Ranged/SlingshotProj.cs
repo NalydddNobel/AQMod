@@ -60,11 +60,12 @@ namespace Aequus.Projectiles.Ranged
                 }
                 var position = Main.GetPlayerArmPosition(Projectile);
                 float rotation = Projectile.direction == -1 ? Projectile.velocity.ToRotation() - MathHelper.Pi : Projectile.velocity.ToRotation();
-                Projectile.Center = position - new Vector2(-4f * Projectile.spriteDirection, 20f).RotatedBy(rotation);
+                Projectile.Center = position;
                 if (Main.myPlayer == Projectile.owner)
                 {
                     var v = Projectile.velocity;
                     Projectile.velocity = Vector2.Normalize(Main.MouseWorld - Projectile.Center);
+
                     if (v.X != Projectile.velocity.X || v.Y != Projectile.velocity.Y)
                         Projectile.netUpdate = true;
 
@@ -78,6 +79,7 @@ namespace Aequus.Projectiles.Ranged
                 }
                 Projectile.rotation = Projectile.velocity.ToRotation();
                 AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle(Projectile.rotation + (float)Math.PI / 2f));
+                Projectile.Center -= new Vector2(-4f * Projectile.spriteDirection, 20f * player.gravDir).RotatedBy(rotation);
             }
             else
             {
@@ -171,12 +173,17 @@ namespace Aequus.Projectiles.Ranged
             var drawCoords = position;
             float rotation = Projectile.spriteDirection == -1 ? Projectile.velocity.ToRotation() - MathHelper.Pi : Projectile.velocity.ToRotation();
             var origin = new Vector2(topMask.Value.Width / 2f, topMask.Value.Height);
-            var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            int grav = (int)Main.player[Projectile.owner].gravDir;
+            if (grav == -1)
+            {
+                rotation -= MathHelper.Pi;
+            }
+            var spriteEffects = Main.player[Projectile.owner].direction == -1 * grav ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection, origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0)).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(AequusHelpers.GetColor(drawCoords)),
-                Projectile.spriteDirection == -1 ? Projectile.rotation - MathHelper.Pi : Projectile.rotation, TextureAssets.Item[ItemTexture].Size() / 2f, Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection * grav, (origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0))).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(AequusHelpers.GetColor(drawCoords)),
+                Projectile.spriteDirection == -1 ? Projectile.rotation - MathHelper.Pi : Projectile.rotation + (grav == -1 ? -MathHelper.Pi : 0f), TextureAssets.Item[ItemTexture].Size() / 2f, Projectile.scale, Projectile.spriteDirection == 1 * grav ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 
             Main.EntitySpriteDraw(topMask.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);

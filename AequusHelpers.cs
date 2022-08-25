@@ -120,6 +120,11 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Vector2 NumFloor(this Vector2 myVector, int amt = 2)
+        {
+            return (myVector / amt).Floor() * amt;
+        }
+
         public static float GetMinionReturnSpeed(this Projectile projectile, float minSpeed = 10f, float playerSpeedThreshold = 1.25f)
         {
             return Math.Max(Math.Max(Main.player[projectile.owner].velocity.Length() * playerSpeedThreshold, minSpeed), (Main.player[projectile.owner].Center - projectile.Center).Length() / 32f * playerSpeedThreshold);
@@ -176,8 +181,19 @@ namespace Aequus
             return mouseWorld;
         }
 
+        public static float FlipRotation(float rotation)
+        {
+            var v = (rotation).ToRotationVector2();
+            v.Y = -v.Y;
+            return v.ToRotation();
+        }
+
         public static void ShootRotation(Projectile projectile, float rotation)
         {
+            if (Main.player[projectile.owner].gravDir == -1)
+            {
+                rotation = FlipRotation(rotation - MathHelper.PiOver2) + MathHelper.PiOver2;
+            }
             float angle = Math.Abs(rotation);
             int dir = Math.Sign(rotation);
             if (dir != Main.player[projectile.owner].direction)

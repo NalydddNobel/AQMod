@@ -721,7 +721,7 @@ namespace Aequus.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundEngine.PlaySound(StarBulletsSound.WithVolume(0.6f).WithPitch(0.5f), NPC.Center);
+                                SoundEngine.PlaySound(StarBulletsSound.WithVolume(0.3f).WithPitch(0.5f), NPC.Center);
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
@@ -733,7 +733,7 @@ namespace Aequus.NPCs.Boss
                                 {
                                     for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                     {
-                                        var v = f.ToRotationVector2();
+                                        var v = (f - MathHelper.PiOver2).ToRotationVector2();
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                         Main.projectile[p].timeLeft += 120;
                                     }
@@ -1076,7 +1076,7 @@ namespace Aequus.NPCs.Boss
                                     float rot = MathHelper.TwoPi / (Main.getGoodWorld ? 10f : 5f) + 0.01f;
                                     for (float f = 0f; f < MathHelper.TwoPi; f += rot)
                                     {
-                                        var v = f.ToRotationVector2();
+                                        var v = (f - MathHelper.PiOver2).ToRotationVector2();
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center + v * RADIUS, v * speed2, type, damage, 1f, player.whoAmI, -60f, speed2);
                                         Main.projectile[p].timeLeft += 120;
                                     }

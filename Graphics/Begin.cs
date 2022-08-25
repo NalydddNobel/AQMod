@@ -31,6 +31,15 @@ namespace Aequus.Graphics
             {
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Main.Transform);
             }
+
+            public static void Begin(SpriteBatch spriteBatch, Matrix matrix)
+            {
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, matrix);
+            }
+            public static void BeginShader(SpriteBatch spriteBatch, Matrix matrix)
+            {
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, matrix);
+            }
         }
 
         public static class Tiles
