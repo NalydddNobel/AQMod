@@ -1290,7 +1290,7 @@ namespace Aequus
                 {
                     var zombie = target.GetGlobalNPC<NecromancyNPC>();
                     zombie.conversionChance = 1;
-                    zombie.zombieDebuffTier = 3f;
+                    zombie.zombieDebuffTier = 3.1f;
                     zombie.zombieOwner = Player.whoAmI;
                     zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
                     damage = 2500;
