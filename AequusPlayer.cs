@@ -1286,7 +1286,7 @@ namespace Aequus
             if (setSeraphim != null && ghostSlots < ghostSlotsMax && target.lifeMax < 1000 && target.defense < 100)
             {
                 float threshold = 1f - ghostSlots * 0.2f;
-                if (threshold > 0 && LifeRatio <= threshold && NecromancyDatabase.TryGet(target, out var info) && info.PowerNeeded <= 3.1f)
+                if (threshold > 0 && LifeRatio <= threshold && NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(3.1f))
                 {
                     var zombie = target.GetGlobalNPC<NecromancyNPC>();
                     zombie.conversionChance = 1;

@@ -109,6 +109,11 @@ namespace Aequus.Content.Necromancy
             return c;
         }
 
+        public bool EnoughPower(float power)
+        {
+            return PowerNeeded > 0f && PowerNeeded < power;
+        }
+
         public IModCallArgSettable HandleArg(string name, object value)
         {
             if (name == "PrioritizePlayerMultiplier")

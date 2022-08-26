@@ -457,7 +457,7 @@ namespace Aequus.NPCs
         }
         public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<OnKillPlayerInfo> players)
         {
-            if (zombie.zombieDrain > 0 && info.PowerNeeded <= zombie.zombieDebuffTier)
+            if (zombie.zombieDrain > 0 && info.EnoughPower(zombie.zombieDebuffTier))
             {
                 return true;
             }

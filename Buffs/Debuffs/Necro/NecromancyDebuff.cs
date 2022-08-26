@@ -30,7 +30,7 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff
         {
-            if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGet(npc, out var value) && value.PowerNeeded <= tier)
+            if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGet(npc, out var value) && value.EnoughPower(tier))
             {
                 damage = Math.Min(damage, npc.life / 2);
             }
@@ -46,7 +46,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             {
                 npc.buffImmune[ModContent.BuffType<T>()] = false;
             }
-            if (cheat || (NecromancyDatabase.TryGet(npc, out var value) && value.PowerNeeded <= tier))
+            if (cheat || (NecromancyDatabase.TryGet(npc, out var value) && value.EnoughPower(tier)))
             {
                 npc.AddBuff(ModContent.BuffType<T>(), time);
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;

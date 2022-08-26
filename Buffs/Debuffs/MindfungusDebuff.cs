@@ -25,11 +25,11 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            if (NecromancyDatabase.TryGet(npc, out var info) && info.PowerNeeded <= 1.1f)
+            if (NecromancyDatabase.TryGet(npc, out var info) && info.EnoughPower(1.1f))
             {
                 var zombie = npc.GetGlobalNPC<NecromancyNPC>();
                 zombie.conversionChance = 2;
-                zombie.zombieDebuffTier = 1f;
+                zombie.zombieDebuffTier = 1.1f;
                 zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
             }
         }

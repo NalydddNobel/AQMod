@@ -114,7 +114,7 @@ namespace Aequus.Projectiles.Summon
                                 break;
                             }
 
-                            if (NecromancyDatabase.TryGet(Main.npc[npcAttached], out var info) && info.PowerNeeded <= 1.1f)
+                            if (NecromancyDatabase.TryGet(Main.npc[npcAttached], out var info) && info.EnoughPower(1.1f))
                             {
                                 Main.npc[npcAttached].GetGlobalNPC<NecromancyNPC>().zombieOwner = Projectile.owner;
                             }
@@ -188,7 +188,7 @@ namespace Aequus.Projectiles.Summon
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(ModContent.BuffType<MindfungusDebuff>(), Projectile.localNPCHitCooldown + 10);
-            if (NecromancyDatabase.TryGet(target, out var info) && info.PowerNeeded <= 1.1f)
+            if (NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(1.1f))
             {
                 target.GetGlobalNPC<NecromancyNPC>().zombieOwner = Projectile.owner;
             }
