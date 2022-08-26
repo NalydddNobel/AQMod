@@ -402,13 +402,14 @@ namespace Aequus.NPCs
                 {
                     zombie.SpawnZombie(npc);
                 }
+                int ammoBackpackChance = (int)Math.Max(10f - npc.value / 1000f, 1f);
                 foreach (var tuple in players)
                 {
                     if (!npc.playerInteraction[tuple.player.whoAmI])
                     {
                         continue;
                     }
-                    if (npc.value > (Item.copper * 20) && tuple.aequus.ammoBackpackItem != null)
+                    if (npc.value > (Item.copper * 20) && tuple.aequus.ammoBackpackItem != null && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
                     {
                         tuple.aequus.UseAmmoBackpack(npc, tuple.aequus.ammoBackpackItem);
                     }

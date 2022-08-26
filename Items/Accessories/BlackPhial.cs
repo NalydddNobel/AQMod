@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
+    [AutoloadEquip(EquipType.Waist)]
     public class BlackPhial : ModItem
     {
         public static List<int> DebuffsAfflicted { get; private set; }

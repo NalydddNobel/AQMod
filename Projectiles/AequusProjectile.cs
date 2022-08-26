@@ -350,7 +350,7 @@ namespace Aequus.Projectiles
                     var clr = Raygun.CheckRayColor(projectile);
                     Raygun.BulletColor[projectile.type] = (p) => p.GetAlpha(clr);
                 }
-                return projectile.velocity.Length() > 1f;
+                return projectile.velocity.Length() < 1f;
             }
             return true;
         }

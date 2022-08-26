@@ -233,6 +233,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             return new List<string>()
             {
+                "Brut",
                 "Hank",
                 "Venom",
                 "Anthony",

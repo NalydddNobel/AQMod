@@ -33,8 +33,8 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.value = (int)(ItemDefaults.DemonSiegeValue * 1.5f);
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.UseSound = SoundID.Item44;
-            Item.shoot = ModContent.ProjectileType<MindfungusProj>();
-            Item.buffType = ModContent.BuffType<MindfungusBuff>();
+            Item.shoot = ModContent.ProjectileType<BrainCauliflowerMinion>();
+            Item.buffType = ModContent.BuffType<BrainCauliflowerBuff>();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

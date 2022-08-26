@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Placeable.Crab;
-using Aequus.Tiles.Ambience;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -57,7 +56,7 @@ namespace Aequus.Tiles.Crab
             {
                 if (Main.tile[i - 1, j - 1].HasTile || Main.tile[i + 1, j - 1].HasTile)
                     return;
-                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Ambient3x2>(), mute: true);
+                WorldGen.PlaceTile(i, j - 1, ModContent.TileType<CrabGrassBig>(), mute: true);
             }
 
             if (WorldGen.genRand.NextBool(2) && Main.tile[i, j - 1].LiquidAmount > 0 && Main.tile[i, j - 1].LiquidType == LiquidID.Water)

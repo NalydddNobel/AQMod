@@ -4,9 +4,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Ambience
+namespace Aequus.Tiles.Crab
 {
-    public class Ambient3x2 : ModTile
+    [LegacyName("Ambient3x2", "CrabGrass3x2")]
+    public class CrabGrassBig : ModTile
     {
         public override void SetStaticDefaults()
         {

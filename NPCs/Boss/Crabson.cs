@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Graphics;
+using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.LootBags;
@@ -839,7 +840,7 @@ namespace Aequus.NPCs.Boss
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
                 .Add<AquaticEnergy>(stack: 3)
-                .AddOptions(1, ModContent.ItemType<Mendshroom>())
+                .AddOptions(1, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<AmmoBackpack>())
                 .RegisterCondition();
         }
 
@@ -877,16 +878,6 @@ namespace Aequus.NPCs.Boss
                 }
             }
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
-            //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonTrophy>(), 10);
-            //if (Main.expertMode)
-            //{
-            //    NPC.DropBossBags();
-            //    return;
-            //}
-            //LootDrops.DropItemChance(npc, ModContent.ItemType<CrabsonMask>(), 7);
-            //LootDrops.DropItemChance(npc, ModContent.ItemType<BreakdownDye>(), 2);
-            //LootDrops.DropItem(npc, ModContent.ItemType<AquaticEnergy>(), 3, 5);
-            //LootDrops.DropItem(npc, new int[] { ModContent.ItemType<Bubbler>(), ModContent.ItemType<CinnabarBow>(), ModContent.ItemType<JerryClawFlail>(), ModContent.ItemType<Crabsol>() });
         }
     }
 }
