@@ -120,6 +120,9 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			CrownOfTheGrounded: 地缚王冠
+			CrownOfDarkness: 黑暗王冠
+			CrownOfBlood: 鲜血王冠
 			FlashwayNecklace: 晖耀项链
 			HaltingMagnet: 凝滞磁铁
 			HaltingMachine: 凝滞仪
@@ -580,6 +583,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			CrownOfTheGrounded: 当站在实心地面上时增加10%暴击率
+			CrownOfDarkness: 当处于黑暗中时增加10%伤害
+			CrownOfBlood:
+				'''
+				强化你第一个饰品栏中的物品
+				然而你的各项属性降低且无法再生生命值
+				'''
 			FlashwayNecklace: 允许你在受到攻击之前无敌一小段时间
 			HaltingMagnet: 
 				'''
