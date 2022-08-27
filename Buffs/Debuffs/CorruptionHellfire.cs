@@ -31,10 +31,6 @@ namespace Aequus.Buffs.Debuffs
                 npc.AddBuff(ModContent.BuffType<CorruptionHellfire>(), time);
                 npc.Aequus().corruptionHellfireStacks += (byte)stacksAmt;
                 npc.netUpdate = true;
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    AequusNPC.Sync(npc.whoAmI);
-                }
             }
         }
     }

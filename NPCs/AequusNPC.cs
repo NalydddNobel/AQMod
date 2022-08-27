@@ -247,6 +247,9 @@ namespace Aequus.NPCs
                 }
             }
 
+            if (Main.netMode != NetmodeID.SinglePlayer && npc.netUpdate)
+                Sync(npc.whoAmI);
+
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
@@ -302,7 +305,7 @@ namespace Aequus.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (npc.HasBuff<BitCrushedDebuff>())
+            if (!npc.IsABestiaryIconDummy && npc.HasBuff<BitCrushedDebuff>())
             {
                 var r = AequusEffects.EffectRand;
                 r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
@@ -588,50 +591,18 @@ namespace Aequus.NPCs
 
         public void Send(int whoAmI, BinaryWriter writer)
         {
-            bool flag = Main.npc[whoAmI].HasBuff<LocustDebuff>();
-            writer.Write(flag);
-            if (flag)
-            {
-                writer.Write(locustStacks);
-            }
-            flag = Main.npc[whoAmI].HasBuff<CorruptionHellfire>();
-            writer.Write(flag);
-            if (flag)
-            {
-                writer.Write(corruptionHellfireStacks);
-            }
-            flag = Main.npc[whoAmI].HasBuff<CrimsonHellfire>();
-            writer.Write(flag);
-            if (flag)
-            {
-                writer.Write(crimsonHellfireStacks);
-            }
-            flag = Main.npc[whoAmI].HasBuff<MindfungusDebuff>();
-            writer.Write(flag);
-            if (flag)
-            {
-                writer.Write(mindfungusStacks);
-            }
+            writer.Write(locustStacks);
+            writer.Write(corruptionHellfireStacks);
+            writer.Write(crimsonHellfireStacks);
+            writer.Write(mindfungusStacks);
         }
 
         public void Receive(int whoAmI, BinaryReader reader)
         {
-            if (reader.ReadBoolean())
-            {
-                locustStacks = reader.ReadByte();
-            }
-            if (reader.ReadBoolean())
-            {
-                corruptionHellfireStacks = reader.ReadByte();
-            }
-            if (reader.ReadBoolean())
-            {
-                crimsonHellfireStacks = reader.ReadByte();
-            }
-            if (reader.ReadBoolean())
-            {
-                mindfungusStacks = reader.ReadByte();
-            }
+            locustStacks = reader.ReadByte();
+            corruptionHellfireStacks = reader.ReadByte();
+            crimsonHellfireStacks = reader.ReadByte();
+            mindfungusStacks = reader.ReadByte();
         }
 
         public static void Sync(int npc)

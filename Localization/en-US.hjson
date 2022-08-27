@@ -120,6 +120,9 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			CrownOfTheGrounded: Crown of the Grounded
+			CrownOfDarkness: Crown of Darkness
+			CrownOfBlood: Crown of Blood
 			FlashwayNecklace: Flashway Necklace
 			HaltingMagnet: Halting Magnet
 			HaltingMachine: Halting Machine
@@ -580,6 +583,13 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			CrownOfTheGrounded: 10% increased critical strike chance while on solid ground
+			CrownOfDarkness: 10% increased damage while in the dark
+			CrownOfBlood:
+				'''
+				Boosts the item in your first accessory slot
+				However all stats are decreased and regeneration is disabled
+				'''
 			FlashwayNecklace: Gives you a brief period of invulnerability before allowing you to be struck
 			HaltingMagnet: 
 				'''

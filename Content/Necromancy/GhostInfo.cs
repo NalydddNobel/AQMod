@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace Aequus.Content.Necromancy
 {
-    public struct GhostInfo : IModCallArgSettable
+    public struct GhostInfo : IModCallHandler
     {
         /// <summary>
         /// For enemies which cannot be turned into player zombies
@@ -114,7 +114,7 @@ namespace Aequus.Content.Necromancy
             return PowerNeeded > 0f && PowerNeeded < power;
         }
 
-        public IModCallArgSettable HandleArg(string name, object value)
+        public IModCallHandler HandleArg(string name, object value)
         {
             if (name == "PrioritizePlayerMultiplier")
             {
@@ -184,15 +184,15 @@ namespace Aequus.Content.Necromancy
                 }
                 else
                 {
-                    Aequus.Instance.Logger.Error("Invalid aggro parameters. Please either use magic string text, an Action<NPC>, or a ValueTuple<Action<NPC>, Action<NPC>>.");
+                    Aequus.Instance.Logger.Error("Invalid aggro parameters. Please either use magic strings, an Action<NPC>, or a ValueTuple<Action<NPC>, Action<NPC>>.");
                 }
             }
             else
             {
-                IModCallArgSettable.DoesntExistReport(name, this);
+                IModCallHandler.DoesntExistReport(name, this);
                 return this;
             }
-            IModCallArgSettable.SuccessReport(name, value, this);
+            IModCallHandler.SuccessReport(name, value, this);
             return this;
         }
 

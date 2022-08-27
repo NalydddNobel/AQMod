@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Recipes
+namespace Aequus.Items
 {
     public static class AequusRecipes
     {

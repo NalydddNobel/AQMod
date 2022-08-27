@@ -1048,16 +1048,14 @@ namespace Aequus
             }
         }
 
-        public static void AddOrAdjust<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+        public static void Set<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
         {
             if (dict.ContainsKey(key))
             {
                 dict[key] = value;
+                return;
             }
-            else
-            {
-                dict.Add(key, value);
-            }
+            dict.Add(key, value);
         }
 
         /// <summary>

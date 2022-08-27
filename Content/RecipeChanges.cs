@@ -1,13 +1,14 @@
 ﻿using Aequus.Common;
+using Aequus.Items;
 using Aequus.Items.Misc.Energies;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Recipes
+namespace Aequus.Content
 {
-    public class Changes : IPostAddRecipes
+    public class RecipeChanges : IPostAddRecipes
     {
         void ILoadable.Load(Mod mod)
         {

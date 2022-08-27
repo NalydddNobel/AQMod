@@ -92,6 +92,8 @@ namespace Aequus
 
         public sbyte antiGravityTile;
 
+        public float darkness;
+
         public bool showPrices;
 
         public int equippedMask;
@@ -135,7 +137,8 @@ namespace Aequus
         public int closestEnemy;
         public int closestEnemyOld;
 
-        public float enemyDebuffDuration;
+        private DebuffInflictionStats debuffs;
+        public ref DebuffInflictionStats Debuffs => ref debuffs;
 
         public int instaShieldTime;
         public int instaShieldTimeMax;
@@ -170,6 +173,11 @@ namespace Aequus
         /// An amount of regen to add to the player
         /// </summary>
         public int increasedRegen;
+
+        public int groundCrit;
+        public float darknessDamage;
+
+        public int slotBoostCurse;
 
         public float antiGravityItemRadius;
 
@@ -344,6 +352,7 @@ namespace Aequus
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
             clone.shatteringVenus = shatteringVenus.Clone();
+            clone.darkness = darkness;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -352,8 +361,10 @@ namespace Aequus
 
             PacketHandler.Send((p) =>
             {
-                bool sentAnything = false;
                 p.Write((byte)Player.whoAmI);
+                p.Write(darkness);
+                p.Write(timeSinceLastHit);
+                p.Write(candleSouls);
 
                 PacketHandler.FlaggedWrite(
                     (clone.itemCombo - itemCombo).Abs() > 3 ||
@@ -368,44 +379,24 @@ namespace Aequus
                         p.Write(itemUsage);
                         p.Write(itemCooldown);
                         p.Write(itemCooldownMax);
-                        sentAnything = true;
-                    }, p);
-
-                PacketHandler.FlaggedWrite((clone.timeSinceLastHit - timeSinceLastHit).Abs() > 3,
-                (p) =>
-                    {
-                        p.Write(timeSinceLastHit);
-                        sentAnything = true;
                     }, p);
 
                 PacketHandler.FlaggedWrite(clone.instaShieldTime != instaShieldTime,
                 (p) =>
                     {
                         p.Write(instaShieldTime);
-                        sentAnything = true;
                     }, p);
 
-                PacketHandler.FlaggedWrite(clone.candleSouls != candleSouls,
-                (p) =>
-                    {
-                        p.Write(candleSouls);
-                        sentAnything = true;
-                    }, p);
-
-                PacketHandler.FlaggedWrite(clone.candleSouls != candleSouls,
-                (p) =>
-                    {
-                        if (shatteringVenus.SendClientChanges(p, clone.shatteringVenus))
-                            sentAnything = true;
-                    }, p);
-
-                return sentAnything;
-
+                shatteringVenus.SendClientChanges(p, clone.shatteringVenus);
+                return true;
             }, PacketType.SyncAequusPlayer);
         }
 
         public void RecieveChanges(BinaryReader reader)
         {
+            darkness = reader.ReadSingle();
+            timeSinceLastHit = reader.ReadInt32();
+            candleSouls = reader.ReadInt32();
             if (reader.ReadBoolean())
             {
                 itemCombo = reader.ReadUInt16();
@@ -416,15 +407,7 @@ namespace Aequus
             }
             if (reader.ReadBoolean())
             {
-                timeSinceLastHit = reader.ReadInt32();
-            }
-            if (reader.ReadBoolean())
-            {
                 instaShieldTime = reader.ReadInt32();
-            }
-            if (reader.ReadBoolean())
-            {
-                candleSouls = reader.ReadInt32();
             }
             if (reader.ReadBoolean())
             {
@@ -434,6 +417,8 @@ namespace Aequus
 
         public override void Initialize()
         {
+            slotBoostCurse = -1;
+            debuffs = new DebuffInflictionStats(0);
             shatteringVenus = new ShatteringVenus.ItemInfo();
             glowCore = -1;
             instaShieldAlpha = 0f;
@@ -465,9 +450,17 @@ namespace Aequus
 
         public override void ResetEffects()
         {
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                darkness = GetDarkness();
+            }
+
             PlayerContext = Player.whoAmI;
 
-            enemyDebuffDuration = 1f;
+            groundCrit = 0;
+            darknessDamage = 0f;
+            slotBoostCurse = -1;
+            debuffs.ResetEffects(Player);
             setSeraphim = null;
             luckRerolls = 0;
             glowCore = -1;
@@ -699,6 +692,14 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            if (darknessDamage > 0f)
+            {
+                Player.GetDamage(DamageClass.Generic) += darknessDamage * darkness;
+            }
+            if (groundCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
+            {
+                Player.GetCritChance(DamageClass.Generic) += groundCrit;
+            }
             UpdateBank(Player.bank, 0);
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
@@ -707,6 +708,27 @@ namespace Aequus
             {
                 Player.endurance += 0.3f;
             }
+            if (slotBoostCurse != -1)
+            {
+                Player.GetDamage(DamageClass.Generic) *= 0.9f;
+                Player.statDefense -= 4;
+                Player.endurance *= 0.9f;
+                if (Player.statLifeMax2 > Player.statLifeMax)
+                    Player.statLifeMax2 = Player.statLifeMax2 - (Player.statLifeMax2 - Player.statLifeMax) / 2;
+                if (Player.statManaMax2 > Player.statManaMax)
+                    Player.statManaMax2 = Player.statManaMax2 - (Player.statManaMax2 - Player.statManaMax) / 2;
+                HandleSlotBoost(Player.armor[slotBoostCurse], slotBoostCurse < 10 ? Player.hideVisibleAccessory[slotBoostCurse] : false);
+            }
+        }
+        public void HandleSlotBoost(Item item, bool hideVisual)
+        {
+            Player.ApplyEquipFunctional(item, hideVisual);
+
+            if (item.wingSlot != -1)
+            {
+                Player.wingTimeMax *= 2;
+            }
+            Player.statDefense += item.defense;
         }
         /// <summary>
         /// 
@@ -1158,6 +1180,11 @@ namespace Aequus
 
         public override void UpdateBadLifeRegen()
         {
+            if (slotBoostCurse != -1)
+            {
+                Player.lifeRegen = Math.Min(Player.lifeRegen, 0);
+                Player.lifeRegenTime = Math.Min(Player.lifeRegenTime, 0);
+            }
             if (Player.HasBuff<BlueFire>())
                 Player.AddLifeRegen(-6);
         }
@@ -1269,16 +1296,21 @@ namespace Aequus
             }
         }
 
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        public void CheckBloodDice(ref int damage)
         {
-            if (target.type != NPCID.TargetDummy)
+            if (accBloodDiceDamage > 0f && Player.CanBuyItem(accBloodDiceMoney))
             {
-                if (crit)
-                {
-                    CheckBloodDice(ref damage);
-                }
+                SoundEngine.PlaySound(SoundID.Coins);
+                Player.BuyItem(accBloodDiceMoney);
+                damage = (int)(damage * (1f + accBloodDiceDamage / 2f));
             }
-            HyperCrystalDamage(target.getRect(), ref damage);
+        }
+        public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
+        {
+            if (hyperCrystalDiameter > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < hyperCrystalDiameter / 2f)
+            {
+                damage = (int)(damage * (1f + hyperCrystalDamage));
+            }
         }
 
         public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)
@@ -1298,33 +1330,23 @@ namespace Aequus
             }
         }
 
+        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+        {
+            if (!target.immortal && crit)
+            {
+                CheckBloodDice(ref damage);
+            }
+            HyperCrystalDamage(target.getRect(), ref damage);
+        }
+
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (target.type != NPCID.TargetDummy)
+            if (!target.immortal && crit)
             {
-                if (crit)
-                {
-                    CheckBloodDice(ref damage);
-                }
+                CheckBloodDice(ref damage);
             }
             HyperCrystalDamage(target.getRect(), ref damage);
             CheckSeraphimSet(target, proj, ref damage);
-        }
-        public void CheckBloodDice(ref int damage)
-        {
-            if (accBloodDiceDamage > 0f && Player.CanBuyItem(accBloodDiceMoney))
-            {
-                SoundEngine.PlaySound(SoundID.Coins);
-                Player.BuyItem(accBloodDiceMoney);
-                damage = (int)(damage * (1f + accBloodDiceDamage / 2f));
-            }
-        }
-        public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
-        {
-            if (hyperCrystalDiameter > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < hyperCrystalDiameter / 2f)
-            {
-                damage = (int)(damage * (1f + hyperCrystalDamage));
-            }
         }
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
@@ -1473,6 +1495,16 @@ namespace Aequus
         public override void LoadData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
+        }
+
+        public float GetDarkness()
+        {
+            if (Main.myPlayer == Player.whoAmI) // Should always be true anyways, but here for safe-ness I guess.
+            {
+                var tilePosition = Player.Center.ToTileCoordinates();
+                return Math.Clamp(1f - Lighting.Brightness(tilePosition.X, tilePosition.Y), 0f, 1f);
+            }
+            return 0f;
         }
 
         public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)
@@ -1835,16 +1867,6 @@ namespace Aequus
                 }
             }
             return l;
-        }
-
-        public Vector2 GetRandomTombstoneVelocity(int hitDirection)
-        {
-            float num;
-            for (num = Main.rand.Next(-35, 36) * 0.1f; num < 2f && num > -2f; num += Main.rand.Next(-30, 31) * 0.1f)
-            {
-            }
-            return new Vector2(Main.rand.Next(10, 30) * 0.1f * hitDirection + num,
-                Main.rand.Next(-40, -20) * 0.1f);
         }
 
         public void LegendaryFishRewards(NPC npc, Item item, int i)

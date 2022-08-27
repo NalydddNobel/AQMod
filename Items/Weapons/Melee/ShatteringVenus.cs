@@ -57,6 +57,7 @@ namespace Aequus.Items.Weapons.Melee
                 {
                     if (tiles[i] != comparison.tiles[i])
                     {
+                        writer.Write(true);
                         for (int k = 0; k < maxSavedTiles; k++)
                         {
                             writer.Write(tiles[i]);
@@ -64,6 +65,7 @@ namespace Aequus.Items.Weapons.Melee
                         return true;
                     }
                 }
+                writer.Write(false);
                 return false;
             }
 

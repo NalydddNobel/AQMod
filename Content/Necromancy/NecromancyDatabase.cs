@@ -471,8 +471,8 @@ namespace Aequus.Content.Necromancy
                 if (Aequus.LogMore)
                     Aequus.Instance.Logger.Info("Adding necromancy data for: " + Lang.GetNPCName(npc) + " -- Tier: " + tier + ", SightRange: " + viewDistance + " --");
                 var stats = new GhostInfo(tier, viewDistance);
-                stats = (GhostInfo)IModCallArgSettable.HandleArgs(stats, args.Length >= 4 ? 4 : 3, args);
-                NPCs.AddOrAdjust(npc, stats);
+                stats = (GhostInfo)IModCallHandler.HandleArgs(stats, args.Length >= 4 ? 4 : 3, args);
+                NPCs.Set(npc, stats);
             }
             catch (Exception ex)
             {

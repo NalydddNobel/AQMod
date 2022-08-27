@@ -31,10 +31,6 @@ namespace Aequus.Buffs.Debuffs
                 npc.AddBuff(ModContent.BuffType<CrimsonHellfire>(), time);
                 npc.Aequus().crimsonHellfireStacks += (byte)stacksAmt;
                 npc.netUpdate = true;
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    AequusNPC.Sync(npc.whoAmI);
-                }
             }
         }
     }

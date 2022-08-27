@@ -139,6 +139,9 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfTheGrounded>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
             shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());

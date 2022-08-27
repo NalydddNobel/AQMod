@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Recipes;
-using Aequus.Projectiles.Ranged;
+﻿using Aequus.Projectiles.Ranged;
 using Terraria.ID;
 using Terraria.ModLoader;
 

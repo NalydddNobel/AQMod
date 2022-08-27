@@ -26,9 +26,8 @@ namespace Aequus.Buffs
 
                 if (player != null)
                 {
-                    time = (int)(time * player.Aequus().enemyDebuffDuration);
+                    time = (int)(time * player.Aequus().Debuffs.ApplyBuffMultipler(player, type));
                 }
-
             }
             orig(self, type, time, quiet);
         }

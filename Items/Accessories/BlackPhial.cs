@@ -45,7 +45,7 @@ namespace Aequus.Items.Accessories
         {
             var aequus = player.Aequus();
             aequus.accVial = 4;
-            aequus.enemyDebuffDuration += 1f;
+            aequus.Debuffs.OverallTimeMultiplier += 1f;
         }
     }
 }
