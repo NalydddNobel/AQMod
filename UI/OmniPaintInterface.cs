@@ -44,7 +44,7 @@ namespace Aequus.UI
             float scale = 1.25f;
             var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/PainterIcons").Value;
             var frame = texture.Frame(horizontalFrames: 3, verticalFrames: 2, 0, 0, -2, -2);
-            var originPoint = new Vector2(460f, 20f);
+            var originPoint = new Vector2(470f, 20f);
             var bg = new Rectangle((int)originPoint.X - 6, (int)originPoint.Y - 6, (frame.Width + 2) * 8 + 16, (frame.Height - 2) * 5 + 16).MultiplyWH(scale);
             Utils.DrawInvBG(spriteBatch, bg);
             if (bg.Contains(Main.mouseX, Main.mouseY))

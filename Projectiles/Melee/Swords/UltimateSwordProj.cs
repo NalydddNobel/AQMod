@@ -24,11 +24,11 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 140;
-            Projectile.height = 140;
+            Projectile.width = 160;
+            Projectile.height = 160;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            hitboxOutwards = 150;
+            hitboxOutwards = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
         }
@@ -41,7 +41,6 @@ namespace Aequus.Projectiles.Melee.Swords
         protected override void Initialize(Player player, AequusPlayer aequus)
         {
             base.Initialize(player, aequus);
-            Projectile.scale += Main.rand.NextFloat(-0.1f, 0.1f);
             Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f));
             if (aequus.itemCombo > 0)
             {
@@ -66,7 +65,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - (MathHelper.PiOver2 * 1.5f)) * -swingDirection);
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - (MathHelper.PiOver2 * 1.5f)) * -swingDirection * 0.95f);
         }
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
@@ -76,21 +75,24 @@ namespace Aequus.Projectiles.Melee.Swords
                 Projectile.Opacity = 1f - (progress - 0.85f) / 0.15f;
             }
 
-            if (progress > 0.4f && progress < 0.6f)
+            if (progress > 0.33f && progress < 0.55f)
             {
-                var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
-                int amt = !Aequus.HQ ? 1 : Main.rand.Next(2) + 1;
-                for (int i = 0; i < amt; i++)
+                if (Projectile.numUpdates < 3)
                 {
-                    var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, Main.rand.NextFloat(3f)).UseA(0));
-                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                    d.scale *= Projectile.scale / 2f;
-                    d.fadeIn = d.scale + 0.1f;
-                    d.noGravity = true;
-                    if (Projectile.numUpdates == -1)
+                    var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
+                    int amt = 1;
+                    for (int i = 0; i < amt; i++)
                     {
-                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                        var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
+                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 0.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
+                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                        d.scale *= Projectile.scale * 0.6f;
+                        d.fadeIn = d.scale + 0.1f;
+                        d.noGravity = true;
+                        if (Projectile.numUpdates == -1)
+                        {
+                            AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                        }
                     }
                 }
             }
@@ -115,31 +117,29 @@ namespace Aequus.Projectiles.Melee.Swords
             float scale = base.GetScale(progress);
             if (progress > 0.1f && progress < 0.9f)
             {
-                return scale + 2f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
+                return scale + 1f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
             return scale;
         }
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            //if (progress > 0.8f)
-            //{
-            //    float p = 1f - (1f - progress) / 0.2f;
-            //    Projectile.alpha = (int)(p * 255);
-            //    return -40f * p;
-            //}
-            //if (progress < 0.2f)
-            //{
-            //    return -10f * (1f - progress / 0.2f);
-            //}
+            if (progress > 0.4f)
+            {
+                float p = 1f - (1f - progress) / 0.6f;
+                Projectile.alpha = (int)(p * 255);
+                return -33f * p;
+            }
+            if (progress < 0.4f)
+            {
+                float p = 1f - progress / 0.4f;
+                Projectile.alpha = (int)(p * 255);
+                return -10f * p;
+            }
             return 0f;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.myPlayer == Projectile.owner)
-            {
-                AequusEffects.Shake.Set(4f);
-            }
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -152,7 +152,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 coord2 = 1f
             };
 
-            var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 5f);
+            var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 0.5f);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
@@ -174,12 +174,12 @@ namespace Aequus.Projectiles.Melee.Swords
             armTrailSmoke.drawOffset = handPosition;
 
             var bloom = TextureCache.Bloom[1].Value;
-            Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
+            Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
             if (Aequus.HQ)
             {
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.4f, Projectile.scale * 1.1f), effects, 0);
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.4f, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.6f, Projectile.scale * 1.25f), effects, 0);
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.2f, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale, Projectile.scale * 1.5f), effects, 0);
+                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * 0.5f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.4f, Projectile.scale * 1.1f), effects, 0);
+                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.2f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.6f, Projectile.scale * 1.25f), effects, 0);
+                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.1f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale, Projectile.scale * 1.5f), effects, 0);
             }
 
             var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly);
@@ -192,19 +192,35 @@ namespace Aequus.Projectiles.Melee.Swords
             Main.spriteBatch.End();
             Begin.GeneralEntities.BeginShader(Main.spriteBatch);
 
-            armTrail.Draw(Projectile.oldPos);
-            armTrail.Draw(Projectile.oldPos);
-            if (Aequus.HQ)
-            {
-                armTrailSmoke.Draw(Projectile.oldPos);
-                armTrailSmoke.Draw(Projectile.oldPos);
-            }
+            //armTrail.Draw(Projectile.oldPos);
+            //armTrail.Draw(Projectile.oldPos);
+            //if (Aequus.HQ)
+            //{
+            //    armTrailSmoke.Draw(Projectile.oldPos);
+            //    armTrailSmoke.Draw(Projectile.oldPos);
+            //}
 
             Main.spriteBatch.End();
             Begin.GeneralEntities.Begin(Main.spriteBatch);
 
-            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(glowmask.Value, handPosition - Main.screenPosition, null, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(glowmask.Value, handPosition - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+
+
+            if (AnimProgress > 0.2f && AnimProgress < 0.8f)
+            {
+                float swishProgress = (AnimProgress - 0.2f) / 0.6f;
+                float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
+                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
+
+                var swish = Swish2Texture.Value;
+                var swishOrigin = swish.Size() / 2f;
+                var swishColor = greal.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
+                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.4f;
+                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 20f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, 2f, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 70f + 20f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2.5f, 2f), effects, 0);
+            }
             return false;
         }
 

@@ -1613,9 +1613,15 @@ namespace Aequus
             return num;
         }
 
-        public static void MeleeScale(Projectile proj)
+        public static float CappedMeleeScale(this Player player)
         {
-            float scale = Main.player[proj.owner].GetAdjustedItemScale(Main.player[proj.owner].HeldItem);
+            var item = player.HeldItem;
+            return Math.Clamp(player.GetAdjustedItemScale(item), 0.5f * item.scale, 2f * item.scale);
+        }
+
+        public static void CappedMeleeScale(Projectile proj)
+        {
+            float scale = Main.player[proj.owner].CappedMeleeScale();
             if (scale != 1f)
             {
                 proj.scale *= scale;

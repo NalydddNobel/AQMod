@@ -54,7 +54,7 @@ namespace Aequus.Projectiles.Melee
                 {
                     Projectile.ai[0] = 25f;
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
-                    AequusHelpers.MeleeScale(Projectile);
+                    AequusHelpers.CappedMeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
                 Projectile.ai[0] = 1f + (float)Math.Sin(player.itemAnimation / (float)player.itemAnimationMax * MathHelper.Pi) * stabLength;

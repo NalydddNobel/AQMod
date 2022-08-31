@@ -160,7 +160,7 @@ namespace Aequus.Projectiles.Melee
         private void AI_Init()
         {
             Projectile.velocity = Vector2.Normalize(Projectile.velocity);
-            AequusHelpers.MeleeScale(Projectile);
+            AequusHelpers.CappedMeleeScale(Projectile);
 
             if (Main.myPlayer == Projectile.owner)
             {

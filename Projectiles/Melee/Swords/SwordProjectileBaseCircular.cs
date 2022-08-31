@@ -72,7 +72,7 @@ namespace Aequus.Projectiles.Melee
             swing = ProgressSnippet;
             swingMultiplier = 1f;
             combo = aequus.itemCombo;
-            AequusHelpers.MeleeScale(Projectile);
+            AequusHelpers.CappedMeleeScale(Projectile);
         }
 
         protected void SetArmRotation(Player player)

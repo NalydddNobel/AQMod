@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Melee
                 {
                     Projectile.ai[0] = 25f;
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
-                    AequusHelpers.MeleeScale(Projectile);
+                    AequusHelpers.CappedMeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
                 if (player.itemAnimation < player.itemAnimationMax / 3f)

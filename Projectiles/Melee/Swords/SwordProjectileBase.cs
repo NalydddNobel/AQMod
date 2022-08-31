@@ -168,7 +168,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             AngleVector = Projectile.velocity;
             combo = aequus.itemCombo;
-            AequusHelpers.MeleeScale(Projectile);
+            AequusHelpers.CappedMeleeScale(Projectile);
             swingDirection = 1;
             UpdateDirection(player);
             swingDirection *= Projectile.direction;
