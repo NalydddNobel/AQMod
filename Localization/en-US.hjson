@@ -242,6 +242,7 @@ Mods: {
 
 			Moro: Moro
 			
+			OmniPaint: Omni Paint
 			AdvancedRuler: Advanced Ruler
 			CarpenterBountyItem: Carpenter Bounty
 			AdventuringMap: Adventuring Map
@@ -861,6 +862,7 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
 
+			OmniPaint: Right click while holding a paint item to select a color
 			AdvancedRuler:
 				'''
 				When held:

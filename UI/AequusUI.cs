@@ -142,6 +142,15 @@ namespace Aequus.UI
                 return true;
             }, InterfaceScaleType.Game);
 
+            InsertInterfaceDrawMethod(layers, InterfaceLayers.WireSelection_11, "Aequus: Advanced Items Interface", () =>
+            {
+                if (OmniPaintInterface.Instance.Enabled)
+                {
+                    OmniPaintInterface.Instance.Render(Main.spriteBatch);
+                }
+                return true;
+            }, InterfaceScaleType.Game);
+
             InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () =>
             {
                 LegacyEventProgressBarLoader.Draw();

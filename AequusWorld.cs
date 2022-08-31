@@ -375,10 +375,7 @@ namespace Aequus
             {
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
-            }
-            if (Main.LocalPlayer.position.HasNaNs())
-            {
-                Main.LocalPlayer.Spawn(PlayerSpawnContext.ReviveFromDeath);
+                OmniPaintInterface.Instance.Enabled = false;
             }
             BloodMoonDisabled = false;
             GlimmerDisabled = false;

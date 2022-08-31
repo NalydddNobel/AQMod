@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,7 +30,7 @@ namespace Aequus.Items.Weapons.Melee
             public const int TileTopMiddle = 5;
         }
 
-        public struct ItemInfo
+        public struct ItemInfo : IPlayerData
         {
             public ushort[] tiles;
 
@@ -77,6 +78,18 @@ namespace Aequus.Items.Weapons.Melee
                     arr[i] = reader.ReadUInt16();
                 }
                 return new ItemInfo(arr);
+            }
+
+            public bool NeedsSyncing(AequusPlayer aequus, AequusPlayer c)
+            {
+                for (int i = 0; i < maxSavedTiles; i++)
+                {
+                    if (tiles[i] != c.shatteringVenus.tiles[i])
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 

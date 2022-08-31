@@ -105,8 +105,10 @@ namespace Aequus
         public int equippedEars;
         public int cEars;
 
+
         public int leechHookNPC;
 
+        public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
         /// <summary>
@@ -304,7 +306,6 @@ namespace Aequus
         public int ghostSlotsMax;
         public int ghostSlotsOld;
         public int ghostSlots;
-
         public int ghostProjExtraUpdates;
         public int ghostLifespan;
 
@@ -357,47 +358,95 @@ namespace Aequus
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            var clone = (AequusPlayer)clientPlayer;
+            var c = (AequusPlayer)clientPlayer;
 
-            PacketHandler.Send((p) =>
+            var bb = new BitsByte(
+                darkness != c.darkness, 
+                timeSinceLastHit != c.timeSinceLastHit,
+                candleSouls != c.candleSouls, 
+                omniPaint != c.omniPaint,
+                (c.itemCombo - itemCombo).Abs() > 3 || (c.itemSwitch - itemSwitch).Abs() > 3 || (c.itemUsage - itemUsage).Abs() > 3 || (c.itemCooldown - itemCooldown).Abs() > 3 || c.itemCooldownMax != itemCooldownMax, 
+                c.instaShieldTime != instaShieldTime, 
+                shatteringVenus.NeedsSyncing(this, c),
+                boundBowAmmo != c.boundBowAmmo || boundBowAmmoTimer != c.boundBowAmmoTimer);
+
+            var bb2 = new BitsByte(
+                summonHelmetTimer != c.summonHelmetTimer);
+
+            if (bb > 0 || bb2 > 0)
             {
-                p.Write((byte)Player.whoAmI);
-                p.Write(darkness);
-                p.Write(timeSinceLastHit);
-                p.Write(candleSouls);
-
-                PacketHandler.FlaggedWrite(
-                    (clone.itemCombo - itemCombo).Abs() > 3 ||
-                    (clone.itemSwitch - itemSwitch).Abs() > 3 ||
-                    (clone.itemUsage - itemUsage).Abs() > 3 ||
-                    (clone.itemCooldown - itemCooldown).Abs() > 3 ||
-                    clone.itemCooldownMax != itemCooldownMax,
-                (p) =>
+                PacketHandler.Send((p) =>
+                {
+                    p.Write((byte)Player.whoAmI);
+                    p.Write(bb);
+                    p.Write(bb2);
+                    if (bb[0])
+                    {
+                        p.Write(darkness);
+                    }
+                    if (bb[1])
+                    {
+                        p.Write(timeSinceLastHit);
+                    }
+                    if (bb[2])
+                    {
+                        p.Write(candleSouls);
+                    }
+                    if (bb[3])
+                    {
+                        p.Write(omniPaint);
+                    }
+                    if (bb[4])
                     {
                         p.Write(itemCombo);
                         p.Write(itemSwitch);
                         p.Write(itemUsage);
                         p.Write(itemCooldown);
                         p.Write(itemCooldownMax);
-                    }, p);
-
-                PacketHandler.FlaggedWrite(clone.instaShieldTime != instaShieldTime,
-                (p) =>
+                    }
+                    if (bb[5])
                     {
                         p.Write(instaShieldTime);
-                    }, p);
-
-                shatteringVenus.SendClientChanges(p, clone.shatteringVenus);
-                return true;
-            }, PacketType.SyncAequusPlayer);
+                    }
+                    if (bb[6])
+                    {
+                        shatteringVenus.SendClientChanges(p, c.shatteringVenus);
+                    }
+                    if (bb[7])
+                    {
+                        p.Write(boundBowAmmo);
+                        p.Write(boundBowAmmoTimer);
+                    }
+                    if (bb2[0])
+                    {
+                        p.Write(summonHelmetTimer);
+                    }
+                    return true;
+                }, PacketType.SyncAequusPlayer);
+            }
         }
 
         public void RecieveChanges(BinaryReader reader)
         {
-            darkness = reader.ReadSingle();
-            timeSinceLastHit = reader.ReadInt32();
-            candleSouls = reader.ReadInt32();
-            if (reader.ReadBoolean())
+            var bb = (BitsByte)reader.ReadByte();
+            var bb2 = (BitsByte)reader.ReadByte();
+            if (bb[0])
+            {
+                darkness = reader.ReadSingle();
+            }
+            if (bb[1])
+            {
+                timeSinceLastHit = reader.ReadInt32();
+            }
+            if (bb[2])
+            {
+                candleSouls = reader.ReadInt32();
+            }
+            if (bb[3])
+            {
+                omniPaint = reader.ReadByte();
+            }
+            if (bb[4])
             {
                 itemCombo = reader.ReadUInt16();
                 itemSwitch = reader.ReadUInt16();
@@ -405,13 +454,18 @@ namespace Aequus
                 itemCooldown = reader.ReadUInt16();
                 itemCooldownMax = reader.ReadUInt16();
             }
-            if (reader.ReadBoolean())
+            if (bb[5])
             {
                 instaShieldTime = reader.ReadInt32();
             }
-            if (reader.ReadBoolean())
+            if (bb[6])
             {
                 shatteringVenus = ShatteringVenus.ItemInfo.RecieveChanges(reader);
+            }
+            if (bb[7])
+            {
+                boundBowAmmo = reader.ReadInt32();
+                boundBowAmmoTimer = reader.ReadInt32();
             }
         }
 
@@ -450,11 +504,6 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            if (Main.myPlayer == Player.whoAmI)
-            {
-                darkness = GetDarkness();
-            }
-
             PlayerContext = Player.whoAmI;
 
             groundCrit = 0;
@@ -692,14 +741,6 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
-            if (darknessDamage > 0f)
-            {
-                Player.GetDamage(DamageClass.Generic) += darknessDamage * darkness;
-            }
-            if (groundCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
-            {
-                Player.GetCritChance(DamageClass.Generic) += groundCrit;
-            }
             UpdateBank(Player.bank, 0);
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);
@@ -708,6 +749,7 @@ namespace Aequus
             {
                 Player.endurance += 0.3f;
             }
+
             if (slotBoostCurse != -1)
             {
                 Player.GetDamage(DamageClass.Generic) *= 0.9f;
@@ -719,10 +761,22 @@ namespace Aequus
                     Player.statManaMax2 = Player.statManaMax2 - (Player.statManaMax2 - Player.statManaMax) / 2;
                 HandleSlotBoost(Player.armor[slotBoostCurse], slotBoostCurse < 10 ? Player.hideVisibleAccessory[slotBoostCurse] : false);
             }
+
+            if (darknessDamage > 0f)
+            {
+                Player.GetDamage(DamageClass.Generic) += darknessDamage * darkness;
+            }
+            if (groundCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
+            {
+                Player.GetCritChance(DamageClass.Generic) += groundCrit;
+            }
         }
         public void HandleSlotBoost(Item item, bool hideVisual)
         {
+            int slotBoostCurseOld = slotBoostCurse;
+            slotBoostCurse = -2;
             Player.ApplyEquipFunctional(item, hideVisual);
+            slotBoostCurse = slotBoostCurseOld;
 
             if (item.wingSlot != -1)
             {
@@ -861,6 +915,11 @@ namespace Aequus
             }
 
             UpdateBoundBowRecharge();
+
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                darkness = GetDarkness();
+            }
 
             PlayerContext = -1;
 

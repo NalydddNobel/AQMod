@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items;
+using Aequus.Items.Tools.Builder;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -251,7 +252,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public override Item ProvideBountyRewardItem()
         {
-            return AequusItem.SetDefaults(ItemID.Escargot);
+            return AequusItem.SetDefaults<OmniPaint>();
         }
     }
 }

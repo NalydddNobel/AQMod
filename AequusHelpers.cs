@@ -120,6 +120,21 @@ namespace Aequus
 
         private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
 
+        public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0)
+        {
+            return new Rectangle(rectangle.X + (rectangle.Width - sizeOffsetX) * frameX, rectangle.Y + (rectangle.Width - sizeOffsetY) * frameY, rectangle.Width, rectangle.Height);
+        }
+
+        public static Rectangle MultiplyWH(this Rectangle rectangle, float multiplier)
+        {
+            return new Rectangle(rectangle.X, rectangle.Y, (int)(rectangle.Width * multiplier), (int)(rectangle.Height * multiplier));
+        }
+
+        public static Rectangle Multiply(this Rectangle rectangle, float multiplier)
+        {
+            return new Rectangle((int)(rectangle.X * multiplier), (int)(rectangle.Y * multiplier), (int)(rectangle.Width * multiplier), (int)(rectangle.Height * multiplier));
+        }
+
         public static Vector2 NumFloor(this Vector2 myVector, int amt = 2)
         {
             return (myVector / amt).Floor() * amt;
