@@ -25,9 +25,9 @@ namespace Aequus.Items.Weapons.Melee
             Item.autoReuse = true;
         }
 
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
     }
 }

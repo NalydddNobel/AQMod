@@ -33,9 +33,9 @@ namespace Aequus.Items.Weapons.Melee
             Item.noMelee = true;
         }
 
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
 
         public override void AddRecipes()

@@ -35,9 +35,9 @@ namespace Aequus.Items.Weapons.Melee
             return lightColor.MaxRGBA(200);
         }
 
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)

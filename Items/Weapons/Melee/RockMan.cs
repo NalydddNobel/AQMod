@@ -34,21 +34,9 @@ namespace Aequus.Items.Weapons.Melee
             Item.autoReuse = true;
         }
 
-        //public override bool? UseItem(Player player)
-        //{
-        //    for (int i = 0; i < Main.maxChests; i++)
-        //    {
-        //        if (Main.chest[i] != null && Main.chest[i]?.item.ContainsAny((i) => i.type == Type) == true)
-        //        {
-        //            player.Center = new Vector2(Main.chest[i].x, Main.chest[i].y) * 16f;
-        //        }
-        //    }
-        //    return base.UseItem(player);
-        //}
-
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
 
         public override bool CanUseItem(Player player)
