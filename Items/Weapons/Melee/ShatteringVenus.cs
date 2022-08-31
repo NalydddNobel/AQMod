@@ -178,9 +178,9 @@ namespace Aequus.Items.Weapons.Melee
         //    return base.UseItem(player);
         //}
 
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
 
         public override bool CanUseItem(Player player)

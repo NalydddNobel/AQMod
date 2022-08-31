@@ -30,9 +30,9 @@ namespace Aequus.Items.Tools.Mining
             Item.reuseDelay = 4;
         }
 
-        public override int ChoosePrefix(UnifiedRandom rand)
+        public override bool MeleePrefix()
         {
-            return AequusHelpers.RollSwordPrefix(Item, rand);
+            return true;
         }
 
         public override bool CanShoot(Player player)
