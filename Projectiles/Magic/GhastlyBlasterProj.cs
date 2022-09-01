@@ -26,7 +26,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.penetrate = -1;
             Projectile.hide = true;
             Projectile.ownerHitCheck = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Magic;
             Projectile.tileCollide = false;
             Projectile.friendly = true;
             Projectile.usesIDStaticNPCImmunity = true;
