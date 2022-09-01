@@ -76,7 +76,9 @@ namespace Aequus.Projectiles.Magic
                     Projectile.frame = (Projectile.frame + 1) % Main.projFrames[Type];
                     if (Projectile.frame == 7)
                     {
-                        SoundEngine.PlaySound(SoundID.Item15, Projectile.Center);
+                        var s = SoundID.Item122;
+                        s.PitchVariance = 0.1f;
+                        SoundEngine.PlaySound(s, Projectile.Center);
                     }
                 }
                 Projectile.frameCounter++;
@@ -110,7 +112,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.rotation = dir.ToRotation() + (Projectile.spriteDirection == 1 ? MathHelper.Pi : 0f);
             player.ChangeDir(-Projectile.spriteDirection);
 
-            Projectile.localAI[0] = ScanLaser2(dir);
+            Projectile.localAI[0] = ScanLaser(dir);
             Projectile.localAI[1] = dir.ToRotation();
 
             if (progress > 0.25f && progress < 0.75f)
@@ -126,24 +128,10 @@ namespace Aequus.Projectiles.Magic
             }
         }
 
-        public float ScanLaser2(Vector2 dir)
+        public float ScanLaser(Vector2 dir)
         {
             float[] laserScanResults = new float[400];
             Collision.LaserScan(Projectile.Center, dir, 8f * Projectile.scale, 1200f, laserScanResults);
-            float averageLengthSample = 0f;
-            for (int i = 0; i < laserScanResults.Length; ++i)
-            {
-                averageLengthSample += laserScanResults[i];
-            }
-            averageLengthSample /= laserScanResults.Length;
-
-            return averageLengthSample;
-        }
-
-        public float ScanLaser()
-        {
-            float[] laserScanResults = new float[400];
-            Collision.LaserScan(Projectile.Center, Projectile.velocity, 16f * Projectile.scale, 1000f, laserScanResults);
             float averageLengthSample = 0f;
             for (int i = 0; i < laserScanResults.Length; ++i)
             {
@@ -203,9 +191,13 @@ namespace Aequus.Projectiles.Magic
             float segmentBit = (frame.Height / 2f + 4f) * scale;
             int segments = (int)((startPosition - endPosition).Length() / segmentBit);
             frame = frame.Frame(0, 1);
+            ScreenCulling.SetPadding(100);
             for (int i = 0; i < segments; i++)
             {
-                Main.spriteBatch.Draw(texture, startPosition + dir * segmentBit * i, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
+                var drawCoords = startPosition + dir * segmentBit * i;
+                if (!ScreenCulling.OnScreen(drawCoords))
+                    return;
+                Main.spriteBatch.Draw(texture, drawCoords, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, endPosition - dir * frame.Height / 2f * scale, frame.Frame(0, 1), color, rotation, origin, scale, SpriteEffects.None, 0f);
 

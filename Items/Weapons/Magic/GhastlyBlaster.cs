@@ -20,21 +20,21 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.width = 40;
             Item.height = 40;
-            Item.damage = 55;
+            Item.damage = 58;
             Item.useTime = 38;
             Item.useAnimation = 25;
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityHardmodeDungeon;
             Item.UseSound = SoundID.Item1;
             Item.value = Item.sellPrice(gold: 7);
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = DamageClass.Magic;
             Item.knockBack = 3f;
             Item.shootSpeed = 35f;
             Item.shoot = ModContent.ProjectileType<GhastlyBlasterProj>();
             Item.scale = 1.2f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noUseGraphic = true;
-            Item.mana = 12;
+            Item.mana = 16;
         }
 
         public override bool AltFunctionUse(Player player)
