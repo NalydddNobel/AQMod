@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.scale = 1.2f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noUseGraphic = true;
-            Item.mana = 16;
+            Item.mana = 20;
         }
 
         public override bool AltFunctionUse(Player player)
@@ -56,8 +56,8 @@ namespace Aequus.Items.Weapons.Magic
         {
             CreateRecipe()
                 .AddIngredient(ItemID.SkyFracture)
+                .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 5)
                 .AddIngredient(ItemID.SpookyWood, 250)
-                .AddIngredient<Hexoplasm>(5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

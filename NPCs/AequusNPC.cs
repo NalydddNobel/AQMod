@@ -8,9 +8,9 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.Particles;
@@ -218,7 +218,7 @@ namespace Aequus.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-           // On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
+            // On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
             if (HeatDamage.Contains(npc.type))
             {
                 heatDamage = true;
@@ -535,58 +535,93 @@ namespace Aequus.NPCs
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (type == NPCID.Dryad)
+            switch (type)
             {
-                if (AequusWorld.downedOmegaStarite)
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
-            }
-            else if (type == NPCID.Clothier)
-            {
-                if (Aequus.HardmodeTier)
-                {
-                    int slot = -1;
-                    for (int i = 0; i < Chest.maxItems - 1; i++)
+                case NPCID.Merchant:
                     {
-                        if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants)
+                        var inv = Main.LocalPlayer.inventory;
+                        for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
                         {
-                            slot = i + 1;
+                            if (inv[i].type == ModContent.ItemType<StarPhish>())
+                            {
+                                AddAvoidDupes(ItemID.Seed, Item.buyPrice(copper: 3), shop, ref nextSlot);
+                                break;
+                            }
                         }
                     }
-                    if (slot != -1 && slot != Chest.maxItems - 1)
+                    break;
+
+                case NPCID.Clothier:
                     {
-                        shop.Insert(ModContent.ItemType<FamiliarPickaxe>(), slot);
+                        if (Aequus.HardmodeTier)
+                        {
+                            int slot = -1;
+                            for (int i = 0; i < Chest.maxItems - 1; i++)
+                            {
+                                if (shop.item[i].type == ItemID.FamiliarWig || shop.item[i].type == ItemID.FamiliarShirt || shop.item[i].type == ItemID.FamiliarPants)
+                                {
+                                    slot = i + 1;
+                                }
+                            }
+                            if (slot != -1 && slot != Chest.maxItems - 1)
+                            {
+                                shop.Insert(ModContent.ItemType<FamiliarPickaxe>(), slot);
+                            }
+                            nextSlot++;
+                        }
                     }
-                    nextSlot++;
-                }
+                    break;
+
+                case NPCID.DyeTrader:
+                    {
+                        int removerSlot = nextSlot;
+                        if (Main.LocalPlayer.statLifeMax >= 200)
+                        {
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HealthCursorDye>());
+                        }
+                        if (Main.LocalPlayer.statManaMax >= 100)
+                        {
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ManaCursorDye>());
+                        }
+                        if (LanternNight.LanternsUp)
+                        {
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SwordCursorDye>());
+                        }
+                        if (AequusWorld.downedEventDemon)
+                        {
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DemonicCursorDye>());
+                        }
+                        if (nextSlot != removerSlot)
+                        {
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CursorDyeRemover>());
+                        }
+                    }
+                    break;
+
+                case NPCID.Mechanic:
+                    {
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
+                    }
+                    break;
             }
-            else if (type == NPCID.DyeTrader)
+        }
+        public bool AddAvoidDupes(int itemID, int? customPrice, Chest shop, ref int nextSlot)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
             {
-                int removerSlot = nextSlot;
-                if (Main.LocalPlayer.statLifeMax >= 200)
+                if (shop.item[i].type == itemID)
                 {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HealthCursorDye>());
-                }
-                if (Main.LocalPlayer.statManaMax >= 100)
-                {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ManaCursorDye>());
-                }
-                if (LanternNight.LanternsUp)
-                {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SwordCursorDye>());
-                }
-                if (AequusWorld.downedEventDemon)
-                {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DemonicCursorDye>());
-                }
-                if (nextSlot != removerSlot)
-                {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CursorDyeRemover>());
+                    if (shop.item[i].shopCustomPrice == customPrice)
+                        return false;
+
+                    shop.item[i].shopCustomPrice = customPrice;
+                    return true;
                 }
             }
-            else if (type == NPCID.Mechanic)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
-            }
+            shop.item[nextSlot].SetDefaults(itemID);
+            shop.item[nextSlot].shopCustomPrice = customPrice;
+            nextSlot++;
+            return true;
         }
 
         public void Send(int whoAmI, BinaryWriter writer)

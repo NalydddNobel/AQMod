@@ -17,8 +17,6 @@ namespace Aequus.Items.Tools.Camera
 {
     public class ShutterstockerClip : ModItem
     {
-        private static TileMapCache DefaultTileMap;
-
         public float worldXPercent;
         public float worldYPercent;
         public int time;
@@ -57,42 +55,13 @@ namespace Aequus.Items.Tools.Camera
 
         public bool HasTooltipTexture => TooltipTexture != null && TooltipTexture.Value != null && !TooltipTexture.Value.IsDisposed && !TooltipTexture.Value.IsContentLost;
 
-        public override void SetStaticDefaults()
-        {
-            InitDefaultMap();
-        }
-
-        private void InitDefaultMap()
-        {
-            var mapData = new TileDataCache[36 + ShutterstockerSceneRenderer.TilePadding, 36 + ShutterstockerSceneRenderer.TilePadding];
-            var rect = new Rectangle(0, 0, 36 + ShutterstockerSceneRenderer.TilePadding, 36 + ShutterstockerSceneRenderer.TilePadding);
-            var t = new TileDataCache(new TileTypeData() { Type = TileID.Grass, }, new LiquidData(), new TileWallWireStateData() { HasTile = true, }, new WallTypeData());
-            for (int i = 0; i < rect.Width; i++)
-            {
-                for (int j = 0; j < rect.Height; j++)
-                {
-                    mapData[i, j] = t;
-                }
-            }
-
-            DefaultTileMap = new TileMapCache(rect, mapData, Main.worldID);
-        }
-
-        public override void Unload()
-        {
-            DefaultTileMap = null;
-        }
-
         public override void SetDefaults()
         {
-            if (!Main.gameMenu && Main.netMode != NetmodeID.Server)
-            {
-                SetClip(Utils.CenteredRectangle(Main.LocalPlayer.Center.ToTileCoordinates().ToVector2(), new Vector2(36f + ShutterstockerSceneRenderer.TilePadding, 36f + ShutterstockerSceneRenderer.TilePadding)));
-            }
             Item.width = 16;
             Item.height = 16;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
+            tileMap = null;
         }
 
         public void SetClip(Rectangle area)
@@ -108,6 +77,9 @@ namespace Aequus.Items.Tools.Camera
 
         public override void SaveData(TagCompound tag)
         {
+            if (tileMap == null)
+                return;
+
             tag["Map"] = tileMap.SerializeData();
             tag["WorldXPercent"] = worldXPercent;
             tag["WorldYPercent"] = worldYPercent;
@@ -120,14 +92,15 @@ namespace Aequus.Items.Tools.Camera
         public override void LoadData(TagCompound tag)
         {
             if (tag.TryGet<TagCompound>("Map", out var val))
+            {
                 tileMap = TileMapCache.DeserializeData(val);
-
-            worldXPercent = tag.Get<float>("WorldXPercent");
-            worldYPercent = tag.Get<float>("WorldYPercent");
-            daytime = tag.Get<bool>("Daytime");
-            time = tag.Get<int>("Time");
-            reviewed = tag.Get<bool>("Reviewed");
-            timeCreatedSerialized = tag.Get<long>("TimeCreated");
+                worldXPercent = tag.Get<float>("WorldXPercent");
+                worldYPercent = tag.Get<float>("WorldYPercent");
+                daytime = tag.Get<bool>("Daytime");
+                time = tag.Get<int>("Time");
+                reviewed = tag.Get<bool>("Reviewed");
+                timeCreatedSerialized = tag.Get<long>("TimeCreated");
+            }
         }
 
         public override ModItem Clone(Item newEntity)
@@ -135,7 +108,8 @@ namespace Aequus.Items.Tools.Camera
             var clone = (ShutterstockerClip)base.Clone(newEntity);
 
             if (tileMap == null)
-                tileMap = DefaultTileMap.Clone();
+                return clone;
+
             if (TooltipTexture == null)
                 TooltipTexture = new Ref<RenderTarget2D>();
 
@@ -155,7 +129,10 @@ namespace Aequus.Items.Tools.Camera
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (!HasTooltipTexture || Main.mouseRight && Main.mouseRightRelease)
+            if (tileMap == null)
+                return;
+
+            if (!HasTooltipTexture || (Main.mouseRight && Main.mouseRightRelease))
             {
                 if (TooltipTexture == null)
                     TooltipTexture = new Ref<RenderTarget2D>();
@@ -229,11 +206,10 @@ namespace Aequus.Items.Tools.Camera
 
         public override void NetSend(BinaryWriter writer)
         {
+            writer.Write(tileMap == null);
             if (tileMap == null)
             {
-                worldXPercent = 0.5f;
-                worldYPercent = 0.5f;
-                tileMap = DefaultTileMap;
+                return;
             }
 
             writer.Write(daytime);
@@ -253,6 +229,9 @@ namespace Aequus.Items.Tools.Camera
 
         public override void NetReceive(BinaryReader reader)
         {
+            if (reader.ReadBoolean())
+                return;
+
             daytime = reader.ReadBoolean();
             time = reader.ReadInt32();
             worldXPercent = reader.ReadSingle();

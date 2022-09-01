@@ -630,7 +630,7 @@ Mods: {
 				Greatly increases the lifespan of your ghosts
 				'I know your type: tall, dark, and dead'
 				'''
-			RitualisticSkull: Converts all of your minion slots into ghost slots
+			RitualisticSkull: Converts all but one of your minion slots into ghost slots
 			RabbitsFoot: Increases luck for the wearer
 			MechsSentry:
 				'''
@@ -699,6 +699,7 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+			GhastlyBlaster: "'Your eyes deceive you, this is not a sword'"
 			SurgeRod:
 				'''
 				Casts a create a thundercloud net to fry your foes
@@ -863,7 +864,7 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: Permanently makes minion staffs consume no mana and faster
 
-			OmniPaint: Right click while holding a paint item to select a color
+			OmniPaint: Hold a paint item to bring up a menu of selectable paints
 			AdvancedRuler:
 				'''
 				When held:

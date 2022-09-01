@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Misc.Energies;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -45,15 +46,17 @@ namespace Aequus.Items.Weapons.Ranged
                 Main.dust[d].velocity.X = v.X * Main.rand.NextFloat(6f, 12f);
                 Main.dust[d].velocity.Y = v.Y * Main.rand.NextFloat(6f, 12f);
             }
-            amt = Main.rand.Next(8, 12);
-            for (int i = 0; i < amt; i++)
-            {
-                int d = Dust.NewDust(dustPos, 10, 10, DustID.MagicMirror);
-                Vector2 v = n.RotatedBy(Main.rand.NextFloat(-0.157f, 0.157f));
-                Main.dust[d].velocity.X = v.X * Main.rand.NextFloat(3f, 6f);
-                Main.dust[d].velocity.Y = v.Y * Main.rand.NextFloat(3f, 6f);
-            }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Blowpipe)
+                .AddIngredient(ItemID.Starfish, 5)
+                .AddIngredient<AquaticEnergy>()
+                .AddTile(ItemID.IronAnvil)
+                .Register();
         }
     }
 }

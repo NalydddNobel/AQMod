@@ -241,6 +241,7 @@ namespace Aequus
         public int expertBoostBoCTimer;
         public int expertBoostBoCDefense;
 
+        public bool accRitualSkull;
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
@@ -506,6 +507,7 @@ namespace Aequus
         {
             PlayerContext = Player.whoAmI;
 
+            accRitualSkull = false;
             groundCrit = 0;
             darknessDamage = 0f;
             slotBoostCurse = -1;
@@ -741,6 +743,12 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            if (accRitualSkull)
+            {
+                ghostSlotsMax += Player.maxMinions - 1;
+                Player.maxMinions = 1;
+            }
+
             UpdateBank(Player.bank, 0);
             UpdateBank(Player.bank2, 1);
             UpdateBank(Player.bank3, 2);

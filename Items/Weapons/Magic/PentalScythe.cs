@@ -39,7 +39,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DemonScythe)
-                .AddIngredient<Hexoplasm>(6)
+                .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.Bookcases)
                 .RegisterAfter(ItemID.GoldenShower);

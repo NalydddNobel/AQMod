@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Lime;
+            Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 10);
         }
 
@@ -30,7 +30,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
         {
             CreateRecipe()
                 .AddIngredient(ItemID.PygmyNecklace)
-                .AddIngredient<Hexoplasm>(12)
+                .AddIngredient<Hexoplasm>(5)
                 .AddIngredient(ItemID.SoulofFright, 8)
                 .AddTile(TileID.MythrilAnvil)
                 .Register((r) => r.SortAfterFirstRecipesOf(ItemID.PapyrusScarab));
@@ -48,11 +48,6 @@ namespace Aequus.Items.Accessories.Summon.Necro
 
         public override void PostUpdateEquips()
         {
-            if (minionsToGhosts)
-            {
-                Player.Aequus().ghostSlotsMax += Player.maxMinions - 1;
-                Player.maxMinions = 1;
-            }
         }
     }
 }
