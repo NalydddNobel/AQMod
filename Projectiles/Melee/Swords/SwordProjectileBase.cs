@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             return progress;
         }
-        protected float GenericSwing2(float progress, float pow = 2f)
+        public static float GenericSwing2(float progress, float pow = 2f)
         {
             if (progress > 0.5f)
             {
@@ -119,7 +119,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             return ((float)Math.Sin(Math.Pow(progress, pow) * MathHelper.TwoPi - MathHelper.PiOver2) + 1f) / 2f;
         }
-        protected float GenericSwing1(float progress, float pow = 2f, float startSwishing = 0.15f)
+        public static float GenericSwing1(float progress, float pow = 2f, float startSwishing = 0.15f)
         {
             float oldProg = progress;
             float max = 1f - startSwishing;

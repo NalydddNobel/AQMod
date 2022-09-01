@@ -88,7 +88,7 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         public bool ghostTombstones;
 
-        public ShatteringVenus.ItemInfo shatteringVenus;
+        //public ShatteringVenus.ItemInfo shatteringVenus;
 
         public sbyte antiGravityTile;
 
@@ -352,7 +352,7 @@ namespace Aequus
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
-            clone.shatteringVenus = shatteringVenus.Clone();
+            //clone.shatteringVenus = shatteringVenus.Clone();
             clone.darkness = darkness;
         }
 
@@ -367,7 +367,7 @@ namespace Aequus
                 omniPaint != c.omniPaint,
                 (c.itemCombo - itemCombo).Abs() > 3 || (c.itemSwitch - itemSwitch).Abs() > 3 || (c.itemUsage - itemUsage).Abs() > 3 || (c.itemCooldown - itemCooldown).Abs() > 3 || c.itemCooldownMax != itemCooldownMax, 
                 c.instaShieldTime != instaShieldTime, 
-                shatteringVenus.NeedsSyncing(this, c),
+                /*shatteringVenus.NeedsSyncing(this, c)*/ false,
                 boundBowAmmo != c.boundBowAmmo || boundBowAmmoTimer != c.boundBowAmmoTimer);
 
             var bb2 = new BitsByte(
@@ -410,7 +410,7 @@ namespace Aequus
                     }
                     if (bb[6])
                     {
-                        shatteringVenus.SendClientChanges(p, c.shatteringVenus);
+                        //shatteringVenus.SendClientChanges(p, c.shatteringVenus);
                     }
                     if (bb[7])
                     {
@@ -460,7 +460,7 @@ namespace Aequus
             }
             if (bb[6])
             {
-                shatteringVenus = ShatteringVenus.ItemInfo.RecieveChanges(reader);
+                //shatteringVenus = ShatteringVenus.ItemInfo.RecieveChanges(reader);
             }
             if (bb[7])
             {
@@ -473,7 +473,7 @@ namespace Aequus
         {
             slotBoostCurse = -1;
             debuffs = new DebuffInflictionStats(0);
-            shatteringVenus = new ShatteringVenus.ItemInfo();
+            //shatteringVenus = new ShatteringVenus.ItemInfo();
             glowCore = -1;
             instaShieldAlpha = 0f;
             antiGravityTile = 0;
