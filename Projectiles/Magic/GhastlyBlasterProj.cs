@@ -130,7 +130,7 @@ namespace Aequus.Projectiles.Magic
 
         public float ScanLaser(Vector2 dir)
         {
-            float[] laserScanResults = new float[400];
+            float[] laserScanResults = new float[200];
             Collision.LaserScan(Projectile.Center, dir, 8f * Projectile.scale, 1200f, laserScanResults);
             float averageLengthSample = 0f;
             for (int i = 0; i < laserScanResults.Length; ++i)
