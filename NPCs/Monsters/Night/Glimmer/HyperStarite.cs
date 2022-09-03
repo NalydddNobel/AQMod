@@ -426,6 +426,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
             if (!dying && !NPC.IsABestiaryIconDummy)
             {
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = (int)(trailLength * MathHelper.Clamp((float)Math.Pow(ArmsLength / 240f, 1.2f), 0f, 1f));
                 var armPositions = new List<Vector2>[5];
@@ -453,6 +456,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
                 for (int j = 0; j < 5; j++)
                     armTrail.Draw(armPositions[j].ToArray());
+
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.Begin(Main.spriteBatch);
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 

@@ -1157,6 +1157,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 return;
             }
 
+            Main.spriteBatch.End();
+            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+
             if (_redSpriteLightningCoords == null)
             {
                 GenerateLightning();
@@ -1179,6 +1182,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 prim.Draw(lightningStrips[i]);
                 bloomPrim.Draw(lightningStrips[i]);
             }
+
+            Main.spriteBatch.End();
+            Begin.GeneralEntities.Begin(Main.spriteBatch);
         }
         private void GenerateLightning()
         {

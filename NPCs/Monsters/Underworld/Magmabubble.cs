@@ -51,8 +51,8 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.height = 24;
             NPC.aiStyle = -1;
             NPC.damage = 20;
-            NPC.defense = 16;
-            NPC.lifeMax = 235;
+            NPC.defense = 15;
+            NPC.lifeMax = 200;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.scale = 1.1f;
@@ -60,7 +60,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.lavaImmune = true;
             NPC.trapImmune = true;
             NPC.value = 150f;
-            NPC.knockBackResist = 0.7f;
+            NPC.knockBackResist = 0.6f;
             NPC.buffImmune[BuffID.Poisoned] = true;
             NPC.buffImmune[BuffID.OnFire] = true;
             NPC.buffImmune[BuffID.CursedInferno] = true;

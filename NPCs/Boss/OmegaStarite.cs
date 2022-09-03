@@ -1515,6 +1515,8 @@ namespace Aequus.NPCs.Boss
 
             if (!NPC.IsABestiaryIconDummy)
             {
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
                 if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f)
                 {
                     if (prim == null)
@@ -1528,6 +1530,8 @@ namespace Aequus.NPCs.Boss
                 {
                     NPC.oldPos[0] = new Vector2(0f, 0f);
                 }
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.Begin(Main.spriteBatch);
             }
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
