@@ -364,15 +364,6 @@ namespace Aequus.NPCs.Monsters.Underworld
                 .Add<DemonicEnergy>(chance: 20, stack: 1)
                 .Add(ItemID.LavaCharm, chance: 25, stack: 1);
         }
-        //public override void NPCLoot()
-        //{
-        //    if (!DemonSiege.IsActive)
-        //    {
-        //        return;
-        //    }
-        //    if (Main.rand.NextBool(Main.expertMode ? 12 : 16))
-        //        Item.NewItem(NPC.getRect(), ModContent.ItemType<DegenerationRing>());
-        //}
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -243,6 +244,7 @@ namespace Aequus.Graphics
 
         internal static void Hook_OnDrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
         {
+            var particleSettings = new ParticleRendererSettings();
             try
             {
                 GlimmerScene.Draw();
@@ -255,12 +257,17 @@ namespace Aequus.Graphics
 
                 if (!behindTiles)
                 {
-                    DustDevil.DrawBack.renderingNow = true;
-                    for (int i = 0; i < DustDevil.DrawBack.Count; i++)
+                    foreach (var p in DDParticleSystem.CachedBackParticles)
                     {
-                        Main.instance.DrawProj(DustDevil.DrawBack.Index(i));
+                        p.Draw(ref particleSettings, Main.spriteBatch);
                     }
-                    DustDevil.DrawBack.Clear();
+
+                    DustDevil.LegacyDrawBack.renderingNow = true;
+                    for (int i = 0; i < DustDevil.LegacyDrawBack.Count; i++)
+                    {
+                        Main.instance.DrawProj(DustDevil.LegacyDrawBack.Index(i));
+                    }
+                    DustDevil.LegacyDrawBack.Clear();
 
                     try
                     {
@@ -279,8 +286,8 @@ namespace Aequus.Graphics
             {
                 NPCsBehindAllNPCs?.Clear();
                 NPCsBehindAllNPCs = new DrawList();
-                DustDevil.DrawBack?.Clear();
-                DustDevil.DrawBack = new DrawList();
+                DustDevil.LegacyDrawBack?.Clear();
+                DustDevil.LegacyDrawBack = new DrawList();
             }
 
             orig(self, behindTiles);
@@ -298,20 +305,25 @@ namespace Aequus.Graphics
                 }
                 else
                 {
-                    DustDevil.DrawFront.renderingNow = true;
-                    for (int i = 0; i < DustDevil.DrawFront.Count; i++)
+                    foreach (var p in DDParticleSystem.CachedFrontParticles)
                     {
-                        Main.instance.DrawProj(DustDevil.DrawFront.Index(i));
+                        p.Draw(ref particleSettings, Main.spriteBatch);
                     }
-                    DustDevil.DrawFront.Clear();
+
+                    DustDevil.LegacyDrawFront.renderingNow = true;
+                    for (int i = 0; i < DustDevil.LegacyDrawFront.Count; i++)
+                    {
+                        Main.instance.DrawProj(DustDevil.LegacyDrawFront.Index(i));
+                    }
+                    DustDevil.LegacyDrawFront.Clear();
                 }
             }
             catch
             {
                 ProjsBehindTiles?.Clear();
                 ProjsBehindTiles = new DrawList();
-                DustDevil.DrawFront?.Clear();
-                DustDevil.DrawFront = new DrawList();
+                DustDevil.LegacyDrawFront?.Clear();
+                DustDevil.LegacyDrawFront = new DrawList();
             }
         }
 

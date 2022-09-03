@@ -116,11 +116,11 @@ namespace Aequus.Content.Necromancy
                 device.Clear(Color.Transparent);
                 Main.spriteBatch.Begin();
 
-                Main.spriteBatch.Draw(helperTarget, new Vector2(2f, 0f), color);
-                Main.spriteBatch.Draw(helperTarget, new Vector2(-2f, 0f), color);
-                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, 2f), color);
-                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, -2f), color);
-                Main.spriteBatch.Draw(helperTarget, new Vector2(0f, 0f), Color.White);
+                Main.spriteBatch.Draw(helperTarget, new Rectangle(2, 0, Main.screenWidth / 2, Main.screenHeight / 2), color);
+                Main.spriteBatch.Draw(helperTarget, new Rectangle(-2, 0, Main.screenWidth / 2, Main.screenHeight / 2), color);
+                Main.spriteBatch.Draw(helperTarget, new Rectangle(0, 2, Main.screenWidth / 2, Main.screenHeight / 2), color);
+                Main.spriteBatch.Draw(helperTarget, new Rectangle(0, -2, Main.screenWidth / 2, Main.screenHeight / 2), color);
+                Main.spriteBatch.Draw(helperTarget, new Rectangle(0, 0, Main.screenWidth / 2, Main.screenHeight / 2), Color.White);
 
                 Main.spriteBatch.End();
 
@@ -133,7 +133,7 @@ namespace Aequus.Content.Necromancy
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
-            var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
+            var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth * 2, Main.screenHeight * 2), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
             Necromancy.ShaderData.UseColor(DrawColor());
             Necromancy.ShaderData.Apply(drawData);
 

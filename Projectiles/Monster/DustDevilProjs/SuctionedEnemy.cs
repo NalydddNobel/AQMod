@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Boss;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -103,7 +104,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                     }
                     float orbitWidth = npc.width * 3f;
                     float y = randomYOffset + (float)Math.Sin(wave * 0.8f) * 10f;
-                    NPCs.Boss.DustDevil.GetTornadoInfo(npc.height, y, out float _, out float _, out float progress);
+                    DustDevil.GetLegacyTornadoInfo(npc.height, y, out float _, out float _, out float progress);
                     var gotoPosition = npc.Center + new Vector2((float)Math.Sin(wave) * orbitWidth * progress, y);
                     Projectile.localAI[0] = (float)Math.Cos(wave);
                     var diff = gotoPosition - Projectile.Center;
@@ -145,6 +146,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
 
         public override void Kill(int timeLeft)
         {
+            return;
             if ((int)Projectile.ai[0] == 0)
                 return;
             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
@@ -157,7 +159,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
         {
             if ((int)Projectile.ai[0] != 0)
             {
-                NPCs.Boss.DustDevil.AddDraw(Projectile.whoAmI, Projectile.localAI[0]);
+                NPCs.Boss.DustDevil.AddLegacyDraw(Projectile.whoAmI, Projectile.localAI[0]);
             }
         }
         public override bool PreDraw(ref Color lightColor)

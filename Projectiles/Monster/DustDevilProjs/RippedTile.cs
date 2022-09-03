@@ -122,7 +122,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                         }
                         float orbitWidth = npc.width * 3f;
                         float y = randomYOffset + (float)Math.Sin(wave * 0.8f) * 10f;
-                        NPCs.Boss.DustDevil.GetTornadoInfo(npc.height, y, out float _, out float _, out float progress);
+                        NPCs.Boss.DustDevil.GetLegacyTornadoInfo(npc.height, y, out float _, out float _, out float progress);
                         var gotoPosition = npc.Center + new Vector2((float)Math.Sin(wave) * orbitWidth * progress, y);
                         Projectile.localAI[0] = (float)Math.Cos(wave);
                         var diff = gotoPosition - Projectile.Center;
@@ -177,7 +177,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             }
             else if ((int)Projectile.ai[0] > 0)
             {
-                NPCs.Boss.DustDevil.AddDraw(Projectile.whoAmI, Projectile.localAI[0]);
+                NPCs.Boss.DustDevil.AddLegacyDraw(Projectile.whoAmI, Projectile.localAI[0]);
             }
         }
         public override bool PreDraw(ref Color lightColor)

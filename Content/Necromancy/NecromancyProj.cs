@@ -108,10 +108,19 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie)
             {
-                float wave = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f);
-                drawColor.A = (byte)MathHelper.Clamp(drawColor.R - 100, byte.MinValue, byte.MaxValue);
-                drawColor.G = (byte)MathHelper.Clamp(drawColor.G - (50 + (int)(Math.Max(0f, wave) * 10f)), drawColor.R, byte.MaxValue);
-                drawColor.B = (byte)MathHelper.Clamp(drawColor.B + 100, drawColor.G, byte.MaxValue);
+                var color = Color.White;
+                int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[projectile.owner], renderLayer);
+                if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
+                {
+                    color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
+                    color.A = 100;
+                }
+
+                float wave = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10f);
+                color *= (wave + 1f) / 2f * 0.5f;
+                drawColor.A = (byte)MathHelper.Clamp(drawColor.R + color.R, byte.MinValue, byte.MaxValue);
+                drawColor.G = (byte)MathHelper.Clamp(drawColor.G + color.G, byte.MinValue, byte.MaxValue);
+                drawColor.B = (byte)MathHelper.Clamp(drawColor.B + color.B, byte.MinValue, byte.MaxValue);
                 drawColor.A = (byte)MathHelper.Clamp(drawColor.A + wave * 50f, byte.MinValue, byte.MaxValue - 60);
                 return drawColor;
             }
