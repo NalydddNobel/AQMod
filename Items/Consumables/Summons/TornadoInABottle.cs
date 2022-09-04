@@ -34,7 +34,7 @@ namespace Aequus.Items.Consumables.Summons
         {
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y - 1200, ModContent.NPCType<DustDevil>(), player.whoAmI);
+                NPC.SpawnBoss((int)player.position.X + player.width / 2, (int)player.position.Y - 1200, ModContent.NPCType<DustDevil>(), player.whoAmI);
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

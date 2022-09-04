@@ -1,19 +1,14 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.DustDevilEffects;
 using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
-using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.DustDevilProjs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.Audio;
@@ -79,8 +74,8 @@ namespace Aequus.NPCs.Boss
         {
             NPC.width = 100;
             NPC.height = 100;
-            NPC.lifeMax = 18500;
-            NPC.damage = 25;
+            NPC.lifeMax = 18000;
+            NPC.damage = 15;
             NPC.defense = 12;
             NPC.aiStyle = -1;
             NPC.noTileCollide = true;
@@ -173,14 +168,14 @@ namespace Aequus.NPCs.Boss
                 Tornado.timeLeft = 4;
                 Tornado.pull = 0.6f;
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 1; i++)
                 {
                     var loc = new Vector3(NPC.Center + new Vector2(Main.rand.NextFloat(-1200, 1200), Main.rand.NextFloat(-1200, 1200)), Main.rand.NextFloat(-NPC.width * 2, NPC.width * 2));
                     if (Main.rand.Next(120) < 118 && !Collision.CanHitLine(new Vector2(loc.X, loc.Y), 2, 2, NPC.position, NPC.width, NPC.height))
                     {
                         continue;
                     }
-                    var p = new DDParticle(loc, new Vector3(Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), Color.White * 0.6f, Main.rand.NextFloat(0.75f, 1.8f), Main.rand.NextFloat(MathHelper.TwoPi));
+                    var p = new DDParticle(loc, new Vector3(Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), Color.White * 0.8f, Main.rand.NextFloat(0.75f, 1.8f), Main.rand.NextFloat(MathHelper.TwoPi));
                     DDParticleSystem.AddParticle(p);
 
                     if (Main.rand.NextBool(12))
@@ -190,21 +185,34 @@ namespace Aequus.NPCs.Boss
                         {
                             continue;
                         }
-                        p = new DDParticle(loc, new Vector3(Main.rand.NextVector2Square(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), Color.White * 0.9f, Main.rand.NextFloat(0.75f, 1.5f), Main.rand.NextFloat(MathHelper.TwoPi));
-                        DDParticleSystem.AddParticle(p);
+                        var v = new Vector3(Main.rand.NextVector2Square(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
+                        for (int j = 0; j < 4; j++)
+                        {
+                            p = new DDParticle(loc - v * j * 0.2f, v, Color.White, Main.rand.NextFloat(0.75f, 1.5f), Main.rand.NextFloat(MathHelper.TwoPi));
+                            p.frame.X = 0;
+                            p.OnAdd();
+                            DDParticleSystem.AddParticle(p);
+                        }
                     }
                 }
             }
 
             SpawnManager.ForceZen(NPC);
-            //NPC.velocity *= 0.8f;
-            //return;
+
             if (Action != ACTION_GOODBYE && !NPC.HasValidTarget)
             {
                 if (!CheckTargets())
                 {
                     return;
                 }
+            }
+
+            Lighting.AddLight(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y), new Vector3(1f, 0.66f, 0f));
+            Lighting.AddLight(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height), new Vector3(0f, 0.66f, 1f));
+
+            if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(60))
+            {
+                CheckOrbitingBlocks();
             }
 
             switch (Action)
@@ -248,7 +256,7 @@ namespace Aequus.NPCs.Boss
         {
             int secondary = SecondaryAction;
             ClearAI();
-            if (secondary == 0 && PhaseTwo)
+            if (secondary == 0)
             {
                 SecondaryAction = phase;
                 Action = Main.rand.NextBool() ? ACTION_FIREBALLS : ACTION_ICE;
@@ -256,6 +264,34 @@ namespace Aequus.NPCs.Boss
             else
             {
                 Action = phase;
+            }
+            NPC.netUpdate = true;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                CheckOrbitingBlocks();
+        }
+
+        public void CheckOrbitingBlocks()
+        {
+            int count = 0;
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<DustDevilTileProj>())
+                {
+                    count++;
+                }
+            }
+            var source = NPC.GetSource_FromAI();
+            for (int i = count; i < 200; i++)
+            {
+                var v = Main.rand.NextVector2Unit() * Main.rand.NextFloat(200f, 1600f);
+                var t = (NPC.Center + v).ToTileCoordinates();
+                if (Main.rand.Next(60) < 58 && (!WorldGen.InWorld(t.X, t.Y, 10) || !Main.tile[t].IsFullySolid() || Main.tileFrameImportant[Main.tile[t].TileType]))
+                {
+                    if (Main.rand.NextBool(500))
+                        i--;
+                    continue;
+                }
+                Projectile.NewProjectile(source, NPC.Center + v, Vector2.Zero, ModContent.ProjectileType<DustDevilTileProj>(), CalcDamage(), 1f, Main.myPlayer, 0f, NPC.whoAmI);
             }
         }
 
@@ -387,7 +423,7 @@ namespace Aequus.NPCs.Boss
             ActionTimer++;
             if (ActionTimer <= 120)
             {
-                int delay = Main.getGoodWorld ? 10 : Main.expertMode ? 25 : 50;
+                int delay = Mode(25, 50, 75);
 
                 if (ActionTimer % delay == 0)
                 {
@@ -429,43 +465,45 @@ namespace Aequus.NPCs.Boss
             }
             else if (NPC.Distance(Main.player[NPC.target].Center) < 2000f)
             {
-                NPC.velocity *= 0.95f;
+                NPC.velocity *= 0.9f;
             }
 
             ActionTimer++;
-            if (ActionTimer <= 120)
+            if (ActionTimer <= 150)
             {
-                if (ActionTimer == 120)
+                if (ActionTimer == 150)
                 {
                     if (!CheckTargets())
                     {
                         return;
                     }
-                    if (Aequus.ShouldDoScreenEffect(NPC.Center))
-                    {
-                        Shake(10);
-                        Flash(NPC.Center, 0.25f, 0.8f);
-                        SoundEngine.PlaySound(SoundID.Item14);
-                    }
                 }
-                else
+                else if (ActionTimer < 80 && ActionTimer > 20)
                 {
-                    int delay = Main.getGoodWorld ? 1 : Main.expertMode ? 5 : 10;
+                    int delay = Mode(8, 3, 1);
 
-                    if (ActionTimer % delay == 0)
+                    if ((ActionTimer - 20) % delay == 0)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            var point = ScanTilePoint(Main.rand.NextVector2Unit()).ToWorldCoordinates() + new Vector2(8f);
-                            Projectile.NewProjectile(NPC.GetSource_FromThis(), point, Vector2.Normalize(NPC.Center - point),
-                                ModContent.ProjectileType<RippedTile>(), CalcDamage(), 1f, Main.myPlayer, ai1: NPC.whoAmI);
+                            for (int i = 0; i < Main.maxProjectiles; i++)
+                            {
+                                if (Main.projectile[i].active && Main.projectile[i].type == ModContent.ProjectileType<DustDevilTileProj>() && Main.projectile[i].ai[0] == DustDevilTileProj.STATE_ORBITING)
+                                {
+                                    if (Main.rand.NextBool(10))
+                                    {
+                                        Main.projectile[i].ai[0] = DustDevilTileProj.STATE_BEINGPULLED;
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
             else
             {
-                if (ActionTimer > 400)
+                if (ActionTimer > 240)
                 {
                     SetAction(ACTION_SUCTIONENEMIES);
                 }
@@ -484,11 +522,11 @@ namespace Aequus.NPCs.Boss
                         return;
                     }
                     NPC.velocity.X = 0f;
-                    NPC.velocity.Y = 6f;
+                    NPC.velocity.Y = 30f;
                 }
                 else
                 {
-                    NPC.velocity.Y *= 0.92f;
+                    NPC.velocity.Y *= 0.975f;
                     if (NPC.velocity.Y < 0.1f)
                     {
                         NPC.velocity.Y = 0f;
@@ -545,7 +583,7 @@ namespace Aequus.NPCs.Boss
             LegacyDrawFront.Add(proj);
         }
 
-        public static bool CurrentlyDrawing(float z)
+        public static bool CurrentlyLegacyDrawing(float z)
         {
             return z > 0f ? LegacyDrawBack.RenderingNow : LegacyDrawFront.RenderingNow;
         }
@@ -557,8 +595,8 @@ namespace Aequus.NPCs.Boss
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, NPC.type);
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, NPC.type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, Type);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

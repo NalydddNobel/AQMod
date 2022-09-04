@@ -32,13 +32,8 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                 NPCID.GreenSlime,
                 NPCID.PurpleSlime,
                 NPCID.Harpy,
-                NPCID.CorruptBunny,
-                NPCID.CrimsonBunny,
-                NPCID.Mummy,
                 NPCID.SandSlime,
                 NPCID.JungleBat,
-                NPCID.Derpling,
-                NPCID.SpikedJungleSlime,
                 NPCID.SpikedIceSlime,
                 NPCID.IceSlime,
                 NPCID.ToxicSludge,
@@ -146,11 +141,12 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
 
         public override void Kill(int timeLeft)
         {
-            return;
             if ((int)Projectile.ai[0] == 0)
                 return;
             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
             var n = NPC.NewNPCDirect(Projectile.GetSource_FromThis(), Projectile.Center, (int)Projectile.ai[0]);
+            n.lifeMax /= 2;
+            n.life /= 2;
             n.velocity = Vector2.Normalize(Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].Center - Projectile.Center) * 10f;
             n.netUpdate = true;
         }
@@ -164,7 +160,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if ((int)Projectile.ai[0] == -1 || NPCs.Boss.DustDevil.CurrentlyDrawing(Projectile.localAI[0]))
+            if ((int)Projectile.ai[0] == -1 || NPCs.Boss.DustDevil.CurrentlyLegacyDrawing(Projectile.localAI[0]))
             {
                 Projectile.GetDrawInfo(out var _, out var off, out var _, out var _, out int trailLength);
                 int npcTexture = NPCID.FromNetId((int)Projectile.ai[0]);

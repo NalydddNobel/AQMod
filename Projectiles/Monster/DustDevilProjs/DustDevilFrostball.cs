@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +25,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(70, 235, 255) * Projectile.Opacity;
+            return new Color(80, 255, 255, 0) * 0.6f * Projectile.Opacity;
         }
 
         public override bool? CanDamage()
@@ -38,6 +39,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             {
                 Projectile.ai[1] = Projectile.velocity.Length();
                 Projectile.velocity *= 0.1f;
+                Projectile.frame = Main.rand.Next(5);
             }
             else
             {
@@ -58,10 +60,12 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             }
             if (Projectile.alpha < 10)
             {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Frost);
-                Main.dust[d].velocity = Vector2.Lerp(-Projectile.velocity, Main.dust[d].velocity, 0.5f);
-                Main.dust[d].scale = Main.rand.NextFloat(0.9f, 2f);
-                Main.dust[d].noGravity = true;
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Frost);
+                d.velocity = Vector2.Lerp(-Projectile.velocity, d.velocity, 0.75f);
+                d.velocity *= 0.8f;
+                d.scale *= Main.rand.NextFloat(0.7f, 1f);
+                d.fadeIn = d.scale + 0.2f;
+                d.noGravity = true;
             }
         }
 
@@ -73,9 +77,14 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation + MathHelper.PiOver2, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
+            Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out int _);
+            Main.instance.LoadProjectile(ProjectileID.Blizzard);
+            var t = TextureAssets.Projectile[ProjectileID.Blizzard];
+            var tFrame = t.Frame(verticalFrames: 5, frameY: Projectile.frame);
+            Main.spriteBatch.Draw(t.Value, Projectile.position + offset - Main.screenPosition, tFrame, Color.White, Projectile.velocity.ToRotation() + MathHelper.PiOver2, new Vector2(tFrame.Width / 2f, 4f),
+                Projectile.scale * 1.25f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation + MathHelper.PiOver2, origin, new Vector2(Projectile.scale * 0.5f, Projectile.scale), SpriteEffects.None, 0f);
             return false;
         }
     }
