@@ -164,6 +164,7 @@ Mods: {
 			Slingsaber: 弹剑弓
 			Slingshot: 弹弓
 
+			GhastlyBlaster: 阴森冲击波
 			SurgeRod: 电涌杖
 			PentalScythe: 回旋魔镰
 			Gamestar: 游戏之星
@@ -242,6 +243,7 @@ Mods: {
 
 			Moro: 摩洛
 
+			OmniPaint: 全能油漆
 			AdvancedRuler: 高级标尺
 			CarpenterBountyItem: 木匠赏金
 			AdventuringMap: 冒险地图
@@ -861,6 +863,7 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
+			OmniPaint: 长按油漆物品以调出可选择油漆的菜单
 			AdvancedRuler:
 				'''
 				当手持此物品时:
