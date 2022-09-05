@@ -120,6 +120,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
 			CrownOfDarkness: 黑暗王冠
 			CrownOfBlood: 鲜血王冠
@@ -585,6 +586,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			LittleInferno: 
+				'''
+				攻击会造成狱火减益
+				弹幕和燃烧的敌人身上会带有狱火药水的效果
+				'记住...火焰可以很温暖! 火可以很有趣! 火可以很危险!'
+				'''
 			CrownOfTheGrounded: 当站在实心地面上时增加10%暴击率
 			CrownOfDarkness: 当处于黑暗中时增加10%伤害
 			CrownOfBlood:
@@ -699,6 +706,7 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			GhastlyBlaster: "'你的眼睛欺骗了你, 这不是一把剑'"
 			SurgeRod:
 				'''
 				投射雷云网来轰击你的敌人
