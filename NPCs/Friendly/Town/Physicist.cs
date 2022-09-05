@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Drones;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Consumables.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.Misc;

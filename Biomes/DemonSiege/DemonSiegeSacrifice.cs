@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Networking;
 using Aequus.Items;
-using Aequus.Items.Consumables;
+using Aequus.Items.Boss.Summons;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;

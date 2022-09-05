@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Accessories;
-using Aequus.Items.Tools.Mining;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
 using Terraria.ID;
 using Terraria.ModLoader;

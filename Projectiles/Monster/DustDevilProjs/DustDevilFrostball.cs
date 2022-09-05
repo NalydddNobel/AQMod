@@ -71,8 +71,8 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.Frostburn, 240);
-            target.AddBuff(BuffID.Chilled, 600);
+            target.AddBuff(BuffID.Frostburn, 120);
+            target.AddBuff(BuffID.Chilled, 60);
         }
 
         public override bool PreDraw(ref Color lightColor)

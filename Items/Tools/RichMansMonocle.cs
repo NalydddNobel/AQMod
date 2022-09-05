@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Info
+namespace Aequus.Items.Tools
 {
     public class RichMansMonocle : ModItem, ItemHooks.IUpdateBank
     {

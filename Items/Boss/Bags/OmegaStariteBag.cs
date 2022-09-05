@@ -1,18 +1,15 @@
-﻿using Aequus.Common.ItemDrops;
-using Aequus.Items.Accessories;
-using Aequus.Items.Armor.Vanity;
+﻿using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Boss.Expert;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags
+namespace Aequus.Items.Boss.Bags
 {
     public class OmegaStariteBag : TreasureBagBase
     {

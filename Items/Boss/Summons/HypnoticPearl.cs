@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Summons
+namespace Aequus.Items.Boss.Summons
 {
     public class HypnoticPearl : ModItem
     {

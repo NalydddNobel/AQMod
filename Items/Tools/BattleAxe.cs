@@ -2,9 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
-namespace Aequus.Items.Tools.Mining
+namespace Aequus.Items.Tools
 {
     public class BattleAxe : ModItem
     {

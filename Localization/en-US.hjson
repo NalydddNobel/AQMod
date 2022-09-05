@@ -120,6 +120,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			LittleInferno: Little Inferno
 			CrownOfTheGrounded: Crown of the Grounded
 			CrownOfDarkness: Crown of Darkness
 			CrownOfBlood: Crown of Blood
@@ -585,6 +586,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			LittleInferno: 
+				'''
+				Critical strikes inflict hellfire
+				Projectiles and burning enemies have inferno potion effect
+				'Remember... fire can be warm! Fire can be fun! Fire can be DANGEROUS!'
+				'''
 			CrownOfTheGrounded: 10% increased critical strike chance while on solid ground
 			CrownOfDarkness: 10% increased damage while in the dark
 			CrownOfBlood:

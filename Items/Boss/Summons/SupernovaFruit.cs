@@ -12,7 +12,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Summons
+namespace Aequus.Items.Boss.Summons
 {
     public class SupernovaFruit : ModItem/*, GlowmaskData.IPlayerHeld*/
     {

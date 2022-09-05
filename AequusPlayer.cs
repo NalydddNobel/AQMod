@@ -176,6 +176,8 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public bool accDustDevilFire;
+
         public int groundCrit;
         public float darknessDamage;
 
@@ -507,6 +509,7 @@ namespace Aequus
         {
             PlayerContext = Player.whoAmI;
 
+            accDustDevilFire = false;
             accRitualSkull = false;
             groundCrit = 0;
             darknessDamage = 0f;
@@ -1458,6 +1461,15 @@ namespace Aequus
         }
         public void InflictDebuffs(NPC target, int damage, float knockback, bool crit)
         {
+            if (accDustDevilFire)
+            {
+                target.AddBuff(BuffID.OnFire, 240);
+                if (crit)
+                {
+                    target.AddBuff(BuffID.OnFire3, 180);
+                }
+            }
+
             if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
@@ -2025,14 +2037,6 @@ namespace Aequus
                 }
                 return;
             }
-
-            //var graves = CustomTombstones.ChooseTombstone(self, coinsOwned, deathText, hitDirection);
-            //if (graves != null && graves.Count > 0 && Main.netMode != NetmodeID.MultiplayerClient)
-            //{
-            //    int p = Projectile.NewProjectile(self.GetSource_Death(), self.Center, aequus.GetRandomTombstoneVelocity(hitDirection), Main.rand.Next(graves), 0, 0f, Main.myPlayer);
-            //    Main.projectile[p].miscText = deathText.ToString();
-            //    return;
-            //}
 
             orig(self, coinsOwned, deathText, hitDirection);
         }

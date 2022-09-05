@@ -8,10 +8,9 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Boss.Expert
 {
     public class CelesteTorus : ModItem, ItemHooks.IUpdateItemDye
     {
@@ -129,8 +128,8 @@ namespace Aequus.Items.Accessories
             Item.damage = 70;
             Item.knockBack = 2f;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = Item.sellPrice(gold: 4);
+            Item.rare = ItemDefaults.RarityOmegaStarite;
+            Item.value = ItemDefaults.OmegaStariteValue;
             Item.expert = true;
         }
 

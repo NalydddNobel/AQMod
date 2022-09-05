@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Items.Tools.Mining;
+using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

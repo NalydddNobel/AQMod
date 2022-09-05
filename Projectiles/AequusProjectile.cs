@@ -1,5 +1,6 @@
 ﻿using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Items.Boss.Expert;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Ranged;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles
     public class AequusProjectile : GlobalProjectile
     {
         public static HashSet<int> HeatDamage { get; private set; }
+        public static HashSet<int> BlacklistSpecialEffects { get; private set; }
 
         public static int pWhoAmI;
         public static int pIdentity;
@@ -54,6 +56,7 @@ namespace Aequus.Projectiles
         public int sourceProj;
 
         public int transform;
+        public int timeAlive;
 
         public override bool InstancePerEntity => true;
 
@@ -68,6 +71,11 @@ namespace Aequus.Projectiles
             sourceNPC = -1;
             sourceProjIdentity = -1;
             sourceProj = -1;
+            sourceAmmoUsed = 0;
+            sourceItemUsed = 0;
+            sourceProjType = 0;
+            transform = 0;
+            timeAlive = 0;
         }
 
         public override void Load()
@@ -80,6 +88,13 @@ namespace Aequus.Projectiles
                 ProjectileID.GreekFire1,
                 ProjectileID.GreekFire2,
                 ProjectileID.GreekFire3,
+            };
+            BlacklistSpecialEffects = new HashSet<int>()
+            {
+                ProjectileID.VilethornBase,
+                ProjectileID.NettleBurstLeft,
+                ProjectileID.NettleBurstRight,
+                ProjectileID.CrystalVileShardShaft,
             };
             pIdentity = -1;
             pWhoAmI = -1;
@@ -281,12 +296,22 @@ namespace Aequus.Projectiles
 
         public override void PostAI(Projectile projectile)
         {
-            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
+            timeAlive++;
+            if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !projectile.npcProj && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
                 if (glowCore.glowCore != -1)
                 {
                     GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
+                }
+            }
+
+            if (CanGetSpecialAccEffects(projectile))
+            {
+                var aequus = Main.player[projectile.owner].Aequus();
+                if (aequus.accDustDevilFire)
+                {
+                    LittleInferno.InfernoPotionEffect(Main.player[projectile.owner], projectile.Center);
                 }
             }
 
@@ -343,6 +368,20 @@ namespace Aequus.Projectiles
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
+            if (CanGetSpecialAccEffects(projectile))
+            {
+                var aequus = Main.player[projectile.owner].Aequus();
+                if (aequus.accDustDevilFire)
+                {
+                    float opacity = Math.Clamp((Main.myPlayer == projectile.owner ? 0.4f : 0.15f) / Main.player[projectile.owner].ownedProjectileCounts[projectile.type], 0.05f, 1f);
+                    if (timeAlive < 30)
+                    {
+                        opacity *= timeAlive / 30f;
+                    }
+                    LittleInferno.DrawInfernoRings(projectile.Center - Main.screenPosition, opacity);
+                }
+            }
+
             if (sourceItemUsed == ModContent.ItemType<Raygun>())
             {
                 if (!Raygun.BulletColor.ContainsKey(projectile.type))
@@ -355,8 +394,14 @@ namespace Aequus.Projectiles
             return true;
         }
 
+        public bool CanGetSpecialAccEffects(Projectile projectile)
+        {
+            return projectile.friendly && projectile.damage > 0 && projectile.owner >= 0 && projectile.owner != 255 && !projectile.npcProj && Main.player[projectile.owner].heldProj != projectile.whoAmI && !BlacklistSpecialEffects.Contains(projectile.type);
+        }
+
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
+            binaryWriter.Write(timeAlive);
             bitWriter.WriteBit(defExtraUpdates > 0);
             if (defExtraUpdates > 0)
             {
@@ -391,6 +436,7 @@ namespace Aequus.Projectiles
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
+            timeAlive = binaryReader.ReadInt32();
             if (bitReader.ReadBit())
             {
                 defExtraUpdates = binaryReader.ReadUInt16();

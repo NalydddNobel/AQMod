@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Mining
+namespace Aequus.Items.Boss.Expert
 {
     public class Crabax : ModItem
     {

@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Summon.Sentry;
+﻿using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Boss.Expert;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

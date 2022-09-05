@@ -1,14 +1,15 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Boss.Expert;
+using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Tools.Mining;
 using Aequus.NPCs.Boss;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags
+namespace Aequus.Items.Boss.Bags
 {
     public class CrabsonBag : TreasureBagBase
     {

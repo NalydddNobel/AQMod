@@ -11,10 +11,16 @@ namespace Aequus.Buffs
     public class AequusBuff : GlobalBuff
     {
         public static HashSet<int> IsWellFedButDoesntIncreaseLifeRegen { get; private set; }
+        public static HashSet<int> FireDebuffForLittleInferno { get; private set; }
 
         public override void Load()
         {
             IsWellFedButDoesntIncreaseLifeRegen = new HashSet<int>();
+            FireDebuffForLittleInferno = new HashSet<int>()
+            {
+                BuffID.OnFire,
+                BuffID.OnFire3,
+            };
             On.Terraria.NPC.AddBuff += NPC_AddBuff;
         }
 

@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
@@ -6,6 +7,7 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Boss.Expert;
 using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
@@ -46,6 +48,7 @@ namespace Aequus.NPCs
 
         public bool heatDamage;
         public bool noHitEffect;
+        public bool infernoOnFire;
 
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
@@ -218,11 +221,11 @@ namespace Aequus.NPCs
 
         public override void SetDefaults(NPC npc)
         {
-            // On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
             if (HeatDamage.Contains(npc.type))
             {
                 heatDamage = true;
             }
+            infernoOnFire = false;
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -236,7 +239,42 @@ namespace Aequus.NPCs
             }
         }
 
-        public override void PostAI(NPC npc)
+        public void PostAI_JustHit_UpdateInferno(NPC npc)
+        {
+            foreach (var b in AequusBuff.FireDebuffForLittleInferno)
+            {
+                if (npc.HasBuff(b))
+                {
+                    for (int i = 0; i < Main.maxPlayers; i++)
+                    {
+                        if (Main.player[i].active && !Main.player[i].dead && npc.Distance(Main.player[i].Center) < 1000f)
+                        {
+                            if (Main.player[i].Aequus().accDustDevilFire)
+                            {
+                                infernoOnFire = true;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        public void PostAI_UpdateInferno(NPC npc)
+        {
+            int player = npc.HasValidTarget ? npc.target : Player.FindClosest(npc.position, npc.width, npc.height);
+            LittleInferno.InfernoPotionEffect(Main.player[player], npc.Center, npc.whoAmI);
+
+            for (int i = 0; i < NPC.maxBuffs; i++)
+            {
+                if (AequusBuff.FireDebuffForLittleInferno.Contains(npc.buffType[i]))
+                {
+                    return;
+                }
+            }
+
+            infernoOnFire = false;
+        }
+        public void PostAI_VelocityBoostHack(NPC npc)
         {
             if (npc.noTileCollide)
             {
@@ -246,15 +284,9 @@ namespace Aequus.NPCs
                     npc.position += npc.velocity * velocityBoost;
                 }
             }
-
-            if (Main.netMode != NetmodeID.SinglePlayer && npc.netUpdate)
-                Sync(npc.whoAmI);
-
-            if (Main.netMode == NetmodeID.Server)
-            {
-                return;
-            }
-
+        }
+        public void PostAI_DoDebuffEffects(NPC npc)
+        {
             if (npc.HasBuff<BlueFire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
@@ -276,6 +308,29 @@ namespace Aequus.NPCs
                     AequusEffects.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
+        }
+        public override void PostAI(NPC npc)
+        {
+            if (npc.justHit)
+            {
+                PostAI_JustHit_UpdateInferno(npc);
+            }
+
+            if (infernoOnFire)
+            {
+                PostAI_UpdateInferno(npc);
+            }
+
+            PostAI_VelocityBoostHack(npc);
+
+            if (Main.netMode != NetmodeID.SinglePlayer && npc.netUpdate)
+                Sync(npc.whoAmI);
+
+            if (Main.netMode == NetmodeID.Server)
+            {
+                return;
+            }
+            PostAI_DoDebuffEffects(npc);
         }
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
@@ -305,17 +360,37 @@ namespace Aequus.NPCs
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (!npc.IsABestiaryIconDummy && npc.HasBuff<BitCrushedDebuff>())
+            if (!npc.IsABestiaryIconDummy)
             {
-                var r = AequusEffects.EffectRand;
-                r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
-                int amt = Math.Max((npc.width + npc.height) / 20, 1);
-                for (int k = 0; k < amt; k++)
+                if (infernoOnFire)
                 {
-                    var dd = new DrawData(SquareParticle.SquareParticleTexture.Value, npc.Center - Main.screenPosition, null, Color.White, 0f, SquareParticle.SquareParticleTexture.Value.Size() / 2f, (int)r.Rand(amt * 2, amt * 5), SpriteEffects.None, 0);
-                    dd.position.X += (int)r.Rand(-npc.width, npc.width);
-                    dd.position.Y += (int)r.Rand(-npc.height, npc.height);
-                    GamestarRenderer.DrawData.Add(dd);
+                    float opacity = 0.5f;
+                    int time = 0;
+                    for (int i = 0; i < NPC.maxBuffs; i++)
+                    {
+                        if (AequusBuff.FireDebuffForLittleInferno.Contains(npc.buffType[i]))
+                        {
+                            time = Math.Max(npc.buffTime[i], time);
+                        }
+                    }
+                    if (time < 60)
+                    {
+                        opacity *= time / 60f;
+                    }
+                    LittleInferno.DrawInfernoRings(npc.Center - screenPos, opacity);
+                }
+                if (npc.HasBuff<BitCrushedDebuff>())
+                {
+                    var r = AequusEffects.EffectRand;
+                    r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
+                    int amt = Math.Max((npc.width + npc.height) / 20, 1);
+                    for (int k = 0; k < amt; k++)
+                    {
+                        var dd = new DrawData(SquareParticle.SquareParticleTexture.Value, npc.Center - Main.screenPosition, null, Color.White, 0f, SquareParticle.SquareParticleTexture.Value.Size() / 2f, (int)r.Rand(amt * 2, amt * 5), SpriteEffects.None, 0);
+                        dd.position.X += (int)r.Rand(-npc.width, npc.width);
+                        dd.position.Y += (int)r.Rand(-npc.height, npc.height);
+                        GamestarRenderer.DrawData.Add(dd);
+                    }
                 }
             }
             return true;
