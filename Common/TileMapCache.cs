@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Tiles;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -13,6 +14,8 @@ namespace Aequus.Common
         public readonly int WorldID;
 
         public TileDataCache[,] cachedInfo;
+
+        public const int SaveType = 0;
 
         public int Width => Area.Width;
         public int Height => Area.Height;
@@ -130,6 +133,7 @@ namespace Aequus.Common
             using (var stream = new MemoryStream())
             {
                 var writer = new BinaryWriter(stream);
+                writer.Write(SaveType);
                 writer.Write(Main.maxTileSets);
                 writer.Write(Main.maxWallTypes);
                 var tileConversionTable = new Dictionary<int, string>();
@@ -184,6 +188,7 @@ namespace Aequus.Common
                         writer.Write(cachedInfo[i, j].Misc.TileFrameY);
                         writer.Write(TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.GetValue<int>(cachedInfo[i, j].Misc));
                         writer.Write(cachedInfo[i, j].Wall.Type);
+                        writer.Write(cachedInfo[i, j].Aequus.bitpack);
                     }
                 }
 
@@ -199,6 +204,7 @@ namespace Aequus.Common
             using (var reader = new BinaryReader(new MemoryStream(buffer)))
             {
                 var info = new TileDataCache[width, height];
+                int type = reader.ReadInt32();
                 int maxTiles = reader.ReadInt32();
                 int maxWalls = reader.ReadInt32();
 
@@ -282,7 +288,11 @@ namespace Aequus.Common
                         {
                             wall.Type = (ushort)wallVal;
                         }
-                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall);
+                        var aequus = new AequusTileData()
+                        {
+                            bitpack = reader.ReadByte(),
+                        };
+                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall, aequus);
                     }
                 }
                 return info;

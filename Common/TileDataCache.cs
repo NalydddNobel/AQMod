@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using Aequus.Tiles;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,6 +28,7 @@ namespace Aequus.Common
         public readonly WallTypeData Wall;
         public readonly LiquidData Liquid;
         public readonly TileWallWireStateData Misc;
+        public readonly AequusTileData Aequus;
 
         public ushort TileType => Type.Type;
         public bool HasTile => Misc.HasTile;
@@ -42,15 +44,16 @@ namespace Aequus.Common
         public byte LiquidAmount => Liquid.Amount;
         public ushort WallType => Wall.Type;
 
-        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall)
+        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall, AequusTileData aequus)
         {
             Type = type;
             Liquid = liquid;
             Misc = misc;
             Wall = wall;
+            Aequus = aequus;
         }
 
-        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>())
+        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>(), tile.Get<AequusTileData>())
         {
         }
 
@@ -59,6 +62,8 @@ namespace Aequus.Common
             tile.Get<TileTypeData>() = Type;
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
+            tile.Get<WallTypeData>() = Wall;
+            tile.Get<AequusTileData>() = Aequus;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools.Camera;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -49,6 +50,7 @@ namespace Aequus.Content.CarpenterBounties
                         Main.tile[p].Get<LiquidData>() = this[i, j].Liquid;
                         Main.tile[p].Get<TileWallWireStateData>() = this[i, j].Misc;
                         Main.tile[p].Get<WallTypeData>() = this[i, j].Wall;
+                        Main.tile[p].Get<AequusTileData>() = this[i, j].Aequus;
                     }
                 }
                 Map = map;

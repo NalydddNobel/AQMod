@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Tools.Camera;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -173,6 +174,7 @@ namespace Aequus.Graphics.RenderTargets
                         Main.tile[p].Get<LiquidData>() = map[i, j].Liquid;
                         Main.tile[p].Get<TileWallWireStateData>() = map[i, j].Misc;
                         Main.tile[p].Get<WallTypeData>() = map[i, j].Wall;
+                        Main.tile[p].Get<AequusTileData>() = map[i, j].Aequus;
                         Main.tile[p].Active(value: true);
                         continue;
                     }
@@ -180,6 +182,7 @@ namespace Aequus.Graphics.RenderTargets
                     Main.tile[p].Get<LiquidData>() = map[i, j].Liquid;
                     Main.tile[p].Get<TileWallWireStateData>() = map[i, j].Misc;
                     Main.tile[p].Get<WallTypeData>() = map[i, j].Wall;
+                    Main.tile[p].Get<AequusTileData>() = map[i, j].Aequus;
                 }
             }
 
@@ -211,6 +214,7 @@ namespace Aequus.Graphics.RenderTargets
                     Main.tile[p].Get<LiquidData>() = oldMap[i, j].Liquid;
                     Main.tile[p].Get<TileWallWireStateData>() = oldMap[i, j].Misc;
                     Main.tile[p].Get<WallTypeData>() = oldMap[i, j].Wall;
+                    Main.tile[p].Get<AequusTileData>() = oldMap[i, j].Aequus;
                 }
             }
 
