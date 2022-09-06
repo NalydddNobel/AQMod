@@ -12,24 +12,11 @@ namespace Aequus.UI
 {
     public class OmniPaintUI : ILoadable
     {
-        public struct CoatingUIElement
-        {
-            public int itemID;
-            public Asset<Texture2D> texture;
-
-            public CoatingUIElement(int itemID, Asset<Texture2D> texture)
-            {
-                this.itemID = itemID;
-                this.texture = texture;
-            }
-        }
-
         public static OmniPaintUI Instance { get; private set; }
 
         public bool Enabled;
         public bool IsVisible => Enabled && !Main.playerInventory && IsPaintbrush.Contains(Main.LocalPlayer.HeldItem.type);
         public Dictionary<byte, int> PaintToItemID { get; set; }
-        public List<CoatingUIElement> Coatings { get; set; }
         public HashSet<int> IsPaintbrush { get; private set; }
 
         void ILoadable.Load(Mod mod)
@@ -43,7 +30,6 @@ namespace Aequus.UI
                 ItemID.SpectrePaintbrush,
                 ItemID.SpectrePaintRoller,
             };
-            Coatings = new List<CoatingUIElement>();
         }
 
         void ILoadable.Unload()
@@ -53,8 +39,6 @@ namespace Aequus.UI
             PaintToItemID = null;
             IsPaintbrush?.Clear();
             IsPaintbrush = null;
-            Coatings?.Clear();
-            Coatings = null;
         }
 
         public void Render(SpriteBatch spriteBatch)

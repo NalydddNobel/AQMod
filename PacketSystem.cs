@@ -66,7 +66,7 @@ namespace Aequus
                 }
                 Send((p) =>
                 {
-                    CoatingData.SendSquares(p, TileCoatingSync);
+                    AequusTileData.SendSquares(p, TileCoatingSync);
                 }, PacketType.CoatingTileSquare);
             }
         }
@@ -218,7 +218,7 @@ namespace Aequus
             {
                 case PacketType.CoatingTileSquare:
                     {
-                        CoatingData.ReadSquares(reader);
+                        AequusTileData.ReadSquares(reader);
                     }
                     break;
 

@@ -2,7 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Tools.Camera;
-using Aequus.Items.Tools.Coatings.Titanium;
+using Aequus.Items.Tools.Coatings;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;

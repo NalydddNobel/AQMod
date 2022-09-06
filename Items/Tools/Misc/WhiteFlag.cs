@@ -20,7 +20,7 @@ namespace Aequus.Items.Tools.Misc
             Item.width = 20;
             Item.height = 28;
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(gold: 10);
+            Item.value = Item.buyPrice(gold: 5);
             Item.useTime = 30;
             Item.useAnimation = 30;
             Item.useStyle = ItemUseStyleID.HoldUp;

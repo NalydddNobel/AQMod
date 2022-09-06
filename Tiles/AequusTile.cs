@@ -85,7 +85,7 @@ namespace Aequus.Tiles
         {
             if (!fail)
             {
-                Main.tile[i, j].Get<CoatingData>().OnKillTile();
+                Main.tile[i, j].Get<AequusTileData>().OnKillTile();
             }
         }
 

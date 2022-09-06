@@ -111,7 +111,7 @@ namespace Aequus
         {
             if (orig(x, y, context))
             {
-                return !Main.tile[x, y].Get<CoatingData>().Uncuttable;
+                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable;
             }
             return false;
         }
@@ -182,12 +182,21 @@ namespace Aequus
         {
             SaveDataAttribute.SaveData(tag, this);
             Structures.Save(tag);
+            var tileData = AequusTileData.Save();
+            if (tileData.Length != 0)
+            {
+                tag["AequusTileData"] = tileData;
+            }
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
             Structures.Load(tag);
+            if (tag.TryGet<byte[]>("AequusTileData", out var tileData))
+            {
+                AequusTileData.Load(tileData);
+            }
         }
 
         public override void NetSend(BinaryWriter writer)

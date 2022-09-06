@@ -7,6 +7,11 @@ namespace Aequus.Items.Tools
 {
     public class OmniPaint : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.RedPaint);

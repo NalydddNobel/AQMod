@@ -7,6 +7,11 @@ namespace Aequus.Items.Tools
 {
     public class AdvancedRuler : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 16;
