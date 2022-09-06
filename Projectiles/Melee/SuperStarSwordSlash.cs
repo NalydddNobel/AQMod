@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
@@ -86,7 +87,8 @@ namespace Aequus.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            BlueFire.InflictAndPlaySound(target, 120, 12);
+            if (Main.rand.NextBool(12))
+                AequusBuff.InflictAndPlaySound<BlueFire>(target, 120, BlueFire.InflictDebuffSound);
         }
 
         public override bool PreDraw(ref Color lightColor)

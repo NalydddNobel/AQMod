@@ -1,4 +1,6 @@
 ﻿using Aequus.Biomes;
+using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -42,6 +44,10 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(4f, 12f)
+            });
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
             });
 
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);

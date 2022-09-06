@@ -311,7 +311,7 @@ namespace Aequus.NPCs
         }
         public override void PostAI(NPC npc)
         {
-            if (npc.justHit)
+            if (!npc.SpawnedFromStatue && npc.justHit)
             {
                 PostAI_JustHit_UpdateInferno(npc);
             }

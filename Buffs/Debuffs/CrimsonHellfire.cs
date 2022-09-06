@@ -15,6 +15,7 @@ namespace Aequus.Buffs.Debuffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
+            AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
         }
 
         public static void AddStack(NPC npc, int time, int stacksAmt, bool inflictOnFireInsteadIfItsImmune = true)
@@ -25,13 +26,12 @@ namespace Aequus.Buffs.Debuffs
                 {
                     npc.AddBuff(BuffID.OnFire, time);
                 }
+                return;
             }
-            else
-            {
-                npc.AddBuff(ModContent.BuffType<CrimsonHellfire>(), time);
-                npc.Aequus().crimsonHellfireStacks += (byte)stacksAmt;
-                npc.netUpdate = true;
-            }
+
+            AequusBuff.InflictAndPlaySound<CrimsonHellfire>(npc, time, BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            npc.Aequus().crimsonHellfireStacks += (byte)stacksAmt;
+            npc.netUpdate = true;
         }
     }
 }

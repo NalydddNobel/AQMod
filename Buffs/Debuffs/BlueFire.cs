@@ -6,12 +6,13 @@ namespace Aequus.Buffs.Debuffs
 {
     public class BlueFire : ModBuff
     {
-        public static SoundStyle InflictDebuffSound = new SoundStyle(Aequus.AssetsPath + "Sounds/inflict_bluefire");
+        public static readonly SoundStyle InflictDebuffSound = new SoundStyle(Aequus.AssetsPath + "Sounds/inflict_bluefire") { PitchVariance = 0.3f, };
 
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
+            AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
         }
 
         public static bool InflictAndPlaySound(NPC target, int time, int chance = 1)

@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -207,7 +208,7 @@ namespace Aequus.Projectiles.Summon
                 dustAmount *= 2;
             }
 
-            if (BlueFire.InflictAndPlaySound(target, 120, 12))
+            if (Main.rand.NextBool(9) && AequusBuff.InflictAndPlaySound<BlueFire>(target, 120, BlueFire.InflictDebuffSound))
             {
                 dustAmount *= 2;
             }

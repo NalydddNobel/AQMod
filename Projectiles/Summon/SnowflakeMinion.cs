@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Minion;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -32,8 +33,8 @@ namespace Aequus.Projectiles.Summon
             Projectile.ignoreWater = true;
             Projectile.manualDirectionChange = true;
             Projectile.minionSlots = 0.5f;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 60;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 55;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -58,8 +59,12 @@ namespace Aequus.Projectiles.Summon
                 return;
             }
 
-            Projectile.localNPCHitCooldown = 60;
             var player = Main.player[Projectile.owner];
+            Projectile.idStaticNPCHitCooldown = 45;
+            for (int i = 0; i < player.ownedProjectileCounts[Type]; i++)
+            {
+                Projectile.idStaticNPCHitCooldown -= Math.Clamp(5 - i / 2, 1, 8);
+            }
             _pulseTimer = Main.GlobalTimeWrappedHourly;
             Projectile.GetMinionLeadership(out int leader, out int minionPos, out int count);
             if (leader == Projectile.whoAmI)
@@ -71,10 +76,10 @@ namespace Aequus.Projectiles.Summon
                 if (target != -1)
                 {
                     var targetCenter = Main.npc[target].Center;
-                    float amount = 0.05f;
+                    float amount = 0.03f;
                     if (distance < 320f)
                     {
-                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(targetCenter - Projectile.Center) * ((320f - distance) / 8f + 7.5f), amount);
+                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(targetCenter - Projectile.Center) * ((320f - distance) / 8f + 7.5f), distance / 320f * 0.1f);
                         if (Projectile.velocity.Length() < 5.5f)
                         {
                             Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 5.5f;

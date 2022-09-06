@@ -738,7 +738,7 @@ namespace Aequus
         {
             if (Main.player[projectile.owner].HasMinionAttackTargetNPC)
             {
-                distance = Vector2.Distance(position, projectile.Center);
+                distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
                 if (distance < maxDistance)
                 {
                     return Main.player[projectile.owner].MinionAttackTargetNPC;

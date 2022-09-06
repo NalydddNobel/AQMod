@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +13,7 @@ namespace Aequus.Buffs
     {
         public static HashSet<int> IsWellFedButDoesntIncreaseLifeRegen { get; private set; }
         public static HashSet<int> FireDebuffForLittleInferno { get; private set; }
+        public static List<int> DemonSiegeEnemyImmunity { get; private set; }
 
         public override void Load()
         {
@@ -21,6 +23,15 @@ namespace Aequus.Buffs
                 BuffID.OnFire,
                 BuffID.OnFire3,
             };
+            DemonSiegeEnemyImmunity = new List<int>()
+            {
+                BuffID.OnFire,
+                BuffID.OnFire3,
+                BuffID.CursedInferno,
+                BuffID.ShadowFlame,
+                BuffID.Ichor,
+                BuffID.Oiled,
+            };
             On.Terraria.NPC.AddBuff += NPC_AddBuff;
         }
 
@@ -28,14 +39,38 @@ namespace Aequus.Buffs
         {
             if (Main.debuff[type])
             {
-                Player player = AequusPlayer.FindPlayerContext();
-
+                var player = AequusPlayer.CurrentPlayerContext();
                 if (player != null)
                 {
                     time = (int)(time * player.Aequus().Debuffs.ApplyBuffMultipler(player, type));
                 }
             }
+
             orig(self, type, time, quiet);
+        }
+
+        public static bool InflictAndPlaySound(NPC target, int type, int time, SoundStyle sound)
+        {
+            if (target.life <= 0)
+            {
+                return false;
+            }
+
+            bool hasBuffOld = target.HasBuff(type);
+
+            target.AddBuff(type, time);
+
+            bool hasBuff = target.HasBuff(type);
+            if (!hasBuffOld && hasBuff)
+            {
+                SoundEngine.PlaySound(sound);
+            }
+            return hasBuff;
+        }
+
+        public static bool InflictAndPlaySound<T>(NPC target, int time, SoundStyle sound) where T : ModBuff
+        {
+            return InflictAndPlaySound(target, ModContent.BuffType<T>(), time, sound);
         }
 
         public static bool AddStaticImmunity(int npc, params int[] buffList)

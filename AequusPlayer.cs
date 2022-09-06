@@ -2318,7 +2318,7 @@ namespace Aequus
             }
         }
 
-        public static Player FindPlayerContext()
+        public static Player CurrentPlayerContext()
         {
             if (PlayerContext > -1)
             {

@@ -95,6 +95,10 @@ namespace Aequus.Projectiles
                 ProjectileID.NettleBurstLeft,
                 ProjectileID.NettleBurstRight,
                 ProjectileID.CrystalVileShardShaft,
+                ProjectileID.FallingStar,
+                ProjectileID.FallingStarSpawner,
+                ProjectileID.StardustDragon2,
+                ProjectileID.StardustDragon3,
             };
             pIdentity = -1;
             pWhoAmI = -1;
@@ -309,7 +313,12 @@ namespace Aequus.Projectiles
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                if (aequus.accDustDevilFire)
+                int chance = 1;
+                if (projectile.minion)
+                {
+                    chance += Main.player[projectile.owner].ownedProjectileCounts[projectile.type] / 2;
+                }
+                if (aequus.accDustDevilFire && Main.rand.NextBool(chance))
                 {
                     LittleInferno.InfernoPotionEffect(Main.player[projectile.owner], projectile.Center);
                 }

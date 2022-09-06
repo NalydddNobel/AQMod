@@ -43,23 +43,25 @@ namespace Aequus.Items.Boss.Expert
             int fireDebuff = BuffID.OnFire;
             float minDistance = 200f;
             bool dealDamage = player.infernoCounter % 60 == 0;
-            int damageDealt = 10;
-            for (int k = 0; k < 200; k++)
+            int damageDealt = 25;
+            int damageChance = 1;
+            for (int i = 0; i < 200; i++)
             {
-                if (k == npcWhoAmIBlacklist)
-                    continue;
-
-                NPC nPC = Main.npc[k];
-                if (nPC.active && !nPC.friendly && nPC.damage > 0 && !nPC.dontTakeDamage && !nPC.buffImmune[fireDebuff] && player.CanNPCBeHitByPlayerOrPlayerProjectile(nPC) && Vector2.Distance(where, nPC.Center) <= minDistance)
+                NPC target = Main.npc[i];
+                if (target.active && !target.friendly && target.damage > 0 && !target.dontTakeDamage && !target.buffImmune[fireDebuff] && player.CanNPCBeHitByPlayerOrPlayerProjectile(target) && Vector2.Distance(where, target.Center) <= minDistance)
                 {
-                    int d = nPC.FindBuffIndex(fireDebuff);
-                    if (d == -1 || nPC.buffTime[d] < 8)
+                    if ((dealDamage && Main.rand.NextBool(damageChance)) || !target.HasBuff(fireDebuff))
                     {
-                        nPC.AddBuff(fireDebuff, 120);
+                        int oldDef = target.defense;
+                        target.defense -= 20;
+                        player.ApplyDamageToNPC(target, damageDealt, 0f, 0, crit: false);
+                        target.defense = oldDef;
                     }
-                    if (dealDamage)
+
+                    if (i != npcWhoAmIBlacklist)
                     {
-                        player.ApplyDamageToNPC(nPC, damageDealt, 0f, 0, crit: false);
+                        damageChance++;
+                        target.AddBuff(fireDebuff, 120);
                     }
                 }
             }
@@ -67,9 +69,9 @@ namespace Aequus.Items.Boss.Expert
             {
                 return;
             }
-            for (int l = 0; l < 255; l++)
+            for (int i = 0; i < 255; i++)
             {
-                Player plr = Main.player[l];
+                Player plr = Main.player[i];
                 if (plr == player || !plr.active || plr.dead || !plr.hostile || plr.buffImmune[fireDebuff] || plr.team == player.team && player.team != 0 || !(Vector2.Distance(where, plr.Center) <= minDistance))
                 {
                     continue;
@@ -83,7 +85,7 @@ namespace Aequus.Items.Boss.Expert
                     plr.Hurt(PlayerDeathReason.LegacyEmpty(), damageDealt, 0, pvp: true);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendPlayerHurt(l, PlayerDeathReason.ByOther(16), damageDealt, 0, critical: false, pvp: true, -1);
+                        NetMessage.SendPlayerHurt(i, PlayerDeathReason.ByOther(16), damageDealt, 0, critical: false, pvp: true, -1);
                     }
                 }
             }
