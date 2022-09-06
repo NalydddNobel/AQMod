@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Buffs;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
@@ -6,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -27,6 +29,10 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(1f, 12f)
+            });
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
             });
         }
 

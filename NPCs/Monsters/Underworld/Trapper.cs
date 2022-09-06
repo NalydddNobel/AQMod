@@ -1,9 +1,11 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Buffs;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,6 +21,11 @@ namespace Aequus.NPCs.Monsters.Underworld
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 3;
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
+            });
+
             this.HideBestiaryEntry();
         }
 
