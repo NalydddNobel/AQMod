@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Misc
+namespace Aequus.Items.Tools
 {
     public class Bellows : ModItem
     {

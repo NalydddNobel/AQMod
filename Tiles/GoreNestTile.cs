@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable;
@@ -123,7 +122,7 @@ namespace Aequus.Tiles
             {
                 sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
                 if (Main.netMode != NetmodeID.SinglePlayer)
-                    PacketHandler.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
+                    PacketSystem.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
                 return true;
             }
         ConsumeItem:

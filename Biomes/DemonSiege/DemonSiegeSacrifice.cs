@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Items.Boss.Summons;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
@@ -113,7 +112,7 @@ namespace Aequus.Biomes.DemonSiege
                 NetUpdate++;
                 if (NetUpdate > 120 && Main.netMode == NetmodeID.Server)
                 {
-                    PacketHandler.Send((p) =>
+                    PacketSystem.Send((p) =>
                     {
                         SendStatusPacket(p);
                     }, PacketType.DemonSiegeSacrificeStatus);
@@ -211,25 +210,57 @@ namespace Aequus.Biomes.DemonSiege
             {
                 return;
             }
+
+            OnFail_PukeItems(clientOnly);
+            OnFail_EatItems(clientOnly);
+
+            DemonSiegeSystem.SacrificeRemovalQueue.Add(new Point(TileX, TileY));
+        }
+        public void OnFail_PukeItems(bool clientOnly)
+        {
             string itemList = "";
             var source = new EntitySource_TileBreak(TileX, TileY, "GoreNest_MPFail");
             foreach (var i in Items)
             {
-                int newItem = AequusItem.NewItemCloned(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), i);
-                Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
-                if (Main.netMode == NetmodeID.Server)
+                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && val.OriginalItem == val.NewItem)
                 {
-                    NetMessage.SendData(MessageID.SyncItem, number: newItem, number2: 1f);
+                    continue;
+                }
+                if (!clientOnly)
+                {
+                    int newItem = AequusItem.NewItemCloned(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), i);
+                    Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, number: newItem, number2: 1f);
+                    }
                 }
                 if (itemList != "")
                     itemList += ", ";
                 itemList += AequusText.ItemText(i.type);
             }
-            if (!clientOnly)
+            if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
                 AequusText.Broadcast("ChatBroadcast.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
             }
-            DemonSiegeSystem.SacrificeRemovalQueue.Add(new Point(TileX, TileY));
+        }
+        public void OnFail_EatItems(bool clientOnly)
+        {
+            string itemList = "";
+            foreach (var i in Items)
+            {
+                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && val.OriginalItem != val.NewItem)
+                {
+                    continue;
+                }
+                if (itemList != "")
+                    itemList += ", ";
+                itemList += AequusText.ItemText(i.type);
+            }
+            if (!clientOnly && !string.IsNullOrEmpty(itemList))
+            {
+                AequusText.Broadcast("ChatBroadcast.DemonSiegeFailEat" + itemList, new Color(255, 210, 25, 255), itemList);
+            }
         }
 
         public void SendStatusPacket(BinaryWriter writer)

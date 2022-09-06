@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Content.Necromancy;
+﻿using Aequus.Content.Necromancy;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -52,7 +51,7 @@ namespace Aequus.Buffs.Debuffs.Necro
                 npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    PacketHandler.SyncNecromancyOwner(npc.whoAmI, player);
+                    PacketSystem.SyncNecromancyOwner(npc.whoAmI, player);
                 }
             }
         }

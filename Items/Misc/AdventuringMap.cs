@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
@@ -107,7 +106,7 @@ namespace Aequus.Items.Misc
                 {
                     for (int j = Netplay.GetSectionY(rect.Y); j < endSectionY; j++)
                     {
-                        PacketHandler.Send((w) =>
+                        PacketSystem.Send((w) =>
                         {
                             w.Write(Main.myPlayer);
                             w.Write(i);

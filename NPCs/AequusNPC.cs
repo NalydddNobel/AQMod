@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Graphics.RenderTargets;
@@ -521,7 +520,7 @@ namespace Aequus.NPCs
 
                 if (candlePlayers.Count > 0)
                 {
-                    PacketHandler.Send((p) =>
+                    PacketSystem.Send((p) =>
                     {
                         p.Write(candlePlayers.Count);
                         p.WriteVector2(npc.Center);
@@ -529,7 +528,7 @@ namespace Aequus.NPCs
                         {
                             p.Write(candlePlayers[i]);
                         }
-                    }, PacketType.GiveoutEnemySouls);
+                    }, PacketType.CandleSouls);
                 }
             }
         }
@@ -719,7 +718,7 @@ namespace Aequus.NPCs
         {
             if (Main.npc[npc].TryGetGlobalNPC<AequusNPC>(out var aequus))
             {
-                PacketHandler.Send((p) => { p.Write((byte)npc); aequus.Send(npc, p); }, PacketType.SyncAequusNPC);
+                PacketSystem.Send((p) => { p.Write((byte)npc); aequus.Send(npc, p); }, PacketType.SyncAequusNPC);
             }
         }
     }

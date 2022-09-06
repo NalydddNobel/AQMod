@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
@@ -48,7 +47,7 @@ namespace Aequus.Content.CarpenterBounties
             var client = (CarpenterBountyPlayer)clientPlayer;
             if (CompletedBounties.Count != client.CompletedBounties.Count)
             {
-                PacketHandler.Send((p) =>
+                PacketSystem.Send((p) =>
                 {
                     p.Write(Player.whoAmI);
                     p.Write(CompletedBounties.Count);

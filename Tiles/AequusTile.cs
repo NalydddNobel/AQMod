@@ -81,6 +81,14 @@ namespace Aequus.Tiles
             return true;
         }
 
+        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
+        {
+            if (!fail)
+            {
+                Main.tile[i, j].Get<CoatingData>().OnKillTile();
+            }
+        }
+
         public override bool Drop(int i, int j, int type)
         {
             if (type == TileID.ShadowOrbs && Main.tile[i, j].TileFrameX % 36 == 0 && Main.tile[i, j].TileFrameY % 36 == 0)

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Builder
+namespace Aequus.Items.Tools
 {
     public class AdvancedRuler : ModItem
     {

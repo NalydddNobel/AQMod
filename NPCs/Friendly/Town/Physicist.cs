@@ -5,7 +5,7 @@ using Aequus.Items.Consumables.Drones;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Tools.Misc;
+using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;

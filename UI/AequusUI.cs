@@ -144,9 +144,9 @@ namespace Aequus.UI
 
             InsertInterfaceDrawMethod(layers, InterfaceLayers.WireSelection_11, "Aequus: Advanced Items Interface", () =>
             {
-                if (OmniPaintInterface.Instance.Enabled)
+                if (OmniPaintUI.Instance.Enabled)
                 {
-                    OmniPaintInterface.Instance.Render(Main.spriteBatch);
+                    OmniPaintUI.Instance.Render(Main.spriteBatch);
                 }
                 return true;
             }, InterfaceScaleType.Game);

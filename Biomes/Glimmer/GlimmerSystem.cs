@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.UI.EventProgressBars;
+﻿using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -77,7 +76,7 @@ namespace Aequus.Biomes.Glimmer
 
                 if (Main.netMode == NetmodeID.Server && GlimmerBiome.TileLocation.X != x)
                 {
-                    SendGlimmerEventUpdate();
+                    SendGlimmerStatus();
                 }
             }
         }
@@ -88,7 +87,7 @@ namespace Aequus.Biomes.Glimmer
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                SendGlimmerEventUpdate();
+                SendGlimmerStatus();
             }
         }
 
@@ -130,7 +129,7 @@ namespace Aequus.Biomes.Glimmer
             GlimmerBiome.TileLocation = Point.Zero;
             if (Main.netMode == NetmodeID.Server)
             {
-                SendGlimmerEventUpdate();
+                SendGlimmerStatus();
             }
             return true;
         }
@@ -222,9 +221,9 @@ namespace Aequus.Biomes.Glimmer
             }
         }
 
-        public static void SendGlimmerEventUpdate()
+        public static void SendGlimmerStatus()
         {
-            PacketHandler.Send((p) =>
+            PacketSystem.Send((p) =>
             {
                 p.Write(GlimmerBiome.EventActive);
                 if (GlimmerBiome.EventActive)
@@ -232,10 +231,10 @@ namespace Aequus.Biomes.Glimmer
                     p.Write((ushort)GlimmerBiome.TileLocation.X);
                     p.Write((ushort)GlimmerBiome.TileLocation.Y);
                 }
-            }, PacketType.GlimmerEventUpdate);
+            }, PacketType.GlimmerStatus);
         }
 
-        public static void RecieveGlimmerEventUpdate(BinaryReader r)
+        public static void ReadGlimmerStatus(BinaryReader r)
         {
             if (r.ReadBoolean())
             {

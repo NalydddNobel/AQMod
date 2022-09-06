@@ -1,5 +1,4 @@
 using Aequus.Common;
-using Aequus.Common.Networking;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
@@ -107,7 +106,7 @@ namespace Aequus
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            PacketHandler.HandlePacket(reader);
+            PacketSystem.HandlePacket(reader);
         }
 
         public static bool ShouldDoScreenEffect(Vector2 where)

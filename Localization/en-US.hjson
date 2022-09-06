@@ -33,6 +33,7 @@ Mods: {
 		}
 
 		ChatBroadcast: {
+			DemonSiegeFailEat: The Gore Nest consumes your {0}...
 			DemonSiegeFail: The Gore Nest regurgitates your {0}...
 		}
 
@@ -275,6 +276,9 @@ Mods: {
 			UnholyCore: Unholy Core
 
 			RichMansMonocle: Rich Man's Monocle
+
+			TitaniumPaintbrush: Titanium Paintbrush
+			TitaniumScraper: Titanium Scraper
 
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
@@ -933,6 +937,9 @@ Mods: {
 				Can move villagers, enemies and projectiles
 				'Handheld inspiration!'
 				'''
+			TitaniumPaintbrush: Applies uncuttable coating to tiles, preventing tiles to be destroyed with weapons
+			TitaniumScraper: Removes uncuttable coating
+
 			Bellows: 
 				'''
 				Moves you in the opposite direction you are aiming

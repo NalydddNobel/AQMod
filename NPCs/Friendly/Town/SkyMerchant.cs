@@ -1,13 +1,12 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
-using Aequus.Items.Tools.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -793,15 +792,15 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(currentAction);
-            PacketHandler.WriteNullableItem(shopBanner, writer, writeStack: true);
-            PacketHandler.WriteNullableItem(shopAccessory, writer, writeStack: true);
+            PacketSystem.WriteNullableItem(shopBanner, writer, writeStack: true);
+            PacketSystem.WriteNullableItem(shopAccessory, writer, writeStack: true);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             currentAction = reader.ReadInt32();
-            shopBanner = PacketHandler.ReadNullableItem(reader, readStack: true);
-            shopAccessory = PacketHandler.ReadNullableItem(reader, readStack: true);
+            shopBanner = PacketSystem.ReadNullableItem(reader, readStack: true);
+            shopAccessory = PacketSystem.ReadNullableItem(reader, readStack: true);
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

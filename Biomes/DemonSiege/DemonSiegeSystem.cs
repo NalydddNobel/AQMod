@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Aequus.Items.Tools;
 using Aequus.Tiles;
 using Aequus.UI.EventProgressBars;
@@ -76,7 +75,7 @@ namespace Aequus.Biomes.DemonSiege
                 ActiveSacrifices.Remove(p);
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    PacketHandler.Send((packet) =>
+                    PacketSystem.Send((packet) =>
                     {
                         packet.Write((ushort)p.X);
                         packet.Write((ushort)p.Y);
@@ -171,7 +170,7 @@ namespace Aequus.Biomes.DemonSiege
             var s = new DemonSiegeSacrifice(x, y);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketHandler.Send((p) =>
+                PacketSystem.Send((p) =>
                 {
                     p.Write((ushort)x);
                     p.Write((ushort)y);
@@ -212,7 +211,7 @@ namespace Aequus.Biomes.DemonSiege
 
             if (Main.netMode == NetmodeID.Server)
             {
-                PacketHandler.Send((p) =>
+                PacketSystem.Send((p) =>
                 {
                     p.Write((ushort)x);
                     p.Write((ushort)y);

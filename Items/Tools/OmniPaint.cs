@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Builder
+namespace Aequus.Items.Tools
 {
     public class OmniPaint : ModItem
     {
@@ -20,7 +20,7 @@ namespace Aequus.Items.Tools.Builder
         {
             if (Main.myPlayer == player.whoAmI && !Main.playerInventory)
             {
-                OmniPaintInterface.Instance.Enabled = true;
+                OmniPaintUI.Instance.Enabled = true;
             }
             Item.paint = player.Aequus().omniPaint;
         }

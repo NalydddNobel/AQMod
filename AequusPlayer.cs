@@ -4,7 +4,6 @@ using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
 using Aequus.Common;
-using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
@@ -378,7 +377,7 @@ namespace Aequus
 
             if (bb > 0 || bb2 > 0)
             {
-                PacketHandler.Send((p) =>
+                PacketSystem.Send((p) =>
                 {
                     p.Write((byte)Player.whoAmI);
                     p.Write(bb);

@@ -6,7 +6,6 @@ using Aequus.Content.Generation;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Tools;
-using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
@@ -101,13 +100,23 @@ namespace Aequus
         public override void Load()
         {
             GoreNests = new GoreNestGen();
+            On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
             On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
             On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
             SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
         }
 
-        private bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
+        private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
+        {
+            if (orig(x, y, context))
+            {
+                return !Main.tile[x, y].Get<CoatingData>().Uncuttable;
+            }
+            return false;
+        }
+
+        private static bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
         {
             return !whiteFlag && orig();
         }
@@ -375,7 +384,7 @@ namespace Aequus
             {
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
-                OmniPaintInterface.Instance.Enabled = false;
+                OmniPaintUI.Instance.Enabled = false;
             }
             BloodMoonDisabled = false;
             GlimmerDisabled = false;

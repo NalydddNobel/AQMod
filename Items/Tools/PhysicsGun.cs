@@ -9,26 +9,36 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.Misc
+namespace Aequus.Items.Tools
 {
-    public class PhysicsGun2 : ModItem
+    public class PhysicsGun : ModItem
     {
+        public static Dictionary<int, bool> TileSpecialConditions { get; private set; }
+
         public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
+
+        public override void Load()
+        {
+            TileSpecialConditions = new Dictionary<int, bool>();
+        }
+
+        public override void Unload()
+        {
+            TileSpecialConditions?.Clear();
+        }
 
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            DisplayName.SetDefault("Super Physics Gun");
-            Tooltip.SetDefault("Testing Item");
         }
 
         public override void SetDefaults()
         {
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ItemRarityID.Red;
-            Item.value = Item.sellPrice(gold: 20);
-            Item.shoot = ModContent.ProjectileType<SuperPhysicsGunProj>();
+            Item.rare = ItemDefaults.RarityOmegaStarite;
+            Item.value = Item.buyPrice(gold: 20);
+            Item.shoot = ModContent.ProjectileType<PhysicsGunProj>();
             Item.shootSpeed = 2f;
             Item.noUseGraphic = true;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -37,7 +47,11 @@ namespace Aequus.Items.Tools.Misc
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Insert(tooltips.GetIndex("PickPower"), new TooltipLine(Mod, "PickPower", "Infinite" + Lang.tip[26].Value));
+            int pickPower = 35;
+            var pick = Main.LocalPlayer.GetBestPickaxe();
+            if (pick != null)
+                pickPower = pick.pick;
+            tooltips.Insert(tooltips.GetIndex("PickPower"), new TooltipLine(Mod, "PickPower", pickPower + Lang.tip[26].Value));
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -50,11 +64,6 @@ namespace Aequus.Items.Tools.Misc
                 var glowTexture = GlowTexture.Value;
 
                 spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-
-                foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly))
-                {
-                    spriteBatch.Draw(glowTexture, position + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), 0f, origin, scale, SpriteEffects.None, 0f);
-                }
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {
@@ -83,11 +92,6 @@ namespace Aequus.Items.Tools.Misc
                 var glowTexture = GlowTexture.Value;
 
                 spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
-
-                foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly))
-                {
-                    spriteBatch.Draw(glowTexture, drawCoordinates + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), rotation, origin, scale, SpriteEffects.None, 0f);
-                }
 
                 foreach (var v in AequusHelpers.CircularVector(4))
                 {

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity;
@@ -354,7 +353,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
-                PacketHandler.Send(PacketType.SetExporterQuestsCompleted);
+                PacketSystem.Send(PacketType.ExporterQuestsCompleted);
             }
         }
         public int SpawnLoot_ChooseRoulette(Player player, int i)

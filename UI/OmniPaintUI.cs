@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -9,24 +10,40 @@ using Terraria.ModLoader;
 
 namespace Aequus.UI
 {
-    public class OmniPaintInterface : ILoadable
+    public class OmniPaintUI : ILoadable
     {
-        public static OmniPaintInterface Instance { get; private set; }
+        public struct CoatingUIElement
+        {
+            public int itemID;
+            public Asset<Texture2D> texture;
+
+            public CoatingUIElement(int itemID, Asset<Texture2D> texture)
+            {
+                this.itemID = itemID;
+                this.texture = texture;
+            }
+        }
+
+        public static OmniPaintUI Instance { get; private set; }
 
         public bool Enabled;
-        public bool IsVisible => Enabled && !Main.playerInventory && IsPaintbrush(Main.LocalPlayer.HeldItem);
-        private Dictionary<byte, int> PaintToItemID { get; set; }
-
-        public bool IsPaintbrush(Item item)
-        {
-            return item.type == ItemID.Paintbrush || item.type == ItemID.SpectrePaintbrush || item.type == ItemID.PaintRoller || item.type == ItemID.SpectrePaintRoller 
-                || item.type == ItemID.PaintScraper || item.type == ItemID.SpectrePaintScraper;
-        }
+        public bool IsVisible => Enabled && !Main.playerInventory && IsPaintbrush.Contains(Main.LocalPlayer.HeldItem.type);
+        public Dictionary<byte, int> PaintToItemID { get; set; }
+        public List<CoatingUIElement> Coatings { get; set; }
+        public HashSet<int> IsPaintbrush { get; private set; }
 
         void ILoadable.Load(Mod mod)
         {
             Instance = this;
             PaintToItemID = new Dictionary<byte, int>();
+            IsPaintbrush = new HashSet<int>()
+            {
+                ItemID.Paintbrush,
+                ItemID.PaintRoller,
+                ItemID.SpectrePaintbrush,
+                ItemID.SpectrePaintRoller,
+            };
+            Coatings = new List<CoatingUIElement>();
         }
 
         void ILoadable.Unload()
@@ -34,6 +51,10 @@ namespace Aequus.UI
             Instance = null;
             PaintToItemID?.Clear();
             PaintToItemID = null;
+            IsPaintbrush?.Clear();
+            IsPaintbrush = null;
+            Coatings?.Clear();
+            Coatings = null;
         }
 
         public void Render(SpriteBatch spriteBatch)
@@ -50,7 +71,6 @@ namespace Aequus.UI
             if (bg.Contains(Main.mouseX, Main.mouseY))
                 Main.LocalPlayer.mouseInterface = true;
 
-            //Utils.DrawInvBG(spriteBatch, new Rectangle(bg.X, bg.Y + bg.Height / 5 * 4 - 4, bg.Width, bg.Height / 5 + 4));
             Utils.DrawSplicedPanel(spriteBatch, TextureAssets.InventoryBack18.Value, bg.X + 2, bg.Y + bg.Height / 5 * 4 - 4, bg.Width - 48, bg.Height / 5 + 4, 10, 10, 10, 10, (AequusUI.InventoryBackColor * 0.75f).UseA(255));
 
             byte paintIDToShow = 0;

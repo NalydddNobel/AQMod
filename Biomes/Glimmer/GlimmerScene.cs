@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -165,7 +164,7 @@ namespace Aequus.Biomes.Glimmer
                         }
                         else
                         {
-                            PacketHandler.Send((p) =>
+                            PacketSystem.Send((p) =>
                             {
                                 p.Write((int)drawCoords.X);
                                 p.Write((int)drawCoords.Y);

@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
-using Aequus.Common.Networking;
 using Aequus.Graphics;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Particles.Dusts;
@@ -136,7 +135,7 @@ namespace Aequus.Content.Necromancy
                         zombie.OnSpawnZombie(npc);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
-                            PacketHandler.SyncNecromancyOwner(npc.whoAmI, info.Player);
+                            PacketSystem.SyncNecromancyOwner(npc.whoAmI, info.Player);
                         }
                     }
                 }
@@ -483,14 +482,14 @@ namespace Aequus.Content.Necromancy
                 {
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        SoundHelpers.SendSound(SoundHelpers.NetSoundID.ZombieRecruit, npc.Center);
+                        PacketSystem.Send((p) => p.WriteVector2(npc.Center), PacketType.SyncZombieRecruitSound);
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
                         SoundEngine.PlaySound(ZombieRecruitSound);
                     }
                 }
-                PacketHandler.SyncNPC(Main.npc[n]);
+                PacketSystem.SyncNPC(Main.npc[n]);
             }
         }
         public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound)
@@ -679,7 +678,7 @@ namespace Aequus.Content.Necromancy
         {
             if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie))
             {
-                PacketHandler.Send((p) => { p.Write((byte)npc.whoAmI); zombie.Send(p); }, PacketType.SyncNecromancyNPC);
+                PacketSystem.Send((p) => { p.Write((byte)npc.whoAmI); zombie.Send(p); }, PacketType.SyncNecromancyNPC);
             }
         }
         public static void Sync(int npc)

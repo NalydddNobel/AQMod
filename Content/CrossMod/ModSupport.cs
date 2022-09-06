@@ -14,7 +14,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Tools.Misc;
+using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Minion;

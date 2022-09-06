@@ -1,26 +1,27 @@
 ﻿using System.IO;
 
-namespace Aequus.Common.Networking
+namespace Aequus
 {
     public enum PacketType : byte
     {
         RequestTileSectionFromServer,
         SyncNecromancyOwner,
         SyncAequusPlayer,
-        SoundQueue,
+        SyncZombieRecruitSound,
         DemonSiegeSacrificeStatus,
         StartDemonSiege,
         RemoveDemonSiege,
         SyncAequusNPC,
         SyncRecyclingMachine,
-        GiveoutEnemySouls,
+        CandleSouls,
         SoulDamage,
-        SetExporterQuestsCompleted,
+        ExporterQuestsCompleted,
         SpawnOmegaStarite,
-        GlimmerEventUpdate,
+        GlimmerStatus,
         SyncNecromancyNPC,
         SyncDronePoint,
         CarpenterBountiesCompleted,
+        CoatingTileSquare,
         Count,
     }
 

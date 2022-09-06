@@ -1,10 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Content.Necromancy;
-using Microsoft.Xna.Framework;
-using System.IO;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
+﻿using Terraria.Audio;
 using Terraria.ModLoader;
 
 namespace Aequus
@@ -24,49 +18,6 @@ namespace Aequus
 
         void ILoadable.Unload()
         {
-        }
-
-        public static class NetSoundID
-        {
-            public const byte ZombieRecruit = 0;
-        }
-
-        public static void SendSound(byte type, Vector2? location = null, float? volume = null, float? pitch = null)
-        {
-            PacketHandler.Send((p) =>
-            {
-                p.Write(type);
-                PacketHandler.FlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
-                PacketHandler.FlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
-                PacketHandler.FlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
-            }, PacketType.SoundQueue);
-        }
-
-        public static void ReceiveSoundQueue(BinaryReader reader)
-        {
-            byte queueType = reader.ReadByte();
-            var location = new Vector2(-1f, -1f);
-            float volume = 1f;
-            float pitch = 0f;
-            if (reader.ReadBoolean())
-            {
-                location = reader.ReadVector2();
-            }
-            if (reader.ReadBoolean())
-            {
-                volume = reader.ReadSingle();
-            }
-            if (reader.ReadBoolean())
-            {
-                pitch = reader.ReadSingle();
-            }
-            if (Main.netMode != NetmodeID.Server)
-            {
-                if (queueType == 0)
-                {
-                    SoundEngine.PlaySound(NecromancyNPC.ZombieRecruitSound, location);
-                }
-            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Networking;
+﻿using Aequus;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Placeable;
@@ -372,7 +372,7 @@ namespace Aequus.Tiles
 
         public override void NetSend(BinaryWriter writer)
         {
-            PacketHandler.Send((p) =>
+            PacketSystem.Send((p) =>
             {
                 p.Write(item != null);
                 p.Write(ID);

@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Tools.Camera;
+using Aequus.Items.Tools.Coatings.Titanium;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
@@ -106,6 +107,8 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumPaintbrush>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumScraper>());
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)

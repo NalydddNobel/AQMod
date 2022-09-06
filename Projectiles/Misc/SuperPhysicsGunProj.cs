@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Tools.Misc;
+using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

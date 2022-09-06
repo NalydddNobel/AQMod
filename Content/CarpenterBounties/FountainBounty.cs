@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items;
-using Aequus.Items.Tools.Builder;
+using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

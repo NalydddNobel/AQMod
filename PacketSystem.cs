@@ -13,31 +13,71 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Networking
+namespace Aequus
 {
-    public sealed class PacketHandler : ModSystem
+    public class PacketSystem : ModSystem
     {
         private static HashSet<PacketType> logPacketType;
 
         public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
+        public static List<Rectangle> TileCoatingSync { get; private set; }
+
         public override void Load()
         {
             logPacketType = new HashSet<PacketType>()
             {
-                PacketType.GiveoutEnemySouls,
-                PacketType.GlimmerEventUpdate,
+                PacketType.CandleSouls,
+                PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
-                PacketType.SetExporterQuestsCompleted,
+                PacketType.ExporterQuestsCompleted,
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
                 PacketType.SyncDronePoint,
             };
+            TileCoatingSync = new List<Rectangle>();
+        }
+
+        public override void OnWorldLoad()
+        {
+            TileCoatingSync.Clear();
+        }
+
+        public override void OnWorldUnload()
+        {
+            TileCoatingSync.Clear();
+        }
+
+        public override void PostUpdateEverything()
+        {
+            if (TileCoatingSync.Count > 0)
+            {
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    TileCoatingSync.Clear();
+                    return;
+                }
+                Send((p) =>
+                {
+                    CoatingData.SendSquares(p, TileCoatingSync);
+                }, PacketType.CoatingTileSquare);
+            }
+        }
+
+        public override bool HijackSendData(int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7)
+        {
+            if (msgType == MessageID.TileSquare && (TileChangeType)number5 == TileChangeType.None)
+            {
+                TileCoatingSync.Add(new Rectangle(number, (int)number2, (int)number3, (int)number4));
+            }
+            return false;
         }
 
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
@@ -67,13 +107,13 @@ namespace Aequus.Common.Networking
             Send((p) =>
             {
                 p.Write(name);
-                FlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
-                FlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
-                FlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
-            }, PacketType.SoundQueue);
+                LegacyFlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
+                LegacyFlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
+                LegacyFlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
+            }, PacketType.SyncZombieRecruitSound);
         }
 
-        public static void FlaggedWrite(bool flag, Action<ModPacket> writeAction, ModPacket p)
+        public static void LegacyFlaggedWrite(bool flag, Action<ModPacket> writeAction, ModPacket p)
         {
             p.Write(flag);
             if (flag)
@@ -176,10 +216,15 @@ namespace Aequus.Common.Networking
             }
             switch (type)
             {
+                case PacketType.CoatingTileSquare:
+                    {
+                        CoatingData.ReadSquares(reader);
+                    }
+                    break;
+
                 case PacketType.CarpenterBountiesCompleted:
                     {
-                        int player = reader.ReadInt32();
-                        Main.player[player].GetModPlayer<CarpenterBountyPlayer>().RecieveClientChanges(reader);
+                        Main.player[reader.ReadInt32()].GetModPlayer<CarpenterBountyPlayer>().RecieveClientChanges(reader);
                     }
                     break;
 
@@ -206,25 +251,23 @@ namespace Aequus.Common.Networking
 
                 case PacketType.SyncNecromancyNPC:
                     {
-                        byte npc = reader.ReadByte();
-                        Main.npc[npc].GetGlobalNPC<NecromancyNPC>().Receive(reader);
+                        Main.npc[reader.ReadByte()].GetGlobalNPC<NecromancyNPC>().Receive(reader);
                     }
                     break;
 
                 case PacketType.SpawnOmegaStarite:
-                    AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
                     NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
                     break;
 
-                case PacketType.SetExporterQuestsCompleted:
+                case PacketType.ExporterQuestsCompleted:
                     ExporterQuests.QuestsCompleted = reader.ReadUInt16();
                     break;
 
-                case PacketType.GlimmerEventUpdate:
-                    GlimmerSystem.RecieveGlimmerEventUpdate(reader);
+                case PacketType.GlimmerStatus:
+                    GlimmerSystem.ReadGlimmerStatus(reader);
                     break;
 
-                case PacketType.GiveoutEnemySouls:
+                case PacketType.CandleSouls:
                     {
                         int amt = reader.ReadInt32();
                         var v = reader.ReadVector2();
@@ -261,8 +304,8 @@ namespace Aequus.Common.Networking
                     DemonSiegeSacrifice.ReceiveStatus(reader);
                     break;
 
-                case PacketType.SoundQueue:
-                    SoundHelpers.ReceiveSoundQueue(reader);
+                case PacketType.SyncZombieRecruitSound:
+                    SoundEngine.PlaySound(NecromancyNPC.ZombieRecruitSound, reader.ReadVector2());
                     break;
 
                 case PacketType.SyncAequusPlayer:

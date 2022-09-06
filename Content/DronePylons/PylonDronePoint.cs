@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.Projectiles.Misc.Drones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -331,7 +330,7 @@ namespace Aequus.Content.DronePylons
             if (Main.netMode == NetmodeID.SinglePlayer)
                 return;
 
-            PacketHandler.Send((p) =>
+            PacketSystem.Send((p) =>
             {
                 SendData(p);
             }, PacketType.SyncDronePoint);
