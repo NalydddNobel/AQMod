@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon
@@ -11,6 +12,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.width = 24;
             Projectile.height = 24;
             Projectile.friendly = true;
+            Projectile.extraUpdates = 1;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -20,7 +22,34 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            Projectile.rotation = MathHelper.PiOver2 * (Main.GameUpdateCount % 24 / 6);
+            Projectile.rotation = MathHelper.PiOver2 * (Main.GameUpdateCount % 48 / 6);
+            if (Main.rand.NextBool(10))
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, -Projectile.velocity.X, -Projectile.velocity.Y);
+                d.noGravity = true;
+                if (Main.rand.NextBool())
+                {
+                    d.fadeIn += d.scale + 0.2f;
+                }
+            }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire, 120);
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+                d.noGravity = true;
+                if (Main.rand.NextBool())
+                {
+                    d.fadeIn += d.scale + 0.2f;
+                }
+            }
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

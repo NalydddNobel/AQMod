@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -18,7 +19,7 @@ namespace Aequus.Items.Accessories.Healing
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
-            Item.rare = ItemRarityID.LightPurple;
+            Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 2);
         }
 
@@ -69,7 +70,7 @@ namespace Aequus.Items.Accessories.Healing
         {
             CreateRecipe()
                 .AddIngredient<Mendshroom>()
-                .AddIngredient(ItemID.SoulofNight, 5)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.DemonAltar)
                 .Register((r) => r.SortAfterFirstRecipesOf(ItemID.CharmofMyths));
         }

@@ -42,6 +42,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.ignoreWater = true;
             Projectile.manualDirectionChange = true;
             Projectile.hide = true;
+            Projectile.extraUpdates = 1;
         }
 
         public override bool? CanCutTiles() => false;
@@ -213,8 +214,13 @@ namespace Aequus.Projectiles.Summon
             {
                 return;
             }
-            int target = -1;
-            float distance = 1500f;
+            var oldPos = Projectile.position;
+            if ((int)Projectile.ai[1] != -2 && (int)Projectile.ai[1] != -3)
+            {
+                Projectile.Center = anchorLocation + Vector2.Normalize(Projectile.velocity) * 50f;
+            }
+            int target = Projectile.GetMinionTarget(out float targetD, 1500f);
+            Projectile.position = oldPos;
 
             if ((int)Projectile.ai[1] == -2 || (int)Projectile.ai[1] == -3)
             {
@@ -225,7 +231,17 @@ namespace Aequus.Projectiles.Summon
                 }
                 if ((int)Projectile.ai[1] == -2)
                 {
-                    GoToASpot(-1, 5);
+                    GoToASpot(-1, 15);
+                    if (target != -1)
+                    {
+                        Projectile.localAI[0]++;
+                        if (Main.myPlayer == Projectile.owner && Projectile.localAI[0] > 50f)
+                        {
+                            Projectile.localAI[0] = 0f;
+                            Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Normalize(Main.npc[target].Center - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 10f,
+                                ModContent.ProjectileType<PiranhaPlantFireball>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                        }
+                    }
                     if (Vector2.Distance(Projectile.Center, Main.player[Projectile.owner].Center) > 100f)
                     {
                         Projectile.velocity = Vector2.Lerp(Projectile.velocity, (Main.player[Projectile.owner].Center - Projectile.Center) / 16f, 0.025f);
@@ -258,53 +274,28 @@ namespace Aequus.Projectiles.Summon
                     }
                 }
 
-                if (Projectile.frame < 2)
+                if (Projectile.numUpdates == -1)
                 {
-                    Projectile.frame = 2;
-                }
-
-                Projectile.frameCounter++;
-                if (Projectile.frameCounter > 4)
-                {
-                    Projectile.frameCounter = 0;
-                    Projectile.frame++;
-                    if (Projectile.frame > 3)
+                    if (Projectile.frame < 2)
                     {
                         Projectile.frame = 2;
                     }
-                }
-                return;
-            }
 
-            if (player.HasMinionAttackTargetNPC)
-            {
-                int t = player.MinionAttackTargetNPC;
-                float d = (Main.npc[t].Center - center).Length();
-                if (d < distance)
-                {
-                    target = t;
-                    distance = d;
-                }
-            }
-
-            if (target == -1)
-            {
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    NPC npc = Main.npc[i];
-                    if (npc.CanBeChasedBy(attacker: Projectile, ignoreDontTakeDamage: false))
+                    if (Projectile.numUpdates == -1)
                     {
-                        var difference = npc.Center - center;
-                        float c = (float)Math.Sqrt(difference.X * difference.X + difference.Y * difference.Y);
-                        if (!Collision.CanHitLine(npc.position, npc.width, npc.height, Main.player[Projectile.owner].position, Main.player[Projectile.owner].width, Main.player[Projectile.owner].height))
-                            c *= 2;
-                        if (c < distance)
+                        Projectile.frameCounter++;
+                        if (Projectile.frameCounter > 4)
                         {
-                            target = i;
-                            distance = c;
+                            Projectile.frameCounter = 0;
+                            Projectile.frame++;
+                            if (Projectile.frame > 3)
+                            {
+                                Projectile.frame = 2;
+                            }
                         }
                     }
                 }
+                return;
             }
 
             if (anchorLocation == default(Vector2))
@@ -384,7 +375,7 @@ namespace Aequus.Projectiles.Summon
                             if (Main.netMode != NetmodeID.Server)
                                 SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
                             if (Main.myPlayer == Projectile.owner)
-                                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * 10f,
+                                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.Normalize(Main.npc[target].Center - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 10f,
                                     ModContent.ProjectileType<PiranhaPlantFireball>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                         }
                         else if (targetRetract <= 0)
@@ -396,14 +387,17 @@ namespace Aequus.Projectiles.Summon
                 }
             }
 
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter > 6)
+            if (Projectile.numUpdates == -1)
             {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-                if (Projectile.frame > 1)
+                Projectile.frameCounter++;
+                if (Projectile.frameCounter > 6)
                 {
-                    Projectile.frame = 0;
+                    Projectile.frameCounter = 0;
+                    Projectile.frame++;
+                    if (Projectile.frame > 1)
+                    {
+                        Projectile.frame = 0;
+                    }
                 }
             }
         }

@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
 
         public override void SetDefaults()
         {
-            Item.damage = 32;
+            Item.damage = 22;
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
             Item.width = 26;
@@ -42,7 +42,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             player.AddBuff(Item.buffType, 2);
-            player.SpawnMinionOnCursor(source, player.whoAmI, type, Item.damage, knockback);
+            player.SpawnMinionOnCursor(source, player.whoAmI, type, Item.damage, knockback, velocityOnSpawn: Main.rand.NextVector2Unit() * 5f);
             return false;
         }
     }
