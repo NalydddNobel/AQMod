@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Melee.Swords
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
-        public float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
+        public virtual float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
 
         public virtual bool SwingSwitchDir => AnimProgress > 0.4f && AnimProgress < 0.6f;
 

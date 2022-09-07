@@ -1,11 +1,9 @@
 ﻿using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Melee
 {
@@ -19,8 +17,9 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<SliceProj>(10);
+            Item.DefaultToDopeSword<SliceProj>(30);
             Item.SetWeaponValues(60, 2.5f);
+            Item.scale = 1.4f;
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;
@@ -40,7 +39,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override bool AltFunctionUse(Player player)
         {
-            return true;
+            return false;
         }
 
         public override void AddRecipes()
@@ -50,8 +49,6 @@ namespace Aequus.Items.Weapons.Melee
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            SoundEngine.PlaySound(SoundHelpers.SwordSwoosh.WithPitch(
-                SliceProj.FasterSwings(player.GetModPlayer<AequusPlayer>().itemUsage) ? 1f : 0.8f), position);
             return true;
         }
     }

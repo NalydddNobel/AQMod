@@ -1,5 +1,4 @@
-﻿using Aequus.Particles.Dusts;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
@@ -12,15 +11,14 @@ namespace Aequus.Projectiles.Melee
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Type] = 2;
             ProjectileID.Sets.TrailingMode[Type] = 2;
             ProjectileID.Sets.TrailCacheLength[Type] = 6;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 30;
-            Projectile.height = 30;
+            Projectile.width = 60;
+            Projectile.height = 60;
             Projectile.tileCollide = true;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
@@ -29,42 +27,60 @@ namespace Aequus.Projectiles.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = 4;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 12;
-            Projectile.alpha = 200;
+            Projectile.idStaticNPCHitCooldown = 20;
+            Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
+            Projectile.scale = 1.75f;
         }
 
         public override void AI()
         {
-            Projectile.rotation += 0.15f;
-            Projectile.velocity.Y += 0.125f;
-            if (Projectile.alpha > 0)
-            {
-                Projectile.alpha -= 3;
-                if (Projectile.alpha < 0)
-                {
-                    Projectile.alpha = 0;
-                }
-            }
             if ((int)Projectile.ai[0] == 0)
             {
                 Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                Projectile.frame = Main.rand.Next(Main.projFrames[Type]);
                 Projectile.ai[0]++;
+            }
+
+            if (Projectile.alpha > 40)
+            {
+                if (Projectile.extraUpdates > 0)
+                {
+                    Projectile.extraUpdates = 0;
+
+                }
+                if (Projectile.scale > 1f)
+                {
+                    Projectile.scale -= 0.04f;
+                    if (Projectile.scale < 1f)
+                    {
+                        Projectile.scale = 1f;
+                    }
+                }
+                Projectile.velocity.Y += 0.4f * Projectile.Opacity;
+                Projectile.velocity *= 0.98f;
+            }
+            Projectile.rotation += Projectile.velocity.Length() * 0.02f * Projectile.direction;
+            bool collding = Collision.SolidCollision(Projectile.position + new Vector2(20f, 20f), Projectile.width - 40, Projectile.height - 40);
+            if (collding)
+            {
+                Projectile.alpha += 4;
+                Projectile.velocity *= 0.9f;
+            }
+            Projectile.alpha += 3;
+            if (Projectile.alpha >= 255)
+            {
+                Projectile.Kill();
             }
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return lightColor.MaxRGBA(222);
+            return Color.White;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.rand.NextBool(4))
-            {
-                target.AddBuff(BuffID.Frostburn, 240);
-            }
+            target.AddBuff(BuffID.Frostburn, 240);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -77,7 +93,7 @@ namespace Aequus.Projectiles.Melee
             var frame = texture.Frame(verticalFrames: Main.projFrames[Projectile.type], frameY: Projectile.frame);
             frame.Height -= 2;
             var origin = frame.Size() / 2f;
-            float opacity = 1f - Projectile.alpha / 255f;
+            float opacity = Projectile.Opacity;
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
             for (int i = 0; i < trailLength; i++)
             {
@@ -91,20 +107,11 @@ namespace Aequus.Projectiles.Melee
             }
 
             Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, Projectile.GetAlpha(lightColor) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, new Color(255, 255, 255, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0.45f, 1f) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
 
         public override void Kill(int timeLeft)
         {
-            var center = Projectile.Center;
-            var size = Projectile.Size.Length() / 2f;
-            for (int i = 0; i < 80; i++)
-            {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(60, 111, 160, 0) * Main.rand.NextFloat(0.75f, 1.2f), Main.rand.NextFloat(0.75f, 1.25f));
-                Main.dust[d].position = center + Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(size);
-                Main.dust[d].velocity = (Main.dust[d].position - center) / 2f;
-            }
         }
     }
 }

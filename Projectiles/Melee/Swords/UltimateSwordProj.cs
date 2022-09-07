@@ -145,12 +145,6 @@ namespace Aequus.Projectiles.Melee.Swords
         public override bool PreDraw(ref Color lightColor)
         {
             var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
-            var armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(25f) * Projectile.scale, (p) => Color.Lerp(new Color(120, 255, 120), new Color(255, 120, 255), AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f - p * 3f, 0.33f, 0.75f)).UseA(0) * 0.33f * Projectile.Opacity * (float)Math.Pow((1f - p), 2f) * Projectile.Opacity, drawOffset: Projectile.Size / 2f);
-            var armTrailSmoke = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(30f) * Projectile.scale, (p) => Color.Lerp(new Color(10, 255, 10), new Color(255, 10, 255), AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f - p * 3f, 0.33f, 0.75f)).UseA(0) * 0.33f * Projectile.Opacity * (float)Math.Pow((1f - p), 2f), drawOffset: Projectile.Size / 2f)
-            {
-                coord1 = 0f,
-                coord2 = 1f
-            };
 
             var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 0.5f);
             var texture = TextureAssets.Projectile[Type].Value;
@@ -170,9 +164,6 @@ namespace Aequus.Projectiles.Melee.Swords
             var glowmask = ModContent.Request<Texture2D>(flip ? AequusHelpers.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow");
             var origin = new Vector2(0f, texture.Height);
 
-            armTrail.drawOffset = handPosition;
-            armTrailSmoke.drawOffset = handPosition;
-
             var bloom = TextureCache.Bloom[1].Value;
             Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
             if (Aequus.HQ)
@@ -189,23 +180,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
-            Main.spriteBatch.End();
-            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
-
-            //armTrail.Draw(Projectile.oldPos);
-            //armTrail.Draw(Projectile.oldPos);
-            //if (Aequus.HQ)
-            //{
-            //    armTrailSmoke.Draw(Projectile.oldPos);
-            //    armTrailSmoke.Draw(Projectile.oldPos);
-            //}
-
-            Main.spriteBatch.End();
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
-
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(glowmask.Value, handPosition - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
-
 
             if (AnimProgress > 0.2f && AnimProgress < 0.8f)
             {

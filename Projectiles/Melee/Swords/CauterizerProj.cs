@@ -52,14 +52,11 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
         {
-            if (progress == 0.5f)
+            if (progress == 0.5f && Main.myPlayer == Projectile.owner)
             {
-                if (Main.myPlayer == Projectile.owner)
-                {
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
-                        AngleVector * Projectile.velocity.Length() * 9f,
-                        ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
-                }
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
+                    AngleVector * Projectile.velocity.Length() * 9f,
+                    ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
             }
         }
 

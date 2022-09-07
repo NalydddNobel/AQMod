@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.Tiles
 {
@@ -10,17 +9,17 @@ namespace Aequus.Tiles
     {
         internal byte bitpack;
 
-		public bool Uncuttable
-		{
-			get
-			{
-				return TileDataPacking.GetBit(bitpack, 0);
-			}
-			set
-			{
-				bitpack = (byte)TileDataPacking.SetBit(value, bitpack, 0);
-			}
-		}
+        public bool Uncuttable
+        {
+            get
+            {
+                return TileDataPacking.GetBit(bitpack, 0);
+            }
+            set
+            {
+                bitpack = (byte)TileDataPacking.SetBit(value, bitpack, 0);
+            }
+        }
 
         public void OnKillTile()
         {
@@ -110,7 +109,7 @@ namespace Aequus.Tiles
             }
         }
 
-		public static void ReadSquares(BinaryReader reader)
+        public static void ReadSquares(BinaryReader reader)
         {
             int amt = reader.ReadInt32();
             for (int k = 0; k < amt; k++)
