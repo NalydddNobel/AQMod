@@ -167,7 +167,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void SetStaticDefaults()
         {
-            SantankInteractions.OnAI.Add(Type, OnAI);
+            SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
             SacrificeTotal = 1;
         }
 
@@ -269,7 +269,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
         }
 
-        public static void OnAI(Projectile projectile, SantankSentryProjectile sentry, Item item, Player player, AequusPlayer aequus)
+        public static void OnAI(Projectile projectile, SentryAccessoriesProj sentry, Item item, Player player, AequusPlayer aequus)
         {
             aequus.accExpertBoost = true;
         }

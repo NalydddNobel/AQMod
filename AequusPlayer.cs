@@ -1230,7 +1230,7 @@ namespace Aequus
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SantankSentryProjectile>(out var sentry))
+                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesProj>(out var sentry))
                     {
                         sentry.UpdateInheritance(Main.projectile[i]);
                     }

@@ -801,9 +801,9 @@ namespace Aequus
             {
                 return player;
             }
-            else if (entity is Projectile projectile)
+            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesProj>(out var santankSentry))
             {
-                return projectile.GetGlobalProjectile<SantankSentryProjectile>().dummyPlayer;
+                return santankSentry.dummyPlayer;
             }
             return null;
         }
@@ -815,7 +815,7 @@ namespace Aequus
             if (projIdentity > -1)
             {
                 projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SantankSentryProjectile>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesProj>(out var value))
                 {
                     if (Main.myPlayer == projectile.owner)
                     {

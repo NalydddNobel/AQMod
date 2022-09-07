@@ -201,6 +201,8 @@ namespace Aequus.Common
 
         public static TileDataCache[,] DecompressInfo(int width, int height, byte[] buffer)
         {
+            //return new TileDataCache[width, height];
+
             using (var reader = new BinaryReader(new MemoryStream(buffer)))
             {
                 var info = new TileDataCache[width, height];

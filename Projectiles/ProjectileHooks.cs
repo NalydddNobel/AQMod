@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Projectiles
 {
-    public class Hooks
+    public class ProjectileHooks
     {
         public interface IOnUnmatchingProjectileParents
         {

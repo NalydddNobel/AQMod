@@ -118,7 +118,7 @@ namespace Aequus.Items.Boss.Expert
         {
             SacrificeTotal = 1;
 
-            SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
+            SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
         }
 
         public override void SetDefaults()

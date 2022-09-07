@@ -44,7 +44,7 @@ namespace Aequus.Projectiles.Misc
             if (projIdentity > -1)
             {
                 projIdentity = AequusHelpers.FindProjectileIdentity(Projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SantankSentryProjectile>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesProj>(out var value))
                 {
                     if (Main.myPlayer == Projectile.owner)
                     {

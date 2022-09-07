@@ -5,10 +5,11 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Aequus.Items
 {
-    public sealed class CooldownItems : GlobalItem
+    public sealed class CooldownItem : GlobalItem
     {
         public const int CooldownBackFramesX = 26;
         public static Asset<Texture2D> CooldownBack { get; private set; }
@@ -36,7 +37,7 @@ namespace Aequus.Items
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (!Main.playerInventory/* && AequusUI.ItemSlotContext == ItemSlot.Context.InventoryItem*/ && HasWeaponCooldown.Contains(item.type))
+            if (!Main.playerInventory && AequusUI.itemSlotContext == ItemSlot.Context.InventoryItem && HasWeaponCooldown.Contains(item.type))
             {
                 var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)

@@ -12,7 +12,7 @@ namespace Aequus.Items.Accessories.Healing
         {
             SacrificeTotal = 1;
 
-            SantankInteractions.OnAI.Add(Type, SantankInteractions.ApplyEquipFunctional_AI);
+            SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
         }
 
         public override void SetDefaults()

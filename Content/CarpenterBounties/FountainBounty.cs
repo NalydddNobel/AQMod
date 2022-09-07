@@ -106,11 +106,11 @@ namespace Aequus.Content.CarpenterBounties
                         {
                             var misc = info[point1].Misc;
                             misc.TileColor = PaintID.DeepRedPaint;
-                            info[point1] = new TileDataCache(info[point1].Type, info[point1].Liquid, misc, info[point1].Wall);
+                            info[point1] = new TileDataCache(info[point1].Type, info[point1].Liquid, misc, info[point1].Wall, info[point1].Aequus);
 
                             misc = info[point2].Misc;
                             misc.TileColor = PaintID.DeepRedPaint;
-                            info[point2] = new TileDataCache(info[point2].Type, info[point2].Liquid, misc, info[point2].Wall);
+                            info[point2] = new TileDataCache(info[point2].Type, info[point2].Liquid, misc, info[point2].Wall, info[point1].Aequus);
 
                             message = Language.GetTextValue(LanguageKey + ".Reply.NotSymmetric");
                             return false;

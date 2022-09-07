@@ -586,27 +586,6 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
-        <member name="P:Aequus.Items.Accessories.Summon.Sentry.SantankInteractions.OnAI">
-            <summary>
-            <para>1) Projectile - the projectile</para>
-            <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-            <para>3) Item - the accessory</para>
-            <para>4) Player - the player owner of both projectiles</para>
-            <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.Accessories.Summon.Sentry.SantankInteractions.OnShoot">
-            <summary>
-            <para>1) IEntitySource - the entity source</para>
-            <para>2) Projectile - the projectile</para>
-            <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-            <para>4) Projectile - the parent projectile, aka shooter</para>
-            <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
-            <para>6) Item - the accessory</para>
-            <para>7) Player - the player owner of both projectiles</para>
-            <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
-            </summary>
-        </member>
         <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
@@ -666,7 +645,7 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
-        <member name="P:Aequus.Items.CooldownItems.HasWeaponCooldown">
+        <member name="P:Aequus.Items.CooldownItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
@@ -694,6 +673,27 @@
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.SentryAccessoriesDatabase.OnAI">
+            <summary>
+            <para>1) Projectile - the projectile</para>
+            <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+            <para>3) Item - the accessory</para>
+            <para>4) Player - the player owner of both projectiles</para>
+            <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.SentryAccessoriesDatabase.OnShoot">
+            <summary>
+            <para>1) IEntitySource - the entity source</para>
+            <para>2) Projectile - the projectile</para>
+            <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
+            <para>4) Projectile - the parent projectile, aka shooter</para>
+            <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
+            <para>6) Item - the accessory</para>
+            <para>7) Player - the player owner of both projectiles</para>
+            <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
         <member name="T:Aequus.NPCs.BestiaryBuilder">
@@ -780,14 +780,14 @@
             Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>
         </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Items.Accessories.Summon.Sentry.SantankSentryProjectile@)">
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.SentryAccessoriesProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>
             <param name="player">The owner of this projectile.</param>
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentryProjectile"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.SentryAccessoriesProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
         <member name="P:Aequus.Sounds.MusicData.CrabsonBoss">
             <summary>

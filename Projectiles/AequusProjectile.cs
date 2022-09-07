@@ -273,7 +273,7 @@ namespace Aequus.Projectiles
                     if (sourceProj == -1 || Main.projectile[sourceProj].type != sourceProjType)
                     {
                         sourceProjIdentity = -1;
-                        if (projectile.ModProjectile is Hooks.IOnUnmatchingProjectileParents unmatchingMethod)
+                        if (projectile.ModProjectile is ProjectileHooks.IOnUnmatchingProjectileParents unmatchingMethod)
                         {
                             unmatchingMethod.OnUnmatchingProjectileParents(this, sourceProj);
                         }
