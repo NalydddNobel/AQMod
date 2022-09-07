@@ -3233,6 +3233,25 @@ Mods: {
 						Used with the Shutterstocker™ to capture images.
 						Save your best buildings with the most captivating clips!
 						'''
+					TitaniumPaintbrush: 
+						'''
+						Its titanium bristles leave behind a clear, strong paste which requires a pickaxe to get through.
+						Don't worry about running out, every time you paint a surface,
+						a group of carpenter ants will get caught and deposit their entire personal paste collection onto the brush.
+						'''
+					TitaniumScraper: 
+						'''
+						Use with delicacy to remove the strong paste. Inproper usage could result in damage.
+						Our company is not responsible for damages caused by this tool.
+						'''
+					OmniPaint: 
+						'''
+						Using a special dye and paint container, you can easily pick out what color of paint
+						you want without the hassle of cleaning off your brush!
+						Don't let it touch your skin, it may cause permanent coloring and damage.
+						'''
+					AdvancedRuler: Our most advanced ruler yet, with many features, buttons, and dumb complications!
+					WhiteFlag: Don't wave this up for too long, unless you plan on getting completely colonized by goblins expecting this island to be weak.
 				}
 
 				UI: {

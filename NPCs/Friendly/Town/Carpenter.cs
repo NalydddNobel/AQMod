@@ -1,8 +1,10 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Items.Tools.Coatings;
+using Aequus.Items.Tools.Misc;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
@@ -69,7 +71,12 @@ namespace Aequus.NPCs.Friendly.Town
                 .GetNPC(Type)
                 .WithColor(new Color(165, 140, 190))
                 .AddQuote<Shutterstocker>()
-                .AddQuote<ShutterstockerClipAmmo>();
+                .AddQuote<ShutterstockerClipAmmo>()
+                .AddQuote<TitaniumPaintbrush>()
+                .AddQuote<TitaniumScraper>()
+                .AddQuote<OmniPaint>()
+                .AddQuote<AdvancedRuler>()
+                .AddQuote<WhiteFlag>();
         }
 
         public override void SetDefaults()
@@ -107,8 +114,11 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumPaintbrush>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumScraper>());
+            if (NPC.AnyNPCs(NPCID.Painter))
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumPaintbrush>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumScraper>());
+            }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)
