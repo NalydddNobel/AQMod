@@ -104,7 +104,6 @@ namespace Aequus
         public int equippedEars;
         public int cEars;
 
-
         public int leechHookNPC;
 
         public byte omniPaint;
@@ -140,6 +139,8 @@ namespace Aequus
 
         private DebuffInflictionStats debuffs;
         public ref DebuffInflictionStats Debuffs => ref debuffs;
+
+        public bool accWarHorn;
 
         public int instaShieldTime;
         public int instaShieldTimeMax;
@@ -508,6 +509,7 @@ namespace Aequus
         {
             PlayerContext = Player.whoAmI;
 
+            accWarHorn = false;
             accDustDevilFire = false;
             accRitualSkull = false;
             groundCrit = 0;

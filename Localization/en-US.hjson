@@ -121,6 +121,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			WarHorn: War Horn
 			LittleInferno: Little Inferno
 			CrownOfTheGrounded: Crown of the Grounded
 			CrownOfDarkness: Crown of Darkness
@@ -590,6 +591,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			WarHorn: 
+				'''
+				Minions enter a frenzy after landing the first hit on an enemy
+				Frenzied minions gain increased attack and movement speed
+				'''
 			LittleInferno: 
 				'''
 				Critical strikes inflict hellfire

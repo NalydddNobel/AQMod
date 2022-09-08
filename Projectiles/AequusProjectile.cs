@@ -6,6 +6,8 @@ using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Ranged;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,8 +29,12 @@ namespace Aequus.Projectiles
         public static int pNPC;
 
         public bool heatDamage;
+        public ushort frenzyTime;
 
-        public int defExtraUpdates;
+        public int extraUpdatesTemporary;
+
+        public int transform;
+        public int timeAlive;
 
         /// <summary>
         /// The item source used to spawn this projectile. Defaults to 0 (<see cref="ItemID.None"/>)
@@ -54,9 +60,6 @@ namespace Aequus.Projectiles
         /// An approximated index of the projectile which spawned this projectile. Defaults to -1.
         /// </summary>
         public int sourceProj;
-
-        public int transform;
-        public int timeAlive;
 
         public override bool InstancePerEntity => true;
 
@@ -110,7 +113,24 @@ namespace Aequus.Projectiles
         {
             pIdentity = self.identity;
             pWhoAmI = i;
+
+            self.TryGetGlobalProjectile<AequusProjectile>(out var aequus);
+
+            AequusHelpers.iterations = 0;
             orig(self, i);
+
+            if (aequus != null)
+            {
+                float minionSlotsOld = Main.player[self.owner].slotsMinions;
+                float minionSlots = Main.player[self.owner].slotsMinions - self.minionSlots;
+                for (int k = 0; k < aequus.extraUpdatesTemporary; k++)
+                {
+                    AequusHelpers.iterations = k + 1;
+                    Main.player[self.owner].slotsMinions = minionSlots;
+                    orig(self, i);
+                }
+                Main.player[self.owner].slotsMinions = minionSlotsOld;
+            }
             pIdentity = self.identity;
             pWhoAmI = -1;
         }
@@ -127,6 +147,9 @@ namespace Aequus.Projectiles
             {
                 heatDamage = true;
             }
+            frenzyTime = 0;
+            extraUpdatesTemporary = 0;
+            timeAlive = 0;
         }
 
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
@@ -190,7 +213,7 @@ namespace Aequus.Projectiles
                 }
             }
         }
-        
+
         public void OnSpawn_CheckRaygun(Projectile projectile)
         {
             if (sourceItemUsed == ModContent.ItemType<Raygun>())
@@ -225,7 +248,7 @@ namespace Aequus.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            defExtraUpdates = projectile.extraUpdates;
+            extraUpdatesTemporary = projectile.extraUpdates;
             sourceItemUsed = -1;
             sourceAmmoUsed = -1;
             sourceNPC = pNPC;
@@ -301,6 +324,15 @@ namespace Aequus.Projectiles
         public override void PostAI(Projectile projectile)
         {
             timeAlive++;
+            if (AequusHelpers.iterations == 0)
+            {
+                if (frenzyTime > 0)
+                {
+                    frenzyTime--;
+                    if (frenzyTime == 0)
+                        extraUpdatesTemporary--;
+                }
+            }
             if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !projectile.npcProj && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
@@ -346,6 +378,20 @@ namespace Aequus.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if (target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn)
+            {
+                int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                if (proj != -1)
+                {
+                    var aequus = Main.projectile[proj].Aequus();
+                    if (aequus.frenzyTime == 0)
+                    {
+                        aequus.extraUpdatesTemporary++;
+                    }
+                    aequus.frenzyTime = 240;
+                    Main.projectile[proj].netUpdate = true;
+                }
+            }
             if (sourceItemUsed != 0 && projectile.friendly && projectile.HasOwner())
             {
                 var i = Main.player[projectile.owner].HeldItem;
@@ -377,6 +423,33 @@ namespace Aequus.Projectiles
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor)
         {
+            if (frenzyTime > 0)
+            {
+                float frenzyOpacity = frenzyTime < 60 ? frenzyTime / 60f : 1f;
+
+                var texture = ModContent.Request<Texture2D>("Aequus/Projectiles/Melee/Swords/Swish2", AssetRequestMode.ImmediateLoad).Value;
+
+                var color = Color.Red;
+                var drawCoords = projectile.Center - Main.screenPosition;
+                var textureOrigin = texture.Size() / 2f;
+                float scale = projectile.scale * 0.5f;
+                int swishTimeMax = 20;
+                int swishTime = frenzyTime % swishTimeMax;
+                float swishOpacity = frenzyOpacity;
+                if (swishTime < 8)
+                {
+                    swishOpacity *= swishTime / 8f;
+                }
+                else if (swishTime > swishTimeMax - 8)
+                {
+                    swishOpacity *= 1f - (swishTimeMax - swishTime) / 8f;
+                }
+                Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, drawCoords, null, color, 0f, TextureCache.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
+                for (int i = -1; i <= 1; i += 2)
+                {
+                    Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - frenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
+                }
+            }
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();
@@ -411,10 +484,15 @@ namespace Aequus.Projectiles
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(timeAlive);
-            bitWriter.WriteBit(defExtraUpdates > 0);
-            if (defExtraUpdates > 0)
+            bitWriter.WriteBit(frenzyTime > 0);
+            if (frenzyTime > 0)
             {
-                binaryWriter.Write((ushort)defExtraUpdates);
+                binaryWriter.Write(frenzyTime);
+            }
+            bitWriter.WriteBit(extraUpdatesTemporary > 0);
+            if (extraUpdatesTemporary > 0)
+            {
+                binaryWriter.Write((ushort)extraUpdatesTemporary);
             }
             bitWriter.WriteBit(sourceItemUsed > 0);
             if (sourceItemUsed > 0)
@@ -448,7 +526,11 @@ namespace Aequus.Projectiles
             timeAlive = binaryReader.ReadInt32();
             if (bitReader.ReadBit())
             {
-                defExtraUpdates = binaryReader.ReadUInt16();
+                frenzyTime = binaryReader.ReadUInt16();
+            }
+            if (bitReader.ReadBit())
+            {
+                extraUpdatesTemporary = binaryReader.ReadUInt16();
             }
             if (bitReader.ReadBit())
             {

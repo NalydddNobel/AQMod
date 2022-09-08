@@ -49,6 +49,7 @@ namespace Aequus.NPCs
         public bool noHitEffect;
         public bool infernoOnFire;
 
+        public int oldLife;
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
@@ -310,6 +311,7 @@ namespace Aequus.NPCs
         }
         public override void PostAI(NPC npc)
         {
+            oldLife = npc.life;
             if (!npc.SpawnedFromStatue && npc.justHit)
             {
                 PostAI_JustHit_UpdateInferno(npc);

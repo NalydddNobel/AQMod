@@ -1,5 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
-using Aequus.Items.Weapons.Melee;
+﻿using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -78,8 +77,8 @@ namespace Aequus.Projectiles.Melee.Swords
                     d.scale *= Projectile.scale * 0.6f;
                     d.fadeIn = d.scale + 0.1f;
                     d.noGravity = true;
-                    if (i==0)
-                    AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                    if (i == 0)
+                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
                 }
             }
 
@@ -108,7 +107,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.7f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)) );
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.7f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
         }
 
         public override float SwingProgress(float progress)
