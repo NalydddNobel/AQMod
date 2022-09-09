@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Crab
+namespace Aequus.Tiles.CrabCrevice
 {
     [LegacyName("Ambient3x2", "CrabGrass3x2")]
     public class CrabGrassBig : ModTile

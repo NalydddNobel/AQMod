@@ -1,5 +1,5 @@
 ﻿using Aequus.Tiles;
-using Aequus.Tiles.Crab;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

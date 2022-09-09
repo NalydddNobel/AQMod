@@ -27,7 +27,7 @@ namespace Aequus.Items
             Item.useAnimation = 2;
             Item.width = 20;
             Item.height = 20;
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Crab.CrabAlgae>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.CrabCrevice.CrabAlgae>());
             Item.consumable = false;
             Item.maxStack = 1;
         }

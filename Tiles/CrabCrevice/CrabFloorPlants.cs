@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Crab
+namespace Aequus.Tiles.CrabCrevice
 {
     public class CrabFloorPlants : ModTile
     {

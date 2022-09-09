@@ -1,10 +1,10 @@
-﻿using Aequus.Items.Placeable.Crab;
+﻿using Aequus.Items.Placeable.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Crab
+namespace Aequus.Tiles.CrabCrevice
 {
     public class CrustaciumEmbed : ModTile
     {

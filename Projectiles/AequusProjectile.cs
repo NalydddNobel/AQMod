@@ -114,22 +114,26 @@ namespace Aequus.Projectiles
             pIdentity = self.identity;
             pWhoAmI = i;
 
-            self.TryGetGlobalProjectile<AequusProjectile>(out var aequus);
-
             AequusHelpers.iterations = 0;
             orig(self, i);
 
+            if (!self.active)
+                return;
+            self.TryGetGlobalProjectile<AequusProjectile>(out var aequus);
             if (aequus != null)
             {
-                float minionSlotsOld = Main.player[self.owner].slotsMinions;
-                float minionSlots = Main.player[self.owner].slotsMinions - self.minionSlots;
-                for (int k = 0; k < aequus.extraUpdatesTemporary; k++)
+                if (aequus.extraUpdatesTemporary > 0)
                 {
-                    AequusHelpers.iterations = k + 1;
-                    Main.player[self.owner].slotsMinions = minionSlots;
-                    orig(self, i);
+                    float minionSlotsOld = Main.player[self.owner].slotsMinions;
+                    float minionSlots = Main.player[self.owner].slotsMinions - self.minionSlots;
+                    for (int k = 0; k < aequus.extraUpdatesTemporary; k++)
+                    {
+                        AequusHelpers.iterations = k + 1;
+                        Main.player[self.owner].slotsMinions = minionSlots;
+                        orig(self, i);
+                    }
+                    Main.player[self.owner].slotsMinions = minionSlotsOld;
                 }
-                Main.player[self.owner].slotsMinions = minionSlotsOld;
             }
             pIdentity = self.identity;
             pWhoAmI = -1;
@@ -248,7 +252,6 @@ namespace Aequus.Projectiles
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
-            extraUpdatesTemporary = projectile.extraUpdates;
             sourceItemUsed = -1;
             sourceAmmoUsed = -1;
             sourceNPC = pNPC;
@@ -378,7 +381,7 @@ namespace Aequus.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn)
+            if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn)
             {
                 int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (proj != -1)

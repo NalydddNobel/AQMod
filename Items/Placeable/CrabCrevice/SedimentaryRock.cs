@@ -1,7 +1,7 @@
-﻿using Aequus.Tiles.Crab;
+﻿using Aequus.Tiles.CrabCrevice;
 using Terraria.ID;
 
-namespace Aequus.Items.Placeable.Crab
+namespace Aequus.Items.Placeable.CrabCrevice
 {
     public class SedimentaryRock : BlockItemBase<SedimentaryRockTile>
     {

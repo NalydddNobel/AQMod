@@ -5,6 +5,7 @@ using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.LootBags.Roulettes;
 using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
@@ -168,6 +169,8 @@ namespace Aequus.NPCs.Friendly.Town
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrabClock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SedimentaryRock>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SeaPickle>());
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoticPearl>());
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
         }

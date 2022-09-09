@@ -77,7 +77,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
             if (progress > 0.33f && progress < 0.55f)
             {
-                if (Projectile.numUpdates < 3)
+                if (Projectile.numUpdates == -1 && Main.rand.NextBool())
                 {
                     var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
                     int amt = 1;

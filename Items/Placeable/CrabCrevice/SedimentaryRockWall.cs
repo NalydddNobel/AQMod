@@ -1,9 +1,9 @@
-﻿using Aequus.Tiles.Crab;
+﻿using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Crab
+namespace Aequus.Items.Placeable.CrabCrevice
 {
     public class SedimentaryRockWall : ModItem
     {
