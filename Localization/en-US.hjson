@@ -2021,6 +2021,7 @@ Mods: {
 
 			BreadOfCthulhu: Bread of Cthulhu
 
+			FishCrab: Fish Crab
 			SoldierCrabs: Soldier Crab
 			HermitCrab: Hermit Crab
 			SuperStarite: Super Starite
@@ -2050,6 +2051,8 @@ Mods: {
 		Bestiary: {
 			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
+			
+			FishCrab: A harmless starite, its small scale prevents its magic from being lethal, so it just hovers around.
 
 			BloodMimic: Due to the blood moon's dominance over corpses, unlucky looters who were slain while stealing may mutate with chests, creating a monster.
 			

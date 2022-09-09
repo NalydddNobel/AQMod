@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.NPCs.Friendly.Critter;
+using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
@@ -61,7 +62,29 @@ namespace Aequus.NPCs
             {
                 return;
             }
-            if (!Main.dayTime && spawnInfo.Player.position.Y < Main.worldSurface * 16f)
+            bool surface = spawnInfo.SpawnTileY < Main.worldSurface;
+            if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
+            {
+                AdjustSpawns(pool, 0.75f);
+                pool.Add(ModContent.NPCType<Meteor>(), 2f);
+            }
+            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
+            {
+                AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
+                if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
+                {
+                    pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
+                    pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
+                }
+                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
+                    pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
+                if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY))
+                {
+                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
+                }
+                pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
+            }
+            if (!Main.dayTime && surface)
             {
                 if (GlimmerBiome.EventActive)
                 {
@@ -88,36 +111,14 @@ namespace Aequus.NPCs
                     }
                 }
                 pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 0.005f);
-            }
-            if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
-            {
-                AdjustSpawns(pool, 0.75f);
-                pool.Add(ModContent.NPCType<Meteor>(), 2f);
-            }
-            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
-            {
-                AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-                if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
+
+                if (Main.bloodMoon && !NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
                 {
-                    pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
-                    pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
+                    pool.Add(ModContent.NPCType<BloodMimic>(), 0.02f);
                 }
-                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
-                    pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
-                if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY))
+                if (SpawnCondition.OceanMonster.Chance > 0f && !NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
                 {
-                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
-                }
-                pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
-            }
-            else
-            {
-                if (!Main.dayTime && Main.bloodMoon && spawnInfo.SpawnTileY < Main.worldSurface)
-                {
-                    if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
-                    {
-                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.01f);
-                    }
+                    pool.Add(ModContent.NPCType<CrabFish>(), 0.3f * SpawnCondition.OceanMonster.Chance);
                 }
             }
         }
@@ -148,7 +149,7 @@ namespace Aequus.NPCs
                 {
                     return true;
                 }
-                if (checkInvasion && AreVanillaInvasionsActive(spawnInfo))
+                if (checkInvasion && spawnInfo.Invasion)
                 {
                     return true;
                 }
