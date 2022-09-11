@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Placeable.CrabCrevice;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,14 +35,52 @@ namespace Aequus.Tiles.CrabCrevice
 
         public override void RandomUpdate(int i, int j)
         {
+            if (WorldGen.genRand.NextBool(12))
+            {
+                for (int k = -5; k <= 5; k++)
+                {
+                    for (int l = -5; l <= 5; l++)
+                    {
+                        if (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == Type)
+                        {
+                            return;
+                        }
+                    }
+                }
+                var p = new List<Point>();
+                if (!Main.tile[i + 1, j].HasTile)
+                {
+                    p.Add(new Point(i + 1, j));
+                }
+                if (!Main.tile[i - 1, j].HasTile)
+                {
+                    p.Add(new Point(i - 1, j));
+                }
+                if (!Main.tile[i, j + 1].HasTile)
+                {
+                    p.Add(new Point(i, j + 1));
+                }
+                if (!Main.tile[i, j - 1].HasTile)
+                {
+                    p.Add(new Point(i, j - 1));
+                }
+
+                if (p.Count > 0)
+                {
+                    var chosen = WorldGen.genRand.Next(p);
+                    Main.tile[chosen].Active(true);
+                    Main.tile[chosen].TileType = (ushort)ModContent.TileType<SeaPickleTile>();
+                    WorldGen.TileFrame(chosen.X, chosen.Y);
+                }
+            }
             if (Main.tile[i, j - 1].HasTile)
                 return;
 
-            if (Main.tile[i, j - 1].LiquidAmount == 255 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(2))
+            if (Main.tile[i, j - 1].LiquidAmount == 255 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(8))
             {
                 WorldGen.PlaceTile(i, j, ModContent.TileType<CrabFloorPlants>(), mute: true, style: WorldGen.genRand.Next(15));
             }
-            else if (Main.tile[i, j - 1].LiquidAmount > 128 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(2))
+            else if (Main.tile[i, j - 1].LiquidAmount > 128 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(8))
             {
                 if (Main.rand.NextBool())
                 {
@@ -52,7 +91,7 @@ namespace Aequus.Tiles.CrabCrevice
                     WorldGen.PlaceTile(i, j - 1, TileID.Coral, mute: true);
                 }
             }
-            else if (WorldGen.genRand.NextBool(2))
+            else if (WorldGen.genRand.NextBool(8))
             {
                 if (Main.tile[i - 1, j - 1].HasTile || Main.tile[i + 1, j - 1].HasTile)
                     return;
