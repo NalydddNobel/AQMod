@@ -116,9 +116,13 @@ namespace Aequus.NPCs
                 {
                     pool.Add(ModContent.NPCType<BloodMimic>(), 0.02f);
                 }
-                if (SpawnCondition.OceanMonster.Chance > 0f && !NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
+                if (spawnInfo.Player.Aequus().ZoneCrabCrevice)
                 {
-                    pool.Add(ModContent.NPCType<CrabFish>(), 0.3f * SpawnCondition.OceanMonster.Chance);
+                    AdjustSpawns(pool, 0.05f);
+                    if (NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
+                    {
+                        pool.Add(ModContent.NPCType<CrabFish>(), 0.1f);
+                    }
                 }
             }
         }

@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.AIs;
+﻿using Aequus.Biomes;
+using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -31,6 +32,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(silver: 2);
+
+            this.SetBiome<CrabCreviceBiome>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

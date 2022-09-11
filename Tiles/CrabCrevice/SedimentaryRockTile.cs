@@ -9,6 +9,8 @@ namespace Aequus.Tiles.CrabCrevice
 {
     public class SedimentaryRockTile : ModTile
     {
+        public static int BiomeCount;
+
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -41,12 +43,13 @@ namespace Aequus.Tiles.CrabCrevice
                 {
                     for (int l = -5; l <= 5; l++)
                     {
-                        if (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == Type)
+                        if (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<SeaPickleTile>())
                         {
                             return;
                         }
                     }
                 }
+
                 var p = new List<Point>();
                 if (!Main.tile[i + 1, j].HasTile)
                 {
@@ -68,9 +71,8 @@ namespace Aequus.Tiles.CrabCrevice
                 if (p.Count > 0)
                 {
                     var chosen = WorldGen.genRand.Next(p);
-                    Main.tile[chosen].Active(true);
-                    Main.tile[chosen].TileType = (ushort)ModContent.TileType<SeaPickleTile>();
-                    WorldGen.TileFrame(chosen.X, chosen.Y);
+                    if (ModContent.GetInstance<SeaPickleTile>().CanPlace(chosen.X, chosen.Y))
+                        WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<SeaPickleTile>(), mute: true);
                 }
             }
             if (Main.tile[i, j - 1].HasTile)

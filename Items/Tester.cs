@@ -39,10 +39,17 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            AequusWorld.RandomUpdateTile(x, y);
+
+            AequusWorld.GenCrabCrevice.GrowWalls(x, y);
+            return true;
+
+            AequusWorld.GenCrabCrevice.Grow();
+            AequusWorld.GenCrabCrevice.PlaceChests();
             return true;
 
             AequusWorld.GenCrabCrevice.Generate(null);
+            return true;
+            AequusWorld.RandomUpdateTile(x, y);
             return true;
 
             WorldGen.PlaceTile(AequusHelpers.tileX, AequusHelpers.tileY, Item.createTile, plr: player.whoAmI);

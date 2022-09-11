@@ -13,6 +13,7 @@ using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using Aequus.Tiles.CrabCrevice;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using System;
@@ -224,7 +225,8 @@ namespace Aequus
             Structures = new Structures();
             AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
             {
-                GenCrabCrevice.Generate(progress);
+                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
+                GenCrabCrevice.Generate(null);
             }, tasks);
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>
             {
@@ -234,6 +236,9 @@ namespace Aequus
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
             {
                 GenGoreNest.Cleanup();
+                //progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
+                progress.Message = "Growing Crabs...";
+                GenCrabCrevice.Grow();
             }, tasks);
         }
         private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
@@ -383,6 +388,7 @@ namespace Aequus
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
+            SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
             TileCountsMultiplier = 1;
         }
 
