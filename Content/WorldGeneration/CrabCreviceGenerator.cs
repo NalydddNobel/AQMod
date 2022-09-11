@@ -88,7 +88,6 @@ namespace Aequus.Content.WorldGeneration
                                 if (!WorldGen.genRand.NextBool(25 + ((int)Main.worldSurface - y2) + 2))
                                 {
                                     Main.tile[x2 + m, y2 + n].TileType = TileID.Sand;
-                                    Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
                                     continue;
                                 }
                             }
@@ -108,7 +107,6 @@ namespace Aequus.Content.WorldGeneration
                             }
                             Main.tile[x2 + m, y2 + n].Active(value: true);
                             Main.tile[x2 + m, y2 + n].TileType = TileID.Sand;
-                            Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
                         }
                     }
                 }
@@ -214,6 +212,10 @@ namespace Aequus.Content.WorldGeneration
                                 {
                                     Main.tile[x2 + m, y2 + n].Active(value: true);
                                     Main.tile[x2 + m, y2 + n].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
+                                    if (y2 < Main.worldSurface)
+                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
+                                    else if (y2 < Main.worldSurface - 25 && !WorldGen.genRand.NextBool(25))
+                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
                                 }
                             }
                         }
