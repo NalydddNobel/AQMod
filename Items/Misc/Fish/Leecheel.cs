@@ -6,6 +6,11 @@ namespace Aequus.Items.Misc.Fish
 {
     public class Leecheel : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 3;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 20;

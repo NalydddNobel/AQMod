@@ -98,11 +98,12 @@ namespace Aequus.Tiles
             var drawCoordinates = new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset;
 
             var recycling = GetTileEntity(i, j);
-            if (recycling != null)
+            if (recycling == null)
             {
-                drawCoordinates += recycling.GetDrawOffset(i, j);
-                recycling.UpdateSounds();
+                return true;
             }
+            drawCoordinates += recycling.GetDrawOffset(i, j);
+            recycling.UpdateSounds();
 
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates.Floor(),
                 frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

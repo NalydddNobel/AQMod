@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Generation
+namespace Aequus.Content.WorldGeneration
 {
     public struct Structures : IEnumerable<KeyValuePair<string, Point>>
     {

@@ -8,9 +8,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Generation
+namespace Aequus.Content.WorldGeneration
 {
-    public struct GoreNestGen
+    public struct GoreNestGenerator
     {
         public int min;
         public int max;
@@ -20,7 +20,7 @@ namespace Aequus.Content.Generation
         public HashSet<int> AvoidTiles { get; private set; }
         public HashSet<int> AvoidWalls { get; private set; }
 
-        public GoreNestGen()
+        public GoreNestGenerator()
         {
             min = 75;
             max = 150;

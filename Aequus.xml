@@ -488,14 +488,14 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="M:Aequus.Content.Generation.Structures.Add(System.String,Microsoft.Xna.Framework.Point)">
+        <member name="M:Aequus.Content.WorldGeneration.Structures.Add(System.String,Microsoft.Xna.Framework.Point)">
             <summary>
             Adds a structure to the list
             </summary>
             <param name="name">The name of the structure</param>
             <param name="location">The location of the structure in tile coordinates</param>
         </member>
-        <member name="M:Aequus.Content.Generation.Structures.GetLocation(System.String)">
+        <member name="M:Aequus.Content.WorldGeneration.Structures.GetLocation(System.String)">
             <summary>
             Gets the location of a structure using a name
             </summary>

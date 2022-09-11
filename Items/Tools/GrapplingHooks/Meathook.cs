@@ -8,6 +8,11 @@ namespace Aequus.Items.Tools.GrapplingHooks
 {
     public class Meathook : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.width = 20;

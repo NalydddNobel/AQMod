@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Boss.Expert
@@ -50,9 +51,12 @@ namespace Aequus.Items.Boss.Expert
         #region Hooks
         public override void Load()
         {
-            RenderPoints = new List<RenderData>();
-            On.Terraria.Main.DrawProjectiles += DrawBackOrbs;
-            On.Terraria.Main.DrawPlayers_AfterProjectiles += DrawFrontOrbs;
+            if (Main.netMode != NetmodeID.Server)
+            {
+                RenderPoints = new List<RenderData>();
+                On.Terraria.Main.DrawProjectiles += DrawBackOrbs;
+                On.Terraria.Main.DrawItems += Main_DrawItems;
+            }
         }
 
         private static void DrawBackOrbs(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
@@ -60,13 +64,16 @@ namespace Aequus.Items.Boss.Expert
             DrawOrbs(BackOrbsCulling);
             orig(self);
         }
-        private static void DrawFrontOrbs(On.Terraria.Main.orig_DrawPlayers_AfterProjectiles orig, Main self)
+        private static void Main_DrawItems(On.Terraria.Main.orig_DrawItems orig, Main self)
         {
-            orig(self);
+            Main.spriteBatch.End();
             DrawOrbs(FrontOrbsCulling);
+            Begin.GeneralEntities.Begin(Main.spriteBatch);
 
             RenderPoints.Clear();
+            orig(self);
         }
+
         public static void DrawOrbs(Func<float, bool> rule)
         {
             if (RenderPoints.Count == 0)

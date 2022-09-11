@@ -2,9 +2,10 @@
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
-using Aequus.Content.Generation;
+using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Boss.Expert;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
@@ -33,6 +34,8 @@ namespace Aequus
         public static int TileCountsMultiplier;
 
         private static FieldInfo SceneMetrics__tileCounts;
+        private static MethodInfo WorldGen_UpdateWorld_OvergroundTile;
+        private static MethodInfo WorldGen_UpdateWorld_UndergroundTile;
 
         [SaveData("WhiteFlag")]
         [SaveDataAttribute.IsListedBoolean]
@@ -93,27 +96,23 @@ namespace Aequus
 
         public static Structures Structures { get; private set; }
 
-        public static GoreNestGen GoreNests { get; private set; }
+        public static CrabCreviceGenerator GenCrabCrevice { get; private set; }
+        public static GoreNestGenerator GenGoreNest { get; private set; }
 
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
 
         public override void Load()
         {
-            GoreNests = new GoreNestGen();
-            On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
+            GenCrabCrevice = new CrabCreviceGenerator();
+            GenGoreNest = new GoreNestGenerator();
+
+            WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
+            WorldGen_UpdateWorld_UndergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_UndergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
+            SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
+
             On.Terraria.Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
             On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
             On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
-            SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
-        }
-
-        private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
-        {
-            if (orig(x, y, context))
-            {
-                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable;
-            }
-            return false;
         }
 
         private static bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
@@ -140,6 +139,15 @@ namespace Aequus
                 }
             }
             orig(self);
+        }
+
+        public override void Unload()
+        {
+            GenCrabCrevice = null;
+
+            WorldGen_UpdateWorld_OvergroundTile = null;
+            WorldGen_UpdateWorld_UndergroundTile = null;
+            SceneMetrics__tileCounts = null;
         }
 
         public void ResetWorldData()
@@ -214,22 +222,18 @@ namespace Aequus
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             Structures = new Structures();
-            //AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
-            //{
-            //    progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
-            //    var crabCrevice = new CrabCreviceGen();
-            //    crabCrevice.GenerateCrabCrevice(out var savePoint);
-            //    Structures.Add("CrabCrevice", savePoint);
-            //}, tasks);
-
-            AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
+            AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
             {
-                GoreNests.Cleanup();
+                GenCrabCrevice.Generate(progress);
             }, tasks);
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>
             {
                 progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
-                GoreNests.Generate();
+                GenGoreNest.Generate();
+            }, tasks);
+            AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
+            {
+                GenGoreNest.Cleanup();
             }, tasks);
         }
         private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
@@ -384,6 +388,7 @@ namespace Aequus
 
         public override void PreUpdateEntities()
         {
+            CelesteTorus.RenderPoints?.Clear();
             ResetCaches();
         }
 
@@ -423,6 +428,24 @@ namespace Aequus
         public static void MarkAsDefeated(ref bool defeated, int npcID)
         {
             NPC.SetEventFlagCleared(ref defeated, -1);
+        }
+
+        public static void RandomUpdateTile(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
+        {
+            if (y < Main.worldSurface)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                }
+            }
         }
 
         public static bool Outer(int x, int iths)

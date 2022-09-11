@@ -20,10 +20,20 @@ namespace Aequus.Tiles
 
         public override void Load()
         {
+            On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }
 
-        private void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)
+        private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
+        {
+            if (orig(x, y, context))
+            {
+                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable;
+            }
+            return false;
+        }
+
+        private static void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;

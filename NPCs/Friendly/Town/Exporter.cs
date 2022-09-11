@@ -367,16 +367,20 @@ namespace Aequus.NPCs.Friendly.Town
                 choices.Add(ModContent.ItemType<Roulette>());
                 choices.Add(ModContent.ItemType<GoldenRoulette>());
             }
-            if (ExporterQuests.QuestsCompleted > 5)
+            if (ExporterQuests.QuestsCompleted > 2)
             {
-                choices.Add(ModContent.ItemType<GlowingMushroomsRoulette>()); ;
                 choices.Add(ModContent.ItemType<SnowRoulette>());
             }
-            if (ExporterQuests.QuestsCompleted > 10)
+            if (ExporterQuests.QuestsCompleted > 4)
             {
-                choices.Add(ModContent.ItemType<SkyRoulette>()); ;
                 choices.Add(ModContent.ItemType<DesertRoulette>());
             }
+            if (ExporterQuests.QuestsCompleted > 6)
+            {
+                choices.Add(ModContent.ItemType<SkyRoulette>()); ;
+            }
+            if (ExporterQuests.QuestsCompleted > 8 && AequusWorld.downedEventDemon)
+                choices.Add(ModContent.ItemType<ShadowRoulette>());
             return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;
         }
         public void OnQuestFailed(Player player)

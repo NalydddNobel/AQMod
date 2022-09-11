@@ -3,7 +3,6 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
-using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
@@ -83,23 +82,23 @@ namespace Aequus
         /// <summary>
         /// Caches <see cref="Main.invasionSize"/>
         /// </summary>
-        public static StaticManipulator<int> Main_invasionSize { get; internal set; }
+        public static StaticManipulator<int> Main_invasionSize { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.invasionType"/>
         /// </summary>
-        public static StaticManipulator<int> Main_invasionType { get; internal set; }
+        public static StaticManipulator<int> Main_invasionType { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.bloodMoon"/>
         /// </summary>
-        public static StaticManipulator<bool> Main_bloodMoon { get; internal set; }
+        public static StaticManipulator<bool> Main_bloodMoon { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.eclipse"/>
         /// </summary>
-        public static StaticManipulator<bool> Main_eclipse { get; internal set; }
+        public static StaticManipulator<bool> Main_eclipse { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.dayTime"/>
         /// </summary>
-        public static StaticManipulator<bool> Main_dayTime { get; internal set; }
+        public static StaticManipulator<bool> Main_dayTime { get; private set; }
         /// <summary>
         /// Determines whether or not the mouse has an item
         /// </summary>
@@ -118,7 +117,7 @@ namespace Aequus
 
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
-        private static Regex _substitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
+        public static Regex SubstitutionRegex { get; private set; }
 
         public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0)
         {
@@ -699,7 +698,7 @@ namespace Aequus
         {
             string input = text;
             PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(obj);
-            return _substitutionRegex.Replace(input, delegate (Match match)
+            return SubstitutionRegex.Replace(input, delegate (Match match)
             {
                 if (match.Groups[1].Length != 0)
                 {
@@ -1918,6 +1917,7 @@ namespace Aequus
 
             void IOnModLoad.OnModLoad(Aequus aequus)
             {
+                SubstitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
                 Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
                 Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
                 Main_bloodMoon = new StaticManipulator<bool>(() => ref Main.bloodMoon);
@@ -1927,6 +1927,7 @@ namespace Aequus
 
             void ILoadable.Unload()
             {
+                SubstitutionRegex = null;
                 Main_invasionSize = null;
                 Main_invasionType = null;
                 Main_bloodMoon = null;

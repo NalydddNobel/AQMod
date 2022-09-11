@@ -67,7 +67,7 @@ namespace Aequus.Tiles.CrabCrevice
                     {
                         if (!Main.tile[i, l].HasTile)
                         {
-                            WorldGen.PlaceTile(i, l + 1, ModContent.TileType<CrabAlgae>(), mute: true);
+                            WorldGen.PlaceTile(i, l + 1, ModContent.TileType<CrabHydrosailia>(), mute: true, style: WorldGen.genRand.Next(6));
                         }
                         break;
                     }

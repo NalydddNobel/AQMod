@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Generation
+namespace Aequus.Content.WorldGeneration
 {
     public struct Circle
     {
