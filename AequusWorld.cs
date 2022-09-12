@@ -223,7 +223,7 @@ namespace Aequus
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             Structures = new Structures();
-            AddPass("Beaches", "Crab Crevice", (progress, configuration) =>
+            AddPass("Beaches", "Crab Home", (progress, configuration) =>
             {
                 progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
                 GenCrabCrevice.Generate(null);
@@ -233,11 +233,19 @@ namespace Aequus
                 progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
                 GenGoreNest.Generate();
             }, tasks);
+            AddPass("Pots", "Crab Pottery", (progress, configuration) =>
+            {
+                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevicePots");
+                GenCrabCrevice.TransformPots();
+            }, tasks);
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
             {
+                progress.Message = AequusText.GetText("WorldGeneration.GoreNestCleanup");
                 GenGoreNest.Cleanup();
-                //progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
-                progress.Message = "Growing Crabs...";
+            }, tasks);
+            AddPass("Tile Cleanup", "Crab Growth", (progress, configuration) =>
+            {
+                progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
                 GenCrabCrevice.Grow();
             }, tasks);
         }

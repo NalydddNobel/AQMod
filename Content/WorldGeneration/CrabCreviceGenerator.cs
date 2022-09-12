@@ -21,6 +21,12 @@ namespace Aequus.Content.WorldGeneration
         {
             location = new Point();
             size = Main.maxTilesX / 30;
+            if (size > 200)
+            {
+                size -= 200;
+                size /= 2;
+                size += 200;
+            }
         }
 
         public bool ProperCrabCreviceAnchor(int x, int y)
@@ -572,6 +578,24 @@ namespace Aequus.Content.WorldGeneration
                 }
                 size /= 2;
                 velo = velo.RotatedBy(WorldGen.genRand.NextFloat(WorldGen.genRand.NextFloat(-0.3f, 0.01f), WorldGen.genRand.NextFloat(0.01f, 0.3f)));
+            }
+        }
+
+        public void TransformPots()
+        {
+            Reset();
+            int sizeX = size * 2;
+            var p = AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
+            for (int i = p; i < p + sizeX; i++)
+            {
+                for (int j = 0; j < Main.maxTilesY; j++)
+                {
+                    if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.Pots)
+                    {
+                        Main.tile[i, j].TileType = (ushort)ModContent.TileType<CrabCrevicePot>();
+                        Main.tile[i, j].TileFrameY %= 72;
+                    }
+                }
             }
         }
     }
