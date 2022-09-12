@@ -2892,7 +2892,8 @@ Mods: {
 					MechanicalLens: I used to always lose track of my wires, so I made these!
 					EngineeringHelmet: Perfect for solving practical problems!
 					WireBulb: Did you know I once wired a cake with bulbs instead of candles?
-					MechanicsRod: "{Angler} told me to make a 'super fishing rod for the fishing master'... well I couldn't say no."
+					MechanicsRod: "Something I would make for a 'fishing master'!"
+					MechanicsRod_Angler: "{Angler} told me to make a 'super fishing rod for the fishing master'... well I couldn't say no."
 					Timer5Second: 5 second rule!
 					Timer3Second: Or was it the 3 second rule?
 					Timer1Second: Useful for setting up blinking lights.
