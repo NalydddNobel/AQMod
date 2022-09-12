@@ -406,7 +406,9 @@ namespace Aequus.NPCs
                     .AddQuote(ItemID.MechanicalLens)
                     .AddQuote(ItemID.EngineeringHelmet)
                     .AddQuote(ItemID.WireBulb)
-                    .AddQuoteWithSubstitutions(ItemID.MechanicsRod, new { Angler = NPC.GetFirstNPCNameOrNull(NPCID.Angler) })
+                    .AddQuote(() => NPC.AnyNPCs(NPCID.Angler) ?
+                    Language.GetTextValueWith(NPCShopQuoteKey("Aequus", NPCID.Mechanic) + "MechanicsRod", new { Angler = NPC.GetFirstNPCNameOrNull(NPCID.Angler) })
+                    : "Hi! this is an easter egg.", ItemID.MechanicsRod)
                     .AddQuote(ItemID.Timer5Second)
                     .AddQuote(ItemID.Timer3Second)
                     .AddQuote(ItemID.Timer1Second)
