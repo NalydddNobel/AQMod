@@ -1,4 +1,5 @@
 ﻿using Aequus.Particles.Dusts;
+using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
 namespace Aequus.Biomes.CrabCrevice
@@ -18,6 +19,11 @@ namespace Aequus.Biomes.CrabCrevice
         public override int GetSplashDust()
         {
             return ModContent.DustType<CrabCreviceSplash>();
+        }
+
+        public override Color BiomeHairColor()
+        {
+            return Color.Teal;
         }
     }
 }

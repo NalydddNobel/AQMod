@@ -17,6 +17,11 @@ namespace Aequus.Content.WorldGeneration
         private int size;
         public Point location;
 
+        public int LeftX(int sizeX)
+        {
+            return AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
+        } 
+
         public void Reset()
         {
             location = new Point();
@@ -283,6 +288,139 @@ namespace Aequus.Content.WorldGeneration
             return true;
         }
 
+        public void GrowWalls(int x, int y)
+        {
+            if (x - size < 10)
+            {
+                x = size + 10;
+            }
+            else if (x + size > Main.maxTilesX - 10)
+            {
+                x = Main.maxTilesX - 10 - size;
+            }
+            if (y - size < 10)
+            {
+                y = size + 10;
+            }
+            else if (y + size > Main.maxTilesY - 10)
+            {
+                y = Main.maxTilesY - 10 - size;
+            }
+            List<Point> placeTiles = new List<Point>();
+            for (int i = 0; i < size * 2; i++)
+            {
+                for (int j = 0; j < size * 3; j++) // A bit overkill of an extra check, but whatever
+                {
+                    int x2 = x + i - size;
+                    int y2 = y + j - size;
+                    int x3 = x2 - x;
+                    int y3 = y2 - y;
+                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= size)
+                    {
+                        if (CanOverwriteTile(Main.tile[x2, y2]))
+                        {
+                            if (Main.tile[x2, y2].HasTile && y2 > (int)Main.worldSurface && WorldGen.genRand.NextBool(16))
+                            {
+                                if (WorldGen.InWorld(x2, y2, 5))
+                                {
+                                    bool allowedToCreatePillar = false;
+                                    for (int k = -1; k <= 1; k++)
+                                    {
+                                        for (int l = -1; l <= 1; l++)
+                                        {
+                                            if (!Main.tile[x2 + k, y2 + l].HasTile)
+                                            {
+                                                allowedToCreatePillar = true;
+                                            }
+                                        }
+                                    }
+                                    if (allowedToCreatePillar)
+                                        GrowWormyWall(x2, y2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void GrowWormyWall(int x, int y)
+        {
+            var velo = new Vector2(WorldGen.genRand.NextFloat(-1f, 1f), WorldGen.genRand.NextFloat(-0.2f, 1f));
+
+            var loc = new Vector2(x, y);
+            int size = WorldGen.genRand.Next(2, 5);
+            for (int i = 0; i < 1000; i++)
+            {
+                loc += velo;
+                if (velo.Y < 0f)
+                    velo.Y *= 0.95f;
+                if (velo.Length() < 1f)
+                    velo = Vector2.Normalize(velo);
+                var p = loc.ToPoint();
+                if (!WorldGen.InWorld(p.X, p.Y, 10))
+                {
+                    if (i > 15)
+                        break;
+                    continue;
+                }
+                size = Math.Clamp(size + WorldGen.genRand.Next(-1, 2), 1, 5);
+                size *= 2;
+                for (int k = -size; k <= size; k++)
+                {
+                    for (int l = -size; l <= size; l++)
+                    {
+                        if (new Vector2(k, l).Length() <= size / 2f)
+                        {
+                            Main.tile[p + new Point(k - size / 2, l - size / 2)].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
+                        }
+                    }
+                }
+                if (Main.tile[p].IsFullySolid())
+                {
+                    if (i > 15)
+                        break;
+                }
+                size /= 2;
+                velo = velo.RotatedBy(WorldGen.genRand.NextFloat(WorldGen.genRand.NextFloat(-0.3f, 0.01f), WorldGen.genRand.NextFloat(0.01f, 0.3f)));
+            }
+        }
+
+        public void PlaceChests(int leftX, int sizeX)
+        {
+            Reset();
+            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 64; i++)
+            {
+                int randX = leftX + WorldGen.genRand.Next(sizeX);
+                int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
+
+                if (Main.tile[randX, randY].TileType == ModContent.TileType<SedimentaryRockTile>())
+                {
+                    randY--;
+                    int chestID = WorldGen.PlaceChest(randX, randY, notNearOtherChests: true, style: ChestTypes.Palm);
+                    if (chestID != -1)
+                    {
+                        var c = Main.chest[chestID];
+                        c.item[0].SetDefaults(ModContent.ItemType<StarPhish>());
+                    }
+                }
+            }
+        }
+
+        public void FixSand(int leftX, int sizeX)
+        {
+            for (int i = leftX; i < leftX + sizeX; i++)
+            {
+                for (int j = 5; j < Main.maxTilesY - 5; j++)
+                {
+                    if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.Sand && !Main.tile[i, j + 1].IsSolid())
+                    {
+                        Main.tile[i, j].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
+                    }
+                }
+            }
+        }
+
         public void Generate(GenerationProgress progress)
         {
             Reset();
@@ -430,43 +568,25 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
 
+
             GrowWalls(location.X, location.Y);
 
             AequusWorld.Structures.Add("CrabCrevice", location);
+            int sizeX = size * 2;
+            var leftX = LeftX(sizeX);
+            PlaceChests(leftX, sizeX);
+            FixSand(leftX, sizeX);
         }
 
-        public void PlaceChests()
+        public void GrowPlants()
         {
             Reset();
             int sizeX = size * 2;
-            var p = AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
-            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 64; i++)
-            {
-                int randX = p + WorldGen.genRand.Next(sizeX);
-                int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
-
-                if (Main.tile[randX, randY].TileType == ModContent.TileType<SedimentaryRockTile>())
-                {
-                    randY--;
-                    int chestID = WorldGen.PlaceChest(randX, randY, notNearOtherChests: true, style: ChestTypes.Palm);
-                    if (chestID != -1)
-                    {
-                        var c = Main.chest[chestID];
-                        c.item[0].SetDefaults(ModContent.ItemType<StarPhish>());
-                    }
-                }
-            }
-        }
-
-        public void Grow()
-        {
-            Reset();
-            int sizeX = size * 2;
-            var p = AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
+            var leftX = LeftX(sizeX);
             var updateRandomly = new ModTile[] { ModContent.GetInstance<SedimentaryRockTile>(), ModContent.GetInstance<CrabHydrosailia>(), };
-            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 32; i++)
+            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 8; i++)
             {
-                int randX = p + WorldGen.genRand.Next(sizeX);
+                int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
 
                 if (Main.tile[randX, randY].HasTile)
@@ -483,110 +603,12 @@ namespace Aequus.Content.WorldGeneration
             }
         }
 
-        public void GrowWalls(int x, int y)
-        {
-            if (x - size < 10)
-            {
-                x = size + 10;
-            }
-            else if (x + size > Main.maxTilesX - 10)
-            {
-                x = Main.maxTilesX - 10 - size;
-            }
-            if (y - size < 10)
-            {
-                y = size + 10;
-            }
-            else if (y + size > Main.maxTilesY - 10)
-            {
-                y = Main.maxTilesY - 10 - size;
-            }
-            List<Point> placeTiles = new List<Point>();
-            for (int i = 0; i < size * 2; i++)
-            {
-                for (int j = 0; j < size * 3; j++) // A bit overkill of an extra check, but whatever
-                {
-                    int x2 = x + i - size;
-                    int y2 = y + j - size;
-                    int x3 = x2 - x;
-                    int y3 = y2 - y;
-                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= size)
-                    {
-                        if (CanOverwriteTile(Main.tile[x2, y2]))
-                        {
-                            if (Main.tile[x2, y2].HasTile && y2 > (int)Main.worldSurface && WorldGen.genRand.NextBool(16))
-                            {
-                                if (WorldGen.InWorld(x2, y2, 5))
-                                {
-                                    bool allowedToCreatePillar = false;
-                                    for (int k = -1; k <= 1; k++)
-                                    {
-                                        for (int l = -1; l <= 1; l++)
-                                        {
-                                            if (!Main.tile[x2 + k, y2 + l].HasTile)
-                                            {
-                                                allowedToCreatePillar = true;
-                                            }
-                                        }
-                                    }
-                                    if (allowedToCreatePillar)
-                                        GrowWormyWall(x2, y2);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public void GrowWormyWall(int x, int y)
-        {
-            var velo = new Vector2(WorldGen.genRand.NextFloat(-1f, 1f), WorldGen.genRand.NextFloat(-0.2f, 1f));
-
-            var loc = new Vector2(x, y);
-            int size = WorldGen.genRand.Next(2, 5);
-            for (int i = 0; i < 1000; i++)
-            {
-                loc += velo;
-                if (velo.Y < 0f)
-                    velo.Y *= 0.95f;
-                if (velo.Length() < 1f)
-                    velo = Vector2.Normalize(velo);
-                var p = loc.ToPoint();
-                if (!WorldGen.InWorld(p.X, p.Y, 10))
-                {
-                    if (i > 15)
-                        break;
-                    continue;
-                }
-                size = Math.Clamp(size + WorldGen.genRand.Next(-1, 2), 1, 5);
-                size *= 2;
-                for (int k = -size; k <= size; k++)
-                {
-                    for (int l = -size; l <= size; l++)
-                    {
-                        if (new Vector2(k, l).Length() <= size / 2f)
-                        {
-                            Main.tile[p + new Point(k - size / 2, l - size / 2)].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
-                        }
-                    }
-                }
-                if (Main.tile[p].IsFullySolid())
-                {
-                    if (i > 15)
-                        break;
-                }
-                size /= 2;
-                velo = velo.RotatedBy(WorldGen.genRand.NextFloat(WorldGen.genRand.NextFloat(-0.3f, 0.01f), WorldGen.genRand.NextFloat(0.01f, 0.3f)));
-            }
-        }
-
         public void TransformPots()
         {
             Reset();
             int sizeX = size * 2;
-            var p = AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
-            for (int i = p; i < p + sizeX; i++)
+            var leftX = LeftX(sizeX);
+            for (int i = leftX; i < leftX + sizeX; i++)
             {
                 for (int j = 0; j < Main.maxTilesY; j++)
                 {

@@ -246,7 +246,7 @@ namespace Aequus
             AddPass("Tile Cleanup", "Crab Growth", (progress, configuration) =>
             {
                 progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
-                GenCrabCrevice.Grow();
+                GenCrabCrevice.GrowPlants();
             }, tasks);
         }
         private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
