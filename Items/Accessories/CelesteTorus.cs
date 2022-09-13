@@ -11,7 +11,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Boss.Expert
+namespace Aequus.Items.Accessories
 {
     public class CelesteTorus : ModItem, ItemHooks.IUpdateItemDye
     {

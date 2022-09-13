@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Boss.Expert;
+﻿using Aequus.Items.Accessories;
+using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc.Dyes;

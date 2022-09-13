@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Boss.Expert
+namespace Aequus.Items.Accessories
 {
     public class LittleInferno : ModItem
     {
@@ -50,7 +50,7 @@ namespace Aequus.Items.Boss.Expert
                 NPC target = Main.npc[i];
                 if (target.active && !target.friendly && target.damage > 0 && !target.dontTakeDamage && !target.buffImmune[fireDebuff] && player.CanNPCBeHitByPlayerOrPlayerProjectile(target) && Vector2.Distance(where, target.Center) <= minDistance)
                 {
-                    if ((dealDamage && Main.rand.NextBool(damageChance)) || !target.HasBuff(fireDebuff))
+                    if (dealDamage && Main.rand.NextBool(damageChance) || !target.HasBuff(fireDebuff))
                     {
                         int oldDef = target.defense;
                         target.defense -= 20;

@@ -5,7 +5,6 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Boss.Expert;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;

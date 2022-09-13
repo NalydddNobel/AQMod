@@ -7,6 +7,11 @@ namespace Aequus.Items.Placeable.CrabCrevice
 {
     public class SedimentaryRockWall : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 400;
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToPlacableWall((ushort)ModContent.WallType<SedimentaryRockWallWall>());

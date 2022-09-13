@@ -6,7 +6,6 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.Items.Boss.Expert;
 using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;

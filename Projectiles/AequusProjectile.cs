@@ -1,6 +1,5 @@
 ﻿using Aequus.Content;
 using Aequus.Items.Accessories;
-using Aequus.Items.Boss.Expert;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Ranged;
