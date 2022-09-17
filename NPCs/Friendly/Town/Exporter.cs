@@ -9,6 +9,7 @@ using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
+using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -136,6 +137,11 @@ namespace Aequus.NPCs.Friendly.Town
         {
             Main.LocalPlayer.discount = false;
 
+            if (Main.LocalPlayer.ZoneGraveyard)
+            {
+                shop.item[nextSlot++].SetDefaults<Mallet>();
+            }
+
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
             if (NPC.downedPirates)
             {
@@ -169,7 +175,8 @@ namespace Aequus.NPCs.Friendly.Town
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrabClock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SedimentaryRock>());
+            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SedimentaryRock>());
+            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(copper: 2);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SeaPickle>());
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoticPearl>());
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);

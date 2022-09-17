@@ -155,6 +155,7 @@ Mods: {
 
 			FishyFins: Fishy Fins
 
+			Mallet: Mallet
 			SuperStarSword: Super Star Sword
 			UltimateSword: Ultimate Sword
 			BattleAxe: Battle Axe
@@ -430,7 +431,6 @@ Mods: {
 			FizzlingFire: Super Scorcher
 			Valari: Valari
 			Resonance: Resonance
-			VineSword: Mallet
 			KryptonSword: Krypton Boomerang
 			Vrang: Vrang
 			AirBlade: Air Blade
@@ -626,12 +626,12 @@ Mods: {
 				15% increased damage and critical strike chance
 				Increases the knockback of your minions
 				Crits inflicts blue fire to nearby enemies
-				[c/{Color}:...if you are at max health]
+				[c/{Color}:...If you are at max health]
 				'''
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
-				[c/{Color}:If you can pay 25 silver]
+				[c/{Color}:...If you can pay 25 silver]
 				'''
 			BlackPhial: 
 				'''
@@ -680,7 +680,7 @@ Mods: {
 			GrandReward: 
 				'''
 				Enemies are more likely to drop rarer items
-				[c/{Color}:However they no longer drop coins]
+				[c/{Color}:...However they no longer drop coins]
 				'''
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
@@ -688,11 +688,16 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			Mallet:
+				'''
+				Whack nearby enemies using your mouse
+				'It's just like huntin' squirbos'
+				'''
 			SuperStarSword: 
-			'''
-			Fires a slash when at full health
-			'If they zig, I cut 'em (If they zag, I cut 'em too)'
-			'''
+				'''
+				Fires a slash when at full health
+				'If they zig, I cut 'em (If they zag, I cut 'em too)'
+				'''
 			UltimateSword: 'Just a fragment of true potential'
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
@@ -1307,11 +1312,6 @@ Mods: {
 			SeltzerRain: Shoots many corrupted orbs
 			FizzlingFire: Cannot be used if you have mana sickness
 			Valari: Can pick up items
-			VineSword:
-				'''
-				Whack nearby enemies using your mouse
-				'It's just like huntin' squirbos'
-				'''
 			KryptonSword:
 				'''
 				Cuts through enemies

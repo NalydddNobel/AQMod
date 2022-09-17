@@ -32,6 +32,7 @@ namespace Aequus.Items
 
         public byte shopQuoteType;
         public byte noGravityTime;
+        public bool accBoost;
 
         public override void Load()
         {
@@ -137,6 +138,8 @@ namespace Aequus.Items
             {
                 item.accessory = false;
             }
+
+            accBoost = false;
         }
 
         public override void UpdateInventory(Item item, Player player)
@@ -156,6 +159,12 @@ namespace Aequus.Items
                 gravity = 0f;
                 noGravityTime--;
             }
+        }
+
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if (player.Aequus().slotBoostCurse != -2)
+                accBoost = false;
         }
 
         public override void NetSend(Item item, BinaryWriter writer)

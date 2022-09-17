@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -44,7 +45,14 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accVial = 4;
+            if (aequus.accVial > 0)
+            {
+                aequus.accVial = Math.Max(aequus.instaShieldCooldown - 1, 1);
+            }
+            else
+            {
+                aequus.accVial = 4;
+            }
             aequus.Debuffs.OverallTimeMultiplier += 1f;
         }
     }

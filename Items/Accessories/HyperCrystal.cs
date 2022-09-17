@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,7 +38,7 @@ namespace Aequus.Items.Accessories
             aequus.hyperCrystalItem = Item;
             if (aequus.slotBoostCurse != -2)
                 aequus.hyperCrystalDamage += 0.25f;
-            aequus.hyperCrystalDiameter += 480f;
+            aequus.hyperCrystalDiameter = Math.Max(aequus.hyperCrystalDiameter, 480f);
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,8 +23,16 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accBloodDiceDamage = 0.5f;
-            player.Aequus().accBloodDiceMoney = Item.buyPrice(silver: 25);
+            var aequus = player.Aequus();
+            aequus.accBloodDiceDamage = Math.Max(aequus.accBloodDiceDamage, 0.25f) + 0.25f;
+            if (aequus.accBloodDiceMoney > 0)
+            {
+                aequus.accBloodDiceMoney = Math.Max(aequus.accBloodDiceMoney / 2, 1);
+            }
+            else
+            {
+                aequus.accBloodDiceMoney = Item.buyPrice(silver: 25);
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

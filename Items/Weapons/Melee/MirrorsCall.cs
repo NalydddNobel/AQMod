@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc;
-using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,7 +9,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Melee
 {

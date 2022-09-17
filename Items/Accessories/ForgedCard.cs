@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,7 +24,8 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateInventory(Player player)
         {
-            player.Aequus().flatScamDiscount += Flat;
+            var aequus = player.Aequus();
+            aequus.flatScamDiscount = Math.Max(aequus.flatScamDiscount, Item.buyPrice(gold: 1, silver: 50)) + Item.buyPrice(gold: 1);
         }
 
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)

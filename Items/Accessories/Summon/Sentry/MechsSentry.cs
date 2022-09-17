@@ -3,7 +3,6 @@ using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -72,7 +71,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         int num7 = (int)center.X / 16;
                         int num8 = (int)center.Y / 16;
                         bool flag = false;
-                        if (Main.rand.NextBool(3)&& Main.tile[num7, num8] != null && Main.tile[num7, num8].WallType > 0)
+                        if (Main.rand.NextBool(3) && Main.tile[num7, num8] != null && Main.tile[num7, num8].WallType > 0)
                         {
                             flag = true;
                         }
@@ -338,13 +337,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             {
                 MechsSentry.ExpertEffect_UpdateAccessory(item, player);
             }
-        }
-    }
-
-    public class MechsSentryProjectile : GlobalProjectile
-    {
-        public override void OnSpawn(Projectile projectile, IEntitySource source)
-        {
         }
     }
 }

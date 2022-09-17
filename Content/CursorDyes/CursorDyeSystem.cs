@@ -19,13 +19,13 @@ namespace Aequus.Content.CursorDyes
             cursorDyes = new List<ICursorDye>();
             itemIDToCursor = new Dictionary<int, ICursorDye>();
             cursorToItemID = new Dictionary<int, int>();
-            On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor; ;
+            On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
             On.Terraria.Main.DrawCursor += Main_DrawCursor;
             On.Terraria.Main.CursorColor += Main_CursorColor;
             On.Terraria.Main.DrawInterface_36_Cursor += Main_DrawInterface_36_Cursor;
         }
 
-        private void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
+        private static void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
         {
             if (CanDrawCustomCursor() && !PlayerInput.UsingGamepad && LocalCursor(out var cursor))
             {
@@ -41,7 +41,7 @@ namespace Aequus.Content.CursorDyes
             orig();
         }
 
-        private void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
+        private static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
         {
             if (CanDrawCustomCursor() && LocalCursor(out var cursor))
             {
@@ -120,9 +120,9 @@ namespace Aequus.Content.CursorDyes
 
         public static bool LocalCursor(out ICursorDye cursor)
         {
-            if (Main.LocalPlayer.Aequus().cursorDye > -1)
+            if (Main.LocalPlayer.Aequus().CursorDye > -1)
             {
-                cursor = cursorDyes[Main.LocalPlayer.Aequus().cursorDye];
+                cursor = cursorDyes[Main.LocalPlayer.Aequus().CursorDye];
                 return true;
             }
             cursor = null;

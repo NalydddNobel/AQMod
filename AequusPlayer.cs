@@ -19,7 +19,6 @@ using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
@@ -68,8 +67,12 @@ namespace Aequus
 
         [SaveData("Souls")]
         public int candleSouls;
+
         [SaveData("CursorDye")]
         public int cursorDye;
+        public int cursorDyeOverride;
+
+        public int CursorDye { get => cursorDyeOverride > 0 ? cursorDyeOverride : cursorDye; set => cursorDye = value; }
 
         [SaveData("Scammer")]
         [SaveDataAttribute.IsListedBoolean]
@@ -366,12 +369,12 @@ namespace Aequus
             var c = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                darkness != c.darkness, 
+                darkness != c.darkness,
                 timeSinceLastHit != c.timeSinceLastHit,
-                candleSouls != c.candleSouls, 
+                candleSouls != c.candleSouls,
                 omniPaint != c.omniPaint,
-                (c.itemCombo - itemCombo).Abs() > 3 || (c.itemSwitch - itemSwitch).Abs() > 3 || (c.itemUsage - itemUsage).Abs() > 3 || (c.itemCooldown - itemCooldown).Abs() > 3 || c.itemCooldownMax != itemCooldownMax, 
-                c.instaShieldTime != instaShieldTime, 
+                (c.itemCombo - itemCombo).Abs() > 3 || (c.itemSwitch - itemSwitch).Abs() > 3 || (c.itemUsage - itemUsage).Abs() > 3 || (c.itemCooldown - itemCooldown).Abs() > 3 || c.itemCooldownMax != itemCooldownMax,
+                c.instaShieldTime != instaShieldTime,
                 /*shatteringVenus.NeedsSyncing(this, c)*/ false,
                 boundBowAmmo != c.boundBowAmmo || boundBowAmmoTimer != c.boundBowAmmoTimer);
 
@@ -484,7 +487,7 @@ namespace Aequus
             antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
-            cursorDye = -1;
+            CursorDye = -1;
             candleSouls = 0;
             ghostTombstones = false;
             moroSummonerFruit = false;
@@ -511,6 +514,7 @@ namespace Aequus
         {
             PlayerContext = Player.whoAmI;
 
+            cursorDyeOverride = 0;
             accDavyJonesAnchor = null;
             accWarHorn = false;
             accDustDevilFire = false;
@@ -788,8 +792,11 @@ namespace Aequus
         }
         public void HandleSlotBoost(Item item, bool hideVisual)
         {
+            if (item.IsAir)
+                return;
             int slotBoostCurseOld = slotBoostCurse;
             slotBoostCurse = -2;
+            item.Aequus().accBoost = true;
             Player.ApplyEquipFunctional(item, hideVisual);
             slotBoostCurse = slotBoostCurseOld;
 
@@ -1465,11 +1472,15 @@ namespace Aequus
         }
         public void OnHitEffects(NPC target, int damage, float knockback, bool crit)
         {
-            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI && 
+            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI &&
                 Player.RollLuck(Math.Max(8 - damage / 20, 1) + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) == 0)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
-                    ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
+                int amt = accDavyJonesAnchor.Aequus().accBoost ? 2 : 1;
+                for (int i = 0; i < amt; i++)
+                {
+                    Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
+                        ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
+                }
             }
 
             if (accDustDevilFire)
@@ -1483,7 +1494,7 @@ namespace Aequus
 
             if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 300);
+                target.AddBuff(ModContent.BuffType<BlueFire>(), mothmanMaskItem.Aequus().accBoost ? 600 : 300);
                 SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
             }
             if (accVial > 0)

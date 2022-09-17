@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,7 +22,15 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accBoneRing += 4;
+            var aequus = player.Aequus();
+            if (aequus.accBoneRing > 0)
+            {
+                aequus.accBoneRing = Math.Max(aequus.instaShieldCooldown - 1, 1);
+            }
+            else
+            {
+                aequus.accBoneRing = 4;
+            }
         }
     }
 }

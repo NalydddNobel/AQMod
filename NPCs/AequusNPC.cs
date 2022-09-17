@@ -489,6 +489,10 @@ namespace Aequus.NPCs
                     }
                     if (npc.value > (Item.copper * 20) && tuple.aequus.ammoBackpackItem != null && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
                     {
+                        if (tuple.aequus.ammoBackpackItem.Aequus().accBoost)
+                        {
+                            tuple.aequus.UseAmmoBackpack(npc, tuple.aequus.ammoBackpackItem);
+                        }
                         tuple.aequus.UseAmmoBackpack(npc, tuple.aequus.ammoBackpackItem);
                     }
                 }

@@ -25,12 +25,12 @@ namespace Aequus.Items.Consumables.CursorDyes
 
         public override bool CanUseItem(Player player)
         {
-            return player.Aequus().cursorDye != CursorDyeSystem.ItemIDToCursor(Type).Type;
+            return player.Aequus().CursorDye != CursorDyeSystem.ItemIDToCursor(Type).Type;
         }
 
         public override bool? UseItem(Player player)
         {
-            player.Aequus().cursorDye = CursorDyeSystem.ItemIDToCursor(Type).Type;
+            player.Aequus().CursorDye = CursorDyeSystem.ItemIDToCursor(Type).Type;
             return true;
         }
     }
