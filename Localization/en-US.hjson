@@ -161,6 +161,7 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
 			Raygun: Raygun
 			BoundBow: Bound Bow
@@ -576,7 +577,6 @@ Mods: {
 			HamaYumi: Hama Yumi
 			SpiralingTwilight: Spiraling Twilight
 			Sprinkler: Sprinkler
-			StarPhish: Star Phish
 			SpaceShot: Space Shot
 			LotusStaff: Lotus Staff
 			CrimsonHandStaff: Crimson Hand Staff
@@ -695,6 +695,11 @@ Mods: {
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 
+			StarPhish: 
+				'''
+				Deals increased damage to enemies in water
+				{$Mods.Aequus.Tooltips.UseDarts}
+				'''
 			SnowflakeCannon: 
 				'''
 				Shoots charged snowflakes which arc off of enemies
@@ -1543,7 +1548,6 @@ Mods: {
 			ArgonSpear: Redirects itself to your cursor
 			HamaYumi: Close enemies explode into corruption hellfire
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
-			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
 			SpaceShot: Shoots a star which then shoots bullets
 			LotusStaff:
 				'''
@@ -2023,9 +2027,12 @@ Mods: {
 
 			BreadOfCthulhu: Bread of Cthulhu
 
+			SummonerCrabMinion: Fleer
+			SummonerCrab: Hijivarch Crab
 			CrabFish: Crab Fish
 			SoldierCrabs: Soldier Crab
 			HermitCrab: Hermit Crab
+
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
 			DwarfStariteCritter: Dwarf Starite
@@ -2054,6 +2061,8 @@ Mods: {
 			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 			
+			SummonerCrabMinion: Would be unable to rest and shelter their eggs without the Hijivarch, luckily they have each other.
+			SummonerCrab: Would be unable to live on without help from the Fleers, luckily they have each other.
 			CrabFish: Lurks in the darkness, using its lure to emit coin noises and sparkles to attract unknowing prey...
 
 			BloodMimic: Due to the blood moon's dominance over corpses, unlucky looters who were slain while stealing may mutate with chests, creating a monster.

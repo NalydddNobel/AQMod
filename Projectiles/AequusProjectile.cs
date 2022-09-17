@@ -1,4 +1,5 @@
 ﻿using Aequus.Content;
+using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
@@ -27,6 +28,7 @@ namespace Aequus.Projectiles
         public static int pIdentity;
         public static int pNPC;
 
+        public bool fishDamage;
         public bool heatDamage;
         public ushort frenzyTime;
 
@@ -217,12 +219,15 @@ namespace Aequus.Projectiles
             }
         }
 
-        public void OnSpawn_CheckRaygun(Projectile projectile)
+        public void OnSpawn_CheckItem(Projectile projectile, IEntitySource source)
         {
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            if (sourceItemUsed > Main.maxItemTypes)
             {
-                projectile.extraUpdates++;
-                projectile.extraUpdates *= 6;
+                var item = ContentSamples.ItemsByType[sourceItemUsed];
+                if (item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
+                {
+                    onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                }
             }
         }
 
@@ -271,10 +276,7 @@ namespace Aequus.Projectiles
                 {
                     OnSpawn_CheckTombstones(projectile, misc);
                 }
-                if (sourceItemUsed > 0)
-                {
-                    OnSpawn_CheckRaygun(projectile);
-                }
+                OnSpawn_CheckItem(projectile, source);
             }
             catch
             {
@@ -376,6 +378,14 @@ namespace Aequus.Projectiles
         public int ProjectileOwner(Projectile projectile)
         {
             return AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+        }
+
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (fishDamage && (target.wet || target.HasBuff(BuffID.Wet)))
+            {
+                damage = (int)(damage * 1.25f);
+            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
@@ -485,6 +495,7 @@ namespace Aequus.Projectiles
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
+            bitWriter.WriteBit(fishDamage);
             binaryWriter.Write(timeAlive);
             bitWriter.WriteBit(frenzyTime > 0);
             if (frenzyTime > 0)
@@ -525,6 +536,7 @@ namespace Aequus.Projectiles
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
+            fishDamage = bitReader.ReadBit();
             timeAlive = binaryReader.ReadInt32();
             if (bitReader.ReadBit())
             {

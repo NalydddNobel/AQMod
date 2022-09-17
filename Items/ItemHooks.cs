@@ -1,5 +1,7 @@
 ﻿using Aequus.Common;
+using Aequus.Projectiles;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
@@ -15,6 +17,11 @@ namespace Aequus.Items
 
         void ILoadable.Unload()
         {
+        }
+
+        public interface IOnSpawnProjectile
+        {
+            void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source);
         }
 
         public interface ICustomCanPlace

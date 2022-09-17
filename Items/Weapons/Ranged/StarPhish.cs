@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    public class StarPhish : ModItem
+    public class StarPhish : ModItem, ItemHooks.IOnSpawnProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -57,6 +58,11 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(ItemID.IronAnvil)
                 .Register();
+        }
+
+        public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+        {
+            aequusProjectile.fishDamage = true;
         }
     }
 }

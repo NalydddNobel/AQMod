@@ -38,8 +38,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.OceanBiome);
+            this.CreateEntry(database, bestiaryEntry);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -205,6 +204,12 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                 spriteBatch.Draw(coin, NPC.position + offset + new Vector2(14f * NPC.spriteDirection, NPC.gfxOffY - 8f) - screenPos, coinFrame, drawColor * (1f - NPC.Opacity), NPC.rotation, coinFrame.Size() / 2f, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
             }
             return false;
+        }
+
+        public override bool? CanFallThroughPlatforms()
+        {
+            return !NPC.HasValidTarget || Main.player[NPC.target].position.Y
+                > NPC.position.Y + NPC.height;
         }
     }
 }

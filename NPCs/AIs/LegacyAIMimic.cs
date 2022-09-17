@@ -28,8 +28,9 @@ namespace Aequus.NPCs.AIs
         {
             if (NPC.ai[0] <= 0f)
             {
+                NPC.ShowNameOnHover = false;
                 NPC.TargetClosest();
-                Player target = Main.player[NPC.target];
+                var target = Main.player[NPC.target];
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                     return;
                 if (NPC.velocity.X != 0f || NPC.velocity.Y < 0f || NPC.velocity.Y > 0.3)
@@ -44,8 +45,10 @@ namespace Aequus.NPCs.AIs
                     NPC.ai[0] = 1f;
                     NPC.netUpdate = true;
                 }
+                return;
             }
-            else if (NPC.velocity.Y == 0f)
+            NPC.ShowNameOnHover = true;
+            if (NPC.velocity.Y == 0f)
             {
                 NPC.ai[2] += 1f;
                 int timer = 20;

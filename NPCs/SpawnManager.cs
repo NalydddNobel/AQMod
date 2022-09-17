@@ -116,13 +116,17 @@ namespace Aequus.NPCs
                 {
                     pool.Add(ModContent.NPCType<BloodMimic>(), 0.02f);
                 }
-                if (spawnInfo.Player.Aequus().ZoneCrabCrevice)
+            }
+            if (spawnInfo.Player.Aequus().ZoneCrabCrevice)
+            {
+                pool.Clear();
+                if (Main.hardMode)
                 {
-                    AdjustSpawns(pool, 0.05f);
-                    if (NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
-                    {
-                        pool.Add(ModContent.NPCType<CrabFish>(), 0.1f);
-                    }
+                    pool.Add(ModContent.NPCType<SummonerCrab>(), 1f);
+                }
+                if (spawnInfo.Water && NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
+                {
+                    pool.Add(ModContent.NPCType<CrabFish>(), 1f);
                 }
             }
         }

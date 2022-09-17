@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Ranged;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    public class Raygun : ModItem
+    public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile
     {
         public static Dictionary<int, Func<Projectile, Color>> BulletColor { get; private set; }
 
@@ -120,18 +120,24 @@ namespace Aequus.Items.Weapons.Ranged
             int b = 0;
             int count = 0;
 
-
-            var clrs = texture.Value.Get1DColorArr(projectile.Frame());
-
-            for (int i = 0; i < clrs.Length; i++)
+            try
             {
-                if (clrs[i].A == 255)
+                var clrs = texture.Value.Get1DColorArr(projectile.Frame());
+
+                for (int i = 0; i < clrs.Length; i++)
                 {
-                    r += clrs[i].R;
-                    g += clrs[i].G;
-                    b += clrs[i].B;
-                    count++;
+                    if (clrs[i].A == 255)
+                    {
+                        r += clrs[i].R;
+                        g += clrs[i].G;
+                        b += clrs[i].B;
+                        count++;
+                    }
                 }
+            }
+            catch
+            {
+
             }
 
             if (count == 0)
@@ -231,6 +237,12 @@ namespace Aequus.Items.Weapons.Ranged
                 // I could just override the modify hit methods and manually apply direction there but blah
                 Projectile.NewProjectile(source, projectile.Center, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage, projectile.knockBack, projectile.owner);
             }
+        }
+
+        public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+        {
+            projectile.extraUpdates++;
+            projectile.extraUpdates *= 6;
         }
     }
 }

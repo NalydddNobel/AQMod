@@ -77,7 +77,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
             if (progress > 0.33f && progress < 0.55f)
             {
-                if (Projectile.numUpdates == -1 && Main.rand.NextBool())
+                if (Projectile.numUpdates <= 2)
                 {
                     var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
                     int amt = 1;
@@ -192,10 +192,10 @@ namespace Aequus.Projectiles.Melee.Swords
                 var swish = Swish2Texture.Value;
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = greal.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
-                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.4f;
+                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.5f;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 20f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, 2f, effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 70f + 20f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2.5f, 2f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 30f + 20f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f + 20f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2.5f, 4f), effects, 0);
             }
             return false;
         }

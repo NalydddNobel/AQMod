@@ -280,8 +280,9 @@ namespace Aequus
 
         public static Color[] Get1DColorArr(this Texture2D texture, Rectangle frame)
         {
-            var clrs = new Color[frame.Width * frame.Height];
-            texture.GetData(clrs, frame.X + frame.Y * frame.Width, clrs.Length);
+            int start = frame.X + frame.Y * frame.Width;
+            var clrs = new Color[frame.Width * frame.Height - start];
+            texture.GetData(clrs, start, clrs.Length);
             return clrs;
         }
 
