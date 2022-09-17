@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -173,6 +174,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.GetDrawInfo(out var t, out var _, out var frame, out var origin, out int _);
             var drawLoc = NPC.position + new Vector2(NPC.width / 2f, NPC.height - frame.Height / 2f + 4f);
             spriteBatch.Draw(t, drawLoc - screenPos, frame, NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, drawLoc - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
             return false;
         }
 

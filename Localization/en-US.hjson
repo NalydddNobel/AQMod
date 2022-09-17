@@ -121,6 +121,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			DavyJonesAnchor: Davy Jones's Anchor
 			WarHorn: War Horn
 			LittleInferno: Little Inferno
 			CrownOfTheGrounded: Crown of the Grounded
@@ -591,6 +592,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
 				'''
 				Minions enter a frenzy after landing the first hit on an enemy

@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -16,7 +17,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 2;
+            Main.npcFrameCount[Type] = 3;
         }
 
         public override void SetDefaults()
@@ -30,6 +31,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(copper: 50);
+            NPC.knockBackResist = 0.33f;
 
             this.SetBiome<CrabCreviceBiome>();
         }
@@ -66,7 +68,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                     NPC.ai[1] = -20 + Main.rand.Next(-5, 0);
                 }
                 NPC.ai[2]++;
-                NPC.velocity = NPC.DirectionTo(Main.player[NPC.target].Center) * 8f;
+                NPC.velocity = NPC.DirectionTo(Main.player[NPC.target].Center) * 12f;
                 NPC.direction = Math.Sign(NPC.velocity.X);
                 NPC.TargetClosest(faceTarget: true);
             }
@@ -76,7 +78,6 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
 
         public override void FindFrame(int frameHeight)
         {
-            Main.npcFrameCount[Type] = 3;
             NPC.frameCounter++;
             if (NPC.frameCounter > 1.0)
             {
@@ -87,7 +88,11 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            return true;
+            NPC.GetDrawInfo(out var t, out var _, out var frame, out var origin, out int _);
+            var drawLoc = NPC.position + new Vector2(NPC.width / 2f, NPC.height - frame.Height / 2f + 4f);
+            spriteBatch.Draw(t, drawLoc - screenPos, frame, NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, drawLoc - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            return false;
         }
 
         public override bool? CanFallThroughPlatforms()

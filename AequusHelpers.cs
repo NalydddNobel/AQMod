@@ -119,6 +119,12 @@ namespace Aequus
 
         public static Regex SubstitutionRegex { get; private set; }
 
+        public static Item SetDefaults<T>(this Item item) where T : ModItem
+        {
+            item.SetDefaults(ModContent.ItemType<T>());
+            return item;
+        }
+
         public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0)
         {
             return new Rectangle(rectangle.X + (rectangle.Width - sizeOffsetX) * frameX, rectangle.Y + (rectangle.Width - sizeOffsetY) * frameY, rectangle.Width, rectangle.Height);

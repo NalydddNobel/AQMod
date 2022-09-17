@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Items.Accessories;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,7 +45,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add(ItemID.GoldCoin, chance: 1, stack: 1);
+                .Add(ItemID.GoldCoin, chance: 1, stack: 1)
+                .Add<FaultyCoin>(chance: 10, stack: 1);
         }
 
         public override void GetChaseSpeeds(out float speedX, out float speedY, out Vector2 capX, out Vector2 capY)
@@ -59,8 +61,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             {
                 speedX *= 2f;
                 speedY *= 2f;
-                capX *= 4f - (NPC.ai[1] - 180f) / 300f * 3f;
-                capY *= 4f - (NPC.ai[1] - 180f) / 300f * 3f;
+                capX *= 2f - (NPC.ai[1] - 180f) / 300f;
+                capY *= 2f - (NPC.ai[1] - 180f) / 300f;
             }
             else if (NPC.ai[1] > 120f)
             {
@@ -72,7 +74,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                 {
                     NPC.ai[1] -= 0.5f;
                 }
-                speedX = -speedX * 1.5f;
+                speedX *= -1.5f;
                 speedY *= 0.6f;
                 capX *= 2f;
             }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CrossMod;
+using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
@@ -389,7 +390,7 @@ namespace Aequus.Content.WorldGeneration
         public void PlaceChests(int leftX, int sizeX)
         {
             Reset();
-            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 64; i++)
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 64; i++)
             {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
@@ -401,10 +402,161 @@ namespace Aequus.Content.WorldGeneration
                     if (chestID != -1)
                     {
                         var c = Main.chest[chestID];
-                        c.item[0].SetDefaults(ModContent.ItemType<StarPhish>());
+                        FillChest(c.item, randY);
                     }
                 }
             }
+        }
+
+        public void FillChest(Item[] arr, int y)
+        {
+            int index = 0;
+            var rand = WorldGen.genRand;
+            switch (rand.Next(2)) 
+            {
+                case 0:
+                    arr[index++].SetDefaults<StarPhish>();
+                    break;
+
+                case 1:
+                    arr[index++].SetDefaults<DavyJonesAnchor>();
+                    break;
+            }
+
+            switch (rand.Next(8))
+            {
+                case 0:
+                    arr[index++].SetDefaults(ItemID.Trident);
+                    break;
+
+                case 1:
+                    arr[index++].SetDefaults(ItemID.FloatingTube);
+                    break;
+
+                case 2:
+                    arr[index++].SetDefaults(ItemID.Flipper);
+                    break;
+
+                case 3:
+                    if (y > Main.worldSurface)
+                    {
+                        arr[index++].SetDefaults(ItemID.WaterWalkingBoots);
+                    }
+                    break;
+
+                case 4:
+                    arr[index++].SetDefaults(ItemID.BreathingReed);
+                    break;
+
+                case 5:
+                    if (y > Main.worldSurface)
+                    {
+                        arr[index++].SetDefaults<FoolsGoldRing>();
+                    }
+                    break;
+            }
+
+            switch (rand.Next(3)) 
+            {
+                case 0:
+                    arr[index++].SetDefaults(ItemID.CanOfWorms);
+                    break;
+                case 1:
+                    arr[index].SetDefaults(ItemID.ApprenticeBait);
+                    arr[index++].stack = rand.Next(5) + 2;
+                    break;
+                case 2:
+                    if (y > Main.worldSurface)
+                    {
+                        arr[index].SetDefaults(ItemID.JourneymanBait);
+                        arr[index++].stack = rand.Next(3) + 1;
+                    }
+                    break;
+            }
+
+            switch (rand.Next(8)) 
+            {
+                case 0:
+                    arr[index].SetDefaults(ItemID.HealingPotion);
+                    arr[index++].stack = rand.Next(5) + 1;
+                    break;
+                case 1:
+                    arr[index].SetDefaults(ItemID.RecallPotion);
+                    arr[index++].stack = rand.Next(5) + 1;
+                    break;
+                case 2:
+                    arr[index].SetDefaults(ItemID.GillsPotion);
+                    arr[index++].stack = rand.Next(3) + 1;
+                    break;
+                case 3:
+                    if (y > Main.worldSurface)
+                    {
+                        arr[index].SetDefaults(ItemID.MiningPotion);
+                        arr[index++].stack = rand.Next(3) + 1;
+                    }
+                    break;
+                case 4:
+                    arr[index].SetDefaults(ItemID.BuilderPotion);
+                    arr[index++].stack = rand.Next(3) + 1;
+                    break;
+                case 5:
+                    arr[index].SetDefaults(ItemID.HunterPotion);
+                    arr[index++].stack = rand.Next(3) + 1;
+                    break;
+                case 6:
+                    if (y > Main.worldSurface)
+                    {
+                        arr[index].SetDefaults(ItemID.TrapsightPotion);
+                        arr[index++].stack = rand.Next(3) + 1;
+                    }
+                    break;
+                case 7:
+                    arr[index].SetDefaults(ItemID.WaterWalkingPotion);
+                    arr[index++].stack = rand.Next(3) + 1;
+                    break;
+            }
+
+            switch (rand.Next(3)) 
+            {
+                case 0:
+                    arr[index].SetDefaults(ItemID.CoralTorch);
+                    arr[index++].stack = rand.Next(15, 101);
+                    break;
+                case 1:
+                    arr[index].SetDefaults(ItemID.Glowstick);
+                    arr[index++].stack = rand.Next(15, 101);
+                    break;
+                case 2:
+                    arr[index].SetDefaults(ItemID.BottledWater);
+                    arr[index++].stack = rand.Next(8, 34);
+                    break;
+            }
+
+            if (y > Main.worldSurface)
+            {
+                switch (WorldGen.genRand.Next(6))
+                {
+                    case 0:
+                        arr[index++].SetDefaults(ItemID.DivingHelmet);
+                        break;
+
+                    case 1:
+                        arr[index++].SetDefaults(ItemID.BeachBall);
+                        break;
+
+                    case 2:
+                        arr[index++].SetDefaults(ItemID.JellyfishNecklace);
+                        break;
+                }
+            }
+            else
+            {
+                arr[index].SetDefaults(ItemID.PalmWood);
+                arr[index++].stack = rand.Next(15, 251);
+            }
+
+            arr[index].SetDefaults(ItemID.SilverCoin);
+            arr[index++].stack = rand.Next(20, 91);
         }
 
         public void FixSand(int leftX, int sizeX)
@@ -413,9 +565,14 @@ namespace Aequus.Content.WorldGeneration
             {
                 for (int j = 5; j < Main.maxTilesY - 5; j++)
                 {
-                    if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.Sand && !Main.tile[i, j + 1].IsSolid())
+                    if (Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.Sand || Main.tile[i, j].TileType == TileID.HardenedSand) && !Main.tile[i, j + 1].IsSolid())
                     {
                         Main.tile[i, j].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
+                        Main.tile[i, j - 1].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
+                    }
+                    if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
+                    {
+                        Main.tile[i, j].LiquidAmount = (byte)Math.Max(Main.tile[i, j].LiquidAmount, WorldGen.genRand.Next(byte.MaxValue) + 1);
                     }
                 }
             }

@@ -176,6 +176,8 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public Item accDavyJonesAnchor;
+
         public bool accDustDevilFire;
 
         public int groundCrit;
@@ -509,6 +511,7 @@ namespace Aequus
         {
             PlayerContext = Player.whoAmI;
 
+            accDavyJonesAnchor = null;
             accWarHorn = false;
             accDustDevilFire = false;
             accRitualSkull = false;
@@ -1424,14 +1427,14 @@ namespace Aequus
         {
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
-            InflictDebuffs(target, damage, knockback, crit);
+            OnHitEffects(target, damage, knockback, crit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
-            InflictDebuffs(target, damage, knockback, crit);
+            OnHitEffects(target, damage, knockback, crit);
 
             if (proj.DamageType.CountsAsClass(DamageClass.Summon) || proj.minion || proj.sentry)
             {
@@ -1460,8 +1463,15 @@ namespace Aequus
                 }
             }
         }
-        public void InflictDebuffs(NPC target, int damage, float knockback, bool crit)
+        public void OnHitEffects(NPC target, int damage, float knockback, bool crit)
         {
+            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI && 
+                Player.RollLuck(Math.Max(8 - damage / 20, 1) + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) == 0)
+            {
+                Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
+                    ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
+            }
+
             if (accDustDevilFire)
             {
                 target.AddBuff(BuffID.OnFire, 240);
