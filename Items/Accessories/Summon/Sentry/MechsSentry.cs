@@ -327,7 +327,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             }
             catch
             {
-
             }
         }
 

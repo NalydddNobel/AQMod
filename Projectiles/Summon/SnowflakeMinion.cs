@@ -143,15 +143,15 @@ namespace Aequus.Projectiles.Summon
             for (int i = 0; i < trailLength; i++)
             {
                 float progress = 1f / trailLength * i;
-                Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset, frame, new Color(0, 0, 120, 0) * (1f - progress), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+                Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset, frame, new Color(0, 0, 120, 0) * (1f - progress), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
-            Main.spriteBatch.Draw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.EntitySpriteDraw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             float wave = AequusHelpers.Wave(_pulseTimer * 4f, 0f, 4f);
             color *= 0.1f + wave * 0.1f;
             color.A = 0;
             for (int i = 0; i < 4; i++)
             {
-                Main.spriteBatch.Draw(texture, Projectile.position + offset + new Vector2(wave, 0f).RotatedBy(MathHelper.PiOver2 * i + Projectile.rotation), frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+                Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(wave, 0f).RotatedBy(MathHelper.PiOver2 * i + Projectile.rotation), frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             return false;
         }

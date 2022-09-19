@@ -37,6 +37,17 @@ float2 RotationToVector2(float f)
     return float2(cos(f), sin(f));
 }
 
+float4 BlurryEffect(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
+{
+    float2 pixelSize = 1 / uImageSize0;
+    float4 color = (tex2D(uImage0, coords) 
+    + tex2D(uImage0, coords + float2(0, pixelSize.y * 2))
+    + tex2D(uImage0, coords + float2(0, pixelSize.y * -2)) 
+    + tex2D(uImage0, coords + float2(pixelSize.x * 2, 0)) 
+    + tex2D(uImage0, coords + float2(pixelSize.x * -2, 0))) / 5;
+    return color * sampleColor;
+}
+
 float4 AquaticShader(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float2 frameCoords = FrameFix(coords);

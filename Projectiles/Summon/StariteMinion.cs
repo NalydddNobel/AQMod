@@ -258,7 +258,7 @@ namespace Aequus.Projectiles.Summon
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {
                 float progress = 1f / ProjectileID.Sets.TrailCacheLength[Projectile.type] * i;
-                Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, color * (1f - progress), Projectile.rotation, origin, Math.Max(Projectile.scale * (1f - progress), 0.1f), effects, 0f);
+                Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, color * (1f - progress), Projectile.rotation, origin, Math.Max(Projectile.scale * (1f - progress), 0.1f), effects, 0);
             }
 
             float time = Main.GameUpdateCount / 240f + Main.GlobalTimeWrappedHourly * 0.04f;

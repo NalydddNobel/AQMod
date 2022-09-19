@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Items.Accessories;
+using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,6 +34,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(silver: 2);
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<CrabFishBanner>();
 
             this.SetBiome<CrabCreviceBiome>();
         }
@@ -93,7 +96,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             if (Main.netMode != NetmodeID.Server && NPC.wet)
             {
                 var tile = NPC.Center.ToTileCoordinates();
-                inDarkness = Lighting.Brightness(tile.X, tile.Y) < 0.1f;
+                inDarkness = NPC.GetAlpha(Lighting.GetColor(tile.X, tile.Y)).ToVector3().Length() < 0.33f;
                 if (NPC.localAI[0] > 0f)
                 {
                     NPC.localAI[0]--;

@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.Night.Glimmer;
+﻿using Aequus.NPCs.Monsters.CrabCrevice;
+using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
@@ -23,17 +24,17 @@ namespace Aequus.Tiles.Furniture
         public const int StariteBanner = 0;
         public const int SuperStariteBanner = 1;
         public const int HyperStariteBanner = 2;
-        public const int arrowCrab = 3;
-        public const int hermitCrab = 4;
-        public const int soliderCrab = 5;
-        public const int striderCrab = 6;
+        public const int CrabFishBanner = 3;
+        public const int HijivarchCrabBanner = 4;
+        public const int SoliderCrabBanner = 5;
+        public const int StriderCrabBanner = 6;
         public const int CinderaBanner = 7;
         public const int MagmabubbleBanner = 8;
         public const int TrapperImpBanner = 9;
         public const int VraineBanner = 10;
         public const int WhiteSlimeBanner = 11;
-        public const int redSprite = 12;
-        public const int spaceSquid = 13;
+        public const int Unused_RedSpriteBanner = 12;
+        public const int Unused_SpaceSquidBanner = 13;
         public const int UltraStariteBanner = 14;
 
         public static List<int> bannerWindHack;
@@ -162,6 +163,11 @@ namespace Aequus.Tiles.Furniture
                     {
                         Main.SceneMetrics.NPCBannerBuff[npcType] = true;
                         Main.SceneMetrics.hasBanner = true;
+                        if (npcType == ModContent.NPCType<SummonerCrab>())
+                        {
+                            Main.SceneMetrics.NPCBannerBuff[ModContent.NPCType<SummonerCrabMinion>()] = true;
+                            Main.SceneMetrics.hasBanner = true;
+                        }
                     }
                 }
             }
@@ -205,6 +211,10 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<WhiteSlime>();
                 case UltraStariteBanner:
                     return ModContent.NPCType<UltraStarite>();
+                case CrabFishBanner:
+                    return ModContent.NPCType<CrabFish>();
+                case HijivarchCrabBanner:
+                    return ModContent.NPCType<SummonerCrab>();
             }
             return 0;
         }

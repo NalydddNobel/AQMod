@@ -430,7 +430,7 @@ namespace Aequus.Projectiles.Summon
             var effects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             var drawPos = Projectile.position + offset - Main.screenPosition;
             drawPos = new Vector2((int)drawPos.X, (int)drawPos.Y);
-            Main.spriteBatch.Draw(texture, drawPos, frame, lightColor, Projectile.rotation, frame.Size() / 2f, 1f, effects, 0f);
+            Main.EntitySpriteDraw(texture, drawPos, frame, lightColor, Projectile.rotation, frame.Size() / 2f, 1f, effects, 0);
             return false;
         }
     }

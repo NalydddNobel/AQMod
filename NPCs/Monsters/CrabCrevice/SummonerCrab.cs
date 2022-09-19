@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -35,6 +36,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.aiStyle = NPCAIStyleID.Fighter;
             NPC.behindTiles = true;
             AIType = NPCID.CorruptBunny;
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<HijivarchCrabBanner>();
 
             this.SetBiome<CrabCreviceBiome>();
         }
