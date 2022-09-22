@@ -127,14 +127,14 @@ namespace Aequus.NPCs
                     pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
                 }
                 pool.Add(NPCID.Crab, 1f);
-                pool.Add(NPCID.PinkJellyfish, 0.1f);
-                pool.Add(NPCID.Shark, 0.05f);
-                pool.Add(NPCID.Squid, 0.05f);
                 pool.Add(NPCID.SeaSnail, 0.1f);
                 pool.Add(ModContent.NPCType<SoldierCrab>(), 1f);
                 if (spawnInfo.Water && NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
                 {
                     pool.Add(ModContent.NPCType<CrabFish>(), 1f);
+                    pool.Add(NPCID.PinkJellyfish, 0.1f);
+                    pool.Add(NPCID.Shark, 0.05f);
+                    pool.Add(NPCID.Squid, 0.05f);
                 }
             }
         }
