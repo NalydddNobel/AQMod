@@ -19,6 +19,11 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 15;
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Velocity = 1f,
+                Direction = -1,
+            });
         }
 
         public override void SetDefaults()

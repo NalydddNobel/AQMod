@@ -26,7 +26,7 @@ namespace Aequus.Tiles.Furniture
         public const int HyperStariteBanner = 2;
         public const int CrabFishBanner = 3;
         public const int HijivarchCrabBanner = 4;
-        public const int SoliderCrabBanner = 5;
+        public const int SoldierCrabBanner = 5;
         public const int StriderCrabBanner = 6;
         public const int CinderaBanner = 7;
         public const int MagmabubbleBanner = 8;
@@ -215,6 +215,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<CrabFish>();
                 case HijivarchCrabBanner:
                     return ModContent.NPCType<SummonerCrab>();
+                case SoldierCrabBanner:
+                    return ModContent.NPCType<SoldierCrab>();
             }
             return 0;
         }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Buffs.Debuffs;
 using Aequus.Items.Accessories;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
@@ -31,7 +32,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.lifeMax = 40;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
-            NPC.HitSound = SoundID.NPCHit1;
+            NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(silver: 2);
             Banner = NPC.type;
@@ -50,6 +51,32 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             this.CreateLoot(npcLoot)
                 .Add(ItemID.GoldCoin, chance: 1, stack: 1)
                 .Add<FaultyCoin>(chance: 10, stack: 1);
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < damage / 5; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
+                }
+            }
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.expertMode || Main.rand.NextBool())
+            {
+                target.AddBuff(ModContent.BuffType<PickBreak>(), 120);
+            }
         }
 
         public override void GetChaseSpeeds(out float speedX, out float speedY, out Vector2 capX, out Vector2 capY)

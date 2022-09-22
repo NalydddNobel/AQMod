@@ -122,8 +122,9 @@ namespace Aequus.NPCs
                 pool.Clear();
                 if (Main.hardMode)
                 {
-                    pool.Add(ModContent.NPCType<SummonerCrab>(), 1f);
+                    pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
                 }
+                pool.Add(ModContent.NPCType<SoldierCrab>(), 1f);
                 if (spawnInfo.Water && NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
                 {
                     pool.Add(ModContent.NPCType<CrabFish>(), 1f);

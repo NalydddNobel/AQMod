@@ -35,9 +35,10 @@ namespace Aequus.Items.Accessories
         {
             var aequus = player.Aequus();
             aequus.hyperCrystalHidden = hideVisual;
-            aequus.hyperCrystalItem = Item;
+            aequus.accHyperCrystal = Item;
+            aequus.hyperCrystalDamage += 0.1f;
             if (aequus.slotBoostCurse != -2)
-                aequus.hyperCrystalDamage += 0.25f;
+                aequus.hyperCrystalDamage += 0.15f;
             aequus.hyperCrystalDiameter = Math.Max(aequus.hyperCrystalDiameter, 480f);
         }
 

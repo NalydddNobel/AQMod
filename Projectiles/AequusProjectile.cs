@@ -340,7 +340,7 @@ namespace Aequus.Projectiles
             if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !projectile.npcProj && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
-                if (glowCore.glowCore != -1)
+                if (glowCore.cGlowCore != -1)
                 {
                     GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
                 }

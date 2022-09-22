@@ -173,7 +173,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().turretSquidItem = Item;
+            player.Aequus().accSentrySquid = Item;
         }
 
         void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

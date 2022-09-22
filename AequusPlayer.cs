@@ -63,6 +63,8 @@ namespace Aequus
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
+        public float pickTileDamage;
+
         public int projectileIdentity = -1;
 
         [SaveData("Souls")]
@@ -191,8 +193,8 @@ namespace Aequus
         public float antiGravityItemRadius;
 
         public bool accFrostburnTurretSquid;
-        public float accBloodDiceDamage;
-        public int accBloodDiceMoney;
+        public float bloodDiceDamage;
+        public int bloodDiceMoney;
         public bool accGrandReward;
         public int accBoneRing;
 
@@ -201,9 +203,9 @@ namespace Aequus
 
         public bool devilFishing;
 
-        public Item doubleBobbersItem;
+        public Item accRamishroom;
 
-        public Item hyperCrystalItem;
+        public Item accHyperCrystal;
         public bool hyperCrystalHidden;
         public int cHyperCrystal;
         public float hyperCrystalDamage;
@@ -215,15 +217,15 @@ namespace Aequus
         public int setGravetenderCheck;
         public int setGravetenderGhost;
 
-        public Item pandorasBoxItem;
-        public int pandorasBoxSpawnChance;
+        public Item accPandorasBox;
+        public int pandorasBoxChance;
 
-        public Item turretSquidItem;
+        public Item accSentrySquid;
         public int turretSquidTimer;
 
-        public Item healingMushroomItem;
-        public int healingMushroomRegeneration;
-        public int cHealingMushroom;
+        public Item accMendshroom;
+        public int mendshroomRegen;
+        public int cMendshroom;
         public float mendshroomDiameter;
 
         public Item celesteTorusItem;
@@ -236,7 +238,7 @@ namespace Aequus
         public Item ammoBackpackItem;
         public Item mothmanMaskItem;
 
-        public int glowCore;
+        public int cGlowCore;
         public bool hasExpertBoost;
         /// <summary>
         /// Set to true by <see cref="MechsSentry"/>
@@ -482,7 +484,7 @@ namespace Aequus
             slotBoostCurse = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
-            glowCore = -1;
+            cGlowCore = -1;
             instaShieldAlpha = 0f;
             antiGravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
@@ -510,22 +512,83 @@ namespace Aequus
             accExpertBoost = false;
         }
 
-        public override void ResetEffects()
+        public void ResetArmor()
         {
-            PlayerContext = Player.whoAmI;
+            setSeraphim = null;
+            setGravetender = null;
 
-            cursorDyeOverride = 0;
             accDavyJonesAnchor = null;
             accWarHorn = false;
             accDustDevilFire = false;
             accRitualSkull = false;
+            accRamishroom = null;
+            accPandorasBox = null;
+            pandorasBoxChance = 0;
+            bloodDiceMoney = 0;
+            bloodDiceDamage = 0f;
+            accHyperCrystal = null;
+            hyperCrystalDiameter = 0f;
+            hyperCrystalDamage = 0f;
+
+            accMendshroom = null;
+            mendshroomDiameter = 0f;
+            mendshroomRegen = 0;
+
+            celesteTorusItem = null;
+            cCelesteTorus = 0;
+
+            ammoBackpackItem = null;
+            mothmanMaskItem = null;
+            sentryInheritItem = null;
+
+            scamChance = 0f;
+            flatScamDiscount = 0;
+
+            if (vialDelay > 0)
+                vialDelay--;
+            accVial = 0;
+            accBoneRing = 0;
+            grandRewardLuck = 0f;
+            devilFishing = false;
+            accGrandReward = false;
+            accFoolsGold = false;
+
+            hasExpertBoost = accExpertBoost;
+            accExpertBoost = false;
+
+            accSentrySquid = null;
+            if (!InDanger)
+            {
+                turretSquidTimer = Math.Min(turretSquidTimer, (ushort)240);
+            }
+            if (turretSquidTimer > 0)
+            {
+                turretSquidTimer--;
+            }
+
+            if (expertBoostWormScarfTimer > 0)
+            {
+                expertBoostWormScarfTimer--;
+            }
+            expertBoostBoCProjDefense = expertBoostBoCDefense;
+        }
+
+        public void ResetStats()
+        {
+            debuffs.ResetEffects(Player);
             groundCrit = 0;
             darknessDamage = 0f;
-            slotBoostCurse = -1;
-            debuffs.ResetEffects(Player);
-            setSeraphim = null;
             luckRerolls = 0;
-            glowCore = -1;
+            antiGravityItemRadius = 0f;
+            soulCandleLimit = 0;
+            pickTileDamage = 1f;
+            ghostSlotsMax = 1;
+            ghostProjExtraUpdates = 0;
+            ghostLifespan = 3600;
+        }
+
+        public void UpdateInstantShield()
+        {
             if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
                 if (instaShieldTime == instaShieldTimeMax)
@@ -576,6 +639,10 @@ namespace Aequus
                 }
             }
             instaShieldTimeMax = 0;
+        }
+
+        public void HandleGravityBlocks()
+        {
             if (antiGravityTile < 0)
                 antiGravityTile++;
             else if (antiGravityTile > 0)
@@ -591,11 +658,10 @@ namespace Aequus
                 Player.gravControl = false;
                 Player.gravControl2 = false;
             }
+        }
 
-            antiGravityItemRadius = 0f;
-
-            showPrices = false;
-
+        public void ResetDyables()
+        {
             equippedMask = 0;
             cMask = 0;
             equippedHat = 0;
@@ -604,21 +670,13 @@ namespace Aequus
             cEyes = 0;
             equippedEars = 0;
             cEars = 0;
+            cGlowCore = -1;
+            cHyperCrystal = 0;
+            cMendshroom = 0;
+        }
 
-            if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
-                leechHookNPC = -1;
-
-            soulCandleLimit = 0;
-
-            if (Player.velocity.Length() < 1f)
-            {
-                idleTime++;
-            }
-            else
-            {
-                idleTime = 0;
-            }
-
+        public void UpdateItemFields()
+        {
             if (itemCombo > 0)
             {
                 itemCombo--;
@@ -654,68 +712,39 @@ namespace Aequus
                 Player.manaRegen = 0;
                 Player.manaRegenDelay = (int)Player.maxRegenDelay;
             }
+        }
+
+        public override void ResetEffects()
+        {
+            PlayerContext = Player.whoAmI;
+
+            UpdateInstantShield();
+            ResetDyables();
+            ResetArmor();
+            ResetStats();
+            cursorDyeOverride = 0;
+            slotBoostCurse = -1;
+            showPrices = false;
+
+            HandleGravityBlocks();
+
+            if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
+                leechHookNPC = -1;
+
+            if (Player.velocity.Length() < 1f)
+            {
+                idleTime++;
+            }
+            else
+            {
+                idleTime = 0;
+            }
+
+            UpdateItemFields();
             if (interactionCooldown > 0)
             {
                 interactionCooldown--;
             }
-
-            if (expertBoostWormScarfTimer > 0)
-            {
-                expertBoostWormScarfTimer--;
-            }
-            expertBoostBoCProjDefense = expertBoostBoCDefense;
-
-            setGravetender = null;
-
-            doubleBobbersItem = null;
-
-            pandorasBoxSpawnChance = 0;
-            pandorasBoxItem = null;
-
-            turretSquidItem = null;
-            if (!InDanger)
-            {
-                turretSquidTimer = Math.Min(turretSquidTimer, (ushort)240);
-            }
-            if (turretSquidTimer > 0)
-            {
-                turretSquidTimer--;
-            }
-
-            accBloodDiceMoney = 0;
-            accBloodDiceDamage = 0f;
-
-            cHyperCrystal = 0;
-            hyperCrystalDiameter = 0f;
-            hyperCrystalDamage = 0f;
-            hyperCrystalItem = null;
-
-            healingMushroomItem = null;
-            mendshroomDiameter = 0f;
-            healingMushroomRegeneration = 0;
-            cHealingMushroom = 0;
-
-            celesteTorusItem = null;
-            cCelesteTorus = 0;
-
-            ammoBackpackItem = null;
-            mothmanMaskItem = null;
-            sentryInheritItem = null;
-
-            scamChance = 0f;
-            flatScamDiscount = 0;
-
-            if (vialDelay > 0)
-                vialDelay--;
-            accVial = 0;
-            accBoneRing = 0;
-            grandRewardLuck = 0f;
-            devilFishing = false;
-            accGrandReward = false;
-            accFoolsGold = false;
-
-            hasExpertBoost = accExpertBoost;
-            accExpertBoost = false;
 
             buffSpicyEel = false;
             buffResistHeat = false;
@@ -724,9 +753,6 @@ namespace Aequus
             shadowKey = false;
 
             forceDayState = 0;
-            ghostSlotsMax = 1;
-            ghostProjExtraUpdates = 0;
-            ghostLifespan = 3600;
             Team = Player.team;
             hurt = false;
         }
@@ -882,21 +908,21 @@ namespace Aequus
                 AequusItem.AntiGravityNearbyItems(Player.Center, antiGravityItemRadius);
             }
 
-            if (glowCore != -1)
+            if (cGlowCore != -1)
             {
                 GlowCore.AddLight(Player.Center, Player, this);
             }
 
-            if (hyperCrystalItem != null && !hyperCrystalHidden && ProjectilesOwned(ModContent.ProjectileType<HyperCrystalProj>()) <= 0)
+            if (accHyperCrystal != null && !hyperCrystalHidden && ProjectilesOwned(ModContent.ProjectileType<HyperCrystalProj>()) <= 0)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(hyperCrystalItem), Player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalProj>(),
+                Projectile.NewProjectile(Player.GetSource_Accessory(accHyperCrystal), Player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalProj>(),
                     0, 0f, Player.whoAmI, projectileIdentity + 1);
             }
 
-            if (healingMushroomItem != null && healingMushroomItem.shoot > ProjectileID.None
-                && MendshroomActive && ProjectilesOwned(healingMushroomItem.shoot) <= 0)
+            if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None
+                && MendshroomActive && ProjectilesOwned(accMendshroom.shoot) <= 0)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(healingMushroomItem), Player.Center, Vector2.Zero, healingMushroomItem.shoot,
+                Projectile.NewProjectile(Player.GetSource_Accessory(accMendshroom), Player.Center, Vector2.Zero, accMendshroom.shoot,
                     0, 0f, Player.whoAmI, projectileIdentity + 1);
             }
 
@@ -920,7 +946,7 @@ namespace Aequus
                 setGravetenderGhost = -1;
             }
 
-            if (turretSquidItem != null && turretSquidTimer == 0)
+            if (accSentrySquid != null && turretSquidTimer == 0)
             {
                 UpdateSentrySquid(Player.Aequus().closestEnemy);
             }
@@ -1379,11 +1405,11 @@ namespace Aequus
 
         public void CheckBloodDice(ref int damage)
         {
-            if (accBloodDiceDamage > 0f && Player.CanBuyItem(accBloodDiceMoney))
+            if (bloodDiceDamage > 0f && Player.CanBuyItem(bloodDiceMoney))
             {
                 SoundEngine.PlaySound(SoundID.Coins);
-                Player.BuyItem(accBloodDiceMoney);
-                damage = (int)(damage * (1f + accBloodDiceDamage / 2f));
+                Player.BuyItem(bloodDiceMoney);
+                damage = (int)(damage * (1f + bloodDiceDamage / 2f));
             }
         }
         public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
@@ -1537,9 +1563,9 @@ namespace Aequus
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (doubleBobbersItem != null && item.fishingPole > 0 && !Ramishroom.RodsBlacklist.Contains(item.type))
+            if (accRamishroom != null && item.fishingPole > 0 && !Ramishroom.RodsBlacklist.Contains(item.type))
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(doubleBobbersItem), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)), type, damage, knockback, Player.whoAmI);
+                Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)), type, damage, knockback, Player.whoAmI);
             }
             return true;
         }
@@ -1865,10 +1891,10 @@ namespace Aequus
         public void mendshroomHeal(int i)
         {
             var bungus = Main.player[i].Aequus();
-            if (bungus.increasedRegen < healingMushroomRegeneration)
+            if (bungus.increasedRegen < mendshroomRegen)
             {
-                bungus.increasedRegen = healingMushroomRegeneration;
-                Main.player[i].AddBuff(healingMushroomItem.buffType, 4, quiet: true);
+                bungus.increasedRegen = mendshroomRegen;
+                Main.player[i].AddBuff(accMendshroom.buffType, 4, quiet: true);
             }
         }
 
@@ -2021,6 +2047,13 @@ namespace Aequus
             On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+            On.Terraria.Player.PickTile += Player_PickTile;
+        }
+
+        private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+        {
+            pickPower = (int)(pickPower * self.Aequus().pickTileDamage);
+            orig(self, x, y, pickPower);
         }
 
         private static void FancyGolfPredictionLine_Update(On.Terraria.GameContent.Golf.FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)

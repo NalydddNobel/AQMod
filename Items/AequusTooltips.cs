@@ -12,6 +12,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -95,6 +96,28 @@ namespace Aequus.Items
                     if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Contains(item.buffType))
                     {
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
+                    }
+
+                    if (item.pick > 0)
+                    {
+                        float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
+                        if (item.pick != (int)(item.pick * pickDamage))
+                        {
+                            foreach (var t in tooltips)
+                            {
+                                if (t.Mod == "Terraria" && t.Name == "PickPower")
+                                {
+                                    string sign = "-";
+                                    var color = new Color(190, 120, 120, 255);
+                                    if (pickDamage > 1f)
+                                    {
+                                        sign = "+";
+                                        color = new Color(120, 190, 120, 255);
+                                    }
+                                    t.Text = $"{item.pick}{AequusText.ColorText($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
+                                }
+                            }
+                        }
                     }
 
                     //TestLootBagTooltip(item, tooltips);

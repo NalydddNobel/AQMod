@@ -27,14 +27,14 @@ namespace Aequus.Items.Accessories.Healing
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.healingMushroomItem = Item;
+            aequus.accMendshroom = Item;
             aequus.mendshroomDiameter += 280f;
-            aequus.healingMushroomRegeneration += 30;
+            aequus.mendshroomRegen += 30;
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
-            player.Aequus().cHealingMushroom = dyeItem.dye;
+            player.Aequus().cMendshroom = dyeItem.dye;
         }
     }
 }

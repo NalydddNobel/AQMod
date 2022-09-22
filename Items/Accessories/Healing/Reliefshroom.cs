@@ -26,8 +26,8 @@ namespace Aequus.Items.Accessories.Healing
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.healingMushroomItem = Item;
-            aequus.healingMushroomRegeneration += 12;
+            aequus.accMendshroom = Item;
+            aequus.mendshroomRegen += 12;
 
             if (aequus.idleTime <= 5 && player.velocity.X.Abs() > 2f)
             {
@@ -37,9 +37,9 @@ namespace Aequus.Items.Accessories.Healing
                 {
                     var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
                     var d = Dust.NewDustPerfect(aequus.Player.Center + v * Main.rand.NextFloat(player.width * 0.8f, player.width * 2f), ModContent.DustType<ReliefshroomDustSpore>(), -v * Main.rand.NextFloat(0.1f, 1f), 255, Scale: Main.rand.NextFloat(0.6f, 0.7f));
-                    if (aequus.cHealingMushroom != 0)
+                    if (aequus.cMendshroom != 0)
                     {
-                        d.shader = GameShaders.Armor.GetSecondaryShader(aequus.cHealingMushroom, player);
+                        d.shader = GameShaders.Armor.GetSecondaryShader(aequus.cMendshroom, player);
                     }
                 }
                 if (Main.GameUpdateCount % 60 == 0)
@@ -48,9 +48,9 @@ namespace Aequus.Items.Accessories.Healing
                     {
                         var d = Dust.NewDustPerfect(aequus.Player.Center + v * Main.rand.NextFloat(player.width * 2.4f, player.width * 2.6f), ModContent.DustType<ReliefshroomDustSpore>(), -v * Main.rand.NextFloat(0.9f, 1.1f), 255);
                         d.customData = player;
-                        if (aequus.cHealingMushroom != 0)
+                        if (aequus.cMendshroom != 0)
                         {
-                            d.shader = GameShaders.Armor.GetSecondaryShader(aequus.cHealingMushroom, player);
+                            d.shader = GameShaders.Armor.GetSecondaryShader(aequus.cMendshroom, player);
                         }
                     }
                 }
@@ -77,7 +77,7 @@ namespace Aequus.Items.Accessories.Healing
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
-            player.Aequus().cHealingMushroom = dyeItem.dye;
+            player.Aequus().cMendshroom = dyeItem.dye;
         }
     }
 }

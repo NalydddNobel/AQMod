@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().turretSquidItem = Item;
+            player.Aequus().accSentrySquid = Item;
             player.Aequus().accFrostburnTurretSquid = true;
             player.maxTurrets++;
         }

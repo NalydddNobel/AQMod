@@ -24,14 +24,14 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accBloodDiceDamage = Math.Max(aequus.accBloodDiceDamage, 0.25f) + 0.25f;
-            if (aequus.accBloodDiceMoney > 0)
+            aequus.bloodDiceDamage = Math.Max(aequus.bloodDiceDamage, 0.25f) + 0.25f;
+            if (aequus.bloodDiceMoney > 0)
             {
-                aequus.accBloodDiceMoney = Math.Max(aequus.accBloodDiceMoney / 2, 1);
+                aequus.bloodDiceMoney = Math.Max(aequus.bloodDiceMoney / 2, 1);
             }
             else
             {
-                aequus.accBloodDiceMoney = Item.buyPrice(silver: 25);
+                aequus.bloodDiceMoney = Item.buyPrice(silver: 25);
             }
         }
 

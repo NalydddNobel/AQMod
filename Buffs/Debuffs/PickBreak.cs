@@ -16,7 +16,7 @@ namespace Aequus.Buffs.Debuffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.pickSpeed *= 2;
-            player.GetModPlayer<PickBreakPlayer>().pickBreak = true;
+            player.Aequus().pickTileDamage *= 0.5f;
         }
     }
 
@@ -41,25 +41,6 @@ namespace Aequus.Buffs.Debuffs
         public override void ResetEffects()
         {
             pickBreak = false;
-        }
-    }
-
-    public class PickBreakTooltip : GlobalItem
-    {
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (item.pick > 0 && Main.LocalPlayer.GetModPlayer<PickBreakPlayer>().pickBreak)
-            {
-                foreach (var t in tooltips)
-                {
-                    if (t.Mod == "Terraria" && t.Name == "PickPower")
-                    {
-                        t.Text = item.pick +
-                            AequusText.ColorText("(-" + item.pick / 2 + ")", Color.Gray, alphaPulse: true) +
-                            Language.GetTextValue("LegacyTooltip.26");
-                    }
-                }
-            }
         }
     }
 }

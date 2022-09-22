@@ -22,7 +22,7 @@ namespace Aequus.Content.Necromancy
             NecromancyDebuffs = new List<int>();
             AggressionType.LoadAggressions();
             PopulateEnemyStats();
-            AutogeneratorIgnoreMods = new HashSet<string>();
+            AutogeneratorIgnoreMods = new HashSet<string>() { "Aequus", };
         }
         private static void PopulateEnemyStats()
         {

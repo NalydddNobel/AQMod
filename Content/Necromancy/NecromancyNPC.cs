@@ -305,9 +305,9 @@ namespace Aequus.Content.Necromancy
                 var aequus = player.GetModPlayer<AequusPlayer>();
                 aequus.ghostSlots += slotsConsumed;
 
-                if (zombieOwner == Main.myPlayer && aequus.pandorasBoxItem != null)
+                if (zombieOwner == Main.myPlayer && aequus.accPandorasBox != null)
                 {
-                    UsePandorasBox(npc, aequus, aequus.pandorasBoxItem, Zombie.NPCTarget);
+                    UsePandorasBox(npc, aequus, aequus.accPandorasBox, Zombie.NPCTarget);
                 }
 
                 if (Main.netMode != NetmodeID.Server)
@@ -359,7 +359,7 @@ namespace Aequus.Content.Necromancy
                 return;
             }
 
-            if (Main.rand.NextBool(aequus.pandorasBoxSpawnChance))
+            if (Main.rand.NextBool(aequus.pandorasBoxChance))
             {
                 PandorasBox_SpawnProjectile(npc, aequus, pandorasBox, target, Main.rand.Next(PandorasBox.ProjectileTypesShot));
             }

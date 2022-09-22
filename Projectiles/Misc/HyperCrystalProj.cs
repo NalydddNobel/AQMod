@@ -42,7 +42,7 @@ namespace Aequus.Projectiles.Misc
             if (projOwner != -1)
                 alpha = 200;
             Projectile.alpha = (int)MathHelper.Lerp(Projectile.alpha, alpha, 0.1f);
-            if (aequus?.hyperCrystalItem != null && aequus?.hyperCrystalHidden == false)
+            if (aequus?.accHyperCrystal != null && aequus?.hyperCrystalHidden == false)
             {
                 Projectile.scale = MathHelper.Lerp(Projectile.scale, aequus.hyperCrystalDiameter, 0.2f);
             }
@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHealingMushroom);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cMendshroom);
             MendshroomProj.DrawAura(Projectile.Center - Main.screenPosition, Projectile.scale, Projectile.Opacity * 0.2f, ModContent.Request<Texture2D>(Texture + "Aura").Value, TextureAssets.Projectile[Type].Value);
             return false;
         }

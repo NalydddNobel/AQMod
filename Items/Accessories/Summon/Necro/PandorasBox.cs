@@ -69,10 +69,10 @@ namespace Aequus.Items.Accessories.Summon.Necro
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.pandorasBoxItem = Item;
-            if (aequus.pandorasBoxSpawnChance == 0 || aequus.pandorasBoxSpawnChance > 140)
+            aequus.accPandorasBox = Item;
+            if (aequus.pandorasBoxChance == 0 || aequus.pandorasBoxChance > 140)
             {
-                aequus.pandorasBoxSpawnChance = 140;
+                aequus.pandorasBoxChance = 140;
             }
             aequus.ghostProjExtraUpdates += 1;
         }

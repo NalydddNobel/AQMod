@@ -99,9 +99,9 @@ namespace Aequus.Items.Accessories
         public static void AddLight(Vector2 location, Player player, AequusPlayer aequus)
         {
             var clr = new Vector3(1f);
-            if (aequus.glowCore > 0)
+            if (aequus.cGlowCore > 0)
             {
-                clr = DyeColorSampler.GetColor(aequus.glowCore, player.whoAmI).ToVector3();
+                clr = DyeColorSampler.GetColor(aequus.cGlowCore, player.whoAmI).ToVector3();
             }
             float largest = clr.X;
             if (largest < clr.Y)
@@ -116,7 +116,7 @@ namespace Aequus.Items.Accessories
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
-            player.Aequus().glowCore = dyeItem.dye;
+            player.Aequus().cGlowCore = dyeItem.dye;
         }
     }
 }
