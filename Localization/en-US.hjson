@@ -324,6 +324,8 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
+			CoconutCrabBanner: Coconut Crab Banner
+			SoldierCrabBanner: Soldier Crab Banner
 			HijivarchCrabBanner: Hijivarch Crab Banner
 			CrabFishBanner: Crab Fish Banner
 			StariteBanner: Starite Banner
@@ -529,7 +531,6 @@ Mods: {
 			Transistor: Transistor
 			EclipseGlasses: Eclipse Glasses
 			Cosmicanon: Cosmicanon
-			SoliderCrabsBanner: Soldier Crab Banner
 			JeweledChalice: Jeweled Chalice
 			JeweledCandelabra: Jeweled Candelabra
 			JeweledChandelier: Jeweled Chandelier
@@ -1027,6 +1028,8 @@ Mods: {
 
 			RecyclingMachine: Allows you to recycle trash items
 
+			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
+			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"
 			CrabFishBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
 			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
@@ -1468,7 +1471,6 @@ Mods: {
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
 			Cosmicanon: Prevents the Blood Moon from naturally spawning
-			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			OmegaStaritePainting:
 				'''
 				'You have no idea what's in store for you!'
@@ -2036,6 +2038,7 @@ Mods: {
 			SummonerCrabMinion: Fleer
 			SummonerCrab: Hijivarch Crab
 			CrabFish: Crab Fish
+			CoconutCrab: Coconut Crab
 			SoldierCrab: Soldier Crab
 			HermitCrab: Hermit Crab
 
@@ -2067,6 +2070,7 @@ Mods: {
 			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 			
+			CoconutCrab: Evolved a natural camoflauge, disguising as a coconut. Sleeps in and jumps off palm trees in the early morning.
 			SoldierCrab: Named for their knight-like appearance. The orange armor of this crab is actually cobalt covered in layers of grime.
 			SummonerCrabMinion: Would be unable to rest and shelter their eggs without the Hijivarch, luckily they have each other.
 			SummonerCrab: Would be unable to scavenge enough food without help from the Fleers, luckily they have each other.

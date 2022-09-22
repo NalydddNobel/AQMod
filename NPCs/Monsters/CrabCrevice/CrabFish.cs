@@ -136,7 +136,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                         NPC.localAI[0] = 0f;
                     }
                 }
-                else if (NPC.ai[1] == 0f && inDarkness && Main.rand.NextBool(120))
+                else if (NPC.ai[1] == 0f && NPC.wet && inDarkness && Main.rand.NextBool(120))
                 {
                     NPC.localAI[0] = 240f;
                     NPC.Opacity = 0.1f;
@@ -168,14 +168,17 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.ShowNameOnHover = !inDarkness || NPC.Opacity < 0.5f;
             NPC.gfxOffY = 6f;
             base.AI();
-            FindFrameKinda(NPC.frame.Height);
             NPC.spriteDirection = NPC.direction;
         }
 
-        private void FindFrameKinda(int height)
+        public override void FindFrame(int frameHeight)
         {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                NPC.wet = true;
+            }
             NPC.frameCounter++;
-            int flopFrameStart = height * 7;
+            int flopFrameStart = frameHeight * 7;
             if (NPC.wet)
             {
                 if (NPC.frame.Y >= flopFrameStart)
@@ -191,7 +194,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                     }
                     else
                     {
-                        NPC.frame.Y += height;
+                        NPC.frame.Y += frameHeight;
                     }
                 }
                 return;
@@ -203,23 +206,23 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             if (NPC.frameCounter > 3.0)
             {
                 NPC.frameCounter = 0.0;
-                NPC.frame.Y += height;
-                if (NPC.frame.Y > height * 13)
+                NPC.frame.Y += frameHeight;
+                if (NPC.frame.Y > frameHeight * 13)
                 {
                     NPC.frame.Y = flopFrameStart;
                 }
                 if (NPC.velocity.Y < 0f)
                 {
-                    if (NPC.frame.Y > height * 10)
+                    if (NPC.frame.Y > frameHeight * 10)
                     {
-                        NPC.frame.Y = height * 10;
+                        NPC.frame.Y = frameHeight * 10;
                     }
                 }
                 else
                 {
-                    if (NPC.frame.Y == height * 10)
+                    if (NPC.frame.Y == frameHeight * 10)
                     {
-                        NPC.frame.Y = height * 9;
+                        NPC.frame.Y = frameHeight * 9;
                     }
                 }
             }
@@ -228,7 +231,11 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             NPC.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            spriteBatch.Draw(texture, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame, drawColor * NPC.Opacity, NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            spriteBatch.Draw(texture, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame, drawColor * NPC.Opacity, NPC.rotation, origin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
+            if (NPC.wet && !inDarkness)
+            {
+                spriteBatch.Draw(texture, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame, Color.White * NPC.Opacity, NPC.rotation, origin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
+            }
             if (NPC.Opacity < 1f)
             {
                 var coin = TextureAssets.Coin[2].Value;

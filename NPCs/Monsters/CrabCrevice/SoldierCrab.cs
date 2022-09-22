@@ -18,9 +18,6 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
     public class SoldierCrab : ModNPC
     {
         public const int FramesX = 2;
-        public const int Phase_ShieldBash = 0;
-        public const int Phase_ClawSnip = 1;
-        public const int Phase_Jump = 2;
 
         private bool _setupFrame;
         public int frameIndex;
@@ -69,13 +66,18 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
                 }
-            }
-            else
-            {
-                for (int i = 0; i < damage / 5; i++)
+                for (int i = 0; i < 10; i++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Cobalt, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
                 }
+            }
+            for (int i = 0; i < Math.Max(damage / 5, 1); i++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
+            }
+            for (int i = 0; i < Math.Max(damage / 5, 1); i++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Cobalt, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
             }
         }
 
@@ -249,7 +251,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Center + new Vector2(0f, NPC.gfxOffY) - screenPos,
-                NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
+                NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
             return false;
         }
 

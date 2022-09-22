@@ -36,6 +36,7 @@ namespace Aequus.Tiles.Furniture
         public const int Unused_RedSpriteBanner = 12;
         public const int Unused_SpaceSquidBanner = 13;
         public const int UltraStariteBanner = 14;
+        public const int CoconutCrabBanner = 15;
 
         public static List<int> bannerWindHack;
 
@@ -217,6 +218,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<SummonerCrab>();
                 case SoldierCrabBanner:
                     return ModContent.NPCType<SoldierCrab>();
+                case CoconutCrabBanner:
+                    return ModContent.NPCType<CoconutCrab>();
             }
             return 0;
         }
