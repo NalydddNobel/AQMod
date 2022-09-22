@@ -47,6 +47,10 @@ namespace Aequus.NPCs
                 spawnRate *= 3;
                 maxSpawns = Math.Min(maxSpawns, 2);
             }
+            if (player.GetModPlayer<AequusPlayer>().ZoneCrabCrevice)
+            {
+                maxSpawns = (int)(maxSpawns * 0.75f);
+            }
         }
 
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
@@ -129,9 +133,10 @@ namespace Aequus.NPCs
                 pool.Add(NPCID.Crab, 1f);
                 pool.Add(NPCID.SeaSnail, 0.1f);
                 pool.Add(ModContent.NPCType<SoldierCrab>(), 1f);
-                if (spawnInfo.Water && NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
+                if (spawnInfo.Water)
                 {
-                    pool.Add(ModContent.NPCType<CrabFish>(), 1f);
+                    if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
+                        pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
                     pool.Add(NPCID.PinkJellyfish, 0.1f);
                     pool.Add(NPCID.Shark, 0.05f);
                     pool.Add(NPCID.Squid, 0.05f);
