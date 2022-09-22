@@ -1,25 +1,29 @@
-﻿using Aequus.Items.Placeable.CrabCrevice;
+﻿using Aequus.Items.Boss.Summons;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Tiles.CrabCrevice
 {
-    public class SeaPickleTile : ModTile
+    public class PearlsTile : ModTile
     {
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
-            Main.tileLighted[Type] = true;
             Main.tileObsidianKill[Type] = true;
+            Main.tileShine[Type] = 1200;
+            Main.tileShine2[Type] = true;
+            Main.tileOreFinderPriority[Type] = 110;
+            Main.tileSpelunker[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;
 
-            AddMapEntry(new Color(10, 82, 22), CreateMapEntryName("SeaPickle"));
-            DustType = DustID.GreenMoss;
-            ItemDrop = ModContent.ItemType<SeaPickle>();
+            AddMapEntry(new Color(10, 82, 22), CreateMapEntryName("Pearl"));
+            DustType = DustID.Glass;
+            ItemDrop = ItemID.WhitePearl;
         }
 
         public override bool CanPlace(int i, int j)
@@ -47,20 +51,21 @@ namespace Aequus.Tiles.CrabCrevice
             return false;
         }
 
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        public override bool Drop(int i, int j)
         {
-            if (Main.tile[i, j].LiquidAmount < 100)
+            switch (Main.tile[i, j].TileFrameX / 18)
             {
-                r = 0.01f;
-                g = 0.01f;
-                b = 0.01f;
+                case 1:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ItemID.BlackPearl);
+                    return false;
+                case 2:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ItemID.PinkPearl);
+                    return false;
+                case 3:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<HypnoticPearl>());
+                    return false;
             }
-            else
-            {
-                r = 0.3f;
-                g = 0.4f;
-                b = 0.25f;
-            }
+            return true;
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)

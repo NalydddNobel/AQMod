@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -45,6 +46,45 @@ namespace Aequus.Tiles
         {
         }
 
+
+        public void GrowPearl(int i, int j)
+        {
+            for (int k = -3; k <= 3; k++)
+            {
+                for (int l = -10; l <= 10; l++)
+                {
+                    if (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>())
+                    {
+                        return;
+                    }
+                }
+            }
+
+            var p = new List<Point>();
+            if (!Main.tile[i + 1, j].HasTile && WorldGen.genRand.NextBool(4))
+            {
+                p.Add(new Point(i + 1, j));
+            }
+            if (!Main.tile[i - 1, j].HasTile && WorldGen.genRand.NextBool(4))
+            {
+                p.Add(new Point(i - 1, j));
+            }
+            if (!Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(4))
+            {
+                p.Add(new Point(i, j + 1));
+            }
+            if (!Main.tile[i, j - 1].HasTile)
+            {
+                p.Add(new Point(i, j - 1));
+            }
+
+            if (p.Count > 0)
+            {
+                var chosen = WorldGen.genRand.Next(p);
+                if (ModContent.GetInstance<PearlsTile>().CanPlace(chosen.X, chosen.Y))
+                    WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<PearlsTile>(), mute: true);
+            }
+        }
         public override void RandomUpdate(int i, int j, int type)
         {
             switch (type)
@@ -55,6 +95,10 @@ namespace Aequus.Tiles
                         TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
                     }
                     break;
+            }
+            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>() && WorldGen.genRand.NextBool(20))
+            {
+                GrowPearl(i, j);
             }
         }
         public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile)
@@ -161,11 +205,11 @@ namespace Aequus.Tiles
 
         public static void GemFrame(int i, int j)
         {
-            Tile tile = Framing.GetTileSafely(i, j);
-            Tile top = Main.tile[i, j - 1];
-            Tile bottom = Framing.GetTileSafely(i, j + 1);
-            Tile left = Main.tile[i - 1, j];
-            Tile right = Main.tile[i + 1, j];
+            var tile = Framing.GetTileSafely(i, j);
+            var top = Main.tile[i, j - 1];
+            var bottom = Framing.GetTileSafely(i, j + 1);
+            var left = Main.tile[i - 1, j];
+            var right = Main.tile[i + 1, j];
             if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
             {
                 if (tile.TileFrameY < 54 || tile.TileFrameY > 90)
