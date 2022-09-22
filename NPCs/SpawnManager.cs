@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
@@ -120,10 +121,16 @@ namespace Aequus.NPCs
             if (spawnInfo.Player.Aequus().ZoneCrabCrevice)
             {
                 pool.Clear();
+                pool.Add(NPCID.Seahorse, 0.01f);
                 if (Main.hardMode)
                 {
                     pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
                 }
+                pool.Add(NPCID.Crab, 1f);
+                pool.Add(NPCID.PinkJellyfish, 0.1f);
+                pool.Add(NPCID.Shark, 0.05f);
+                pool.Add(NPCID.Squid, 0.05f);
+                pool.Add(NPCID.SeaSnail, 0.1f);
                 pool.Add(ModContent.NPCType<SoldierCrab>(), 1f);
                 if (spawnInfo.Water && NPC.CountNPCS(ModContent.NPCType<CrabFish>()) < 2)
                 {
