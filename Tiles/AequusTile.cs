@@ -82,7 +82,21 @@ namespace Aequus.Tiles
             {
                 var chosen = WorldGen.genRand.Next(p);
                 if (ModContent.GetInstance<PearlsTile>().CanPlace(chosen.X, chosen.Y))
+                {
                     WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<PearlsTile>(), mute: true);
+                    if (Main.tile[chosen].TileType == ModContent.TileType<PearlsTile>())
+                    {
+                        Main.tile[chosen.X, chosen.Y].TileFrameX = (short)(WorldGen.genRand.Next(3) * 18);
+                        if (WorldGen.genRand.NextBool(4))
+                        {
+                            Main.tile[chosen.X, chosen.Y].TileFrameX += 18;
+                        }
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendTileSquare(-1, chosen.X, chosen.Y);
+                        }
+                    }
+                }
             }
         }
         public override void RandomUpdate(int i, int j, int type)

@@ -31,6 +31,7 @@ namespace Aequus.Items.Consumables
             CreateRecipe()
                 .AddIngredient<SedimentaryRock>(5)
                 .AddIngredient(ItemID.PurificationPowder)
+                .AddTile(TileID.Bottles)
                 .Register();
         }
     }

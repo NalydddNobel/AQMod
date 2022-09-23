@@ -2,22 +2,22 @@
 
 namespace Aequus.Sounds
 {
-    public struct CustomMusicData
+    public class ConfiguredMusicData
     {
         private string mod;
-        private int modMusicID;
-        private int vanillaMusicID;
+        private int customMusicID;
+        private int baseMusicID;
 
-        internal CustomMusicData(int musicID)
+        internal ConfiguredMusicData(int musicID)
         {
             mod = "Aequus";
-            vanillaMusicID = musicID;
-            modMusicID = -1;
+            baseMusicID = musicID;
+            customMusicID = -1;
         }
 
         public int GetID()
         {
-            return modMusicID != -1 ? modMusicID : vanillaMusicID;
+            return customMusicID != -1 ? customMusicID : baseMusicID;
         }
 
         public void SetMusic(Mod mod, string musicPath)
@@ -28,7 +28,7 @@ namespace Aequus.Sounds
         public void SetMusic(Mod mod, int musicID)
         {
             this.mod = mod.Name;
-            modMusicID = musicID;
+            customMusicID = musicID;
         }
 
         public void ResetMusic(Mod mod)
@@ -36,7 +36,7 @@ namespace Aequus.Sounds
             if (mod.Name == this.mod)
             {
                 this.mod = "Aequus";
-                modMusicID = -1;
+                customMusicID = -1;
             }
         }
     }

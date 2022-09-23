@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Friendly.Critter
 {
-    public class OblivisonCritter : ModNPC
+    public class OblivisionCritter : ModNPC
     {
         public float eyeData;
 

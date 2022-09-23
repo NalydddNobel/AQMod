@@ -12,7 +12,9 @@ namespace Aequus.Biomes
         public static bool SupressWindUpdates { get; set; }
         public static byte updateTimer;
 
-        public override int Music => MusicData.GaleStreamsEvent.GetID();
+        public static ConfiguredMusicData music { get; private set; }
+
+        public override int Music => music.GetID();
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
@@ -20,6 +22,19 @@ namespace Aequus.Biomes
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG33";
         public override string MapBackground => BackgroundPath;
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                music = new ConfiguredMusicData(MusicID.Sandstorm);
+            }
+        }
+
+        public override void Unload()
+        {
+            music = null;
+        }
 
         public override bool IsBiomeActive(Player player)
         {

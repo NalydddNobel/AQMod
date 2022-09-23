@@ -2048,7 +2048,7 @@ Mods: {
 			Starite: Starite
 			UltraStarite: Ultra Starite
 
-			OblivisonCritter: Oblivison
+			OblivisionCritter: Oblivision
 			Magmabubble: Magmabubble
 			TrapperImp: Trapper Imp
 			Trapper: Trapper
@@ -2089,7 +2089,7 @@ Mods: {
 			SuperStarite: As starites get older, they get better at sustaining their magic energy, allowing them to grow in size and shoot energy bullets.
 			Starite: A fragment of a long ago supernova, its strong magical force gave it life. Must replenish its mystic energy to stay alive.
 			
-			OblivisonCritter: Demonic tears caused by the disruptive portals of the gore nests. While harmless, they seem to observe and study nearby creatures, who knows why...
+			OblivisionCritter: Demonic tears caused by the disruptive portals of the gore nests. While harmless, they seem to observe and study nearby creatures, who knows why...
 			Magmabubble: Grew legs after consuming a blood crawler, its lava body is too heavy to climb on walls however.
 			TrapperImp: This Fire Imp uses wicked magic to entrap and rot away clingers to become its personal pets.
 			Cindera: Has a disgusting, yet deadly face, similar to that of a face monster.
@@ -3696,7 +3696,7 @@ Mods: {
 			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
 		}
 
-		OblivisonEasterEgg: <Oblivison> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
+		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
 		Concoct: Concoct Potions
 		StopConcocting: Stop Concocting
 		Complete: Complete

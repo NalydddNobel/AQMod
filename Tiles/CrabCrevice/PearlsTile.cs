@@ -13,7 +13,7 @@ namespace Aequus.Tiles.CrabCrevice
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileObsidianKill[Type] = true;
-            Main.tileShine[Type] = 1200;
+            Main.tileShine[Type] = 400;
             Main.tileShine2[Type] = true;
             Main.tileOreFinderPriority[Type] = 110;
             Main.tileSpelunker[Type] = true;

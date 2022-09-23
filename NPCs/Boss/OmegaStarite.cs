@@ -165,8 +165,8 @@ namespace Aequus.NPCs.Boss
         public static HashSet<int> StarResistCatalogue { get; private set; }
         public static HashSet<int> StarResistEasterEggCatalogue { get; private set; }
 
-        public static SoundStyle OofSound { get; private set; }
-        public static SoundStyle StarBulletsSound { get; private set; }
+        public static SoundStyle HitSound { get; private set; }
+        public static ConfiguredMusicData music { get; private set; }
 
         private TrailRenderer prim;
 
@@ -196,13 +196,16 @@ namespace Aequus.NPCs.Boss
 
             if (!Main.dedServ)
             {
-                OofSound = new SoundStyle("Aequus/Sounds/OmegaStarite/omegastaritehit", 2);
-                StarBulletsSound = new SoundStyle("Aequus/Sounds/OmegaStarite/starbullets");
+                HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 0.3f, 0.5f, 0.1f);
+                music = new ConfiguredMusicData(MusicID.Boss5);
             }
         }
 
         public override void Unload()
         {
+            music = null;
+            StarResistCatalogue?.Clear();
+            StarResistCatalogue = null;
             StarResistEasterEggCatalogue?.Clear();
             StarResistEasterEggCatalogue = null;
         }
@@ -265,9 +268,10 @@ namespace Aequus.NPCs.Boss
                 NPC.scale *= 0.5f;
                 starDamageMultiplier *= 0.5f;
             }
-            if (!Main.dedServ)
+
+            if (!Main.dedServ && music != null)
             {
-                Music = MusicData.OmegaStariteBoss.GetID();
+                Music = music.GetID();
                 SceneEffectPriority = SceneEffectPriority.BossLow;
                 if (AprilFools.CheckAprilFools())
                 {
@@ -351,7 +355,7 @@ namespace Aequus.NPCs.Boss
             }
             else if (NPC.life <= 0)
             {
-                SoundEngine.PlaySound(OofSound.WithVolume(0.6f), NPC.Center);
+                SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
                 //if (skipDeathTimer > 0)
                 //{
                 //    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
@@ -409,7 +413,7 @@ namespace Aequus.NPCs.Boss
             }
             else
             {
-                SoundEngine.PlaySound(OofSound.WithVolume(0.6f), NPC.Center);
+                SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
                 byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
                 if (shake > _hitShake)
                 {
@@ -721,7 +725,7 @@ namespace Aequus.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundEngine.PlaySound(StarBulletsSound.WithVolume(0.3f).WithPitch(0.5f), NPC.Center);
+                                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/starbullets", 0.3f, 0.5f, 0.1f), NPC.Center);
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;

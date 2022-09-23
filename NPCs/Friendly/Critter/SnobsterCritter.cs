@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Consumables.Critters;
+using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -98,7 +99,12 @@ namespace Aequus.NPCs.Friendly.Critter
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            float chance = SpawnCondition.Ocean.Chance * 0.1f * (SpawnCondition.TownCritter.Chance * 5f + 1f);
+            float oceanChance = SpawnCondition.Ocean.Chance;
+            if (spawnInfo.SpawnTileType == ModContent.TileType<SedimentaryRockTile>())
+            {
+                oceanChance += 1.5f;
+            }
+            float chance = oceanChance * 0.1f * (SpawnCondition.TownCritter.Chance * 5f + 1f);
             if (AequusWorld.downedCrabson)
                 chance *= 5f;
             return chance;

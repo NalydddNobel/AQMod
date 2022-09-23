@@ -71,7 +71,7 @@ namespace Aequus.Common
                     }
                 }
 
-                if (item.rare == -1)
+                if (item.rare == -1 || player.Aequus().ZoneCrabCrevice)
                 {
                     int breadMonsterChance = 30;
                     if (!Main.dayTime)

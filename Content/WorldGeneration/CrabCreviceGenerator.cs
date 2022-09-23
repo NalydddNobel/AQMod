@@ -740,22 +740,28 @@ namespace Aequus.Content.WorldGeneration
             Reset();
             int sizeX = size * 2;
             var leftX = LeftX(sizeX);
-            var updateRandomly = new ModTile[] { ModContent.GetInstance<SedimentaryRockTile>(), ModContent.GetInstance<CrabHydrosailia>(), };
-            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 8; i++)
+            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY / 20); i++)
             {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
 
-                if (Main.tile[randX, randY].HasTile)
+                if (Main.tile[randX, randY].HasTile && Main.tile[randX, randY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
                 {
-                    foreach (var mt in updateRandomly)
+                    for (int k = 0; k < 5; k++)
                     {
-                        if (Main.tile[randX, randY].TileType == mt.Type)
-                        {
-                            for (int k = 0; k < 700; k++)
-                                mt.RandomUpdate(randX, randY);
-                        }
+                        AequusWorld.RandomUpdateTile(randX, randY, checkNPCSpawns: false);
                     }
+                }
+            }
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 8; i++)
+            {
+                int randX = leftX + WorldGen.genRand.Next(sizeX);
+                int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
+
+                if (Main.tile[randX, randY].HasTile && Main.tile[randX, randY].TileType == ModContent.TileType<PearlsTile>())
+                {
+                    Main.tile[randX, randY].TileFrameX = 18 * 4;
+                    break;
                 }
             }
         }

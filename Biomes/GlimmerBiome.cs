@@ -1,6 +1,8 @@
 ﻿using Aequus.Biomes.Glimmer;
+using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Biomes
@@ -18,6 +20,7 @@ namespace Aequus.Biomes
 
         public static Color CosmicEnergyColor = new Color(200, 10, 255, 0);
         public static Color TextColor = new Color(238, 17, 68, 255);
+        public static ConfiguredMusicData music { get; private set; }
 
         public static Point TileLocation { get; set; }
 
@@ -32,6 +35,16 @@ namespace Aequus.Biomes
 
         public override string BackgroundPath => Aequus.AssetsPath + "UI/MapBGs/Glimmer";
         public override string MapBackground => BackgroundPath;
+
+        public override int Music => music.GetID();
+
+        public override void Load()
+        {
+            if (!Main.dedServ)
+            {
+                music = new ConfiguredMusicData(MusicID.MartianMadness);
+            }
+        }
 
         public override bool IsBiomeActive(Player player)
         {

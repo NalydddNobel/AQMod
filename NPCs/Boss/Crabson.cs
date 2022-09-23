@@ -9,6 +9,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Monster.CrabsonProjs;
+using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -49,13 +50,20 @@ namespace Aequus.NPCs.Boss
         public NPC CrabsonNPC => Main.npc[crabson];
         public bool IsClaw => NPC.whoAmI != crabson;
         public bool PhaseTwo => Main.npc[NPC.realLife].life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
+        public static ConfiguredMusicData music { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
                 BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
+                music = new ConfiguredMusicData(MusicID.Boss3);
             }
+        }
+
+        public override void Unload()
+        {
+            music = null;
         }
 
         public override void SetStaticDefaults()
@@ -102,11 +110,11 @@ namespace Aequus.NPCs.Boss
             NPC.lavaImmune = true;
             NPC.trapImmune = true;
 
-            //if (AQMod.UseAssets)
-            //{
-            //    music = GetMusic().GetMusicID();
-            //    musicPriority = MusicPriority.BossLow;
-            //}
+            if (!Main.dedServ && music != null)
+            {
+                Music = music.GetID();
+                SceneEffectPriority = SceneEffectPriority.BossLow;
+            }
 
             this.SetBiome<CrabCreviceBiome>();
 

@@ -7,6 +7,7 @@ using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Projectiles.Monster.DustDevilProjs;
+using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_SUCTIONENEMIES = 3;
         public const int ACTION_SUCTIONTILES = 2;
 
+        public static DrawList LegacyDrawBack { get; internal set; }
+        public static DrawList LegacyDrawFront { get; internal set; }
+        public static ConfiguredMusicData music { get; private set; }
+
         public float HPRatio => NPC.life / (float)NPC.lifeMax;
         public bool PhaseTwo => NPC.life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
 
@@ -38,16 +43,23 @@ namespace Aequus.NPCs.Boss
         public int effectsTimer;
         public int auraTimer;
 
-        public static DrawList LegacyDrawBack { get; internal set; }
-        public static DrawList LegacyDrawFront { get; internal set; }
-
         public override void Load()
         {
             if (!Main.dedServ)
             {
+                music = new ConfiguredMusicData(MusicID.Boss2);
                 LegacyDrawBack = new DrawList();
                 LegacyDrawFront = new DrawList();
             }
+        }
+
+        public override void Unload()
+        {
+            music = null;
+            LegacyDrawBack?.Clear();
+            LegacyDrawBack = null;
+            LegacyDrawFront?.Clear();
+            LegacyDrawFront = null;
         }
 
         public override void SetStaticDefaults()
