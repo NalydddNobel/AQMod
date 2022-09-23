@@ -72,7 +72,13 @@ namespace Aequus.Tiles.CrabCrevice
                 {
                     var chosen = WorldGen.genRand.Next(p);
                     if (ModContent.GetInstance<SeaPickleTile>().CanPlace(chosen.X, chosen.Y))
+                    {
                         WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<SeaPickleTile>(), mute: true);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendTileSquare(-1, chosen.X, chosen.Y);
+                        }
+                    }
                 }
             }
             if (Main.tile[i, j - 1].HasTile)
@@ -81,6 +87,10 @@ namespace Aequus.Tiles.CrabCrevice
             if (Main.tile[i, j - 1].LiquidAmount == 255 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(8))
             {
                 WorldGen.PlaceTile(i, j, ModContent.TileType<CrabFloorPlants>(), mute: true, style: WorldGen.genRand.Next(15));
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendTileSquare(-1, i, j);
+                }
             }
             else if (Main.tile[i, j - 1].LiquidAmount > 128 && Main.tile[i, j - 1].LiquidType == LiquidID.Water && WorldGen.genRand.NextBool(8))
             {
@@ -92,12 +102,20 @@ namespace Aequus.Tiles.CrabCrevice
                 {
                     WorldGen.PlaceTile(i, j - 1, TileID.Coral, mute: true);
                 }
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendTileSquare(-1, i, j - 1);
+                }
             }
             else if (WorldGen.genRand.NextBool(8))
             {
                 if (Main.tile[i - 1, j - 1].HasTile || Main.tile[i + 1, j - 1].HasTile)
                     return;
                 WorldGen.PlaceTile(i, j - 1, ModContent.TileType<CrabGrassBig>(), mute: true);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendTileSquare(-1, i, j - 1);
+                }
             }
 
             if (WorldGen.genRand.NextBool(2) && Main.tile[i, j - 1].LiquidAmount > 0 && Main.tile[i, j - 1].LiquidType == LiquidID.Water)
@@ -109,6 +127,10 @@ namespace Aequus.Tiles.CrabCrevice
                         if (!Main.tile[i, l].HasTile)
                         {
                             WorldGen.PlaceTile(i, l + 1, ModContent.TileType<CrabHydrosailia>(), mute: true, style: WorldGen.genRand.Next(6));
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                            {
+                                NetMessage.SendTileSquare(-1, i, l + 1);
+                            }
                         }
                         break;
                     }

@@ -64,10 +64,14 @@ namespace Aequus.Projectiles.Misc
             {
                 maxY = Main.maxTilesY;
             }
-            if (Main.rand.NextBool(4))
+            if (Projectile.velocity.Length() > 5f)
             {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 254, new Color(100, 240, 40, 120) * 0.5f, Main.rand.NextFloat(0.8f, 1.1f));
-                d.velocity = -Projectile.velocity * 0.4f;
+                var loc = new Vector2(Projectile.position.X + Main.rand.NextFloat(Projectile.width), Projectile.position.Y + Main.rand.NextFloat(Projectile.height));
+                if (!Collision.SolidCollision(loc, 2, 2))
+                {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.FoodPiece, 0f, 0f, 254, new Color(60, 180, 20, 255), Main.rand.NextFloat(0.8f, 1.5f));
+                    d.velocity = Projectile.velocity * 0.3f;
+                }
             }
             if (Main.myPlayer != Projectile.owner)
             {
@@ -75,7 +79,7 @@ namespace Aequus.Projectiles.Misc
             }
 
             var map = new TileMapCache(new Rectangle(minX - 15, minY - 15, maxX - minX + 30, maxY - minY + 30).Fluffize(padding: 10));
-            for (int k = 0; k < 6; k++)
+            for (int k = 0; k < 2; k++)
             {
                 for (int i = minX; i < maxX; i++)
                 {

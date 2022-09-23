@@ -58,20 +58,27 @@ namespace Aequus.Tiles.CrabCrevice
                     }
                     WorldGen.PlaceTile(i, j + 1, Type, mute: true, style: WorldGen.genRand.Next(6));
                     WorldGen.TileFrame(i, j, resetFrame: true);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        NetMessage.SendTileSquare(-1, i, j);
+                    }
                 }
             }
             if (!Main.tile[i, j - 1].HasTile)
             {
-                if (WorldGen.genRand.NextBool())
+                if (j + 1 < Main.maxTilesY - 5)
                 {
-                    if (j + 1 < Main.maxTilesY - 5)
+                    for (int k = -1; k <= 1; k += 2)
                     {
-                        for (int k = -1; k <= 1; k += 2)
+                        if (!Main.tile[i + k, j].HasTile)
                         {
-                            if (!Main.tile[i + k, j].HasTile)
+                            if (WorldGen.genRand.NextBool())
                             {
-                                if (WorldGen.genRand.NextBool())
-                                    WorldGen.PlaceTile(i + k, j, Type, mute: true, style: WorldGen.genRand.Next(6));
+                                WorldGen.PlaceTile(i + k, j, Type, mute: true, style: WorldGen.genRand.Next(6));
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                {
+                                    NetMessage.SendTileSquare(-1, i + k, j - 1);
+                                }
                             }
                         }
                     }

@@ -5,6 +5,7 @@ using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -114,8 +115,9 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         {
             NPC.ai[1] = 0f;
             base.GetIdleSpeeds(out speedX, out speedY, out capX, out capY);
-            speedX *= 0.1f;
-            capX.X *= 2f;
+            speedX *= 0.01f;
+            capX.X *= 0.02f;
+            capX.Y = 0.5f;
         }
 
         public override void AI()
@@ -232,10 +234,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         {
             NPC.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
             spriteBatch.Draw(texture, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame, drawColor * NPC.Opacity, NPC.rotation, origin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
-            if (NPC.wet && !inDarkness)
-            {
-                spriteBatch.Draw(texture, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame, Color.White * NPC.Opacity, NPC.rotation, origin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
-            }
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, NPC.position + offset + new Vector2(0f, NPC.gfxOffY) - screenPos, frame,
+                drawColor * 3f * NPC.Opacity, NPC.rotation, origin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
             if (NPC.Opacity < 1f)
             {
                 var coin = TextureAssets.Coin[2].Value;

@@ -49,7 +49,8 @@ namespace Aequus.NPCs
             }
             if (player.GetModPlayer<AequusPlayer>().ZoneCrabCrevice)
             {
-                maxSpawns = (int)(maxSpawns * 0.75f);
+                spawnRate /= 2;
+                maxSpawns = (int)(maxSpawns * 0.5f);
             }
         }
 
@@ -132,7 +133,7 @@ namespace Aequus.NPCs
                 }
                 pool.Add(NPCID.Crab, 1f);
                 pool.Add(NPCID.SeaSnail, 0.1f);
-                pool.Add(ModContent.NPCType<SoldierCrab>(), 1f);
+                pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
                 if (spawnInfo.Water)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
