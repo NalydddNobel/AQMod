@@ -343,7 +343,6 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: Has double the length

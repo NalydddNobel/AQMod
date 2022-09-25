@@ -8,7 +8,6 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
@@ -196,7 +195,7 @@ namespace Aequus.NPCs.Boss
 
             if (!Main.dedServ)
             {
-                HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 0.3f, 0.5f, 0.1f);
+                HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 1f, -0.025f, 0.05f);
                 music = new ConfiguredMusicData(MusicID.Boss5);
             }
         }
@@ -959,6 +958,11 @@ namespace Aequus.NPCs.Boss
 
                 case ACTION_INIT:
                     int target = NPC.target;
+                    if (!NPC.HasValidTarget)
+                    {
+                        NPC.TargetClosest(faceTarget: false);
+                        target = NPC.target;
+                    }
                     Initalize();
                     NPC.netUpdate = true;
                     NPC.target = target;
@@ -1046,7 +1050,7 @@ namespace Aequus.NPCs.Boss
             {
                 if (!PlrCheck())
                     return;
-                if (NPC.ai[1] == 0f)
+                if (NPC.ai[1] <= 60f || Vector2.Distance(new Vector2(NPC.ai[1], NPC.ai[2]), plrCenter) > 600f)
                 {
                     SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack, NPC.Center);
                     NPC.ai[1] = plrCenter.X + player.velocity.X * 20f;
@@ -1370,6 +1374,8 @@ namespace Aequus.NPCs.Boss
             return null;
         }
 
+
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (NPC.IsABestiaryIconDummy)
@@ -1391,13 +1397,6 @@ namespace Aequus.NPCs.Boss
                 return false;
             }
             var viewPos = NPC.IsABestiaryIconDummy ? NPC.Center : new Vector2(screenPos.X + Main.screenWidth / 2f, screenPos.Y + Main.screenHeight / 2f);
-            drawColor *= 5f;
-            if (drawColor.R < 80)
-                drawColor.R = 80;
-            if (drawColor.G < 80)
-                drawColor.G = 80;
-            if (drawColor.B < 80)
-                drawColor.B = 80;
             var drawPos = NPC.Center - screenPos;
             drawPos.X = (int)drawPos.X;
             drawPos.Y = (int)drawPos.Y;
@@ -1450,8 +1449,9 @@ namespace Aequus.NPCs.Boss
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
             var spotlight = TextureCache.Bloom[0].Value;
             var spotlightOrig = spotlight.Size() / 2f;
-            Color spotlightColor = new Color(100, 100, 255, 0);
+            var spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
+            drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
             if (ClientConfig.Instance.HighQuality)
             {
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)

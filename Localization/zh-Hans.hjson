@@ -1074,7 +1074,6 @@ Mods: {
 				击中敌人时会造成霜火减益
 				右键可在没有弹幕的情况下大幅度挥舞
 				'''
-			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: 给予你和队友一个较为持久的增益效果
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: 具有双倍的效力

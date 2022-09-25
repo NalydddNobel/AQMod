@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,6 +24,16 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accDavyJonesAnchor = Item;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddRecipeGroup("IronBar", 8)
+                .AddIngredient(ItemID.Rope, 50)
+                .AddIngredient<AquaticEnergy>()
+                .AddTile(ItemID.IronAnvil)
+                .Register();
         }
     }
 }
