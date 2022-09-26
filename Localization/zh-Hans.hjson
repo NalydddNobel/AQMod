@@ -33,6 +33,7 @@ Mods: {
 		}
 
 		ChatBroadcast: {
+			DemonSiegeFailEat: 血巢吞噬了你的{0}...
 			DemonSiegeFail: 血巢反刍出了你的{0}...
 		}
 
@@ -86,7 +87,11 @@ Mods: {
 			ToggleKeyBind: 按下{0}键以开关效果
 
 			MechsSentry: {
-				Terraria_EoCShield: 增加冲刺攻击距离
+				Terraria_EoCShield: 
+					'''
+					增加冲刺攻击距离, 冲刺时减益流逝的速度更快
+					接触地面时允许无限持续的冲刺
+					'''
 				Terraria_WormScarf: 你会被动地发射激光
 				Terraria_BrainOfConfusion: 你受到探测器的保护
 				Terraria_BoneGlove: 骷髅头被激光锯替代
@@ -120,6 +125,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			DavyJonesAnchor: 深海阎王的锚
+			WarHorn: 战争号角
 			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
 			CrownOfDarkness: 黑暗王冠
@@ -152,6 +159,7 @@ Mods: {
 
 			FishyFins: 可疑鱼鳍
 
+			Mallet: 棒槌
 			SuperStarSword: 超级星剑
 			UltimateSword: 最终之剑
 			BattleAxe: 战斧
@@ -159,6 +167,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			StarPhish: 螺旋吹筒
 			SnowflakeCannon: 雪花大炮
 			Raygun: 射线枪
 			BoundBow: 界限弓
@@ -276,6 +285,9 @@ Mods: {
 
 			RichMansMonocle: 富翁的单片眼镜
 
+			TitaniumPaintbrush: 钛漆刷
+			TitaniumScraper: 钛漆铲
+
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
 			ShutterstockerClipAmmo: 快门储像机剪片
@@ -293,6 +305,9 @@ Mods: {
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
 			BreadOfCthulhuMask: 克苏鲁之面包面具
+
+			SwagLookingEye: 潮流眼球
+			DragonBall: 龙珠
 
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
@@ -316,6 +331,10 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			CoconutCrabBanner: 椰子蟹旗
+			SoldierCrabBanner: 兵蟹旗
+			HijivarchCrabBanner: Hijivarch蟹旗
+			CrabFishBanner: 蟹鱼旗
 			StariteBanner: 星之源旗
 			SuperStariteBanner: 极耀源星旗
 			HyperStariteBanner: 巨耀源星旗
@@ -423,7 +442,6 @@ Mods: {
 			FizzlingFire: 超级火焰喷射器
 			Valari: 回旋镰
 			Resonance: 共振
-			VineSword: 棒槌
 			KryptonSword: 氪制回旋镖
 			Vrang: 镰刃
 			AirBlade: 风之刃
@@ -513,14 +531,12 @@ Mods: {
 			FamiliarPickaxe: 令人熟悉的镐子
 			HeartLamp: 心灯
 			StariteinaBottle: 瓶中星源
-			DragonBall: 龙珠
 			YuckyOrb: 迷人诱饵
 			WaterFisg: 水鱼
 			Crabdaughter: 蟹蛤之子
 			Transistor: 晶体管
 			EclipseGlasses: 日蚀眼镜
 			Cosmicanon: 星宇律则
-			SoliderCrabsBanner: 兵蟹旗
 			JeweledChalice: 宝石杯
 			JeweledCandelabra: 宝石烛台
 			JeweledChandelier: 宝石大吊灯
@@ -529,7 +545,7 @@ Mods: {
 			CopperSeal: 铜制容器
 			SilverSeal: 银制容器
 			GoldSeal: 金制容器
-			PlatinumSeal: 钛金制容器
+			PlatinumSeal: 钛制容器
 			MoonShoes: 月之行者
 			BlurryDiscountCard: 字迹模糊的优惠卡
 			BusinessCard: 商务卡
@@ -571,7 +587,6 @@ Mods: {
 			HamaYumi: 破魔弓
 			SpiralingTwilight: 暮光螺旋
 			Sprinkler: 喷水器
-			StarPhish: 螺旋吹筒
 			SpaceShot: 太空手枪
 			LotusStaff: 莲花杖
 			CrimsonHandStaff: 猩红血手法杖
@@ -586,6 +601,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			DavyJonesAnchor: 击中敌人时随机绑上重锚
+			WarHorn: 
+				'''
+				仆从在首次击中敌人后悔进入狂暴状态
+				狂暴的仆从会获得更高的攻击和移动速度
+				'''
 			LittleInferno: 
 				'''
 				攻击会造成狱火减益
@@ -619,7 +640,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
-				[c/{Color}:如果你能支付25银币]
+				[c/{Color}:...如果你能支付25银币]
 				'''
 			BlackPhial: 
 				'''
@@ -668,22 +689,32 @@ Mods: {
 			GrandReward: 
 				'''
 				敌人更容易掉落稀有物品
-				[c/{Color}:但敌人不再掉落钱币]
+				[c/{Color}:...但敌人不再掉落钱币]
 				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
 			GlowCore: 你和你的弹幕会发光
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
-
+			Mallet:
+				'''
+				打击你光标附近的敌人
+				'这就像打松鼠一样'
+				'''
 			SuperStarSword: 
-			'''
-			生命值为满时会发射剑气
-			'会动的东西我砍, 动的很欢的我砍得更欢'
-			'''
+				'''
+				生命值为满时会发射剑气
+				'会动的东西我砍, 动的很欢的我砍得更欢'
+				'''
 			UltimateSword: '只是真正潜能的一小部分'
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
+
+			StarPhish: 
+				'''
+				对处于水中的敌人造成的伤害增加
+				{$Mods.Aequus.Tooltips.UseDarts}
+				'''
 
 			SnowflakeCannon: 
 				'''
@@ -933,6 +964,9 @@ Mods: {
 				可移动镇民、敌人和弹幕
 				'手持式灵感来源!'
 				'''
+			TitaniumPaintbrush: 给物块涂上不可覆盖的油漆, 可防止物块被武器摧毁
+			TitaniumScraper: 用于去除油漆
+
 			Bellows: 
 				'''
 				将你向你瞄准的反方向推开
@@ -998,8 +1032,23 @@ Mods: {
 				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
 
+			SwagLookingEye: 
+				'''
+				召唤一只潮流眼睛跟着你
+				'玻璃...'
+				'''
+			DragonBall: 
+				'''
+				召唤一颗迷你终末之星
+				'球之化身'
+				'''
+
 			RecyclingMachine: 允许你回收垃圾物品
 
+			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
+			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
+			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"
+			CrabFishBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
 			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
 			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
 			HyperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
@@ -1072,8 +1121,8 @@ Mods: {
 				'''
 				快速挥砍并发射穿刺雪花
 				击中敌人时会造成霜火减益
-				右键可在没有弹幕的情况下大幅度挥舞
 				'''
+			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: 给予你和队友一个较为持久的增益效果
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: 具有双倍的效力
@@ -1287,11 +1336,6 @@ Mods: {
 			SeltzerRain: 发射许多腐蚀球体
 			FizzlingFire: 在你拥有耐魔性减益时无法使用
 			Valari: 可以拾取物品
-			VineSword:
-				'''
-				打击你光标附近的敌人
-				'这就像打松鼠一样'
-				'''
 			KryptonSword:
 				'''
 				能够穿透敌人
@@ -1435,16 +1479,10 @@ Mods: {
 				召唤一颗会提供光照的侏儒源星
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
-			DragonBall: 
-				'''
-				召唤一颗迷你终末之星
-				'球之化身'
-				'''
 			YuckyOrb: 召唤一只会提供光亮的宠物鮟鱇鱼
 			Transistor: 阻止微光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
 			Cosmicanon: 阻止血月的自然生成
-			SoliderCrabsBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			OmegaStaritePainting:
 				'''
 				'你不知道你会得到什么!'
@@ -1530,7 +1568,6 @@ Mods: {
 			ArgonSpear: 会不断的瞄准你的光标位置
 			HamaYumi: 接近敌人时会爆裂成腐败狱火
 			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
-			StarPhish: "{$Mods.Aequus.Tooltips.UseDarts}"
 			SpaceShot: 发射一颗星星, 随后再发射其使用的子弹
 			LotusStaff:
 				'''
@@ -1585,6 +1622,7 @@ Mods: {
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
+			TorraBuff: 潮流眼球
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
 
@@ -1670,6 +1708,7 @@ Mods: {
 			RedSpriteMinionBuff: 红色精灵会为你而战
 			SnowflakeBuff: 雪花会为你而战
 
+			TorraBuff: "'玻璃???!?'"
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
 
@@ -1956,7 +1995,10 @@ Mods: {
 		}
 
 		WorldGeneration: {
+			CrabCrevicePots: 正在灌封蟹类...
+			CrabCreviceGrowth: 蟹类正在生长...
 			CrabCrevice: 正在生成地下海洋...
+			GoreNestCleanup: 正在清理血迹...
 			GoreNests: 正在使地狱更加邪恶...
 		}
 
@@ -2007,17 +2049,22 @@ Mods: {
 
 			BreadOfCthulhu: 克苏鲁之面包
 
-			SoldierCrabs: 兵蟹
+			SummonerCrabMinion: Fleer
+			SummonerCrab: Hijivarch蟹
+			CrabFish: 蟹鱼
+			CoconutCrab: 椰子蟹
+			SoldierCrab: 兵蟹
 			HermitCrab: 寄居蟹
+
 			SuperStarite: 极耀源星
 			HyperStarite: 巨耀源星
 			DwarfStariteCritter: 侏儒源星
 			Starite: 星之源
 			UltraStarite: 终耀源星
 
-			OblivisonCritter: 遗忘者
+			OblivisionCritter: 遗忘者
 			Magmalbubble: 熔火喷吐者
-			TrapImp: 捕魂小鬼
+			TrapperImp: 捕魂小鬼
 			Trapper: 捕魂钩
 			Cindera: 幻形蝠
 			BloodMimic: 血红模仿者
@@ -2037,6 +2084,12 @@ Mods: {
 			DustDevil: 一种几乎可以控制所有元素的强大元素. 被操纵的气流形成的强大旋风! 它的名字源于它强大的吸力吸入了很多灰尘.
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
 
+			CoconutCrab: 演化出的天然迷彩, 可以伪装成椰子. 会睡在椰子树上, 并且会在清晨从椰子树上跳下.
+			SoldierCrab: 因其骑士般的外表而得名. 这只螃蟹的橙色盔甲实际上是钴覆盖着一层又一层的污垢.
+			SummonerCrabMinion: 如果没有Hijivarch, 它们将无法休息和庇护它们的蛋, 幸运的是他们拥有彼此.
+			SummonerCrab: 如果没有Fleers的帮助, 它们将无法收集足够的食物, 幸运的是他们拥有彼此.
+			CrabFish: 在黑暗中潜伏, 会用它的诱饵发出硬币般的噪音和火花来吸引未知的猎物...
+
 			BloodMimic: 由于血月对尸体的影响, 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
 
 			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
@@ -2050,7 +2103,7 @@ Mods: {
 			SuperStarite: 随着星源变得更加衰老, 它们更善于维持它们的魔法能量, 允许它们扩大规模并发射能量子弹.
 			Starite: 很久以前的超新星碎片, 强大的魔法力赋予了它生命. 必须补充其神秘能量才能生存.
 
-			OblivisonCritter: 恶魔之泪是由血巢的破坏性传送门造成的. 虽然无害, 但它们似乎在观察和研究附近的生物, 没人知道为什么...
+			OblivisionCritter: 恶魔之泪是由血巢的破坏性传送门造成的. 虽然无害, 但它们似乎在观察和研究附近的生物, 没人知道为什么...
 			Magmabubble: 在吞食了一条血爬行动物后长出了腿, 但它的熔岩身躯太重了, 爬不上墙壁.
 			TrapperImp: 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 并将其作为自己的宠物.
 			Cindera: 有一张令人厌恶且致命的脸, 类似于脸怪.
@@ -2873,7 +2926,8 @@ Mods: {
 					MechanicalLens: 我以前总是看不到我的电线, 所以我做了这些!
 					EngineeringHelmet: 非常适合解决实际问题!
 					WireBulb: 你知道我曾经用灯泡而不是蜡烛做蛋糕吗?
-					MechanicsRod: "{Angler}告诉我要做一个'给钓鱼大师的超级钓竿'...好吧, 我没法拒绝."
+					MechanicsRod: "我想做一个'钓鱼大师'!"
+					MechanicsRod_Angler: "{Angler}告诉我要做一个'给钓鱼大师的超级钓竿'...好吧, 我没法拒绝."
 					Timer5Second: 5秒规则!
 					Timer3Second: 还是3秒规则?
 					Timer1Second: 用于设置闪光灯.
@@ -3126,7 +3180,7 @@ Mods: {
 					SillyBalloons: 这些气球在任何派对上都会很好用!
 					SillyTiedBalloons: 一堆绑在一起的气球不会飞走, 我们不是在太空派对吧?
 					FireworksLauncher: 一个很酷的火箭发射器来庆祝你的胜利!
-					ReleaseDoves: 不要问你怎么能手里拿着这么多鸽子!
+					ReleaseDoves: 不要问你怎么能手里拿着这么多鸽子.
 					ReleaseLanterns: 拿一个扔到天上, 庆祝打败了强大的敌人!
 					Football: 擅长玩游戏吗? 试试用这个给你的朋友留下深刻印象!
 				}
@@ -3224,6 +3278,25 @@ Mods: {
 						与快门储像机™一起使用以捕获图像
 						用最吸引人的剪片来保存你最好的建筑!
 						'''
+					TitaniumPaintbrush: 
+						'''
+						钛刷毛留下的空白, 需要镐子才能凿穿的强力浆糊.
+						不要担心用完, 每次你画完一面,
+						一群木匠蚁会聚集起来, 并将它们收集的所有浆糊都放在刷子上.
+						'''
+					TitaniumScraper: 
+						'''
+						去除浆糊时请小心使用. 使用不当可能导致损坏.
+						本公司不对该工具造成的损坏负责.
+						'''
+					OmniPaint: 
+						'''
+						使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
+						你可以很简单的把刷子刷干净!
+						不要让它接触到你的皮肤, 它可能会导致永久性着色和上海.
+						'''
+					AdvancedRuler: 我们迄今为止最先进的尺子, 有许多功能、按钮和愚蠢的复杂性!
+					WhiteFlag: 不要挥舞太久, 除非你打算被认为这个岛很弱的哥布林殖民.
 				}
 
 				UI: {
@@ -3637,7 +3710,7 @@ Mods: {
 			GaleStreams: 风速大于 30 mph 时开始, 可以通过使用{Pumpinator}更改风速.
 		}
 
-		OblivisonEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
+		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Concoct: 调制药水
 		StopConcocting: 停止调制
 		Complete: 完成
