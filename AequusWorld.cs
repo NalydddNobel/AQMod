@@ -355,7 +355,7 @@ namespace Aequus
                             rockmanChests.Add(k);
                         }
                     }
-                    if (WorldGen.genRand.NextBool(4))
+                    if (WorldGen.genRand.NextBool(7))
                     {
                         for (int i = 0; i < Chest.maxItems; i++)
                         {

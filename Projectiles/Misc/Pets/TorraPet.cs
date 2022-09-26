@@ -1,12 +1,13 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI.Chat;
 
 namespace Aequus.Projectiles.Misc.Pets
 {
@@ -29,6 +30,25 @@ namespace Aequus.Projectiles.Misc.Pets
 
         public override bool PreAI()
         {
+            Projectile.localAI[0]--;
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].chatOverhead.timeLeft > 0 && !string.IsNullOrEmpty(Main.player[i].chatOverhead.chatText) && Main.player[i].chatOverhead.chatText.ToLower().Contains("hi torra"))
+                {
+                    if (Main.player[i].chatOverhead.timeLeft == 300)
+                    {
+                        string playerName = Main.player[i].name;
+                        if (Main.myPlayer == i)
+                        {
+                            playerName = Environment.UserName;
+                        }
+                        Main.NewText($"<Torra> OMG HI {playerName.ToUpper()}!!!!!!");
+                        Projectile.localAI[0] = 400f;
+                        Projectile.localAI[1] = i;
+                    }
+                }
+            }
+
             Main.player[Projectile.owner].eater = false;
             if (!AequusHelpers.UpdateProjActive<TorraBuff>(Projectile))
             {
@@ -59,6 +79,19 @@ namespace Aequus.Projectiles.Misc.Pets
                 var v = arr[i];
                 var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
                 Main.spriteBatch.Draw(texture, drawCoords + v * 80f * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords + v * 60f * Projectile.scale), v.ToRotation() - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0f);
+            }
+            if (Projectile.localAI[0] > 0f)
+            {
+                int i = (int)Projectile.localAI[1];
+                string playerName = Main.player[i].name;
+                if (Main.myPlayer == i)
+                {
+                    playerName = Environment.UserName;
+                }
+                string text = $"OMG HI {playerName.ToUpper()}!!!!!!";
+                var font = FontAssets.MouseText.Value;
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition, 
+                    new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, new Vector2(font.MeasureString(text).X / 2f, 0f), Vector2.One * Main.UIScale);
             }
             return true;
         }
