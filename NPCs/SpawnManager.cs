@@ -49,8 +49,7 @@ namespace Aequus.NPCs
             }
             if (player.GetModPlayer<AequusPlayer>().ZoneCrabCrevice)
             {
-                spawnRate /= 2;
-                maxSpawns = (int)(maxSpawns * 0.5f);
+                maxSpawns = (int)(maxSpawns * 0.75f);
             }
         }
 

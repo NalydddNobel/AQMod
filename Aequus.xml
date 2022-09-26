@@ -359,6 +359,11 @@
             Applied by <see cref="T:Aequus.Items.Pets.ToySpaceGun"/>
             </summary>
         </member>
+        <member name="T:Aequus.Buffs.Pets.TorraBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
+            </summary>
+        </member>
         <member name="M:Aequus.Common.ILoadBefore.SortBefore(System.Type)">
             <summary>
             

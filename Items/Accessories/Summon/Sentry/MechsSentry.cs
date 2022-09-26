@@ -227,23 +227,41 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             if (player.eocDash > 0 && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<ShieldOfCthulhuBoost>()] <= 0)
             {
-                Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item), 1f, player.whoAmI);
+                Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item) * 2, 1f, player.whoAmI);
             }
         }
         public static void ExpertEffect_WormScarf(Item item, Player player, AequusPlayer aequus)
         {
             if (aequus.expertBoostWormScarfTimer <= 0)
-            {
-                int target = AequusHelpers.FindTargetWithLineOfSight(player.position, player.width, player.height);
+                aequus.expertBoostWormScarfTimer = 60;
 
-                if (target != -1)
+
+            int i = 60 - aequus.expertBoostWormScarfTimer;
+            if (i < 20)
+            {
+                if (i % 2 == 0)
+                    return;
+
+                i /= 2;
+            }
+            else
+            {
+                i -= 10;
+            }
+
+            ExpertEffect_WormScarf_CheckNPCSlot(item, player, i);
+            ExpertEffect_WormScarf_CheckNPCSlot(item, player, i + 50);
+            ExpertEffect_WormScarf_CheckNPCSlot(item, player, i + 100);
+            ExpertEffect_WormScarf_CheckNPCSlot(item, player, i + 150);
+        }
+        public static void ExpertEffect_WormScarf_CheckNPCSlot(Item item, Player player, int i)
+        {
+            if ((Main.npc[i].realLife == -1 || Main.npc[i].realLife == i) && Main.npc[i].CanBeChasedBy(player) && player.Distance(Main.npc[i].Center) < 750f && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, player.position, player.width, player.height))
+            {
+                if (Main.myPlayer == player.whoAmI)
                 {
-                    aequus.expertBoostWormScarfTimer = 90;
-                    if (Main.myPlayer == player.whoAmI)
-                    {
-                        var v = player.DirectionTo(Main.npc[target].Center);
-                        Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center + v * 20f, v * 20f, ModContent.ProjectileType<WormScarfLaser>(), 60, 1f, player.whoAmI);
-                    }
+                    var v = player.DirectionTo(Main.npc[i].Center);
+                    Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center + v * 20f, v * 20f + Main.npc[i].velocity / 2f, ModContent.ProjectileType<WormScarfLaser>(), 60, 0f, player.whoAmI);
                 }
             }
         }

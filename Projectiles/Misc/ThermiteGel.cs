@@ -23,9 +23,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.width = 80;
             Projectile.height = 80;
             AIType = ProjectileID.VolatileGelatinBall;
-            Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 20;
-            Projectile.penetrate = 5;
+            Projectile.penetrate += 2;
             Projectile.timeLeft = 600;
             Projectile.extraUpdates = 1;
         }
@@ -132,7 +130,7 @@ namespace Aequus.Projectiles.Misc
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(40, 5, 15, 0);
+            return new Color(255, 70, 128, 128);
         }
 
         public override void AI()

@@ -5,6 +5,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Pets;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
@@ -352,6 +353,17 @@ namespace Aequus
                         else if (style == ChestTypes.sandstone)
                         {
                             rockmanChests.Add(k);
+                        }
+                    }
+                    if (WorldGen.genRand.NextBool(4))
+                    {
+                        for (int i = 0; i < Chest.maxItems; i++)
+                        {
+                            if (!c.item[i].IsAir && c.item[i].type == ItemID.SuspiciousLookingEye)
+                            {
+                                c.item[i].SetDefaults<SwagLookingEye>();
+                                break;
+                            }
                         }
                     }
                 }

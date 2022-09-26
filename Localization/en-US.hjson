@@ -87,14 +87,18 @@ Mods: {
 			ToggleKeyBind: You can toggle this function by pressing {0}
 
 			MechsSentry: {
-				Terraria_EoCShield: Increased dash attack range
-				Terraria_WormScarf: You passively shoot lasers
-				Terraria_BrainOfConfusion: You are protected by probes
-				Terraria_BoneGlove: Crossbones are replaced by laser saws
-				Terraria_HiveBackpack: May turn strong bees into mechanical bees
-				Terraria_BoneHelm: Shadow hands are replaced with gestalts
-				Terraria_VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
-				Terraria_SporeSac: Spores are replaced with explosive nanites
+				EoCShield: 
+					'''
+					Increased dash attack range, debuffs wear off faster while dashing
+					Allows for an infinite duration dash while grounded
+					'''
+				WormScarf: You passively shoot lasers
+				BrainOfConfusion: You are protected by probes
+				BoneGlove: Crossbones are replaced by laser saws
+				HiveBackpack: May turn strong bees into mechanical bees
+				BoneHelm: Shadow hands are replaced with gestalts
+				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+				SporeSac: Spores are replaced with explosive nanites
 				CelesteTorus: You are given an extra ring of orbs
 			}
 		}
@@ -301,6 +305,9 @@ Mods: {
 			RedSpriteMask: Red Sprite Mask
 			SpaceSquidMask: Space Squid Mask
 			BreadOfCthulhuMask: Bread of Cthulhu Mask
+
+			SwagLookingEye: Swag Looking Eye
+			DragonBall: Dragon Ball
 
 			SedimentaryRockWall: Sedimentary Rock Wall
 			SedimentaryRock: Sedimentary Rock
@@ -524,7 +531,6 @@ Mods: {
 			FamiliarPickaxe: Familiar Pickaxe
 			HeartLamp: Heart Lamp
 			StariteinaBottle: Starite in a Bottle
-			DragonBall: Dragon Ball
 			YuckyOrb: Charming Lure
 			WaterFisg: Water Fish
 			Crabdaughter: Crabdaughter
@@ -1026,6 +1032,17 @@ Mods: {
 				{$Mods.Aequus.Tooltips.RouletteDrop}
 				'''
 
+			SwagLookingEye: 
+				'''
+				Summons a swag eye to follow you
+				'glaze...'
+				'''
+			DragonBall: 
+				'''
+				Summons an omega starite mini
+				'Ball Incarnate'
+				'''
+
 			RecyclingMachine: Allows you to recycle trash items
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
@@ -1461,11 +1478,6 @@ Mods: {
 				Summons a dwarf starite to provide light
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
-			DragonBall: 
-				'''
-				Summons an omega starite mini
-				'Ball Incarnate'
-				'''
 			YuckyOrb: Summons a pet angler fish to provide light
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
@@ -1609,6 +1621,7 @@ Mods: {
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
+			TorraBuff: Swag Eye
 			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
 		
@@ -1694,6 +1707,7 @@ Mods: {
 			RedSpriteMinionBuff: The red sprite will fight for you
 			SnowflakeBuff: The snowflake will fight for you
 
+			TorraBuff: "'GLAZE???!?'"
 			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
 

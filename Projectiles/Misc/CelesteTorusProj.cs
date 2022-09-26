@@ -149,7 +149,7 @@ namespace Aequus.Projectiles.Misc
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    var pos = GetRot(i, rotation, currentRadius * 2f, 8);
+                    var pos = GetRot(i, rotation2, currentRadius * 2f, 8);
                     var collisionCenter = projHitbox.Center.ToVector2() + new Vector2(pos.X, pos.Y);
                     var collisionRectangle = Utils.CenteredRectangle(collisionCenter, new Vector2(Projectile.width, Projectile.width) * 1.2f);
                     if (collisionRectangle.Intersects(targetHitbox))

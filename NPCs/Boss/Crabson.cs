@@ -879,7 +879,6 @@ namespace Aequus.NPCs.Boss
             Rectangle rect = NPC.getRect();
             if (!AequusWorld.downedCrabson)
             {
-                Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), ModContent.ItemType<HypnoticPearl>());
                 if (!NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
                 {
                     NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
