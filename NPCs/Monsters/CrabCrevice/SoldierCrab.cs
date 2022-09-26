@@ -135,6 +135,10 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                                     NPC.ai[1] = 0f;
                                 }
                             }
+                            if (NPC.velocity.X.Abs() < 6f)
+                            {
+                                NPC.velocity.X += NPC.direction * 0.1f;
+                            }
                         }
                         NPC.rotation = NPC.velocity.X * 0.05f * NPC.velocity.Y * 0.2f;
                         if (NPC.velocity.Y.Abs() < 0.1f)

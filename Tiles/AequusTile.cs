@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities;
+using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
@@ -45,7 +46,6 @@ namespace Aequus.Tiles
         public override void Unload()
         {
         }
-
 
         public void GrowPearl(int i, int j)
         {
@@ -154,6 +154,32 @@ namespace Aequus.Tiles
             if (!fail)
             {
                 Main.tile[i, j].Get<AequusTileData>().OnKillTile();
+                if (ArmFloaties.Equipped.Count > 0)
+                {
+                    int closestPlayer = -1;
+                    float distance = 240f;
+                    foreach (var p in ArmFloaties.Equipped)
+                    {
+                        if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].ghost
+                            && Main.player[p].breath < Main.player[p].breathMax && Main.player[p].Aequus().accArmFloaties)
+                        {
+                            float d = Main.player[p].Distance(new Vector2(i * 16f + 8f, j * 16f + 8f));
+                            if (d < distance)
+                            {
+                                closestPlayer = p;
+                                distance = d;
+                            }
+                        }
+                    }
+                    if (closestPlayer != -1)
+                    {
+                        Main.player[closestPlayer].breath += Main.player[closestPlayer].breathMax / 15;
+                        if (Main.player[closestPlayer].breath > Main.player[closestPlayer].breathMax - 1)
+                        {
+                            Main.player[closestPlayer].breath = Main.player[closestPlayer].breathMax - 1;
+                        }
+                    }
+                }
             }
         }
 

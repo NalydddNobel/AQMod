@@ -414,6 +414,7 @@ namespace Aequus
         public override void PreUpdateEntities()
         {
             CelesteTorus.RenderPoints?.Clear();
+            ArmFloaties.Equipped?.Clear();
             ResetCaches();
         }
 

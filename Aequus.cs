@@ -38,6 +38,13 @@ namespace Aequus
         public static float SkiesDarknessGoTo;
         public static float SkiesDarknessGoToSpeed;
 
+        public static ModPacket GetPacket(PacketType type)
+        {
+            var p = Instance.GetPacket();
+            p.Write((byte)type);
+            return p;
+        }
+
         public override void Load()
         {
             Instance = this;

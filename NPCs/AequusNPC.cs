@@ -586,6 +586,33 @@ namespace Aequus.NPCs
             return list;
         }
 
+        public override void OnKill(NPC npc)
+        {
+            if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
+                return;
+
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (npc.playerInteraction[i])
+                {
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.player[i].Aequus().OnKillEffect(npc.netID, npc.position, npc.width, npc.height, npc.lifeMax);
+                        continue;
+                    }
+
+                    var p = Aequus.GetPacket(PacketType.OnKillEffect);
+                    p.Write(i);
+                    p.Write(npc.netID);
+                    p.WriteVector2(npc.position);
+                    p.Write(npc.width);
+                    p.Write(npc.height);
+                    p.Write(npc.lifeMax);
+                    p.Send(toClient: i);
+                }
+            }
+        }
+
         public override bool PreChatButtonClicked(NPC npc, bool firstButton)
         {
             if (npc.type == NPCID.Angler)

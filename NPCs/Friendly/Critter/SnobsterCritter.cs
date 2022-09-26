@@ -30,6 +30,7 @@ namespace Aequus.NPCs.Friendly.Critter
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.npcSlots = 0.5f;
             NPC.catchItem = (short)ModContent.ItemType<Snobster>();
+            NPC.friendly = true;
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -44,6 +45,16 @@ namespace Aequus.NPCs.Friendly.Critter
         {
             this.CreateEntry(database, bestiaryEntry)
                 .AddSpawn(BestiaryBuilder.OceanBiome);
+        }
+
+        public override bool? CanBeHitByItem(Player player, Item item)
+        {
+            return true;
+        }
+
+        public override bool? CanBeHitByProjectile(Projectile projectile)
+        {
+            return true;
         }
 
         public override void AI()

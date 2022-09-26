@@ -111,9 +111,11 @@ namespace Aequus
 
         public int leechHookNPC;
 
+        public bool accArmFloaties;
+
         public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
-
+        
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
         /// </summary>
@@ -517,6 +519,7 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accArmFloaties = false;
             accDavyJonesAnchor = null;
             accWarHorn = false;
             accDustDevilFire = false;
@@ -1823,6 +1826,18 @@ namespace Aequus
                 }
             }
             return count;
+        }
+
+        public void OnKillEffect(int npcType, Vector2 position, int width, int height, int lifeMax)
+        {
+            if (accArmFloaties && Player.breath < Player.breathMax)
+            {
+                Player.breath += Player.breathMax / 4;
+                if (Player.breath > Player.breathMax - 1)
+                {
+                    Player.breath = Player.breathMax - 1;
+                }
+            }
         }
 
         public static bool CanScamNPC(NPC npc)

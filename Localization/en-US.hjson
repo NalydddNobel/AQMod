@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			ArmFloaties: Arm Floaties
 			DavyJonesAnchor: Davy Jones's Anchor
 			WarHorn: War Horn
 			LittleInferno: Little Inferno
@@ -601,6 +602,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
 				'''

@@ -16,6 +16,7 @@ namespace Aequus.Content.WorldGeneration
     public class CrabCreviceGenerator
     {
         private int size;
+        public int nextChestLoot;
         public Point location;
 
         public int LeftX(int sizeX)
@@ -25,6 +26,7 @@ namespace Aequus.Content.WorldGeneration
 
         public void Reset()
         {
+            nextChestLoot = 0;
             location = new Point();
             size = Main.maxTilesX / 30;
             if (size > 200)
@@ -412,14 +414,16 @@ namespace Aequus.Content.WorldGeneration
         {
             int index = 0;
             var rand = WorldGen.genRand;
-            switch (rand.Next(2)) 
+            switch (nextChestLoot % 3) 
             {
                 case 0:
                     arr[index++].SetDefaults<StarPhish>();
                     break;
-
                 case 1:
                     arr[index++].SetDefaults<DavyJonesAnchor>();
+                    break;
+                case 2:
+                    arr[index++].SetDefaults<ArmFloaties>();
                     break;
             }
 

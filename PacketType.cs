@@ -22,6 +22,7 @@ namespace Aequus
         SyncDronePoint,
         CarpenterBountiesCompleted,
         CoatingTileSquare,
+        OnKillEffect,
         Count,
     }
 

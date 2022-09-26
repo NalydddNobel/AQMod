@@ -216,6 +216,12 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.OnKillEffect:
+                    {
+                        Main.player[reader.ReadInt32()].Aequus().OnKillEffect(reader.ReadInt32(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                    }
+                    break;
+
                 case PacketType.CoatingTileSquare:
                     {
                         AequusTileData.ReadSquares(reader);
