@@ -181,7 +181,7 @@ Mods: {
 			Gamestar: 游戏之星
 			WowHat: "'喔师'帽"
 			Snowgrave: 雪墓
-			BallisticScreecher: 弹道尖嚎者
+			BallisticScreecher: 轰炸者手杖
 			Triacanthorn: 三棘卷须
 
 			BrainwaveStaff: 脑波法杖
@@ -757,7 +757,7 @@ Mods: {
 				在下方召唤向上喷涌的致命冰雪风暴
 				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 				'''
-			BallisticScreecher: 发射熔火球
+			BallisticScreecher: 攻击造成暴击时对附近的敌人造成猩红减益
 			Triacanthorn: 
 				'''
 				召唤会分裂的邪恶卷须
