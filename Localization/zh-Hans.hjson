@@ -125,6 +125,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			ArmFloaties: 臂装救生装置
 			DavyJonesAnchor: 深海阎王的锚
 			WarHorn: 战争号角
 			LittleInferno: 小小炼狱
@@ -333,7 +334,7 @@ Mods: {
 
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
-			HijivarchCrabBanner: Hijivarch蟹旗
+			HijivarchCrabBanner: 活巢体蟹旗
 			CrabFishBanner: 蟹鱼旗
 			StariteBanner: 星之源旗
 			SuperStariteBanner: 极耀源星旗
@@ -601,6 +602,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
 				'''
@@ -1047,7 +1049,7 @@ Mods: {
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
-			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"
+			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab}和{$Mods.Aequus.NPCName.SummonerCrabMinion}"
 			CrabFishBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
 			StariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
 			SuperStariteBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
@@ -2049,8 +2051,8 @@ Mods: {
 
 			BreadOfCthulhu: 克苏鲁之面包
 
-			SummonerCrabMinion: Fleer
-			SummonerCrab: Hijivarch蟹
+			SummonerCrabMinion: 蟹蚤
+			SummonerCrab: 活体巢蟹
 			CrabFish: 蟹鱼
 			CoconutCrab: 椰子蟹
 			SoldierCrab: 兵蟹
@@ -2086,8 +2088,8 @@ Mods: {
 
 			CoconutCrab: 演化出的天然迷彩, 可以伪装成椰子. 会睡在椰子树上, 并且会在清晨从椰子树上跳下.
 			SoldierCrab: 因其骑士般的外表而得名. 这只螃蟹的橙色盔甲实际上是钴覆盖着一层又一层的污垢.
-			SummonerCrabMinion: 如果没有Hijivarch, 它们将无法休息和庇护它们的蛋, 幸运的是他们拥有彼此.
-			SummonerCrab: 如果没有Fleers的帮助, 它们将无法收集足够的食物, 幸运的是他们拥有彼此.
+			SummonerCrabMinion: 如果没有活体巢蟹, 它们将无法休息和庇护它们的蛋, 幸运的是他们拥有彼此.
+			SummonerCrab: 如果没有蟹蚤的帮助, 它们将无法收集足够的食物, 幸运的是他们拥有彼此.
 			CrabFish: 在黑暗中潜伏, 会用它的诱饵发出硬币般的噪音和火花来吸引未知的猎物...
 
 			BloodMimic: 由于血月对尸体的影响, 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
