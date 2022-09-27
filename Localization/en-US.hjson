@@ -181,7 +181,7 @@ Mods: {
 			Gamestar: Gamestar
 			WowHat: "'Wow-zer' Hat"
 			Snowgrave: Snowgrave
-			BallisticScreecher: Ballistic Screecher
+			BallisticScreecher: Bombarder Rod
 			Triacanthorn: Triacanthorn
 
 			BrainwaveStaff: Brainwave Staff
@@ -757,7 +757,7 @@ Mods: {
 				Summons a deadly snowblast from below
 				'Watch what happens when I cast a spell I don't know!'
 				'''
-			BallisticScreecher: Spews burning magma balls
+			BallisticScreecher: Critical strikes inflict crimson fire to nearby enemies
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils

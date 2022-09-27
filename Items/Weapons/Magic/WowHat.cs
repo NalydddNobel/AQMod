@@ -94,34 +94,6 @@ namespace Aequus.Items.Weapons.Magic
                     type = ProjectileID.CrystalStorm;
                     break;
             }
-            if (Main.rand.NextBool(8))
-            {
-                velocity *= Main.rand.NextFloat(1f, 2f);
-            }
-            if (Main.rand.NextBool(4))
-            {
-                switch (Main.rand.Next(3))
-                {
-                    case 0:
-                        if (!AequusHelpers.PointCollision(new Vector2(position.X, position.Y - 800f), 48, 48))
-                        {
-                            position.Y -= 800f;
-                            velocity = Vector2.Normalize(Main.MouseWorld - position).UnNaN() * velocity.Length() * 2.5f;
-                        }
-                        break;
-
-                    case 1:
-                        if (!AequusHelpers.PointCollision(Main.MouseWorld, 16, 16))
-                        {
-                            position = Main.MouseWorld - Vector2.Normalize(velocity);
-                        }
-                        break;
-
-                    case 2:
-                        //velocity = -velocity;
-                        break;
-                }
-            }
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

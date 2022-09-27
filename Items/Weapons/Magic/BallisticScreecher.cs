@@ -20,20 +20,20 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 20;
+            Item.damage = 22;
             Item.DamageType = DamageClass.Magic;
-            Item.useTime = 5;
-            Item.useAnimation = 5;
+            Item.useTime = 9;
+            Item.useAnimation = 9;
             Item.width = 32;
             Item.height = 32;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.shoot = ModContent.ProjectileType<BallisticScreecherProj>();
-            Item.shootSpeed = 5f;
-            Item.mana = 3;
+            Item.shootSpeed = 8.5f;
+            Item.mana = 6;
             Item.autoReuse = true;
-            Item.UseSound = SoundID.Item109;
+            Item.UseSound = SoundID.Item88.WithVolume(0.5f).WithPitchOffset(0.8f);
             Item.value = ItemDefaults.DemonSiegeValue;
             Item.knockBack = 2f;
         }

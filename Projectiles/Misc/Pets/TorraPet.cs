@@ -31,20 +31,23 @@ namespace Aequus.Projectiles.Misc.Pets
         public override bool PreAI()
         {
             Projectile.localAI[0]--;
-            for (int i = 0; i < Main.maxPlayers; i++)
+            if (Main.netMode != NetmodeID.Server)
             {
-                if (Main.player[i].chatOverhead.timeLeft > 0 && !string.IsNullOrEmpty(Main.player[i].chatOverhead.chatText) && Main.player[i].chatOverhead.chatText.ToLower().Contains("hi torra"))
+                for (int i = 0; i < Main.maxPlayers; i++)
                 {
-                    if (Main.player[i].chatOverhead.timeLeft == 300)
+                    if (Main.player[i].chatOverhead.timeLeft > 0 && !string.IsNullOrEmpty(Main.player[i].chatOverhead.chatText) && Main.player[i].chatOverhead.chatText.ToLower().Contains("hi torra"))
                     {
-                        string playerName = Main.player[i].name;
-                        if (Main.myPlayer == i)
+                        if (Main.player[i].chatOverhead.timeLeft == 300)
                         {
-                            playerName = Environment.UserName;
+                            string playerName = Main.player[i].name;
+                            if (Main.myPlayer == i)
+                            {
+                                playerName = Environment.UserName;
+                            }
+                            Main.NewText($"<Torra> OMG HI {playerName.ToUpper()}!!!!!!");
+                            Projectile.localAI[0] = 400f;
+                            Projectile.localAI[1] = i;
                         }
-                        Main.NewText($"<Torra> OMG HI {playerName.ToUpper()}!!!!!!");
-                        Projectile.localAI[0] = 400f;
-                        Projectile.localAI[1] = i;
                     }
                 }
             }
