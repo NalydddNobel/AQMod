@@ -3512,6 +3512,23 @@ Mods: {
 		}
 
 		TownNPCMood: {
+			Carpenter: {
+				Content: 我喜欢这个地方, 挺不错的, 装饰得很好.
+				NoHome: 我被驱逐出我以前的殖民地, 希望能在这里找到房子.
+				FarFromHome: 你一定是抓到我在这里测试新颜料和材料了! 我真希望我当时在家.
+				LoveSpace: 我还没有找到我房子可以批评的地方, 真是太棒了!
+				DislikeCrowded: 这个镇子挺不错的, 但建造建筑群时保持安静也很好.
+				HateCrowded: 这个镇子挺不错的, 但建造建筑群时保持安静也很好.
+				LikeBiome: 我真的喜欢{BiomeName}, 它很好.
+				LoveBiome: 住在{BiomeName}对我来说很好, 让我想起了我以前所在的殖民地.
+				DislikeBiome: 我一般不喜欢{BiomeName}, 但我想这对学习确实有用.
+				HateBiome: 我...真的不喜欢{BiomeName}...你还有其他可供我入住的房子吗?
+				LoveNPC: 我非常崇拜{NPCName}, 他们值得拥有的好朋友!
+				LikeNPC: "{NPCName}挺不错的."
+				DislikeNPC: 我对{NPCName}没有最好的想法.
+				HateNPC: 我...真的不喜欢{NPCName}...他们只是看起来不友好.
+			}
+
 			Physicist: {
 				Content: 事实上这个地方很不错, 但理论上可能不是.
 				NoHome: 你是这个世界的国王吗? 如果是, 我想为我的实验申请一个可用的家和实验室.
