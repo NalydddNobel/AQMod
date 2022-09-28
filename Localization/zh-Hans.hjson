@@ -1084,7 +1084,7 @@ Mods: {
 			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
 			CatalystPainting:
 				'''
-				The great might of an interstellar nebula!
+				星际星云的宏伟之力!
 				'N.T... 来自另一个宇宙'
 				'''
 			OriginPainting:
@@ -1124,7 +1124,6 @@ Mods: {
 				快速挥砍并发射穿刺雪花
 				击中敌人时会造成霜火减益
 				'''
-			MoonflowerPollen: "{$Mods.Aequus.Tooltips.Concocted}"
 			LingeringPotion: 给予你和队友一个较为持久的增益效果
 			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
 			MoliteTag: 具有双倍的效力
