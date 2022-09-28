@@ -3512,6 +3512,23 @@ Mods: {
 		}
 
 		TownNPCMood: {
+			Carpenter: {
+				Content: I like this place, quite nice, quite decorated.
+				NoHome: I have been expelled from my previous colony, hoping to find housing here though.
+				FarFromHome: You must've caught me testing out new paints and materials out here! I do wish I were home though.
+				LoveSpace: I haven't found a single thing I can critique about my house, it's just great!
+				DislikeCrowded: This village is quite nice, but it's also nice to have silence when building structures.
+				HateCrowded: This village is quite nice, but it's also nice to have silence when building structures.
+				LikeBiome: I am really liking the {BiomeName}, it is quite good.
+				LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
+				DislikeBiome: I am generally not a fan of {BiomeName}, but it does work for doing studies I guess.
+				HateBiome: I... really dislike the {BiomeName}... do you have any other houses I can take up?
+				LoveNPC: I greatly adore {NPCName}, they are a great friend to have!
+				LikeNPC: "{NPCName} is quite nice."
+				DislikeNPC: I do not have the greatest opinion on {NPCName}.
+				HateNPC: I... really don't like {NPCName}... they just seem to not be welcoming and kind.
+			}
+
 			Physicist: {
 				Content: In practice, this place is quite nice, however in theory, probably not.
 				NoHome: Are you the king of this world? If so, I would like to request a usable home and laboratory for my experiments.
