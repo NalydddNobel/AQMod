@@ -10,13 +10,7 @@ namespace Aequus.Projectiles.Magic
 {
     public class UmystickProj : ModProjectile
     {
-        public static SoundStyle UmysticShoot { get; private set; }
-
         private float _gfxOffY;
-
-        public override void Load()
-        {
-        }
 
         public override void SetStaticDefaults()
         {

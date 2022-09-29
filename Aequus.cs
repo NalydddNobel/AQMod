@@ -129,7 +129,7 @@ namespace Aequus
             SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
         }
 
-        public static string LiquidTypeToString(byte liquidType)
+        public static string LiquidName(byte liquidType)
         {
             switch (liquidType)
             {

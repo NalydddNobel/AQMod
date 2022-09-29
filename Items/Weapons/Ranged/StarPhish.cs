@@ -56,7 +56,7 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient(ItemID.Blowpipe)
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient<AquaticEnergy>()
-                .AddTile(ItemID.IronAnvil)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
 

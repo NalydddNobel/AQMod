@@ -13,7 +13,7 @@ namespace Aequus.Items
         private static RecipeGroup anyEctoplasm;
         public static RecipeGroup AnyEctoplasm { get => anyEctoplasm; }
 
-        private class Loader : IAddRecipeGroups
+        private class Loader : IAddRecipeGroups, IAddRecipes
         {
             void ILoadable.Load(Mod mod)
             {
@@ -23,6 +23,10 @@ namespace Aequus.Items
             {
                 NewGroup("AnyEctoplasm", ref anyEctoplasm,
                     ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+            }
+
+            void IAddRecipes.AddRecipes(Aequus aequus)
+            {
             }
 
             void ILoadable.Unload()

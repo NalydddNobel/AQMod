@@ -65,6 +65,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         {
             this.CreateLoot(npcLoot)
                 .Add(ItemID.Coconut, chance: 1, stack: 1)
+                .Add(ItemID.WaterGun, chance: 30, stack: 1)
                 .Add<FoolsGoldRing>(chance: 10, stack: 1);
         }
 

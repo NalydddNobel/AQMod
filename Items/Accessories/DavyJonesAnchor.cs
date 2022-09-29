@@ -32,7 +32,7 @@ namespace Aequus.Items.Accessories
                 .AddRecipeGroup("IronBar", 8)
                 .AddIngredient(ItemID.Rope, 50)
                 .AddIngredient<AquaticEnergy>()
-                .AddTile(ItemID.IronAnvil)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
     }

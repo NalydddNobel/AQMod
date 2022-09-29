@@ -171,10 +171,6 @@ Mods: {
 			Slice: Slice
 
 			LiquidGun: Liquid Gun
-			LiquidGunWater: "{$Mods.Aequus.ItemName.LiquidGun}"
-			LiquidGunLava: "{$Mods.Aequus.ItemName.LiquidGun}"
-			LiquidGunHoney: "{$Mods.Aequus.ItemName.LiquidGun}"
-			LiquidGunShimmer: "{$Mods.Aequus.ItemName.LiquidGun}"
 			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
 			Raygun: Raygun
@@ -748,13 +744,9 @@ Mods: {
 				'''
 
 			LiquidGun: { 
-				$parentVal: Automatically drains the closest liquid around you
+				$parentVal: Automatically refills using the closest liquid
 				AmountLeft: "{Amount}% {Liquid} Left"
 			}
-			LiquidGunWater: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
-			LiquidGunLava: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
-			LiquidGunHoney: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
-			LiquidGunShimmer: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
 			GhastlyBlaster: "'Your eyes deceive you, this is not a sword'"
 			SurgeRod:
 				'''
