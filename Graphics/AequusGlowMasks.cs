@@ -13,7 +13,7 @@ namespace Aequus.Graphics
 {
     public class AequusGlowMasks : IPostSetupContent
     {
-        private static Dictionary<string, short> texturePathToGlowMask;
+        private static Dictionary<string, short> texturePathToGlowMaskID;
         private static Dictionary<int, short> itemIDToGlowMask;
 
         public static short GetID(int itemID)
@@ -26,7 +26,7 @@ namespace Aequus.Graphics
         }
         public static short GetID(string texture)
         {
-            if (texturePathToGlowMask != null && texturePathToGlowMask.TryGetValue(texture, out var index))
+            if (texturePathToGlowMaskID != null && texturePathToGlowMaskID.TryGetValue(texture, out var index))
             {
                 return index;
             }
@@ -42,18 +42,31 @@ namespace Aequus.Graphics
             if (Main.dedServ)
                 return;
             itemIDToGlowMask = new Dictionary<int, short>();
-            texturePathToGlowMask = new Dictionary<string, short>();
+            texturePathToGlowMaskID = new Dictionary<string, short>();
             var masks = TextureAssets.GlowMask.ToList();
             foreach (var m in Aequus.Instance.GetContent<ModItem>())
             {
-                if (m?.GetType().GetAttribute<GlowMaskAttribute>() != null)
+                var attr = m?.GetType().GetAttribute<GlowMaskAttribute>();
+                if (attr != null)
                 {
+                    if (attr.CustomGlowmasks != null)
+                    {
+                        foreach (var c in attr.CustomGlowmasks)
+                        {
+                            var customTexture = ModContent.Request<Texture2D>(c, AssetRequestMode.ImmediateLoad);
+                            customTexture.Value.Name = c;
+                            texturePathToGlowMaskID.Add(c, (short)masks.Count);
+                            masks.Add(customTexture);
+                        }
+                        continue;
+                    }
                     string modItemTexture = m.Texture;
                     var texture = ModContent.Request<Texture2D>(modItemTexture + "_Glow", AssetRequestMode.ImmediateLoad);
                     texture.Value.Name = modItemTexture;
                     masks.Add(texture);
-                    texturePathToGlowMask.Add(modItemTexture, (short)(masks.Count - 1));
-                    itemIDToGlowMask.Add(m.Type, (short)(masks.Count - 1));
+                    texturePathToGlowMaskID.Add(modItemTexture, (short)(masks.Count - 1));
+                    if (attr.AutoAssignItemID)
+                        itemIDToGlowMask.Add(m.Type, (short)(masks.Count - 1));
                 }
             }
             TextureAssets.GlowMask = masks.ToArray();
@@ -78,8 +91,8 @@ namespace Aequus.Graphics
                     return obj ?? true;
                 }).ToArray();
             }
-            texturePathToGlowMask?.Clear();
-            texturePathToGlowMask = null;
+            texturePathToGlowMaskID?.Clear();
+            texturePathToGlowMaskID = null;
             itemIDToGlowMask?.Clear();
             itemIDToGlowMask = null;
         }

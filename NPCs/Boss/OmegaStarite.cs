@@ -1619,7 +1619,7 @@ namespace Aequus.NPCs.Boss
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<SupernovaFruit>(new OnFirstKillCondition(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
+                .Add<SupernovaFruit>(new FuncConditional(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<OriginPainting>()
 

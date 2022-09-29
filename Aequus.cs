@@ -8,6 +8,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -126,6 +127,24 @@ namespace Aequus
             SkiesDarkness -= 0.01f;
             SkiesDarknessGoTo = Math.Min(SkiesDarknessGoTo, to);
             SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
+        }
+
+        public static string LiquidTypeToString(byte liquidType)
+        {
+            switch (liquidType)
+            {
+                default:
+                    return "Unknown";
+
+                case LiquidID.Water:
+                    return Language.GetTextValue("Mods.Aequus.Water");
+                case LiquidID.Lava:
+                    return Language.GetTextValue("Mods.Aequus.Lava");
+                case LiquidID.Honey:
+                    return Language.GetTextValue("Mods.Aequus.Honey");
+                case 3:
+                    return Language.GetTextValue("Mods.Aequus.Shimmer");
+            }
         }
 
         internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f)

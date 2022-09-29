@@ -183,6 +183,7 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public bool accPreciseCrits;
         public Item accDavyJonesAnchor;
 
         public bool accDustDevilFire;
@@ -519,6 +520,7 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accPreciseCrits = false;
             accArmFloaties = false;
             accDavyJonesAnchor = null;
             accWarHorn = false;
@@ -1451,6 +1453,15 @@ namespace Aequus
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
+            if (accPreciseCrits)
+            {
+                var difference = target.Center - proj.Center;
+                var comparisonPosition = proj.Center + Vector2.Normalize(proj.velocity).UnNaN() * difference.Length().UnNaN();
+                if (Vector2.Distance(target.Center, comparisonPosition) < 8f)
+                {
+                    crit = true;
+                }
+            }
             if (!target.immortal && crit)
             {
                 CheckBloodDice(ref damage);

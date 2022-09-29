@@ -4,15 +4,17 @@ using Terraria.Localization;
 
 namespace Aequus.Common.ItemDrops
 {
-    public class OnFirstKillCondition : IItemDropRuleCondition, IProvideItemConditionDescription
+    public class FuncConditional : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public Func<bool> wasDefeated;
+        public string textKey;
         public readonly string Key;
 
-        public OnFirstKillCondition(Func<bool> wasDefeated, string defeatKey)
+        public FuncConditional(Func<bool> wasDefeated, string internalKey, string textKey = "Mods.Aequus.DropCondition.OnFirstKill")
         {
             this.wasDefeated = wasDefeated;
-            Key = defeatKey;
+            Key = internalKey;
+            this.textKey = textKey;
         }
 
         public bool CanDrop(DropAttemptInfo info)
@@ -27,7 +29,7 @@ namespace Aequus.Common.ItemDrops
 
         public string GetConditionDescription()
         {
-            return Language.GetTextValue("Mods.Aequus.DropCondition.OnFirstKill");
+            return textKey == null ? null : Language.GetTextValue(textKey);
         }
     }
 }

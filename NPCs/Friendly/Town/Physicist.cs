@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Drones;
@@ -119,6 +120,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
 
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PrecisionGloves>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());

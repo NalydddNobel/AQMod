@@ -38,6 +38,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
 			OtherwiseChance: 100% droprate if '{0}' conditions are met
 			OnFirstKill: Dropped only on first kill
 			OreTier: { 
@@ -125,6 +126,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
 			DavyJonesAnchor: Davy Jones's Anchor
 			WarHorn: War Horn
@@ -168,6 +170,11 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 
+			LiquidGun: Liquid Gun
+			LiquidGunWater: "{$Mods.Aequus.ItemName.LiquidGun}"
+			LiquidGunLava: "{$Mods.Aequus.ItemName.LiquidGun}"
+			LiquidGunHoney: "{$Mods.Aequus.ItemName.LiquidGun}"
+			LiquidGunShimmer: "{$Mods.Aequus.ItemName.LiquidGun}"
 			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
 			Raygun: Raygun
@@ -266,7 +273,7 @@ Mods: {
 			XenonFish: Xenon Fish
 			KryptonFish: Krypton Fish
 			ArgonFish: Argon Fish
-			RadonFish: Radon Fish
+			RadonFish: Neon Fish
 			Blobfish: Blobfish
 			GoreFish: Gore Fish
 
@@ -602,6 +609,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
 			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
@@ -739,6 +747,14 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+			LiquidGun: { 
+				$parentVal: Automatically drains the closest liquid around you
+				AmountLeft: "{Amount}% {Liquid} Left"
+			}
+			LiquidGunWater: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
+			LiquidGunLava: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
+			LiquidGunHoney: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
+			LiquidGunShimmer: "{$Mods.Aequus.ItemTooltip.LiquidGun}"
 			GhastlyBlaster: "'Your eyes deceive you, this is not a sword'"
 			SurgeRod:
 				'''
@@ -3727,6 +3743,11 @@ Mods: {
 			DemonSiege: Use: ({ItemList}) at a Gore Nest.
 			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
 		}
+
+		Water: Water
+		Lava: Lava
+		Honey: Honey
+		Shimmer: Shimmer
 
 		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
 		Concoct: Concoct Potions

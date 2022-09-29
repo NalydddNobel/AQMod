@@ -129,7 +129,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add(new FilledConditionsOtherwiseChanceRule(
-                    new OnFirstKillCondition(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
+                    new FuncConditional(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6))
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));

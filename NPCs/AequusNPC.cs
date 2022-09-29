@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.ItemDrops;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Graphics.RenderTargets;
@@ -10,6 +11,7 @@ using Aequus.Items.Consumables.CursorDyes;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
+using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
@@ -214,6 +216,10 @@ namespace Aequus.NPCs
 
                 case NPCID.CultistBoss:
                     npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
+                    break;
+
+                case NPCID.WallofFlesh:
+                    npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
                     break;
             }
         }
