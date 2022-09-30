@@ -20,8 +20,22 @@ namespace Aequus.Tiles
 
         public const int ShadowOrbDrops_Aequus = 5;
 
+        public static Dictionary<Point, Color> PylonColors { get; private set; }
+
         public override void Load()
         {
+            PylonColors = new Dictionary<Point, Color>()
+            {
+                [new Point(TileID.TeleportationPylon, 0)] = new Color(100, 255, 128, 255),
+                [new Point(TileID.TeleportationPylon, 1)] = new Color(200, 255, 65, 255),
+                [new Point(TileID.TeleportationPylon, 2)] = Color.HotPink * 1.5f,
+                [new Point(TileID.TeleportationPylon, 3)] = new Color(230, 165, 255, 255),
+                [new Point(TileID.TeleportationPylon, 4)] = Color.SkyBlue * 1.125f,
+                [new Point(TileID.TeleportationPylon, 5)] = new Color(255, 222, 120, 255),
+                [new Point(TileID.TeleportationPylon, 6)] = new Color(120, 222, 255, 255),
+                [new Point(TileID.TeleportationPylon, 7)] = new Color(100, 128, 255, 255),
+                [new Point(TileID.TeleportationPylon, 8)] = Color.FloralWhite,
+            };
             On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }

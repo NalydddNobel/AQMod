@@ -1,4 +1,6 @@
-﻿using Aequus.Content.DronePylons;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Content.DronePylons;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -82,35 +84,12 @@ namespace Aequus.Projectiles.Misc.Drones
             Projectile.localAI[0] = 3f;
             Projectile.localAI[1] = 0f;
             Projectile.timeLeft = 16;
-            if (Main.tile[pylonSpot].TileType == TileID.TeleportationPylon)
-            {
-                Projectile.localAI[1] = Main.tile[pylonSpot].TileFrameX / 54 + 1;
-            }
         }
 
-        public Color GetDrawColor()
+        public Color GetPylonColor()
         {
-            switch ((int)Projectile.localAI[1] - 1)
-            {
-                case 0:
-                    return new Color(100, 255, 128, 255);
-                case 1:
-                    return new Color(200, 255, 65, 255);
-                case 2:
-                    return Color.HotPink * 1.5f;
-                case 3:
-                    return new Color(230, 165, 255, 255);
-                case 4:
-                    return Color.SkyBlue * 1.125f;
-                case 5:
-                    return new Color(255, 222, 120, 255);
-                case 6:
-                    return new Color(120, 222, 255, 255);
-                case 7:
-                    return new Color(100, 128, 255, 255);
-                case 8:
-                    return Color.FloralWhite;
-            }
+            if (AequusTile.PylonColors.TryGetValue(new Point(Main.tile[pylonSpot].TileType, Main.tile[pylonSpot].TileFrameX / 54), out var clr))
+                return clr;
 
             return Color.White;
         }

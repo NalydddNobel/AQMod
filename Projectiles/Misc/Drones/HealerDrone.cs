@@ -309,7 +309,7 @@ namespace Aequus.Projectiles.Misc.Drones
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
 
             var drawCoords = Projectile.position + off - Main.screenPosition;
-            var color = GetDrawColor();
+            var color = GetPylonColor();
             if (HealerDroneRenderer.RenderingNow)
             {
                 if (healingAuraOpacity > 0f)

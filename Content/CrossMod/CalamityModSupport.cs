@@ -1,6 +1,8 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Tiles;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -67,9 +69,32 @@ namespace Aequus.Content.CrossMod
                     .TryAddModEntry("WulfrumGyrator", GhostInfo.One)
                     .TryAddModEntry("WulfrumHovercraft", GhostInfo.One)
                     .TryAddModEntry("WulfrumRover", GhostInfo.One);
+
+                AddPylonColors();
                 return;
             }
             calamityMod = null;
+        }
+
+        public static void AddPylonColors()
+        {
+            ModPylon pylon;
+            if (CalamityMod.TryFind("AstralPylonTile", out pylon))
+            {
+                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Violet);
+            }
+            if (CalamityMod.TryFind("CragsPylonTile", out pylon))
+            {
+                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Orange);
+            }
+            if (CalamityMod.TryFind("SunkenPylonTile", out pylon))
+            {
+                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Blue);
+            }
+            if (CalamityMod.TryFind("SulphurPylonTile", out pylon))
+            {
+                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.LimeGreen);
+            }
         }
 
         void ILoadable.Unload()

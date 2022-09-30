@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
@@ -414,7 +415,7 @@ namespace Aequus.Content.WorldGeneration
         {
             int index = 0;
             var rand = WorldGen.genRand;
-            switch (nextChestLoot % 3) 
+            switch (nextChestLoot % 4) 
             {
                 case 0:
                     arr[index++].SetDefaults<StarPhish>();
@@ -425,7 +426,11 @@ namespace Aequus.Content.WorldGeneration
                 case 2:
                     arr[index++].SetDefaults<ArmFloaties>();
                     break;
+                case 3:
+                    arr[index++].SetDefaults<LiquidGun>();
+                    break;
             }
+            nextChestLoot++;
 
             switch (rand.Next(8))
             {

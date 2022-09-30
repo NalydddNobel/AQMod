@@ -178,7 +178,7 @@ namespace Aequus.Projectiles.Misc.Drones
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
 
-            var color = GetDrawColor();
+            var color = GetPylonColor();
             Main.EntitySpriteDraw(texture, Projectile.position + off - Main.screenPosition, frame, lightColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,

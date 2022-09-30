@@ -153,7 +153,7 @@ namespace Aequus.Content.DronePylons
 
         public static bool ValidSpot(int i, int j)
         {
-            return Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.TeleportationPylon;
+            return Main.tile[i, j].HasTile && Main.tile[i, j].IsIncludedIn(TileID.Sets.CountsAsPylon);
         }
 
         public override void NetSend(BinaryWriter writer)

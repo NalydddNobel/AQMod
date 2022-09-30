@@ -197,7 +197,7 @@ namespace Aequus.Projectiles.Misc.Drones
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
             var gunTexture = ModContent.Request<Texture2D>(Texture + "Gun");
 
-            var color = GetDrawColor();
+            var color = GetPylonColor();
             float turretRotation = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -1f, 1f);
             int npcTarget = (int)Projectile.ai[1] - 1;
             if (npcTarget > -1)

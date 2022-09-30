@@ -18,6 +18,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.extraUpdates = 8;
             Projectile.hide = true;
             Projectile.alpha = 4;
+            Projectile.DamageType = DamageClass.Magic;
         }
 
         public override void AI()
