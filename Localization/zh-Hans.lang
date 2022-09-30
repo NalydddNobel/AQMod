@@ -47,8 +47,8 @@ ItemTooltip.MushroomClam=在螃蟹洞中使用以召唤巨蟹蛤\n{$Mods.AQMod.C
 ItemName.NovaFruit=新星果
 ItemTooltip.NovaFruit=在夜晚使用以召唤终末之星\n{$Mods.AQMod.Common.NotConsumable}
 
-ItemName.MythicStarfruit=星系星果
-ItemTooltip.MythicStarfruit=召唤一道奇异微光
+ItemName.MythicStarfruit=星河杨桃
+ItemTooltip.MythicStarfruit=创造一道奇异微光
 
 BuffName.ManaDrain=法力枯竭
 BuffDescription.ManaDrain=魔法伤害降低90%
