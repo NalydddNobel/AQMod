@@ -38,6 +38,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			NotBeatenDemonSiege:仅在恶魔围攻未完成时掉落
 			OtherwiseChance: 在'{0}'满足条件时拥有100%掉落几率
 			OnFirstKill: 仅在首次击败时掉落
 			OreTier: { 
@@ -125,7 +126,8 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			ArmFloaties: 臂装救生装置
+			PrecisionGloves: 精准手套
+			ArmFloaties: 臂式救生装置
 			DavyJonesAnchor: 深海阎王的锚
 			WarHorn: 战争号角
 			LittleInferno: 小小炼狱
@@ -168,6 +170,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			LiquidGun: 液体枪
 			StarPhish: 螺旋吹筒
 			SnowflakeCannon: 雪花大炮
 			Raygun: 射线枪
@@ -266,7 +269,7 @@ Mods: {
 			XenonFish: 氙鱼
 			KryptonFish: 氪鱼
 			ArgonFish: 氩鱼
-			RadonFish: 氡鱼
+			RadonFish: 氖鱼
 			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
@@ -602,6 +605,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
 			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
@@ -739,6 +743,10 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			LiquidGun: { 
+				$parentVal: 自动使用最近的液体重新装填
+				AmountLeft: "剩余{Amount}%{Liquid}"
+			}
 			GhastlyBlaster: "'你的眼睛欺骗了你, 这不是一把剑'"
 			SurgeRod:
 				'''
@@ -3727,6 +3735,11 @@ Mods: {
 			DemonSiege: 在血巢处使用: ({ItemList}).
 			GaleStreams: 风速大于 30 mph 时开始, 可以通过使用{Pumpinator}更改风速.
 		}
+
+		Water: 水
+		Lava: 岩浆
+		Honey: 蜂蜜
+		Shimmer: 微光
 
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Concoct: 调制药水
