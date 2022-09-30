@@ -1125,7 +1125,7 @@ Mods: {
 			MirrorsCall:
 				'''
 				'从你舒适的沙发上打击敌人!'
-				右键可在没有弹幕的情况下大幅度挥舞
+				右键进行大范围挥舞, 但不会发射弹幕
 				'''
 			Slice:
 				'''
@@ -2045,7 +2045,7 @@ Mods: {
 		}
 
 		NPCName: {
-			DustDevil: 尘卷风
+			DustDevil: 沙尘恶魔
 			OmegaStarite: 终末之星
 			Crabson: 巨蟹蛤
 
@@ -3725,7 +3725,7 @@ Mods: {
 
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
-			OmegaStarite: 通过与微光之源中心处的剑交互召唤. 也可以通过使用{SupernovaFruit}召唤
+			OmegaStarite: 通过与微光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
 			DustDevil: 使用{ThunderstormInABottle}召唤
 
 			RedSprite: 风暴紊流的战斗期间.
@@ -3733,7 +3733,7 @@ Mods: {
 
 			Glimmer: 使用{GalacticStarfruit}开始.
 			DemonSiege: 在血巢处使用: ({ItemList}).
-			GaleStreams: 风速大于 30 mph 时开始, 可以通过使用{Pumpinator}更改风速.
+			GaleStreams: 风速大于 30 mph 时开始, 可以使用{Pumpinator}更改风速.
 		}
 
 		Water: 水
