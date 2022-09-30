@@ -7,13 +7,6 @@ namespace Aequus.Items.Accessories.Fishing
 {
     public class Ramishroom : ModItem
     {
-        public static HashSet<int> RodsBlacklist { get; private set; }
-
-        public override void Load()
-        {
-            RodsBlacklist = new HashSet<int>();
-        }
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

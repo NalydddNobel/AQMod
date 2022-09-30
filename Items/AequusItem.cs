@@ -9,6 +9,7 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -149,6 +150,32 @@ namespace Aequus.Items
             {
                 player.ApplyEquipFunctional(item, false);
             }
+        }
+
+        public override bool? UseItem(Item item, Player player)
+        {
+            var aequus = player.Aequus();
+            if (item.damage > 0 && !item.noUseGraphic && !item.noMelee 
+                && aequus.accHyperCrystal != null && aequus.hyperCrystalCooldownMelee == 0)
+            {
+                aequus.hyperCrystalCooldownMelee = aequus.hyperCrystalCooldownMax / 2;
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    switch (item.useStyle) 
+                    {
+                        case ItemUseStyleID.Swing:
+                            Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center + new Vector2(0f, -80f - player.height), new Vector2(3f * player.direction, 3f),
+                                ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 2f);
+                            break;
+
+                        default:
+                            Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center, Vector2.Normalize(Main.MouseWorld - player.Center) * 4f,
+                                ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 2f);
+                            break;
+                    }
+                }
+            }
+            return true;
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)

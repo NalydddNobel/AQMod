@@ -160,6 +160,8 @@ Mods: {
 			Mendshroom: Mendshroom
 			GlowCore: Glow Beacon
 
+			RegrowingBait: Regenerative Bait
+
 			FishyFins: Fishy Fins
 
 			Mallet: Mallet
@@ -218,7 +220,6 @@ Mods: {
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
 
-			RegrowingBait: Regenerating Bait
 			LegendberryBait: Legendberry Bait
 			Omnibait: Omnibait
 			CursedPopper: Cursed Popper
@@ -388,7 +389,7 @@ Mods: {
 			MagikaAmulet: Magika Amulet
 			JellyAmulet: Jelly Amulet
 			Quasicrystal: Quasicrystal Amulet
-			HyperCrystal: Hyper Crystal
+			HyperCrystal: Shatter Crystal
 			ExtractorHelmet: Head Plate
 			ExtractorAirMask: Air Filter
 			GlowBand: Glow Band
@@ -698,7 +699,7 @@ Mods: {
 				[c/{Color}:...However they no longer drop coins]
 				'''
 			Reliefshroom: Greatly increases regeneration while moving
-			Mendshroom: Greatly increases regneration for yourself and nearby teammates while standing still
+			Mendshroom: Periodically release healing spores
 			GlowCore: You and your projectiles emit light
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
@@ -1003,7 +1004,7 @@ Mods: {
 			ArgonFish: A legendary fish enriched with argon moss
 			KryptonFish: A legendary fish enriched with krypton moss
 			XenonFish: A legendary fish enriched with xenon moss
-			RadonFish: A legendary fish enriched with radon moss
+			RadonFish: A legendary fish enriched with neon moss
 			Blobfish:
 				'''
 				A legendary fish blessed with... ugliness
@@ -1161,10 +1162,7 @@ Mods: {
 				Inflicts cosmic radiation and fire damage on attack
 				Causes stars to fall when injured
 				'''
-			HyperCrystal:
-				'''
-				Nearby enemies take 25% extra damage
-				'''
+			HyperCrystal: Attacks gain a temporary damaging crystal
 			ExtractorHelmet: Falling blocks deal less damage
 			ExtractorAirMask: Immunity to Suffocation
 			GlowBand: Emits colored light
@@ -1772,8 +1770,14 @@ Mods: {
 		}
 
 		ProjectileName: {
-			Magmabubble: Magmabubble
+			SoldierCrabProj: Soldier Crab
+
+			MagmabubbleBullet: Magmabubble
 			
+			DustDevilFireball: Dust Devil Fireblast
+			DustDevilFrostball: Dust Devil Icicle
+			DustDevilTileProj: Tile
+
 			OmegaStariteProj: Omega Starite
 			OmegaStariteBullet: Cosmic Bullet
 			OmegaStariteDeathray: Ultimate Ray
@@ -1789,15 +1793,24 @@ Mods: {
 
 			RedSpriteWindFire: Red Sprite Ember
 			RedSpriteThunderClap: Red Sprite Thunder Clap
-			RedSpriteLightning: Nimbus Lightning
+			RedSpriteCloudLightning: Nimbus Lightning
 			RedSpriteCloud: Red Sprite Nimbus
 
+			UltraStariteOuterArms: Ultra Starite
+			UltraStariteInnerArms: Ultra Starite
+			HyperStariteProj: Hyper Starite
+			SuperStariteBullet: SuperStarite
 			TrapperExplosion: Trapper Blast
 			TrapperProj: Trapper Blast
-			MagmabubbleProj: Magmabubblet
 
+			RockManProj: Rock Man
+			MalletProj: Mallet
+			UltimateSwordProj: Ultimate Sword
+			SuperStarSwordProj: Super Star Sword
+			BattleAxeProj: Battle Axe
 			VrangProj: Vrang
 			ValariProj: Valari
+			ThunderClapExplosion: Thunderclap
 			ThunderClapProj: Thunderclap
 			Sliceflake: Sliceflake
 			SliceProj: Slice
@@ -1805,21 +1818,32 @@ Mods: {
 			MirrorsCallBullet: Mirror's Call
 			MirrorsCallProj: Mirror's Call
 			CrystalDaggerProj: Crystal Dagger
-			CauterizerProj: Demonic Energy Wave
+			CauterizerSlash: Demonic Energy Wave
 
+			SlingsaberProj: Mechanically Enhanced Upset Avian
+			SlingshotProj: Upset Avian
+			RaygunExplosionProj: Raygun
+			FlameblasterProj: Flameblaster
+			CrusadersCrossbowBolt: Crusader's Crossbow Bolt
 			SnowflakeCannonProj: Snowflake Cannon
-			HamaYumiArrow: Hama Yumi Arrow
-			DeltoidArrow: Deltoid Arrow
+			HamaYumiArrow: Hama Yumi
+			HamaYumiExplosion: Hama Yumi
+			DeltoidArrow: Deltoid
+			DeltoidExplosion: Deltoid
 			BaozhuProj: Baozhu
 
+			GhastlyBlasterProj: Ghastly Blaster
+			GamestarProj: Compression
+			TouhouBullet: Bullet Hell
+			LiquidGunWaterBullet: "liquids ;)"
+			PentalScytheProj: Pental Scythe
 			TriacanthornBolt: Triacanthorn Shot
 			TriacanthornProj: Triacanthorn
-			UmystickMoon: Menacing Moon
+			UmystickBullet: Menacing Moon
 			TouhouBullet: Magic Bullet
 			SurgeRodHitbox: Surge
 			SnowgraveProj: Snowgrave
 			NarrizuulProj: Narrizuul
-			CrusadersCrossbowBolt: Crusader's Crossbow Bolt
 
 			StariteMinion: Starite
 			ZombieBolt: Zombie Bolt
@@ -1830,6 +1854,14 @@ Mods: {
 			InsurgentBolt: Insurgency Bolt
 			InsurgentSkull: Insurgency
 			FlowerCrownProj: Flower Crown
+
+			WormScarfLaser: Worm Scarf
+			ThermiteGel: Thermite Gel
+			ShieldOfCthulhuBoost: Shield of Cthulhu
+			NaniteSpore: Nanite Spore
+			CelesteTorusProj: Celeste Torus
+			Bonesaw: Bonesaw
+			HyperCrystalProj: Hyper Crystal
 
 			DreadsoulAttack: Hellish Spirit
 			BreadsoulHealing: Dream Spirit
@@ -1866,7 +1898,6 @@ Mods: {
 			DwarfStaritePet: Dwarf Starite
 			OmegaStaritePet: Omega Starite
 			SuperStariteBullet: Super Starite Bullet
-			HyperStariteProj: Hyper Starite
 			SparklingExplosion: Cosmic Rad-splosion
 			MothmanCritExplosion: Mothman Mask
 			PowPunch: Pow Punch
@@ -1877,21 +1908,11 @@ Mods: {
 			Aphrodite: Aphrodite
 			ArgonSpear: Argon Spear
 			Galactium: Galactium
-			HorizonSkies: Horizon Skies
-			HorizonSkiesBolt: Horizon Skies
-			HorizonSkiesExplosion: Horizon Skies
-			UltimaFlare: Ultima Flare
 			Venus: Venus
 			RayBulletBase: Ray
 			HamaYumiArrow: Hama Yumi
 			SpaceShot: SpaceShot
 			Bubbler: Bubbler
-			FizzlingFire: Fizzling Fire
-			GebulbaStaff: Gebulba Staff
-			MagmalbulbiaStaff: Magmalbulbia Staff
-			MagmalbulbiaStaffExplosion: Magmalbulbia Staff
-			MoonMoonMirror: Moonluna Mirror
-			PentalScythe: Pental Scythe
 			ScarletSea: Scarlet Sea
 			SeltzerRain: Seltzer Rain
 			SunbaskMirror: Sunbask Mirror

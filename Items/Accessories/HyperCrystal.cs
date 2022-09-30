@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +6,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories
 {
-    [AutoloadEquip(EquipType.Waist)]
     public class HyperCrystal : ModItem
     {
         public override void SetStaticDefaults()
@@ -24,6 +22,7 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 1);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -34,12 +33,15 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.hyperCrystalHidden = hideVisual;
             aequus.accHyperCrystal = Item;
-            aequus.hyperCrystalDamage += 0.1f;
-            if (aequus.slotBoostCurse != -2)
-                aequus.hyperCrystalDamage += 0.15f;
-            aequus.hyperCrystalDiameter = Math.Max(aequus.hyperCrystalDiameter, 480f);
+            if (aequus.hyperCrystalCooldownMax > 0)
+            {
+                aequus.hyperCrystalCooldownMax = Math.Max(aequus.hyperCrystalCooldownMax / 2, 1);
+            }
+            else
+            {
+                aequus.hyperCrystalCooldownMax = 50;
+            }
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

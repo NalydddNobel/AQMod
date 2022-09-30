@@ -25,6 +25,7 @@ using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -209,10 +210,10 @@ namespace Aequus
         public Item accRamishroom;
 
         public Item accHyperCrystal;
-        public bool hyperCrystalHidden;
         public int cHyperCrystal;
-        public float hyperCrystalDamage;
-        public float hyperCrystalDiameter;
+        public int hyperCrystalCooldown;
+        public int hyperCrystalCooldownMelee;
+        public int hyperCrystalCooldownMax;
 
         public Item setSeraphim;
 
@@ -227,9 +228,7 @@ namespace Aequus
         public int turretSquidTimer;
 
         public Item accMendshroom;
-        public int mendshroomRegen;
         public int cMendshroom;
-        public float mendshroomDiameter;
 
         public Item celesteTorusItem;
         public int cCelesteTorus;
@@ -532,12 +531,13 @@ namespace Aequus
             bloodDiceMoney = 0;
             bloodDiceDamage = 0f;
             accHyperCrystal = null;
-            hyperCrystalDiameter = 0f;
-            hyperCrystalDamage = 0f;
+            hyperCrystalCooldownMax = 0;
+            if (hyperCrystalCooldownMelee > 0)
+                hyperCrystalCooldownMelee--;
+            if (hyperCrystalCooldown > 0)
+                hyperCrystalCooldown--;
 
             accMendshroom = null;
-            mendshroomDiameter = 0f;
-            mendshroomRegen = 0;
 
             celesteTorusItem = null;
             cCelesteTorus = 0;
@@ -918,17 +918,24 @@ namespace Aequus
                 GlowCore.AddLight(Player.Center, Player, this);
             }
 
-            if (accHyperCrystal != null && !hyperCrystalHidden && ProjectilesOwned(ModContent.ProjectileType<HyperCrystalProj>()) <= 0)
-            {
-                Projectile.NewProjectile(Player.GetSource_Accessory(accHyperCrystal), Player.Center, Vector2.Zero, ModContent.ProjectileType<HyperCrystalProj>(),
-                    0, 0f, Player.whoAmI, projectileIdentity + 1);
-            }
-
             if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None
-                && MendshroomActive && ProjectilesOwned(accMendshroom.shoot) <= 0)
+                && MendshroomActive && ProjectilesOwned(accMendshroom.shoot) <= 10)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(accMendshroom), Player.Center, Vector2.Zero, accMendshroom.shoot,
-                    0, 0f, Player.whoAmI, projectileIdentity + 1);
+                if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio, 120f, 600f)))
+                {
+                    for (int i = 0; i < 100; i++)
+                    {
+                        var randomSpot = Player.Center + new Vector2(Main.rand.NextFloat(-280f, 280f), Main.rand.NextFloat(-280f, 280f));
+                        if (Player.Distance(randomSpot) < 100f)
+                            continue;
+                        if (!Collision.SolidCollision(randomSpot, 2, 2) && Collision.CanHitLine(randomSpot, 2, 2, Player.position, Player.width, Player.height))
+                        {
+                            Projectile.NewProjectile(Player.GetSource_Accessory(accMendshroom), randomSpot, Vector2.Zero, accMendshroom.shoot,
+                                0, 0f, Player.whoAmI, ai1: projectileIdentity + 1);
+                            break;
+                        }
+                    }
+                }
             }
 
             if (Main.myPlayer == Player.whoAmI)
@@ -1417,13 +1424,6 @@ namespace Aequus
                 damage = (int)(damage * (1f + bloodDiceDamage / 2f));
             }
         }
-        public void HyperCrystalDamage(Rectangle targetRect, ref int damage)
-        {
-            if (hyperCrystalDiameter > 0f && Player.Distance(targetRect.ClosestDistance(Player.Center)) < hyperCrystalDiameter / 2f)
-            {
-                damage = (int)(damage * (1f + hyperCrystalDamage));
-            }
-        }
 
         public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)
         {
@@ -1448,7 +1448,6 @@ namespace Aequus
             {
                 CheckBloodDice(ref damage);
             }
-            HyperCrystalDamage(target.getRect(), ref damage);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -1466,7 +1465,6 @@ namespace Aequus
             {
                 CheckBloodDice(ref damage);
             }
-            HyperCrystalDamage(target.getRect(), ref damage);
             CheckSeraphimSet(target, proj, ref damage);
         }
 
@@ -1577,9 +1575,10 @@ namespace Aequus
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (accRamishroom != null && item.fishingPole > 0 && !Ramishroom.RodsBlacklist.Contains(item.type))
+            if (accRamishroom != null && item.fishingPole > 0)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)), type, damage, knockback, Player.whoAmI);
+                Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
+                    ModContent.ProjectileType<RamishroomBobber>(), damage, knockback, Player.whoAmI);
             }
             return true;
         }
@@ -1902,26 +1901,6 @@ namespace Aequus
                 }
             }
             return l;
-        }
-
-        public void Mendshroom()
-        {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(Player.Center) < mendshroomDiameter / 2f)
-                {
-                    mendshroomHeal(i);
-                }
-            }
-        }
-        public void mendshroomHeal(int i)
-        {
-            var bungus = Main.player[i].Aequus();
-            if (bungus.increasedRegen < mendshroomRegen)
-            {
-                bungus.increasedRegen = mendshroomRegen;
-                Main.player[i].AddBuff(accMendshroom.buffType, 4, quiet: true);
-            }
         }
 
         public void CountSentries()

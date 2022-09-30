@@ -204,7 +204,7 @@ namespace Aequus.Projectiles
                     sourceProjIdentity = parentProjectile.identity;
                 }
             }
-            if (sourceProjIdentity != -1)
+            if (sourceProjIdentity != -1 )
             {
                 sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (sourceProj == -1)
@@ -260,6 +260,7 @@ namespace Aequus.Projectiles
             sourceAmmoUsed = -1;
             sourceNPC = pNPC;
             sourceProjIdentity = pIdentity;
+            sourceProj = -1;
 
             if (Main.gameMenu)
                 return;
@@ -280,6 +281,20 @@ namespace Aequus.Projectiles
             }
             catch
             {
+            }
+            if (projectile.friendly && projectile.damage > 0 && !projectile.npcProj && projectile.timeLeft > 60 && projectile.type != ModContent.ProjectileType<HyperCrystalProj>())
+            {
+                var aequus = Main.player[projectile.owner].Aequus();
+
+                if (aequus.accHyperCrystal != null && aequus.hyperCrystalCooldown == 0)
+                {
+                    aequus.hyperCrystalCooldown = aequus.hyperCrystalCooldownMax;
+                    int oldPIdentity = pIdentity;
+                    pIdentity = projectile.identity;
+                    Projectile.NewProjectile(Main.player[projectile.owner].GetSource_Accessory(aequus.accHyperCrystal), projectile.Center, projectile.velocity,
+                        ModContent.ProjectileType<HyperCrystalProj>(), projectile.damage, projectile.knockBack, projectile.owner);
+                    pIdentity = oldPIdentity;
+                }
             }
         }
 

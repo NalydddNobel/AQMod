@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ModLoader;
@@ -26,10 +25,7 @@ namespace Aequus.Items.Accessories.Healing
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            var aequus = player.Aequus();
-            aequus.accMendshroom = Item;
-            aequus.mendshroomDiameter += 280f;
-            aequus.mendshroomRegen += 30;
+            player.Aequus().accMendshroom = Item;
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
