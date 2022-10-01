@@ -57,7 +57,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: 被击杀的敌人有几率转化为幽魂
-			NecromancyCandle: 持有此物品时会吸收被仆从杀死的敌人的灵魂
+			NecromancyCandle: 持有此物品时会吸收被召唤物杀死的敌人的灵魂
 			UseSouls: 使用{0}个灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 
@@ -160,6 +160,8 @@ Mods: {
 			Mendshroom: 愈灵菇
 			GlowCore: 发光信标
 
+			RegrowingBait: 再生鱼饵
+
 			FishyFins: 可疑鱼鳍
 
 			Mallet: 棒槌
@@ -218,7 +220,6 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
-			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果鱼饵
 			Omnibait: 全能鱼饵
 			CursedPopper: 诅咒响饵
@@ -388,7 +389,7 @@ Mods: {
 			MagikaAmulet: 神奇护符
 			JellyAmulet: 水母护符
 			Quasicrystal: 准晶体护符
-			HyperCrystal: 超晶体
+			HyperCrystal: 破碎晶体
 			ExtractorHelmet: 顶板
 			ExtractorAirMask: 空气过滤器
 			GlowBand: 发光手环
@@ -430,7 +431,7 @@ Mods: {
 			LightbulbGreaves: 灯泡护胫
 			Hitscanner: 碰撞器
 			XenonBasher: 氙制粉碎者
-			Flameblaster: 火焰爆破器
+			Flameblaster: 火焰冲击波
 			CrusadersCrossbow: 十字军弩
 			DoubleShot: 双重射击
 			Baozhu: 爆竹
@@ -610,8 +611,8 @@ Mods: {
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
 				'''
-				仆从在首次击中敌人后悔进入狂暴状态
-				狂暴的仆从会获得更高的攻击和移动速度
+				召唤物在首次击中敌人后悔进入狂暴状态
+				狂暴的召唤物会获得更高的攻击和移动速度
 				'''
 			LittleInferno: 
 				'''
@@ -698,10 +699,11 @@ Mods: {
 				[c/{Color}:...但敌人不再掉落钱币]
 				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
-			Mendshroom: 站定不动时会大幅度增加自己和附近的队友生命恢复速度
+			Mendshroom: 定期释放治疗孢子
 			GlowCore: 你和你的弹幕会发光
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
+
 			Mallet:
 				'''
 				打击你光标附近的敌人
@@ -721,7 +723,6 @@ Mods: {
 				对处于水中的敌人造成的伤害增加
 				{$Mods.Aequus.Tooltips.UseDarts}
 				'''
-
 			SnowflakeCannon: 
 				'''
 				发射击中敌人时会回弹的电弧雪花
@@ -1003,7 +1004,7 @@ Mods: {
 			ArgonFish: 一种身上带有氩苔藓的传奇鱼类
 			KryptonFish: 一种身上带有氪苔藓的传奇鱼类
 			XenonFish: 一种身上带有氙苔藓的传奇鱼类
-			RadonFish: 一种身上带有氡苔藓的传奇鱼类
+			RadonFish: 一种身上带有氖苔藓的传奇鱼类
 			Blobfish:
 				'''
 				一种身上带有...丑陋...的传奇鱼类
@@ -1161,10 +1162,7 @@ Mods: {
 				击中敌人时会对其造成宇宙辐射减益和火焰伤害
 				受伤时会召唤星星从天而降
 				'''
-			HyperCrystal:
-				'''
-				附近的敌人会受到25%额外伤害
-				'''
+			HyperCrystal: 攻击时会获得一个临时存在的伤害性水晶
 			ExtractorHelmet: 坠落的方块对你造成的伤害降低
 			ExtractorAirMask: 使你免疫窒息
 			GlowBand: 散发着彩色的光芒
@@ -1772,7 +1770,13 @@ Mods: {
 		}
 
 		ProjectileName: {
-			Magmabubble: 熔火泡泡
+			SoldierCrabProj: 兵蟹
+
+			MagmabubbleBullet: 熔火泡泡
+
+			DustDevilFireball: 沙尘恶魔炎爆
+			DustDevilFrostball: 沙尘恶魔冰锥
+			DustDevilTileProj: 物块
 
 			OmegaStariteProj: 终末之星
 			OmegaStariteBullet: 宇宙星幕
@@ -1789,15 +1793,24 @@ Mods: {
 
 			RedSpriteWindFire: 红色精灵余烬
 			RedSpriteThunderClap: 红色精灵雷击
-			RedSpriteLightning: 光晕闪电
+			RedSpriteCloudLightning: 光晕闪电
 			RedSpriteCloud: 红色精灵光晕
 
+			UltraStariteOuterArms: 终耀源星
+			UltraStariteInnerArms: 终耀源星
+			HyperStariteProj: 巨耀源星
+			SuperStariteBullet: 极耀源星
 			TrapperExplosion: 捕手爆炸
 			TrapperProj: 捕手爆炸
-			MagmabubbleProj: 熔火泡泡
 
+			RockManProj: 摇滚者
+			MalletProj: 棒槌
+			UltimateSwordProj: 最终之剑
+			SuperStarSwordProj: 超级星剑
+			BattleAxeProj: 战斧
 			VrangProj: 镰鸟
 			ValariProj: 回旋镰
+			ThunderClapExplosion: 雷霆一击
 			ThunderClapProj: 雷霆一击
 			Sliceflake: 利刃
 			SliceProj: 利刃
@@ -1805,21 +1818,32 @@ Mods: {
 			MirrorsCallBullet: 镜之召
 			MirrorsCallProj: 镜之召
 			CrystalDaggerProj: 水晶匕首
-			CauterizerProj: 恶魔能量波
+			CauterizerSlash: 恶魔能量波
 
+			SlingsaberProj: 机械增强型混乱鸟类
+			SlingshotProj: 混乱鸟类
+			RaygunExplosionProj: 射线枪
+			FlameblasterProj: 火焰冲击波
+			CrusadersCrossbowBolt: 十字军弩矢
 			SnowflakeCannonProj: 雪花大炮
-			HamaYumiArrow: 破魔矢
-			DeltoidArrow: 增量矢
+			HamaYumiArrow: 破魔弓
+			HamaYumiExplosion: 破魔弓
+			DeltoidArrow: 增量弓
+			DeltoidExplosion: 增量弓
 			BaozhuProj: 爆竹
 
+			GhastlyBlasterProj: 阴森冲击波
+			GamestarProj: 压缩
+			TouhouBullet: 子弹地狱
+			LiquidGunWaterBullet: "液体;)"
+			PentalScytheProj: 回旋魔镰
 			TriacanthornBolt: 三棘卷须
 			TriacanthornProj: 三棘卷须
-			UmystickMoon: 凶恶之月
+			UmystickBullet: 凶恶之月
 			TouhouBullet: 魔法弹
 			SurgeRodHitbox: 电浪
 			SnowgraveProj: 雪墓
 			NarrizuulProj: 耀宇遗光
-			CrusadersCrossbowBolt: 十字军弩矢
 
 			StariteMinion: 星之源
 			ZombieBolt: 僵尸弹幕
@@ -1831,14 +1855,22 @@ Mods: {
 			InsurgentSkull: 叛乱
 			FlowerCrownProj: 花冠
 
+			WormScarfLaser: 蠕虫围巾
+			ThermiteGel: 铝热剂凝胶
+			ShieldOfCthulhuBoost: 克苏鲁之盾
+			NaniteSpore: 纳米孢子
+			CelesteTorusProj: 天界圆环
+			Bonesaw: 骨锯
+			HyperCrystalProj: 超晶体
+
 			DreadsoulAttack: 地狱之灵
 			BreadsoulHealing: 梦境之灵
 			FriendMinion: 朋友
 			KelBall: Kel的球球
 			CelesteTorusProj: 天界圆环
 			FlowerCrownProj: 花冠
-			FlameblasterFire: 火焰爆破器
-			FlameblasterWind: 火焰爆破器烈风
+			FlameblasterFire: 火焰冲击波
+			FlameblasterWind: 火焰冲击波烈风
 			HealingBolt: 治愈箭矢
 			DoubleShotProj: 子弹
 			SnowsawMinion: 雪花
@@ -1864,9 +1896,8 @@ Mods: {
 			TrapperMinionExplosion: 捕手
 			Skrawler: 皮肤焚烧者
 			DwarfStaritePet: 侏儒源星
-			OmegaStaritePet: 迷你终末之星
+			OmegaStaritePet: 终末之星
 			SuperStariteBullet: 极耀源星弹幕
-			HyperStariteProj: 巨耀源星
 			SparklingExplosion: 宇宙辐射涌流
 			MothmanCritExplosion: 天蛾人面具
 			PowPunch: 链拳
@@ -1877,21 +1908,11 @@ Mods: {
 			Aphrodite: 阿芙罗狄忒
 			ArgonSpear: 氩制长枪
 			Galactium: 陨落尘星
-			HorizonSkies: 空之视界
-			HorizonSkiesBolt: 空之视界
-			HorizonSkiesExplosion: 空之视界
-			UltimaFlare: 绚彩圣焰
 			Venus: 维纳斯
 			RayBulletBase: 射线
 			HamaYumiArrow: 破魔弓
 			SpaceShot: 星星
 			Bubbler: 泡泡
-			FizzlingFire: 碧蓝之火
-			GebulbaStaff: 弹跳粘球
-			MagmalbulbiaStaff: 弹跳火焰弹
-			MagmalbulbiaStaffExplosion: 弹跳火焰弹
-			MoonMoonMirror: 月光射线
-			PentalScythe: 烈焰魔镰
 			ScarletSea: 罪孽红海
 			SeltzerRain: 苏打雨
 			SunbaskMirror: 日光射线
