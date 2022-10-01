@@ -57,7 +57,7 @@ Mods: {
 
 		Tooltips: {
 			NecromancyStaff: 被击杀的敌人有几率转化为幽魂
-			NecromancyCandle: 持有此物品时会吸收被仆从杀死的敌人的灵魂
+			NecromancyCandle: 持有此物品时会吸收被召唤物杀死的敌人的灵魂
 			UseSouls: 使用{0}个灵魂
 			CarryingSouls: 携带{1}个灵魂中的{0}个
 
@@ -611,8 +611,8 @@ Mods: {
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
 				'''
-				仆从在首次击中敌人后悔进入狂暴状态
-				狂暴的仆从会获得更高的攻击和移动速度
+				召唤物在首次击中敌人后悔进入狂暴状态
+				狂暴的召唤物会获得更高的攻击和移动速度
 				'''
 			LittleInferno: 
 				'''
