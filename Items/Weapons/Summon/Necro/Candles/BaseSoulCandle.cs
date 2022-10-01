@@ -40,6 +40,11 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             useSouls = defUseSouls;
         }
 
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
+        {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.SummonWeapon;
+        }
+
         public override void HoldItem(Player player)
         {
             player.Aequus().soulCandleLimit = soulLimit;
@@ -93,8 +98,8 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("Tooltips.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
             tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("Tooltips.UseSouls", useSouls)));
 
-            AequusTooltips.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, lowerIsGood: false);
-            AequusTooltips.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, lowerIsGood: true);
+            AequusTooltips.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, higherIsGood: false);
+            AequusTooltips.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
         }
 
         public override int ChoosePrefix(UnifiedRandom rand)

@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Aequus.UI.Elements
 {
-    public sealed class ItemSlotElement : UIElement
+    public class ItemSlotElement : UIElement
     {
         public Item item;
         public float Scale;

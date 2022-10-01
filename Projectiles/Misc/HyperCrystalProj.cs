@@ -20,8 +20,8 @@ namespace Aequus.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            Projectile.width = 12;
-            Projectile.height = 12;
+            Projectile.width = 48;
+            Projectile.height = 48;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
@@ -56,7 +56,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.scale = 1f + Projectile.localAI[0] * 0.3f;
                 Projectile.velocity = Main.projectile[aequus.sourceProj].velocity;
                 Projectile.Center = Vector2.Lerp(Projectile.Center, 
-                    Main.projectile[aequus.sourceProj].oldPosition + Main.projectile[aequus.sourceProj].Size / 2f + new Vector2(Math.Max(Main.projectile[aequus.sourceProj].width, 20) * (float)Math.Sin(Projectile.ai[1]), 0f).RotatedBy(Projectile.rotation), 0.01f + (255 - Projectile.alpha) / 5050f) - Projectile.velocity;
+                    Main.projectile[aequus.sourceProj].oldPosition + Main.projectile[aequus.sourceProj].Size / 2f + new Vector2(Math.Max(Main.projectile[aequus.sourceProj].width, 20) * (float)Math.Sin(Projectile.ai[1]), 0f).RotatedBy(Projectile.rotation), 0.05f + (255 - Projectile.alpha) / 2000f) - Projectile.velocity;
             }
             else if ((int)Projectile.ai[0] == 1)
             {

@@ -3,7 +3,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Common.Utilities
 {
-    public sealed class MiniRandom
+    public class MiniRandom
     {
         private int seedCache;
         private byte[] samples;

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed class ColorHelper : ILoadable
+    public class ColorHelper : ILoadable
     {
         internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;

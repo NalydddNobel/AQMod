@@ -36,7 +36,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire, 120);
+            target.AddBuff(BuffID.OnFire3, 240);
         }
 
         public override void Kill(int timeLeft)

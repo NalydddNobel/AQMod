@@ -75,7 +75,7 @@ namespace Aequus.Content.CarpenterBounties
             CarpenterSystem.RegisterBounty(this);
         }
 
-        public sealed override void SetupContent()
+        public override void SetupContent()
         {
             SetStaticDefaults();
         }

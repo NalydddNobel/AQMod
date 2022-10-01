@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon.Misc
 {
-    public sealed class DartTrapHatProj : ModProjectile
+    public class DartTrapHatProj : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.PoisonDart;
 

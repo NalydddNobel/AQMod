@@ -361,6 +361,19 @@ namespace Aequus.Projectiles
                 }
             }
 
+            if (Main.myPlayer == projectile.owner)
+            {
+                if (projectile.bobber && Main.GameUpdateCount % 30 == 0 && Main.player[projectile.owner].Aequus().accNeonFish != null)
+                {
+                    int target = projectile.FindTargetWithLineOfSight(500f);
+                    if (target != -1)
+                    {
+                        Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
+                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(), (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f)), 12f, projectile.owner);
+                    }
+                }
+            }
+
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();

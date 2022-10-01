@@ -7,7 +7,7 @@ namespace Aequus.Common.Utilities
         protected sealed override void Register()
         {
         }
-        public sealed override void SetupContent()
+        public override void SetupContent()
         {
             SetStaticDefaults();
         }

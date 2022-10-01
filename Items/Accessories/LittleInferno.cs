@@ -40,7 +40,7 @@ namespace Aequus.Items.Accessories
                 return;
             }
 
-            int fireDebuff = BuffID.OnFire;
+            int fireDebuff = BuffID.OnFire3;
             float minDistance = 200f;
             bool dealDamage = player.infernoCounter % 60 == 0;
             int damageDealt = 25;

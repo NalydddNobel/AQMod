@@ -8,7 +8,7 @@ namespace Aequus.Graphics
     /// <summary>
     /// Manages screen panning
     /// </summary>
-    public sealed class CameraFocus : ModSystem
+    public class CameraFocus : ModSystem
     {
         /// <summary>
         /// A context string for the current focus

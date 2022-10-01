@@ -2,7 +2,7 @@
 
 namespace Aequus.Projectiles.Misc
 {
-    public sealed class PhysicistProj : UmystickBullet
+    public class PhysicistProj : UmystickBullet
     {
         public override string Texture => AequusHelpers.GetPath<UmystickBullet>();
 

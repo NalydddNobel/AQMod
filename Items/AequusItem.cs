@@ -73,24 +73,18 @@ namespace Aequus.Items
                 ItemID.DiscountCard,
                 ItemID.ShadowKey,
             };
-            On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.Tools.FitsFilter += Tools_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.FitsFilter += MiscAccessories_FitsFilter;
         }
 
-        private bool MiscAccessories_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.MiscAccessories self, Item entry)
+        private static bool MiscAccessories_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.MiscAccessories self, Item entry)
         {
             return orig(self, entry) || entry.ModItem is RichMansMonocle || entry.ModItem is ForgedCard || entry.ModItem is FaultyCoin;
         }
 
-        private bool Tools_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Tools.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Tools self, Item entry)
+        private static bool Tools_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Tools.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Tools self, Item entry)
         {
             return orig(self, entry) || entry.ModItem is PhysicsGun || entry.ModItem is Bellows || entry.ModItem is GhostlyGrave || entry.ModItem is Pumpinator;
-        }
-
-        private bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Weapon self, Item entry)
-        {
-            return orig(self, entry) || entry.ModItem is BaseSoulCandle;
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)
@@ -117,6 +111,16 @@ namespace Aequus.Items
             BankEquipFuncs = null;
             CritOnlyModifier?.Clear();
             CritOnlyModifier = null;
+        }
+
+        public override bool CanStack(Item item1, Item item2)
+        {
+            return item1.prefix == item2.prefix;
+        }
+
+        public override bool CanStackInWorld(Item item1, Item item2)
+        {
+            return item1.prefix == item2.prefix;
         }
 
         public override void SetDefaults(Item item)

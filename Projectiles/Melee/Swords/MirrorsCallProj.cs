@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords
 {
-    public sealed class MirrorsCallProj : SwordProjectileBaseCircular
+    public class MirrorsCallProj : SwordProjectileBaseCircular
     {
         public override string Texture => AequusHelpers.GetPath<MirrorsCall>();
 
@@ -219,7 +219,7 @@ namespace Aequus.Projectiles.Melee.Swords
         }
     }
 
-    public sealed class MirrorsCallBullet : ModProjectile
+    public class MirrorsCallBullet : ModProjectile
     {
         public float colorProgress;
 
@@ -280,7 +280,7 @@ namespace Aequus.Projectiles.Melee.Swords
         }
     }
 
-    public sealed class MirrorsCallExplosion : ModProjectile
+    public class MirrorsCallExplosion : ModProjectile
     {
         public float colorProgress;
 

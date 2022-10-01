@@ -37,17 +37,13 @@ namespace Aequus.Tiles
             r = clr.X * multiplier;
             g = clr.Y * multiplier;
             b = clr.Z * multiplier;
-
-            //r = 0.1f * multiplier;
-            //g = 0.325f * multiplier;
-            //b = 0.1f * multiplier;
         }
 
         public override bool Drop(int i, int j)
         {
             if (Main.tile[i, j].TileFrameX >= FrameShiftX)
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoonflowerPollen>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoonflowerPollen>(), Main.rand.Next(3) + 1);
             }
             if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
             {

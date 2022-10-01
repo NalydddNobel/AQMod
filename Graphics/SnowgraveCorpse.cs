@@ -32,7 +32,7 @@ namespace Aequus.Graphics
 
         public static SoundStyle SizzleSound { get; private set; }
 
-        public sealed class Loader : ILoadable
+        public class Loader : ILoadable
         {
             void ILoadable.Load(Mod mod)
             {

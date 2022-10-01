@@ -32,7 +32,7 @@ namespace Aequus.Projectiles.Summon
             ProjectileID.Sets.CultistIsResistantTo[Projectile.type] = true;
         }
 
-        public sealed override void SetDefaults()
+        public override void SetDefaults()
         {
             Projectile.width = 20;
             Projectile.height = 30;

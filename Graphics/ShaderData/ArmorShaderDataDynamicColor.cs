@@ -7,7 +7,7 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Graphics.ShaderData
 {
-    public sealed class ArmorShaderDataDynamicColor : ArmorShaderData
+    public class ArmorShaderDataDynamicColor : ArmorShaderData
     {
         public Func<Entity, DrawData?, Color> getColor;
 

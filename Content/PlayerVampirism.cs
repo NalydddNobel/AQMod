@@ -9,7 +9,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content
 {
-    public sealed class PlayerVampirism : ModPlayer
+    public class PlayerVampirism : ModPlayer
     {
         public ushort vampirism;
 
@@ -171,7 +171,7 @@ namespace Aequus.Content
                     Player.lifeRegen = 0;
                 }
             }
-            if ((Player.onFire || Player.onFire2 || Player.frostBurn) && Player.lifeRegen < 0)
+            if ((Player.onFire || Player.onFire2 || Player.onFrostBurn || Player.onFrostBurn2) && Player.lifeRegen < 0)
             {
                 Player.lifeRegen *= 2;
             }

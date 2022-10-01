@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords
 {
-    public sealed class SliceProj : SwordProjectileBase
+    public class SliceProj : SwordProjectileBase
     {
         public int swingTime;
         public int swingTimeMax;

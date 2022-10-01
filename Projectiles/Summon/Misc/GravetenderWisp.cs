@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Summon.Misc
             this.SetTrail(8);
         }
 
-        public sealed override void SetDefaults()
+        public override void SetDefaults()
         {
             Projectile.width = 20;
             Projectile.height = 30;

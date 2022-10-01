@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.Enums;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -218,6 +219,34 @@ namespace Aequus.Biomes.Glimmer
             if (reader.ReadBoolean())
             {
                 GlimmerBiome.TileLocation = new Point(reader.ReadUInt16(), reader.ReadUInt16());
+            }
+        }
+
+        public override void PostUpdateTime()
+        {
+            if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled && GlimmerBiome.EventActive)
+            {
+                int playersInTimeWound = 0;
+                int maxPlayers = 0;
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead)
+                    {
+                        maxPlayers++;
+                        if (Main.player[i].Distance(GlimmerBiome.TileLocation.ToWorldCoordinates()) < 250f * 16f)
+                        {
+                            playersInTimeWound++;
+                        }
+                    }
+                }
+                if (maxPlayers > 0 && (playersInTimeWound / (float)maxPlayers) > 0.5f)
+                {
+                    Main.time -= 2.0d * CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
+                    if (Main.time <= 1.0d)
+                    {
+                        Main.time = 1.0d;
+                    }
+                }
             }
         }
 

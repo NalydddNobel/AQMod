@@ -25,7 +25,7 @@ namespace Aequus.Tiles
             return true;
         }
 
-        public sealed override void SetStaticDefaults()
+        public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
             Main.tileLighted[Type] = true;

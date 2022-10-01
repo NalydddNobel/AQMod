@@ -29,6 +29,7 @@ using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs
 {
@@ -76,7 +77,7 @@ namespace Aequus.NPCs
                 NPCID.HallowBoss,
             };
 
-            On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
+            On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
         }
@@ -113,7 +114,7 @@ namespace Aequus.NPCs
             }
 
             float velocityBoost = DetermineVelocityBoost(self);
-
+            var oldVelocity = self.velocity;
             if (velocityBoost != 0f)
             {
                 self.velocity *= 1f + velocityBoost;
@@ -121,7 +122,7 @@ namespace Aequus.NPCs
             orig(self);
             if (velocityBoost != 0f)
             {
-                self.velocity /= 1f + velocityBoost;
+                self.velocity = oldVelocity;
             }
         }
         public static float DetermineVelocityBoost(NPC npc)
@@ -328,9 +329,6 @@ namespace Aequus.NPCs
             }
 
             PostAI_VelocityBoostHack(npc);
-
-            if (Main.netMode != NetmodeID.SinglePlayer && npc.netUpdate)
-                Sync(npc.whoAmI);
 
             if (Main.netMode == NetmodeID.Server)
             {
@@ -736,28 +734,20 @@ namespace Aequus.NPCs
             return true;
         }
 
-        public void Send(int whoAmI, BinaryWriter writer)
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            writer.Write(locustStacks);
-            writer.Write(corruptionHellfireStacks);
-            writer.Write(crimsonHellfireStacks);
-            writer.Write(mindfungusStacks);
+            binaryWriter.Write(locustStacks);
+            binaryWriter.Write(corruptionHellfireStacks);
+            binaryWriter.Write(crimsonHellfireStacks);
+            binaryWriter.Write(mindfungusStacks);
         }
 
-        public void Receive(int whoAmI, BinaryReader reader)
+        public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
-            locustStacks = reader.ReadByte();
-            corruptionHellfireStacks = reader.ReadByte();
-            crimsonHellfireStacks = reader.ReadByte();
-            mindfungusStacks = reader.ReadByte();
-        }
-
-        public static void Sync(int npc)
-        {
-            if (Main.npc[npc].TryGetGlobalNPC<AequusNPC>(out var aequus))
-            {
-                PacketSystem.Send((p) => { p.Write((byte)npc); aequus.Send(npc, p); }, PacketType.SyncAequusNPC);
-            }
+            locustStacks = binaryReader.ReadByte();
+            corruptionHellfireStacks = binaryReader.ReadByte();
+            crimsonHellfireStacks = binaryReader.ReadByte();
+            mindfungusStacks = binaryReader.ReadByte();
         }
     }
 }

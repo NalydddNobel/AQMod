@@ -111,7 +111,7 @@ namespace Aequus.Content.Necromancy
 
         public bool EnoughPower(float power)
         {
-            return (PowerNeeded > 0f && PowerNeeded < power) || power >= 100f;
+            return (PowerNeeded > 0f && PowerNeeded <= power) || power >= 100f;
         }
 
         public IModCallHandler HandleArg(string name, object value)

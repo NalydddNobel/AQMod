@@ -11,7 +11,7 @@ namespace Aequus
         DemonSiegeSacrificeStatus,
         StartDemonSiege,
         RemoveDemonSiege,
-        SyncAequusNPC,
+        Unused,
         SyncRecyclingMachine,
         CandleSouls,
         SoulDamage,

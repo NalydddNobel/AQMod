@@ -1,10 +1,10 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Summon.Necro
+namespace Aequus.Items.Accessories.Fishing
 {
-    public class BloodiedBucket : ModItem
+    public class NeonGenesis : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,16 +13,14 @@ namespace Aequus.Items.Accessories.Summon.Necro
 
         public override void SetDefaults()
         {
-            Item.width = 24;
-            Item.height = 24;
-            Item.accessory = true;
+            Item.DefaultToAccessory(20, 20);
             Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.BloodMimicItemValue * 3;
+            Item.value = Item.sellPrice(gold: 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().ghostLifespan *= 3;
+            player.Aequus().accNeonFish = Item;
         }
     }
 }

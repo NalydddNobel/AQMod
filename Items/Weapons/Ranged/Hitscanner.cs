@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    public sealed class Hitscanner : ModItem
+    public class Hitscanner : ModItem
     {
         public override void SetStaticDefaults()
         {

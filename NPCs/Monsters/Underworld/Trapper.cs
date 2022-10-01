@@ -44,11 +44,6 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.value = 100f;
             NPC.noGravity = true;
             NPC.knockBackResist = 0.4f;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Confused] = false;
-            NPC.buffImmune[BuffID.Ichor] = false;
 
             NPC.SetLiquidSpeeds(lava: 1f);
         }

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee
 {
-    public sealed class CauterizerSlash : ModProjectile
+    public class CauterizerSlash : ModProjectile
     {
         private bool _didEffects;
 

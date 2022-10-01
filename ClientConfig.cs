@@ -10,7 +10,7 @@ using Terraria.ModLoader.Config;
 
 namespace Aequus
 {
-    public sealed class ClientConfig : ConfigurationBase
+    public class ClientConfig : ConfigurationBase
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
         protected override string ConfigKey => "Client";

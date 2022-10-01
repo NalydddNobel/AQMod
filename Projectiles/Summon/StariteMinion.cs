@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon
 {
-    public sealed class StariteMinion : ModProjectile
+    public class StariteMinion : ModProjectile
     {
         public override void SetStaticDefaults()
         {

@@ -7,7 +7,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.UI.Elements
 {
-    public sealed class TextboxElement : UIState
+    public class TextboxElement : UIState
     {
         public int maxText = -1;
         public Color color;

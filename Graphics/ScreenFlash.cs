@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public sealed class ScreenFlash : ModSceneEffect
+    public class ScreenFlash : ModSceneEffect
     {
         public class FlashData
         {

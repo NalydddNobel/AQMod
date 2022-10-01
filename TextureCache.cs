@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public sealed class TextureCache : ILoadable
+    public class TextureCache : ILoadable
     {
         private sealed class ImgPathAttribute : Attribute
         {

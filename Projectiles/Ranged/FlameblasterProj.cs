@@ -131,7 +131,7 @@ namespace Aequus.Projectiles.Ranged
         }
     }
 
-    public sealed class FlameblasterWind : PumpinatorProj
+    public class FlameblasterWind : PumpinatorProj
     {
         public override void SetDefaults()
         {

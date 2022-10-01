@@ -19,7 +19,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public sealed class MonsterBanners : ModTile
+    public class MonsterBanners : ModTile
     {
         public const int StariteBanner = 0;
         public const int SuperStariteBanner = 1;

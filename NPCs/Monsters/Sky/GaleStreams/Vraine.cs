@@ -35,6 +35,13 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             {
                 Rotation = MathHelper.Pi,
             });
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = new int[]
+                {
+                    BuffID.OnFire,
+                },
+            });
         }
 
         public override void SetDefaults()
@@ -50,7 +57,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.noGravity = true;
             NPC.knockBackResist = 0.1f;
             NPC.value = Item.buyPrice(silver: 3);
-            NPC.buffImmune[BuffID.OnFire] = true;
             NPC.noTileCollide = true;
 
             Banner = NPC.type;

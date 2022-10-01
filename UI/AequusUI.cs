@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Aequus.UI
 {
-    public sealed class AequusUI : ModSystem
+    public class AequusUI : ModSystem
     {
         public class InterfaceLayers
         {
@@ -54,6 +54,7 @@ namespace Aequus.UI
         public static int itemSlotContext;
 
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
+        public static List<BaseUserInterface> UserInterfaces { get; private set; }
 
         public static int BottomInventory => 260;
 
@@ -65,9 +66,19 @@ namespace Aequus.UI
         public static readonly Color invBackColor = new Color(63, 65, 151, 255);
         public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
 
+        public static void RegisterUserInterface(BaseUserInterface face)
+        {
+            if (UserInterfaces == null)
+                UserInterfaces = new List<BaseUserInterface>();
+            UserInterfaces.Add(face);
+        }
+
         public override void Load()
         {
             LoadHooks();
+            if (UserInterfaces == null)
+                UserInterfaces = new List<BaseUserInterface>();
+
             ValidOnlineLinkedSlotContext = new HashSet<int>()
             {
                 ItemSlot.Context.EquipAccessory,
@@ -84,7 +95,7 @@ namespace Aequus.UI
             On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += Hook_UpdateStaticContext;
         }
 
-        private void Hook_DisableLeftClick(On.Terraria.UI.ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+        private static void Hook_DisableLeftClick(On.Terraria.UI.ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
         {
             if (disableItemLeftClick == 0)
             {
@@ -92,7 +103,7 @@ namespace Aequus.UI
             }
         }
 
-        private void Hook_UpdateStaticContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        private static void Hook_UpdateStaticContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
             itemSlotContext = context;
             orig(spriteBatch, inv, context, slot, position, lightColor);
@@ -131,6 +142,14 @@ namespace Aequus.UI
         {
             leftInvOffset = 0;
             ManageUserInterfaceLayer(layers, Aequus.NPCTalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
+
+            foreach (var i in UserInterfaces)
+            {
+                InsertInterfaceDrawMethod(layers, i.Layer, $"{i.Mod}: {i.Name}", () =>
+                {
+                    return i.Draw(Main.spriteBatch);
+                }, i.ScaleType);
+            }
 
             InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () =>
             {

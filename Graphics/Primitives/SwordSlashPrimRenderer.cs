@@ -6,7 +6,7 @@ using Terraria;
 
 namespace Aequus.Graphics.Primitives
 {
-    public sealed class SwordSlashPrimRenderer : TrailRenderer
+    public class SwordSlashPrimRenderer : TrailRenderer
     {
         public float coord1;
         public float coord2;

@@ -11,7 +11,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public sealed class WallClocks : ModTile, ISpecialTileRenderer
+    public class WallClocks : ModTile, ISpecialTileRenderer
     {
         public const int CrabClock = 0;
 

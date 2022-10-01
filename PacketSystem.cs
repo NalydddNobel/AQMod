@@ -291,10 +291,8 @@ namespace Aequus
                     TERecyclingMachine.NetReceive2(reader);
                     break;
 
-                case PacketType.SyncAequusNPC:
+                case PacketType.Unused:
                     {
-                        byte npc = reader.ReadByte();
-                        Main.npc[npc].Aequus().Receive(npc, reader);
                     }
                     break;
 

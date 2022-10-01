@@ -2,7 +2,7 @@
 
 namespace Aequus.Graphics
 {
-    public sealed class DrawList
+    public class DrawList
     {
         public int Count => List.Count;
 

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Pets
 {
-    public sealed class FamiliarPet : ModProjectile
+    public class FamiliarPet : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
 

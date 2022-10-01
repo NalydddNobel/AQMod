@@ -41,6 +41,17 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 Position = new Vector2(0f, 16f),
                 PortraitPositionYOverride = 36f,
             });
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
+            {
+                SpecificallyImmuneTo = new int[]
+                {
+                    BuffID.Poisoned,
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.CursedInferno,
+                    BuffID.ShadowFlame,
+                },
+            });
 
             AequusNPC.HeatDamage.Add(Type);
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
@@ -58,15 +69,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.alpha = 155;
             NPC.lavaImmune = true;
-            NPC.trapImmune = true;
             NPC.noGravity = true;
             NPC.value = Item.buyPrice(silver: 10);
             NPC.knockBackResist = 0.35f;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.ShadowFlame] = true;
-            NPC.buffImmune[BuffID.Confused] = false;
 
             NPC.SetLiquidSpeeds(water: 1f, lava: 1f);
 

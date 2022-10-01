@@ -20,7 +20,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.Underworld
 {
-    public sealed class Cindera : LegacyAIBat
+    public class Cindera : LegacyAIBat
     {
         public const int FRAME_FLY_0 = 0;
         public const int FRAME_FLY_1 = 1;
@@ -70,10 +70,6 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.trapImmune = true;
             NPC.value = 250f;
             NPC.knockBackResist = 0.4f;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Confused] = false;
             NPC.gfxOffY = -6f;
             NPC.SetLiquidSpeeds(lava: 1f);
             Banner = NPC.type;

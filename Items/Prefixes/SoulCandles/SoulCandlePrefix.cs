@@ -15,7 +15,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
             DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + GetType().Name + "}");
         }
 
-        public sealed override void Load()
+        public override void Load()
         {
             if (Prefixes == null)
             {

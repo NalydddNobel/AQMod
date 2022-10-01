@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon.Misc
 {
-    public sealed class FlowerCrownProj : ModProjectile
+    public class FlowerCrownProj : ModProjectile
     {
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.FlowerPetal;
 

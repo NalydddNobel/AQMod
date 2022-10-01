@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc
 {
-    public sealed class ShieldOfCthulhuBoost : ModProjectile
+    public class ShieldOfCthulhuBoost : ModProjectile
     {
         public override void SetStaticDefaults()
         {

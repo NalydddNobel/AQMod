@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Magic
 {
-    public sealed class SnowgraveProj : ModProjectile
+    public class SnowgraveProj : ModProjectile
     {
         public static SoundStyle SnowgraveSound { get; private set; }
 
@@ -120,7 +120,7 @@ namespace Aequus.Projectiles.Magic
         }
     }
 
-    public sealed class SnowgraveProjSpawner : ModProjectile
+    public class SnowgraveProjSpawner : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
 

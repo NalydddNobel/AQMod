@@ -8,7 +8,7 @@ using Terraria.ID;
 
 namespace Aequus.Projectiles.Summon
 {
-    public sealed class SnowflakeMinion : MinionBase
+    public class SnowflakeMinion : MinionBase
     {
         private float _pulseTimer;
 

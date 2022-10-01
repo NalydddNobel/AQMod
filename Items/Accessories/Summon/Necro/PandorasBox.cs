@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Necro
 {
-    public sealed class PandorasBox : ModItem
+    public class PandorasBox : ModItem
     {
         public static List<int> ProjectileTypesShot { get; private set; }
 

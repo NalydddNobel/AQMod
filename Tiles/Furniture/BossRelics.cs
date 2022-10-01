@@ -4,7 +4,6 @@ using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -15,7 +14,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public sealed class BossRelics : ModTile, ISpecialTileRenderer
+    public class BossRelics : ModTile, ISpecialTileRenderer
     {
         private const int FrameWidth = 18 * 3;
         private const int FrameHeight = 18 * 4;

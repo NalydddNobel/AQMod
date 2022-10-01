@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.Utilities
 {
-    public sealed class StaticManipulator<T>
+    public class StaticManipulator<T>
     {
         private sealed class InvalidCacheException : Exception
         {

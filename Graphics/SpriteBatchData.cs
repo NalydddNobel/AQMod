@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public sealed class SpriteBatchData : ILoadable
+    public class SpriteBatchData : ILoadable
     {
         private static FieldInfo sortModeField;
         private static FieldInfo blendStateField;

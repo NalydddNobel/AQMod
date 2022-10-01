@@ -6,7 +6,7 @@ using Terraria;
 
 namespace Aequus.Common.Utilities
 {
-    public sealed class SpriteFrameData
+    public class SpriteFrameData
     {
         public Asset<Texture2D> Texture { get; private set; }
         public Rectangle Frame { get; private set; }

@@ -120,6 +120,11 @@ namespace Aequus.Items
                         }
                     }
 
+                    if (item.prefix >= PrefixID.Count && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
+                    {
+                        PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
+                    }
+
                     //TestLootBagTooltip(item, tooltips);
                 }
                 catch
@@ -503,7 +508,7 @@ namespace Aequus.Items
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
         public static Color ItemDrawbackTooltip => Color.Lerp(Color.Red, Color.White, 0.5f);
 
-        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool lowerIsGood = false)
+        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
         {
             if (num == originalNum)
             {
@@ -520,7 +525,7 @@ namespace Aequus.Items
                 value--;
             }
             tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
-            { IsModifier = true, IsModifierBad = num < originalNum ? lowerIsGood : !lowerIsGood, });
+            { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
         }
 
         public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)

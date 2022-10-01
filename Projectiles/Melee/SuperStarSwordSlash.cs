@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee
 {
-    public sealed class SuperStarSwordSlash : ModProjectile
+    public class SuperStarSwordSlash : ModProjectile
     {
         private bool _didEffects;
 

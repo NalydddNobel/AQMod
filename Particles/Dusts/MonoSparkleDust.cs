@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Particles.Dusts
 {
-    public sealed class MonoSparkleDust : ModDust
+    public class MonoSparkleDust : ModDust
     {
         public override void OnSpawn(Dust dust)
         {

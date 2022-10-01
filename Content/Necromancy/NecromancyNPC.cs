@@ -344,8 +344,9 @@ namespace Aequus.Content.Necromancy
                     if (netUpdateTimer <= -10 || npc.netUpdate)
                     {
                         npc.netUpdate = true;
-                        netUpdateTimer = 300;
+                        netUpdateTimer = 30 + npc.netSpam * 5;
                         Sync(npc);
+                        npc.netSpam++;
                     }
                 }
             }
@@ -405,7 +406,6 @@ namespace Aequus.Content.Necromancy
                 }
 
                 GhostOutlineRenderer.necromancyRenderers[index].Add(npc.whoAmI);
-                DrawHealthbar(npc, spriteBatch, screenPos);
             }
             return true;
         }
@@ -536,7 +536,6 @@ namespace Aequus.Content.Necromancy
             }
             return value;
         }
-
 
         public void RenderLayer(int layer)
         {

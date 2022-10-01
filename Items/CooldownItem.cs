@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Aequus.Items
 {
-    public sealed class CooldownItem : GlobalItem
+    public class CooldownItem : GlobalItem
     {
         public const int CooldownBackFramesX = 26;
         public static Asset<Texture2D> CooldownBack { get; private set; }

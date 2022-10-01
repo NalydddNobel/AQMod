@@ -8,6 +8,9 @@ Mods: {
 		}
 
 		Announcement: {
+			OrganicEventSight: The nerves of the jungle become stimulated...
+			OrganicEventFright: The horrors of the jungle start crawling out...
+			OrganicEventMight: The roots of the jungle harden...
 			GlimmerStart: A glimmer appears in the sky...
 			GlimmerEnd: The glimmer begins to fade away...
 		}
@@ -36,7 +39,7 @@ Mods: {
 			DemonSiegeFailEat: The Gore Nest consumes your {0}...
 			DemonSiegeFail: The Gore Nest regurgitates your {0}...
 		}
-
+		
 		DropCondition: {
 			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
 			OtherwiseChance: 100% droprate if '{0}' conditions are met
@@ -105,6 +108,8 @@ Mods: {
 		}
 
 		PrefixName: {
+			DoubledTimePrefix: Stuffed
+
 			DivinePrefix: Divine
 			BlessedPrefix: Blessed
 			VitriousPrefix: Vitrious
@@ -119,6 +124,8 @@ Mods: {
 		}
 
 		Prefixes: {
+			BuffDuration: "{0} duration"
+
 			PrefixSoulLimit: "{0} soul capacity"
 			PrefixSoulCost: "{0} soul cost"
 		}
@@ -126,6 +133,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			NeonGenesis: Neon Genesis
 			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
 			DavyJonesAnchor: Davy Jones's Anchor
@@ -232,9 +240,6 @@ Mods: {
 			NeutronYogurt: Neutron Yogurt
 			CinnamonRoll: Cinnamon Roll
 			SpicyEel: Spicy Eel
-
-			StuffedConcoctionPotionName: Stuffed {ItemName}
-			StuffedConcoction: Stuffed Concoction
 
 			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
@@ -606,6 +611,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			NeonGenesis: Allows your fishing bobber to fire lasers at enemies
 			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
 			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
@@ -1001,16 +1007,37 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
-			ArgonFish: A legendary fish enriched with argon moss
-			KryptonFish: A legendary fish enriched with krypton moss
-			XenonFish: A legendary fish enriched with xenon moss
-			RadonFish: A legendary fish enriched with neon moss
+			ArgonFish:
+				'''
+				A legendary fish enriched with argon moss
+				'Caught in Underground & Caverns'
+				'''
+			KryptonFish:
+				'''
+				A legendary fish enriched with krypton moss
+				'Caught in Underground & Caverns'
+				'''
+			XenonFish:
+				'''
+				A legendary fish enriched with xenon moss
+				'Caught in Underground & Caverns'
+				'''
+			RadonFish: 
+				'''
+				A legendary fish enriched with neon moss
+				'Caught in Underground & Caverns'
+				'''
 			Blobfish:
 				'''
 				A legendary fish blessed with... ugliness
 				'Just... look at it!'
+				'Caught during a Glimmer'
 				'''
-			GoreFish: A legendary fish enriched with demonic energy
+			GoreFish:
+				'''
+				A legendary fish enriched with demonic energy
+				'Caught in Lava while near a Gore Nest'
+				'''
 
 			SnowRoulette:
 				'''
@@ -1943,10 +1970,8 @@ Mods: {
 				Instantly kill and convert powerful enemies to ghost minions when in need
 				Take reduced damage when you have no ghost minions active
 				'''
-			Gravetender: 
-				'''
-				Summons a wisp to empower your ghosts
-				'''
+			Gravetender: Summons a wisp to empower your ghosts
+
 			Arachnotron:
 				'''
 				12% increased melee and summon damage
@@ -2111,7 +2136,7 @@ Mods: {
 		}
 
 		Bestiary: {
-			DustDevil: A powerful elemental, one which can control nearly all elements. Manipulated the currents of the air to create a strong cyclone! Although its suctioning currents pulled in quite a lot of dust, giving the name.
+			DustDevil: A powerful elemental, seeking the power of the Aether. Its sheer existence sustains a cyclone, catching dust, debris, and animals.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 			
 			CoconutCrab: Evolved a natural camoflauge, disguising as a coconut. Sleeps in and jumps off palm trees in the early morning.
@@ -2211,6 +2236,28 @@ Mods: {
 
 		RecipeGroup: {
 			AnyEctoplasm: Any Ectoplasm
+		}
+
+		GameTips: {
+			GlimmerEvent: During a glimmer event, a mystic celestial object will fall from space! Try reaching it before sunrise...
+			DemonSiege: Gore ridden mounds are spotted around the Underworld, certain items from the Corruption or Crimson seem to resonate with them...
+			GaleStreams: Try going to space while it's a Windy Day... certain creatures only appear while the winds are high!
+			CrabCrevice: Below the depths of the oceans lies a aquatic society governed by the power of the tides...
+			MothmanMaskSecret: Try battling the Lunatic Cultist without taking a single hit...
+			Necromancy: The power of Necromancy lets you make enemies fight for you!
+			LegendaryFish: The Angler may be interested in Legendary Fish...
+			LegendaryFishBlobfish: Try fishing during a Glimmer!
+			LegendaryFishGoreFish: Try fishing in lava near an Underworld Gore Nest!
+			CarpenterRequirements: Try putting extra decorations in your house... it may attract a housing master!
+			SkyMerchant: The Sky Merchant soars across the sky on his hot air balloon! Try talking to him to get some aerial deals.
+			Vampirism: Be careful when eating a Vampire Squid... they say the only cure is caught during a Blood Moon!
+			CursorDye: Cursor Dyes let you change the color or design of your mouse! They are quite fun to try!
+			Drones: The Physicist lets you protect your towns with Drones! But choose your drones wisely, each one provides a completely different service!
+			BreadofCthulhu: Be careful when fishing trash... an evil garbage monster may trash YOU!
+			ExporterCrates: Don't like the randomness of Crates? The Exporter's rewards may be a great substitute-- If you're willing to become a criminal!
+			Moonflower: Meteorites may be able to grow exotic plants with magical properites...
+			Pumpinator: Try up some floating meteorites in space, you may find a rare, incredible tool...
+			GhostlyGrave: Hate tombstones? But still like griefing your friends? Try the Ghostly Grave!
 		}
 
 		Configuration: {

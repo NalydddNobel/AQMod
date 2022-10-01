@@ -28,6 +28,7 @@ namespace Aequus.Common
         public const int HeightLevel_Underworld = 4;
 
         public static List<int> TrashItemIDs { get; private set; }
+        public static object Hook_PlayerLoader_CatchFish { get; private set; }
 
         public override void Load()
         {

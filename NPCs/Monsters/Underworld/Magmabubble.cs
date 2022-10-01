@@ -67,10 +67,6 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.trapImmune = true;
             NPC.value = 150f;
             NPC.knockBackResist = 0.6f;
-            NPC.buffImmune[BuffID.Poisoned] = true;
-            NPC.buffImmune[BuffID.OnFire] = true;
-            NPC.buffImmune[BuffID.CursedInferno] = true;
-            NPC.buffImmune[BuffID.Confused] = false;
             NPC.SetLiquidSpeeds(lava: 1f);
 
             Banner = NPC.type;

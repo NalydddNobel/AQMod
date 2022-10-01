@@ -148,6 +148,7 @@ namespace Aequus
         private DebuffInflictionStats debuffs;
         public ref DebuffInflictionStats Debuffs => ref debuffs;
 
+        public Item accNeonFish;
         public bool accWarHorn;
 
         public int instaShieldTime;
@@ -519,6 +520,7 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accNeonFish = null;
             accPreciseCrits = false;
             accArmFloaties = false;
             accDavyJonesAnchor = null;
@@ -2034,7 +2036,8 @@ namespace Aequus
             }
             else if (item.type == ModContent.ItemType<RadonFish>())
             {
-                Player.QuickSpawnItem(source, Main.rand.Next(new List<int>() { ModContent.ItemType<DevilsTongue>(), ModContent.ItemType<Ramishroom>(), ModContent.ItemType<RegrowingBait>() }));
+                Player.QuickSpawnItem(source, ModContent.ItemType<NeonGenesis>());
+                Player.QuickSpawnItem(source, ItemID.XenonMoss, Main.rand.Next(10, 25) + 1);
             }
             AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }

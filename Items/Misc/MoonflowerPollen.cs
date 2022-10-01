@@ -1,4 +1,6 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Items.Prefixes.Potions;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -33,6 +35,23 @@ namespace Aequus.Items.Misc
                 d.velocity.X *= 0.6f;
                 d.velocity.Y *= 0.35f;
                 d.velocity.Y += Main.rand.NextFloat(-4.5f, -2f);
+                d.fadeIn = d.scale;
+                d.scale *= 0.5f;
+            }
+        }
+
+        public override void AddRecipes()
+        {
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                if (ConcoctionDatabase.ConcoctiblePotion(ContentSamples.ItemsByType[i]))
+                {
+                    var r = Recipe.Create(i, 1)
+                        .AddIngredient(i)
+                        .AddIngredient<MoonflowerPollen>()
+                        .RegisterAfter(i);
+                    r.createItem.Prefix(ModContent.PrefixType<DoubledTimePrefix>());
+                }
             }
         }
     }

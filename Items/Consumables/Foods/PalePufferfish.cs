@@ -18,9 +18,11 @@ namespace Aequus.Items.Consumables.Foods
             RemovableBuffs = new HashSet<int>()
             {
                 BuffID.OnFire,
+                BuffID.OnFire3,
                 BuffID.Ichor,
                 BuffID.CursedInferno,
                 BuffID.Frostburn,
+                BuffID.Frostburn2,
                 BuffID.Chilled,
                 BuffID.Bleeding,
                 BuffID.Confused,

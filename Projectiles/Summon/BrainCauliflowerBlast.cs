@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon
 {
-    public sealed class BrainCauliflowerBlast : ModProjectile
+    public class BrainCauliflowerBlast : ModProjectile
     {
         private bool _didEffects;
 
