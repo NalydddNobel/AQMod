@@ -710,7 +710,6 @@ Mods: {
 				'''
 			RetroGoggles: Enemies appear as a blip on the fullscreen map
 			Beeswax: Shows the location of any visible Plantera bulbs
-			MoonflowerSeeds: Blooms and produces pollen near midnight
 			UltrabrightRedTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
 			UltrabrightGreenTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
 			UltrabrightBlueTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
