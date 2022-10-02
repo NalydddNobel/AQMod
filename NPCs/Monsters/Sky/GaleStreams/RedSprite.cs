@@ -131,8 +131,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add(new FilledConditionsOtherwiseChanceRule(
                     new FuncConditional(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<Fluorescence>(1, (10, 24))
-                .Add(ItemID.SoulofFlight, 1, (2, 6))
-                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<ScorchingDye>(), 7));
+                .Add(ItemID.SoulofFlight, 1, (2, 6));
         }
 
         public override void HitEffect(int hitDirection, double damage)

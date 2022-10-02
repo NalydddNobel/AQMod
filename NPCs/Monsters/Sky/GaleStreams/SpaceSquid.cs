@@ -772,8 +772,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<SpaceSquidMask>(chance: 7, stack: 1)
                 .Add<FrozenTear>(1, (10, 24))
-                .Add(ItemID.SoulofFlight, 1, (2, 6))
-                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<FrostbiteDye>(), 7));
+                .Add(ItemID.SoulofFlight, 1, (2, 6));
         }
 
         public override void OnKill()

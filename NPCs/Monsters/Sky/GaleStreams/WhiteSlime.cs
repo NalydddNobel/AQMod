@@ -343,7 +343,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add<Umystick>(new Conditions.IsHardmode(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15))
-                .Add<CensorDye>(chance: 10, stack: 1)
                 .Add<CinnamonRoll>(chance: 15, stack: 1);
         }
     }

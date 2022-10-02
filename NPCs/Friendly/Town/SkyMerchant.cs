@@ -2,6 +2,7 @@
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
+using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -29,12 +30,6 @@ namespace Aequus.NPCs.Friendly.Town
     {
         public const int BalloonFrames = 5;
 
-        public Asset<Texture2D> BalloonTexture => ModContent.Request<Texture2D>(Texture + "Balloon");
-        public Asset<Texture2D> BasketTexture => ModContent.Request<Texture2D>(Texture + "Basket");
-        public Asset<Texture2D> FleeTexture => ModContent.Request<Texture2D>(Texture + "Flee");
-
-        public static SoundStyle WWWWWWWWWWhhhhooooooooopSound { get; private set; }
-
         public int currentAction;
         public bool setupShop;
         public int oldSpriteDirection;
@@ -47,14 +42,6 @@ namespace Aequus.NPCs.Friendly.Town
         public Item shopAccessory;
 
         public static bool IsActive => Main.WindyEnoughForKiteDrops;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                WWWWWWWWWWhhhhooooooooopSound = Aequus.GetSound("slidewhistle", 0.5f);
-            }
-        }
 
         public override void SetStaticDefaults()
         {
@@ -131,13 +118,12 @@ namespace Aequus.NPCs.Friendly.Town
             if (firstButton)
             {
                 shop = true;
+                return;
             }
-            else
-            {
-                Main.playerInventory = true;
-                Main.npcChatText = "";
-                Aequus.NPCTalkInterface.SetState(new RenameItemUI());
-            }
+
+            Main.playerInventory = true;
+            Main.npcChatText = "";
+            Aequus.NPCTalkInterface.SetState(new RenameItemUI());
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
@@ -166,7 +152,7 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
-            if (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || NPC.downedSlimeKing || AequusWorld.downedCrabson)
+            if (NPC.downedBoss1)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FlashwayNecklace>());
             }
@@ -235,6 +221,25 @@ namespace Aequus.NPCs.Friendly.Town
             if (bossDefeated >= 3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
+            }
+
+            switch (Main.GetMoonPhase()) 
+            {
+                case MoonPhase.Full:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BreakdownDye>());
+                    break;
+                case MoonPhase.ThreeQuartersAtLeft:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CensorDye>());
+                    break;
+                case MoonPhase.HalfAtLeft:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OutlineDye>());
+                    break;
+                case MoonPhase.QuarterAtLeft:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ScrollDye>());
+                    break;
+                case MoonPhase.QuarterAtRight:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SimplifiedDye>());
+                    break;
             }
 
             if (AequusWorld.downedDustDevil)
@@ -426,7 +431,7 @@ namespace Aequus.NPCs.Friendly.Town
                 }
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    SoundEngine.PlaySound(WWWWWWWWWWhhhhooooooooopSound, NPC.Center);
+                    SoundEngine.PlaySound(Aequus.GetSound("slidewhistle", 0.5f), NPC.Center);
                 }
             }
 
@@ -689,7 +694,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void DrawBalloon(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = BasketTexture.Value;
+            var texture = ModContent.Request<Texture2D>($"{Texture}Basket").Value;
             int frameX = -1;
             DrawBalloon_UpdateBasketFrame(ref frameX);
             if (frameX == -1)
@@ -700,7 +705,7 @@ namespace Aequus.NPCs.Friendly.Town
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
-            texture = BalloonTexture.Value;
+            texture = ModContent.Request<Texture2D>($"{Texture}Basket").Value;
             frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }
@@ -777,7 +782,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = FleeTexture.Value;
+            var texture = ModContent.Request<Texture2D>($"{Texture}Basket").Value;
             var frame = GetFleeFrame(texture);
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
@@ -863,7 +868,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.life = NPC.lifeMax;
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundEngine.PlaySound(WWWWWWWWWWhhhhooooooooopSound, NPC.Center);
+                SoundEngine.PlaySound(Aequus.GetSound("slidewhistle", 0.5f), NPC.Center);
             }
             if (NPC.velocity.X <= 0)
             {
@@ -877,23 +882,6 @@ namespace Aequus.NPCs.Friendly.Town
             }
             NPC.dontTakeDamage = true;
             return false;
-        }
-
-        public static int Find()
-        {
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
-                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<SkyMerchant>())
-                    return i;
-            }
-            return -1;
-        }
-        public static SkyMerchant FindInstance()
-        {
-            int index = Find();
-            if (index == -1)
-                return null;
-            return Main.npc[index].ModNPC<SkyMerchant>();
         }
     }
 }

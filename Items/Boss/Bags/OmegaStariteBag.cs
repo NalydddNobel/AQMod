@@ -22,7 +22,6 @@ namespace Aequus.Items.Boss.Bags
                 .Add<CelesteTorus>(chance: 1, stack: 1)
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
-                .AddOptions(chance: 1, ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>())
                 .Add<CosmicEnergy>(chance: 1, stack: 3)
                 .Add<AstralCookie>(chance: 1, stack: 1)
                 .Coins<OmegaStarite>();

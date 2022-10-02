@@ -1628,7 +1628,6 @@ namespace Aequus.NPCs.Boss
                 .Add<UltimateSword>(chance: 1, stack: 1)
                 .Add<CosmicEnergy>(chance: 1, stack: 3)
                 .Add<AstralCookie>(chance: 1, stack: 1)
-                .AddOptions(chance: 3, ModContent.ItemType<ScrollDye>(), ModContent.ItemType<OutlineDye>())
                 .RegisterCondition();
         }
 

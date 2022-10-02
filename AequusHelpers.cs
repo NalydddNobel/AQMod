@@ -896,13 +896,25 @@ namespace Aequus
         public static Recipe RegisterAfter(this Recipe rec, int itemID)
         {
             rec.Register();
-            rec.SortAfterFirstRecipesOf(itemID);
+            try
+            {
+                rec.SortAfterFirstRecipesOf(itemID);
+            }
+            catch
+            {
+            }
             return rec;
         }
         public static Recipe RegisterBefore(this Recipe rec, int itemID)
         {
             rec.Register();
-            rec.SortBeforeFirstRecipesOf(itemID);
+            try
+            {
+                rec.SortBeforeFirstRecipesOf(itemID);
+            }
+            catch
+            {
+            }
             return rec;
         }
         public static Recipe Register(this Recipe rec, Action<Recipe> postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh)

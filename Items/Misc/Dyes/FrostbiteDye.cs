@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace Aequus.Items.Misc.Dyes
 {
@@ -15,6 +16,15 @@ namespace Aequus.Items.Misc.Dyes
             {
                 return v * new Vector3(0.05f, 0.2f, 0.9f);
             }).UseColor(new Vector3(0.05f, 0.2f, 0.9f)).UseSecondaryColor(new Vector3(0.1f, 0.4f, 2f));
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Bottle)
+                .AddIngredient<FrozenTear>()
+                .AddTile(TileID.DyeVat)
+                .RegisterAfter(ItemID.FlameDye);
         }
     }
 }

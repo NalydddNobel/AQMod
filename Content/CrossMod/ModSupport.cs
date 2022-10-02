@@ -117,8 +117,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<UltimateSword>(),
                     ModContent.ItemType<CosmicEnergy>(),
                     ModContent.ItemType<AstralCookie>(),
-                    ModContent.ItemType<ScrollDye>(),
-                    ModContent.ItemType<OutlineDye>(),
                 },
                 new List<int>() { ModContent.ItemType<SupernovaFruit>(), });
 
@@ -176,7 +174,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<Fluorescence>(),
                     ModContent.ItemType<AtmosphericEnergy>(),
                     ItemID.SoulofFlight,
-                    ModContent.ItemType<ScorchingDye>(),
                 },
                 null);
 
@@ -196,7 +193,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<FrozenTear>(),
                     ModContent.ItemType<AtmosphericEnergy>(),
                     ItemID.SoulofFlight,
-                    ModContent.ItemType<FrostbiteDye>(),
                 },
                 null);
 
@@ -269,7 +265,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<Umystick>(),
                     ModContent.ItemType<Vrang>(),
                     ModContent.ItemType<CinnamonRoll>(),
-                    ModContent.ItemType<CensorDye>(),
                 },
                 new List<int>() { ModContent.ItemType<Pumpinator>(), });
 
