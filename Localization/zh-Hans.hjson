@@ -1,7 +1,7 @@
 Mods: {
 	Aequus: {
 		BiomeName: {
-			GlimmerBiome: 和光
+			GlimmerBiome: 柔光
 			CrabCreviceBiome: 蟹伏岩隙
 			GaleStreamsBiome: 紊流风暴
 			DemonSiegeBiome: 恶魔围攻
@@ -11,8 +11,8 @@ Mods: {
 			OrganicEventSight: 丛林的神经被刺激了...
 			OrganicEventFright: 丛林的恐惧已开始蔓延...
 			OrganicEventMight: 丛林的根须变硬了...
-			GlimmerStart: 一缕和光出现在了天空中...
-			GlimmerEnd: 和光渐渐消失...
+			GlimmerStart: 一缕柔光出现在了天空中...
+			GlimmerEnd: 柔光渐渐消失...
 		}
 
 		Achievement: {
@@ -29,9 +29,9 @@ Mods: {
 				OmegaStarite: 击败终末之星, 一种可捕获所有终极能量源头的精锐星源武器...
 				Crabson: 击败巨蟹蛤, 一只蟹蛤怪物躲在自己的地下海洞里, 它在搜寻着稀有的珍珠...
 				DemonSiege: 唤醒血巢, 升级武器!
-				Glimmer: 发现和光!
-				GlimmerHyperStarite: 深入和光!
-				GlimmerBeaten: 与和光之源互动!
+				Glimmer: 发现柔光!
+				GlimmerHyperStarite: 深入柔光!
+				GlimmerBeaten: 与柔光之源互动!
 			}
 		}
 
@@ -1031,7 +1031,7 @@ Mods: {
 				'''
 				一种身上带有...丑陋...的受祝福鱼类
 				'只是...看看它!'
-				'抓捕时间: 和光'
+				'抓捕时间: 柔光'
 				'''
 			GoreFish: 
 				'''
@@ -1145,7 +1145,7 @@ Mods: {
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
 
-			GalacticStarfruit: 创造一道奇异和光
+			GalacticStarfruit: 创造一道奇异柔光
 
 			WhiteFlag: 使用后会禁用自然入侵
 			GhostlyGrave: 使用后会当你死亡时会将你的墓碑转化为幽魂
@@ -1426,7 +1426,7 @@ Mods: {
 				可在不击杀向导的情况下召唤血肉墙
 				右键切换以决定是否使所有城镇NPC免疫岩浆
 				'''
-			CosmicTelescope: 显示和光之源以及地图上的一些其他相关信息
+			CosmicTelescope: 显示柔光之源以及地图上的一些其他相关信息
 			DungeonMap:
 				'''
 				显示地牢的位置
@@ -1514,7 +1514,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.SuspiciousLooking}
 				'''
 			YuckyOrb: 召唤一只会提供光亮的宠物鮟鱇鱼
-			Transistor: 阻止和光的自然生成
+			Transistor: 阻止柔光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
 			Cosmicanon: 阻止血月的自然生成
 			OmegaStaritePainting:
@@ -1548,7 +1548,7 @@ Mods: {
 				'''
 			Galactium:
 				'''
-				挥舞时召唤从天而降的和光星辰
+				挥舞时召唤从天而降的柔光星辰
 				真近战攻击击中敌人时对其造成碧蓝之火减益
 				'''
 			GoldPowder: 将小动物转化为金小动物
@@ -2012,7 +2012,7 @@ Mods: {
 		}
 
 		MapLayerToggle: {
-			CosmicTelescope: 显示和光之源以及地图上的一些其他相关信息
+			CosmicTelescope: 显示柔光之源以及地图上的一些其他相关信息
 			VialOfBlood:
 				'''
 				显示地牢的位置
@@ -2071,8 +2071,8 @@ Mods: {
 		}
 
 		Transistor: {
-			False: 和光可自然发生
-			True: 和光不再自然发生
+			False: 柔光可自然发生
+			True: 柔光不再自然发生
 		}
 
 		EclipseGlasses: {
@@ -2170,6 +2170,7 @@ Mods: {
 			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在通过24小时的日光浴后, 它吸收了太阳的能力. 据说味道像肉桂.
 			Meteor: 清晨, 漂浮的流星似乎吞噬了太空中的碎片. 当被推离轨道时可能会留下陨石坑.
 
+			Carpenter: 一只蚂蚁决定不再是大机器上的齿轮, 因为热爱房屋而选择成为木匠. 会搬进有着5个独特家具物件的房子.
 			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
 			SkyMerchant: 一位聪明的猎人创造了热气球来捕猎飞行生物. 在有风的日子里可以看到他在天空中飞翔.
 			Physicist: 来自邻近行星, 物理学家在你的世界上观察到了非自然现象, 是来调查的. 不相信魔法或童话.
@@ -2219,7 +2220,7 @@ Mods: {
 			CrabSeason: 蟹季
 			CrabSeasonWarning: 海洋的温度正在逐渐升高...
 			CrabSeasonEnding: 海洋再度变得冰冷...
-			GlimmerEvent: 和光事件
+			GlimmerEvent: 柔光事件
 			WorksInInventoryAndPiggyBank: 放置在背包或猪猪存钱罐中即可生效
 			FavoriteOnly: 仅将其标记为收藏时才会生效
 			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
@@ -2239,14 +2240,14 @@ Mods: {
 		}
 
 		GameTips: {
-			GlimmerEvent: 在和光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它...
+			GlimmerEvent: 在柔光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它...
 			DemonSiege: 地狱到处都是血腥丘陵, 腐化和猩红中的某些物块似乎与它们产生了共鸣...
 			GaleStreams: 试试在有风的日子去太空...某些生物只有在大风的时候才会出现!
 			CrabCrevice: 海洋深处是一个受潮汐力量支配的水生社会...
 			MothmanMaskSecret: 试试无伤击败拜月教邪教徒...
 			Necromancy: 亡灵法术的力量可以让任何敌人为你而战!
 			LegendaryFish: 渔夫可能会对传奇鱼类感兴趣...
-			LegendaryFishBlobfish: 试试在和光持续期间钓鱼!
+			LegendaryFishBlobfish: 试试在柔光持续期间钓鱼!
 			LegendaryFishGoreFish: 试试在血巢附近的岩浆中钓鱼!
 			CarpenterRequirements: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
 			SkyMerchant: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
@@ -3793,7 +3794,7 @@ Mods: {
 
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
-			OmegaStarite: 通过与和光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
+			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
 			DustDevil: 使用{ThunderstormInABottle}召唤
 
 			RedSprite: 风暴紊流的战斗期间.
@@ -3816,7 +3817,7 @@ Mods: {
 		Active: 激活
 		Inactive: 失效
 		BloodMoonsPrevented: 阻止血月: {0}
-		GlimmersPrevented: 阻止和光: {0}
+		GlimmersPrevented: 阻止柔光: {0}
 		EclipsesPrevented: 阻止日蚀: {0}
 		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
