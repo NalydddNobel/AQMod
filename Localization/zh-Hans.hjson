@@ -8,6 +8,9 @@ Mods: {
 		}
 
 		Announcement: {
+			OrganicEventSight: 丛林的神经被刺激了...
+			OrganicEventFright: 丛林的恐惧已开始蔓延...
+			OrganicEventMight: 丛林的根须变硬了...
 			GlimmerStart: 一缕微光出现在了天空中...
 			GlimmerEnd: 微光渐渐消失...
 		}
@@ -105,6 +108,8 @@ Mods: {
 		}
 
 		PrefixName: {
+			DoubledTimePrefix: 填充的
+
 			DivinePrefix: 神圣的
 			BlessedPrefix: 赐福的
 			VitriousPrefix: 多样的
@@ -119,6 +124,8 @@ Mods: {
 		}
 
 		Prefixes: {
+			BuffDuration: "{0}持续时间"
+
 			PrefixSoulLimit: "{0}灵魂容量"
 			PrefixSoulCost: "{0}灵魂消耗"
 		}
@@ -126,6 +133,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			NeonGenesis: 新世纪
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
 			DavyJonesAnchor: 深海阎王的锚
@@ -232,9 +240,6 @@ Mods: {
 			NeutronYogurt: 中子酸奶
 			CinnamonRoll: 肉桂卷
 			SpicyEel: 香辣鳗鱼
-
-			StuffedConcoctionPotionName:填充{ItemName}
-			StuffedConcoction: 填充混合物
 
 			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
@@ -606,6 +611,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			NeonGenesis: 允许你的钓鱼浮标向敌人发射激光
 			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
 			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
@@ -1001,16 +1007,37 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
-			ArgonFish: 一种身上带有氩苔藓的传奇鱼类
-			KryptonFish: 一种身上带有氪苔藓的传奇鱼类
-			XenonFish: 一种身上带有氙苔藓的传奇鱼类
-			RadonFish: 一种身上带有氖苔藓的传奇鱼类
+			ArgonFish:
+				'''
+				一种身上带有氩苔藓的传奇鱼类
+				'抓捕位置: 地底 & 洞穴'
+				'''
+			KryptonFish:
+				'''
+				一种身上带有氪苔藓的传奇鱼类
+				'抓捕位置: 地底 & 洞穴'
+				'''
+			XenonFish:
+				'''
+				一种身上带有氙苔藓的传奇鱼类
+				'抓捕位置: 地底 & 洞穴'
+				'''
+			RadonFish: 
+				'''
+				一种身上带有氖苔藓的传奇鱼类
+				'抓捕位置: 地底 & 洞穴'
+				'''
 			Blobfish:
 				'''
-				一种身上带有...丑陋...的传奇鱼类
+				一种身上带有...丑陋...的受祝福鱼类
 				'只是...看看它!'
+				'抓捕时间: 微光'
 				'''
-			GoreFish: 一种身上带有恶魔能量的传奇鱼类
+			GoreFish: 
+				'''
+				一种身上带有恶魔能量的传奇鱼类
+				'抓捕位置: 血巢附近的岩浆中'
+				'''
 
 			SnowRoulette:
 				'''
@@ -1208,7 +1235,7 @@ Mods: {
 			VoodooAmulet:
 				'''
 				攻击一名敌人时会使附近所有同种类的敌人同样受到攻击
-				降低熔岩的伤害
+				降低岩浆的伤害
 				'''
 			WyvernAmulet:
 				'''
@@ -1943,10 +1970,8 @@ Mods: {
 				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
 				当你没有任何幽魂仆从时你所受到的伤害降低
 				'''
-			Gravetender: 
-				'''
-				召唤一缕魂灵来强化你的幽魂
-				'''
+			Gravetender: 召唤一缕魂灵来强化你的幽魂
+
 			Arachnotron:
 				'''
 				增加12%近战和召唤伤害
@@ -2111,7 +2136,7 @@ Mods: {
 		}
 		
 		Bestiary: {
-			DustDevil: 一种几乎可以控制所有元素的强大元素. 被操纵的气流形成的强大旋风! 它的名字源于它强大的吸力吸入了很多灰尘.
+			DustDevil: 一种强大的元素, 寻求着以太的强大力量. 它的存在维系着一个旋风, 捕捉着灰尘、碎片和动物.
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
 
 			CoconutCrab: 演化出的天然迷彩, 可以伪装成椰子. 会睡在椰子树上, 并且会在清晨从椰子树上跳下.
@@ -2211,6 +2236,28 @@ Mods: {
 
 		RecipeGroup: {
 			AnyEctoplasm: 任意灵质
+		}
+
+		GameTips: {
+			GlimmerEvent: 在微光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它...
+			DemonSiege: 地狱到处都是血腥丘陵, 腐化和猩红中的某些物块似乎与它们产生了共鸣...
+			GaleStreams: 试试在有风的日子去太空...某些生物只有在大风的时候才会出现!
+			CrabCrevice: 海洋深处是一个受潮汐力量支配的水生社会...
+			MothmanMaskSecret: 试试无伤击败拜月教邪教徒...
+			Necromancy: 亡灵法术的力量可以让任何敌人为你而战!
+			LegendaryFish: 渔夫可能会对传奇鱼类感兴趣...
+			LegendaryFishBlobfish: 试试在微光持续期间钓鱼!
+			LegendaryFishGoreFish: 试试在血巢附近的岩浆中钓鱼!
+			CarpenterRequirements: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
+			SkyMerchant: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
+			Vampirism: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
+			CursorDye: 光标染料可以更改你的光标的颜色或布局! 它们很有趣!
+			Drones: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!
+			BreadofCthulhu: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!
+			ExporterCrates: 不喜欢板条箱的随机性? 发货人的奖励可能是一个很好的替代品--如果你愿意成为罪犯!
+			Moonflower: 陨石上可能会长出具有神奇特性的外来植物...
+			Pumpinator: 试一试太空中某种漂浮的陨石, 你可能会发现一种稀有的、强大的工具...
+			GhostlyGrave: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!
 		}
 
 		Configuration: {
