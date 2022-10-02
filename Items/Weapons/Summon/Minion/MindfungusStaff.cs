@@ -49,7 +49,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
                 .AddIngredient(ItemID.TissueSample, 4)
                 .AddIngredient(ItemID.ViciousMushroom, 2)
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.TendonBow);
+                .TryRegisterAfter(ItemID.TendonBow);
         }
     }
 }

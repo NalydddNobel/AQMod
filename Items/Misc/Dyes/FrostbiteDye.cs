@@ -24,7 +24,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient(ItemID.Bottle)
                 .AddIngredient<FrozenTear>()
                 .AddTile(TileID.DyeVat)
-                .RegisterAfter(ItemID.FlameDye);
+                .TryRegisterAfter(ItemID.FlameDye);
         }
     }
 }

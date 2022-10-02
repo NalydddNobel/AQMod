@@ -35,7 +35,7 @@ namespace Aequus.Items.Consumables.Bait
                 .AddIngredient(ItemID.CursedFlame, 10)
                 .AddIngredient(ItemID.UnholyWater)
                 .AddTile(TileID.Bottles)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler));
+                .TryRegisterBefore((ItemID.EnchantedNightcrawler));
         }
     }
 }

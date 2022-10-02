@@ -27,7 +27,7 @@ namespace Aequus.Items.Consumables.BuffPotions
                 .AddIngredient<IcebergFish>()
                 .AddIngredient(ItemID.Shiverthorn)
                 .AddTile(TileID.Bottles)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.SummoningPotion));
+                .TryRegisterAfter((ItemID.SummoningPotion));
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Aequus.Items.Consumables.BuffPotions
                 .AddIngredient<Leecheel>()
                 .AddIngredient(ItemID.Deathweed)
                 .AddTile(TileID.Bottles)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.HeartreachPotion));
+                .TryRegisterBefore((ItemID.HeartreachPotion));
         }
     }
 }

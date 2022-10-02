@@ -39,7 +39,7 @@ namespace Aequus.Items.Weapons.Magic
                 .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
-                .RegisterBefore(ItemID.SpaceGun);
+                .TryRegisterBefore(ItemID.SpaceGun);
         }
     }
 }

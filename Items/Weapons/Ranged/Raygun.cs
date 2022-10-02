@@ -89,7 +89,7 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.PhoenixBlaster);
+                .TryRegisterAfter(ItemID.PhoenixBlaster);
         }
 
         public static Color GetColor(Projectile projectile)

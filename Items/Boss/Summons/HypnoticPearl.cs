@@ -45,7 +45,7 @@ namespace Aequus.Items.Boss.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
+                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
 
             CreateRecipe()
                 .AddIngredient(ItemID.BlackPearl)
@@ -53,7 +53,7 @@ namespace Aequus.Items.Boss.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
+                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
 
             CreateRecipe()
                 .AddIngredient(ItemID.PinkPearl)
@@ -61,7 +61,7 @@ namespace Aequus.Items.Boss.Summons
                 .AddIngredient(ItemID.Starfish, 5)
                 .AddIngredient(ItemID.Seashell, 5)
                 .AddTile(TileID.DemonAltar)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.SuspiciousLookingEye));
+                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Aequus.Items.Consumables.Foods.Combinations
                 .AddIngredient<AstralCookie>()
                 .AddIngredient<NeutronYogurt>()
                 .AddTile(TileID.CookingPots)
-                .RegisterAfter(ItemID.PrismaticPunch);
+                .TryRegisterAfter(ItemID.PrismaticPunch);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Aequus.Items.Weapons.Magic
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.Bookcases)
-                .RegisterAfter(ItemID.GoldenShower);
+                .TryRegisterAfter(ItemID.GoldenShower);
         }
     }
 }

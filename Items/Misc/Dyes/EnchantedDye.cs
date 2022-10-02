@@ -26,7 +26,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient(ItemID.Bottle)
                 .AddIngredient<CosmicEnergy>()
                 .AddTile(TileID.DyeVat)
-                .RegisterAfter(ItemID.IntenseRainbowDye);
+                .TryRegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

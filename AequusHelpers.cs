@@ -893,11 +893,16 @@ namespace Aequus
             return new Vector2(UnNaN(value.X), UnNaN(value.Y));
         }
 
-        public static Recipe RegisterAfter(this Recipe rec, int itemID)
+        public static Recipe TryRegisterAfter(this Recipe rec, int itemID)
         {
-            rec.Register();
+            if (!HasRecipe(itemID))
+            {
+                rec.Register();
+                return rec;
+            }
             try
             {
+                rec.Register();
                 rec.SortAfterFirstRecipesOf(itemID);
             }
             catch
@@ -905,11 +910,16 @@ namespace Aequus
             }
             return rec;
         }
-        public static Recipe RegisterBefore(this Recipe rec, int itemID)
+        public static Recipe TryRegisterBefore(this Recipe rec, int itemID)
         {
-            rec.Register();
+            if (!HasRecipe(itemID))
+            {
+                rec.Register();
+                return rec;
+            }
             try
             {
+                rec.Register();
                 rec.SortBeforeFirstRecipesOf(itemID);
             }
             catch
@@ -917,11 +927,23 @@ namespace Aequus
             }
             return rec;
         }
-        public static Recipe Register(this Recipe rec, Action<Recipe> postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh)
+        public static Recipe UnsafeSortRegister(this Recipe rec, Action<Recipe> postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh)
         {
             rec.Register();
             postRegisterCauseStableDoesntHaveRegisterReturnRecipeGuh(rec);
             return rec;
+        }
+
+        public static bool HasRecipe(int item)
+        {
+            foreach (var r in Main.recipe)
+            {
+                if (r?.createItem?.type == item)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static bool CheckHeredity(this Projectile projectile, AequusProjectile sources, Projectile projectile2)

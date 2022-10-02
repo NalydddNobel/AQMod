@@ -22,7 +22,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient(ItemID.Bottle)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.DyeVat)
-                .RegisterAfter(ItemID.IntenseRainbowDye);
+                .TryRegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

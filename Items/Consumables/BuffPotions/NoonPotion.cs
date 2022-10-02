@@ -39,7 +39,7 @@ namespace Aequus.Items.Consumables.BuffPotions
                 .AddIngredient(ItemID.FallenStar)
                 .AddIngredient(ItemID.SoulofLight)
                 .AddTile(TileID.Bottles)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.InfernoPotion));
+                .TryRegisterBefore((ItemID.InfernoPotion));
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient<OutlineDye>()
                 .AddIngredient<UltimateEnergy>()
                 .AddTile(TileID.DyeVat)
-                .RegisterAfter(ItemID.IntenseRainbowDye);
+                .TryRegisterAfter(ItemID.IntenseRainbowDye);
         }
     }
 }

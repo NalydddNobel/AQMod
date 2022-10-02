@@ -344,7 +344,7 @@ namespace Aequus.Items.Weapons.Magic
                 .AddIngredient(ItemID.IronBar, 10)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.WaterGun);
+                .TryRegisterAfter(ItemID.WaterGun);
         }
     }
 }

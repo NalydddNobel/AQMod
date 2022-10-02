@@ -80,7 +80,7 @@ namespace Aequus.Items.Armor.Passive
             CreateRecipe()
                 .AddIngredient(ItemID.Daybloom, 3)
                 .AddIngredient(ItemID.Sunflower)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.CopperBar));
+                .TryRegisterBefore((ItemID.CopperBar));
         }
     }
 }

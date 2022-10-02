@@ -50,7 +50,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
                 .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
-                .RegisterBefore(ItemID.SpiderStaff);
+                .TryRegisterBefore(ItemID.SpiderStaff);
         }
     }
 }

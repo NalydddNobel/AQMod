@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.MythrilAnvil)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.RainbowRod));
+                .TryRegisterAfter((ItemID.RainbowRod));
         }
     }
 }

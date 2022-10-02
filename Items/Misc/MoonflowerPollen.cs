@@ -49,7 +49,7 @@ namespace Aequus.Items.Misc
                     var r = Recipe.Create(i, 1)
                         .AddIngredient(i)
                         .AddIngredient<MoonflowerPollen>()
-                        .RegisterAfter(i);
+                        .TryRegisterAfter(i);
                     r.createItem.Prefix(ModContent.PrefixType<DoubledTimePrefix>());
                 }
             }

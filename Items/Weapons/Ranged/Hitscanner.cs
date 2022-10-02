@@ -67,14 +67,14 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient(ItemID.CobaltBar, 10)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.OnyxBlaster);
+                .TryRegisterAfter(ItemID.OnyxBlaster);
 
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
                 .AddIngredient(ItemID.PalladiumBar, 10)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.OnyxBlaster);
+                .TryRegisterAfter(ItemID.OnyxBlaster);
         }
     }
 }

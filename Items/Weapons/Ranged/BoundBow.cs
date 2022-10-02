@@ -84,13 +84,13 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .RegisterBefore(ItemID.OnyxBlaster);
+                .TryRegisterBefore(ItemID.OnyxBlaster);
             CreateRecipe()
                 .AddIngredient(ItemID.ShadewoodBow)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .RegisterBefore(ItemID.OnyxBlaster);
+                .TryRegisterBefore(ItemID.OnyxBlaster);
         }
     }
 }

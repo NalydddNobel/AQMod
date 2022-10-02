@@ -10,7 +10,7 @@ namespace Aequus.Items.Placeable.CrabCrevice
             CreateRecipe()
                 .AddIngredient<SedimentaryRockWall>(4)
                 .AddTile(TileID.WorkBenches)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.ObsidianBackEcho));
+                .TryRegisterAfter((ItemID.ObsidianBackEcho));
         }
     }
 }

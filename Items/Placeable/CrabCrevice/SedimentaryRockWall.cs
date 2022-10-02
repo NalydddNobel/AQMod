@@ -22,7 +22,7 @@ namespace Aequus.Items.Placeable.CrabCrevice
             CreateRecipe(4)
                 .AddIngredient<SedimentaryRock>()
                 .AddTile(TileID.WorkBenches)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.ObsidianBackEcho));
+                .TryRegisterAfter((ItemID.ObsidianBackEcho));
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Aequus.Items.Boss.Summons
                 .AddIngredient<FrozenTear>(10)
                 .AddIngredient<AtmosphericEnergy>()
                 .AddTile(TileID.DemonAltar)
-                .RegisterAfter(ItemID.GoblinBattleStandard);
+                .TryRegisterAfter(ItemID.GoblinBattleStandard);
         }
     }
 }

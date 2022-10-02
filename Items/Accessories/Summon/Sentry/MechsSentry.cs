@@ -204,7 +204,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 .AddIngredient(ItemID.MechanicalBatteryPiece)
                 .AddIngredient(ModContent.ItemType<SantankSentry>())
                 .AddTile(TileID.MythrilAnvil)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.PapyrusScarab));
+                .TryRegisterAfter((ItemID.PapyrusScarab));
         }
 
         public static void ExpertEffect_UpdateAccessory(Item item, Player player)

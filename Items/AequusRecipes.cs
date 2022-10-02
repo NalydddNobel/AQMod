@@ -108,7 +108,7 @@ namespace Aequus.Items
                 .AddIngredient(original)
                 .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
                 .AddTile(TileID.Anvils)
-                .Register((r) =>
+                .UnsafeSortRegister((r) =>
                     {
                         if (sort)
                         {
@@ -122,7 +122,7 @@ namespace Aequus.Items
                 .AddIngredient(original, amt)
                 .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
                 .AddTile(TileID.Anvils)
-                .Register((r) =>
+                .UnsafeSortRegister((r) =>
                     {
                         if (sort)
                         {

@@ -35,7 +35,7 @@ namespace Aequus.Items.Accessories.Utility
                 .AddIngredient(ItemID.TreasureMagnet)
                 .AddIngredient<HaltingMachine>()
                 .AddTile(TileID.TinkerersWorkbench)
-                .RegisterAfter(ItemID.ArchitectGizmoPack);
+                .TryRegisterAfter(ItemID.ArchitectGizmoPack);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.DarkShard, 2)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
-                .Register((r) => r.SortAfterFirstRecipesOf(ItemID.RainbowRod));
+                .TryRegisterAfter((ItemID.RainbowRod));
         }
     }
 }

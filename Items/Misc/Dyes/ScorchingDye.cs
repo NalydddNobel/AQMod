@@ -25,7 +25,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient(ItemID.Bottle)
                 .AddIngredient<Fluorescence>()
                 .AddTile(TileID.DyeVat)
-                .RegisterAfter(ItemID.FlameDye);
+                .TryRegisterAfter(ItemID.FlameDye);
         }
     }
 }

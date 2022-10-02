@@ -36,13 +36,13 @@ namespace Aequus.Items.Armor.Gravetender
                 .AddIngredient(ItemID.RottenChunk, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.GravediggerShovel));
+                .TryRegisterBefore((ItemID.GravediggerShovel));
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.Vertebrae, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.GravediggerShovel));
+                .TryRegisterBefore((ItemID.GravediggerShovel));
         }
     }
 }

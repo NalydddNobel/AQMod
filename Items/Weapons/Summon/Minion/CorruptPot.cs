@@ -55,7 +55,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
                 .AddIngredient(ItemID.ShadowScale, 4)
                 .AddIngredient(ItemID.ClayPot)
                 .AddTile(TileID.Anvils)
-                .RegisterAfter(ItemID.DemonBow);
+                .TryRegisterAfter(ItemID.DemonBow);
         }
     }
 }

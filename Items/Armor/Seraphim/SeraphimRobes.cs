@@ -36,7 +36,7 @@ namespace Aequus.Items.Armor.Seraphim
                 .AddIngredient<GravetenderRobes>()
                 .AddIngredient<Hexoplasm>(10)
                 .AddTile(TileID.Loom)
-                .Register((r) => r.SortBeforeFirstRecipesOf(ItemID.GravediggerShovel));
+                .TryRegisterBefore((ItemID.GravediggerShovel));
         }
     }
 }
