@@ -250,7 +250,6 @@ namespace Aequus.Projectiles
                 {
                     transform = Main.rand.Next(CustomTombstones.HellTombstones);
                 }
-                player.respawnTimer = Math.Min(35, player.respawnTimer);
             }
         }
 
