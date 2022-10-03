@@ -701,6 +701,68 @@
             <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
+            <summary>
+            The range in units the NPC can travel. Defaults to 150
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.movementSpeed">
+            <summary>
+            Used to control the movement speed of the NPC. Defaults to 0.035.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.speedCap">
+            <summary>
+            The maximum speed the NPC can travel. Defaults to 3
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.faceAwayFromConnection">
+            <summary>
+            In order to make the NPC rotate their sprite like the Fungi Bulbs.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.shoots">
+            <summary>
+            Whether the NPC shoots at all. Defaults to false
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.CanShoot">
+            <summary>
+            Whether the NPC can shoot when it is ready and shoots is set to true. Defaults to if it is not in a tile, and has a line to shoot the player 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.GetShootTimer">
+            <summary>
+            The maximum time before the NPC shoots. Defaults to 120.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.Shoot">
+            <summary>
+            Called when the NPC shoots.
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.ResetShootTimer(System.Boolean,System.Int32)">
+            <summary>
+            Defaults to reseting the timer to 0 when hit. And reseting the timer to [Timer max] - 20 when not hit
+            </summary>
+            <param name="justHit">Whether the NPC was hit. This is the basically exact same as <see cref="F:Terraria.NPC.justHit"/> just passed as a parameter</param>
+            <param name="current"></param>
+            <returns>The new timer</returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.PreDrawChain(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Graphics.Texture2D@,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Color@)">
+            <summary>
+            Allows you to modify how the chain is drawn
+            </summary>
+            <param name="spriteBatch">The sprite batch</param>
+            <param name="screenPos"></param>
+            <param name="drawColor"></param>
+            <param name="chainTexture">The texture</param>
+            <param name="frame">The texture</param>
+            <param name="_drawColor">The color the entire chain is drawn in</param>
+            <returns>Whether to draw the chain</returns>
+        </member>
         <member name="T:Aequus.NPCs.BestiaryBuilder">
             <summary>
             Helper class for setting up bestiary entries

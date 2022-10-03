@@ -1069,6 +1069,19 @@ namespace Aequus
             NPCID.Sets.NPCBestiaryDrawOffset.Add(npc.Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, });
         }
 
+        public static void CollideWithOthers(this NPC npc, float speed = 0.05f)
+        {
+            var rect = npc.getRect();
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && i != npc.whoAmI && npc.type == Main.npc[i].type
+                    && rect.Intersects(Main.npc[i].getRect()))
+                {
+                    npc.velocity += Main.npc[i].DirectionTo(npc.Center).UnNaN() * speed;
+                }
+            }
+        }
+
         public static void GetDrawInfo(this NPC npc, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength)
         {
             texture = TextureAssets.Npc[npc.type].Value;

@@ -179,7 +179,7 @@ namespace Aequus.Items
                     }
                 }
             }
-            return true;
+            return null;
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)

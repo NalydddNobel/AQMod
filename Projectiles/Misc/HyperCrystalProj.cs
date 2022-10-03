@@ -72,7 +72,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.ai[1]++;
                 Projectile.rotation += Projectile.ai[1] * 0.001f;
             }
-            if ((Projectile.alpha == 255 || Projectile.alpha < 200) && Projectile.Distance(Main.player[Projectile.owner].Center) > 480f)
+            if ((Projectile.alpha == 255 || Projectile.alpha < 200) && Projectile.Distance(Main.player[Projectile.owner].Center) > 240f)
             {
                 Projectile.Kill();
             }

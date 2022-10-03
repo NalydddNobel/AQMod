@@ -82,14 +82,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ambient_DarkBrown, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
                 }
             }
-            for (int i = 0; i < Math.Max(damage / 5, 1); i++)
-            {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
-            }
-            for (int i = 0; i < Math.Max(damage / 5, 1); i++)
-            {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ambient_DarkBrown, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
-            }
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Ambient_DarkBrown, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
         }
 
         public override void AI()

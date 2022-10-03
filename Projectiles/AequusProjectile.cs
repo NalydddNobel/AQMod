@@ -186,12 +186,16 @@ namespace Aequus.Projectiles
             }
             if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
             {
-                sourceItemUsed = itemUse_WithAmmo.Item.netID;
-                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+                if (itemUse_WithAmmo.Item != null)
+                {
+                    sourceItemUsed = itemUse_WithAmmo.Item.netID;
+                    sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+                }
             }
             else if (source is EntitySource_ItemUse itemUse)
             {
-                sourceItemUsed = itemUse.Item.netID;
+                if (itemUse.Item != null)
+                    sourceItemUsed = itemUse.Item.netID;
             }
             else if (source is EntitySource_Parent parent)
             {
@@ -221,14 +225,6 @@ namespace Aequus.Projectiles
 
         public void OnSpawn_CheckItem(Projectile projectile, IEntitySource source)
         {
-            if (sourceItemUsed > Main.maxItemTypes)
-            {
-                var item = ContentSamples.ItemsByType[sourceItemUsed];
-                if (item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
-                {
-                    onSpawnHook.OnSpawnProjectile(projectile, this, source);
-                }
-            }
         }
 
         public void OnSpawn_CheckBonesaw(Projectile projectile, EntitySource_ItemUse itemUse)
@@ -276,7 +272,15 @@ namespace Aequus.Projectiles
                 {
                     OnSpawn_CheckTombstones(projectile, misc);
                 }
-                OnSpawn_CheckItem(projectile, source);
+
+                if (sourceItemUsed > Main.maxItemTypes)
+                {
+                    var item = ContentSamples.ItemsByType[sourceItemUsed];
+                    if (item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
+                    {
+                        onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                    }
+                }
             }
             catch
             {

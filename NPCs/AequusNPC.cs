@@ -15,6 +15,7 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
+using Aequus.NPCs.Monsters.Jungle;
 using Aequus.Particles;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
@@ -56,6 +57,8 @@ namespace Aequus.NPCs
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
+        public int jungleCoreInvasion;
+        public int jungleCoreInvasionIndex;
 
         public override void Load()
         {
@@ -595,6 +598,16 @@ namespace Aequus.NPCs
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
                 return;
 
+            if (jungleCoreInvasion > 0)
+            {
+                jungleCoreInvasion--;
+                Main.NewText(Main.npc[jungleCoreInvasion]);
+                if (Main.npc[jungleCoreInvasion].active && Main.npc[jungleCoreInvasion].ModNPC is BaseCore core)
+                {
+                    core.OnKilledMinion(npc, jungleCoreInvasionIndex);
+                }
+            }
+
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (npc.playerInteraction[i])
@@ -736,6 +749,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
+            binaryWriter.Write(jungleCoreInvasion);
             binaryWriter.Write(locustStacks);
             binaryWriter.Write(corruptionHellfireStacks);
             binaryWriter.Write(crimsonHellfireStacks);
@@ -744,6 +758,7 @@ namespace Aequus.NPCs
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
+            jungleCoreInvasion = binaryReader.ReadInt32();
             locustStacks = binaryReader.ReadByte();
             corruptionHellfireStacks = binaryReader.ReadByte();
             crimsonHellfireStacks = binaryReader.ReadByte();

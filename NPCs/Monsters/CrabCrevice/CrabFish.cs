@@ -63,13 +63,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
                 }
             }
-            else
-            {
-                for (int i = 0; i < damage / 5; i++)
-                {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
-                }
-            }
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
