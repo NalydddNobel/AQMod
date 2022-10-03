@@ -1036,7 +1036,7 @@ Mods: {
 			GoreFish: 
 				'''
 				一种身上带有恶魔能量的传奇鱼类
-				'抓捕位置: 血巢附近的岩浆中'
+				'抓捕位置: 血巢附近的熔岩中'
 				'''
 
 			SnowRoulette:
@@ -1235,7 +1235,7 @@ Mods: {
 			VoodooAmulet:
 				'''
 				攻击一名敌人时会使附近所有同种类的敌人同样受到攻击
-				降低岩浆的伤害
+				降低熔岩的伤害
 				'''
 			WyvernAmulet:
 				'''
@@ -1424,7 +1424,7 @@ Mods: {
 			IWillBeBack:
 				'''
 				可在不击杀向导的情况下召唤血肉墙
-				右键切换以决定是否使所有城镇NPC免疫岩浆
+				右键切换以决定是否使所有城镇NPC免疫熔岩
 				'''
 			CosmicTelescope: 显示柔光之源以及地图上的一些其他相关信息
 			DungeonMap:
@@ -2007,8 +2007,8 @@ Mods: {
 		}
 
 		IWillBeBackToggle: {
-			True: 城镇NPC现在会免疫岩浆
-			False: 城镇NPC现在不再会免疫岩浆
+			True: 城镇NPC现在会免疫熔岩
+			False: 城镇NPC现在不再会免疫熔岩
 		}
 
 		MapLayerToggle: {
@@ -2248,7 +2248,7 @@ Mods: {
 			Necromancy: 亡灵法术的力量可以让任何敌人为你而战!
 			LegendaryFish: 渔夫可能会对传奇鱼类感兴趣...
 			LegendaryFishBlobfish: 试试在柔光持续期间钓鱼!
-			LegendaryFishGoreFish: 试试在血巢附近的岩浆中钓鱼!
+			LegendaryFishGoreFish: 试试在血巢附近的熔岩中钓鱼!
 			CarpenterRequirements: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
 			SkyMerchant: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
 			Vampirism: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
@@ -2466,7 +2466,7 @@ Mods: {
 					Terraria_LavaBomb: 
 					'''
 					我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 
-					至少这只是岩浆, 而不是泥土.
+					至少这只是熔岩, 而不是泥土.
 					'''
 					Terraria_HoneyBomb: 
 					'''
@@ -3806,7 +3806,7 @@ Mods: {
 		}
 
 		Water: 水
-		Lava: 岩浆
+		Lava: 熔岩
 		Honey: 蜂蜜
 		Shimmer: 微光
 
