@@ -42,14 +42,14 @@ namespace Aequus.Content.DronePylons
                 location = value;
             }
         }
-        public Vector2 WorldLocation 
-        { 
+        public Vector2 WorldLocation
+        {
             get
             {
                 return Location.ToWorldCoordinates() + new Vector2(24f);
             }
         }
-        
+
         public List<DroneSlot> ActiveDrones { get; private set; }
 
         public int Count

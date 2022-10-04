@@ -85,7 +85,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                         if (NPC.velocity.Y.Abs() <= 0.1f)
                         {
                             NPC.ai[1]++;
-                            if ((int)NPC.ai[0] != 2 && Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 10f 
+                            if ((int)NPC.ai[0] != 2 && Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 10f
                                 && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height) && Main.rand.NextBool(60))
                             {
                                 NPC.netUpdate = true;

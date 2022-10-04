@@ -55,7 +55,7 @@ namespace Aequus.Projectiles.Ranged
 
             if (Main.rand.NextBool(6))
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(),
                     Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, new Color(255, 120, Main.rand.Next(70), 0), 1f);
             }
         }

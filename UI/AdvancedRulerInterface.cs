@@ -354,7 +354,7 @@ namespace Aequus.UI
 
             bool anyFixedPoints = FixedPoints[0] != Point.Zero;
 
-            if (Main.keyState.IsKeyDown(Keys.LeftControl) )
+            if (Main.keyState.IsKeyDown(Keys.LeftControl))
             {
                 Main.cursorOverride = 2;
                 if (Main.mouseLeft && Main.mouseLeftRelease)

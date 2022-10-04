@@ -36,7 +36,7 @@ namespace Aequus.Graphics.Tiles
             Add(new Point(i, j), renderLayer);
         }
 
-        private static  void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
+        private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
         {
             DrawRender(TileRenderLayer.PreDrawMasterRelics);
             orig(self);

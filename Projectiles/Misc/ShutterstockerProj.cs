@@ -106,7 +106,7 @@ namespace Aequus.Projectiles.Misc
                 var item = AequusItem.SetDefaults<ShutterstockerClip>();
                 int size = CalculatedPhotoSize + ShutterstockerSceneRenderer.TilePadding;
                 var coords = Projectile.Center.ToTileCoordinates();
-                var rect = new Rectangle(coords.X - size /2, coords.Y - size / 2, size, size);
+                var rect = new Rectangle(coords.X - size / 2, coords.Y - size / 2, size, size);
                 item.ModItem<ShutterstockerClip>().SetClip(rect);
                 ShutterstockerSceneRenderer.renderRequests.Add(item.ModItem<ShutterstockerClip>());
                 player.QuickSpawnClonedItem(player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, player.HeldItem.useAmmo, "Shutterstock Photo Creation"), item, 1);

@@ -55,7 +55,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.localAI[0] = (float)Math.Cos(Projectile.ai[1]);
                 Projectile.scale = 1f + Projectile.localAI[0] * 0.3f;
                 Projectile.velocity = Main.projectile[aequus.sourceProj].velocity;
-                Projectile.Center = Vector2.Lerp(Projectile.Center, 
+                Projectile.Center = Vector2.Lerp(Projectile.Center,
                     Main.projectile[aequus.sourceProj].oldPosition + Main.projectile[aequus.sourceProj].Size / 2f + new Vector2(Math.Max(Main.projectile[aequus.sourceProj].width, 20) * (float)Math.Sin(Projectile.ai[1]), 0f).RotatedBy(Projectile.rotation), 0.05f + (255 - Projectile.alpha) / 2000f) - Projectile.velocity;
             }
             else if ((int)Projectile.ai[0] == 1)
@@ -109,7 +109,7 @@ namespace Aequus.Projectiles.Misc
             SoundEngine.PlaySound(SoundID.DD2_WitherBeastDeath.WithVolume(0.6f), Projectile.Center);
             for (int i = 0; i < 34; i++)
             {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(),
                     newColor: Color.Lerp(new Color(100, 255, 255, 100), new Color(100, 255, 100, 100), Main.rand.NextFloat()), Scale: Main.rand.NextFloat(0.5f, 1.1f));
                 d.velocity *= 0.5f;
                 d.velocity += Vector2.Normalize(Projectile.velocity) * Main.rand.NextFloat(15f);

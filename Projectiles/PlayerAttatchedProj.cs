@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles

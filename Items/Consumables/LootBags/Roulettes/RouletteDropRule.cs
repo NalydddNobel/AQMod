@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
@@ -39,7 +38,7 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
         /// <param name="amountDroppedMinimum"></param>
         /// <param name="amountDroppedMaximum"></param>
         /// <param name="chanceNumerator"></param>
-        public RouletteDropRule(int rouletteItemID, int itemID, int rouletteChoice = 0, int dropChance = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) 
+        public RouletteDropRule(int rouletteItemID, int itemID, int rouletteChoice = 0, int dropChance = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1)
             : this(ItemLoader.GetItem(rouletteItemID) as RouletteBase, itemID, rouletteChoice, dropChance, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
         {
         }

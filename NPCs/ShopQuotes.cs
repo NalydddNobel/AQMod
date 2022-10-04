@@ -2,7 +2,6 @@
 using Aequus.Common;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
-using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -428,7 +427,7 @@ namespace Aequus.NPCs
                     .WithColor(Color.Lerp(Color.BlueViolet, Color.White, 0.5f))
                     .AddQuote(ItemID.DyeVat)
                     .AddQuote(() => Main.LocalPlayer.head > 0 ?
-                    Language.GetTextValueWith(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye_Helmet", new { Helmet = DyeTraderFindHelmetName() }) 
+                    Language.GetTextValueWith(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye_Helmet", new { Helmet = DyeTraderFindHelmetName() })
                     : Language.GetTextValue(NPCShopQuoteKey("Aequus", NPCID.DyeTrader) + "SilverDye"), ItemID.SilverDye)
                     .AddQuote(ItemID.TeamDye)
                     .AddShopQuoteKey("DyeTradersClothes", ItemID.DyeTraderRobe)

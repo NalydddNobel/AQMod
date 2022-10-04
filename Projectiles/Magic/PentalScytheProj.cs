@@ -69,7 +69,7 @@ namespace Aequus.Projectiles.Magic
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(BuffID.OnFire3, 360);
-            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f, 
+            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f,
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner, target.whoAmI + 1);
         }
 

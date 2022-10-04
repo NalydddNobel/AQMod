@@ -2,7 +2,6 @@
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.LootBags;
-using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;

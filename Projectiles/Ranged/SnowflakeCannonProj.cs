@@ -85,7 +85,7 @@ namespace Aequus.Projectiles.Ranged
                 }
                 else
                 {
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center -Projectile.Center) * speed, 0.2f);
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * speed, 0.2f);
                 }
             }
             if (Main.rand.NextBool(12))

@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Localization;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs

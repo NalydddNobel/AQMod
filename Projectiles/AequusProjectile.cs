@@ -208,7 +208,7 @@ namespace Aequus.Projectiles
                     sourceProjIdentity = parentProjectile.identity;
                 }
             }
-            if (sourceProjIdentity != -1 )
+            if (sourceProjIdentity != -1)
             {
                 sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (sourceProj == -1)

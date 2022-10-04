@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -66,7 +65,7 @@ namespace Aequus.Projectiles.Summon
             {
                 case 0:
                     {
-                        var goalPosition = IdlePosition(Main.player[Projectile.owner], leader, minionPos, count); 
+                        var goalPosition = IdlePosition(Main.player[Projectile.owner], leader, minionPos, count);
                         float speed = Projectile.GetMinionReturnSpeed(8f, 1.25f);
 
                         Projectile.tileCollide = false;
@@ -116,7 +115,7 @@ namespace Aequus.Projectiles.Summon
                         {
                             Projectile.ai[1] = Main.rand.Next(10);
                             var velocity = Projectile.DirectionTo(Main.npc[target].Center) * 10f;
-                            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity, 
+                            Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity,
                                 ModContent.ProjectileType<BrainCauliflowerBlast>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                             Projectile.velocity -= velocity;
                         }

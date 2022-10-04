@@ -1,7 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Graphics;
-using Aequus.Items.Consumables.Critters;
-using Aequus.Particles;
+﻿using Aequus.Items.Consumables.Critters;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

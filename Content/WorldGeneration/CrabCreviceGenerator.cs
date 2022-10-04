@@ -23,7 +23,7 @@ namespace Aequus.Content.WorldGeneration
         public int LeftX(int sizeX)
         {
             return AequusWorld.Structures.GetLocation("CrabCrevice").GetValueOrDefault(new Point(0, 0)).X < Main.maxTilesX / 2 ? 5 : Main.maxTilesX - sizeX - 5;
-        } 
+        }
 
         public void Reset()
         {
@@ -415,7 +415,7 @@ namespace Aequus.Content.WorldGeneration
         {
             int index = 0;
             var rand = WorldGen.genRand;
-            switch (nextChestLoot % 4) 
+            switch (nextChestLoot % 4)
             {
                 case 0:
                     arr[index++].SetDefaults<StarPhish>();
@@ -465,7 +465,7 @@ namespace Aequus.Content.WorldGeneration
                     break;
             }
 
-            switch (rand.Next(3)) 
+            switch (rand.Next(3))
             {
                 case 0:
                     arr[index++].SetDefaults(ItemID.CanOfWorms);
@@ -483,7 +483,7 @@ namespace Aequus.Content.WorldGeneration
                     break;
             }
 
-            switch (rand.Next(8)) 
+            switch (rand.Next(8))
             {
                 case 0:
                     arr[index].SetDefaults(ItemID.HealingPotion);
@@ -525,7 +525,7 @@ namespace Aequus.Content.WorldGeneration
                     break;
             }
 
-            switch (rand.Next(3)) 
+            switch (rand.Next(3))
             {
                 case 0:
                     arr[index].SetDefaults(ItemID.CoralTorch);

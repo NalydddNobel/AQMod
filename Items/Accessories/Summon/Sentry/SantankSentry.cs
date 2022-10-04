@@ -1,13 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.NPCs;
-using Aequus.Projectiles;
-using Aequus.Projectiles.Misc;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
+﻿using Aequus.NPCs;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 

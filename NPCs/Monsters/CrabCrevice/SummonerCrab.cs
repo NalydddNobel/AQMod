@@ -60,7 +60,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                 {
                     NPC.TargetClosest(faceTarget: true);
                 }
-                if (NPC.velocity.Y < 0.5f && (!NPC.HasValidTarget || 
+                if (NPC.velocity.Y < 0.5f && (!NPC.HasValidTarget ||
                     (NPC.Distance(Main.player[NPC.target].Center) < 500f && (CheckLine(NPC.position) || CheckLine(NPC.position - new Vector2(0f, NPC.height / 2f))))))
                 {
                     if (state != 1)
@@ -146,7 +146,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                 return;
             }
 
-            switch (state) 
+            switch (state)
             {
                 case 0:
                     {

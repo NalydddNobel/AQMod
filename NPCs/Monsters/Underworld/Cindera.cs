@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Misc.Dyes;

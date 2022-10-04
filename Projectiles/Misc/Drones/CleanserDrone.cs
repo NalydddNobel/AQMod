@@ -3,9 +3,7 @@ using Aequus.Items.Consumables.Drones;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Drones

@@ -51,7 +51,7 @@ namespace Aequus.Projectiles.Monster
 
         protected override void AIAttached(NPC npc)
         {
-            Projectile.velocity *= 0.5f;   
+            Projectile.velocity *= 0.5f;
             Projectile.rotation = npc.rotation - MathHelper.PiOver2;
             if (npc.ai[0] == UltraStarite.STATE_DEATHRAY)
                 Projectile.timeLeft = DEATHRAY_KILL_TIME;
@@ -87,14 +87,14 @@ namespace Aequus.Projectiles.Monster
                     drawPos + n * Main.screenWidth * Projectile.direction,
                     drawPos + n * Main.screenWidth * 2f * Projectile.direction, };
             //if (prim == null)
-                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+            prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
 
             //if (smokePrim == null)
-                smokePrim = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
-                {
-                    coord1 = 0f,
-                    coord2 = 1f
-                };
+            smokePrim = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+            {
+                coord1 = 0f,
+                coord2 = 1f
+            };
             if (Main.LocalPlayer.gravDir == -1)
             {
                 AequusHelpers.ScreenFlip(arr);

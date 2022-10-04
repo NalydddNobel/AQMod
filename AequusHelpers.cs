@@ -22,7 +22,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.UI;
@@ -142,7 +141,7 @@ namespace Aequus
 
         public static Rectangle TileRectangle(Vector2 worldPosition, int widthDiv2, int heightDiv2)
         {
-            return new Rectangle((int)worldPosition.X / 16 -widthDiv2, (int)worldPosition.Y / 16 - heightDiv2, widthDiv2 * 2, heightDiv2 * 2);
+            return new Rectangle((int)worldPosition.X / 16 - widthDiv2, (int)worldPosition.Y / 16 - heightDiv2, widthDiv2 * 2, heightDiv2 * 2);
         }
 
         public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0)

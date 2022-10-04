@@ -175,8 +175,8 @@ namespace Aequus.Biomes.Glimmer
                     p.Y = j + 1;
                     return p;
 
-                    FoundInvalidSpot:
-                        continue;
+                FoundInvalidSpot:
+                    continue;
                 }
             }
             p.Y = (ushort)Main.worldSurface;

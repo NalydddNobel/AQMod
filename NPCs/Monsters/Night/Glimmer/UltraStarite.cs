@@ -2,7 +2,6 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Particles;

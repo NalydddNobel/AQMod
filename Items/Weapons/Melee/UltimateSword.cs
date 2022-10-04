@@ -1,7 +1,6 @@
 ﻿using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Melee
 {

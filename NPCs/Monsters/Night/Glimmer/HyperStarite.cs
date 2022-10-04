@@ -2,11 +2,8 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -472,7 +469,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * i;
                 if (dying)
                     rotation += Main.rand.NextFloat(-0.2f, 0.2f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
-                    var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
+                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
                 if (dying)
                     armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);

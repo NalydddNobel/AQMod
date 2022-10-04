@@ -1,5 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -4,7 +4,6 @@ using Aequus.Items.Tools.Camera;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -33,7 +32,7 @@ namespace Aequus.Content.CarpenterBounties
                 SamplingArea = worldArea ?? new Rectangle(Main.maxTilesX / 2 - map.Width / 2, 200 + map.Height / 2, map.Width, map.Height);
             }
 
-            public ConditionInfo(ShutterstockerClip clip, NPC carpenter = null) : this(clip.tileMap, carpenter, 
+            public ConditionInfo(ShutterstockerClip clip, NPC carpenter = null) : this(clip.tileMap, carpenter,
                 new Rectangle((int)(clip.worldXPercent * Main.maxTilesX), (int)(clip.worldYPercent * Main.maxTilesY), clip.tileMap.Width, clip.tileMap.Height))
             {
             }

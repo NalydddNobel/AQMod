@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
-using Aequus.Graphics;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;

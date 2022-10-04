@@ -1,10 +1,8 @@
 ﻿using Aequus;
 using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
 using Aequus.Items.Placeable.Furniture.BossTrophies;

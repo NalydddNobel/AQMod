@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Consumables.BuffPotions;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

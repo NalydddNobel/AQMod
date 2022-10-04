@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;

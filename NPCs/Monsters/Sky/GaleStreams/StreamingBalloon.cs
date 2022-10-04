@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
 using Aequus.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

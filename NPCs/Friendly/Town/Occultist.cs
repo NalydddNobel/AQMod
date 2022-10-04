@@ -1,5 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;

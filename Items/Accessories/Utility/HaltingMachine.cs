@@ -1,6 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
-using Terraria;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Utility

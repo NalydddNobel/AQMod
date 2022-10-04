@@ -350,7 +350,7 @@ namespace Aequus.Projectiles.Summon
                 }
                 Main.EntitySpriteDraw(image, Projectile.position + off - Main.screenPosition, frame, lightColor, rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
-            else 
+            else
             {
                 if (emoji > -1)
                     DrawEmoji(frame, Projectile.position + off - Main.screenPosition);

@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,7 +24,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.width = 28;
             NPC.height = 28;
             NPC.damage = 50;
-            NPC.lifeMax = 135; 
+            NPC.lifeMax = 135;
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.HitSound = SoundID.NPCHit1;

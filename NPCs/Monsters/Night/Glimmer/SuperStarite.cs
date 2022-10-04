@@ -1,10 +1,8 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
-using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;

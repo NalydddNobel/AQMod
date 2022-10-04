@@ -1,5 +1,4 @@
-﻿using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.LootBags.Roulettes
 {

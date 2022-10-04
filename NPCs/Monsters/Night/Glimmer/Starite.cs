@@ -612,7 +612,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     ModContent.ItemType<SuperStarSword>(),
                     ModContent.ItemType<WowHat>(),
                     ModContent.ItemType<StariteStaff>(),
-                    ModContent.ItemType<HyperCrystal>(), 
+                    ModContent.ItemType<HyperCrystal>(),
                 };
         }
     }

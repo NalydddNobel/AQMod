@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -93,7 +92,7 @@ namespace Aequus.Projectiles.Misc.Pets
                 }
                 string text = $"OMG HI {playerName.ToUpper()}!!!!!!";
                 var font = FontAssets.MouseText.Value;
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition, 
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition,
                     new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, new Vector2(font.MeasureString(text).X / 2f, 0f), Vector2.One * Main.UIScale);
             }
             return true;

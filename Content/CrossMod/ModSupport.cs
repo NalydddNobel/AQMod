@@ -1,5 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;

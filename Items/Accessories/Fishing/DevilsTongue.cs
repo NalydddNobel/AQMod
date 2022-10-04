@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Fishing
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().devilFishing = true;
+            player.Aequus().accDevilsTongue = true;
         }
     }
 }

@@ -387,7 +387,7 @@ namespace Aequus.Content.Necromancy
         }
         public static void AutogenEntries()
         {
-            for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++) 
+            for (int i = Main.maxNPCTypes; i < NPCLoader.NPCCount; i++)
             {
                 var n = ContentSamples.NpcsByNetId[i];
                 var md = n.ModNPC;

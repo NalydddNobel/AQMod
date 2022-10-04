@@ -1,6 +1,6 @@
 ﻿using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Summon.Necro
 {

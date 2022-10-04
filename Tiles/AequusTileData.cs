@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 
@@ -88,23 +87,18 @@ namespace Aequus.Tiles
             }
         }
 
-        public static void SendSquares(BinaryWriter writer, List<Rectangle> syncTangles)
+        public static void SendSquare(BinaryWriter writer, Rectangle syncTangle)
         {
-            writer.Write(syncTangles.Count);
-            for (int k = 0; k < syncTangles.Count; k++)
-            {
-                var r = syncTangles[k];
-                writer.Write(r.X);
-                writer.Write(r.Y);
-                writer.Write(r.Width);
-                writer.Write(r.Height);
+            writer.Write(syncTangle.X);
+            writer.Write(syncTangle.Y);
+            writer.Write(syncTangle.Width);
+            writer.Write(syncTangle.Height);
 
-                for (int i = r.X; i < r.X + r.Width; i++)
+            for (int i = syncTangle.X; i < syncTangle.X + syncTangle.Width; i++)
+            {
+                for (int j = syncTangle.Y; j < syncTangle.Y + syncTangle.Height; j++)
                 {
-                    for (int j = r.Y; j < r.Y + r.Height; j++)
-                    {
-                        writer.Write(Main.tile[i, j].Get<AequusTileData>().bitpack);
-                    }
+                    writer.Write(Main.tile[i, j].Get<AequusTileData>().bitpack);
                 }
             }
         }

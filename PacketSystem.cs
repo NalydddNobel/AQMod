@@ -1,5 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content;
 using Aequus.Content.CarpenterBounties;
@@ -64,10 +63,28 @@ namespace Aequus
                     TileCoatingSync.Clear();
                     return;
                 }
-                Send((p) =>
+
+                try
                 {
-                    AequusTileData.SendSquares(p, TileCoatingSync);
-                }, PacketType.CoatingTileSquare);
+                    Send((p) =>
+                    {
+                        AequusTileData.SendSquare(p, TileCoatingSync[0]);
+                    }, PacketType.CoatingTileSquare);
+                }
+                catch
+                {
+                    // split into 4 rectangles
+                    var r = TileCoatingSync[0];
+                    int halfW1 = r.Width / 2;
+                    int halfW2 = r.Width - halfW1;
+                    int halfH1 = r.Height / 2;
+                    int halfH2 = r.Height - halfH1;
+                    TileCoatingSync.Add(new Rectangle(r.X, r.Y, halfW1, halfH1));
+                    TileCoatingSync.Add(new Rectangle(r.X + halfW1, r.Y, halfW2, halfH1));
+                    TileCoatingSync.Add(new Rectangle(r.X, r.Y + halfH1, halfW1, halfH2));
+                    TileCoatingSync.Add(new Rectangle(r.X + halfW1, r.Y + halfH1, halfW2, halfH2));
+                }
+                TileCoatingSync.RemoveAt(0);
             }
         }
 

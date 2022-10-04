@@ -25,7 +25,7 @@ namespace Aequus.Items.Tools.FishingRods
 
         public void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
         {
-            if (Main.ColorOfTheSkies.ToVector3().Length()< 1f)
+            if (Main.ColorOfTheSkies.ToVector3().Length() < 1f)
             {
                 fishingLevel += 0.2f;
             }

@@ -159,13 +159,13 @@ namespace Aequus.Items
         public override bool? UseItem(Item item, Player player)
         {
             var aequus = player.Aequus();
-            if (item.damage > 0 && !item.noUseGraphic && !item.noMelee 
+            if (item.damage > 0 && !item.noUseGraphic && !item.noMelee
                 && aequus.accHyperCrystal != null && aequus.hyperCrystalCooldownMelee == 0)
             {
                 aequus.hyperCrystalCooldownMelee = aequus.hyperCrystalCooldownMax / 2;
                 if (Main.myPlayer == player.whoAmI)
                 {
-                    switch (item.useStyle) 
+                    switch (item.useStyle)
                     {
                         case ItemUseStyleID.Swing:
                             Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center + new Vector2(0f, -80f - player.height), new Vector2(3f * player.direction, 3f),

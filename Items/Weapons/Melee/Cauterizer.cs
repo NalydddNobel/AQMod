@@ -1,12 +1,10 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Melee
 {

@@ -1,8 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Content.CarpenterBounties;
-using Aequus.Items.Weapons.Magic;
-using Microsoft.Xna.Framework;
-using System.Reflection;
+﻿using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.ModLoader;
 

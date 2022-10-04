@@ -108,7 +108,7 @@ namespace Aequus.Projectiles.Summon
                         continue;
                     }
 
-                    AequusEffects.BehindProjs.Add(new BloomParticle(position, velocity, 
+                    AequusEffects.BehindProjs.Add(new BloomParticle(position, velocity,
                         new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi)));
                 }
             }

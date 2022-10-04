@@ -42,7 +42,7 @@ namespace Aequus.Projectiles.Summon
 
         public override bool MinionContactDamage()
         {
-            return (int)Projectile.ai[0] ==1;
+            return (int)Projectile.ai[0] == 1;
         }
 
         public override void AI()
@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Summon
                 }
             }
 
-            switch ((int)Projectile.ai[0]) 
+            switch ((int)Projectile.ai[0])
             {
                 case 0:
                     {
@@ -212,7 +212,7 @@ namespace Aequus.Projectiles.Summon
 
             bool drawT = (int)Projectile.ai[0] == 1 && npcAttached == -1;
             int endT = trailLength;
-            
+
             if (drawT)
             {
                 for (int i = 0; i < trailLength; i++)

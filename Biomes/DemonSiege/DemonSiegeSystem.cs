@@ -1,5 +1,4 @@
 ﻿using Aequus.Graphics;
-using Aequus.Items.Tools;
 using Aequus.Tiles;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;

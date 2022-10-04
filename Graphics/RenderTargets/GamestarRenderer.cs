@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Graphics.Effects;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Renderers;
-using Terraria.ModLoader;
 using Terraria.Graphics.Shaders;
-using ReLogic.Content;
+using Terraria.ModLoader;
 
 namespace Aequus.Graphics.RenderTargets
 {

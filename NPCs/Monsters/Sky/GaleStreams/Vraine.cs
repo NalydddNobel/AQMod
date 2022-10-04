@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
-using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;

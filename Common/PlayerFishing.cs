@@ -65,7 +65,7 @@ namespace Aequus.Common
                 var item = ContentSamples.ItemsByType[itemDrop];
                 if (npcSpawn <= 0 && item.rare != -1)
                 {
-                    if (player.Aequus().devilFishing && ((item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1)) || (!attempt.legendary && !attempt.veryrare && !attempt.rare)))
+                    if (player.Aequus().accDevilsTongue && ((item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1)) || (!attempt.legendary && !attempt.veryrare && !attempt.rare)))
                     {
                         itemDrop = Main.rand.Next(TrashItemIDs);
                         item = ContentSamples.ItemsByType[itemDrop];

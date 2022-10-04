@@ -116,7 +116,7 @@ namespace Aequus
 
         public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
-        
+
         /// <summary>
         /// Applied by <see cref="SpicyEelBuff"/>
         /// </summary>
@@ -206,7 +206,7 @@ namespace Aequus
         public int accVial;
         public int vialDelay;
 
-        public bool devilFishing;
+        public bool accDevilsTongue;
 
         public Item accRamishroom;
 
@@ -556,7 +556,7 @@ namespace Aequus
             accVial = 0;
             accBoneRing = 0;
             grandRewardLuck = 0f;
-            devilFishing = false;
+            accDevilsTongue = false;
             accGrandReward = false;
             accFoolsGold = false;
 

@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Melee
                 Projectile.velocity *= 0.975f;
                 if (Main.rand.NextBool((int)Math.Max(12f - Projectile.velocity.Length(), 2f)))
                 {
-                    
+
                     var d = Dust.NewDustPerfect(Projectile.Center + Vector2.Normalize(Projectile.velocity.RotatedBy(MathHelper.PiOver2)) * Main.rand.NextFloat(-50f, 50f) * Projectile.scale,
                         ModContent.DustType<MonoDust>(), -Projectile.velocity * 0.2f, 0, Main.rand.Next(SuperStarSwordProj.DustColors), Main.rand.NextFloat(0.9f, 1.45f));
                     d.noGravity = true;

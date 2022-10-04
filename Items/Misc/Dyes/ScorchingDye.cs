@@ -1,5 +1,4 @@
 ﻿using Aequus.Graphics.ShaderData;
-using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;

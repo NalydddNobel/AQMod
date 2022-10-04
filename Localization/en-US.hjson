@@ -133,6 +133,7 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			Heliosis: Heliosis
 			NeonGenesis: Neon Genesis
 			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
@@ -991,6 +992,20 @@ Mods: {
 				'Quite the pushover'
 				'''
 
+			Heliosis: {
+				$parentVal: 
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					Placeable in your ammo slot
+					{DevilsTongueTooltip}
+					<right> to toggle transforming catches into trash
+					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.NeonGenesis}
+					'''
+				DevilsTongueEnabled: Non-rare catches turn into trash is enabled
+				DevilsTongueDisabled: Non-rare catches turn into trash is disabled
+			}
+				
 			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes

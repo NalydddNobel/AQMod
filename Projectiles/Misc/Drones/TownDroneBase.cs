@@ -1,5 +1,4 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Content.DronePylons;
+﻿using Aequus.Content.DronePylons;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.IO;

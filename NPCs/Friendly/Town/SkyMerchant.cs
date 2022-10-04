@@ -11,7 +11,6 @@ using Aequus.Items.Tools.FishingRods;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -223,7 +222,7 @@ namespace Aequus.NPCs.Friendly.Town
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
             }
 
-            switch (Main.GetMoonPhase()) 
+            switch (Main.GetMoonPhase())
             {
                 case MoonPhase.Full:
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BreakdownDye>());

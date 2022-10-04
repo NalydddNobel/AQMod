@@ -4,7 +4,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
-using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly.Town;

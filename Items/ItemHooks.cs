@@ -30,8 +30,8 @@ namespace Aequus.Items
 
             public static bool BubbleTilePlacement(int i, int j)
             {
-                return Main.tile[i + 1, j].HasTile || Main.tile[i + 1, j].WallType > 0 
-                    || Main.tile[i - 1, j].HasTile || Main.tile[i - 1, j].WallType > 0 
+                return Main.tile[i + 1, j].HasTile || Main.tile[i + 1, j].WallType > 0
+                    || Main.tile[i - 1, j].HasTile || Main.tile[i - 1, j].WallType > 0
                     || Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].WallType > 0
                     || Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].WallType > 0;
             }
