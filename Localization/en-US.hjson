@@ -212,7 +212,7 @@ Mods: {
 			DungeonCandle: Wretchedness
 			OccultistCandle: Purgatory
 
-			NecromancyStaff: Necromancy Staff
+			FriendshipMagick: Friendship Magick
 			Insurgency: Insurgency
 			Osiris: Osiris
 			Revenant: Revenant
@@ -830,6 +830,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 
+			FriendshipMagick: Become friends with strong enemies!
 			Insurgency: 
 				'''
 				Drains the soul of very powerful enemies, instantly killing weakened enemies

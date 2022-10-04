@@ -30,12 +30,13 @@ namespace Aequus.Content.Necromancy
             public const int Osiris = 3;
             public const int Insurgent = 4;
             public const int BloodRed = 5;
-            public const int PVPTeams = 6;
-            public const int PVPTeams_Red = 6;
-            public const int PVPTeams_Green = 7;
-            public const int PVPTeams_Blue = 8;
-            public const int PVPTeams_Yellow = 9;
-            public const int PVPTeams_Purple = 10;
+            public const int Friendship = 6;
+            public const int PVPTeams = 7;
+            public const int PVPTeams_Red = 8;
+            public const int PVPTeams_Green = 9;
+            public const int PVPTeams_Blue = 10;
+            public const int PVPTeams_Yellow = 11;
+            public const int PVPTeams_Purple = 12;
 
             /// <summary>
             /// Use and increase respectively for custom Necromancy Screen Renderer layers.
@@ -68,6 +69,7 @@ namespace Aequus.Content.Necromancy
                     new GhostOutlineRenderer(-1, IDs.Osiris, () => new Color(255, 128, 20, 255)),
                     new GhostOutlineRenderer(-1, IDs.Insurgent, () => new Color(80, 255, 200, 255)),
                     new GhostOutlineRenderer(-1, IDs.BloodRed, () => new Color(255, 10, 10, 255)),
+                    new GhostOutlineRenderer(-1, IDs.Friendship, () => new Color(255, 100, 255, 255)),
                 };
             }
         }

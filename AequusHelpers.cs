@@ -1289,6 +1289,11 @@ namespace Aequus
             return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
         }
 
+        public static int CalcHealing(int life, int maxLife, int heal)
+        {
+            return life + heal > maxLife ? maxLife - life : heal;
+        }
+
         public static float CalcProgress(int length, int i)
         {
             return 1f - 1f / length * i;

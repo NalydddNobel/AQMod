@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void AI()
         {
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.netMode != NetmodeID.Server)
             {
                 var center = Projectile.Center;
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))

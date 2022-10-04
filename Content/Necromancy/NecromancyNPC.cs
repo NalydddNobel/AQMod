@@ -489,7 +489,6 @@ namespace Aequus.Content.Necromancy
                         SoundEngine.PlaySound(ZombieRecruitSound);
                     }
                 }
-                PacketSystem.SyncNPC(Main.npc[n]);
             }
         }
         public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound)
