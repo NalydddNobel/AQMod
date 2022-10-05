@@ -69,7 +69,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         public override Vector2 DetermineTargetPosition()
         {
             var pos = base.DetermineTargetPosition();
-            switch ((int)NPC.ai[3]) 
+            switch ((int)NPC.ai[3])
             {
                 case 2:
                     return pos + new Vector2(200f, 0f);
@@ -104,13 +104,23 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
                 NPC.frame.Width /= FramesX;
                 _setupFrame = true;
             }
+            if (NPC.IsABestiaryIconDummy && NPC.ai[3] < 1f)
+            {
+                NPC.ai[0] = -200f;
+                NPC.ai[1] = 200f;
+                NPC.ai[3] = 1f;
+            }
+
             NPC.frame.X = NPC.frame.Width * (int)(NPC.ai[3] - 1f);
             NPC.frameCounter++;
             if (NPC.frameCounter > 24.0)
             {
                 NPC.frameCounter = 0.0;
+                if (NPC.IsABestiaryIconDummy)
+                    NPC.ai[3] = (int)NPC.ai[3] % 3 + 1f;
             }
-            NPC.frame.Y = frameHeight * (((int)NPC.frameCounter / 6 + (int)NPC.ai[3]) % 4);
+            int frameAdjustment = NPC.IsABestiaryIconDummy ? 0 : (int)NPC.ai[3];
+            NPC.frame.Y = frameHeight * (((int)NPC.frameCounter / 6 + frameAdjustment) % 4);
         }
 
         public override bool PreDrawChain(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor, ref Texture2D chainTexture, out Rectangle frame, ref Color _drawColor)
@@ -123,7 +133,8 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         public override bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             NPC.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
-            spriteBatch.Draw(t, NPC.Center - screenPos, frame, NPC.IsABestiaryIconDummy ?Color.White : NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(t, NPC.Center - screenPos, frame, NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(drawColor), 
+                NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             return false;
         }
     }

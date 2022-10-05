@@ -89,7 +89,7 @@ namespace Aequus.NPCs.AIs
         {
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
-                Rotation = -MathHelper.PiOver4,
+                Rotation = MathHelper.PiOver4,
             });
         }
 
@@ -315,7 +315,7 @@ namespace Aequus.NPCs.AIs
                 center.Y += num204;
                 num193 = toTile.X * 16f + 8f - center.X;
                 num204 = toTile.Y * 16f + 8f - center.Y;
-                Color color12 = Lighting.GetColor((int)center.X / 16, (int)(center.Y / 16f), _drawColor);
+                Color color12 = NPC.IsABestiaryIconDummy ? Color.White : Lighting.GetColor((int)center.X / 16, (int)(center.Y / 16f), _drawColor);
                 spriteBatch.Draw(texture, new Vector2(center.X - screenPos.X, center.Y - screenPos.Y), frame, color12, rotation2, origin, 1f, SpriteEffects.None, 0f);
             }
             return SafePreDraw(spriteBatch, screenPos, drawColor);
