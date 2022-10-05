@@ -14,7 +14,7 @@ namespace Aequus.Items.Placeable.Furniture
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings3x2>(), WallPaintings3x2.DAH);
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.value = Item.buyPrice(gold: 2);
         }
     }

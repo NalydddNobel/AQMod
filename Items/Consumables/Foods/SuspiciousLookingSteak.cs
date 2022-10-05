@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.useTime = 20;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item2;
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.buyPrice(gold: 2);

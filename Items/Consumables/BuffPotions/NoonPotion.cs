@@ -26,7 +26,7 @@ namespace Aequus.Items.Consumables.BuffPotions
             Item.consumable = true;
             Item.rare = ItemRarityID.LightRed;
             Item.value = ItemDefaults.PotionsValue;
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.buffTime = 28800;
             Item.buffType = ModContent.BuffType<NoonBuff>();
         }

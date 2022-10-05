@@ -16,7 +16,7 @@ namespace Aequus.Items.Consumables
             Item.shoot = ModContent.ProjectileType<FertilePowderProj>();
             Item.width = 16;
             Item.height = 24;
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 15;

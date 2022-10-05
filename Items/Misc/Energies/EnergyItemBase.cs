@@ -49,7 +49,7 @@ namespace Aequus.Items.Misc.Energies
             Item.height = 24;
             Item.rare = Rarity;
             Item.value = Item.sellPrice(silver: 10);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override Color? GetAlpha(Color lightColor)

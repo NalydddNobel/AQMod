@@ -23,7 +23,7 @@ namespace Aequus.Items.Boss.Summons
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
             Item.consumable = true;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.value = Item.buyPrice(gold: 2);
         }
 

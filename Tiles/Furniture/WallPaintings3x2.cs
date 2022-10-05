@@ -18,6 +18,7 @@ namespace Aequus.Tiles.Furniture
         public const int Fus = 3;
         public const int Ro = 4;
         public const int DAH = 5;
+        public const int OliverPainting = 6;
 
         public override void SetStaticDefaults()
         {
@@ -56,6 +57,9 @@ namespace Aequus.Tiles.Furniture
                     break;
                 case DAH:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<SkyrimRock3>());
+                    break;
+                case OliverPainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<OliverPainting>());
                     break;
             }
         }

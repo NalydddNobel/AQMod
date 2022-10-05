@@ -1,10 +1,11 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Paintings
 {
-    public class YinPainting : ModItem
+    public class GoreNestPainting : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,8 +14,8 @@ namespace Aequus.Items.Placeable.Furniture.Paintings
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings2x2>(), WallPaintings2x2.YinPainting);
-            Item.value = Item.buyPrice(gold: 2);
+            Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.GoreNestPainting);
+            Item.value = Item.buyPrice(gold: 1);
         }
     }
 }

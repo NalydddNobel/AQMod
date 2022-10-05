@@ -15,6 +15,8 @@ namespace Aequus.Tiles.Furniture
         public const int OriginPainting = 0;
         public const int RockFromAnAlternateUniversePainting = 1;
         public const int OmegaStaritePainting = 2;
+        public const int GoreNestPainting = 3;
+        public const int ExLydSpacePainting = 4;
 
         public override void SetStaticDefaults()
         {
@@ -40,6 +42,12 @@ namespace Aequus.Tiles.Furniture
                     break;
                 case RockFromAnAlternateUniversePainting:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<CatalystPainting>());
+                    break;
+                case GoreNestPainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<GoreNestPainting>());
+                    break;
+                case ExLydSpacePainting:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<ExLydSpacePainting>());
                     break;
             }
         }

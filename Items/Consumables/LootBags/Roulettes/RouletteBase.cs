@@ -98,7 +98,7 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
             Item.CloneDefaults(ItemID.WoodenCrate);
             Item.createTile = -1;
             Item.placeStyle = 0;
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
         }
 
         public override bool CanRightClick()

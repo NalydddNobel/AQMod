@@ -21,7 +21,7 @@ namespace Aequus.Items.Tools.Camera
             Item.height = 16;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.ammo = AmmoID;
             Item.consumable = true;
         }

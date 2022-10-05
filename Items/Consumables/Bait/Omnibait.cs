@@ -17,7 +17,7 @@ namespace Aequus.Items.Consumables.Bait
             Item.width = 6;
             Item.height = 6;
             Item.bait = 40;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.value = Item.sellPrice(silver: 20);
             Item.rare = ItemRarityID.LightRed;

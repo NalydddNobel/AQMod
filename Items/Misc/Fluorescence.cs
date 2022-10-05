@@ -21,7 +21,7 @@ namespace Aequus.Items.Misc
         {
             Item.width = 12;
             Item.height = 12;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.rare = ItemDefaults.RarityGaleStreams - 2;
             Item.value = Item.sellPrice(silver: 15);
         }

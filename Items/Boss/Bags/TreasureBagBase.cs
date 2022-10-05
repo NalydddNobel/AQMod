@@ -28,7 +28,7 @@ namespace Aequus.Items.Boss.Bags
             Item.height = 24;
             Item.consumable = true;
             Item.rare = InternalRarity;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.expert = true;
         }
 

@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<RecyclingMachineTile>());
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.value = Item.buyPrice(gold: 5);
             Item.rare = ItemRarityID.Blue;
         }

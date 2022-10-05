@@ -16,7 +16,6 @@ namespace Aequus.Items.Placeable.Furniture.Paintings
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.OriginPainting);
-            Item.maxStack = 99;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;
         }

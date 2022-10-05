@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<ForceAntiGravityBlockTile>());
             Item.value = Item.buyPrice(silver: 2, copper: 50);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
     }
 }

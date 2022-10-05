@@ -17,7 +17,7 @@ namespace Aequus.Items.Placeable.Seeds
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<GoreNestTile>());
             Item.value = Item.sellPrice(silver: 2);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.createTile = ModContent.TileType<MoonflowerTile>();
             Item.rare = ItemRarityID.Blue;
         }

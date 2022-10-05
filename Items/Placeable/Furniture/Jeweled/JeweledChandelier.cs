@@ -17,7 +17,7 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
             Item.height = 24;
             Item.rare = ItemRarityID.Quest;
             Item.questItem = true;
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
         }
     }
 }

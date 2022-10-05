@@ -29,7 +29,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.useAnimation = 17;
             Item.buffTime = 10800;
             Item.buffType = ModContent.BuffType<Vampirism>();
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
         }
 
         public override bool CanUseItem(Player player)

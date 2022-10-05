@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Foods.Combinations
             Item.useTime = 15;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
-            Item.maxStack = 30;
+            Item.maxStack = 9999;
             Item.consumable = true;
             Item.rare = ItemDefaults.RarityOmegaStarite - 1;
             Item.value = Item.sellPrice(silver: 70);

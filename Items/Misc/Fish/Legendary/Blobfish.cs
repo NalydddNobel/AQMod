@@ -18,7 +18,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 1);
             Item.rare = ItemRarityID.Quest;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.questItem = true;
         }
     }

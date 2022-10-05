@@ -15,7 +15,6 @@ namespace Aequus.Items.Placeable.Furniture.Paintings
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.RockFromAnAlternateUniversePainting);
-            Item.maxStack = 99;
             Item.value = Item.buyPrice(gold: 2);
             Item.rare = ItemRarityID.Blue;
         }

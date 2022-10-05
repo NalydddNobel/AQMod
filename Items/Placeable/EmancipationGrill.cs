@@ -16,7 +16,7 @@ namespace Aequus.Items.Placeable
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmancipationGrillTile>());
             Item.value = Item.buyPrice(silver: 2, copper: 50);
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override Color? GetAlpha(Color lightColor)

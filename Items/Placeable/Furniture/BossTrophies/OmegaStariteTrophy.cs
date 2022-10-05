@@ -14,7 +14,7 @@ namespace Aequus.Items.Placeable.Furniture.BossTrophies
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<Trophies>(), Trophies.OmegaStarite);
-            Item.maxStack = 99;
+            Item.maxStack = 9999;
             Item.value = 50000;
             Item.rare = ItemRarityID.Blue;
         }

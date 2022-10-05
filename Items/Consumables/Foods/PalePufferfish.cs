@@ -70,7 +70,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.UseSound = SoundID.Item2;
             Item.useTime = 17;
             Item.useAnimation = 17;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
         }
 
         public override bool? UseItem(Player player)
