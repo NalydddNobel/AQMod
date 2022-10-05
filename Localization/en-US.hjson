@@ -1642,6 +1642,8 @@ Mods: {
 				'I think you can guess what this does from the name'
 				'''
 
+			Terraria_SoulofMight: "'The essence of vigorous creatures'"
+
 			Misc: {
 				AnglerHint: The Angler may be interested in this...
 				ExporterHint: The Exporter may be interested in this...
@@ -2111,6 +2113,11 @@ Mods: {
 			OmegaStarite: Omega Starite
 			Crabson: Crabson
 
+			CoreOfMight: Core of Might
+			Terrastructer: Terrastructer
+			Hardwood: Hardwood
+			Vineroot: Vineroot
+
 			SpaceSquid: Space Squid
 			RedSprite: Red Sprite
 			WhiteSlime: White Slime
@@ -2155,6 +2162,8 @@ Mods: {
 			DustDevil: A powerful elemental, seeking the power of the Aether. Its sheer existence sustains a cyclone, catching dust, debris, and animals.
 			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
 			
+			Vineroot: Angry Trappers enpowered by the Souls of Might, blooming into beautiful- yet deadly- flowers.
+
 			CoconutCrab: Evolved a natural camoflauge, disguising as a coconut. Sleeps in and jumps off palm trees in the early morning.
 			SoldierCrab: Named for their knight-like appearance. The orange armor of this crab is actually cobalt covered in layers of grime.
 			SummonerCrabMinion: Would be unable to rest and shelter their eggs without the Hijivarch, luckily they have each other.

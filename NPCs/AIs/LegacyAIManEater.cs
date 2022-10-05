@@ -93,6 +93,11 @@ namespace Aequus.NPCs.AIs
             });
         }
 
+        public virtual Vector2 DetermineTargetPosition()
+        {
+            return Main.player[NPC.target].position;
+        }
+
         public override void AI()
         {
             if (NPC.ai[0] < 0f || NPC.ai[0] >= Main.maxTilesX || NPC.ai[1] < 0f || NPC.ai[1] >= (float)Main.maxTilesX)
@@ -120,8 +125,9 @@ namespace Aequus.NPCs.AIs
                 }
             }
             Vector2 tileWorld = new Vector2(NPC.ai[0] * 16f + 8f, NPC.ai[1] * 16f + 8f);
-            float num680 = Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2 - NPC.width / 2 - tileWorld.X;
-            float num681 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2 - NPC.height / 2 - tileWorld.Y;
+            var targetPos = DetermineTargetPosition();
+            float num680 = targetPos.X + Main.player[NPC.target].width / 2 - NPC.width / 2 - tileWorld.X;
+            float num681 = targetPos.Y + Main.player[NPC.target].height / 2 - NPC.height / 2 - tileWorld.Y;
             float num682 = (float)Math.Sqrt(num680 * num680 + num681 * num681);
             if (num682 > range)
             {

@@ -52,6 +52,17 @@ namespace Aequus.Items
                     var player = Main.LocalPlayer;
                     var aequus = player.Aequus();
 
+                    if (item.type == ItemID.SoulofMight)
+                    {
+                        foreach (var tt in tooltips)
+                        {
+                            if (tt.Name == "Tooltip0")
+                            {
+                                tt.Text = AequusText.GetText("ItemTooltip.Terraria_SoulofMight");
+                            }
+                        }
+                    }
+
                     if (Dedicated.TryGetValue(item.type, out var dedication))
                     {
                         tooltips.Insert(GetIndex(tooltips, "Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });

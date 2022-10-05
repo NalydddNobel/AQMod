@@ -26,7 +26,8 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            this.CreateEntry(database, bestiaryEntry);
+            this.CreateEntry(database, bestiaryEntry)
+                .QuickUnlock();
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -54,15 +55,28 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             this.SetBiome<OrganicEnergyBiome>();
         }
 
-        private void SpawnWithJungleCoreConnection(int type)
+        private void SpawnBrother(int ai3)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
-            var n = NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, Type, NPC.whoAmI, ai0: NPC.ai[0], ai1: NPC.ai[1], ai3: type);
+            var n = NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, Type, NPC.whoAmI, ai0: NPC.ai[0], ai1: NPC.ai[1], ai3: ai3);
             n.TryGetGlobalNPC<AequusNPC>(out var aequus);
             NPC.TryGetGlobalNPC<AequusNPC>(out var myAequus);
             aequus.jungleCoreInvasion = myAequus.jungleCoreInvasion;
             aequus.jungleCoreInvasionIndex = myAequus.jungleCoreInvasionIndex;
+        }
+
+        public override Vector2 DetermineTargetPosition()
+        {
+            var pos = base.DetermineTargetPosition();
+            switch ((int)NPC.ai[3]) 
+            {
+                case 2:
+                    return pos + new Vector2(200f, 0f);
+                case 3:
+                    return pos + new Vector2(-200f, 0f);
+            }
+            return pos;
         }
 
         public override void AI()
@@ -72,8 +86,8 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             {
                 NPC.ai[3] = 1f;
                 FindVaildSpot();
-                SpawnWithJungleCoreConnection(2);
-                SpawnWithJungleCoreConnection(3);
+                SpawnBrother(2);
+                SpawnBrother(3);
             }
             base.AI();
             NPC.rotation += MathHelper.PiOver2 * NPC.spriteDirection;
