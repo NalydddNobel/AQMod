@@ -133,6 +133,7 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			Heliosis: 日射病
 			NeonGenesis: 新世纪
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
@@ -212,7 +213,7 @@ Mods: {
 			DungeonCandle: 不幸
 			OccultistCandle: 炼狱
 			
-			NecromancyStaff: 死灵法杖
+			FriendshipMagick: 友谊魔法学
 			Insurgency: 叛乱
 			Osiris: 欧西里斯
 			Revenant: 亡魂
@@ -830,6 +831,7 @@ Mods: {
 				{$Mods.Aequus.Tooltips.NecromancyCandle}
 				'''
 
+			FriendshipMagick: 与强大的敌人成为朋友!
 			Insurgency: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
@@ -989,6 +991,20 @@ Mods: {
 				将你向你瞄准的反方向推开
 				'真是太容易了'
 				'''
+
+				Heliosis: {
+				$parentVal: 
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					可放置在你的弹药栏中
+					{DevilsTongueTooltip}
+					<右键>可将鱼获转化为垃圾
+					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.NeonGenesis}
+					'''
+				DevilsTongueEnabled: 非罕见捕鱼获转化为垃圾已启用
+				DevilsTongueDisabled: 非罕见捕鱼获转化为垃圾已禁用
+			}
 
 			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: 有更高的几率钓到稀有鱼类
