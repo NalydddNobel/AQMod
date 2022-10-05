@@ -1642,6 +1642,8 @@ Mods: {
 				'我想你应该可以从名字中猜出这是做什么的'
 				'''
 
+			Terraria_SoulofMight: "'充满活力的生物的精华'"
+
 			Misc: {
 				AnglerHint: 渔夫可能会对此感兴趣...
 				ExporterHint: 发货人可能会对此感兴趣...
@@ -2111,6 +2113,11 @@ Mods: {
 			OmegaStarite: 终末之星
 			Crabson: 巨蟹蛤
 
+			CoreOfMight: 力量核心
+			Terrastructer: 泰拉构造体
+			Hardwood: 硬木
+			Vineroot: 藤根
+
 			SpaceSquid: 太空乌贼
 			RedSprite: 红色精灵
 			WhiteSlime: 白色史莱姆
@@ -2154,6 +2161,8 @@ Mods: {
 		Bestiary: {
 			DustDevil: 一种强大的元素, 寻求着以太的强大力量. 它的存在维系着一个旋风, 捕捉着灰尘、碎片和动物.
 			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
+
+			Vineroot: 被力量之魂驱使的愤怒陷阱, 会绽放成美丽- 但致命的- 花朵.
 
 			CoconutCrab: 演化出的天然迷彩, 可以伪装成椰子. 会睡在椰子树上, 并且会在清晨从椰子树上跳下.
 			SoldierCrab: 因其骑士般的外表而得名. 这只螃蟹的橙色盔甲实际上是钴覆盖着一层又一层的污垢.
