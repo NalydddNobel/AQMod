@@ -133,8 +133,17 @@ namespace Aequus.NPCs.Monsters.Jungle
 
         public virtual void OnKilledMinion(NPC npc, int index)
         {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (i != npc.whoAmI && Main.npc[i].active && Main.npc[i].TryGetGlobalNPC<AequusNPC>(out var aequus))
+                {
+                    if (aequus.jungleCoreInvasion == (NPC.whoAmI + 1) && aequus.jungleCoreInvasionIndex == index)
+                    {
+                        return;
+                    }
+                }
+            }
             Enemies[index].dead = true;
-            Main.NewText($"god, {index} is so dead!");
             NPC.netUpdate = true;
         }
 
@@ -225,6 +234,17 @@ namespace Aequus.NPCs.Monsters.Jungle
                 if (Enemies[i].currentlySpawnedEnemyIndex != -1 && (!Main.npc[Enemies[i].currentlySpawnedEnemyIndex].active || Main.npc[Enemies[i].currentlySpawnedEnemyIndex].type != Enemies[i].NPCId))
                 {
                     Enemies[i].currentlySpawnedEnemyIndex = -1;
+                    for (int j = 0; j < Main.maxNPCs; j++)
+                    {
+                        if (Main.npc[j].active && Main.npc[j].TryGetGlobalNPC<AequusNPC>(out var aequus))
+                        {
+                            if (aequus.jungleCoreInvasion == (NPC.whoAmI + 1) && aequus.jungleCoreInvasionIndex == i)
+                            {
+                                Enemies[i].currentlySpawnedEnemyIndex = i;
+                                break;
+                            }
+                        }
+                    }
                     NPC.netUpdate = true;
                 }
             }

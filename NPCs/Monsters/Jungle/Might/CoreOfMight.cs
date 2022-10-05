@@ -14,12 +14,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         public override void Load()
         {
             base.Load();
-            SpawnData = new List<EnemySpawnData>()
-            {
-                new EnemySpawn_Any4Sides(NPCID.QueenSlimeBoss),
-                new EnemySpawn_Any4Sides(NPCID.DukeFishron),
-                new EnemySpawn_Any4Sides(NPCID.Pumpking),
-            };
+            SpawnData = new List<EnemySpawnData>();
         }
 
         public override EnemySpawnData ChooseSpawnType(int index, int count)

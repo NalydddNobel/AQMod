@@ -20,10 +20,37 @@ namespace Aequus.Tiles
 
         public const int ShadowOrbDrops_Aequus = 5;
 
+        public struct IndestructibleCircle
+        {
+            private Vector2 measurementCenterPoint;
+            private Point centerPoint;
+            public Point CenterPoint
+            {
+                get => centerPoint; 
+
+                set
+                {
+                    centerPoint = value;
+                    measurementCenterPoint = value.ToVector2();
+                }
+            }
+            public float tileRadius;
+
+            public bool InPoint(int i, int j)
+            {
+                return Vector2.Distance(measurementCenterPoint, new Vector2(i, j)) < tileRadius;
+            }
+        }
+
+        private static List<IndestructibleCircle> CheckCircles;
+        public static List<IndestructibleCircle> Circles { get; private set; }
+
         public static Dictionary<Point, Color> PylonColors { get; private set; }
 
         public override void Load()
         {
+            CheckCircles = new List<IndestructibleCircle>();
+            Circles = new List<IndestructibleCircle>();
             PylonColors = new Dictionary<Point, Color>()
             {
                 [new Point(TileID.TeleportationPylon, 0)] = new Color(100, 255, 128, 255),
@@ -59,6 +86,17 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
+            CheckCircles?.Clear();
+            CheckCircles = null;
+            Circles?.Clear();
+            Circles = null;
+        }
+
+        internal static void UpdateIndestructibles()
+        {
+            CheckCircles.Clear();
+            CheckCircles.AddRange(Circles);
+            Circles.Clear();
         }
 
         public void GrowPearl(int i, int j)
@@ -153,12 +191,15 @@ namespace Aequus.Tiles
             if (WorldGen.gen)
                 return true;
 
+            foreach (var c in CheckCircles)
+            {
+                if (c.InPoint(i, j))
+                    return false;
+            }
             foreach (var s in DemonSiegeSystem.ActiveSacrifices)
             {
                 if (s.Value.ProtectedTiles().Contains(i, j))
-                {
                     return false;
-                }
             }
             return true;
         }

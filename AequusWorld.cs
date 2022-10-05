@@ -413,6 +413,7 @@ namespace Aequus
 
         public override void PreUpdateEntities()
         {
+            AequusTile.UpdateIndestructibles();
             CelesteTorus.RenderPoints?.Clear();
             ArmFloaties.Equipped?.Clear();
             ResetCaches();

@@ -1005,7 +1005,7 @@ Mods: {
 				DevilsTongueEnabled: Non-rare catches turn into trash is enabled
 				DevilsTongueDisabled: Non-rare catches turn into trash is disabled
 			}
-				
+
 			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes

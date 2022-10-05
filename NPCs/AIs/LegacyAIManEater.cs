@@ -35,7 +35,7 @@ namespace Aequus.NPCs.AIs
         /// </summary>
         public bool shoots;
 
-        public void FindVaildSpot()
+        public void FindVaildSpot(int amt = 5)
         {
             Point pos = NPC.Center.ToTileCoordinates();
             if (pos.Y < 10 || pos.Y > Main.maxTilesX - 10)
@@ -49,13 +49,31 @@ namespace Aequus.NPCs.AIs
                 NPC.ai[1] = NPC.Center.ToTileCoordinates().Y;
                 return;
             }
-            for (int j = pos.Y - 5; j < pos.Y + 5; j++)
+            for (int j = pos.Y - amt; j <= pos.Y + amt; j++)
             {
-                Tile t2 = Framing.GetTileSafely(pos.X, j);
+                if (!WorldGen.InWorld(pos.X, j))
+                {
+                    continue;
+                }
+                var t2 = Main.tile[pos.X, j];
                 if (t2.HasTile && Main.tileSolid[t2.TileType] && !Main.tileSolidTop[t2.TileType])
                 {
                     NPC.ai[0] = pos.X;
                     NPC.ai[1] = j;
+                    return;
+                }
+            }
+            for (int i = pos.X - amt; i <= pos.X + amt; i++)
+            {
+                if (!WorldGen.InWorld(i, pos.Y))
+                {
+                    continue;
+                }
+                var t2 = Main.tile[i, pos.Y];
+                if (t2.HasTile && Main.tileSolid[t2.TileType] && !Main.tileSolidTop[t2.TileType])
+                {
+                    NPC.ai[0] = i;
+                    NPC.ai[1] = pos.Y;
                     return;
                 }
             }
@@ -257,7 +275,7 @@ namespace Aequus.NPCs.AIs
             return true;
         }
 
-        public virtual bool SafePreDraw(SpriteBatch spriteBatch, Color drawColor) => true;
+        public virtual bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) => true;
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
@@ -265,7 +283,7 @@ namespace Aequus.NPCs.AIs
             Color _drawColor = new Color(255, 255, 255, 255);
             if (!PreDrawChain(spriteBatch, screenPos, drawColor, ref texture, out var frame, ref _drawColor))
             {
-                return SafePreDraw(spriteBatch, drawColor);
+                return SafePreDraw(spriteBatch, screenPos, drawColor);
             }
             Point offset = new Point(frame.Width - 2, frame.Height);
 
@@ -292,9 +310,9 @@ namespace Aequus.NPCs.AIs
                 num193 = toTile.X * 16f + 8f - center.X;
                 num204 = toTile.Y * 16f + 8f - center.Y;
                 Color color12 = Lighting.GetColor((int)center.X / 16, (int)(center.Y / 16f), _drawColor);
-                spriteBatch.Draw(texture, new Vector2(center.X - Main.screenPosition.X, center.Y - Main.screenPosition.Y), frame, color12, rotation2, origin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, new Vector2(center.X - screenPos.X, center.Y - screenPos.Y), frame, color12, rotation2, origin, 1f, SpriteEffects.None, 0f);
             }
-            return SafePreDraw(spriteBatch, drawColor);
+            return SafePreDraw(spriteBatch, screenPos, drawColor);
         }
     }
 }

@@ -600,9 +600,7 @@ namespace Aequus.NPCs
 
             if (jungleCoreInvasion > 0)
             {
-                jungleCoreInvasion--;
-                Main.NewText(Main.npc[jungleCoreInvasion]);
-                if (Main.npc[jungleCoreInvasion].active && Main.npc[jungleCoreInvasion].ModNPC is BaseCore core)
+                if (Main.npc[jungleCoreInvasion - 1].active && Main.npc[jungleCoreInvasion - 1].ModNPC is BaseCore core)
                 {
                     core.OnKilledMinion(npc, jungleCoreInvasionIndex);
                 }
