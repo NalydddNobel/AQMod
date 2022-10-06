@@ -326,6 +326,9 @@ Mods: {
 			SkyrimRock3: 推力
 			SkyrimRock2: 平衡
 			SkyrimRock1: 力量
+			OliverPainting: 奥利弗
+			GoreNestPainting: 血雨腥风
+			ExLydSpacePainting: 空间
 			HomeworldPainting: 家园
 			YangPainting: 你能感觉到阳光吗?
 			YinPainting: 黑暗, 更加黑暗...
@@ -1128,6 +1131,9 @@ Mods: {
 				视作恶魔/猩红祭坛
 				'''
 
+			OliverPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			GoreNestPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			ExLydSpacePainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			HomeworldPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
