@@ -87,7 +87,7 @@ namespace Aequus.Items.Misc
             if (!Item.buy || Main.npcShop != -1)
                 return;
 
-            var ttLine = Item.GetGlobalItem<AequusTooltips.TooltipsGlobal>().GetPriceTooltipLine(Main.LocalPlayer, Item);
+            var ttLine = Item.AequusTooltips().GetPriceTooltipLine(Main.LocalPlayer, Item);
 
             ttLine.Text = AequusText.GetTextWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = AequusText.ColorText(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
             ttLine.OverrideColor = null;

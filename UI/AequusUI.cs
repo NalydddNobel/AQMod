@@ -62,8 +62,6 @@ namespace Aequus.UI
 
         public static ItemSlotContext CurrentItemSlot;
 
-        public static int itemSlotContext => CurrentItemSlot.Context;
-
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
         public static List<BaseUserInterface> UserInterfaces { get; private set; }
 

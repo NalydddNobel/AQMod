@@ -305,7 +305,6 @@ namespace Aequus
                     break;
 
                 case PacketType.SyncRecyclingMachine:
-                    TERecyclingMachine.NetReceive2(reader);
                     break;
 
                 case PacketType.Unused:

@@ -1,37 +1,32 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Misc;
-using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public static class AequusRecipes
+    public class AequusRecipes : IAddRecipeGroups, IAddRecipes
     {
         private static RecipeGroup anyEctoplasm;
         public static RecipeGroup AnyEctoplasm { get => anyEctoplasm; }
 
-        private class Loader : IAddRecipeGroups, IAddRecipes
+        void ILoadable.Load(Mod mod)
         {
-            void ILoadable.Load(Mod mod)
-            {
-            }
+        }
 
-            void IAddRecipeGroups.AddRecipeGroups(Aequus aequus)
-            {
-                NewGroup("AnyEctoplasm", ref anyEctoplasm,
-                    ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
-            }
+        void IAddRecipeGroups.AddRecipeGroups(Aequus aequus)
+        {
+            NewGroup("AnyEctoplasm", ref anyEctoplasm,
+                ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+        }
 
-            void IAddRecipes.AddRecipes(Aequus aequus)
-            {
-            }
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+        }
 
-            void ILoadable.Unload()
-            {
-            }
+        void ILoadable.Unload()
+        {
         }
 
         private static RecipeGroup NewGroup(string name, ref RecipeGroup group, params int[] items)
@@ -68,38 +63,6 @@ namespace Aequus.Items
         public static Recipe CreateRecipe(int result, int stack = 1)
         {
             return Recipe.Create(result, stack);
-        }
-
-        public static Recipe ReplaceItem(this Recipe r, int item, int newItem, int newItemStack = -1)
-        {
-            for (int i = 0; i < r.requiredItem.Count; i++)
-            {
-                if (r.requiredItem[i].type == item)
-                {
-                    int stack = newItemStack <= 0 ? r.requiredItem[i].stack : newItemStack;
-                    r.requiredItem[i].SetDefaults(newItem);
-                    r.requiredItem[i].stack = stack;
-                    break;
-                }
-            }
-            return r;
-        }
-
-        public static void ReplaceItemWith(this Recipe r, int item, Action<Recipe, Item> replacementMethod)
-        {
-            var itemList = new List<Item>(r.requiredItem);
-            r.requiredItem.Clear();
-            for (int i = 0; i < itemList.Count; i++)
-            {
-                if (itemList[i].type == item)
-                {
-                    replacementMethod(r, itemList[i]);
-                }
-                else
-                {
-                    r.AddIngredient(itemList[i].type, itemList[i].stack);
-                }
-            }
         }
 
         public static Recipe SpaceSquidRecipe(ModItem modItem, int original, bool sort = true)

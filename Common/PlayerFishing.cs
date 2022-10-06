@@ -40,12 +40,9 @@ namespace Aequus.Common
                 ItemID.TinCan,
                 ItemID.OldShoe,
             };
-            MonoModHooks.RequestNativeAccess();
 
-            new Hook(
-                typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
-                typeof(PlayerFishing).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static)
-                ).Apply();
+            Aequus.Hook(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
+                typeof(PlayerFishing).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
         #region Hooks

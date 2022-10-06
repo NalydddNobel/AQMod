@@ -30,7 +30,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            AequusTooltips.RemoveCritChance(tooltips);
+            tooltips.RemoveCritChance();
         }
     }
 }

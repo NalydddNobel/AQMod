@@ -347,6 +347,10 @@ namespace Aequus
             return player.head == head && player.body == body && player.legs == legs;
         }
 
+        public static string CapSpaces(string text)
+        {
+            return Regex.Replace(text, "([A-Z])", " $1").Trim();
+        }
         public static string ToStringNull(object value)
         {
             if (value == null)
@@ -1383,9 +1387,9 @@ namespace Aequus
             return npc2;
         }
 
-        public static AequusTooltips.TooltipsGlobal AequusTooltips(this Item item)
+        public static AequusTooltips AequusTooltips(this Item item)
         {
-            return item.GetGlobalItem<AequusTooltips.TooltipsGlobal>();
+            return item.GetGlobalItem<AequusTooltips>();
         }
         public static AequusItem Aequus(this Item item)
         {

@@ -1,17 +1,13 @@
-﻿using Aequus;
-using Aequus.Graphics;
+﻿using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Placeable;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent;
-using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -24,13 +20,11 @@ namespace Aequus.Tiles
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
-            TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
             TileObjectData.newTile.Height = 3;
             TileObjectData.newTile.Origin = new Point16(1, 2);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
-            TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TERecyclingMachine>().Hook_AfterPlacement, -1, 0, false);
             TileObjectData.addTile(Type);
             DustType = DustID.Stone;
             AddMapEntry(new Color(140, 103, 103), CreateMapEntryName("RecyclingMachine"));
@@ -41,131 +35,9 @@ namespace Aequus.Tiles
             Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<RecyclingMachine>());
             ModContent.GetInstance<TERecyclingMachine>().Kill(i, j);
         }
-
-        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
-        {
-            var recycling = GetTileEntity(i, j);
-            if (recycling == null || recycling.timeLeft > 0)
-            {
-                return false;
-            }
-            return TERecyclingMachine.GetUsableItem(Main.LocalPlayer) != null;
-        }
-
-        public override void MouseOver(int i, int j)
-        {
-            var recycling = GetTileEntity(i, j);
-            if (recycling == null || recycling.timeLeft > 0)
-            {
-                return;
-            }
-
-            var player = Main.LocalPlayer;
-            Item hoverItem;
-            if (recycling.HasItem)
-            {
-                hoverItem = recycling.item;
-            }
-            else
-            {
-                hoverItem = TERecyclingMachine.GetUsableItem(Main.LocalPlayer);
-            }
-            if (hoverItem != null)
-            {
-                player.noThrow = 2;
-                player.cursorItemIconEnabled = true;
-                player.cursorItemIconID = hoverItem.type;
-            }
-        }
-
-        public override bool AutoSelect(int i, int j, Item item)
-        {
-            return RecyclingTable.Convert.ContainsKey(item.type);
-        }
-
-        public override bool RightClick(int i, int j)
-        {
-            return (GetTileEntity(i, j)?.Interact(Main.LocalPlayer)).GetValueOrDefault(false);
-        }
-
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16);
-            if (Main.tile[i, j].TileFrameY >= 36)
-            {
-                frame.Height = 18;
-            }
-            var drawCoordinates = new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset;
-
-            var recycling = GetTileEntity(i, j);
-            if (recycling == null)
-            {
-                return true;
-            }
-            drawCoordinates += recycling.GetDrawOffset(i, j);
-            recycling.UpdateSounds();
-
-            Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates.Floor(),
-                frame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
-            if (i == (recycling.Position.X + 1) && j == recycling.Position.Y)
-            {
-                if (recycling.timeLeft == 0 && recycling.HasItem)
-                {
-                    InnerDrawChatBubble(recycling, recycling.item, drawCoordinates + new Vector2(0f, -4f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, -4f, 0f)).Floor());
-                }
-            }
-
-            return false;
-        }
-
-        public void InnerDrawChatBubble(TERecyclingMachine recylcing, Item item, Vector2 where)
-        {
-            var statusBubble = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/StatusBubble").Value;
-            var chatBubbleFrame = statusBubble.Frame(horizontalFrames: TextureCache.StatusBubbleFramesX, frameX: 1);
-            Main.spriteBatch.Draw(statusBubble, where.Floor(),
-                chatBubbleFrame, Color.White, 0f, new Vector2(chatBubbleFrame.Width / 2f, chatBubbleFrame.Height), 1f, SpriteEffects.None, 0f);
-
-            Main.instance.LoadItem(item.type);
-
-            item.GetItemDrawData(out var frame);
-            var itemTexture = TextureAssets.Item[item.type].Value;
-
-            var itemScale = 1f;
-            int largestSide = frame.Width > frame.Height ? frame.Width : frame.Height;
-            if (largestSide > 38)
-            {
-                itemScale = 38f / largestSide;
-            }
-
-            where.Y += chatBubbleFrame.Height / -2f - 2f;
-
-            Main.spriteBatch.Draw(itemTexture, where.Floor() + new Vector2(2f, 2f) * itemScale,
-                null, Color.Black * 0.4f, 0f, frame.Size() / 2f, itemScale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(itemTexture, where.Floor(),
-                null, Color.White, 0f, frame.Size() / 2f, itemScale, SpriteEffects.None, 0f);
-        }
-
-        /// <summary>
-        /// Attempts to get the recycling machine Tile Entity instance. Returns null if none is found.
-        /// </summary>
-        /// <param name="i"></param>
-        /// <param name="j"></param>
-        /// <returns></returns>
-        public TERecyclingMachine GetTileEntity(int i, int j)
-        {
-            int x = i - Main.tile[i, j].TileFrameX % 36 / 18;
-            int y = j - Main.tile[i, j].TileFrameY / 18;
-
-            int index = ModContent.GetInstance<TERecyclingMachine>().Find(x, y);
-            if (index == -1)
-            {
-                return null;
-            }
-            return (TERecyclingMachine)TileEntity.ByID[index];
-        }
     }
 
+    [Obsolete("No longer used, kept in for loading and dropping items")]
     public class TERecyclingMachine : ModTileEntity
     {
         public ushort timeLeft;
@@ -256,6 +128,7 @@ namespace Aequus.Tiles
 
         public override void Update()
         {
+            timeLeft = 0;
             if (timeLeft > 0)
             {
                 timeLeft--;
@@ -264,10 +137,14 @@ namespace Aequus.Tiles
                     RecyclingTable.Convert.TryGetValue(item.type, out var l);
 
                     item = ConvertItem(item, l.FindAll((l2) => l2.CanObtain()));
-                    AequusItem.NewItemCloned(new EntitySource_TileEntity(this), new Vector2(Position.X * 16f + 16f, Position.Y * 16f + 24f), item);
-                    item = null;
                     Sync();
                 }
+            }
+            if (item != null)
+            {
+                AequusItem.NewItemCloned(new EntitySource_TileEntity(this), new Vector2(Position.X * 16f + 16f, Position.Y * 16f + 24f), item);
+                item = null;
+                Sync();
             }
         }
 

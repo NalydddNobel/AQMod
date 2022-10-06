@@ -57,7 +57,7 @@ namespace Aequus.Items.Misc
         {
             if (string.IsNullOrWhiteSpace(text))
                 return;
-            tooltips.Insert(AequusTooltips.GetIndex(tooltips, "Tooltip#"), new TooltipLine(Mod, "EightBall", Language.GetTextValue(text)) { OverrideColor = Color.Lerp(Main.mouseColor, Color.White, 0.25f) });
+            tooltips.Insert(tooltips.GetIndex("Tooltip#"), new TooltipLine(Mod, "EightBall", Language.GetTextValue(text)) { OverrideColor = Color.Lerp(Main.mouseColor, Color.White, 0.25f) });
         }
 
         public override void NetSend(BinaryWriter writer)

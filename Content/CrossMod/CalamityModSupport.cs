@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Items;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,6 +14,7 @@ namespace Aequus.Content.CrossMod
     {
         private static Mod calamityMod;
         public static Mod CalamityMod => calamityMod;
+        public static Mod CatalystMod { get; private set; }
 
         Type ILoadBefore.LoadBefore => typeof(NecromancyDatabase);
 
@@ -22,6 +24,8 @@ namespace Aequus.Content.CrossMod
 
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
+            calamityMod = null;
+            CatalystMod = null;
             if (ModLoader.TryGetMod("CalamityMod", out calamityMod))
             {
                 new DatabaseBuilder<GhostInfo>(NecromancyDatabase.NPCs, calamityMod, NPCID.Search)
@@ -71,9 +75,16 @@ namespace Aequus.Content.CrossMod
                     .TryAddModEntry("WulfrumRover", GhostInfo.One);
 
                 AddPylonColors();
-                return;
+                AddRarityNames();
             }
-            calamityMod = null;
+            if (ModLoader.TryGetMod("CatalystMod", out var catalystMod))
+            {
+                CatalystMod = catalystMod;
+                if (catalystMod.TryFind<ModRarity>("SuperbossRarity", out var rarity))
+                {
+                    AequusItem.RarityNames.Add(rarity.Type, "Mods.Aequus.ItemRarity.Catalyst_Crystal");
+                }
+            }
         }
 
         public static void AddPylonColors()
@@ -96,10 +107,15 @@ namespace Aequus.Content.CrossMod
                 AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.LimeGreen);
             }
         }
+        public static void AddRarityNames()
+        {
+            ModRarity rarity;
+        }
 
         void ILoadable.Unload()
         {
             calamityMod = null;
+            CatalystMod = null;
         }
     }
 }

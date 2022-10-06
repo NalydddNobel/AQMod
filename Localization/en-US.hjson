@@ -256,7 +256,7 @@ Mods: {
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
 			Hexoplasm: Hexoplasm
-			UnenchantedStaff: Unenchanted Staff
+			ItemScrap: Scrap
 			
 			DustDevilBag: Treasure Bag (Dust Devil)
 			CrabsonBag: Treasure Bag (Crabson)
@@ -934,7 +934,7 @@ Mods: {
 				"InvalidWorld": This world and map do not match
 			}
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
-			UnenchantedStaff: May be enchanted
+			ItemScrap: May be used instead of other {ItemRarity} rarity items while crafting
 
 			LightningRod: 
 				'''
@@ -1094,7 +1094,7 @@ Mods: {
 				'Ball Incarnate'
 				'''
 
-			RecyclingMachine: Allows you to recycle trash items
+			RecyclingMachine: When nearby, you can create item scrap while crafting
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
@@ -1648,6 +1648,32 @@ Mods: {
 				AnglerHint: The Angler may be interested in this...
 				ExporterHint: The Exporter may be interested in this...
 			}
+		}
+
+		ItemRarity: {
+			"-13": Master
+			"-12": Expert
+			"-11": Quest
+			"-1": Trash
+			"0": White
+			"1": Blue
+			"2": Green
+			"3": Orange
+			"4": Light Red
+			"5": Pink
+			"6": Light Purple
+			"7": Lime
+			"8": Yellow
+			"9": Cyan
+			"10": Red
+			"11": Purple
+			Calamity_12: Turquoise
+			Calamity_13: Pure Green
+			Calamity_14: Dark Blue
+			Calamity_15: Violet
+			Calamity_16: Hot Pink
+			Calamity_Draedon: Dark Orange
+			Catalyst_Crystal: Crystal
 		}
 
 		BuffName: {
@@ -3802,9 +3828,8 @@ Mods: {
 		Honey: Honey
 		Shimmer: Shimmer
 
+		Unknown: Unknown
 		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
-		Concoct: Concoct Potions
-		StopConcocting: Stop Concocting
 		Complete: Complete
 		Active: Active
 		Inactive: Inactive

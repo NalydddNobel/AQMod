@@ -3,8 +3,10 @@ using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoMod.RuntimeDetour;
 using System;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -39,6 +41,19 @@ namespace Aequus
         public static float SkiesDarknessGoTo;
         public static float SkiesDarknessGoToSpeed;
 
+        private static bool requestedHookAccess;
+
+        public static object Hook(MethodInfo info, MethodInfo info2)
+        {
+            if (!requestedHookAccess)
+            {
+                MonoModHooks.RequestNativeAccess();
+                requestedHookAccess = true;
+            }
+            new Hook(info, info2).Apply();
+            return null;
+        }
+
         public static ModPacket GetPacket(PacketType type)
         {
             var p = Instance.GetPacket();
@@ -48,6 +63,7 @@ namespace Aequus
 
         public override void Load()
         {
+            requestedHookAccess = false;
             Instance = this;
             SkiesDarkness = 1f;
             if (Main.netMode != NetmodeID.Server)
@@ -91,6 +107,7 @@ namespace Aequus
 
         public override void Unload()
         {
+            requestedHookAccess = false;
             Instance = null;
             InventoryInterface = null;
             NPCTalkInterface = null;

@@ -4,6 +4,7 @@ using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
@@ -12,6 +13,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Projectiles.Misc;
+using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -34,6 +36,8 @@ namespace Aequus.Items
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
+        public static Dictionary<int, string> RarityNames { get; private set; }
+
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
@@ -50,6 +54,25 @@ namespace Aequus.Items
             {
                 PrefixID.Keen,
                 PrefixID.Zealous,
+            };
+            RarityNames = new Dictionary<int, string>()
+            {
+                [ItemRarityID.Master] = "Mods.Aequus.ItemRarity.-13",
+                [ItemRarityID.Expert] = "Mods.Aequus.ItemRarity.-12",
+                [ItemRarityID.Quest] = "Mods.Aequus.ItemRarity.-11",
+                [ItemRarityID.Gray] = "Mods.Aequus.ItemRarity.-1",
+                [ItemRarityID.White] = "Mods.Aequus.ItemRarity.0",
+                [ItemRarityID.Blue] = "Mods.Aequus.ItemRarity.1",
+                [ItemRarityID.Green] = "Mods.Aequus.ItemRarity.2",
+                [ItemRarityID.Orange] = "Mods.Aequus.ItemRarity.3",
+                [ItemRarityID.LightRed] = "Mods.Aequus.ItemRarity.4",
+                [ItemRarityID.Pink] = "Mods.Aequus.ItemRarity.5",
+                [ItemRarityID.LightPurple] = "Mods.Aequus.ItemRarity.6",
+                [ItemRarityID.Lime] = "Mods.Aequus.ItemRarity.7",
+                [ItemRarityID.Yellow] = "Mods.Aequus.ItemRarity.8",
+                [ItemRarityID.Cyan] = "Mods.Aequus.ItemRarity.9",
+                [ItemRarityID.Red] = "Mods.Aequus.ItemRarity.10",
+                [ItemRarityID.Purple] = "Mods.Aequus.ItemRarity.11",
             };
             On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.Tools.FitsFilter += Tools_FitsFilter;
@@ -74,25 +97,38 @@ namespace Aequus.Items
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
                 var item = ContentSamples.ItemsByType[i];
-                if (IsSummonStaff(item))
+                if (item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > ItemUseStyleID.None && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry))
                 {
                     SummonStaff.Add(i);
                 }
             }
         }
-        public static bool IsSummonStaff(Item item)
-        {
-            return item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > ItemUseStyleID.None && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry);
-        }
 
         public override void Unload()
         {
+            RarityNames?.Clear();
+            RarityNames = null;
             LegendaryFish?.Clear();
             LegendaryFish = null;
             SummonStaff?.Clear();
             SummonStaff = null;
             CritOnlyModifier?.Clear();
             CritOnlyModifier = null;
+        }
+
+        public override void OnCreate(Item item, ItemCreationContext context)
+        {
+            if (context is RecipeCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
+            {
+                if (recipeContext.recipe.requiredItem.Count == 1 && ItemHelper.CanBeCraftedInto(item.type, recipeContext.recipe.requiredItem[0].type))
+                {
+                    return;
+                }
+                var scrap = SetDefaults<ItemScrap>();
+                scrap.ModItem<ItemScrap>().Rarity = item.OriginalRarity;
+                scrap.ModItem<ItemScrap>().UpdateRarity();
+                Main.LocalPlayer.QuickSpawnClonedItemDirect(item.GetSource_FromThis("Recipe Scrap"), scrap, 1);
+            }
         }
 
         public override bool CanStack(Item item1, Item item2)

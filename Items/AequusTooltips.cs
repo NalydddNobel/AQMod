@@ -19,7 +19,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.Items
 {
-    public static class AequusTooltips
+    public class AequusTooltips : GlobalItem
     {
         public struct ItemDedication
         {
@@ -31,488 +31,428 @@ namespace Aequus.Items
             }
         }
 
-        public class TooltipsGlobal : GlobalItem
-        {
-            public override void Load()
-            {
-                Dedicated = new Dictionary<int, ItemDedication>();
-                //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
-            }
-
-            public override void Unload()
-            {
-                Dedicated?.Clear();
-                Dedicated = null;
-            }
-
-            public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-            {
-                try
-                {
-                    var player = Main.LocalPlayer;
-                    var aequus = player.Aequus();
-
-                    if (item.type == ItemID.SoulofMight)
-                    {
-                        foreach (var tt in tooltips)
-                        {
-                            if (tt.Name == "Tooltip0")
-                            {
-                                tt.Text = AequusText.GetText("ItemTooltip.Terraria_SoulofMight");
-                            }
-                        }
-                    }
-
-                    if (Dedicated.TryGetValue(item.type, out var dedication))
-                    {
-                        tooltips.Insert(GetIndex(tooltips, "Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
-                    }
-
-                    if (Main.npcShop > 0)
-                    {
-                        if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
-                            ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
-                    }
-                    else if (aequus.showPrices)
-                    {
-                        if ((item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin)) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
-                        {
-                            AddPriceTooltip(player, item, tooltips);
-                        }
-                    }
-
-                    if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
-                    {
-                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
-                    }
-
-                    if (ExporterQuests.QuestItems.Contains(item.type))
-                    {
-                        if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
-                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
-                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
-                    }
-                    if (AequusItem.LegendaryFish.Contains(item.type))
-                    {
-                        if (NPC.AnyNPCs(NPCID.Angler))
-                            tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
-                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
-                    }
-
-                    if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Contains(item.buffType))
-                    {
-                        tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
-                    }
-
-                    if (item.pick > 0)
-                    {
-                        float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
-                        if (item.pick != (int)(item.pick * pickDamage))
-                        {
-                            foreach (var t in tooltips)
-                            {
-                                if (t.Mod == "Terraria" && t.Name == "PickPower")
-                                {
-                                    string sign = "-";
-                                    var color = new Color(190, 120, 120, 255);
-                                    if (pickDamage > 1f)
-                                    {
-                                        sign = "+";
-                                        color = new Color(120, 190, 120, 255);
-                                    }
-                                    t.Text = $"{item.pick}{AequusText.ColorText($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
-                                }
-                            }
-                        }
-                    }
-
-                    if (item.prefix >= PrefixID.Count && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
-                    {
-                        PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
-                    }
-
-                    //TestLootBagTooltip(item, tooltips);
-                }
-                catch
-                {
-                }
-            }
-            public void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
-            {
-                var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
-
-                if (dropTable.Count == 0)
-                {
-                    return;
-                }
-
-                var drops = new List<DropRateInfo>();
-                foreach (var rule in dropTable)
-                {
-                    rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
-                }
-                foreach (var drop in drops)
-                {
-                    string text = AequusText.ItemText(drop.itemId);
-                    if (drop.stackMin == drop.stackMax)
-                    {
-                        if (drop.stackMin > 1)
-                        {
-                            text += $" ({drop.stackMin})";
-                        }
-                    }
-                    else
-                    {
-                        text += $" ({drop.stackMin} - {drop.stackMax})";
-                    }
-                    text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
-                    tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId), text));
-                    if (drop.conditions != null && drop.conditions.Count > 0)
-                    {
-                        foreach (var cond in drop.conditions)
-                        {
-                            if (cond == null)
-                            {
-                                continue;
-                            }
-
-                            string extraDesc = cond.GetConditionDescription();
-                            string condText = cond.GetType().FullName;
-                            if (!string.IsNullOrEmpty(extraDesc))
-                                condText += " '" + extraDesc + "'";
-
-                            tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
-                        }
-                    }
-                }
-            }
-            public TooltipLine GetPriceTooltipLine(Player player, Item item)
-            {
-                player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
-                int value = (item.isAShopItem || item.buyOnce) ? calcForBuying : calcForSelling;
-                if (item.shopSpecialCurrency != -1)
-                {
-                    string[] text = new string[1];
-                    int line = 0;
-                    CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
-                    return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
-                }
-                else if (value > 0)
-                {
-                    string text = "";
-                    int platinum = 0;
-                    int gold = 0;
-                    int silver = 0;
-                    int copper = 0;
-                    int itemValue = value * item.stack;
-                    if (!item.buy)
-                    {
-                        itemValue = value / 5;
-                        if (itemValue < 1)
-                        {
-                            itemValue = 1;
-                        }
-                        int num3 = itemValue;
-                        itemValue *= item.stack;
-                        int amount = Main.shopSellbackHelper.GetAmount(item);
-                        if (amount > 0)
-                        {
-                            itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
-                        }
-                    }
-                    if (itemValue < 1)
-                    {
-                        itemValue = 1;
-                    }
-                    if (itemValue >= 1000000)
-                    {
-                        platinum = itemValue / 1000000;
-                        itemValue -= platinum * 1000000;
-                    }
-                    if (itemValue >= 10000)
-                    {
-                        gold = itemValue / 10000;
-                        itemValue -= gold * 10000;
-                    }
-                    if (itemValue >= 100)
-                    {
-                        silver = itemValue / 100;
-                        itemValue -= silver * 100;
-                    }
-                    if (itemValue >= 1)
-                    {
-                        copper = itemValue;
-                    }
-
-                    if (platinum > 0)
-                    {
-                        text = text + platinum + " " + Lang.inter[15].Value + " ";
-                    }
-                    if (gold > 0)
-                    {
-                        text = text + gold + " " + Lang.inter[16].Value + " ";
-                    }
-                    if (silver > 0)
-                    {
-                        text = text + silver + " " + Lang.inter[17].Value + " ";
-                    }
-                    if (copper > 0)
-                    {
-                        text = text + copper + " " + Lang.inter[18].Value + " ";
-                    }
-
-                    var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
-
-                    if (platinum > 0)
-                    {
-                        t.OverrideColor = Colors.CoinPlatinum;
-                    }
-                    else if (gold > 0)
-                    {
-                        t.OverrideColor = Colors.CoinGold;
-                    }
-                    else if (silver > 0)
-                    {
-                        t.OverrideColor = Colors.CoinSilver;
-                    }
-                    else if (copper > 0)
-                    {
-                        t.OverrideColor = Colors.CoinCopper;
-                    }
-                    return t;
-                }
-                else if (item.type != ItemID.DefenderMedal)
-                {
-                    return new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
-                }
-                return null;
-            }
-            public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
-            {
-                player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
-                int value = (item.isAShopItem || item.buyOnce) ? calcForBuying : calcForSelling;
-                if (item.shopSpecialCurrency != -1)
-                {
-                    string[] text = new string[1];
-                    int line = 0;
-                    CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
-                    tooltips.Add(new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, });
-                }
-                else if (value > 0)
-                {
-                    string text = "";
-                    int platinum = 0;
-                    int gold = 0;
-                    int silver = 0;
-                    int copper = 0;
-                    int itemValue = value * item.stack;
-                    if (!item.buy)
-                    {
-                        itemValue = value / 5;
-                        if (itemValue < 1)
-                        {
-                            itemValue = 1;
-                        }
-                        int num3 = itemValue;
-                        itemValue *= item.stack;
-                        int amount = Main.shopSellbackHelper.GetAmount(item);
-                        if (amount > 0)
-                        {
-                            itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
-                        }
-                    }
-                    if (itemValue < 1)
-                    {
-                        itemValue = 1;
-                    }
-                    if (itemValue >= 1000000)
-                    {
-                        platinum = itemValue / 1000000;
-                        itemValue -= platinum * 1000000;
-                    }
-                    if (itemValue >= 10000)
-                    {
-                        gold = itemValue / 10000;
-                        itemValue -= gold * 10000;
-                    }
-                    if (itemValue >= 100)
-                    {
-                        silver = itemValue / 100;
-                        itemValue -= silver * 100;
-                    }
-                    if (itemValue >= 1)
-                    {
-                        copper = itemValue;
-                    }
-
-                    if (platinum > 0)
-                    {
-                        text = text + platinum + " " + Lang.inter[15].Value + " ";
-                    }
-                    if (gold > 0)
-                    {
-                        text = text + gold + " " + Lang.inter[16].Value + " ";
-                    }
-                    if (silver > 0)
-                    {
-                        text = text + silver + " " + Lang.inter[17].Value + " ";
-                    }
-                    if (copper > 0)
-                    {
-                        text = text + copper + " " + Lang.inter[18].Value + " ";
-                    }
-
-                    var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
-
-                    if (platinum > 0)
-                    {
-                        t.OverrideColor = Colors.CoinPlatinum;
-                    }
-                    else if (gold > 0)
-                    {
-                        t.OverrideColor = Colors.CoinGold;
-                    }
-                    else if (silver > 0)
-                    {
-                        t.OverrideColor = Colors.CoinSilver;
-                    }
-                    else if (copper > 0)
-                    {
-                        t.OverrideColor = Colors.CoinCopper;
-                    }
-                    tooltips.Add(t);
-                }
-                else if (item.type != ItemID.DefenderMedal)
-                {
-                    tooltips.Add(new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) });
-                }
-            }
-            public bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key)
-            {
-                var t = lines.Find("Price");
-                if (t != null)
-                {
-                    t.Text = t.Text.Replace(Lang.inter[15].Value, AequusText.GetText(key + ".ShopPrice.Platinum"));
-                    t.Text = t.Text.Replace(Lang.inter[16].Value, AequusText.GetText(key + ".ShopPrice.Gold"));
-                    t.Text = t.Text.Replace(Lang.inter[17].Value, AequusText.GetText(key + ".ShopPrice.Silver"));
-                    t.Text = t.Text.Replace(Lang.inter[18].Value, AequusText.GetText(key + ".ShopPrice.Copper"));
-                }
-                return false;
-            }
-            public void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
-            {
-                var font = FontAssets.MouseText.Value;
-                var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
-                string t = "";
-                var stringSize = Vector2.Zero;
-                for (int i = 0; i < width; i++)
-                {
-                    t += AequusHelpers.AirCharacter;
-                    stringSize = ChatManager.GetStringSize(font, t, Vector2.One);
-                    if (stringSize.X > width)
-                    {
-                        break;
-                    }
-                }
-
-                if (index == -1)
-                {
-                    index = lines.Count - 1;
-                }
-
-                int linesY = Math.Max((int)(height / stringSize.Y), 1);
-                for (int i = 0; i < linesY; i++)
-                {
-                    lines.Insert(index, new TooltipLine(Mod, "Fake_" + i, t));
-                }
-                lines.Insert(index, new TooltipLine(Mod, firstBoxName, t));
-            }
-
-            public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-            {
-                if (line.Mod == "Aequus")
-                {
-                    if (line.Name.StartsWith("Fake"))
-                    {
-                        return false;
-                    }
-                    if (line.Name == "DedicatedItem")
-                    {
-                        DrawDedicatedTooltip(line);
-                        return false;
-                    }
-                    if (line.Name == "ShopQuote")
-                    {
-                        ShopQuotes.DrawShopQuote(line, Main.npc[Main.LocalPlayer.talkNPC]);
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
-
-        internal static readonly string[] TooltipNames = new string[]
-        {
-                "ItemName",
-                "Favorite",
-                "FavoriteDesc",
-                "Social",
-                "SocialDesc",
-                "Damage",
-                "CritChance",
-                "Speed",
-                "Knockback",
-                "FishingPower",
-                "NeedsBait",
-                "BaitPower",
-                "Equipable",
-                "WandConsumes",
-                "Quest",
-                "Vanity",
-                "Defense",
-                "PickPower",
-                "AxePower",
-                "HammerPower",
-                "TileBoost",
-                "HealLife",
-                "HealMana",
-                "UseMana",
-                "Placeable",
-                "Ammo",
-                "Consumable",
-                "Material",
-                "Tooltip#",
-                "EtherianManaWarning",
-                "WellFedExpert",
-                "BuffTime",
-                "OneDropLogo",
-                "PrefixDamage",
-                "PrefixSpeed",
-                "PrefixCritChance",
-                "PrefixUseMana",
-                "PrefixSize",
-                "PrefixShootSpeed",
-                "PrefixKnockback",
-                "PrefixAccDefense",
-                "PrefixAccMaxMana",
-                "PrefixAccCritChance",
-                "PrefixAccDamage",
-                "PrefixAccMoveSpeed",
-                "PrefixAccMeleeSpeed",
-                "SetBonus",
-                "Expert",
-                "Master",
-                "JourneyResearch",
-                "BestiaryNotes",
-                "SpecialPrice",
-                "Price",
-        };
 
         public static Color HintColor => new Color(225, 100, 255, 255);
         public static Color DemonSiegeTooltip => new Color(255, 170, 150, 255);
         public static Color ItemDrawbackTooltip => Color.Lerp(Color.Red, Color.White, 0.5f);
+
+        public override void Load()
+        {
+            Dedicated = new Dictionary<int, ItemDedication>();
+            //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
+        }
+
+        public override void Unload()
+        {
+            Dedicated?.Clear();
+            Dedicated = null;
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            try
+            {
+                var player = Main.LocalPlayer;
+                var aequus = player.Aequus();
+
+                if (item.type == ItemID.SoulofMight)
+                {
+                    foreach (var tt in tooltips)
+                    {
+                        if (tt.Name == "Tooltip0")
+                        {
+                            tt.Text = AequusText.GetText("ItemTooltip.Terraria_SoulofMight");
+                        }
+                    }
+                }
+
+                if (Dedicated.TryGetValue(item.type, out var dedication))
+                {
+                    tooltips.Insert(tooltips.GetIndex("Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
+                }
+
+                if (Main.npcShop > 0)
+                {
+                    if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
+                        ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
+                }
+                else if (aequus.showPrices)
+                {
+                    if ((item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin)) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
+                    {
+                        AddPriceTooltip(player, item, tooltips);
+                    }
+                }
+
+                if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
+                {
+                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
+                }
+
+                if (ExporterQuests.QuestItems.Contains(item.type))
+                {
+                    if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
+                        tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
+                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+                }
+                if (AequusItem.LegendaryFish.Contains(item.type))
+                {
+                    if (NPC.AnyNPCs(NPCID.Angler))
+                        tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+                }
+
+                if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Contains(item.buffType))
+                {
+                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
+                }
+
+                if (item.pick > 0)
+                {
+                    float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
+                    if (item.pick != (int)(item.pick * pickDamage))
+                    {
+                        foreach (var t in tooltips)
+                        {
+                            if (t.Mod == "Terraria" && t.Name == "PickPower")
+                            {
+                                string sign = "-";
+                                var color = new Color(190, 120, 120, 255);
+                                if (pickDamage > 1f)
+                                {
+                                    sign = "+";
+                                    color = new Color(120, 190, 120, 255);
+                                }
+                                t.Text = $"{item.pick}{AequusText.ColorText($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
+                            }
+                        }
+                    }
+                }
+
+                if (item.prefix >= PrefixID.Count && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
+                {
+                    PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
+                }
+
+                //TestLootBagTooltip(item, tooltips);
+            }
+            catch
+            {
+            }
+        }
+        public void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
+        {
+            var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
+
+            if (dropTable.Count == 0)
+            {
+                return;
+            }
+
+            var drops = new List<DropRateInfo>();
+            foreach (var rule in dropTable)
+            {
+                rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
+            }
+            foreach (var drop in drops)
+            {
+                string text = AequusText.ItemText(drop.itemId);
+                if (drop.stackMin == drop.stackMax)
+                {
+                    if (drop.stackMin > 1)
+                    {
+                        text += $" ({drop.stackMin})";
+                    }
+                }
+                else
+                {
+                    text += $" ({drop.stackMin} - {drop.stackMax})";
+                }
+                text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
+                tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId), text));
+                if (drop.conditions != null && drop.conditions.Count > 0)
+                {
+                    foreach (var cond in drop.conditions)
+                    {
+                        if (cond == null)
+                        {
+                            continue;
+                        }
+
+                        string extraDesc = cond.GetConditionDescription();
+                        string condText = cond.GetType().FullName;
+                        if (!string.IsNullOrEmpty(extraDesc))
+                            condText += " '" + extraDesc + "'";
+
+                        tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
+                    }
+                }
+            }
+        }
+        public TooltipLine GetPriceTooltipLine(Player player, Item item)
+        {
+            player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
+            int value = (item.isAShopItem || item.buyOnce) ? calcForBuying : calcForSelling;
+            if (item.shopSpecialCurrency != -1)
+            {
+                string[] text = new string[1];
+                int line = 0;
+                CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
+                return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
+            }
+            else if (value > 0)
+            {
+                string text = "";
+                int platinum = 0;
+                int gold = 0;
+                int silver = 0;
+                int copper = 0;
+                int itemValue = value * item.stack;
+                if (!item.buy)
+                {
+                    itemValue = value / 5;
+                    if (itemValue < 1)
+                    {
+                        itemValue = 1;
+                    }
+                    int num3 = itemValue;
+                    itemValue *= item.stack;
+                    int amount = Main.shopSellbackHelper.GetAmount(item);
+                    if (amount > 0)
+                    {
+                        itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
+                    }
+                }
+                if (itemValue < 1)
+                {
+                    itemValue = 1;
+                }
+                if (itemValue >= 1000000)
+                {
+                    platinum = itemValue / 1000000;
+                    itemValue -= platinum * 1000000;
+                }
+                if (itemValue >= 10000)
+                {
+                    gold = itemValue / 10000;
+                    itemValue -= gold * 10000;
+                }
+                if (itemValue >= 100)
+                {
+                    silver = itemValue / 100;
+                    itemValue -= silver * 100;
+                }
+                if (itemValue >= 1)
+                {
+                    copper = itemValue;
+                }
+
+                if (platinum > 0)
+                {
+                    text = text + platinum + " " + Lang.inter[15].Value + " ";
+                }
+                if (gold > 0)
+                {
+                    text = text + gold + " " + Lang.inter[16].Value + " ";
+                }
+                if (silver > 0)
+                {
+                    text = text + silver + " " + Lang.inter[17].Value + " ";
+                }
+                if (copper > 0)
+                {
+                    text = text + copper + " " + Lang.inter[18].Value + " ";
+                }
+
+                var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+
+                if (platinum > 0)
+                {
+                    t.OverrideColor = Colors.CoinPlatinum;
+                }
+                else if (gold > 0)
+                {
+                    t.OverrideColor = Colors.CoinGold;
+                }
+                else if (silver > 0)
+                {
+                    t.OverrideColor = Colors.CoinSilver;
+                }
+                else if (copper > 0)
+                {
+                    t.OverrideColor = Colors.CoinCopper;
+                }
+                return t;
+            }
+            else if (item.type != ItemID.DefenderMedal)
+            {
+                return new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
+            }
+            return null;
+        }
+        public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
+        {
+            player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
+            int value = (item.isAShopItem || item.buyOnce) ? calcForBuying : calcForSelling;
+            if (item.shopSpecialCurrency != -1)
+            {
+                string[] text = new string[1];
+                int line = 0;
+                CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
+                tooltips.Add(new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, });
+            }
+            else if (value > 0)
+            {
+                string text = "";
+                int platinum = 0;
+                int gold = 0;
+                int silver = 0;
+                int copper = 0;
+                int itemValue = value * item.stack;
+                if (!item.buy)
+                {
+                    itemValue = value / 5;
+                    if (itemValue < 1)
+                    {
+                        itemValue = 1;
+                    }
+                    int num3 = itemValue;
+                    itemValue *= item.stack;
+                    int amount = Main.shopSellbackHelper.GetAmount(item);
+                    if (amount > 0)
+                    {
+                        itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
+                    }
+                }
+                if (itemValue < 1)
+                {
+                    itemValue = 1;
+                }
+                if (itemValue >= 1000000)
+                {
+                    platinum = itemValue / 1000000;
+                    itemValue -= platinum * 1000000;
+                }
+                if (itemValue >= 10000)
+                {
+                    gold = itemValue / 10000;
+                    itemValue -= gold * 10000;
+                }
+                if (itemValue >= 100)
+                {
+                    silver = itemValue / 100;
+                    itemValue -= silver * 100;
+                }
+                if (itemValue >= 1)
+                {
+                    copper = itemValue;
+                }
+
+                if (platinum > 0)
+                {
+                    text = text + platinum + " " + Lang.inter[15].Value + " ";
+                }
+                if (gold > 0)
+                {
+                    text = text + gold + " " + Lang.inter[16].Value + " ";
+                }
+                if (silver > 0)
+                {
+                    text = text + silver + " " + Lang.inter[17].Value + " ";
+                }
+                if (copper > 0)
+                {
+                    text = text + copper + " " + Lang.inter[18].Value + " ";
+                }
+
+                var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+
+                if (platinum > 0)
+                {
+                    t.OverrideColor = Colors.CoinPlatinum;
+                }
+                else if (gold > 0)
+                {
+                    t.OverrideColor = Colors.CoinGold;
+                }
+                else if (silver > 0)
+                {
+                    t.OverrideColor = Colors.CoinSilver;
+                }
+                else if (copper > 0)
+                {
+                    t.OverrideColor = Colors.CoinCopper;
+                }
+                tooltips.Add(t);
+            }
+            else if (item.type != ItemID.DefenderMedal)
+            {
+                tooltips.Add(new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) });
+            }
+        }
+        public bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key)
+        {
+            var t = lines.Find("Price");
+            if (t != null)
+            {
+                t.Text = t.Text.Replace(Lang.inter[15].Value, AequusText.GetText(key + ".ShopPrice.Platinum"));
+                t.Text = t.Text.Replace(Lang.inter[16].Value, AequusText.GetText(key + ".ShopPrice.Gold"));
+                t.Text = t.Text.Replace(Lang.inter[17].Value, AequusText.GetText(key + ".ShopPrice.Silver"));
+                t.Text = t.Text.Replace(Lang.inter[18].Value, AequusText.GetText(key + ".ShopPrice.Copper"));
+            }
+            return false;
+        }
+        public void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
+        {
+            var font = FontAssets.MouseText.Value;
+            var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
+            string t = "";
+            var stringSize = Vector2.Zero;
+            for (int i = 0; i < width; i++)
+            {
+                t += AequusHelpers.AirCharacter;
+                stringSize = ChatManager.GetStringSize(font, t, Vector2.One);
+                if (stringSize.X > width)
+                {
+                    break;
+                }
+            }
+
+            if (index == -1)
+            {
+                index = lines.Count - 1;
+            }
+
+            int linesY = Math.Max((int)(height / stringSize.Y), 1);
+            for (int i = 0; i < linesY; i++)
+            {
+                lines.Insert(index, new TooltipLine(Mod, "Fake_" + i, t));
+            }
+            lines.Insert(index, new TooltipLine(Mod, firstBoxName, t));
+        }
+
+        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
+        {
+            if (line.Mod == "Aequus")
+            {
+                if (line.Name.StartsWith("Fake"))
+                {
+                    return false;
+                }
+                if (line.Name == "DedicatedItem")
+                {
+                    DrawDedicatedTooltip(line);
+                    return false;
+                }
+                if (line.Name == "ShopQuote")
+                {
+                    ShopQuotes.DrawShopQuote(line, Main.npc[Main.LocalPlayer.talkNPC]);
+                    return false;
+                }
+            }
+            return true;
+        }
 
         internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
         {
@@ -565,61 +505,6 @@ namespace Aequus.Items
         public static void DrawDedicatedTooltip(DrawableTooltipLine line)
         {
             DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-        }
-
-        public static int GetIndex(this List<TooltipLine> tooltips, string lineName)
-        {
-            int myIndex = FindLineIndex(lineName);
-            int i = 0;
-            for (; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex)
-                {
-                    if (lineName == "Tooltip#")
-                    {
-                        int finalIndex = i;
-                        while (i < tooltips.Count)
-                        {
-                            if (tooltips[i].Name.StartsWith("Tooltip"))
-                            {
-                                finalIndex = i;
-                            }
-                            i++;
-                        }
-                        return finalIndex;
-                    }
-                    return i;
-                }
-            }
-            return i;
-        }
-
-        private static int FindLineIndex(string name)
-        {
-            if (name.StartsWith("Tooltip"))
-            {
-                name = "Tooltip#";
-            }
-            for (int i = 0; i < TooltipNames.Length; i++)
-            {
-                if (name == TooltipNames[i])
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        public static void ChangeVanillaLine(List<TooltipLine> tooltips, string name, Action<TooltipLine> modify)
-        {
-            foreach (var t in tooltips)
-            {
-                if (t.Name == name)
-                {
-                    modify(t);
-                    return;
-                }
-            }
         }
 
         public static void DrawDevTooltip(DrawableTooltipLine line)
@@ -730,44 +615,6 @@ namespace Aequus.Items
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x - wave * 1f * i, y), transparentColor,
                     rotation, origin, baseScale);
             }
-        }
-
-        public static void UsesLife(this List<TooltipLine> tooltips, ModItem item, int amt)
-        {
-            tooltips.Insert(GetIndex(tooltips, "UseMana"),
-                new TooltipLine(item.Mod, "UsesLife", AequusText.GetText("Tooltips.UsesLife", amt)));
-        }
-
-        public static TooltipLine Find(this List<TooltipLine> tooltips, string name)
-        {
-            return tooltips.Find((t) => t.Mod == "Terraria" && t.Name.Equals(name));
-        }
-
-        public static TooltipLine ItemName(this List<TooltipLine> tooltips)
-        {
-            return tooltips.Find("ItemName");
-        }
-
-        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key)
-        {
-            tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, AequusText.GetText(key)));
-        }
-
-        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key, params object[] args)
-        {
-            tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, AequusText.GetText(key, args)));
-        }
-
-        public static void RemoveCritChance(this List<TooltipLine> tooltips)
-        {
-            tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "CritChance");
-        }
-
-        public static void RemoveCritChanceModifier(this List<TooltipLine> tooltips)
-        {
-            tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "PrefixCritChance");
         }
     }
 }

@@ -340,7 +340,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 {
                     add = 0;
                 }
-                tooltips.Insert(AequusTooltips.GetIndex(tooltips, "Tooltip#") + add, new TooltipLine(Mod, "MechsTooltip", Language.GetTextValue(text))
+                tooltips.Insert(tooltips.GetIndex("Tooltip#") + add, new TooltipLine(Mod, "MechsTooltip", Language.GetTextValue(text))
                 { OverrideColor = Color.Lerp(Color.Red, Color.White, 0.35f), });
             }
             catch
