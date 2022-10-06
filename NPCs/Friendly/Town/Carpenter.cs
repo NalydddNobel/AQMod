@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
+using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Items.Tools.Coatings;
@@ -118,6 +119,11 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumPaintbrush>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumScraper>());
+            }
+
+            if (!Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
             }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();

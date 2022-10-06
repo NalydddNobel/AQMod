@@ -160,7 +160,10 @@ namespace Aequus.NPCs.Friendly.Town
             }
 
             if (!Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ExLydSpacePainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+            }
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)

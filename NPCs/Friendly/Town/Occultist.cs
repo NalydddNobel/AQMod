@@ -150,6 +150,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (!Main.dayTime)
             {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
             }
             if (Main.hardMode)
