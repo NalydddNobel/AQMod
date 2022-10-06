@@ -62,7 +62,7 @@ namespace Aequus.Items
             void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel);
         }
 
-        public interface IUpdateBank
+        public interface IUpdateVoidBag
         {
             void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank);
         }

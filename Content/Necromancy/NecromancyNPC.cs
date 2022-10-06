@@ -309,6 +309,11 @@ namespace Aequus.Content.Necromancy
                     UsePandorasBox(npc, aequus, aequus.accPandorasBox, Zombie.NPCTarget);
                 }
 
+                if (isZombie && !stats.DontModifyVelocity)
+                {
+                    npc.Aequus().statSpeed *= 1.5f;
+                }
+
                 if (Main.netMode != NetmodeID.Server)
                 {
                     if (Main.rand.NextBool(6))
@@ -523,16 +528,6 @@ namespace Aequus.Content.Necromancy
         public void OnSpawnZombie(NPC npc)
         {
             slotsConsumed = NecromancyDatabase.TryGet(npc, out var g) ? g.slotsUsed.GetValueOrDefault(1) : 0;
-        }
-
-        public float DetermineVelocityBoost(NPC npc, Player player, AequusPlayer aequus)
-        {
-            float value = 0f;
-            if (aequus.setGravetenderGhost == npc.whoAmI)
-            {
-                value += 0.5f;
-            }
-            return value;
         }
 
         public void RenderLayer(int layer)

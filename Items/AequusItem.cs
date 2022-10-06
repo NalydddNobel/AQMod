@@ -1,7 +1,9 @@
-﻿using Aequus.Common;
+﻿using Aequus.Buffs;
+using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
@@ -10,14 +12,19 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Projectiles.Misc;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Aequus.Items
 {
@@ -26,7 +33,6 @@ namespace Aequus.Items
         public static HashSet<int> LegendaryFish { get; private set; }
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
-        public static HashSet<int> BankEquipFuncs { get; private set; }
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -34,6 +40,7 @@ namespace Aequus.Items
         public byte shopQuoteType;
         public byte noGravityTime;
         public bool accBoost;
+        public bool naturallyDropped;
 
         public override void Load()
         {
@@ -44,45 +51,20 @@ namespace Aequus.Items
                 PrefixID.Keen,
                 PrefixID.Zealous,
             };
-            BankEquipFuncs = new HashSet<int>()
-            {
-                ItemID.CellPhone,
-                ItemID.PDA,
-                ItemID.REK,
-                ItemID.GoblinTech,
-                ItemID.FishFinder,
-                ItemID.GPS,
-                ItemID.Radar,
-                ItemID.LifeformAnalyzer,
-                ItemID.TallyCounter,
-                ItemID.DPSMeter,
-                ItemID.Stopwatch,
-                ItemID.MetalDetector,
-                ItemID.Sextant,
-                ItemID.WeatherRadio,
-                ItemID.FishermansGuide,
-                ItemID.Compass,
-                ItemID.DepthMeter,
-                ItemID.PlatinumWatch,
-                ItemID.TungstenWatch,
-                ItemID.TinWatch,
-                ItemID.GoldWatch,
-                ItemID.SilverWatch,
-                ItemID.CopperWatch,
-
-                ItemID.DiscountCard,
-                ItemID.ShadowKey,
-            };
+            On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.Tools.FitsFilter += Tools_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.FitsFilter += MiscAccessories_FitsFilter;
         }
 
-        private static bool MiscAccessories_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.MiscAccessories self, Item entry)
+        private static bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, ItemFilters.Weapon self, Item entry)
+        {
+            return orig(self, entry) || entry.ModItem is BaseSoulCandle;
+        }
+        private static bool MiscAccessories_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.orig_FitsFilter orig, ItemFilters.MiscAccessories self, Item entry)
         {
             return orig(self, entry) || entry.ModItem is RichMansMonocle || entry.ModItem is ForgedCard || entry.ModItem is FaultyCoin;
         }
-
-        private static bool Tools_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Tools.orig_FitsFilter orig, Terraria.GameContent.Creative.ItemFilters.Tools self, Item entry)
+        private static bool Tools_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Tools.orig_FitsFilter orig, ItemFilters.Tools self, Item entry)
         {
             return orig(self, entry) || entry.ModItem is PhysicsGun || entry.ModItem is Bellows || entry.ModItem is GhostlyGrave || entry.ModItem is Pumpinator;
         }
@@ -105,10 +87,10 @@ namespace Aequus.Items
 
         public override void Unload()
         {
+            LegendaryFish?.Clear();
+            LegendaryFish = null;
             SummonStaff?.Clear();
             SummonStaff = null;
-            BankEquipFuncs?.Clear();
-            BankEquipFuncs = null;
             CritOnlyModifier?.Clear();
             CritOnlyModifier = null;
         }
@@ -121,6 +103,29 @@ namespace Aequus.Items
         public override bool CanStackInWorld(Item item1, Item item2)
         {
             return item1.prefix == item2.prefix;
+        }
+
+        public override bool OnPickup(Item item, Player player)
+        {
+            if (naturallyDropped && item.IsACoin && player.Aequus().accFoolsGoldRing)
+            {
+                int multiplier = 1;
+                if (item.value > Item.silver)
+                {
+                    multiplier++;
+                }
+                if (item.value > Item.gold)
+                {
+                    multiplier++;
+                }
+                if (item.value > Item.platinum)
+                {
+                    multiplier++;
+                }
+                player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
+            }
+            naturallyDropped = false;
+            return true;
         }
 
         public override void SetDefaults(Item item)
@@ -139,21 +144,21 @@ namespace Aequus.Items
                 item.rare = ItemRarityID.Blue;
                 item.value = Item.buyPrice(gold: 15);
             }
-            else if (item.type == ItemID.DiscountCard)
-            {
-                item.accessory = false;
-            }
 
             accBoost = false;
+        }
+
+        public override void OnSpawn(Item item, IEntitySource source)
+        {
+            if (source is EntitySource_Loot)
+            {
+                naturallyDropped = true;
+            }
         }
 
         public override void UpdateInventory(Item item, Player player)
         {
             noGravityTime = 0;
-            if (item.type == ItemID.DiscountCard && !player.discount)
-            {
-                player.ApplyEquipFunctional(item, false);
-            }
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -198,19 +203,40 @@ namespace Aequus.Items
                 accBoost = false;
         }
 
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        {
+            if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.EquipAccessory)
+            {
+                var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
+                if (aequus.slotBoostCurse > -1 && AequusUI.CurrentItemSlot.Slot == aequus.slotBoostCurse)
+                {
+                    var backFrame = TextureAssets.InventoryBack16.Value.Frame();
+                    var drawPosition = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
+                    var color = new Color(150, 60, 60, 255);
+
+                    spriteBatch.Draw(TextureAssets.InventoryBack16.Value, drawPosition, backFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                }
+            }
+            return true;
+        }
+
         public override void NetSend(Item item, BinaryWriter writer)
         {
+            var bb = new BitsByte(naturallyDropped);
+            writer.Write(naturallyDropped);
             writer.Write(noGravityTime);
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
         {
+            var bb = (BitsByte)reader.ReadByte();
+            naturallyDropped = bb[0];
             noGravityTime = reader.ReadByte();
         }
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && SummonStaff.Contains(item.type))
             {
                 mult = 0f;
             }
@@ -218,7 +244,7 @@ namespace Aequus.Items
 
         public override float UseSpeedMultiplier(Item item, Player player)
         {
-            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
+            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && SummonStaff.Contains(item.type))
             {
                 return 2f;
             }

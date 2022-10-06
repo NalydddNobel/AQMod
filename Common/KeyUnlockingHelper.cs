@@ -18,14 +18,9 @@ namespace Aequus.Common
         {
             if (context == ItemSlot.Context.InventoryItem && Main.mouseRight && Main.mouseRightRelease)
             {
-                if (inv[slot].type == ItemID.LockBox && player.Aequus().skeletonKey)
+                if (inv[slot].type == ItemID.LockBox && player.Aequus().hasSkeletonKey)
                 {
                     InnerOpenLockbox(inv[slot], player, player.OpenLockBox);
-                    return true;
-                }
-                if (inv[slot].type == ItemID.ObsidianLockbox && player.Aequus().shadowKey)
-                {
-                    InnerOpenLockbox(inv[slot], player, player.OpenShadowLockbox);
                     return true;
                 }
             }
@@ -53,13 +48,7 @@ namespace Aequus.Common
             if (type == TileID.Containers)
             {
                 int chestType = ChestTypes.GetChestStyle(Main.tile[i, j].TileFrameX);
-                if (chestType == ChestTypes.LockedGold && Main.LocalPlayer.Aequus().skeletonKey)
-                {
-                    i -= Main.tile[i, j].TileFrameX % 36 / 18;
-                    j -= Main.tile[i, j].TileFrameY % 36 / 18;
-                    Chest.Unlock(i, j);
-                }
-                else if (chestType == ChestTypes.LockedShadow && Main.LocalPlayer.Aequus().shadowKey)
+                if (chestType == ChestTypes.LockedGold && Main.LocalPlayer.Aequus().hasSkeletonKey)
                 {
                     i -= Main.tile[i, j].TileFrameX % 36 / 18;
                     j -= Main.tile[i, j].TileFrameY % 36 / 18;

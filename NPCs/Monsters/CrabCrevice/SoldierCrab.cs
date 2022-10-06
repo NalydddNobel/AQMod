@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;

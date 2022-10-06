@@ -87,7 +87,7 @@ Mods: {
 				You will fall slower while holding this, holding down will let you fall at regular speed
 				You will not take any fall damage
 				'''
-			InventoryPiggyBankFunction: Works in your inventory or banks
+			InventoryPiggyBankFunction: Works in your inventory or void bag
 			ToggleKeyBind: You can toggle this function by pressing {0}
 
 			MechsSentry: {
@@ -683,24 +683,18 @@ Mods: {
 				Sentries equip your accessories
 				'''
 			SantankSentry: Sentries equip your accessories
-			FoolsGoldRing: 
-				'''
-				Held coins increase your stats
-				All coins disappear when killed
-				'''
+			FoolsGoldRing: Picking up dropped coins grants minor stat improvements
 			FaultyCoin: 10% chance to not consume coins
-			ForgedCard: Receive a flat 2 gold 50 silver discount on all items
+			ForgedCard: Receive a flat 1 gold discount on all items
 			IcebergKraken:
 				'''
+				Automatically use a sentry staff while you are in combat
 				Increase your max number of sentries by 1
 				Sentry attacks have a small chance to inflict frostburn
-				Automatically places a sentry when you are in combat
-				Requires a sentry staff in your inventory to work
 				'''
 			SentrySquid:
 				'''
-				Automatically places a sentry when you are in combat
-				Requires a sentry staff in your inventory to work
+				Automatically use a sentry staff while you are in combat
 				'It's only mildy disturbing'
 				'''
 			GrandReward: 
@@ -1417,7 +1411,7 @@ Mods: {
 				'Subterranean Rose'
 				'''
 			CursedKey: Summons a demonic trapper to fight for you
-			PiranhaPot: Summons a vicious plant to fight for you
+			PiranhaPot: Summons a vile plant to fight for you
 			Skrawler: Shoots a deadly flame bolt
 			LightMatter: Radiates light and interstellar power
 			NuclearFeather:
@@ -1657,6 +1651,7 @@ Mods: {
 		}
 
 		BuffName: {
+			NoonBuff: Noon
 			AstralCookieBuff: Astral Cookie
 			NeutronYogurtBuff: Neutron Yogurt
 			BloodthirstBuff: Bloodthirst
@@ -1664,14 +1659,14 @@ Mods: {
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
-			ReliefshroomBuff: Reliefshroom
-			MendshroomBuff: Mendshroom
 
 			NecromancyOwnerBuff: Necromancy
 
 			GravetenderMinionBuff: Gravetender
 
+			PiranhaPlantBuff: Vile Plant
 			BrainCauliflowerBuff: Brain Cauliflower
 			MindfungusBuff: Mindfungus
 			StariteBuff: Starite
@@ -1680,54 +1675,24 @@ Mods: {
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
+			OmegaStariteBuff: Omega Starite Mini
 			TorraBuff: Swag Eye
 			RedSpriteBuff: Red Sprite
 			SpaceSquidBuff: Space Squid
-		
+
 			HotAirBalloonBuff: Hot Air Balloon
 
-			Omori: Friends
-			PrimeTime: Arachnotron Power
-			ArachnotronCooldown: Arachnotron Cooldown
-			MonoxiderBuff: Monoxider
-			Trapper: Trapper
-			PiranhaPlant: Plant
 			Vampirism: Vampirism
 			VampirismNight: Cold Skin
 			VampirismDay: Sunlight
-			Harmony: Harmony
-			NoonBuff: Noon
-			Opposing: Opposing
-			BaguetteBuff: Baguette
-			Spoiled: Plethora
-			DebuffSpread: Debuff Spread
-			Shade: Shade
-			SpeedBoostFood: Speed Food
-			RedLicoriceBuff: Extra Life
-			GrapePhantaBuff: Extra Mana
-			DragonCarrotBuff: Eyesight
-			FamiliarBuff: Familiar
-			HeartMothBuff: Heart Moth
-			DwarfStariteBuff: Dwarf Starite
-			OmegaStariteBuff: Omega Starite Mini
-			AnglerFish: Angler Fish
-			Sparkling: Cosmic Radiation
-			CrimsonHand: Crimson Hand
-			Chomper: Chomper
+
+			Weakness: Weakness
+			CrimsonHellfire: Hellfire (Crimson)
+			CorruptionHellfire: Hellfire (Corruption)
+			Bleeding: Bleeding
+			BitCrushed: Bit Crushed
 			BlueFire: Blue Fire
-			Bossrush: Encore
-			Ultima: Ultima
-			SpectreHealing: Spectre Healing
-			Cold20: Cold
-			Cold40: Colder
-			Cold60: Freezing
-			Cold80: Frozen
-			Hot20: Hot
-			Hot40: Hotter
-			Hot60: Scorching
-			Hot80: Melting
 			PickBreak: Pick Break
-			RedSpriteWind: Red Wind
 		}
 
 		BuffDescription: {
@@ -1741,9 +1706,8 @@ Mods: {
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 
+			FoolsGoldRingBuff: Improved stats from collecting coins
 			FlashwayNecklaceCooldown: Temporarily disables the flashway necklace
-			ReliefshroomBuff: You are being healed!
-			MendshroomBuff: You are being healed by a teammate!
 
 			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
 			NeutronYogurtBuff: Greatly increased gravity
@@ -2080,9 +2044,6 @@ Mods: {
 			GoreNestCleanup: Cleaning up the gore...
 			GoreNests: Making Hell Eviler...
 		}
-
-		ContainerPotionError: This potion was improperly loaded
-		ContainerPotionLink: Will teleport to {0} ([i:{1}])
 
 		QuestFish: {
 			WaterFisg: It's strange to say this, but I'm awfully thirsty. I saw this clear fish filled with water in the water. Kinda strange right? Now go catch it.

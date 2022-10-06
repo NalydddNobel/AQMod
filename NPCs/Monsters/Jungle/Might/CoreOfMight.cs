@@ -11,6 +11,11 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
     {
         public static List<EnemySpawnData> SpawnData { get; private set; }
 
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void Load()
         {
             base.Load();

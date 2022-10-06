@@ -14,6 +14,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Fishing;
 using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc.Fish.Legendary;
@@ -257,7 +258,7 @@ namespace Aequus
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
-        public bool accFoolsGold;
+        public bool accFoolsGoldRing;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>
@@ -271,11 +272,7 @@ namespace Aequus
         /// <summary>
         /// Set by <see cref="SkeletonKey"/>
         /// </summary>
-        public bool skeletonKey;
-        /// <summary>
-        /// Set by <see cref="ItemID.ShadowKey"/>
-        /// </summary>
-        public bool shadowKey;
+        public bool hasSkeletonKey;
 
         public int boundBowAmmo;
         public int boundBowAmmoTimer;
@@ -558,7 +555,7 @@ namespace Aequus
             grandRewardLuck = 0f;
             accDevilsTongue = false;
             accGrandReward = false;
-            accFoolsGold = false;
+            accFoolsGoldRing = false;
 
             hasExpertBoost = accExpertBoost;
             accExpertBoost = false;
@@ -756,8 +753,7 @@ namespace Aequus
             buffSpicyEel = false;
             buffResistHeat = false;
 
-            skeletonKey = false;
-            shadowKey = false;
+            hasSkeletonKey = false;
 
             forceDayState = 0;
             Team = Player.team;
@@ -793,9 +789,6 @@ namespace Aequus
                 Player.maxMinions = 1;
             }
 
-            UpdateBank(Player.bank, 0);
-            UpdateBank(Player.bank2, 1);
-            UpdateBank(Player.bank3, 2);
             UpdateBank(Player.bank4, 3);
             if (setSeraphim != null && ghostSlots == 0)
             {
@@ -856,29 +849,9 @@ namespace Aequus
             {
                 if (bank.item[i] != null && !bank.item[i].IsAir)
                 {
-                    bool update = false;
-                    if (bank.item[i].type == ItemID.ShadowKey)
-                    {
-                        update = true;
-                        shadowKey = true;
-                    }
-                    else if (bank.item[i].type == ItemID.DiscountCard && !Player.discount)
-                    {
-                        update = true;
-                    }
-                    else if (AequusItem.BankEquipFuncs.Contains(bank.item[i].type))
-                    {
-                        update = true;
-                    }
-                    else if (bank.item[i].ModItem is ItemHooks.IUpdateBank b)
+                    if (bank.item[i].ModItem is ItemHooks.IUpdateVoidBag b)
                     {
                         b.UpdateBank(Player, this, i, bankType);
-                    }
-
-                    if (update)
-                    {
-                        Player.VanillaUpdateEquip(bank.item[i]);
-                        Player.ApplyEquipFunctional(bank.item[i], true); // Acts as a hidden accessory while in the bank.
                     }
                 }
             }
@@ -920,8 +893,7 @@ namespace Aequus
                 GlowCore.AddLight(Player.Center, Player, this);
             }
 
-            if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None
-                && MendshroomActive && ProjectilesOwned(accMendshroom.shoot) <= 10)
+            if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None && ProjectilesOwned(accMendshroom.shoot) <= 10)
             {
                 if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio, 120f, 600f)))
                 {
@@ -2190,7 +2162,7 @@ namespace Aequus
 
         private static int Hook_DropCoinsOnDeath(On.Terraria.Player.orig_DropCoins orig, Player self)
         {
-            if (self.Aequus().accFoolsGold)
+            if (self.Aequus().accFoolsGoldRing)
             {
                 return FoolsGoldCoinCurse(self);
             }

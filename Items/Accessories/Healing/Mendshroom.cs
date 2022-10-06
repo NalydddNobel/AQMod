@@ -19,7 +19,6 @@ namespace Aequus.Items.Accessories.Healing
             Item.DefaultToAccessory();
             Item.rare = ItemDefaults.RarityCrabCrevice;
             Item.value = ItemDefaults.CrabCreviceValue;
-            Item.buffType = ModContent.BuffType<MendshroomBuff>();
             Item.shoot = ModContent.ProjectileType<MendshroomProj>();
         }
 

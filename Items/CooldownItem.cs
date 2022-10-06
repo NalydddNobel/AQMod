@@ -37,7 +37,7 @@ namespace Aequus.Items
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (!Main.playerInventory && AequusUI.itemSlotContext == ItemSlot.Context.InventoryItem && HasWeaponCooldown.Contains(item.type))
+            if (!Main.playerInventory && AequusUI.itemSlotContext == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type))
             {
                 var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)

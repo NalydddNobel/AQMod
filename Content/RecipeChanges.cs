@@ -20,48 +20,32 @@ namespace Aequus.Content
             for (int i = 0; i < Main.recipe.Length; i++)
             {
                 Recipe r = Main.recipe[i];
-                if (r.createItem.type == ItemID.PhoenixBlaster)
+                switch (r.createItem?.type)
                 {
-                    r.AddIngredient(ModContent.ItemType<DemonicEnergy>());
-                }
-                else if (r.createItem.type == ItemID.MinecartMech)
-                {
-                    r.AddIngredient(ItemID.Minecart);
-                }
-                else if (r.createItem.type == ItemID.PumpkinMoonMedallion || r.createItem.type == ItemID.NaughtyPresent)
-                {
-                    r.ReplaceItemWith(ItemID.Ectoplasm,
-                        (r, i) => r.AddRecipeGroup(AequusRecipes.AnyEctoplasm, i.stack));
-                }
-                else if (r.createItem.type == ItemID.VoidLens && GameplayConfig.Instance.VoidBagRecipe)
-                {
-                    for (int j = 0; j < r.requiredItem.Count; j++)
-                    {
-                        if (j == 0)
+                    case ItemID.PumpkinMoonMedallion:
+                    case ItemID.NaughtyPresent:
                         {
-                            r.requiredItem[j].SetDefaults(ItemID.MoneyTrough);
+                            r.ReplaceItemWith(ItemID.Ectoplasm,
+                                (r, i) => r.AddRecipeGroup(AequusRecipes.AnyEctoplasm, i.stack));
                         }
-                        if (j == 1)
+                        break;
+
+                    case ItemID.VoidLens:
+                    case ItemID.VoidVault:
                         {
-                            r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-                            r.requiredItem[j].stack = 1;
+                            if (!GameplayConfig.Instance.VoidBagRecipe)
+                                continue;
+
+                            for (int j = 0; j < r.requiredItem.Count; j++)
+                            {
+                                if (r.requiredItem[j].type == ItemID.JungleSpores)
+                                {
+                                    r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
+                                    r.requiredItem[j].stack = 1;
+                                }
+                            }
                         }
-                    }
-                }
-                else if (r.createItem.type == ItemID.VoidVault && GameplayConfig.Instance.VoidBagRecipe)
-                {
-                    for (int j = 0; j < r.requiredItem.Count; j++)
-                    {
-                        if (j == 0)
-                        {
-                            r.requiredItem[j].SetDefaults(ItemID.Safe);
-                        }
-                        if (j == 1)
-                        {
-                            r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-                            r.requiredItem[j].stack = 1;
-                        }
-                    }
+                        break;
                 }
             }
 

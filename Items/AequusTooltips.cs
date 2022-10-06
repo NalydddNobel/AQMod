@@ -81,11 +81,6 @@ namespace Aequus.Items
                         }
                     }
 
-                    if (item.ModItem is ItemHooks.IUpdateBank || (AequusItem.BankEquipFuncs.Contains(item.type) && item.type != ItemID.CellPhone))
-                    {
-                        tooltips.Insert(GetIndex(tooltips, "Tooltip#") + 1, new TooltipLine(Mod, "BankFunctions", AequusText.GetText("Tooltips.InventoryPiggyBankFunction")));
-                    }
-
                     if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
                     {
                         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");

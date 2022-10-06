@@ -17,6 +17,11 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         private bool _setupFrame;
 
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             CoreOfMight.SpawnData.Add(new BaseCore.EnemySpawn_Any4Sides(Type));

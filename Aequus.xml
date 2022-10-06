@@ -115,12 +115,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.scamChance">
             <summary>
-            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.FaultyCoin"/>
+            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.Utility.FaultyCoin"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.flatScamDiscount">
             <summary>
-            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.ForgedCard"/>
+            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.Utility.ForgedCard"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.luckRerolls">
@@ -150,7 +150,7 @@
             Set to true by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accFoolsGold">
+        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
             <summary>
             Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
             </summary>
@@ -165,14 +165,9 @@
             Used by summon helmets (<see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.skeletonKey">
+        <member name="F:Aequus.AequusPlayer.hasSkeletonKey">
             <summary>
             Set by <see cref="T:Aequus.Items.Tools.Misc.SkeletonKey"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.shadowKey">
-            <summary>
-            Set by <see cref="F:Terraria.ID.ItemID.ShadowKey"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">

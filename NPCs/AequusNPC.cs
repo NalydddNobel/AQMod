@@ -60,6 +60,8 @@ namespace Aequus.NPCs
         public int jungleCoreInvasion;
         public int jungleCoreInvasionIndex;
 
+        public float statSpeed;
+
         public override void Load()
         {
             HeatDamage = new HashSet<int>()
@@ -116,7 +118,7 @@ namespace Aequus.NPCs
                 return;
             }
 
-            float velocityBoost = DetermineVelocityBoost(self);
+            float velocityBoost = self.Aequus().statSpeed - 1f;
             var oldVelocity = self.velocity;
             if (velocityBoost != 0f)
             {
@@ -127,20 +129,6 @@ namespace Aequus.NPCs
             {
                 self.velocity = oldVelocity;
             }
-        }
-        public static float DetermineVelocityBoost(NPC npc)
-        {
-            float velocityBoost = 0f;
-            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var z) && z.isZombie
-                && (!NecromancyDatabase.TryGet(npc, out var g) || !g.DontModifyVelocity))
-            {
-                velocityBoost += z.DetermineVelocityBoost(npc, Main.player[z.zombieOwner], Main.player[z.zombieOwner].Aequus());
-            }
-            if (npc.HasBuff<Weakness>())
-            {
-                velocityBoost -= 0.25f;
-            }
-            return velocityBoost;
         }
         private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
@@ -248,6 +236,11 @@ namespace Aequus.NPCs
             }
         }
 
+        public override void ResetEffects(NPC npc)
+        {
+            statSpeed = 1f;
+        }
+
         public void PostAI_JustHit_UpdateInferno(NPC npc)
         {
             foreach (var b in AequusBuff.FireDebuffForLittleInferno)
@@ -287,7 +280,7 @@ namespace Aequus.NPCs
         {
             if (npc.noTileCollide)
             {
-                float velocityBoost = DetermineVelocityBoost(npc);
+                float velocityBoost = npc.Aequus().statSpeed - 1f;
                 if (velocityBoost > 0f)
                 {
                     npc.position += npc.velocity * velocityBoost;
@@ -747,7 +740,12 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            binaryWriter.Write(jungleCoreInvasion);
+            var bb = new BitsByte(jungleCoreInvasion > 0);
+            if (bb[0])
+            {
+                binaryWriter.Write(jungleCoreInvasion);
+                binaryWriter.Write(jungleCoreInvasionIndex);
+            }
             binaryWriter.Write(locustStacks);
             binaryWriter.Write(corruptionHellfireStacks);
             binaryWriter.Write(crimsonHellfireStacks);
@@ -756,7 +754,12 @@ namespace Aequus.NPCs
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
-            jungleCoreInvasion = binaryReader.ReadInt32();
+            var bb = (BitsByte)binaryReader.ReadByte();
+            if (bb[0])
+            {
+                jungleCoreInvasion = binaryReader.ReadInt32();
+                jungleCoreInvasionIndex = binaryReader.ReadInt32();
+            }
             locustStacks = binaryReader.ReadByte();
             corruptionHellfireStacks = binaryReader.ReadByte();
             crimsonHellfireStacks = binaryReader.ReadByte();

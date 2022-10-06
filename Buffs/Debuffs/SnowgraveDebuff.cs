@@ -12,5 +12,10 @@ namespace Aequus.Buffs.Debuffs
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
         }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            npc.Aequus().statSpeed *= 0.75f;
+        }
     }
 }

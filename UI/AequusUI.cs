@@ -44,6 +44,14 @@ namespace Aequus.UI
             public const string Inventory_28 = "Vanilla: Inventory";
             public const string InfoAccessoriesBar_29 = "Vanilla: Info Accessories Bar";
         }
+        public struct ItemSlotContext
+        {
+            public int Context;
+            public int Slot;
+            public Item[] Inventory;
+            public Vector2 Position;
+            public Color LightColor;
+        }
 
         public const int LeftInv = 20;
 
@@ -51,7 +59,10 @@ namespace Aequus.UI
         public static byte linkClickDelay;
         public static byte specialLeftClickDelay;
         public static byte disableItemLeftClick;
-        public static int itemSlotContext;
+
+        public static ItemSlotContext CurrentItemSlot;
+
+        public static int itemSlotContext => CurrentItemSlot.Context;
 
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
         public static List<BaseUserInterface> UserInterfaces { get; private set; }
@@ -92,7 +103,7 @@ namespace Aequus.UI
         private void LoadHooks()
         {
             On.Terraria.UI.ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
-            On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += Hook_UpdateStaticContext;
+            On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
         }
 
         private static void Hook_DisableLeftClick(On.Terraria.UI.ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
@@ -103,9 +114,16 @@ namespace Aequus.UI
             }
         }
 
-        private static void Hook_UpdateStaticContext(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        private static void ItemSlot_Draw(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
-            itemSlotContext = context;
+            CurrentItemSlot = new ItemSlotContext()
+            {
+                Context = context,
+                Slot = slot,
+                Inventory = inv,
+                Position = position,
+                LightColor = lightColor
+            };
             orig(spriteBatch, inv, context, slot, position, lightColor);
         }
 

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.LootBags.Roulettes;

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools
 {
-    public class RichMansMonocle : ModItem, ItemHooks.IUpdateBank
+    public class RichMansMonocle : ModItem, ItemHooks.IUpdateVoidBag
     {
         public override void SetStaticDefaults()
         {
