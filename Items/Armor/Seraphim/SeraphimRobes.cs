@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Armor.Gravetender;
+﻿using Aequus.Graphics.PlayerLayers;
+using Aequus.Items.Armor.Gravetender;
 using Aequus.Items.Misc;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +13,7 @@ namespace Aequus.Items.Armor.Seraphim
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 
         public override void SetDefaults()
