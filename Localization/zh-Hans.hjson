@@ -87,7 +87,7 @@ Mods: {
 				手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果
 				你不会受到任何摔落伤害
 				'''
-			InventoryPiggyBankFunction: 放置于物品栏或存钱罐中即可生效
+			InventoryPiggyBankFunction: 放置于物品栏或虚空袋中即可生效
 			ToggleKeyBind: 按下{0}键以开关效果
 
 			MechsSentry: {
@@ -256,7 +256,7 @@ Mods: {
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 			Hexoplasm: 冥狱融质
-			UnenchantedStaff: 未附魔的法杖
+			ItemScrap: 废料
 
 			DustDevilBag: 宝藏袋 (沙尘恶魔)
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
@@ -683,24 +683,18 @@ Mods: {
 				哨兵会装备你的饰品
 				'''
 			SantankSentry: 哨兵会装备你的饰品
-			FoolsGoldRing: 
-				'''
-				基于所持有的钱币数量增加属性
-				被击杀时会掉落所有的钱币
-				'''
+			FoolsGoldRing: 拾取钱币时会获得小幅度的属性加成
 			FaultyCoin: 10%几率不消耗钱币
-			ForgedCard: 所有的商品均可享受2金50银的折扣
+			ForgedCard: 所有的商品均可享受1金的折扣
 			IcebergKraken:
 				'''
+				当你处于战斗中时会自动召唤哨兵
 				增加最大哨兵栏位
 				哨兵攻击有小几率造成霜火减益
-				当你处于战斗中时会自动召唤哨兵
-				仅在背包中拥有哨兵武器时才会生效
 				'''
 			SentrySquid:
 				'''
 				当你处于战斗中时会自动召唤哨兵
-				仅在背包中拥有哨兵武器时才会生效
 				'只是轻微的干扰'
 				'''
 			GrandReward: 
@@ -940,7 +934,7 @@ Mods: {
 				"InvalidWorld": 这个世界和地图不匹配
 			}
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
-			UnenchantedStaff: 可被附魔
+			ItemScrap: 可以在制作时代替其他{ItemRarity}的稀有物品
 
 			LightningRod: 
 				'''
@@ -1100,7 +1094,7 @@ Mods: {
 				'球之化身'
 				'''
 
-			RecyclingMachine: 允许你回收垃圾物品
+			RecyclingMachine: 在附近时, 你可以在制作时产生废料
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
@@ -1656,7 +1650,34 @@ Mods: {
 			}
 		}
 
+		ItemRarity: {
+			"-13": 大师
+			"-12": 专家
+			"-11": 任务
+			"-1": 垃圾
+			"0": 白色
+			"1": 蓝色
+			"2": 绿色
+			"3": 橙色
+			"4": 浅红色
+			"5": 粉色
+			"6": 浅紫色
+			"7": 青柠色
+			"8": 黄色
+			"9": 青色
+			"10": 红色
+			"11": 紫色
+			Calamity_12: 绿松石色
+			Calamity_13: 纯绿色
+			Calamity_14: 深蓝色
+			Calamity_15: 紫罗兰色
+			Calamity_16: 桃红色
+			Calamity_Draedon: 深橙色
+			Catalyst_Crystal: 水晶
+		}
+
 		BuffName: {
+			NoonBuff: 正午
 			AstralCookieBuff: 星体饼干
 			NeutronYogurtBuff: 中子酸奶
 			BloodthirstBuff: 嗜血
@@ -1664,14 +1685,14 @@ Mods: {
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
-			ReliefshroomBuff: 息灵菇
-			MendshroomBuff: 愈灵菇
 
 			NecromancyOwnerBuff: 死灵
 
 			GravetenderMinionBuff: 守墓人
 
+			PiranhaPlantBuff: 邪恶植物
 			BrainCauliflowerBuff: 脑菜花
 			MindfungusBuff: 心灵真菌
 			StariteBuff: 星之源
@@ -1680,54 +1701,24 @@ Mods: {
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
+			OmegaStariteBuff: 迷你终末之星
 			TorraBuff: 潮流眼球
 			RedSpriteBuff: 红色精灵
 			SpaceSquidBuff: 太空乌贼
 
 			HotAirBalloonBuff: 热气球
 
-			Omori: 朋友
-			PrimeTime: 机械蜘蛛强化
-			ArachnotronCooldown: 机械蜘蛛冷却
-			MonoxiderBuff: 一氧化物
-			Trapper: 捕手
-			PiranhaPlant: 植物
 			Vampirism: 血咒
 			VampirismNight: 寒肤
 			VampirismDay: 日光
-			Harmony: 和谐
-			NoonBuff: 午光
-			Opposing: 对立药水
-			BaguetteBuff: 法棍
-			Spoiled: 超量
-			DebuffSpread: 减益扩散
-			Shade: 暗影
-			SpeedBoostFood: 速度强化
-			RedLicoriceBuff: 额外生命
-			GrapePhantaBuff: 额外法力
-			DragonCarrotBuff: 目力
-			FamiliarBuff: 令人熟悉
-			HeartMothBuff: 心蛾
-			DwarfStariteBuff: 侏儒源星
-			OmegaStariteBuff: 迷你终末之星
-			AnglerFish: 鮟鱇鱼
-			Sparkling: 宇宙辐射
-			CrimsonHand: 猩红血手
-			Chomper: 食人花
+
+			Weakness: 脆弱
+			CrimsonHellfire: 狱火 (猩红)
+			CorruptionHellfire: 狱火 (腐化)
+			Bleeding: 流血
+			BitCrushed: 比特破碎
 			BlueFire: 碧蓝之火
-			Bossrush: 安可
-			Ultima: 最终之力
-			SpectreHealing: 幽魂之愈
-			Cold20: 冷
-			Cold40: 很冷
-			Cold60: 严寒
-			Cold80: 冻结
-			Hot20: 热
-			Hot40: 很热
-			Hot60: 酷热
-			Hot80: 熔化
 			PickBreak: 工具断裂
-			RedSpriteWind: 红色狂风
 		}
 
 		BuffDescription: {
@@ -1741,9 +1732,8 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
+			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
 			FlashwayNecklaceCooldown: 暂时禁用晖耀项链
-			ReliefshroomBuff: 你正在被治愈!
-			MendshroomBuff: 你正在被队友治愈!
 
 			AstralCookieBuff: 大幅度提升魔法属性, 小幅度提升其他属性
 			NeutronYogurtBuff: 大幅度增加重力
@@ -2080,9 +2070,6 @@ Mods: {
 			GoreNestCleanup: 正在清理血迹...
 			GoreNests: 正在使地狱更加邪恶...
 		}
-
-		ContainerPotionError: 此药水未能正确加载
-		ContainerPotionLink: 会传送至{0} ([i:{1}])
 
 		QuestFish: {
 			WaterFisg: 虽然说这些话有些不真实, 但我快渴死了.我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
@@ -3841,9 +3828,8 @@ Mods: {
 		Honey: 蜂蜜
 		Shimmer: 微光
 
+		Unknown: 位置
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
-		Concoct: 调制药水
-		StopConcocting: 停止调制
 		Complete: 完成
 		Active: 激活
 		Inactive: 失效
