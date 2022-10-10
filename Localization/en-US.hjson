@@ -211,6 +211,7 @@ Mods: {
 			SeraphimHood: Seraphim Hood
 			SeraphimRobes: Seraphim Robes
 
+			MoonlunaHat: Moonluna Hat
 			FlowerCrown: Flower Crown
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
@@ -883,6 +884,11 @@ Mods: {
 				Increases your max number of ghosts by 2
 				'''
 
+			MoonlunaHat: 
+				'''
+				Increases your max number of minions by 1
+				Leave behind a damaging constellation
+				'''
 			FlowerCrown: 
 				'''
 				Ocassionally summons damaging petals which blow in the wind
