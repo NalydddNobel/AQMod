@@ -41,6 +41,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			AllMechs: 仅会在3个机械Boss全部被击败时掉落
 			NotBeatenDemonSiege:仅在恶魔围攻未完成时掉落
 			OtherwiseChance: 在'{0}'满足条件时拥有100%掉落几率
 			OnFirstKill: 仅在首次击败时掉落
@@ -89,22 +90,6 @@ Mods: {
 				'''
 			InventoryPiggyBankFunction: 放置于物品栏或虚空袋中即可生效
 			ToggleKeyBind: 按下{0}键以开关效果
-
-			MechsSentry: {
-				Terraria_EoCShield: 
-					'''
-					增加冲刺攻击距离, 冲刺时减益流逝的速度更快
-					接触地面时允许无限持续的冲刺
-					'''
-				Terraria_WormScarf: 你会被动地发射激光
-				Terraria_BrainOfConfusion: 你受到探测器的保护
-				Terraria_BoneGlove: 骷髅头被激光锯替代
-				Terraria_HiveBackpack: 有几率将强壮的蜜蜂变为机械蜜蜂
-				Terraria_BoneHelm: 暗影之手被完整形态替代
-				Terraria_VolatileGelatin: 挥发性明胶被热能明胶替代
-				Terraria_SporeSac: 孢子被爆炸性纳米替代
-				CelesteTorus: 你会得到一个额外的球环
-			}
 		}
 
 		PrefixName: {
@@ -154,8 +139,9 @@ Mods: {
 			BlackPhial: 黑色药瓶
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
-			MechsSentry: 哨卫6510型微型处理器
-			SantankSentry: 哨兵6502型微型处理器
+			TheReconstruction: 改造
+			MechsSentry: 尖兵6510
+			SantankSentry: 哨兵6502
 			BloodiedBucket: 血污桶
 			RitualisticSkull: 仪式颅骨
 			RabbitsFoot: 兔脚
@@ -294,10 +280,10 @@ Mods: {
 
 			UnholyCore: 不洁核心
 
+			AnglerBroadcaster: 海滨广播器
 			RichMansMonocle: 富翁的单片眼镜
 
-			TitaniumPaintbrush: 钛漆刷
-			TitaniumScraper: 钛漆铲
+			ImpenetrableCoating: 无法穿过的涂料
 
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
@@ -659,10 +645,15 @@ Mods: {
 				暴击额外造成50%伤害
 				[c/{Color}:...如果你能支付25银币]
 				'''
+			WhitePhial: 
+				'''
+				延长50%增益持续时间
+				减少25%减益持续时间
+				'''
 			BlackPhial: 
 				'''
 				有几率对敌人造成随机减益
-				敌人的减益持续时间翻倍
+				对敌人造成的减益持续时间延长50%
 				'''
 			BoneRing: 有几率对敌人造成虚弱效果
 			PandorasBox: 
@@ -677,10 +668,26 @@ Mods: {
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 			RabbitsFoot: 增加佩戴者的幸运度
+			TheReconstruction: {
+				$parentVal: 增加专家饰品的强度
+				EoCShield: 
+					'''
+					增加冲刺攻击距离, 冲刺时减益的计时加快
+					当在地面上时允许无限持续的冲刺
+					'''
+				WormScarf: 你会被动的发射激光
+				BrainOfConfusion: 你会被探针保护
+				BoneGlove: 骨头会被激光锯替代
+				HiveBackpack: 有几率将强大的蜜蜂转化为机械蜜蜂
+				BoneHelm: 影之手会被完全体替代
+				VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
+				SporeSac: 孢子会被爆炸性纳米替代
+				CelesteTorus: 额外召唤一圈球体
+			}
 			MechsSentry:
 				'''
-				增加专家饰品的强度
 				哨兵会装备你的饰品
+				使你额外获得一格只能由哨兵使用的饰品栏位
 				'''
 			SantankSentry: 哨兵会装备你的饰品
 			FoolsGoldRing: 拾取钱币时会获得小幅度的属性加成
@@ -704,7 +711,11 @@ Mods: {
 				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 定期释放治疗孢子
-			GlowCore: 你和你的弹幕会发光
+			GlowCore: 
+				'''
+			你和你的弹幕会发光
+			'一只新的手触到了信标...'
+				'''
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
@@ -965,7 +976,8 @@ Mods: {
 				降低恶魔围攻事件的进攻时间
 				'''
 
-			RichMansMonocle: 允许你在NPC商店外查看商品价格
+			AnglerBroadcaster: 显示你当前的任务鱼
+			RichMansMonocle: 在NPC商店外查看商品价格
 
 			Shutterstocker: 与快门储像机剪片一起使用以拍摄照片
 			ShutterstockerClip: {
@@ -980,8 +992,7 @@ Mods: {
 				可移动镇民、敌人和弹幕
 				'手持式灵感来源!'
 				'''
-			TitaniumPaintbrush: 给物块涂上不可覆盖的油漆, 可防止物块被武器摧毁
-			TitaniumScraper: 用于去除油漆
+			ImpenetrableCoating: 防止物块被武器摧毁
 
 			Bellows: 
 				'''
@@ -1346,10 +1357,10 @@ Mods: {
 				'''
 			Flameblaster:
 				'''
-				右键发射气爆
-				无视敌人10点的防御力
-				50%几率不消耗弹药
 				{$Mods.Aequus.Tooltips.UsesGel}
+				<右键>发射气爆
+				无视敌人10点的防御力
+				33%几率不消耗弹药
 				[c/ee2222:最热的]家用燃烧装置'
 				'''
 			CrusadersCrossbow: 发射可以治疗或伤害敌人的治愈箭矢
@@ -3374,17 +3385,7 @@ Mods: {
 						与快门储像机™一起使用以捕获图像
 						用最吸引人的剪片来保存你最好的建筑!
 						'''
-					TitaniumPaintbrush: 
-						'''
-						钛刷毛留下的空白, 需要镐子才能凿穿的强力浆糊.
-						不要担心用完, 每次你画完一面,
-						一群木匠蚁会聚集起来, 并将它们收集的所有浆糊都放在刷子上.
-						'''
-					TitaniumScraper: 
-						'''
-						去除浆糊时请小心使用. 使用不当可能导致损坏.
-						本公司不对该工具造成的损坏负责.
-						'''
+					ImpenetrableCoating: 一种只有镐子才能穿过的涂料!
 					OmniPaint: 
 						'''
 						使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
@@ -3823,11 +3824,16 @@ Mods: {
 			GaleStreams: 风速大于 30 mph 时开始, 可以使用{Pumpinator}更改风速.
 		}
 
+		InfoDisplayName: {
+			AnglerBroadcasterIcon: 任务鱼
+		}
+
 		Water: 水
 		Lava: 熔岩
 		Honey: 蜂蜜
 		Shimmer: 微光
 
+		Finished: 完成的
 		Unknown: 位置
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Complete: 完成
