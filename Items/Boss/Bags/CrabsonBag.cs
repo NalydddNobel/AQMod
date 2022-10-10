@@ -1,7 +1,6 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;

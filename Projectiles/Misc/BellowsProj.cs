@@ -9,12 +9,17 @@ namespace Aequus.Projectiles.Misc
     {
         public bool _didDust;
 
+        public override bool PushPlayers => false;
+
+        public override string Texture => Aequus.BlankTexture;
+
         public override void SetDefaults()
         {
             base.SetDefaults();
             Projectile.width = 20;
             Projectile.height = 20;
             Projectile.timeLeft = 4;
+            Projectile.hide = true;
         }
 
         public override bool? CanCutTiles()

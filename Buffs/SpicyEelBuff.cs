@@ -9,12 +9,11 @@ namespace Aequus.Buffs
         public override void SetStaticDefaults()
         {
             BuffID.Sets.IsWellFed[Type] = true;
-            AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Add(Type);
+            AequusBuff.CustomWellFed.Add(Type);
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.Aequus().buffSpicyEel = true;
             player.jumpSpeedBoost *= 1.1f;
             player.wingAccRunSpeed *= 1.1f;
             player.moveSpeed += 1f;

@@ -243,7 +243,7 @@ namespace Aequus.NPCs
 
         public void PostAI_JustHit_UpdateInferno(NPC npc)
         {
-            foreach (var b in AequusBuff.FireDebuffForLittleInferno)
+            foreach (var b in AequusBuff.CountsAsFire)
             {
                 if (npc.HasBuff(b))
                 {
@@ -268,7 +268,7 @@ namespace Aequus.NPCs
 
             for (int i = 0; i < NPC.maxBuffs; i++)
             {
-                if (AequusBuff.FireDebuffForLittleInferno.Contains(npc.buffType[i]))
+                if (AequusBuff.CountsAsFire.Contains(npc.buffType[i]))
                 {
                     return;
                 }
@@ -368,7 +368,7 @@ namespace Aequus.NPCs
                     int time = 0;
                     for (int i = 0; i < NPC.maxBuffs; i++)
                     {
-                        if (AequusBuff.FireDebuffForLittleInferno.Contains(npc.buffType[i]))
+                        if (AequusBuff.CountsAsFire.Contains(npc.buffType[i]))
                         {
                             time = Math.Max(npc.buffTime[i], time);
                         }
@@ -630,7 +630,7 @@ namespace Aequus.NPCs
                     var inv = Main.LocalPlayer.inventory;
                     for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
                     {
-                        if (AequusItem.LegendaryFish.Contains(inv[i].type))
+                        if (AequusItem.IsLegendaryFish.Contains(inv[i].type))
                         {
                             Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;

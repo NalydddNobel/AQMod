@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Accessories;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -33,45 +33,9 @@ namespace Aequus.Projectiles
             appliedItemStatChanges = false;
         }
 
-        public override void OnSpawn(Projectile projectile, IEntitySource source)
-        {
-            if (ProjectileID.Sets.SentryShot[projectile.type])
-            {
-                if (source is EntitySource_Parent parent)
-                {
-                    if (parent.Entity is Projectile parentProj)
-                    {
-                        if (parentProj.owner == Main.myPlayer && !parentProj.hostile
-                        && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().sentryInheritItem != null)
-                        {
-                            var aequus = Main.player[projectile.owner].Aequus();
-                            var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesProj>();
-                            AequusProjectile.pWhoAmI = projectile.whoAmI;
-                            AequusProjectile.pIdentity = projectile.identity;
-                            try
-                            {
-                                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner]))
-                                {
-                                    if (SentryAccessoriesDatabase.OnShoot.TryGetValue(i.type, out var onShoot))
-                                    {
-                                        onShoot(source, projectile, this, parentProj, parentSentry, i, Main.player[projectile.owner], aequus);
-                                    }
-                                }
-                            }
-                            catch
-                            {
-                            }
-                            AequusProjectile.pIdentity = -1;
-                            AequusProjectile.pWhoAmI = -1;
-                        }
-                    }
-                }
-            }
-        }
-
         public override void PostAI(Projectile projectile)
         {
-            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || Main.player[projectile.owner].Aequus().sentryInheritItem == null)
+            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || Main.player[projectile.owner].Aequus().accSentryInheritence == null)
             {
                 dummyPlayer = null;
             }
@@ -108,15 +72,15 @@ namespace Aequus.Projectiles
             {
                 var aequus = Main.player[projectile.owner].Aequus();
                 dummyPlayer.Aequus().accExpertBoost = aequus.accExpertBoost;
-                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false))
+                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true))
                 {
                     if (SentryAccessoriesDatabase.OnAI.TryGetValue(i.type, out var ai))
                     {
-                        ai(projectile, this, i.Clone(), Main.player[projectile.owner], aequus);
+                        ai(new SentryAccessoriesDatabase.OnAIInfo() { Projectile = projectile, SentryAccessories = this, Player = Main.player[projectile.owner], Accessory = i, }) ;
                     }
                     else if (aequus.accExpertBoost)
                     {
-                        MechsSentry.ExpertEffect_UpdateAccessory(i, dummyPlayer);
+                        TheReconstruction.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }
                 }
                 appliedItemStatChanges = true;

@@ -437,7 +437,7 @@ namespace Aequus.Content.Necromancy
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
-        /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="Aequus.AddRecipes"/></para>
+        /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="InnerFinalizeContent"/></para>
         /// </summary>
         /// <param name="aequus"></param>
         /// <param name="args"></param>

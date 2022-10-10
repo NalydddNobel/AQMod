@@ -8,7 +8,6 @@ using Aequus.Items.Consumables.LootBags.Roulettes;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
-using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;

@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().darknessDamage += 0.1f;
+            player.Aequus().accDarknessCrownDamage += 0.1f;
         }
     }
 }

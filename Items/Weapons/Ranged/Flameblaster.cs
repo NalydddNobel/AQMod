@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         private void DefaultUse()
         {
-            Item.useTime = 4;
+            Item.useTime = 3;
             Item.useAnimation = 30;
         }
         public override void SetDefaults()
@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.autoReuse = true;
             Item.knockBack = 1f;
-            Item.ArmorPenetration = 10;
+            Item.ArmorPenetration = 15;
             DefaultUse();
         }
 
@@ -53,8 +53,8 @@ namespace Aequus.Items.Weapons.Ranged
         {
             if (player.altFunctionUse == 2)
             {
-                Item.useTime = 60;
-                Item.useAnimation = 60;
+                Item.useTime = 20;
+                Item.useAnimation = 20;
                 return !player.Aequus().HasCooldown;
             }
             else
@@ -68,7 +68,7 @@ namespace Aequus.Items.Weapons.Ranged
         {
             if (player.altFunctionUse == 2)
             {
-                player.Aequus().SetCooldown(300, itemReference: Item);
+                player.Aequus().SetCooldown(120, itemReference: Item);
             }
             return true;
         }
@@ -80,7 +80,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override bool CanConsumeAmmo(Item ammo, Player player)
         {
-            return player.altFunctionUse != 2 && Main.rand.NextBool();
+            return player.altFunctionUse != 2 && player.ItemAnimationJustStarted && Main.rand.NextBool(3);
         }
 
         public override Vector2? HoldoutOffset()
@@ -97,6 +97,8 @@ namespace Aequus.Items.Weapons.Ranged
             }
             else
             {
+                damage = 0;
+                knockback *= 20f;
                 type = ModContent.ProjectileType<FlameblasterWind>();
             }
         }

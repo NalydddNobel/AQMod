@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Utilities
+﻿namespace Aequus
 {
     public delegate ref T RefFunc<T>();
 }

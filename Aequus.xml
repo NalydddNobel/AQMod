@@ -87,16 +87,6 @@
             Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.buffSpicyEel">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.SpicyEelBuff"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.buffResistHeat">
-            <summary>
-            Applied by <see cref="T:Aequus.Buffs.FrostBuff"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
             A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
@@ -129,7 +119,7 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.grandRewardLuck">
+        <member name="F:Aequus.AequusPlayer.dropRerolls">
             <summary>
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
@@ -137,17 +127,17 @@
         </member>
         <member name="F:Aequus.AequusPlayer.increasedRegen">
             <summary>
-            An amount of regen to add to the player
+            An amount of regen to add to the player in <see cref="M:Aequus.AequusPlayer.UpdateLifeRegen"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.sentryInheritItem">
+        <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accExpertBoost">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
+            Set to true by <see cref="T:Aequus.Items.Accessories.TheReconstruction"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
@@ -163,11 +153,6 @@
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
             Used by summon helmets (<see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.hasSkeletonKey">
-            <summary>
-            Set by <see cref="T:Aequus.Items.Tools.Misc.SkeletonKey"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -202,7 +187,7 @@
             A short lived timer which gets set to 30 when the player has a different selected item.
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.interactionCooldown">
+        <member name="F:Aequus.AequusPlayer.netInteractionCooldown">
             <summary>
             Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
             </summary>
@@ -450,7 +435,7 @@
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="!:Aequus.AddRecipes"/></para>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.InnerFinalizeContent"/></para>
             </summary>
             <param name="aequus"></param>
             <param name="args"></param>
@@ -673,27 +658,6 @@
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.SentryAccessoriesDatabase.OnAI">
-            <summary>
-            <para>1) Projectile - the projectile</para>
-            <para>2) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-            <para>3) Item - the accessory</para>
-            <para>4) Player - the player owner of both projectiles</para>
-            <para>5) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.SentryAccessoriesDatabase.OnShoot">
-            <summary>
-            <para>1) IEntitySource - the entity source</para>
-            <para>2) Projectile - the projectile</para>
-            <para>3) SantankSentryProjectile/ModProjectile - the projectile's SantankSentryProjectile instance</para>
-            <para>4) Projectile - the parent projectile, aka shooter</para>
-            <para>5) SantankSentryProjectile/ModProjectile - the projectile/shooter's SantankSentryProjectile instance</para>
-            <para>6) Item - the accessory</para>
-            <para>7) Player - the player owner of both projectiles</para>
-            <para>8) AequusPlayer/ModPlayer - the AequusPlayer instance on the player owner</para>
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">

@@ -27,7 +27,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
         {
-            if (!player.Aequus().buffSpicyEel)
+            if (!player.HasBuff<SpicyEelBuff>())
             {
                 return;
             }
@@ -38,7 +38,7 @@ namespace Aequus.Items.Consumables.Foods
 
         public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
         {
-            if (!player.Aequus().buffSpicyEel)
+            if (!player.HasBuff<SpicyEelBuff>())
             {
                 return;
             }

@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Consumables.LootBags;
-using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Misc.Energies;
 using Aequus.NPCs.Boss;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    internal class Tester : ModItem
+    internal class TesterItem : ModItem
     {
         public override string Texture => AequusHelpers.GetPath<Gamestar>();
 

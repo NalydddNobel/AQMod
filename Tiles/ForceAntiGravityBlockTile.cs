@@ -62,7 +62,7 @@ namespace Aequus.Tiles
 
             foreach (var p in GetInteractiblePlayers(i, j, tileHeight))
             {
-                p.Aequus().antiGravityTile = -20;
+                p.Aequus().gravityTile = -20;
             }
             return true;
         }

@@ -77,7 +77,7 @@ namespace Aequus.Items
                     if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
                         ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
                 }
-                else if (aequus.showPrices)
+                else if (aequus.accPriceMonocle)
                 {
                     if ((item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin)) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
                     {
@@ -96,14 +96,14 @@ namespace Aequus.Items
                         tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
-                if (AequusItem.LegendaryFish.Contains(item.type))
+                if (AequusItem.IsLegendaryFish.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))
                         tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
 
-                if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.IsWellFedButDoesntIncreaseLifeRegen.Contains(item.buffType))
+                if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.CustomWellFed.Contains(item.buffType))
                 {
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
                 }

@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags
+namespace Aequus.Items
 {
     public static class ItemLootBuilder
     {

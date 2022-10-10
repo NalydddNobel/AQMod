@@ -213,6 +213,30 @@ namespace Aequus
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
         }
 
+        public static bool HasItemCheckAllBanks(this Player player, int item)
+        {
+            return player.HasItem(item) ||
+                player.bank.HasItem(item) ||
+                player.bank2.HasItem(item) ||
+                player.bank3.HasItem(item) ||
+                player.bank4.HasItem(item);
+        }
+
+        public static bool HasItemInInvOrVoidBag(this Player player, int item)
+        {
+            return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
+        }
+
+        public static bool HasItem(this Chest chest, int item)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (!chest.item[i].IsAir && chest.item[i].type == item)
+                    return true;
+            }
+            return false;
+        }
+
         public static Vector2 MouseWorld(this Player player)
         {
             var mouseWorld = Main.MouseWorld;

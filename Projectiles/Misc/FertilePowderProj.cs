@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.ai[1] = 1f;
                 for (int i = 0; i < 30; i++)
                 {
-                    int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 3, Projectile.velocity.X, Projectile.velocity.Y, 50);
+                    int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.GrassBlades, Projectile.velocity.X, Projectile.velocity.Y, 50);
                     Main.dust[d].noGravity = true;
                 }
             }

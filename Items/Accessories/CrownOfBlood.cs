@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().slotBoostCurse = 3;
+            player.Aequus().accBloodCrownSlot = 3;
         }
     }
 }

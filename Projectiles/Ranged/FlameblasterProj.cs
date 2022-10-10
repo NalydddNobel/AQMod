@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles.Misc;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -11,13 +10,6 @@ namespace Aequus.Projectiles.Ranged
 {
     public class FlameblasterProj : ModProjectile
     {
-        public override string Texture => Aequus.AssetsPath + "Explosion1";
-
-        public override void SetStaticDefaults()
-        {
-            Main.projFrames[Type] = 7;
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 42;
@@ -28,14 +20,14 @@ namespace Aequus.Projectiles.Ranged
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 5;
             Projectile.extraUpdates = 2;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 90;
             Projectile.alpha = 255;
             Projectile.tileCollide = false;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 150, 20, 100);
+            return new Color(210, 255 - Projectile.alpha, 255 - Projectile.alpha, 0);
         }
 
         public override void AI()
@@ -47,7 +39,9 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
             }
             Projectile.rotation += 0.025f;
-            Projectile.frame = 3;
+            //Projectile.frame = 3;
+            if (Projectile.numUpdates == -1)
+                Projectile.position += Main.player[Projectile.owner].velocity * 0.8f;
             if (Projectile.wet)
             {
                 Projectile.Kill();
@@ -89,13 +83,13 @@ namespace Aequus.Projectiles.Ranged
                 float scaling = Math.Min(Projectile.width / 40f, 1f);
                 for (int i = 0; i < (int)(2 * scaling); i++)
                 {
-                    if (Projectile.timeLeft > 4 || Main.rand.NextBool(9))
+                    if (Main.rand.NextBool(16 + Projectile.alpha))
                     {
-                        var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+                        var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, Scale: Main.rand.NextFloat(1.5f, 2.15f) * scaling * 2f);
                         d.velocity *= 0.75f;
                         d.velocity += -Projectile.velocity * 0.33f;
+                        d.velocity *= 0.5f;
                         d.noGravity = true;
-                        d.scale *= Main.rand.NextFloat(0.5f, 2.15f) * scaling;
                     }
                 }
             }
@@ -115,32 +109,15 @@ namespace Aequus.Projectiles.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.OnFire3, 1200);
+            target.AddBuff(BuffID.OnFire3, 600);
+            Projectile.damage = (int)(Projectile.damage * 0.75f);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            var c = Projectile.GetAlpha(lightColor);
-            var bloomColor = c * 2;
-            c = new Color(c.R - Projectile.alpha, c.G - Projectile.alpha, c.B - Projectile.alpha, c.A - Projectile.alpha);
-            bloomColor = new Color(bloomColor.R - Projectile.alpha, bloomColor.G - Projectile.alpha, bloomColor.B - Projectile.alpha, bloomColor.A - Projectile.alpha);
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, bloomColor, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 1.25f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, c, Projectile.rotation + Main.GlobalTimeWrappedHourly, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation + Main.GlobalTimeWrappedHourly, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
-        }
-    }
-
-    public class FlameblasterWind : PumpinatorProj
-    {
-        public override void SetDefaults()
-        {
-            base.SetDefaults();
-            Projectile.DamageType = DamageClass.Ranged;
-            Projectile.timeLeft = 90;
-            Projectile.width = 120;
-            Projectile.height = 120;
-            Projectile.extraUpdates = 8;
         }
     }
 }

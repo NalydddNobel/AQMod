@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Accessories.Utility
 {
     public class RichMansMonocle : ModItem, ItemHooks.IUpdateVoidBag
     {
@@ -14,17 +14,16 @@ namespace Aequus.Items.Tools
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.LifeformAnalyzer);
-            Item.accessory = false;
         }
 
         public override void UpdateInventory(Player player)
         {
-            player.Aequus().showPrices = true;
+            player.Aequus().accPriceMonocle = true;
         }
 
         public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
-            aequus.showPrices = true;
+            aequus.accPriceMonocle = true;
         }
     }
 }

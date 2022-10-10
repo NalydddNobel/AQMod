@@ -109,7 +109,6 @@ namespace Aequus.Content.CrossMod
         }
         public static void AddRarityNames()
         {
-            ModRarity rarity;
         }
 
         void ILoadable.Unload()

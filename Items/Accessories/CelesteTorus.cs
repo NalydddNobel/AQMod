@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics;
-using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -163,7 +162,7 @@ namespace Aequus.Items.Accessories
 
         public override void AddRecipes()
         {
-            MechsSentryItem.AddEntry(Type);
+            TheReconstructionGlobalItem.AddEntry(Type);
         }
     }
 }

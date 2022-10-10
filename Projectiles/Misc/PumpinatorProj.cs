@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
@@ -10,7 +11,8 @@ namespace Aequus.Projectiles.Misc
 {
     public class PumpinatorProj : ModProjectile
     {
-        public override string Texture => Aequus.BlankTexture;
+        public virtual bool PushPlayers => true;
+        public virtual bool OnlyPushHostilePlayers => false;
 
         public override void SetDefaults()
         {
@@ -21,8 +23,8 @@ namespace Aequus.Projectiles.Misc
             Projectile.tileCollide = false;
             Projectile.timeLeft = 60;
             Projectile.ignoreWater = true;
-            Projectile.alpha = 255;
-            Projectile.hide = true;
+            Projectile.alpha = 200;
+            Projectile.extraUpdates = 2;
         }
 
         public override bool? CanCutTiles()
@@ -51,14 +53,15 @@ namespace Aequus.Projectiles.Misc
             {
                 Projectile.velocity *= 0.97f - (colldingTiles - 8) * 0.01f;
             }
+            var myRect = Projectile.getRect();
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
-                    Projectile.Colliding(Projectile.getRect(), npc.getRect()) &&
+                    Projectile.Colliding(myRect, npc.getRect()) &&
                     PushablesDatabase.NPCs.Contains(Main.npc[i].type))
                 {
-                    npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 30f;
+                    npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 30f * npc.knockBackResist;
                     npc.netUpdate = true;
                 }
             }
@@ -66,25 +69,50 @@ namespace Aequus.Projectiles.Misc
             {
                 var proj = Main.projectile[i];
                 if (i != Projectile.whoAmI && proj.active &&
-                    Projectile.Colliding(Projectile.getRect(), proj.getRect()) &&
+                    Projectile.Colliding(myRect, proj.getRect()) &&
                     PushablesDatabase.Projs.Contains(Main.projectile[i].type))
                 {
                     proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
                     proj.netUpdate = true;
                 }
             }
-            DoDust();
-            if (Projectile.timeLeft < 80)
+            if (PushPlayers)
             {
-                Projectile.alpha += 3;
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    var player = Main.player[i];
+                    if (i != Projectile.owner && player.active && !player.noKnockback)
+                    {
+                        if (OnlyPushHostilePlayers && (!player.hostile || player.team == 0 || player.team == Main.player[Projectile.owner].team))
+                        {
+                            continue;
+                        }
+                        if (Projectile.Colliding(myRect, player.getRect()))
+                            player.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
+                    }
+                }
             }
+            DoDust();
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            if (Projectile.timeLeft < 40)
+            {
+                Projectile.alpha += 6;
+            }
+            else if (Projectile.alpha > 0)
+            {
+                Projectile.alpha -= 2 + (255 - Projectile.alpha) / 14;
+                if (Projectile.alpha < 0)
+                    Projectile.alpha = 0;
+            }
+            Projectile.scale += 0.01f;
         }
         public virtual void DoDust()
         {
-            if (Main.rand.NextBool(3))
+            if (Main.rand.NextBool(10))
             {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, Color.White.UseA(128) * 0.5f);
-                d.velocity = new Vector2(-Projectile.velocity.X + Main.rand.NextFloat(-1f, 1f) + Main.windSpeedCurrent, -Projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f));
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), 0f, 0f, 0, Color.White.UseA(128) * 0.5f);
+                d.velocity = new Vector2(-Projectile.velocity.X * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f) + Main.windSpeedCurrent, -Projectile.velocity.Y * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f));
+                d.fadeIn = d.scale + 1f;
             }
         }
 
@@ -100,6 +128,19 @@ namespace Aequus.Projectiles.Misc
             Projectile.width = reader.ReadInt32();
             Projectile.height = reader.ReadInt32();
             Projectile.extraUpdates = reader.ReadInt32();
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
+            float scale = Projectile.scale;
+
+            if (Projectile.timeLeft > 40)
+                scale *= Projectile.Opacity;
+
+            Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, new Color(128, 128, 128, 0) * Projectile.Opacity, Projectile.rotation,
+                origin, new Vector2(scale * 1.3f, scale * 0.9f), SpriteEffects.None, 0);
+            return false;
         }
     }
 }

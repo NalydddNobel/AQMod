@@ -165,7 +165,7 @@ namespace AQMod.NPCs.AIs
                                     NPC.netUpdate = true;
                                 }
                                 if (Main.netMode == NetmodeID.Server && actuallyOpenedDoor)
-                                    NetMessage.SendData(MessageID.ChangeDoor, -1, -1, null, 0, tileX, tileY - 1, NPC.direction);
+                                    NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 0, tileX, tileY - 1, NPC.direction);
                             }
                             if (Main.tile[tileX, tileY - 1].TileType == 388)
                             {
@@ -176,7 +176,7 @@ namespace AQMod.NPCs.AIs
                                     NPC.netUpdate = true;
                                 }
                                 if (Main.netMode == NetmodeID.Server && flag18)
-                                    NetMessage.SendData(MessageID.ChangeDoor, -1, -1, null, 4, tileX, tileY - 1);
+                                    NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 4, tileX, tileY - 1);
                             }
                         }
                     }

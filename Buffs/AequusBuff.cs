@@ -10,17 +10,32 @@ namespace Aequus.Buffs
 {
     public class AequusBuff : GlobalBuff
     {
-        public static HashSet<int> IsWellFedButDoesntIncreaseLifeRegen { get; private set; }
-        public static HashSet<int> FireDebuffForLittleInferno { get; private set; }
+        public static HashSet<int> CustomWellFed { get; private set; }
+        public static HashSet<int> CountsAsFire { get; private set; }
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
+        public static HashSet<int> DontChangeDuration { get; private set; }
+        public static HashSet<int> CountsAsBuff { get; private set; }
 
         public override void Load()
         {
-            IsWellFedButDoesntIncreaseLifeRegen = new HashSet<int>();
-            FireDebuffForLittleInferno = new HashSet<int>()
+            DontChangeDuration = new HashSet<int>()
+            {
+                BuffID.Campfire,
+                BuffID.HeartLamp,
+                BuffID.Sunflower,
+                BuffID.Lucky,
+            };
+            CountsAsBuff = new HashSet<int>()
+            {
+                BuffID.Tipsy,
+            };
+            CustomWellFed = new HashSet<int>();
+            CountsAsFire = new HashSet<int>()
             {
                 BuffID.OnFire,
                 BuffID.OnFire3,
+                BuffID.Frostburn,
+                BuffID.Frostburn2,
             };
             DemonSiegeEnemyImmunity = new List<int>()
             {
@@ -41,11 +56,25 @@ namespace Aequus.Buffs
                 var player = AequusPlayer.CurrentPlayerContext();
                 if (player != null)
                 {
-                    time = (int)(time * player.Aequus().Debuffs.ApplyBuffMultipler(player, type));
+                    time = (int)(time * player.Aequus().DebuffsInfliction.ApplyBuffMultipler(player, type));
                 }
             }
 
             orig(self, type, time, quiet);
+        }
+
+        public override void Unload()
+        {
+            CountsAsBuff?.Clear();
+            CountsAsBuff = null;
+            DontChangeDuration?.Clear();
+            DontChangeDuration = null;
+            CustomWellFed?.Clear();
+            CustomWellFed = null;
+            CountsAsFire?.Clear();
+            CountsAsFire = null;
+            DemonSiegeEnemyImmunity?.Clear();
+            DemonSiegeEnemyImmunity = null;
         }
 
         public static bool InflictAndPlaySound(NPC target, int type, int time, SoundStyle sound)

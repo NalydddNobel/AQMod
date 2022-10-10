@@ -9,7 +9,13 @@ namespace Aequus.Items.Misc.Fish.Legendary
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 2;
-            AequusItem.LegendaryFish.Add(Type);
+            AequusItem.IsLegendaryFish.Add(Type);
+        }
+
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            this.CreateLoot(itemLoot)
+                .Add(ItemID.LavaFishingHook, chance: 1, stack: 1);
         }
 
         public override void SetDefaults()

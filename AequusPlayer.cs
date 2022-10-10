@@ -65,8 +65,6 @@ namespace Aequus
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
-        public float pickTileDamage;
-
         public int projectileIdentity = -1;
 
         [SaveData("Souls")]
@@ -96,11 +94,14 @@ namespace Aequus
 
         //public ShatteringVenus.ItemInfo shatteringVenus;
 
-        public sbyte antiGravityTile;
+        public float pickTileDamage;
+
+        public sbyte gravityTile;
 
         public float darkness;
 
-        public bool showPrices;
+        public bool accShowQuestFish;
+        public bool accPriceMonocle;
 
         public int equippedMask;
         public int cMask;
@@ -117,15 +118,6 @@ namespace Aequus
 
         public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
-
-        /// <summary>
-        /// Applied by <see cref="SpicyEelBuff"/>
-        /// </summary>
-        public bool buffSpicyEel;
-        /// <summary>
-        /// Applied by <see cref="FrostBuff"/>
-        /// </summary>
-        public bool buffResistHeat;
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
         public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
@@ -147,8 +139,11 @@ namespace Aequus
         public int closestEnemyOld;
 
         private DebuffInflictionStats debuffs;
-        public ref DebuffInflictionStats Debuffs => ref debuffs;
+        public ref DebuffInflictionStats DebuffsInfliction => ref debuffs;
+        public float buffDuration;
+        public float debuffDuration;
 
+        public bool accSentrySlot;
         public Item accNeonFish;
         public bool accWarHorn;
 
@@ -180,9 +175,9 @@ namespace Aequus
         /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
         /// <para>Used by <see cref="GrandReward"/></para> 
         /// </summary>
-        public float grandRewardLuck;
+        public float dropRerolls;
         /// <summary>
-        /// An amount of regen to add to the player
+        /// An amount of regen to add to the player in <see cref="UpdateLifeRegen"/>
         /// </summary>
         public int increasedRegen;
 
@@ -191,10 +186,10 @@ namespace Aequus
 
         public bool accDustDevilFire;
 
-        public int groundCrit;
-        public float darknessDamage;
+        public int accGroundCrownCrit;
+        public float accDarknessCrownDamage;
 
-        public int slotBoostCurse;
+        public int accBloodCrownSlot;
 
         public float antiGravityItemRadius;
 
@@ -204,8 +199,8 @@ namespace Aequus
         public bool accGrandReward;
         public int accBoneRing;
 
-        public int accVial;
-        public int vialDelay;
+        public int accBlackPhial;
+        public int cdBlackPhial;
 
         public bool accDevilsTongue;
 
@@ -236,16 +231,16 @@ namespace Aequus
         public int cCelesteTorus;
 
         /// <summary>
-        /// Set by <see cref="SantankSentry"/>
+        /// Set by <see cref="SantankSentry"/> and <see cref="MechsSentry"/>
         /// </summary>
-        public Item sentryInheritItem;
+        public Item accSentryInheritence;
         public Item ammoBackpackItem;
         public Item mothmanMaskItem;
 
         public int cGlowCore;
         public bool hasExpertBoost;
         /// <summary>
-        /// Set to true by <see cref="MechsSentry"/>
+        /// Set to true by <see cref="TheReconstruction"/>
         /// </summary>
         public bool accExpertBoost;
         public int expertBoostWormScarfTimer;
@@ -269,10 +264,7 @@ namespace Aequus
         /// </summary>
         public int summonHelmetTimer;
 
-        /// <summary>
-        /// Set by <see cref="SkeletonKey"/>
-        /// </summary>
-        public bool hasSkeletonKey;
+        public bool hasSkeletonKey => Player.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
 
         public int boundBowAmmo;
         public int boundBowAmmoTimer;
@@ -307,7 +299,7 @@ namespace Aequus
         /// <summary>
         /// Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
         /// </summary>
-        public uint interactionCooldown;
+        public uint netInteractionCooldown;
 
         public int soulCandleLimit;
 
@@ -321,8 +313,6 @@ namespace Aequus
 
         public int timeSinceLastHit;
         public int idleTime;
-
-        public bool MendshroomActive => idleTime >= 60;
 
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
         public bool MaxLife => Player.statLife >= Player.statLifeMax2;
@@ -481,12 +471,12 @@ namespace Aequus
 
         public override void Initialize()
         {
-            slotBoostCurse = -1;
+            accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
             cGlowCore = -1;
             instaShieldAlpha = 0f;
-            antiGravityTile = 0;
+            gravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
             CursorDye = -1;
@@ -500,7 +490,7 @@ namespace Aequus
             itemCooldownMax = 0;
             itemCombo = 0;
             itemSwitch = 0;
-            interactionCooldown = 60;
+            netInteractionCooldown = 60;
             closestEnemyOld = -1;
             closestEnemy = -1;
         }
@@ -517,6 +507,12 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accSentrySlot = false;
+            accGroundCrownCrit = 0;
+            accDarknessCrownDamage = 0f;
+            accBloodCrownSlot = -1;
+            accShowQuestFish = false;
+            accPriceMonocle = false;
             accNeonFish = null;
             accPreciseCrits = false;
             accArmFloaties = false;
@@ -543,16 +539,16 @@ namespace Aequus
 
             ammoBackpackItem = null;
             mothmanMaskItem = null;
-            sentryInheritItem = null;
+            accSentryInheritence = null;
 
             scamChance = 0f;
             flatScamDiscount = 0;
 
-            if (vialDelay > 0)
-                vialDelay--;
-            accVial = 0;
+            if (cdBlackPhial > 0)
+                cdBlackPhial--;
+            accBlackPhial = 0;
             accBoneRing = 0;
-            grandRewardLuck = 0f;
+            dropRerolls = 0f;
             accDevilsTongue = false;
             accGrandReward = false;
             accFoolsGoldRing = false;
@@ -580,8 +576,8 @@ namespace Aequus
         public void ResetStats()
         {
             debuffs.ResetEffects(Player);
-            groundCrit = 0;
-            darknessDamage = 0f;
+            buffDuration = 1f;
+            debuffDuration = 1f;
             luckRerolls = 0;
             antiGravityItemRadius = 0f;
             soulCandleLimit = 0;
@@ -647,13 +643,13 @@ namespace Aequus
 
         public void HandleGravityBlocks()
         {
-            if (antiGravityTile < 0)
-                antiGravityTile++;
-            else if (antiGravityTile > 0)
-                antiGravityTile--;
-            if (antiGravityTile != 0)
+            if (gravityTile < 0)
+                gravityTile++;
+            else if (gravityTile > 0)
+                gravityTile--;
+            if (gravityTile != 0)
             {
-                int newGravity = Math.Sign(antiGravityTile);
+                int newGravity = Math.Sign(gravityTile);
                 if (Player.gravDir != newGravity)
                 {
                     Player.gravDir = newGravity;
@@ -727,8 +723,6 @@ namespace Aequus
             ResetArmor();
             ResetStats();
             cursorDyeOverride = 0;
-            slotBoostCurse = -1;
-            showPrices = false;
 
             HandleGravityBlocks();
 
@@ -745,15 +739,10 @@ namespace Aequus
             }
 
             UpdateItemFields();
-            if (interactionCooldown > 0)
+            if (netInteractionCooldown > 0)
             {
-                interactionCooldown--;
+                netInteractionCooldown--;
             }
-
-            buffSpicyEel = false;
-            buffResistHeat = false;
-
-            hasSkeletonKey = false;
 
             forceDayState = 0;
             Team = Player.team;
@@ -789,13 +778,16 @@ namespace Aequus
                 Player.maxMinions = 1;
             }
 
-            UpdateBank(Player.bank4, 3);
+            if (Player.HasItem(ItemID.VoidLens))
+            {
+                UpdateBank(Player.bank4, 3);
+            }
             if (setSeraphim != null && ghostSlots == 0)
             {
                 Player.endurance += 0.3f;
             }
 
-            if (slotBoostCurse != -1)
+            if (accBloodCrownSlot != -1)
             {
                 Player.GetDamage(DamageClass.Generic) *= 0.9f;
                 Player.statDefense -= 4;
@@ -804,27 +796,27 @@ namespace Aequus
                     Player.statLifeMax2 = Player.statLifeMax2 - (Player.statLifeMax2 - Player.statLifeMax) / 2;
                 if (Player.statManaMax2 > Player.statManaMax)
                     Player.statManaMax2 = Player.statManaMax2 - (Player.statManaMax2 - Player.statManaMax) / 2;
-                HandleSlotBoost(Player.armor[slotBoostCurse], slotBoostCurse < 10 ? Player.hideVisibleAccessory[slotBoostCurse] : false);
+                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
             }
 
-            if (darknessDamage > 0f)
+            if (accDarknessCrownDamage > 0f)
             {
-                Player.GetDamage(DamageClass.Generic) += darknessDamage * darkness;
+                Player.GetDamage(DamageClass.Generic) += accDarknessCrownDamage * darkness;
             }
-            if (groundCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
+            if (accGroundCrownCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
             {
-                Player.GetCritChance(DamageClass.Generic) += groundCrit;
+                Player.GetCritChance(DamageClass.Generic) += accGroundCrownCrit;
             }
         }
         public void HandleSlotBoost(Item item, bool hideVisual)
         {
             if (item.IsAir)
                 return;
-            int slotBoostCurseOld = slotBoostCurse;
-            slotBoostCurse = -2;
+            int slotBoostCurseOld = accBloodCrownSlot;
+            accBloodCrownSlot = -2;
             item.Aequus().accBoost = true;
             Player.ApplyEquipFunctional(item, hideVisual);
-            slotBoostCurse = slotBoostCurseOld;
+            accBloodCrownSlot = slotBoostCurseOld;
 
             if (item.wingSlot != -1)
             {
@@ -937,7 +929,7 @@ namespace Aequus
                 UpdateSentrySquid(Player.Aequus().closestEnemy);
             }
 
-            if (sentryInheritItem != null)
+            if (accSentryInheritence != null)
             {
                 UpdateSantankSentry();
             }
@@ -1273,7 +1265,7 @@ namespace Aequus
 
         public override void UpdateBadLifeRegen()
         {
-            if (slotBoostCurse != -1)
+            if (accBloodCrownSlot != -1)
             {
                 Player.lifeRegen = Math.Min(Player.lifeRegen, 0);
                 Player.lifeRegenTime = Math.Min(Player.lifeRegenTime, 0);
@@ -1367,7 +1359,7 @@ namespace Aequus
                 damage = (int)(damage * WeaknessDamageMultiplier);
             }
 
-            if (buffResistHeat && npc.Aequus().heatDamage)
+            if (npc.Aequus().heatDamage && Player.HasBuff<FrostBuff>())
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
             }
@@ -1383,7 +1375,7 @@ namespace Aequus
                     damage = (int)(damage * WeaknessDamageMultiplier);
                 }
             }
-            if (buffResistHeat && proj.Aequus().heatDamage)
+            if (proj.Aequus().heatDamage && Player.HasBuff<FrostBuff>())
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
             }
@@ -1509,7 +1501,7 @@ namespace Aequus
                 target.AddBuff(ModContent.BuffType<BlueFire>(), mothmanMaskItem.Aequus().accBoost ? 600 : 300);
                 SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
             }
-            if (accVial > 0)
+            if (accBlackPhial > 0)
             {
                 int buffCount = 0;
                 for (int i = 0; i < NPC.maxBuffs; i++)
@@ -1519,12 +1511,12 @@ namespace Aequus
                         buffCount++;
                     }
                 }
-                if (Main.rand.NextBool(accVial + vialDelay / 5 + buffCount * 2))
+                if (Main.rand.NextBool(accBlackPhial + cdBlackPhial / 5 + buffCount * 2))
                 {
                     int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
                     if (!target.buffImmune[buff])
                     {
-                        vialDelay += 30;
+                        cdBlackPhial += 30;
                         target.AddBuff(buff, 150);
                     }
                 }
@@ -1956,7 +1948,7 @@ namespace Aequus
             return p;
         }
 
-        public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true)
+        public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true, bool sentrySlot = false)
         {
             var l = new List<Item>();
             if (armor)
@@ -1971,6 +1963,12 @@ namespace Aequus
                     if (player.IsAValidEquipmentSlotForIteration(i))
                         l.Add(player.armor[i]);
                 }
+                if (sentrySlot && player.Aequus().accSentrySlot)
+                {
+                    var item = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<MechsSentryAccessorySlot>().Type, player);
+                    if (item.FunctionalItem != null && !item.FunctionalItem.IsAir)
+                        l.Add(item.FunctionalItem);
+                }
             }
             return l;
         }
@@ -1978,38 +1976,11 @@ namespace Aequus
         public void LegendaryFishRewards(NPC npc, Item item, int i)
         {
             int money = Main.rand.Next(Item.gold * 8, Item.gold * 10);
+            Player.DropFromItem(item.type);
             var source = npc.GetSource_GiftOrReward();
-            if (item.type == ModContent.ItemType<Blobfish>())
+            if (!Player.HasItemCheckAllBanks(ModContent.ItemType<AnglerBroadcaster>()))
             {
-                Player.QuickSpawnItem(source, ModContent.ItemType<Starcatcher>());
-            }
-            else if (item.type == ModContent.ItemType<GoreFish>())
-            {
-                Player.QuickSpawnItem(source, ItemID.LavaFishingHook);
-                if (NPC.downedBoss3 && Main.rand.NextBool())
-                {
-                    Player.QuickSpawnItem(source, Main.hardMode ? ItemID.LavaCrateHard : ItemID.LavaCrate);
-                }
-            }
-            else if (item.type == ModContent.ItemType<ArgonFish>())
-            {
-                Player.QuickSpawnItem(source, ModContent.ItemType<DevilsTongue>());
-                Player.QuickSpawnItem(source, ItemID.ArgonMoss, Main.rand.Next(10, 25) + 1);
-            }
-            else if (item.type == ModContent.ItemType<KryptonFish>())
-            {
-                Player.QuickSpawnItem(source, ModContent.ItemType<Ramishroom>());
-                Player.QuickSpawnItem(source, ItemID.KryptonMoss, Main.rand.Next(10, 25) + 1);
-            }
-            else if (item.type == ModContent.ItemType<XenonFish>())
-            {
-                Player.QuickSpawnItem(source, ModContent.ItemType<RegrowingBait>());
-                Player.QuickSpawnItem(source, ItemID.XenonMoss, Main.rand.Next(10, 25) + 1);
-            }
-            else if (item.type == ModContent.ItemType<RadonFish>())
-            {
-                Player.QuickSpawnItem(source, ModContent.ItemType<NeonGenesis>());
-                Player.QuickSpawnItem(source, ItemID.XenonMoss, Main.rand.Next(10, 25) + 1);
+                Player.QuickSpawnItem(source, ModContent.ItemType<AnglerBroadcaster>());
             }
             AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }
@@ -2017,6 +1988,7 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
             On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
@@ -2028,6 +2000,28 @@ namespace Aequus
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+        }
+
+        private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player self, int type, int time1)
+        {
+            int amt = orig(self, type, time1);
+            if (AequusBuff.DontChangeDuration.Contains(type))
+            {
+                return amt;
+            }
+
+            var aequus = self.Aequus();
+            if (Main.debuff[type] && !AequusBuff.CountsAsBuff.Contains(type))
+            {
+                if (aequus.debuffDuration != 1f)
+                    amt = (int)(amt * aequus.debuffDuration);
+            }
+            else
+            {
+                if (aequus.buffDuration != 1f && !Main.meleeBuff[type])
+                    amt = (int)(amt * aequus.buffDuration);
+            }
+            return amt;
         }
 
         private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
@@ -2055,9 +2049,9 @@ namespace Aequus
 
         private static void Player_JumpMovement(On.Terraria.Player.orig_JumpMovement orig, Player self)
         {
-            if (self.Aequus().antiGravityTile != 0)
+            if (self.Aequus().gravityTile != 0)
             {
-                self.gravDir = Math.Sign(self.Aequus().antiGravityTile);
+                self.gravDir = Math.Sign(self.Aequus().gravityTile);
             }
             orig(self);
         }
@@ -2092,7 +2086,7 @@ namespace Aequus
             {
                 if (AequusHelpers.iterations == 0)
                 {
-                    for (float luckLeft = info.player.Aequus().grandRewardLuck; luckLeft > 0f; luckLeft--)
+                    for (float luckLeft = info.player.Aequus().dropRerolls; luckLeft > 0f; luckLeft--)
                     {
                         if (luckLeft < 1f)
                         {

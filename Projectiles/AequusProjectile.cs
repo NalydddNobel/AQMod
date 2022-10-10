@@ -203,9 +203,32 @@ namespace Aequus.Projectiles
                 {
                     sourceNPC = parent.Entity.whoAmI;
                 }
-                else if (parent.Entity is Projectile parentProjectile)
+                else if (parent.Entity is Projectile parentProj)
                 {
-                    sourceProjIdentity = parentProjectile.identity;
+                    sourceProjIdentity = parentProj.identity;
+                    if (parentProj.owner == Main.myPlayer && !parentProj.hostile
+                    && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accSentryInheritence != null)
+                    {
+                        var aequus = Main.player[projectile.owner].Aequus();
+                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesProj>();
+                        pWhoAmI = projectile.whoAmI;
+                        pIdentity = projectile.identity;
+                        try
+                        {
+                            foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true))
+                            {
+                                if (SentryAccessoriesDatabase.OnShoot.TryGetValue(i.type, out var onShoot))
+                                {
+                                    onShoot(new SentryAccessoriesDatabase.OnShootInfo() { Source = source, Projectile = projectile, ParentProjectile = parentProj, Player = Main.player[projectile.owner], Accessory = i, });
+                                }
+                            }
+                        }
+                        catch
+                        {
+                        }
+                        pIdentity = -1;
+                        pWhoAmI = -1;
+                    }
                 }
             }
             if (sourceProjIdentity != -1)

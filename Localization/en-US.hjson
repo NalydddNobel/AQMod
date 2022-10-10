@@ -41,6 +41,7 @@ Mods: {
 		}
 		
 		DropCondition: {
+			AllMechs: Dropped when all 3 mechanical bosses are defeated
 			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
 			OtherwiseChance: 100% droprate if '{0}' conditions are met
 			OnFirstKill: Dropped only on first kill
@@ -89,22 +90,6 @@ Mods: {
 				'''
 			InventoryPiggyBankFunction: Works in your inventory or void bag
 			ToggleKeyBind: You can toggle this function by pressing {0}
-
-			MechsSentry: {
-				EoCShield: 
-					'''
-					Increased dash attack range, debuffs wear off faster while dashing
-					Allows for an infinite duration dash while grounded
-					'''
-				WormScarf: You passively shoot lasers
-				BrainOfConfusion: You are protected by probes
-				BoneGlove: Crossbones are replaced by laser saws
-				HiveBackpack: May turn strong bees into mechanical bees
-				BoneHelm: Shadow hands are replaced with gestalts
-				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
-				SporeSac: Spores are replaced with explosive nanites
-				CelesteTorus: You are given an extra ring of orbs
-			}
 		}
 
 		PrefixName: {
@@ -154,8 +139,9 @@ Mods: {
 			BlackPhial: Black Phial
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
-			MechsSentry: Sentinel 6510 N.O.S.
-			SantankSentry: Sentry 6502 N.O.S.
+			TheReconstruction: The Reconstruction
+			MechsSentry: Sentinel 6510
+			SantankSentry: Sentry 6502
 			BloodiedBucket: Bloodied Bucket
 			RitualisticSkull: Ritualistic Skull
 			RabbitsFoot: Rabbit's Foot
@@ -294,6 +280,7 @@ Mods: {
 
 			UnholyCore: Unholy Core
 
+			AnglerBroadcaster: Seaside Broadcaster
 			RichMansMonocle: Rich Man's Monocle
 
 			TitaniumPaintbrush: Titanium Paintbrush
@@ -659,10 +646,15 @@ Mods: {
 				50% more damage from critical strikes
 				[c/{Color}:...If you can pay 25 silver]
 				'''
+			WhitePhial: 
+				'''
+				50% increased buff duration
+				25% decreased debuff duration
+				'''
 			BlackPhial: 
 				'''
-				Chance to inflict a random debuff on enemies on hit
-				Enemy debuffs last twice as long
+				Chance to inflict a random debuff on hit
+				50% increased duration on debuffs applied to enemies
 				'''
 			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
@@ -677,10 +669,26 @@ Mods: {
 				'''
 			RitualisticSkull: Converts all but one of your minion slots into ghost slots
 			RabbitsFoot: Increases luck for the wearer
+			TheReconstruction: {
+				$parentVal: Increases the strength of expert accessories
+				EoCShield: 
+					'''
+					Increased dash attack range, debuffs wear off faster while dashing
+					Allows for an infinite duration dash while grounded
+					'''
+				WormScarf: You passively shoot lasers
+				BrainOfConfusion: You are protected by probes
+				BoneGlove: Crossbones are replaced by laser saws
+				HiveBackpack: May turn strong bees into mechanical bees
+				BoneHelm: Shadow hands are replaced with gestalts
+				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+				SporeSac: Spores are replaced with explosive nanites
+				CelesteTorus: Grants an extra ring of orbs
+			}
 			MechsSentry:
 				'''
-				Increases the strength of expert accessories
 				Sentries equip your accessories
+				Grants an extra equip slot which will only be used by Sentries
 				'''
 			SantankSentry: Sentries equip your accessories
 			FoolsGoldRing: Picking up dropped coins grants minor stat improvements
@@ -704,7 +712,11 @@ Mods: {
 				'''
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Periodically release healing spores
-			GlowCore: You and your projectiles emit light
+			GlowCore:
+				'''
+				You and your projectiles emit light
+				'A new hand touches the beacon...'
+				'''
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
@@ -965,7 +977,8 @@ Mods: {
 				Decreases the length of the Demon Siege event
 				'''
 
-			RichMansMonocle: Allows you to view item prices outside of an NPC shop
+			AnglerBroadcaster: Shows you the current quest fish
+			RichMansMonocle: View item prices outside of shops
 
 			Shutterstocker: Used to take photos with shutterstocker clips
 			ShutterstockerClip: {
@@ -1346,10 +1359,10 @@ Mods: {
 				'''
 			Flameblaster:
 				'''
-				Right click to shoot an airblast
-				Ignores 10 points of enemy Defense
-				50% chance to not consume ammo
 				{$Mods.Aequus.Tooltips.UsesGel}
+				<right> to shoot an airblast
+				Ignores 15 points of enemy Defense
+				33% chance to not consume ammo
 				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
 				'''
 			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
@@ -3823,11 +3836,16 @@ Mods: {
 			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
 		}
 
+		InfoDisplayName: {
+			AnglerBroadcasterIcon: Quest Fish
+		}
+
 		Water: Water
 		Lava: Lava
 		Honey: Honey
 		Shimmer: Shimmer
 
+		Finished: Finished
 		Unknown: Unknown
 		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
 		Complete: Complete

@@ -1,5 +1,7 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
@@ -17,6 +19,7 @@ using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -32,10 +35,11 @@ namespace Aequus.Items
 {
     public class AequusItem : GlobalItem, IAddRecipes
     {
-        public static HashSet<int> LegendaryFish { get; private set; }
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
+        public static List<int> IsLegendaryFish { get; private set; }
+        public static Dictionary<int, RefFunc<Tile>> CustomCoatingInfo { get; private set; }
         public static Dictionary<int, string> RarityNames { get; private set; }
 
         public override bool InstancePerEntity => true;
@@ -45,10 +49,11 @@ namespace Aequus.Items
         public byte noGravityTime;
         public bool accBoost;
         public bool naturallyDropped;
+        public bool unOpenedChestItem;
 
         public override void Load()
         {
-            LegendaryFish = new HashSet<int>();
+            IsLegendaryFish = new List<int>();
             SummonStaff = new HashSet<int>();
             CritOnlyModifier = new HashSet<int>()
             {
@@ -108,8 +113,8 @@ namespace Aequus.Items
         {
             RarityNames?.Clear();
             RarityNames = null;
-            LegendaryFish?.Clear();
-            LegendaryFish = null;
+            IsLegendaryFish?.Clear();
+            IsLegendaryFish = null;
             SummonStaff?.Clear();
             SummonStaff = null;
             CritOnlyModifier?.Clear();
@@ -235,7 +240,7 @@ namespace Aequus.Items
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
-            if (player.Aequus().slotBoostCurse != -2)
+            if (player.Aequus().accBloodCrownSlot != -2)
                 accBoost = false;
         }
 
@@ -244,7 +249,7 @@ namespace Aequus.Items
             if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.EquipAccessory)
             {
                 var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
-                if (aequus.slotBoostCurse > -1 && AequusUI.CurrentItemSlot.Slot == aequus.slotBoostCurse)
+                if (aequus.accBloodCrownSlot > -1 && AequusUI.CurrentItemSlot.Slot == aequus.accBloodCrownSlot)
                 {
                     var backFrame = TextureAssets.InventoryBack16.Value.Frame();
                     var drawPosition = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
@@ -294,6 +299,12 @@ namespace Aequus.Items
                 case ItemID.QueenBeeBossBag:
                     {
                         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
+                    }
+                    break;
+
+                case ItemID.TwinsBossBag:
+                    {
+                        itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
                     }
                     break;
 
