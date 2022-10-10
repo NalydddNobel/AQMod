@@ -283,8 +283,7 @@ Mods: {
 			AnglerBroadcaster: Seaside Broadcaster
 			RichMansMonocle: Rich Man's Monocle
 
-			TitaniumPaintbrush: Titanium Paintbrush
-			TitaniumScraper: Titanium Scraper
+			ImpenetrableCoating: Impenetrable Coating
 
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
@@ -993,8 +992,7 @@ Mods: {
 				Can move villagers, enemies and projectiles
 				'Handheld inspiration!'
 				'''
-			TitaniumPaintbrush: Applies uncuttable coating to tiles, preventing tiles to be destroyed with weapons
-			TitaniumScraper: Removes uncuttable coating
+			ImpenetrableCoating: Prevents tiles from being destroyed with weapons
 
 			Bellows: 
 				'''
@@ -3387,17 +3385,7 @@ Mods: {
 						Used with the Shutterstocker™ to capture images.
 						Save your best buildings with the most captivating clips!
 						'''
-					TitaniumPaintbrush: 
-						'''
-						Its titanium bristles leave behind a clear, strong paste which requires a pickaxe to get through.
-						Don't worry about running out, every time you paint a surface,
-						a group of carpenter ants will get caught and deposit their entire personal paste collection onto the brush.
-						'''
-					TitaniumScraper: 
-						'''
-						Use with delicacy to remove the strong paste. Inproper usage could result in damage.
-						Our company is not responsible for damages caused by this tool.
-						'''
+					ImpenetrableCoating: A clear, strong paste which only a pickaxe can get through!
 					OmniPaint: 
 						'''
 						Using a special dye and paint container, you can easily pick out what color of paint

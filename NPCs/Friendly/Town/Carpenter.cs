@@ -1,10 +1,10 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
+using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
-using Aequus.Items.Tools.Coatings;
 using Aequus.Items.Tools.Misc;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
@@ -73,8 +73,7 @@ namespace Aequus.NPCs.Friendly.Town
                 .WithColor(new Color(165, 140, 190))
                 .AddQuote<Shutterstocker>()
                 .AddQuote<ShutterstockerClipAmmo>()
-                .AddQuote<TitaniumPaintbrush>()
-                .AddQuote<TitaniumScraper>()
+                .AddQuote<ImpenetrableCoating>()
                 .AddQuote<OmniPaint>()
                 .AddQuote<AdvancedRuler>()
                 .AddQuote<WhiteFlag>();
@@ -117,8 +116,7 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumPaintbrush>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TitaniumScraper>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
             }
 
             if (!Main.dayTime)

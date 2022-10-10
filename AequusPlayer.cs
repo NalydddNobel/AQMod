@@ -12,13 +12,10 @@ using Aequus.Graphics.PlayerLayers;
 using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Fishing;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Misc.Fish.Legendary;
-using Aequus.Items.Tools.FishingRods;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
@@ -1988,6 +1985,8 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
+            On.Terraria.Player.TryPainting += Player_TryPainting;
             On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
             On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
@@ -2000,6 +1999,67 @@ namespace Aequus
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+        }
+
+        private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
+        {
+            if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetX)
+                || !((player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX) || !(player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY) 
+                || !((player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY) 
+                || Main.tile[Player.tileTargetX, Player.tileTargetY].TileColor > 0 || !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
+            {
+                orig(player);
+                return;
+            }
+
+            player.cursorItemIconEnabled = true;
+            if (player.ItemTimeIsZero && player.itemAnimation > 0 && player.controlUseItem)
+            {
+                foreach (var remove in AequusItem.RemoveCustomCoating)
+                {
+                    if (remove(Player.tileTargetX, Player.tileTargetY, player))
+                    {
+                        player.ApplyItemTime(player.inventory[player.selectedItem], player.tileSpeed);
+                        return;
+                    }
+                }
+            }
+        }
+
+        private static void Player_TryPainting(On.Terraria.Player.orig_TryPainting orig, Player player, int x, int y, bool paintingAWall, bool applyItemAnimation)
+        {
+            orig(player, x, y, paintingAWall, applyItemAnimation);
+            for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
+            {
+                if (CheckCustomCoatings(x, y, player, player.inventory[i], applyItemAnimation))
+                {
+                    return;
+                }
+            }
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                if (CheckCustomCoatings(x, y, player, player.inventory[i], applyItemAnimation))
+                {
+                    return;
+                }
+            }
+        }
+        private static bool CheckCustomCoatings(int x, int y, Player player, Item item, bool applyItemAnimation)
+        {
+            if (!item.IsAir)
+            {
+                if (item.paint > 0)
+                {
+                    return true;
+                }
+                if (AequusItem.ApplyCustomCoating.TryGetValue(item.type, out var action) && action(x, y, player))
+                {
+                    player.ConsumeItem(item.type);
+                    player.ApplyItemTime(player.inventory[player.selectedItem], player.tileSpeed);
+                    return true;
+                }
+            }
+            return false;
         }
 
         private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player self, int type, int time1)

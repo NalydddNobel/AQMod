@@ -19,7 +19,6 @@ using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -35,11 +34,14 @@ namespace Aequus.Items
 {
     public class AequusItem : GlobalItem, IAddRecipes
     {
+        public delegate bool CustomCoatingFunction(int x, int y, Player player);
+
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
         public static List<int> IsLegendaryFish { get; private set; }
-        public static Dictionary<int, RefFunc<Tile>> CustomCoatingInfo { get; private set; }
+        public static Dictionary<int, CustomCoatingFunction> ApplyCustomCoating { get; private set; }
+        public static List<CustomCoatingFunction> RemoveCustomCoating { get; private set; }
         public static Dictionary<int, string> RarityNames { get; private set; }
 
         public override bool InstancePerEntity => true;
@@ -53,6 +55,8 @@ namespace Aequus.Items
 
         public override void Load()
         {
+            RemoveCustomCoating = new List<CustomCoatingFunction>();
+            ApplyCustomCoating = new Dictionary<int, CustomCoatingFunction>();
             IsLegendaryFish = new List<int>();
             SummonStaff = new HashSet<int>();
             CritOnlyModifier = new HashSet<int>()
@@ -111,6 +115,10 @@ namespace Aequus.Items
 
         public override void Unload()
         {
+            RemoveCustomCoating?.Clear();
+            RemoveCustomCoating = null;
+            ApplyCustomCoating?.Clear();
+            ApplyCustomCoating = null;
             RarityNames?.Clear();
             RarityNames = null;
             IsLegendaryFish?.Clear();
