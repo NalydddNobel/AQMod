@@ -211,6 +211,7 @@ Mods: {
 			SeraphimHood: 六翼天使兜帽
 			SeraphimRobes: 六翼天使长袍
 
+			MoonlunaHat: 银月神帽
 			FlowerCrown: 花冠
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
@@ -883,6 +884,11 @@ Mods: {
 				增加2格最大幽魂仆从栏位
 				'''
 
+			MoonlunaHat: 
+				'''
+				增加1格最大召唤栏位
+				会在身后留下伤害性星座
+				'''
 			FlowerCrown: 
 				'''
 				偶尔召唤在风中飘动的花瓣
