@@ -213,6 +213,7 @@ Mods: {
 
 			MoonlunaHat: 银月神帽
 			FlowerCrown: 花冠
+			VenomDartTrapHat: 毒液飞镖帽
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
@@ -894,6 +895,12 @@ Mods: {
 				偶尔召唤在风中飘动的花瓣
 				无视敌人10点的防御力
 				'''
+			VenomDartTrapHat:
+				'''
+				增加20%召唤伤害
+				增加1格最大召唤栏位
+				Ignores 15 points of enemy Defense
+				'''
 			DartTrapHat:
 				'''
 				增加10%召唤伤害
@@ -902,7 +909,7 @@ Mods: {
 			SuperDartTrapHat:
 				'''
 				增加50%召唤伤害
-				增加最大召唤栏位
+				增加2格最大召唤栏位
 				无视敌人15点的防御力
 				'''
 
@@ -1903,6 +1910,11 @@ Mods: {
 			SnowgraveProj: 雪墓
 			NarrizuulProj: 耀宇遗光
 
+			FlowerCrownProj: 花冠
+			MoonlunaHatProj: 银月神帽
+			VenomDartTrapHatProj: 毒液飞镖帽
+			SuperDartTrapHatProj: 超级飞镖帽
+			DartTrapHatProj: 飞镖帽
 			StariteMinion: 星之源
 			ZombieBolt: 僵尸弹幕
 			RevenantBolt: 复仇
