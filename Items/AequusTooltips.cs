@@ -135,7 +135,7 @@ namespace Aequus.Items
                     PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
                 }
 
-                //TestLootBagTooltip(item, tooltips);
+                TestLootBagTooltip(item, tooltips);
             }
             catch
             {
@@ -183,7 +183,7 @@ namespace Aequus.Items
                         string extraDesc = cond.GetConditionDescription();
                         string condText = cond.GetType().FullName;
                         if (!string.IsNullOrEmpty(extraDesc))
-                            condText += " '" + extraDesc + "'";
+                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer,  rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode})}";
 
                         tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
                     }

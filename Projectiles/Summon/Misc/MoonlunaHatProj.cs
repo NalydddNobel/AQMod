@@ -11,6 +11,8 @@ namespace Aequus.Projectiles.Summon.Misc
     {
         public TrailRenderer prim;
 
+        public virtual int Max => 6;
+
         public override void SetDefaults()
         {
             Projectile.width = 20;
@@ -19,7 +21,9 @@ namespace Aequus.Projectiles.Summon.Misc
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Summon;
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 300;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 60;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -83,7 +87,7 @@ namespace Aequus.Projectiles.Summon.Misc
             }
             else
             {
-                if (count > 5)
+                if (count > Max)
                 {
                     CheckOldest();
                 }

@@ -6,28 +6,28 @@ namespace Aequus.Common.ItemDrops
 {
     public class FuncConditional : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public Func<bool> wasDefeated;
+        public Func<bool> condition;
         public string textKey;
         public readonly string Key;
 
-        public FuncConditional(Func<bool> wasDefeated, string internalKey, string textKey = "Mods.Aequus.DropCondition.OnFirstKill")
+        public FuncConditional(Func<bool> condition, string internalKeyIncasePeopleWantToKnowWhatThisIsChecking, string textKey = "Mods.Aequus.DropCondition.OnFirstKill")
         {
-            this.wasDefeated = wasDefeated;
-            Key = internalKey;
+            this.condition = condition;
+            Key = internalKeyIncasePeopleWantToKnowWhatThisIsChecking;
             this.textKey = textKey;
         }
 
-        public bool CanDrop(DropAttemptInfo info)
+        public virtual bool CanDrop(DropAttemptInfo info)
         {
-            return !wasDefeated();
+            return condition();
         }
 
-        public bool CanShowItemDropInUI()
+        public virtual bool CanShowItemDropInUI()
         {
             return true;
         }
 
-        public string GetConditionDescription()
+        public virtual string GetConditionDescription()
         {
             return textKey == null ? null : Language.GetTextValue(textKey);
         }

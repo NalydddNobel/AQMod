@@ -123,7 +123,7 @@ namespace Aequus.NPCs.Boss
             this.CreateLoot(npcLoot)
                 .AddRelic<DustDevilRelic>()
                 .AddBossBag<DustDevilBag>()
-                .Add<TornadoInABottle>(new FuncConditional(() => AequusWorld.downedDustDevil, "DustDevil"), chance: 1, stack: 3)
+                .Add<TornadoInABottle>(new LegacyFuncConditional(() => AequusWorld.downedDustDevil, "DustDevil"), chance: 1, stack: 3)
                 .SetCondition(DropRulesBuilder.NotExpertCondition)
                 .Add<AtmosphericEnergy>(stack: 3)
                 .RegisterCondition();

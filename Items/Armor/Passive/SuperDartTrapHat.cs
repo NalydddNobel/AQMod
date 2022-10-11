@@ -10,6 +10,7 @@ namespace Aequus.Items.Armor.Passive
     {
         public override int ProjectileShot => ModContent.ProjectileType<SuperDartTrapHatProj>();
         public override int TimeBetweenShots => base.TimeBetweenShots / 2;
+        public override float Speed => base.Speed * 1.5f;
 
         public override void SetDefaults()
         {

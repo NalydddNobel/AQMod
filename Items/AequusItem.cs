@@ -311,6 +311,8 @@ namespace Aequus.Items
                     break;
 
                 case ItemID.TwinsBossBag:
+                case ItemID.DestroyerBossBag:
+                case ItemID.SkeletronPrimeBossBag:
                     {
                         itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
                     }

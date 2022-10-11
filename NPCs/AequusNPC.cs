@@ -211,7 +211,7 @@ namespace Aequus.NPCs
                     break;
 
                 case NPCID.WallofFlesh:
-                    npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
+                    npcLoot.Add(ItemDropRule.ByCondition(new LegacyFuncConditional(() => AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
                     break;
             }
         }
