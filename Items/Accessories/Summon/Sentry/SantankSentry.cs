@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using ShopQuotesMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.Mechanic).AddModItemQuote(Type);
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.Mechanic, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.Mechanic.SantankSentry");
         }
 
         public override void SetDefaults()

@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Content;
 using Aequus.Graphics;
-using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -96,7 +95,7 @@ namespace Aequus.Items
                         tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
-                if (AequusItem.IsLegendaryFish.Contains(item.type))
+                if (AequusItem.LegendaryFishIDs.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))
                         tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
@@ -183,7 +182,7 @@ namespace Aequus.Items
                         string extraDesc = cond.GetConditionDescription();
                         string condText = cond.GetType().FullName;
                         if (!string.IsNullOrEmpty(extraDesc))
-                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer,  rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode})}";
+                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
 
                         tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
                     }
@@ -443,11 +442,6 @@ namespace Aequus.Items
                 if (line.Name == "DedicatedItem")
                 {
                     DrawDedicatedTooltip(line);
-                    return false;
-                }
-                if (line.Name == "ShopQuote")
-                {
-                    ShopQuotes.DrawShopQuote(line, Main.npc[Main.LocalPlayer.talkNPC]);
                     return false;
                 }
             }

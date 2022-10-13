@@ -9,6 +9,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
+using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -65,24 +66,8 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.Steampunker).SetNPCAffection(Type, AffectionLevel.Dislike);
             NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Hate);
 
-            ShopQuotes.Database
-                .GetNPC(Type)
-                .WithColor(Color.SkyBlue * 1.2f)
-                .AddQuote<PhysicsGun>()
-                .AddQuote<ForceAntiGravityBlock>()
-                .AddQuote<ForceGravityBlock>()
-                .AddQuote<PhysicsBlock>()
-                .AddQuote<EmancipationGrill>()
-                .AddQuote<HaltingMachine>()
-                .AddQuote<HolographicMeatloaf>()
-                .AddQuote(ItemID.BloodMoonStarter)
-                .AddQuote<GalacticStarfruit>()
-                .AddQuote(ItemID.SolarTablet)
-                .AddQuote<InactivePylonGunner>()
-                .AddQuote<InactivePylonHealer>()
-                .AddQuote<InactivePylonCleanser>()
-                .AddQuote<HomeworldPainting>()
-                .AddQuote<SupernovaFruit>();
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
+                .UseColor(Color.SkyBlue * 1.2f);
         }
 
         public override void SetDefaults()

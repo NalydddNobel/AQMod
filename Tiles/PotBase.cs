@@ -47,9 +47,15 @@ namespace Aequus.Tiles
         public virtual void DropGores(int i, int j)
         {
             string path = GorePath(i, j, Main.tile[i, j].TileFrameX / 36, Main.tile[i, j].TileFrameY / 36);
-            Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}0"));
-            Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}1"));
-            Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}2"));
+            try
+            {
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}0"));
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}1"));
+                Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16, j * 16), default(Vector2), GoreHelper.GoreType($"{path}2"));
+            }
+            catch
+            {
+            }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

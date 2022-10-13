@@ -39,15 +39,16 @@ namespace Aequus.Items
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
-        public static List<int> IsLegendaryFish { get; private set; }
+        public static List<int> LegendaryFishIDs { get; private set; }
         public static Dictionary<int, CustomCoatingFunction> ApplyCustomCoating { get; private set; }
         public static List<CustomCoatingFunction> RemoveCustomCoating { get; private set; }
         public static Dictionary<int, string> RarityNames { get; private set; }
 
+        private static Dictionary<int, int> ItemToBannerCache;
+
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
-        public byte shopQuoteType;
         public byte noGravityTime;
         public bool accBoost;
         public bool naturallyDropped;
@@ -55,9 +56,10 @@ namespace Aequus.Items
 
         public override void Load()
         {
+            ItemToBannerCache = new Dictionary<int, int>();
             RemoveCustomCoating = new List<CustomCoatingFunction>();
             ApplyCustomCoating = new Dictionary<int, CustomCoatingFunction>();
-            IsLegendaryFish = new List<int>();
+            LegendaryFishIDs = new List<int>();
             SummonStaff = new HashSet<int>();
             CritOnlyModifier = new HashSet<int>()
             {
@@ -115,14 +117,16 @@ namespace Aequus.Items
 
         public override void Unload()
         {
+            ItemToBannerCache?.Clear();
+            ItemToBannerCache = null;
             RemoveCustomCoating?.Clear();
             RemoveCustomCoating = null;
             ApplyCustomCoating?.Clear();
             ApplyCustomCoating = null;
             RarityNames?.Clear();
             RarityNames = null;
-            IsLegendaryFish?.Clear();
-            IsLegendaryFish = null;
+            LegendaryFishIDs?.Clear();
+            LegendaryFishIDs = null;
             SummonStaff?.Clear();
             SummonStaff = null;
             CritOnlyModifier?.Clear();
@@ -346,6 +350,25 @@ namespace Aequus.Items
                     }
                     break;
             }
+        }
+
+        public static int ItemToBanner(int itemID)
+        {
+            if (ItemToBannerCache.TryGetValue(itemID, out int banner))
+            {
+                return banner;
+            }
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                int bannerID = Item.NPCtoBanner(i);
+                if (Item.BannerToItem(bannerID) == itemID)
+                {
+                    ItemToBannerCache.Add(itemID, bannerID);
+                    return bannerID;
+                }
+            }
+            ItemToBannerCache.Add(itemID, 0);
+            return 0;
         }
 
         public static Item SetDefaults(int type, bool checkMaterial = true)

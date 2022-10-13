@@ -67,18 +67,6 @@ namespace Aequus
         [Header(Key + "Client.General.Header")]
 
         [MemberBGColor]
-        [Name("Client.General.NPCShopQuotes")]
-        [Desc("Client.General.NPCShopQuotes")]
-        [DefaultValue(true)]
-        public bool NPCShopQuotes { get; set; }
-
-        [MemberBGColor_Secondary]
-        [Name("Client.General.OtherNPCShopQuotes")]
-        [Desc("Client.General.OtherNPCShopQuotes")]
-        [DefaultValue(true)]
-        public bool OtherNPCShopQuotes { get; set; }
-
-        [MemberBGColor]
         [Name("Client.General.InfoDebugLogs")]
         [Desc("Client.General.InfoDebugLogs")]
         [DefaultValue(false)]

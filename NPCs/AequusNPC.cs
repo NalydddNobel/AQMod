@@ -630,7 +630,7 @@ namespace Aequus.NPCs
                     var inv = Main.LocalPlayer.inventory;
                     for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
                     {
-                        if (AequusItem.IsLegendaryFish.Contains(inv[i].type))
+                        if (AequusItem.LegendaryFishIDs.Contains(inv[i].type))
                         {
                             Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;

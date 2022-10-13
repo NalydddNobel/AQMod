@@ -119,6 +119,18 @@ namespace Aequus
 
         public static Regex SubstitutionRegex { get; private set; }
 
+        public static string GetItemKeyName(int itemID, Mod myMod = null)
+        {
+            if (itemID < Main.maxItemTypes)
+                return ItemID.Search.GetName(itemID);
+
+            var modItem = ItemLoader.GetItem(itemID);
+            if (myMod != null && modItem.Mod.Name == myMod.Name)
+                return modItem.Name;
+
+            return $"{modItem.Mod.Name}_{modItem.Name}";
+        }
+
         public static void Transform(this Item item, int newType)
         {
             int prefix = item.prefix;
@@ -189,6 +201,18 @@ namespace Aequus
             int result = num4 / tileObjectData.StyleMultiplier;
             _ = num4 % tileObjectData.StyleMultiplier;
             return result;
+        }
+
+        public static string GetNPCKeyName(int npcID, Mod myMod = null)
+        {
+            if (npcID < Main.maxNPCTypes)
+                return NPCID.Search.GetName(npcID);
+
+            var modNPC = NPCLoader.GetNPC(npcID);
+            if (myMod != null && modNPC.Mod.Name == myMod.Name)
+                return modNPC.Name;
+
+            return $"{modNPC.Mod.Name}_{modNPC.Name}";
         }
 
         public static void AddBuffToHeadOrSelf(this NPC npc, int buffID, int buffDuration)

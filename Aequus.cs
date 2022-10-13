@@ -1,6 +1,5 @@
 using Aequus.Common;
 using Aequus.Content.Necromancy;
-using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
@@ -122,9 +121,6 @@ namespace Aequus
 
                 case "Downed":
                     return ModContent.GetInstance<AequusWorld.ModCalls>().HandleModCall(this, args);
-
-                case "AddShopQuote":
-                    return ShopQuotes.Database.HandleModCall(this, args);
             }
             return null;
         }

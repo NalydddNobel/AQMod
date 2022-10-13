@@ -1315,10 +1315,6 @@ namespace Aequus
                 hasUsedRobsterScamItem = true;
             }
             MoneyBack(vendor, shopInventory, item);
-            if (item.TryGetGlobalItem<AequusItem>(out var aequus))
-            {
-                aequus.shopQuoteType = 0;
-            }
         }
         public bool CheckScam()
         {

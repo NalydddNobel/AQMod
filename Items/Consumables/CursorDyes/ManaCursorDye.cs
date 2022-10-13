@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.CursorDyes;
-using Aequus.NPCs;
 using Microsoft.Xna.Framework;
+using ShopQuotesMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,8 +12,8 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddModItemQuote(Type);
             CursorDyeSystem.Register(Type, new ColorChangeCursor(() => Color.Lerp(Color.White, Color.Blue, MathHelper.Clamp(Main.LocalPlayer.statMana / (float)Main.LocalPlayer.statManaMax2, 0f, 1f))));
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.DyeTrader, Mod).SetQuote(Type, "Mods.Aequus.Chat.DyeTrader.ShopQuote.ManaCursorDye");
         }
 
         public override void SetDefaults()

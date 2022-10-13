@@ -17,7 +17,6 @@ using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Minion;
-using Aequus.NPCs;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
@@ -37,7 +36,6 @@ namespace Aequus.Content.CrossMod
     {
         public static Mod CalamityMod => CalamityModSupport.CalamityMod;
         public static Mod Polarities => PolaritiesSupport.Polarities;
-        public static Mod TrueTooltips { get; private set; }
         public static Mod Fargowiltas { get; private set; }
         public static Mod ColoredDamageTypes { get; private set; }
         public static Mod BossChecklist { get; private set; }
@@ -48,8 +46,6 @@ namespace Aequus.Content.CrossMod
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
-            TrueTooltips = FindMod(nameof(TrueTooltips));
-
             Fargowiltas = FindMod(nameof(Fargowiltas));
 
             ColoredDamageTypes = FindMod(nameof(ColoredDamageTypes));
@@ -294,15 +290,10 @@ namespace Aequus.Content.CrossMod
 
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
-            if (Fargowiltas != null)
-            {
-                ShopQuotes.Database.GetNPC(AequusHelpers.NPCType(Fargowiltas, "Squirrel")).WithColor(Color.Gray * 1.66f);
-            }
         }
 
         void ILoadable.Unload()
         {
-            TrueTooltips = null;
             Fargowiltas = null;
             ColoredDamageTypes = null;
         }

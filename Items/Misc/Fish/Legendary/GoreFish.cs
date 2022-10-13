@@ -9,7 +9,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 2;
-            AequusItem.IsLegendaryFish.Add(Type);
+            AequusItem.LegendaryFishIDs.Add(Type);
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot)

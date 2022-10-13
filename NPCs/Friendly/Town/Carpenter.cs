@@ -3,12 +3,11 @@ using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
-using Aequus.Items.Tools.Misc;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
+using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -68,15 +67,8 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Angler).SetNPCAffection(Type, AffectionLevel.Like);
 
-            ShopQuotes.Database
-                .GetNPC(Type)
-                .WithColor(new Color(165, 140, 190))
-                .AddQuote<Shutterstocker>()
-                .AddQuote<ShutterstockerClipAmmo>()
-                .AddQuote<ImpenetrableCoating>()
-                .AddQuote<OmniPaint>()
-                .AddQuote<AdvancedRuler>()
-                .AddQuote<WhiteFlag>();
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
+                .UseColor(new Color(165, 140, 190));
         }
 
         public override void SetDefaults()

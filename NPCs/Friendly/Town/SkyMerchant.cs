@@ -11,6 +11,7 @@ using Aequus.Items.Tools.FishingRods;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,22 +62,36 @@ namespace Aequus.NPCs.Friendly.Town
                 Direction = -1
             });
 
-            ShopQuotes.Database
-                .GetNPC(Type)
-                .WithColor(Color.DarkOliveGreen * 1.75f)
-                .AddQuote<BalloonKit>()
-                .AddQuote<Pumpinator>()
-                .AddQuote<Nimrod>()
-                .AddQuote<BongBongPainting>()
-                .AddQuote<CatalystPainting>()
-                .AddQuote<YinYangPainting>()
-                .AddShopQuoteKey<YinPainting>("YinYangPaintingsSeparate")
-                .AddShopQuoteKey<YangPainting>("YinYangPaintingsSeparate")
-                .AddQuote<HomeworldPainting>()
-                .AddShopQuoteKey<SkyrimRock1>("SkyrimRocks")
-                .AddShopQuoteKey<SkyrimRock2>("SkyrimRocks")
-                .AddShopQuoteKey<SkyrimRock3>("SkyrimRocks")
-                .AddQuote(ItemID.WhoopieCushion);
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
+                .AddDefaultText((i) => 
+                {
+                    int bannerID = AequusItem.ItemToBanner(i);
+                    if (bannerID != 0)
+                    {
+                        return Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.Banners");
+                    }
+                    return null;
+                })
+                .AddDefaultText((i) => 
+                {
+                    return ContentSamples.ItemsByType[i].accessory ? Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc") : null;
+                })
+                .UseColor(Color.DarkOliveGreen * 1.75f);
+            //ShopQuotesTooltips.Database
+            //    .AddNPC(Type)
+            //    .AddQuote<BalloonKit>()
+            //    .AddQuote<Pumpinator>()
+            //    .AddQuote<Nimrod>()
+            //    .AddQuote<BongBongPainting>()
+            //    .AddQuote<CatalystPainting>()
+            //    .AddQuote<YinYangPainting>()
+            //    .AddShopQuoteKey<YinPainting>("YinYangPaintingsSeparate")
+            //    .AddShopQuoteKey<YangPainting>("YinYangPaintingsSeparate")
+            //    .AddQuote<HomeworldPainting>()
+            //    .AddShopQuoteKey<SkyrimRock1>("SkyrimRocks")
+            //    .AddShopQuoteKey<SkyrimRock2>("SkyrimRocks")
+            //    .AddShopQuoteKey<SkyrimRock3>("SkyrimRocks")
+            //    .AddQuote(ItemID.WhoopieCushion);
         }
 
         public override void SetDefaults()
@@ -165,14 +180,14 @@ namespace Aequus.NPCs.Friendly.Town
                     shop.item[nextSlot].shopCustomPrice /= 100;
                     shop.item[nextSlot].shopCustomPrice *= 100;
                     shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
-                    shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotes.QuoteType.EquippedAcc;
+                    //shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotesTooltips.QuoteType.EquippedAcc;
                     nextSlot++;
                 }
                 if (merchant.shopBanner != null)
                 {
                     shop.item[nextSlot] = merchant.shopBanner.Clone();
                     shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
-                    shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotes.QuoteType.Banner;
+                    //shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotesTooltips.QuoteType.Banner;
                     nextSlot++;
                 }
             }

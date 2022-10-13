@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using ShopQuotesMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            ShopQuotes.Database.GetNPC(NPCID.DyeTrader).AddModItemQuote(Type);
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.DyeTrader, Mod).SetQuote(Type, "Mods.Aequus.Chat.DyeTrader.ShopQuote.CursorDyeRemover");
         }
 
         public override void SetDefaults()

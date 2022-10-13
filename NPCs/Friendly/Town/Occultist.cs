@@ -8,6 +8,7 @@ using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Microsoft.Xna.Framework;
+using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -67,19 +68,8 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.Demolitionist).SetNPCAffection(Type, AffectionLevel.Hate);
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Hate);
 
-            ShopQuotes.Database
-                .GetNPC(Type)
-                .WithColor(Color.DarkRed * 1.5f)
-                .AddQuote<GhostlyGrave>()
-                .AddQuote<OccultistCandle>()
-                .AddQuote<Meathook>()
-                .AddQuote(ItemID.ShadowKey)
-                .AddQuote<UnholyCore>()
-                .AddQuote<GoreNest>()
-                .AddQuote<InsurgentPainting>()
-                .AddQuote<BlackPhial>()
-                .AddQuote(ItemID.WhoopieCushion);
-
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
+                .UseColor(Color.DarkRed * 1.5f);
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }
 

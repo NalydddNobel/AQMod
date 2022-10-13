@@ -2334,10 +2334,6 @@ Mods: {
 				General: {
 					Header: "[c/ddddff:General]"
 
-					NPCShopQuotes: "{Teacup} NPC Shop Quotes"
-					NPCShopQuotesTooltip: Disable to remove npc item shop quotes.
-					OtherNPCShopQuotes: "{CoffeeCup} Vanilla Shop Quotes"
-					OtherNPCShopQuotesTooltip: Disable to remove item shop quotes for vanilla npcs.
 					InfoDebugLogs: "{RadioThing} Info and Debug Logs"
 					InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
 				}
@@ -2363,954 +2359,192 @@ Mods: {
 			}
 		}
 
+		ShopQuote: {
+			Mechanic: {
+				SantankSentry: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
+			}
+		
+			DyeTrader: {
+				CursorDyeRemover: Cleans off your cursor of any dyes applied to it, extremely magical.
+				HealthCursorDye: 
+					'''
+					They say we all have a 'Cursor', a magical point in space which we put extreme focus into. 
+					Using mystic materials and a special bottle, I've been able to create a dye which effects this 'Cursor'.
+					This coloring tracks your life through the connection between you and your 'Cursor'.
+					'''
+				ManaCursorDye: This coloring tracks your mana supply through the connection between you and your 'Cursor'.
+				SwordCursorDye: 
+					'''
+					After much experimenting with materials and magic of all types,
+					I've been able to create a dye for your 'Cursor' which morphs the shape into a sword!
+					'''
+				DemonicCursorDye: 
+					'''
+					After much experimenting with materials and magic of all types,
+					I've been able to create a dye for your 'Cursor' which shows your true self.
+					'''
+			}
+
+			Carpenter: {
+				Shutterstocker: With a snap and a shutter it allows clips to take in just enough light to make an image!
+				ShutterstockerClipAmmo: 
+					'''
+					Used with the Shutterstocker™ to capture images.
+					Save your best buildings with the most captivating clips!
+					'''
+				ImpenetrableCoating: A clear, strong paste which only a pickaxe can get through!
+				OmniPaint: 
+					'''
+					Using a special dye and paint container, you can easily pick out what color of paint
+					you want without the hassle of cleaning off your brush!
+					Don't let it touch your skin, it may cause permanent coloring and damage.
+					'''
+				AdvancedRuler: Our most advanced ruler yet, with many features, buttons, and dumb complications!
+				WhiteFlag: Don't wave this up for too long, unless you plan on getting completely colonized by goblins expecting this island to be weak.
+			}
+
+			Exporter: {
+				GoldRing: 
+					'''
+					Said to attract coins, yet this ring hasn't ripped a bank off of the ground! 
+					Purchasable for a cheap price!
+					'''
+				LuckyCoin: 
+					'''
+					My ol' captain's first coin, said to be lucky, 
+					but ye old lobster don't believe in myths like that.
+					'''
+				DiscountCard: 
+					'''
+					Took this of one of me maties' corpses, 
+					you two look similar enough eh?
+					'''
+				FoolsGoldRing: 
+					'''
+					The ladies would love ye for wearing this, 
+					just don't tell them ye secret!
+					'''
+				FaultyCoin: 
+					'''
+					Slip this as a regular coin, 
+					ye get a free deal if they don't catch ye, scallywag.
+					'''
+				ForgedCard: 
+					'''
+					Don't like payin' for full? 
+					This forged card will knock down ye common prices by a lot.
+					'''
+				RecyclingMachine: 
+					'''
+					Littering is a crime worse than bein' a pirate. 
+					Keep yeself safe with this cheap recycler!
+					'''
+				SkeletonKey: 
+					'''
+					Need ye a way to unlock some forgotten booty but ye keys keep breaking?
+					Purchase now!
+					'''
+				GrandReward: 
+					'''
+					Ye like getting more buck from your bangs? 
+					This here item is ye choice.
+					'''
+			}
+
+			Occultist: {
+				GhostlyGrave: 
+					'''
+					Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
+					Like all living things however, I have to put their suffering to an end.
+					'''
+				OccultistCandle: I find it useful for rituals, tehe-
+				Meathook: A hook extracted from my arch rival's weaponry... he won't find me here right?
+				ShadowKey: Used for unlocking the loot of the Underworld, weird that the demons didn't give each chest a different keyhole so pillaging isn't as easy.
+				UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
+				GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
+				InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
+				BlackPhial: Black magic sustains the liquid within this phial, a single drop can make an elephant deathly ill.
+				WhoopieCushion: *Poomf*
+			}
+
+			Physicist: {
+				PhysicsGun: 
+					'''
+					A zero point energy field manipulator I created for my kindergarten science fair.
+					Much more high-tech compared to the dirt rod.
+					'''
+				HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
+				HolographicMeatloaf: 
+					'''
+					A massive hit with photosynthetic creatures.
+					This meatloaf is cooked with the most delicious tasting light.
+					'''
+					
+				BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon'.
+				GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
+				SolarTablet: 
+					'''
+					A strange artifact I discovered when observing a recently opened ancient temple.
+					My scanners sense a strange amount of dark matter present inside the artifact.
+					'''
+
+				InactivePylonGunner: 
+					'''
+					Without a connection to the net, it cannot function. 
+					Fortunately your 'pylons' connect directly to that network.
+					'''
+				InactivePylonHealer: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
+				InactivePylonCleanser: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
+					
+				ForceAntiGravityBlock: 
+					'''
+					A special type of plating manufactured for 'flying saucers'. 
+					Features an anti-gravity beam shooting below.
+					'''
+				ForceGravityBlock: 
+					'''
+					A special type of plating manufactured for 'flying saucers'. 
+					It generates its own gravitational pull and negates all anti-gravity effects.
+					'''
+				PhysicsBlock: 
+					'''
+					A special type of plating manufactured for 'flying saucers'. 
+					Its unique composition prevents it from being carried by the physics gun.
+					'''
+				EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
+
+				SupernovaFruit: 
+					'''
+					Powerful radiation is being emitted from this apple.
+					Now that you are touching it, I would expect you to be dead before next week.
+					'''
+				HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
+			}
+
+			SkyMerchant: {
+				BalloonKit: Old and hardy, portable hot air ballons have been sought after for quite a while, and here they are!
+				Pumpinator: A strange piece of tech I purchased from an airship. The sucking feature doesn't work unfortunately, what a scam!
+				Nimrod: 
+					'''
+					Lightning striking a lake can kill hundreds of fish, unfortunately this fishing rod can only catch about 3 fish per strike.
+					Or maybe the wizard who crafted this is concerned about the trout population.
+					'''
+				EquippedAcc: Hm, that accessory equipped on your person is quite nice, maybe this one has better craftmanship however?
+				Banners:
+					'''
+					Ah yes, creating carpets and rugs out of your prey's corpses is quite out of balloon fashion.
+					Hangable banners are so much better in my opinion.
+					'''
+				BongBongPainting: An abnormal creature is depicted in this art, someone may apprieciate this creature's style though.
+				CatalystPainting: The artist who painted this must hate lunatic cultists, which is fair.
+				YinYangPainting: Dark and evils forces depicted to act in harmony, some believe this is true.
+				YinYangPaintingsSeparate: The strange name of this painting and mysterious figure must elude to something...
+				HomeworldPainting: An incredible piece of artwork showing what theorists believe the Starite's homeworld looks like.
+				SkyrimRocks: Rocks with words encrypted in an ancient dragon language, unfortunately I don't know many who can translate it.
+			}
+		}
 
 		Chat: {
-			Terraria_Merchant: {
-				ShopQuote: {
-					Terraria_MiningHelmet: 
-						'''
-						Tired of placing torches every two steps? 
-						Get a mining helmet!
-						'''
-					Terraria_PiggyBank: Use this handy little friend to store your gains!
-					Terraria_PiggyBank_Goober: Use this handy little goober to store your gains!
-					Terraria_IronAnvil: 
-						'''
-						That dusty old workbench just isn't doing the trick anymore? 
-						Try this heavy anvil!
-						'''
-					Terraria_LeadAnvil: "{$Mods.Aequus.Chat.Terraria_Merchant.ShopQuote.Terraria_IronAnvil}"
-					Terraria_BugNet: 
-						'''
-						Ever tried bug catching? 
-						I heard some critters around may be worth lots of gold...
-						'''
-					Terraria_CopperPickaxe: 
-						'''
-						The latest on pickaxe technology! 
-						Not to be confused with tin pickaxe.
-						'''
-					Terraria_CopperAxe: Show the ecosystem who's boss with this brand new copper axe!
-					Terraria_LesserHealingPotion: 
-						'''
-						Will cure anything from a scratch to a stab! 
-						(Contains Mushroom)
-						'''
-					Terraria_LesserManaPotion: 
-						'''
-						Feeling a little magically exhausted? 
-						Get a pair of mana potions!
-						'''
-					Terraria_WoodenArrow: 
-						'''
-						Having trouble taking out those flying pests? 
-						Buy a pack of arrows! 
-						'''
-					Terraria_Shuriken: Ninjas may not be real, but you can become the first one today!
-					Terraria_Rope: The adventurers starter kit, only for a few coppers!
-					Terraria_Marshmallow: A bit of sweet in the cold never hurts.
-					Terraria_Furnace: Noticing a worrying lack of rocks? If so, I have just the thing you need.
-					Terraria_PinWheel: You wouldn't believe how much these sell on windy days!
-					Terraria_ThrowingKnife: Not comfortable in close combat? Try throwing knives instead!
-					Terraria_Glowstick: Glows in the dark AND in the wet!
-					Terraria_SharpeningStation: Help your blades in ship shape with this exclusive sharpening station!
-					Terraria_Safe: Keep your goodies safe with this Safe.
-					Terraria_DiscoBall: You can't have a dance without this!
-					Terraria_DiscoBall_PartyGirl: 
-						'''
-						Hey, tell {PartyGirl} about this one, 
-						she'd buy my entire stock!
-						'''
-					Terraria_Flare: I noticed you were carrying that flare gun, how about some flares to go along with it?
-					Terraria_BlueFlare: Flares also come in blue!
-					Terraria_Sickle: Only the sickle.
-					Terraria_GoldDust: 
-						'''
-						Get some gold for a few silvers, 
-						it doesn't get cheaper than this!
-						'''
-					Terraria_DrumSet: 
-						'''
-						Let out your musical creativity with this drum set! 
-						Drumsticks not included.
-						'''
-					Terraria_DrumStick: Complete your set with these Hickory wood drumsticks.
-					Terraria_Nail: Nail gun's no use with no nails!
-				}
-			}
-
-			Terraria_ArmsDealer: {
-				ShopQuote: {
-					Terraria_SilverBullet: 
-						'''
-						Have you seen any werewolves around? 
-						I've been eager to test one of these on them.
-						'''
-					Terraria_TungstenBullet: Heavier and deadlier than your average bullet.
-					Terraria_UnholyArrow: 
-						'''
-						Archery ain't really my strong suit, 
-						but I just can't say no to some evil ammo.
-						'''
-					Terraria_FlintlockPistol: 
-						'''
-						Might be a little on the antique side, 
-						but I assure it shoots stuff just fine.
-						'''
-					Terraria_IllegalGunParts: No one's watching... Let's keep this between you and me, alright?
-					Terraria_Shotgun: This Ithaca Model 37 is perfect for shooting up monsters up close!
-					Terraria_EmptyBullet: 
-						'''
-						I appreciate someone who cares about their bullets, 
-						make up your own with these empty shells!
-						'''
-					Terraria_StyngerBolt: I gotta say, those lihzahrds know how to spice up their game.
-					Terraria_Stake: If you ever see Dracula tell him I said 'Hi'.
-					Terraria_Nail: Don't listen to the Merchant, my nails are way higher caliber!
-					Terraria_Nail_Merchant: Don't listen to {Merchant}, my nails are way higher caliber!
-					Terraria_CandyCorn: I've heard about using sand as ammo but this is getting ridiculous.
-					Terraria_ExplosiveJackOLantern: 
-						'''
-						Now, I know explosives are [name of demoman]'s thing but sometimes 
-						you gotta let other people in on the fun y'know?
-						'''
-					Terraria_QuadBarrelShotgun: Double the shotgun, double the things you can kill at once!
-
-					NurseOutfit: Do not tell the Nurse about this, she would kill me!
-					NurseOutfit_Nurse: Do not tell {Nurse} about this, she would kill me!
-				}
-			}
-
-
-			Terraria_Demolitionist: {
-				ShopQuote: {
-					Terraria_Grenade: 
-						'''
-						I promise ya, this is better than any gun. 
-						Just compare the damage size!
-						'''
-					Terraria_HellfireArrow: 
-						'''
-						Now, I don't normally use bows, but when I found out you could turn an arrow into a grenade, 
-						I was hooked.
-						'''
-					Terraria_LandMine: 
-						'''
-						A little disappointing that ya can't break through material with this, but it does its damage. 
-						Just hope it isn't a dud!
-						'''
-					Terraria_ExplosivePowder: 
-						'''
-						And here's the secret ingredient that led to Hellfire Arrows and Exploding Bullets. 
-						A dash of gunpowder!
-						'''
-					Terraria_DryBomb: Where other bombs destroy solid material, this bomb destroys liquids! What's next, a gas bomb?
-					Terraria_WetBomb: 
-						'''
-						I never thought this would happen! A bomb that creates rather than destroys. 
-						At least it's only water and not, say, dirt.
-						'''
-					Terraria_LavaBomb:
-						'''
-						I never thought this would happen! A bomb that creates rather than destroys. 
-						At least it's only lava and not, say, dirt.
-						'''
-					Terraria_HoneyBomb: 
-						'''
-						I never thought this would happen! A bomb that creates rather than destroys. 
-						At least it's only honey and not, say, dirt.
-						'''
-				}
-			}
-
-			Terraria_GoblinTinkerer: {
-				ShopQuote: {
-					Terraria_RocketBoots: 
-						'''
-						Turns out mana powered rockets aren't the most efficient. 
-						Hopefully you'll find more use out of these than my kind.
-						'''
-					Terraria_Ruler: Sure a ruler works fine, but I think it could be something more grand...
-					Terraria_TinkerersWorkshop: For all your gadget tinkering needs!
-					Terraria_GrapplingHook: A hook for grappling! I wonder what other things I could attach to a chain...
-					Terraria_Toolbelt: When working on big projects it's best to have every tool at hand.
-					Terraria_SpikyBall: Honestly? just take these, I have no idea why I still carry them around.
-				}
-			}
-
-			Terraria_Pirate: {
-				ShopQuote: {
-					Terraria_Cannon: 
-						'''
-						BOOM! Did I scare ye?
-						I took that cannon off the ship of the Dread Pirate Robert.
-						'''
-					Terraria_Cannonball: 
-						'''
-						That's a whole 18 pounds of solid lead ye got there. 
-						Sure to put a dent in any galleon!
-						'''
-					Terraria_PirateHat:
-						'''
-						Aye, that was me matey's hat. Lost him in a sea battle.
-						I'm sure he didn't mind me looting it!
-						'''
-					Terraria_PirateShirt: 
-						'''
-						Aye, that was me matey's shirt. Lost him in a sea battle. 
-						I'm sure he didn't mind me looting it!
-						'''
-					Terraria_PiratePants: 
-						'''
-						Aye, those were me matey's pants. Lost him in a sea battle. 
-						I'm sure he didn't mind me looting them!
-						'''
-					Terraria_Sail: Just a couple of sails from me last vessel.
-					Terraria_ParrotCracker: 
-						'''
-						Aye! That's me parrot's favorite brand. 
-						Maybe ye'll find ye own feathered friend with it!
-						'''
-					Terraria_BunnyCannon: 
-						'''
-						This be a rather unconventional cannon, 
-						but I be sure ye can use it well in combat.
-						'''
-					Terraria_ExplosiveBunny: 
-						'''
-						I feel bad for this poor beastie, 
-						but I be afraid of what would happen if I try to save him!
-						'''
-				}
-			}
-			
-			Terraria_Cyborg: {
-				ShopQuote: {
-					Terraria_RocketI: Interested in some explosive munitions?
-					Terraria_RocketII: Interested in some high caliber explosive munitions?
-					Terraria_RocketIII: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
-					Terraria_RocketIV: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
-					Terraria_DryRocket: Interested in some canister fitted explosive cluster munitions?
-					Terraria_ProximityMineLauncher: 
-						'''
-						This is a precise handheld proximity landmine launcher.
-						To reach maximum efficiency wait for the mines to be fully armed.
-						'''
-					Terraria_Nanites: These Nanobots of my own design can be directly injected into any lifeform. For any purpose.
-					Terraria_ClusterRocketI: Interested in some explosive cluster munitions?
-					Terraria_ClusterRocketII: Interested in some high caliber explosive munitions?
-					Terraria_HiTekSunglasses: Martian fashion. The invaders seem to have left some of their wardrobe behind.
-					Terraria_NightVisionHelmet: 
-						'''
-						Martian fashion. The invaders seem to have left some of their wardrobe behind. 
-						Reports show it had animated nearby rocks aswell.
-						'''
-					Terraria_PortalGunStation: That Quantum tunneling device of yours could use some automation.
-					Terraria_EchoBlock: 
-						'''
-						After experimenting with invisible energy particles I managed to convert them into a solid state.
-						May prove useful in building.
-						'''
-					Terraria_SpectreGoggles: These modified visual receptors may help you study and interact with strange invisible anomalies.
-				}
-			}
-			
-			Terraria_BestiaryGirl: {
-				ShopQuote: {
-					Terraria_DontHurtCrittersBook: 
-						'''
-						Take it from me, bro. 
-						This book is the only thing you'll need to have lifelong friendships with critters.
-						'''
-					Terraria_SquirrelHook: 
-						'''
-						I went out to the forest the other day and totally flew around on the trees with this. 
-						It was sooo cool!
-						'''
-					Terraria_BlandWhip: 
-						'''
-						Please, like, buy this thing. I don't want it anymore. 
-						It's for hurting animals and it stinks like a bat.
-						'''
-					Terraria_MolluskWhistle:
-						'''
-						Flamingos have totally got to be, like, the coolest animal. 
-						Their legs are sooo fascinating.
-						'''
-					Terraria_CritterShampoo: 
-						'''
-						Don't be so rude to your minions, bro. 
-						They need to be washed sometimes too!
-						'''
-					Terraria_DogEars: I totally love these ears. They make me look just like a cute dog.
-					Terraria_DogTail: I totally love this tail. It makes me look just like a cute dog.
-					Terraria_FoxEars: I totally love these ears. They make me look just like the cursed fox that bit me...
-					Terraria_FoxTail: I totally love this tail. It makes me look just like the cursed fox that bit me...
-					Terraria_LizardEars: I totally love these ears. They make me look just like a cute lizard.
-					Terraria_LizardTail: I totally love this tail. It makes me look just like a cute lizard.
-					Terraria_BunnyEars: I totally love these ears. They make me look just like a cute bunny.
-					Terraria_BunnyTail: I totally love this tail. It makes me look just like a cute bunny.
-					Terraria_FullMoonSqueakyToy: GRRR..... (*squeak squeak*)
-					Terraria_MudBud: This plant is like, really cool and all, but I prefer animals. Still pretty cool...
-					Terraria_LicenseCat: 
-						'''
-						Who doesn't want a cute, fluffy, adorable, playful little kitty?
-						I can give you certification to own one of your own!
-						'''
-					Terraria_LicenseDog: 
-						'''
-						Who doesn't want a cute, fluffy, loyal, playful little puppy? 
-						I can give you certification to own one of your own!
-						'''
-					Terraria_LicenseBunny: 
-						'''
-						Who doesn't want a cute, fluffy, springy, playful little bunny? 
-						I can give you certification to own one of your own!
-						'''
-					Terraria_KiteKoi: 
-						'''
-						The fish on this kite is, like, absolutely adorable. 
-						I wish he was real so I could, like, feed him daily.
-						'''
-					Terraria_KiteCrawltipede: Eugh... I don't really like bugs. Luckily Crawltipedes are arthropods!
-					Terraria_PaintedHorseSaddle:
-						'''
-						I totally love riding horses out on the grass! 
-						This horse reminds me of a TV show...
-						'''
-					Terraria_MajesticHorseSaddle:
-						'''
-						I totally love riding horses out on the grass! 
-						This horse reminds me of a myth...
-						'''
-					Terraria_DarkHorseSaddle:
-						'''
-						I totally love riding horses out on the grass! 
-						This horse reminds me of a book...
-						'''
-					Terraria_VanityTreeSakuraSeed: 
-						'''
-						I just love those beautiful sakura trees you can find out in the forest! 
-						I found my own special recipe to plant one yourself.
-						'''
-					Terraria_VanityTreeYellowWillowSeed: 
-						'''
-						I just love those beautiful yellow willow trees you can find out in the forest! 
-						I found my own special recipe to plant one yourself.
-						'''
-					Terraria_RabbitOrder: 
-						'''
-						Aww! This little bunny is SO CUTE!!! 
-						just want to pet him and let him sit on my head. 
-						Imagine if there were two...
-						'''
-					Terraria_JoustingLance: 
-						'''
-						I found this weird stick... 
-						I thought it was for reaching sky critters to feed them easier, 
-						but I guess it's supposed to be a weapon. Lame.
-						'''
-					Terraria_FairyGlowstick: 
-						'''
-						I tried to go and catch one of those awesome fairies underground, 
-						but all I ended up with was this cool glowstick.
-						'''
-					Terraria_TreeGlobe: 
-						'''
-						This is an even more amazing advancement in nature technology! 
-						The power to shift trees in the blink of an eye!
-						'''
-					Terraria_WorldGlobe: 
-						'''
-						This is a totally amazing advancement in nature technology! 
-						The power to shift forests in the blink of an eye! Of course, we can't reach them.
-						'''
-					Terraria_LightningCarrot: 
-						'''
-						I have traveled across the land, searching far and wide,
-						and I managed to find this adorable volt bunny! Gotta catch ‘em all!
-						'''
-					Terraria_DiggingMoleMinecart: 
-						'''
-						This critter is very weirdly structured... It has a person-size hole in its center. 
-						This is, like, the weirdest animal I have ever seen...
-						'''
-					Terraria_BallOfFuseWire: 
-						'''
-						Be glad you didn't draw this exploding kitten, bro! 
-						I don't see a defuse card anywhere on you.
-						'''
-
-					Lycantrope: {
-					}
-				}
-			}
-
-			Terraria_Princess: {
-				ShopQuote: {
-					Terraria_RoyalTiara: An exquisite tiara I made, tailor made for fashion.
-					Terraria_RoyalDressTop: An exquisite blouse I made, tailor made for fashion.
-					Terraria_RoyalDressBottom: An exquisite dress I made, tailor made for fashion.
-					Terraria_RoyalScepter: A non-dangerous replica of my magical creation, the Resonance Scepter.
-					Terraria_GlassSlipper_Male: A pair of slippers which any maiden would love to receive as a gift!
-					Terraria_GlassSlipper_Female: These should fit perfectly on your feet!
-					Terraria_PrinceUniform: An outfit I made for a royaline prince, tailor made for fashion.
-					Terraria_PrincePants: A pair of pants I made for a royaline prince, tailor made for fashion.
-					Terraria_PrinceCape: A flowing cape I made for a royaline prince, tailor made for fashion.
-					Terraria_PottedCrystalPlantFern: 
-						'''
-						This mystical plant grew in my garden,
-						this fern would look great in a hallowed environment!
-						'''
-					Terraria_PottedCrystalPlantSpiral:
-						'''
-						This mystical plant grew in my garden,
-						this spiraling plant would look great in a hallowed environment!
-						'''
-					Terraria_PottedCrystalPlantTeardrop:
-						'''
-						This mystical tear fell into my garden,
-						it grew roots and started acting like a plant! 
-						Quite a strange little creature.
-						'''
-					Terraria_PottedCrystalPlantTree: 
-						'''
-						This mystical plant grew in my garden, 
-						this tree would look great in a hallowed environment!
-						'''
-					Terraria_Princess64: 
-						'''
-						A commision which didn't look exactly how I wanted. 
-						I've been needing to remove it from the castle for something new, so it's for sale.
-						'''
-					Terraria_PaintingOfALass: 
-						'''
-						A self portrait of me when I was in Kindergarten. 
-						I just can't stand my look in it! So this is for sale.
-						'''
-					Terraria_DarkSideHallow: 
-						'''
-						One of the first paintings I ever requested. 
-						I wanted a unicorn painting after being told they aren't real, 
-						but turns out they are! So this is for sale.
-						'''
-					Terraria_BerniePetItem: A button to an adorable stuffed bear!
-					Terraria_MusicBoxCredits:
-						'''
-						The great leap of your adventure, defeating the Moon Lord!
-						However your journey is quite far from over.
-						'''
-					Terraria_MusicBoxCredits_GuideAndrew: 
-						'''
-						The great leap of your adventure, defeating the Moon Lord! 
-						However your journey is quite far from over. 
-						I think Andrew is proud of you.
-						'''
-					Terraria_SlimeStaff: This ew-y gooey staff spawns a cute little slime! Adorable!
-					Terraria_HeartLantern: 
-						'''
-						Quite a nice decoration, I've also heard it cures headaches and helps heal wounds. 
-						I rate it a 'plus up', which is greater than a 'plus'!
-						'''
-					Terraria_FlaskofParty: 
-						'''
-						Apply to your sword to make a party on hit! 
-						Don't tell the party girl I'm reselling her stuff!
-						'''
-					Terraria_FlaskofParty_PartyGirl: Apply to your sword to make a party on hit! Don't tell {PartyGirl} I'm reselling her stuff!
-					Terraria_SandstorminaBottle: 
-						'''
-						An ancient relic, older than the pyramids! 
-						It's been sitting in my closet though, creating extra dust.
-						'''
-					Terraria_Terragrim: 
-						'''
-						A swishy-slashy sword! 
-						It doesn't summon magic bullets like the one at my castle though.
-						'''
-					Terraria_PirateStaff: A personal crew! Just hope none are imposters...
-					Terraria_DiscountCard: Found this lying in my closet, it looks kind of like you.
-					Terraria_DiscountCard_Exporter: 
-						'''
-						Found this lying in my closet, it looks kind of like you. 
-						I heard {Exporter} was selling something similar, but his prices are so high!
-						'''
-					Terraria_LuckyCoin: Found this lying in my closet, it looks quite lucky!
-					Terraria_LuckyCoin_Exporter: 
-						'''
-						Found this lying in my closet, it looks quite lucky! 
-						I heard {Exporter} was selling something similar, but his prices are so high!
-						'''
-					Terraria_CoinGun: 
-						'''
-						Loose change has never been so deadly. 
-						I could take on an entire army using this and the castle's riches!
-						'''
-				}
-			}
-			
-			Painter: {
-				ShopQuote: {
-					Paintbrush: Every knight has his sword, and this is mine. It could be yours too!
-					PaintRoller: This long tool is perfect for those walls you just can't reach otherwise.
-					PaintScraper:
-						'''
-						There are no mistakes, only happy accidents.
-						Destroy them.
-						'''
-					RedPaint: Ahh... Alabama Crimson... a beautiful color. Reminds me of apples.
-					OrangePaint: Ahh... Atomic Tangerine... a beautiful color. Reminds me of tangerines, heh.
-					YellowPaint: Ahh... Mustard Yellow... a beautiful color. Reminds me of bananas.
-					LimePaint: Ahh... Bitter Lime... a beautiful color. Reminds me of limes, heh.
-					GreenPaint: Ahh... Indubitably Green... a beautiful color. Reminds me of pears.
-					TealPaint: Ahh... Medium Aquamarine... a beautiful color. Reminds me of... something?
-					CyanPaint: Ahh... Carribean Current... a beautiful color. Reminds me of... something?
-					SkyBluePaint: Ahh... Winter Wizard... a beautiful color. Reminds me of... crystals.
-					BluePaint: Ahh... Bayern Blue... a beautiful color. Reminds me of... blueberries.
-					PurplePaint: Ahh... Purple Mountain's Majesty... a beautiful color. Reminds me of... plums.
-					PinkPaint: Ahh... Pink as Hell... a beautiful color. Reminds me of... pink lemonade, heh.
-					VioletPaint: Ahh... French Violet... a beautiful color. Reminds me of... violets, heh.
-					BlackPaint: Ahh... A Distinctive Lack of Color... Reminds me of... blackberries, heh.
-					GrayPaint: Ahh... Aged Moustache Gray... a beautiful color. Reminds me of... old people.
-					WhitePaint: Ahh... Titanium White... a beautiful color. Reminds me of... glue.
-					BrownPaint: Ahh... Almond Brown... a beautiful color. Reminds me of... sticks.
-					ShadowPaint: Ahh... Vantablack... a... color for sure. Or not.
-					NegativePaint: Ahh... uhh... this isn't a color. This flips color. No clue how this works.
-					GlowPaint: Ahh... uh... this isn't a color. This just makes stuff brighter. Is this even a paint?
-					
-					// Paintings
-					
-					Painting: A true work of art.
-					Daylight: Moura depicts the beauty of daytime well.
-					FirstEncounter: Moura well portrays the plight of man.
-					GoodMorning: Moura's sunflower is exquisitely brushed.
-					UndergroundReward: Moura perfectly depicts the intricate surface of Heart Crystals.
-					ThroughtheWindow: We can see through the eyes of Moura as if we were he.
-					DeadlandComesAlive: Moura stylistically depicts the baroque nature of the bloody Crimson.
-					LightlessChasms: Moura stylistically depicts the baroque nature of the brutal Corruption.
-					TheLandofDeceivingLooks: Moura stylistically depicts the baroque nature of the conspicuous Hallow.
-					DoNotStepontheGrass: Moura stylistically depicts the romantic nature of the lush Jungle.
-					ColdWatersintheWhiteLand: Moura stylistically depicts the romantic nature of the frigid Tundra.
-					SecretoftheSands: Moura stylistically depicts the secretive shadowy nature of the Pharoah's Curse.
-					EvilPresence: Moura really shows the lack of privacy we must face in this world.
-					PlaceAbovetheClouds: Moura stylistically depicts the impressionistic nature of the airy skies.
-					SkyGuardian: Moura realistically depicts the twists and turns of a wyvern's body.
-					Nevermore: Moura shows the hopelessness and ineviability of death that comes to life after love.
-					Reborn: One can only imagine what the hand is reaching for. Music? Revenge? We will never know.
-					Graveyard: Moura stylistically depicts the horrifying nature of the dark graveyard.
-					GhostManifestation: 
-						'''
-						Moura creates his own style of painting-
-						seeming to advertise a fictional monster.
-						'''
-					WickedUndead: 
-						'''
-						Moura creates his own style of painting-
-						seeming to advertise a show at an opera house.
-						'''
-					BloodyGoblet: Moura depicts a baroque goblet and has a unique stylistic decision to spill the blood.
-					StillLife: 
-						'''
-						Moura creates a fun twist on the still-life genre-
-						the skull is an example of true still-life.
-						'''
-					
-					// Wallpaper
-					
-					BubbleWallpaper: This wallpaper has fun bubbles all over. Useful for a pool establishment.
-					CopperPipeWallpaper: This wallpaper has steampunky pipes all over. Useful for a machine building.
-					DuckyWallpaper: This wallpaper has duckies all over. Very, very useful.
-					FancyGreyWallpaper: This wallpaper is very fancy. Useful for Victorian housing.
-					IceFloeWallpaper: This wallpaper is reminiscent of a glacial mass. Useful for a tundra build.
-					MusicWallpaper: This wallpaper has musical notes all over. Useful for your band's next gig.
-					PurpleRainWallpaper: This wallpaper depicts a deluge of violet water. Useful for a Prince's palace.
-					RainbowWallpaper: This wallpaper depicts a colorful rainbow. Useful for a fairy unicorn zone.
-					SparkleStoneWallpaper: This wallpaper depicts some shiny rocks. Looks kind of tasty...
-					StarlitHeavenWallpaper: This wallpaper depicts the beautiful starry sky. I wonder what resides above...
-					
-					ChristmasWallpapers: This wallpaper gets me in a festive mood.
-					ChristmasTreeWallpaper: I love christmas trees!
-					OrnamentWallpaper: I love ornaments!
-					CandyCaneWallpaper: I love candy canes!
-					
-					// These are just "this wallpaper gets me in a festive mood"
-					FestiveWallpaper: No Text.
-					BluegreenWallpaper: No Text.
-					
-					StarsWallpaper: I love stars!
-					SquigglesWallpaper: I love squiggles!
-					SnowflakeWallpaper: I love snowflakes!
-					
-					// Exceptions to the christmas wallpaper heading
-					KrampusHornWallpaper: This wallpaper gets me out of a festive mood. I hate Krampus!
-					GrinchFingerWallpaper: This wallpaper gets me out of a festive mood. I hate the Grinch!
-				}
-			}
-			
-			WitchDoctor: {
-				ShopQuote: {
-					ImbuingStation: 
-						'''
-						One finds their blade and spirit empowered 
-						when they consume a flask from an Imbuing Station.
-						'''
-					Blowgun: Some say that this weapon "blows", but on the contrary, you blow the weapon.
-					StyngerBolt: You're lucky that I happen to have some of these left over. Normally you'd have to perform a sacrifice.
-					Stake: An interesting fact: without these stakes at hand, your life would be at stakes.
-					Cauldron: 
-						'''
-						I have used this many a time to create potions of incredible power. 
-						I also make chicken soup!
-						'''
-					TikiTotem: 
-						'''
-						This talisman summons a little being to be at your side. 
-						Not very useful, but a great companion.
-						'''
-					LeafWings: 
-						'''
-						Some would say that leaves wouldn't make good wings. 
-						The power of nature always prevails.
-						'''
-					VialofVenom: A small amount of very deadly fluid. Drink at your own risk.
-					TikiMask: An ancient mask with spiritual power. I can only hand it over for a very high price.
-					TikiShirt: An ancient shirt with spiritual power. I can only hand it over for a very high price.
-					TikiPants: Ancient pants with spiritual power. I can only hand them over for a very high price.
-					PygmyNecklace: This old talisman can give you greater control over helpful spirits.
-					HerculesBeetle: Beetles are associated with a greater connection between spirits and physical objects.
-					
-					Fountains: A beautiful fountain.
-					PureWaterFountain: Spreads the essence of purity through the waters.
-					DesertWaterFountain: Spreads the essence of aridity through the waters.
-					JungleWaterFountain: Spreads the essence of nature through the waters.
-					IcyWaterFountain: Spreads the essence of frigidity through the waters.
-					CorruptWaterFountain: Spreads the essence of corruption through the waters.
-					CrimsonWaterFountain: Spreads the essence of violence through the waters.
-					HallowedWaterFountain: Spreads the essence of light through the waters.
-					BloodWaterFountain: Spreads the essence of blood through the waters.
-					CavernFountain: Spreads the essence of solidity through the waters.
-					OasisFountain: Spreads the essence of refuge through the waters.
-					
-					BewitchingTable: This table has the ultimate connection to the spirit realm.
-				}
-			}
-			
-			Wizard: {
-				ShopQuote: {
-					CrystalBall: 
-						'''
-						Ah! My magical ball! It contains untold wonders and magical spirits!
-						...I don't remember where I got it from.
-						'''
-					IceRod: Aye, this rod seems to turn air into ice. Quite magical. Why do I have this?
-					GreaterManaPotion: 
-						'''
-						Alas, the ultimate magical supplement. 
-						5 whole hours of celestial energy in one quick dose!
-						'''
-					Bell: 
-						'''
-						This little instrument doesn't do a whole lot, 
-						but I bet with a little magic you could make something wonderful!
-						'''
-					Harp:
-						'''
-						This large instrument doesn't do a whole lot, 
-						but I bet with a little magic you could make something wonderful!
-						'''
-					SpellTome: I was supposed to turn this into a grimoire yesterday, but I forgot.
-					Book: 
-						'''
-						Behold! The Fiend Folio! This magical tome has the ability to summon any creature! 
-						Wait... this is just a regular old book.
-						'''
-					MusicBox: 
-						'''
-						Ah... a music box can hold beautiful forgotten melodies from around the world.
-						Record me a beautiful song, will you? I long to hear the music of my childhood.
-						'''
-					EmptyDropper: I've used this for my eyesight, but I'm sure you could do something more magic with it.
-					WizardsHat: I... don't know why I have this. Why... am I... dressed like this?
-				}
-			}
-
-			Mechanic: {
-				ShopQuote: {
-					Wrench: What do you mean pipe wrenches don't work for wires? I've set up all kinds of circuits with these!
-					ColoredWrench: Don't get your wires crossed, just paint them a different color and you have perfect wire management
-					WireCutter: If you still can't get good wire management you can always just try a pair of cutting pliers.
-					Wire_CreeperSuit: No this isn't dust, do you know how unsafe that would be? 
-					Lever: What's the difference between a lever and a switch? Levers just look cooler.
-					Switch: What's the difference between a lever and a switch? Switches are just more efficient.
-					PressurePlates: It's like a switch but for stepping on! 
-					ProjectilePressurePad: It's like a switch but for shooting!
-					BoosterTrack: Always thought minecarts could go a little bit faster, maybe 20 mph faster to be precise.
-					Actuator: Oh in case you're wondering, I didn't set up those traps underground.
-					WirePipe: Now you really won't get your wires crossed!
-					LaserRuler: Sure a ruler works fine, but what about an holographic ruler than can cover your entire field of vision?
-					MechanicalLens: I used to always lose track of my wires, so I made these!
-					EngineeringHelmet: Perfect for solving practical problems!
-					WireBulb: Did you know I once wired a cake with bulbs instead of candles?
-					MechanicsRod: "Something I would make for a 'fishing master'!"
-					MechanicsRod_Angler: "{Angler} told me to make a 'super fishing rod for the fishing master'... well I couldn't say no."
-					Timer5Second: 5 second rule!
-					Timer3Second: Or was it the 3 second rule?
-					Timer1Second: Useful for setting up blinking lights.
-					TimerOneHalfSecond: Absolutely perfect for setting up blinking lights.
-					TimerOneFourthSecond: Hm... maybe these are too many blinks per second.
-
-					SantankSentry: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
-				}
-			}
-
-			Truffle: {
-				ShopQuote: {
-					MushroomCap: Don’t worry, they grow back.
-					StrangeGlowingMushroom: It seems like one of my kind has taken a liking to you.
-					DarkBlueSolution: Would you be so kind as to spread the spores of my kind across the world?
-					MushroomSpear: I forged this spear with my own sweat and glistering mycelium.
-					Hammush: Behold the mighty ham-mush!
-					Autohammer: I use this station to forge my own weapons, perhaps you could use it to infuse your arsenal with the power of blue too.
-				}
-			}
-
-			DD2Bartender: {
-				ShopQuote: {
-					Ale: Stopping by for some booze? That's a good decision here chump!
-					DD2ElderCrystal: This may be just a regular gem, but from where I come from people defend this crystal with their lives!
-					DD2ElderCrystalStand: The golden socket that holds the Eternia Crystal, just make sure to return it without a scratch!
-					DefendersForge: Before getting here I decided to snatch one of those forges, but now it seems of no use to me...
-
-					// Weapons 
-
-					DD2FlameburstTowerT1Popper: This rod gives you blazing firepower, use it wisely!
-					DD2FlameburstTowerT2Popper: With this cane your flameburst sentries gain more firepower!
-					DD2FlameburstTowerT3Popper: It's a must have for Apprentices and Dark Artists!
-
-					DD2BallistraTowerT1Popper: This rod gives you ballistic firepower, use it wisely!
-					DD2BallistraTowerT2Popper: With this cane your ballista sentries gain more burst power!
-					DD2BallistraTowerT3Popper: It's a must have for Squires and Valhalla Knights!
-
-					DD2ExplosiveTrapT1Popper: This rod gives you explosive firepower, use it wisely!
-					DD2ExplosiveTrapT2Popper: With this cane your explosive trap sentries gain more boom power!
-					DD2ExplosiveTrapT3Popper: It's a must have for Huntresses and Red Riders!
-
-					DD2LightningAuraT1Popper: This rod gives you stunning powers, use it wisely!
-					DD2LightningAuraT2Popper: With this cane your lightning aura sentries gain more zap power!
-					DD2LightningAuraT3Popper: It's a must have for Monks and Shinobi Infiltrators!
-
-					// Monk Armor
-					MonkBrows: This brow is point perfect for brow lovers, even Major Monogram got jealous!
-					MonkShirt: Truly the shirt of the Monk.
-					MonkPants: Truly the pants of the Monk.
-
-					// Shnobi Infiltrator Armor
-					MonkAltHead: A helmet once worn by Etheria's strongest shinobi!
-					MonkAltShirt: A torso once worn by Etheria's strongest shinobi!
-					MonkAltPants: Pants once worn by Etheria's strongest shinobi!
-
-					// Squire Armor
-					SquireGreatHelm: This tin can is not to be underestimated, it quite packs some punches!
-					SquirePlating: This chestplate makes you feel more protected for future battles!
-					SquireGreaves: Those greaves make you feel more protected for future battles!
-
-					// Valhalla Knight Armor
-					SquireAltHead: A hat once worn by Etheria's strongest knight!
-					SquireAltShirt: A breastplate once worn by Etheria's strongest knight!
-					SquireAltPants: Greaves once worn by Etheria's strongest knight!
-
-					// Apprentice Armor
-					ApprenticeHat: Found this in the Taverns wardrobe before I got here.
-					ApprenticeRobe: This was also probably in the Taverns wardrobe.
-					ApprenticeTrousers: And the trousers were in the wardrobe aswell I suppose?
-
-					// Dark Artist Armor
-					ApprenticeAltHead: A hat once worn by Etheria's strongest mage!
-					ApprenticeAltShirt: Robes once worn by Etheria's strongest mage!
-					ApprenticeAltPants: Leggings once worn by Etheria's strongest mage!
-
-					// Huntress Armor
-					HuntressWig: So if this is just a wig, does that mean that the Huntress is bald just like me?!
-					HuntressJerkin: Truly the jerkin of the Huntress.
-					HuntressPants: Truly the pants of the Huntress.
-
-					// Red Riding Artist Armor
-					HuntressAltHead: A hood once worn by Etheria's strongest huntress!
-					HuntressAltShirt: A dress once worn by Etheria's strongest huntress!
-					HuntressAltPants: Leggings once worn by Etheria's strongest huntress!
-				}
-			}
-			
-			SkeletonMerchant: {
-				ShopQuote: {
-					StrangeBrew: 
-						'''
-						I don't know what's in here. Drink it, or don't...
-						you can't kill me in a way that matters if it turns you into a toad!
-						'''
-					LesserHealingPotion: I've heard these are very good for your health. I wouldn't know... I don't have health!
-					SpelunkerGlowstick: The best way to mine without breaking your backbone getting up close to rocks to see if they shine!
-					Glowstick: 
-						'''
-						Very useful for lighting up a dark cave. Doesn't matter to me...
-						I don't have eyes.
-						'''
-					BoneTorch: 
-						'''
-						Well... I have flaming bits of my brothers in my bag.
-						Interested?
-						'''
-					Torch: It glows! It shines! It... produces light. It's... the torch! And it could be yours for 2 easy payments of 25 copper!
-					BoneArrow: Just don't ask why I have these.
-					WoodenArrow: For all your casual untraceable projectile-weaponry needs! You didn't get it from me.
-					
-					// Reference to literally every youtuber doing calamity yoyo run #5346
-					Counterweights: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
-					
-					// Demolitionist reference
-					Bomb: 
-						'''
-						Listen, I can explain. I met up with some dwarves down here and while they were asleep... unvoluntarily... 
-						I decided to borrow some in case I needed to get out of any hard places.
-						'''
-					Rope: Great for climbing up the hign cliffs of the caves! Or for holding yourself together when your bones get loose. Osteoporosis...
-					
-					Gradient: I know they don't look the best, but this gradient at least has some serious tricks in it! Whoosh... swish...
-					// Reference to windows command format C: you guys should totally run it on your computer
-					FormatC: Be careful when researching this yoyo... when I looked it up in my encyclopedia, it destroyed the entire book! Must've looked in the wrong place.
-					YoYoGlove: This is definitely a worthwhile investment! Every cool kid plays with yoyos these days.
-					SlapHand: Hehe... this is just too funny. Ha! Oh, I can't control it. Please, take this off me, I beg you... chuckle...
-					MagicLantern: I don't know what's up with this lantern. No matter how many times I hit it with a torch it doesn't light up. Maybe I'm missing something.
-				}
-			}
-
-			Golfer: {
-				ShopQuote: {
-					// Clubs
-					GolfClubStoneIron: This iron is a bit out of shape, but it'll do.
-					GolfClubRustyPutter: This putter is a bit out of shape, but it'll do.
-					GolfClubBronzeWedge: This wedge is a bit out of shape, but it'll do.
-					GolfClubWoodDriver: This driver is a bit out of shape, but it'll do.
-					
-					GolfClubIron: This iron works well and hits nicely.
-					GolfClubPutter: This putter works well and hits nicely.
-					GolfClubWedge: This wedge works well and hits nicely.
-					GolfClubDriver: This driver works well and hits nicely.
-					
-					GolfClubMythrilIron: This iron is absolutely decked out! I suppose it hits better too.
-					GolfClubLeadPutter: This putter is absolutely decked out! I suppose it hits better too.
-					GolfClubGoldWedge: This wedge is absolutely decked out! I suppose it hits better too.
-					GolfClubPearlwoodDriver: This driver is absolutely decked out! I suppose it hits better too.
-					
-					GolfClubTitaniumIron: This iron is just top-of-the-line! Peak performance!
-					GolfClubShroomitePutter: This putter is just top-of-the-line! Peak performance!
-					GolfClubDiamondWedge: This wedge is just top-of-the-line! Peak performance!
-					GolfClubChlorophyteDriver: This driver is just top-of-the-line! Peak performance!
-					
-					// Trophies
-					GolfTrophyBronze: Congratulations on your improvement! You still have plenty to go, however.
-					GolfTrophySilver: Congratulations on your improvement! You're almost better than I am, heh...
-					GolfTrophyGold: Congratulations on you improvement! I'd hate to be opposing you in any world tour!
-					
-					// Flags
-					GolfCupFlag: How are you gonna know where the hole is without one of these?
-					
-					// Misc
-					GolfTee: The quintessential golfing tool. How will you hit the ball if it's covered by grass?
-					GolfBall: Rubber around rubber around rubber... all surrounded by plastic. Golf balls are pretty cool.
-					GolfWhistle: 
-						'''
-						I found this thing laying around the other day... 
-						didn't know anyone with magic cared enough to use it on golf.
-						'''
-					GolfCup: 
-						'''
-						You might think this you could just use a normal cup, but it has confetti shooters installed!
-						I like confetti.
-						'''
-					ArrowSign: Can't golf if you don't know where to hit towards!
-					PaintedArrowSign: Can't golf if you don't know where to hit towards!
-					GolfOutfit: Gotta look the part!
-					LawnMower: Lawnmowers are super useful, whether you're smoothing grass or fending off zombies!
-					GolfCart: I think you're skilled enough now that you need these more than I do.
-					GolfPaintings: I love this painting! Don't care much for the art, but I can get behind the subject matter!
-					GolfChest: Useful for storing all matter of golf memorabilia, or anything else.
-				}
-			}
-
-			DyeTrader: {
-				ShopQuote: {
-					DyeVat: A machine which greatly simplifies the dye mixing process, a must have for coloring enthusiasts
-					SilverDye: A beautiful color for your attire.
-					SilverDye_Helmet: A beautiful color for your attire, your {Helmet} could use some silver coloring in it.
-					TeamDye: Needing help dicerning team members? This liquified and stainable material dynamically changes color depending on your team.
-					DyeTradersClothes: The exotic blue dye I used to make this robe makes it quite an expensive purchase, if you want it.
-					ShadowDye: Representing the darkness of the night, this dye is almost as powerful as vantablack!
-					NegativeDye: Specially crafted to reverse the colors of whatever is applied to it! Only works with the colors visible on the light spectrum though.
-					BrownDye: Materials used to craft brown dye are unavailable on this island, so I imported some over from my homelands.
-					FogboundDye: 
-						'''
-						When checking one of my empty dye bottles, I noticed a ghost was trapped in one! 
-						It left magical fog essense which I mixed in with regular dye materials to create this.
-						'''
-					BloodbathDye: Using a tissue sample from a Blood Zombie and the strange properties of the Blood Moon, I was able to create a living blood dye! Quite amazing.
-					CursorDyeRemover: Cleans off your cursor of any dyes applied to it, extremely magical.
-					HealthCursorDye: 
-						'''
-						They say we all have a 'Cursor', a magical point in space which we put extreme focus into. 
-						Using mystic materials and a special bottle, I've been able to create a dye which effects this 'Cursor'.
-						This coloring tracks your life through the connection between you and your 'Cursor'.
-						'''
-					ManaCursorDye: This coloring tracks your mana supply through the connection between you and your 'Cursor'.
-					SwordCursorDye: 
-						'''
-						After much experimenting with materials and magic of all types,
-						I've been able to create a dye for your 'Cursor' which morphs the shape into a sword!
-						'''
-					DemonicCursorDye: 
-						'''
-						After much experimenting with materials and magic of all types,
-						I've been able to create a dye for your 'Cursor' which shows your true self.
-						'''
-				}
-			}
-
-			PartyGirl: {
-				ShopQuote: {
-					ConfettiGun: Good for celebrating durning parties and celebrations!
-					Confetti: Fun little pieces of colorful paper, great for parties!
-					SmokeBomb: Feeling like surprising someone? with these you can!
-					BubbleMachine: A machine that will blow bubbles for a great party atmosphere!
-					FogMachine: The spooky fog will help in setting a good atmosphere in halloween!
-					BubbleWand: Want to make your own bubbles? Take this and make some!
-					BeachBall: A good way to spend time with friends on a good summer day
-					LavaLamp: A lamp which dosen't grant wishes, but does look cool
-					PlasmaLamp: This strange thing manages to amaze me every time I see it!
-					FireworksBox: Take some fireworks from this and watch them explode into beautiful lights on the sky!
-					FireworkFountain: The sparks from this fountain makes any party call the attention of anyone nearby!
-					PartyMinecart: Ride the wildest of rollercoasters with this, and a festive spirit!
-					KiteSpectrum: Watch all colors of the rainbow in the windy sky with this!
-					PogoStick: Step on and jump high above with this Pogo Stick!
-					ColoredRockets: A colorful rocket for a great end to a party!
-					PartyGirlGrenade: Throw these and watch foes turn into a walking party!
-					ConfettiCannon: How do pirates celebrate parties? With a confetti cannon of course!
-					Bubble: A very strong bubble, it can stop any liquids you put besides it!
-					SmokeBlock: Thinking smoke bombs don't last long enough? Try out some forever lasting smoke blocks!
-					PartyMonolith: Want to party? Get this and start the celebration!
-					PartyHat: Wanna join the party? Just take this and start partying
-					SillyBalloonMachine: It makes many ballons fly in the sky, I wonder where the ballons are stored
-					PartyPresent: A present box for whoever you want, just remember to fill it before giving an empty box
-					Pigronata: Hang it and start spinning, the prize inside will be shown after hitting it. Isn't it fun?
-					ColoredStreamers: A line of colored silk, has a ribbon at the top too!
-					SillyBalloons: These ballons will work nicely on any party!
-					SillyTiedBalloons: A ballon tied for it to not fly away, we aren't making a party in space are we?
-					FireworksLauncher: A cool rocket launcher to celebrate your victories!
-					ReleaseDoves: Don't ask how you can hold so many doves in your hand.
-					ReleaseLanterns: Get one and throw it in the sky to celebrate the defeat of a strong foe!
-					Football: Good at games? Try this to impress your friends!
-				}
-			}
-
 			PhysicistPet: {
 				0: Beep boop.
 				1: Beep bop.
@@ -3324,64 +2558,9 @@ Mods: {
 					3: On our home planet, pylons simply cannot exist, the net amount of 'happy' energy on it is -30mw.
 					4: You haven't been making deals with any cat-like creatures... right?
 				}
-
-				ShopQuote: {
-					PhysicsGun: 
-						'''
-						A zero point energy field manipulator I created for my kindergarten science fair.
-						Much more high-tech compared to the dirt rod.
-						'''
-					HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
-					HolographicMeatloaf: 
-						'''
-						A massive hit with photosynthetic creatures.
-						This meatloaf is cooked with the most delicious tasting light.
-						'''
-					
-					BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon'.
-					GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
-					SolarTablet: 
-						'''
-						A strange artifact I discovered when observing a recently opened ancient temple.
-						My scanners sense a strange amount of dark matter present inside the artifact.
-						'''
-
-					InactivePylonGunner: 
-						'''
-						Without a connection to the net, it cannot function. 
-						Fortunately your 'pylons' connect directly to that network.
-						'''
-					InactivePylonHealer: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
-					InactivePylonCleanser: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
-					
-					ForceAntiGravityBlock: 
-						'''
-						A special type of plating manufactured for 'flying saucers'. 
-						Features an anti-gravity beam shooting below.
-						'''
-					ForceGravityBlock: 
-						'''
-						A special type of plating manufactured for 'flying saucers'. 
-						It generates its own gravitational pull and negates all anti-gravity effects.
-						'''
-					PhysicsBlock: 
-						'''
-						A special type of plating manufactured for 'flying saucers'. 
-						Its unique composition prevents it from being carried by the physics gun.
-						'''
-					EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
-
-					SupernovaFruit: 
-						'''
-						Powerful radiation is being emitted from this apple.
-						Now that you are touching it, I would expect you to be dead before next week.
-						'''
-					HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
-				}
 			}
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
-
 			Carpenter: {
 				Basic: {
 					0: As I scurry and I hurry I worry I might miss out on nice, hot, curry! 
@@ -3395,24 +2574,6 @@ Mods: {
 				GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
 
 				NoBounty: It's very unfortunate to say that I'm all out of bounties to give, maybe come back later?
-
-				ShopQuote: {
-					Shutterstocker: With a snap and a shutter it allows clips to take in just enough light to make an image!
-					ShutterstockerClipAmmo: 
-						'''
-						Used with the Shutterstocker™ to capture images.
-						Save your best buildings with the most captivating clips!
-						'''
-					ImpenetrableCoating: A clear, strong paste which only a pickaxe can get through!
-					OmniPaint: 
-						'''
-						Using a special dye and paint container, you can easily pick out what color of paint
-						you want without the hassle of cleaning off your brush!
-						Don't let it touch your skin, it may cause permanent coloring and damage.
-						'''
-					AdvancedRuler: Our most advanced ruler yet, with many features, buttons, and dumb complications!
-					WhiteFlag: Don't wave this up for too long, unless you plan on getting completely colonized by goblins expecting this island to be weak.
-				}
 
 				UI: {
 					BountyButton: View Bounties
@@ -3428,22 +2589,6 @@ Mods: {
 				Basic: {
 					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
 					1: Your heroic journey ended after you talked to me! Ha ha!
-				}
-
-				ShopQuote: {
-					GhostlyGrave: 
-						'''
-						Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
-						Like all living things however, I have to put their suffering to an end.
-						'''
-					OccultistCandle: I find it useful for rituals, tehe-
-					Meathook: A hook extracted from my arch rival's weaponry... he won't find me here right?
-					ShadowKey: Used for unlocking the loot of the Underworld, weird that the demons didn't give each chest a different keyhole so pillaging isn't as easy.
-					UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
-					GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
-					InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
-					BlackPhial: Black magic sustains the liquid within this phial, a single drop can make an elephant deathly ill.
-					WhoopieCushion: *Poomf*
 				}
 			}
 
@@ -3521,54 +2666,6 @@ Mods: {
 				UpgradeBurgerButton: Upgrade Burger?
 				ThieveryButton: Thievery
 
-				ShopQuote: {
-					Terraria_GoldRing: 
-						'''
-						Said to attract coins, yet this ring hasn't ripped a bank off of the ground! 
-						Purchasable for a cheap price!
-						'''
-					Terraria_LuckyCoin: 
-						'''
-						My ol' captain's first coin, said to be lucky, 
-						but ye old lobster don't believe in myths like that.
-						'''
-					Terraria_DiscountCard: 
-						'''
-						Took this of one of me maties' corpses, 
-						you two look similar enough eh?
-						'''
-					FoolsGoldRing: 
-						'''
-						The ladies would love ye for wearing this, 
-						just don't tell them ye secret!
-						'''
-					FaultyCoin: 
-						'''
-						Slip this as a regular coin, 
-						ye get a free deal if they don't catch ye, scallywag.
-						'''
-					ForgedCard: 
-						'''
-						Don't like payin' for full? 
-						This forged card will knock down ye common prices by a lot.
-						'''
-					RecyclingMachine: 
-						'''
-						Littering is a crime worse than bein' a pirate. 
-						Keep yeself safe with this cheap recycler!
-						'''
-					SkeletonKey: 
-						'''
-						Need ye a way to unlock some forgotten booty but ye keys keep breaking?
-						Purchase now!
-						'''
-					GrandReward: 
-						'''
-						Ye like getting more buck from your bangs? 
-						This here item is ye choice.
-						'''
-				}
-
 				ShopPrice: {
 					Platinum: platinum dubloons
 					Gold: gold dubloons
@@ -3591,37 +2688,9 @@ Mods: {
 				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
 				Pirate: Recently, {Pirate} talked to me about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
 
-				ShopQuote: {
-					BalloonKit: Old and hardy, portable hot air ballons have been sought after for quite a while, and here they are!
-					Pumpinator: A strange piece of tech I purchased from an airship. The sucking feature doesn't work unfortunately, what a scam!
-					Nimrod: 
-						'''
-						Lightning striking a lake can kill hundreds of fish, unfortunately this fishing rod can only catch about 3 fish per strike.
-						Or maybe the wizard who crafted this is concerned about the trout population.
-						'''
-					EquippedAcc: Hm, that accessory equipped on your person is quite nice, maybe this one has better craftmanship however?
-					Banners:
-						'''
-						Ah yes, creating carpets and rugs out of your prey's corpses is quite out of balloon fashion.
-						Hangable banners are so much better in my opinion.
-						'''
-					BongBongPainting: An abnormal creature is depicted in this art, someone may apprieciate this creature's style though.
-					CatalystPainting: The artist who painted this must hate lunatic cultists, which is fair.
-					YinYangPainting: Dark and evils forces depicted to act in harmony, some believe this is true.
-					YinYangPaintingsSeparate: The strange name of this painting and mysterious figure must elude to something...
-					HomeworldPainting: An incredible piece of artwork showing what theorists believe the Starite's homeworld looks like.
-					SkyrimRocks: Rocks with words encrypted in an ancient dragon language, unfortunately I don't know many who can translate it.
-				}
-
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name
 				RenameChatButton: Rename Item
-			}
-
-			Fargowiltas_Squirrel: {
-				ShopQuote: {
-					LiterallyEverything: *Squeak*
-				}
 			}
 		}
 

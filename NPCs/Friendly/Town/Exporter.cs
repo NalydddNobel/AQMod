@@ -13,6 +13,7 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -72,19 +73,8 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.ArmsDealer).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Hate);
 
-            ShopQuotes.Database
-                .GetNPC(Type)
-                .WithColor(Color.Orange * 1.2f)
-                .LegacyAddQuote<GrandReward>()
-                .LegacyAddQuote<SkeletonKey>()
-                .LegacyAddQuote<RecyclingMachine>()
-                .LegacyAddQuote<ForgedCard>()
-                .LegacyAddQuote<FaultyCoin>()
-                .LegacyAddQuote<FoolsGoldRing>()
-                .LegacyAddQuote(ItemID.DiscountCard)
-                .LegacyAddQuote(ItemID.LuckyCoin)
-                .LegacyAddQuote(ItemID.GoldRing);
-
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
+                .UseColor(Color.Orange * 1.2f);
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }
 
