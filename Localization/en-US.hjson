@@ -295,6 +295,9 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
+			CrabCreviceCrate: Putrid Crate
+			CrabCreviceCrateHard: Septic Crate
+
 			JungleSlotMachine: Jungle Slot Machine
 			OceanSlotMachine: Ocean Slot Machine
 			ShadowRoulette: Shadow Slot Machine
@@ -1080,6 +1083,8 @@ Mods: {
 				'Caught in Lava while near a Gore Nest'
 				'''
 
+			CrabCreviceCrate: "{$CommonItemTooltip.RightClickToOpen}"
+			CrabCreviceCrateHard: "{$CommonItemTooltip.RightClickToOpen}"
 			JungleSlotMachine:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -2089,6 +2094,7 @@ Mods: {
 		}
 
 		MapObject: {
+			FishingCrates: Crate
 			RecyclingMachine: Recycling Machine
 			Moonflower: Moonflower
 			GlimmeringStatueTile: Ultimate Crystal

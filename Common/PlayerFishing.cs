@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish;
 using Aequus.Items.Misc.Fish.Legendary;
@@ -220,6 +221,21 @@ namespace Aequus.Common
                 else if (attempt.rare && Main.rand.NextBool(4))
                 {
                     itemDrop = ModContent.ItemType<VampireSquid>();
+                }
+            }
+
+            if (Player.Aequus().ZoneCrabCrevice)
+            {
+                if (attempt.crate && Main.rand.NextBool())
+                {
+                    if (Main.hardMode)
+                    {
+                        itemDrop = ModContent.ItemType<CrabCreviceCrateHard>();
+                    }
+                    else
+                    {
+                        itemDrop = ModContent.ItemType<CrabCreviceCrate>();
+                    }
                 }
             }
 
