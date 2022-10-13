@@ -250,6 +250,7 @@ Mods: {
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteBag: 宝藏袋 (终末之星)
 
+			FertilePowder: 肥料箱
 			Moro: 摩洛
 
 			OmniPaint: 全能油漆
@@ -294,8 +295,13 @@ Mods: {
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
+			CrabCreviceCrate: 腐烂板条箱
+			CrabCreviceCrateHard: 腐败板条箱
+
+			JungleSlotMachine: 丛林老虎机
+			OceanSlotMachine: 海洋老虎机
+			ShadowRoulette: 暗影老虎机
 			SnowRoulette: 雪原老虎机
-			GlowingMushroomsRoulette: 发光蘑菇老虎机
 			DesertRoulette: 沙漠老虎机
 			SkyRoulette: 天空老虎机
 			GoldenRoulette: 黄金老虎机
@@ -596,7 +602,6 @@ Mods: {
 			SpectralLens: 幽冥透镜
 			SpectreSoul: 幽冥之魂
 			GoldPowder: 黄金之尘
-			FertilePowder: 丰饶之尘
 			Crabax: 蟹斧
 			Floatstick: 浮光棒
 			SpaceSquidTrophy: 太空乌贼纪念章
@@ -940,6 +945,8 @@ Mods: {
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
+
+			FertilePowder: 强制附近的所有物块进行生长
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
 			OmniPaint: 长按油漆物品以调出可选择油漆的菜单
@@ -1076,6 +1083,23 @@ Mods: {
 				'抓捕位置: 血巢附近的熔岩中'
 				'''
 
+			CrabCreviceCrate: "{$CommonItemTooltip.RightClickToOpen}"
+			CrabCreviceCrateHard: "{$CommonItemTooltip.RightClickToOpen}"
+			JungleSlotMachine:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			OceanSlotMachine:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			ShadowRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -1592,7 +1616,6 @@ Mods: {
 				真近战攻击击中敌人时对其造成碧蓝之火减益
 				'''
 			GoldPowder: 将小动物转化为金小动物
-			FertilePowder: 强制物块进行生长
 			GhostAmulet: 在单人模式下可阻止鬼魂的自然生成
 			CopperSeal: 使用鱼竿钓到宝匣时使你获得30秒的宝匣增益
 			SilverSeal: 使用鱼竿钓到物品时使你获得10秒的钓鱼增益
@@ -2071,6 +2094,7 @@ Mods: {
 		}
 
 		MapObject: {
+			FishingCrates: 板条箱
 			RecyclingMachine: 回收机
 			Moonflower: 月光花种
 			GlimmeringStatueTile: 终极晶体
@@ -2334,10 +2358,6 @@ Mods: {
 			General: {
 					Header: "[c/ddddff:常规]"
 
-					NPCShopQuotes: "{Teacup} NPC商店报价"
-					NPCShopQuotesTooltip: 禁用NPC商店物品报价
-					OtherNPCShopQuotes: "{CoffeeCup} 原版商店报价"
-					OtherNPCShopQuotesTooltip: 禁用原版城镇NPC商店物品报价
 					InfoDebugLogs: "{RadioThing} 信息和调试日志"
 					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
 					}
@@ -2363,954 +2383,192 @@ Mods: {
 			}
 		}
 
-
-		Chat: {
-			Terraria_Merchant: {
-				ShopQuote: {
-					Terraria_MiningHelmet: 
-					'''
-					厌倦了每走两步放一根火把? 
-					戴上采矿头盔吧!
-					'''
-					Terraria_PiggyBank: 用这个方便的小朋友来储存你的收益!
-					Terraria_PiggyBank_Goober: 用这个方便的傻蛋来储存你的收益!
-					Terraria_IronAnvil: 
-					'''
-					那个脏的旧工作台已经不起作用了? 
-					试试这个沉重的铁砧!
-					'''
-					Terraria_LeadAnvil: "{$Mods.Aequus.Chat.Terraria_Merchant.ShopQuote.Terraria_IronAnvil}"
-					Terraria_BugNet: 
-					'''
-					有没有试过捉虫子? 
-					我听说周围的一些小动物可能值很多金子...
-					'''
-					Terraria_CopperPickaxe: 
-					'''
-					最新的稿子技艺! 
-					可别与锡稿混淆了.
-					'''
-					Terraria_CopperAxe: 用这把铜斧来让周围的生态系统知道谁才是老大!
-					Terraria_LesserHealingPotion: 
-					'''
-					能治好从擦伤到刺伤的一切伤口! 
-					(包含蘑菇)
-					'''
-					Terraria_LesserManaPotion: 
-					'''
-					感到法不从心了? 
-					买两瓶法力药水吧!
-					'''
-					Terraria_WoodenArrow: 
-					'''
-					消灭那些飞行的害虫遇到困难了吗? 
-					买一包箭矢吧!
-					'''
-					Terraria_Shuriken: 忍者可能不是真的, 但你今天可以成为第一名忍者!
-					Terraria_Rope: 探索者入门服装, 只需要几枚铜币!
-					Terraria_Marshmallow: 在寒冷中吃一点甜食是不会痛的.
-					Terraria_Furnace: 石头不够用吗? 不够的话, 我正好有你需要的.
-					Terraria_PinWheel: 你不会相信这些在有风的日子里能卖多少!
-					Terraria_ThrowingKnife: 近距离战斗不得劲? 试试这些飞刀吧!
-					Terraria_Glowstick: 在黑暗和潮湿中发光!
-					Terraria_SharpeningStation: 用这个磨刀台来保持你刀的刀型!
-					Terraria_Safe: 用这个保险箱保管好你的东西.
-					Terraria_DiscoBall: 没有这个你就无法跳舞!
-					Terraria_DiscoBall_PartyGirl: 
-					'''
-					嘿, 把这个东西告诉给{PartyGirl}, 
-					她会买光我所有的库存!
-					'''
-					Terraria_Flare: 我注意到你带着信号枪, 来点照明弹怎么样?
-					Terraria_BlueFlare: 照明弹也有蓝色的!
-					Terraria_Sickle: 只有镰刀.
-					Terraria_GoldDust: 
-					'''
-					用少许银币换些许金币, 
-					没有比这更划算的买卖了!
-					'''
-					Terraria_DrumSet: 
-					'''
-					用这套鼓来释放你的音乐创造力! 
-					不含鼓槌.
-					'''
-					Terraria_DrumStick: 用这些山胡桃木鼓槌来完成你的鼓套装.
-					Terraria_Nail: 射钉枪需要钉子才能有用!
-				}
-			}
-
-			Terraria_ArmsDealer: {
-				ShopQuote: {
-					Terraria_SilverBullet: 
-					'''
-					你在附近见过狼人吗? 
-					我很想在他们身上测试一下.
-					'''
-					Terraria_TungstenBullet: 比一般子弹更重更致命.
-					Terraria_UnholyArrow: 
-					'''
-					射箭不是我的强项, 
-					但我无法拒绝邪弹.
-					'''
-					Terraria_FlintlockPistol: 
-					'''
-					可能有点过时, 
-					但我保证它射击东西射很好用.
-					'''
-					Terraria_IllegalGunParts:没人在看...让我们保守秘密, 好吗?
-					Terraria_Shotgun: 这款伊萨卡37型非常适合近距离射击怪物!
-					Terraria_EmptyBullet: 
-					'''
-					我很感激有人在乎他们的子弹, 
-					用这些空壳来制作你自己的!
-					'''
-					Terraria_StyngerBolt: 我得说, 那些神庙蜥蜴知道如何给他们的比赛增添趣味.
-					Terraria_Stake: 如果你见到了德古拉, 告诉他我对他说'嗨'.
-					Terraria_Nail: 别听商人的话, 我的钉子的口径要大得多!
-					Terraria_Nail_Merchant: 别听{Merchant}的话, 我的钉子的口径要大得多!
-					Terraria_CandyCorn: 我听说过用沙子作为弹药, 但这太荒谬了.
-					Terraria_ExplosiveJackOLantern: 
-					'''
-					现在, 我知道炸药是[name of demoman]的东西, 
-					但有时你必须让其他人参与其中, 你知道吗?
-					'''
-					Terraria_QuadBarrelShotgun: 双倍的猎枪, 双倍的杀敌数!
-
-					NurseOutfit: 不要告诉护士这件事, 她会杀了我的!
-					NurseOutfit_Nurse: 不要告诉{Nurse}这件件事, 她会杀了我的!
-				}
-			}
-
-
-			Terraria_Demolitionist: {
-				ShopQuote: {
-					Terraria_Grenade: 
-					'''
-					我向恁保证, 这比任何枪都好. 
-					只需比较伤害的大小!
-					'''
-					Terraria_HellfireArrow: 
-					'''
-					现在, 我通常不使用弓, 但我发现当恁可以把箭变成手榴弹时, 
-					我上瘾了.
-					'''
-					Terraria_LandMine: 
-					'''
-					有点令人失望的是, 恁不能用这个突破材料, 但它会造成伤害. 
-					只要它不是哑弹!
-					'''
-					Terraria_ExplosivePowder: 
-					'''
-					这是使地狱之火箭和爆炸子弹生效的秘密成分. 
-					一点火药!
-					'''
-					Terraria_DryBomb: 当其他炸弹摧毁固体材料时, 这个炸弹摧毁液体! 接下来是什么, 一颗毒气弹?
-					Terraria_WetBomb: 
-					'''
-					我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 
-					至少这只是水, 而不是泥土.
-					'''
-					Terraria_LavaBomb: 
-					'''
-					我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 
-					至少这只是熔岩, 而不是泥土.
-					'''
-					Terraria_HoneyBomb: 
-					'''
-					我从没想过会发生这种事! 会制造而非摧毁东西的炸弹. 
-					至少这只是蜂蜜, 而不是泥土.
-					'''
-				}
-			}
-
-			Terraria_GoblinTinkerer: {
-				ShopQuote: {
-					Terraria_RocketBoots: 
-						'''
-						事实证明, 以法力为动力的火箭并不是最有效的.
-						希望你能从中找到比我的东西更有用的东西.
-						'''
-					Terraria_Ruler: 当然, 尺子很好用, 但我认为它可以更大一些...
-					Terraria_TinkerersWorkshop: 满足你所有的小玩意的修补需求!
-					Terraria_GrapplingHook: 一个钩爪! 我想知道还有什么东西可以系在链子上...
-					Terraria_Toolbelt: 在进行大型项目时, 手头上最好有各种工具.
-					Terraria_SpikyBall: 真的? 拿着这些, 我不知道为什么我还带着它们.
-				}
-			}
-
-			Terraria_Pirate: {
-				ShopQuote: {
-					Terraria_Cannon: 
-					'''
-					蹦! 我吓到恁了吗? 
-					我把那门大炮从可怕的海盗罗伯特的船上拿下来了.
-					'''
-					Terraria_Cannonball: 
-					'''
-					恁在那得到了整整18磅的铅. 
-					肯定会对任何一艘帆船造成伤害!
-					'''
-					Terraria_PirateHat: 
-					'''
-					是的, 那曾是我配偶的帽子. 我在海战中失去了他. 
-					我肯定他不介意我把这个当做战利品!
-					'''
-					Terraria_PirateShirt: 
-					'''
-					是的, 那曾是我配偶的衣服. 我在海战中失去了他. 
-					我肯定他不介意我把这个当做战利品!
-					'''
-					Terraria_PiratePants: 
-					'''
-					是的, 那曾是我配偶的裤子. 我在海战中失去了他. 
-					我肯定他不介意我把这些当做战利品!
-					'''
-					Terraria_Sail: 几张我上一艘船长的船帆.
-					Terraria_ParrotCracker: 
-					'''
-					是的! 那是我鹦鹉最喜欢的牌子. 
-					也许恁会找到自己的羽毛朋友!
-					'''
-					Terraria_BunnyCannon: 
-					'''
-					这是一门非常不寻常的大炮, 
-					但我相信恁能在战斗中很好地使用它.
-					'''
-					Terraria_ExplosiveBunny: 
-					'''
-					我为这个可怜的野兽感到难过, 
-					但我担心如果我救了他会发生什么!
-					'''
-				}
-			}
-
-			Terraria_Cyborg: {
-				ShopQuote: {
-					Terraria_RocketI: 对一些爆炸性弹药感兴趣?
-					Terraria_RocketII: 对一些高口径爆炸性弹药感兴趣?
-					Terraria_RocketIII: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
-					Terraria_RocketIV: "{$Mods.Aequus.Chat.Terraria_Cyborg.ShopQuote.Terraria_RocketII}"
-					Terraria_DryRocket: 对一些装满了爆炸性集数弹药的弹药筒感兴趣?
-					Terraria_ProximityMineLauncher: 
-					'''
-					这是一个精确的手持式近距离地雷发射器. 
-					要达到最大效率, 请等待地雷完全隐藏起来.
-					'''
-					Terraria_Nanites: 这些我自己设计的纳米机器人, 可以直接注入任何生命形式. 出于任何目的.
-					Terraria_ClusterRocketI: 对一些集数弹药感兴趣?
-					Terraria_ClusterRocketII: 对一些高口径爆炸性弹药感兴趣?
-					Terraria_HiTekSunglasses: 火星的时尚. 入侵者似乎留下了一些衣服.
-					Terraria_NightVisionHelmet: 
-					'''
-					火星的时尚. 入侵者似乎留下了一些衣服. 
-					报告显示, 它还为岩石设置了动画.
-					'''
-					Terraria_PortalGunStation: 你的量子遂穿装置可能需要一些自动化.
-					Terraria_EchoBlock: 
-					'''
-					在用看不见的能量粒子进行实验后, 我设法将它们转化为固态. 
-					可能对建筑有用.
-					'''
-					Terraria_SpectreGoggles: 这些经过修改的视觉感受器可以帮助你研究和处理奇怪的隐形异常.
-				}
-			}
-
-			Terraria_BestiaryGirl: {
-				ShopQuote: {
-					Terraria_DontHurtCrittersBook: 
-					'''
-					拿走这个吧, 老兄. 
-					这本书是你唯一需要与动物建立终身友谊的东西.
-					'''
-					Terraria_SquirrelHook: 
-					'''
-					前几天我去了森林, 用这个在树之间飞来飞去. 
-					它真的太太太酷了!
-					'''
-					Terraria_BlandWhip: 
-					'''
-					求求你, 比如, 买这个东西. 我再也不想要它了. 
-					它是用来伤害动物的, 而且闻起来像蝙蝠.
-					'''
-					Terraria_MolluskWhistle: 
-					'''
-					火烈鸟一定是最酷的动物. 
-					它们的腿太迷人了.
-					'''
-					Terraria_CritterShampoo: 
-					'''
-					老兄, 不要对你的仆从如此粗鲁. 
-					它们有时也需要清洗一下!
-					'''
-					Terraria_DogEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的狗.
-					Terraria_DogTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的狗.
-					Terraria_FoxEars: 我非常喜欢这些耳朵. 它们让我看起来就像那只咬了我的诅咒狐狸一样...
-					Terraria_FoxTail: 我非常喜欢这条尾巴. 们让我看起来就像那只咬了我的诅咒狐狸一样...
-					Terraria_LizardEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的蜥蜴.
-					Terraria_LizardTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的蜥蜴.
-					Terraria_BunnyEars: 我非常喜欢这些耳朵. 它们让我看起来就像一只可爱的兔子.
-					Terraria_BunnyTail: 我非常喜欢这条尾巴. 它让我看起来就像一只可爱的兔子.
-					Terraria_FullMoonSqueakyToy: *吼叫声..... (*尖叫声*)
-					Terraria_MudBud: 这种植物很酷, 但我更喜欢动物. 但它还是挺酷的...
-					Terraria_LicenseCat: 
-					'''
-					谁不想要一只可爱、蓬松、讨喜又顽皮的小猫呢? 
-					我可以给你一张猫猫证书!
-					'''
-					Terraria_LicenseDog: 
-					'''
-					谁不想要一只可爱、蓬松、忠诚又顽皮的小狗呢? 
-					我可以给你一张狗狗证书!
-					'''
-					Terraria_LicenseBunny: 
-					'''
-					谁不想要一只可爱、蓬松、活泼又顽皮的兔兔呢? 
-					我可以给你一张兔兔证书!
-					'''
-					Terraria_KiteKoi: 
-					'''
-					这个风筝上的鱼真的很可爱. 
-					我希望它是真的, 这样我就能每天喂它了.
-					'''
-					Terraria_KiteCrawltipede: 嗯...我真的不喜欢虫子. 幸运的是, 爬行动物是节肢动物!
-					Terraria_PaintedHorseSaddle: 
-					'''
-					我非常喜欢在草地上骑马! 
-					这匹马让我想起了一个电视节目...
-					'''
-					Terraria_MajesticHorseSaddle: 
-					'''
-					我非常喜欢在草地上骑马! 
-					这匹马让我想起了一个神话...
-					'''
-					Terraria_DarkHorseSaddle: 
-					'''
-					我非常喜欢在草地上骑马! 
-					这匹马让我想起了一本书...
-					'''
-					Terraria_VanityTreeSakuraSeed: 
-					'''
-					我只是喜欢你在森林里找到的那些美丽的樱花树! 
-					我找到了自己的特别配方并自己种了一种.
-					'''
-					Terraria_VanityTreeYellowWillowSeed: 
-					'''
-					我只是喜欢你在森林里找到的那些美丽的黄柳树! 
-					我找到了自己的特别配方并自己种了一种.
-					'''
-					Terraria_RabbitOrder: 
-					'''
-					嗷! 这只小兔子真可爱!!! 
-					我只想抚摸他, 让他坐在我的头上. 
-					想象一下这如果有两只...
-					'''
-					Terraria_JoustingLance: 
-						'''
-						我找到一根奇怪的棍子...
-						我想这是为了更接近空中的生物以更容易喂养它们, 
-						但我想这应该是一件武器. 无说服力.
-						'''
-					Terraria_FairyGlowstick: 
-					'''
-					我想去抓一个可怕的地下仙女, 
-					但我最后得到的只是一个很酷的荧光棒.
-					'''
-					Terraria_TreeGlobe: 
-					'''
-					这是自然科学技术的一个更惊人的进步! 
-					眨眼间就能改变树木的力量!
-					'''
-					Terraria_WorldGlobe: 
-					'''
-					这是大自然科技的一个惊人进步! 
-					眨眼间改变森林的力量! 当然, 我们碰不到不到它们.
-					'''
-					Terraria_LightningCarrot: 
-					'''
-					我走遍了这片土地, 到处寻找, 我终于找到了这只可爱的伏特兔子! 
-					必须抓住他们!
-					'''
-					Terraria_DiggingMoleMinecart: 
-					'''
-					这个生物的结构很奇怪...它的中心有一个人大小的洞. 
-					这是我见过的最奇怪的生物...
-					'''
-					Terraria_BallOfFuseWire: 
-					'''
-					很高兴你没有激怒这只会爆炸的小猫, 老兄! 
-					我没在你身上看到和平卡片.
-					'''
-
-					Lycantrope: {
-					}
-				}
-			}
-
-			Terraria_Princess: {
-				ShopQuote: {
-					Terraria_RoyalTiara: 我做了一个精致的头饰, 为时尚量身订做.
-					Terraria_RoyalDressTop: 我做了一件精致的衬衫, 为时尚量身订做.
-					Terraria_RoyalDressBottom: 我做了一件精致的连衣裙, 为时尚量身订做.
-					Terraria_RoyalScepter: 我的魔法作品中没有危险的仿制品, 共振节杖.
-					Terraria_GlassSlipper_Male: 一双拖鞋, 任何一位少女都会很乐意收到它作为礼物!
-					Terraria_GlassSlipper_Female: 这些应该非常适合你的脚!
-					Terraria_PrinceUniform: 我为皇室王子做的衣服, 为时尚量身订做.
-					Terraria_PrincePants: 我为皇室王子做的一条裤子, 为时尚量身订做.
-					Terraria_PrinceCape: 我为皇室王子做的飘逸斗篷, 为时尚量身订做.
-					Terraria_PottedCrystalPlantFern: 
-					'''
-					这种神秘的植物生长在我的花园里, 
-					这种蕨类植物在神圣的环境中会很好看!
-					'''
-					Terraria_PottedCrystalPlantSpiral: 
-					'''
-					这种神秘的植物生长在我的花园里, 
-					这种螺旋形的植物在神圣的环境中会很好看!
-					'''
-					Terraria_PottedCrystalPlantTeardrop: 
-					'''
-					这个神秘的泪滴落在了我的花园里, 
-					它长出了根并开始像植物一样生长! 
-					真是个奇怪的小东西.
-					'''
-					Terraria_PottedCrystalPlantTree: 
-					'''
-					这种神秘的植物生长在我的花园里, 
-					这棵树在神圣的环境下会很好看!
-					'''
-					Terraria_Princess64: 
-					'''
-					一个看起来不像我想要的东西. 
-					我一直想把它从城堡里搬出来换个新东西, 所以它可出售的.
-					'''
-					Terraria_PaintingOfALass: 
-					'''
-					我在幼儿园时的自画像. 
-					我简直受不了我在上面的样子! 所以它可出售的.
-					'''
-					Terraria_DarkSideHallow: 
-					'''
-					我要求的第一幅套画作之一. 
-					我想要一幅独角兽的画, 因为我被告知它们不是真的, 但事实证明它们是真的! 
-					所以它可出售的.
-					'''
-					Terraria_BerniePetItem: 一只可爱的毛绒熊的纽扣.
-					Terraria_MusicBoxCredits: 
-					'''
-					你冒险经历的一大步, 击败月球领主! 
-					然而你的旅途尚未结束.
-					'''
-					Terraria_MusicBoxCredits_GuideAndrew: 
-					'''
-					你冒险经历的一大步,击败月球领主! 
-					然而你的旅途尚未结束. 
-					我想安德鲁会为你感到骄傲的.
-					'''
-					Terraria_SlimeStaff: 这个粘糊糊的法杖召唤了一个可爱的小史莱姆! 可爱极了!
-					Terraria_HeartLantern: 
-					'''
-					装饰得不错, 我还听说它能治头痛, 有助于愈合伤口. 
-					我把它评为'plus up', 比'plus'还要大!
-					'''
-					Terraria_FlaskofParty: 
-					'''
-					使用你的剑在击中敌人时进行派对!
-					别告诉派对女孩我在转售她的东西!
-					'''
-					Terraria_FlaskofParty_PartyGirl: 使用你的剑在击中敌人时进行派对! 别告诉{PartyGirl}我在转售她的东西!
-					Terraria_SandstorminaBottle: 
-					'''
-					比金字塔还要古老的古代遗物! 
-					它一直放在我的衣柜里, 制造了额外的灰尘.
-					'''
-					Terraria_Terragrim: 
-					'''
-					一把轻快且锋利的剑! 
-					但它并不像我城堡里的那件会召唤魔法弹幕的一样.
-					'''
-					Terraria_PirateStaff:私人飞船! 只需要希望没人是内鬼...
-					Terraria_DiscountCard: 在我的衣柜里发现了这个, 看起来有点像你.
-					Terraria_DiscountCard_Exporter: 
-					'''
-					在我的衣柜里发现了这个, 看起来有点像你. 
-					我听说{Exporter}在卖这个, 但他的价格太贵了!
-					'''
-					Terraria_LuckyCoin: 在我的衣柜里发现了这个, 看起来很幸运!
-					Terraria_LuckyCoin_Exporter: 
-					'''
-					在我的衣柜里发现了这个, 看起来很幸运! 
-					我听说{Exporter}在卖这个, 但他的价格太贵了!
-					'''
-					Terraria_CoinGun: 
-					'''
-					零钱从未变得如此致命. 
-					我可以用这个和城堡的财富来对抗整个军队!
-					'''
-				}
-			}
-
-			Painter: {
-				ShopQuote: {
-					Paintbrush: 每位骑士都有着他独有的剑, 这把是我的. 但它也可能是你的!
-					PaintRoller: 这个长工具非常适合那些你碰不到的墙壁.
-					PaintScraper:
-						'''
-						没有错误, 只有快乐的意外.
-						摧毁他们.
-						'''
-					RedPaint: 啊... 阿拉巴马猩红... 美丽的颜色. 让我想起了苹果.
-					OrangePaint: 啊...原子柑橘... 美丽的颜色. 让我想起了橘子, 呵.
-					YellowPaint: 啊...芥末黄... 美丽的颜色. 让我想起了香蕉.
-					LimePaint: 啊...酸橙... 美丽的颜色. 让我想起了柠檬, 呵.
-					GreenPaint: 啊...毫无疑问的绿色...美丽的颜色. 让我想起了梨.
-					TealPaint: 啊...适中的碧绿色...美丽的颜色. 让我想起了... 某些东西?
-					CyanPaint: 啊...加勒比风潮...美丽的颜色. 让我想起了... 某些东西?
-					SkyBluePaint: 啊...冬季向导...美丽的颜色. 让我想起了...水晶.
-					BluePaint: 啊...拜恩蓝...美丽的颜色. 让我想起了...蓝莓.
-					PurplePaint: 啊...紫金山的威严...美丽的颜色. 让我想起了...李子.
-					PinkPaint: 啊...粉得要命...美丽的颜色. 让我想起了...粉红色柠檬水, 呵.
-					VioletPaint: 啊...法国紫罗兰...美丽的颜色. 让我想起了...紫罗兰, 呵.
-					BlackPaint: 啊...明显的缺乏色彩...让我想起了...黑莓, 呵.
-					GrayPaint: 啊...老胡子灰...美丽的颜色. 让我想起了...老人.
-					WhitePaint: 啊...钛白...美丽的颜色. 让我想起了...胶.
-					BrownPaint: 啊...杏仁棕...美丽的颜色. 让我想起了...木棍.
-					ShadowPaint: 啊...梵塔黑...绝对是一种...颜色. 或者不是.
-					NegativePaint: 啊...额...这不是颜色. 这会反转颜色. 不知道它是怎么生效的.
-					GlowPaint: 啊...额...这不是颜色. 这只会让东西更亮. 这是画作吗?
-
-					// Paintings
-
-					Painting: 一件真正的艺术品.
-					Daylight: 穆拉很好地画出了白天的美丽.
-					FirstEncounter: 穆拉很好地画出了人类的困境.
-					GoodMorning: 穆拉画的向日葵很精致.
-					UndergroundReward: 穆拉完美地画出了心形水晶的复杂表面.
-					ThroughtheWindow: 我们可以透过穆拉的眼睛看, 就好像我们是他一样.
-					DeadlandComesAlive: 穆拉画出了巴洛克风的格血腥猩红.
-					LightlessChasms: 穆拉画出了巴洛克风格的野蛮腐化.
-					TheLandofDeceivingLooks: 穆拉画出了巴洛克风格的显目神圣.
-					DoNotStepontheGrass: 穆拉画出了浪漫风格的繁茂丛林.
-					ColdWatersintheWhiteLand: 穆拉画出了浪漫风格的寒冷苔原.
-					SecretoftheSands: 穆拉画出了黑暗风格的法老诅咒.
-					EvilPresence: 穆拉确实表明了我们在这个世界上必须面对的缺乏隐私.
-					PlaceAbovetheClouds: 穆拉画出了印象派风格的风盈天空.
-					SkyGuardian: 穆拉真实地画了一只飞龙身体的曲折.
-					Nevermore: 穆拉展现了爱情之后的生命中出现的死亡的绝望和无能.
-					Reborn: 人们只能想象手想要触及什么. 音乐? 复仇? 我们不得而知.
-					Graveyard: 穆拉画出了恐怖风格的恐怖墓地.
-					GhostManifestation: 
-						'''
-						穆拉创造出了自己的绘画风格-
-						似乎在为虚构的怪物做广告.
-						'''
-					WickedUndead: 
-						'''
-						穆拉创造出了自己的绘画风格-
-						似乎在为歌剧院的演出做广告.
-						'''
-					BloodyGoblet: 穆拉画出了一个巴洛克风格的高脚杯, 并用一个独特的风格画出了溢出的血液.
-					StillLife: 
-						'''
-						莫拉在静物类型上创造了一个有趣的转折点-
-						头骨是真实静物的一个例子.
-						'''
-
-					// Wallpaper
-
-					BubbleWallpaper: 这张壁纸到处都是有趣的泡泡. 适用于泳池.
-					CopperPipeWallpaper: 这张壁纸上到处都是蒸汽管道. 适用于机器.
-					DuckyWallpaper: 这张壁纸上到处都是鸭子. 非常, 非常的有用.
-					FancyGreyWallpaper: 这壁纸很漂亮. 适用于维多利亚式住宅.
-					IceFloeWallpaper: 这张壁纸让人想起了杂乱的冰川. 适用于苔原.
-					MusicWallpaper: 这张壁纸上到处都是音符. 适用于乐队的下一场演出.
-					PurpleRainWallpaper: 这张壁纸描绘了一股紫罗兰色的洪水. 适用于公主的宫殿.
-					RainbowWallpaper: 这张壁纸描绘了一条五颜六色的彩虹. 适用于精灵独角兽区.
-					SparkleStoneWallpaper: 这张壁纸描绘了一些闪闪发光的岩石. 看起来有点好吃...
-					StarlitHeavenWallpaper: 这张壁纸描绘了美丽的星空. 我想知道上面住着什么...
-
-					ChristmasWallpapers: 这张壁纸让我感受到了节日的气氛.
-					ChristmasTreeWallpaper: 我爱圣诞树!
-					OrnamentWallpaper: 我爱装饰品!
-					CandyCaneWallpaper: 我爱甘蔗糖!
-
-					// These are just "this wallpaper gets me in a festive mood"
-					FestiveWallpaper: No Text.
-					BluegreenWallpaper: No Text.
-
-					StarsWallpaper: 我爱星星!
-					SquigglesWallpaper: 我爱波浪!
-					SnowflakeWallpaper: 我爱雪花!
-
-					// Exceptions to the christmas wallpaper heading
-					KrampusHornWallpaper: 这张壁纸让我摆脱了节日的气氛. 我讨厌坎卜斯!
-					GrinchFingerWallpaper: 这张壁纸让我摆脱了节日的气氛. 我讨厌坎格林奇!
-				}
-			}
-
-			WitchDoctor: {
-				ShopQuote: {
-					ImbuingStation: 
-						'''
-						他们发现刀锋和灵魂被赋予了力量,
-						当他们喝下来自灌注站的烧瓶时.
-						'''
-					Blowgun: 有人说这武器是"吹"的, 但恰恰相反, 是你吹的这武器.
-					StyngerBolt: 你很幸运, 我碰巧还剩下一些. 通常情况下, 你必须做出牺牲.
-					Stake: 一个有趣的事实: 如果没有这些赌注, 你的生命将岌岌可危.
-					Cauldron: 
-						'''
-						我已经用了这个很多次, 以创造不可思议的力量药剂.
-						我也用它来做鸡汤!
-						'''
-					TikiTotem: 
-						'''
-						这个护身符会召唤一个小生命在你身边.
-						不是很有用, 但是很好的伴侣.
-						'''
-					LeafWings: 
-						'''
-						有人会说树叶做不好翅膀.
-						大自然的力量总是占上风.
-						'''
-					VialofVenom: 少量非常致命的液体. 饮酒风险自负.
-					TikiMask: 具有精神力量的远古面具. 我只能以很高的价格把它卖出去.
-					TikiShirt: 具有精神力量的远古衣服. 我只能以很高的价格把它卖出去.
-					TikiPants: 具有精神力量的远古裤子. 我只能以很高的价格把它卖出去.
-					PygmyNecklace: 这个旧护身符可以让你更好地控制有用的精神.
-					HerculesBeetle: 甲虫与精神和物质之间的联系更为密切.
-
-					Fountains: 美丽的喷泉.
-					PureWaterFountain: 在水中传播纯净的精华.
-					DesertWaterFountain: 在水中传播干旱的精华.
-					JungleWaterFountain: 在水中传播自然的精华.
-					IcyWaterFountain: 在水中传播寒冷的精华.
-					CorruptWaterFountain: 在水中传播腐化的精华.
-					CrimsonWaterFountain: 在水中传播暴力的精华.
-					HallowedWaterFountain: 在水中传播光明的精华.
-					BloodWaterFountain: 在水中传播血红的精华.
-					CavernFountain: 在水中传播固化的精华.
-					OasisFountain: 在水中传播庇护的精华.
-
-					BewitchingTable: 这张桌子与精神境界有着终极的联系.
-				}
-			}
-
-			Wizard: {
-				ShopQuote: {
-					CrystalBall: 
-						'''
-						啊! 我的魔法球! 它包含着数不清的奇迹和神奇的魂灵!
-						...我不记得是从哪儿弄来的了.
-						'''
-					IceRod: 是的, 这根魔杖似乎把空气变成了冰. 相当神奇. 为什么我会有这个?
-					GreaterManaPotion: 
-						'''
-						哎呀, 终极魔法补充药剂.
-						一次快速补充5个小时的天体能量!
-						'''
-					Bell: 
-						'''
-						这个小器具做不了很多事情,
-						但我敢打赌, 只要有一点魔法, 你就能做出神奇的事情!
-						'''
-					Harp:
-						'''
-						这个大器具做不了很多事情,
-						但我敢打赌, 只要有一点魔法, 你就能做出神奇的事情!
-						'''
-					SpellTome: 我昨天该把它变成灰色的, 但我忘了.
-					Book: 
-						'''
-						看啊! 对开本! 这本魔法书可以召唤任何生物! 
-						等下...这只是一本普通的旧书.
-						'''
-					MusicBox: 
-						'''
-						啊...一个音乐盒可以容纳世界各地被遗忘的优美旋律.
-						给我录一首优美的歌, 好吗? 我渴望听到童年的音乐.
-						'''
-					EmptyDropper: 我用它来矫正视力, 但我相信你可以用它做些更神奇的事情.
-					WizardsHat: 我...不知道我为什么有这个. 为什么...我穿...成这样吗?
-				}
-			}
-
+		ShopQuote: {
 			Mechanic: {
-				ShopQuote: {
-					Wrench: 你说管钳不适用于电线是什么意思? 我用这些设置了各种电路!
-					ColoredWrench: 不要让你的电线交叉, 只需要把它们涂成不同的颜色, 你就有了完美的电线管理.
-					WireCutter: 如果你仍然不能很好地管理电线, 你可以试着用剪钳.
-					Wire_CreeperSuit: 不, 这不是灰尘, 你知道那有多不安全吗? 
-					Lever: 杠杆和开关有什么区别? 杠杆看起来很酷.
-					Switch:杠杆和开关有什么区别? 开关更有效率.
-					PressurePlates: 这像一个开关, 但要踩上去! 
-					ProjectilePressurePad: 这像一个开关, 但要射击!
-					BoosterTrack: 一直认为地雷车可以跑得快一点, 准确地说可能快20英里.
-					Actuator: 哦, 如果你想知道的话, 我没在地下设陷阱.
-					WirePipe: 现在你真的不会把你的线交叉了!
-					LaserRuler: 尺子当然很好用, 但是全息尺子能覆盖你的整个视野吗?
-					MechanicalLens: 我以前总是看不到我的电线, 所以我做了这些!
-					EngineeringHelmet: 非常适合解决实际问题!
-					WireBulb: 你知道我曾经用灯泡而不是蜡烛做蛋糕吗?
-					MechanicsRod: "我想做一个'钓鱼大师'!"
-					MechanicsRod_Angler: "{Angler}告诉我要做一个'给钓鱼大师的超级钓竿'...好吧, 我没法拒绝."
-					Timer5Second: 5秒规则!
-					Timer3Second: 还是3秒规则?
-					Timer1Second: 用于设置闪光灯.
-					TimerOneHalfSecond: 绝对适合设置闪光灯.
-					TimerOneFourthSecond: Hm...也许每秒闪烁的次数太多了.
-
-					SantankSentry: 我设法从一个旧的高斯炮塔上捞到了这个, 你可以在你自己的哨兵身上使用它!
-				}
-			}
-
-			Truffle: {
-				ShopQuote: {
-					MushroomCap: 别担心, 他们会长回来的.
-					StrangeGlowingMushroom: 好像我的同类喜欢上了你.
-					DarkBlueSolution: 你能把我的孢子传播到全世界吗?
-					MushroomSpear: 我用自己的汗水和发光菌丝锻造了这把矛.
-					Hammush: 看啊, 强大的蘑菇锤!
-					Autohammer: 我用这个锻造站来打造我自己的武器, 也许你也可以用它给你的武器注入蓝色的力量.
-				}
-			}
-
-			DD2Bartender: {
-				ShopQuote: {
-					Ale: 过来喝点酒? 这真是个好主意, 笨蛋!
-					DD2ElderCrystal: 这可能只是一块普通的宝石, 但在我的家乡, 人们用生命捍卫着这颗水晶!
-					DD2ElderCrystalStand: 可装载永恒水晶的金色底座, 归还时请确保上面没有划痕!
-					DefendersForge: 在来到这里之前, 我决定抢走其中一个锻造炉, 但现在对我来说似乎没有用了...
-
-					// Weapons 
-
-					DD2FlameburstTowerT1Popper: 这根魔杖会给予你炽热火力, 明智地使用它!
-					DD2FlameburstTowerT2Popper: 用这根手杖, 你的烈焰哨兵会获得更多的火力!
-					DD2FlameburstTowerT3Popper: 这是学徒和暗黑艺术家的必需品!
-
-					DD2BallistraTowerT1Popper: 这根魔杖会给予你弹道学火力, 明智地使用它!
-					DD2BallistraTowerT2Popper: 用这根手杖, 你的弩炮哨兵会获得更多的火力!
-					DD2BallistraTowerT3Popper: 这是侍卫和英灵殿骑士的必需品!
-
-					DD2ExplosiveTrapT1Popper: 这根魔杖会给予你爆炸火力, 明智地使用它!
-					DD2ExplosiveTrapT2Popper: 用这根手杖, 你的爆炸陷阱哨兵会获得更多的爆炸火力!
-					DD2ExplosiveTrapT3Popper: 这是女猎人和红色游骑兵的必需品!
-
-					DD2LightningAuraT1Popper: 这根魔杖会给予你眩晕能力, 明智地使用它!
-					DD2LightningAuraT2Popper: 用这根手杖, 你的闪电光环哨兵会获得更多的电击火力!
-					DD2LightningAuraT3Popper: 这是武僧和渗透忍者的必需品!
-
-					// Monk Armor
-					MonkBrows: 这款眉毛非常适合眉毛爱好者, 甚至连莫来管队长都嫉妒了!
-					MonkShirt: 真的是武僧的衬衫.
-					MonkPants: 真的是武僧的裤子.
-
-					// Shnobi Infiltrator Armor
-					MonkAltHead: 永恒之地最强的忍者曾经戴过的头盔!
-					MonkAltShirt: 永恒之地最强的忍者曾经穿过的衣服!
-					MonkAltPants: 永恒之地最强的忍者曾经穿过的裤子!
-
-					// Squire Armor
-					SquireGreatHelm: 这个锡罐不可小觑, 它很有冲击力!
-					SquirePlating: 这个胸甲会让你在未来的战斗中感觉更安全!
-					SquireGreaves: 这些护胫会让你在未来的战斗中感觉更安全!
-
-					// Valhalla Knight Armor
-					SquireAltHead: 永恒之地最强的骑士曾经戴过的头盔!
-					SquireAltShirt: 永恒之地最强的骑士曾经穿过的胸甲!
-					SquireAltPants: 永恒之地最强的骑士曾经穿过的护胫!
-
-					// Apprentice Armor
-					ApprenticeHat: 我来之前在酒馆的衣柜里找到了这个.
-					ApprenticeRobe: 这可能也在酒馆的衣柜里.
-					ApprenticeTrousers: 我想裤子也在衣柜里?
-
-					// Dark Artist Armor
-					ApprenticeAltHead: 永恒之地最强的法师曾经戴过的帽子!
-					ApprenticeAltShirt: 永恒之地最强的法师曾经穿过的法袍!
-					ApprenticeAltPants: 永恒之地最强的法师曾经穿过的护胫!
-
-					// Huntress Armor
-					HuntressWig: 如果这只是一个假发, 这意味着女猎手是否和我一样秃顶?!
-					HuntressJerkin: 真的是女猎手的衬衫.
-					HuntressPants: 真的是武僧的裤子.
-
-					// Red Riding Artist Armor
-					HuntressAltHead: 永恒之地最强的女猎手曾经戴过的兜帽!
-					HuntressAltShirt: 永恒之地最强的女猎手曾经穿过的衣服!
-					HuntressAltPants: 永恒之地最强的女猎手曾经穿过的护胫!
-				}
-			}
-
-			SkeletonMerchant: {
-				ShopQuote: {
-					StrangeBrew: 
-						'''
-						我不知道这里面是什么...要么喝, 要么不喝.
-						如果它把你变成了一只青蛙的话, 你不能用有意义的方式杀我!
-						'''
-					LesserHealingPotion: 我听说这些对你的生命很好. 我不知道...我没有生命!
-					SpelunkerGlowstick: 不伤脊梁挖矿的最好办法, 靠近岩石看看它们是否发光!
-					Glowstick: 
-						'''
-						对于照亮黑暗的洞穴非常有用. 但对我来说无关紧要...
-						我没有眼睛.
-						'''
-					BoneTorch: 
-						'''
-						好吧...我的包里有我兄弟的燃烧碎片.
-						有兴趣吗?
-						'''
-					Torch: 它在发光! 它在闪耀! 它...提供光亮. 它是...火把! 并且它可能是你的, 两只火把只要25铜币!
-					BoneArrow: 别问我为什么有这些.
-					WoodenArrow: 满足你所有不经意间无法追踪的弹幕武器需求! 你不会从我这得到它的.
-
-					// Reference to literally every youtuber doing calamity yoyo run #5346
-					Counterweights: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
-
-					// Demolitionist reference
-					Bomb: 
-						'''
-						听着, 我可以解释. 我在这里遇到了一些小矮人, 当他们睡着的时候...非自愿的... 
-						我决定借一些, 以备不时之需.
-						'''
-					Rope: 非常适合攀登洞穴高处的悬崖! 或是当你骨质疏松时让你可以站起来. 骨质疏松症...
-
-					Gradient: 我知道它们看起来不是最好的, 但这个渐变至少有一些把戏! 嗖...嗖嗖...
-					// Reference to windows command format C: you guys should totally run it on your computer
-					FormatC: 研究这个悠悠球时要小心点...当我在我的百科全书里查到它的时候, 它毁了整本书! 一定找错地方了.
-					YoYoGlove: 这绝对是一笔值得的投资! 近些日子中, 每个酷小伙都在玩悠悠球.
-					SlapHand: 呵呵...这很有趣. 哈! 哦, 我没法控制它. 请把这个从我身上拿下来, 我求你...咯咯...
-					MagicLantern: 我不知道这个灯笼怎么了. 不管我用手电筒打它多少次, 它都不亮. 也许我漏了什么.
-				}
-			}
-
-			Golfer: {
-				ShopQuote: {
-					// Clubs
-					GolfClubStoneIron: 这根铁杆有点变形了, 但这样就够了.
-					GolfClubRustyPutter: 这根推杆有点变形了, 但这样就够了.
-					GolfClubBronzeWedge: 这根挖起杆有点变形了, 但这样就够了.
-					GolfClubWoodDriver: 这根木杆有点变形了, 但这样就够了.
-
-					GolfClubIron: 这根铁杆很好用并且打击效果很好.
-					GolfClubPutter: 这根推杆很好用并且打击效果很好.
-					GolfClubWedge: 这根挖起杆很好用并且打击效果很好.
-					GolfClubDriver: 这根木杆很好用并且打击效果很好.
-
-					GolfClubMythrilIron: 这根铁杆装扮的很好! 我想它的打击效果也很好.
-					GolfClubLeadPutter: 这根推杆装扮的很好! 我想它的打击效果也很好.
-					GolfClubGoldWedge: 这根挖起杆装扮的很好! 我想它的打击效果也很好.
-					GolfClubPearlwoodDriver: 这根木杆装扮的很好! 我想它的打击效果也很好.
-
-					GolfClubTitaniumIron: 这根铁杆是最顶尖的! 峰值性能!
-					GolfClubShroomitePutter: 这根推杆是最顶尖的! 峰值性能!
-					GolfClubDiamondWedge: 这根挖起杆是最顶尖的! 峰值性能!
-					GolfClubChlorophyteDriver: 这根木杆是最顶尖的! 峰值性能!
-
-					// Trophies
-					GolfTrophyBronze: 恭喜你进步了! 然而, 你还有很多事情要做.
-					GolfTrophySilver: 恭喜你进步了! 你几乎要比我强了, 呵呵...
-					GolfTrophyGold: 恭喜你的进步! 我不想在任何世界巡回赛中当你的对手!
-
-					// Flags
-					GolfCupFlag: 没有这些你怎么知道洞在哪里?
-
-					// Misc
-					GolfTee: 典型的高尔夫工具. 如果球被草覆盖了, 你该怎么击球?
-					GolfBall: 橡胶周围的橡胶周围的橡胶...全部被塑料包围. 高尔夫球很酷.
-					GolfWhistle: 
-						'''
-						前几天我发现这东西就在附近... 
-						不知道有谁会在高尔夫上使用魔法.
-						'''
-					GolfCup: 
-						'''
-						你可能认为你可以用一个普通的球洞, 但它安装了五彩纸屑发射器!
-						我喜欢五彩纸屑.
-						'''
-					ArrowSign: 如果你不知道往哪里打, 就不能打高尔夫球!
-					PaintedArrowSign: 如果你不知道往哪里打, 就不能打高尔夫球!
-					GolfOutfit: 看看这部分!
-					LawnMower: 割草机非常有用, 无论你是在剃平草坪还是击退僵尸!
-					GolfCart: 我认为你现在已经足够熟练了, 你比我更需要这些.
-					GolfPaintings: 我爱这幅画! 我不太喜欢艺术，但我可以深入主题!
-					GolfChest: 用于存储所有高尔夫纪念品或任何其他物品.
-				}
+				SantankSentry: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
 			}
 
 			DyeTrader: {
-				ShopQuote: {
-					DyeVat: 大大简化染料混合过程的机器, 着色爱好者的必备品.
-					SilverDye: 适合你服装的漂亮颜色.
-					SilverDye_Helmet: 适合你服装的漂亮颜色, 你的{Helmet}可能需要一些银色.
-					TeamDye: 需要队伍成员的帮助? 这种液化且可染色的材料会根据你的队伍动态改变颜色.
-					DyeTradersClothes: 我用来做这件长袍的异国情调的蓝色染料使它相当昂贵, 如果你想要它话.
-					ShadowDye: 代表夜晚的黑暗, 这种染料几乎和梵塔黑一样强大!
-					NegativeDye: 精心制作, 可反转应用于其上的任何颜色! 但只适用于光谱上可见的颜色.
-					BrownDye: 这个岛上没有用于制作棕色染料的材料, 所以我从家乡引进了一些.
-					FogboundDye: 
-						'''
-						在检查我的一个空染色瓶时, 我注意到一个瓶子里有一个鬼! 
-						它留下了神奇的雾精华, 我把它和普通的染料混合在一起, 创造了这个.
-						'''
-					BloodbathDye: 利用血僵尸的组织样本和血月的奇怪特性, 我创造了一种活的血液染料! 挺神奇的.
-					CursorDyeRemover: 清除光标上的任何染料, 非常神奇.
-					HealthCursorDye: 
-						'''
-						他们说我们都有一个'光标', 空间中一个神奇的点, 我们的注意力都在上面. 
-						使用神秘的材料和特殊的瓶子, 我已经能够创造出一种影响这个'光标'的染料.
-						这种颜色通过你和你的'光标'之间的连接来追踪你的生命.
-						'''
-					ManaCursorDye: 这种颜色通过你和你的'光标'之间的连接来追踪你的法力供给.
-					SwordCursorDye: 
-						'''
-						在对各种材料和魔法进行了大量实验之后,
-						我已经能够为你的'光标'创建一种染料, 它会将其形状变形为一把剑!
-						'''
-					DemonicCursorDye: 
-						'''
-						在对各种材料和魔法进行了大量实验之后,
-						我已经能够为你的'光标'创建一种染料, 它会显示你真实的自我.
-						'''
-				}
+				CursorDyeRemover: 清除任何附着在你光标上的染料, 非常神奇.
+				HealthCursorDye: 
+					'''
+					他们说我们都有一个'光标', 空间中一个神奇的点, 我们的注意力都在上面. 
+					使用神秘的材料和特殊的瓶子, 我已经能够创造出一种影响这个'光标'的染料.
+					这种颜色通过你和你的'光标'之间的连接来追踪你的生命.
+					'''
+				ManaCursorDye: 这种颜色通过你和你的'光标'之间的连接来追踪你的法力供给.
+				SwordCursorDye: 
+					'''
+					在对各种材料和魔法进行了大量实验之后,
+					我已经能够为你的'光标'创建一种染料, 它会将其形状变形为一把剑!
+					'''
+				DemonicCursorDye: 
+					'''
+					在对各种材料和魔法进行了大量实验之后,
+					我已经能够为你的'光标'创建一种染料, 它会显示你真实的自我.
+					'''
 			}
 
-			PartyGirl: {
-				ShopQuote: {
-					ConfettiGun: 适合在派对和庆祝活动中庆祝!
-					Confetti: 有趣的彩色小纸片, 适合派对!
-					SmokeBomb: 想给别人一个惊喜吗? 有了这些你就可以!
-					BubbleMachine: 一台可以吹泡泡的机器, 营造一个很棒的派对氛围!
-					FogMachine: 鬼雾有助于在万圣节营造良好的气氛!
-					BubbleWand: 想做属于自己的泡泡吗? 拿着这个做一些!
-					BeachBall: 这是一个在夏日与朋友共度时光的好方法!
-					LavaLamp: 一盏不能实现愿望的灯, 但看起来确实很酷!
-					PlasmaLamp: 每次看到这个奇怪的东西, 我都感到惊奇!
-					FireworksBox: 从这里拿一些烟花然后看它们在天空中爆炸成美丽的光!
-					FireworkFountain: 这个喷泉喷出的火花会引起附近所有人的注意!
-					PartyMinecart: 带着这个和喜庆的气氛, 坐最疯狂的过山车!
-					KiteSpectrum: 用这个看大风天空中彩虹的所有颜色!
-					PogoStick: 踩上蹦蹦跷并蹦的高高的!
-					ColoredRockets: 一枚五颜六色的火箭为派对划上了圆满的句号!
-					PartyGirlGrenade: 扔出这些并看着敌人变为行走派对!
-					ConfettiCannon: 海盗如何庆祝派对? W当然是用五彩纸屑加农炮!
-					Bubble: 非常强力的泡沫, 它可以阻挡你放在它旁边的任何液体!
-					SmokeBlock: 认为烟雾弹持续时间不够长? 试试一些持久的烟雾方块!
-					PartyMonolith: 想去派对吗? 拿着这个开始庆祝吧!
-					PartyHat: 想加入派对吗? 拿着这个然后开始派对吧!
-					SillyBalloonMachine: 它能使许多气球在空中飞, 但我不知道气球存放在哪里.
-					PartyPresent: 给你想要的人的礼物盒, 记得在给空盒子之前先把它装满.
-					Pigronata: 拿着它并开始摇晃, 击中后会显示内部奖品. 很有趣不是吗?
-					ColoredStreamers: 一条彩色丝绸, 顶部也有一条缎带!
-					SillyBalloons: 这些气球在任何派对上都会很好用!
-					SillyTiedBalloons: 一堆绑在一起的气球不会飞走, 我们不是在太空派对吧?
-					FireworksLauncher: 一个很酷的火箭发射器来庆祝你的胜利!
-					ReleaseDoves: 不要问你怎么能手里拿着这么多鸽子.
-					ReleaseLanterns: 拿一个扔到天上, 庆祝打败了强大的敌人!
-					Football: 擅长玩游戏吗? 试试用这个给你的朋友留下深刻印象!
-				}
+			Carpenter: {
+				Shutterstocker: 只需要一个按钮和一个快门, 它会允许剪片吸收足够的光线来制作图像!
+				ShutterstockerClipAmmo: 
+					'''
+					与快门储像机™一起使用以捕获图像
+					用最吸引人的剪片来保存你最好的建筑!
+					'''
+				ImpenetrableCoating: 一种只有镐子才能穿过的干净又强力的涂料!
+				OmniPaint: 
+					'''
+					使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
+						你可以很简单的把刷子刷干净!
+						不要让它接触到你的皮肤, 它可能会导致永久性着色和伤害.
+					'''
+				AdvancedRuler: 我们迄今为止最先进的尺子, 有许多功能、按钮和愚蠢的复杂性!
+				WhiteFlag: 不要挥舞太久, 除非你打算被认为这个岛很弱的哥布林殖民.
 			}
 
+			Exporter: {
+				GoldRing: 
+					'''
+					据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 
+					能以一个较便宜的价格买到!
+					'''
+				LuckyCoin: 
+					'''
+					我的老船长的第一枚硬币, 据说能够带来好运, 
+					但恁这只老龙虾不相信这样的神话.
+					'''
+				DiscountCard: 
+					'''
+					我从我一个配偶的尸体上拿到了这个, 
+					恁俩看起来很像啊, 不是吗?
+					'''
+				FoolsGoldRing: 
+					'''
+					女士们会喜欢恁戴着这个的, 
+					但千万不要告诉她们恁的秘密!
+					'''
+				FaultyCoin: 
+					'''
+					把这个视作一枚普通硬币, 如果他们抓不到恁, 
+					恁就可以得到一笔免费的交易, 淘气鬼.
+					'''
+				ForgedCard: 
+					'''
+					不喜欢付全款? 
+					这张伪造的卡会使恁的财产花费降低许多.
+					'''
+				RecyclingMachine: 
+					'''
+					乱扔垃圾是比当海盗更严重的罪行. 
+					用这个廉价的回收机保证恁自己的安全吧!
+					'''
+				SkeletonKey: 
+					'''
+					恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 
+					买一个吧!
+					'''
+				GrandReward: 
+					'''
+					恁喜欢通过打架来赚钱吗? 
+					这个物品是恁的不二之选.
+					'''
+			}
+
+			Occultist: {
+				GhostlyGrave: 
+					'''
+					在墓地测试复活咒语, 似乎这个墓地想要有一个活着的灵魂.
+					然而, 就像所有生物一样, 我必须结束他们的痛苦.
+					'''
+				OccultistCandle: 我觉得它对仪式很有用, 这-
+				Meathook: 从我劲敌的武器上拿出来的钩子...他不会知道我在这的, 对吧?
+				ShadowKey: 用于解锁地狱的战利品, 奇怪的是, 恶魔没有给每个箱子一个不同的钥匙孔, 所以抢劫并不是很容易.
+				UnholyCore: 我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
+				GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
+				InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
+				BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使大象病入膏肓.
+				WhoopieCushion: *Poomf*
+			}
+
+			Physicist: {
+				PhysicsGun: 
+					'''
+					我在幼儿园科学展上创造的零点能量场操纵仪,
+					与泥土法杖相比, 它的科技含量相当地高.
+					'''
+				HaltingMachine: 解决无法解决的问题, 如果你不喜欢下落的东西, 它可能会有用.
+				HolographicMeatloaf: 
+					'''
+					对用光合作用的生物的巨大打击.
+					这种肉饼是用最美味的清淡食物烹制的.
+					'''
+					
+				BloodMoonStarter: 我在一次'血月'事件的观察中在这个世界上发现了一件奇怪的人工制品.
+				GalacticStarfruit: 谁会知道地球上的果实可以控制宇宙中的恒星呢?
+				SolarTablet: 
+					'''
+					我在观察一座最近打开的神庙时发现了一件奇怪的人工制品.
+					我的扫描器能感觉到这件人工制品中有大量奇怪的暗物质.
+					'''
+
+				InactivePylonGunner: 
+					'''
+					如果没有与网络连接, 它就无法正常工作.
+					幸运的是, 你的'晶塔'会直接连接到那个网络.
+					'''
+				InactivePylonHealer: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
+				InactivePylonCleanser: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
+					
+				ForceAntiGravityBlock: 
+					'''
+					一种为'飞碟'制造的特殊镀层.
+					下方会发射反重力光束.
+					'''
+				ForceGravityBlock: 
+					'''
+					一种为'飞碟'制造的特殊镀层.
+					它的自身会产生引力并抵消所有反重力效果.
+					'''
+				PhysicsBlock: 
+					'''
+					一种为'飞碟'制造的特殊镀层.
+					其独特的成分会阻隔物理学枪的抓取效果.
+					'''
+				EmancipationGrill: 闪耀的、半透明的粒子场将抹去任何经过它的未经授权的设备.
+
+				SupernovaFruit: 
+					'''
+					这个苹果正在释放出强大的辐射.
+					现在你正接触着它, 我不指望你能活到下周.
+					'''
+				HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
+			}
+
+			SkyMerchant: {
+				BalloonKit: 老态龙钟, 便携式热气球一直是人们追求的目标, 并且它们就在这!
+				Pumpinator: 我从飞艇上买的一种奇怪的技术. 很不幸, 吸气功能不起作用, 真是个骗局!
+				Nimrod: 
+					'''
+					雷击湖面可以杀死数百条鱼, 不幸的是, 这种鱼竿每次只能钓3条鱼.
+					或者是制作这个鱼竿的巫师担心鳟鱼的数量.
+					'''
+				EquippedAcc: 嗯, 你身上的那个饰品很好, 不过, 也许这件的工艺更好?
+				Banners:
+					'''
+					啊是的, 用猎物的尸体制作地毯已经过时了.
+					在我看来, 悬挂横幅更好.
+					'''
+				BongBongPainting: 这幅画描绘了一种不正常的生物, 不过有人可能会欣赏这种生物的风格.
+				CatalystPainting: 画这幅画的艺术家肯定憎恨疯狂的邪教, 这是公平的.
+				YinYangPainting: 黑暗和邪恶力量的和谐相处, 有人认为这是真的.
+				YinYangPaintingsSeparate: 这幅画奇怪的名字和怪异的图像一定在逃避着什么...
+				HomeworldPainting: 这是一幅令人难以置信的艺术品, 展示了理论家们认为星源的家园是什么样子.
+				SkyrimRocks: 岩石上有用古代龙语加密的文字, 不幸的是, 我不知道有谁能翻译它.
+			}
+		}
+
+		Chat: {
 			PhysicistPet: {
 				0: 哔哔啵.
 				1: 哔啵.
@@ -3324,64 +2582,9 @@ Mods: {
 					3: 在我们的星球上, 晶塔根本不可能存在, 它的'幸福'净值为-30mw.
 					4: 你没有和任何像猫一样的生物做过交易...对吗?
 				}
-
-				ShopQuote: {
-					PhysicsGun: 
-						'''
-						我在幼儿园科学展上创造的零点能量场操纵仪,
-						与泥土法杖相比, 它的科技含量相当地高.
-						'''
-					HaltingMachine: 解决无法解决的问题, 如果你不喜欢下落的东西, 它可能会有用.
-					HolographicMeatloaf: 
-						'''
-						对用光合作用的生物的巨大打击.
-						这种肉饼是用最美味的清淡食物烹制的.
-						'''
-
-					BloodMoonStarter: 我在一次'血月'事件的观察中在这个世界上发现了一件奇怪的人工制品.
-					GalacticStarfruit: 谁会知道地球上的果实可以控制宇宙中的恒星呢?
-					SolarTablet: 
-						'''
-						我在观察一座最近打开的神庙时发现了一件奇怪的人工制品.
-						我的扫描器能感觉到这件人工制品中有大量奇怪的暗物质.
-						'''
-
-					InactivePylonGunner: 
-						'''
-						如果没有与网络连接, 它就无法正常工作.
-						幸运的是, 你的'晶塔'会直接连接到那个网络.
-						'''
-					InactivePylonHealer: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
-					InactivePylonCleanser: "{$Mods.Aequus.Chat.Physicist.ShopQuote.InactivePylonGunner}"
-
-					ForceAntiGravityBlock: 
-						'''
-						一种为'飞碟'制造的特殊镀层.
-						下方会发射反重力光束.
-						'''
-					ForceGravityBlock: 
-						'''
-						一种为'飞碟'制造的特殊镀层.
-						它的自身会产生引力并抵消所有反重力效果.
-						'''
-					PhysicsBlock: 
-						'''
-						一种为'飞碟'制造的特殊镀层.
-						其独特的成分会阻隔物理学枪的抓取效果.
-						'''
-					EmancipationGrill: 闪耀的、半透明的粒子场将抹去任何经过它的未经授权的设备.
-
-					SupernovaFruit: 
-						'''
-						这个苹果正在释放出强大的辐射.
-						现在你正接触着它, 我不指望你能活到下周.
-						'''
-					HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
-				}
 			}
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
-
 			Carpenter: {
 				Basic: {
 					0: 每当我匆忙做事的时候, 我都会担心我可能会错过又好又热的咖喱!
@@ -3395,24 +2598,6 @@ Mods: {
 				GoblinArmy: 当他们发动战争并闯入你的门时, 你就应该知道不要与那些地上的哥布林混在一起!
 
 				NoBounty: 很不幸的是, 我已经没有钱了, 也许以后再来吧?
-
-				ShopQuote: {
-					Shutterstocker: 只需要一个按钮和一个快门, 它会允许剪片吸收足够的光线来制作图像!
-					ShutterstockerClipAmmo: 
-						'''
-						与快门储像机™一起使用以捕获图像
-						用最吸引人的剪片来保存你最好的建筑!
-						'''
-					ImpenetrableCoating: 一种只有镐子才能穿过的涂料!
-					OmniPaint: 
-						'''
-						使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
-						你可以很简单的把刷子刷干净!
-						不要让它接触到你的皮肤, 它可能会导致永久性着色和上海.
-						'''
-					AdvancedRuler: 我们迄今为止最先进的尺子, 有许多功能、按钮和愚蠢的复杂性!
-					WhiteFlag: 不要挥舞太久, 除非你打算被认为这个岛很弱的哥布林殖民.
-				}
 
 				UI: {
 					BountyButton: 查看赏金
@@ -3428,22 +2613,6 @@ Mods: {
 				Basic: {
 					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
 					1: 和我谈话后你的英雄之旅就结束了! 哈哈!
-				}
-
-				ShopQuote: {
-					GhostlyGrave: 
-						'''
-						在墓地测试复活咒语, 似乎这个墓地想要有一个活着的灵魂.
-						然而, 就像所有生物一样, 我必须结束他们的痛苦.
-						'''
-					OccultistCandle: 我觉得它对仪式很有用, 这-
-					Meathook: 从我劲敌的武器上拿出来的钩子...他不会知道我在这的, 对吧?
-					ShadowKey: 用于解锁地狱的战利品, 奇怪的是, 恶魔没有给每个箱子一个不同的钥匙孔, 所以抢劫并不是很容易.
-					UnholyCore: 我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
-					GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
-					InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
-					BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使大象病入膏肓.
-					WhoopieCushion: *Poomf*
 				}
 			}
 			
@@ -3521,54 +2690,6 @@ Mods: {
 				UpgradeBurgerButton: 升级汉堡?
 				ThieveryButton: 偷窃
 			
-				ShopQuote: {
-					Terraria_GoldRing: 
-					'''
-					据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 
-					能以一个较便宜的价格买到!
-					'''
-					Terraria_LuckyCoin: 
-					'''
-					我的老船长的第一枚硬币, 据说能够带来好运, 
-					但恁这只老龙虾不相信这样的神话.
-					'''
-					Terraria_DiscountCard: 
-					'''
-					我从我一个配偶的尸体上拿到了这个, 
-					恁俩看起来很像啊, 不是吗?
-					'''
-					FoolsGoldRing: 
-					'''
-					女士们会喜欢恁戴着这个的, 
-					但千万不要告诉她们恁的秘密!
-					'''
-					FaultyCoin: 
-					'''
-					把这个视作一枚普通硬币, 如果他们抓不到恁, 
-					恁就可以得到一笔免费的交易, 淘气鬼.
-					'''
-					ForgedCard: 
-					'''
-					不喜欢付全款? 
-					这张伪造的卡会使恁的财产花费降低许多.
-					'''
-					RecyclingMachine: 
-					'''
-					乱扔垃圾是比当海盗更严重的罪行. 
-					用这个廉价的回收机保证恁自己的安全吧!
-					'''
-					SkeletonKey: 
-					'''
-					恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 
-					买一个吧!
-					'''
-					GrandReward: 
-					'''
-					恁喜欢通过打架来赚钱吗? 
-					这个物品是恁的不二之选.
-					'''
-				}
-
 				ShopPrice: {
 					Platinum: 白金达布隆
 					Gold: 黄金达布隆
@@ -3591,39 +2712,11 @@ Mods: {
 				TravellingMerchant: 我很好奇{TravellingMerchant}是如何比我做得更好的. 他甚至不用航空邮寄!
 				Pirate: 最近, {Pirate}对我谈到了他的船员. 我对他提到的那艘飞艇很感兴趣. 可以为我们的配送服务提供极大的承载能力!
 
-				ShopQuote: {
-					BalloonKit: 老态龙钟, 便携式热气球一直是人们追求的目标, 并且它们就在这!
-					Pumpinator: 我从飞艇上买的一种奇怪的技术. 很不幸, 吸气功能不起作用, 真是个骗局!
-					Nimrod: 
-						'''
-						雷击湖面可以杀死数百条鱼, 不幸的是, 这种鱼竿每次只能钓3条鱼.
-						或者是制作这个鱼竿的巫师担心鳟鱼的数量.
-						'''
-					EquippedAcc: 嗯, 你身上的那个饰品很好, 不过, 也许这件的工艺更好?
-					Banners:
-						'''
-						啊是的, 用猎物的尸体制作地毯已经过时了.
-						在我看来, 悬挂横幅更好.
-						'''
-					BongBongPainting: 这幅画描绘了一种不正常的生物, 不过有人可能会欣赏这种生物的风格.
-					CatalystPainting: 画这幅画的艺术家肯定憎恨疯狂的邪教, 这是公平的.
-					YinYangPainting: 黑暗和邪恶力量的和谐相处, 有人认为这是真的.
-					YinYangPaintingsSeparate: 这幅画奇怪的名字和怪异的图像一定在逃避着什么...
-					HomeworldPainting: 这是一幅令人难以置信的艺术品, 展示了理论家们认为星源的家园是什么样子.
-					SkyrimRocks: 岩石上有用古代龙语加密的文字, 不幸的是, 我不知道有谁能翻译它.
-				}
-
 				PlaceHere: 放置于此处来重命名你的物品
 				PressHere: 按下来设置你物品的名字
 				RenameChatButton: 重命名物品
-			}
-
-			Fargowiltas_Squirrel: {
-				ShopQuote: {
-					LiterallyEverything: *尖叫声*
 				}
 			}
-		}
 
 		TownNPCMood: {
 			Carpenter: {
