@@ -408,7 +408,7 @@ namespace Aequus.Projectiles
                 {
                     chance += Main.player[projectile.owner].ownedProjectileCounts[projectile.type] / 2;
                 }
-                if (aequus.accDustDevilFire && Main.rand.NextBool(chance))
+                if (aequus.accLittleInferno && Main.rand.NextBool(chance))
                 {
                     LittleInferno.InfernoPotionEffect(Main.player[projectile.owner], projectile.Center);
                 }
@@ -519,7 +519,7 @@ namespace Aequus.Projectiles
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                if (aequus.accDustDevilFire)
+                if (aequus.accLittleInferno)
                 {
                     float opacity = Math.Clamp((Main.myPlayer == projectile.owner ? 0.4f : 0.15f) / Main.player[projectile.owner].ownedProjectileCounts[projectile.type], 0.05f, 1f);
                     if (timeAlive < 30)

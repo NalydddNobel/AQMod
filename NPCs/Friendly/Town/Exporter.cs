@@ -4,7 +4,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables.LootBags.Roulettes;
+using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
@@ -339,7 +339,6 @@ namespace Aequus.NPCs.Friendly.Town
             for (int k = 0; k < amtRolled; k++)
             {
                 int roulette = SpawnLoot_ChooseRoulette(player, i);
-
                 if (roulette != 0)
                 {
                     player.QuickSpawnItem(source, roulette, 1);
@@ -371,13 +370,17 @@ namespace Aequus.NPCs.Friendly.Town
             if (ExporterQuests.QuestsCompleted > 4)
             {
                 choices.Add(ModContent.ItemType<DesertRoulette>());
+                choices.Add(ModContent.ItemType<OceanSlotMachine>());
             }
-            if (ExporterQuests.QuestsCompleted > 6)
+            if (ExporterQuests.QuestsCompleted > 8)
             {
-                choices.Add(ModContent.ItemType<SkyRoulette>()); ;
+                choices.Add(ModContent.ItemType<JungleSlotMachine>());
+                choices.Add(ModContent.ItemType<SkyRoulette>());
             }
-            if (ExporterQuests.QuestsCompleted > 8 && AequusWorld.downedEventDemon)
+            if (ExporterQuests.QuestsCompleted > 14 && AequusWorld.downedEventDemon)
+            {
                 choices.Add(ModContent.ItemType<ShadowRoulette>());
+            }
             return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;
         }
         public void OnQuestFailed(Player player)

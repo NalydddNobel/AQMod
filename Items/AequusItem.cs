@@ -6,6 +6,7 @@ using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
@@ -19,6 +20,7 @@ using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -35,16 +37,21 @@ namespace Aequus.Items
     public class AequusItem : GlobalItem, IAddRecipes
     {
         public delegate bool CustomCoatingFunction(int x, int y, Player player);
-
+        
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
+        public static List<int> FruitIDs { get; private set; }
         public static List<int> LegendaryFishIDs { get; private set; }
+
         public static Dictionary<int, CustomCoatingFunction> ApplyCustomCoating { get; private set; }
         public static List<CustomCoatingFunction> RemoveCustomCoating { get; private set; }
+
         public static Dictionary<int, string> RarityNames { get; private set; }
 
         private static Dictionary<int, int> ItemToBannerCache;
+
+        public static List<InventoryMovementInfo> inventoryMovementList;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -54,8 +61,34 @@ namespace Aequus.Items
         public bool naturallyDropped;
         public bool unOpenedChestItem;
 
+        public Vector2 _inventoryMoveTransitionOld;
+        public Vector2 _inventoryMoveTransition;
+        public Vector2 _inventoryMoveAnchor;
+
         public override void Load()
         {
+            FruitIDs = new List<int>()
+            {
+                ItemID.Apple,
+                ItemID.Apricot,
+                ItemID.Banana,
+                ItemID.BlackCurrant,
+                ItemID.BloodOrange,
+                ItemID.Cherry,
+                ItemID.Coconut,
+                ItemID.Dragonfruit,
+                ItemID.Elderberry,
+                ItemID.Grapefruit,
+                ItemID.Lemon,
+                ItemID.Mango,
+                ItemID.Peach,
+                ItemID.Pineapple,
+                //ItemID.Pomegranate,
+                ItemID.Plum,
+                ItemID.Rambutan,
+                //ItemID.SpicyPepper,
+                ItemID.Starfruit,
+            };
             ItemToBannerCache = new Dictionary<int, int>();
             RemoveCustomCoating = new List<CustomCoatingFunction>();
             ApplyCustomCoating = new Dictionary<int, CustomCoatingFunction>();
@@ -85,6 +118,8 @@ namespace Aequus.Items
                 [ItemRarityID.Red] = "Mods.Aequus.ItemRarity.10",
                 [ItemRarityID.Purple] = "Mods.Aequus.ItemRarity.11",
             };
+
+            inventoryMovementList = new List<InventoryMovementInfo>();
             On.Terraria.GameContent.Creative.ItemFilters.Weapon.FitsFilter += Weapon_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.Tools.FitsFilter += Tools_FitsFilter;
             On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.FitsFilter += MiscAccessories_FitsFilter;
@@ -131,6 +166,9 @@ namespace Aequus.Items
             SummonStaff = null;
             CritOnlyModifier?.Clear();
             CritOnlyModifier = null;
+
+            inventoryMovementList?.Clear();
+            inventoryMovementList = null;
         }
 
         public override void OnCreate(Item item, ItemCreationContext context)
@@ -160,6 +198,9 @@ namespace Aequus.Items
 
         public override bool OnPickup(Item item, Player player)
         {
+            _inventoryMoveAnchor = Vector2.Zero;
+            _inventoryMoveTransition = Vector2.Zero;
+            _inventoryMoveTransitionOld = Vector2.Zero;
             if (naturallyDropped && item.IsACoin && player.Aequus().accFoolsGoldRing)
             {
                 int multiplier = 1;
@@ -211,7 +252,32 @@ namespace Aequus.Items
 
         public override void UpdateInventory(Item item, Player player)
         {
+            if (!Main.playerInventory)
+            {
+                _inventoryMoveAnchor = Vector2.Zero;
+                _inventoryMoveTransition = Vector2.Zero;
+                _inventoryMoveTransitionOld = Vector2.Zero;
+            }
             noGravityTime = 0;
+        }
+
+        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        {
+            _inventoryMoveAnchor = Vector2.Zero;
+            _inventoryMoveTransition = Vector2.Zero;
+            _inventoryMoveTransitionOld = Vector2.Zero;
+            if (noGravityTime > 0)
+            {
+                item.velocity.Y *= 0.95f;
+                gravity = 0f;
+                noGravityTime--;
+            }
+        }
+
+        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        {
+            if (player.Aequus().accBloodCrownSlot != -2)
+                accBoost = false;
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -240,24 +306,76 @@ namespace Aequus.Items
             return null;
         }
 
-        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        public static void DrawMovingItems()
         {
-            if (noGravityTime > 0)
+            foreach (var info in inventoryMovementList)
             {
-                item.velocity.Y *= 0.95f;
-                gravity = 0f;
-                noGravityTime--;
+                var aequus = info.item.Aequus();
+                float progress = Vector2.Distance(info.position + aequus._inventoryMoveTransition, info.position).UnNaN();
+                if (progress < 1f)
+                {
+                    aequus._inventoryMoveTransitionOld = Vector2.Zero;
+                    aequus._inventoryMoveTransition = Vector2.Zero;
+                    aequus._inventoryMoveAnchor = Vector2.Zero;
+                }
+                progress /= Vector2.Distance(info.position, aequus._inventoryMoveAnchor).UnNaN() + 1f;
+                float scale;
+                if (progress > 0.5f)
+                {
+                    scale = Math.Max(Main.inventoryScale + (float)Math.Sin((0.5f - (progress - 0.5f)) / 0.5f * MathHelper.PiOver2) * 1f, Main.inventoryScale);
+                }
+                else
+                {
+                    scale = MathHelper.Lerp(info.scale, Main.inventoryScale + 1f, progress / 0.5f);
+                }
+
+                aequus._inventoryMoveTransitionOld = aequus._inventoryMoveTransition;
+                aequus._inventoryMoveTransition *= Math.Min(progress * 0.25f + 0.75f, 0.975f);
+
+                var drawCoords = info.position + new Vector2(0f, (float)Math.Sin(progress * MathHelper.Pi) * 80f);
+                info.spriteBatch.Draw(TextureAssets.Item[info.item.type].Value, drawCoords + aequus._inventoryMoveTransitionOld, info.frame, info.drawColor.UseA(0) * 0.5f, 0f, info.origin, scale, SpriteEffects.None, 0f);
+                info.spriteBatch.Draw(TextureAssets.Item[info.item.type].Value, drawCoords + aequus._inventoryMoveTransition, info.frame, info.drawColor, 0f, info.origin, scale, SpriteEffects.None, 0f);
             }
+            inventoryMovementList.Clear();
         }
-
-        public override void UpdateAccessory(Item item, Player player, bool hideVisual)
+        public bool PreDraw_CheckItemMovements(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (player.Aequus().accBloodCrownSlot != -2)
-                accBoost = false;
-        }
+            if (!Main.playerInventory || AequusUI.CurrentItemSlot.Context != ItemSlot.Context.InventoryItem)
+            {
+                _inventoryMoveAnchor = Vector2.Zero;
+                _inventoryMoveTransition = Vector2.Zero;
+                _inventoryMoveTransitionOld = Vector2.Zero;
+            }
 
+            if (_inventoryMoveAnchor.X != 0f)
+            {
+                if (_inventoryMoveTransition.X == 0f)
+                {
+                    _inventoryMoveTransition = _inventoryMoveAnchor - position;
+                    _inventoryMoveTransitionOld = _inventoryMoveTransition;
+                }
+
+                if (inventoryMovementList.Count > Main.InventorySlotsTotal * 2)
+                {
+                    inventoryMovementList.Clear();
+                    _inventoryMoveAnchor = Vector2.Zero;
+                    _inventoryMoveTransition = Vector2.Zero;
+                    _inventoryMoveTransitionOld = Vector2.Zero;
+                }
+                else
+                {
+                    inventoryMovementList.Add(new InventoryMovementInfo() { item = item, spriteBatch = spriteBatch, position = position, frame = frame, drawColor = drawColor * 2f, itemColor = itemColor, origin = origin, scale = scale, });
+                    return true;
+                }
+            }
+            return false;
+        }
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
+            if (PreDraw_CheckItemMovements(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale))
+            {
+                return false;
+            }
             if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.EquipAccessory)
             {
                 var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();

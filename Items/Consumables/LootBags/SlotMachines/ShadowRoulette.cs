@@ -1,13 +1,12 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags.Roulettes
+namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public class ShadowRoulette : GoldenRoulette
+    public class ShadowRoulette : SlotMachineItemBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
-            base.ModifyItemLoot(itemLoot);
             this.CreateLoot(itemLoot)
                 .AddRouletteItem(ItemID.Sunfury)
                 .AddRouletteItem(ItemID.FlowerofFire)
@@ -18,6 +17,7 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
                 .AddRouletteItem(ItemID.HellMinecart, 4)
                 .AddRouletteItem(ItemID.OrnateShadowKey, 4)
                 .AddRouletteItem(ItemID.HellCake, 4);
+            ModifyItemLoot_AddCommonDrops(itemLoot);
         }
     }
 }

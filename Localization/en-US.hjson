@@ -250,6 +250,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			FertilePowder: Fertilizer Box
 			Moro: Moro
 			
 			OmniPaint: Omni Paint
@@ -294,8 +295,10 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
+			JungleSlotMachine: Jungle Slot Machine
+			OceanSlotMachine: Ocean Slot Machine
+			ShadowRoulette: Shadow Slot Machine
 			SnowRoulette: Snow Slot Machine
-			GlowingMushroomsRoulette: Glowing Mushrooms Slot Machine
 			DesertRoulette: Desert Slot Machine
 			SkyRoulette: Sky Slot Machine
 			GoldenRoulette: Golden Slot Machine
@@ -596,7 +599,6 @@ Mods: {
 			SpectralLens: Spectral Lens
 			SpectreSoul: Spectre Soul
 			GoldPowder: Gold Powder
-			FertilePowder: Fertile Powder
 			Crabax: Crabax
 			Floatstick: Floatstick
 			SpaceSquidTrophy: Space Squid Trophy
@@ -940,6 +942,8 @@ Mods: {
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
+			
+			FertilePowder: Causes all nearby tiles to instantly grow
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			OmniPaint: Hold a paint item to bring up a menu of selectable paints
@@ -1076,6 +1080,21 @@ Mods: {
 				'Caught in Lava while near a Gore Nest'
 				'''
 
+			JungleSlotMachine:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			OceanSlotMachine:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
+			ShadowRoulette:
+				'''
+				{$CommonItemTooltip.RightClickToOpen}
+				{$Mods.Aequus.Tooltips.RouletteDrop}
+				'''
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
@@ -1592,7 +1611,6 @@ Mods: {
 				Inflicts blue fire on true melee hits
 				'''
 			GoldPowder: Converts critters into their golden counterparts
-			FertilePowder: Forces tiles to grow
 			GhostAmulet: Prevents Ghost spawns in singleplayer
 			CopperSeal: Fishing a crate will bless you with 30 seconds of the crate potion buff
 			SilverSeal: Fishing anything will bless you with 10 seconds of the fishing potion buff

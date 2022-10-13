@@ -165,7 +165,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<LightningRod>(),
                     ModContent.ItemType<RedSpriteTrophy>(),
                     ModContent.ItemType<RedSpriteMask>(),
-                    ModContent.ItemType<Moro>(),
                     ModContent.ItemType<Fluorescence>(),
                     ModContent.ItemType<AtmosphericEnergy>(),
                     ItemID.SoulofFlight,

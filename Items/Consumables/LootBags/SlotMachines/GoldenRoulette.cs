@@ -3,9 +3,9 @@ using Aequus.Items.Tools;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags.Roulettes
+namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public class GoldenRoulette : RouletteBase
+    public class GoldenRoulette : SlotMachineItemBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

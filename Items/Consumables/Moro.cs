@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Items.Misc;
+using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,6 +33,19 @@ namespace Aequus.Items.Consumables
             }
 
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            foreach (var i in AequusItem.FruitIDs)
+            {
+                CreateRecipe()
+                    .AddIngredient(i, 3)
+                    .AddIngredient<Fluorescence>(10)
+                    .AddIngredient<AtmosphericEnergy>()
+                    .AddTile(TileID.Anvils)
+                    .Register();
+            }
         }
     }
 }

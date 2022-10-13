@@ -134,7 +134,7 @@ namespace Aequus.Items
                     PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
                 }
 
-                TestLootBagTooltip(item, tooltips);
+                //TestLootBagTooltip(item, tooltips);
             }
             catch
             {

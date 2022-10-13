@@ -1,4 +1,6 @@
 ﻿using Aequus;
+using Aequus.Items.Misc;
+using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,12 +26,21 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityDustDevil;
             Item.value = ItemDefaults.DustDevilValue;
-            Item.expert = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accDustDevilFire = true;
+            player.Aequus().accLittleInferno = true;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Fluorescence>(10)
+                .AddIngredient<AtmosphericEnergy>()
+                .AddIngredient(ItemID.InfernoPotion)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
 
         public static void InfernoPotionEffect(Player player, Vector2 where, int npcWhoAmIBlacklist = -1)
@@ -44,23 +55,22 @@ namespace Aequus.Items.Accessories
             float minDistance = 200f;
             bool dealDamage = player.infernoCounter % 60 == 0;
             int damageDealt = 25;
-            int damageChance = 1;
             for (int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];
-                if (target.active && !target.friendly && target.damage > 0 && !target.dontTakeDamage && !target.buffImmune[fireDebuff] && player.CanNPCBeHitByPlayerOrPlayerProjectile(target) && Vector2.Distance(where, target.Center) <= minDistance)
+                if (target.active && !target.friendly && target.damage > 0 && !target.justHit && !target.dontTakeDamage && !target.buffImmune[fireDebuff] && player.CanNPCBeHitByPlayerOrPlayerProjectile(target) && Vector2.Distance(where, target.Center) <= minDistance)
                 {
-                    if (dealDamage && Main.rand.NextBool(damageChance) || !target.HasBuff(fireDebuff))
+                    if (dealDamage || !target.HasBuff(fireDebuff))
                     {
                         int oldDef = target.defense;
                         target.defense -= 20;
                         player.ApplyDamageToNPC(target, damageDealt, 0f, 0, crit: false);
+                        target.justHit = true;
                         target.defense = oldDef;
                     }
 
                     if (i != npcWhoAmIBlacklist)
                     {
-                        damageChance++;
                         target.AddBuff(fireDebuff, 120);
                     }
                 }

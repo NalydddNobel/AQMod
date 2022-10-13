@@ -181,7 +181,7 @@ namespace Aequus
         public bool accPreciseCrits;
         public Item accDavyJonesAnchor;
 
-        public bool accDustDevilFire;
+        public bool accLittleInferno;
 
         public int accGroundCrownCrit;
         public float accDarknessCrownDamage;
@@ -515,7 +515,7 @@ namespace Aequus
             accArmFloaties = false;
             accDavyJonesAnchor = null;
             accWarHorn = false;
-            accDustDevilFire = false;
+            accLittleInferno = false;
             accRitualSkull = false;
             accRamishroom = null;
             accPandorasBox = null;
@@ -1480,7 +1480,7 @@ namespace Aequus
                 }
             }
 
-            if (accDustDevilFire)
+            if (accLittleInferno)
             {
                 target.AddBuff(BuffID.OnFire, 240);
                 if (crit)

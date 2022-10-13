@@ -6,67 +6,40 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.LootBags.Roulettes
+namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public abstract class RouletteBase : ModItem
+    public abstract class SlotMachineItemBase : ModItem
     {
-        private class Loader : ILoadable
+        public static Vector2 ItemSpawnLocation;
+
+        protected virtual List<int> GetLootTable()
         {
-            void ILoadable.Load(Mod mod)
+            var dropAttemptInfo = new DropAttemptInfo()
             {
-                DefaultPotions = new List<int>()
-                {
-                    ItemID.ShinePotion,
-                    ItemID.NightOwlPotion,
-                    ItemID.SwiftnessPotion,
-                    ItemID.ArcheryPotion,
-                    ItemID.GillsPotion,
-                    ItemID.HunterPotion,
-                    ItemID.MiningPotion,
-                    ItemID.TrapsightPotion,
-                    ItemID.RegenerationPotion,
-                };
-            }
-
-            void ILoadable.Unload()
+                IsExpertMode = Main.expertMode,
+                IsMasterMode = Main.masterMode,
+                IsInSimulation = false,
+                item = -1,
+                npc = null,
+                player = Main.LocalPlayer,
+            };
+            var l = new List<int>();
+            foreach (var r in Main.ItemDropsDB.GetRulesForItemID(Type)
+                .Where((r) => r is SlotMachineDropRule && r.CanDrop(dropAttemptInfo)))
             {
-                DefaultPotions?.Clear();
-                DefaultPotions = null;
-            }
-        }
-
-        public static List<int> DefaultPotions { get; private set; }
-
-        protected virtual List<int> LootTable
-        {
-            get
-            {
-                var dropAttemptInfo = new DropAttemptInfo()
+                var rule = r as SlotMachineDropRule;
+                if (rule.itemId == rule.rouletteChoice)
                 {
-                    IsExpertMode = Main.expertMode,
-                    IsMasterMode = Main.masterMode,
-                    IsInSimulation = false,
-                    item = -1,
-                    npc = null,
-                    player = Main.LocalPlayer,
-                };
-                var l = new List<int>();
-                foreach (var r in Main.ItemDropsDB.GetRulesForItemID(Type)
-                    .Where((r) => r is RouletteDropRule && r.CanDrop(dropAttemptInfo)))
-                {
-                    var rule = r as RouletteDropRule;
-                    if (rule.itemId == rule.rouletteChoice)
-                    {
-                        l.Add((r as RouletteDropRule).itemId);
-                    }
+                    l.Add((r as SlotMachineDropRule).itemId);
                 }
-                return l;
             }
+            return l;
         }
 
         public virtual int PickTableIndex(float time, int total)
@@ -76,16 +49,16 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
 
         public virtual float DefaultTime()
         {
-            return Main.GlobalTimeWrappedHourly * 2f;
+            return SlotMachineSystem.Time * 2f;
         }
 
         public int GetItem()
         {
-            return LootTable[PickTableIndex(DefaultTime(), LootTable.Count)];
+            return GetLootTable()[PickTableIndex(DefaultTime(), GetLootTable().Count)];
         }
         public virtual int GetItem(float time)
         {
-            return LootTable[PickTableIndex(time, LootTable.Count)];
+            return GetLootTable()[PickTableIndex(time, GetLootTable().Count)];
         }
 
         public override void SetStaticDefaults()
@@ -104,6 +77,11 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
         public override bool CanRightClick()
         {
             return true;
+        }
+
+        public override void RightClick(Player player)
+        {
+            SoundEngine.PlaySound(Aequus.GetSound("Item/slotmachine", 0.3f, 0.05f, 0.075f));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -168,14 +146,16 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = true;
 
             float rollY = DefaultTime() % 1f;
+            float power = 2f;
             if (rollY < 0.5f)
             {
-                rollY = 1f - (float)Math.Pow(1f - rollY / 0.5f, 2f) * 0.5f - 0.5f;
+                rollY = 1f - (float)Math.Pow(1f - rollY / 0.5f, power) * 0.5f - 0.5f;
             }
             else
             {
-                rollY = (float)Math.Pow(1f - rollY / 0.5f, 2f) * 0.5f + 0.5f;
+                rollY = (float)Math.Pow(1f - rollY / 0.5f, power) * 0.5f + 0.5f;
             }
+
 
             for (int i = -1; i <= 1; i++)
             {
@@ -200,12 +180,13 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
                 var drawCoords = new Vector2(x, y + (rollY - i - 0.5f) * back.Height) + back.Size() / 2f;
                 var itemOrigin = itemTexture.Size() / 2f;
                 Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, drawCoords, null, Color.Black * opacity * 0.33f, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Main.inventoryScale * 0.45f, SpriteEffects.None, 0f);
+
                 Main.spriteBatch.Draw(itemTexture, drawCoords + new Vector2(2f), null, Color.Black * opacity * 0.33f, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White * opacity, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 if (i == 0)
                 {
-                    //Main.NewText(rollY + ": " + (float)Math.Sin(rollY * MathHelper.Pi));
-                    Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White.UseA(0) * 0.5f * (float)Math.Sin(rollY * MathHelper.Pi), 0f, itemTexture.Size() / 2f, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
+                    ItemSpawnLocation = drawCoords;
+                    Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White.UseA(0) * (float)Math.Pow(0.5f * (float)Math.Sin(rollY * MathHelper.Pi), 2), 0f, itemTexture.Size() / 2f, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 }
             }
 
@@ -218,7 +199,12 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
             var arrowFrame = arrowTexture.Frame(verticalFrames: 2, frameY: 0);
             var arrowOrigin = arrowFrame.Size() / 2f;
             x += back.Width / 2;
-            float arrowDrawXWave = 6f - (float)Math.Sin(rollY * MathHelper.Pi) * 6f;
+            float arrowDrawXWave = (float)Math.Sin(rollY * MathHelper.Pi) * 6f;
+            if (SlotMachineSystem.TimeSpeed > 0f)
+            {
+                arrowDrawXWave = MathHelper.Lerp(arrowDrawXWave, -3f, Math.Min(SlotMachineSystem.TimeSpeed, 1f));
+            }
+            arrowDrawXWave = 6 - arrowDrawXWave;
             for (int i = -1; i <= 1; i++)
             {
                 if (i == 0)
@@ -236,7 +222,7 @@ namespace Aequus.Items.Consumables.LootBags.Roulettes
 
         protected void ModifyItemLoot_AddCommonDrops(ItemLoot loot, List<int> potionSelection = null)
         {
-            loot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, (potionSelection ?? DefaultPotions).ToArray()));
+            loot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, (potionSelection ?? SlotMachineSystem.DefaultPotions).ToArray()));
         }
 
         [Obsolete("Replaced with ModifyLoot_Potions in ModifyItemLoot", error: true)]

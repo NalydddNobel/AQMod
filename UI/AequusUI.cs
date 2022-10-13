@@ -43,6 +43,17 @@ namespace Aequus.UI
             public const string InterfaceLogic3_27 = "Vanilla: Interface Logic 3";
             public const string Inventory_28 = "Vanilla: Inventory";
             public const string InfoAccessoriesBar_29 = "Vanilla: Info Accessories Bar";
+            public const string SettingsButton_30 = "Vanilla: Settings Button";
+            public const string Hotbar_31 = "Vanilla: Hotbar";
+            public const string BuildersAccessoriesBar_32 = "Vanilla: Builder Accessories Bar";
+            public const string RadialHotbars_33 = "Vanilla: Radial Hotbars";
+            public const string MouseText_34 = "Vanilla: Mouse Text";
+            public const string PlayerChat_35 = "Vanilla: Player Chat";
+            public const string Cursor_36 = "Vanilla: Cursor";
+            public const string MouseItemOrNPCHead_37 = "Vanilla: Mouse Item / NPC Head";
+            public const string MouseOver_38 = "Vanilla: Mouse Over";
+            public const string InteractItemIcon_39 = "Vanilla: Interact Item Icon";
+            public const string InterfaceLogic4_40 = "Vanilla: Interface Logic 4";
         }
         public struct ItemSlotContext
         {
@@ -221,7 +232,7 @@ namespace Aequus.UI
             int index = layers.FindIndex((l) => l.Name.Equals(name));
             if (index != -1)
             {
-                layers.Insert(index, new LegacyGameInterfaceLayer(yourName, method, scaleType));
+                layers.Insert(index + 1, new LegacyGameInterfaceLayer(yourName, method, scaleType));
             }
         }
 

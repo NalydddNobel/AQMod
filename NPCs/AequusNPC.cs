@@ -251,7 +251,7 @@ namespace Aequus.NPCs
                     {
                         if (Main.player[i].active && !Main.player[i].dead && npc.Distance(Main.player[i].Center) < 1000f)
                         {
-                            if (Main.player[i].Aequus().accDustDevilFire)
+                            if (Main.player[i].Aequus().accLittleInferno)
                             {
                                 infernoOnFire = true;
                             }

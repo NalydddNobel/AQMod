@@ -606,7 +606,7 @@
             <param name="fisher"></param>
             <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
-        <member name="M:Aequus.Items.Consumables.LootBags.Roulettes.RouletteDropRule.#ctor(Aequus.Items.Consumables.LootBags.Roulettes.RouletteBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineItemBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
             </summary>
@@ -618,7 +618,7 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
-        <member name="M:Aequus.Items.Consumables.LootBags.Roulettes.RouletteDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
             </summary>

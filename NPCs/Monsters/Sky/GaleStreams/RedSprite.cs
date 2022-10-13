@@ -127,8 +127,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .AddMasterPet<LightningRod>()
                 .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
-                .Add(new FilledConditionsOtherwiseChanceRule(
-                    new LegacyFuncConditional(() => AequusWorld.downedRedSprite, "RedSprite"), ModContent.ItemType<Moro>(), 5))
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6));
         }
