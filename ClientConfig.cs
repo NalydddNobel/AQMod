@@ -98,14 +98,6 @@ namespace Aequus
             {
                 Insurgency = AequusText.ItemText<Insurgency>(),
             });
-            Text("General.NPCShopQuotes", new
-            {
-                Teacup = AequusText.ItemText(ItemID.Teacup),
-            });
-            Text("General.OtherNPCShopQuotes", new
-            {
-                CoffeeCup = AequusText.ItemText(ItemID.CoffeeCup),
-            });
             Text("General.InfoDebugLogs", new
             {
                 RadioThing = AequusText.ItemText(ItemID.DontStarveShaderItem),

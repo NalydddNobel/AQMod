@@ -289,6 +289,26 @@ namespace Aequus.NPCs
         }
         public void PostAI_DoDebuffEffects(NPC npc)
         {
+            if (npc.HasBuff<AethersWrath>())
+            {
+                var colors = new Color[] { new Color(80, 180, 255, 10), new Color(255, 255, 255, 10), new Color(100, 255, 100, 10), };
+                int amt = (int)(npc.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                {
+                    var spawnLocation = Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f;
+                    spawnLocation.Y -= 4f;
+                    var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
+                    AequusEffects.BehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    if (Main.rand.NextBool(12))
+                    {
+                        var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(4f, 7f));
+                        float scale = Main.rand.NextFloat(1f, 2f);
+                        float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                        AequusEffects.BehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale, rotation));
+                    }
+                }
+            }
             if (npc.HasBuff<BlueFire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
@@ -386,7 +406,7 @@ namespace Aequus.NPCs
                     int amt = Math.Max((npc.width + npc.height) / 20, 1);
                     for (int k = 0; k < amt; k++)
                     {
-                        var dd = new DrawData(SquareParticle.SquareParticleTexture.Value, npc.Center - Main.screenPosition, null, Color.White, 0f, SquareParticle.SquareParticleTexture.Value.Size() / 2f, (int)r.Rand(amt * 2, amt * 5), SpriteEffects.None, 0);
+                        var dd = new DrawData(ParticleTextures.gamestarParticle.Texture.Value, npc.Center - Main.screenPosition, null, Color.White, 0f, ParticleTextures.gamestarParticle.Origin, (int)r.Rand(amt * 2, amt * 5), SpriteEffects.None, 0);
                         dd.position.X += (int)r.Rand(-npc.width, npc.width);
                         dd.position.Y += (int)r.Rand(-npc.height, npc.height);
                         GamestarRenderer.DrawData.Add(dd);
@@ -398,6 +418,15 @@ namespace Aequus.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            if (npc.HasBuff<AethersWrath>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 80;
+                damage += 9;
+            }
             if (npc.HasBuff<MindfungusDebuff>())
             {
                 if (npc.lifeRegen > 0)
@@ -405,7 +434,7 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 16 + 8 * mindfungusStacks;
-                damage += 8 + mindfungusStacks;
+                damage += 9;
             }
             else
             {
@@ -418,7 +447,7 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 8 * 8;
-                damage += 8;
+                damage += 9;
             }
             if (npc.HasBuff<Bleeding>())
             {
@@ -427,7 +456,7 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 8;
-                damage += 4;
+                damage += 5;
             }
             UpdateDebuffStack(npc, npc.HasBuff<CorruptionHellfire>(), ref corruptionHellfireStacks, ref damage, 20, 1f);
             UpdateDebuffStack(npc, npc.HasBuff<CrimsonHellfire>(), ref crimsonHellfireStacks, ref damage, 20, 1.1f);

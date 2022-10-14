@@ -1,4 +1,5 @@
 using Aequus.Common;
+using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -114,15 +115,7 @@ namespace Aequus
 
         public override object Call(params object[] args)
         {
-            switch ((string)args[0])
-            {
-                case "NecroStats":
-                    return ModContent.GetInstance<NecromancyDatabase>().HandleModCall(this, args);
-
-                case "Downed":
-                    return ModContent.GetInstance<AequusWorld.ModCalls>().HandleModCall(this, args);
-            }
-            return null;
+            return ModCallManager.HandleModCall(args);
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)

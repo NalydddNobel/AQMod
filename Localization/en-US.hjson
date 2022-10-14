@@ -295,8 +295,8 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
-			CrabCreviceCrate: Putrid Crate
-			CrabCreviceCrateHard: Septic Crate
+			CrabCreviceCrate: Carapic Crate
+			CrabCreviceCrateHard: Encrusted Crate
 
 			JungleSlotMachine: Jungle Slot Machine
 			OceanSlotMachine: Ocean Slot Machine
@@ -736,7 +736,7 @@ Mods: {
 				Fires a slash when at full health
 				'If they zig, I cut 'em (If they zag, I cut 'em too)'
 				'''
-			UltimateSword: 'Just a fragment of true potential'
+			UltimateSword: "'Just a fragment of true potential'"
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 

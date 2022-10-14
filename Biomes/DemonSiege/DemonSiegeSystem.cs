@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Content.CrossMod.ModCalls;
+using Aequus.Graphics;
 using Aequus.Tiles;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
@@ -138,7 +139,7 @@ namespace Aequus.Biomes.DemonSiege
 
         public static void RegisterSacrifice(SacrificeData sacrifice)
         {
-            RegisteredSacrifices.Add(sacrifice.OriginalItem, sacrifice);
+            RegisteredSacrifices[sacrifice.OriginalItem] = sacrifice;
             SacrificeResultItemIDToOriginalItemID.Add(sacrifice.NewItem, sacrifice.OriginalItem);
         }
 
@@ -241,6 +242,30 @@ namespace Aequus.Biomes.DemonSiege
                 }
             }
             return Point.Zero;
+        }
+
+        public static object CallAddDemonSiegeData(Mod callingMod, object[] args)
+        {
+            if (AequusHelpers.UnboxInt.TryUnbox(args[2], out int baseItem) && AequusHelpers.UnboxInt.TryUnbox(args[3], out int newItem) && AequusHelpers.UnboxInt.TryUnbox(args[4], out int progression))
+            {
+                var s = new SacrificeData(baseItem, newItem, (UpgradeProgressionType)(byte)progression);
+                RegisterSacrifice(s);
+            }
+            return ModCallManager.Failure;
+        }
+        public static object CallHideDemonSiegeData(Mod callingMod, object[] args)
+        {
+            if (AequusHelpers.UnboxInt.TryUnbox(args[2], out int baseItem))
+            {
+                if (RegisteredSacrifices.ContainsKey(baseItem))
+                {
+                    var val = RegisteredSacrifices[baseItem];
+                    val.BossChecklistHide = AequusHelpers.UnboxBoolean.Unbox(args[3]);
+                    RegisteredSacrifices[baseItem] = val;
+                    return ModCallManager.Success;
+                }
+            }
+            return ModCallManager.Failure;
         }
     }
 }

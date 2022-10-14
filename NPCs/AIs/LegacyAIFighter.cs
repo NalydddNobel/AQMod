@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace AQMod.NPCs.AIs
+namespace Aequus.NPCs.AIs
 {
     public abstract class LegacyAIFighter : ModNPC
     {

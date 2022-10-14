@@ -2,36 +2,24 @@
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.WorldGeneration;
-using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Pets;
-using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Necro;
-using Aequus.Items.Weapons.Summon.Necro.Candles;
-using Aequus.Projectiles;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.UI;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.WorldBuilding;
 
 namespace Aequus
 {
     public class AequusWorld : ModSystem
     {
-        public const int DungeonChestItemTypesMax = 4;
         public static int TileCountsMultiplier;
 
         private static FieldInfo SceneMetrics__tileCounts;
@@ -91,26 +79,22 @@ namespace Aequus
         [SaveData("ShadowOrbs")]
         public static int shadowOrbsBrokenTotal;
 
-        public static bool BloodMoonDisabled;
-        public static bool GlimmerDisabled;
-        public static bool EclipseDisabled;
-
-        public static Structures Structures { get; private set; }
-
-        public static CrabCreviceGenerator GenCrabCrevice { get; private set; }
-        public static GoreNestGenerator GenGoreNest { get; private set; }
+        public static StructureLookups Structures { get; internal set; }
 
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
 
         public override void Load()
         {
-            GenCrabCrevice = new CrabCreviceGenerator();
-            GenGoreNest = new GoreNestGenerator();
-
             WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
             WorldGen_UpdateWorld_UndergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_UndergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
             SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
 
+            LoadHooks();
+        }
+
+        #region Hooks
+        private static void LoadHooks()
+        {
             On.Terraria.Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
             On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
             On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
@@ -141,11 +125,10 @@ namespace Aequus
             }
             orig(self);
         }
+        #endregion
 
         public override void Unload()
         {
-            GenCrabCrevice = null;
-
             WorldGen_UpdateWorld_OvergroundTile = null;
             WorldGen_UpdateWorld_UndergroundTile = null;
             SceneMetrics__tileCounts = null;
@@ -164,7 +147,7 @@ namespace Aequus
             downedCrabson = false;
             downedOmegaStarite = false;
             downedDustDevil = false;
-            Structures = new Structures();
+            Structures = new StructureLookups();
         }
 
         public override void OnWorldLoad()
@@ -220,236 +203,11 @@ namespace Aequus
             shadowOrbsBrokenTotal = reader.ReadInt32();
         }
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
-        {
-            Structures = new Structures();
-            AddPass("Beaches", "Crab Home", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
-                GenCrabCrevice.Generate(null);
-            }, tasks);
-            AddPass("Underworld", "Gore Nests", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
-                GenGoreNest.Generate();
-            }, tasks);
-            AddPass("Pots", "Crab Pottery", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevicePots");
-                GenCrabCrevice.TransformPots();
-            }, tasks);
-            AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.GoreNestCleanup");
-                GenGoreNest.Cleanup();
-            }, tasks);
-            AddPass("Tile Cleanup", "Crab Growth", (progress, configuration) =>
-            {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
-                GenCrabCrevice.GrowPlants();
-            }, tasks);
-        }
-        private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
-        {
-            int i = tasks.FindIndex((t) => t.Name.Equals(task));
-            if (i != -1)
-                tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
-        }
-
-        public override void PostWorldGen()
-        {
-            var rockmanChests = new List<int>();
-
-            var placedItems = new HashSet<int>();
-            var r = WorldGen.genRand;
-            for (int k = 0; k < Main.maxChests; k++)
-            {
-                Chest c = Main.chest[k];
-                if (c != null)
-                {
-                    if (Main.tile[c.x, c.y].TileType == TileID.Containers)
-                    {
-                        int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.Gold || style == ChestTypes.Marble || style == ChestTypes.Granite || style == ChestTypes.Mushroom)
-                        {
-                            rockmanChests.Add(k);
-
-                            if (r.NextBool(5))
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
-
-                            switch (r.Next(5))
-                            {
-                                case 0:
-                                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
-                                    break;
-
-                                case 1:
-                                    c.Insert(ModContent.ItemType<BattleAxe>(), 1);
-                                    break;
-
-                                case 2:
-                                    c.Insert(ModContent.ItemType<Bellows>(), 1);
-                                    break;
-                            }
-                        }
-                        else if (style == ChestTypes.LockedGold)
-                        {
-                            int choice = -1;
-                            for (int i = 0; i < DungeonChestItemTypesMax; i++)
-                            {
-                                int item = DungeonChestItem(i);
-                                if (!placedItems.Contains(item))
-                                {
-                                    choice = item;
-                                }
-                            }
-                            if (choice == -1 && r.NextBool(DungeonChestItemTypesMax))
-                            {
-                                choice = DungeonChestItem(r.Next(DungeonChestItemTypesMax));
-                            }
-
-                            if (choice != -1)
-                            {
-                                c.Insert(choice, 1);
-                                placedItems.Add(choice);
-                            }
-                        }
-                        else if (style == ChestTypes.Frozen)
-                        {
-                            rockmanChests.Add(k);
-
-                            if (r.NextBool(6))
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
-                            if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || r.NextBool(6))
-                            {
-                                c.Insert(ModContent.ItemType<CrystalDagger>(), 1);
-                                placedItems.Add(ModContent.ItemType<CrystalDagger>());
-                            }
-                        }
-                        else if (style == ChestTypes.Skyware)
-                        {
-                            if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool())
-                            {
-                                c.Insert(ModContent.ItemType<Slingshot>(), 1);
-                                placedItems.Add(ModContent.ItemType<Slingshot>());
-                            }
-                        }
-                    }
-                    else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
-                    {
-                        int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.deadMans)
-                        {
-                            rockmanChests.Add(k);
-                            if (r.NextBool())
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
-                        }
-                        else if (style == ChestTypes.sandstone)
-                        {
-                            rockmanChests.Add(k);
-                        }
-                    }
-                    if (WorldGen.genRand.NextBool(7))
-                    {
-                        for (int i = 0; i < Chest.maxItems; i++)
-                        {
-                            if (!c.item[i].IsAir && c.item[i].type == ItemID.SuspiciousLookingEye)
-                            {
-                                c.item[i].SetDefaults<SwagLookingEye>();
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (rockmanChests.Count > 0)
-            {
-                var c = Main.chest[rockmanChests[r.Next(rockmanChests.Count)]];
-                Structures.Add("RockManChest", new Point(c.x, c.y));
-                c.Insert(ModContent.ItemType<RockMan>(), r.Next(Chest.maxItems - 1));
-            }
-        }
-        public static bool AddGlowCore(Chest c, HashSet<int> placedItems = null)
-        {
-            for (int i = 0; i < Chest.maxItems; i++)
-            {
-                if (!c.item[i].IsAir && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
-                {
-                    c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
-                    placedItems?.Add(ModContent.ItemType<GlowCore>());
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static int DungeonChestItem(int type)
-        {
-            switch (WorldGen.genRand.Next(4))
-            {
-                default:
-                    return ModContent.ItemType<Valari>();
-                case 1:
-                    return ModContent.ItemType<Revenant>();
-                case 2:
-                    return ModContent.ItemType<DungeonCandle>();
-                case 3:
-                    return ModContent.ItemType<PandorasBox>();
-            }
-        }
-
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
             TileCountsMultiplier = 1;
-        }
-
-        public override void PreUpdateEntities()
-        {
-            AequusTile.UpdateIndestructibles();
-            CelesteTorus.RenderPoints?.Clear();
-            ArmFloaties.Equipped?.Clear();
-            ResetCaches();
-        }
-
-        public override void PreUpdatePlayers()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                AdvancedRulerInterface.Instance.Enabled = false;
-                AdvancedRulerInterface.Instance.Holding = false;
-                OmniPaintUI.Instance.Enabled = false;
-            }
-            BloodMoonDisabled = false;
-            GlimmerDisabled = false;
-            EclipseDisabled = false;
-            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;
-        }
-
-        public override void PostUpdatePlayers()
-        {
-            ResetCaches();
-        }
-
-        public void ResetCaches()
-        {
-            AequusProjectile.pWhoAmI = -1;
-            AequusProjectile.pIdentity = -1;
-            AequusProjectile.pNPC = -1;
-            AequusPlayer.PlayerContext = -1;
-            AequusHelpers.EndCaches();
-        }
-
-        public override void PostUpdateTime()
-        {
-            Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
         }
 
         public static void MarkAsDefeated(ref bool defeated, int npcID)
@@ -537,95 +295,6 @@ namespace Aequus
                 return null;
             }
             return WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite;
-        }
-
-        /// <summary>
-        /// World Flags:
-        /// <list type="table">
-        /// <item>Crabson -- <see cref="downedCrabson"/></item>
-        /// <item>OmegaStarite -- <see cref="downedOmegaStarite"/></item>
-        /// <item>RedSprite -- <see cref="downedRedSprite"/></item>
-        /// <item>SpaceSquid -- <see cref="downedSpaceSquid"/></item>
-        /// <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="downedEventAtmosphere"/></item>
-        /// <item>GaleStreams -- <see cref="downedEventAtmosphere"/></item>
-        /// </list>
-        /// </summary>
-        public class ModCalls : IModCallable
-        {
-            private Dictionary<string, RefFunc<bool>> providers;
-
-            /// <summary>
-            /// Obtains or sets a world flag, a list of world flags are provided in <see cref="ModCalls"/>' summary.
-            /// <para>Obtaining a flag:</para>
-            /// <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
-            /// <para>Setting a flag:</para>
-            /// <code>aequus.Call("Downed", "Set", "Crabson" -- {Or any of the flag names provided}, {true/false})</code>
-            /// </summary>
-            /// <param name="aequus"></param>
-            /// <param name="args"></param>
-            /// <returns></returns>
-            public object HandleModCall(Aequus aequus, object[] args)
-            {
-                if (args.Length > 1 && args[1] is string key)
-                {
-                    if (key == "Set")
-                    {
-                        if (args.Length > 2 && args[2] is string key2)
-                        {
-                            if (args.Length > 3 && args[3] is bool flag)
-                            {
-                                if (providers.TryGetValue(key2, out var value))
-                                {
-                                    if (Aequus.LogMore)
-                                        Aequus.Instance.Logger.Info("Set world flag '" + key2 + "'. Original Value: " + value() + ", New Value: " + flag);
-                                    return value() = flag;
-                                }
-                            }
-                            else
-                            {
-                                Aequus.Instance.Logger.Error("Invalid arguments. Parameter 3 for setting a world flag should be a Boolean.");
-                            }
-                        }
-                        else
-                        {
-                            Aequus.Instance.Logger.Error("Invalid arguments. Parameter 2 for setting a world flag should be a String.");
-                        }
-                    }
-                    else
-                    {
-                        if (providers.TryGetValue(key, out var value))
-                        {
-                            if (Aequus.LogMore)
-                                Aequus.Instance.Logger.Info("Obtained world flag '" + key + "'. Value: " + value());
-                            return value();
-                        }
-                    }
-                    Aequus.Instance.Logger.Error("There is no world flag named '" + key + "'");
-                }
-                return IModCallable.Failure;
-            }
-
-            void ILoadable.Load(Mod mod)
-            {
-                providers = new Dictionary<string, RefFunc<bool>>()
-                {
-                    ["WhiteFlag"] = () => ref whiteFlag,
-                    ["HyperStarite"] = () => ref downedHyperStarite,
-                    ["UltraStarite"] = () => ref downedUltraStarite,
-                    ["Glimmer"] = () => ref downedEventCosmic,
-                    ["DemonSiege"] = () => ref downedEventDemon,
-                    ["Crabson"] = () => ref downedCrabson,
-                    ["OmegaStarite"] = () => ref downedOmegaStarite,
-                    ["RedSprite"] = () => ref downedRedSprite,
-                    ["SpaceSquid"] = () => ref downedSpaceSquid,
-                    ["DustDevil"] = () => ref downedDustDevil,
-                    ["GaleStreams"] = () => ref downedEventAtmosphere,
-                };
-            }
-
-            void ILoadable.Unload()
-            {
-            }
         }
     }
 }

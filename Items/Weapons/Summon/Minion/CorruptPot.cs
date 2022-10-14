@@ -52,7 +52,6 @@ namespace Aequus.Items.Weapons.Summon.Minion
         {
             CreateRecipe()
                 .AddIngredient(ItemID.DemoniteBar, 8)
-                .AddIngredient(ItemID.ShadowScale, 4)
                 .AddIngredient(ItemID.ClayPot)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.DemonBow);

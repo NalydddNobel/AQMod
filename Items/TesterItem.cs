@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Magic;
+﻿using Aequus.Content.WorldGeneration;
+using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -31,7 +32,7 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            AequusWorld.GenCrabCrevice.GrowWalls(x, y);
+            AequusWorldGenerator.GenCrabCrevice.GrowWalls(x, y);
             return true;
         }
     }

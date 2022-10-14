@@ -5,7 +5,6 @@ using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
@@ -270,7 +269,7 @@ namespace Aequus.Content.CrossMod
             string demonSiegeItemList = "";
             foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
             {
-                if (d.Value.Hide)
+                if (d.Value.BossChecklistHide)
                     continue;
 
                 if (demonSiegeItemList.Length != 0)

@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Melee;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -138,6 +139,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            target.AddBuff(ModContent.BuffType<AethersWrath>(), 1200);
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -39,66 +39,21 @@ namespace Aequus
         public const char AirCharacter = '⠀';
         public const string AirString = "⠀";
 
-        public class Lookups : ILoadable, IPostSetupContent
-        {
-            public static Dictionary<TileKey, int> TileToItem { get; private set; }
-
-            void ILoadable.Load(Mod mod)
-            {
-                TileToItem = new Dictionary<TileKey, int>();
-            }
-
-            void IPostSetupContent.PostSetupContent(Aequus aequus)
-            {
-                foreach (var i in ContentSamples.ItemsByType)
-                {
-                    if (i.Value.createTile > -1)
-                    {
-                        var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle);
-                        if (TileToItem.ContainsKey(tileID))
-                        {
-                            if (!i.Value.consumable || i.Key == TileToItem[tileID])
-                            {
-                                continue;
-                            }
-
-                            aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileToItem[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
-                            continue;
-                        }
-                    }
-                }
-            }
-
-            void ILoadable.Unload()
-            {
-            }
-        }
-
         /// <summary>
         /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
         /// </summary>
         public static int iterations;
 
-        /// <summary>
-        /// Caches <see cref="Main.invasionSize"/>
-        /// </summary>
-        public static StaticManipulator<int> Main_invasionSize { get; private set; }
-        /// <summary>
-        /// Caches <see cref="Main.invasionType"/>
-        /// </summary>
-        public static StaticManipulator<int> Main_invasionType { get; private set; }
-        /// <summary>
-        /// Caches <see cref="Main.bloodMoon"/>
-        /// </summary>
-        public static StaticManipulator<bool> Main_bloodMoon { get; private set; }
-        /// <summary>
-        /// Caches <see cref="Main.eclipse"/>
-        /// </summary>
-        public static StaticManipulator<bool> Main_eclipse { get; private set; }
-        /// <summary>
-        /// Caches <see cref="Main.dayTime"/>
-        /// </summary>
-        public static StaticManipulator<bool> Main_dayTime { get; private set; }
+        [Obsolete("Use AequusSystem.Main_invasionSize instead.")]
+        public static ValueCache<int> Main_invasionSize => AequusSystem.Main_invasionSize;
+        [Obsolete("Use AequusSystem.Main_invasionType instead.")]
+        public static ValueCache<int> Main_invasionType => AequusSystem.Main_invasionType;
+        [Obsolete("Use AequusSystem.Main_bloodMoon instead.")]
+        public static ValueCache<bool> Main_bloodMoon => AequusSystem.Main_bloodMoon;
+        [Obsolete("Use AequusSystem.Main_eclipse instead.")]
+        public static ValueCache<bool> Main_eclipse => AequusSystem.Main_eclipse;
+        [Obsolete("Use AequusSystem.Main_daytime instead.")]
+        public static ValueCache<bool> Main_dayTime => AequusSystem.Main_dayTime;
         /// <summary>
         /// Determines whether or not the mouse has an item
         /// </summary>
@@ -118,6 +73,9 @@ namespace Aequus
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         public static Regex SubstitutionRegex { get; private set; }
+        public static ITypeUnboxer<int> UnboxInt { get; private set; }
+        public static ITypeUnboxer<float> UnboxFloat { get; private set; }
+        public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
         public static string GetItemKeyName(int itemID, Mod myMod = null)
         {
@@ -2015,30 +1973,6 @@ namespace Aequus
             }
         }
 
-        public static void EndCaches()
-        {
-            if (Main_invasionSize.IsCaching)
-            {
-                Main_invasionSize.EndCaching();
-            }
-            if (Main_invasionType.IsCaching)
-            {
-                Main_invasionType.EndCaching();
-            }
-            if (Main_bloodMoon.IsCaching)
-            {
-                Main_bloodMoon.EndCaching();
-            }
-            if (Main_eclipse.IsCaching)
-            {
-                Main_eclipse.EndCaching();
-            }
-            if (Main_dayTime.IsCaching)
-            {
-                Main_dayTime.EndCaching();
-            }
-        }
-
         public class Loader : IOnModLoad
         {
             void ILoadable.Load(Mod mod)
@@ -2048,21 +1982,17 @@ namespace Aequus
             void IOnModLoad.OnModLoad(Aequus aequus)
             {
                 SubstitutionRegex = new Regex("{(\\?(?:!)?)?([a-zA-Z][\\w\\.]*)}", RegexOptions.Compiled);
-                Main_invasionSize = new StaticManipulator<int>(() => ref Main.invasionSize);
-                Main_invasionType = new StaticManipulator<int>(() => ref Main.invasionType);
-                Main_bloodMoon = new StaticManipulator<bool>(() => ref Main.bloodMoon);
-                Main_eclipse = new StaticManipulator<bool>(() => ref Main.eclipse);
-                Main_dayTime = new StaticManipulator<bool>(() => ref Main.dayTime);
+                UnboxInt = new UnboxInt();
+                UnboxFloat = new UnboxFloat();
+                UnboxBoolean = new UnboxBoolean();
             }
 
             void ILoadable.Unload()
             {
                 SubstitutionRegex = null;
-                Main_invasionSize = null;
-                Main_invasionType = null;
-                Main_bloodMoon = null;
-                Main_eclipse = null;
-                Main_dayTime = null;
+                UnboxInt = null;
+                UnboxFloat = null;
+                UnboxBoolean = null;
             }
         }
     }

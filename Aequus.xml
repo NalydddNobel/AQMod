@@ -14,31 +14,6 @@
             A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
             </summary>
         </member>
-        <member name="P:Aequus.AequusHelpers.Main_invasionSize">
-            <summary>
-            Caches <see cref="F:Terraria.Main.invasionSize"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusHelpers.Main_invasionType">
-            <summary>
-            Caches <see cref="F:Terraria.Main.invasionType"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusHelpers.Main_bloodMoon">
-            <summary>
-            Caches <see cref="F:Terraria.Main.bloodMoon"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusHelpers.Main_eclipse">
-            <summary>
-            Caches <see cref="F:Terraria.Main.eclipse"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusHelpers.Main_dayTime">
-            <summary>
-            Caches <see cref="F:Terraria.Main.dayTime"/>
-            </summary>
-        </member>
         <member name="P:Aequus.AequusHelpers.HasMouseItem">
             <summary>
             Determines whether or not the mouse has an item
@@ -264,6 +239,31 @@
             <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
             <param name="itemReference"></param>
         </member>
+        <member name="P:Aequus.AequusSystem.Main_invasionSize">
+            <summary>
+            Caches <see cref="F:Terraria.Main.invasionSize"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.Main_invasionType">
+            <summary>
+            Caches <see cref="F:Terraria.Main.invasionType"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.Main_bloodMoon">
+            <summary>
+            Caches <see cref="F:Terraria.Main.bloodMoon"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.Main_eclipse">
+            <summary>
+            Caches <see cref="F:Terraria.Main.eclipse"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.Main_dayTime">
+            <summary>
+            Caches <see cref="F:Terraria.Main.dayTime"/>
+            </summary>
+        </member>
         <member name="M:Aequus.AequusWorld.OreTiers">
             <summary>
             
@@ -287,31 +287,6 @@
             
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
-        </member>
-        <member name="T:Aequus.AequusWorld.ModCalls">
-            <summary>
-            World Flags:
-            <list type="table">
-            <item>Crabson -- <see cref="F:Aequus.AequusWorld.downedCrabson"/></item>
-            <item>OmegaStarite -- <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></item>
-            <item>RedSprite -- <see cref="F:Aequus.AequusWorld.downedRedSprite"/></item>
-            <item>SpaceSquid -- <see cref="F:Aequus.AequusWorld.downedSpaceSquid"/></item>
-            <item>DustDevil -- Warning, this flag doesn't exist yet, and will instead pull <see cref="F:Aequus.AequusWorld.downedEventAtmosphere"/></item>
-            <item>GaleStreams -- <see cref="F:Aequus.AequusWorld.downedEventAtmosphere"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusWorld.ModCalls.HandleModCall(Aequus.Aequus,System.Object[])">
-            <summary>
-            Obtains or sets a world flag, a list of world flags are provided in <see cref="T:Aequus.AequusWorld.ModCalls"/>' summary.
-            <para>Obtaining a flag:</para>
-            <code>aequus.Call("Downed", "Crabson" -- {Or any of the flag names provided})</code>
-            <para>Setting a flag:</para>
-            <code>aequus.Call("Downed", "Set", "Crabson" -- {Or any of the flag names provided}, {true/false})</code>
-            </summary>
-            <param name="aequus"></param>
-            <param name="args"></param>
-            <returns></returns>
         </member>
         <member name="M:Aequus.Biomes.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
             <summary>
@@ -371,24 +346,6 @@
             <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoInt(System.Object)">
-            <summary>
-            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
-            <para>Accepts <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
-            <see cref="T:System.UInt16"/>, <see cref="T:System.Int16"/>, <see cref="T:System.Single"/>, and <see cref="T:System.Double"/>.</para>
-            </summary>
-            <param name="obj"></param>
-            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
-        </member>
-        <member name="M:Aequus.Content.CrossMod.IModCallable.UnboxIntoFloat(System.Object)">
-            <summary>
-            Attempts to unbox an <see cref="T:System.Object"/> into an <see cref="T:System.Int32"/>
-            <para>Accepts <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Int32"/>, <see cref="T:System.UInt32"/>, <see cref="T:System.Byte"/>, <see cref="T:System.SByte"/>,
-            <see cref="T:System.UInt16"/>, and <see cref="T:System.Int16"/></para>
-            </summary>
-            <param name="obj"></param>
-            <returns>-1 by default. An <see cref="T:System.Int32"/> representation of the object otherwise</returns>
-        </member>
         <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
             For enemies which cannot be turned into player zombies
@@ -424,7 +381,7 @@
             Use and increase respectively for custom Necromancy Screen Renderer layers.
             </summary>
         </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.HandleModCall(Aequus.Aequus,System.Object[])">
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
             <para>Parameter 1: NPC Type (short)</para>
@@ -437,7 +394,7 @@
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
             <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.InnerFinalizeContent"/></para>
             </summary>
-            <param name="aequus"></param>
+            <param name="callingMod"></param>
             <param name="args"></param>
             <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
         </member>
@@ -473,14 +430,14 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="M:Aequus.Content.WorldGeneration.Structures.Add(System.String,Microsoft.Xna.Framework.Point)">
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
             <summary>
             Adds a structure to the list
             </summary>
             <param name="name">The name of the structure</param>
             <param name="location">The location of the structure in tile coordinates</param>
         </member>
-        <member name="M:Aequus.Content.WorldGeneration.Structures.GetLocation(System.String)">
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.GetLocation(System.String)">
             <summary>
             Gets the location of a structure using a name
             </summary>

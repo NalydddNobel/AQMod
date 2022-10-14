@@ -1,10 +1,10 @@
 ﻿namespace Aequus.Content.CrossMod
 {
-    public interface IModCallHandler
+    public interface ICrapModCallHandler
     {
-        IModCallHandler HandleArg(string name, object value);
+        ICrapModCallHandler HandleArg(string name, object value);
 
-        public static IModCallHandler HandleArgs(IModCallHandler obj, int start, object[] args)
+        public static ICrapModCallHandler HandleArgs(ICrapModCallHandler obj, int start, object[] args)
         {
             if (args.Length < start + 2)
             {
@@ -36,11 +36,11 @@
             }
         }
 
-        protected static void DoesntExistReport(string name, IModCallHandler me)
+        protected static void DoesntExistReport(string name, ICrapModCallHandler me)
         {
             Aequus.Instance.Logger.Error(name + " doesn't exist in " + me.GetType().Name);
         }
-        protected static void SuccessReport(string name, object value, IModCallHandler me)
+        protected static void SuccessReport(string name, object value, ICrapModCallHandler me)
         {
             if (Aequus.LogMore)
                 Aequus.Instance.Logger.Info("Setting " + name + " in " + me.GetType().Name + " to " + (value == null ? "NULL" : value.ToString()));

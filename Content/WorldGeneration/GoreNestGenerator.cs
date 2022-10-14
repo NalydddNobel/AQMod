@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.WorldGeneration
 {
-    public struct GoreNestGenerator
+    public class GoreNestGenerator
     {
         public int min;
         public int max;

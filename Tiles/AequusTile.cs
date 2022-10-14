@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes.DemonSiege;
+using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
@@ -13,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles
 {
-    public class AequusTile : GlobalTile
+    public class AequusTile : GlobalTile, IPostSetupContent
     {
         public static Action ResetTileRenderPoints;
         public static Action DrawSpecialTilePoints;
@@ -46,9 +47,11 @@ namespace Aequus.Tiles
         public static List<IndestructibleCircle> Circles { get; private set; }
 
         public static Dictionary<Point, Color> PylonColors { get; private set; }
+        public static Dictionary<TileKey, int> TileIDToItemID { get; private set; }
 
         public override void Load()
         {
+            TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
             PylonColors = new Dictionary<Point, Color>()
@@ -63,6 +66,12 @@ namespace Aequus.Tiles
                 [new Point(TileID.TeleportationPylon, 7)] = new Color(100, 128, 255, 255),
                 [new Point(TileID.TeleportationPylon, 8)] = Color.FloralWhite,
             };
+            LoadHooks();
+        }
+
+        #region Hooks
+        private static void LoadHooks()
+        {
             On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }
@@ -83,9 +92,33 @@ namespace Aequus.Tiles
             orig(npc);
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
         }
+        #endregion
+
+        public void PostSetupContent(Aequus aequus)
+        {
+            foreach (var i in ContentSamples.ItemsByType)
+            {
+                if (i.Value.createTile > -1)
+                {
+                    var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle);
+                    if (TileIDToItemID.ContainsKey(tileID))
+                    {
+                        if (!i.Value.consumable || i.Key == TileIDToItemID[tileID])
+                        {
+                            continue;
+                        }
+
+                        aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
+                        continue;
+                    }
+                }
+            }
+        }
 
         public override void Unload()
         {
+            TileIDToItemID?.Clear();
+            TileIDToItemID = null;
             CheckCircles?.Clear();
             CheckCircles = null;
             Circles?.Clear();

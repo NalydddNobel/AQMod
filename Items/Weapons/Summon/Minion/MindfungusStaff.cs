@@ -47,7 +47,6 @@ namespace Aequus.Items.Weapons.Summon.Minion
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 8)
                 .AddIngredient(ItemID.TissueSample, 4)
-                .AddIngredient(ItemID.ViciousMushroom, 2)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.TendonBow);
         }

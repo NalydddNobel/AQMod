@@ -2,7 +2,7 @@
 
 namespace Aequus.Common.Utilities
 {
-    public class StaticManipulator<T>
+    public class ValueCache<T>
     {
         private sealed class InvalidCacheException : Exception
         {
@@ -18,7 +18,7 @@ namespace Aequus.Common.Utilities
         private bool _caching;
         public bool IsCaching => _caching;
 
-        public StaticManipulator(RefFunc<T> reference)
+        public ValueCache(RefFunc<T> reference)
         {
             _ref = reference;
             _myValue = default(T);

@@ -95,7 +95,7 @@ namespace Aequus.Projectiles.Summon
                         Color colorMethod(float p) => Color.OrangeRed.UseA(120) * 1.1f;
 
                         var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var particle = new TrailshaderMonoParticle(prim, position, velocity,
+                        var particle = new BoundBowTrailParticle(prim, position, velocity,
                             new Color(200, Main.rand.Next(40) + 20, 10, 0), 1.15f, Main.rand.NextFloat(MathHelper.TwoPi), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => new Color(255, 180, 15, 0).HueAdd(-p * 0.15f) * (float)Math.Sin(p * MathHelper.Pi) * Math.Min(particle.Scale, 1.5f);

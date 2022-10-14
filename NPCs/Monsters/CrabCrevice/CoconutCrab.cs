@@ -2,7 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Items.Accessories;
 using Aequus.Items.Placeable.Banners;
-using AQMod.NPCs.AIs;
+using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

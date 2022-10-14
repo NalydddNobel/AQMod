@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
 using Aequus.Items.Weapons.Summon.Necro;
 using System;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class NecromancyDatabase : LoadableType, IAddRecipes, IModCallable
+    public class NecromancyDatabase : LoadableType, IAddRecipes
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }
@@ -439,39 +440,25 @@ namespace Aequus.Content.Necromancy
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
         /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="InnerFinalizeContent"/></para>
         /// </summary>
-        /// <param name="aequus"></param>
+        /// <param name="callingMod"></param>
         /// <param name="args"></param>
         /// <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
-        public object HandleModCall(Aequus aequus, object[] args)
+        public static object CallAddNecromancyData(Mod callingMod, object[] args)
         {
-            if (args[1] is string option)
-            {
-                if (option == "AddToBlacklist")
-                {
-                    if (args[2] is Mod ignoreMod)
-                    {
-                        AutogeneratorIgnoreMods.Add(ignoreMod.Name);
-                        return IModCallable.Success;
-                    }
-                    else if (args[2] is string ignoreModName)
-                    {
-                        AutogeneratorIgnoreMods.Add(ignoreModName);
-                        return IModCallable.Success;
-                    }
-                }
-                return IModCallable.Failure;
-            }
-
             int npc = 0;
             try
             {
-                npc = IModCallable.UnboxIntoInt(args[1]);
-                float tier = IModCallable.UnboxIntoFloat(args[2]);
-                float viewDistance = args.Length >= 4 ? IModCallable.UnboxIntoFloat(args[3]) : 800f;
+                AequusHelpers.UnboxInt.TryUnbox(args[2], out npc);
+                AequusHelpers.UnboxFloat.TryUnbox(args[3], out float tier);
+                float viewDistance = 800f;
+                if (args.Length > 4)
+                {
+                    AequusHelpers.UnboxFloat.TryUnbox(args[4], out viewDistance);
+                }
                 if (Aequus.LogMore)
                     Aequus.Instance.Logger.Info("Adding necromancy data for: " + Lang.GetNPCName(npc) + " -- Tier: " + tier + ", SightRange: " + viewDistance + " --");
                 var stats = new GhostInfo(tier, viewDistance);
-                stats = (GhostInfo)IModCallHandler.HandleArgs(stats, args.Length >= 4 ? 4 : 3, args);
+                stats = (GhostInfo)ICrapModCallHandler.HandleArgs(stats, args.Length >= 5 ? 5 : 4, args);
                 NPCs.Set(npc, stats);
             }
             catch (Exception ex)
@@ -482,10 +469,15 @@ namespace Aequus.Content.Necromancy
                     name = Lang.GetNPCName(npc).Value;
                 }
                 Aequus.Instance.Logger.Error("Failed handling a mod call for NecroStats. {NPC Type: " + npc + ", Potential Name: " + name + "}", ex);
-                return IModCallable.Failure;
+                return ModCallManager.Failure;
             }
 
-            return IModCallable.Success;
+            return ModCallManager.Success;
+        }
+        public static object CallAddNecromancyModBlacklist(Mod callingMod, object[] args)
+        {
+            AutogeneratorIgnoreMods.Add(callingMod.Name);
+            return ModCallManager.Success;
         }
 
         /// <summary>

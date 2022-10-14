@@ -6,11 +6,11 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.WorldGeneration
 {
-    public struct Structures : IEnumerable<KeyValuePair<string, Point>>
+    public class StructureLookups : IEnumerable<KeyValuePair<string, Point>>
     {
         private Dictionary<string, Point> inner;
 
-        public Structures()
+        public StructureLookups()
         {
             inner = new Dictionary<string, Point>();
         }

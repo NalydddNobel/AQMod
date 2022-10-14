@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace Aequus.Content.Necromancy
 {
-    public struct GhostInfo : IModCallHandler
+    public struct GhostInfo : ICrapModCallHandler
     {
         /// <summary>
         /// For enemies which cannot be turned into player zombies
@@ -114,22 +114,22 @@ namespace Aequus.Content.Necromancy
             return (PowerNeeded > 0f && PowerNeeded <= power) || power >= 100f;
         }
 
-        public IModCallHandler HandleArg(string name, object value)
+        public ICrapModCallHandler HandleArg(string name, object value)
         {
             if (name == "PrioritizePlayerMultiplier")
             {
                 // Call(..., "PrioritizePlayerMultiplier", 1f);
-                PrioritizePlayerMultiplier = value == null ? null : IModCallable.UnboxIntoFloat(value);
+                PrioritizePlayerMultiplier = value == null ? null : AequusHelpers.UnboxFloat.Unbox(value);
             }
             else if (name == "TimeLeftMultiplier")
             {
                 // Call(..., "TimeLeftMultiplier", 1f);
-                TimeLeftMultiplier = value == null ? null : IModCallable.UnboxIntoFloat(value);
+                TimeLeftMultiplier = value == null ? null : AequusHelpers.UnboxFloat.Unbox(value);
             }
             else if (name == "SlotsUsed")
             {
                 // Call(..., "SlotsUsed", 1);
-                slotsUsed = value == null ? null : IModCallable.UnboxIntoInt(value);
+                slotsUsed = value == null ? null : AequusHelpers.UnboxInt.Unbox(value);
             }
             else if (name == "Aggro")
             {
@@ -189,10 +189,10 @@ namespace Aequus.Content.Necromancy
             }
             else
             {
-                IModCallHandler.DoesntExistReport(name, this);
+                ICrapModCallHandler.DoesntExistReport(name, this);
                 return this;
             }
-            IModCallHandler.SuccessReport(name, value, this);
+            ICrapModCallHandler.SuccessReport(name, value, this);
             return this;
         }
 
