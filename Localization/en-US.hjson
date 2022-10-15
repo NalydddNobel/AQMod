@@ -158,7 +158,12 @@ Mods: {
 			RegrowingBait: Regenerative Bait
 
 			FishyFins: Fishy Fins
-
+			
+			Deltoid: Deltoid
+			Cauterizer: Cauterizer
+			HellsBoon: Hell's Boon
+			Valari: Valari
+			ThunderClap: Thunder Clap
 			Vrang: Vrang
 			Mallet: Mallet
 			SuperStarSword: Super Star Sword
@@ -167,7 +172,10 @@ Mods: {
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
-
+			
+			Umystick: Umystick
+			Narrizuul: Narrizuul
+			StudiesOfTheInkblot: Studies of the Inkblot
 			LiquidGun: Liquid Gun
 			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
@@ -366,6 +374,7 @@ Mods: {
 			AshHeadstone: Ash Headstone
 			AshObelisk: Ash Obelisk
 			AshTombstone: Ash Tombstone
+			CrabClock: Crab Wall Clock
 			RecyclingMachine: Recycling Machine
 
 			TidalDye: Tidal Dye
@@ -441,22 +450,10 @@ Mods: {
 			Baozhu: Baozhu
 			JerryClawFlail: Jerry Claw
 			MagicWand: Magic Wand
-			Deltoid: Deltoid
 			Lightbulb: Lightbulb
-			Cauterizer: Cauterizer
-			HellsBoon: Hell's Boon
-			MonoxiderStaff: Monoxider Staff
-			ScarletSea: Scarlet Sea
-			SeltzerRain: Tainted Rain
-			FizzlingFire: Super Scorcher
-			Valari: Valari
 			Resonance: Resonance
 			KryptonSword: Krypton Boomerang
 			AirBlade: Air Blade
-			ThunderClap: Thunder Clap
-			Umystick: Umystick
-			Narrizuul: Narrizuul
-			StudiesOfTheInkblot: Studies of the Inkblot
 			CursedKey: Cursed Key
 			PiranhaPot: Piranha Pot
 			Skrawler: Skrawler
@@ -504,7 +501,6 @@ Mods: {
 			ArgonMushroom: Argon Mushroom
 			KryptonMushroom: Krypton Mushroom
 			XenonMushroom: Xenon Mushroom
-			CrabClock: Crab Wall Clock
 			OceanRavineWall: Crab Crevice Wall
 			PotionofContainers: Containers Potion
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
@@ -608,6 +604,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HyperCrystal: Attacks gain a temporary damaging crystal
+			CelesteTorus:
+				'''
+				You obtain damaging orbiting spheres
+				Their radius and speed are determined by various stats
+				'''
 			NeonGenesis: Allows your fishing bobber to fire lasers at enemies
 			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
 			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
@@ -726,6 +728,29 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			CrystalDagger: Quickly jabs enemies
+			Cauterizer:
+				'''
+				Shoots a wave of demonic energy
+				Inflicts crimson hellfire
+				'''
+			HellsBoon:
+				'''
+				Ash spikes appear around your cursor
+				Sword hits inflict corruption hellfire
+				'''
+			Valari: Can pick up items
+			ThunderClap: Spawns two giant hands to slap your enemies
+			MirrorsCall:
+				'''
+				<right> to do a large swing with no projectile
+				'Strike the enemy from the comfort of your couch!'
+				'''
+			Slice:
+				'''
+				Gains speed over time and fires piercing snowflakes
+				Inflicts frostburn on hit
+				'''
 			Vrang: Throw 3 boomerangs at once
 			Mallet:
 				'''
@@ -741,6 +766,23 @@ Mods: {
 			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 
+			Hitscanner: Fires a massive spread of instantly hitting bullets
+			Flameblaster:
+				'''
+				{$Mods.Aequus.Tooltips.UsesGel}
+				<right> to shoot an airblast
+				Ignores 15 points of enemy Defense
+				33% chance to not consume ammo
+				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
+				'''
+			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
+			Baozhu:
+				'''
+				A large explosion that puts enemies on fire
+				Explodes into lingering flames
+				'''
+			HamaYumi: Close enemies explode into corruption hellfire
+			Deltoid: Shoots a burst of 3 exploding arrows
 			StarPhish: 
 				'''
 				Deals increased damage to enemies in water
@@ -767,6 +809,22 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+			Umystick:
+				'''
+				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
+				Right click to perform a double jump
+				'Looks quite menacing'
+				'''
+			Narrizuul:
+				'''
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				{$Mods.Aequus.Tooltips.Nalyddd}
+				'''
+			StudiesOfTheInkblot:
+				'''
+				'Rorschach in Danmaku'
+				'Subterranean Rose'
+				'''
 			LiquidGun: { 
 				$parentVal: Automatically refills using the closest liquid
 				AmountLeft: "{Amount}% {Liquid} Left"
@@ -796,6 +854,7 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+			PiranhaPot: Summons a vile plant to fight for you
 			BrainwaveStaff: Summons a brain cauliflower to control enemies for you
 			MindfungusStaff:
 				'''
@@ -1047,6 +1106,20 @@ Mods: {
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
+			PalePufferfish: Cures many debuffs and vampirism
+			VampireSquid: Gives you vampirism
+			Baguette:
+				'''
+				Supreme improvements to all stats
+				Greatly improves life regeneration
+				'Cake is just spongy bread'
+				'''
+			SuspiciousLookingSteak:
+				'''
+				Gives multiple buffs
+				'A curse has been lifted'
+				'''
+
 			PotionOfResurrection: Teleports you to the location of your most recent death
 
 			Fluorescence: "'Pulsates with violence'"
@@ -1143,6 +1216,7 @@ Mods: {
 				'Ball Incarnate'
 				'''
 
+			CrabClock: "'What time is it? Crabby time.'"
 			RecyclingMachine: When nearby, you can create item scrap while crafting
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
@@ -1215,369 +1289,22 @@ Mods: {
 			WhiteFlag: When used, natural invasions will be disabled
 			GhostlyGrave: When used, your graves convert into a ghost on death
 
-			MirrorsCall:
-				'''
-				'Strike the enemy from the comfort of your couch!'
-				Right click to do a large swing with no projectile
-				'''
-			Slice:
-				'''
-				Rapidly slashes and shoots piercing snowflakes
-				Inflicts frostburn on hit
-				'''
-			LingeringPotion: Leaves a lingering effect which buffs yourself and nearby teammates
-			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
-			MoliteTag: Has double the length
 			MoonLeech: Attacks drain mana from enemies
-			DreamCatcher:
-				'''
-				{$Mods.Aequus.Tooltips.HookBarb}
-				Deals extra damage while in the sky biome
-				'''
-			MagikaAmulet:
-				'''
-				8% reduced mana useage
-				Attacks drain mana from enemies
-				Increases length of invincibility after taking damage
-				Automatically uses mana potions when needed
-				'''
-			JellyAmulet:
-				'''
-				Provides light which gets brighter while underwater
-				5% increased ranged damage
-				10% increased ranged critical strike chance while underwater
-				Enemies drop ammo you have consumed
-				'''
-			Quasicrystal:
-				'''
-				Nearby enemies take 25% extra damage
-				Inflicts cosmic radiation and fire damage on attack
-				Causes stars to fall when injured
-				'''
-			HyperCrystal: Attacks gain a temporary damaging crystal
-			ExtractorHelmet: Falling blocks deal less damage
-			ExtractorAirMask: Immunity to Suffocation
-			GlowBand: Emits colored light
-			Amulet: May be enchanted
-			BloodPlasma:
-				'''
-				When equipped, you will eat this instead of dying
-				Only 1 can be in your accessory slot
-				'''
-			TargeoftheBlodded:
-				'''
-				Increases armor penetration by 2
-				Allows the player to slide down walls
-				Improved ability if combined with {$ItemName.ClimbingClaws} or {$ItemName.ShoeSpikes} 
-				'''
-			SpiritualRelic:
-				'''
-				{$Mods.Aequus.Tooltips.IncreasedMinions}
-				Defeated enemies create minion damage boosting spirits
-				Enemies haunted by spirits take extra damage from minions
-				'''
-			Dreadsoul:
-				'''
-				Defeated enemies summon hellish spirits which haunt nearby enemies
-				Haunted enemies take extra damage from minions
-				'''
-			Breadsoul: Defeated enemies summon dream spirits which boost your minion's damage
 			RustyKnife:
 				'''
 				Summons your friends to fight for you
 				Revives you with 1 HP on fatal hits with a 5 minute cooldown
 				'Why would you hold a knife from the sharp part?'
 				'''
-			CrimtaneBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			DemoniteBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			MetalBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			CrabBarb: Your grappling hooks inflict poison and damage
-			CelesteTorus:
-				'''
-				You obtain damaging orbiting spheres
-				Their radius and speed are determined by various stats
-				'''
-			VoodooAmulet:
-				'''
-				Hitting an enemy will make nearby enemies of the same type get hit aswell
-				Reduces damage from touching lava
-				'''
-			WyvernAmulet:
-				'''
-				Increases flight time by a second
-				Enemies give you extra flight time when killed
-				Negates fall damage
-				'''
-			DarkAmulet: You deal 15% more damage to holy creatures
-			LightAmulet: You deal 15% more damage to unholy creatures
-			NeutralityAmulet: You deal 15% more damage to holy and unholy creatures
-			GlowString:
-				'''
-				Makes your yoyo string glow in the dark
-				Increases yoyo range
-				'''
-			ShockCollar:
-				'''
-				Increases damage by 5%
-				Increases crit chance by 10% while in the water
-				'''
-			FidgetSpinner: Non-autoswing items are slower, but gain autoswing
-			DegenerationRing: Prevents most types of burning
-			BlazingTalisman:
-				'''
-				Prevents most types of freezing
-				Lowers the intensity of cold from gale streams enemies
-				'''
-			FrigidTalisman:
-				'''
-				Prevents most types of burning
-				Lowers the intensity of heat from gale streams enemies
-				'''
-			NormalizerAmulet:
-				'''
-				Prevents most types of freezing and burning
-				Lowers the intensity of temperature sources from gale streams enemies
-				'''
-			MinersFlashlight:
-				'''
-				You emit a stream of light which points towards your cursor
-				Treasure shimmers when shone on by the light
-				Hide the accessory to disable the flashlight
-				'''
-			Extractor:
-				'''
-				Immunity to Suffocation
-				Falling blocks deal less damage
-				Increases mining speed by 25%
-				When visible, extracting will show how many things you've extracted
-				'''
-			SparrowWings: "{$CommonItemTooltip.FlightAndSlowfall}"
-			Thunderbird:
-				'''
-				{$CommonItemTooltip.FlightAndSlowfall}
-				Has immense horizontal speed!
-				'''
-			ArachnotronVisor:
-				'''
-				Increases melee damage, crit, and summon damage by 10%
-				Gives you night vision
-				'''
-			ArachnotronRibcage:
-				'''
-				Increases melee speed and summon damage by 10%
-				Reduces damage taken by 5%
-				Increases your max number of minions
-				Gives you damaging spider arms
-				'''
-			ArachnotronRevvers:
-				'''
-				Increases melee and summon damage by 10%
-				Increases your max number of minions
-				Allows you to run super fast and grants immunity to fire blocks
-				'''
-			LightbulbHelmet:
-				'''
-				Slightly increases mana regeneration
-				You faintly emit light
-				'..and so he left'
-				'''
-			LightbulbBreastplate: "'..and so he vanished'"
-			LightbulbGreaves:
-				'''
-				Increases your max number of minions
-				'..and so it comes'
-				'''
-			Hitscanner: Fires a massive spread of instantly hitting bullets
-			XenonBasher:
-				'''
-				Whack nearby enemies using your mouse
-				Hitting enemies will create xenon spores
-				'''
-			Flameblaster:
-				'''
-				{$Mods.Aequus.Tooltips.UsesGel}
-				<right> to shoot an airblast
-				Ignores 15 points of enemy Defense
-				33% chance to not consume ammo
-				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
-				'''
-			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
-			DoubleShot:
-				'''
-				Spawns a secondary bullet
-				50% chance to not be consumed upon firing
-				'''
-			Baozhu:
-				'''
-				A large explosion that puts enemies on fire
-				Explodes into lingering flames
-				'''
-			JerryClawFlail:
-				'''
-				Throws two claws
-				'Feels oily'
-				'''
-			MagicWand: Shoots a bolt which explodes into horizontal waves
-			Deltoid: Shoots a burst of 3 exploding arrows
-			Lightbulb: Emits light using the power of stars
-			Cauterizer:
-				'''
-				Shoots a wave of demonic energy
-				Inflicts crimson hellfire
-				'''
-			HellsBoon:
-				'''
-				Ash spikes appear around your cursor
-				Sword hits inflict corruption hellfire
-				'''
-			MonoxiderStaff: Summons a monoxide finch to fight for you
-			ScarletSea: Summons two blood orbs
-			SeltzerRain: Shoots many corrupted orbs
-			FizzlingFire: Cannot be used if you have mana sickness
-			Valari: Can pick up items
-			KryptonSword:
-				'''
-				Cuts through enemies
-				Inflicts multiple debuffs
-				'''
-			AirBlade: Summons magical air blades
-			ThunderClap: Spawns two giant hands to slap your enemies
-			Umystick:
-				'''
-				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
-				Right click to perform a double jump
-				'Looks quite menacing'
-				'''
-			Narrizuul:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				{$Mods.Aequus.Tooltips.Nalyddd}
-				'''
-			StudiesOfTheInkblot:
-				'''
-				'Rorschach in Danmaku'
-				'Subterranean Rose'
-				'''
-			CursedKey: Summons a demonic trapper to fight for you
-			PiranhaPot: Summons a vile plant to fight for you
-			Skrawler: Shoots a deadly flame bolt
-			LightMatter: Radiates light and interstellar power
-			NuclearFeather:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'They say it's from the flawless wings of Yatagaratsu'
-				'''
+
 			CrabPot: Uses bait to catch things in the water
-			PalePufferfish:
-				'''
-				Can cure you of many debuffs and vampirism
-				'''
-			VampireSquid: Gives you vampirism
-			UltraEel: The offspring of an ancient Starite species
-			Combfish: Has regenerative properties
-			LarvaEel: Provides life regeneration
-			CentennialLight: Greatly speeds up time
-			Globebulb: Speeds up time
-			VampireHook:
-				'''
-				Automatically aims towards nearby enemies
-				When attached to an enemy, it drains its life
-				'''
-			BlackBookofUntoldLegends: Summons the Hermit Crab merchant
-			Stardrop: Toggles whether town NPCs can move in during night
-			IWillBeBack:
-				'''
-				Summons the Wall of Flesh without murdering the Guide
-				Right click to toggle whether villagers are immune to lava
-				'''
-			CosmicTelescope: Shows the source of the Glimmer and some other related info on the map
-			DungeonMap:
-				'''
-				Shows the location of the Dungeon
-				Pressing the map icon of the Dungeon allows you to teleport to it
-				'''
-			LihzahrdMap:
-				'''
-				Shows the location of the Lihzahrd Altar
-				Pressing on the map icon of the Lihzahrd Altar allows you to teleport to it
-				'''
-			RetroGoggles: Enemies appear as a blip on the fullscreen map
-			Beeswax: Shows the location of any visible Plantera bulbs
+
 			MoonflowerSeeds: Blooms and produces pollen near midnight
-			UltrabrightRedTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightGreenTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightBlueTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			GlobeItem:
-				'''
-				Shows your tile coordinates when right clicked
-				'Explore the world'
-				'''
-			GlimmeringStatue: Used to craft powerful items made of energy
-			SedimentSandBlock: Does not fall
-			ArgonMushroom:
-				'''
-				Emits red light
-				'Dormant and inanimate'
-				'''
-			KryptonMushroom:
-				'''
-				Emits green light
-				'Can show vital weaknesses in super beings'
-				'''
-			XenonMushroom:
-				'''
-				Emits blue light
-				'Gets brighter when you touch it'
-				'''
-			CrabClock: "'What time is it? Crabby time.'"
-			PotionofContainers:
-				'''
-				Teleports you to random chests in the world
-				Can be concocted with a chest to target specific chest types
-				'''
-			PotionofContainersTag: Teleports you to random chests in the world
-			OpposingPotion: Reverses the effects of many things
-			Baguette:
-				'''
-				Supreme improvements to all stats
-				Greatly improves life regeneration
-				'Cake is just spongy bread'
-				'''
-			SpoilsPotion:
-				'''
-				Enemies drop twice as much loot
-				'You are such a spoiled brat!'
-				'''
-			SpreadPotion: Enemies will spread their current debuffs to nearby enemies when attacked
-			ShadePotion: Standing still will make enemies unable to target you
-			MysteryGrail:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				Gives you a random buff
-				'''
-			SaintsFlow:
-				'''
-				Minor improvements to all stats
-				Greatly increases speed
-				'''
-			RedLicorice: Medium improvements to all stats and increases your life by 20
-			GrapePhanta:
-				'''
-				Medium improvements to most stats
-				Major improvements to magic stats
-				Increases mana by 20
-				'''
-			PeeledCarrot: Medium improvements to all stats and grants you night vision
+
 			CursorDyeRemover: Removes any applied cursor dye
-			NalydDye: "{$Mods.Aequus.Tooltips.Nalyddd}"
+
 			FamiliarPickaxe: Summons a mini version of yourself
-			HeartLamp: Summons a heart moth which increases life regen and provides light
-			StariteinaBottle:
-				'''
-				Summons a dwarf starite to provide light
-				{$Mods.Aequus.Tooltips.SuspiciousLooking}
-				'''
-			YuckyOrb: Summons a pet angler fish to provide light
+
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
 			Cosmicanon: Prevents the Blood Moon from naturally spawning
@@ -1586,107 +1313,17 @@ Mods: {
 				'You have no idea what's in store for you!'
 				{$Mods.Aequus.PaintingSignature.niker}
 				'''
-			MoonlightWall: NPCs in front of the wall will think it's night
-			SunbaskMirror:
-				'''
-				Reflects powerful sunlight off of its surface
-				Can only be used during daytime, above ground
-				'''
-			UnityMirror:
-				'''
-				Reflects powerful moonlight off of its surface
-				Can only be used during nighttime, above ground
-				'''
-			PowPunch: Throws two fists which repeatedly bash enemies
-			CrystalDagger: Quickly jabs enemies
-			Aphrodite: Inflicts strong love which decreases enemy stats
-			Venus:
-				'''
-				Inflicts strong love which decreases enemy stats
-				Has a chance to poison enemies if they are very close to you
-				'''
-			Dysesthesia:
-				'''
-				Summons demon scythes
-				Inflicts enemies with corrupt hellfire if they are very close
-				'''
-			Galactium:
-				'''
-				Rains stars from the sky
-				Inflicts blue fire on true melee hits
-				'''
-			GoldPowder: Converts critters into their golden counterparts
-			GhostAmulet: Prevents Ghost spawns in singleplayer
-			CopperSeal: Fishing a crate will bless you with 30 seconds of the crate potion buff
-			SilverSeal: Fishing anything will bless you with 10 seconds of the fishing potion buff
-			GoldSeal: Fishing anything that can be sold for 1 gold blesses you with 1 minute of the sonar potion buff
-			PlatinumSeal:
-				'''
-				{$Mods.Aequus.ItemTooltip.CopperSeal}
-				{$Mods.Aequus.ItemTooltip.SilverSeal}
-				{$Mods.Aequus.ItemTooltip.GoldSeal}
-				'''
-			MoonShoes:
-				'''
-				Allows slow fall
-				Hold down to revert to regular gravity and hold up to lower gravity even more
-				'HE-HE'
-				'''
-			Crabsol: Only the strongest of people can wield this weapon in honor
-			SuspiciousLookingSteak:
-				'''
-				Gives multiple buffs
-				'A curse has been lifted'
-				'''
-			HermitShell: Increases your defense the lower your speed
-			StriderPalms:
-				'''
-				Increases minion damage by 10%
-				Increases the stats of the Strider Hook
-				'''
-			CrabShell: It's oddly misshapen
-			FishingCraftingStation: Used to craft special fishing items
-			MonoxideHat: "'Became a vanity item due to popular demand'"
-			Bubbler:
-				'''
-				Shoots a constant stream of bubbles
-				'The Sand Bubbler Crab will be your favorite animal because it makes balls of sand'
-				'''
-			GebulbaStaff:
-				'''
-				Shoots bouncy slimeballs
-				'Boing!'
-				'''
-			MagmalbulbiaStaff:
-				'''
-				Shoots firey magmaballs that explode off tiles
-				'EXPLOSION! EXPLOSION! EXPLOSION!'
-				'''
-			ArgonSpear: Redirects itself to your cursor
-			HamaYumi: Close enemies explode into corruption hellfire
-			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
-			SpaceShot: Shoots a star which then shoots bullets
+
 			LotusStaff:
 				'''
 				Summons a magma lotus to fight for you
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
-			CrimsonHandStaff: Summons a crimson hand to fight for you
-			ATM:
-				'''
-				Summons a flying safe to store your items
-				Place in your Safe in order to have it always summoned
-				'''
-			SpectralLens: Toggles energy drops
+
 			Crabax:
 				'''
 				Can chop multiple trees at once
 				Hold right click to disable this ability
-				'''
-			Floatstick:
-				'''
-				Works when wet
-				'I think you can guess what this does from the name'
 				'''
 
 			Terraria_SoulofMight: "'The essence of vigorous creatures'"
@@ -1787,14 +1424,11 @@ Mods: {
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
-			Vampirism: You may become a vampire after this...
-			VampirismNight: Greatly increased stats, attacks may lifesteal
-			VampirismDay: Greatly decreased stats, you no longer get buffs from food
-
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
 			NecromancyOwnerBuff: You are controlling the dead
 
+			PiranhaPlantBuff: The vile plant will fight for you
 			BrainCauliflowerBuff: The brain cauliflower will fight for you			
 			MindfungusBuff: The mindfungus will fight for you			
 			StariteBuff: The starite will fight for you
@@ -1803,58 +1437,26 @@ Mods: {
 			RedSpriteMinionBuff: The red sprite will fight for you
 			SnowflakeBuff: The snowflake will fight for you
 
+			FamiliarBuff: Despite everything, it's still you
+			OmegaStariteBuff: The smallest solar system imaginable
 			TorraBuff: "'GLAZE???!?'"
 			RedSpriteBuff: "'May get into hissy fits!'"
 			SpaceSquidBuff: "'It's just so cute'"
 
 			HotAirBalloonBuff: Up, up, and away!!!
 
-			Omori: Revives you with 1 HP on fatal hits with a 5 minute cooldown
-			PrimeTime: Your defense is greatly increased!
-			ArachnotronCooldown: You cannot use the Arachnotron Armor's effect anymore
-			MonoxiderBuff: The monoxider will fight for you
-			Trapper: The demonic trapper will fight for you
-			PiranhaPlant: The plant will fight for you
-			Harmony: Greatly increases your magical powers
-			Opposing: Reverses the effects of many things
-			Spoiled: Enemies drop twice as much loot
-			DebuffSpread: Enemies will spread their current debuffs to nearby enemies when attacked
-			Shade: Standing still will make enemies unable to target you
-			SpeedBoostFood: Minor improvements to all stats and your speed is greatly increased
-			RedLicoriceBuff: Medium improvements to all stats and increases your life by 20
-			GrapePhantaBuff:
-				'''
-				Medium improvements to most stats
-				Major improvements to magic stats
-				Increases mana by 20
-				'''
-			DragonCarrotBuff: Medium improvements to all stats and grants you night vision
-			FamiliarBuff: Despite everything, it's still you
-			HeartMothBuff: Gives you increased life regen and emits light
-			DwarfStariteBuff: "'The more you know'"
-			OmegaStariteBuff: The smallest solar system imaginable
-			AnglerFish: Is secretly attracted to its own light
-			Sparkling: You are shimmering from cosmic radiation
-			CrimsonHand: The crimson hand will fight for you
-			Chomper: The chomper will fight for you
+
+			Vampirism: You may become a vampire after this...
+			VampirismNight: Greatly increased stats, attacks may lifesteal
+			VampirismDay: Greatly decreased stats, you no longer get buffs from food
+
+			Weakness: "{$BuffDescription.Weak}"
+			CrimsonHellfire: "{$BuffDescription.OnFire}"
+			CorruptionHellfire: "{$BuffDescription.OnFire}"
+			Bleeding: "{$BuffDescription.Bleeding}"
+			BitCrushed: You are compressed!
 			BlueFire: The immense heat burns off your skin
-			Bossrush: Bosses respawn when defeated
-			Ultima: The blade of Ultima blesses you
-			SpectreHealing: You are healing at rapid speeds
-			Cold20: You are below 20 degrees Fahrenheit
-			Cold40: You are below 40 degrees Fahrenheit
-			Cold60: You are below 60 degrees Fahrenheit
-			Cold80: You are below 80 degrees Fahrenheit
-			Hot20: You are above 20 degrees Fahrenheit
-			Hot40: You are above 40 degrees Fahrenheit
-			Hot60: You are above 60 degrees Fahrenheit
-			Hot80: You are above 80 degrees Fahrenheit
 			PickBreak: Your mining power is halved
-			RedSpriteWind:
-				'''
-				The wind moves you around!
-				You are increasing in temperature
-				'''
 		}
 
 		ProjectileName: {
@@ -1968,16 +1570,7 @@ Mods: {
 			DoubleShotProj: Bullet
 			SnowsawMinion: Snowflake
 			JerryClawFlail: Jerry Claw
-			MagicWand: Magic Wand
-			DeltoidArrow: Deltoid Arrow
-			Burnterizer: First Degree Burns
-			BurnterizerExplosion: First Degree Burns
 			HellsBoonSpike: Hell's Boon
-			MonoxiderMinion: Monoxider
-			MagicalBoomerang: Magical Boomerang
-			StariteSpinnerProjectile: Starite Spinner
-			AirBlade: Air Blade
-			AirBladeGhost: Air Blade
 			RedSpriteStaff: Surge Rod
 			RedSpriteStaffLightning: Surge Rod
 			ThunderClap: Thunder Clap
@@ -2037,24 +1630,6 @@ Mods: {
 				Take reduced damage when you have no ghost minions active
 				'''
 			Gravetender: Summons a wisp to empower your ghosts
-
-			Arachnotron:
-				'''
-				12% increased melee and summon damage
-				Increases your maximum number of minions
-				Press the {0} key to gain heavily increased defensive stats for a short while with a cooldown
-				'''
-			SkyrimArmor:
-				'''
-				5% increased damage reduction
-				10% decreased movement speed
-				'You are carrying too much to be able to run'
-				'''
-			Lightbulb:
-				'''
-				Hunter and dangersense is always active
-				Traps deal 30% less damage
-				'''
 		}
 
 		WhiteFlag: {
@@ -2065,32 +1640,6 @@ Mods: {
 		GhostlyGrave: {
 			False: You will now drop graves again
 			True: You will no longer drop graves
-		}
-
-		Stardrop: {
-			False: Town NPCs can no longer move in during the night
-			True: Town NPCs can now move in during the night
-		}
-
-		IWillBeBackToggle: {
-			True: Town NPCs will now resist lava
-			False: Town NPCs will no longer resist lava
-		}
-
-		MapLayerToggle: {
-			CosmicTelescope: Shows the source of the Glimmer and some other related info on the map
-			VialOfBlood:
-				'''
-				Shows the location of the Dungeon
-				Pressing the map icon of the Dungeon allows you to teleport to it
-				'''
-			Cabbage:
-				'''
-				Shows the location of the Lihzahrd Altar
-				Pressing on the map icon of the Lihzahrd Altar allows you to teleport to it
-				'''
-			BlightedSoul: Enemies appear as a blip on the fullscreen map
-			Beeswax: Shows the location of any visible Plantera bulbs
 		}
 
 		MapObject: {
