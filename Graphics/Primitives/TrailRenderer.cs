@@ -15,6 +15,8 @@ namespace Aequus.Graphics.Primitives
         protected static Asset<Effect> shader;
         public static Effect Shader => shader.Value;
 
+        public static Vector2 CurrentlyDrawnLocation;
+
         public Vector2 drawOffset;
         public Texture2D Texture;
         public string Pass;
@@ -161,6 +163,7 @@ namespace Aequus.Graphics.Primitives
                 Vector2 off2 = rotationVectors[i + 1] * width2;
                 float coord1 = off1.Length() < off2.Length() ? 1 : 0;
                 float coord2 = off1.Length() < off2.Length() ? 0 : 1;
+                CurrentlyDrawnLocation = (arr[i] + arr[i + 1]) / 2f;
                 Color col1 = GetColor(uv);
                 Color col2 = GetColor(uv2);
                 vertices.Add(new VertexPositionColorTexture(new Vector3(pos1 + off1, 0f), col1, new Vector2((uv + uvAdd) * uvMultiplier, coord1)));

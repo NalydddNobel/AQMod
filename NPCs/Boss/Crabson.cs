@@ -781,6 +781,31 @@ namespace Aequus.NPCs.Boss
                     break;
             }
         }
+        public static void DrawSaggyChainTest(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
+        {
+            int height = chain.Height;
+            var velo = Vector2.Normalize(endPosition - currentPosition) * (height - 4f);
+            var position = currentPosition;
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            var primCoords = new List<Vector2>();
+            float maxWidth = Math.Abs(currentPosition.X - endPosition.X);
+            int dir = Math.Sign(currentPosition.X - endPosition.X);
+            for (int i = 0; i < 50; i++)
+            {
+                primCoords.Add(position);
+                float progress = Math.Abs(primCoords[i].X - endPosition.X) / maxWidth;
+                position += velo.RotatedBy((float)Math.Sin(progress * (MathHelper.PiOver2 * 3f) + MathHelper.PiOver2) * dir);
+                if (Vector2.Distance(position, endPosition) <= height)
+                    break;
+            }
+            float rotation = 0f;
+            for (int i = 0; i < primCoords.Count; i++)
+            {
+                if (i < primCoords.Count - 1)
+                    rotation = (primCoords[i] - primCoords[i + 1]).ToRotation();
+                spriteBatch.Draw(chain, primCoords[i] - screenPos, null, Lighting.GetColor((int)(primCoords[i].X / 16), (int)(primCoords[i].Y / 16f)), rotation, origin, 1f, SpriteEffects.None, 0f);
+            }
+        }
 
         public override void DrawBehind(int index)
         {

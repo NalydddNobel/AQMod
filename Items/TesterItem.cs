@@ -1,5 +1,4 @@
-﻿using Aequus.Content.WorldGeneration;
-using Aequus.Items.Weapons.Magic;
+﻿using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -32,7 +31,7 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            AequusWorldGenerator.GenCrabCrevice.GrowWalls(x, y);
+            Main.NewText(Mod.Call("DemonSiegeSacrifice", Mod, Type, Type + 1, 0));
             return true;
         }
     }

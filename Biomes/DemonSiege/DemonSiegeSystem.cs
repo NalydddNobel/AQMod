@@ -250,6 +250,7 @@ namespace Aequus.Biomes.DemonSiege
             {
                 var s = new SacrificeData(baseItem, newItem, (UpgradeProgressionType)(byte)progression);
                 RegisterSacrifice(s);
+                return ModCallManager.Success;
             }
             return ModCallManager.Failure;
         }

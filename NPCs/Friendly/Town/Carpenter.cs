@@ -131,7 +131,7 @@ namespace Aequus.NPCs.Friendly.Town
             var stopWatch = new Stopwatch();
             var houseInsideTiles = GetHouseInsideTiles((left + right) / 2, (top + bottom) / 2);
             int decorAmt = CountDecorInsideHouse(houseInsideTiles);
-            return decorAmt >= 5;
+            return decorAmt >= 4;
         }
 
         public static List<Point> GetHouseInsideTiles(int x, int y)

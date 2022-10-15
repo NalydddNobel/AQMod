@@ -33,6 +33,7 @@ namespace Aequus.Content.CrossMod
 {
     public class ModSupport : IPostSetupContent, IAddRecipes
     {
+        public static Mod Census => CensusSupport.Census;
         public static Mod CalamityMod => CalamityModSupport.CalamityMod;
         public static Mod Polarities => PolaritiesSupport.Polarities;
         public static Mod Fargowiltas { get; private set; }
