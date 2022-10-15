@@ -295,8 +295,8 @@ Mods: {
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
-			CrabCreviceCrate: 腐烂板条箱
-			CrabCreviceCrateHard: 腐败板条箱
+			CrabCreviceCrate: 甲壳板条箱
+			CrabCreviceCrateHard: 硬壳板条箱
 
 			JungleSlotMachine: 丛林老虎机
 			OceanSlotMachine: 海洋老虎机
@@ -736,7 +736,7 @@ Mods: {
 				生命值为满时会发射剑气
 				'会动的东西我砍, 动的很欢的我砍得更欢'
 				'''
-			UltimateSword: '只是真正潜能的一小部分'
+			UltimateSword: "'只是真正潜能的一小部分'"
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
