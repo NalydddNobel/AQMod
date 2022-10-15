@@ -155,13 +155,13 @@ namespace Aequus.Tiles.CrabCrevice
                     break;
                 }
             }
-            AequusEffects.EffectRand.SetRand(i * topY + i + topY + Main.tile[i, topY].TileFrameX + Main.tile[i, topY].TileFrameY);
+            EffectsSystem.EffectRand.SetRand(i * topY + i + topY + Main.tile[i, topY].TileFrameX + Main.tile[i, topY].TileFrameY);
             var drawCoords = new Vector2(i * 16f + 8f, j * 16f);
             drawCoords.Y += (1f - Main.tile[i, topY].LiquidAmount / 255f) * 16f;
-            drawCoords.Y += AequusEffects.EffectRand.Rand(-6f);
+            drawCoords.Y += EffectsSystem.EffectRand.Rand(-6f);
             if (Main.tile[i, j].TileFrameY != 0)
             {
-                drawCoords.X += AequusHelpers.Wave(AequusEffects.EffectRand.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly - j * 0.5f, -4f, 4f);
+                drawCoords.X += AequusHelpers.Wave(EffectsSystem.EffectRand.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly - j * 0.5f, -4f, 4f);
             }
             //int amt = (int)AequusEffects.EffectRand.Rand(1f, 50f);
             //float time = Main.GlobalTimeWrappedHourly * AequusEffects.EffectRand.Rand(0.75f, 1f);

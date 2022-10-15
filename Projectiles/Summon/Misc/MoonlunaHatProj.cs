@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Summon.Misc
     {
         public TrailRenderer prim;
 
-        public virtual int Max => 6;
+        public virtual int Max => 7;
 
         public override void SetDefaults()
         {
@@ -31,21 +31,21 @@ namespace Aequus.Projectiles.Summon.Misc
             switch ((int)Projectile.ai[1])
             {
                 case 1:
-                    return Color.AliceBlue;
+                    return Color.AliceBlue.UseA(0);
                 case 2:
-                    return new Color(200, 80, 111, 255);
+                    return new Color(200, 80, 111, 0);
                 case 3:
-                    return new Color(200, 175, 75, 255);
+                    return new Color(200, 175, 75, 0);
                 case 4:
-                    return new Color(80, 70, 255, 255);
+                    return new Color(80, 70, 255, 0);
                 case 5:
-                    return new Color(80, 180, 255, 255);
+                    return new Color(80, 180, 255, 0);
                 case 6:
-                    return new Color(180, 80, 255, 255);
+                    return new Color(180, 80, 255, 0);
                 case 7:
-                    return new Color(120, 150, 255, 255);
+                    return new Color(120, 150, 255, 0);
             }
-            return Color.White;
+            return Color.White.UseA(0);
         }
 
         public override void AI()

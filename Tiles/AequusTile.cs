@@ -3,7 +3,9 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -242,14 +244,14 @@ namespace Aequus.Tiles
             if (!fail)
             {
                 Main.tile[i, j].Get<AequusTileData>().OnKillTile();
-                if (ArmFloaties.Equipped.Count > 0)
+                if (ArmFloaties.EquippedCache.Count > 0)
                 {
                     int closestPlayer = -1;
                     float distance = 240f;
-                    foreach (var p in ArmFloaties.Equipped)
+                    foreach (var p in ArmFloaties.EquippedCache)
                     {
                         if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].ghost
-                            && Main.player[p].breath < Main.player[p].breathMax && Main.player[p].Aequus().accArmFloaties)
+                            && Main.player[p].breath < Main.player[p].breathMax && Main.player[p].Aequus().accArmFloaties > 0)
                         {
                             float d = Main.player[p].Distance(new Vector2(i * 16f + 8f, j * 16f + 8f));
                             if (d < distance)
@@ -261,7 +263,7 @@ namespace Aequus.Tiles
                     }
                     if (closestPlayer != -1)
                     {
-                        Main.player[closestPlayer].breath += Main.player[closestPlayer].breathMax / 15;
+                        Main.player[closestPlayer].breath += Main.player[closestPlayer].breathMax / 15 * Main.player[closestPlayer].Aequus().accArmFloaties;
                         if (Main.player[closestPlayer].breath > Main.player[closestPlayer].breathMax - 1)
                         {
                             Main.player[closestPlayer].breath = Main.player[closestPlayer].breathMax - 1;

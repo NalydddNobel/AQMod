@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Particles.Dusts;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -22,7 +22,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accPreciseCrits = true;
+            player.Aequus().accPreciseCrits += 1f;
         }
     }
 }

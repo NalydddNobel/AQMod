@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,7 +43,6 @@ namespace Aequus.Items.Accessories.Summon.Necro
                 ProjectileID.Bee,
                 ProjectileID.Bullet,
                 ProjectileID.StarAnise,
-                ProjectileID.Hellwing,
             };
         }
 
@@ -70,9 +70,13 @@ namespace Aequus.Items.Accessories.Summon.Necro
         {
             var aequus = player.Aequus();
             aequus.accPandorasBox = Item;
-            if (aequus.pandorasBoxChance == 0 || aequus.pandorasBoxChance > 140)
+            if (aequus.pandorasBoxChance == 0 || aequus.pandorasBoxChance < 140)
             {
                 aequus.pandorasBoxChance = 140;
+            }
+            else
+            {
+                aequus.pandorasBoxChance = Math.Max(aequus.pandorasBoxChance / 2, 1);
             }
             aequus.ghostProjExtraUpdates += 1;
         }

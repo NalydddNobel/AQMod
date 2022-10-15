@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Common.ModPlayers;
 using Aequus.Projectiles.Misc.Bobbers;
 using Terraria;
 using Terraria.ID;

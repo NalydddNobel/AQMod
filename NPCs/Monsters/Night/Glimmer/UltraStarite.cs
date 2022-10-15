@@ -4,6 +4,7 @@ using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -57,6 +58,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             this.CreateLoot(npcLoot)
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
+                .Add<CosmicMonolith>(chance: 4, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
@@ -361,7 +363,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                         if ((int)NPC.ai[1] == 197 && AequusHelpers.ShouldDoEffects(NPC.Center))
                         {
                             ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.93f);
-                            AequusEffects.Shake.Set(18f, 0.93f);
+                            EffectsSystem.Shake.Set(18f, 0.93f);
                         }
                         if ((int)NPC.ai[1] == 200)
                         {
@@ -564,7 +566,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                         if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15))
                         {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                            AequusEffects.AbovePlayers.Add(
+                            EffectsSystem.AbovePlayers.Add(
                                 new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
                                 ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
                                 Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi)));
@@ -678,7 +680,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (ray.IsLoaded)
             {
                 float rayProgress = Math.Max(bloomProgress, 0.4f);
-                var r = AequusEffects.EffectRand;
+                var r = EffectsSystem.EffectRand;
                 int seed = r.SetRand(0);
                 var rayOrigin = ray.Size() / 2f;
                 for (int i = 0; i < 20; i++)

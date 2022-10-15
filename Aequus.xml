@@ -78,12 +78,12 @@
             <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.scamChance">
+        <member name="F:Aequus.AequusPlayer.accFaultyCoin">
             <summary>
             A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.Utility.FaultyCoin"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.flatScamDiscount">
+        <member name="F:Aequus.AequusPlayer.accForgedCard">
             <summary>
             A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.Utility.ForgedCard"/>
             </summary>
@@ -444,16 +444,6 @@
             <param name="name">The name of the structure</param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Graphics.AequusEffects.BehindPlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.AequusEffects.AbovePlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
         <member name="T:Aequus.Graphics.CameraFocus">
             <summary>
             Manages screen panning
@@ -509,6 +499,16 @@
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="P:Aequus.Graphics.EffectsSystem.BehindPlayers">
+            <summary>
+            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.EffectsSystem.AbovePlayers">
+            <summary>
+            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
         </member>
         <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">
             <summary>
@@ -587,12 +587,12 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
-        <member name="P:Aequus.Items.CooldownItem.HasWeaponCooldown">
+        <member name="P:Aequus.Items.CooldownGlobalItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
             </summary>
         </member>
-        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.PlayerFishing,Terraria.Item,System.Single@)">
+        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
             
             </summary>
@@ -735,14 +735,14 @@
             Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>
         </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.SentryAccessoriesProj@)">
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.SentryAccessoriesGlobalProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>
             <param name="player">The owner of this projectile.</param>
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.SentryAccessoriesProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
     </members>
 </doc>

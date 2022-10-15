@@ -4,7 +4,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Ranged;
-using Aequus.Tiles;
+using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -210,7 +210,7 @@ namespace Aequus.Projectiles
                     && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accSentryInheritence != null)
                     {
                         var aequus = Main.player[projectile.owner].Aequus();
-                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesProj>();
+                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesGlobalProj>();
                         pWhoAmI = projectile.whoAmI;
                         pIdentity = projectile.identity;
                         try
@@ -260,18 +260,6 @@ namespace Aequus.Projectiles
             }
         }
 
-        public void OnSpawn_CheckTombstones(Projectile projectile, EntitySource_Misc misc)
-        {
-            if (misc.Context == "PlayerDeath_TombStone")
-            {
-                var player = Main.player[projectile.owner];
-                if (player.position.Y > Main.UnderworldLayer * 16f)
-                {
-                    transform = Main.rand.Next(CustomTombstones.HellTombstones);
-                }
-            }
-        }
-
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             sourceItemUsed = -1;
@@ -290,10 +278,6 @@ namespace Aequus.Projectiles
                 if (source is EntitySource_ItemUse itemUse)
                 {
                     OnSpawn_CheckBonesaw(projectile, itemUse);
-                }
-                else if (source is EntitySource_Misc misc)
-                {
-                    OnSpawn_CheckTombstones(projectile, misc);
                 }
 
                 if (sourceItemUsed > Main.maxItemTypes)
@@ -381,7 +365,7 @@ namespace Aequus.Projectiles
             if ((projectile.friendly || projectile.bobber) && projectile.owner >= 0 && projectile.owner != 255 && !projectile.npcProj && !GlowCore.ProjectileBlacklist.Contains(projectile.type))
             {
                 var glowCore = Main.player[projectile.owner].Aequus();
-                if (glowCore.cGlowCore != -1)
+                if (glowCore.accGlowCore > 0)
                 {
                     GlowCore.AddLight(projectile.Center, Main.player[projectile.owner], Main.player[projectile.owner].Aequus());
                 }
@@ -395,7 +379,7 @@ namespace Aequus.Projectiles
                     if (target != -1)
                     {
                         Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
-                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(), (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f)), 12f, projectile.owner);
+                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(), (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.Aequus().accStacks), 12f, projectile.owner);
                     }
                 }
             }
@@ -403,12 +387,7 @@ namespace Aequus.Projectiles
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                int chance = 1;
-                if (projectile.minion)
-                {
-                    chance += Main.player[projectile.owner].ownedProjectileCounts[projectile.type] / 2;
-                }
-                if (aequus.accLittleInferno && Main.rand.NextBool(chance))
+                if (aequus.accLittleInferno > 0)
                 {
                     LittleInferno.InfernoPotionEffect(Main.player[projectile.owner], projectile.Center);
                 }
@@ -444,7 +423,7 @@ namespace Aequus.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
-            if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn)
+            if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0)
             {
                 int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (proj != -1)
@@ -454,7 +433,7 @@ namespace Aequus.Projectiles
                     {
                         aequus.extraUpdatesTemporary++;
                     }
-                    aequus.frenzyTime = 240;
+                    aequus.frenzyTime = (ushort)(240 * Main.player[projectile.owner].Aequus().accWarHorn);
                     Main.projectile[proj].netUpdate = true;
                 }
             }
@@ -468,9 +447,9 @@ namespace Aequus.Projectiles
             }
             if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
             {
-                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid && Main.rand.NextBool(6))
+                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid > 0 && Main.rand.NextBool(Math.Max(6 / Main.player[projectile.owner].Aequus().accFrostburnTurretSquid, 1)))
                 {
-                    target.AddBuff(BuffID.Frostburn2, 240);
+                    target.AddBuff(BuffID.Frostburn2, 240 * Main.player[projectile.owner].Aequus().accFrostburnTurretSquid);
                 }
             }
             if (sourceItemUsed == ModContent.ItemType<Raygun>())
@@ -519,7 +498,7 @@ namespace Aequus.Projectiles
             if (CanGetSpecialAccEffects(projectile))
             {
                 var aequus = Main.player[projectile.owner].Aequus();
-                if (aequus.accLittleInferno)
+                if (aequus.accLittleInferno > 0)
                 {
                     float opacity = Math.Clamp((Main.myPlayer == projectile.owner ? 0.4f : 0.15f) / Main.player[projectile.owner].ownedProjectileCounts[projectile.type], 0.05f, 1f);
                     if (timeAlive < 30)

@@ -65,8 +65,6 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
                         item.SetDefaults(itemId);
                         item.stack = stack;
                         item.newAndShiny = true;
-                        item.Aequus()._inventoryMoveAnchor = SlotMachineItemBase.ItemSpawnLocation;
-                        SlotMachineItemBase.ItemSpawnLocation = Vector2.Zero;
                         if (SlotMachineSystem.TimeSpeed < 24f)
                         {
                             SlotMachineSystem.TimeSpeed += 2f;

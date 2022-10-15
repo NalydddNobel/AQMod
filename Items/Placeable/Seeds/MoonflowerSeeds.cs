@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Tiles.Ambience;
+using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

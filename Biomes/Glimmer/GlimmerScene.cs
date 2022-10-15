@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
@@ -41,7 +42,7 @@ namespace Aequus.Biomes.Glimmer
 
         public override void SpecialVisuals(Player player, bool isActive)
         {
-            if (isActive)
+            if (isActive && !SkyManager.Instance[CosmicMonolithScene.Key].IsActive())
             {
                 if (!SkyManager.Instance[GlimmerSky.Key].IsActive())
                 {

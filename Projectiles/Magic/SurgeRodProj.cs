@@ -291,7 +291,7 @@ namespace Aequus.Projectiles.Magic
                 return null;
             }
             Vector2[] coordinates = new Vector2[(ClientConfig.Instance.HighQuality ? 25 : 8)];
-            var rand = AequusEffects.EffectRand;
+            var rand = EffectsSystem.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {

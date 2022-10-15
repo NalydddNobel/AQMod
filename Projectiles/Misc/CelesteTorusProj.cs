@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Misc
             if (projIdentity > -1)
             {
                 projIdentity = AequusHelpers.FindProjectileIdentity(Projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesProj>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
                 {
                     Projectile.Kill();
                     return;
@@ -57,7 +57,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.scale = 1f;
 
             var player = Main.player[Projectile.owner];
-            if (!player.active || player.dead || (aequus?.celesteTorusItem) == null)
+            if (!player.active || player.dead || (aequus?.accCelesteTorus) == null)
             {
                 return;
             }
@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Misc
 
             if (Projectile.active)
             {
-                int damage = player.GetWeaponDamage(aequus.celesteTorusItem);
+                int damage = player.GetWeaponDamage(aequus.accCelesteTorus);
                 if (Projectile.damage != damage)
                 {
                     if (Projectile.damage < damage)

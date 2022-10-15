@@ -211,14 +211,14 @@ namespace Aequus.NPCs.Monsters.Underworld
 
         public override void DrawBehind(int index)
         {
-            AequusEffects.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+            EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             if (!NPC.IsABestiaryIconDummy)
             {
-                if (AequusEffects.NPCsBehindAllNPCs.RenderingNow)
+                if (EffectsSystem.NPCsBehindAllNPCs.RenderingNow)
                 {
                     var chainTexture = TrapperChainTexture;
                     if (!chainTexture.IsLoaded)

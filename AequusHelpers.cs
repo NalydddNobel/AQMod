@@ -6,6 +6,7 @@ using Aequus.Items;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -836,7 +837,7 @@ namespace Aequus
             {
                 return player;
             }
-            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesProj>(out var santankSentry))
+            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var santankSentry))
             {
                 return santankSentry.dummyPlayer;
             }
@@ -850,7 +851,7 @@ namespace Aequus
             if (projIdentity > -1)
             {
                 projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesProj>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
                 {
                     if (Main.myPlayer == projectile.owner)
                     {

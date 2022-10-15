@@ -332,14 +332,14 @@ namespace Aequus.Projectiles.Summon
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            AequusEffects.ProjsBehindProjs.Add(Projectile.whoAmI);
+            EffectsSystem.ProjsBehindProjs.Add(Projectile.whoAmI);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             GetDrawingInfo(out var image, out var frame);
             var off = new Vector2(Projectile.width / 2f, Projectile.height - frame.Height / 2f);
-            if (AequusEffects.ProjsBehindProjs.RenderingNow)
+            if (EffectsSystem.ProjsBehindProjs.RenderingNow)
             {
                 int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
                 var origin = frame.Size() / 2f;

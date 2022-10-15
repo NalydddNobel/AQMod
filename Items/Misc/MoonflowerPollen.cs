@@ -1,5 +1,4 @@
-﻿using Aequus.Content;
-using Aequus.Items.Prefixes.Potions;
+﻿using Aequus.Items.Prefixes.Potions;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -26,7 +26,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().mothmanMaskItem = Item;
+            player.Aequus().accMothmanMask = Item;
             if (player.statLife >= player.statLifeMax2)
             {
                 player.GetDamage(DamageClass.Generic) += 0.15f;

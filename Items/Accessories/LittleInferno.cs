@@ -30,11 +30,12 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accLittleInferno = true;
+            player.Aequus().accLittleInferno++;
         }
 
         public override void AddRecipes()
         {
+            return;
             CreateRecipe()
                 .AddIngredient<Fluorescence>(10)
                 .AddIngredient<AtmosphericEnergy>()
@@ -51,10 +52,11 @@ namespace Aequus.Items.Accessories
                 return;
             }
 
+            int stack = player.Aequus().accLittleInferno;
             int fireDebuff = BuffID.OnFire3;
             float minDistance = 200f;
-            bool dealDamage = player.infernoCounter % 60 == 0;
-            int damageDealt = 25;
+            bool dealDamage = player.infernoCounter % Math.Max(60 / stack, 1) == 0;
+            int damageDealt = 25 * stack;
             for (int i = 0; i < 200; i++)
             {
                 NPC target = Main.npc[i];
@@ -63,7 +65,7 @@ namespace Aequus.Items.Accessories
                     if (dealDamage || !target.HasBuff(fireDebuff))
                     {
                         int oldDef = target.defense;
-                        target.defense -= 20;
+                        target.defense -= 20 + (10 * (stack - 1));
                         player.ApplyDamageToNPC(target, damageDealt, 0f, 0, crit: false);
                         target.justHit = true;
                         target.defense = oldDef;
@@ -71,7 +73,7 @@ namespace Aequus.Items.Accessories
 
                     if (i != npcWhoAmIBlacklist)
                     {
-                        target.AddBuff(fireDebuff, 120);
+                        target.AddBuff(fireDebuff, 120 * stack);
                     }
                 }
             }
@@ -88,7 +90,7 @@ namespace Aequus.Items.Accessories
                 }
                 if (plr.FindBuffIndex(fireDebuff) == -1)
                 {
-                    plr.AddBuff(fireDebuff, 120);
+                    plr.AddBuff(fireDebuff, 120 * stack);
                 }
                 if (dealDamage)
                 {

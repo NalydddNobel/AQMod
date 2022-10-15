@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using Aequus.Tiles.PhysicistBlocks;
 using Aequus.UI;
 using Terraria;
 using Terraria.ID;
@@ -82,7 +83,7 @@ namespace Aequus
         {
             AequusTile.UpdateIndestructibles();
             CelesteTorus.RenderPoints?.Clear();
-            ArmFloaties.Equipped?.Clear();
+            ArmFloaties.EquippedCache?.Clear();
             ResetCaches();
         }
 

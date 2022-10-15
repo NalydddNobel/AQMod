@@ -6,6 +6,7 @@ using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.WorldGeneration;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.Misc;
 using Aequus.UI;
 using System;
 using System.Collections.Generic;

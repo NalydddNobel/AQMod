@@ -6,6 +6,11 @@ namespace Aequus.Items.Placeable.Furniture
 {
     public class CrabClock : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<WallClocks>(), WallClocks.CrabClock);

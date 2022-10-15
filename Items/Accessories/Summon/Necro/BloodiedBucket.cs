@@ -22,7 +22,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().ghostLifespan *= 3;
+            player.Aequus().ghostLifespan += 7200;
         }
     }
 }

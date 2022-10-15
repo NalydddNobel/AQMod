@@ -309,7 +309,7 @@ namespace Aequus.Content.Necromancy
                     UsePandorasBox(npc, aequus, aequus.accPandorasBox, Zombie.NPCTarget);
                 }
 
-                if (isZombie && !stats.DontModifyVelocity)
+                if (isZombie && aequus.setGravetenderGhost == npc.whoAmI && !stats.DontModifyVelocity)
                 {
                     npc.Aequus().statSpeed *= 1.5f;
                 }

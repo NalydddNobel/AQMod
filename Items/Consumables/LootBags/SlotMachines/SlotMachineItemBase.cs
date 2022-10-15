@@ -16,8 +16,6 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
     public abstract class SlotMachineItemBase : ModItem
     {
-        public static Vector2 ItemSpawnLocation;
-
         protected virtual List<int> GetLootTable()
         {
             var dropAttemptInfo = new DropAttemptInfo()
@@ -185,7 +183,6 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
                 Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 if (i == 0)
                 {
-                    ItemSpawnLocation = drawCoords;
                     Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White.UseA(0) * (float)Math.Pow(0.5f * (float)Math.Sin(rollY * MathHelper.Pi), 2), 0f, itemTexture.Size() / 2f, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 }
             }

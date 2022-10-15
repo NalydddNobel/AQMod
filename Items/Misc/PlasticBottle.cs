@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Tiles;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Tiles.Misc;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

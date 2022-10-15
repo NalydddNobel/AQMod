@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee.Swords;
+﻿using Aequus.Items.Recipes;
+using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

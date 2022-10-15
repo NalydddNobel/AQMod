@@ -499,7 +499,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
             var lightRayOrigin = lightRay.Size() / 2f;
 
-            var r = AequusEffects.EffectRand;
+            var r = EffectsSystem.EffectRand;
             int seed = r.SetRand((int)NPC.localAI[0]);
             int i = 0;
             foreach (float f in AequusHelpers.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))

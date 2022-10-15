@@ -142,7 +142,8 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.celesteTorusItem = Item;
+            aequus.accCelesteTorus = Item;
+            aequus.celesteTorusDamage++;
             if (aequus.ProjectilesOwned(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<CelesteTorusProj>(),
@@ -153,6 +154,11 @@ namespace Aequus.Items.Accessories
         void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cCelesteTorus = dyeItem.dye;
+        }
+
+        public override void ModifyWeaponDamage(Player player, ref StatModifier damage)
+        {
+            damage += player.Aequus().celesteTorusDamage - 1f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

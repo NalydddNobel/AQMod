@@ -2,6 +2,7 @@
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;
+using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -223,7 +224,7 @@ namespace Aequus.Content.WorldGeneration
                 if (!Main.tile[v.X, v.Y].HasTile)
                 {
                     AequusHelpers.dustDebug(v.X, v.Y);
-                    int c = WorldGen.PlaceChest(v.X, v.Y, style: ChestTypes.Shadow);
+                    int c = WorldGen.PlaceChest(v.X, v.Y, style: ChestType.Shadow);
                     if (c != -1)
                     {
                         FillChest(Main.chest[c]);

@@ -111,7 +111,12 @@ namespace Aequus.Items.Accessories
 
             float multiplier = 1f / largest;
             clr *= multiplier;
-            Lighting.AddLight(location, clr * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.7f, 0.9f));
+            Lighting.AddLight(location, clr * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f) * aequus.accGlowCore);
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.Aequus().accGlowCore++;
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

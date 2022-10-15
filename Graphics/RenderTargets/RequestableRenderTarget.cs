@@ -41,9 +41,9 @@ namespace Aequus.Graphics.RenderTargets
 
         public virtual void Load(Mod mod)
         {
-            if (AequusEffects.Renderers == null)
-                AequusEffects.Renderers = new List<RequestableRenderTarget>();
-            AequusEffects.Renderers.Add(this);
+            if (EffectsSystem.Renderers == null)
+                EffectsSystem.Renderers = new List<RequestableRenderTarget>();
+            EffectsSystem.Renderers.Add(this);
         }
         public virtual void Unload()
         {

@@ -464,7 +464,7 @@ namespace Aequus.NPCs.Monsters.Jungle
             float d = (NPC.Center - Main.LocalPlayer.Center).Length();
             if (d < 1500f)
             {
-                AequusEffects.Shake.Set(Math.Max(16f * (1f - d / 1500f) * heartBeat * 6f * (1f + NPC.localAI[0] / 25f), AequusEffects.Shake.Intensity), 0.95f - NPC.localAI[0] / 90f);
+                EffectsSystem.Shake.Set(Math.Max(16f * (1f - d / 1500f) * heartBeat * 6f * (1f + NPC.localAI[0] / 25f), EffectsSystem.Shake.Intensity), 0.95f - NPC.localAI[0] / 90f);
             }
             return false;
         }

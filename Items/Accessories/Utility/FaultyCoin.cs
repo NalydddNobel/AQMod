@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void UpdateEquip(Player player)
         {
-            player.Aequus().scamChance += 0.1f;
+            player.Aequus().accFaultyCoin += 0.1f;
         }
     }
 }

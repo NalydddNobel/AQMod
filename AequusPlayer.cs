@@ -4,6 +4,7 @@ using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
 using Aequus.Common;
+using Aequus.Common.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
@@ -25,7 +26,7 @@ using Aequus.Projectiles;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Aequus.Tiles;
+using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -111,7 +112,7 @@ namespace Aequus
 
         public int leechHookNPC;
 
-        public bool accArmFloaties;
+        public int accArmFloaties;
 
         public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
@@ -142,7 +143,7 @@ namespace Aequus
 
         public bool accSentrySlot;
         public Item accNeonFish;
-        public bool accWarHorn;
+        public int accWarHorn;
 
         public int instaShieldTime;
         public int instaShieldTimeMax;
@@ -158,11 +159,11 @@ namespace Aequus
         /// <summary>
         /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="FaultyCoin"/>
         /// </summary>
-        public float scamChance;
+        public float accFaultyCoin;
         /// <summary>
         /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="ForgedCard"/>
         /// </summary>
-        public int flatScamDiscount;
+        public int accForgedCard;
         /// <summary>
         /// Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
         /// <para>Used by <see cref="RabbitsFoot"/></para> 
@@ -178,10 +179,11 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
-        public bool accPreciseCrits;
+        public float accPreciseCrits;
         public Item accDavyJonesAnchor;
+        public int davyJonesAnchorStack;
 
-        public bool accLittleInferno;
+        public int accLittleInferno;
 
         public int accGroundCrownCrit;
         public float accDarknessCrownDamage;
@@ -190,7 +192,7 @@ namespace Aequus
 
         public float antiGravityItemRadius;
 
-        public bool accFrostburnTurretSquid;
+        public int accFrostburnTurretSquid;
         public float bloodDiceDamage;
         public int bloodDiceMoney;
         public bool accGrandReward;
@@ -224,16 +226,18 @@ namespace Aequus
         public Item accMendshroom;
         public int cMendshroom;
 
-        public Item celesteTorusItem;
+        public Item accCelesteTorus;
+        public float celesteTorusDamage;
         public int cCelesteTorus;
 
         /// <summary>
         /// Set by <see cref="SantankSentry"/> and <see cref="MechsSentry"/>
         /// </summary>
         public Item accSentryInheritence;
-        public Item ammoBackpackItem;
-        public Item mothmanMaskItem;
+        public Item accAmmoRenewalPack;
+        public Item accMothmanMask;
 
+        public int accGlowCore;
         public int cGlowCore;
         public bool hasExpertBoost;
         /// <summary>
@@ -250,7 +254,7 @@ namespace Aequus
         /// <summary>
         /// Set by <see cref="FoolsGoldRing"/>
         /// </summary>
-        public bool accFoolsGoldRing;
+        public int accFoolsGoldRing;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>
@@ -511,11 +515,12 @@ namespace Aequus
             accShowQuestFish = false;
             accPriceMonocle = false;
             accNeonFish = null;
-            accPreciseCrits = false;
-            accArmFloaties = false;
+            accPreciseCrits = 0f;
+            accArmFloaties = 0;
             accDavyJonesAnchor = null;
-            accWarHorn = false;
-            accLittleInferno = false;
+            davyJonesAnchorStack = 0;
+            accWarHorn = 0;
+            accLittleInferno = 0;
             accRitualSkull = false;
             accRamishroom = null;
             accPandorasBox = null;
@@ -531,15 +536,15 @@ namespace Aequus
 
             accMendshroom = null;
 
-            celesteTorusItem = null;
-            cCelesteTorus = 0;
+            accCelesteTorus = null;
+            celesteTorusDamage = 0f;
 
-            ammoBackpackItem = null;
-            mothmanMaskItem = null;
+            accAmmoRenewalPack = null;
+            accMothmanMask = null;
             accSentryInheritence = null;
 
-            scamChance = 0f;
-            flatScamDiscount = 0;
+            accFaultyCoin = 0f;
+            accForgedCard = 0;
 
             if (cdBlackPhial > 0)
                 cdBlackPhial--;
@@ -548,7 +553,7 @@ namespace Aequus
             dropRerolls = 0f;
             accDevilsTongue = false;
             accGrandReward = false;
-            accFoolsGoldRing = false;
+            accFoolsGoldRing = 0;
 
             hasExpertBoost = accExpertBoost;
             accExpertBoost = false;
@@ -556,7 +561,7 @@ namespace Aequus
             accSentrySquid = null;
             if (!InDanger)
             {
-                turretSquidTimer = Math.Min(turretSquidTimer, (ushort)240);
+                turretSquidTimer = Math.Min(turretSquidTimer, 240);
             }
             if (turretSquidTimer > 0)
             {
@@ -670,6 +675,7 @@ namespace Aequus
             cGlowCore = -1;
             cHyperCrystal = 0;
             cMendshroom = 0;
+            cCelesteTorus = 0;
         }
 
         public void UpdateItemFields()
@@ -786,13 +792,6 @@ namespace Aequus
 
             if (accBloodCrownSlot != -1)
             {
-                Player.GetDamage(DamageClass.Generic) *= 0.9f;
-                Player.statDefense -= 4;
-                Player.endurance *= 0.9f;
-                if (Player.statLifeMax2 > Player.statLifeMax)
-                    Player.statLifeMax2 = Player.statLifeMax2 - (Player.statLifeMax2 - Player.statLifeMax) / 2;
-                if (Player.statManaMax2 > Player.statManaMax)
-                    Player.statManaMax2 = Player.statManaMax2 - (Player.statManaMax2 - Player.statManaMax) / 2;
                 HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
             }
 
@@ -811,7 +810,7 @@ namespace Aequus
                 return;
             int slotBoostCurseOld = accBloodCrownSlot;
             accBloodCrownSlot = -2;
-            item.Aequus().accBoost = true;
+            item.Aequus().accStacks++;
             Player.ApplyEquipFunctional(item, hideVisual);
             accBloodCrownSlot = slotBoostCurseOld;
 
@@ -877,14 +876,14 @@ namespace Aequus
                 AequusItem.AntiGravityNearbyItems(Player.Center, antiGravityItemRadius);
             }
 
-            if (cGlowCore != -1)
+            if (accGlowCore > 0)
             {
                 GlowCore.AddLight(Player.Center, Player, this);
             }
 
             if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None && ProjectilesOwned(accMendshroom.shoot) <= 10)
             {
-                if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio, 120f, 600f)))
+                if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio / accMendshroom.Aequus().accStacks, 120f, 600f)))
                 {
                     for (int i = 0; i < 100; i++)
                     {
@@ -957,7 +956,7 @@ namespace Aequus
             {
                 int amt = (int)(Player.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    AequusEffects.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
@@ -1002,7 +1001,7 @@ namespace Aequus
                     if (selected)
                     {
                         volume = 0.55f;
-                        AequusEffects.Shake.Set(4);
+                        EffectsSystem.Shake.Set(4);
                     }
                     SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
 
@@ -1024,7 +1023,7 @@ namespace Aequus
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
-                        AequusEffects.AbovePlayers.Add(particle);
+                        EffectsSystem.AbovePlayers.Add(particle);
                         if (i < 2)
                         {
                             prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
@@ -1032,7 +1031,7 @@ namespace Aequus
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                             particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                             particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
-                            AequusEffects.BehindPlayers.Add(particle);
+                            EffectsSystem.BehindPlayers.Add(particle);
                         }
                     }
                 }
@@ -1243,7 +1242,7 @@ namespace Aequus
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesProj>(out var sentry))
+                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var sentry))
                     {
                         sentry.UpdateInheritance(Main.projectile[i]);
                     }
@@ -1318,11 +1317,11 @@ namespace Aequus
         }
         public bool CheckScam()
         {
-            return scamChance > 0f || flatScamDiscount > 0;
+            return accFaultyCoin > 0f || accForgedCard > 0;
         }
         public bool MoneyBack(NPC vendor, Item[] shopInventory, Item item)
         {
-            if (Main.rand.NextFloat() < scamChance)
+            if (Main.rand.NextFloat() < accFaultyCoin)
             {
                 int oldStack = item.stack;
                 item.stack = 1;
@@ -1341,7 +1340,7 @@ namespace Aequus
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<CameraFocus>().UpdateScreen();
-            AequusEffects.UpdateScreenPosition();
+            EffectsSystem.UpdateScreenPosition();
             Main.screenPosition = Main.screenPosition.Floor();
         }
 
@@ -1411,11 +1410,11 @@ namespace Aequus
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (accPreciseCrits)
+            if (accPreciseCrits > 0f)
             {
                 var difference = target.Center - proj.Center;
                 var comparisonPosition = proj.Center + Vector2.Normalize(proj.velocity).UnNaN() * difference.Length().UnNaN();
-                if (Vector2.Distance(target.Center, comparisonPosition) < 8f)
+                if (Vector2.Distance(target.Center, comparisonPosition) < 8f * accPreciseCrits)
                 {
                     crit = true;
                 }
@@ -1469,29 +1468,28 @@ namespace Aequus
         }
         public void OnHitEffects(NPC target, int damage, float knockback, bool crit)
         {
-            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI &&
-                Player.RollLuck(Math.Max(8 - damage / 20, 1) + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) == 0)
+            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
             {
-                int amt = accDavyJonesAnchor.Aequus().accBoost ? 2 : 1;
-                for (int i = 0; i < amt; i++)
+                int amt = accDavyJonesAnchor.Aequus().accStacks;
+                if (Player.RollLuck(Math.Max((8 - damage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0)
                 {
                     Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
                         ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
                 }
             }
 
-            if (accLittleInferno)
+            if (accLittleInferno > 0)
             {
-                target.AddBuff(BuffID.OnFire, 240);
+                target.AddBuff(BuffID.OnFire, 240 * accLittleInferno);
                 if (crit)
                 {
-                    target.AddBuff(BuffID.OnFire3, 180);
+                    target.AddBuff(BuffID.OnFire3, 180 * accLittleInferno);
                 }
             }
 
-            if (mothmanMaskItem != null && Player.statLife >= Player.statLifeMax2 && crit)
+            if (accMothmanMask != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), mothmanMaskItem.Aequus().accBoost ? 600 : 300);
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 300 * accMothmanMask.Aequus().accStacks);
                 SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
             }
             if (accBlackPhial > 0)
@@ -1504,7 +1502,7 @@ namespace Aequus
                         buffCount++;
                     }
                 }
-                if (Main.rand.NextBool(accBlackPhial + cdBlackPhial / 5 + buffCount * 2))
+                if (Main.rand.NextBool(Math.Max(4 / accBlackPhial + cdBlackPhial / 5 + buffCount * 2, 1)))
                 {
                     int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
                     if (!target.buffImmune[buff])
@@ -1514,7 +1512,7 @@ namespace Aequus
                     }
                 }
             }
-            if (accBoneRing > 0 && Main.rand.NextBool(accBoneRing))
+            if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);
             }
@@ -1536,8 +1534,12 @@ namespace Aequus
         {
             if (accRamishroom != null && item.fishingPole > 0)
             {
-                Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
-                    ModContent.ProjectileType<RamishroomBobber>(), damage, knockback, Player.whoAmI);
+                int amt = accRamishroom.Aequus().accStacks;
+                for (int i = 0; i < amt; i++)
+                {
+                    Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
+                        ModContent.ProjectileType<RamishroomBobber>(), damage, knockback, Player.whoAmI);
+                }
             }
             return true;
         }
@@ -1799,9 +1801,9 @@ namespace Aequus
 
         public void OnKillEffect(int npcType, Vector2 position, int width, int height, int lifeMax)
         {
-            if (accArmFloaties && Player.breath < Player.breathMax)
+            if (accArmFloaties > 0 && Player.breath < Player.breathMax)
             {
-                Player.breath += Player.breathMax / 4;
+                Player.breath += Player.breathMax / 4 * accArmFloaties;
                 if (Player.breath > Player.breathMax - 1)
                 {
                     Player.breath = Player.breathMax - 1;
@@ -1812,54 +1814,6 @@ namespace Aequus
         public static bool CanScamNPC(NPC npc)
         {
             return npc.type != ModContent.NPCType<Exporter>();
-        }
-
-        public void UseAmmoBackpack(NPC npc, Item ammoBackpack)
-        {
-            var neededAmmoTypes = AmmoBackpack_GetAmmoTypesToSpawn(npc, ammoBackpack);
-            if (neededAmmoTypes.Count > 0)
-            {
-                int chosenType = Main.rand.Next(neededAmmoTypes);
-                int stack = AmmoBackpack_DetermineStack(chosenType, npc, ammoBackpack);
-                Item.NewItem(Player.GetSource_Accessory(ammoBackpack), npc.getRect(), chosenType, stack);
-            }
-        }
-        public int AmmoBackpack_DetermineStack(int itemToSpawn, NPC npc, Item ammoBackpack)
-        {
-            return (int)Math.Max((Main.rand.Next(30) + 1) * AmmoBackpack_StackMultiplier(itemToSpawn, npc, ammoBackpack), 1);
-        }
-        public float AmmoBackpack_StackMultiplier(int itemToSpawn, NPC npc, Item ammoBackpack)
-        {
-            return 1f - Math.Clamp(ContentSamples.ItemsByType[itemToSpawn].value / (Item.silver * (npc.value / (Item.silver * 5f))), 0f, 1f);
-        }
-        public List<int> AmmoBackpack_GetAmmoTypesToSpawn(NPC npc, Item ammoBackpack)
-        {
-            var l = new List<int>();
-            bool fullSlots = !Player.inventory[Main.InventoryAmmoSlotsStart].IsAir && !Player.inventory[Main.InventoryAmmoSlotsStart + 1].IsAir
-                && !Player.inventory[Main.InventoryAmmoSlotsStart + 2].IsAir && !Player.inventory[Main.InventoryAmmoSlotsStart + 3].IsAir;
-
-            for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
-            {
-                var item = Player.inventory[i];
-                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.damage == 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0)
-                {
-                    continue;
-                }
-                if ((!fullSlots || item.type == item.ammo) && !AmmoBackpack.AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo))
-                    l.Add(item.ammo);
-                if (item.stack < item.maxStack && !AmmoBackpack.AmmoBlacklist.Contains(item.type) && !l.Contains(item.type) && Main.rand.NextBool(3))
-                    l.Add(item.type);
-            }
-
-            for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
-            {
-                if (!Player.inventory[i].consumable)
-                {
-                    l.Remove(Player.inventory[i].ammo);
-                    l.Remove(Player.inventory[i].type);
-                }
-            }
-            return l;
         }
 
         public void CountSentries()
@@ -1991,7 +1945,6 @@ namespace Aequus
             On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
             On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
             On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
-            On.Terraria.Player.DropCoins += Hook_DropCoinsOnDeath;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
@@ -2210,14 +2163,6 @@ namespace Aequus
             return rolledAmt;
         }
 
-        private static int Hook_DropCoinsOnDeath(On.Terraria.Player.orig_DropCoins orig, Player self)
-        {
-            if (self.Aequus().accFoolsGoldRing)
-            {
-                return FoolsGoldCoinCurse(self);
-            }
-            return orig(self);
-        }
         public static int FoolsGoldCoinCurse(Player player)
         {
             for (int i = 0; i < 59; i++)
@@ -2254,7 +2199,7 @@ namespace Aequus
             {
                 return;
             }
-            calcForBuying = Math.Max(calcForBuying - self.Aequus().flatScamDiscount, min);
+            calcForBuying = Math.Max(calcForBuying - self.Aequus().accForgedCard, min);
         }
 
         private static bool customDraws;
@@ -2289,7 +2234,7 @@ namespace Aequus
             }
             switch (player.meleeEnchant)
             {
-                case FlasksID.Venom:
+                case FlaskID.Venom:
                     {
                         if (Main.rand.NextBool(3))
                         {
@@ -2301,7 +2246,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.CursedInferno:
+                case FlaskID.CursedInferno:
                     {
                         if (Main.rand.NextBool(2))
                         {
@@ -2313,7 +2258,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Fire:
+                case FlaskID.Fire:
                     {
                         if (Main.rand.NextBool(2))
                         {
@@ -2325,7 +2270,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Midas:
+                case FlaskID.Midas:
                     {
                         if (Main.rand.NextBool(2))
                         {
@@ -2337,7 +2282,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Ichor:
+                case FlaskID.Ichor:
                     {
                         if (Main.rand.NextBool(2))
                         {
@@ -2348,7 +2293,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Nanites:
+                case FlaskID.Nanites:
                     {
                         if (Main.rand.NextBool(2))
                         {
@@ -2359,7 +2304,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Party:
+                case FlaskID.Party:
                     {
                         if (Main.rand.NextBool(40))
                         {
@@ -2382,7 +2327,7 @@ namespace Aequus
                     }
                     break;
 
-                case FlasksID.Poison:
+                case FlaskID.Poison:
                     {
                         if (Main.rand.NextBool(3))
                         {

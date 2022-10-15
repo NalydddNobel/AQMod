@@ -11,6 +11,7 @@ namespace Aequus.Items.Armor.Passive
         public override int ProjectileShot => ModContent.ProjectileType<VenomDartTrapHatProj>();
         public override int TimeBetweenShots => (int)(base.TimeBetweenShots * 0.66f);
         public override float Speed => base.Speed * 1.5f;
+        public override int Damage => 100;
 
         public override void SetDefaults()
         {
@@ -18,7 +19,6 @@ namespace Aequus.Items.Armor.Passive
             Item.height = 16;
             Item.defense = 10;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 100;
             Item.ArmorPenetration = 15;
             Item.knockBack = 4f;
             Item.rare = ItemRarityID.LightRed;

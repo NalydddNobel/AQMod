@@ -17,6 +17,7 @@ namespace Aequus.Biomes.Glimmer
 
         public bool active;
         public float opacityBasedOnDistance;
+        public bool checkDistance;
 
         public override void Update(GameTime gameTime)
         {
@@ -33,6 +34,11 @@ namespace Aequus.Biomes.Glimmer
                 {
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
+            }
+            if (!checkDistance)
+            {
+                opacityBasedOnDistance = Opacity;
+                return;
             }
             float wantedOpacity;
             if (GlimmerBiome.omegaStarite != -1)

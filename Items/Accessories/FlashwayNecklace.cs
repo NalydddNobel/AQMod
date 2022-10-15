@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories
             }
             else
             {
-                aequus.instaShieldCooldown = Item.buyPrice(silver: 25);
+                aequus.instaShieldCooldown = 180;
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc;
 using Aequus.Items.Tools.Camera;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;

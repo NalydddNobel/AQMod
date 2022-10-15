@@ -23,7 +23,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-            CooldownItem.HasWeaponCooldown.Add(Type);
+            CooldownGlobalItem.HasWeaponCooldown.Add(Type);
 
             AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
 

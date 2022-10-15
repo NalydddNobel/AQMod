@@ -45,14 +45,7 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            if (aequus.accBlackPhial > 0)
-            {
-                aequus.accBlackPhial = Math.Max(aequus.accBlackPhial - 1, 1);
-            }
-            else
-            {
-                aequus.accBlackPhial = 4;
-            }
+            aequus.accBlackPhial++;
             aequus.DebuffsInfliction.OverallTimeMultiplier += 0.5f;
         }
     }

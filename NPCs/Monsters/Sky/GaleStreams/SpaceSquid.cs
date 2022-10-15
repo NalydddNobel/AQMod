@@ -273,7 +273,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 {
                                     if (doEffects)
                                     {
-                                        AequusEffects.Shake.Set(12f);
+                                        EffectsSystem.Shake.Set(12f);
                                     }
                                     NPC.ai[2]++;
                                     NPC.velocity.X = -NPC.direction * 12.5f;
@@ -909,9 +909,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     Begin.GeneralEntities.BeginShader(spriteBatch);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
-                AequusEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
-                AequusEffects.VerticalGradient.ShaderData.UseColor(Color.Cyan);
-                AequusEffects.VerticalGradient.ShaderData.Apply(drawData);
+                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
+                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Cyan);
+                EffectsSystem.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {

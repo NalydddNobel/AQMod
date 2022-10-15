@@ -80,10 +80,10 @@ namespace Aequus.Content.WorldGeneration
                 Chest c = Main.chest[k];
                 if (c != null)
                 {
+                    int style = ChestType.GetStyle(c);
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers)
                     {
-                        int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.Gold || style == ChestTypes.Marble || style == ChestTypes.Granite || style == ChestTypes.Mushroom)
+                        if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom)
                         {
                             rockmanChests.Add(k);
 
@@ -107,7 +107,7 @@ namespace Aequus.Content.WorldGeneration
                                     break;
                             }
                         }
-                        else if (style == ChestTypes.LockedGold)
+                        else if (style == ChestType.LockedGold)
                         {
                             int choice = -1;
                             for (int i = 0; i < 4; i++)
@@ -129,7 +129,7 @@ namespace Aequus.Content.WorldGeneration
                                 placedItems.Add(choice);
                             }
                         }
-                        else if (style == ChestTypes.Frozen)
+                        else if (style == ChestType.Frozen)
                         {
                             rockmanChests.Add(k);
 
@@ -143,7 +143,7 @@ namespace Aequus.Content.WorldGeneration
                                 placedItems.Add(ModContent.ItemType<CrystalDagger>());
                             }
                         }
-                        else if (style == ChestTypes.Skyware)
+                        else if (style == ChestType.Skyware)
                         {
                             if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool())
                             {
@@ -154,8 +154,7 @@ namespace Aequus.Content.WorldGeneration
                     }
                     else if (Main.tile[c.x, c.y].TileType == TileID.Containers2)
                     {
-                        int style = ChestTypes.GetChestStyle(c);
-                        if (style == ChestTypes.deadMans)
+                        if (style == ChestType.DeadMans)
                         {
                             rockmanChests.Add(k);
                             if (r.NextBool())
@@ -163,7 +162,7 @@ namespace Aequus.Content.WorldGeneration
                                 AddGlowCore(c, placedItems);
                             }
                         }
-                        else if (style == ChestTypes.sandstone)
+                        else if (style == ChestType.Sandstone)
                         {
                             rockmanChests.Add(k);
                         }

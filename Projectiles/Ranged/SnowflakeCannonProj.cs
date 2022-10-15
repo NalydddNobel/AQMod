@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Ranged
 
             this.SetTrail(12);
 
-            PushablesDatabase.Projs.Add(Type);
+            PushableEntitiesDatabase.ProjectileIDs.Add(Type);
         }
 
         public override void SetDefaults()

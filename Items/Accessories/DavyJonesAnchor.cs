@@ -24,6 +24,7 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accDavyJonesAnchor = Item;
+            player.Aequus().davyJonesAnchorStack++;
         }
 
         public override void AddRecipes()

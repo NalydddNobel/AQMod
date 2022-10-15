@@ -59,7 +59,7 @@ namespace Aequus.Projectiles.Misc
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
                     Projectile.Colliding(myRect, npc.getRect()) &&
-                    PushablesDatabase.NPCs.Contains(Main.npc[i].type))
+                    PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
                 {
                     npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 30f * npc.knockBackResist;
                     npc.netUpdate = true;
@@ -70,7 +70,7 @@ namespace Aequus.Projectiles.Misc
                 var proj = Main.projectile[i];
                 if (i != Projectile.whoAmI && proj.active &&
                     Projectile.Colliding(myRect, proj.getRect()) &&
-                    PushablesDatabase.Projs.Contains(Main.projectile[i].type))
+                    PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type))
                 {
                     proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
                     proj.netUpdate = true;

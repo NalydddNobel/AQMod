@@ -16,7 +16,7 @@ namespace Aequus.Items
         public struct OnAIInfo
         {
             public Projectile Projectile;
-            public SentryAccessoriesProj SentryAccessories;
+            public SentryAccessoriesGlobalProj SentryAccessories;
             public Item Accessory;
             public Player Player;
         }
@@ -136,7 +136,7 @@ namespace Aequus.Items
         }
         public static void BoneGlove_OnShoot(OnShootInfo info)
         {
-            info.ParentProjectile.TryGetGlobalProjectile<SentryAccessoriesProj>(out var parentSentry);
+            info.ParentProjectile.TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var parentSentry);
             if (Main.myPlayer != info.Player.whoAmI || parentSentry == null || parentSentry.dummyPlayer == null)
             {
                 return;

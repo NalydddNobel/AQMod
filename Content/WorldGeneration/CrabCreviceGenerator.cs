@@ -401,7 +401,7 @@ namespace Aequus.Content.WorldGeneration
                 if (Main.tile[randX, randY].TileType == ModContent.TileType<SedimentaryRockTile>())
                 {
                     randY--;
-                    int chestID = WorldGen.PlaceChest(randX, randY, notNearOtherChests: true, style: ChestTypes.Palm);
+                    int chestID = WorldGen.PlaceChest(randX, randY, notNearOtherChests: true, style: ChestType.Palm);
                     if (chestID != -1)
                     {
                         var c = Main.chest[chestID];

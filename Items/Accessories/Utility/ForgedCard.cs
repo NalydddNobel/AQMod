@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().flatScamDiscount += Item.gold;
+            player.Aequus().accForgedCard += Item.gold;
             if (Main.myPlayer == player.whoAmI)
             {
                 Main.shopSellbackHelper.Clear();

@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Summon
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accWarHorn = true;
+            player.Aequus().accWarHorn++;
         }
     }
 }

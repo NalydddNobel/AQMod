@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Graphics;
-using Aequus.Tiles;
+using Aequus.Tiles.Misc;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

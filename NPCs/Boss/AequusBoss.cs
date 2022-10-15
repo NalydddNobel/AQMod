@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Boss
         }
         public void Shake(float amt, float multiplier = 0.9f)
         {
-            AequusEffects.Shake.Set(amt, multiplier);
+            EffectsSystem.Shake.Set(amt, multiplier);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Graphics.RenderTargets;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

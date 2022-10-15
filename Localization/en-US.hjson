@@ -407,93 +407,30 @@ Mods: {
 			ExtractorAirMask: Air Filter
 			GlowBand: Glow Band
 			Amulet: Amulet
-			BloodPlasma: Blood Plasma
 			TargeoftheBlodded: Spike Shield
 			SpiritualRelic: Spiritual Amulet
 			Dreadsoul: Burning Heart
 			Breadsoul: Soul Eater
 			RustyKnife: KNIFE
-			CrimtaneBarb: Blood Articulation
-			DemoniteBarb: Dark Tether
-			MetalBarb: Metal Barb
-			CrabBarb: Crab Barb
 			CelesteTorus: Celeste Torus
-			VoodooAmulet: Voodoo Amulet
-			WyvernAmulet: Featherflight Amulet
-			DarkAmulet: Dark Amulet
-			LightAmulet: Light Amulet
-			NeutralityAmulet: Neutrality Amulet
-			GlowString: Glow String
-			ShockCollar: Shock Collar
-			FidgetSpinner: Perpetuator
-			DegenerationRing: Flame Resistance Ring
-			BlazingTalisman: Blazing Talisman
-			FrigidTalisman: Frigid Talisman
-			NormalizerAmulet: Normalized Amulet
-			MinersFlashlight: Miner's Flashlight
-			Extractor: Extractor Cog
-			SparrowWings: Sparrow Wings
 			Thunderbird: Ancient Thunderbird
 			ArachnotronVisor: Arachnotron Visor
 			ArachnotronRibcage: Arachnotron Ribcage
 			ArachnotronRevvers: Arachnotron Revvers
 			CrabsonMask: Crabson Mask
-			SteelPlatedChestplate: Steel Plated Chestplate
-			LightbulbHelmet: Lightbulb Helmet
-			LightbulbBreastplate: Lightbulb Breastplate
-			LightbulbGreaves: Lightbulb Greaves
 			Hitscanner: Hitscanner
-			XenonBasher: Xenon Basher
 			Flameblaster: Flameblaster
 			CrusadersCrossbow: Crusader's Crossbow
-			DoubleShot: Double Shot
 			Baozhu: Baozhu
 			JerryClawFlail: Jerry Claw
-			MagicWand: Magic Wand
-			Lightbulb: Lightbulb
-			Resonance: Resonance
-			KryptonSword: Krypton Boomerang
-			AirBlade: Air Blade
-			CursedKey: Cursed Key
 			PiranhaPot: Piranha Pot
-			Skrawler: Skrawler
 			Fluorescence: Fluorescence
 			FrozenTear: Frozen Tear
-			CrustaciumBar: Crustacium Bar
-			CrustaciumBlob: Crustacium Blob
-			CrustaciumOre: Crustacium Ore
-			LightMatter: Light Matter
 			NuclearFeather: Nuclear Feather
 			CrabPot: Crab Pot
 			PalePufferfish: Pale Pufferfish
 			VampireSquid: Vampire Squid
-			Fizzler: Fizzler
-			Nessie: Nessie
-			UltraEel: Ultra Eel
-			Combfish: Combfish
-			LarvaEel: Larva Eel
-			CentennialLight: Centennial Light
-			Globebulb: Globebulb
-			VampireHook: Bloodline
-			BlackBookofUntoldLegends: "'Untold Legends'"
-			Stardrop: Stardrop
-			IWillBeBack: "'I'll Be Back'"
-			CosmicTelescope: Cosmic Telescope
-			DungeonMap: Vial of Blood
-			LihzahrdMap: Cabbage
-			RetroGoggles: Blighted Soul
-			Beeswax: Beeswax
 			MoonflowerSeeds: Moonflower Seeds
-			ExoticRedTorch: Ultrabright Red Torch
-			ExoticGreenTorch: Ultrabright Green Torch
-			ExoticBlueTorch: Ultrabright Blue Torch
-			UltrabrightRedTorch: Red Wallshroom
-			UltrabrightGreenTorch: Green Wallshroom
-			UltrabrightBlueTorch: Blue Wallshroom
-			SparklingTorch: Wall Sparkler
-			GlobeItem: Sky Globe
-			OrbicularStargaizar: Cosmic Ball
-			GlimmeringStatue: Ultimate Crystal
 			SedimentSandBlock: Sedimentary Sand Block
 			SeaPickle: Sea Pickle
 			CrabsonTrophy: Crabson Trophy
@@ -1216,6 +1153,7 @@ Mods: {
 				'Ball Incarnate'
 				'''
 
+			CosmicMonolith: "'Sustain a fraction of ultimate power'"
 			CrabClock: "'What time is it? Crabby time.'"
 			RecyclingMachine: When nearby, you can create item scrap while crafting
 

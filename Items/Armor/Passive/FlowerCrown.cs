@@ -22,7 +22,6 @@ namespace Aequus.Items.Armor.Passive
             Item.width = 16;
             Item.height = 16;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 5;
             Item.ArmorPenetration = 10;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 10);
@@ -52,7 +51,9 @@ namespace Aequus.Items.Armor.Passive
                 if (NewPetal(player, aequus))
                 {
                     aequus.summonHelmetTimer = 150;
+                    Item.damage = 5;
                     int damage = player.GetWeaponDamage(Item);
+                    Item.damage = 0;
                     var spawnPosition = player.gravDir == -1
                            ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height - 10)
                            : player.position + new Vector2(player.width / 2f + 8f * player.direction, 10f);

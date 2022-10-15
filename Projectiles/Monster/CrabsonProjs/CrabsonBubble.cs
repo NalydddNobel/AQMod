@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 
         public override bool PreDraw(ref Color lightColor)
         {
-            if (Projectile.ai[0] <= 0f || Projectile.alpha > 0 || AequusEffects.ProjsBehindTiles.RenderingNow)
+            if (Projectile.ai[0] <= 0f || Projectile.alpha > 0 || EffectsSystem.ProjsBehindTiles.RenderingNow)
             {
                 var texture = TextureAssets.Projectile[Projectile.type].Value;
                 var drawColor = Projectile.GetAlpha(lightColor);
@@ -155,7 +155,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
             }
             else
             {
-                AequusEffects.ProjsBehindTiles.Add(Projectile.whoAmI);
+                EffectsSystem.ProjsBehindTiles.Add(Projectile.whoAmI);
             }
             return false;
         }

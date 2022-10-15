@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Recipes;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +25,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accSentrySquid = Item;
-            player.Aequus().accFrostburnTurretSquid = true;
+            player.Aequus().accFrostburnTurretSquid++;
             player.maxTurrets++;
         }
 

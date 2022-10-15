@@ -1,7 +1,7 @@
-﻿using Aequus.Common;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Tools.Misc;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

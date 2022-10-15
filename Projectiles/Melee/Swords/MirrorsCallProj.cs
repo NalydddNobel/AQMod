@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 bool rightClick = Main.player[Projectile.owner].altFunctionUse == 2;
                 float explosionScale = !rightClick ? 0.66f : 1f;
-                AequusEffects.Shake.Set(8f * explosionScale);
+                EffectsSystem.Shake.Set(8f * explosionScale);
                 MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, explosionScale);
                 float damageScale = !rightClick ? 0.8f : 1.8f;
                 int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
@@ -255,7 +255,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             if (Main.myPlayer == Projectile.owner)
             {
-                AequusEffects.Shake.Set(4f);
+                EffectsSystem.Shake.Set(4f);
                 MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, 0.75f);
                 int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
                     Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * 0.4f), Projectile.knockBack, Projectile.owner);

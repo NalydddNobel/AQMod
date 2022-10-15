@@ -1,7 +1,7 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
-using Aequus.Tiles;
+using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

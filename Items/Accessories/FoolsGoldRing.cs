@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accFoolsGoldRing = true;
+            player.Aequus().accFoolsGoldRing++;
         }
     }
 }

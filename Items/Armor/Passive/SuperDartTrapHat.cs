@@ -11,6 +11,7 @@ namespace Aequus.Items.Armor.Passive
         public override int ProjectileShot => ModContent.ProjectileType<SuperDartTrapHatProj>();
         public override int TimeBetweenShots => base.TimeBetweenShots / 2;
         public override float Speed => base.Speed * 1.5f;
+        public override int Damage => 200;
 
         public override void SetDefaults()
         {
@@ -18,7 +19,6 @@ namespace Aequus.Items.Armor.Passive
             Item.height = 12;
             Item.defense = 10;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 200;
             Item.ArmorPenetration = 15;
             Item.knockBack = 5f;
             Item.rare = ItemRarityID.Yellow;

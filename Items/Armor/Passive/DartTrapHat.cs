@@ -12,6 +12,7 @@ namespace Aequus.Items.Armor.Passive
         public virtual int TimeBetweenShots => 320;
         public virtual int ProjectileShot => ModContent.ProjectileType<DartTrapHatProj>();
         public virtual float Speed => 10f;
+        public virtual int Damage => 28;
 
         public override void SetStaticDefaults()
         {
@@ -25,7 +26,6 @@ namespace Aequus.Items.Armor.Passive
             Item.height = 16;
             Item.defense = 1;
             Item.DamageType = DamageClass.Summon;
-            Item.damage = 28;
             Item.ArmorPenetration = 10;
             Item.knockBack = 2f;
             Item.rare = ItemRarityID.Blue;
@@ -43,7 +43,9 @@ namespace Aequus.Items.Armor.Passive
                 {
                     if (aequus.summonHelmetTimer != -1)
                     {
+                        Item.damage = Damage;
                         int damage = player.GetWeaponDamage(Item);
+                        Item.damage = 0;
                         var spawnPosition = player.gravDir == -1
                             ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
                             : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);

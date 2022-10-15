@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.Tiles;
+using Aequus.Tiles.Furniture;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

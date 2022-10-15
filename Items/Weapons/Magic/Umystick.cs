@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            CooldownItem.HasWeaponCooldown.Add(Type);
+            CooldownGlobalItem.HasWeaponCooldown.Add(Type);
         }
 
         public override void SetDefaults()

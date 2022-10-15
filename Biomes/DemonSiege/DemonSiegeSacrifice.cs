@@ -1,7 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Boss.Summons;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles;
+using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

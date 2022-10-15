@@ -7,12 +7,22 @@ namespace Aequus.Items.Accessories
 {
     public class ArmFloaties : ModItem
     {
-        public static List<int> Equipped { get; private set; }
+        public static List<int> EquippedCache { get; private set; }
+
+        public override void Load()
+        {
+            EquippedCache = new List<int>();
+        }
 
         public override void SetStaticDefaults()
         {
-            Equipped = new List<int>();
             SacrificeTotal = 1;
+        }
+
+        public override void Unload()
+        {
+            EquippedCache?.Clear();
+            EquippedCache = null;
         }
 
         public override void SetDefaults()
@@ -24,8 +34,8 @@ namespace Aequus.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            Equipped.Add(player.whoAmI);
-            player.Aequus().accArmFloaties = true;
+            EquippedCache.Add(player.whoAmI);
+            player.Aequus().accArmFloaties++;
         }
     }
 }

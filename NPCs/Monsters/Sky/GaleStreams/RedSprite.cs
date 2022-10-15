@@ -413,13 +413,13 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                     (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 {
                                     ScreenFlash.Flash.Set(NPC.Center, 0.75f);
-                                    AequusEffects.Shake.Set(8f);
+                                    EffectsSystem.Shake.Set(8f);
                                 }
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        AequusEffects.Shake.Set(12f);
+                                        EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundEngine.PlaySound(SoundHelpers.Thunderclap, NPC.Center);
@@ -499,7 +499,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 {
                                     bool reduceFX = AequusWorld.downedRedSprite || NPC.CountNPCS(Type) > 1;
                                     ScreenFlash.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
-                                    AequusEffects.Shake.Set(reduceFX ? 18f : 20f);
+                                    EffectsSystem.Shake.Set(reduceFX ? 18f : 20f);
                                 }
                             }
                             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -1195,7 +1195,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         private Vector2[] GenerateLightningString(ref Vector2[] coordinates, float timer, Vector2 difference)
         {
             var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
-            var rand = AequusEffects.EffectRand;
+            var rand = EffectsSystem.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             float multiplier = 0.01f;
             float diff = 0f;
@@ -1218,7 +1218,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         }
         private Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
         {
-            var rand = AequusEffects.EffectRand;
+            var rand = EffectsSystem.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {
@@ -1275,9 +1275,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
-                AequusEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
-                AequusEffects.VerticalGradient.ShaderData.UseColor(Color.Red);
-                AequusEffects.VerticalGradient.ShaderData.Apply(drawData);
+                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
+                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Red);
+                EffectsSystem.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in circular)
                 {
