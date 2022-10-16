@@ -159,6 +159,12 @@ Mods: {
 
 			FishyFins: 可疑鱼鳍
 
+			Deltoid: 增量
+			Cauterizer: 灼烧者
+			HellsBoon: 地狱之赐
+			Valari: 回旋镰
+			ThunderClap: 雷霆一击
+			Vrang: 镰刃
 			Mallet: 棒槌
 			SuperStarSword: 超级星剑
 			UltimateSword: 最终之剑
@@ -167,6 +173,9 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
+			Umystick: 秘伞
+			Narrizuul: 耀宇遗光
+			StudiesOfTheInkblot: 墨迹研究学
 			LiquidGun: 液体枪
 			StarPhish: 螺旋吹筒
 			SnowflakeCannon: 雪花大炮
@@ -365,6 +374,7 @@ Mods: {
 			AshHeadstone: 余烬墓碑
 			AshObelisk: 余烬尖碑
 			AshTombstone: 余烬墓碑
+			CrabClock: 螃蟹挂钟
 			RecyclingMachine: 回收机
 
 			TidalDye: 潮汐染料
@@ -397,106 +407,30 @@ Mods: {
 			ExtractorAirMask: 空气过滤器
 			GlowBand: 发光手环
 			Amulet: 护符
-			BloodPlasma: 离子血浆
 			TargeoftheBlodded: 尖刺盾牌
 			SpiritualRelic: 心灵护符
 			Dreadsoul: 燃烧的心
 			Breadsoul: 噬魂者
 			RustyKnife: 刀刃
-			CrimtaneBarb: 血音之结
-			DemoniteBarb: 暗影之缚
-			MetalBarb: 金属刺钩
-			CrabBarb: 螃蟹刺钩
 			CelesteTorus: 天界圆环
-			VoodooAmulet: 巫毒护符
-			WyvernAmulet: 飞羽护符
-			DarkAmulet: 黑暗护符
-			LightAmulet: 光明护符
-			NeutralityAmulet: 中性护符
-			GlowString: 发光细绳
-			ShockCollar: 冲击项圈
-			FidgetSpinner: 永续仪
-			DegenerationRing: 阻燃戒指
-			BlazingTalisman: 灼炎护符
-			FrigidTalisman: 寒霜护符
-			NormalizerAmulet: 化一护符
-			MinersFlashlight: 矿工的手电筒
-			Extractor: 提炼装备
-			SparrowWings: 雀翼
 			Thunderbird: 远古雷鸟
 			ArachnotronVisor: 机械蜘蛛面具
 			ArachnotronRibcage: 机械蜘蛛胸甲
 			ArachnotronRevvers: 机械蜘蛛护胫
 			CrabsonMask: 巨蟹蛤面具
-			SteelPlatedChestplate: 钢板胸甲
-			LightbulbHelmet: 灯泡头盔
-			LightbulbBreastplate: 灯泡胸甲
-			LightbulbGreaves: 灯泡护胫
 			Hitscanner: 碰撞器
-			XenonBasher: 氙制粉碎者
 			Flameblaster: 火焰冲击波
 			CrusadersCrossbow: 十字军弩
-			DoubleShot: 双重射击
 			Baozhu: 爆竹
 			JerryClawFlail: 蟹蛤之爪
-			MagicWand: 魔杖
-			Deltoid: 增量
-			Lightbulb: 灯泡
-			Cauterizer: 灼烧者
-			HellsBoon: 地狱之赐
-			MonoxiderStaff: 一氧化物法杖
-			ScarletSea: 罪孽红海
-			SeltzerRain: 污浊腐雨
-			FizzlingFire: 超级火焰喷射器
-			Valari: 回旋镰
-			Resonance: 共振
-			KryptonSword: 氪制回旋镖
-			Vrang: 镰刃
-			AirBlade: 风之刃
-			ThunderClap: 雷霆一击
-			Umystick: 秘伞
-			Narrizuul: 耀宇遗光
-			StudiesOfTheInkblot: 墨迹研究学
-			CursedKey: 诅咒钥匙
 			PiranhaPot: 食人罐
-			Skrawler: 皮肤焚烧者
 			Fluorescence: 荧光
 			FrozenTear: 冰霜之泪
-			CrustaciumBar: 硬壳锭
-			CrustaciumBlob: 硬壳肉
-			CrustaciumOre: 硬壳矿
-			LightMatter: 光明物质
 			NuclearFeather: 核子之羽
 			CrabPot: 蟹笼
 			PalePufferfish: 苍白河豚
 			VampireSquid: 吸血乌贼
-			Fizzler: 星灼鱼
-			Nessie: 尼斯湖水怪
-			UltraEel: 超级进化鳗
-			Combfish: 纵带盔鱼
-			LarvaEel: 寄生鳗幼虫
-			CentennialLight: 百年灯
-			Globebulb: 球形灯泡
-			VampireHook: 血族
-			BlackBookofUntoldLegends: "'无名传说'"
-			Stardrop: 星落果
-			IWillBeBack: "'我将归来'"
-			CosmicTelescope: 宇宙望远镜
-			DungeonMap: 血瓶
-			LihzahrdMap: 卷心菜
-			RetroGoggles: 折磨之魂
-			Beeswax: 蜂蜡
 			MoonflowerSeeds: 月光花种
-			ExoticRedTorch: 极亮红火把
-			ExoticGreenTorch: 极亮绿火把
-			ExoticBlueTorch: 极亮蓝火把
-			UltrabrightRedTorch: 红墙菇
-			UltrabrightGreenTorch: 绿墙菇
-			UltrabrightBlueTorch: 蓝墙菇
-			SparklingTorch: 闪墙石
-			GlobeItem: 天球仪
-			OrbicularStargaizar: 宇宙球
-			GlimmeringStatue: 终极晶体
 			SedimentSandBlock: 沉积沙块
 			SeaPickle: 海泡菜
 			CrabsonTrophy: 巨蟹蛤纪念章
@@ -504,7 +438,6 @@ Mods: {
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
 			XenonMushroom: 氙蘑菇
-			CrabClock: 螃蟹挂钟
 			OceanRavineWall: 蟹伏岩隙墙
 			PotionofContainers: 传箱药水
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
@@ -608,6 +541,12 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			HyperCrystal: 攻击会附带一个临时性的晶体
+			CelesteTorus:
+				'''
+				在你的周围召唤一圈环绕着你的球体
+				球体的半径和速度都根据你不同的属性决定
+				'''
 			NeonGenesis: 允许你的钓鱼浮标向敌人发射激光
 			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
 			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
@@ -726,6 +665,30 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			CrystalDagger: 快速刺击敌人
+			Cauterizer:
+				'''
+				发射恶魔能量冲击波
+				会对敌人造成猩红狱火减益
+				'''
+			HellsBoon:
+				'''
+				灰烬尖刺会生成在光标附近
+				剑身击中敌人时会对其造成腐化狱火减益
+				'''
+			Valari: 可以拾取物品
+			ThunderClap: 召唤两个大手拍打你的敌人
+			MirrorsCall:
+				'''
+				<right>进行大范围挥舞, 但不会发射弹幕
+				'从你舒适的沙发上打击敌人!'
+				'''
+			Slice:
+				'''
+				快速挥砍并发射穿刺雪花
+				击中敌人时会造成霜火减益
+				'''
+			Vrang: 同时扔出三个回旋镖
 			Mallet:
 				'''
 				打击你光标附近的敌人
@@ -740,6 +703,23 @@ Mods: {
 			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
+			Hitscanner: 发射一大片会瞬间命中敌人的子弹
+			Flameblaster:
+				'''
+				{$Mods.Aequus.Tooltips.UsesGel}
+				<right>发射气爆
+				无视敌人15点的防御力
+				33%几率不消耗弹药
+				'[c/{Color}:最热的]家用燃烧装置'
+				'''
+			CrusadersCrossbow: 发射可以治疗队友或伤害敌人的治愈箭矢
+			Baozhu:
+				'''
+				会产生巨大的爆炸并引燃敌人
+				爆炸成会燃烧一段时间的火焰
+				'''
+			HamaYumi: 接近敌人时会爆裂成腐败狱火
+			Deltoid: 发射三支爆炸箭矢
 			StarPhish: 
 				'''
 				对处于水中的敌人造成的伤害增加
@@ -766,6 +746,22 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			Umystick:
+				'''
+				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
+				右键进行一次二段跳跳跃
+				'看起来贼危险'
+				'''
+			Narrizuul:
+				'''
+				{$Mods.Aequus.Tooltips.Unobtainable}
+				{$Mods.Aequus.Tooltips.Nalyddd}
+				'''
+			StudiesOfTheInkblot:
+				'''
+				'弹幕的墨迹测验'
+				'地底蔷薇'
+				'''
 			LiquidGun: { 
 				$parentVal: 自动使用最近的液体重新装填
 				AmountLeft: "剩余{Amount}%{Liquid}"
@@ -795,6 +791,7 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+			PiranhaPot: 召唤一株邪恶的植物为你而战
 			BrainwaveStaff: 召唤一颗脑菜花控制你的敌人
 			MindfungusStaff:
 				'''
@@ -1046,6 +1043,20 @@ Mods: {
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
+			PalePufferfish: 能治愈你身上的多种减益和血咒
+			VampireSquid: 使你获得血咒
+			Baguette:
+				'''
+				大幅度提升所有属性
+				大幅度增加生命恢复速度
+				'蛋糕只是松软的面包'
+				'''
+			SuspiciousLookingSteak:
+				'''
+				使你获得许多增益
+				'诅咒已除'
+				'''
+
 			PotionOfResurrection: 将你传送至上次死亡时的位置
 			
 			Fluorescence: "'猛烈的跳动着'"
@@ -1142,6 +1153,8 @@ Mods: {
 				'球之化身'
 				'''
 
+			CosmicMonolith: "'维系终极力量的一小部分'"
+			CrabClock: "'现在是什么时间? 螃躁时间.'"
 			RecyclingMachine: 在附近时, 你可以在制作时产生废料
 
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
@@ -1214,370 +1227,22 @@ Mods: {
 			WhiteFlag: 使用后会禁用自然入侵
 			GhostlyGrave: 使用后会当你死亡时会将你的墓碑转化为幽魂
 
-			MirrorsCall:
-				'''
-				'从你舒适的沙发上打击敌人!'
-				右键进行大范围挥舞, 但不会发射弹幕
-				'''
-			Slice:
-				'''
-				快速挥砍并发射穿刺雪花
-				击中敌人时会造成霜火减益
-				'''
-			LingeringPotion: 给予你和队友一个较为持久的增益效果
-			Molite: "{$Mods.Aequus.Tooltips.Concocted}"
-			MoliteTag: 具有双倍的效力
 			MoonLeech: 攻击会汲取敌人的法力
-			DreamCatcher:
-				'''
-				{$Mods.Aequus.Tooltips.HookBarb}
-				处于天空群落中时会造成额外伤害
-				'''
-			MagikaAmulet:
-				'''
-				减少8%法力消耗
-				攻击会汲取敌人的法力
-				延长受伤后的无敌时间
-				法力值不足时会自动饮用法力药水
-				'''
-			JellyAmulet:
-				'''
-				在水中时提供更亮的光照
-				增加5%远程伤害
-				在水中时增加10%远程暴击率
-				敌人会掉落你所消耗的弹药
-				'''
-			Quasicrystal:
-				'''
-				附近的敌人会受到25%额外伤害
-				击中敌人时会对其造成宇宙辐射减益和火焰伤害
-				受伤时会召唤星星从天而降
-				'''
-			HyperCrystal: 攻击时会获得一个临时存在的伤害性水晶
-			ExtractorHelmet: 坠落的方块对你造成的伤害降低
-			ExtractorAirMask: 使你免疫窒息
-			GlowBand: 散发着彩色的光芒
-			Amulet: 可附魔
-			BloodPlasma:
-				'''
-				当你受到致死伤害时会自动吞下此物
-				饰品栏中仅能存在该饰品
-				'''
-			TargeoftheBlodded:
-				'''
-				增加2点护甲穿透
-				可沿墙滑下
-				结合{$ItemName.ClimbingClaws}或{$ItemName.ShoeSpikes}使用时可提升能力
-				'''
-			SpiritualRelic:
-				'''
-				{$Mods.Aequus.Tooltips.IncreasedMinions}
-				击杀敌人时会召唤强化召唤物伤害的灵魂
-				召唤物会对被地狱之灵缠扰的敌人造成额外伤害
-				'''
-			Dreadsoul:
-				'''
-				击杀敌人时会召唤地狱之灵缠扰附近的敌人
-				召唤物会对被地狱之灵缠扰的敌人造成额外伤害
-				'''
-			Breadsoul: 击杀敌人时会召唤强化召唤物伤害的梦境之灵
 			RustyKnife:
 				'''
 				召唤你的朋友为你而战
 				当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
 				'为什么你要拿着锋利的刀锋而不是刀把?'
 				'''
-			CrimtaneBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			DemoniteBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			MetalBarb: "{$Mods.Aequus.Tooltips.HookBarb}"
-			CrabBarb: 你的钩爪会造成中毒和伤害
-			CelesteTorus:
-				'''
-				在你的周围召唤一圈环绕着你的球体
-				球体的半径和速度都根据你不同的属性决定
-				'''
-			VoodooAmulet:
-				'''
-				攻击一名敌人时会使附近所有同种类的敌人同样受到攻击
-				降低熔岩的伤害
-				'''
-			WyvernAmulet:
-				'''
-				延长1秒飞行时间
-				击杀敌人时会使你获得额外的飞行时间
-				你不再受到摔落伤害
-				'''
-			DarkAmulet: 你对光明敌人额外造成15%伤害
-			LightAmulet: 你对不洁敌人额外造成15%伤害
-			NeutralityAmulet: 你对光明敌人和不洁敌人额外造成15%伤害
-			GlowString:
-				'''
-				你的悠悠球线在黑暗中会发出光亮
-				增加悠悠球距离
-				'''
-			ShockCollar:
-				'''
-				增加5%伤害
-				在水中时增加10%暴击率
-				'''
-			FidgetSpinner: 无法自动挥舞的物品的速度变慢, 但可以自动挥舞
-			DegenerationRing: 阻止大多数种类的燃烧
-			BlazingTalisman:
-				'''
-				阻止大多数种类的冻结
-				降低来自紊流风暴敌人的冷源强度
-				'''
-			FrigidTalisman:
-				'''
-				阻止大多数种类的燃烧
-				降低来自紊流风暴敌人的热源强度
-				'''
-			NormalizerAmulet:
-				'''
-				阻止大多数种类的冻结和燃烧
-				降低来自紊流风暴敌人的温度源强度
-				'''
-			MinersFlashlight:
-				'''
-				你会向你的光标位置发射一束光
-				被光照到的宝藏会发光
-				关闭饰品可见性来禁用手电筒效果
-				'''
-			Extractor:
-				'''
-				使你免疫窒息
-				坠落的方块对你造成的伤害降低
-				增加25%挖掘速度
-				开启饰品可见性后提炼某些东西时会显示提炼的次数
-				'''
-			SparrowWings: "{$CommonItemTooltip.FlightAndSlowfall}"
-			Thunderbird:
-				'''
-				{$CommonItemTooltip.FlightAndSlowfall}
-				有着强大的水平速度!
-				'''
-			ArachnotronVisor:
-				'''
-				增加10%近战伤害、暴击率和召唤伤害
-				使你获得夜视效果
-				'''
-			ArachnotronRibcage:
-				'''
-			    增加10%近战攻速和召唤伤害
-				降低5%所受伤害
-				增加最大召唤栏位
-				使你获得致命的蜘蛛臂
-				'''
-			ArachnotronRevvers:
-				'''
-				增加10%近战和召唤伤害
-				增加最大召唤栏位
-				允许你飞速奔跑并对火块免疫
-				'''
-			LightbulbHelmet:
-				'''
-				小幅度增加法力恢复速度
-				你现在会散发光亮
-				'..于是他离开了'
-				'''
-			LightbulbBreastplate: "'..于是他消失了'"
-			LightbulbGreaves:
-				'''
-				增加最大召唤栏位
-				'..于是它来了'
-				'''
-			Hitscanner: 发射一大片会瞬间命中敌人的子弹
-			XenonBasher:
-				'''
-				打击你光标附近的敌人
-				击中敌人时会生成氙孢子
-				'''
-			Flameblaster:
-				'''
-				{$Mods.Aequus.Tooltips.UsesGel}
-				<右键>发射气爆
-				无视敌人10点的防御力
-				33%几率不消耗弹药
-				[c/ee2222:最热的]家用燃烧装置'
-				'''
-			CrusadersCrossbow: 发射可以治疗或伤害敌人的治愈箭矢
-			DoubleShot:
-				'''
-				会产生第二颗子弹
-				50%几率不会被消耗
-				'''
-			Baozhu:
-				'''
-				会产生巨大的爆炸并引燃敌人
-				爆炸成会燃烧一段时间的火焰
-				'''
-			JerryClawFlail:
-				'''
-				扔出两只爪子
-				'摸起来非常的油腻'
-				'''
-			MagicWand: 向你的光标位置发射一束魔法矢, 魔法矢会爆炸成向两边水平移动的冲击波
-			Deltoid: 发射三支爆炸箭矢
-			Lightbulb: 利用恒星的能量散发着光
-			Cauterizer:
-				'''
-				发射恶魔能量冲击波
-				会对敌人造成猩红狱火减益
-				'''
-			HellsBoon:
-				'''
-				灰烬尖刺会生成在光标附近
-				剑身击中敌人时会对其造成腐化狱火减益
-				'''
-			MonoxiderStaff: 召唤一氧化物雀为你而战
-			ScarletSea: 召唤两颗血珠
-			SeltzerRain: 发射许多腐蚀球体
-			FizzlingFire: 在你拥有耐魔性减益时无法使用
-			Valari: 可以拾取物品
-			KryptonSword:
-				'''
-				能够穿透敌人
-				击中敌人时会对其造成多种减益
-				'''
-			Vrang: 扔出V型移动回旋镖
-			AirBlade: 召唤魔法风刃
-			ThunderClap: 召唤两个大手拍打你的敌人
-			Umystick:
-				'''
-				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
-				手持此物品时按下右键进行一次跳跃
-				'看起来贼危险'
-				'''
-			Narrizuul:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				{$Mods.Aequus.Tooltips.Nalyddd}
-				'''
-			StudiesOfTheInkblot:
-				'''
-				'弹幕的墨迹测验'
-				'地底蔷薇'
-				'''
-			CursedKey: 召唤一个恶魔捕手为你而战
-			PiranhaPot: 召唤一株邪恶的植物为你而战
-			Skrawler: 发射致命的火焰弹幕
-			LightMatter: 散发着光芒和星际能量
-			NuclearFeather:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				'他们说此羽来自于八咫乌那完美无瑕的翅膀'
-				'''
+
 			CrabPot: 使用鱼饵来捕捉水里的东西
-			PalePufferfish:
-				'''
-				能治愈你身上的多种减益和血咒
-				'''
-			VampireSquid: 使你获得血咒
-			UltraEel: 一种非常古老的星源物种的后代
-			Combfish: 具有再生特性
-			LarvaEel: 提供生命再生
-			CentennialLight: 大幅度加速时间的流逝
-			Globebulb: 加速时间的流逝
-			VampireHook:
-				'''
-				自动瞄准附近的敌人
-				钩中敌人时会汲取其生命
-				'''
-			BlackBookofUntoldLegends: 召唤寄居蟹商人
-			Stardrop: 切换以决定是否允许城镇NPC在夜间入住
-			IWillBeBack:
-				'''
-				可在不击杀向导的情况下召唤血肉墙
-				右键切换以决定是否使所有城镇NPC免疫熔岩
-				'''
-			CosmicTelescope: 显示柔光之源以及地图上的一些其他相关信息
-			DungeonMap:
-				'''
-				显示地牢的位置
-				点击地牢的地图图标可以传送至地牢
-				'''
-			LihzahrdMap:
-				'''
-				显示神庙祭坛的位置
-				点击神庙祭坛的地图图标可以传送至神庙祭坛
-				'''
-			RetroGoggles: 在大地图上以粉色光点显示敌人的位置
-			Beeswax: 显示所有可见的世纪之花花苞的位置
+
 			MoonflowerSeeds: 会在午夜时分开花并产生花粉
-			UltrabrightRedTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightGreenTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			UltrabrightBlueTorch: "{$Mods.Aequus.Common.TorchCanBePlacedInLiquids}"
-			GlobeItem:
-				'''
-				右键点击以显示你的物块坐标
-				'探索世界'
-				'''
-			GlimmeringStatue: 用于制作由能量构成的强大物品
-			SedimentSandBlock: 不会坠落
-			ArgonMushroom:
-				'''
-				散发着红光
-				'休眠中并且无生命迹象'
-				'''
-			KryptonMushroom:
-				'''
-				散发着绿光
-				'可以显示超级生物的致命弱点'
-				'''
-			XenonMushroom:
-				'''
-				散发着蓝光
-				'当你触摸它时, 它变得更亮了'
-				'''
-			CrabClock: "现在是什么时间? 螃躁时间.'"
-			PotionofContainers:
-				'''
-				将你传送至世界中的随机一个箱子
-				可与宝箱混合以定向要传送的箱子
-				'''
-			PotionofContainersTag: 将你传送至世界中的随机一个箱子
-			OpposingPotion: 逆转许多事物的效果
-			Baguette:
-				'''
-				大幅度提升所有属性
-				大幅度增加生命恢复速度
-				'蛋糕只是松软的面包'
-				'''
-			SpoilsPotion:
-				'''
-				敌人死亡时掉落的战利品的数量翻倍
-				'你只是个被惯坏了的坏孩子!'
-				'''
-			SpreadPotion: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
-			ShadePotion: 站定不动时会使敌人无法以你为攻击目标
-			MysteryGrail:
-				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				使你获得随机的增益或减益
-				'''
-			SaintsFlow:
-				'''
-				小幅度提升所有属性
-				大幅度增加速度
-				'''
-			RedLicorice: 中幅度提升所有属性并且增加20点生命值
-			GrapePhanta:
-				'''
-				中幅度提升大多数属性
-				大幅度提升魔法属性
-				增加20点法力值
-				'''
-			PeeledCarrot: 中幅度提升所有属性并且使你获得夜视效果
+
 			CursorDyeRemover: 移除光标染料的效果
-			NalydDye: "{$Mods.Aequus.Tooltips.Nalyddd}"
+
 			FamiliarPickaxe: 召唤一个迷你版的你自己
-			HeartLamp: 召唤一只会增加你生命恢复速度并提供光照的心蛾
-			StariteinaBottle:
-				'''
-				召唤一颗会提供光照的侏儒源星
-				{$Mods.Aequus.Tooltips.SuspiciousLooking}
-				'''
-			YuckyOrb: 召唤一只会提供光亮的宠物鮟鱇鱼
+
 			Transistor: 阻止柔光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
 			Cosmicanon: 阻止血月的自然生成
@@ -1586,107 +1251,17 @@ Mods: {
 				'你不知道你会得到什么!'
 				{$Mods.Aequus.PaintingSignature.niker}
 				'''
-			MoonlightWall: 墙壁前的NPC会认为现在处于晚上
-			SunbaskMirror:
-				'''
-				镜子的表面反射着强烈的日光
-				只能在白天的地表使用
-				'''
-			UnityMirror:
-				'''
-				镜子的表面反射着强烈的月光
-				只能在夜晚的地表使用
-				'''
-			PowPunch: 投出反复击打敌人的双拳
-			CrystalDagger: 快速刺击敌人
-			Aphrodite: 击中敌人时会对其施加强烈的爱, 并降低其属性
-			Venus:
-				'''
-				击中敌人时会对其施加强烈的爱, 并降低其属性
-				如果敌人离你很近则有几率使其中毒
-				'''
-			Dysesthesia:
-				'''
-				召唤恶魔之镰
-				如果敌人离其很近则释放腐狱之火攻击敌人
-				'''
-			Galactium:
-				'''
-				挥舞时召唤从天而降的柔光星辰
-				真近战攻击击中敌人时对其造成碧蓝之火减益
-				'''
-			GoldPowder: 将小动物转化为金小动物
-			GhostAmulet: 在单人模式下可阻止鬼魂的自然生成
-			CopperSeal: 使用鱼竿钓到宝匣时使你获得30秒的宝匣增益
-			SilverSeal: 使用鱼竿钓到物品时使你获得10秒的钓鱼增益
-			GoldSeal:使用鱼竿钓到任何售价为1金币的物品时使你获得1分钟的声呐增益
-			PlatinumSeal:
-				'''
-				{$Mods.Aequus.ItemTooltip.CopperSeal}
-				{$Mods.Aequus.ItemTooltip.SilverSeal}
-				{$Mods.Aequus.ItemTooltip.GoldSeal}
-				'''
-			MoonShoes:
-				'''
-				使你获得缓降效果
-				长按'下'键可恢复正常的重力效果, 长按'上'键可进一步强化低重力效果
-				'HE-HE'
-				'''
-			Crabsol: 只有最强壮的人才能举起这把剑
-			SuspiciousLookingSteak:
-				'''
-				使你获得许多增益
-				'诅咒已除'
-				'''
-			HermitShell: 你的移动速度越低, 你的防御就越高
-			StriderPalms:
-				'''
-				增加10%召唤伤害
-				强化长足蟹钩的各项属性
-				'''
-			CrabShell: 畸形, 真是诡异
-			FishingCraftingStation: 用于制作特殊的钓鱼物品
-			MonoxideHat: "'因人们需求而变成一件装饰物品'"
-			Bubbler:
-				'''
-				不断地发射泡泡
-				'泡蟹会是你最喜欢的动物, 因为它会制造沙球'
-				'''
-			GebulbaStaff:
-				'''
-				发射击中物块时会爆炸的弹跳火焰弹
-				'Boing!'
-				'''
-			MagmalbulbiaStaff:
-				'''
-				发射击中物块时会爆炸的弹跳火焰弹
-				'艺术就是爆炸!'
-				'''
-			ArgonSpear: 会不断的瞄准你的光标位置
-			HamaYumi: 接近敌人时会爆裂成腐败狱火
-			Sprinkler: "{$Mods.Aequus.Tooltips.UseDarts}"
-			SpaceShot: 发射一颗星星, 随后再发射其使用的子弹
+
 			LotusStaff:
 				'''
 				召唤一朵熔岩之莲为你而战
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
-			CrimsonHandStaff: 召唤一个猩红血手为你而战
-			ATM:
-				'''
-				召唤一个用于存放物品的飞行保险箱
-				将其放在你的保险箱里以便随时召唤它
-				'''
-			SpectralLens: 切换敌人的掉落
+
 			Crabax:
 				'''
 				能够同时砍伐多颗树木
 				砍伐时长按右键以禁用此能力
-				'''
-			Floatstick:
-				'''
-				仅在潮湿情况下生效
-				'我想你应该可以从名字中猜出这是做什么的'
 				'''
 
 			Terraria_SoulofMight: "'充满活力的生物的精华'"
@@ -1787,14 +1362,11 @@ Mods: {
 			SpicyEelBuff: 大幅度增加移动速度
 			BaguetteBuff: 大幅度提升各项属性和生命恢复速度
 
-			Vampirism: 在这之后你可能会变成吸血鬼...
-			VampirismNight: 大幅度提升属性, 攻击有几率汲取生命值
-			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
-
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
 			NecromancyOwnerBuff: 你正掌控死亡
 
+			PiranhaPlantBuff: 邪恶植物会为你而战
 			BrainCauliflowerBuff: 脑菜花会为你而战
 			MindfungusBuff: 心灵真菌会为你而战
 			StariteBuff: 星之源会为你而战
@@ -1803,58 +1375,26 @@ Mods: {
 			RedSpriteMinionBuff: 红色精灵会为你而战
 			SnowflakeBuff: 雪花会为你而战
 
+			FamiliarBuff: 尽管如此, 它仍是你
+			OmegaStariteBuff: 你所能想象的最小的类太阳系
 			TorraBuff: "'玻璃???!?'"
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
 
 			HotAirBalloonBuff: 飞高一点, 飞远一点!!!
 
-			Omori: 当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
-			PrimeTime: 防御大幅度提升!
-			ArachnotronCooldown: 你现在无法使用机械蜘蛛套装的效果
-			MonoxiderBuff: 一氧化物雀会为你而战
-			Trapper: 恶魔捕手会为你而战
-			PiranhaPlant: 植物会为你而战
-			Harmony: 你的魔法能力大幅度增加
-			Opposing: 逆转许多事物的效果
-			Spoiled: 敌人死亡时掉落的战利品的数量翻倍
-			DebuffSpread: 攻击敌人时会将其身上带有的减益扩散至附近敌人身上
-			Shade: 站定不动时会使敌人无法以你为攻击目标
-			SpeedBoostFood: 小幅度提升所有属性并且大幅度增加速度
-			RedLicoriceBuff: 中幅度提升所有属性并且生命值增加20点
-			GrapePhantaBuff:
-				'''
-				中幅度提升大多数属性
-				大幅度提升魔法属性
-				法力值增加20点
-				'''
-			DragonCarrotBuff: 中幅度提升所有属性并且使你获得夜视效果
-			FamiliarBuff: 尽管如此, 它仍是你
-			HeartMothBuff: 增加你的生命恢复速度并提供光照
-			DwarfStariteBuff: "'你知道的越多'"
-			OmegaStariteBuff: 你所能想象的最小的类太阳系
-			AnglerFish: 它被自己所发出的光明暗中吸引
-			Sparkling: 宇宙辐射令你闪闪发光
-			CrimsonHand: 猩红血手会为你而战
-			Chomper: 食人花会为你而战
+
+			Vampirism: 在这之后你可能会变成吸血鬼...
+			VampirismNight: 大幅度提升属性, 攻击有几率汲取生命值
+			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
+
+			Weakness: "{$BuffDescription.Weak}"
+			CrimsonHellfire: "{$BuffDescription.OnFire}"
+			CorruptionHellfire: "{$BuffDescription.OnFire}"
+			Bleeding: "{$BuffDescription.Bleeding}"
+			BitCrushed: 你被压缩了!
 			BlueFire: 碧蓝之火灼烧着你的皮肤
-			Bossrush: Boss被击败时会再次生成
-			Ultima:最终之剑祝福着你
-			SpectreHealing: 你正快速的恢复生命
-			Cold20: 你的体温低于20华氏度
-			Cold40: 你的体温低于40华氏度
-			Cold60: 你的体温低于60华氏度
-			Cold80: 你的体温低于80华氏度
-			Hot20: 你的体温高于20华氏度
-			Hot40: 你的体温高于40华氏度
-			Hot60: 你的体温高于60华氏度
-			Hot80: 你的体温高于80华氏度
 			PickBreak: 你的采矿能力被减半了
-			RedSpriteWind:
-				'''
-				狂风正在你的周围移动!
-				你的温度正在升高
-				'''
 		}
 
 		ProjectileName: {
@@ -1968,16 +1508,7 @@ Mods: {
 			DoubleShotProj: 子弹
 			SnowsawMinion: 雪花
 			JerryClawFlail: 蟹蛤之爪
-			MagicWand: 魔杖
-			DeltoidArrow: 增量矢
-			Burnterizer: 第一灾级燃烧
-			BurnterizerExplosion: 第一灾级燃烧
 			HellsBoonSpike: 地狱之赐
-			MonoxiderMinion: 一氧化物
-			MagicalBoomerang: 魔法回旋镖
-			StariteSpinnerProjectile: 星源轮转
-			AirBlade: 风之刃
-			AirBladeGhost: 风之刃
 			RedSpriteStaff: 电涌杖
 			RedSpriteStaffLightning: 电涌杖
 			ThunderClap: 雷霆一击
@@ -2037,24 +1568,6 @@ Mods: {
 				当你没有任何幽魂仆从时你所受到的伤害降低
 				'''
 			Gravetender: 召唤一缕魂灵来强化你的幽魂
-
-			Arachnotron:
-				'''
-				增加12%近战和召唤伤害
-				增加最大召唤栏位
-				按下{0}键后会大幅度增加你的防御并获得一段冷却时间
-				'''
-			SkyrimArmor:
-				'''
-				增加5%伤害减免
-				降低10%移动速度
-				'你身上背的东西太多了, 你跑不动了'
-				'''
-			Lightbulb:
-				'''
-				你现在拥有危险感和猎人增益
-				陷阱对你造成的伤害降低30%
-				'''
 		}
 
 		WhiteFlag: {
@@ -2065,32 +1578,6 @@ Mods: {
 		GhostlyGrave: {
 			False: 你现在会掉落墓碑
 			True: 你现在不会掉落墓碑
-		}
-
-		Stardrop: {
-			False: 城镇NPC现在无法在夜间入住
-			True: 城镇NPC现在可在夜间入住
-		}
-
-		IWillBeBackToggle: {
-			True: 城镇NPC现在会免疫熔岩
-			False: 城镇NPC现在不再会免疫熔岩
-		}
-
-		MapLayerToggle: {
-			CosmicTelescope: 显示柔光之源以及地图上的一些其他相关信息
-			VialOfBlood:
-				'''
-				显示地牢的位置
-				点击地牢的地图图标可以传送至地牢
-				'''
-			Cabbage:
-				'''
-				显示神庙祭坛的位置
-				点击神庙祭坛的地图图标可以传送至神庙祭坛
-				'''
-			BlightedSoul: 在大地图上以粉色光点显示敌人的位置
-			Beeswax: 显示所有可见的世纪之花花苞的位置
 		}
 
 		MapObject: {
@@ -2241,7 +1728,7 @@ Mods: {
 			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在通过24小时的日光浴后, 它吸收了太阳的能力. 据说味道像肉桂.
 			Meteor: 清晨, 漂浮的流星似乎吞噬了太空中的碎片. 当被推离轨道时可能会留下陨石坑.
 
-			Carpenter: 一只蚂蚁决定不再是大机器上的齿轮, 因为热爱房屋而选择成为木匠. 会搬进有着5个独特家具物件的房子.
+			Carpenter: 一只蚂蚁决定不再是大机器上的齿轮, 因为热爱房屋而选择成为木匠. 会搬进有着4个独特家具物件的房子.
 			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
 			SkyMerchant: 一位聪明的猎人创造了热气球来捕猎飞行生物. 在有风的日子里可以看到他在天空中飞翔.
 			Physicist: 来自邻近行星, 物理学家在你的世界上观察到了非自然现象, 是来调查的. 不相信魔法或童话.
@@ -2922,19 +2409,6 @@ Mods: {
 			}
 		}
 
-		BossChecklist: {
-			Crabson: 使用{HypnoticPearl}召唤
-			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
-			DustDevil: 使用{ThunderstormInABottle}召唤
-
-			RedSprite: 风暴紊流的战斗期间.
-			SpaceSquid: 风暴紊流的战斗期间.
-
-			Glimmer: 使用{GalacticStarfruit}开始.
-			DemonSiege: 在血巢处使用: ({ItemList}).
-			GaleStreams: 风速大于 30 mph 时开始, 可以使用{Pumpinator}更改风速.
-		}
-
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: 任务鱼
 		}
@@ -2956,5 +2430,26 @@ Mods: {
 		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
 		OpenedLink: 点击并发送至
+
+		# Census doesn't actually have language support, so these are not actually used ingame
+		Census: {
+			Carpenter: 使用4件独特的家具物件来建造一个房屋 (不包括桌子、椅子和火把)
+			Exporter: 击败巨蟹蛤
+			Occultist: 完成一次恶魔围攻
+			Physicist: 击败终末之星
+		}
+
+		BossChecklist: {
+			Crabson: 使用{HypnoticPearl}召唤
+			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
+			DustDevil: 使用{ThunderstormInABottle}召唤
+
+			RedSprite: 风暴紊流的战斗期间.
+			SpaceSquid: 风暴紊流的战斗期间.
+
+			Glimmer: 使用{GalacticStarfruit}开始.
+			DemonSiege: 在血巢处使用: ({ItemList}).
+			GaleStreams: 在风速大于30 mph的太空中, 风速可以被{Pumpinator}影响.
+		}
 	}
 }
