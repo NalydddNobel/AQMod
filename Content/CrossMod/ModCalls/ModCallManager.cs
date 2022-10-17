@@ -1,6 +1,9 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Tiles;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod.ModCalls
@@ -39,6 +42,12 @@ namespace Aequus.Content.CrossMod.ModCalls
                         return HandleGetterSetterCall(ref AequusWorld.downedEventCosmic, args, AequusHelpers.UnboxBoolean, 2);
                     case "downedEventAtmosphere":
                         return HandleGetterSetterCall(ref AequusWorld.downedEventAtmosphere, args, AequusHelpers.UnboxBoolean, 2);
+
+                    case "PylonColor":
+                        var key = new Point(AequusHelpers.UnboxInt.Unbox(args[2]), args.Length > 4 ? AequusHelpers.UnboxInt.Unbox(args[3]) : 0);
+                        var color = (Color)args[args.Length > 4 ? 4 : 3];
+                        AequusTile.PylonColors[key] = color;
+                        return null;
 
                     case "NecromancyDatabase":
                         return NecromancyDatabase.CallAddNecromancyData(mod, args);

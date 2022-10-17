@@ -44,6 +44,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Main.npcFrameCount[Type] = 3;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 15;
+            ItemID.Sets.KillsToBanner[BannerItem] = 10;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
                 SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),
@@ -59,6 +60,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             this.CreateLoot(npcLoot)
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
+                .Add<AstralCookie>(chance: 1, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }

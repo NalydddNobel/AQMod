@@ -41,6 +41,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             Main.npcFrameCount[NPC.type] = 12;
             NPCID.Sets.TrailCacheLength[NPC.type] = 4;
             NPCID.Sets.TrailingMode[NPC.type] = 7;
+            ItemID.Sets.KillsToBanner[BannerItem] = 25;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(4f, 12f)

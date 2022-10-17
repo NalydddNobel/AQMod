@@ -283,7 +283,7 @@ namespace Aequus.Items
         public override void NetSend(Item item, BinaryWriter writer)
         {
             var bb = new BitsByte(naturallyDropped);
-            writer.Write(naturallyDropped);
+            writer.Write(bb);
             writer.Write(noGravityTime);
         }
 

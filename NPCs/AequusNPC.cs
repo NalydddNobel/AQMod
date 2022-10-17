@@ -780,6 +780,7 @@ namespace Aequus.NPCs
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             var bb = new BitsByte(jungleCoreInvasion > 0);
+            binaryWriter.Write(bb);
             if (bb[0])
             {
                 binaryWriter.Write(jungleCoreInvasion);

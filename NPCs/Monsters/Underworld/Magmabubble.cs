@@ -39,6 +39,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         {
             Main.npcFrameCount[NPC.type] = 11;
 
+            ItemID.Sets.KillsToBanner[BannerItem] = 25;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(1f, 0f)

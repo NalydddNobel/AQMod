@@ -74,7 +74,6 @@ namespace Aequus.Content.CrossMod
                     .TryAddModEntry("WulfrumHovercraft", GhostInfo.One)
                     .TryAddModEntry("WulfrumRover", GhostInfo.One);
 
-                AddPylonColors();
                 AddRarityNames();
             }
             if (ModLoader.TryGetMod("CatalystMod", out var catalystMod))
@@ -87,26 +86,6 @@ namespace Aequus.Content.CrossMod
             }
         }
 
-        public static void AddPylonColors()
-        {
-            ModPylon pylon;
-            if (CalamityMod.TryFind("AstralPylonTile", out pylon))
-            {
-                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Violet);
-            }
-            if (CalamityMod.TryFind("CragsPylonTile", out pylon))
-            {
-                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Orange);
-            }
-            if (CalamityMod.TryFind("SunkenPylonTile", out pylon))
-            {
-                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.Blue);
-            }
-            if (CalamityMod.TryFind("SulphurPylonTile", out pylon))
-            {
-                AequusTile.PylonColors.Add(new Point(pylon.Type, 0), Color.LimeGreen);
-            }
-        }
         public static void AddRarityNames()
         {
         }

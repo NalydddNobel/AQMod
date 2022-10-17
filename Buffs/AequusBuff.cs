@@ -10,7 +10,6 @@ namespace Aequus.Buffs
 {
     public class AequusBuff : GlobalBuff
     {
-        public static HashSet<int> CustomWellFed { get; private set; }
         public static HashSet<int> CountsAsFire { get; private set; }
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
         public static HashSet<int> DontChangeDuration { get; private set; }
@@ -29,7 +28,6 @@ namespace Aequus.Buffs
             {
                 BuffID.Tipsy,
             };
-            CustomWellFed = new HashSet<int>();
             CountsAsFire = new HashSet<int>()
             {
                 BuffID.OnFire,
@@ -69,8 +67,6 @@ namespace Aequus.Buffs
             CountsAsBuff = null;
             DontChangeDuration?.Clear();
             DontChangeDuration = null;
-            CustomWellFed?.Clear();
-            CustomWellFed = null;
             CountsAsFire?.Clear();
             CountsAsFire = null;
             DemonSiegeEnemyImmunity?.Clear();

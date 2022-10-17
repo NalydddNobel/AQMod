@@ -352,6 +352,7 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
+			BreadOfCthulhuBanner: Bread of Cthulhu Banner
 			CoconutCrabBanner: Coconut Crab Banner
 			SoldierCrabBanner: Soldier Crab Banner
 			HijivarchCrabBanner: Hijivarch Crab Banner
@@ -1164,6 +1165,7 @@ Mods: {
 			CrabClock: "'What time is it? Crabby time.'"
 			RecyclingMachine: When nearby, you can create item scrap while crafting
 
+			BreadOfCthulhuBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"

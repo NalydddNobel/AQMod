@@ -20,6 +20,7 @@ using Aequus.NPCs.Boss;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -51,7 +52,6 @@ namespace Aequus.Content.CrossMod
             ColoredDamageTypes = FindMod(nameof(ColoredDamageTypes));
 
             BossChecklist = FindMod(nameof(BossChecklist));
-
 
             if (BossChecklist != null)
             {
@@ -111,7 +111,6 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<SupernovaFruit>(),
                     ModContent.ItemType<UltimateSword>(),
                     ModContent.ItemType<CosmicEnergy>(),
-                    ModContent.ItemType<AstralCookie>(),
                 },
                 new List<int>() { ModContent.ItemType<SupernovaFruit>(), });
 
@@ -228,6 +227,7 @@ namespace Aequus.Content.CrossMod
                     ModContent.ItemType<HyperCrystal>(),
                     ItemID.Nazar,
                     ModContent.ItemType<NeutronYogurt>(),
+                    ModContent.ItemType<AstralCookie>(),
                     ModContent.ItemType<CelesitalEightBall>(),
                 },
                 new List<int>() { ModContent.ItemType<GalacticStarfruit>(), });

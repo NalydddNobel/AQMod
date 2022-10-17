@@ -10,10 +10,12 @@ using Aequus.Projectiles;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -68,6 +70,12 @@ namespace Aequus
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
+
+        public static Color ReadColor(string text)
+        {
+            var val = text.Split(',');
+            return new Color(int.Parse(val[0].Trim()), int.Parse(val[1].Trim()), int.Parse(val[2].Trim()), val.Length > 3 ? int.Parse(val[3].Trim()) : 255);
+        }
 
         public static void Transform(this Item item, int newType)
         {

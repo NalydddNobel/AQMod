@@ -1,5 +1,7 @@
 ﻿using Aequus.Items.Weapons.Magic;
+using Aequus.Tiles;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
@@ -10,7 +12,7 @@ namespace Aequus.Items
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return false;
+            return true;
         }
 
         public override void SetStaticDefaults()
@@ -31,7 +33,7 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            Main.NewText(Mod.Call("DemonSiegeSacrifice", Mod, Type, Type + 1, 0));
+            Mod.Call("PylonColor", Mod, TileID.TeleportationPylon, Main.DiscoColor);
             return true;
         }
     }

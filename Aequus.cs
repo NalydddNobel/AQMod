@@ -3,7 +3,9 @@ using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
@@ -120,6 +122,17 @@ namespace Aequus
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             PacketSystem.HandlePacket(reader);
+        }
+
+        public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name)
+        {
+            using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
+            {
+                using (var streamReader = new StreamReader(stream))
+                {
+                    return JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(streamReader.ReadToEnd());
+                }
+            }
         }
 
         public static bool ShouldDoScreenEffect(Vector2 where)

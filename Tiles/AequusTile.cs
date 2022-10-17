@@ -7,8 +7,10 @@ using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -16,7 +18,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles
 {
-    public class AequusTile : GlobalTile, IPostSetupContent
+    public class AequusTile : GlobalTile, IAddRecipes
     {
         public static Action ResetTileRenderPoints;
         public static Action DrawSpecialTilePoints;
@@ -56,18 +58,8 @@ namespace Aequus.Tiles
             TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
-            PylonColors = new Dictionary<Point, Color>()
-            {
-                [new Point(TileID.TeleportationPylon, 0)] = new Color(100, 255, 128, 255),
-                [new Point(TileID.TeleportationPylon, 1)] = new Color(200, 255, 65, 255),
-                [new Point(TileID.TeleportationPylon, 2)] = Color.HotPink * 1.5f,
-                [new Point(TileID.TeleportationPylon, 3)] = new Color(230, 165, 255, 255),
-                [new Point(TileID.TeleportationPylon, 4)] = Color.SkyBlue * 1.125f,
-                [new Point(TileID.TeleportationPylon, 5)] = new Color(255, 222, 120, 255),
-                [new Point(TileID.TeleportationPylon, 6)] = new Color(120, 222, 255, 255),
-                [new Point(TileID.TeleportationPylon, 7)] = new Color(100, 128, 255, 255),
-                [new Point(TileID.TeleportationPylon, 8)] = Color.FloralWhite,
-            };
+            PylonColors = new Dictionary<Point, Color>();
+
             LoadHooks();
         }
 
@@ -96,7 +88,7 @@ namespace Aequus.Tiles
         }
         #endregion
 
-        public void PostSetupContent(Aequus aequus)
+        public void AddRecipes(Aequus aequus)
         {
             foreach (var i in ContentSamples.ItemsByType)
             {
@@ -112,6 +104,56 @@ namespace Aequus.Tiles
 
                         aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
                         continue;
+                    }
+                }
+            }
+            LoadPylonColors();
+        }
+
+        public static void LoadPylonColors()
+        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading pylons colors...");
+            }
+            var val = Aequus.GetContentFile("PylonColors");
+            foreach (var modDict in val)
+            {
+                if (modDict.Key == "Vanilla")
+                {
+                    foreach (var pylonColor in modDict.Value)
+                    {
+                        PylonColors[new Point(TileID.TeleportationPylon, int.Parse(pylonColor.Key))] = AequusHelpers.ReadColor(pylonColor.Value);
+                    }
+                }
+                else if (ModLoader.TryGetMod(modDict.Key, out var mod))
+                {
+                    if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Loading pylon colors for {modDict.Key}...");
+                    }
+                    foreach (var pylonColor in modDict.Value)
+                    {
+                        int style = 0;
+                        string pylonName = pylonColor.Key;
+                        if (pylonName.Contains(';'))
+                        {
+                            var split = pylonName.Split(';');
+                            pylonName = split[0];
+                            style = int.Parse(split[1]);
+                        }
+                        if (mod.TryFind<ModPylon>(pylonName, out var pylon))
+                        {
+                            if (Aequus.LogMore)
+                            {
+                                Aequus.Instance.Logger.Info($"{pylonName}/{style}/{pylon.Type}: {pylonColor.Value}");
+                            }
+                            PylonColors[new Point(pylon.Type, style)] = AequusHelpers.ReadColor(pylonColor.Value);
+                        }
+                        else if (Aequus.LogMore)
+                        {
+                            Aequus.Instance.Logger.Error($"Could not find {pylonName}...");
+                        }
                     }
                 }
             }

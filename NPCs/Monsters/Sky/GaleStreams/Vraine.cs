@@ -30,6 +30,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
+            ItemID.Sets.KillsToBanner[BannerItem] = 100;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Rotation = MathHelper.Pi,

@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.CrabCrevice;
+﻿using Aequus.NPCs.Monsters;
+using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
@@ -37,6 +38,7 @@ namespace Aequus.Tiles.Furniture
         public const int Unused_SpaceSquidBanner = 13;
         public const int UltraStariteBanner = 14;
         public const int CoconutCrabBanner = 15;
+        public const int BreadofCthulhuBanner = 16;
 
         public static List<int> bannerWindHack;
 
@@ -220,6 +222,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<SoldierCrab>();
                 case CoconutCrabBanner:
                     return ModContent.NPCType<CoconutCrab>();
+                case BreadofCthulhuBanner:
+                    return ModContent.NPCType<BreadOfCthulhu>();
             }
             return 0;
         }

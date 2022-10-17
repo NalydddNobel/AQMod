@@ -8,8 +8,7 @@ namespace Aequus.Buffs
     {
         public override void SetStaticDefaults()
         {
-            BuffID.Sets.IsWellFed[Type] = true;
-            AequusBuff.CustomWellFed.Add(Type);
+            BuffID.Sets.IsFedState[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

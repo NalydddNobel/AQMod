@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Foods
+namespace Aequus.Items.Consumables
 {
     public class PalePufferfish : ModItem
     {

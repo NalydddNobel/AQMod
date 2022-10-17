@@ -50,7 +50,6 @@ namespace Aequus.Common
 
         void ILoadable.Unload()
         {
-            throw new System.NotImplementedException();
         }
     }
 }

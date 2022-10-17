@@ -2,6 +2,7 @@
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
+using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -16,7 +17,7 @@ namespace Aequus.NPCs.Monsters
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
-
+            ItemID.Sets.KillsToBanner[BannerItem] = 10;
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.One);
         }
 
@@ -35,6 +36,9 @@ namespace Aequus.NPCs.Monsters
             NPC.rarity = 1;
             NPC.alpha = 250;
             NPC.SetLiquidSpeeds(water: 1f);
+
+            Banner = Type;
+            BannerItem = ModContent.ItemType<BreadOfCthulhuBanner>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

@@ -1,7 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
-using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish;

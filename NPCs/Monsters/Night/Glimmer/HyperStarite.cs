@@ -42,6 +42,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Main.npcFrameCount[Type] = 3;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 15;
+            ItemID.Sets.KillsToBanner[BannerItem] = 25;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
             {
                 SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),

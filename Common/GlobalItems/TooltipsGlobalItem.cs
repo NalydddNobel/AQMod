@@ -114,11 +114,6 @@ namespace Aequus.Common.GlobalItems
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
 
-                if (item.buffType > 0 && BuffID.Sets.IsWellFed[item.buffType] && AequusBuff.CustomWellFed.Contains(item.buffType))
-                {
-                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "WellFedExpert");
-                }
-
                 if (item.pick > 0)
                 {
                     float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);

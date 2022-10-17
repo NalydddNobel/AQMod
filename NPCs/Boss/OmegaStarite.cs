@@ -1626,7 +1626,6 @@ namespace Aequus.NPCs.Boss
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
                 .Add<CosmicEnergy>(chance: 1, stack: 3)
-                .Add<AstralCookie>(chance: 1, stack: 1)
                 .RegisterCondition();
         }
 
