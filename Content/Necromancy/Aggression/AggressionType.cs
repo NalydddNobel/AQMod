@@ -23,14 +23,14 @@ namespace Aequus.Content.Necromancy.Aggression
 
             public void OnPreAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_dayTime.StartCaching(false);
-                AequusHelpers.Main_bloodMoon.StartCaching(true);
+                AequusSystem.Main_dayTime.StartCaching(false);
+                AequusSystem.Main_bloodMoon.StartCaching(true);
             }
 
             public void OnPostAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_bloodMoon.EndCaching();
-                AequusHelpers.Main_dayTime.EndCaching();
+                AequusSystem.Main_bloodMoon.EndCaching();
+                AequusSystem.Main_dayTime.EndCaching();
             }
         }
 
@@ -42,14 +42,14 @@ namespace Aequus.Content.Necromancy.Aggression
 
             public void OnPreAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_dayTime.StartCaching(true);
-                AequusHelpers.Main_eclipse.StartCaching(true);
+                AequusSystem.Main_dayTime.StartCaching(true);
+                AequusSystem.Main_eclipse.StartCaching(true);
             }
 
             public void OnPostAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_eclipse.EndCaching();
-                AequusHelpers.Main_dayTime.EndCaching();
+                AequusSystem.Main_eclipse.EndCaching();
+                AequusSystem.Main_dayTime.EndCaching();
             }
         }
 
@@ -64,14 +64,14 @@ namespace Aequus.Content.Necromancy.Aggression
 
             public void OnPreAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_invasionSize.StartCaching(100);
-                AequusHelpers.Main_invasionType.StartCaching(InvasionType);
+                AequusSystem.Main_invasionSize.StartCaching(100);
+                AequusSystem.Main_invasionType.StartCaching(InvasionType);
             }
 
             public void OnPostAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_invasionSize.EndCaching();
-                AequusHelpers.Main_invasionType.EndCaching();
+                AequusSystem.Main_invasionSize.EndCaching();
+                AequusSystem.Main_invasionType.EndCaching();
             }
         }
 
@@ -86,12 +86,12 @@ namespace Aequus.Content.Necromancy.Aggression
 
             public void OnPreAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_dayTime.StartCaching(TimeOfDay);
+                AequusSystem.Main_dayTime.StartCaching(TimeOfDay);
             }
 
             public void OnPostAI(NPC npc, NecromancyNPC necro)
             {
-                AequusHelpers.Main_dayTime.EndCaching();
+                AequusSystem.Main_dayTime.EndCaching();
             }
         }
 

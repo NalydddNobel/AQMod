@@ -260,6 +260,7 @@ Mods: {
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
 			FertilePowder: Fertilizer Box
+			WhitePhial: White Phial
 			TinkerersGuidebook: Tinkerer's Guidebook
 			Moro: Moro
 			
@@ -593,11 +594,6 @@ Mods: {
 				'''
 				50% more damage from critical strikes
 				[c/{Color}:...If you can pay 25 silver]
-				'''
-			WhitePhial: 
-				'''
-				50% increased buff duration
-				25% decreased debuff duration
 				'''
 			BlackPhial: 
 				'''
@@ -947,6 +943,7 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
 			FertilePowder: Causes all nearby tiles to instantly grow
+			WhitePhial: Permanently increase buff duration by 25% 
 			TinkerersGuidebook: Permanently improve the Goblin Tinkerer's reforge service
 			Moro: Permanently makes minion staffs consume no mana and faster
 

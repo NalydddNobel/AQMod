@@ -46,16 +46,6 @@ namespace Aequus
         /// </summary>
         public static int iterations;
 
-        [Obsolete("Use AequusSystem.Main_invasionSize instead.")]
-        public static ValueCache<int> Main_invasionSize => AequusSystem.Main_invasionSize;
-        [Obsolete("Use AequusSystem.Main_invasionType instead.")]
-        public static ValueCache<int> Main_invasionType => AequusSystem.Main_invasionType;
-        [Obsolete("Use AequusSystem.Main_bloodMoon instead.")]
-        public static ValueCache<bool> Main_bloodMoon => AequusSystem.Main_bloodMoon;
-        [Obsolete("Use AequusSystem.Main_eclipse instead.")]
-        public static ValueCache<bool> Main_eclipse => AequusSystem.Main_eclipse;
-        [Obsolete("Use AequusSystem.Main_daytime instead.")]
-        public static ValueCache<bool> Main_dayTime => AequusSystem.Main_dayTime;
         /// <summary>
         /// Determines whether or not the mouse has an item
         /// </summary>

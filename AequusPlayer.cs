@@ -78,6 +78,12 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         public bool hasUsedRobsterScamItem;
         /// <summary>
+        /// Enabled by <see cref="WhitePhial"/>
+        /// </summary>
+        [SaveData("WhitePhial")]
+        [SaveDataAttribute.IsListedBoolean]
+        public bool whitePhial;
+        /// <summary>
         /// Enabled by <see cref="Moro"/>
         /// </summary>
         [SaveData("Moro")]
@@ -757,11 +763,11 @@ namespace Aequus
             projectileIdentity = -1;
             if (forceDayState == 1)
             {
-                AequusHelpers.Main_dayTime.StartCaching(true);
+                AequusSystem.Main_dayTime.StartCaching(true);
             }
             else if (forceDayState == 2)
             {
-                AequusHelpers.Main_dayTime.StartCaching(false);
+                AequusSystem.Main_dayTime.StartCaching(false);
             }
             forceDayState = 0;
 
@@ -775,6 +781,11 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            if (whitePhial)
+            {
+                buffDuration += 0.25f;
+            }
+
             if (accRitualSkull)
             {
                 ghostSlotsMax += Player.maxMinions - 1;
@@ -847,15 +858,15 @@ namespace Aequus
 
         public override bool PreItemCheck()
         {
-            if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.RepairCachedStatic();
+            if (AequusSystem.Main_dayTime.IsCaching)
+                AequusSystem.Main_dayTime.RepairCachedStatic();
             return true;
         }
 
         public override void PostItemCheck()
         {
-            if (AequusHelpers.Main_dayTime.IsCaching)
-                AequusHelpers.Main_dayTime.DisrepairCachedStatic();
+            if (AequusSystem.Main_dayTime.IsCaching)
+                AequusSystem.Main_dayTime.DisrepairCachedStatic();
             if (Player.selectedItem != lastSelectedItem)
             {
                 lastSelectedItem = Player.selectedItem;
@@ -945,9 +956,9 @@ namespace Aequus
 
             PlayerContext = -1;
 
-            if (AequusHelpers.Main_dayTime.IsCaching)
+            if (AequusSystem.Main_dayTime.IsCaching)
             {
-                AequusHelpers.Main_dayTime.EndCaching();
+                AequusSystem.Main_dayTime.EndCaching();
             }
         }
         public void DoDebuffEffects()
