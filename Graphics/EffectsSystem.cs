@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
+using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
@@ -159,10 +160,17 @@ namespace Aequus.Graphics
             {
                 for (int i = 0; i < GhostOutlineRenderer.NecromancyRenderers.Length; i++)
                 {
-                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null && GhostOutlineRenderer.NecromancyRenderers[i].NPCs.Count > 0)
+                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null)
                     {
-                        GhostOutlineRenderer.NecromancyRenderers[i].Request();
-                        GhostOutlineRenderer.NecromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                        if (GhostOutlineRenderer.NecromancyRenderers[i].NPCs.Count > 0)
+                        {
+                            GhostOutlineRenderer.NecromancyRenderers[i].Request();
+                            GhostOutlineRenderer.NecromancyRenderers[i].DisposeTime = 0;
+                            GhostOutlineRenderer.NecromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
+                            continue;
+                        }
+
+                        GhostOutlineRenderer.NecromancyRenderers[i].CheckDisposal();
                     }
                 }
             }

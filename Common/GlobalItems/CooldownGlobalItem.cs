@@ -1,4 +1,5 @@
-﻿using Aequus.UI;
+﻿using Aequus;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Items
+namespace Aequus.Common.GlobalItems
 {
     public class CooldownGlobalItem : GlobalItem
     {

@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.GlobalItems;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
@@ -247,13 +247,13 @@ namespace Aequus.UI.States
                     }
                     if (langOrFormatedText != "")
                     {
-                        langOrFormatedText = AequusText.ColorText((showKeys ? keyText : langOrFormatedText), color, alphaPulse: true);
+                        langOrFormatedText = AequusText.ColorCommand((showKeys ? keyText : langOrFormatedText), color, alphaPulse: true);
                     }
                     if (text[i] == '|')
                     {
-                        langOrFormatedText += AequusText.ColorText("|", Color.Gray, alphaPulse: true);
+                        langOrFormatedText += AequusText.ColorCommand("|", Color.Gray, alphaPulse: true);
                     }
-                    newName += AequusText.ColorText("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
+                    newName += AequusText.ColorCommand("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
                 }
                 else
                 {

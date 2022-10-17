@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Misc;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -40,15 +41,15 @@ namespace Aequus.Items.Tools
             try
             {
                 int index = tooltips.GetIndex("Knockback");
-                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KBText(Item.knockBack)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KnockbackLine(Item.knockBack)));
                 index = tooltips.GetIndex("Speed");
-                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimText(Item.useAnimation)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimationLine(Item.useAnimation)));
                 if (!Main.hardMode || AequusWorld.downedEventAtmosphere)
                 {
                     return;
                 }
                 index = tooltips.GetIndex("Material");
-                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = AequusTooltips.HintColor, });
+                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = TooltipsGlobalItem.HintColor, });
             }
             catch
             {

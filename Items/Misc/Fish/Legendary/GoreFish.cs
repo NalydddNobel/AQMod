@@ -21,7 +21,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.Batfish);
-            Item.maxStack = 9999;
+            Item.questItem = false;
         }
     }
 }

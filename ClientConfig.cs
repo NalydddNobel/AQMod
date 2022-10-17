@@ -76,31 +76,31 @@ namespace Aequus
         {
             Text("Visuals.ScreenshakeIntensity", new
             {
-                Baguette = AequusText.ItemText<Baguette>(),
+                Baguette = AequusText.ItemCommand<Baguette>(),
             });
             Text("Visuals.FlashIntensity", new
             {
-                NoonPotion = AequusText.ItemText<NoonPotion>(),
+                NoonPotion = AequusText.ItemCommand<NoonPotion>(),
             });
             Text("Visuals.HighQuality", new
             {
-                Fluorescence = AequusText.ItemText<Fluorescence>(),
+                Fluorescence = AequusText.ItemCommand<Fluorescence>(),
             });
             Text("Visuals.HighQualityShaders", new
             {
-                FrozenTear = AequusText.ItemText<FrozenTear>(),
+                FrozenTear = AequusText.ItemCommand<FrozenTear>(),
             });
             Text("Visuals.FlashShaderRepetitions", new
             {
-                SupernovaFruit = AequusText.ItemText<SupernovaFruit>(),
+                SupernovaFruit = AequusText.ItemCommand<SupernovaFruit>(),
             });
             Text("Visuals.NecromancyOutlines", new
             {
-                Insurgency = AequusText.ItemText<Insurgency>(),
+                Insurgency = AequusText.ItemCommand<Insurgency>(),
             });
             Text("General.InfoDebugLogs", new
             {
-                RadioThing = AequusText.ItemText(ItemID.DontStarveShaderItem),
+                RadioThing = AequusText.ItemCommand(ItemID.DontStarveShaderItem),
             });
         }
     }

@@ -1,6 +1,6 @@
-﻿namespace Aequus.Items
+﻿namespace Aequus.Common
 {
-    public static class SortingPriority
+    public static class ItemSortingPriority
     {
         public static class Materials
         {

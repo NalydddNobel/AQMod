@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -25,7 +26,7 @@ namespace Aequus.Items.Weapons.Magic
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             CooldownGlobalItem.HasWeaponCooldown.Add(Type);
 
-            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
+            TooltipsGlobalItem.Dedicated[Type] = new TooltipsGlobalItem.ItemDedication(new Color(110, 110, 128, 255));
 
             SacrificeTotal = 1;
         }

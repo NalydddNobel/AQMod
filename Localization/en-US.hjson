@@ -9,7 +9,7 @@ Mods: {
 
 		Announcement: {
 			OrganicEventSight: The nerves of the jungle become stimulated...
-			OrganicEventFright: The horrors of the jungle start crawling out...
+			OrganicEventFright: The horrors of the jungle crawl out...
 			OrganicEventMight: The roots of the jungle harden...
 			GlimmerStart: A glimmer appears in the sky...
 			GlimmerEnd: The glimmer begins to fade away...
@@ -97,7 +97,7 @@ Mods: {
 
 			DivinePrefix: Divine
 			BlessedPrefix: Blessed
-			VitriousPrefix: Vitrious
+			VitriousPrefix: Virtuous
 			EnlightenedPrefix: Enlightened
 			PraisedPrefix: Praised
 
@@ -226,8 +226,8 @@ Mods: {
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
 
-			LegendberryBait: Legendberry Bait
-			Omnibait: Omnibait
+			LegendberryBait: Legend Berry
+			Omnibait: Omni Bait
 			CursedPopper: Cursed Popper
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
@@ -260,6 +260,7 @@ Mods: {
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
 			FertilePowder: Fertilizer Box
+			TinkerersGuidebook: Tinkerer's Guidebook
 			Moro: Moro
 			
 			OmniPaint: Omni Paint
@@ -271,6 +272,7 @@ Mods: {
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
 
+			CrabDaughter: Crab Daughter
 			XenonFish: Xenon Fish
 			KryptonFish: Krypton Fish
 			ArgonFish: Argon Fish
@@ -286,6 +288,7 @@ Mods: {
 
 			BalloonKit: Zilla's Balloon Kit
 
+			CrabRod: Crab Rod
 			Starcatcher: Starcatcher
 			Buzzer: Buzzer
 			Nimrod: Nimrod
@@ -944,6 +947,7 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
 			FertilePowder: Causes all nearby tiles to instantly grow
+			TinkerersGuidebook: Permanently improve the Goblin Tinkerer's reforge service
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			OmniPaint: Hold a paint item to bring up a menu of selectable paints
@@ -979,6 +983,7 @@ Mods: {
 
 			BalloonKit: Allows you to ride a hot air balloon
 
+			CrabRod: Grants money from successful catches
 			Starcatcher: Extra powerful when the stars are out
 			Buzzer: Casts a flying bee bobber
 			Nimrod:
@@ -1062,6 +1067,11 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
+			CrabDaughter:
+				'''
+				A legendary fish enriched with aquatic energy
+				'Caught in the Crab Crevice'
+				'''
 			ArgonFish:
 				'''
 				A legendary fish enriched with argon moss
@@ -1267,6 +1277,7 @@ Mods: {
 			Terraria_SoulofMight: "'The essence of vigorous creatures'"
 
 			Misc: {
+				DemonSiegeHint: May be upgraded at a Gore Nest...
 				AnglerHint: The Angler may be interested in this...
 				ExporterHint: The Exporter may be interested in this...
 			}

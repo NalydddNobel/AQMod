@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
+using Aequus.Common.ModPlayers;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Graphics.RenderTargets;
@@ -118,17 +119,10 @@ namespace Aequus.NPCs
                 return;
             }
 
-            float velocityBoost = self.Aequus().statSpeed - 1f;
-            var oldVelocity = self.velocity;
-            if (velocityBoost != 0f)
-            {
-                self.velocity *= 1f + velocityBoost;
-            }
+            float velocityBoost = self.Aequus().statSpeed;
+            self.velocity *= velocityBoost;
             orig(self);
-            if (velocityBoost != 0f)
-            {
-                self.velocity = oldVelocity;
-            }
+            self.velocity /= velocityBoost;
         }
         private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
@@ -362,6 +356,22 @@ namespace Aequus.NPCs
                 if (npc.life >= 0 && Main.rand.NextBool(20))
                 {
                     npc.HitEffect(0, 10);
+                }
+                if (!npc.noTileCollide)
+                {
+                    int x = (int)((npc.position.X + npc.width / 2f) / 16f);
+                    int checkTilesTop = (int)((npc.position.Y + npc.height) / 16f);
+                    int checkTilesBottom = (int)(npc.position.Y / 16f);
+                    for (int j = checkTilesBottom; j <= checkTilesTop; j++)
+                    {
+                        if (Main.tile[x, j].IsFullySolid())
+                        {
+                            var d = Dust.NewDustPerfect(new Vector2(npc.position.X + Main.rand.NextFloat(npc.width), npc.position.Y + npc.height), DustID.Slush, Vector2.Zero, 160, Scale: Main.rand.NextFloat(0.6f, 1f));
+                            d.noGravity = true;
+                            d.fadeIn = d.scale + 0.5f;
+                            break;
+                        }
+                    }
                 }
             }
             if (npc.life >= 0 && npc.HasBuff<Bleeding>())
@@ -661,7 +671,7 @@ namespace Aequus.NPCs
                     {
                         if (AequusItem.LegendaryFishIDs.Contains(inv[i].type))
                         {
-                            Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
+                            Main.LocalPlayer.GetModPlayer<AnglerQuestRewards>().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;
                             if (inv[i].stack <= 0)
                             {

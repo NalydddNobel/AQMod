@@ -1,10 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class ColorHelper : ILoadable
+    public class ColorHelper
     {
         internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
         internal static Color BlueSlimeColor => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
@@ -53,19 +52,6 @@ namespace Aequus
             {
                 return ColorGradient.InternalHelperGetColor(Colors, AequusHelpers.Wave(time * Time, 0f, Colors.Length - 1f), 1f);
             }
-        }
-
-        public static IColorGradient nalydGradient;
-
-        void ILoadable.Load(Mod mod)
-        {
-            nalydGradient = new ColorWaveGradient(10f, Color.Violet, Color.MediumPurple);
-        }
-
-        void ILoadable.Unload()
-        {
-            nalydGradient?.OnUnload();
-            nalydGradient = null;
         }
     }
 }

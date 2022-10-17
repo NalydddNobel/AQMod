@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
@@ -47,7 +48,17 @@ namespace Aequus.Graphics.RenderTargets
         }
         public virtual void Unload()
         {
-
+            Main.QueueMainThreadAction(() =>
+            {
+                DisposeResources();
+            });
+        }
+        public virtual void DisposeResources()
+        {
+            helperTarget?.Dispose();
+            helperTarget = null;
+            _target?.Dispose();
+            _target = null;
         }
 
         public void CheckSelfRequest()

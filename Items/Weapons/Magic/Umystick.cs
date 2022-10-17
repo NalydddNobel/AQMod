@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

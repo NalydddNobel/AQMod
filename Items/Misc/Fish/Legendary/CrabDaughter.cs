@@ -1,11 +1,11 @@
-﻿using Aequus.Items.Accessories.Fishing;
+﻿using Aequus.Items.Tools.FishingRods;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Fish.Legendary
 {
-    public class RadonFish : ModItem
+    public class CrabDaughter : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,8 +16,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)
-                .Add<NeonGenesis>(chance: 1, stack: 1)
-                .Add(ItemID.XenonMoss, chance: 1, stack: (10, 25));
+                .Add<CrabRod>(chance: 1, stack: 1);
         }
 
         public override void SetDefaults()

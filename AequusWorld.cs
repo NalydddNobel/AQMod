@@ -80,6 +80,9 @@ namespace Aequus
         [SaveData("ShadowOrbs")]
         public static int shadowOrbsBrokenTotal;
 
+        [SaveData("TinkererRerolls")]
+        public static int tinkererRerolls;
+
         public static StructureLookups Structures { get; internal set; }
 
         public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
@@ -196,12 +199,14 @@ namespace Aequus
         {
             NetTypeAttribute.SendData(writer, this);
             writer.Write(shadowOrbsBrokenTotal);
+            writer.Write(tinkererRerolls);
         }
 
         public override void NetReceive(BinaryReader reader)
         {
             NetTypeAttribute.ReadData(reader, this);
             shadowOrbsBrokenTotal = reader.ReadInt32();
+            tinkererRerolls = reader.ReadInt32();
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)

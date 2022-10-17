@@ -1,6 +1,5 @@
 using Aequus.Common;
 using Aequus.Content.CrossMod.ModCalls;
-using Aequus.Content.Necromancy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;

@@ -34,20 +34,5 @@ namespace Aequus.Items.Accessories
                 aequus.bloodDiceMoney = Item.buyPrice(silver: 25);
             }
         }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            foreach (var t in tooltips)
-            {
-                if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
-                {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new
-                    {
-                        Color = Colors.AlphaDarken(AequusTooltips.ItemDrawbackTooltip).Hex3(),
-                        CoinColor = Colors.AlphaDarken(Colors.CoinSilver).Hex3(),
-                    });
-                }
-            }
-        }
     }
 }

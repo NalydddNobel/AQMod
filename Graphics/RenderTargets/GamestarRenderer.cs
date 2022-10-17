@@ -49,6 +49,10 @@ namespace Aequus.Graphics.RenderTargets
         public override void Unload()
         {
             Instance = null;
+            DrawData?.Clear();
+            DrawData = null;
+            Particles = null;
+            base.Unload();
         }
 
         protected override bool SelfRequest()

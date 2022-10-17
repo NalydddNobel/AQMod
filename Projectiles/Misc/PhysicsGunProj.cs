@@ -343,6 +343,7 @@ namespace Aequus.Projectiles.Misc
                 var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
+                //mouseWorld = Main.player[Projectile.owner].MountedCenter - new Vector2(0f, 400f);
                 var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;
                 var dir = Vector2.Normalize(difference);
                 var list = new List<Vector2>
@@ -350,25 +351,16 @@ namespace Aequus.Projectiles.Misc
                     Main.player[Projectile.owner].MountedCenter + dir * -30f,
                 };
                 int amt = Aequus.HQ ? 20 : 7;
-                if (difference.Length() < 300f)
+                if ((Projectile.Center - list[0]).Length() < 100f)
                 {
                     amt = 0;
                 }
-                var segmentVector = Vector2.Normalize(mouseWorld - list[0]) * 10f;
                 var pos = list[0];
-                for (int i = 0; i < amt * 2; i++)
+                float distance = (Projectile.Center - list[0]).Length() / (amt);
+                var segmentVector = Vector2.Normalize(mouseWorld - list[0]) * distance;
+                for (int i = 0; i < amt; i++)
                 {
-                    var toBlockVector = Vector2.Normalize(Projectile.Center - pos);
-                    var p = AequusHelpers.CalcProgress(amt * 3, i);
-                    float lerpAmt = p;
-                    float length = (pos - Projectile.Center).Length();
-                    if (length <= segmentVector.Length())
-                        break;
-                    if (length <= 400f)
-                        lerpAmt += (float)Math.Pow((1f - length / 400f), 2f) * 2f;
-
-                    pos += segmentVector;
-                    segmentVector = Vector2.Normalize(Vector2.Lerp(segmentVector, toBlockVector, Math.Max(lerpAmt * 0.44f, 0.01f))) * segmentVector.Length();
+                    pos += Vector2.Lerp(segmentVector, Vector2.Normalize(Projectile.Center - pos) * distance, i / (float)amt);
                     list.Add(pos);
                 }
                 list.Add(Projectile.Center);

@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -19,7 +20,7 @@ namespace Aequus.Items.Misc.Energies
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.UltimateEnergy;
+            ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.UltimateEnergy;
         }
 
         public override void AddRecipes()

@@ -36,12 +36,12 @@ namespace Aequus
         {
             Text("Recipes.PhoenixBlaster", new
             {
-                PhoenixBlaster = AequusText.ItemText(ItemID.PhoenixBlaster),
+                PhoenixBlaster = AequusText.ItemCommand(ItemID.PhoenixBlaster),
             });
             Text("Recipes.VoidBag", new
             {
-                VoidVault = AequusText.ItemText(ItemID.VoidVault),
-                VoidBag = AequusText.ItemText(ItemID.VoidLens),
+                VoidVault = AequusText.ItemCommand(ItemID.VoidVault),
+                VoidBag = AequusText.ItemCommand(ItemID.VoidLens),
             });
         }
     }

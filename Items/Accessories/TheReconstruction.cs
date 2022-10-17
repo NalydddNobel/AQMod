@@ -1,6 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.Projectiles;
-using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -291,23 +289,23 @@ namespace Aequus.Items.Accessories
         public override void Load()
         {
             TooltipItems = new Dictionary<int, string>();
-            AddEntry(ItemID.EoCShield);
-            AddEntry(ItemID.WormScarf);
-            AddEntry(ItemID.BrainOfConfusion);
-            AddEntry(ItemID.BoneGlove);
+            addEntry(ItemID.EoCShield);
+            addEntry(ItemID.WormScarf);
+            addEntry(ItemID.BrainOfConfusion);
+            addEntry(ItemID.BoneGlove);
             //AddEntry(ItemID.HiveBackpack);
             //AddEntry(ItemID.BoneHelm);
-            AddEntry(ItemID.VolatileGelatin);
-            AddEntry(ItemID.SporeSac);
+            addEntry(ItemID.VolatileGelatin);
+            addEntry(ItemID.SporeSac);
         }
 
-        internal static string EntryKey(int itemID)
+        internal string entryKey(int itemID)
         {
-            return $"Mods.Aequus.ItemTooltip.{nameof(TheReconstruction)}.{AequusText.CreateKeyNameFromSearch(ItemID.Search.GetName(itemID))}";
+            return $"Mods.Aequus.ItemTooltip.{nameof(TheReconstruction)}.{AequusText.ItemKeyName(itemID, Aequus.Instance)}";
         }
-        internal static void AddEntry(int itemID)
+        internal void addEntry(int itemID)
         {
-            TooltipItems.Add(itemID, EntryKey(itemID));
+            TooltipItems.Add(itemID, entryKey(itemID));
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

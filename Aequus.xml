@@ -333,6 +333,11 @@
             <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
             <returns></returns>
         </member>
+        <member name="P:Aequus.Common.GlobalItems.CooldownGlobalItem.HasWeaponCooldown">
+            <summary>
+            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
+            </summary>
+        </member>
         <member name="F:Aequus.Content.CarpenterBounties.CarpenterBounty.ConditionInfo.Carpenter">
             <summary>
             Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.
@@ -586,11 +591,6 @@
             <param name="amountDroppedMinimum"></param>
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
-        </member>
-        <member name="P:Aequus.Items.CooldownGlobalItem.HasWeaponCooldown">
-            <summary>
-            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
-            </summary>
         </member>
         <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>

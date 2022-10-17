@@ -6,6 +6,7 @@ using Aequus.Items.Consumables.LootBags;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Fish;
 using Aequus.Items.Misc.Fish.Legendary;
+using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -236,6 +237,13 @@ namespace Aequus.Common.ModPlayers
                         itemDrop = ModContent.ItemType<CrabCreviceCrate>();
                     }
                 }
+                else
+                {
+                    if (attempt.veryrare && Main.rand.NextBool(4))
+                    {
+                        itemDrop = ModContent.ItemType<CrabDaughter>();
+                    }
+                }
             }
 
         PostProbeFish:
@@ -256,6 +264,10 @@ namespace Aequus.Common.ModPlayers
             if (baitUsed?.ModItem is IModifyFishItem modBait)
             {
                 modBait.ModifyFishItem(fish);
+            }
+            if (Player.HeldItem.ModItem is CrabRod)
+            {
+                AequusHelpers.DropMoney(Player.GetSource_ItemUse(Player.HeldItem), Player.getRect(), fish.value * fish.stack / 5 / 4, quiet: false);
             }
         }
     }

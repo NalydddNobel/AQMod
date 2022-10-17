@@ -69,6 +69,11 @@ namespace Aequus
             return Text["Mods.Aequus." + key];
         }
 
+        public static string NPCChat<T>(string key) where T : ModNPC
+        {
+            return GetText($"Chat.{typeof(T).Name}." + key);
+        }
+
         public static string TryGetText(string key)
         {
             key = "Mods.Aequus." + key;
@@ -77,11 +82,6 @@ namespace Aequus
                 return translation.GetTranslation(Language.ActiveCulture);
             }
             return key;
-        }
-
-        public static string Chat<T>(string key) where T : ModNPC
-        {
-            return GetText($"Chat.{typeof(T).Name}." + key);
         }
 
         public static string GetText(string key)
@@ -99,16 +99,7 @@ namespace Aequus
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
 
-        public static string ColorText(string text, Color color, bool alphaPulse = false)
-        {
-            if (alphaPulse)
-            {
-                color = Colors.AlphaDarken(color);
-            }
-            return "[c/" + color.Hex3() + ":" + text + "]";
-        }
-
-        public static string UseAnimText(float useAnimation)
+        public static string UseAnimationLine(float useAnimation)
         {
             if (useAnimation <= 8)
             {
@@ -140,7 +131,8 @@ namespace Aequus
             }
             return Language.GetTextValue("LegacyTooltip.13");
         }
-        public static string KBText(float knockback)
+
+        public static string KnockbackLine(float knockback)
         {
             if (knockback == 0f)
             {
@@ -176,30 +168,25 @@ namespace Aequus
             }
             return Language.GetTextValue("LegacyTooltip.22");
         }
-        public static string ItemText(int item)
+        
+        public static string ColorCommand(string text, Color color, bool alphaPulse = false)
         {
-            return "[i:" + item + "]";
-        }
-        public static string ItemText<T>() where T : ModItem
-        {
-            return ItemText(ModContent.ItemType<T>());
+            if (alphaPulse)
+            {
+                color = Colors.AlphaDarken(color);
+            }
+            return "[c/" + color.Hex3() + ":" + text + "]";
         }
 
-        public static void HasAwakened(NPC npc)
+        public static string ItemCommand(int itemID)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                HasAwakened(npc.TypeName);
-            }
-            else if (Main.netMode == NetmodeID.Server)
-            {
-                HasAwakened(Lang.GetNPCName(npc.netID).Key);
-            }
+            return "[i:" + itemID + "]";
         }
-        public static void HasAwakened(string npcName)
+        public static string ItemCommand<T>() where T : ModItem
         {
-            Broadcast("Announcement.HasAwoken", BossSummonMessage, npcName);
+            return ItemCommand(ModContent.ItemType<T>());
         }
+
         public static void Broadcast(string text, Color color)
         {
             text = "Mods.Aequus." + text;
@@ -224,17 +211,64 @@ namespace Aequus
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text, args), color);
             }
         }
-
-        public static string CreateSearchNameFromNPC(int npc)
+        public static void BroadcastAwakened(NPC npc)
         {
-            if (npc < Main.maxNPCTypes)
+            if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                return "Terraria_" + NPCID.Search.GetName(npc);
+                BroadcastAwakened(npc.TypeName);
             }
-            return CreateKeyNameFromSearch(ModContent.GetModNPC(npc).FullName);
+            else if (Main.netMode == NetmodeID.Server)
+            {
+                BroadcastAwakened(Lang.GetNPCName(npc.netID).Key);
+            }
+        }
+        public static void BroadcastAwakened(string npcName)
+        {
+            Broadcast("Announcement.HasAwoken", BossSummonMessage, npcName);
         }
 
-        public static string CreateKeyNameFromSearch(string name)
+        public static string LiquidName(byte liquidType)
+        {
+            switch (liquidType)
+            {
+                default:
+                    return "Unknown";
+
+                case LiquidID.Water:
+                    return Language.GetTextValue("Mods.Aequus.Water");
+                case LiquidID.Lava:
+                    return Language.GetTextValue("Mods.Aequus.Lava");
+                case LiquidID.Honey:
+                    return Language.GetTextValue("Mods.Aequus.Honey");
+                case 3:
+                    return Language.GetTextValue("Mods.Aequus.Shimmer");
+            }
+        }
+
+        public static string NPCKeyName(int npcID, Mod myMod = null)
+        {
+            if (npcID < Main.maxNPCTypes)
+                return NPCID.Search.GetName(npcID);
+
+            var modNPC = NPCLoader.GetNPC(npcID);
+            if (myMod != null && modNPC.Mod.Name == myMod.Name)
+                return modNPC.Name;
+
+            return $"{modNPC.Mod.Name}_{modNPC.Name}";
+        }
+        public static string ItemKeyName(int itemID, Mod myMod = null)
+        {
+            if (itemID < Main.maxItemTypes)
+                return ItemID.Search.GetName(itemID);
+
+            var modItem = ItemLoader.GetItem(itemID);
+            if (myMod != null && modItem.Mod.Name == myMod.Name)
+                return modItem.Name;
+
+            return $"{modItem.Mod.Name}_{modItem.Name}";
+        }
+
+        public static string IDSearchName(string name)
         {
             if (name.StartsWith("Aequus/"))
             {

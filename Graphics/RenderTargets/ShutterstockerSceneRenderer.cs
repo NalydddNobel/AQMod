@@ -26,6 +26,8 @@ namespace Aequus.Graphics.RenderTargets
         public override void Unload()
         {
             renderRequests?.Clear();
+            renderRequests = null;
+            base.Unload();
         }
 
         protected override void PrepareRenderTargetsForDrawing(GraphicsDevice device, SpriteBatch spriteBatch)

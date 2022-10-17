@@ -1,6 +1,7 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Content;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -23,31 +24,9 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 7;
             Item.width = 32;
             Item.height = 32;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ModContent.RarityType<DevItemRarity>();
             Item.value = Item.sellPrice(gold: 50);
             Item.UseSound = SoundID.Item1;
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "ItemName")
-                {
-                    tooltips[i].OverrideColor = ColorHelper.nalydGradient.GetColor(Main.GlobalTimeWrappedHourly);
-                    return;
-                }
-            }
-        }
-
-        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.Mod == "Terraria" && line.Name == "ItemName")
-            {
-                AequusTooltips.DrawDevTooltip(line);
-                return false;
-            }
-            return true;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

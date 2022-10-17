@@ -18,6 +18,7 @@ namespace Aequus.Content.Necromancy
         public readonly DrawList NPCs;
         public readonly int Team;
         public int Index;
+        public int DisposeTime;
         public Func<Color> DrawColor;
 
         public static bool RenderingNow { get; set; }
@@ -78,6 +79,7 @@ namespace Aequus.Content.Necromancy
         {
             Necromancy = null;
             necromancyRenderers = null;
+            base.Unload();
         }
 
         public void Add(int whoAmI)
@@ -133,6 +135,7 @@ namespace Aequus.Content.Necromancy
         }
         public void DrawOntoScreen(SpriteBatch spriteBatch)
         {
+            DisposeTime = 0;
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
             var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth * 2, Main.screenHeight * 2), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
@@ -152,6 +155,25 @@ namespace Aequus.Content.Necromancy
                 return Math.Max(suggestedTarget, 0);
             }
             return player.team + IDs.PVPTeams - 1;
+        }
+
+        public void CheckDisposal()
+        {
+            if (DisposeTime > 0)
+            {
+                if (_target != null || helperTarget != null)
+                {
+                    DisposeTime++;
+                }
+            }
+            else if (DisposeTime > 120)
+            {
+                Main.QueueMainThreadAction(() =>
+                {
+                    DisposeResources();
+                });
+                DisposeTime = -1;
+            }
         }
     }
 }

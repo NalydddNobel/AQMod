@@ -429,7 +429,7 @@ namespace Aequus.UI.States
                     string t = SubmitPhotoText;
                     if (submissionSlotTextButton.Text == t)
                     {
-                        submissionSlotTextButton.SetText(AequusText.ColorText(t, Color.Yellow));
+                        submissionSlotTextButton.SetText(AequusText.ColorCommand(t, Color.Yellow));
                     }
                     if (Main.mouseLeft && Main.mouseLeftRelease && submissionSlot.item.ModItem is ShutterstockerClip clip)
                     {
@@ -763,7 +763,7 @@ namespace Aequus.UI.States
                 HAlign = 0.5f,
             };
 
-            panel.Append(new UIText(AequusText.Chat<Carpenter>("UI.Blueprint"), 0.85f)
+            panel.Append(new UIText(AequusText.GetText("Chat.Carpenter.UI.Blueprint"), 0.85f)
             {
                 Width = panel.Width,
                 Height = panel.Height,
@@ -772,7 +772,7 @@ namespace Aequus.UI.States
                 PaddingTop = 10f,
             });
 
-            panel.Append(new UIText(AequusText.Chat<Carpenter>("UI.BlueprintFakeCopyright"), 0.6f)
+            panel.Append(new UIText(AequusText.GetText("Chat.Carpenter.UI.BlueprintFakeCopyright"), 0.6f)
             {
                 Width = panel.Width,
                 Height = panel.Height,

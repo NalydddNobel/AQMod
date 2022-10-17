@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.GlobalItems;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +12,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            AequusTooltips.Dedicated.Add(Type, new AequusTooltips.ItemDedication(new Color(50, 75, 250, 255)));
+            TooltipsGlobalItem.Dedicated.Add(Type, new TooltipsGlobalItem.ItemDedication(new Color(50, 75, 250, 255)));
         }
 
         public override void SetDefaults()
@@ -52,7 +53,7 @@ namespace Aequus.Items.Accessories
                 {
                     t.Text = AequusHelpers.FormatWith(t.Text, new
                     {
-                        Color = Colors.AlphaDarken(AequusTooltips.ItemDrawbackTooltip).Hex3(),
+                        Color = Colors.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3(),
                     });
                 }
             }

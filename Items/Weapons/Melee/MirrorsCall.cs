@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,7 +32,7 @@ namespace Aequus.Items.Weapons.Melee
             SacrificeTotal = 1;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
 
-            AequusTooltips.Dedicated[Type] = new AequusTooltips.ItemDedication(new Color(110, 110, 128, 255));
+            TooltipsGlobalItem.Dedicated[Type] = new TooltipsGlobalItem.ItemDedication(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()

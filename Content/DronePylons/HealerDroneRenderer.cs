@@ -8,7 +8,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy
+namespace Aequus.Content.DronePylons
 {
     public class HealerDroneRenderer : ScreenTarget
     {
@@ -32,6 +32,7 @@ namespace Aequus.Content.Necromancy
         public override void Unload()
         {
             Instance = null;
+            base.Unload();
         }
 
         public void AddHealingAura(int npc, int proj, float opacity)

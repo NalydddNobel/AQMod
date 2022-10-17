@@ -1,12 +1,10 @@
-﻿using Aequus.Items.Misc;
-using Aequus.Items.Misc.Energies;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables
 {
-    public class Moro : ModItem
+    public class TinkerersGuidebook : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -26,26 +24,13 @@ namespace Aequus.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            if (!player.Aequus().moroSummonerFruit)
+            if (AequusWorld.tinkererRerolls < 3)
             {
-                player.Aequus().moroSummonerFruit = true;
+                AequusWorld.tinkererRerolls += 3;
                 return true;
             }
 
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            foreach (var i in AequusItem.FruitIDs)
-            {
-                CreateRecipe()
-                    .AddIngredient(i, 3)
-                    .AddIngredient<Fluorescence>(10)
-                    .AddIngredient<AtmosphericEnergy>()
-                    .AddTile(TileID.Anvils)
-                    .Register();
-            }
         }
     }
 }

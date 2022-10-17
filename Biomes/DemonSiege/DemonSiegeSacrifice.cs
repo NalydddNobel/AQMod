@@ -237,7 +237,7 @@ namespace Aequus.Biomes.DemonSiege
                 }
                 if (itemList != "")
                     itemList += ", ";
-                itemList += AequusText.ItemText(i.type);
+                itemList += AequusText.ItemCommand(i.type);
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
@@ -255,7 +255,7 @@ namespace Aequus.Biomes.DemonSiege
                 }
                 if (itemList != "")
                     itemList += ", ";
-                itemList += AequusText.ItemText(i.type);
+                itemList += AequusText.ItemCommand(i.type);
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {

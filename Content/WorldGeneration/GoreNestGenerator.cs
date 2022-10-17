@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.GlobalItems;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;

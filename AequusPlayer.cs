@@ -1544,50 +1544,6 @@ namespace Aequus
             return true;
         }
 
-        public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
-        {
-            if (Main.rand.Next(50) <= Player.anglerQuestsFinished - 15)
-            {
-                if (Main.rand.NextBool())
-                {
-                    return;
-                }
-
-                for (int i = 0; i < rewardItems.Count; i++)
-                {
-                    if (rewardItems[i].type == ItemID.ApprenticeBait || rewardItems[i].type == ItemID.JourneymanBait || rewardItems[i].type == ItemID.MasterBait)
-                    {
-                        rewardItems.RemoveAt(i);
-                        break;
-                    }
-                }
-
-                var item = new Item();
-                if (Main.rand.NextBool())
-                {
-                    item.SetDefaults(ModContent.ItemType<Omnibait>());
-                }
-                else
-                {
-                    item.SetDefaults(ModContent.ItemType<LegendberryBait>());
-                }
-
-                if (Main.rand.Next(25) <= Player.anglerQuestsFinished)
-                {
-                    item.stack++;
-                }
-                for (int i = 0; i < 5; i++)
-                {
-                    if (Main.rand.Next(50 + i * 50) <= Player.anglerQuestsFinished)
-                    {
-                        item.stack++;
-                    }
-                }
-
-                rewardItems.Add(item);
-            }
-        }
-
         public override void SaveData(TagCompound tag)
         {
             SaveDataAttribute.SaveData(tag, this);
@@ -1918,18 +1874,6 @@ namespace Aequus
                 }
             }
             return l;
-        }
-
-        public void LegendaryFishRewards(NPC npc, Item item, int i)
-        {
-            int money = Main.rand.Next(Item.gold * 8, Item.gold * 10);
-            Player.DropFromItem(item.type);
-            var source = npc.GetSource_GiftOrReward();
-            if (!Player.HasItemCheckAllBanks(ModContent.ItemType<AnglerBroadcaster>()))
-            {
-                Player.QuickSpawnItem(source, ModContent.ItemType<AnglerBroadcaster>());
-            }
-            AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
         }
 
         #region Hooks

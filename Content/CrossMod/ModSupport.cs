@@ -262,11 +262,11 @@ namespace Aequus.Content.CrossMod
                 },
                 new List<int>() { ModContent.ItemType<Pumpinator>(), });
 
-            AequusText.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = AequusText.ItemText<HypnoticPearl>(), });
-            AequusText.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = AequusText.ItemText<SupernovaFruit>(), });
-            AequusText.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = AequusText.ItemText<TornadoInABottle>(), });
+            AequusText.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = AequusText.ItemCommand<HypnoticPearl>(), });
+            AequusText.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = AequusText.ItemCommand<SupernovaFruit>(), });
+            AequusText.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = AequusText.ItemCommand<TornadoInABottle>(), });
 
-            AequusText.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = AequusText.ItemText<GalacticStarfruit>(), });
+            AequusText.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = AequusText.ItemCommand<GalacticStarfruit>(), });
             string demonSiegeItemList = "";
             foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
             {
@@ -276,10 +276,10 @@ namespace Aequus.Content.CrossMod
                 if (demonSiegeItemList.Length != 0)
                     demonSiegeItemList += ", ";
 
-                demonSiegeItemList += AequusText.ItemText(d.Key);
+                demonSiegeItemList += AequusText.ItemCommand(d.Key);
             }
             AequusText.NewFromDict("BossChecklist.DemonSiege", ".1", new { ItemList = demonSiegeItemList, });
-            AequusText.NewFromDict("BossChecklist.GaleStreams", ".1", new { Pumpinator = AequusText.ItemText<Pumpinator>(), });
+            AequusText.NewFromDict("BossChecklist.GaleStreams", ".1", new { Pumpinator = AequusText.ItemCommand<Pumpinator>(), });
         }
         private static void ColoredDamageTypesSupport()
         {

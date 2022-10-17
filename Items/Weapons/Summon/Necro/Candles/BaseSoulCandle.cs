@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.GlobalItems;
+using Aequus.Content.Necromancy;
 using Aequus.Items.Prefixes.SoulCandles;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -98,8 +99,8 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("Tooltips.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
             tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("Tooltips.UseSouls", useSouls)));
 
-            AequusTooltips.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, higherIsGood: false);
-            AequusTooltips.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
+            TooltipsGlobalItem.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, higherIsGood: false);
+            TooltipsGlobalItem.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
         }
 
         public override int ChoosePrefix(UnifiedRandom rand)

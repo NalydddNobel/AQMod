@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Common.GlobalItems;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,7 +14,7 @@ namespace Aequus.Items.Pets
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            AequusTooltips.Dedicated.Add(Type, new AequusTooltips.ItemDedication(new Color(80, 60, 255, 255)));
+            TooltipsGlobalItem.Dedicated.Add(Type, new TooltipsGlobalItem.ItemDedication(new Color(80, 60, 255, 255)));
         }
 
         public override void SetDefaults()

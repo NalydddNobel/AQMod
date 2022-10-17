@@ -44,7 +44,7 @@ namespace Aequus.Items.Misc
                 {
                     if (requirementText != "")
                         requirementText += "\n";
-                    requirementText += AequusText.ColorText(">", Color.Lerp(Color.Yellow, Color.White, 0.4f)) + " " + split[i];
+                    requirementText += AequusText.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f)) + " " + split[i];
                 }
                 return requirementText;
             }
@@ -78,7 +78,7 @@ namespace Aequus.Items.Misc
 
             string requirementText = BountyRequirements;
             var split = requirementText.Split('\n');
-            string arrow = AequusText.ColorText(">", Color.Lerp(Color.Yellow, Color.White, 0.4f));
+            string arrow = AequusText.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f));
             for (int i = 0; i < split.Length; i++)
             {
                 tooltips.Insert(index + 2 + i, new TooltipLine(Mod, "BountyRequirements" + i, $"{arrow} {split[i]}"));
@@ -89,7 +89,7 @@ namespace Aequus.Items.Misc
 
             var ttLine = Item.AequusTooltips().GetPriceTooltipLine(Main.LocalPlayer, Item);
 
-            ttLine.Text = AequusText.GetTextWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = AequusText.ColorText(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
+            ttLine.Text = AequusText.GetTextWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = AequusText.ColorCommand(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
             ttLine.OverrideColor = null;
             tooltips.Insert(tooltips.GetIndex("Price"), ttLine);
         }

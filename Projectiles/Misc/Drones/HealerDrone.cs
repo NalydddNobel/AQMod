@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content.DronePylons;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Consumables.Drones;

@@ -168,7 +168,7 @@ namespace Aequus.Items.Accessories
 
         public override void AddRecipes()
         {
-            TheReconstructionGlobalItem.AddEntry(Type);
+            ModContent.GetInstance<TheReconstructionGlobalItem>().addEntry(Type);
         }
     }
 }

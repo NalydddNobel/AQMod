@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -39,7 +40,7 @@ namespace Aequus.Items.Misc.Energies
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
-            ItemID.Sets.SortingPriorityMaterials[Type] = SortingPriority.Materials.Energies;
+            ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Energies;
             SacrificeTotal = 3;
         }
 

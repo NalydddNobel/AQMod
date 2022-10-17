@@ -5,6 +5,11 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
 {
     public class JeweledChandelier : ModItem
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;

@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.BobberWooden);
-            DrawOriginOffsetY = -8;
+            DrawOriginOffsetY = 8;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -63,7 +63,10 @@ namespace Aequus.Projectiles.Misc.Bobbers
             {
                 if (mainBobber != -1)
                 {
-                    Projectile.velocity = Vector2.Normalize(Main.projectile[mainBobber].Center - Projectile.Center).UnNaN() * 12f;
+                    var diff = Main.projectile[mainBobber].Center - Projectile.Center;
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(diff).UnNaN() * 12f, 0.1f);
+                    Projectile.rotation = diff.ToRotation() + MathHelper.PiOver2;
+                    Projectile.CollideWithOthers(2f);
                     (Main.projectile[mainBobber].ModProjectile as NimrodCloudBobber).gotoPosition = new Vector2(-2f);
                 }
             }
@@ -108,7 +111,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
-            Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, lightColor, Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.Center + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame, lightColor, Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }
@@ -263,7 +266,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
             var player = Main.player[Projectile.owner];
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(50f * Main.player[Projectile.owner].direction, -38f),
+            float x = Main.player[Projectile.owner].direction == -1 ? -64f : 50f;
+            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(x, -38f),
                 getLighting: (v, c) => Color.Lerp(new Color(30, 60, 200, 128) * 0.5f, new Color(70, 155, 185, 180) * 0.8f, AequusHelpers.Wave(-(Main.GlobalTimeWrappedHourly * 5f + Projectile.whoAmI), 0f, 1f)));
             return false;
         }
