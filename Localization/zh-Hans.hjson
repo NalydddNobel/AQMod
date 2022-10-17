@@ -352,6 +352,7 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			BreadOfCthulhuBanner: 克苏鲁之面包旗帜
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
 			HijivarchCrabBanner: 活巢体蟹旗
@@ -1164,6 +1165,7 @@ Mods: {
 			CrabClock: "'现在是什么时间? 螃躁时间.'"
 			RecyclingMachine: 在附近时, 你可以在制作时产生废料
 
+			BreadOfCthulhuBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			HijivarchCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab}和{$Mods.Aequus.NPCName.SummonerCrabMinion}"
