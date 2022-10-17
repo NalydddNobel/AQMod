@@ -9,7 +9,7 @@ Mods: {
 
 		Announcement: {
 			OrganicEventSight: 丛林的神经被刺激了...
-			OrganicEventFright: 丛林的恐惧已开始蔓延...
+			OrganicEventFright: 丛林的恐惧蔓延开来...
 			OrganicEventMight: 丛林的根须变硬了...
 			GlimmerStart: 一缕柔光出现在了天空中...
 			GlimmerEnd: 柔光渐渐消失...
@@ -97,7 +97,7 @@ Mods: {
 
 			DivinePrefix: 神圣的
 			BlessedPrefix: 赐福的
-			VitriousPrefix: 多样的
+			VitriousPrefix: 善良的
 			EnlightenedPrefix: 启发的
 			PraisedPrefix: 赞颂的
 
@@ -226,7 +226,7 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
-			LegendberryBait: 传奇浆果鱼饵
+			LegendberryBait: 传奇浆果
 			Omnibait: 全能鱼饵
 			CursedPopper: 诅咒响饵
 			IchorPopper: 灵液响饵
@@ -260,6 +260,8 @@ Mods: {
 			OmegaStariteBag: 宝藏袋 (终末之星)
 
 			FertilePowder: 肥料箱
+			WhitePhial: 白色药瓶
+			TinkerersGuidebook: 修补匠指南
 			Moro: 摩洛
 
 			OmniPaint: 全能油漆
@@ -271,6 +273,7 @@ Mods: {
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
 
+			CrabDaughter: 蟹蛤之女
 			XenonFish: 氙鱼
 			KryptonFish: 氪鱼
 			ArgonFish: 氩鱼
@@ -286,6 +289,7 @@ Mods: {
 
 			BalloonKit: Zilla的气球装备
 
+			CrabRod: 螃蟹钓竿
 			Starcatcher: 捕星者
 			Buzzer: 蜂鸣钓竿
 			Nimrod: 猎手
@@ -590,11 +594,6 @@ Mods: {
 				'''
 				暴击额外造成50%伤害
 				[c/{Color}:...如果你能支付25银币]
-				'''
-			WhitePhial: 
-				'''
-				延长50%增益持续时间
-				减少25%减益持续时间
 				'''
 			BlackPhial: 
 				'''
@@ -944,6 +943,8 @@ Mods: {
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 
 			FertilePowder: 强制附近的所有物块进行生长
+			WhitePhial: 永久性延长25%增益持续时间
+			TinkerersGuidebook: 永久性改进哥布林工匠的重铸服务
 			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
 
 			OmniPaint: 长按油漆物品以调出可选择油漆的菜单
@@ -979,6 +980,7 @@ Mods: {
 
 			BalloonKit: 允许你骑乘一颗热气球
 
+			CrabRod: 从成功捕获中获得钱币
 			Starcatcher: 当星星出现时会变得更强效
 			Buzzer: 扔出一个飞行的蜜蜂浮标
 			Nimrod:
@@ -1062,6 +1064,11 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
+			CrabDaughter:
+				'''
+				一种身上带有海蓝能量的传奇鱼类
+				抓捕位置: 蟹伏岩隙'
+				'''
 			ArgonFish:
 				'''
 				一种身上带有氩苔藓的传奇鱼类
@@ -1267,6 +1274,7 @@ Mods: {
 			Terraria_SoulofMight: "'充满活力的生物的精华'"
 
 			Misc: {
+				DemonSiegeHint: 能在血巢处升级...
 				AnglerHint: 渔夫可能会对此感兴趣...
 				ExporterHint: 发货人可能会对此感兴趣...
 			}
