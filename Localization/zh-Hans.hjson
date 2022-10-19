@@ -59,41 +59,9 @@ Mods: {
 			Trophy: 在无伤击败时拥有100%掉落几率
 		}
 
-		Tooltips: {
-			NecromancyStaff: 被击杀的敌人有几率转化为幽魂
-			NecromancyCandle: 持有此物品时会吸收被召唤物杀死的敌人的灵魂
-			UseSouls: 使用{0}个灵魂
-			CarryingSouls: 携带{1}个灵魂中的{0}个
-
-			UsesLife: 使用{0}点生命
-
-			UseDarts: 使用种子和飞镖作为弹药
-			UsesGel: 使用凝胶作为弹药
-
-			Concocted: 用于药水调配
-			RouletteDrop: 下列物品必定掉落
-			EffectActive: 禁用
-			EffectInactive: 启用
-			IncreasedMinions: 增加最大召唤栏位
-			SuspiciousLooking: "'我知道你在想什么...'"
-			Nalyddd: "'闻起来像玫瑰'"
-			HookBarbBlacklist: 不受刺钩升级效果影响
-			HookBarb: 你的钩爪会造成伤害
-			DemonSiegeUpgrade: 可在地狱祭坛处升级
-			DedicatedItem: 专属物品
-			Unobtainable: 自另一宇宙形成的遗物
-			ManaPerSecond: 每秒消耗{0}点法力值
-			UmbrellaWeapon:
-				'''
-				手持此物品时会减缓你的下落速度, 长按'下'键可恢复正常的重力效果
-				你不会受到任何摔落伤害
-				'''
-			InventoryPiggyBankFunction: 放置于物品栏或虚空袋中即可生效
-			ToggleKeyBind: 按下{0}键以开关效果
-		}
-
 		PrefixName: {
 			DoubledTimePrefix: 填充的
+			EmpoweredPrefix: 增强的
 
 			DivinePrefix: 神圣的
 			BlessedPrefix: 赐福的
@@ -110,6 +78,7 @@ Mods: {
 
 		Prefixes: {
 			BuffDuration: "{0}持续时间"
+			BuffEmpowerment: "{0}增益强度"
 
 			PrefixSoulLimit: "{0}灵魂容量"
 			PrefixSoulCost: "{0}灵魂消耗"
@@ -118,12 +87,11 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
+			# Accessories #
 			Heliosis: 日射病
-			NeonGenesis: 新世纪
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
 			DavyJonesAnchor: 深海阎王的锚
-			WarHorn: 战争号角
 			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
 			CrownOfDarkness: 黑暗王冠
@@ -131,8 +99,6 @@ Mods: {
 			FlashwayNecklace: 晖耀项链
 			HaltingMagnet: 凝滞磁铁
 			HaltingMachine: 凝滞仪
-			Ramishroom: 分支菇
-			DevilsTongue: 魔鬼之舌
 			AmmoBackpack: 弹药恢复包
 			MothmanMask: 天蛾人面具
 			HighSteaks: 高级牛排
@@ -140,26 +106,38 @@ Mods: {
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
 			TheReconstruction: 改造
-			MechsSentry: 尖兵6510
-			SantankSentry: 哨兵6502
-			BloodiedBucket: 血污桶
-			RitualisticSkull: 仪式颅骨
 			RabbitsFoot: 兔脚
 			FoolsGoldRing: 愚者之金戒
 			FaultyCoin: 缺陷硬币
 			ForgedCard: 伪造的卡片
-			SentrySquid: 哨兵乌贼
-			IcebergKraken: 冰山海妖
 			GrandReward: 豪华奖励
-			Reliefshroom: 息灵菇
-			Mendshroom: 愈灵菇
 			GlowCore: 发光信标
 
-			RegrowingBait: 再生鱼饵
+			# Summoner
+			WarHorn: 战争号角
+			MechsSentry: 尖兵6510
+			SantankSentry: 哨兵6502
+			BloodiedBucket: 血污桶
+			RitualisticSkull: 仪式颅骨
+			SentrySquid: 哨兵乌贼
+			IcebergKraken: 冰山海妖
 
+			# Healing
+			Mendshroom: 愈灵菇
+
+			# Fishing
+			NeonGenesis: 新世纪
+			Ramishroom: 分支菇
+			DevilsTongue: 魔鬼之舌
+
+			# Vanity
 			FishyFins: 可疑鱼鳍
 
-			Deltoid: 增量
+			# Weapons #
+
+			# Melee
+			PhaseDisc: 相位盘
+			CrystalDagger: 水晶匕首
 			Cauterizer: 灼烧者
 			HellsBoon: 地狱之赐
 			Valari: 回旋镰
@@ -173,17 +151,20 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
-			Umystick: 秘伞
-			Narrizuul: 耀宇遗光
-			StudiesOfTheInkblot: 墨迹研究学
-			LiquidGun: 液体枪
-			StarPhish: 螺旋吹筒
+			# Ranged
+			Deltoid: 增量
+			StarPhish: 螺旋海星吹筒
 			SnowflakeCannon: 雪花大炮
 			Raygun: 射线枪
 			BoundBow: 界限弓
 			Slingsaber: 弹剑弓
 			Slingshot: 弹弓
 
+			# Magic
+			Umystick: 秘伞
+			Narrizuul: 耀宇遗光
+			StudiesOfTheInkblot: 墨迹研究学
+			LiquidGun: 液体枪
 			GhastlyBlaster: 阴森冲击波
 			SurgeRod: 电涌杖
 			PentalScythe: 回旋魔镰
@@ -193,6 +174,7 @@ Mods: {
 			BallisticScreecher: 轰炸者手杖
 			Triacanthorn: 三棘卷须
 
+			# Summon
 			BrainwaveStaff: 脑波法杖
 			MindfungusStaff: 心灵真菌法杖
 			StariteStaff: 星源法杖
@@ -201,19 +183,22 @@ Mods: {
 			DisturbanceStaff: 扰乱法杖
 			HailstormStaff: 雹暴法杖
 
+			# Soul Candles
 			CrimsonCandle: 灼光者
 			CorruptionCandle: 噬光者
 			PixieCandle: 堕落天使
 			BloodMoonCandle: 火河
 			DungeonCandle: 不幸
 			OccultistCandle: 炼狱
-			
+
+			# Necromancy Staffs
 			FriendshipMagick: 友谊魔法学
 			Insurgency: 叛乱
 			Osiris: 欧西里斯
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
+			# Armor #
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
 
@@ -226,12 +211,15 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
+			# Baits # 
+			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果
 			Omnibait: 全能鱼饵
 			CursedPopper: 诅咒响饵
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
+			# Foods & Potions #
 			TubOfCookieDough: 一桶饼干面团
 			AstralCookie: 星体饼干
 			HolographicMeatloaf: 全息肉饼
@@ -245,34 +233,11 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			InactivePylonCleanser: 未激活的晶塔清扫机
-			InactivePylonHealer: 未激活的晶塔治疗机
-			InactivePylonGunner: 未激活的晶塔火炮机
-
-			Leecheel: 蛭血鱼
-			Depthscale: 深鳞鱼
-			IcebergFish: 冰川鱼
-			Hexoplasm: 冥狱融质
-			ItemScrap: 废料
-
-			DustDevilBag: 宝藏袋 (沙尘恶魔)
-			CrabsonBag: 宝藏袋 (巨蟹蛤)
-			OmegaStariteBag: 宝藏袋 (终末之星)
-
-			FertilePowder: 肥料箱
-			WhitePhial: 白色药瓶
-			TinkerersGuidebook: 修补匠指南
-			Moro: 摩洛
-
-			OmniPaint: 全能油漆
-			AdvancedRuler: 高级标尺
-			CarpenterBountyItem: 木匠赏金
-			AdventuringMap: 冒险地图
-			SkeletonKey: 骷髅钥匙
-
+			# Critter Items #
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
 
+			# Fish #
 			CrabDaughter: 蟹蛤之女
 			XenonFish: 氙鱼
 			KryptonFish: 氪鱼
@@ -281,33 +246,30 @@ Mods: {
 			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
-			LightningRod: 引雷杖
-			ToySpaceGun: 玩具太空枪
+			Leecheel: 蛭血鱼
+			Depthscale: 深鳞鱼
+			IcebergFish: 冰川鱼
 
-			LeechHook: 超级长的水蛭
-			Meathook: 血肉刺钩
-
-			BalloonKit: Zilla的气球装备
-
+			# Fishing Rods #
 			CrabRod: 螃蟹钓竿
 			Starcatcher: 捕星者
 			Buzzer: 蜂鸣钓竿
 			Nimrod: 猎手
 
-			UnholyCore: 不洁核心
+			# Pets #
+			LightningRod: 引雷杖
+			ToySpaceGun: 玩具太空枪
+			SwagLookingEye: 潮流眼球
+			DragonBall: 龙珠
 
-			AnglerBroadcaster: 海滨广播器
-			RichMansMonocle: 富翁的单片眼镜
+			# Grappling Hooks #
+			LeechHook: 超长水蛭
+			Meathook: 血肉刺钩
 
-			ImpenetrableCoating: 无法穿过的涂料
+			# Mounts #
+			BalloonKit: Zilla的气球装备
 
-			Shutterstocker: 快门储像机
-			ShutterstockerClip: 快门储像机剪片
-			ShutterstockerClipAmmo: 快门储像机剪片
-			PhysicsGun: 物理枪
-			Pumpinator: 泵风器
-			Bellows: 风箱
-
+			# Crates #
 			CrabCreviceCrate: 甲壳板条箱
 			CrabCreviceCrateHard: 硬壳板条箱
 
@@ -320,16 +282,21 @@ Mods: {
 			GoldenRoulette: 黄金老虎机
 			Roulette: 老虎机
 
+			# Boss Masks #
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
 			BreadOfCthulhuMask: 克苏鲁之面包面具
 
-			SwagLookingEye: 潮流眼球
-			DragonBall: 龙珠
-
+			# Blocks & Walls #
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
 
+			EmancipationGrill: 解放栅格
+			PhysicsBlock: 物理学块
+			ForceGravityBlock: 重力块
+			ForceAntiGravityBlock: 反重力块
+
+			# Paintings #
 			SkyrimRock3: 推力
 			SkyrimRock2: 平衡
 			SkyrimRock1: 力量
@@ -345,6 +312,7 @@ Mods: {
 			CatalystPainting: 来自另一个宇宙的岩石
 			OriginPainting: 起源
 
+			# Relics & Trophies #
 			RedSpriteTrophy: 红色精灵纪念章
 
 			SpaceSquidRelic: 太空乌贼纪念物
@@ -352,6 +320,7 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
+			# Banners #
 			BreadOfCthulhuBanner: 克苏鲁之面包旗帜
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
@@ -367,12 +336,7 @@ Mods: {
 			VraineBanner: 镰鸟旗
 			WhiteSlimeBanner: 白色史莱姆旗
 
-			EmancipationGrill: 解放栅格
-			PhysicsBlock: 物理学块
-			ForceGravityBlock: 重力块
-			ForceAntiGravityBlock: 反重力块
-			GoreNest: 血巢
-
+			# Gravestones #
 			AshCrossGraveMarker: 余烬十字碑
 			AshGraveMarker: 余烬墓标
 			AshGravestone: 余烬墓碑
@@ -382,26 +346,76 @@ Mods: {
 			CrabClock: 螃蟹挂钟
 			RecyclingMachine: 回收机
 
+			# Dyes #
 			TidalDye: 潮汐染料
 			CensorDye: 监察染料
 			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
 
+			# Summons #
 			HypnoticPearl: 催眠珍珠
 			SupernovaFruit: 超新星果
 			TornadoInABottle: 瓶中风暴
+			GalacticStarfruit: 星河杨桃
+
+			# Misc (and Legacy) #
+
+			OrganicEnergy: 自然能量
+			DemonicEnergy: 恶魔能量
+			CosmicEnergy: 星宇能量
+			AtmosphericEnergy: 天权能量
+			AquaticEnergy: 海蓝能量
+			UltimateEnergy: 终极能量
+
+			MoonflowerPollen: 月光花粉
+			MistralPollen: 梦幻花粉
+
+			Hexoplasm: 冥狱融质
+			ItemScrap: 废料
+
+			InactivePylonCleanser: 未激活的晶塔清扫机
+			InactivePylonHealer: 未激活的晶塔治疗机
+			InactivePylonGunner: 未激活的晶塔火炮机
 
 			CelesitalEightBall: 星界八号球
 
-			Driftwood: 浮木
-			PlasticBottle: 塑料瓶
+			DustDevilBag: 宝藏袋 (沙尘恶魔)
+			CrabsonBag: 宝藏袋 (巨蟹蛤)
+			OmegaStariteBag: 宝藏袋 (终末之星)
+			
+			FertilePowder: 肥料箱
+			WhitePhial: 白色药瓶
+			TinkerersGuidebook: 修补匠指南
+			Moro: 摩洛
+
+			OmniPaint: 全能油漆
+			AdvancedRuler: 高级标尺
+			CarpenterBountyItem: 木匠赏金
+			AdventuringMap: 冒险地图
+			SkeletonKey: 骷髅钥匙
 
 			WhiteFlag: 白色旗帜
 			GhostlyGrave: 幽魂冢
 
-			MoonflowerPollen: 月光花粉
-			LingeringPotion: 长效药水
-			GalacticStarfruit: 星河杨桃
+			Driftwood: 浮木
+			PlasticBottle: 塑料瓶
+
+			UnholyCore: 不洁核心
+
+			AnglerBroadcaster: 海滨广播器
+			RichMansMonocle: 富翁的单片眼镜
+
+			ImpenetrableCoating: 无法穿过的涂料
+
+			Shutterstocker: 快门储像机
+			ShutterstockerClip: 快门储像机剪片
+			ShutterstockerClipAmmo: 快门储像机剪片
+			PhysicsGun: 物理枪
+			Pumpinator: 泵风器
+			Bellows: 风箱
+
+			GoreNest: 血巢
+
 			MoonLeech: 月噬
 			DreamCatcher: 捕梦者
 			MagikaAmulet: 神奇护符
@@ -501,12 +515,6 @@ Mods: {
 			SuspiciousLookingSteak: 可疑牛排
 			HermitShell: 蟹壳头盔
 			StriderPalms: 长足护胫
-			OrganicEnergy: 自然能量
-			DemonicEnergy: 恶魔能量
-			CosmicEnergy: 星宇能量
-			AtmosphericEnergy: 天权能量
-			AquaticEnergy: 海蓝能量
-			UltimateEnergy: 终极能量
 			CrabRod: 螃蟹钓竿
 			CrabShell: 蟹壳
 			MoonlightWall: 月光墙
@@ -522,7 +530,6 @@ Mods: {
 			GebulbaStaff: 弹球法杖
 			MagmalbulbiaStaff: 邪弹法杖
 			PowPunch: 链拳
-			CrystalDagger: 水晶匕首
 			ArgonSpear: 氩制长枪
 			HorizonSkies: 空之视界
 			Aphrodite: 阿芙罗狄忒
@@ -665,6 +672,11 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			PhaseDisc: 
+				'''
+				越接近满月，可穿透敌人的数量便越多
+				可以拾取物品
+				'''
 			CrystalDagger: 快速刺击敌人
 			Cauterizer:
 				'''
@@ -706,7 +718,7 @@ Mods: {
 			Hitscanner: 发射一大片会瞬间命中敌人的子弹
 			Flameblaster:
 				'''
-				{$Mods.Aequus.Tooltips.UsesGel}
+				{$Mods.Aequus.ItemTooltip.Common.UsesGel}
 				<right>发射气爆
 				无视敌人15点的防御力
 				33%几率不消耗弹药
@@ -723,7 +735,7 @@ Mods: {
 			StarPhish: 
 				'''
 				对处于水中的敌人造成的伤害增加
-				{$Mods.Aequus.Tooltips.UseDarts}
+				{$Mods.Aequus.ItemTooltip.Common.UseDarts}
 				'''
 			SnowflakeCannon: 
 				'''
@@ -748,14 +760,14 @@ Mods: {
 
 			Umystick:
 				'''
-				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
+				手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
 				右键进行一次二段跳跳跃
 				'看起来贼危险'
 				'''
 			Narrizuul:
 				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				{$Mods.Aequus.Tooltips.Nalyddd}
+				{$Mods.Aequus.ItemTooltip.Misc.Unobtainable}
+				{$Mods.Aequus.ItemTooltip.Misc.Nalyddd}
 				'''
 			StudiesOfTheInkblot:
 				'''
@@ -815,32 +827,32 @@ Mods: {
 			CrimsonCandle:
 				'''
 				召唤一只血爬虫为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			CorruptionCandle:
 				'''
 				召唤一只灵魂吞噬者为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			PixieCandle:
 				'''
 				召唤一只精灵为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			BloodMoonCandle:
 				'''
 				召唤一只血僵尸为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			DungeonCandle:
 				'''
 				召唤一颗诅咒颅骨为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			OccultistCandle:
 				'''
 				召唤一只恶魔为你而战
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 
 			FriendshipMagick: 与强大的敌人成为朋友!
@@ -848,24 +860,24 @@ Mods: {
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
 				被诅咒的敌人会释放会攻击附近敌人的灵魂
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'寂静'
 				'''
 			Osiris: 
 				'''
 				消耗极强敌人的灵魂
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				击中敌人时会爆裂成一群蝗虫群
 				'''
 			Revenant: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'''
 			ZombieScepter: 
 				'''
 				消耗弱小敌人的灵魂
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'''
 
 			GravetenderHood: 增加10%召唤伤害
@@ -934,6 +946,8 @@ Mods: {
 				大幅度增加移动速度
 				'可能会给那些在地下搜索的人带来好运'
 				'''
+
+			MistralPollen: 同时只能激活一个增强的药水
 
 			InactivePylonCleanser: 扔到晶塔附近以重新激活它
 			InactivePylonHealer: 扔到晶塔附近以重新激活它
@@ -1107,47 +1121,47 @@ Mods: {
 			JungleSlotMachine:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			OceanSlotMachine:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			ShadowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			GlowingMushroomsRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			DesertRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			SkyRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			GoldenRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			Roulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
 			SwagLookingEye: 
@@ -1275,10 +1289,43 @@ Mods: {
 
 			Terraria_SoulofMight: "'充满活力的生物的精华'"
 
+			Common: {
+				UseDarts: 使用种子和飞镖作为弹药
+				UsesGel: 使用凝胶作为弹药
+
+				DedicatedItem: 专属物品
+
+				RouletteDrop: 下列物品必定掉落
+
+				NecromancyStaff: 击杀敌人可能会将其转化为幽魂
+				NecromancyCandle: 手持此物品时吸收被召唤物击杀的敌人的灵魂
+				UseSouls: 使用{0}灵魂
+				CarryingSouls: 携带{1}灵魂中的{0}灵魂
+			}
+
 			Misc: {
 				DemonSiegeHint: 能在血巢处升级...
 				AnglerHint: 渔夫可能会对此感兴趣...
 				ExporterHint: 发货人可能会对此感兴趣...
+				Unobtainable: 来自另一个宇宙的遗物
+				DevItem: "'闻起来像玫瑰'"
+			}
+
+			Empowered: {
+				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
+				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
+				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
+				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
+				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
+				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
+				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
+				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
+				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
+				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
+				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
+				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
+				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
+				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
 			}
 		}
 
@@ -1299,13 +1346,13 @@ Mods: {
 			"9": 青色
 			"10": 红色
 			"11": 紫色
-			Calamity_12: 绿松石色
-			Calamity_13: 纯绿色
-			Calamity_14: 深蓝色
-			Calamity_15: 紫罗兰色
-			Calamity_16: 桃红色
-			Calamity_Draedon: 深橙色
-			Catalyst_Crystal: 水晶
+			CalamityMod_12: 绿松石色
+			CalamityMod_13: 纯绿色
+			CalamityMod_14: 深蓝色
+			CalamityMod_15: 紫罗兰色
+			CalamityMod_16: 桃红色
+			CalamityMod_Draedon: 深橙色
+			CatalystMod_Crystal: 水晶
 		}
 
 		BuffName: {
@@ -1316,6 +1363,21 @@ Mods: {
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
+
+			EmpoweredArchery: "{$BuffName.Archery}"
+			EmpoweredEndurance: "{$BuffName.Endurance}"
+			EmpoweredFishing: "{$BuffName.Fishing}"
+			EmpoweredIronskin: "{$BuffName.Ironskin}"
+			EmpoweredMagicPower: "{$BuffName.MagicPower}"
+			EmpoweredManaRegeneration: "{$BuffName.ManaRegeneration}"
+			EmpoweredMining: "{$BuffName.Mining}"
+			EmpoweredRage: "{$BuffName.Rage}"
+			EmpoweredRegeneration: "{$BuffName.Regeneration}"
+			EmpoweredShine: "{$BuffName.Shine}"
+			EmpoweredSummoning: "{$BuffName.Summoning}"
+			EmpoweredSwiftness: "{$BuffName.Swiftness}"
+			EmpoweredThorns: "{$BuffName.Thorns}"
+			EmpoweredWrath: "{$BuffName.Wrath}"
 
 			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
@@ -1363,6 +1425,21 @@ Mods: {
 				'''
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
+
+			EmpoweredArchery: 箭矢伤害和速度增加20%
+			EmpoweredEndurance: 所受伤害降低20%
+			EmpoweredFishing: 渔力增加30点
+			EmpoweredIronskin: 防御增加16点
+			EmpoweredMagicPower: 魔法伤害增加30%
+			EmpoweredManaRegeneration: 法力恢复速度大幅度增加
+			EmpoweredMining: 挖掘速度增加50%
+			EmpoweredRage: 暴击率增加20%
+			EmpoweredRegeneration: 生命恢复速度大幅度增加
+			EmpoweredShine: 发出强烈的光环
+			EmpoweredSummoning: 最大召唤栏位+2
+			EmpoweredSwiftness: 移动速度增加50%
+			EmpoweredThorns: 攻击者会受到大量伤害
+			EmpoweredWrath: 伤害增加20%
 
 			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
 			FlashwayNecklaceCooldown: 暂时禁用晖耀项链
@@ -1536,7 +1613,6 @@ Mods: {
 			MothmanCritExplosion: 天蛾人面具
 			PowPunch: 链拳
 			PowPunchExplosion: 链拳
-			CrystalDagger: 水晶匕首
 			Dysesthesia: 苦痛之触
 			MiniDemonScythe: 苦痛之触
 			Aphrodite: 阿芙罗狄忒
@@ -1644,11 +1720,6 @@ Mods: {
 		Cosmicanon: {
 			False: 血月可自然发生
 			True: 血月不再自然发生
-		}
-
-		PrefixTooltip: {
-			Cooldown: "{0}%冷却时间"
-			Combo: "{0}%连击效率"
 		}
 
 		NPCName: {
