@@ -2,6 +2,7 @@
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -184,7 +185,7 @@ namespace Aequus.Projectiles.Magic
 
             AequusHelpers.DrawLine(startPosition + dir * 18f * scale, endPosition, 16f * scale, color);
             float rotation = dir.ToRotation() - MathHelper.PiOver2;
-            var texture = ModContent.Request<Texture2D>(Texture + "Laser").Value;
+            var texture = ModContent.Request<Texture2D>(Texture + "Laser", AssetRequestMode.ImmediateLoad).Value;
             var frame = texture.Frame(verticalFrames: 3, frameY: 0);
             var origin = new Vector2(frame.Width / 2f, 6f);
             Main.spriteBatch.Draw(texture, startPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);

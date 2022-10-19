@@ -14,11 +14,11 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<UltimateSwordProj>(30);
-            Item.SetWeaponValues(45, 6.5f);
+            Item.DefaultToDopeSword<UltimateSwordProj>(25);
+            Item.SetWeaponValues(90, 6.5f);
             Item.width = 30;
             Item.height = 30;
-            Item.scale = 1.6f;
+            Item.scale = 2f;
             Item.rare = ItemDefaults.RarityOmegaStarite + 1;
             Item.value = ItemDefaults.OmegaStariteValue * 2;
             Item.autoReuse = true;

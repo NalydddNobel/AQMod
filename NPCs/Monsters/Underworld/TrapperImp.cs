@@ -20,9 +20,9 @@ namespace Aequus.NPCs.Monsters.Underworld
         public const int TAIL_FRAME_COUNT = 15;
         public const int WING_FRAME_COUNT = 1;
 
-        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
-        public Asset<Texture2D> TailTexture => ModContent.Request<Texture2D>(Texture + "Tail");
-        public Asset<Texture2D> WingsTexture => ModContent.Request<Texture2D>(Texture + "Wings");
+        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> TailTexture => ModContent.Request<Texture2D>(Texture + "Tail", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> WingsTexture => ModContent.Request<Texture2D>(Texture + "Wings", AssetRequestMode.ImmediateLoad);
 
         public override void SetStaticDefaults()
         {

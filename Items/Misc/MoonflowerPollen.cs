@@ -41,15 +41,16 @@ namespace Aequus.Items.Misc
 
         public override void AddRecipes()
         {
+            var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<DoubledTimePrefix>());
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
-                if (ConcoctionDatabase.ConcoctiblePotion(ContentSamples.ItemsByType[i]))
+                if (prefix.CanRoll(ContentSamples.ItemsByType[i]))
                 {
                     var r = Recipe.Create(i, 1)
                         .AddIngredient(i)
-                        .AddIngredient<MoonflowerPollen>()
+                        .AddIngredient(Type)
                         .TryRegisterAfter(i);
-                    r.createItem.Prefix(ModContent.PrefixType<DoubledTimePrefix>());
+                    r.createItem.Prefix(prefix.Type);
                 }
             }
         }

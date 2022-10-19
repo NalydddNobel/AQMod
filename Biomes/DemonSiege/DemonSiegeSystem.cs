@@ -4,6 +4,7 @@ using Aequus.Tiles.Misc;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -89,9 +90,7 @@ namespace Aequus.Biomes.DemonSiege
         {
             if (GoreNestTile.DrawPointsCache.Count > 0)
             {
-                var auraTexture = ModContent.Request<Texture2D>("Aequus/Assets/GoreNestAura");
-                if (!auraTexture.IsLoaded)
-                    return;
+                var auraTexture = ModContent.Request<Texture2D>("Aequus/Assets/GoreNestAura", AssetRequestMode.ImmediateLoad);
                 Begin.GeneralEntities.Begin(Main.spriteBatch);
                 try
                 {

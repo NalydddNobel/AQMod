@@ -1,10 +1,9 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Buffs.Empowered;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Items;
+using Aequus.Items.Prefixes.Potions;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -80,7 +79,7 @@ namespace Aequus.Common.GlobalItems
 
                 if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
-                    tooltips.Insert(tooltips.GetIndex("Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("Tooltips.DedicatedItem")) { OverrideColor = dedication.color });
+                    tooltips.Insert(tooltips.GetIndex("Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color });
                 }
 
                 if (Main.npcShop > 0)
@@ -136,9 +135,29 @@ namespace Aequus.Common.GlobalItems
                     }
                 }
 
-                if (item.prefix >= PrefixID.Count && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
+                if (item.prefix == ModContent.PrefixType<DoubledTimePrefix>() && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
                 {
                     PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
+                }
+                if (item.prefix == ModContent.PrefixType<EmpoweredPrefix>())
+                {
+                    if (AequusText.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{AequusText.ItemKeyName(item.type, Mod)}", out string text))
+                    {
+                        foreach (var tt in tooltips)
+                        {
+                            if (tt.Name == "Tooltip0")
+                            {
+                                tt.Text = text;
+                            }
+                        }
+                    }
+
+                    float statIncrease = 1f;
+                    if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff)
+                    {
+                        statIncrease = empoweredBuff.StatIncrease;
+                    }
+                    PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
                 }
 
                 //TestLootBagTooltip(item, tooltips);
@@ -438,6 +457,31 @@ namespace Aequus.Common.GlobalItems
             lines.Insert(index, new TooltipLine(Mod, firstBoxName, t));
         }
 
+        internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)
+        {
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%"))
+            { IsModifier = true, IsModifierBad = !good, });
+        }
+        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
+        {
+            if (num == originalNum)
+            {
+                return;
+            }
+
+            float value = num / (float)originalNum;
+            if (value < 1f)
+            {
+                value = 1f - value;
+            }
+            else
+            {
+                value--;
+            }
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
+            { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
+        }
+
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
         {
             if (line.Mod == "Aequus")
@@ -461,26 +505,6 @@ namespace Aequus.Common.GlobalItems
                 }
             }
             return true;
-        }
-
-        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
-        {
-            if (num == originalNum)
-            {
-                return;
-            }
-
-            float value = num / (float)originalNum;
-            if (value < 1f)
-            {
-                value = 1f - value;
-            }
-            else
-            {
-                value--;
-            }
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
-            { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
         }
 
         public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)

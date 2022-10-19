@@ -1,9 +1,9 @@
 ﻿using Aequus.Graphics;
-using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -15,8 +15,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Biomes.Glimmer
 {
-    public class GlimmerScene : ModSceneEffect
+    public class GlimmerSceneEffect : ModSceneEffect
     {
+        public static StaticMiscShaderInfo StarShader { get; private set; }
+
         public static bool renderedUltimateSword;
         public static int cantTouchThis;
         public static Vector2 ultimateSwordWorldDrawLocation;
@@ -26,7 +28,9 @@ namespace Aequus.Biomes.Glimmer
         {
             if (!Main.dedServ)
             {
-                SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky();
+                StarShader = new StaticMiscShaderInfo("GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
+                typeof(MiscShaderData).GetField("_uImage1", AequusHelpers.LetMeIn).SetValue(StarShader.ShaderData, ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
+                SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
             }
         }
 
@@ -37,12 +41,13 @@ namespace Aequus.Biomes.Glimmer
 
         public override float GetWeight(Player player)
         {
-            return GlimmerSystem.CalcTiles(player) < GlimmerBiome.UltraStariteSpawn ? 1f : 0.5f;
+            return (GlimmerBiome.omegaStarite != -1 || GlimmerSystem.CalcTiles(player) < GlimmerBiome.UltraStariteSpawn) ? 1f : 0.2f;
         }
 
         public override void SpecialVisuals(Player player, bool isActive)
         {
-            if (isActive && !SkyManager.Instance[CosmicMonolithScene.Key].IsActive())
+            bool monolithActive = SkyManager.Instance[CosmicMonolithScene.Key].IsActive();
+            if (isActive && !monolithActive)
             {
                 if (!SkyManager.Instance[GlimmerSky.Key].IsActive())
                 {
@@ -58,7 +63,7 @@ namespace Aequus.Biomes.Glimmer
             }
         }
 
-        public static void Draw()
+        public static void DrawUltimateSword()
         {
             if (!GlimmerBiome.EventActive || (GlimmerBiome.omegaStarite != -1 && (int)Main.npc[GlimmerBiome.omegaStarite].ai[0] != AequusBoss.ACTION_INTRO && (int)Main.npc[GlimmerBiome.omegaStarite].ai[0] != AequusBoss.ACTION_INIT))
             {

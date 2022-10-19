@@ -783,7 +783,7 @@ namespace Aequus.UI.States
 
             selectionPanelList.Add(panel);
 
-            var textureElement = new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture))
+            var textureElement = new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad))
             {
                 Width = new StyleDimension(0, 1f),
                 Top = new StyleDimension(44, 0f),

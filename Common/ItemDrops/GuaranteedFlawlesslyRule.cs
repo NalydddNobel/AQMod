@@ -32,7 +32,7 @@ namespace Aequus.Common.ItemDrops
         {
             ItemDropAttemptResult result;
             bool anyoneNoHit = false;
-            var flags = info.npc.GetGlobalNPC<FlawlessNPC>().damagedPlayers;
+            var flags = info.npc.GetGlobalNPC<FlawlessGlobalNPC>().damagedPlayers;
             for (int i = 0; i < flags.Length; i++)
             {
                 if (info.npc.playerInteraction[i] && !flags[i])

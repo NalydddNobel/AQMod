@@ -15,7 +15,7 @@ namespace Aequus.Items.Tools
     {
         public static Dictionary<int, bool> TileSpecialConditions { get; private set; }
 
-        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
+        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 
         public override void Load()
         {

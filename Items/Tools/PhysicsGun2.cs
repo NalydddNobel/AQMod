@@ -13,7 +13,7 @@ namespace Aequus.Items.Tools
 {
     public class PhysicsGun2 : ModItem
     {
-        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
+        public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 
         public override void SetStaticDefaults()
         {

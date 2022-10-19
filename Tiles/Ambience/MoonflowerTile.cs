@@ -2,6 +2,7 @@
 using Aequus.Items.Placeable.Seeds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -106,7 +107,7 @@ namespace Aequus.Tiles.Ambience
             {
                 float wave = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.4f, 0.9f, 1.25f);
                 var bloom = TextureCache.Bloom[0].Value;
-                var ray = ModContent.Request<Texture2D>(Texture + "Effect").Value;
+                var ray = ModContent.Request<Texture2D>(Texture + "Effect", AssetRequestMode.ImmediateLoad).Value;
                 var rayPosition = groundPosition + offset + new Vector2(0f, -22f);
                 var rayColor = new Color(120, 100, 25, 5);
                 var rayScale = new Vector2(0.85f, 0.65f);

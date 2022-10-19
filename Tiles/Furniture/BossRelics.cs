@@ -3,6 +3,7 @@ using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -110,7 +111,7 @@ namespace Aequus.Tiles.Furniture
                 return;
             }
 
-            var texture = ModContent.Request<Texture2D>(base.Texture).Value;
+            var texture = ModContent.Request<Texture2D>(base.Texture, AssetRequestMode.ImmediateLoad).Value;
             int frameY = tile.TileFrameX / FrameWidth;
             var frame = texture.Frame(1, FrameCount, 0, frameY);
             var origin = frame.Size() / 2f;
@@ -123,7 +124,7 @@ namespace Aequus.Tiles.Furniture
 
             if (frameY == OmegaStarite)
             {
-                var orbTexture = ModContent.Request<Texture2D>(base.Texture + "Orbs").Value;
+                var orbTexture = ModContent.Request<Texture2D>(base.Texture + "Orbs", AssetRequestMode.ImmediateLoad).Value;
                 var orbFrame = orbTexture.Frame(1, 5, 0, 0);
                 var orbOrigin = orbFrame.Size() / 2f;
                 float f = Main.GlobalTimeWrappedHourly % (MathHelper.TwoPi / 5f) - MathHelper.PiOver2;

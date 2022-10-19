@@ -21,8 +21,8 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public int transitionMax;
         public int temperature;
 
-        public Asset<Texture2D> HotTexture => ModContent.Request<Texture2D>(Texture + "_Hot");
-        public Asset<Texture2D> ColdTexture => ModContent.Request<Texture2D>(Texture + "_Cold");
+        public Asset<Texture2D> HotTexture => ModContent.Request<Texture2D>(Texture + "_Hot", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> ColdTexture => ModContent.Request<Texture2D>(Texture + "_Cold", AssetRequestMode.ImmediateLoad);
 
         public override void SetStaticDefaults()
         {

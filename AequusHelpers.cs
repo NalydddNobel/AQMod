@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.GlobalItems;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
@@ -10,12 +11,10 @@ using Aequus.Projectiles;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Newtonsoft.Json;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -26,6 +25,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.UI;
@@ -169,6 +169,14 @@ namespace Aequus
         {
             return x > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
+        }
+
+        public static bool Zen(this Player player, bool? active = null)
+        {
+            var zen = player.GetModPlayer<ZenPlayer>();
+            if (active.HasValue)
+                zen.forceZen = active.Value;
+            return zen.forceZen;
         }
 
         public static bool HasItemCheckAllBanks(this Player player, int item)
@@ -953,14 +961,6 @@ namespace Aequus
         public static Vector2 To(Vector2 me, Vector2 to, float speed)
         {
             return Vector2.Normalize(me - to) * speed;
-        }
-
-        public static bool Zen(this Player player, bool? active = null)
-        {
-            var zen = player.GetModPlayer<MonsterSpawnsPlayer>();
-            if (active.HasValue)
-                zen.forceZen = active.Value;
-            return zen.forceZen;
         }
 
         public static Rectangle Fluffize(this Rectangle rect, int padding = 10)

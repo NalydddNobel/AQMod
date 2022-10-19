@@ -10,6 +10,7 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -678,7 +679,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (dying)
                 bloomProgress += deathScaleBloom;
 
-            var ray = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay");
+            var ray = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad);
             if (ray.IsLoaded)
             {
                 float rayProgress = Math.Max(bloomProgress, 0.4f);

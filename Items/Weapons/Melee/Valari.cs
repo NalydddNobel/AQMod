@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.shoot = ModContent.ProjectileType<ValariProj>();
-            Item.shootSpeed = 12f;
+            Item.shootSpeed = 6.5f;
             Item.autoReuse = true;
         }
 

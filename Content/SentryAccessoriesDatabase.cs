@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
+namespace Aequus.Content
 {
     public class SentryAccessoriesDatabase : ILoadable
     {

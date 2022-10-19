@@ -3,6 +3,7 @@ using Aequus.Graphics;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -379,7 +380,7 @@ namespace Aequus.Projectiles.Summon
         public void GetDrawingInfo(out Texture2D image, out Rectangle frame)
         {
             var textureData = Textures[texture];
-            var assetImage = ModContent.Request<Texture2D>(textureData.Texture);
+            var assetImage = ModContent.Request<Texture2D>(textureData.Texture, AssetRequestMode.ImmediateLoad);
             frame = Rectangle.Empty;
             if (textureData.Frame == null)
             {

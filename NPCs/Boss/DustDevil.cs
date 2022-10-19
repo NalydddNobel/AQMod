@@ -209,7 +209,7 @@ namespace Aequus.NPCs.Boss
                 }
             }
 
-            SpawnManager.ForceZen(NPC);
+            SpawnManagerGlobalNPC.ForceZen(NPC);
 
             if (Action != ACTION_GOODBYE && !NPC.HasValidTarget)
             {

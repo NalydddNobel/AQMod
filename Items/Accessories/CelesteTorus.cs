@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
@@ -142,8 +143,9 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
+            if (aequus.accCelesteTorus != null)
+                aequus.celesteTorusDamage++;
             aequus.accCelesteTorus = Item;
-            aequus.celesteTorusDamage++;
             if (aequus.ProjectilesOwned(ModContent.ProjectileType<CelesteTorusProj>()) <= 0)
             {
                 Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<CelesteTorusProj>(),

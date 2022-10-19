@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Players;
+using Aequus.Items;
 using Terraria;
 
 namespace Aequus.Buffs
@@ -14,6 +15,7 @@ namespace Aequus.Buffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
+            AequusBuff.ConcoctibleBuffsBlacklist.Add(Type);
         }
 
         public override void Update(Player player, ref int buffIndex)

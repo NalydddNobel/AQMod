@@ -19,7 +19,8 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 
         public override void Load()
         {
-            WhiteTexture = ModContent.Request<Texture2D>(this.GetPath() + "_White");
+            if (!Main.dedServ)
+                WhiteTexture = ModContent.Request<Texture2D>(this.GetPath() + "_White");
         }
 
         public override void SetDefaults()

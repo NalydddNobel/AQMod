@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +28,7 @@ namespace Aequus.Projectiles.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.extraUpdates = 2;
             Projectile.manualDirectionChange = true;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = 2;
             Projectile.timeLeft = 1200;
         }
 
@@ -78,16 +79,33 @@ namespace Aequus.Projectiles.Melee
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            Projectile.velocity = oldVelocity;
-            if (Projectile.ai[0] < 400f)
-                Projectile.ai[0] = 400f;
-            Projectile.velocity = -oldVelocity;
+            Projectile.ai[0] += 5f;
+            SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
+            Collision.HitTiles(Projectile.position + new Vector2(Projectile.width / 4f, Projectile.height / 4f), oldVelocity, Projectile.width / 2, Projectile.height / 2);
+            if (Projectile.velocity.X != oldVelocity.X)
+                Projectile.velocity.X = -oldVelocity.X;
+            if (Projectile.velocity.Y != oldVelocity.Y)
+                Projectile.velocity.Y = -oldVelocity.Y;
             return false;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
             return new Color(250, 250, 250, 250);
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.damage = (int)(Projectile.damage * 0.9f);
+            if (Projectile.penetrate == 1)
+            {
+                Projectile.penetrate = -1;
+                if (Projectile.ai[0] < 60f)
+                {
+                    Projectile.velocity = -Projectile.velocity;
+                }
+                Projectile.ai[0] = 60f;
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

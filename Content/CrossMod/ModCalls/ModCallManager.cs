@@ -3,7 +3,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod.ModCalls
@@ -66,7 +65,7 @@ namespace Aequus.Content.CrossMod.ModCalls
             return null;
         }
 
-        private static T HandleGetterSetterCall<T>(ref T value, object[] args, ITypeUnboxer<T> unboxer, int index = 2) 
+        private static T HandleGetterSetterCall<T>(ref T value, object[] args, ITypeUnboxer<T> unboxer, int index = 2)
         {
             var currentValue = value;
 

@@ -14,7 +14,7 @@ namespace Aequus.NPCs.Monsters.Underworld
 {
     public class Trapper : ModNPC
     {
-        public Asset<Texture2D> TrapperChainTexture => ModContent.Request<Texture2D>(Texture + "_Chain");
+        public Asset<Texture2D> TrapperChainTexture => ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad);
 
         public Vector2 chainsOrigin;
 

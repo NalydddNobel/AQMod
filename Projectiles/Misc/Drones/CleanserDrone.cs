@@ -2,6 +2,7 @@
 using Aequus.Items.Consumables.Drones;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -179,7 +180,7 @@ namespace Aequus.Projectiles.Misc.Drones
             var color = GetPylonColor();
             Main.EntitySpriteDraw(texture, Projectile.position + off - Main.screenPosition, frame, lightColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
         }

@@ -5,6 +5,7 @@ using Aequus.Items.Consumables.Drones;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -334,7 +335,7 @@ namespace Aequus.Projectiles.Misc.Drones
 
             Main.EntitySpriteDraw(texture, drawCoords, frame, lightColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, drawCoords, frame, color * SpawnInOpacity,
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoords, frame, color * SpawnInOpacity,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
         }

@@ -1,10 +1,14 @@
-﻿using Aequus.NPCs.Boss;
+﻿using Aequus.Graphics;
+using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Biomes.Glimmer
@@ -14,9 +18,10 @@ namespace Aequus.Biomes.Glimmer
         public const string Key = "Aequus:GlimmerEventSky";
 
         public Asset<Texture2D> skyTexture;
+        public Asset<Texture2D> pixelTexture;
 
         public bool active;
-        public float opacityBasedOnDistance;
+        public float realOpacity;
         public bool checkDistance;
 
         public override void Update(GameTime gameTime)
@@ -35,22 +40,14 @@ namespace Aequus.Biomes.Glimmer
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
             }
-            if (!checkDistance)
+            if (!checkDistance || GlimmerBiome.omegaStarite != -1)
             {
-                opacityBasedOnDistance = Opacity;
-                return;
-            }
-            float wantedOpacity;
-            if (GlimmerBiome.omegaStarite != -1)
-            {
-                wantedOpacity = Opacity;
+                realOpacity = Opacity;
             }
             else
             {
-                float distance = 1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles;
-                wantedOpacity = Opacity * Math.Max(distance, 0f);
+                realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles, 0f), 0.05f);
             }
-            opacityBasedOnDistance = MathHelper.Lerp(opacityBasedOnDistance, wantedOpacity, 0.05f);
         }
 
         public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
@@ -58,10 +55,10 @@ namespace Aequus.Biomes.Glimmer
             int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
             var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
             destinationRectangle.Height -= y;
-            Color clr = Color.White * opacityBasedOnDistance;
+            var skyColor = new Color(255, 255, 255, 0) * realOpacity;
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
-                spriteBatch.Draw(skyTexture.Value, destinationRectangle, clr.UseA(0));
+                spriteBatch.Draw(skyTexture.Value, destinationRectangle, skyColor);
                 return;
             }
 
@@ -74,19 +71,54 @@ namespace Aequus.Biomes.Glimmer
             }
 
             float approxProgress = Math.Max(minDepth / 10f, 0.1f);
-            destinationRectangle.Y += (int)(y * approxProgress + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.1f + approxProgress * MathHelper.TwoPi, -40f, 360f));
+            destinationRectangle.Y += (int)(y * approxProgress);
 
-            spriteBatch.Draw(skyTexture.Value, destinationRectangle, Color.Lerp(clr.UseA(0), Color.Blue * 0.01f, 1f - approxProgress));
+            spriteBatch.Draw(skyTexture.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
+
+            DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
+        }
+        public void DrawStars(SpriteBatch spriteBatch, float minDepth, float maxDepth, int y, float approxProgress)
+        {
+            var drawRectangle = new Rectangle(-200, 0, Main.screenWidth + 400, Main.screenHeight + 400);
+            drawRectangle.Y += y + (int)(y * approxProgress);
+            drawRectangle.Y = Math.Max(drawRectangle.Y, -400);
+            var cache = new SpriteBatchCache(spriteBatch);
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, cache.customEffect, cache.transformMatrix);
+
+            var drawData = new DrawData(pixelTexture.Value, drawRectangle, Color.White * realOpacity);
+            var effect = GlimmerSceneEffect.StarShader.ShaderData;
+
+            effect.Shader.Parameters["uRotation"].SetValue(6f - realOpacity * 0.5f);
+            drawData.rotation = 6f - realOpacity * 0.5f;
+            effect.UseOpacity(realOpacity);
+            effect.UseSaturation(approxProgress);
+            effect.UseColor(Color.Lerp(Color.White, Color.Blue, approxProgress));
+            effect.Apply(drawData);
+
+            drawData.rotation = 0f;
+            drawData.Draw(spriteBatch);
+
+            spriteBatch.End();
+            cache.Begin(spriteBatch);
         }
 
         public override bool IsActive()
         {
-            return active || Opacity > 0f || NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return active || Opacity > 0f;
         }
 
         public override float GetCloudAlpha()
         {
-            return 1f - opacityBasedOnDistance * 0.75f;
+            return 1f - realOpacity * 0.75f;
+        }
+
+        public override Color OnTileColor(Color inColor)
+        {
+            inColor.A = (byte)Math.Max(inColor.B, 20 * realOpacity);
+            inColor.G = (byte)Math.Max(inColor.B, 50 * realOpacity);
+            inColor.B = (byte)Math.Max(inColor.B, 100 * realOpacity);
+            return inColor;
         }
 
         public override void Reset()
@@ -102,7 +134,11 @@ namespace Aequus.Biomes.Glimmer
             active = true;
             if (skyTexture == null)
             {
-                skyTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "GlimmerSky");
+                skyTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "GlimmerSky", AssetRequestMode.ImmediateLoad);
+            }
+            if (pixelTexture == null)
+            {
+                pixelTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad);
             }
         }
 

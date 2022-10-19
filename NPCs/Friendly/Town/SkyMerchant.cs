@@ -11,6 +11,7 @@ using Aequus.Items.Tools.FishingRods;
 using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
@@ -708,7 +709,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void DrawBalloon(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = ModContent.Request<Texture2D>($"{Texture}Basket").Value;
+            var texture = ModContent.Request<Texture2D>($"{Texture}Basket", AssetRequestMode.ImmediateLoad).Value;
             int frameX = -1;
             DrawBalloon_UpdateBasketFrame(ref frameX);
             if (frameX == -1)
@@ -719,7 +720,7 @@ namespace Aequus.NPCs.Friendly.Town
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
-            texture = ModContent.Request<Texture2D>($"{Texture}Balloon").Value;
+            texture = ModContent.Request<Texture2D>($"{Texture}Balloon", AssetRequestMode.ImmediateLoad).Value;
             frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }
@@ -796,7 +797,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = ModContent.Request<Texture2D>($"{Texture}Basket").Value;
+            var texture = ModContent.Request<Texture2D>($"{Texture}Basket", AssetRequestMode.ImmediateLoad).Value;
             var frame = GetFleeFrame(texture);
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)

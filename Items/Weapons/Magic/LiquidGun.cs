@@ -255,7 +255,7 @@ namespace Aequus.Items.Weapons.Magic
                 return;
             }
 
-            conversionTextureCache = ModContent.Request<Texture2D>(info.TexturePath);
+            conversionTextureCache = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad);
             if (ModContent.RequestIfExists<Texture2D>($"{info.TexturePath}_Glow", out var glowMask))
             {
                 conversionTextureGlowMaskCache = glowMask;
@@ -335,16 +335,6 @@ namespace Aequus.Items.Weapons.Magic
                 return false;
             }
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.WaterGun)
-                .AddIngredient(ItemID.IronBar, 10)
-                .AddIngredient<AquaticEnergy>()
-                .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.WaterGun);
         }
     }
 }

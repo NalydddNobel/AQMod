@@ -33,7 +33,7 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            Mod.Call("PylonColor", Mod, TileID.TeleportationPylon, Main.DiscoColor);
+            Content.Necromancy.NecromancyDatabase.LoadEntriesFile();
             return true;
         }
     }

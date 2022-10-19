@@ -2,6 +2,7 @@
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
@@ -161,7 +162,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 texture = TextureAssets.Item[ModContent.ItemType<UltimateSword>()].Value;
             }
 
-            var glowmask = ModContent.Request<Texture2D>(flip ? AequusHelpers.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow");
+            var glowmask = ModContent.Request<Texture2D>(flip ? AequusHelpers.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var origin = new Vector2(0f, texture.Height);
 
             var bloom = TextureCache.Bloom[1].Value;

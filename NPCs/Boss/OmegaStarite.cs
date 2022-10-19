@@ -161,7 +161,6 @@ namespace Aequus.NPCs.Boss
         }
 
         public static HashSet<int> StarResistCatalogue { get; private set; }
-        public static HashSet<int> StarResistEasterEggCatalogue { get; private set; }
 
         public static SoundStyle HitSound { get; private set; }
         public static ConfiguredMusicData music { get; private set; }
@@ -174,14 +173,11 @@ namespace Aequus.NPCs.Boss
 
         public override void Load()
         {
-            StarResistEasterEggCatalogue = new HashSet<int>()
+            StarResistCatalogue = new HashSet<int>()
             {
                 ProjectileID.FallingStar,
                 ProjectileID.StarCannonStar,
                 ProjectileID.SuperStar,
-            };
-            StarResistCatalogue = new HashSet<int>(StarResistEasterEggCatalogue)
-            {
                 ProjectileID.StarCloakStar,
                 ProjectileID.Starfury,
                 ProjectileID.StarVeilStar,
@@ -204,8 +200,6 @@ namespace Aequus.NPCs.Boss
             music = null;
             StarResistCatalogue?.Clear();
             StarResistCatalogue = null;
-            StarResistEasterEggCatalogue?.Clear();
-            StarResistEasterEggCatalogue = null;
         }
 
         public override void SetStaticDefaults()
@@ -431,7 +425,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
-            SpawnManager.ForceZen(NPC);
+            SpawnManagerGlobalNPC.ForceZen(NPC);
             if (Main.dayTime)
             {
                 NPC.life = -1;
@@ -441,7 +435,7 @@ namespace Aequus.NPCs.Boss
                 NPC.active = false;
                 return;
             }
-            GlimmerBiome.omegaStarite = (short)NPC.whoAmI;
+            GlimmerBiome.omegaStarite = NPC.whoAmI;
             var center = NPC.Center;
             var player = Main.player[NPC.target];
             var plrCenter = player.Center;
@@ -1373,10 +1367,9 @@ namespace Aequus.NPCs.Boss
             return null;
         }
 
-
-
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            drawColor = NPC.GetAlpha(drawColor);
             if (NPC.IsABestiaryIconDummy)
             {
                 if ((int)NPC.ai[0] == 0)
@@ -1585,28 +1578,6 @@ namespace Aequus.NPCs.Boss
             if (StarResistCatalogue.Contains(projectile.type))
             {
                 damage = (int)(damage * starDamageMultiplier);
-            }
-        }
-
-        public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
-        {
-            if (StarResistEasterEggCatalogue.Contains(projectile.type))
-            {
-                if (damage > 800 * starDamageMultiplier)
-                {
-                    var starVelocity = projectile.velocity * -1.2f;
-                    for (int i = 0; i < 8; i++)
-                    {
-                        int p2 = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, starVelocity.RotatedBy(MathHelper.PiOver4 * i), ModContent.ProjectileType<TrollStar>(), damage, knockback);
-                        Main.projectile[p2].timeLeft = 240;
-                    }
-                }
-                else
-                {
-                    int p = Projectile.NewProjectile(NPC.GetSource_OnHurt(projectile), projectile.Center, projectile.velocity * -1.2f, ModContent.ProjectileType<TrollStar>(), damage, knockback);
-                    Main.projectile[p].timeLeft = 240;
-                }
-                projectile.active = false;
             }
         }
 

@@ -42,8 +42,9 @@ namespace Aequus.Graphics.RenderTargets
         {
             base.Load(mod);
             Instance = this;
-            var effect = ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad);
-            Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(new Ref<Effect>(effect.Value), "ModdersToolkitShaderPass"), EffectPriority.Low);
+            Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(
+                new Ref<Effect>(ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad).Value), 
+                "ModdersToolkitShaderPass"), EffectPriority.Low);
         }
 
         public override void Unload()

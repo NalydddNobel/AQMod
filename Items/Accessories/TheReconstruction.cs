@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Misc;
+﻿using Aequus.Content;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

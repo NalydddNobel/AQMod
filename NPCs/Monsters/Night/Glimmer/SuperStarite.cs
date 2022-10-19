@@ -8,6 +8,7 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -452,7 +453,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float scale = (float)Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f) * 3f;
             var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
 
-            var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
+            var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
             var lightRayOrigin = lightRay.Size() / 2f;
 
             var r = EffectsSystem.EffectRand;

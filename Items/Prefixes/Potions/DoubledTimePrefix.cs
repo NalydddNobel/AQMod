@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Buffs;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Prefixes.Potions
@@ -22,7 +24,9 @@ namespace Aequus.Items.Prefixes.Potions
 
         public override bool CanRoll(Item item)
         {
-            return ConcoctionDatabase.ConcoctiblePotion(item);
+            return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
+                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.meleeBuff[item.buffType] &&
+                !AequusBuff.ConcoctibleBuffsBlacklist.Contains(item.buffType);
         }
     }
 }

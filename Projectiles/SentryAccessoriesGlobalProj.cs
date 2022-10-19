@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Content;
 using Aequus.Items.Accessories;
 using Terraria;
 using Terraria.DataStructures;

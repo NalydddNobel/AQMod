@@ -3,6 +3,7 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -388,7 +389,7 @@ namespace Aequus.Projectiles.Misc
             Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun2>().Texture + "_Glow");
+            var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun2>().Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var coloring = mouseColor;
             foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly + Projectile.rotation))
             {

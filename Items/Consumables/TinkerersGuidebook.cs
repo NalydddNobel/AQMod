@@ -22,8 +22,18 @@ namespace Aequus.Items.Consumables
             Item.value = Item.sellPrice(gold: 2);
         }
 
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+
         public override bool? UseItem(Player player)
         {
+            if (player.altFunctionUse == 2)
+            {
+                AequusWorld.tinkererRerolls = 0;
+                return true;
+            }
             if (AequusWorld.tinkererRerolls < 3)
             {
                 AequusWorld.tinkererRerolls += 3;
@@ -31,6 +41,11 @@ namespace Aequus.Items.Consumables
             }
 
             return false;
+        }
+
+        public override bool ConsumeItem(Player player)
+        {
+            return player.altFunctionUse != 2;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Aequus.UI.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -257,7 +258,7 @@ namespace Aequus.NPCs.Friendly.Town
             var origin = NPC.frame.Size() / 2f;
             var spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             spriteBatch.Draw(texture, drawCoords, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
-            spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, drawCoords, NPC.frame, Color.White, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
+            spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoords, NPC.frame, Color.White, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
             return false;
         }
     }

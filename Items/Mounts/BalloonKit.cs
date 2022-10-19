@@ -2,6 +2,7 @@
 using Aequus.Buffs.Mounts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -143,7 +144,7 @@ namespace Aequus.Items.Mounts
         {
             if (drawType == 0)
             {
-                var balloon = ModContent.Request<Texture2D>(Texture).Value;
+                var balloon = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
                 int balloonFrameY = 0;
                 if (drawPlayer.mount._mountSpecificData is int val)
                 {

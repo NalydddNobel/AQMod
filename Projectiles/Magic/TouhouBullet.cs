@@ -1,6 +1,7 @@
 ﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.DataStructures;
@@ -106,7 +107,7 @@ namespace Aequus.Projectiles.Magic
 
             if (Projectile.ai[0] > 120f)
             {
-                var explosionTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Explosion0").Value;
+                var explosionTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Explosion0", AssetRequestMode.ImmediateLoad).Value;
                 int explosionFrameNumber = (int)((Projectile.ai[0] - 120f) / 4f);
                 var explosionFrame = explosionTexture.Frame(verticalFrames: 5, frameY: explosionFrameNumber);
                 var explosionOrigin = explosionFrame.Size() / 2f;

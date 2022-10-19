@@ -33,9 +33,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public const int PHASE_TRANSITION_CHANGEDIRECTION = 2;
         public const int PHASE_SNOWFLAKESPIRAL = 3;
 
-        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
-        public Asset<Texture2D> DefeatedTexture => ModContent.Request<Texture2D>(Texture + "Defeated");
-        public Asset<Texture2D> DefeatedGlowTexture => ModContent.Request<Texture2D>(Texture + "Defeated_Glow");
+        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> DefeatedTexture => ModContent.Request<Texture2D>(Texture + "Defeated", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> DefeatedGlowTexture => ModContent.Request<Texture2D>(Texture + "Defeated_Glow", AssetRequestMode.ImmediateLoad);
 
         public static SoundStyle SpaceGunSound { get; private set; }
         public static SoundStyle SnowflakeShootSound { get; private set; }
@@ -895,7 +895,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
             if (aura > 0f)
             {
-                var batchData = new SpriteBatchData(spriteBatch);
+                var batchData = new SpriteBatchCache(spriteBatch);
                 spriteBatch.End();
                 if (bestiary)
                 {

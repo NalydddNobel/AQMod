@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Placeable.Graves;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
@@ -98,7 +99,7 @@ namespace Aequus.Tiles.Furniture
             {
                 frame.Y = 18;
             }
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset,
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + AequusHelpers.TileDrawOffset,
                 frame, new Color(200, 100, 100, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 3f, 0.2f, 0.5f), 0f, new Vector2(0f, 0f), 1f, SpriteEffects.None, 0f);
         }
     }

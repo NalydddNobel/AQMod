@@ -227,6 +227,12 @@ namespace Aequus
             Broadcast("Announcement.HasAwoken", BossSummonMessage, npcName);
         }
 
+        public static bool TryGetText(string key, out string text)
+        {
+            text = Language.GetTextValue(key);
+            return text != key;
+        }
+
         public static string LiquidName(byte liquidType)
         {
             switch (liquidType)

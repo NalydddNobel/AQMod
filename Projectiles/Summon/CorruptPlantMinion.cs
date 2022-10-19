@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -326,13 +327,13 @@ namespace Aequus.Projectiles.Summon
             int slots = (int)Projectile.localAI[0];
             if (slots >= 6)
             {
-                t = ModContent.Request<Texture2D>(Texture + "_Large").Value;
+                t = ModContent.Request<Texture2D>(Texture + "_Large", AssetRequestMode.ImmediateLoad).Value;
                 frame = t.Frame(verticalFrames: FRAMES_LARGE, frameY: Projectile.frame);
                 origin = frame.Size() / 2f;
             }
             else if (slots >= 3)
             {
-                t = ModContent.Request<Texture2D>(Texture + "_Med").Value;
+                t = ModContent.Request<Texture2D>(Texture + "_Med", AssetRequestMode.ImmediateLoad).Value;
                 frame = t.Frame(verticalFrames: FRAMES_MED, frameY: Projectile.frame);
                 origin = frame.Size() / 2f;
             }
@@ -372,7 +373,7 @@ namespace Aequus.Projectiles.Summon
         }
         public void DrawChain(int slots, Texture2D t)
         {
-            var chainTexture = ModContent.Request<Texture2D>(Texture + "_Chain").Value;
+            var chainTexture = ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad).Value;
             var chainOrigin = new Vector2(chainTexture.Width * 0.5f, 4f);
             var chainPos = Main.player[Projectile.owner].Center;
             var chainDir = Vector2.Normalize(new Vector2(Main.player[Projectile.owner].velocity.X / -4f - Projectile.spriteDirection, -2f));

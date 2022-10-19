@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Content;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Utility

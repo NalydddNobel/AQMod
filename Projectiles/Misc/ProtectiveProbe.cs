@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -186,7 +187,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int trailLength);
 
             Main.spriteBatch.Draw(t, Projectile.position + off - Main.screenPosition, frame, lightColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
-            var glow = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
+            var glow = ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value;
             Main.spriteBatch.Draw(glow, Projectile.position + off - Main.screenPosition, frame, Color.White, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 
             var trailColor = new Color(120, 120, 120, 0);

@@ -16,7 +16,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
-using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
@@ -543,7 +542,7 @@ namespace Aequus
             accMendshroom = null;
 
             accCelesteTorus = null;
-            celesteTorusDamage = 0f;
+            celesteTorusDamage = 1f;
 
             accAmmoRenewalPack = null;
             accMothmanMask = null;
@@ -1908,8 +1907,8 @@ namespace Aequus
         private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
         {
             if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetX)
-                || !((player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX) || !(player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY) 
-                || !((player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY) 
+                || !((player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX) || !(player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY)
+                || !((player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY)
                 || Main.tile[Player.tileTargetX, Player.tileTargetY].TileColor > 0 || !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
             {
                 orig(player);

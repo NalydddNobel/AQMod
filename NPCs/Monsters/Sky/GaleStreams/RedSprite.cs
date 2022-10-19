@@ -38,7 +38,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
         public const int FRAMES_X = 4;
 
-        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow");
+        public Asset<Texture2D> GlowmaskTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 
         public static float LightningDrawOpacity;
         public static float LightningDrawProgress;
@@ -1144,7 +1144,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             Main.spriteBatch.Draw(GlowmaskTexture.Value, drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
-        private void DrawLightning(Vector2 screenPos)
+        public void DrawLightning(Vector2 screenPos)
         {
             LightningDrawOpacity = Math.Min(1f - (NPC.ai[1] - 65f) / 10f, 1f);
 
@@ -1182,17 +1182,17 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             Main.spriteBatch.End();
             Begin.GeneralEntities.Begin(Main.spriteBatch);
         }
-        private void GenerateLightning()
+        public void GenerateLightning()
         {
             _redSpriteLightningCoords = new Vector2[7][];
             for (int i = 0; i < _redSpriteLightningCoords.GetLength(0); i++)
             {
                 _redSpriteLightningCoords[i] = new Vector2[Aequus.HQ ? 20 : 5];
                 var end = (MathHelper.PiOver4 * 0.1f * (i - 3) - MathHelper.PiOver2).ToRotationVector2() * 1080f;
-                GenerateLightningString(ref _redSpriteLightningCoords[i], Main.GlobalTimeWrappedHourly * (i + 1), end);
+                GenerateLightningStrip(ref _redSpriteLightningCoords[i], Main.GlobalTimeWrappedHourly * (i + 1), end);
             }
         }
-        private Vector2[] GenerateLightningString(ref Vector2[] coordinates, float timer, Vector2 difference)
+        public Vector2[] GenerateLightningStrip(ref Vector2[] coordinates, float timer, Vector2 difference)
         {
             var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
             var rand = EffectsSystem.EffectRand;
@@ -1216,7 +1216,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             rand.SetRand(old);
             return coordinates;
         }
-        private Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
+        public Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
         {
             var rand = EffectsSystem.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
@@ -1229,7 +1229,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             CameraFocus.GetY_Check(coordinates);
             return coordinates;
         }
-        private void CheckPrims()
+        public void CheckPrims()
         {
             if (prim == null)
             {
@@ -1242,7 +1242,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }
-        private float GetRealProgress(float p)
+        public float GetRealProgress(float p)
         {
             float p2 = (p - LightningDrawProgress).Abs();
             if (p2 < 0.1f)
@@ -1260,7 +1260,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 var color = new Color(255, 150, 0, 20) * 0.3f;
                 var circular = AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
 
-                var batchData = new SpriteBatchData(spriteBatch);
+                var batchData = new SpriteBatchCache(spriteBatch);
                 spriteBatch.End();
                 if (bestiary)
                 {

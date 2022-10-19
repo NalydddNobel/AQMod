@@ -18,7 +18,7 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             if (!Main.dedServ)
             {
-                Glow = ModContent.Request<Texture2D>(this.GetPath() + "_Glow");
+                Glow = ModContent.Request<Texture2D>(this.GetPath() + "_Glow", AssetRequestMode.ImmediateLoad);
             }
         }
 

@@ -35,8 +35,8 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
 
         public static int BossHeadID_Claw { get; private set; }
-        public Asset<Texture2D> ClawTexture => ModContent.Request<Texture2D>(Texture + "Claw");
-        public Asset<Texture2D> ClawChainTexture => ModContent.Request<Texture2D>(Texture + "Claw_Chain");
+        public Asset<Texture2D> ClawTexture => ModContent.Request<Texture2D>(Texture + "Claw", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> ClawChainTexture => ModContent.Request<Texture2D>(Texture + "Claw_Chain", AssetRequestMode.ImmediateLoad);
 
         public int leftClaw;
         public int rightClaw;
@@ -153,7 +153,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
-            SpawnManager.ForceZen(NPC);
+            SpawnManagerGlobalNPC.ForceZen(NPC);
             if (NPC.alpha > 0)
             {
                 NPC.alpha -= 5;

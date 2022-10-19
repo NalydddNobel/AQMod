@@ -33,7 +33,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public const int FRAME_JUMPRECOIL4 = 9;
         public const int FRAME_JUMPRECOIL5 = 10;
 
-        public Asset<Texture2D> LegsTexture => ModContent.Request<Texture2D>(Texture + "Legs");
+        public Asset<Texture2D> LegsTexture => ModContent.Request<Texture2D>(Texture + "Legs", AssetRequestMode.ImmediateLoad);
 
         public override void SetStaticDefaults()
         {

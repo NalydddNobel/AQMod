@@ -4,14 +4,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public class FlawlessNPC : GlobalNPC
+    public class FlawlessGlobalNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
 
         public bool[] damagedPlayers;
         public bool preventNoHitCheck;
 
-        public FlawlessNPC()
+        public FlawlessGlobalNPC()
         {
             damagedPlayers = new bool[Main.maxPlayers];
         }
@@ -33,16 +33,16 @@ namespace Aequus.NPCs
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active)
-                    Main.npc[i].GetGlobalNPC<FlawlessNPC>().damagedPlayers[player] = false;
+                    Main.npc[i].GetGlobalNPC<FlawlessGlobalNPC>().damagedPlayers[player] = false;
             }
         }
 
         public static bool HasBeenNoHit(NPC npc, int player)
         {
-            return HasBeenNoHit(npc, npc.GetGlobalNPC<FlawlessNPC>(), player);
+            return HasBeenNoHit(npc, npc.GetGlobalNPC<FlawlessGlobalNPC>(), player);
         }
 
-        public static bool HasBeenNoHit(NPC npc, FlawlessNPC noHit, int player)
+        public static bool HasBeenNoHit(NPC npc, FlawlessGlobalNPC noHit, int player)
         {
             return npc.playerInteraction[player] && !noHit.damagedPlayers[player];
         }

@@ -198,7 +198,7 @@ namespace Aequus.Content.Necromancy
 
         public override string ToString()
         {
-            return $"{nameof(PowerNeeded)}:{PowerNeeded}, {nameof(slotsUsed)}:{slotsUsed}, {nameof(despawnPriority)}:{despawnPriority}, {nameof(Aggro)}:{Aggro}";
+            return $"{nameof(PowerNeeded)}:{PowerNeeded}, {nameof(slotsUsed)}:{slotsUsed}, {nameof(despawnPriority)}:{despawnPriority}, {nameof(Aggro)}:{(Aggro == null ? "null" : Aggro.GetType().Name)}";
         }
     }
 }

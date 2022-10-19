@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -46,7 +47,7 @@ namespace Aequus.UI
                 return;
 
             float scale = 1.25f;
-            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/PainterIcons").Value;
+            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/PainterIcons", AssetRequestMode.ImmediateLoad).Value;
             var frame = texture.Frame(horizontalFrames: 3, verticalFrames: 2, 0, 0, -2, -2);
             var originPoint = new Vector2(470f, 20f);
             var bg = new Rectangle((int)originPoint.X - 6, (int)originPoint.Y - 6, (frame.Width + 2) * 8 + 16, (frame.Height - 2) * 5 + 16).MultiplyWH(scale);

@@ -22,306 +22,13 @@ namespace Aequus.Content.Necromancy
         {
             NecromancyDebuffs = new List<int>();
             AggressionType.LoadAggressions();
-            PopulateEnemyStats();
+            PopulateLegacyEnemyStats();
             AutogeneratorIgnoreMods = new HashSet<string>() { "Aequus", };
         }
-        private static void PopulateEnemyStats()
+        private static void PopulateLegacyEnemyStats()
         {
             NPCs = new Dictionary<int, GhostInfo>()
             {
-                [NPCID.GiantWormHead] = GhostInfo.One,
-                [NPCID.DevourerHead] = GhostInfo.One,
-                [NPCID.TombCrawlerHead] = GhostInfo.One,
-                [NPCID.BlueSlime] = GhostInfo.One,
-                [NPCID.ZombieRaincoat] = GhostInfo.One,
-                [NPCID.ZombieEskimo] = GhostInfo.One,
-                [NPCID.MaggotZombie] = GhostInfo.One,
-                [NPCID.BloodZombie] = GhostInfo.One,
-                [NPCID.UmbrellaSlime] = GhostInfo.One,
-                [NPCID.CaveBat] = GhostInfo.One,
-                [NPCID.SporeBat] = GhostInfo.One,
-                [NPCID.Bee] = GhostInfo.One,
-                [NPCID.BeeSmall] = GhostInfo.One,
-                [NPCID.BlueJellyfish] = GhostInfo.One,
-                [NPCID.PinkJellyfish] = GhostInfo.One,
-                [NPCID.Crab] = GhostInfo.One,
-                [NPCID.IceSlime] = GhostInfo.One,
-                [NPCID.LacBeetle] = GhostInfo.One,
-                [NPCID.CochinealBeetle] = GhostInfo.One,
-                [NPCID.CyanBeetle] = GhostInfo.One,
-                [NPCID.Piranha] = GhostInfo.One,
-                [NPCID.Vulture] = GhostInfo.One,
-                [NPCID.Raven] = GhostInfo.One,
-                [NPCID.SnowFlinx] = GhostInfo.One,
-                [NPCID.Antlion] = GhostInfo.One,
-                [NPCID.Squid] = GhostInfo.One,
-                [NPCID.Skeleton] = GhostInfo.One,
-                [NPCID.SkeletonAlien] = GhostInfo.One,
-                [NPCID.SkeletonAstonaut] = GhostInfo.One,
-                [NPCID.SkeletonTopHat] = GhostInfo.One,
-                [NPCID.HeadacheSkeleton] = GhostInfo.One,
-                [NPCID.MisassembledSkeleton] = GhostInfo.One,
-                [NPCID.PantlessSkeleton] = GhostInfo.One,
-                [NPCID.SporeSkeleton] = GhostInfo.One,
-                [NPCID.SlimeSpiked] = GhostInfo.One,
-                [NPCID.Crawdad] = GhostInfo.One,
-                [NPCID.Crawdad2] = GhostInfo.One,
-                [NPCID.Salamander] = GhostInfo.One,
-                [NPCID.Salamander2] = GhostInfo.One,
-                [NPCID.Salamander3] = GhostInfo.One,
-                [NPCID.Salamander4] = GhostInfo.One,
-                [NPCID.Salamander5] = GhostInfo.One,
-                [NPCID.Salamander6] = GhostInfo.One,
-                [NPCID.Salamander7] = GhostInfo.One,
-                [NPCID.Salamander8] = GhostInfo.One,
-                [NPCID.Salamander9] = GhostInfo.One,
-                [NPCID.IceBat] = GhostInfo.One,
-                [NPCID.SeaSnail] = GhostInfo.One,
-                [NPCID.GoblinScout] = GhostInfo.One,
-                [NPCID.GraniteGolem] = GhostInfo.One,
-                [NPCID.FaceMonster] = GhostInfo.One,
-                [NPCID.FlyingAntlion] = GhostInfo.One,
-                [NPCID.WalkingAntlion] = GhostInfo.One,
-                [NPCID.LarvaeAntlion] = GhostInfo.One,
-                [NPCID.GreekSkeleton] = GhostInfo.One,
-                [NPCID.JungleBat] = GhostInfo.One,
-                [NPCID.UndeadViking] = GhostInfo.One,
-                [NPCID.WallCreeper] = GhostInfo.One,
-                [NPCID.WallCreeperWall] = GhostInfo.One,
-                [NPCID.BloodCrawler] = GhostInfo.One,
-                [NPCID.BloodCrawlerWall] = GhostInfo.One,
-                [NPCID.Drippler] = GhostInfo.One,
-                [NPCID.FlyingFish] = GhostInfo.One,
-                [NPCID.Tumbleweed] = GhostInfo.One,
-                [NPCID.GoblinArcher] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
-                [NPCID.GoblinPeon] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
-                [NPCID.GoblinThief] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
-                [NPCID.GoblinWarrior] = GhostInfo.One.WithAggro(AggressionType.GoblinArmy),
-                [NPCID.ServantofCthulhu] = GhostInfo.One,
-                [NPCID.SlimeRibbonRed] = GhostInfo.One,
-                [NPCID.SlimeRibbonGreen] = GhostInfo.One,
-                [NPCID.SlimeRibbonWhite] = GhostInfo.One,
-                [NPCID.SlimeRibbonYellow] = GhostInfo.One,
-                [NPCID.SlimeMasked] = GhostInfo.One,
-
-                [NPCID.BoneSerpentHead] = GhostInfo.Two,
-                [NPCID.CrimsonPenguin] = GhostInfo.Two,
-                [NPCID.CorruptPenguin] = GhostInfo.Two,
-                [NPCID.Crimera] = GhostInfo.Two,
-                [NPCID.EaterofSouls] = GhostInfo.Two,
-                [NPCID.GiantFlyingAntlion] = GhostInfo.Two,
-                [NPCID.GiantWalkingAntlion] = GhostInfo.Two,
-                [NPCID.CursedSkull] = GhostInfo.Two,
-                [NPCID.Demon] = GhostInfo.Two,
-                [NPCID.DungeonSlime] = GhostInfo.Two,
-                [NPCID.GiantShelly] = GhostInfo.Two,
-                [NPCID.GiantShelly2] = GhostInfo.Two,
-                [NPCID.GraniteFlyer] = GhostInfo.Two,
-                [NPCID.Harpy] = GhostInfo.Two,
-                [NPCID.Hellbat] = GhostInfo.Two,
-                [NPCID.MeteorHead] = GhostInfo.Two,
-                [NPCID.Shark] = GhostInfo.Two,
-                [NPCID.SpikedIceSlime] = GhostInfo.Two,
-                [NPCID.SpikedJungleSlime] = GhostInfo.Two,
-                [NPCID.UndeadMiner] = GhostInfo.Two,
-                [NPCID.VoodooDemon] = GhostInfo.Two,
-                [NPCID.TheGroom] = GhostInfo.Two,
-                [NPCID.TheBride] = GhostInfo.Two,
-                [NPCID.ZombieMerman] = GhostInfo.Two,
-                [NPCID.EyeballFlyingFish] = GhostInfo.Two,
-                [NPCID.MisterStabby] = GhostInfo.Two,
-                [NPCID.SnowBalla] = GhostInfo.Two,
-                [NPCID.SnowmanGangsta] = GhostInfo.Two,
-                [NPCID.Parrot] = GhostInfo.Two,
-                [NPCID.QueenSlimeMinionPink] = GhostInfo.Two,
-                [NPCID.QueenSlimeMinionPurple] = GhostInfo.Two,
-                [NPCID.QueenSlimeMinionBlue] = GhostInfo.Two,
-                [NPCID.TheHungryII] = GhostInfo.Two,
-                [NPCID.Probe] = GhostInfo.Two,
-
-                [NPCID.DuneSplicerHead] = GhostInfo.Three,
-                [NPCID.DiggerHead] = GhostInfo.Three,
-                [NPCID.SwampThing] = GhostInfo.Three,
-                [NPCID.Unicorn] = GhostInfo.Three,
-                [NPCID.AnomuraFungus] = GhostInfo.Three,
-                [NPCID.DoctorBones] = GhostInfo.Three,
-                [NPCID.FungiBulb] = GhostInfo.Three,
-                [NPCID.Ghost] = GhostInfo.Three,
-                [NPCID.MushiLadybug] = GhostInfo.Three,
-                [NPCID.Nymph] = GhostInfo.Three,
-                [NPCID.ZombieMushroom] = GhostInfo.Three,
-                [NPCID.ZombieMushroomHat] = GhostInfo.Three,
-                [NPCID.AnglerFish] = GhostInfo.Three,
-                [NPCID.Arapaima] = GhostInfo.Three,
-                [NPCID.ArmoredSkeleton] = GhostInfo.Three,
-                [NPCID.ArmoredViking] = GhostInfo.Three,
-                [NPCID.DesertBeast] = GhostInfo.Three,
-                [NPCID.BlackRecluse] = GhostInfo.Three,
-                [NPCID.BlackRecluseWall] = GhostInfo.Three,
-                [NPCID.BloodFeeder] = GhostInfo.Three,
-                [NPCID.BloodJelly] = GhostInfo.Three,
-                [NPCID.Mummy] = GhostInfo.Three,
-                [NPCID.BloodMummy] = GhostInfo.Three,
-                [NPCID.DarkMummy] = GhostInfo.Three,
-                [NPCID.LightMummy] = GhostInfo.Three,
-                [NPCID.ChaosElemental] = GhostInfo.Three,
-                [NPCID.CorruptSlime] = GhostInfo.Three,
-                [NPCID.Corruptor] = GhostInfo.Three,
-                [NPCID.Crimslime] = GhostInfo.Three,
-                [NPCID.Slimeling] = GhostInfo.Three,
-                [NPCID.CrimsonAxe] = GhostInfo.Three,
-                [NPCID.CursedHammer] = GhostInfo.Three,
-                [NPCID.EnchantedSword] = GhostInfo.Three,
-                [NPCID.Derpling] = GhostInfo.Three,
-                [NPCID.DesertDjinn] = GhostInfo.Three,
-                [NPCID.DesertGhoul] = GhostInfo.Three,
-                [NPCID.DesertGhoulCorruption] = GhostInfo.Three,
-                [NPCID.DesertGhoulCrimson] = GhostInfo.Three,
-                [NPCID.DesertGhoulHallow] = GhostInfo.Three,
-                [NPCID.FungoFish] = GhostInfo.Three,
-                [NPCID.Gastropod] = GhostInfo.Three,
-                [NPCID.GiantBat] = GhostInfo.Three,
-                [NPCID.GiantFungiBulb] = GhostInfo.Three,
-                [NPCID.GreenJellyfish] = GhostInfo.Three,
-                [NPCID.Herpling] = GhostInfo.Three,
-                [NPCID.HoppinJack] = GhostInfo.Three,
-                [NPCID.IceElemental] = GhostInfo.Three,
-                [NPCID.IceMimic] = GhostInfo.Three,
-                [NPCID.Mimic] = GhostInfo.Three,
-                [NPCID.IceTortoise] = GhostInfo.Three,
-                [NPCID.IchorSticker] = GhostInfo.Three,
-                [NPCID.IcyMerman] = GhostInfo.Three,
-                [NPCID.IlluminantBat] = GhostInfo.Three,
-                [NPCID.IlluminantSlime] = GhostInfo.Three,
-                [NPCID.DesertLamiaDark] = GhostInfo.Three,
-                [NPCID.DesertLamiaLight] = GhostInfo.Three,
-                [NPCID.Lavabat] = GhostInfo.Three,
-                [NPCID.PigronCorruption] = GhostInfo.Three,
-                [NPCID.PigronCrimson] = GhostInfo.Three,
-                [NPCID.PigronHallow] = GhostInfo.Three,
-                [NPCID.Pixie] = GhostInfo.Three,
-                [NPCID.PossessedArmor] = GhostInfo.Three,
-                [NPCID.DesertScorpionWalk] = GhostInfo.Three,
-                [NPCID.DesertScorpionWall] = GhostInfo.Three,
-                [NPCID.ToxicSludge] = GhostInfo.Three,
-                [NPCID.Werewolf] = GhostInfo.Three,
-                [NPCID.Wolf] = GhostInfo.Three,
-                [NPCID.SkeletonArcher] = GhostInfo.Three,
-                [NPCID.WanderingEye] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Clown] = GhostInfo.Three,
-                [NPCID.ChatteringTeethBomb] = GhostInfo.Three,
-                [NPCID.SandShark] = GhostInfo.Three,
-                [NPCID.SandsharkCorrupt] = GhostInfo.Three,
-                [NPCID.SandsharkCrimson] = GhostInfo.Three,
-                [NPCID.SandsharkHallow] = GhostInfo.Three,
-                [NPCID.BloodSquid] = GhostInfo.Three,
-                [NPCID.AngryNimbus] = GhostInfo.Three,
-                [NPCID.RainbowSlime] = GhostInfo.Three,
-                [NPCID.GoblinSummoner] = GhostInfo.Three.WithAggro(AggressionType.GoblinArmy),
-                [NPCID.PirateCorsair] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
-                [NPCID.PirateCrossbower] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
-                [NPCID.PirateDeadeye] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
-                [NPCID.PirateDeckhand] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
-                [NPCID.PirateGhost] = GhostInfo.Three.WithAggro(AggressionType.PirateInvasion),
-                [NPCID.MothronSpawn] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.MothronEgg] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.Butcher] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.CreatureFromTheDeep] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.Frankenstein] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.Fritz] = GhostInfo.Three.WithAggro(AggressionType.Eclipse),
-                [NPCID.Splinterling] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Hellhound] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Poltergeist] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.ZombieElf] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.ZombieElfBeard] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.ZombieElfGirl] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.GingerbreadMan] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.ElfArcher] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Yeti] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Nutcracker] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.NutcrackerSpinning] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.Flocko] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-                [NPCID.ElfCopter] = GhostInfo.Three.WithAggro(AggressionType.NightTime),
-
-                [NPCID.BoneLee] = GhostInfo.Four,
-                [NPCID.BigMimicCorruption] = GhostInfo.Four,
-                [NPCID.BigMimicCrimson] = GhostInfo.Four,
-                [NPCID.BigMimicHallow] = GhostInfo.Four,
-                [NPCID.DiabolistRed] = GhostInfo.Four,
-                [NPCID.DiabolistWhite] = GhostInfo.Four,
-                [NPCID.FloatyGross] = GhostInfo.Four,
-                [NPCID.Wraith] = GhostInfo.Four,
-                [NPCID.FlyingSnake] = GhostInfo.Four,
-                [NPCID.GiantCursedSkull] = GhostInfo.Four,
-                [NPCID.GiantFlyingFox] = GhostInfo.Four,
-                [NPCID.GiantTortoise] = GhostInfo.Four,
-                [NPCID.JungleCreeper] = GhostInfo.Four,
-                [NPCID.JungleCreeperWall] = GhostInfo.Four,
-                [NPCID.Lihzahrd] = GhostInfo.Four,
-                [NPCID.LihzahrdCrawler] = GhostInfo.Four,
-                [NPCID.MossHornet] = GhostInfo.Four,
-                [NPCID.Moth] = GhostInfo.Four,
-                [NPCID.Necromancer] = GhostInfo.Four,
-                [NPCID.NecromancerArmored] = GhostInfo.Four,
-                [NPCID.Paladin] = GhostInfo.Four,
-                [NPCID.RaggedCaster] = GhostInfo.Four,
-                [NPCID.RaggedCasterOpenCoat] = GhostInfo.Four,
-                [NPCID.RedDevil] = GhostInfo.Four,
-                [NPCID.RockGolem] = GhostInfo.Four,
-                [NPCID.RuneWizard] = GhostInfo.Four,
-                [NPCID.SkeletonCommando] = GhostInfo.Four,
-                [NPCID.SkeletonSniper] = GhostInfo.Four,
-                [NPCID.TacticalSkeleton] = GhostInfo.Four,
-                [NPCID.GoblinShark] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.BloodNautilus] = GhostInfo.Four.WithAggro(AggressionType.BloodMoon),
-                [NPCID.IceGolem] = GhostInfo.Four,
-                [NPCID.SandElemental] = GhostInfo.Four,
-                [NPCID.Mothron] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.DeadlySphere] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.DrManFly] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.Eyezor] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.Nailhead] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.Psycho] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.Reaper] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.ThePossessed] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.Vampire] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.VampireBat] = GhostInfo.Four.WithAggro(AggressionType.Eclipse),
-                [NPCID.BrainScrambler] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.GigaZapper] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.GrayGrunt] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MartianEngineer] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MartianOfficer] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MartianWalker] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.RayGunner] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.Scutlix] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MartianTurret] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MartianSaucerCore] = GhostInfo.Four.WithAggro(AggressionType.MartianMadness),
-                [NPCID.MourningWood] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.HeadlessHorseman] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.Krampus] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.PresentMimic] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.Everscream] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.SantaNK1] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.IceQueen] = GhostInfo.Four.WithAggro(AggressionType.NightTime),
-                [NPCID.NebulaBeast] = GhostInfo.Four,
-                [NPCID.NebulaBrain] = GhostInfo.Four,
-                [NPCID.NebulaSoldier] = GhostInfo.Four,
-                [NPCID.SolarCorite] = GhostInfo.Four,
-                [NPCID.SolarDrakomire] = GhostInfo.Four,
-                [NPCID.SolarSpearman] = GhostInfo.Four,
-                [NPCID.SolarSolenian] = GhostInfo.Four,
-                [NPCID.SolarSroller] = GhostInfo.Four,
-                [NPCID.StardustJellyfishBig] = GhostInfo.Four,
-                [NPCID.StardustSoldier] = GhostInfo.Four,
-                [NPCID.StardustSpiderBig] = GhostInfo.Four,
-                [NPCID.StardustSpiderSmall] = GhostInfo.Four,
-                [NPCID.StardustWormHead] = GhostInfo.Four,
-                [NPCID.VortexRifleman] = GhostInfo.Four,
-                [NPCID.VortexSoldier] = GhostInfo.Four,
-                [NPCID.AncientCultistSquidhead] = GhostInfo.Four,
-                [NPCID.BigMimicJungle] = GhostInfo.Four,
-                [NPCID.GoldenSlime] = GhostInfo.Four,
-
                 [NPCID.DuneSplicerBody] = GhostInfo.Invalid,
                 [NPCID.DuneSplicerTail] = GhostInfo.Invalid,
                 [NPCID.Gnome] = GhostInfo.Invalid,
@@ -379,12 +86,111 @@ namespace Aequus.Content.Necromancy
 
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
-            InnerFinalizeContent();
-        }
-        public static void InnerFinalizeContent()
-        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading necromancy stats...");
+            }
+            LoadEntriesFile();
             AutogenEntries();
             AutogenPriorities();
+        }
+        public static void LoadEntriesFile()
+        {
+            var val = Aequus.GetContentFile("NecromancyDatabase");
+            foreach (var modDict in val)
+            {
+                if (modDict.Key == "Vanilla")
+                {
+                    foreach (var data in modDict.Value)
+                    {
+                        string name = data.Key;
+                        bool checkBanners = false;
+                        if (name[0] == '!')
+                        {
+                            checkBanners = true;
+                            name = name[1..];
+                        }
+                        int id = NPCID.Search.GetId(name);
+                        var info = ReadGhostInfo(data.Value);
+                        //Main.NewText(Lang.GetNPCName(id) + ": " + info);
+                        if (checkBanners)
+                        {
+                            foreach (var i in AequusHelpers.AllWhichShareBanner(id))
+                            {
+                                NPCs[i] = info;
+                            }
+                            continue;
+                        }
+                        NPCs[id] = info;
+                    }
+                }
+                else if (ModLoader.TryGetMod(modDict.Key, out var mod))
+                {
+                    if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Loading necromancy stats for {modDict.Key}...");
+                    }
+                    foreach (var data in modDict.Value)
+                    {
+                        string name = data.Key;
+                        bool checkBanners = false;
+                        if (name[0] == '!')
+                        {
+                            checkBanners = true;
+                            name = name[1..];
+                        }
+                        if (mod.TryFind<ModNPC>(name, out var modNPC))
+                        {
+                            if (Aequus.LogMore)
+                            {
+                                Aequus.Instance.Logger.Info($"{data.Key}/{modNPC.Type}: {data.Value}");
+                            }
+                            var info = ReadGhostInfo(data.Value);
+                            if (checkBanners)
+                            {
+                                foreach (var i in AequusHelpers.AllWhichShareBanner(modNPC.Type))
+                                {
+                                    NPCs[i] = info;
+                                }
+                                continue;
+                            }
+                            NPCs[modNPC.Type] = info;
+                        }
+                    }
+                }
+            }
+        }
+        public static GhostInfo ReadGhostInfo(string text)
+        {
+            IEnemyAggressor aggressor = null;
+            int type;
+            if (text.Contains(';'))
+            {
+                var val = text.Split(';');
+                if (!int.TryParse(val[0].Trim(), out type))
+                    type = -1;
+                AggressionType.AggressorFromName.TryGetValue(val[1].Trim(), out aggressor);
+            }
+            else
+            {
+                if (!int.TryParse(text, out type))
+                    type = -1;
+            }
+
+            switch (type) 
+            {
+                case 1:
+                    return GhostInfo.One.WithAggro(aggressor);
+                case 2:
+                    return GhostInfo.Two.WithAggro(aggressor);
+                case 3:
+                    return GhostInfo.Three.WithAggro(aggressor);
+                case 4:
+                    return GhostInfo.Four.WithAggro(aggressor);
+                case 5:
+                    return GhostInfo.Five.WithAggro(aggressor);
+            }
+            return GhostInfo.Invalid;
         }
         public static void AutogenEntries()
         {
@@ -438,7 +244,7 @@ namespace Aequus.Content.Necromancy
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
         /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
-        /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="InnerFinalizeContent"/></para>
+        /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="IAddRecipes.AddRecipes(Aequus)"/></para>
         /// </summary>
         /// <param name="callingMod"></param>
         /// <param name="args"></param>

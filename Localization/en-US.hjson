@@ -59,41 +59,9 @@ Mods: {
 			Trophy: 100% droprate when defeated flawlessly
 		}
 
-		Tooltips: {
-			NecromancyStaff: Slain enemies may convert into ghosts
-			NecromancyCandle: Absorbs the souls of enemies killed by minions when held
-			UseSouls: Uses {0} souls
-			CarryingSouls: Carrying {0} of {1} souls
-
-			UsesLife: Uses {0} life
-
-			UseDarts: Uses seeds and darts as ammo
-			UsesGel: Uses gel for ammo
-
-			Concocted: Used in potion concoctions
-			RouletteDrop: The item below is guaranteed to drop
-			EffectActive: Disabled
-			EffectInactive: Active
-			IncreasedMinions: Increases your max number of minions
-			SuspiciousLooking: "'I know what you're thinking...'"
-			Nalyddd: "'Smells like roses'"
-			HookBarbBlacklist: Does not get affected by hook barb upgrades
-			HookBarb: Your grappling hooks inflict damage
-			DemonSiegeUpgrade: Can be upgraded at a Hell Altar
-			DedicatedItem: Dedicated Item
-			Unobtainable: A relic birthed in an alternate universe
-			ManaPerSecond: Uses {0} mana per second
-			UmbrellaWeapon:
-				'''
-				You will fall slower while holding this, holding down will let you fall at regular speed
-				You will not take any fall damage
-				'''
-			InventoryPiggyBankFunction: Works in your inventory or void bag
-			ToggleKeyBind: You can toggle this function by pressing {0}
-		}
-
 		PrefixName: {
 			DoubledTimePrefix: Stuffed
+			EmpoweredPrefix: Empowered
 
 			DivinePrefix: Divine
 			BlessedPrefix: Blessed
@@ -110,6 +78,7 @@ Mods: {
 
 		Prefixes: {
 			BuffDuration: "{0} duration"
+			BuffEmpowerment: "{0} buff strength"
 
 			PrefixSoulLimit: "{0} soul capacity"
 			PrefixSoulCost: "{0} soul cost"
@@ -118,12 +87,11 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
+			# Accessories #
 			Heliosis: Heliosis
-			NeonGenesis: Neon Genesis
 			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
 			DavyJonesAnchor: Davy Jones's Anchor
-			WarHorn: War Horn
 			LittleInferno: Little Inferno
 			CrownOfTheGrounded: Crown of the Grounded
 			CrownOfDarkness: Crown of Darkness
@@ -131,8 +99,6 @@ Mods: {
 			FlashwayNecklace: Flashway Necklace
 			HaltingMagnet: Halting Magnet
 			HaltingMachine: Halting Machine
-			Ramishroom: Ramishroom
-			DevilsTongue: Devil's Tongue
 			AmmoBackpack: Ammo Renewal Pack
 			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
@@ -140,26 +106,38 @@ Mods: {
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
-			MechsSentry: Sentinel 6510
-			SantankSentry: Sentry 6502
-			BloodiedBucket: Bloodied Bucket
-			RitualisticSkull: Ritualistic Skull
 			RabbitsFoot: Rabbit's Foot
 			FoolsGoldRing: Fool's Gold Ring
 			FaultyCoin: Faulty Coin
 			ForgedCard: Forged Card
-			SentrySquid: Sentry Squid
-			IcebergKraken: Iceberg Kraken
 			GrandReward: Grand Reward
-			Reliefshroom: Reliefshroom
-			Mendshroom: Mendshroom
 			GlowCore: Glow Beacon
 
-			RegrowingBait: Regenerative Bait
+			# Summoner
+			WarHorn: War Horn
+			MechsSentry: Sentinel 6510
+			SantankSentry: Sentry 6502
+			BloodiedBucket: Bloodied Bucket
+			RitualisticSkull: Ritualistic Skull
+			SentrySquid: Sentry Squid
+			IcebergKraken: Iceberg Kraken
 
+			# Healing
+			Mendshroom: Mendshroom
+
+			# Fishing
+			NeonGenesis: Neon Genesis
+			Ramishroom: Ramishroom
+			DevilsTongue: Devil's Tongue
+
+			# Vanity
 			FishyFins: Fishy Fins
 			
-			Deltoid: Deltoid
+			# Weapons #
+
+			# Melee
+			PhaseDisc: Phase Disc
+			CrystalDagger: Crystal Dagger
 			Cauterizer: Cauterizer
 			HellsBoon: Hell's Boon
 			Valari: Valari
@@ -173,10 +151,8 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 			
-			Umystick: Umystick
-			Narrizuul: Narrizuul
-			StudiesOfTheInkblot: Studies of the Inkblot
-			LiquidGun: Liquid Gun
+			# Ranged
+			Deltoid: Deltoid
 			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
 			Raygun: Raygun
@@ -184,6 +160,11 @@ Mods: {
 			Slingsaber: Slingsaber
 			Slingshot: Slingshot
 
+			# Magic
+			Umystick: Umystick
+			Narrizuul: Narrizuul
+			StudiesOfTheInkblot: Studies of the Inkblot
+			LiquidGun: Liquid Gun
 			GhastlyBlaster: Ghastly Blaster
 			SurgeRod: Surge Rod
 			PentalScythe: Pental Scythe
@@ -193,6 +174,7 @@ Mods: {
 			BallisticScreecher: Bombarder Rod
 			Triacanthorn: Triacanthorn
 
+			# Summon
 			BrainwaveStaff: Brainwave Staff
 			MindfungusStaff: Mindfungus Staff
 			StariteStaff: Starite Staff
@@ -201,6 +183,7 @@ Mods: {
 			DisturbanceStaff: Disturbance Staff
 			HailstormStaff: Hailstorm Staff
 
+			# Soul Candles
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
 			PixieCandle: Fallen Angel
@@ -208,12 +191,14 @@ Mods: {
 			DungeonCandle: Wretchedness
 			OccultistCandle: Purgatory
 
+			# Necromancy Staffs
 			FriendshipMagick: Friendship Magick
 			Insurgency: Insurgency
 			Osiris: Osiris
 			Revenant: Revenant
 			ZombieScepter: Zombie Scepter
 
+			# Armor #
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
 
@@ -226,12 +211,15 @@ Mods: {
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
 
+			# Baits # 
+			RegrowingBait: Regenerative Bait
 			LegendberryBait: Legend Berry
 			Omnibait: Omni Bait
 			CursedPopper: Cursed Popper
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
 
+			# Foods & Potions # 
 			TubOfCookieDough: Tub of Cookie Dough
 			AstralCookie: Astral Cookie
 			HolographicMeatloaf: Holographic Meatloaf
@@ -245,15 +233,151 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			InactivePylonCleanser: Inactive Pylon Cleanser
-			InactivePylonHealer: Inactive Pylon Healer
-			InactivePylonGunner: Inactive Pylon Gunner
+			# Critter Items #
+			Snobster: Snobster
+			DwarfStarite: Dwarf Starite
+
+			# Fish #
+			CrabDaughter: Crab Daughter
+			XenonFish: Xenon Fish
+			KryptonFish: Krypton Fish
+			ArgonFish: Argon Fish
+			RadonFish: Neon Fish
+			Blobfish: Blobfish
+			GoreFish: Gore Fish
 
 			Leecheel: Leecheel
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
+
+			# Fishing Rods #
+			CrabRod: Crab Rod
+			Starcatcher: Starcatcher
+			Buzzer: Buzzer
+			Nimrod: Nimrod
+
+			# Pets #
+			LightningRod: Lightning Rod
+			ToySpaceGun: Toy Space Gun
+			SwagLookingEye: Swag Looking Eye
+			DragonBall: Dragon Ball
+
+			# Grappling Hooks #
+			LeechHook: Super Long Leech
+			Meathook: Meathook
+
+			# Mounts #
+			BalloonKit: Zilla's Balloon Kit
+
+			# Crates #
+			CrabCreviceCrate: Carapic Crate
+			CrabCreviceCrateHard: Encrusted Crate
+
+			JungleSlotMachine: Jungle Slot Machine
+			OceanSlotMachine: Ocean Slot Machine
+			ShadowRoulette: Shadow Slot Machine
+			SnowRoulette: Snow Slot Machine
+			DesertRoulette: Desert Slot Machine
+			SkyRoulette: Sky Slot Machine
+			GoldenRoulette: Golden Slot Machine
+			Roulette: Slot Machine
+
+			# Boss Masks # 
+			RedSpriteMask: Red Sprite Mask
+			SpaceSquidMask: Space Squid Mask
+			BreadOfCthulhuMask: Bread of Cthulhu Mask
+
+			# Blocks & Walls #
+			SedimentaryRockWall: Sedimentary Rock Wall
+			SedimentaryRock: Sedimentary Rock
+
+			EmancipationGrill: Emancipation Grill
+			PhysicsBlock: Physics Block
+			ForceGravityBlock: Gravity Block
+			ForceAntiGravityBlock: Anti Gravity Block
+
+			# Paintings #
+			SkyrimRock3: Push
+			SkyrimRock2: Balance
+			SkyrimRock1: Force
+			OliverPainting: OLIVER
+			GoreNestPainting: GORE
+			ExLydSpacePainting: SPACE
+			HomeworldPainting: HOMEWORLD
+			YangPainting: Can you feel the Sunshine?
+			YinPainting: Dark, Darker yet Darker...
+			YinYangPainting: Equalities
+			InsurgentPainting: Revolution
+			BongBongPainting: BongBong
+			CatalystPainting: Rock from an Alternate Universe
+			OriginPainting: Origin
+
+			# Relics & Trophies #
+			RedSpriteTrophy: Red Sprite Trophy
+
+			SpaceSquidRelic: Space Squid Relic
+			RedSpriteRelic: Red Sprite Relic
+			CrabsonRelic: Crabson Relic
+			OmegaStariteRelic: Omega Starite Relic
+
+			# Banners #
+			BreadOfCthulhuBanner: Bread of Cthulhu Banner
+			CoconutCrabBanner: Coconut Crab Banner
+			SoldierCrabBanner: Soldier Crab Banner
+			HijivarchCrabBanner: Hijivarch Crab Banner
+			CrabFishBanner: Crab Fish Banner
+			StariteBanner: Starite Banner
+			SuperStariteBanner: Super Starite Banner
+			HyperStariteBanner: Hyper Starite Banner
+			UltraStariteBanner: Ultra Starite Banner
+			CinderaBanner: Cindera Banner
+			MagmabubbleBanner: Magmabubble Banner
+			TrapperImpBanner: Trapper Imp Banner
+			VraineBanner: Vraine Banner
+			WhiteSlimeBanner: White Slime Banner
+
+			# Gravestones #
+			AshCrossGraveMarker: Ash Cross Grave Marker
+			AshGraveMarker: Ash Grave Marker
+			AshGravestone: Ash Gravestone
+			AshHeadstone: Ash Headstone
+			AshObelisk: Ash Obelisk
+			AshTombstone: Ash Tombstone
+			CrabClock: Crab Wall Clock
+			RecyclingMachine: Recycling Machine
+
+			# Dyes #
+			TidalDye: Tidal Dye
+			CensorDye: Censor Dye
+			ScorchingDye: Scorching Dye
+			FrostbiteDye: Frostbite Dye
+
+			# Summons #
+			HypnoticPearl: Hypnotic Pearl
+			SupernovaFruit: Supernova Fruit
+			TornadoInABottle: Tornado in a Bottle
+			GalacticStarfruit: Galactic Starfruit
+
+			# Misc (and Legacy) #
+
+			OrganicEnergy: Organic Energy
+			DemonicEnergy: Demonic Energy
+			CosmicEnergy: Cosmic Energy
+			AtmosphericEnergy: Atmospheric Energy
+			AquaticEnergy: Aquatic Energy
+			UltimateEnergy: Ultimate Energy
+			
+			MoonflowerPollen: Moonflower Pollen
+			MistralPollen: Mistral Pollen
+
 			Hexoplasm: Hexoplasm
 			ItemScrap: Scrap
+
+			InactivePylonCleanser: Inactive Pylon Cleanser
+			InactivePylonHealer: Inactive Pylon Healer
+			InactivePylonGunner: Inactive Pylon Gunner
+
+			CelesitalEightBall: Celestial 8-Ball
 			
 			DustDevilBag: Treasure Bag (Dust Devil)
 			CrabsonBag: Treasure Bag (Crabson)
@@ -270,29 +394,11 @@ Mods: {
 			AdventuringMap: Adventuring Map
 			SkeletonKey: Skeleton Key
 
-			Snobster: Snobster
-			DwarfStarite: Dwarf Starite
+			WhiteFlag: White Flag
+			GhostlyGrave: Ghostly Grave
 
-			CrabDaughter: Crab Daughter
-			XenonFish: Xenon Fish
-			KryptonFish: Krypton Fish
-			ArgonFish: Argon Fish
-			RadonFish: Neon Fish
-			Blobfish: Blobfish
-			GoreFish: Gore Fish
-
-			LightningRod: Lightning Rod
-			ToySpaceGun: Toy Space Gun
-
-			LeechHook: Super Long Leech
-			Meathook: Meathook
-
-			BalloonKit: Zilla's Balloon Kit
-
-			CrabRod: Crab Rod
-			Starcatcher: Starcatcher
-			Buzzer: Buzzer
-			Nimrod: Nimrod
+			Driftwood: Driftwood
+			PlasticBottle: Plastic Bottle
 
 			UnholyCore: Unholy Core
 
@@ -308,100 +414,8 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
-			CrabCreviceCrate: Carapic Crate
-			CrabCreviceCrateHard: Encrusted Crate
-
-			JungleSlotMachine: Jungle Slot Machine
-			OceanSlotMachine: Ocean Slot Machine
-			ShadowRoulette: Shadow Slot Machine
-			SnowRoulette: Snow Slot Machine
-			DesertRoulette: Desert Slot Machine
-			SkyRoulette: Sky Slot Machine
-			GoldenRoulette: Golden Slot Machine
-			Roulette: Slot Machine
-
-			RedSpriteMask: Red Sprite Mask
-			SpaceSquidMask: Space Squid Mask
-			BreadOfCthulhuMask: Bread of Cthulhu Mask
-
-			SwagLookingEye: Swag Looking Eye
-			DragonBall: Dragon Ball
-
-			SedimentaryRockWall: Sedimentary Rock Wall
-			SedimentaryRock: Sedimentary Rock
-
-			SkyrimRock3: Push
-			SkyrimRock2: Balance
-			SkyrimRock1: Force
-			OliverPainting: OLIVER
-			GoreNestPainting: GORE
-			ExLydSpacePainting: SPACE
-			HomeworldPainting: HOMEWORLD
-			YangPainting: Can you feel the Sunshine?
-			YinPainting: Dark, Darker yet Darker...
-			YinYangPainting: Equalities
-			InsurgentPainting: Revolution
-			BongBongPainting: BongBong
-			CatalystPainting: Rock from an Alternate Universe
-			OriginPainting: Origin
-
-			RedSpriteTrophy: Red Sprite Trophy
-
-			SpaceSquidRelic: Space Squid Relic
-			RedSpriteRelic: Red Sprite Relic
-			CrabsonRelic: Crabson Relic
-			OmegaStariteRelic: Omega Starite Relic
-
-			BreadOfCthulhuBanner: Bread of Cthulhu Banner
-			CoconutCrabBanner: Coconut Crab Banner
-			SoldierCrabBanner: Soldier Crab Banner
-			HijivarchCrabBanner: Hijivarch Crab Banner
-			CrabFishBanner: Crab Fish Banner
-			StariteBanner: Starite Banner
-			SuperStariteBanner: Super Starite Banner
-			HyperStariteBanner: Hyper Starite Banner
-			UltraStariteBanner: Ultra Starite Banner
-			CinderaBanner: Cindera Banner
-			MagmabubbleBanner: Magmabubble Banner
-			TrapperImpBanner: Trapper Imp Banner
-			VraineBanner: Vraine Banner
-			WhiteSlimeBanner: White Slime Banner
-
-			EmancipationGrill: Emancipation Grill
-			PhysicsBlock: Physics Block
-			ForceGravityBlock: Gravity Block
-			ForceAntiGravityBlock: Anti Gravity Block
 			GoreNest: Gore Nest
 
-			AshCrossGraveMarker: Ash Cross Grave Marker
-			AshGraveMarker: Ash Grave Marker
-			AshGravestone: Ash Gravestone
-			AshHeadstone: Ash Headstone
-			AshObelisk: Ash Obelisk
-			AshTombstone: Ash Tombstone
-			CrabClock: Crab Wall Clock
-			RecyclingMachine: Recycling Machine
-
-			TidalDye: Tidal Dye
-			CensorDye: Censor Dye
-			ScorchingDye: Scorching Dye
-			FrostbiteDye: Frostbite Dye
-
-			HypnoticPearl: Hypnotic Pearl
-			SupernovaFruit: Supernova Fruit
-			TornadoInABottle: Tornado in a Bottle
-
-			CelesitalEightBall: Celestial 8-Ball
-
-			Driftwood: Driftwood
-			PlasticBottle: Plastic Bottle
-
-			WhiteFlag: White Flag
-			GhostlyGrave: Ghostly Grave
-
-			MoonflowerPollen: Moonflower Pollen
-			LingeringPotion: Lingering Potion
-			GalacticStarfruit: Galactic Starfruit
 			MoonLeech: Moon Leech
 			DreamCatcher: Dream Catcher
 			MagikaAmulet: Magika Amulet
@@ -501,12 +515,6 @@ Mods: {
 			SuspiciousLookingSteak: Suspicious Looking Steak
 			HermitShell: Clamshell Helmet
 			StriderPalms: Strider Palms
-			OrganicEnergy: Organic Energy
-			DemonicEnergy: Demonic Energy
-			CosmicEnergy: Cosmic Energy
-			AtmosphericEnergy: Atmospheric Energy
-			AquaticEnergy: Aquatic Energy
-			UltimateEnergy: Ultimate Energy
 			CrabRod: Crab Rod
 			CrabShell: Crab Shell
 			MoonlightWall: Moonlight Wall
@@ -522,7 +530,6 @@ Mods: {
 			GebulbaStaff: Gebulba Staff
 			MagmalbulbiaStaff: Magmalbulbia Staff
 			PowPunch: Pow Punch
-			CrystalDagger: Crystal Dagger
 			ArgonSpear: Argon Spear
 			HorizonSkies: Horizon Skies
 			Aphrodite: Aphrodite
@@ -665,6 +672,11 @@ Mods: {
 
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			PhaseDisc: 
+				'''
+				Penetrates more enemies the closer the moon is to full
+				Can pick up items
+				'''
 			CrystalDagger: Quickly jabs enemies
 			Cauterizer:
 				'''
@@ -706,7 +718,7 @@ Mods: {
 			Hitscanner: Fires a massive spread of instantly hitting bullets
 			Flameblaster:
 				'''
-				{$Mods.Aequus.Tooltips.UsesGel}
+				{$Mods.Aequus.ItemTooltip.Common.UsesGel}
 				<right> to shoot an airblast
 				Ignores 15 points of enemy Defense
 				33% chance to not consume ammo
@@ -723,7 +735,7 @@ Mods: {
 			StarPhish: 
 				'''
 				Deals increased damage to enemies in water
-				{$Mods.Aequus.Tooltips.UseDarts}
+				{$Mods.Aequus.ItemTooltip.Common.UseDarts}
 				'''
 			SnowflakeCannon: 
 				'''
@@ -748,14 +760,14 @@ Mods: {
 
 			Umystick:
 				'''
-				{$Mods.Aequus.Tooltips.UmbrellaWeapon}
+				You will fall slower while holding this, hold down to fall at regular speed
 				Right click to perform a double jump
 				'Looks quite menacing'
 				'''
 			Narrizuul:
 				'''
-				{$Mods.Aequus.Tooltips.Unobtainable}
-				{$Mods.Aequus.Tooltips.Nalyddd}
+				{$Mods.Aequus.ItemTooltip.Misc.Unobtainable}
+				{$Mods.Aequus.ItemTooltip.Misc.Nalyddd}
 				'''
 			StudiesOfTheInkblot:
 				'''
@@ -815,32 +827,32 @@ Mods: {
 			CrimsonCandle:
 				'''
 				Summons a blood crawler to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			CorruptionCandle:
 				'''
 				Summons an eater of souls to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			PixieCandle:
 				'''
 				Summons a pixie to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			BloodMoonCandle:
 				'''
 				Summons a blood zombie to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			DungeonCandle:
 				'''
 				Summons a cursed skull to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 			OccultistCandle:
 				'''
 				Summons a demon to fight for you
-				{$Mods.Aequus.Tooltips.NecromancyCandle}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
 				'''
 
 			FriendshipMagick: Become friends with strong enemies!
@@ -848,24 +860,24 @@ Mods: {
 				'''
 				Drains the soul of very powerful enemies, instantly killing weakened enemies
 				While accursed, they release spirits that attack nearby enemies
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'Silence'
 				'''
 			Osiris: 
 				'''
 				Drains the soul of powerful enemies
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				Bursts into a swarm of locusts on hit
 				'''
 			Revenant: 
 				'''
 				Drains the soul of strong enemies, instantly killing weakened enemies
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'''
 			ZombieScepter: 
 				'''
 				Drains the soul of weak enemies
-				{$Mods.Aequus.Tooltips.NecromancyStaff}
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
 				'''
 
 			GravetenderHood: 10% increased summon damage
@@ -935,6 +947,8 @@ Mods: {
 				'May provide luck to those searching underground'
 				'''
 
+			MistralPollen: Can only have 1 empowered potion active at once
+
 			InactivePylonCleanser: Throw near a pylon to reactivate it
 			InactivePylonHealer: Throw near a pylon to reactivate it
 			InactivePylonGunner: Throw near a pylon to reactivate it
@@ -945,7 +959,7 @@ Mods: {
 			
 			FertilePowder: Causes all nearby tiles to instantly grow
 			WhitePhial: Permanently increase buff duration by 25% 
-			TinkerersGuidebook: Permanently improve the Goblin Tinkerer's reforge service
+			TinkerersGuidebook:	Permanently improve the Goblin Tinkerer's reforge service
 			Moro: Permanently makes minion staffs consume no mana and faster
 
 			OmniPaint: Hold a paint item to bring up a menu of selectable paints
@@ -1107,47 +1121,47 @@ Mods: {
 			JungleSlotMachine:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			OceanSlotMachine:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			ShadowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			SnowRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			GlowingMushroomsRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			DesertRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			SkyRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			GoldenRoulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 			Roulette:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.Tooltips.RouletteDrop}
+				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
 			SwagLookingEye: 
@@ -1275,10 +1289,43 @@ Mods: {
 
 			Terraria_SoulofMight: "'The essence of vigorous creatures'"
 
+			Common: {
+				UseDarts: Uses seeds and darts as ammo
+				UsesGel: Uses gel for ammo
+
+				DedicatedItem: Dedicated Item
+
+				RouletteDrop: The item below is guaranteed to drop
+
+				NecromancyStaff: Slain enemies may convert into ghosts
+				NecromancyCandle: Absorbs the souls of enemies killed by minions when held
+				UseSouls: Uses {0} souls
+				CarryingSouls: Carrying {0} of {1} souls
+			}
+
 			Misc: {
 				DemonSiegeHint: May be upgraded at a Gore Nest...
 				AnglerHint: The Angler may be interested in this...
 				ExporterHint: The Exporter may be interested in this...
+				Unobtainable: A relic birthed in an alternate universe
+				DevItem: "'Smells like roses'"
+			}
+
+			Empowered: {
+				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
+				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
+				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
+				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
+				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
+				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
+				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
+				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
+				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
+				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
+				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
+				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
+				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
+				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
 			}
 		}
 
@@ -1299,13 +1346,13 @@ Mods: {
 			"9": Cyan
 			"10": Red
 			"11": Purple
-			Calamity_12: Turquoise
-			Calamity_13: Pure Green
-			Calamity_14: Dark Blue
-			Calamity_15: Violet
-			Calamity_16: Hot Pink
-			Calamity_Draedon: Dark Orange
-			Catalyst_Crystal: Crystal
+			CalamityMod_12: Turquoise
+			CalamityMod_13: Pure Green
+			CalamityMod_14: Dark Blue
+			CalamityMod_15: Violet
+			CalamityMod_16: Hot Pink
+			CalamityMod_Draedon: Dark Orange
+			CatalystMod_Crystal: Crystal
 		}
 
 		BuffName: {
@@ -1316,6 +1363,21 @@ Mods: {
 			SentryBuff: Sentry
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
+
+			EmpoweredArchery: "{$BuffName.Archery}"
+			EmpoweredEndurance: "{$BuffName.Endurance}"
+			EmpoweredFishing: "{$BuffName.Fishing}"
+			EmpoweredIronskin: "{$BuffName.Ironskin}"
+			EmpoweredMagicPower: "{$BuffName.MagicPower}"
+			EmpoweredManaRegeneration: "{$BuffName.ManaRegeneration}"
+			EmpoweredMining: "{$BuffName.Mining}"
+			EmpoweredRage: "{$BuffName.Rage}"
+			EmpoweredRegeneration: "{$BuffName.Regeneration}"
+			EmpoweredShine: "{$BuffName.Shine}"
+			EmpoweredSummoning: "{$BuffName.Summoning}"
+			EmpoweredSwiftness: "{$BuffName.Swiftness}"
+			EmpoweredThorns: "{$BuffName.Thorns}"
+			EmpoweredWrath: "{$BuffName.Wrath}"
 
 			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
@@ -1363,6 +1425,21 @@ Mods: {
 				'''
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
+			
+			EmpoweredArchery: 20% increased arrow damage and 20% increased arrow speed
+			EmpoweredEndurance: Reduces damage taken by 20%
+			EmpoweredFishing: Increases fishing power by 30
+			EmpoweredIronskin: Increase defense by 16
+			EmpoweredMagicPower: 30% increased magic damage
+			EmpoweredManaRegeneration: Greatly increased mana regeneration
+			EmpoweredMining: Increases mining speed by 50%
+			EmpoweredRage: Increases critical chance by 20%
+			EmpoweredRegeneration: Provides greatly increased life regeneration
+			EmpoweredShine: Emits a strong aura of light
+			EmpoweredSummoning: Increases your max number of minions by 2
+			EmpoweredSwiftness: 50% increased movement speed
+			EmpoweredThorns: Attackers also take great damage
+			EmpoweredWrath: Increases damage by 20%
 
 			FoolsGoldRingBuff: Improved stats from collecting coins
 			FlashwayNecklaceCooldown: Temporarily disables the flashway necklace
@@ -1536,7 +1613,6 @@ Mods: {
 			MothmanCritExplosion: Mothman Mask
 			PowPunch: Pow Punch
 			PowPunchExplosion: Pow Punch
-			CrystalDagger: Crystal Dagger
 			Dysesthesia: Dysesthesia
 			MiniDemonScythe: Dysesthesia
 			Aphrodite: Aphrodite
@@ -1644,11 +1720,6 @@ Mods: {
 		Cosmicanon: {
 			False: Blood Moons occur again
 			True: Blood Moons no longer occur
-		}
-
-		PrefixTooltip: {
-			Cooldown: "{0}% cooldown"
-			Combo: "{0}% combo rate"
 		}
 
 		NPCName: {

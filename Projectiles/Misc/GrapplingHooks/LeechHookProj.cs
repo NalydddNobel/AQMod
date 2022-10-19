@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
@@ -113,7 +114,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             float playerLength = (player.Center - Projectile.Center).Length();
             var texture = TextureAssets.Projectile[Type].Value;
             var drawPosition = Projectile.Center - Main.screenPosition;
-            DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain").Value, Projectile.Center, player.Center);
+            DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad).Value, Projectile.Center, player.Center);
             Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
             return false;
         }

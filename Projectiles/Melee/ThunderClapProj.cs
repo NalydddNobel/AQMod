@@ -23,7 +23,7 @@ namespace Aequus.Projectiles.Melee
         {
             if (!Main.dedServ)
             {
-                ChainTexture = ModContent.Request<Texture2D>(this.GetPath() + "Chain");
+                ChainTexture = ModContent.Request<Texture2D>(this.GetPath() + "Chain", AssetRequestMode.ImmediateLoad);
             }
         }
 

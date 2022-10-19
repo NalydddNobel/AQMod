@@ -402,7 +402,7 @@
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
             <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.InnerFinalizeContent"/></para>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Common.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
             </summary>
             <param name="callingMod"></param>
             <param name="args"></param>

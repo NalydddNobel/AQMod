@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
+using Aequus.Common.ModPlayers;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
@@ -17,7 +18,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Aequus.NPCs
 {
-    public class SpawnManager : GlobalNPC
+    public class SpawnManagerGlobalNPC : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -160,13 +161,13 @@ namespace Aequus.NPCs
 
         public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
         {
-            if (checkPillars && ArePillarsActiveAndInZone(spawnInfo))
+            if (checkPillars && (spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex))
             {
                 return true;
             }
             if (spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneSkyHeight)
             {
-                if (checkMoonSunEvents && AreMoonInvasionsActive(spawnInfo))
+                if (checkMoonSunEvents && (Main.eclipse || Main.pumpkinMoon || Main.snowMoon))
                 {
                     return true;
                 }
@@ -178,42 +179,19 @@ namespace Aequus.NPCs
             return false;
         }
 
-        public static bool ArePillarsActiveAndInZone(NPCSpawnInfo spawnInfo)
-        {
-            return spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex;
-        }
-        public static bool AreMoonInvasionsActive(NPCSpawnInfo spawnInfo)
-        {
-            return Main.eclipse || Main.pumpkinMoon || Main.snowMoon;
-        }
-        public static bool AreVanillaInvasionsActive(NPCSpawnInfo spawnInfo)
-        {
-            return Main.invasionType > 0;
-        }
-
         public static void ForceZen(Vector2 mySpot, float zenningDistance)
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active)
                 {
-                    Main.player[i].GetModPlayer<MonsterSpawnsPlayer>().forceZen = true;
+                    Main.player[i].GetModPlayer<ZenPlayer>().forceZen = true;
                 }
             }
         }
         public static void ForceZen(NPC npc)
         {
             ForceZen(npc.Center, 2000f);
-        }
-    }
-
-    public class MonsterSpawnsPlayer : ModPlayer
-    {
-        public bool forceZen;
-
-        public override void ResetEffects()
-        {
-            forceZen = false;
         }
     }
 }

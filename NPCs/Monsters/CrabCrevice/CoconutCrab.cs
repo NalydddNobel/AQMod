@@ -5,6 +5,7 @@ using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -215,7 +216,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             var origin = new Vector2(28f, 33f);
             spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Center + new Vector2(0f, NPC.gfxOffY + 2f) - screenPos,
                 NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
-            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow").Value, NPC.Center + new Vector2(0f, NPC.gfxOffY + 2f) - screenPos,
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, NPC.Center + new Vector2(0f, NPC.gfxOffY + 2f) - screenPos,
                 NPC.frame, Color.White, NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
             return false;
         }

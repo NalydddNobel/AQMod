@@ -315,7 +315,7 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
-                case ItemID.QueenBeeBossBag:
+                case ItemID.PlanteraBossBag:
                     {
                         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     }

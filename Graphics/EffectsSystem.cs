@@ -7,6 +7,7 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -100,13 +101,13 @@ namespace Aequus.Graphics
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
         }
-        private void LoadHooks()
+        private static void LoadHooks()
         {
             On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
             On.Terraria.Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
-            On.Terraria.Main.DrawDust += Hook_OnDrawDust;
-            On.Terraria.Main.DrawProjectiles += Hook_OnDrawProjs;
-            On.Terraria.Main.DrawNPCs += Hook_OnDrawNPCs;
+            On.Terraria.Main.DrawDust += Main_DrawDust;
+            On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
+            On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
         }
 
         public override void Unload()
@@ -206,7 +207,7 @@ namespace Aequus.Graphics
             Main.spriteBatch.End();
         }
 
-        private static void Hook_OnDrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
+        private static void Main_DrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
         {
             orig(self);
             try
@@ -222,7 +223,6 @@ namespace Aequus.Graphics
                 {
                     Filters.Scene.Activate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(1f);
-                    //GamestarTargetRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 }
                 else
                 {
@@ -236,7 +236,7 @@ namespace Aequus.Graphics
             }
         }
 
-        private void Hook_OnDrawProjs(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+        private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
         {
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
             BehindProjs.Draw(Main.spriteBatch);
@@ -252,12 +252,12 @@ namespace Aequus.Graphics
             orig(self);
         }
 
-        internal static void Hook_OnDrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+        internal static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
         {
             var particleSettings = new ParticleRendererSettings();
             try
             {
-                GlimmerScene.Draw();
+                GlimmerSceneEffect.DrawUltimateSword();
                 NPCsBehindAllNPCs.renderingNow = true;
                 for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
                 {
@@ -339,7 +339,7 @@ namespace Aequus.Graphics
 
         public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, Vector2? scale = null)
         {
-            var sampler = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel").Value;
+            var sampler = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
             var drawData = new DrawData(sampler, drawPosition, null, color, rotation, new Vector2(0.5f, 0.5f), scale ?? Vector2.One, SpriteEffects.None, 0);
             effect.UseColor(color);
             effect.Apply(drawData);

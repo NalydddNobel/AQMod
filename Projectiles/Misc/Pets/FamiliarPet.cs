@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Misc.Pets
             {
                 return false;
             }
-            var batchData = new SpriteBatchData(Main.spriteBatch);
+            var batchData = new SpriteBatchCache(Main.spriteBatch);
             AequusPlayer.PlayerDrawScale = Projectile.scale;
             AequusPlayer.PlayerDrawForceDye = Main.CurrentDrawnEntityShader;
             Main.spriteBatch.End();

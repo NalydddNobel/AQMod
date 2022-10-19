@@ -34,7 +34,7 @@ namespace Aequus.UI.States
         {
             if (!Main.dedServ)
             {
-                RenameBackIconTexture = ModContent.Request<Texture2D>("Aequus/Assets/UI/RenameBackIcon");
+                RenameBackIconTexture = ModContent.Request<Texture2D>("Aequus/Assets/UI/RenameBackIcon", AssetRequestMode.ImmediateLoad);
             }
         }
 

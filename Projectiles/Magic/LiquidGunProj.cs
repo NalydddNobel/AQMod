@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -125,7 +126,7 @@ namespace Aequus.Projectiles.Magic
             {
                 if (LiquidGun.TryGetLiquidInfo(heldItem.LiquidType, out var info))
                 {
-                    texture = ModContent.Request<Texture2D>(info.TexturePath).Value;
+                    texture = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad).Value;
                     if (ModContent.RequestIfExists<Texture2D>($"{info.TexturePath}_Glow", out var glowMask))
                     {
                         glow = glowMask.Value;

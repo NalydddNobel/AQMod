@@ -50,16 +50,6 @@ namespace Aequus.Items.Weapons.Ranged
             return true;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Blowpipe)
-                .AddIngredient(ItemID.Starfish, 5)
-                .AddIngredient<AquaticEnergy>()
-                .AddTile(TileID.Anvils)
-                .Register();
-        }
-
         public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
         {
             aequusProjectile.fishDamage = true;

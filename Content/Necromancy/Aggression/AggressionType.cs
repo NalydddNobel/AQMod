@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,7 @@ namespace Aequus.Content.Necromancy.Aggression
 {
     public class AggressionType : ILoadable
     {
+        public static Dictionary<string, IEnemyAggressor> AggressorFromName { get; private set; }
         public static IEnemyAggressor BloodMoon { get; private set; }
         public static IEnemyAggressor Eclipse { get; private set; }
         public static IEnemyAggressor MartianMadness { get; private set; }
@@ -130,10 +132,23 @@ namespace Aequus.Content.Necromancy.Aggression
             GoblinArmy = new NeedsInvasion(InvasionID.GoblinArmy);
             DayTime = new NeedsTimeOfDay(true);
             NightTime = new NeedsTimeOfDay(false);
+
+            AggressorFromName = new Dictionary<string, IEnemyAggressor>
+            {
+                { "NightTime", NightTime },
+                { "DayTime", DayTime },
+                { "GoblinArmy", GoblinArmy },
+                { "PirateInvasion", PirateInvasion },
+                { "MartianMadness", MartianMadness },
+                { "Eclipse", Eclipse },
+                { "BloodMoon", BloodMoon }
+            };
         }
 
         void ILoadable.Unload()
         {
+            AggressorFromName?.Clear();
+            AggressorFromName = null;
             BloodMoon = null;
             Eclipse = null;
             MartianMadness = null;

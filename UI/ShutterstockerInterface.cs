@@ -22,7 +22,7 @@ namespace Aequus.UI
             DrawList = new List<ShutterstockerProj>();
             if (!Main.dedServ)
             {
-                Texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/ShutterstockerInterface");
+                Texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/ShutterstockerInterface", AssetRequestMode.ImmediateLoad);
             }
         }
 

@@ -2,6 +2,7 @@
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -77,7 +78,7 @@ namespace Aequus.Projectiles.Magic
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
 
-            var auraTexture = ModContent.Request<Texture2D>(Texture + "_Aura").Value;
+            var auraTexture = ModContent.Request<Texture2D>(Texture + "_Aura", AssetRequestMode.ImmediateLoad).Value;
             float opacity = Math.Clamp(Projectile.velocity.Length() / 20f, 0.2f, 1f);
             var auraOrigin = auraTexture.Size() / 2f;
             for (int i = 0; i < trailLength; i++)

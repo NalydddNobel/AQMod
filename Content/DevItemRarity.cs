@@ -2,6 +2,7 @@
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -25,7 +26,7 @@ namespace Aequus.Content
             var center = size / 2f;
             var transparentColor = color * 0.4f;
             transparentColor.A = 0;
-            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/NarrizuulBloom").Value;
+            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/NarrizuulBloom", AssetRequestMode.ImmediateLoad).Value;
             var spotlightOrigin = texture.Size() / 2f;
             float spotlightRotation = rotation + MathHelper.PiOver2;
             var spotlightScale = new Vector2(1.2f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 4f) * 0.145f, center.Y * 0.15f);

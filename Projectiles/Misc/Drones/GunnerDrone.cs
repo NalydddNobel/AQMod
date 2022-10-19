@@ -2,6 +2,7 @@
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -195,7 +196,7 @@ namespace Aequus.Projectiles.Misc.Drones
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
-            var gunTexture = ModContent.Request<Texture2D>(Texture + "Gun");
+            var gunTexture = ModContent.Request<Texture2D>(Texture + "Gun", AssetRequestMode.ImmediateLoad);
 
             var color = GetPylonColor();
             float turretRotation = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -1f, 1f);
@@ -209,7 +210,7 @@ namespace Aequus.Projectiles.Misc.Drones
                 turretRotation - MathHelper.PiOver2, new Vector2(gunTexture.Value.Width / 2f, 4f), Projectile.scale, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + off - Main.screenPosition, frame, lightColor,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow").Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, Projectile.position + off - Main.screenPosition, frame, color * SpawnInOpacity,
                 Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             return false;
         }

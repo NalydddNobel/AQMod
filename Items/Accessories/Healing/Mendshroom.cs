@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Misc;
+﻿using Aequus.Content;
+using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ModLoader;
 

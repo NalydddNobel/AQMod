@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
@@ -325,7 +326,7 @@ namespace Aequus.NPCs.Friendly.Critter
             {
                 Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 30, 10, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
-            var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel").Value;
+            var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
             var eyeOffset = Vector2.Zero;

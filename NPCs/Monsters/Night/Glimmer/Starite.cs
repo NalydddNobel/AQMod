@@ -13,6 +13,7 @@ using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
@@ -503,7 +504,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 float scale = (float)Math.Pow(Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f), 3f) * 1.25f;
                 var shineColor = new Color(120, 120, 180, 0) * scale * NPC.Opacity;
 
-                var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay").Value;
+                var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
                 var lightRayOrigin = lightRay.Size() / 2f;
 
                 int i = 0;
@@ -517,7 +518,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     i++;
                 }
 
-                var spotlightTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Bloom_20x20").Value;
+                var spotlightTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Bloom_20x20", AssetRequestMode.ImmediateLoad).Value;
                 var spotlightOrigin = spotlightTexture.Size() / 2f;
                 Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * scale * NPC.Opacity, 0f, spotlightOrigin, scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, spotlightOrigin, scale * 2f, SpriteEffects.None, 0f);

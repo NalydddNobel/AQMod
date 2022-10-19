@@ -96,8 +96,8 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             int i = tooltips.GetIndex("UseMana");
-            tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("Tooltips.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
-            tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("Tooltips.UseSouls", useSouls)));
+            tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("ItemTooltip.Common.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
+            tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("ItemTooltip.Common.UseSouls", useSouls)));
 
             TooltipsGlobalItem.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, higherIsGood: false);
             TooltipsGlobalItem.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);

@@ -1,4 +1,5 @@
-﻿using Aequus.UI.EventProgressBars;
+﻿using Aequus.NPCs.Boss;
+using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -47,9 +48,8 @@ namespace Aequus.Biomes.Glimmer
 
         public override void PreUpdatePlayers()
         {
-            GlimmerBiome.omegaStarite = -1;
-            if (GlimmerScene.cantTouchThis > 0)
-                GlimmerScene.cantTouchThis--;
+            if (GlimmerSceneEffect.cantTouchThis > 0)
+                GlimmerSceneEffect.cantTouchThis--;
 
             if (GlimmerBiome.EventActive)
             {
@@ -79,6 +79,14 @@ namespace Aequus.Biomes.Glimmer
                 {
                     SendGlimmerStatus();
                 }
+            }
+        }
+
+        public override void PostUpdateEverything()
+        {
+            if (GlimmerBiome.omegaStarite != -1)
+            {
+                GlimmerBiome.omegaStarite = NPC.FindFirstNPC(ModContent.NPCType<OmegaStarite>());
             }
         }
 
