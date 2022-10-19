@@ -91,16 +91,13 @@ namespace Aequus.Items
                 {
                     if (lineName == "Tooltip#")
                     {
-                        int finalIndex = i;
-                        while (i < tooltips.Count)
+                        for (; i < tooltips.Count; i++)
                         {
-                            if (tooltips[i].Name.StartsWith("Tooltip"))
+                            if (!tooltips[i].Name.StartsWith("Tooltip"))
                             {
-                                finalIndex = i;
+                                return i;
                             }
-                            i++;
                         }
-                        return finalIndex;
                     }
                     return i;
                 }

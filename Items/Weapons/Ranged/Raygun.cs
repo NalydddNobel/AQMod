@@ -85,7 +85,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.PhoenixBlaster)
+                .AddIngredient(ItemID.IllegalGunParts)
                 .AddIngredient<CosmicEnergy>()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)

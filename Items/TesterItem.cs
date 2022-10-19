@@ -1,7 +1,5 @@
 ﻿using Aequus.Items.Weapons.Magic;
-using Aequus.Tiles;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
@@ -33,7 +31,7 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            Content.Necromancy.NecromancyDatabase.LoadEntriesFile();
+            //Content.Necromancy.NecromancyDatabase.LoadEntriesFile();
             return true;
         }
     }

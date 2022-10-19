@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.CarpenterBounties;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -66,7 +67,7 @@ namespace Aequus.Items.Misc
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 2, silver: 50);
-            BountyFullName = "None";
+            BountyFullName = CarpenterSystem.BountiesByID[0].FullName;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

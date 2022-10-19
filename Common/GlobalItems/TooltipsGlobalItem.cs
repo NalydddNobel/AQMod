@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Empowered;
+﻿using Aequus.Biomes.DemonSiege;
+using Aequus.Buffs.Empowered;
 using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Prefixes.Potions;
@@ -103,13 +104,13 @@ namespace Aequus.Common.GlobalItems
                 if (ExporterQuests.QuestItems.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
-                        tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
+                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
                 if (AequusItem.LegendaryFishIDs.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))
-                        tooltips.Insert(tooltips.GetIndex("Quest"), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
 
@@ -160,6 +161,10 @@ namespace Aequus.Common.GlobalItems
                     PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
                 }
 
+                if (Main.hardMode && !AequusWorld.downedEventDemon && DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && val.Progression == UpgradeProgressionType.PreHardmode)
+                {
+                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")) { OverrideColor = HintColor, });
+                }
                 //TestLootBagTooltip(item, tooltips);
             }
             catch

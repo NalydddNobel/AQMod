@@ -7,10 +7,8 @@ using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -31,7 +29,7 @@ namespace Aequus.Tiles
             private Point centerPoint;
             public Point CenterPoint
             {
-                get => centerPoint; 
+                get => centerPoint;
 
                 set
                 {
