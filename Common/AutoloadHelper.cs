@@ -126,19 +126,6 @@ namespace Aequus.Common
             return false;
         }
 
-        public static void AutoloadOfType<T>(Assembly ass, Aequus aequus) where T : ILoadable
-        {
-            var m = typeof(T).GetMethod("CheckAutoload", BindingFlags.Public | BindingFlags.Static);
-            foreach (var t in GetTypes(ass))
-            {
-                if (t.IsAbstract || t.IsInterface)
-                {
-                    continue;
-                }
-                m.Invoke(null, new object[] { aequus, t });
-            }
-        }
-
         public override void PostSetupContent()
         {
             foreach (var t in GetAndOrganizeOfType<IPostSetupContent>(Aequus.Instance.Code))

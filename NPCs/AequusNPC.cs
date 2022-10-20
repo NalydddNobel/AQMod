@@ -24,6 +24,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -43,6 +44,10 @@ namespace Aequus.NPCs
             public AequusPlayer aequus;
             public float distance;
         }
+
+        public static FieldInfo NPC_waterMovementSpeed { get; private set; }
+        public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
+        public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
 
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> DontModifyVelocity { get; private set; }
@@ -82,6 +87,9 @@ namespace Aequus.NPCs
                 NPCID.CultistBoss,
                 NPCID.HallowBoss,
             };
+            NPC_waterMovementSpeed = typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
+            NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
+            NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
 
             On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;

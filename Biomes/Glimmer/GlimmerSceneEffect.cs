@@ -29,7 +29,7 @@ namespace Aequus.Biomes.Glimmer
             if (!Main.dedServ)
             {
                 StarShader = new StaticMiscShaderInfo("GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
-                typeof(MiscShaderData).GetField("_uImage1", AequusHelpers.LetMeIn).SetValue(StarShader.ShaderData, ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
+                StarShader.ShaderData.UseImage1(ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
                 SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
             }
         }

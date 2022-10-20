@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics.Tiles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -12,7 +14,11 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
     {
         public const int FramesX = 3;
 
+        public override string Texture => Aequus.AssetsPath + "Pixel";
+
+        public List<(Vector4, Func<Color>)> drawCache;
         public List<Rectangle> DamageHitboxCache;
+        private bool subscribedToRender;
 
         public override void SetStaticDefaults()
         {
@@ -33,6 +39,23 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
 
         public override void AI()
         {
+            if ((int)Projectile.localAI[0] == 0)
+            {
+                var spawnLoc = new Vector2(Projectile.position.X + Projectile.width / 2f, Projectile.position.Y + Projectile.height);
+                for (int i = 0; i < 10; i++)
+                {
+                    var d = Dust.NewDustPerfect(spawnLoc, DustID.Smoke, new Vector2(Main.rand.NextFloat(-12f, 12f), Main.rand.NextFloat(-10f, 0f)), Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                    d.fadeIn = d.scale + 0.25f;
+                    d.noGravity = true;
+                }
+                for (int i = 0; i < 30; i++)
+                {
+                    var d = Dust.NewDustPerfect(spawnLoc, DustID.Torch, new Vector2(Main.rand.NextFloat(-12f, 12f), Main.rand.NextFloat(-10f, 0f)), Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                    d.fadeIn = d.scale + 0.25f;
+                    d.noGravity = true;
+                }
+                Projectile.localAI[0] = 1f;
+            }
             if (Projectile.timeLeft < 20)
             {
                 Projectile.alpha += 12;
@@ -43,7 +66,7 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
                 if (Projectile.alpha < 0)
                     Projectile.alpha = 0;
             }
-            if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width/ 2f - 8f, Projectile.height / 2f), 16, 2))
+            if (Collision.SolidCollision(Projectile.position + new Vector2(Projectile.width / 2f - 8f, Projectile.height / 2f), 16, 2))
             {
                 Projectile.velocity = Vector2.Zero;
             }
@@ -116,84 +139,82 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
 
         public override bool PreDraw(ref Color lightColor)
         {
-            int startX = (int)(Projectile.position.X / 16f);
-            int startY = (int)(Projectile.position.Y / 16f);
-            int endX = (int)((Projectile.position.X + Projectile.width) / 16f);
-            int endY = (int)((Projectile.position.Y + Projectile.height) / 16f);
-            for (int i = startX; i <= endX; i++)
+            if (!subscribedToRender)
             {
-                for (int j = startY; j <= endY; j++)
+                if (drawCache == null)
+                    drawCache = new List<(Vector4, Func<Color>)>();
+                SpecialTileRenderer.AdjustTileTarget.Add(() =>
                 {
-                    if (Main.tile[i, j].IsSolid())
+                    subscribedToRender = false;
+                    int startX = (int)(Projectile.position.X / 16f);
+                    int startY = (int)(Projectile.position.Y / 16f);
+                    int endX = (int)((Projectile.position.X + Projectile.width) / 16f);
+                    int endY = (int)((Projectile.position.Y + Projectile.height) / 16f);
+                    var drawColor = Color.Lerp(Color.Yellow, Color.Red, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0.6f, 0.8f));
+                    var drawOffset = AequusHelpers.TileDrawOffset;
+                    drawCache.Clear();
+                    for (int i = startX; i <= endX; i++)
                     {
-                        DrawBurnSegment(i, j);
-                    }
-                }
-            }
-            return false;
-        }
-        public void DrawBurnSegment(int i, int j)
-        {
-            bool left = Main.tile[i - 1, j].IsFullySolid();
-            bool right = Main.tile[i + 1, j].IsFullySolid();
-            bool top = Main.tile[i, j - 1].IsFullySolid();
-            bool bottom = Main.tile[i, j + 1].IsFullySolid();
-            if (left && right && top && bottom)
-                return;
+                        for (int j = startY; j <= endY; j++)
+                        {
+                            if (Main.tile[i, j].IsSolid() && !Main.tile[i, j - 1].IsFullySolid())
+                            {
+                                int pixelStartX = i * 16 - (int)Main.screenPosition.X + (int)drawOffset.X;
+                                int pixelStartY = j * 16 - (int)Main.screenPosition.Y + (int)drawOffset.Y;
+                                float distanceOpacity = 1f - (float)Math.Pow(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f) - Main.screenPosition, Projectile.Center - Main.screenPosition) / (Projectile.Size / 2f).Length(), 2f);
+                                for (int k = 0; k < 16; k += 2)
+                                {
+                                    float drawnDown = 1f;
+                                    float drawDownSubtractor = 0.1f + (1f - Projectile.Opacity);
+                                    int max = 18;
+                                    bool drawnAura = false;
+                                    for (int l = -2; l < max; l += 2)
+                                    {
+                                        float drawnDownCache = drawnDown;
+                                        if (!SpecialTileRenderer.TileTargetColors.InBounds(pixelStartX + k, pixelStartY + l))
+                                            break;
+                                        var clr = SpecialTileRenderer.TileTargetColors[pixelStartX + k, pixelStartY + l];
+                                        if (clr.A == 0)
+                                            continue;
 
-            float distance = (new Vector2(i * 16f + 8f, j * 16f + 8f) - Projectile.Center).Length() / (Projectile.Size / 2f).Length();
-            var color = Color.Lerp(new Color(255, 128, 50, 50), new Color(200, 48, 10, 0), AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * (1f - distance) * Projectile.Opacity;
-            var frame = new Rectangle(0, 0, 16, 16);
-            if (left && right)
-            {
-                if (!top)
-                {
-                    DrawBurnPatch(top, i, j, 1, 0, color);
-                }
+                                        if (!drawnAura)
+                                        {
+                                            drawnAura = true;
+                                            float auraOpacity = (AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2f + i * 0.1f, 0.4f, 1f) + AequusHelpers.Wave(-Main.GlobalTimeWrappedHourly + i * 0.05f, 0.4f, 1f)) / 2f;
+                                            int auraMax = (int)(16 * Projectile.Opacity * auraOpacity * distanceOpacity) / 2;
+                                            for (int n = 0; n < auraMax * 2; n++)
+                                            {
+                                                if (!SpecialTileRenderer.TileTargetColors.InBounds(pixelStartX + k, pixelStartY + l - n))
+                                                {
+                                                    break;
+                                                }
+                                                int nCache = n;
+                                                drawCache.Add((new Vector4(pixelStartX + k + (int)Main.screenPosition.X - (int)AequusHelpers.TileDrawOffset.X, pixelStartY + l - n + (int)Main.screenPosition.Y - (int)AequusHelpers.TileDrawOffset.Y, 0f, 0f), 
+                                                    () => drawColor * ((float)Math.Pow((1f - 1f / auraMax * ((nCache - 1) / 2)) * Projectile.Opacity, 2f) / 2f * distanceOpacity)));
+                                            }
+                                        }
+                                        drawCache.Add((new Vector4(pixelStartX + k + (int)Main.screenPosition.X - (int)AequusHelpers.TileDrawOffset.X, pixelStartY + l + (int)Main.screenPosition.Y - (int)AequusHelpers.TileDrawOffset.Y, 0f, 0f),
+                                            () => drawColor.HueAdd(-(1f - drawnDownCache) * 0.1f).UseA(100) * (float)Math.Pow(drawnDownCache * Projectile.Opacity, 4f) * distanceOpacity));
+
+                                        drawnDown -= drawDownSubtractor;
+                                        if (drawnDown <= 0f)
+                                            break;
+                                        max++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
             }
-            else if (left && !top)
+            var t = TextureAssets.Projectile[Type].Value;
+            var scale = new Vector2(2f);
+            foreach (var d in drawCache)
             {
-                DrawBurnPatch(top, i, j, 2, 0, color);
+                Main.spriteBatch.Draw(t, new Vector2(d.Item1.X, d.Item1.Y) - Main.screenPosition, null, d.Item2(), 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
             }
-            else if (right && !top)
-            {
-                DrawBurnPatch(top, i, j, 0, 0, color);
-            }
-            else if (!top)
-            {
-                DrawBurnPatchNoTop(top, i, j, 0, 0, color);
-                DrawBurnPatch(top, i, j, 2, 0, color);
-            }
-        }
-        private void DrawBurnPatchToTile(int i, int j, Rectangle frame, Color color)
-        {
-            var drawCoords = new Vector2(i * 16f, j * 16f);
-            if (Main.tile[i, j].IsHalfBlock)
-            {
-                drawCoords.Y += 8f;
-                frame.Height -= 8;
-            }
-            Main.EntitySpriteDraw(TextureAssets.Projectile[Type].Value, drawCoords - Main.screenPosition, frame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
-        }
-        private void DrawBurnPatchNoTop(bool top, int i, int j, int frameX, int frameY, Color color)
-        {
-            var frame = Frame(frameX, frameY);
-            frame.Y += 2;
-            frame.Height -= 2;
-            DrawBurnPatchToTile(i, j, frame, color);
-        }
-        private void DrawBurnPatch(bool top, int i, int j, int frameX, int frameY, Color color)
-        {
-            if (!top)
-            {
-                Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, new Vector2(i * 16f, j * 16f - 16f) - Main.screenPosition, new Rectangle(TextureCache.Bloom[0].Value.Width / 2, 0, 1,
-                    TextureCache.Bloom[0].Value.Height / 2), color.UseA(0) * 0.33f, 0f, Vector2.Zero, new Vector2(16f, 32f / TextureCache.Bloom[0].Value.Height), SpriteEffects.None, 0);
-            }
-            DrawBurnPatchToTile(i, j, Frame(frameX, frameY), color);
-        }
-        private Rectangle Frame(int x, int y)
-        {
-            return new Rectangle(x * 18, y * 18, 16, 16);
+            subscribedToRender = true;
+            return false;
         }
     }
 }

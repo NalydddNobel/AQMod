@@ -1633,9 +1633,9 @@ namespace Aequus
 
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
-            typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, water);
-            typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, lava);
-            typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(npc, honey);
+            AequusNPC.NPC_waterMovementSpeed.SetValue(npc, water);
+            AequusNPC.NPC_lavaMovementSpeed.SetValue(npc, lava);
+            AequusNPC.NPC_honeyMovementSpeed.SetValue(npc, honey);
         }
 
         public static T ModItem<T>(this Item item) where T : ModItem

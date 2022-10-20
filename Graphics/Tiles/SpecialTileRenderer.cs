@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -8,7 +9,10 @@ namespace Aequus.Graphics.Tiles
 {
     public class SpecialTileRenderer : ILoadable
     {
-        internal static Action PreDrawTiles;
+        public static List<Action> AdjustTileTarget { get; private set; }
+        public static TextureColorData TileTargetColors { get; private set; }
+
+        public static Action PreDrawTiles;
         public static Dictionary<TileRenderLayer, List<Point>> DrawPoints { get; private set; }
 
         void ILoadable.Load(Mod mod)
@@ -21,9 +25,42 @@ namespace Aequus.Graphics.Tiles
             {
                 DrawPoints[(TileRenderLayer)i] = new List<Point>();
             }
+            AdjustTileTarget = new List<Action>();
+            On.Terraria.Main.RenderTiles += Main_RenderTiles;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+        }
+
+        private static void Main_RenderTiles(On.Terraria.Main.orig_RenderTiles orig, Main self)
+        {
+            orig(self);
+            if (AdjustTileTarget.Count <= 0)
+                return;
+
+            if (AdjustTileTarget.Count > 240)
+            {
+                AdjustTileTarget.Clear();
+            }
+            if (self.tileTarget == null || self.tileTarget.IsDisposed)
+            {
+                return;
+            }
+
+            if (TileTargetColors == null || !TileTargetColors.CheckTexture(self.tileTarget))
+            {
+                TileTargetColors = new TextureColorData(self.tileTarget);
+            }
+            else
+            {
+                TileTargetColors.RefreshTexture(Main.instance.tileTarget);
+            }
+            foreach (var r in AdjustTileTarget)
+            {
+                r.Invoke();
+            }
+            AdjustTileTarget?.Clear();
+            //TileTargetColors.ApplyChanges();
         }
 
         public static void Add(Point p, TileRenderLayer renderLayer)
