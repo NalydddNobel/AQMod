@@ -46,6 +46,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.penetrate = -1;
             Projectile.localNPCHitCooldown = 50;
             Projectile.usesLocalNPCImmunity = true;
+            Projectile.ignoreWater = true;
         }
 
         public override bool? CanDamage()

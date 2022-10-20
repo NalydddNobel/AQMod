@@ -24,7 +24,6 @@ namespace Aequus.Biomes
 
         public static Point TileLocation { get; set; }
 
-
         public static int omegaStarite;
 
         public static bool EventActive => TileLocation != Point.Zero;
@@ -44,6 +43,11 @@ namespace Aequus.Biomes
             {
                 music = new ConfiguredMusicData(MusicID.MartianMadness);
             }
+        }
+
+        public override void Unload()
+        {
+            music = null;
         }
 
         public override bool IsBiomeActive(Player player)

@@ -1,5 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Boss.Summons;
+using Aequus.NPCs.Boss;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
@@ -43,6 +44,11 @@ namespace Aequus.Biomes.DemonSiege
         }
         public void OnPlayerActivate(Player player)
         {
+            //if (Items.ContainsAny((i) => i.type == ModContent.ItemType<VoidRing>()))
+            //{
+            //    SummonBoss1(voidRing: true);
+            //}
+            // else if
             if (Items.ContainsAny((i) => i.type == ModContent.ItemType<UnholyCore>()) || player.ConsumeItem(ModContent.ItemType<UnholyCore>()))
             {
                 unholyCoreUsed = true;
@@ -124,7 +130,7 @@ namespace Aequus.Biomes.DemonSiege
                     return;
                 }
             }
-            if (TimeLeft > 0)
+            if (TimeLeft > 0 || DemonSiegeSystem.DemonSiegePause > 0)
             {
                 if (_auraScale < 1f)
                 {
@@ -139,8 +145,11 @@ namespace Aequus.Biomes.DemonSiege
                     InnerUpdate_OnEnd();
                     return;
                 }
-                var center = WorldCenter;
-                InnerUpdate_TimeLeft(center);
+                if (DemonSiegeSystem.DemonSiegePause <= 0)
+                {
+                    var center = WorldCenter;
+                    InnerUpdate_TimeLeft(center);
+                }
                 return;
             }
             InnerUpdate_OnEnd();
@@ -167,6 +176,11 @@ namespace Aequus.Biomes.DemonSiege
         }
         public void InnerUpdate_OnEnd()
         {
+            if (!AequusWorld.downedArcubus)
+            {
+                SummonBoss1(voidRing: false);
+                return;
+            }
             Vector2 itemSpawn = WorldCenter;
             itemSpawn.Y -= 20f;
             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -249,7 +263,7 @@ namespace Aequus.Biomes.DemonSiege
             string itemList = "";
             foreach (var i in Items)
             {
-                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && val.OriginalItem != val.NewItem)
+                if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && (val.OriginalItem != val.NewItem/* || val.OriginalItem == ModContent.ItemType<VoidRing>()*/))
                 {
                     continue;
                 }
@@ -259,8 +273,19 @@ namespace Aequus.Biomes.DemonSiege
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                AequusText.Broadcast("ChatBroadcast.DemonSiegeFailEat" + itemList, new Color(255, 210, 25, 255), itemList);
+                AequusText.Broadcast("ChatBroadcast.DemonSiegeFailEat", new Color(255, 210, 25, 255), itemList);
             }
+        }
+        public void SummonBoss1(bool voidRing)
+        {
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                var worldPosition = WorldCenter;
+                //NPC.SpawnBoss((int)worldPosition.X, (int)worldPosition.Y, ModContent.NPCType<Arcubus>(), Player.FindClosest(worldPosition, 2, 2));
+                DemonSiegeSystem.DemonSiegePause = 120;
+            }
+            TimeLeft = 0;
+            PreStart = 0;
         }
 
         public void SendStatusPacket(BinaryWriter writer)

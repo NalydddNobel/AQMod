@@ -348,39 +348,6 @@ namespace Aequus.NPCs.Boss
             else if (NPC.life <= 0)
             {
                 SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
-                //if (skipDeathTimer > 0)
-                //{
-                //    if (NoHitting.HasBeenNoHit(npc, Main.myPlayer))
-                //    {
-                //        NoHitting.PlayNoHitJingle(NPC.Center);
-                //    }
-                //    AQGraphics.SetCullPadding();
-                //    for (int i = 0; i < rings.Length; i++)
-                //    {
-                //        for (int j = 0; j < rings[i].amountOfSegments; j++)
-                //        {
-                //            for (int k = 0; k < 30; k++)
-                //            {
-                //                Dust.NewDust(rings[i].CachedHitboxes[j].TopLeft(), rings[i].CachedHitboxes[j].Width, rings[i].CachedHitboxes[j].Height, 58, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
-                //            }
-                //            for (float f = 0f; f < 1f; f += 0.125f)
-                //            {
-                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, Color.CornflowerBlue).noGravity = true;
-                //            }
-                //            for (float f = 0f; f < 1f; f += 0.25f)
-                //            {
-                //                Dust.NewDustPerfect(rings[i].CachedHitboxes[j].Center.ToVector2(), ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold).noGravity = true;
-                //            }
-                //            if (AQGraphics.Cull_WorldPosition(rings[i].CachedHitboxes[j]))
-                //            {
-                //                for (int k = 0; k < 7; k++)
-                //                {
-                //                    Gore.NewGore(NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 12f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
-                //                }
-                //            }
-                //        }
-                //    }
-                //}
                 for (int k = 0; k < 60; k++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);

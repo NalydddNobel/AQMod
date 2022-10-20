@@ -116,11 +116,17 @@ namespace Aequus.NPCs
                         return;
                     }
                 }
-                pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 0.005f);
 
-                if (Main.bloodMoon && !NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
+                if (Main.bloodMoon)
                 {
-                    pool.Add(ModContent.NPCType<BloodMimic>(), 0.02f);
+                    if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
+                    {
+                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.025f);
+                    }
+                }
+                else
+                {
+                    pool.Add(ModContent.NPCType<DwarfStariteCritter>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 2f : 0.01f);
                 }
             }
             if (spawnInfo.Player.Aequus().ZoneCrabCrevice)

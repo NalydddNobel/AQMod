@@ -1,5 +1,4 @@
 ﻿using Aequus.Graphics;
-using Aequus.NPCs.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,8 +6,6 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Biomes.Glimmer
@@ -46,7 +43,14 @@ namespace Aequus.Biomes.Glimmer
             }
             else
             {
-                realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles, 0f), 0.05f);
+                if (GlimmerBiome.EventActive)
+                {
+                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiome.MaxTiles, 0f), 0.05f);
+                }
+                else if (PeacefulGlimmerBiome.EventActive)
+                {
+                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - PeacefulGlimmerBiome.CalcTiles(Main.LocalPlayer) / (float)PeacefulGlimmerBiome.MaxTiles, 0f), 0.05f);
+                }
             }
         }
 
@@ -90,13 +94,11 @@ namespace Aequus.Biomes.Glimmer
             var effect = GlimmerSceneEffect.StarShader.ShaderData;
 
             effect.Shader.Parameters["uRotation"].SetValue(6f - realOpacity * 0.5f);
-            drawData.rotation = 6f - realOpacity * 0.5f;
             effect.UseOpacity(realOpacity);
             effect.UseSaturation(approxProgress);
             effect.UseColor(Color.Lerp(Color.White, Color.Blue, approxProgress));
             effect.Apply(drawData);
 
-            drawData.rotation = 0f;
             drawData.Draw(spriteBatch);
 
             spriteBatch.End();

@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
+using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -116,16 +117,22 @@ namespace Aequus.Tiles.Misc
             }
             if (DemonSiegeSystem.NewInvasion(topLeft.X, topLeft.Y, item, Main.myPlayer))
             {
-                goto ConsumeItem;
+                ConsumeGoreNestItem(item);
             }
-            if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(topLeft, out var sacrifice))
+            else if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(topLeft, out var sacrifice))
             {
                 sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     PacketSystem.Send(sacrifice.SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
-                return true;
             }
-        ConsumeItem:
+            return true;
+        }
+        public static bool ConsumeGoreNestItem(Item item)
+        {
+            //if (item.type != ModContent.ItemType<VoidRing>())
+            //{
+            //    return false;
+            //}
             item.stack--;
             if (item.stack <= 0)
             {

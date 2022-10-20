@@ -219,7 +219,11 @@ namespace Aequus.Graphics
                         GhostOutlineRenderer.NecromancyRenderers[i].DrawOntoScreen(Main.spriteBatch);
                     }
                 }
-                if (GamestarRenderer.Instance.IsReady)
+                if (!Lighting.NotRetro)
+                {
+                    GamestarRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
+                }
+                else if (GamestarRenderer.Instance.IsReady)
                 {
                     Filters.Scene.Activate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(1f);

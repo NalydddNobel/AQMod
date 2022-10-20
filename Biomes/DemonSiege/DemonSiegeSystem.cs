@@ -21,6 +21,8 @@ namespace Aequus.Biomes.DemonSiege
         public static Dictionary<int, SacrificeData> RegisteredSacrifices { get; private set; }
         public static Dictionary<int, int> SacrificeResultItemIDToOriginalItemID { get; private set; }
 
+        public static int DemonSiegePause;
+
         public override void Load()
         {
             RegisteredSacrifices = new Dictionary<int, SacrificeData>();
@@ -65,6 +67,8 @@ namespace Aequus.Biomes.DemonSiege
 
         public override void PostUpdateNPCs()
         {
+            if (DemonSiegePause > 0)
+                DemonSiegePause--;
             foreach (var s in ActiveSacrifices)
             {
                 s.Value.TileX = s.Key.X;
@@ -121,12 +125,10 @@ namespace Aequus.Biomes.DemonSiege
                         opacity = sacrifice.TimeLeft / 360f;
                     }
 
-                    opacity /= 5f;
-
-                    var color = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
+                    var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
                     foreach (var c in AequusHelpers.CircularVector(4))
                     {
-                        Main.spriteBatch.Draw(texture, drawCoords + c, null, color,
+                        Main.spriteBatch.Draw(texture, drawCoords + c, null, color * (opacity / 5f),
                             0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
                     }
                     Main.spriteBatch.Draw(texture, drawCoords, null, color,

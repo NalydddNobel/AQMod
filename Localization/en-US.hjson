@@ -1,6 +1,8 @@
 Mods: {
 	Aequus: {
 		BiomeName: {
+			GoreNestBiome: Nearby Gore Nest
+			PeacefulGlimmerBiome: Peaceful Glimmer
 			GlimmerBiome: Glimmer
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsBiome: Gale Streams
@@ -1485,6 +1487,8 @@ Mods: {
 		}
 
 		ProjectileName: {
+			ArcubusDamagingFloor: Burning Floor
+
 			SoldierCrabProj: Soldier Crab
 
 			MagmabubbleBullet: Magmabubble

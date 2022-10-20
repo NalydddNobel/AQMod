@@ -37,11 +37,15 @@ namespace Aequus.Biomes.Glimmer
             {
                 chance *= 4;
             }
-            if (Main.rand.NextBool(chance) && !WorldGen.spawnEye && Main.GetMoonPhase() != MoonPhase.Full && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
+            if (Main.GetMoonPhase() != MoonPhase.Full && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
-                if (BeginEvent())
+                if (!WorldGen.spawnEye && Main.rand.NextBool(chance) && BeginEvent())
                 {
                     AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+                }
+                if (!GlimmerBiome.EventActive && Main.rand.NextBool())
+                {
+                    PeacefulGlimmerBiome.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
                 }
             }
         }
@@ -53,6 +57,7 @@ namespace Aequus.Biomes.Glimmer
 
             if (GlimmerBiome.EventActive)
             {
+                PeacefulGlimmerBiome.TileLocationX = 0;
                 if (Main.dayTime)
                 {
                     if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient)
@@ -80,13 +85,20 @@ namespace Aequus.Biomes.Glimmer
                     SendGlimmerStatus();
                 }
             }
+            if (PeacefulGlimmerBiome.EventActive)
+            {
+                if (Main.dayTime || Main.bloodMoon || Main.snowMoon || Main.pumpkinMoon)
+                {
+                    PeacefulGlimmerBiome.TileLocationX = 0;
+                }
+            }
         }
 
         public override void PostUpdateEverything()
         {
-            if (GlimmerBiome.omegaStarite != -1)
+            if (GlimmerBiome.omegaStarite != -1 && (!Main.npc[GlimmerBiome.omegaStarite].active || !Main.npc[GlimmerBiome.omegaStarite].boss))
             {
-                GlimmerBiome.omegaStarite = NPC.FindFirstNPC(ModContent.NPCType<OmegaStarite>());
+                GlimmerBiome.omegaStarite = -1;
             }
         }
 
@@ -191,8 +203,28 @@ namespace Aequus.Biomes.Glimmer
             return p;
         }
 
+        public static void ResetWorldData()
+        {
+            GlimmerBiome.TileLocation = Point.Zero;
+            PeacefulGlimmerBiome.TileLocationX = 0;
+        }
+
+        public override void OnWorldLoad()
+        {
+            ResetWorldData();
+        }
+
+        public override void OnWorldUnload()
+        {
+            ResetWorldData();
+        }
+
         public override void SaveWorldData(TagCompound tag)
         {
+            if (PeacefulGlimmerBiome.EventActive)
+            {
+                tag["PeacefulGlimmerX"] = PeacefulGlimmerBiome.TileLocationX;
+            }
             if (GlimmerBiome.TileLocation == Point.Zero)
             {
                 return;
@@ -201,32 +233,39 @@ namespace Aequus.Biomes.Glimmer
             tag["GlimmerY"] = GlimmerBiome.TileLocation.Y;
         }
 
-        public override void OnWorldLoad()
-        {
-            GlimmerBiome.TileLocation = Point.Zero;
-        }
-
         public override void LoadWorldData(TagCompound tag)
         {
+            if (tag.TryGet("PeacefulGlimmerX", out int peacefulX))
+                PeacefulGlimmerBiome.TileLocationX = peacefulX;
             if (tag.TryGet("GlimmerX", out int x) && tag.TryGet("GlimmerY", out int y))
                 GlimmerBiome.TileLocation = new Point(x, y);
         }
 
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(GlimmerBiome.EventActive);
-            if (GlimmerBiome.EventActive)
+            var bb = new BitsByte(GlimmerBiome.EventActive, PeacefulGlimmerBiome.EventActive);
+            writer.Write(bb);
+            if (bb[0])
             {
                 writer.Write((ushort)GlimmerBiome.TileLocation.X);
                 writer.Write((ushort)GlimmerBiome.TileLocation.Y);
+            }
+            if (bb[1])
+            {
+                writer.Write((ushort)PeacefulGlimmerBiome.TileLocationX);
             }
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            if (reader.ReadBoolean())
+            var bb = (BitsByte)reader.ReadByte();
+            if (bb[0])
             {
                 GlimmerBiome.TileLocation = new Point(reader.ReadUInt16(), reader.ReadUInt16());
+            }
+            if (bb[1])
+            {
+                PeacefulGlimmerBiome.TileLocationX = reader.ReadUInt16();
             }
         }
 

@@ -125,6 +125,7 @@ namespace Aequus
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
         public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
         public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
+        public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();
         public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();
         public bool ZoneGoreNest => Player.InModBiome<GoreNestBiome>();
 

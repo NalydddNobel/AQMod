@@ -1842,7 +1842,7 @@ namespace Aequus
 
         public static bool IsFullySolid(this Tile tile)
         {
-            return tile.HasTile && !tile.IsActuated && Main.tileSolid[tile.TileType] && !SolidTopType(tile);
+            return IsSolid(tile) && !SolidTopType(tile);
         }
 
         public static int Abs(this int value)
