@@ -1,6 +1,8 @@
 Mods: {
 	Aequus: {
 		BiomeName: {
+			GoreNestBiome: 血巢附近
+			PeacefulGlimmerBiome: 宁静柔光
 			GlimmerBiome: 柔光
 			CrabCreviceBiome: 蟹伏岩隙
 			GaleStreamsBiome: 紊流风暴
@@ -1485,6 +1487,8 @@ Mods: {
 		}
 
 		ProjectileName: {
+			ArcubusDamagingFloor: 燃烧的地面
+
 			SoldierCrabProj: 兵蟹
 
 			MagmabubbleBullet: 熔火泡泡
