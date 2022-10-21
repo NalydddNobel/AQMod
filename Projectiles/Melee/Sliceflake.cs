@@ -17,20 +17,18 @@ namespace Aequus.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 60;
-            Projectile.height = 60;
-            Projectile.tileCollide = true;
+            Projectile.width = 40;
+            Projectile.height = 40;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
             Projectile.ignoreWater = true;
             Projectile.timeLeft = 180;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 4;
+            Projectile.penetrate = 2;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 20;
-            Projectile.tileCollide = false;
             Projectile.extraUpdates = 1;
-            Projectile.scale = 1.75f;
+            Projectile.scale = 1.5f;
         }
 
         public override void AI()
@@ -50,14 +48,12 @@ namespace Aequus.Projectiles.Melee
                 }
                 if (Projectile.scale > 1f)
                 {
-                    Projectile.scale -= 0.04f;
+                    Projectile.scale -= 0.02f;
                     if (Projectile.scale < 1f)
                     {
                         Projectile.scale = 1f;
                     }
                 }
-                Projectile.velocity.Y += 0.4f * Projectile.Opacity;
-                Projectile.velocity *= 0.98f;
             }
             Projectile.rotation += Projectile.velocity.Length() * 0.02f * Projectile.direction;
             bool collding = Collision.SolidCollision(Projectile.position + new Vector2(20f, 20f), Projectile.width - 40, Projectile.height - 40);
@@ -66,7 +62,7 @@ namespace Aequus.Projectiles.Melee
                 Projectile.alpha += 4;
                 Projectile.velocity *= 0.9f;
             }
-            Projectile.alpha += 3;
+            Projectile.alpha += 8;
             if (Projectile.alpha >= 255)
             {
                 Projectile.Kill();
@@ -78,9 +74,25 @@ namespace Aequus.Projectiles.Melee
             return Color.White;
         }
 
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+            width = 8;
+            height = 8;
+            return true;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            if (Projectile.velocity.X != oldVelocity.X)
+                Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, -oldVelocity.X, 0.75f);
+            if (Projectile.velocity.Y != oldVelocity.Y)
+                Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, -oldVelocity.Y, 0.75f);
+            return false;
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.Frostburn, 240);
+            target.AddBuff(BuffID.Frostburn2, 480);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -95,23 +107,35 @@ namespace Aequus.Projectiles.Melee
             var origin = frame.Size() / 2f;
             float opacity = Projectile.Opacity;
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
+            var swishOffset = Vector2.Normalize(Projectile.velocity) * (texture.Width / 2f + 4f);
             for (int i = 0; i < trailLength; i++)
             {
                 float progress = 1f - (1f / trailLength * i);
                 Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + drawOffset, frame, new Color(20, 80, 175, 10) * progress * opacity, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0);
             }
 
-            foreach (var v in AequusHelpers.CircularVector(4))
-            {
-                Main.EntitySpriteDraw(texture, Projectile.position + drawOffset + v * 2f, frame, new Color(20, 135, 175, 10) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            }
-
             Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, Projectile.GetAlpha(lightColor) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            var swish = ModContent.Request<Texture2D>("Aequus/Projectiles/Melee/Swords/Swish2");
+            Main.EntitySpriteDraw(swish.Value, Projectile.position + drawOffset + swishOffset, null, new Color(20, 128, 200, 100) * opacity,
+                Projectile.velocity.ToRotation() + MathHelper.PiOver2, new Vector2(swish.Value.Width / 2f, 0f), new Vector2(Projectile.scale * 0.5f, Projectile.scale * 1.5f), SpriteEffects.None, 0);
             return false;
         }
 
         public override void Kill(int timeLeft)
         {
+            if (Projectile.alpha < 200)
+            {
+                for (int i = 0; i < 30; i++)
+                {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, newColor: new Color(80, 155, 255, 128), Scale: 2f);
+                    d.velocity *= 0.4f;
+                    d.velocity += Projectile.velocity * 0.5f;
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    d.scale *= Projectile.scale * 0.6f;
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                }
+            }
         }
     }
 }

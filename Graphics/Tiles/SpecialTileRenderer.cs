@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,8 +10,10 @@ namespace Aequus.Graphics.Tiles
 {
     public class SpecialTileRenderer : ILoadable
     {
-        public static List<Action> AdjustTileTarget { get; private set; }
+        public static List<Action<bool>> AdjustTileTarget { get; private set; }
         public static TextureColorData TileTargetColors { get; private set; }
+
+        public static int DrawTileDelay;
 
         public static Action PreDrawTiles;
         public static Dictionary<TileRenderLayer, List<Point>> DrawPoints { get; private set; }
@@ -25,7 +28,7 @@ namespace Aequus.Graphics.Tiles
             {
                 DrawPoints[(TileRenderLayer)i] = new List<Point>();
             }
-            AdjustTileTarget = new List<Action>();
+            AdjustTileTarget = new List<Action<bool>>();
             On.Terraria.Main.RenderTiles += Main_RenderTiles;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
@@ -36,30 +39,51 @@ namespace Aequus.Graphics.Tiles
         {
             orig(self);
             if (AdjustTileTarget.Count <= 0)
+            {
+                DrawTileDelay = 0;
                 return;
+            }
 
             if (AdjustTileTarget.Count > 240)
             {
                 AdjustTileTarget.Clear();
+                return;
             }
             if (self.tileTarget == null || self.tileTarget.IsDisposed)
             {
                 return;
             }
 
-            if (TileTargetColors == null || !TileTargetColors.CheckTexture(self.tileTarget))
+            DrawTileDelay--;
+            bool draw = false;
+            if (DrawTileDelay <= 0)
             {
-                TileTargetColors = new TextureColorData(self.tileTarget);
+                draw = true;
+                var s = new Stopwatch();
+                s.Start();
+                if (TileTargetColors == null || !TileTargetColors.CheckTexture(self.tileTarget))
+                {
+                    TileTargetColors = new TextureColorData(self.tileTarget);
+                }
+                else
+                {
+                    TileTargetColors.RefreshTexture(Main.instance.tileTarget);
+                }
+                s.Stop();
+                DrawTileDelay = (int)Math.Clamp(s.ElapsedMilliseconds, 0, 50);
+                if (DrawTileDelay > 10)
+                {
+                    var tileDrawPos = new Vector2(Main.sceneTilePos.X + Main.offScreenRange, Main.sceneTilePos.Y + Main.offScreenRange);
+                    DrawTileDelay = (int)Math.Max(DrawTileDelay - (Main.screenPosition - tileDrawPos).Length().UnNaN() / 2f, 10f);
+                }
             }
-            else
-            {
-                TileTargetColors.RefreshTexture(Main.instance.tileTarget);
-            }
+
             foreach (var r in AdjustTileTarget)
             {
-                r.Invoke();
+                r.Invoke(draw);
             }
             AdjustTileTarget?.Clear();
+
             //TileTargetColors.ApplyChanges();
         }
 

@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(BuffID.Frostburn, 360);
+            target.AddBuff(BuffID.Frostburn2, 1000);
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -100,7 +100,7 @@ namespace Aequus.Projectiles.Melee.Swords
             if (progress == 0.5f && Main.myPlayer == Projectile.owner && player.altFunctionUse != 2)
             {
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
-                    AngleVector * Projectile.velocity.Length() * 25f,
+                    AngleVector * Projectile.velocity.Length() * 15f,
                     ModContent.ProjectileType<Sliceflake>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
             }
         }
@@ -139,7 +139,6 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             return 0f;
         }
-
 
         public override bool PreDraw(ref Color lightColor)
         {

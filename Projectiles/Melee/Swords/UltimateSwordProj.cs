@@ -117,7 +117,7 @@ namespace Aequus.Projectiles.Melee.Swords
             float scale = base.GetScale(progress);
             if (progress > 0.1f && progress < 0.9f)
             {
-                return scale + 1f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
+                return scale + 0.5f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
             return scale;
         }

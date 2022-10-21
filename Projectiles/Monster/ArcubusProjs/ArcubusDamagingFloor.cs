@@ -19,6 +19,7 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
         public List<(Vector4, Func<Color>)> drawCache;
         public List<Rectangle> DamageHitboxCache;
         private bool subscribedToRender;
+        private float subscribingOpacity;
 
         public override void SetStaticDefaults()
         {
@@ -35,6 +36,8 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
             DamageHitboxCache = new List<Rectangle>();
             Projectile.timeLeft = 300;
             Projectile.alpha = 255;
+            Projectile.ignoreWater = true;
+            Projectile.penetrate = -1;
         }
 
         public override void AI()
@@ -115,9 +118,9 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
                 {
                     for (int j = startY; j <= endY; j++)
                     {
-                        if (Main.tile[i, j].IsSolid() && !Main.tile[i, j - 1].IsSolid() && Main.rand.NextBool(32 + Projectile.alpha / 2))
+                        if (Main.tile[i, j].IsSolid() && !Main.tile[i, j - 1].IsSolid() && Main.rand.NextBool(32 + Projectile.alpha / 2 + (int)(32f * (1f - subscribingOpacity))))
                         {
-                            var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f), DustID.Torch, new Vector2(0f, Main.rand.NextFloat(-2.5f, -1f)), Scale: Main.rand.NextFloat(0.5f, 1.25f));
+                            var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f), DustID.Torch, new Vector2(0f, Main.rand.NextFloat(-2.5f, -1f)), Scale: Main.rand.NextFloat(0.5f, 1.25f) * subscribingOpacity);
                             d.noGravity = true;
                             d.fadeIn = d.scale + Main.rand.NextFloat(1f);
                         }
@@ -143,9 +146,12 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
             {
                 if (drawCache == null)
                     drawCache = new List<(Vector4, Func<Color>)>();
-                SpecialTileRenderer.AdjustTileTarget.Add(() =>
+                SpecialTileRenderer.AdjustTileTarget.Add((flag) =>
                 {
                     subscribedToRender = false;
+                    if (!flag)
+                        return;
+
                     int startX = (int)(Projectile.position.X / 16f);
                     int startY = (int)(Projectile.position.Y / 16f);
                     int endX = (int)((Projectile.position.X + Projectile.width) / 16f);
@@ -190,11 +196,11 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
                                                 }
                                                 int nCache = n;
                                                 drawCache.Add((new Vector4(pixelStartX + k + (int)Main.screenPosition.X - (int)AequusHelpers.TileDrawOffset.X, pixelStartY + l - n + (int)Main.screenPosition.Y - (int)AequusHelpers.TileDrawOffset.Y, 0f, 0f), 
-                                                    () => drawColor * ((float)Math.Pow((1f - 1f / auraMax * ((nCache - 1) / 2)) * Projectile.Opacity, 2f) / 2f * distanceOpacity)));
+                                                    () => drawColor * ((float)Math.Pow((1f - 1f / auraMax * ((nCache - 1) / 2)) * Projectile.Opacity * subscribingOpacity, 2f) / 2f * distanceOpacity)));
                                             }
                                         }
                                         drawCache.Add((new Vector4(pixelStartX + k + (int)Main.screenPosition.X - (int)AequusHelpers.TileDrawOffset.X, pixelStartY + l + (int)Main.screenPosition.Y - (int)AequusHelpers.TileDrawOffset.Y, 0f, 0f),
-                                            () => drawColor.HueAdd(-(1f - drawnDownCache) * 0.1f).UseA(100) * (float)Math.Pow(drawnDownCache * Projectile.Opacity, 4f) * distanceOpacity));
+                                            () => drawColor.HueAdd(-(1f - drawnDownCache) * 0.1f).UseA(100) * (float)Math.Pow(drawnDownCache * Projectile.Opacity * subscribingOpacity, 4f) * distanceOpacity));
 
                                         drawnDown -= drawDownSubtractor;
                                         if (drawnDown <= 0f)
@@ -205,8 +211,15 @@ namespace Aequus.Projectiles.Monster.ArcubusProjs
                             }
                         }
                     }
+                    subscribingOpacity += 0.05f + subscribingOpacity / 16f;
                 });
             }
+            if (subscribingOpacity > 0f)
+            {
+                subscribingOpacity += 0.01f;
+            }
+            if (subscribingOpacity > 1f)
+                subscribingOpacity = 1f;
             var t = TextureAssets.Projectile[Type].Value;
             var scale = new Vector2(2f);
             foreach (var d in drawCache)
