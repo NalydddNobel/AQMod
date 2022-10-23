@@ -52,7 +52,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return EventActive && (player.ZoneDirtLayerHeight || player.ZoneSkyHeight) && GlimmerSystem.CalcTiles(player) < MaxTiles;
+            return EventActive && (player.position.Y < Main.worldSurface *16f) && GlimmerSystem.CalcTiles(player) < MaxTiles;
         }
     }
 }
