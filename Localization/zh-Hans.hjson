@@ -384,7 +384,8 @@ Mods: {
 			DustDevilBag: 宝藏袋 (沙尘恶魔)
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteBag: 宝藏袋 (终末之星)
-			
+
+			NameTag: 命名标签
 			FertilePowder: 肥料箱
 			WhitePhial: 白色药瓶
 			TinkerersGuidebook: 修补匠指南
@@ -416,6 +417,7 @@ Mods: {
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
+			StariteBottle: 瓶中星源
 			GoreNest: 血巢
 
 			MoonLeech: 月噬
@@ -603,7 +605,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
-				[c/{Color}:...如果你能支付25银币]
+				执行此效果需要消耗10银币
 				'''
 			BlackPhial: 
 				'''
@@ -662,7 +664,7 @@ Mods: {
 			GrandReward: 
 				'''
 				敌人更容易掉落稀有物品
-				[c/{Color}:...但敌人不再掉落钱币]
+				...但敌人不再掉落钱币
 				'''
 			Reliefshroom: 移动时会大幅度增加生命恢复速度
 			Mendshroom: 定期释放治疗孢子
@@ -959,6 +961,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 
+			NameTag: 可在天空商人处重命名, 重命名后对着NPC使用以重命NPC的名字
 			FertilePowder: 强制附近的所有物块进行生长
 			WhitePhial: 永久性延长25%增益持续时间
 			TinkerersGuidebook: 永久性改进哥布林工匠的重铸服务
@@ -2125,6 +2128,8 @@ Mods: {
 					雷击湖面可以杀死数百条鱼, 不幸的是, 这种鱼竿每次只能钓3条鱼.
 					或者是制作这个鱼竿的巫师担心鳟鱼的数量.
 					'''
+				FlashwayNecklace: 这件衣服由雷霆工匠用极其精确的工艺制作而成, 能让你在瞬间闪避攻击!
+				NameTag: 具有神奇属性的命名标签, 如果你愿意, 我可以把名字刻在上面.
 				EquippedAcc: 嗯, 你身上的那个饰品很好, 不过, 也许这件的工艺更好?
 				Banners:
 					'''
