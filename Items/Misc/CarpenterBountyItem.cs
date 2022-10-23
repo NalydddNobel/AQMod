@@ -50,7 +50,7 @@ namespace Aequus.Items.Misc
                 return requirementText;
             }
         }
-        public virtual string BountyTexture => $"{bountyMod}/Assets/UI/Carpenter/" + bountyName;
+        public virtual string BountyTexture => $"{bountyMod}/UI/CarpenterUI/Blueprints/" + bountyName;
 
         protected override bool CloneNewInstances => false;
 

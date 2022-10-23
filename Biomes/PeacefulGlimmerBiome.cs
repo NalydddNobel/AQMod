@@ -33,7 +33,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            return EventActive && CalcTiles(player) < MaxTiles;
+            return EventActive && (player.ZoneDirtLayerHeight || player.ZoneSkyHeight) && CalcTiles(player) < MaxTiles;
         }
 
         public static int CalcTiles(Player player)

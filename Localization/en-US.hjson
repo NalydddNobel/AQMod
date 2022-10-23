@@ -385,6 +385,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			NameTag: Name Tag
 			FertilePowder: Fertilizer Box
 			WhitePhial: White Phial
 			TinkerersGuidebook: Tinkerer's Guidebook
@@ -416,6 +417,7 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
+			StariteBottle: Starite in a Bottle
 			GoreNest: Gore Nest
 
 			MoonLeech: Moon Leech
@@ -603,7 +605,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
-				[c/{Color}:...If you can pay 25 silver]
+				This effect costs 10 silver to perform
 				'''
 			BlackPhial: 
 				'''
@@ -662,7 +664,7 @@ Mods: {
 			GrandReward: 
 				'''
 				Enemies are more likely to drop rarer items
-				[c/{Color}:...However they no longer drop coins]
+				...However they no longer drop coins
 				'''
 			Reliefshroom: Greatly increases regeneration while moving
 			Mendshroom: Periodically release healing spores
@@ -959,6 +961,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
 			FertilePowder: Causes all nearby tiles to instantly grow
 			WhitePhial: Permanently increase buff duration by 25% 
 			TinkerersGuidebook:	Permanently improve the Goblin Tinkerer's reforge service
@@ -2125,6 +2128,8 @@ Mods: {
 					Lightning striking a lake can kill hundreds of fish, unfortunately this fishing rod can only catch about 3 fish per strike.
 					Or maybe the wizard who crafted this is concerned about the trout population.
 					'''
+				FlashwayNecklace: Made with extremely precise craftmanship by a thundersmith, this garment gives you the split second reflexes to dodge an attack!
+				NameTag: A name tag enriched with magic properties, I can engrain a name into it if you so desire.
 				EquippedAcc: Hm, that accessory equipped on your person is quite nice, maybe this one has better craftmanship however?
 				Banners:
 					'''

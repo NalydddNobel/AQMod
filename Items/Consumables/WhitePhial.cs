@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Items.Accessories;
+using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,6 +30,16 @@ namespace Aequus.Items.Consumables
             }
 
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<BlackPhial>()
+                .AddIngredient<CosmicEnergy>()
+                .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .Register();
         }
     }
 }

@@ -5,7 +5,7 @@ using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.Camera;
 using Aequus.Projectiles.Misc;
-using Aequus.UI.States;
+using Aequus.UI.CarpenterUI;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
 using System;
@@ -314,7 +314,7 @@ namespace Aequus.NPCs.Friendly.Town
                     {
                         Main.playerInventory = false;
                         Main.npcChatText = "";
-                        Aequus.NPCTalkInterface.SetState(new CarpenterBountyUI());
+                        Aequus.NPCTalkInterface.SetState(new CarpenterUIState());
                         return;
                     }
                 }

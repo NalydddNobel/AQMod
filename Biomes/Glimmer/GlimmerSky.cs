@@ -136,7 +136,7 @@ namespace Aequus.Biomes.Glimmer
             active = true;
             if (skyTexture == null)
             {
-                skyTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "GlimmerSky", AssetRequestMode.ImmediateLoad);
+                skyTexture = ModContent.Request<Texture2D>("Aequus/Biomes/Glimmer/GlimmerSky", AssetRequestMode.ImmediateLoad);
             }
             if (pixelTexture == null)
             {

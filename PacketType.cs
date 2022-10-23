@@ -23,6 +23,7 @@ namespace Aequus
         CarpenterBountiesCompleted,
         CoatingTileSquare,
         OnKillEffect,
+        ApplyNameTagToNPC,
         Count,
     }
 

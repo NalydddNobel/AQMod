@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -49,6 +50,16 @@ namespace Aequus.Items.Armor.Passive
                 }
                 player.GetDamage(DamageClass.Summon) += 0.10f;
             }
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.WizardHat)
+                .AddIngredient<CosmicEnergy>()
+                .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .Register();
         }
     }
 }

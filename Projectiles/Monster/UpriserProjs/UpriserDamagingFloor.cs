@@ -8,9 +8,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Monster.ArcubusProjs
+namespace Aequus.Projectiles.Monster.UpriserProjs
 {
-    public class ArcubusDamagingFloor : ModProjectile
+    public class UpriserDamagingFloor : ModProjectile
     {
         public const int FramesX = 3;
 

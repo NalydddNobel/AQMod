@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -46,6 +47,16 @@ namespace Aequus.Items.Consumables
         public override bool ConsumeItem(Player player)
         {
             return player.altFunctionUse != 2;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.TinkerersWorkshop)
+                .AddIngredient<CosmicEnergy>()
+                .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .Register();
         }
     }
 }

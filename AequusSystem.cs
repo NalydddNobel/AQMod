@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using Aequus.Tiles.Furniture;
 using Aequus.Tiles.PhysicistBlocks;
 using Aequus.UI;
 using Terraria;
@@ -95,6 +96,8 @@ namespace Aequus
                 AdvancedRulerInterface.Instance.Holding = false;
                 OmniPaintUI.Instance.Enabled = false;
             }
+            if (StariteBottleTile.blessedPlayerDelay > 0)
+                StariteBottleTile.blessedPlayerDelay--;
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;
         }
 

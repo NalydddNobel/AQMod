@@ -15,9 +15,9 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.UI.States
+namespace Aequus.UI.RenameItemUI
 {
-    public class RenameItemUI : UIState, ILoadable
+    public class RenameItemUIState : UIState, ILoadable
     {
         public static Asset<Texture2D> RenameBackIconTexture { get; private set; }
         public static readonly SoundStyle SelectSound = Aequus.GetSound("select", volume: 0.5f);
@@ -32,10 +32,6 @@ namespace Aequus.UI.States
 
         void ILoadable.Load(Mod mod)
         {
-            if (!Main.dedServ)
-            {
-                RenameBackIconTexture = ModContent.Request<Texture2D>("Aequus/Assets/UI/RenameBackIcon", AssetRequestMode.ImmediateLoad);
-            }
         }
 
         void ILoadable.Unload()
@@ -90,8 +86,18 @@ namespace Aequus.UI.States
             }
         }
 
+        public static void LoadTextures()
+        {
+            if (RenameBackIconTexture == null)
+            {
+                RenameBackIconTexture = ModContent.Request<Texture2D>("Aequus/UI/RenamingUI/RenameBackIcon", AssetRequestMode.ImmediateLoad);
+            }
+        }
+
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
+            LoadTextures();
+
             base.DrawSelf(spriteBatch);
             var player = Main.LocalPlayer;
             Main.hidePlayerCraftingMenu = true;
@@ -247,7 +253,7 @@ namespace Aequus.UI.States
                     }
                     if (langOrFormatedText != "")
                     {
-                        langOrFormatedText = AequusText.ColorCommand((showKeys ? keyText : langOrFormatedText), color, alphaPulse: true);
+                        langOrFormatedText = AequusText.ColorCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
                     }
                     if (text[i] == '|')
                     {

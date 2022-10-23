@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables.CursorDyes
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            CursorDyeSystem.Register(Type, new TextureChangeCursor(Aequus.AssetsPath + "UI/Cursor/DemonCursor"));
+            CursorDyeSystem.Register(Type, new TextureChangeCursor($"Aequus/Items/Consumables/CursorDyes/DemonCursor/DemonCursor"));
             ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.DyeTrader, Mod).SetQuote(Type, "Mods.Aequus.Chat.DyeTrader.ShopQuote.DemonicCursorDye");
         }
 

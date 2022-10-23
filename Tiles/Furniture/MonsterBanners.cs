@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters;
+﻿using Aequus.Graphics.Tiles;
+using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
@@ -40,80 +41,6 @@ namespace Aequus.Tiles.Furniture
         public const int CoconutCrabBanner = 15;
         public const int BreadofCthulhuBanner = 16;
 
-        public static List<int> bannerWindHack;
-
-        #region Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!
-
-        private static string SpecialThanks = "Special thanks to turingcomplete30 for writing the code to support modded banners swaying in the wind!";
-        private static string SpecialThanks2 = "This entire code region is mostly taken from his Banner Tile code.";
-
-        public override void Load()
-        {
-            SpecialThanks.Trim();
-            SpecialThanks2.Trim();
-            try
-            {
-                _addSpecialPointSpecialPositions = typeof(TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
-                _addSpecialPointSpecialsCount = typeof(TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
-            }
-            catch (Exception e)
-            {
-                Logging.PublicLogger.Debug(e);
-            }
-
-            bannerWindHack = new List<int>();
-            IL.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVines += TileDrawing_DrawMultiTileVines;
-        }
-        private static void TileDrawing_DrawMultiTileVines(ILContext il)
-        {
-
-            ILCursor c = new ILCursor(il);
-
-            if (!c.TryGotoNext(MoveType.After,
-                i => i.MatchLdloc(9),
-                i => i.MatchLdnull(),
-                i => i.MatchCall(out _),
-                i => i.MatchBrfalse(out _),
-                i => i.MatchLdloca(9),
-                i => i.MatchCall(out _),
-                i => i.MatchBrfalse(out _)
-                ))
-                return;
-
-            c.Emit(OpCodes.Ldloc, 9);
-            c.EmitDelegate((Tile tile) =>
-            {
-                if (bannerWindHack.Contains(tile.TileType))
-                {
-                    return 3;
-                }
-                return 1;
-            });
-            c.Emit(OpCodes.Stloc, 8);
-        }
-
-        public override void Unload()
-        {
-            bannerWindHack?.Clear();
-            bannerWindHack = null;
-            _addSpecialPointSpecialPositions = null;
-            _addSpecialPointSpecialsCount = null;
-        }
-
-        private static FieldInfo _addSpecialPointSpecialPositions;
-        private static FieldInfo _addSpecialPointSpecialsCount;
-
-        public static void AddSpecialPoint(TileDrawing renderer, int x, int y, int type)
-        {
-            if (_addSpecialPointSpecialPositions?.GetValue(renderer) is Point[][] _specialPositions)
-            {
-                if (_addSpecialPointSpecialsCount?.GetValue(renderer) is int[] _specialsCount)
-                {
-                    _specialPositions[type][_specialsCount[type]++] = new Point(x, y);
-                }
-            }
-        }
-
         public static int BannerToItem(int style)
         {
             int npc = BannerToNPC(style);
@@ -123,8 +50,6 @@ namespace Aequus.Tiles.Furniture
             }
             return 0;
         }
-
-        #endregion
 
         public override void SetStaticDefaults()
         {
@@ -141,7 +66,7 @@ namespace Aequus.Tiles.Furniture
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
-            bannerWindHack.Add(Type);
+            SpecialTileRenderer.ModHangingVines.Add(Type, 3);
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
@@ -188,7 +113,7 @@ namespace Aequus.Tiles.Furniture
         {
             if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0)
             {
-                AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
+                SpecialTileRenderer.AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
             }
 
             return false;

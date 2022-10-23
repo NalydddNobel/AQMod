@@ -4,6 +4,7 @@ using Aequus.Content;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
+using Aequus.Items.Consumables;
 using Aequus.NPCs.Boss;
 using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
@@ -233,6 +234,12 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.ApplyNameTagToNPC:
+                    {
+                        NameTag.ApplyNametagToNPC(reader.ReadInt32(), reader.ReadString());
+                    }
+                    break;
+
                 case PacketType.OnKillEffect:
                     {
                         Main.player[reader.ReadInt32()].Aequus().OnKillEffect(reader.ReadInt32(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());

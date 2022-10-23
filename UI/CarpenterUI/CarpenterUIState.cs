@@ -19,339 +19,10 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.UI.States
+namespace Aequus.UI.CarpenterUI
 {
-    public class CarpenterBountyUI : AequusUIState
+    public class CarpenterUIState : AequusUIState
     {
-        public class CarpenterBountyUIElement : UIElement
-        {
-            public CarpenterBountyUI bountyUICache;
-
-            public CarpenterBounty bounty;
-            public Item listItem;
-            public CarpenterBountyItem ListItem => listItem.ModItem<CarpenterBountyItem>();
-            public Item rewardItem;
-
-            public UIPanel panel;
-            public UIPanel textPanel;
-
-            private bool hoverTick;
-
-            public static Color BasePanelColor => (AequusUI.invBackColor * 0.8f).UseA(255) * AequusUI.invBackColorMultipler;
-            public static Color BasePanelColor_Hover => AequusUI.invBackColor * 1.2f * AequusUI.invBackColorMultipler;
-
-            public CarpenterBountyUIElement(CarpenterBountyUI bountyUI, CarpenterBounty bounty)
-            {
-                this.bounty = bounty;
-                bountyUICache = bountyUI;
-                listItem = bounty.ProvideBountyItem().Item;
-                rewardItem = bounty.ProvideBountyRewardItem();
-            }
-
-            public void Setup()
-            {
-                listItem.buy = true;
-                panel = new UIPanel();
-                panel.Width.Set(Width.Pixels + 60, Width.Percent);
-                panel.Height.Set(Height.Pixels, Height.Percent);
-                Append(panel);
-
-                textPanel = new UIPanel(Main.Assets.Request<Texture2D>("Images/UI/Bestiary/Stat_Panel"), null, 12, 7)
-                {
-                    Top = new StyleDimension(10, 0f),
-                    Left = new StyleDimension((int)(64 * 0.8f) + 20, 0f),
-                    Width = new StyleDimension(-84, 1f),
-                    BackgroundColor = new Color(43, 56, 101, 255),
-                    PaddingLeft = 4f,
-                    PaddingRight = 4f
-                };
-                textPanel.Height = new StyleDimension(-textPanel.Top.Pixels - 8, 1f);
-                Append(textPanel);
-
-                var title = new UIText(ListItem.BountyFancyName, 0.5f, large: true)
-                {
-                    HAlign = 0f,
-                    VAlign = 0f,
-                    Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    PaddingLeft = 4f,
-                    PaddingTop = 0f,
-                    TextOriginX = 0.5f,
-                    TextOriginY = 0f,
-                };
-                textPanel.Append(title);
-
-                var description = new UIText(ListItem.BountyDescription, 0.9f)
-                {
-                    HAlign = 0f,
-                    VAlign = 0f,
-                    Top = new StyleDimension(28, 0f),
-                    Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    PaddingLeft = 4f,
-                    PaddingTop = 0f,
-                    TextOriginX = 0f,
-                    TextOriginY = 0f,
-                };
-                textPanel.Append(description);
-
-                var text = new UIText(ListItem.BountyFancyRequirements, 0.7f)
-                {
-                    HAlign = 0f,
-                    VAlign = 0f,
-                    Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Top = new StyleDimension(24 + 28, 0f),
-                    PaddingLeft = 4f,
-                    PaddingTop = 0f,
-                    TextOriginX = 0f,
-                    TextOriginY = 0f,
-                };
-                textPanel.Append(text);
-                text.IsWrapped = true;
-
-                string hintKey = bounty.LanguageKey + ".Hint";
-                string hintText = Language.GetTextValue(hintKey);
-                if (hintText == hintKey)
-                {
-                    return;
-                }
-
-                int height = (int)(text.MinHeight.Pixels * 0.7f);
-                text = new UIText(hintText, 0.66f)
-                {
-                    HAlign = 0f,
-                    VAlign = 0f,
-                    Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
-                    Top = new StyleDimension(32 + height, 0f),
-                    PaddingLeft = 4f,
-                    PaddingTop = 0f,
-                    TextOriginX = 0f,
-                    TextOriginY = 0f,
-                    TextColor = Color.Lerp(Color.Teal, Color.White, 0.8f),
-                };
-                textPanel.Append(text);
-                text.IsWrapped = true;
-            }
-
-            public override void OnInitialize()
-            {
-            }
-
-            protected override void DrawSelf(SpriteBatch spriteBatch)
-            {
-                bool old = hoverTick;
-                hoverTick = IsMouseHovering;
-                if (old != hoverTick)
-                {
-                    SoundEngine.PlaySound(SoundID.MenuTick);
-                    if (hoverTick)
-                    {
-                        HoverColor(true);
-                    }
-                    else
-                    {
-                        HoverColor(false);
-                    }
-                }
-                base.DrawSelf(spriteBatch);
-            }
-
-            protected override void DrawChildren(SpriteBatch spriteBatch)
-            {
-                var rect = GetDimensions().ToRectangle();
-                var itemSlotRect = new Rectangle(rect.X + 10, rect.Y + 10, (int)(64 * 0.8f), (int)(64 * 0.8f));
-                if (itemSlotRect.Contains(Main.mouseX, Main.mouseY) && Main.mouseItem.IsAir)
-                {
-                    bool buyItem = Main.mouseLeft && Main.mouseLeftRelease;
-                    if (Main.mouseRight && Main.mouseRightRelease)
-                    {
-                        buyItem = true;
-                        Main.mouseRightRelease = false;
-                    }
-                    if (buyItem)
-                    {
-                        Main.LocalPlayer.GetItemExpectedPrice(listItem, out var calcForSelling, out var calcForBuying);
-
-                        if (Main.LocalPlayer.CanBuyItem(calcForBuying) && Main.LocalPlayer.BuyItem(calcForBuying))
-                        {
-                            Main.mouseItem = listItem.Clone();
-                            SoundEngine.PlaySound(SoundID.Coins);
-                            Main.mouseLeftRelease = false;
-                        }
-                    }
-                }
-
-                UpdatePanel(spriteBatch, rect);
-                base.DrawChildren(spriteBatch);
-                DrawItems(spriteBatch, rect);
-            }
-
-            public void UpdatePanel(SpriteBatch spriteBatch, Rectangle rect)
-            {
-                if (Main.mouseLeft && Main.mouseLeftRelease)
-                {
-                    if (IsMouseHovering)
-                    {
-                        bountyUICache.Select(this);
-                        Main.mouseLeftRelease = false;
-                        SoundEngine.PlaySound(SoundID.MenuOpen);
-                        HoverColor(true);
-                    }
-                    else if (!bountyUICache.IsMouseHovering && bountyUICache.selected != null)
-                    {
-                        bountyUICache.Select(null);
-                        SoundEngine.PlaySound(SoundID.MenuClose);
-                    }
-                }
-            }
-
-            public void DrawItems(SpriteBatch spriteBatch, Rectangle rect)
-            {
-                var itemSlotRect = new Rectangle(rect.X + 10, rect.Y + 10, (int)(64 * 0.8f), (int)(64 * 0.8f));
-                DrawItemSlot(spriteBatch, rect, itemSlotRect, listItem);
-                itemSlotRect.Y = rect.Y + rect.Height - 10 - itemSlotRect.Height;
-                string rewardText = AequusText.GetText("Chat.Carpenter.UI.Reward");
-                var rewardTextOrigin = FontAssets.MouseText.Value.MeasureString(rewardText);
-                rewardTextOrigin.X /= 2f;
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, rewardText,
-                    new Vector2(itemSlotRect.X + itemSlotRect.Width / 2f, itemSlotRect.Y), Color.White, 0f, rewardTextOrigin, Vector2.One * 0.75f);
-                DrawItemSlot(spriteBatch, rect, itemSlotRect, rewardItem);
-            }
-
-            public void DrawItemSlot(SpriteBatch spriteBatch, Rectangle rect, Rectangle itemSlotRect, Item item)
-            {
-                Utils.DrawInvBG(spriteBatch, itemSlotRect, new Color(40, 40, 100, 255) * AequusUI.invBackColorMultipler);
-
-                Main.instance.LoadItem(item.type);
-                var texture = TextureAssets.Item[item.type].Value;
-                float scale = 1f;
-                int largestAmt = texture.Width > texture.Height ? texture.Width : texture.Height;
-
-                if (largestAmt > itemSlotRect.Width)
-                {
-                    scale = largestAmt / (float)rect.Width;
-                }
-
-                //item.SetDefaults(ModContent.ItemType<Narrizuul>());
-                item.GetItemDrawData(out var frame);
-                spriteBatch.Draw(texture, itemSlotRect.Center(), frame, Color.White, 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-
-                if (itemSlotRect.Contains(Main.mouseX, Main.mouseY))
-                {
-                    AequusUI.HoverItem(item);
-                }
-            }
-
-            public void HoverColor(bool value)
-            {
-                if (value)
-                {
-                    panel.BackgroundColor = BasePanelColor_Hover;
-                    panel.BorderColor = BasePanelColor * 3f;
-                }
-                else
-                {
-                    panel.BackgroundColor = BasePanelColor;
-                    panel.BorderColor = (BasePanelColor * 0.5f).UseA(255);
-                }
-            }
-        }
-
-        public class CarpenterBountyTextureUIElement : UIElement
-        {
-            private Asset<Texture2D> texture;
-            public Asset<Texture2D> Texture
-            {
-                get => texture;
-
-                set
-                {
-                    texture = value;
-                    recalculate = true;
-                }
-            }
-            private float scale;
-            public float Scale
-            {
-                get => scale;
-
-                set
-                {
-                    scale = value;
-                    DrawScale = value;
-                    recalculate = true;
-                }
-            }
-            public float DrawScale { get; private set; }
-
-            public bool recalculate;
-            public Action OnRecalculateTextureSize;
-
-            public CarpenterBountyTextureUIElement(Asset<Texture2D> texture)
-            {
-                this.texture = texture;
-                scale = 1f;
-                recalculate = true;
-                DrawScale = 1f;
-            }
-
-            public override void Recalculate()
-            {
-                Height = new StyleDimension(GetDimensions().Width, 0f);
-                base.Recalculate();
-                DrawScale = Scale;
-                if (!texture.IsLoaded)
-                {
-                    recalculate = true;
-                    return;
-                }
-
-                int largestSide = (int)((texture.Value.Width > texture.Value.Height ? texture.Value.Width : texture.Value.Height) * DrawScale);
-                int maxSize = (int)GetDimensions().Width;
-                int maxSize2 = (int)GetDimensions().Height;
-                maxSize = maxSize < maxSize2 ? maxSize : maxSize2;
-                maxSize /= 2;
-                if (largestSide > maxSize)
-                {
-                    DrawScale = maxSize / (float)largestSide;
-                }
-                OnRecalculateTextureSize();
-                recalculate = false;
-            }
-
-            protected override void DrawSelf(SpriteBatch spriteBatch)
-            {
-                if (recalculate)
-                {
-                    Recalculate();
-                }
-                if (texture.IsLoaded)
-                {
-                    var d = GetDimensions();
-                    var drawCoords = new Vector2(d.X + d.Width / 2f, d.Y + d.Height / 2f);
-                    var drawOrigin = texture.Value.Size() / 2f;
-                    drawCoords.Y += (d.Height / 2f - drawOrigin.Y) * 0.9f;
-
-                    var black = Color.Black.UseA(150);
-                    if (Aequus.HQ)
-                    {
-                        foreach (var c in AequusHelpers.CircularVector(4))
-                        {
-                            spriteBatch.Draw(texture.Value, drawCoords + new Vector2(2f) + c * 2f, null, black * 0.1f, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
-                        }
-                    }
-                    foreach (var c in AequusHelpers.CircularVector(4))
-                    {
-                        spriteBatch.Draw(texture.Value, drawCoords + c * 2f, null, black, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
-                    }
-                    spriteBatch.Draw(texture.Value, drawCoords, null, Color.White, 0f, drawOrigin, DrawScale, SpriteEffects.None, 0f);
-                }
-                base.DrawSelf(spriteBatch);
-            }
-        }
-
         public UIList bountyList;
         public UIScrollbar bountyListScrollBar;
 
@@ -361,7 +32,7 @@ namespace Aequus.UI.States
         public ItemSlotElement submissionSlot;
         public UIText submissionSlotTextButton;
         public UIImageButton backButton;
-        public CarpenterBountyUIElement selected;
+        public CarpenterUIElement selected;
 
         public string SubmitPhotoText => AequusText.GetText("Chat.Carpenter.UI.SubmitPhoto");
 
@@ -489,7 +160,7 @@ namespace Aequus.UI.States
             base.DrawChildren(spriteBatch);
         }
 
-        public void Select(CarpenterBountyUIElement element)
+        public void Select(CarpenterUIElement element)
         {
             if (element == selected)
                 selected = null;
@@ -525,7 +196,7 @@ namespace Aequus.UI.States
                 if (!bounty.IsBountyAvailable() || bountyPlayer.CompletedBounties.Contains(bounty.FullName))
                     continue;
 
-                var uiElement = new CarpenterBountyUIElement(this, bounty);
+                var uiElement = new CarpenterUIElement(this, bounty);
                 uiElement.Width.Set(-48, 1f);
                 uiElement.Height.Set(160, 0f);
                 uiElement.Left.Set(10, 0f);
@@ -604,19 +275,20 @@ namespace Aequus.UI.States
             RemoveAllChildren();
         }
 
-        public void PopulateSelectPanelList(CarpenterBountyUIElement element)
+        public void PopulateSelectPanelList(CarpenterUIElement element)
         {
-            PopulateSideList_TitleAndDescription(element);
-            PopulateSideList_Requirements(element);
+            TitleAndDescription(element);
+            Requirements(element);
 
-            PopulateSideList_AddSeparator();
+            AddSeparator();
 
-            PopulateSideList_Submission(element);
+            Submission(element);
 
-            PopulateSideList_AddSeparator();
-            PopulateSideList_Blueprint(element);
+            AddSeparator();
+
+            Blueprint(element);
         }
-        public void PopulateSideList_TitleAndDescription(CarpenterBountyUIElement element)
+        public void TitleAndDescription(CarpenterUIElement element)
         {
             var panel = new UIPanel()
             {
@@ -647,7 +319,7 @@ namespace Aequus.UI.States
             });
             selectionPanelList.Add(panel);
         }
-        public void PopulateSideList_Requirements(CarpenterBountyUIElement element)
+        public void Requirements(CarpenterUIElement element)
         {
             var panel = new UIPanel()
             {
@@ -684,7 +356,7 @@ namespace Aequus.UI.States
             panel.Height.Set((int)FontAssets.MouseText.Value.MeasureString(uiText.Text).Y * 0.8f + uiText.Top.Pixels, 0f);
             uiText.IsWrapped = true;
         }
-        public void PopulateSideList_Submission(CarpenterBountyUIElement element)
+        public void Submission(CarpenterUIElement element)
         {
             var panel = new UIPanel()
             {
@@ -745,7 +417,7 @@ namespace Aequus.UI.States
             }
         }
 
-        public void PopulateSideList_Blueprint(CarpenterBountyUIElement element)
+        public void Blueprint(CarpenterUIElement element)
         {
             string texture = element.ListItem.BountyTexture;
             if (!ModContent.HasAsset(texture))
@@ -783,7 +455,7 @@ namespace Aequus.UI.States
 
             selectionPanelList.Add(panel);
 
-            var textureElement = new CarpenterBountyTextureUIElement(ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad))
+            var textureElement = new CarpenterTextureUIElement(ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad))
             {
                 Width = new StyleDimension(0, 1f),
                 Top = new StyleDimension(44, 0f),
@@ -791,10 +463,10 @@ namespace Aequus.UI.States
             textureElement.OnRecalculateTextureSize += () => panel.Height = new StyleDimension(textureElement.Height.Pixels + textureElement.Top.Pixels, 0f);
             panel.Append(textureElement);
 
-            PopulateSideList_AddSeparator();
+            AddSeparator();
         }
 
-        public void PopulateSideList_AddSeparator()
+        public void AddSeparator()
         {
             selectionPanelList.Add(new UIHorizontalSeparator()
             {

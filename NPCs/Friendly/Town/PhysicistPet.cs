@@ -1,4 +1,5 @@
-﻿using Aequus.UI.States;
+﻿using Aequus.Items.Consumables;
+using Aequus.UI.RenameItemUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -27,6 +28,8 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 Hide = true,
             });
+
+            NameTag.CanBeRenamedOverride.Add(Type, true);
         }
 
         public override void SetDefaults()
@@ -114,7 +117,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             if (firstButton)
             {
-                SoundEngine.PlaySound(RenameItemUI.SqueakSound);
+                SoundEngine.PlaySound(RenameItemUIState.SqueakSound);
             }
         }
 

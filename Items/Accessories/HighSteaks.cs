@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories
             }
             else
             {
-                aequus.bloodDiceMoney = Item.buyPrice(silver: 25);
+                aequus.bloodDiceMoney = Item.buyPrice(silver: 5);
             }
         }
     }

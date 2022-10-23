@@ -94,7 +94,7 @@ namespace Aequus.Biomes.DemonSiege
         {
             if (GoreNestTile.DrawPointsCache.Count > 0)
             {
-                var auraTexture = ModContent.Request<Texture2D>("Aequus/Assets/GoreNestAura", AssetRequestMode.ImmediateLoad);
+                var auraTexture = ModContent.Request<Texture2D>("Aequus/Biomes/DemonSiege/GoreNestAura", AssetRequestMode.ImmediateLoad);
                 Begin.GeneralEntities.Begin(Main.spriteBatch);
                 try
                 {

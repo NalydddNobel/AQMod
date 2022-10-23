@@ -2,13 +2,14 @@
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
+using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
-using Aequus.UI.States;
+using Aequus.UI.RenameItemUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -64,7 +65,7 @@ namespace Aequus.NPCs.Friendly.Town
             });
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .AddDefaultText((i) => 
+                .AddDefaultText((i) =>
                 {
                     int bannerID = AequusItem.ItemToBanner(i);
                     if (bannerID != 0)
@@ -73,26 +74,14 @@ namespace Aequus.NPCs.Friendly.Town
                     }
                     return null;
                 })
-                .AddDefaultText((i) => 
+                .AddDefaultText((i) =>
                 {
                     return ContentSamples.ItemsByType[i].accessory ? Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc") : null;
                 })
+                .SetQuote(ModContent.ItemType<SkyrimRock1>(), "Mods.Aequus.ShopQuote.SkyMerchant.SkyrimRocks")
+                .SetQuote(ModContent.ItemType<SkyrimRock2>(), "Mods.Aequus.ShopQuote.SkyMerchant.SkyrimRocks")
+                .SetQuote(ModContent.ItemType<SkyrimRock3>(), "Mods.Aequus.ShopQuote.SkyMerchant.SkyrimRocks")
                 .UseColor(Color.DarkOliveGreen * 1.75f);
-            //ShopQuotesTooltips.Database
-            //    .AddNPC(Type)
-            //    .AddQuote<BalloonKit>()
-            //    .AddQuote<Pumpinator>()
-            //    .AddQuote<Nimrod>()
-            //    .AddQuote<BongBongPainting>()
-            //    .AddQuote<CatalystPainting>()
-            //    .AddQuote<YinYangPainting>()
-            //    .AddShopQuoteKey<YinPainting>("YinYangPaintingsSeparate")
-            //    .AddShopQuoteKey<YangPainting>("YinYangPaintingsSeparate")
-            //    .AddQuote<HomeworldPainting>()
-            //    .AddShopQuoteKey<SkyrimRock1>("SkyrimRocks")
-            //    .AddShopQuoteKey<SkyrimRock2>("SkyrimRocks")
-            //    .AddShopQuoteKey<SkyrimRock3>("SkyrimRocks")
-            //    .AddQuote(ItemID.WhoopieCushion);
         }
 
         public override void SetDefaults()
@@ -138,7 +127,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             Main.playerInventory = true;
             Main.npcChatText = "";
-            Aequus.NPCTalkInterface.SetState(new RenameItemUI());
+            Aequus.NPCTalkInterface.SetState(new RenameItemUIState());
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
@@ -171,6 +160,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FlashwayNecklace>());
             }
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<NameTag>());
 
             if (merchant != null)
             {

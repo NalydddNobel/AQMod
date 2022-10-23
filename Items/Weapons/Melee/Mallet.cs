@@ -63,7 +63,7 @@ namespace Aequus.Items.Weapons.Melee
             SacrificeTotal = 1;
             if (Main.netMode != NetmodeID.Server)
             {
-                CursorDyeID = CursorDyeSystem.Register(new MalletCursor(Aequus.AssetsPath + "UI/Cursor/MalletCursor", ModContent.ProjectileType<MalletProj>()));
+                CursorDyeID = CursorDyeSystem.Register(new MalletCursor($"{Texture}Cursor", ModContent.ProjectileType<MalletProj>()));
             }
         }
 

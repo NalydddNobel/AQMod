@@ -44,7 +44,7 @@ namespace Aequus.Graphics.DustDevilEffects
                 CachedBackParticles = new List<DDParticle>();
                 CachedFrontParticles = new List<DDParticle>();
                 Manipulators = new List<IDDParticleManipulator>();
-                DDParticle.Texture = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}DustDevilDust", AssetRequestMode.ImmediateLoad).Value;
+                DDParticle.Texture = ModContent.Request<Texture2D>("Aequus/NPCs/Boss/DustDevilDust", AssetRequestMode.ImmediateLoad).Value;
             }
         }
 
