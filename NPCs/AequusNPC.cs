@@ -18,6 +18,7 @@ using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Jungle;
 using Aequus.Particles;
+using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -174,7 +175,6 @@ namespace Aequus.NPCs
             }
             catch
             {
-
             }
         Orig:
             orig(self, hitDirection, dmg);

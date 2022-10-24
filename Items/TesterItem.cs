@@ -10,7 +10,7 @@ namespace Aequus.Items
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return true;
+            return false;
         }
 
         public override void SetStaticDefaults()
@@ -30,11 +30,6 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-
-            //Main.NewText(Biomes.PeacefulGlimmerBiome.TileLocationX);
-            //Main.NewText(Biomes.PeacefulGlimmerBiome.CalcTiles(player));
-            Projectile.NewProjectile(null, Main.MouseWorld, Microsoft.Xna.Framework.Vector2.Zero, ModContent.ProjectileType<Projectiles.Monster.UpriserProjs.UpriserDamagingFloor>(), 20, 1f, player.whoAmI);
-            //Content.Necromancy.NecromancyDatabase.LoadEntriesFile();
             return true;
         }
     }

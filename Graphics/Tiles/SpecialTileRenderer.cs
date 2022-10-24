@@ -1,8 +1,6 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Drawing;
@@ -13,9 +11,6 @@ namespace Aequus.Graphics.Tiles
     public class SpecialTileRenderer : ILoadable
     {
         public static List<Action<bool>> AdjustTileTarget { get; private set; }
-        public static TextureColorData TileTargetColors { get; private set; }
-
-        public static int DrawTileDelay;
 
         public static Action PreDrawTiles;
         public static Dictionary<TileRenderLayer, List<Point>> DrawPoints { get; private set; }
@@ -39,8 +34,7 @@ namespace Aequus.Graphics.Tiles
             }
             AdjustTileTarget = new List<Action<bool>>();
             ModHangingVines = new Dictionary<int, int>();
-            On.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind; ;
-            On.Terraria.Main.RenderTiles += Main_RenderTiles;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
@@ -51,58 +45,6 @@ namespace Aequus.Graphics.Tiles
             if (ModHangingVines.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out int value))
                 sizeY = value;
             orig(self, screenPosition, offSet, topLeftX, topLeftY, sizeX, sizeY);
-        }
-
-        private static void Main_RenderTiles(On.Terraria.Main.orig_RenderTiles orig, Main self)
-        {
-            orig(self);
-            if (AdjustTileTarget.Count <= 0)
-            {
-                DrawTileDelay = 0;
-                return;
-            }
-
-            if (AdjustTileTarget.Count > 240)
-            {
-                AdjustTileTarget.Clear();
-                return;
-            }
-            if (self.tileTarget == null || self.tileTarget.IsDisposed)
-            {
-                return;
-            }
-
-            DrawTileDelay--;
-            bool draw = false;
-            if (DrawTileDelay <= 0)
-            {
-                draw = true;
-                var s = new Stopwatch();
-                s.Start();
-                if (TileTargetColors == null || !TileTargetColors.CheckTexture(self.tileTarget))
-                {
-                    TileTargetColors = new TextureColorData(self.tileTarget);
-                }
-                else
-                {
-                    TileTargetColors.RefreshTexture(Main.instance.tileTarget);
-                }
-                s.Stop();
-                DrawTileDelay = (int)Math.Clamp(s.ElapsedMilliseconds, 0, 50);
-                if (DrawTileDelay > 10)
-                {
-                    var tileDrawPos = new Vector2(Main.sceneTilePos.X + Main.offScreenRange, Main.sceneTilePos.Y + Main.offScreenRange);
-                    DrawTileDelay = (int)Math.Max(DrawTileDelay - (Main.screenPosition - tileDrawPos).Length().UnNaN() / 2f, 10f);
-                }
-            }
-
-            foreach (var r in AdjustTileTarget)
-            {
-                r.Invoke(draw);
-            }
-            AdjustTileTarget?.Clear();
-
-            //TileTargetColors.ApplyChanges();
         }
 
         public static void AddSpecialPoint(TileDrawing renderer, int x, int y, int type)

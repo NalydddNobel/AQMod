@@ -13,7 +13,6 @@ namespace Aequus.Projectiles.Melee
 {
     public class HellsBoonProj : ModProjectile
     {
-
         private const int goOutTime = 15;
 
         private float _portaloffset = 0f;

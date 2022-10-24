@@ -111,7 +111,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             }
             if (NPC.IsABestiaryIconDummy && NPC.ai[3] < 1f)
             {
-                NPC.ai[0] = -200f;
+                NPC.ai[0] = -125f;
                 NPC.ai[1] = 200f;
                 NPC.ai[3] = 1f;
             }
@@ -122,7 +122,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             {
                 NPC.frameCounter = 0.0;
                 if (NPC.IsABestiaryIconDummy)
-                    NPC.ai[3] = (int)NPC.ai[3] % 3 + 1f;
+                    NPC.ai[3] = (int)NPC.ai[3] % 3 + 0.34f;
             }
             int frameAdjustment = NPC.IsABestiaryIconDummy ? 0 : (int)NPC.ai[3];
             NPC.frame.Y = frameHeight * (((int)NPC.frameCounter / 6 + frameAdjustment) % 4);
