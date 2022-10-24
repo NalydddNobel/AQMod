@@ -63,7 +63,7 @@ namespace Aequus.Projectiles.Summon
             }
 
             int target = -1;
-            float dist = 2000f;
+            float dist = 800f;
             if (player.HasMinionAttackTargetNPC)
             {
                 var difference = Projectile.Center - center;

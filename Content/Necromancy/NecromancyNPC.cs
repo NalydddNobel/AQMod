@@ -64,7 +64,6 @@ namespace Aequus.Content.Necromancy
         public override void Load()
         {
             Zombie = new ActiveZombieInfo();
-            On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
             if (!Main.dedServ)
             {
@@ -73,18 +72,6 @@ namespace Aequus.Content.Necromancy
         }
 
         #region Hooks
-        private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)
-        {
-            var info = GhostSyncInfo.GetInfo(npc);
-
-            orig(npc, newType);
-
-            if (info.IsZombie)
-            {
-                info.SetZombieNPCInfo(npc, npc.GetGlobalNPC<NecromancyNPC>());
-            }
-        }
-
         private static void NPC_SetTargetTrackingValues(On.Terraria.NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
         {
             if (Zombie.IsZombieRunning)

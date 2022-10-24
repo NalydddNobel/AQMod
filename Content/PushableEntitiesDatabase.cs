@@ -1,13 +1,13 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
+namespace Aequus.Content
 {
-    public class PushableEntitiesDatabase : IPostSetupContent
+    public class PushableEntitiesDatabase : IAddRecipes
     {
         public static HashSet<int> NPCIDs { get; private set; }
         public static HashSet<int> ProjectileIDs { get; private set; }
@@ -18,7 +18,7 @@ namespace Aequus.Common
             ProjectileIDs = new HashSet<int>();
         }
 
-        void IPostSetupContent.PostSetupContent(Aequus aequus)
+        void IAddRecipes.AddRecipes(Aequus aequus)
         {
             AutomaticEntries_NPCs(new HashSet<int>()
             {
@@ -153,7 +153,7 @@ namespace Aequus.Common
 
             NPCIDs.Remove(NPCID.BloodSquid);
         }
-        public void AutomaticEntries_NPCs(HashSet<int> hash)
+        public void AutomaticEntries_NPCs(HashSet<int> aiStyles)
         {
             foreach (var n in ContentSamples.NpcsByNetId)
             {
@@ -164,7 +164,7 @@ namespace Aequus.Common
                 try
                 {
                     var npc = n.Value;
-                    if (hash.Contains(npc.aiStyle))
+                    if (aiStyles.Contains(npc.aiStyle))
                     {
                         NPCIDs.Add(n.Key);
                     }
@@ -175,7 +175,7 @@ namespace Aequus.Common
                 }
             }
         }
-        public void AutomaticEntries_Projectiles(HashSet<int> hash)
+        public void AutomaticEntries_Projectiles(HashSet<int> aiStyles)
         {
             foreach (var p in ContentSamples.ProjectilesByType)
             {
@@ -186,7 +186,7 @@ namespace Aequus.Common
                 try
                 {
                     var projectile = p.Value;
-                    if (hash.Contains(projectile.aiStyle))
+                    if (aiStyles.Contains(projectile.aiStyle))
                     {
                         ProjectileIDs.Add(p.Key);
                     }

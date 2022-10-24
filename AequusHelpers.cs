@@ -1205,6 +1205,10 @@ namespace Aequus
             return list;
         }
 
+        public static int ToBannerItem(this NPC npc)
+        {
+            return Item.BannerToItem(npc.ToBanner());
+        }
         public static int ToBanner(this NPC npc)
         {
             return Item.NPCtoBanner(npc.BannerID());

@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.GlobalItems;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.Necromancy;
@@ -18,8 +19,7 @@ using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Jungle;
 using Aequus.Particles;
-using Aequus.Projectiles.Misc;
-using Aequus.Projectiles.Summon;
+using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -57,6 +57,7 @@ namespace Aequus.NPCs
 
         public bool heatDamage;
         public bool noHitEffect;
+        public bool disabledContactDamage;
         public bool infernoOnFire;
 
         public int oldLife;
@@ -92,9 +93,44 @@ namespace Aequus.NPCs
             NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
 
+            On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
+        }
+
+        private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)
+        {
+            string nameTag = null;
+            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC))
+            {
+                nameTag = nameTagNPC.NameTag;
+                switch (npc.type)
+                {
+                    case NPCID.Bunny:
+                    case NPCID.BunnySlimed:
+                    case NPCID.BunnyXmas:
+                    case NPCID.ExplosiveBunny:
+                        if (nameTagNPC.HasNameTag && nameTagNPC.NameTag.ToLower() == "toast")
+                        {
+                            return;
+                        }
+                        break;
+                }
+            }
+
+            var info = GhostSyncInfo.GetInfo(npc);
+
+            orig(npc, newType);
+
+            if (info.IsZombie)
+            {
+                info.SetZombieNPCInfo(npc, npc.GetGlobalNPC<NecromancyNPC>());
+            }
+            if (npc.TryGetGlobalNPC(out nameTagNPC))
+            {
+                nameTagNPC.NameTag = nameTag;
+            }
         }
 
         private static void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
@@ -238,9 +274,53 @@ namespace Aequus.NPCs
             }
         }
 
+        public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
+        {
+            return !disabledContactDamage;
+        }
+
+        public override bool? CanHitNPC(NPC npc, NPC target)
+        {
+            return disabledContactDamage ? false : null;
+        }
+
         public override void ResetEffects(NPC npc)
         {
             statSpeed = 1f;
+            disabledContactDamage = false;
+            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTag) && nameTag.HasNameTag)
+            {
+                string text = nameTag.NameTag.ToLower();
+                if (NPCID.Sets.Skeletons[npc.type] && (text == "papyrus" || text == "skeletor"))
+                {
+                    disabledContactDamage = true;
+                }
+                else if (npc.type == NPCID.Werewolf && (text == "the scarewolf" || text == "big bad wolf"))
+                {
+                    disabledContactDamage = true;
+                }
+                else if (npc.type == NPCID.Crab && (text == "mr krabs" || text == "krab"))
+                {
+                    disabledContactDamage = true;
+                }
+                else if (npc.type == NPCID.Unicorn && text == "pegasus")
+                {
+                    disabledContactDamage = true;
+                }
+                else if ((npc.type == NPCID.Moth || npc.type == NPCID.Mothron || npc.type == NPCID.MothronSpawn) && text == "cata")
+                {
+                    disabledContactDamage = true;
+                    statSpeed += 1f;
+                }
+                else if (npc.ToBannerItem() == ItemID.ScarecrowBanner && (text == "birdy" || text == "beardy"))
+                {
+                    disabledContactDamage = true;
+                }
+                else if (text == "little zumbo")
+                {
+                    disabledContactDamage = true;
+                }
+            }
         }
 
         public void PostAI_JustHit_UpdateInferno(NPC npc)
@@ -442,8 +522,8 @@ namespace Aequus.NPCs
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 80;
-                damage += 9;
+                npc.lifeRegen -= 50;
+                damage += 5;
             }
             if (npc.HasBuff<MindfungusDebuff>())
             {
@@ -464,8 +544,8 @@ namespace Aequus.NPCs
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 8 * 8;
-                damage += 9;
+                npc.lifeRegen -= 30;
+                damage += 3;
             }
             if (npc.HasBuff<Bleeding>())
             {
@@ -502,20 +582,20 @@ namespace Aequus.NPCs
 
         public override bool SpecialOnKill(NPC npc)
         {
-            if (Main.netMode != NetmodeID.Server && npc.HasBuff<SnowgraveDebuff>())
-            {
-                DeathEffect_SnowgraveFreeze(npc);
-            }
-
             if (Main.netMode == NetmodeID.MultiplayerClient
                 || npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
             {
                 return false;
             }
 
+            if (Main.netMode != NetmodeID.Server && npc.HasBuff<SnowgraveDebuff>())
+            {
+                DeathEffect_SnowgraveFreeze(npc);
+            }
+
             var players = GetCloseEnoughPlayers(npc);
 
-            if (npc.realLife == -1)
+            if (npc.realLife == -1 || npc.realLife == npc.whoAmI)
             {
                 if (npc.HasBuff<SoulStolen>())
                 {
@@ -554,7 +634,7 @@ namespace Aequus.NPCs
                 {
                     if (p.aequus.candleSouls < p.aequus.soulCandleLimit)
                     {
-                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, p.player.whoAmI);
+                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, p.player.whoAmI);
                         p.aequus.candleSouls++;
                     }
                 }
@@ -624,7 +704,7 @@ namespace Aequus.NPCs
                 if (Main.player[i].active && !Main.player[i].dead)
                 {
                     float d = npc.Distance(Main.player[i].Center);
-                    if (d < 2000f)
+                    if (d < 1000f)
                     {
                         list.Add(new OnKillPlayerInfo { player = Main.player[i], aequus = Main.player[i].Aequus(), distance = d, });
                     }
@@ -633,10 +713,74 @@ namespace Aequus.NPCs
             return list;
         }
 
+        public void NameDropEasterEggs(NPC npc)
+        {
+            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC))
+            {
+                string text = nameTagNPC.NameTag.ToLower();
+                if ((npc.type == NPCID.Bunny || npc.type == NPCID.BunnySlimed || npc.type == NPCID.BunnyXmas || npc.type == NPCID.ExplosiveBunny) && text == "toast")
+                {
+                    int i = Item.NewItem(npc.GetSource_Loot("Aequus: Name Easter Egg"), npc.getRect(), ModContent.ItemType<RabbitsFoot>());
+                    if (i >= 0 && i < Main.maxItems)
+                    {
+                        if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                        {
+                            itemNameTag.NameTag = "You're a Monster.";
+                        }
+                    }
+                }
+                else if (npc.type == NPCID.Crab && (text == "mr krabs" || text == "krab"))
+                {
+                    int i = Item.NewItem(npc.GetSource_Loot("Aequus: Name Easter Egg"), npc.getRect(), ItemID.GoldCoin);
+                    if (i >= 0 && i < Main.maxItems)
+                    {
+                        if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                        {
+                            itemNameTag.NameTag = "Me first dollar!";
+                        }
+                    }
+                }
+                else if (npc.type == NPCID.Unicorn && text == "pegasus")
+                {
+                    int i = Item.NewItem(npc.GetSource_Loot("Aequus: Name Easter Egg"), npc.getRect(), ItemID.AngelWings);
+                    if (i >= 0 && i < Main.maxItems)
+                    {
+                        if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                        {
+                            itemNameTag.NameTag = "Tattered Pegasus Wings";
+                        }
+                    }
+                }
+                else if ((npc.type == NPCID.Moth || npc.type == NPCID.Mothron || npc.type == NPCID.MothronSpawn) && text == "cata")
+                {
+                    int i = Item.NewItem(npc.GetSource_Loot("Aequus: Name Easter Egg"), npc.getRect(), ItemID.UltrabrightHelmet);
+                    if (i >= 0 && i < Main.maxItems)
+                    {
+                        if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                        {
+                            itemNameTag.NameTag = "Lamp Helmet";
+                        }
+                    }
+                }
+                else if (npc.ToBannerItem() == ItemID.ScarecrowBanner && (text == "birdy" || text == "beardy"))
+                {
+                    int i = Item.NewItem(npc.GetSource_Loot("Aequus: Name Easter Egg"), npc.getRect(), ItemID.Ale);
+                    if (i >= 0 && i < Main.maxItems)
+                    {
+                        if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                        {
+                            itemNameTag.NameTag = "Press B";
+                        }
+                    }
+                }
+            }
+        }
         public override void OnKill(NPC npc)
         {
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
                 return;
+
+            NameDropEasterEggs(npc);
 
             if (jungleCoreInvasion > 0)
             {
@@ -787,7 +931,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(jungleCoreInvasion > 0);
+            var bb = new BitsByte(jungleCoreInvasion > 0, infernoOnFire);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -808,6 +952,7 @@ namespace Aequus.NPCs
                 jungleCoreInvasion = binaryReader.ReadInt32();
                 jungleCoreInvasionIndex = binaryReader.ReadInt32();
             }
+            infernoOnFire = bb[1];
             locustStacks = binaryReader.ReadByte();
             corruptionHellfireStacks = binaryReader.ReadByte();
             crimsonHellfireStacks = binaryReader.ReadByte();

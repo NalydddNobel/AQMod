@@ -4,9 +4,9 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
+namespace Aequus.Projectiles.Summon.Necro
 {
-    public class SoulAbsorbtion : ModProjectile
+    public class SoulAbsorbProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
 
@@ -44,8 +44,7 @@ namespace Aequus.Projectiles.Summon
                 }
                 else
                 {
-                    float additional = (Projectile.ai[0] - 45f) / 900f;
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, difference * additional, additional * 0.75f);
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, difference / 16f, 0.1f);
                 }
             }
             float separation = 2f;

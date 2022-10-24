@@ -6,7 +6,7 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables;
 using Aequus.NPCs.Boss;
-using Aequus.Projectiles.Summon;
+using Aequus.Projectiles.Summon.Necro;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -305,7 +305,7 @@ namespace Aequus
                         {
                             int player = reader.ReadInt32();
                             if (Main.myPlayer == player)
-                                Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbtion>(), 0, 0f, player);
+                                Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, player);
                             Main.player[player].GetModPlayer<AequusPlayer>().candleSouls++;
                         }
                     }

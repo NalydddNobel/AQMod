@@ -6,9 +6,9 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.GlobalItems
+namespace Aequus.Common
 {
-    public class JourneyModeFilters : ILoadable
+    public class JourneyModeItemFilters : ILoadable
     {
         void ILoadable.Load(Mod mod)
         {

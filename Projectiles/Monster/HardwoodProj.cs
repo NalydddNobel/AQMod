@@ -1,5 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Projectiles.Melee;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -85,6 +86,8 @@ namespace Aequus.Projectiles.Monster
                 Projectile.ai[0] = (int)(Projectile.Center.X / 16f);
                 Projectile.ai[1] = (int)(Projectile.Center.Y / 16f);
             }
+            AequusTile.Circles.Add(new AequusTile.IndestructibleCircle() { CenterPoint = Projectile.Center.ToTileCoordinates(), tileRadius = 8f, });
+            AequusTile.Circles.Add(new AequusTile.IndestructibleCircle() { CenterPoint = new Point((int)Projectile.ai[0], (int)Projectile.ai[1]), tileRadius = 8f, });
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 

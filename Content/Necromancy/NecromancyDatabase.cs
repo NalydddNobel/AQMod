@@ -49,39 +49,6 @@ namespace Aequus.Content.Necromancy
                 [NPCID.Tim] = GhostInfo.Invalid,
                 [NPCID.AngryTrapper] = GhostInfo.Invalid,
             };
-
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Zombie, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.One.WithAggro(AggressionType.NightTime);
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.DemonEye, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.One.WithAggro(AggressionType.NightTime);
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Hornet, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Two;
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.AngryBones, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Two;
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.Scarecrow1, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Three.WithAggro(AggressionType.NightTime);
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.BlueArmoredBones, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Four;
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.HellArmoredBones, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Four;
-            }
-            foreach (var i in AequusHelpers.AllWhichShareBanner(NPCID.RustyArmoredBonesAxe, vanillaOnly: true))
-            {
-                NPCs[i] = GhostInfo.Four;
-            }
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)

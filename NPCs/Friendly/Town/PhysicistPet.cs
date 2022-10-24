@@ -117,8 +117,26 @@ namespace Aequus.NPCs.Friendly.Town
         {
             if (firstButton)
             {
-                SoundEngine.PlaySound(RenameItemUIState.SqueakSound);
+                PlayPetSound();
             }
+        }
+        public void PlayPetSound()
+        {
+            if (NPC.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC) && nameTagNPC.HasNameTag)
+            {
+                switch (nameTagNPC.NameTag.ToLower())
+                {
+                    case "little zumbo":
+                        SoundEngine.PlaySound(SoundID.Item16);
+                        return;
+                }
+            }
+            if (NPC.GivenName.ToLower() == "pooper")
+            {
+                SoundEngine.PlaySound(SoundID.Item16);
+                return;
+            }
+            SoundEngine.PlaySound(RenameItemUIState.SqueakSound);
         }
 
         public override string GetChat()

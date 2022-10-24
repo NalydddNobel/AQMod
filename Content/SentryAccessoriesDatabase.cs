@@ -109,9 +109,37 @@ namespace Aequus.Content
         }
         public static void WaterWalkingBoots_AI(OnAIInfo info)
         {
+            for (int l = 0; l < 2; l++)
+            {
+                var tileCoords = new Vector2(info.Projectile.Center.X, info.Projectile.position.Y + info.Projectile.height - 8f + l * 16f).ToTileCoordinates();
+                if (!WorldGen.InWorld(tileCoords.X, tileCoords.Y, 10))
+                {
+                    return;
+                }
+                if (Main.tile[tileCoords].LiquidAmount == 255)
+                {
+                    info.Projectile.velocity.Y = Math.Min(info.Projectile.velocity.Y, 0f);
+                    for (int j = 0; j < 10; j++)
+                    {
+                        info.Projectile.Bottom = new Vector2(info.Projectile.Bottom.X, (tileCoords.Y - j) * 16f + Main.tile[tileCoords].LiquidAmount / 255f * 16f);
+                        if (Main.tile[tileCoords.X, tileCoords.Y - j].LiquidAmount < 255)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
         }
         public static void InnerTube_AI(OnAIInfo info)
         {
+            if (Collision.WetCollision(info.Projectile.position, info.Projectile.width, info.Projectile.height))
+            {
+                info.Projectile.velocity.Y -= 0.6f;
+                if (!Collision.WetCollision(info.Projectile.position + info.Projectile.velocity, info.Projectile.width, info.Projectile.height))
+                {
+                    info.Projectile.velocity.Y = 0f;
+                }
+            }
         }
         public static void BoneHelm_AI(OnAIInfo info)
         {

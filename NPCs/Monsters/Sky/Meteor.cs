@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Content;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using System.IO;
