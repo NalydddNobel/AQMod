@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;
 using Aequus.Tiles;

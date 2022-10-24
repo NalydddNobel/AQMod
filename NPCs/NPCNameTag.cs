@@ -14,11 +14,6 @@ namespace Aequus.NPCs
 
         public override bool PreAI(NPC npc)
         {
-            //if (!npc.townNPC && !npc.immortal && !npc.dontTakeDamage)
-            //{
-            //    Main.NewText(npc);
-            //    AequusHelpers.dustDebug(npc.position);
-            //}
             // Isn't very sync supportive, but blah, it's a name tag.
             // Not too concerning if worm names don't sync for half a second... right.
             if (npc.realLife != -1 && Main.GameUpdateCount % 30 == 0 && Main.npc[npc.realLife].TryGetGlobalNPC<NPCNameTag>(out var nameTag))
@@ -42,7 +37,7 @@ namespace Aequus.NPCs
             if (HasNameTag && npc.realLife == -1)
             {
                 if (npc.netID < Main.maxNPCTypes)
-                    tag["ID"] = npc.netID;
+                    tag["ID"] = npc.netID; // Vanilla entities don't load properly for some reason! So I am doing this to save their ID for reloading properly.
                 tag["NameTag"] = NameTag;
             }
         }

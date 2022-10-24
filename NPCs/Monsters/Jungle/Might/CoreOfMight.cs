@@ -13,7 +13,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return false;
+            return true;
         }
 
         public override void Load()
@@ -25,6 +25,11 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         public override EnemySpawnData ChooseSpawnType(int index, int count)
         {
             return SpawnData[index % SpawnData.Count];
+        }
+
+        public override Color OnTileColor(float distance)
+        {
+            return new Color(2, 35, 128) * (1f - distance / 3000f) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);
         }
 
         public override void AI()

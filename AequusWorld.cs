@@ -1,15 +1,12 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
-using Aequus.Content.CrossMod;
-using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.WorldGeneration;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;

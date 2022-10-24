@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -118,6 +119,29 @@ namespace Aequus.NPCs.Monsters.Jungle
                 return null;
             }
         }
+        public class EnemySpawn_BottomSide : EnemySpawnData
+        {
+            public int npcIDToSpawn;
+
+            public EnemySpawn_BottomSide(int npcID)
+            {
+                npcIDToSpawn = npcID;
+            }
+
+            public override EnemyData TrySpawnEnemy(int x, int y)
+            {
+                if (!WorldGen.InWorld(x, y, 100) || Main.tile[x, y].IsFullySolid())
+                {
+                    return null;
+                }
+
+                if (Main.tile[x, y + 1].IsFullySolid())
+                {
+                    return new EnemyData(new Point(x, y), npcIDToSpawn);
+                }
+                return null;
+            }
+        }
         public struct TendrilDrawInfo
         {
             public Vector2 drawLoc;
@@ -130,6 +154,11 @@ namespace Aequus.NPCs.Monsters.Jungle
         public virtual int EnemyCount => Main.getGoodWorld ? 12 : (Main.expertMode ? 6 : 3);
 
         protected override bool CloneNewInstances => true;
+
+        public virtual Color OnTileColor(float distance)
+        {
+            return Color.White * (1f - distance);
+        }
 
         public virtual void OnKilledMinion(NPC npc, int index)
         {
@@ -462,9 +491,15 @@ namespace Aequus.NPCs.Monsters.Jungle
             spriteBatch.Draw(t, NPC.position + off - screenPos, frame, new Color(160, 200, 255, 128), NPC.rotation, origin, NPC.scale + heartBeat, SpriteEffects.None, 0f);
             spriteBatch.Draw(t, NPC.position + off - screenPos, frame, new Color(160, 200, 255, 128) * 0.4f, NPC.rotation, origin, NPC.scale + heartBeat * 2f, SpriteEffects.None, 0f);
             float d = (NPC.Center - Main.LocalPlayer.Center).Length();
+            if (d < 3000f)
+            {
+                OrganicEnergyEventLightingSystem.CurrentColor = OnTileColor(d / 3000f);
+                OrganicEnergyEventLightingSystem.CurrentColor.A = 255;
+                OrganicEnergyEventLightingSystem.SparkleChance = 20;
+            }
             if (d < 1500f)
             {
-                EffectsSystem.Shake.Set(Math.Max(16f * (1f - d / 1500f) * heartBeat * 6f * (1f + NPC.localAI[0] / 25f), EffectsSystem.Shake.Intensity), 0.95f - NPC.localAI[0] / 90f);
+                EffectsSystem.Shake.Set(Math.Max(8f * (1f - d / 1500f) * heartBeat * 6f * (1f + NPC.localAI[0] / 25f), EffectsSystem.Shake.Intensity), 0.95f - NPC.localAI[0] / 90f);
             }
             return false;
         }

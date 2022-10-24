@@ -19,7 +19,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return false;
+            return true;
         }
 
         public override void SetStaticDefaults()
@@ -51,11 +51,11 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             NPC.aiStyle = -1;
             NPC.lifeMax = 1000;
             NPC.defense = 20;
-            NPC.knockBackResist = 0.1f;
+            NPC.knockBackResist = 0f;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             movementSpeed = 0.05f;
-            range = 300f;
+            range = 240f;
 
             this.SetBiome<OrganicEnergyBiome>();
         }
