@@ -935,8 +935,8 @@ Mods: {
 				'''
 
 			# Tools #
-			SilkHammer: Retrieve replacable versions of walls instead
-			SilkPickaxe: Retrieve replacable versions of blocks instead
+			SilkHammer: Receive replacable versions of walls instead
+			SilkPickaxe: Receive replacable versions of blocks instead
 			Crabax:
 				'''
 				Can chop multiple trees at once
