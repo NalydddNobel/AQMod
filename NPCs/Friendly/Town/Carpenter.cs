@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Projectiles.Misc;
 using Aequus.UI.CarpenterUI;
@@ -106,14 +107,15 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkPickaxe>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkHammer>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
-            }
-
-            if (!Main.dayTime)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
+                if (!Main.dayTime)
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
+                }
             }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();

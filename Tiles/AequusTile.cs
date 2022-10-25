@@ -50,9 +50,11 @@ namespace Aequus.Tiles
 
         public static Dictionary<Point, Color> PylonColors { get; private set; }
         public static Dictionary<TileKey, int> TileIDToItemID { get; private set; }
+        public static Dictionary<int, int> WallIDToItemID { get; private set; }
 
         public override void Load()
         {
+            WallIDToItemID = new Dictionary<int, int>();
             TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
@@ -88,6 +90,7 @@ namespace Aequus.Tiles
 
         public void AddRecipes(Aequus aequus)
         {
+            AddEchoWalls();
             foreach (var i in ContentSamples.ItemsByType)
             {
                 if (i.Value.createTile > -1)
@@ -103,9 +106,56 @@ namespace Aequus.Tiles
                         aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
                         continue;
                     }
+                    TileIDToItemID[tileID] = i.Key;
+                }
+                else if (i.Value.createWall > -1)
+                {
+                    if (WallIDToItemID.ContainsKey(i.Value.createWall))
+                    {
+                        if (!i.Value.consumable || i.Key == WallIDToItemID[i.Value.createWall])
+                        {
+                            continue;
+                        }
+
+                        aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(WallIDToItemID[i.Value.createWall])}, Duplicate: {Lang.GetItemName(i.Key)})");
+                        continue;
+                    }
+                    WallIDToItemID[i.Value.createWall] = i.Key;
                 }
             }
             LoadPylonColors();
+        }
+        public static void AddEchoWalls()
+        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading custom wall to item ID table entries...");
+            }
+            var val = Aequus.GetContentFile("MiscWallItemEntries");
+            foreach (var modDict in val)
+            {
+                if (modDict.Key == "Vanilla")
+                {
+                    foreach (var wallID in modDict.Value)
+                    {
+                        WallIDToItemID[WallID.Search.GetId(wallID.Key)] = ItemID.Search.GetId(wallID.Value);
+                    }
+                }
+                else if (ModLoader.TryGetMod(modDict.Key, out var mod))
+                {
+                    if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
+                    }
+                    foreach (var wallID in modDict.Value)
+                    {
+                        if (mod.TryFind<ModWall>(wallID.Key, out var modWall) && mod.TryFind<ModItem>(wallID.Value, out var modItem))
+                        {
+                            WallIDToItemID[modWall.Type] = modItem.Type;
+                        }
+                    }
+                }
+            }
         }
 
         public static void LoadPylonColors()

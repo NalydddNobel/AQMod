@@ -148,7 +148,6 @@ Mods: {
 			Mallet: Mallet
 			SuperStarSword: Super Star Sword
 			UltimateSword: Ultimate Sword
-			BattleAxe: Battle Axe
 			RockMan: Rock Man
 			MirrorsCall: Mirror's Call
 			Slice: Slice
@@ -212,6 +211,12 @@ Mods: {
 			VenomDartTrapHat: Venom Dart Trap Hat
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
+
+			# Tools #
+			BattleAxe: Battle Axe
+			SilkHammer: Silk Hammer
+			SilkPickaxe: Silk Pickaxe
+			Crabax: Crabax
 
 			# Baits # 
 			RegrowingBait: Regenerative Bait
@@ -551,7 +556,6 @@ Mods: {
 			SpectralLens: Spectral Lens
 			SpectreSoul: Spectre Soul
 			GoldPowder: Gold Powder
-			Crabax: Crabax
 			Floatstick: Floatstick
 			SpaceSquidTrophy: Space Squid Trophy
 		}
@@ -716,7 +720,6 @@ Mods: {
 				'If they zig, I cut 'em (If they zag, I cut 'em too)'
 				'''
 			UltimateSword: "'Just a fragment of true potential'"
-			BattleAxe: Chance to inflict bleeding on enemies
 			RockMan: An ancient relic, originally used to cut lemons
 
 			Hitscanner: Fires a massive spread of instantly hitting bullets
@@ -930,6 +933,16 @@ Mods: {
 				Increases your max number of minions by 2
 				Ignores 15 points of enemy Defense
 				'''
+
+			# Tools #
+			SilkHammer: Retrieve replacable versions of walls instead
+			SilkPickaxe: Retrieve replacable versions of blocks instead
+			Crabax:
+				'''
+				Can chop multiple trees at once
+				Hold right click to disable this ability
+				'''
+			BattleAxe: Chance to inflict bleeding on enemies
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
@@ -1284,12 +1297,6 @@ Mods: {
 				'''
 				Summons a magma lotus to fight for you
 				{$Mods.Aequus.Common.DoesntMinionTarget}
-				'''
-
-			Crabax:
-				'''
-				Can chop multiple trees at once
-				Hold right click to disable this ability
 				'''
 
 			Terraria_SoulofMight: "'The essence of vigorous creatures'"
