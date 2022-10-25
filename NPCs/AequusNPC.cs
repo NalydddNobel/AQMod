@@ -632,7 +632,7 @@ namespace Aequus.NPCs
             {
                 foreach (var p in players)
                 {
-                    if (p.aequus.candleSouls < p.aequus.soulCandleLimit)
+                    if (p.aequus.candleSouls < p.aequus.heldSoulCandle)
                     {
                         Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, p.player.whoAmI);
                         p.aequus.candleSouls++;
@@ -644,7 +644,7 @@ namespace Aequus.NPCs
                 var candlePlayers = new List<int>();
                 foreach (var p in players)
                 {
-                    if (p.aequus.candleSouls < p.aequus.soulCandleLimit)
+                    if (p.aequus.candleSouls < p.aequus.heldSoulCandle)
                     {
                         candlePlayers.Add(p.player.whoAmI);
                     }

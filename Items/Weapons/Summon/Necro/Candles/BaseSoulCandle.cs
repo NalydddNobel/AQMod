@@ -11,7 +11,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public abstract class BaseSoulCandle : ModItem
+    public abstract class BaseSoulCandle : ModItem, ItemHooks.IUpdateVoidBag
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
@@ -46,9 +46,28 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.SummonWeapon;
         }
 
+        public void UpdatePlayerSoulLimit(Player player)
+        {
+            var aequus = player.Aequus();
+            if (aequus.heldSoulCandle < soulLimit)
+            {
+                aequus.heldSoulCandle = soulLimit;
+            }
+        }
+
         public override void HoldItem(Player player)
         {
-            player.Aequus().soulCandleLimit = soulLimit;
+            UpdatePlayerSoulLimit(player);
+        }
+
+        public override void UpdateInventory(Player player)
+        {
+            UpdatePlayerSoulLimit(player);
+        }
+
+        void ItemHooks.IUpdateVoidBag.UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
+        {
+            UpdatePlayerSoulLimit(player);
         }
 
         public override bool CanUseItem(Player player)

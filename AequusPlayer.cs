@@ -308,7 +308,7 @@ namespace Aequus
         /// </summary>
         public uint netInteractionCooldown;
 
-        public int soulCandleLimit;
+        public int heldSoulCandle;
 
         public int turretSlotCount;
 
@@ -588,7 +588,7 @@ namespace Aequus
             debuffDuration = 1f;
             luckRerolls = 0;
             antiGravityItemRadius = 0f;
-            soulCandleLimit = 0;
+            heldSoulCandle = 0;
             pickTileDamage = 1f;
             ghostSlotsMax = 1;
             ghostProjExtraUpdates = 0;
@@ -1535,7 +1535,7 @@ namespace Aequus
         /// <param name="proj"></param>
         public void NecromancyHit(NPC target, Projectile proj)
         {
-            if (candleSouls < soulCandleLimit)
+            if (candleSouls < heldSoulCandle)
             {
                 target.AddBuffToHeadOrSelf(ModContent.BuffType<SoulStolen>(), 300);
             }
