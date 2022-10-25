@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Content
 {
-    public class ColorExtractor : ILoadable
+    public class PotionColorsDatabase : ILoadable, IPostSetupContent, IAddRecipes
     {
         internal static List<Color> ItemColorForBuffsBlacklist;
         public static Dictionary<int, Color> ItemToBuffColor { get; private set; }
@@ -27,44 +28,64 @@ namespace Aequus.Graphics
                 new Color(226, 229, 255, 255),
             };
 
-            BuffToColor = new Dictionary<int, Color>()
-            {
-                [BuffID.ObsidianSkin] = new Color(160, 60, 240, 255),
-                [BuffID.Regeneration] = new Color(255, 100, 160, 255),
-                [BuffID.Swiftness] = new Color(160, 240, 100, 255),
-                [BuffID.Gills] = new Color(100, 160, 230, 255),
-                [BuffID.Ironskin] = new Color(235, 255, 100, 255),
-                [BuffID.ManaRegeneration] = new Color(255, 80, 150, 255),
-                [BuffID.MagicPower] = new Color(79, 16, 164, 255),
-                [BuffID.Spelunker] = new Color(255, 245, 150, 255),
-                [BuffID.Thorns] = new Color(165, 255, 80, 255),
-
-                [BuffID.OnFire] = new Color(255, 180, 100, 255),
-                [BuffID.Burning] = new Color(255, 180, 100, 255),
-                [BuffID.Lovestruck] = new Color(255, 180, 200, 255),
-                [BuffID.Midas] = new Color(255, 180, 90, 255),
-                [BuffID.Slimed] = new Color(180, 180, 255, 255),
-                [BuffID.Wet] = new Color(180, 180, 255, 255),
-                [BuffID.Ichor] = new Color(255, 255, 160, 255),
-                [BuffID.BetsysCurse] = new Color(255, 220, 20, 255),
-                [BuffID.CursedInferno] = new Color(160, 255, 160, 255),
-                [BuffID.ShadowFlame] = new Color(200, 60, 255, 255),
-            };
-
-            ItemToBuffColor = new Dictionary<int, Color>()
-            {
-                [ItemID.ObsidianSkinPotion] = BuffToColor[BuffID.ObsidianSkin],
-                [ItemID.RegenerationPotion] = BuffToColor[BuffID.Regeneration],
-                [ItemID.SwiftnessPotion] = BuffToColor[BuffID.Swiftness],
-                [ItemID.GillsPotion] = BuffToColor[BuffID.Gills],
-                [ItemID.IronskinPotion] = BuffToColor[BuffID.Ironskin],
-                [ItemID.ManaRegenerationPotion] = BuffToColor[BuffID.ManaRegeneration],
-                [ItemID.MagicPowerPotion] = BuffToColor[BuffID.MagicPower],
-                [ItemID.SpelunkerPotion] = BuffToColor[BuffID.Spelunker],
-                [ItemID.ThornsPotion] = BuffToColor[BuffID.Thorns],
-            };
-
+            BuffToColor = new Dictionary<int, Color>();
             ItemToBuffColor = new Dictionary<int, Color>();
+        }
+
+        void IPostSetupContent.PostSetupContent(Aequus aequus)
+        {
+        }
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading potion colors...");
+            }
+            var val = Aequus.GetContentFile("PotionColorsDatabase");
+            foreach (var modDict in val)
+            {
+                if (modDict.Key == "Vanilla")
+                {
+                    foreach (var potionColor in modDict.Value)
+                    {
+                        if (BuffID.Search.TryGetId(potionColor.Key, out int buffID))
+                        {
+                            BuffToColor[buffID] = AequusHelpers.ReadColor(potionColor.Value);
+                            continue;
+                        }
+                        aequus.Logger.Error($"Buff {potionColor.Key} does not exist.");
+                    }
+                }
+                else if (ModLoader.TryGetMod(modDict.Key, out var mod))
+                {
+                    if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
+                    }
+                    foreach (var potionColor in modDict.Value)
+                    {
+                        if (mod.TryFind<ModBuff>(potionColor.Key, out var modItem))
+                        {
+                            BuffToColor[modItem.Type] = AequusHelpers.ReadColor(potionColor.Value);
+                        }
+                    }
+                }
+            }
+            foreach (var i in ContentSamples.ItemsByType)
+            {
+                if (i.Value.buffType > 0)
+                {
+                    foreach (var b in BuffToColor)
+                    {
+                        if (i.Value.buffType == b.Key)
+                        {
+                            ItemToBuffColor[i.Key] = b.Value;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         void ILoadable.Unload()
@@ -77,6 +98,13 @@ namespace Aequus.Graphics
         {
             if (ItemToBuffColor.TryGetValue(item, out var color))
                 return color;
+
+            if (ContentSamples.ItemsByType[item].buffType > 0 && BuffToColor.TryGetValue(ContentSamples.ItemsByType[item].buffType, out var buffColor))
+            {
+                ItemToBuffColor[item] = buffColor;
+                return buffColor;
+            }
+
             return TryGetColorFromItemSprite(item);
         }
 
@@ -123,9 +151,9 @@ namespace Aequus.Graphics
                 }
                 var color = new Color(255, 255, 255, 255)
                 {
-                    R = (byte)AequusHelpers.Mean(colors.GetSpecific((r) => r.R)),
-                    G = (byte)AequusHelpers.Mean(colors.GetSpecific((g) => g.G)),
-                    B = (byte)AequusHelpers.Mean(colors.GetSpecific((b) => b.B))
+                    R = (byte)colors.GetSpecific((r) => r.R).Mean(),
+                    G = (byte)colors.GetSpecific((g) => g.G).Mean(),
+                    B = (byte)colors.GetSpecific((b) => b.B).Mean()
                 };
 
                 ItemToBuffColor.Add(item, color);

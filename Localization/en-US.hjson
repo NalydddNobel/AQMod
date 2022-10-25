@@ -62,6 +62,7 @@ Mods: {
 		}
 
 		PrefixName: {
+			SplashPrefix: Splashable
 			DoubledTimePrefix: Stuffed
 			EmpoweredPrefix: Empowered
 
@@ -1310,8 +1311,8 @@ Mods: {
 				RouletteDrop: The item below is guaranteed to drop
 
 				NecromancyStaff: Slain enemies may convert into ghosts
-				NecromancyCandle: Absorbs the souls of enemies killed by minions when held
-				UseSouls: Uses {0} souls
+				NecromancyCandle: Automatically absorbs the souls of enemies killed by minions
+				UseSouls: Uses {0} enemy souls
 				CarryingSouls: Carrying {0} of {1} souls
 			}
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
@@ -8,7 +8,7 @@ namespace Aequus.Buffs
     {
         public override void SetStaticDefaults()
         {
-            ColorExtractor.BuffToColor.Add(Type, new Color(200, 60, 255, 255));
+            PotionColorsDatabase.BuffToColor.Add(Type, new Color(255, 61, 110));
         }
     }
 }

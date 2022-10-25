@@ -75,7 +75,7 @@ namespace Aequus.Common.ModPlayers
         {
             if (Main.tile[x, y].WallType > WallID.None)
             {
-                AequusTile.AddEchoWalls();
+                AequusTile.LoadEchoWalls();
                 if (AequusTile.WallIDToItemID.TryGetValue(Main.tile[x, y].WallType, out int itemID))
                 {
                     Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);

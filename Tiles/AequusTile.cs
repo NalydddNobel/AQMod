@@ -90,7 +90,7 @@ namespace Aequus.Tiles
 
         public void AddRecipes(Aequus aequus)
         {
-            AddEchoWalls();
+            LoadEchoWalls();
             foreach (var i in ContentSamples.ItemsByType)
             {
                 if (i.Value.createTile > -1)
@@ -125,7 +125,7 @@ namespace Aequus.Tiles
             }
             LoadPylonColors();
         }
-        public static void AddEchoWalls()
+        public static void LoadEchoWalls()
         {
             if (Aequus.LogMore)
             {

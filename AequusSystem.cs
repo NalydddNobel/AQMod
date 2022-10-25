@@ -5,6 +5,7 @@ using Aequus.Tiles;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.PhysicistBlocks;
 using Aequus.UI;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -41,6 +42,11 @@ namespace Aequus
             Main_bloodMoon = new ValueCache<bool>(() => ref Main.bloodMoon);
             Main_eclipse = new ValueCache<bool>(() => ref Main.eclipse);
             Main_dayTime = new ValueCache<bool>(() => ref Main.dayTime);
+        }
+
+        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
+        {
+            base.ModifySunLightColor(ref tileColor, ref backgroundColor);
         }
 
         public override void Unload()
