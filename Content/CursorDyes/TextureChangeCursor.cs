@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
@@ -27,6 +28,7 @@ namespace Aequus.Content.CursorDyes
         bool ICursorDye.PreDrawCursor(ref Vector2 bonus, ref bool smart)
         {
             string texture = Texture;
+            smart = Main.SmartCursorIsUsed;
             if (Main.cursorOverride > 0)
             {
                 texture = Texture + "_" + Main.cursorOverride;
@@ -39,10 +41,10 @@ namespace Aequus.Content.CursorDyes
             {
                 texture = Texture + "_Smart";
             }
-            float scale = Main.cursorScale * 0.8f;
+            float scale = Main.cursorScale;
 
-            var textureAsset = ModContent.Request<Texture2D>(texture);
-            if (ModContent.RequestIfExists<Texture2D>(texture + "_outline", out var outline))
+            var textureAsset = ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad);
+            if (ModContent.RequestIfExists<Texture2D>(texture + "_outline", out var outline, AssetRequestMode.ImmediateLoad))
             {
                 Main.spriteBatch.Draw(outline.Value, new Vector2(Main.mouseX, Main.mouseY), null, Main.MouseBorderColor.UseA(255), 0f, default(Vector2), scale, SpriteEffects.None, 0f);
             }

@@ -9,9 +9,10 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
-using Aequus.Items.Consumables.CursorDyes;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Festive;
 using Aequus.Items.Pets;
 using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Ranged;
@@ -220,6 +221,48 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
+                case NPCID.Pumpking:
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<HalloweenEnergy>()));
+                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HalloweenEnergy>()));
+                    break;
+                case NPCID.MourningWood:
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<HalloweenEnergy>(), 5));
+                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HalloweenEnergy>()));
+                    break;
+
+                case NPCID.SlimeMasked:
+                case NPCID.ZombieDoctor:
+                case NPCID.ZombieSuperman:
+                case NPCID.ZombiePixie:
+                case NPCID.DemonEyeOwl:
+                case NPCID.DemonEyeSpaceship:
+                case NPCID.Raven:
+                case NPCID.SkeletonTopHat:
+                case NPCID.SkeletonAstonaut:
+                case NPCID.SkeletonAlien:
+                case NPCID.Ghost:
+                case NPCID.HoppinJack:
+                case NPCID.Scarecrow1:
+                case NPCID.Scarecrow2:
+                case NPCID.Scarecrow3:
+                case NPCID.Scarecrow4:
+                case NPCID.Scarecrow5:
+                case NPCID.Scarecrow6:
+                case NPCID.Scarecrow7:
+                case NPCID.Scarecrow8:
+                case NPCID.Scarecrow9:
+                case NPCID.Scarecrow10:
+                case NPCID.Splinterling:
+                case NPCID.Hellhound:
+                case NPCID.HeadlessHorseman:
+                case NPCID.Poltergeist:
+                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HalloweenEnergy>()));
+                    break;
+
+                case NPCID.Demon:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DemonCursor>(), 100));
+                    break;
+
                 case NPCID.QueenBee:
                     npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     break;
@@ -715,7 +758,7 @@ namespace Aequus.NPCs
 
         public void NameDropEasterEggs(NPC npc)
         {
-            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC))
+            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC) && nameTagNPC.HasNameTag)
             {
                 string text = nameTagNPC.NameTag.ToLower();
                 if ((npc.type == NPCID.Bunny || npc.type == NPCID.BunnySlimed || npc.type == NPCID.BunnyXmas || npc.type == NPCID.ExplosiveBunny) && text == "toast")
@@ -877,35 +920,15 @@ namespace Aequus.NPCs
                     }
                     break;
 
-                case NPCID.DyeTrader:
-                    {
-                        int removerSlot = nextSlot;
-                        if (Main.LocalPlayer.statLifeMax >= 200)
-                        {
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HealthCursorDye>());
-                        }
-                        if (Main.LocalPlayer.statManaMax >= 100)
-                        {
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ManaCursorDye>());
-                        }
-                        if (LanternNight.LanternsUp)
-                        {
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SwordCursorDye>());
-                        }
-                        if (AequusWorld.downedEventDemon)
-                        {
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DemonicCursorDye>());
-                        }
-                        if (nextSlot != removerSlot)
-                        {
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CursorDyeRemover>());
-                        }
-                    }
-                    break;
-
                 case NPCID.Mechanic:
                     {
                         shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
+                    }
+                    break;
+
+                case NPCID.DyeTrader:
+                    {
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DyableCursor>());
                     }
                     break;
             }

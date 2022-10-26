@@ -211,7 +211,7 @@ namespace Aequus.Biomes.DemonSiege
                 for (int i = 0; i < 40; i++)
                 {
                     var d = Dust.NewDustPerfect(itemSpawn + Main.rand.NextVector2Unit() * Main.rand.NextFloat(20f, 100f), ModContent.DustType<MonoSparkleDust>(),
-                        newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 200) * Main.rand.NextFloat(0.9f, 1.5f), Scale: Main.rand.NextFloat(1f, 2.5f));
+                        newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 25) * Main.rand.NextFloat(0.9f, 1.5f), Scale: Main.rand.NextFloat(1f, 2.5f));
                     d.velocity = (d.position - itemSpawn) / 20f;
                     d.fadeIn = d.scale + Main.rand.NextFloat(0.9f, 1.1f);
                 }

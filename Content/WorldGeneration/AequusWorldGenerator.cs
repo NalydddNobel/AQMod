@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Pets;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
@@ -83,10 +84,21 @@ namespace Aequus.Content.WorldGeneration
                     int style = ChestType.GetStyle(c);
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers)
                     {
-                        if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom)
+                        if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom || style == ChestType.RichMahogany)
                         {
                             rockmanChests.Add(k);
 
+                            if (!placedItems.Contains(ModContent.ItemType<SwordCursor>()) || r.NextBool(20))
+                            {
+                                for (int i = 0; i < Chest.maxItems; i++)
+                                {
+                                    if (c.item[i].IsAir)
+                                    {
+                                        c.item[i].SetDefaults(ModContent.ItemType<SwordCursor>());
+                                        placedItems?.Add(ModContent.ItemType<SwordCursor>());
+                                    }
+                                }
+                            }
                             if (r.NextBool(5))
                             {
                                 AddGlowCore(c, placedItems);

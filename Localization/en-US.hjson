@@ -80,6 +80,7 @@ Mods: {
 		}
 
 		Prefixes: {
+			SplashPotion: +Throwable
 			BuffDuration: "{0} duration"
 			BuffEmpowerment: "{0} buff strength"
 
@@ -134,8 +135,15 @@ Mods: {
 			DevilsTongue: Devil's Tongue
 
 			# Vanity
+			PumpkingCursor: Pumpking's Cursor
+			DyableCursor: Dyable Cursor
+			HealthCursor: Health Cursor
+			ManaCursor: Mana Cursor
+			SwordCursor: Sword Cursor
+			DemonCursor: Demon Cursor
+			Headless: Headless
 			FishyFins: Fishy Fins
-			
+
 			# Weapons #
 
 			# Melee
@@ -368,15 +376,18 @@ Mods: {
 
 			# Misc (and Legacy) #
 
+			HalloweenEnergy: Horrific Energy
+
 			OrganicEnergy: Organic Energy
 			DemonicEnergy: Demonic Energy
 			CosmicEnergy: Cosmic Energy
 			AtmosphericEnergy: Atmospheric Energy
 			AquaticEnergy: Aquatic Energy
 			UltimateEnergy: Ultimate Energy
-			
-			MoonflowerPollen: Moonflower Pollen
+
+			MorayPollen: Moray Pollen
 			MistralPollen: Mistral Pollen
+			MoonflowerPollen: Moonflower Pollen
 
 			Hexoplasm: Hexoplasm
 			ItemScrap: Scrap
@@ -481,11 +492,6 @@ Mods: {
 			RedLicorice: Red Licorice
 			GrapePhanta: Grape Phanta
 			PeeledCarrot: Dragon Carrot
-			CursorDyeRemover: Cursor Dye Remover
-			HealthCursorDye: Health Cursor Dye
-			ManaCursorDye: Mana Cursor Dye
-			SwordCursorDye: Sword Cursor Dye
-			DemonicCursorDye: Demonic Cursor Dye
 			TemperatureHairDye: Temperature Hair Dye
 			NalydDye: Summit Dye
 			RedSpriteDye: Scorching Dye
@@ -679,6 +685,13 @@ Mods: {
 				'A new hand touches the beacon...'
 				'''
 
+			# Vanity
+			PumpkingCursor: Transforms your mouse cursor
+			HealthCursor: Causes your mouse cursor to darken the lower your life
+			ManaCursor: Causes your mouse cursor to brighten the lower your mana
+			SwordCursor: Transforms your mouse cursor
+			DemonCursor: Transforms your mouse cursor
+			Headless: Decapitates you
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
 			PhaseDisc: 
@@ -1280,8 +1293,6 @@ Mods: {
 			CrabPot: Uses bait to catch things in the water
 
 			MoonflowerSeeds: Blooms and produces pollen near midnight
-
-			CursorDyeRemover: Removes any applied cursor dye
 
 			FamiliarPickaxe: Summons a mini version of yourself
 
@@ -1906,7 +1917,6 @@ Mods: {
 			CarpenterRequirements: Try putting extra decorations in your house... it may attract a housing master!
 			SkyMerchant: The Sky Merchant soars across the sky on his hot air balloon! Try talking to him to get some aerial deals.
 			Vampirism: Be careful when eating a Vampire Squid... they say the only cure is caught during a Blood Moon!
-			CursorDye: Cursor Dyes let you change the color or design of your mouse! They are quite fun to try!
 			Drones: The Physicist lets you protect your towns with Drones! But choose your drones wisely, each one provides a completely different service!
 			BreadofCthulhu: Be careful when fishing trash... an evil garbage monster may trash YOU!
 			ExporterCrates: Don't like the randomness of Crates? The Exporter's rewards may be a great substitute-- If you're willing to become a criminal!
@@ -1969,27 +1979,6 @@ Mods: {
 		ShopQuote: {
 			Mechanic: {
 				SantankSentry: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
-			}
-		
-			DyeTrader: {
-				CursorDyeRemover: Cleans off your cursor of any dyes applied to it, extremely magical.
-				HealthCursorDye: 
-					'''
-					They say we all have a 'Cursor', a magical point in space which we put extreme focus into. 
-					Using mystic materials and a special bottle, I've been able to create a dye which effects this 'Cursor'.
-					This coloring tracks your life through the connection between you and your 'Cursor'.
-					'''
-				ManaCursorDye: This coloring tracks your mana supply through the connection between you and your 'Cursor'.
-				SwordCursorDye: 
-					'''
-					After much experimenting with materials and magic of all types,
-					I've been able to create a dye for your 'Cursor' which morphs the shape into a sword!
-					'''
-				DemonicCursorDye: 
-					'''
-					After much experimenting with materials and magic of all types,
-					I've been able to create a dye for your 'Cursor' which shows your true self.
-					'''
 			}
 
 			Carpenter: {

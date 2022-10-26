@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 
@@ -13,9 +14,11 @@ namespace Aequus.Content.CursorDyes
         private static Dictionary<int, ICursorDye> itemIDToCursor;
         private static Dictionary<int, int> cursorToItemID;
         private static List<ICursorDye> cursorDyes;
+        public static HashSet<int> IsCursorAcc { get; private set; }
 
         public override void Load()
         {
+            IsCursorAcc = new HashSet<int>() { ItemID.RainbowCursor, };
             cursorDyes = new List<ICursorDye>();
             itemIDToCursor = new Dictionary<int, ICursorDye>();
             cursorToItemID = new Dictionary<int, int>();
@@ -100,6 +103,12 @@ namespace Aequus.Content.CursorDyes
             return data.Type;
         }
 
+        public static int ItemIDToCursorID(int itemID)
+        {
+            if (itemIDToCursor.TryGetValue(itemID, out var cursor))
+                return cursor.Type;
+            return -1;
+        }
         public static ICursorDye ItemIDToCursor(int itemID)
         {
             return itemIDToCursor[itemID];

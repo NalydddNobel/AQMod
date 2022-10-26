@@ -16,9 +16,9 @@ namespace Aequus.Projectiles.Misc
     {
         public override string Texture => Aequus.BlankTexture;
 
-        public int ItemType { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
-        public int AreaOfEffect { get => 120; set => Projectile.ai[1] = value * 5f; }
+        public int ItemType { get => Math.Abs((int)Projectile.ai[0]); set => Projectile.ai[0] = value; }
         public int BuffTime { get => (int)Projectile.ai[1]; set => Projectile.ai[1] = value; }
+        public int AreaOfEffect { get => 120; }
 
         public override void SetDefaults()
         {
@@ -41,23 +41,124 @@ namespace Aequus.Projectiles.Misc
             }
         }
 
+        public void EnterSplashState()
+        {
+            Projectile.ai[0] = -Projectile.ai[0];
+            Projectile.timeLeft = (AreaOfEffect / 16 + 1) * 4;
+            Projectile.velocity = Vector2.Zero;
+            Projectile.netUpdate = true;
+            Projectile.hide = true;
+            Projectile.tileCollide = false;
+        }
+
+        public void HandleSplashState()
+        {
+            int buffID = ContentSamples.ItemsByType[ItemType].buffType;
+
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Projectile.Distance(Main.player[i].getRect().ClosestPointInRect(Projectile.Center)) < AreaOfEffect)
+                {
+                    Main.player[i].AddBuff(buffID, BuffTime);
+                }
+            }
+
+            int progress = (Projectile.timeLeft - 4) / 4;
+
+            var color = PotionColorsDatabase.GetColorFromItemID(ItemType);
+            int startX = (int)(Projectile.Center.X - AreaOfEffect) / 16;
+            int startY = (int)(Projectile.Center.Y - AreaOfEffect) / 16;
+            int endX = (int)(Projectile.Center.X + AreaOfEffect) / 16;
+            int endY = (int)(Projectile.Center.Y + AreaOfEffect) / 16;
+            int middleX = (int)Projectile.Center.X / 16;
+            for (int i = startX; i < endX; i++)
+            {
+                for (int j = startY; j < endY; j++)
+                {
+                    if (!WorldGen.InWorld(i, j, 4))
+                        continue;
+
+                    if (Main.tile[i, j].IsFullySolid() && !Main.tile[i, j - 1].IsFullySolid())
+                    {
+                        int x = AreaOfEffect / 16 - Math.Abs(i - middleX);
+                        if (progress == x)
+                        {
+                            for (int m = 0; m < x; m++)
+                            {
+                                if (Main.rand.NextBool(2))
+                                {
+                                    var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f + Main.rand.NextFloat(-2f, 2f)), ModContent.DustType<MonoSparkleDust>(), Vector2.Zero, newColor: color.UseA(Main.rand.Next(200)) * Math.Min(x / 4f, 1f), Scale: Main.rand.NextFloat(0.75f, 1.5f));
+                                    d.velocity.X = Math.Sign(d.position.X - Projectile.Center.X) * Main.rand.NextFloat(3f) * x / 3f;
+                                    d.velocity.Y -= (16f / Math.Max(x, 1f) / 2f) * Main.rand.NextFloat(1f);
+                                    d.fadeIn = d.scale + 0.4f;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (Projectile.localAI[0] == 0f)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    var normal = Main.rand.NextVector2Unit();
+                    var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(AreaOfEffect / 8f), ModContent.DustType<MonoSparkleDust>(), normal * Main.rand.NextFloat(2f), newColor: color.UseA(Main.rand.Next(200)), Scale: Main.rand.NextFloat(0.5f, 1f));
+                    d.fadeIn = d.scale + 0.4f;
+                }
+                for (int i = 0; i < 16; i++)
+                {
+                    var normal = Main.rand.NextVector2Unit();
+                    normal.Y = -Math.Abs(normal.Y) * 2f;
+                    Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(16f), DustID.Glass, normal * Main.rand.NextFloat(2f), Scale: Main.rand.NextFloat(0.5f, 1f));
+                }
+                SoundEngine.PlaySound(SoundID.Shatter.WithPitchOffset(Main.rand.NextFloat(0.2f, 0.4f)));
+                Projectile.localAI[0] = 1f;
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (Main.rand.NextBool(2))
+                {
+                    var normal = Main.rand.NextVector2Unit();
+                    var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(progress * 4f), ModContent.DustType<MonoSparkleDust>(), 
+                        normal * Main.rand.NextFloat(progress * 1f), newColor: color.UseA(Main.rand.Next(200)), Scale: Main.rand.NextFloat(0.5f, 1f));
+                    d.fadeIn = d.scale + 0.4f;
+                }
+            }
+        }
+
         public override void AI()
         {
+            if (Projectile.ai[0] < 0f)
+            {
+                Projectile.hide = true;
+                Projectile.tileCollide = false;
+                HandleSplashState();
+                return;
+            }
             if (ItemType == 0)
                 ItemType = ItemID.RegenerationPotion;
             if (BuffTime == 0)
                 BuffTime = 3600;
 
+            var rect = Projectile.getRect();
             if (Projectile.timeLeft < 550)
             {
-                var rect = Projectile.getRect();
                 for (int i = 0; i < Main.maxPlayers; i++)
                 {
                     if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Projectile.Colliding(rect, Main.player[i].getRect()))
                     {
-                        Projectile.Kill();
+                        EnterSplashState();
                         return;
                     }
+                }
+            }
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Projectile.Colliding(rect, Main.npc[i].getRect()))
+                {
+                    EnterSplashState();
+                    return;
                 }
             }
             Projectile.velocity.Y += 0.25f;
@@ -73,62 +174,14 @@ namespace Aequus.Projectiles.Misc
             }
         }
 
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            EnterSplashState();
+            return false;
+        }
+
         public override void Kill(int timeLeft)
         {
-            int buffID = ContentSamples.ItemsByType[ItemType].buffType;
-
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Projectile.Distance(Main.player[i].getRect().ClosestPointInRect(Projectile.Center)) < AreaOfEffect)
-                {
-                    Main.player[i].AddBuff(buffID, BuffTime);
-                }
-            }
-
-            var color = PotionColorsDatabase.GetColorFromItemID(ItemType);
-            for (int i = 0; i < 16; i++)
-            {
-                var normal = Main.rand.NextVector2Unit();
-                var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(AreaOfEffect / 8f), ModContent.DustType<MonoSparkleDust>(), normal * Main.rand.NextFloat(2f), newColor: color, Scale: Main.rand.NextFloat(0.5f, 1f));
-                d.fadeIn = d.scale + 0.4f;
-                normal.Y = -Math.Abs(normal.Y) * 2f;
-                Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(16f), DustID.Glass, normal * Main.rand.NextFloat(2f), Scale: Main.rand.NextFloat(0.5f, 1f));
-            }
-            for (int i = 0; i < 16; i++)
-            {
-                var normal = Main.rand.NextVector2Unit();
-                var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(AreaOfEffect / 2f), ModContent.DustType<MonoSparkleDust>(), normal * Main.rand.NextFloat(4f), newColor: color, Scale: Main.rand.NextFloat(0.5f, 1f));
-                d.fadeIn = d.scale + 0.4f;
-            }
-            int startX = (int)(Projectile.Center.X - AreaOfEffect) / 16;
-            int startY = (int)(Projectile.Center.Y - AreaOfEffect) / 16;
-            int endX = (int)(Projectile.Center.X + AreaOfEffect) / 16;
-            int endY = (int)(Projectile.Center.Y + AreaOfEffect) / 16;
-            int middleX = (int)Projectile.Center.X / 16;
-            for (int i = startX; i < endX; i++)
-            {
-                for (int j = startY; j < endY; j++)
-                {
-                    if (!WorldGen.InWorld(i, j, 4))
-                        continue;
-
-                    if (Main.tile[i, j].IsFullySolid() && !Main.tile[i, j - 1].IsFullySolid())
-                    {
-                        int x = 8 - Math.Abs(i - middleX);
-                        for (int m = 0; m < x; m++)
-                        {
-                            if (Main.rand.NextBool(2))
-                            {
-                                var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f + Main.rand.NextFloat(-2f, 2f)), ModContent.DustType<MonoSparkleDust>(), Vector2.Zero, newColor: color * Math.Min(x / 4f, 1f), Scale: Main.rand.NextFloat(0.75f, 1.5f));
-                                d.velocity.X = Math.Sign(d.position.X - Projectile.Center.X) * Main.rand.NextFloat(3f) * x / 3f;
-                                d.velocity.Y -= (16f / Math.Max(x, 1f)) * Main.rand.NextFloat(1f);
-                                d.fadeIn = d.scale + 0.4f;
-                            }
-                        }
-                    }
-                }
-            }
-            SoundEngine.PlaySound(SoundID.Shatter.WithPitchOffset(Main.rand.NextFloat(0.2f, 0.4f)));
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

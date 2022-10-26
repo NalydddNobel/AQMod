@@ -11,14 +11,9 @@ namespace Aequus.Content
     {
         private static Color InventoryBackHack;
 
-        public override bool CanAcceptItem(Item checkItem, AccessorySlotType context)
-        {
-            return checkItem.ModItem is not MechsSentry && base.CanAcceptItem(checkItem, context);
-        }
-
         public override bool IsEnabled()
         {
-            return Player.Aequus().accSentrySlot;
+            return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<MechsSentry>());
         }
 
         public override bool PreDraw(AccessorySlotType context, Item item, Vector2 position, bool isHovered)

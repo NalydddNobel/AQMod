@@ -13,7 +13,7 @@ namespace Aequus.Particles.Dusts
 
         public override Color? GetAlpha(Dust dust, Color lightColor)
         {
-            return new Color(lightColor.ToVector3() * dust.color.ToVector3()).UseA(25) * dust.Opacity();
+            return new Color(lightColor.ToVector3() * dust.color.ToVector3()).UseA(dust.color.A) * dust.Opacity();
         }
 
         public override bool Update(Dust dust)

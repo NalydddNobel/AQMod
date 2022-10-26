@@ -320,7 +320,7 @@ namespace Aequus.Content.Necromancy
                     }
                     if (aequus.setGravetenderGhost == npc.whoAmI && Main.rand.NextBool(6))
                     {
-                        var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: new Color(200, 50, 128, 100));
+                        var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: new Color(200, 50, 128, 25));
                         d.velocity *= 0.5f;
                         d.velocity += -npc.velocity * 0.2f;
                         d.scale *= npc.scale;

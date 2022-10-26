@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
@@ -365,7 +366,14 @@ namespace Aequus.Tiles
 
         public override bool Drop(int i, int j, int type)
         {
-            if (type == TileID.ShadowOrbs && Main.tile[i, j].TileFrameX % 36 == 0 && Main.tile[i, j].TileFrameY % 36 == 0)
+            if (type == TileID.Heart && Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
+            {
+                if (WorldGen.genRand.NextBool(15))
+                {
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<HealthCursor>());
+                }
+            }
+            else if (type == TileID.ShadowOrbs && Main.tile[i, j].TileFrameX % 36 == 0 && Main.tile[i, j].TileFrameY % 36 == 0)
             {
                 if (Main.tile[i, j].TileFrameX < 36)
                 {

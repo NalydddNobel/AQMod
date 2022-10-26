@@ -731,6 +731,7 @@ namespace Aequus
             ResetDyables();
             ResetArmor();
             ResetStats();
+            cursorDye = -1;
             cursorDyeOverride = 0;
 
             HandleGravityBlocks();
@@ -1022,7 +1023,7 @@ namespace Aequus
                     for (int i = 0; i < 8; i++)
                     {
                         var d = Dust.NewDustPerfect(Player.position + new Vector2(Player.width * 2f * Main.rand.NextFloat(1f) - Player.width / 2f, Player.height * Main.rand.NextFloat(0.2f, 1.2f)), ModContent.DustType<MonoSparkleDust>(),
-                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(0), Scale: Main.rand.NextFloat(0.5f, 1.25f));
+                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(25), Scale: Main.rand.NextFloat(0.5f, 1.25f));
                         d.fadeIn = d.scale + 0.5f;
                         d.color *= d.scale;
                     }

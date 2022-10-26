@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Placeable.Furniture;
@@ -61,6 +62,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             this.CreateLoot(npcLoot)
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
+                .Add<ManaCursor>(chance: 4, stack: 1)
                 .Add<AstralCookie>(chance: 1, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));

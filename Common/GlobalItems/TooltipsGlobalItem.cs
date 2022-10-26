@@ -140,7 +140,7 @@ namespace Aequus.Common.GlobalItems
                 {
                     PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
                 }
-                if (item.prefix == ModContent.PrefixType<EmpoweredPrefix>())
+                else if (item.prefix == ModContent.PrefixType<EmpoweredPrefix>())
                 {
                     if (AequusText.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{AequusText.ItemKeyName(item.type, Mod)}", out string text))
                     {
@@ -159,6 +159,16 @@ namespace Aequus.Common.GlobalItems
                         statIncrease = empoweredBuff.StatIncrease;
                     }
                     PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
+                }
+                else if (item.prefix == ModContent.PrefixType<SplashPrefix>())
+                {
+                    for (int i = 0; i < tooltips.Count; i++)
+                    {
+                        if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "PrefixShootSpeed")
+                        {
+                            tooltips[i] = new TooltipLine(Mod, "PrefixSplash", AequusText.GetText("Prefixes.SplashPotion")) { IsModifier = true, IsModifierBad = false, };
+                        }
+                    }
                 }
 
                 if (Main.hardMode && !AequusWorld.downedEventDemon && DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && val.Progression == UpgradeProgressionType.PreHardmode)
