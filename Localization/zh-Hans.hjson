@@ -62,7 +62,7 @@ Mods: {
 		}
 
 		PrefixName: {
-			SplashPrefix: 可溅起的
+			SplashPrefix: 可泼溅的
 			DoubledTimePrefix: 填充的
 			EmpoweredPrefix: 增强的
 
@@ -80,6 +80,7 @@ Mods: {
 		}
 
 		Prefixes: {
+			SplashPotion: +可投掷
 			BuffDuration: "{0}持续时间"
 			BuffEmpowerment: "{0}增益强度"
 
@@ -134,6 +135,14 @@ Mods: {
 			DevilsTongue: 魔鬼之舌
 
 			# Vanity
+			PumpkingCloak: 南瓜王斗篷
+			PumpkingCursor: 南瓜王光标
+			DyableCursor: 可染色光标
+			HealthCursor: 生命光标
+			ManaCursor: 法力光标
+			SwordCursor: 剑刃光标
+			DemonCursor: 恶魔光标
+			Headless: 无头
 			FishyFins: 可疑鱼鳍
 
 			# Weapons #
@@ -368,6 +377,8 @@ Mods: {
 
 			# Misc (and Legacy) #
 
+			HalloweenEnergy: 惊惧能量
+
 			OrganicEnergy: 自然能量
 			DemonicEnergy: 恶魔能量
 			CosmicEnergy: 星宇能量
@@ -375,8 +386,9 @@ Mods: {
 			AquaticEnergy: 海蓝能量
 			UltimateEnergy: 终极能量
 
-			MoonflowerPollen: 月光花粉
+			MorayPollen: 海鳝花粉
 			MistralPollen: 梦幻花粉
+			MoonflowerPollen: 月光花粉
 
 			Hexoplasm: 冥狱融质
 			ItemScrap: 废料
@@ -481,11 +493,6 @@ Mods: {
 			RedLicorice: 红甘草
 			GrapePhanta: 幻影葡萄
 			PeeledCarrot: 胡龙卜
-			CursorDyeRemover: 光标染料移除剂
-			HealthCursorDye: 生命光标染料
-			ManaCursorDye: 法力光标染料
-			SwordCursorDye: 剑刃光标染料
-			DemonicCursorDye: 恶魔光标染料
 			TemperatureHairDye: 气温染发剂
 			NalydDye: 极顶染料
 			RedSpriteDye: 灼炎染料
@@ -679,6 +686,14 @@ Mods: {
 			'一只新的手触到了信标...'
 				'''
 
+			# Vanity
+			PumpkingCloak: 将你的身体和腿从这个领域移除
+			PumpkingCursor: 改变你的鼠标光标
+			HealthCursor: 你的光标会随着你当前生命值的降低而变暗
+			ManaCursor: 你的光标会随着你当前法力值的降低而变暗
+			SwordCursor: 改变你的鼠标光标
+			DemonCursor: 改变你的鼠标光标
+			Headless: 将你斩首
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
 			PhaseDisc: 
@@ -1280,8 +1295,6 @@ Mods: {
 			CrabPot: 使用鱼饵来捕捉水里的东西
 
 			MoonflowerSeeds: 会在午夜时分开花并产生花粉
-
-			CursorDyeRemover: 移除光标染料的效果
 
 			FamiliarPickaxe: 召唤一个迷你版的你自己
 
@@ -1906,7 +1919,6 @@ Mods: {
 			CarpenterRequirements: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
 			SkyMerchant: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
 			Vampirism: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
-			CursorDye: 光标染料可以更改你的光标的颜色或布局! 它们很有趣!
 			Drones: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!
 			BreadofCthulhu: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!
 			ExporterCrates: 不喜欢板条箱的随机性? 发货人的奖励可能是一个很好的替代品--如果你愿意成为罪犯!
@@ -1969,27 +1981,6 @@ Mods: {
 		ShopQuote: {
 			Mechanic: {
 				SantankSentry: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
-			}
-
-			DyeTrader: {
-				CursorDyeRemover: 清除任何附着在你光标上的染料, 非常神奇.
-				HealthCursorDye: 
-					'''
-					他们说我们都有一个'光标', 空间中一个神奇的点, 我们的注意力都在上面. 
-					使用神秘的材料和特殊的瓶子, 我已经能够创造出一种影响这个'光标'的染料.
-					这种颜色通过你和你的'光标'之间的连接来追踪你的生命.
-					'''
-				ManaCursorDye: 这种颜色通过你和你的'光标'之间的连接来追踪你的法力供给.
-				SwordCursorDye: 
-					'''
-					在对各种材料和魔法进行了大量实验之后,
-					我已经能够为你的'光标'创建一种染料, 它会将其形状变形为一把剑!
-					'''
-				DemonicCursorDye: 
-					'''
-					在对各种材料和魔法进行了大量实验之后,
-					我已经能够为你的'光标'创建一种染料, 它会显示你真实的自我.
-					'''
 			}
 
 			Carpenter: {
