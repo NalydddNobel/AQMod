@@ -62,6 +62,7 @@ Mods: {
 		}
 
 		PrefixName: {
+			SplashPrefix: 可溅起的
 			DoubledTimePrefix: 填充的
 			EmpoweredPrefix: 增强的
 
@@ -148,7 +149,6 @@ Mods: {
 			Mallet: 棒槌
 			SuperStarSword: 超级星剑
 			UltimateSword: 最终之剑
-			BattleAxe: 战斧
 			RockMan: 摇滚者
 			MirrorsCall: 镜之召
 			Slice: 利刃
@@ -212,6 +212,12 @@ Mods: {
 			VenomDartTrapHat: 毒液飞镖帽
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
+
+			# Tools #
+			BattleAxe: 战斧
+			SilkHammer: 丝绸锤
+			SilkPickaxe: 丝绸镐
+			Crabax: 蟹斧
 
 			# Baits # 
 			RegrowingBait: 再生鱼饵
@@ -551,7 +557,6 @@ Mods: {
 			SpectralLens: 幽冥透镜
 			SpectreSoul: 幽冥之魂
 			GoldPowder: 黄金之尘
-			Crabax: 蟹斧
 			Floatstick: 浮光棒
 			SpaceSquidTrophy: 太空乌贼纪念章
 		}
@@ -716,7 +721,6 @@ Mods: {
 				'会动的东西我砍, 动的很欢的我砍得更欢'
 				'''
 			UltimateSword: "'只是真正潜能的一小部分'"
-			BattleAxe: 有几率使敌人流血
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
 			Hitscanner: 发射一大片会瞬间命中敌人的子弹
@@ -930,6 +934,16 @@ Mods: {
 				增加2格最大召唤栏位
 				无视敌人15点的防御力
 				'''
+
+			# Tools #
+			SilkHammer: 接收墙的可替换版本
+			SilkPickaxe: 接收物块的可替换版本
+			Crabax:
+				'''
+				能够同时砍伐多颗树木
+				砍伐时长按右键以禁用此能力
+				'''
+			BattleAxe: 有几率使敌人流血
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
@@ -1286,12 +1300,6 @@ Mods: {
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
 
-			Crabax:
-				'''
-				能够同时砍伐多颗树木
-				砍伐时长按右键以禁用此能力
-				'''
-
 			Terraria_SoulofMight: "'充满活力的生物的精华'"
 
 			Common: {
@@ -1303,8 +1311,8 @@ Mods: {
 				RouletteDrop: 下列物品必定掉落
 
 				NecromancyStaff: 击杀敌人可能会将其转化为幽魂
-				NecromancyCandle: 手持此物品时吸收被召唤物击杀的敌人的灵魂
-				UseSouls: 使用{0}灵魂
+				NecromancyCandle: 自动吸收被召唤物击杀的敌人的灵魂
+				UseSouls: 使用{0}敌人的灵魂
 				CarryingSouls: 携带{1}灵魂中的{0}灵魂
 			}
 
