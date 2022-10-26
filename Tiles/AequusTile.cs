@@ -281,6 +281,13 @@ namespace Aequus.Tiles
         {
             switch (type)
             {
+                case TileID.Cloud:
+                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>());
+                    }
+                    break;
+
                 case TileID.Meteorite:
                     if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
                     {
@@ -288,9 +295,17 @@ namespace Aequus.Tiles
                     }
                     break;
             }
-            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>() && WorldGen.genRand.NextBool(20))
+            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                GrowPearl(i, j);
+                if (WorldGen.genRand.NextBool(150))
+                {
+                    TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
+                        ModContent.TileType<MorayTile>());
+                }
+                if (WorldGen.genRand.NextBool(150))
+                {
+                    GrowPearl(i, j);
+                }
             }
         }
         public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile)

@@ -46,7 +46,7 @@ namespace Aequus.Tiles.Ambience
 
             TileObjectData.addTile(Type);
 
-            DustType = 0;
+            DustType = DustID.Grass;
             HitSound = SoundID.Grass;
 
             AddMapEntry(MapColor, CreateMapEntryName(MapName));

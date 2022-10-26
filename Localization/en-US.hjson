@@ -135,6 +135,7 @@ Mods: {
 			DevilsTongue: Devil's Tongue
 
 			# Vanity
+			PumpkingCloak: Pumpking's Cloak
 			PumpkingCursor: Pumpking's Cursor
 			DyableCursor: Dyable Cursor
 			HealthCursor: Health Cursor
@@ -686,6 +687,7 @@ Mods: {
 				'''
 
 			# Vanity
+			PumpkingCloak: Removes your body and legs from this realm
 			PumpkingCursor: Transforms your mouse cursor
 			HealthCursor: Causes your mouse cursor to darken the lower your life
 			ManaCursor: Causes your mouse cursor to brighten the lower your mana

@@ -7,6 +7,7 @@ using Aequus.Common;
 using Aequus.Common.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.CursorDyes;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Graphics.PlayerLayers;
@@ -15,6 +16,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
@@ -67,7 +69,6 @@ namespace Aequus
         [SaveData("Souls")]
         public int candleSouls;
 
-        [SaveData("CursorDye")]
         public int cursorDye;
         public int cursorDyeOverride;
 
@@ -365,20 +366,20 @@ namespace Aequus
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            var c = (AequusPlayer)clientPlayer;
+            var aequus = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                darkness != c.darkness,
-                timeSinceLastHit != c.timeSinceLastHit,
-                candleSouls != c.candleSouls,
-                omniPaint != c.omniPaint,
-                (c.itemCombo - itemCombo).Abs() > 3 || (c.itemSwitch - itemSwitch).Abs() > 3 || (c.itemUsage - itemUsage).Abs() > 3 || (c.itemCooldown - itemCooldown).Abs() > 3 || c.itemCooldownMax != itemCooldownMax,
-                c.instaShieldTime != instaShieldTime,
+                darkness != aequus.darkness,
+                timeSinceLastHit != aequus.timeSinceLastHit,
+                candleSouls != aequus.candleSouls,
+                omniPaint != aequus.omniPaint,
+                (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
+                aequus.instaShieldTime != instaShieldTime,
                 /*shatteringVenus.NeedsSyncing(this, c)*/ false,
-                boundBowAmmo != c.boundBowAmmo || boundBowAmmoTimer != c.boundBowAmmoTimer);
+                boundBowAmmo != aequus.boundBowAmmo || boundBowAmmoTimer != aequus.boundBowAmmoTimer);
 
             var bb2 = new BitsByte(
-                summonHelmetTimer != c.summonHelmetTimer);
+                summonHelmetTimer != aequus.summonHelmetTimer);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -1564,6 +1565,24 @@ namespace Aequus
         public override void LoadData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
+        }
+
+        public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
+        {
+            if (Player.front > 0 && Player.front == PumpkingCloak.FrontID)
+            {
+                drawInfo.hidesBottomSkin = true;
+                drawInfo.hidesTopSkin = true;
+            }
+        }
+
+        public override void HideDrawLayers(PlayerDrawSet drawInfo)
+        {
+            if (Player.front > 0 && Player.front == PumpkingCloak.FrontID)
+            {
+                PlayerDrawLayers.Torso.Hide();
+                PlayerDrawLayers.Leggings.Hide();
+            }
         }
 
         public float GetDarkness()
