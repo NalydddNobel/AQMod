@@ -787,7 +787,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            var texture = ModContent.Request<Texture2D>($"{Texture}Basket", AssetRequestMode.ImmediateLoad).Value;
+            var texture = ModContent.Request<Texture2D>($"{Texture}Flee", AssetRequestMode.ImmediateLoad).Value;
             var frame = GetFleeFrame(texture);
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
