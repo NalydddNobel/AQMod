@@ -56,10 +56,10 @@ namespace Aequus
         [NetBool]
         public static bool downedCrabson;
 
-        [SaveData("Arcubus")]
+        [SaveData("Upriser")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
-        public static bool downedArcubus;
+        public static bool downedUpriser;
 
         [SaveData("HyperStarite")]
         [SaveDataAttribute.IsListedBoolean]

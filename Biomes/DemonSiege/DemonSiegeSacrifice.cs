@@ -176,11 +176,6 @@ namespace Aequus.Biomes.DemonSiege
         }
         public void InnerUpdate_OnEnd()
         {
-            if (!AequusWorld.downedArcubus)
-            {
-                SummonBoss1(voidRing: false);
-                return;
-            }
             Vector2 itemSpawn = WorldCenter;
             itemSpawn.Y -= 20f;
             if (Main.netMode != NetmodeID.MultiplayerClient)

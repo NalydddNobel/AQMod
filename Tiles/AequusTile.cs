@@ -297,7 +297,7 @@ namespace Aequus.Tiles
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                if (WorldGen.genRand.NextBool(150))
+                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(150))
                 {
                     TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
                         ModContent.TileType<MorayTile>());
