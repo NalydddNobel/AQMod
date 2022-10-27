@@ -19,7 +19,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return true;
+            return false;
         }
 
         public override void SetStaticDefaults()

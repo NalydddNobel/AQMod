@@ -13,6 +13,11 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 {
     public class Hardwood : ModNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             CoreOfMight.SpawnData.Add(new BaseCore.EnemySpawn_Any4Sides(Type));

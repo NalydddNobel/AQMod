@@ -67,10 +67,10 @@ namespace Aequus
 
                 try
                 {
-                    Send((p) =>
-                    {
-                        AequusTileData.SendSquare(p, TileCoatingSync[0]);
-                    }, PacketType.CoatingTileSquare);
+                    //Send((p) =>
+                    //{
+                    //    AequusTileData.SendSquare(p, TileCoatingSync[0]);
+                    //}, PacketType.CoatingTileSquare);
                 }
                 catch
                 {

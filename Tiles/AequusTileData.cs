@@ -113,7 +113,14 @@ namespace Aequus.Tiles
                 {
                     for (int j = r.Y; j < r.Y + r.Height; j++)
                     {
-                        Main.tile[i, j].Get<AequusTileData>().bitpack = reader.ReadByte();
+                        var val = reader.ReadByte();
+                        try
+                        {
+                            Main.tile[i, j].Get<AequusTileData>().bitpack = val;
+                        }
+                        catch
+                        {
+                        }
                     }
                 }
             }

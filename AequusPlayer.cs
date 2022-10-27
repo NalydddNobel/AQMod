@@ -482,6 +482,7 @@ namespace Aequus
             accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
+            accGlowCore = 0;
             cGlowCore = -1;
             instaShieldAlpha = 0f;
             gravityTile = 0;

@@ -66,7 +66,10 @@ namespace Aequus.Tiles.Furniture
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
-            SpecialTileRenderer.ModHangingVines.Add(Type, 3);
+            if (!Main.dedServ)
+            {
+                SpecialTileRenderer.ModHangingVines.Add(Type, 3);
+            }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
