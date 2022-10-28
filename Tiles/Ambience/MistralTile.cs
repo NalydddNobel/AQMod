@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Ambience
 
         protected override Color MapColor => new Color(186, 122, 255, 255);
         public override Vector3 GlowColor => new Vector3(0.1f, 0.66f, 0.15f);
-        protected override int DrawOffsetY => -14;
+        protected override int DrawOffsetY => -10;
 
         public override bool IsBlooming(int i, int j)
         {
@@ -41,7 +41,7 @@ namespace Aequus.Tiles.Ambience
         {
             if (Main.tile[i, j].TileFrameX >= FrameShiftX)
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralPollen>(), Main.rand.Next(3) + 1);
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralPollen>(), 1);
             }
             return false;
         }

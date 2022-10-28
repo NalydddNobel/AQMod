@@ -227,7 +227,7 @@ namespace Aequus.Tiles
 
         public void GrowPearl(int i, int j)
         {
-            for (int k = -3; k <= 3; k++)
+            for (int k = -7; k <= 7; k++)
             {
                 for (int l = -10; l <= 10; l++)
                 {
@@ -264,11 +264,20 @@ namespace Aequus.Tiles
                     WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<PearlsTile>(), mute: true);
                     if (Main.tile[chosen].TileType == ModContent.TileType<PearlsTile>())
                     {
-                        Main.tile[chosen.X, chosen.Y].TileFrameX = (short)(WorldGen.genRand.Next(3) * 18);
-                        if (WorldGen.genRand.NextBool(4))
+                        int frame = 0;
+                        if (WorldGen.genRand.NextBool(3))
                         {
-                            Main.tile[chosen.X, chosen.Y].TileFrameX += 18;
+                            frame = 1;
                         }
+                        else if (WorldGen.genRand.NextBool(12))
+                        {
+                            frame = 2;
+                        }
+                        else if (WorldGen.genRand.NextBool(12))
+                        {
+                            frame = 3;
+                        }
+                        Main.tile[chosen.X, chosen.Y].TileFrameX = (short)(frame * 18);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             NetMessage.SendTileSquare(-1, chosen.X, chosen.Y);
@@ -284,7 +293,7 @@ namespace Aequus.Tiles
                 case TileID.Cloud:
                     if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
                     {
-                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>());
+                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 15);
                     }
                     break;
 
@@ -308,7 +317,7 @@ namespace Aequus.Tiles
                 }
             }
         }
-        public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile)
+        public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile, int checkSize = 6)
         {
             for (int y = j - 1; y > 20; y--)
             {
@@ -316,7 +325,7 @@ namespace Aequus.Tiles
                 {
                     for (int k = 0; k < validTile.Length; k++)
                     {
-                        if (Main.tile[i, y + 1].TileType == validTile[k] && !CheckForType(new Rectangle(i - 6, y - 6, 12, 12).Fluffize(20), tile))
+                        if (Main.tile[i, y + 1].TileType == validTile[k] && !CheckForType(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), tile))
                         {
                             WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
                             return Main.tile[i, y].TileType == tile;
