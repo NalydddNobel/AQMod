@@ -170,6 +170,11 @@ namespace Aequus.Common.GlobalItems
                         }
                     }
                 }
+                else if (item.prefix == ModContent.PrefixType<BoundedPrefix>())
+                {
+                    tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, "PrefixBounded", AequusText.GetText("Prefixes.BoundedPotion"))
+                    { IsModifier = true, IsModifierBad = false, });
+                }
 
                 if (Main.hardMode && !AequusWorld.downedEventDemon && DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && val.Progression == UpgradeProgressionType.PreHardmode)
                 {

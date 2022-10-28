@@ -153,6 +153,7 @@ namespace Aequus
             downedCrabson = false;
             downedOmegaStarite = false;
             downedDustDevil = false;
+            downedUpriser = false;
             Structures = new StructureLookups();
         }
 

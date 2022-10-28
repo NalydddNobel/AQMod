@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using System.Collections.Generic;
 using Terraria;

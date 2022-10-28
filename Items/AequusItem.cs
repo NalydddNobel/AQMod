@@ -53,6 +53,7 @@ namespace Aequus.Items
         public int accStacks;
         public bool naturallyDropped;
         public bool unOpenedChestItem;
+        public bool prefixPotionsBounded;
 
         public override void Load()
         {
@@ -205,6 +206,7 @@ namespace Aequus.Items
                 item.value = Item.buyPrice(gold: 15);
             }
 
+            prefixPotionsBounded = false;
             accStacks = 1;
         }
 
@@ -258,6 +260,17 @@ namespace Aequus.Items
                                 ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 2f);
                             break;
                     }
+                }
+            }
+            if (item.buffType > 0 && item.buffTime > 0)
+            {
+                if (prefixPotionsBounded && !Main.persistentBuff[item.buffType])
+                {
+                    player.Aequus().boundedPotionIDs.Add(item.buffType);
+                }
+                else
+                {
+                    player.Aequus().boundedPotionIDs.Remove(item.buffType);
                 }
             }
             return null;

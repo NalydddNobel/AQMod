@@ -25,8 +25,8 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
                 cache = null;
                 if (cursorShaderID != 0)
                 {
-                    Main.spriteBatch.End();
                     cache = new SpriteBatchCache(Main.spriteBatch);
+                    Main.spriteBatch.End();
                     Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
                     GameShaders.Armor.Apply(cursorShaderID, Main.LocalPlayer, new DrawData(TextureAssets.Cursors[0].Value, Main.MouseScreen, TextureAssets.Cursors[0].Value.Bounds, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0));
                 }

@@ -9,6 +9,11 @@ namespace Aequus.Content.StatSheet
 {
     public class StatTrackerPlayer : ModPlayer
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public struct PlayerUpdateInfo : IStatUpdateInfo
         {
             public string Context { get; set; }
@@ -102,7 +107,7 @@ namespace Aequus.Content.StatSheet
 
         public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
         {
-            if (!CheckPlayer())
+            if (!MyPlayer)
                 return;
 
             onHitInfo.Context = "OnHitPvp_Proj";
@@ -116,7 +121,7 @@ namespace Aequus.Content.StatSheet
         }
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
-            if (!CheckPlayer())
+            if (!MyPlayer)
                 return;
 
             onHitInfo.Context = "OnHitPvp_Item";
@@ -131,7 +136,7 @@ namespace Aequus.Content.StatSheet
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (!CheckPlayer())
+            if (!MyPlayer)
                 return;
 
             onHitInfo.Context = "OnHitNPC_Proj";
@@ -145,7 +150,7 @@ namespace Aequus.Content.StatSheet
         }
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (!CheckPlayer())
+            if (!MyPlayer)
                 return;
 
             onHitInfo.Context = "OnHitNPC_Item";
@@ -160,7 +165,7 @@ namespace Aequus.Content.StatSheet
 
         public override void PostUpdate()
         {
-            if (!CheckPlayer())
+            if (!MyPlayer)
                 return;
 
             playerUpdateInfo.Context = "PostUpdate";
@@ -168,13 +173,6 @@ namespace Aequus.Content.StatSheet
             StatSheetManager.StatHooks.UpdateHooklist(playerUpdateInfo, StatSheetManager.StatHooks.Player_PostUpdate);
         }
 
-        private bool CheckPlayer()
-        {
-            if (Main.myPlayer == Player.whoAmI)
-            {
-                return true;
-            }
-            return false;
-        }
+        private bool MyPlayer => Main.myPlayer == Player.whoAmI;
     }
 }

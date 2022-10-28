@@ -322,6 +322,8 @@ namespace Aequus
         public int timeSinceLastHit;
         public int idleTime;
 
+        public List<int> boundedPotionIDs;
+
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
         public bool MaxLife => Player.statLife >= Player.statLifeMax2;
         public float LifeRatio => Player.statLife / (float)Player.statLifeMax2;
@@ -360,7 +362,7 @@ namespace Aequus
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.candleSouls = candleSouls;
-            //clone.shatteringVenus = shatteringVenus.Clone();
+            clone.boundedPotionIDs = new List<int>(boundedPotionIDs);
             clone.darkness = darkness;
         }
 
@@ -375,7 +377,7 @@ namespace Aequus
                 omniPaint != aequus.omniPaint,
                 (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
                 aequus.instaShieldTime != instaShieldTime,
-                /*shatteringVenus.NeedsSyncing(this, c)*/ false,
+                boundedPotionIDs.IsTheSameAs(aequus.boundedPotionIDs),
                 boundBowAmmo != aequus.boundBowAmmo || boundBowAmmoTimer != aequus.boundBowAmmoTimer);
 
             var bb2 = new BitsByte(
@@ -418,7 +420,11 @@ namespace Aequus
                     }
                     if (bb[6])
                     {
-                        //shatteringVenus.SendClientChanges(p, c.shatteringVenus);
+                        p.Write(boundedPotionIDs.Count);
+                        for (int i = 0; i < Main.maxBuffTypes; i++)
+                        {
+                            p.Write(boundedPotionIDs[i]);
+                        }
                     }
                     if (bb[7])
                     {
@@ -468,7 +474,12 @@ namespace Aequus
             }
             if (bb[6])
             {
-                //shatteringVenus = ShatteringVenus.ItemInfo.RecieveChanges(reader);
+                boundedPotionIDs.Clear();
+                int count = reader.ReadInt32();
+                for (int i = 0; i < Main.maxBuffTypes; i++)
+                {
+                    boundedPotionIDs.Add(reader.ReadInt32());
+                }
             }
             if (bb[7])
             {
@@ -479,6 +490,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            boundedPotionIDs = new List<int>();
             accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
@@ -509,6 +521,10 @@ namespace Aequus
             timeSinceLastHit = 0;
             hasExpertBoost = false;
             accExpertBoost = false;
+            foreach (var buff in boundedPotionIDs)
+            {
+                Main.persistentBuff[buff] = true;
+            }
         }
 
         public void ResetArmor()
@@ -585,6 +601,17 @@ namespace Aequus
 
         public void ResetStats()
         {
+            if (boundedPotionIDs == null)
+            {
+                boundedPotionIDs = new List<int>();
+            }
+            else if (boundedPotionIDs.Count > 0)
+            {
+                foreach (var buff in boundedPotionIDs)
+                {
+                    Main.persistentBuff[buff] = false;
+                }
+            }
             debuffs.ResetEffects(Player);
             buffDuration = 1f;
             debuffDuration = 1f;
@@ -780,6 +807,18 @@ namespace Aequus
         public override void PreUpdateBuffs()
         {
             timeSinceLastHit++;
+        }
+
+        public override void PostUpdateBuffs()
+        {
+            for (int i = 0; i < boundedPotionIDs.Count; i++)
+            {
+                if (!Player.HasBuff(boundedPotionIDs[i]))
+                {
+                    boundedPotionIDs.RemoveAt(i);
+                    i--;
+                }
+            }
         }
 
         public override void PostUpdateEquips()

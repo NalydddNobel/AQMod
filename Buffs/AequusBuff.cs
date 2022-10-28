@@ -1,5 +1,8 @@
 ﻿using Aequus.Buffs.Empowered;
 using Aequus.Common;
+using Aequus.Graphics;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -113,6 +116,28 @@ namespace Aequus.Buffs
             CountsAsFire = null;
             DemonSiegeEnemyImmunity?.Clear();
             DemonSiegeEnemyImmunity = null;
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, int type, int buffIndex, BuffDrawParams drawParams)
+        {
+            if (Main.LocalPlayer.Aequus().boundedPotionIDs.Contains(type))
+            {
+                var buffSB = new SpriteBatchCache(Main.spriteBatch);
+
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+
+                var dd = new DrawData(drawParams.Texture, drawParams.Position, drawParams.Texture.Bounds, drawParams.DrawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Lerp(Color.Transparent, Color.HotPink, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + MathHelper.Pi, 0f, 0.5f)) * Main.cursorAlpha);
+                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Lerp(Color.Transparent, Color.BlueViolet, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 0.5f)) * Main.cursorAlpha);
+                EffectsSystem.VerticalGradient.ShaderData.Apply(dd);
+
+                dd.color.A = 0;
+                dd.Draw(Main.spriteBatch);
+
+                Main.spriteBatch.End();
+                buffSB.Begin(Main.spriteBatch);
+            }
         }
 
         public static bool InflictAndPlaySound(NPC target, int type, int time, SoundStyle sound)

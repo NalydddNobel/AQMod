@@ -96,6 +96,7 @@ namespace Aequus.Content.WorldGeneration
                                     {
                                         c.item[i].SetDefaults(ModContent.ItemType<SwordCursor>());
                                         placedItems?.Add(ModContent.ItemType<SwordCursor>());
+                                        break;
                                     }
                                 }
                             }

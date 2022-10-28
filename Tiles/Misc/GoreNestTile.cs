@@ -216,13 +216,13 @@ namespace Aequus.Tiles.Misc
                     if (invasion.PreStart < 75)
                     {
                         var d = Dust.NewDustPerfect(where + Main.rand.NextVector2Unit() * Main.rand.NextFloat(40f, 80f), ModContent.DustType<MonoDust>(),
-                            newColor: new Color(200, 120 + Main.rand.Next(-60, 40), 30, 222));
+                            newColor: new Color(200, 120 + Main.rand.Next(-60, 40), 30, 25));
                         d.velocity = (where - d.position) / 20f;
                     }
                     else
                     {
                         var d = Dust.NewDustPerfect(where + Main.rand.NextVector2Unit() * (Main.rand.NextFloat(40f, 80f) + (invasion.PreStart - 75f) / 2f), ModContent.DustType<MonoSparkleDust>(),
-                            newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 200) * Main.rand.NextFloat(0.9f, 1.5f));
+                            newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 25) * Main.rand.NextFloat(0.9f, 1.5f));
                         d.velocity = (where - d.position) / 20f;
                         d.fadeIn = d.scale + Main.rand.NextFloat(0.9f, 1.1f);
                     }
@@ -230,7 +230,7 @@ namespace Aequus.Tiles.Misc
                 else if (invasion.TimeLeft < 360 || Main.rand.NextBool(50))
                 {
                     var d = Dust.NewDustPerfect(where + Main.rand.NextVector2Unit() * Main.rand.NextFloat(100f, 240f), ModContent.DustType<MonoSparkleDust>(),
-                        newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 200) * Main.rand.NextFloat(0.9f, 1.5f));
+                        newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 25) * Main.rand.NextFloat(0.9f, 1.5f));
                     d.velocity = (where - d.position) / 20f;
                     d.fadeIn = d.scale + Main.rand.NextFloat(0.9f, 1.1f);
                 }
