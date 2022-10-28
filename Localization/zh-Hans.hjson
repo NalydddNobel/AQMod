@@ -62,6 +62,7 @@ Mods: {
 		}
 
 		PrefixName: {
+			BoundedPrefix: 有界限的
 			SplashPrefix: 可泼溅的
 			DoubledTimePrefix: 填充的
 			EmpoweredPrefix: 增强的
@@ -80,6 +81,7 @@ Mods: {
 		}
 
 		Prefixes: {
+			BoundedPotion: +超越死亡
 			SplashPotion: +可投掷
 			BuffDuration: "{0}持续时间"
 			BuffEmpowerment: "{0}增益强度"
@@ -386,6 +388,7 @@ Mods: {
 			AquaticEnergy: 海蓝能量
 			UltimateEnergy: 终极能量
 
+			ManaclePollen: 镣铐花粉
 			MorayPollen: 海鳝花粉
 			MistralPollen: 梦幻花粉
 			MoonflowerPollen: 月光花粉
@@ -980,7 +983,10 @@ Mods: {
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 
-			MistralPollen: 同时只能激活一个增强的药水
+			ManaclePollen: 允许药水增益在死亡后保留
+			MorayPollen: 允许投掷药水
+			MistralPollen: 强化药水, 同时只能激活一个强化药水
+			MoonflowerPollen: 翻倍药水的持续时间
 
 			InactivePylonCleanser: 扔到晶塔附近以重新激活它
 			InactivePylonHealer: 扔到晶塔附近以重新激活它
