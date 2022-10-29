@@ -1378,13 +1378,18 @@ Mods: {
 			"9": 青色
 			"10": 红色
 			"11": 紫色
-			CalamityMod_12: 绿松石色
-			CalamityMod_13: 纯绿色
-			CalamityMod_14: 深蓝色
-			CalamityMod_15: 紫罗兰色
-			CalamityMod_16: 桃红色
-			CalamityMod_Draedon: 深橙色
-			CatalystMod_Crystal: 水晶
+			CalamityMod: {
+				Turquoise: 绿松石色
+				PureGreen: 纯绿色
+				DarkBlue: 深蓝色
+				Violet: 紫罗兰色
+				HotPink: 桃红色
+				CalamityRed: 灾厄红色
+				DarkOrange: 深橙色
+			}
+			CatalystMod: {
+				SuperbossRarity: 水晶
+			}
 		}
 
 		BuffName: {
