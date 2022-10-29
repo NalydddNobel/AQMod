@@ -63,7 +63,7 @@ namespace Aequus.Content.Necromancy
         }
         public static void LoadEntriesFile()
         {
-            var val = Aequus.GetContentFile("NecromancyDatabase");
+            var val = Aequus.GetContentFile("Necromancy");
             foreach (var modDict in val)
             {
                 if (modDict.Key == "Vanilla")

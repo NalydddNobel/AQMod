@@ -113,6 +113,30 @@ namespace Aequus.Items
 
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
+            if (Aequus.LogMore)
+                Aequus.Instance.Logger.Info("Loading rarity name translations...");
+            for (int i = ItemRarityID.Purple + 1; i < RarityLoader.RarityCount; i++)
+            {
+                try
+                {
+                    var rare = RarityLoader.GetRarity(i);
+                    string key = $"Mods.Aequus.ItemRarity.{rare.Mod.Name}.{rare.Name}";
+                    if (AequusText.ContainsKey(key))
+                    {
+                        RarityNames.Add(rare.Type, key);
+                        if (Aequus.LogMore)
+                            Aequus.Instance.Logger.Info($"Autoloaded rarity key: {key}");
+                    }
+                    else if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Key not found: {key}");
+                    }
+                }
+                catch
+                {
+                }
+            }
+
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
                 var item = ContentSamples.ItemsByType[i];

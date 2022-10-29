@@ -42,7 +42,7 @@ namespace Aequus.Content
             {
                 Aequus.Instance.Logger.Info("Loading potion colors...");
             }
-            var val = Aequus.GetContentFile("PotionColorsDatabase");
+            var val = Aequus.GetContentFile("PotionColors");
             foreach (var modDict in val)
             {
                 if (modDict.Key == "Vanilla")

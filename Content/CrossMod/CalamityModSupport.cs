@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Necromancy;
-using Aequus.Items;
 using System;
 using Terraria.ModLoader;
 
@@ -28,10 +27,6 @@ namespace Aequus.Content.CrossMod
             if (ModLoader.TryGetMod("CatalystMod", out var catalystMod))
             {
                 CatalystMod = catalystMod;
-                if (catalystMod.TryFind<ModRarity>("SuperbossRarity", out var rarity))
-                {
-                    AequusItem.RarityNames.Add(rarity.Type, "Mods.Aequus.ItemRarity.Catalyst_Crystal");
-                }
             }
         }
 

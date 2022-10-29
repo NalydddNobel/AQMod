@@ -130,9 +130,9 @@ namespace Aequus.Tiles
         {
             if (Aequus.LogMore)
             {
-                Aequus.Instance.Logger.Info("Loading custom wall to item ID table entries...");
+                Aequus.Instance.Logger.Info("Loading silk touch walls ids...");
             }
-            var val = Aequus.GetContentFile("MiscWallItemEntries");
+            var val = Aequus.GetContentFile("SilkTouchWalls");
             foreach (var modDict in val)
             {
                 if (modDict.Key == "Vanilla")
