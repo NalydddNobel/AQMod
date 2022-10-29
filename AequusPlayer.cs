@@ -421,7 +421,7 @@ namespace Aequus
                     if (bb[6])
                     {
                         p.Write(boundedPotionIDs.Count);
-                        for (int i = 0; i < Main.maxBuffTypes; i++)
+                        for (int i = 0; i < boundedPotionIDs.Count; i++)
                         {
                             p.Write(boundedPotionIDs[i]);
                         }
@@ -485,6 +485,10 @@ namespace Aequus
             {
                 boundBowAmmo = reader.ReadInt32();
                 boundBowAmmoTimer = reader.ReadInt32();
+            }
+            if (bb2[0])
+            {
+                summonHelmetTimer = reader.ReadInt32();
             }
         }
 
