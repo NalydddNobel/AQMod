@@ -39,7 +39,7 @@ namespace Aequus.Items.Accessories
         {
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(gold: 2);
+            Item.value = Item.buyPrice(gold: 10);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

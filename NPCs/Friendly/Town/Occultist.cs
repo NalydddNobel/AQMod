@@ -136,6 +136,7 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());
             if (Main.hardMode)
             {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
             }
             if (!Main.dayTime)
@@ -143,8 +144,6 @@ namespace Aequus.NPCs.Friendly.Town
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
             }
-            if (Main.hardMode)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
             if (!Main.dayTime && Main.bloodMoon)
             {
                 shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);

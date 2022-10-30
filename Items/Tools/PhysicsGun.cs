@@ -37,7 +37,7 @@ namespace Aequus.Items.Tools
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = Item.buyPrice(gold: 20);
+            Item.value = Item.buyPrice(gold: 10);
             Item.shoot = ModContent.ProjectileType<PhysicsGunProj>();
             Item.shootSpeed = 2f;
             Item.noUseGraphic = true;

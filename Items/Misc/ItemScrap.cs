@@ -96,30 +96,11 @@ namespace Aequus.Items.Misc
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            string rarityName;
-            if (!AequusItem.RarityNames.TryGetValue(Rarity, out rarityName))
-            {
-                if (Rarity >= ItemRarityID.Count)
-                {
-                    rarityName = Language.GetTextValue(AequusHelpers.CapSpaces(RarityLoader.GetRarity(Rarity).Name));
-                    rarityName = rarityName.Replace(" Rarity", "");
-                }
-            }
-            else
-            {
-                rarityName = Language.GetTextValue(rarityName);
-            }
-
-            if (string.IsNullOrEmpty(rarityName))
-            {
-                rarityName = AequusText.GetText("Unknown");
-            }
-
             foreach (var t in tooltips)
             {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { ItemRarity = rarityName, });
+                    t.Text = AequusHelpers.FormatWith(t.Text, new { ItemRarity = AequusText.GetRarityNameValue(Rarity), });
                 }
             }
         }

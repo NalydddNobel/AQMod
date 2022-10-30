@@ -16,7 +16,7 @@ namespace Aequus.Items.Consumables.Foods
 
         public override void SetDefaults()
         {
-            Item.DefaultToFood(20, 20, BuffID.WellFed3, 14400);
+            Item.DefaultToFood(20, 20, BuffID.WellFed, 36000);
             Item.maxStack = 1;
             Item.consumable = false;
             Item.rare = ItemRarityID.LightRed;

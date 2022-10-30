@@ -1,6 +1,5 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Paintings
@@ -15,7 +14,7 @@ namespace Aequus.Items.Placeable.Furniture.Paintings
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<WallPaintings>(), WallPaintings.ExLydSpacePainting);
-            Item.value = Item.buyPrice(gold: 1);
+            Item.value = Item.buyPrice(gold: 2);
         }
     }
 }

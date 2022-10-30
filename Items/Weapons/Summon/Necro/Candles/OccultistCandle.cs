@@ -15,7 +15,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
         {
             DefaultToCandle(24, 6, NPCID.Demon);
             Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(gold: 3);
+            Item.value = Item.buyPrice(gold: 10);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }

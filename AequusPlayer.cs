@@ -7,6 +7,7 @@ using Aequus.Common;
 using Aequus.Common.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Content.CursorDyes;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
@@ -859,6 +860,10 @@ namespace Aequus
             if (accGroundCrownCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
             {
                 Player.GetCritChance(DamageClass.Generic) += accGroundCrownCrit;
+            }
+            if (gravityTile != 0)
+            {
+                Player.gravity = 0.4f;
             }
         }
         public void HandleSlotBoost(Item item, bool hideVisual)

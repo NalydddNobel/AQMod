@@ -34,6 +34,12 @@ namespace Aequus.Tiles.Furniture
             AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("WallClocks"));
         }
 
+        public override bool RightClick(int i, int j)
+        {
+            Main.NewText($"Time: {AequusText.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
+            return true;
+        }
+
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
         {
             if (Main.tile[i, j].TileFrameY == 18 && Main.tile[i, j].TileFrameX % 36 == 18) // Bottom right

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
@@ -13,6 +14,7 @@ using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Personalities;
@@ -46,7 +48,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             NPC.Happiness
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
-                .SetBiomeAffection<HallowBiome>(AffectionLevel.Dislike)
+                .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
@@ -200,12 +202,91 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
+            button2 = Main.npcChatCornerItem > 0 ? "Submit" : AequusText.GetText("Chat.Physicist.AnalysisButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
             if (firstButton)
+            {
                 shop = true;
+                return;
+            }
+
+            var player = Main.LocalPlayer;
+            var questPlayer = player.GetModPlayer<AnalysisPlayer>();
+
+            if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0)
+            {
+                questPlayer.RefreshQuest(Main.LocalPlayer.GetModPlayer<AnalysisPlayer>().completed);
+            }
+            if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0)
+            {
+                Main.npcChatText = AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuestNoQuest", new { Time = AequusText.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
+                return;
+            }
+
+            var validItem = FindPotentialQuestItem(player, questPlayer.quest);
+            if (Main.npcChatCornerItem > 0 && validItem != null)
+            {
+                var popupItem = validItem.Clone();
+                popupItem.stack = 1;
+                validItem.stack--;
+                if (validItem.stack <= 0)
+                {
+                    validItem.TurnToAir();
+                }
+                questPlayer.completed++;
+                int time = Main.rand.Next(28800, 43200);
+                AequusHelpers.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);
+                questPlayer.timeForNextQuest = (int)Math.Min(result, dayTime ? Main.dayLength - 60 : Main.nightLength - 60);
+                questPlayer.dayTimeForNextQuest = dayTime;
+                SoundEngine.PlaySound(SoundID.Grab);
+                Main.npcChatCornerItem = 0;
+                Main.npcChatText = AequusText.GetText("Chat.Physicist.AnalysisRarityQuestComplete");
+                var itemText = PopupText.NewText(PopupTextContext.Advanced, popupItem, 1);
+                Main.popupText[itemText].name = $"{Main.popupText[itemText].name} (-1)";
+                Main.popupText[itemText].position.X = Main.LocalPlayer.Center.X - FontAssets.ItemStack.Value.MeasureString(Main.popupText[itemText].name).X / 2f;
+                return;
+            }
+            Main.npcChatText = QuestChat(questPlayer.quest);
+
+            if (validItem != null)
+            {
+                Main.npcChatCornerItem = validItem.type;
+                Main.npcChatText += $"\n{AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest2", new { Item = validItem.Name, })}";
+            }
+        }
+        public Item FindPotentialQuestItem(Player player, QuestInfo questInfo)
+        {
+            for (int i = 0; i < Main.InventorySlotsTotal; i++)
+            {
+                if (CanBeQuestItem(player.inventory[i], questInfo))
+                {
+                    return player.inventory[i];
+                }
+            }
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (CanBeQuestItem(player.bank4.item[i], questInfo))
+                {
+                    return player.bank4.item[i];
+                }
+            }
+            return null;
+        }
+        public bool CanBeQuestItem(Item item, QuestInfo questInfo)
+        {
+            return !item.favorited && !item.IsAir && !item.IsACoin && 
+                item.rare == questInfo.itemRarity && item.value >= questInfo.itemValue;
+        }
+        public string QuestChat(QuestInfo questInfo)
+        {
+            if (questInfo.itemValue > 0)
+            {
+                return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityCoinsQuest", new { Rarity = AequusText.GetRarityNameValue(questInfo.itemRarity), Coins = questInfo.itemValue, });
+            }
+            return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.GetRarityNameValue(questInfo.itemRarity), });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
@@ -253,7 +334,8 @@ namespace Aequus.NPCs.Friendly.Town
                         return;
                     }
                 }
-                NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI, NPC.whoAmI);
+                if (Main.netMode == NetmodeID.Server)
+                    NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI, NPC.whoAmI);
             }
         }
 

@@ -171,14 +171,12 @@ namespace Aequus.NPCs.Friendly.Town
                     shop.item[nextSlot].shopCustomPrice /= 100;
                     shop.item[nextSlot].shopCustomPrice *= 100;
                     shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
-                    //shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotesTooltips.QuoteType.EquippedAcc;
                     nextSlot++;
                 }
                 if (merchant.shopBanner != null)
                 {
                     shop.item[nextSlot] = merchant.shopBanner.Clone();
                     shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
-                    //shop.item[nextSlot].GetGlobalItem<AequusItem>().shopQuoteType = ShopQuotesTooltips.QuoteType.Banner;
                     nextSlot++;
                 }
             }
@@ -201,10 +199,6 @@ namespace Aequus.NPCs.Friendly.Town
             if (NPC.downedQueenSlime || NPC.downedEmpressOfLight)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YangPainting>());
-            }
-            if (AequusWorld.downedOmegaStarite)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
             }
 
             int bossDefeated = 0;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -69,11 +70,6 @@ namespace Aequus
             return Text["Mods.Aequus." + key];
         }
 
-        public static string NPCChat<T>(string key) where T : ModNPC
-        {
-            return GetText($"Chat.{typeof(T).Name}." + key);
-        }
-
         public static string TryGetText(string key)
         {
             key = "Mods.Aequus." + key;
@@ -97,6 +93,48 @@ namespace Aequus
         public static string GetTextWith(string key, object obj)
         {
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
+        }
+
+        public static string WatchTime(double time, bool dayTime)
+        {
+            string text = "AM";
+            if (!dayTime)
+            {
+                time += 54000.0;
+            }
+
+            time = time / 86400.0 * 24.0;
+            time = time - 7.5 - 12.0;
+            if (time < 0.0)
+            {
+                time += 24.0;
+            }
+
+            if (time >= 12.0)
+            {
+                text = "PM";
+            }
+
+            int intTime = (int)time;
+            double deltaTime = time - intTime;
+            deltaTime = (int)(deltaTime * 60.0);
+            string text2 = string.Concat(deltaTime);
+            if (deltaTime < 10.0)
+            {
+                text2 = "0" + text2;
+            }
+
+            if (intTime > 12)
+            {
+                intTime -= 12;
+            }
+
+            if (intTime == 0)
+            {
+                intTime = 12;
+            }
+
+            return $"{intTime}:{text2} {text}";
         }
 
         public static string UseAnimationLine(float useAnimation)
@@ -225,6 +263,20 @@ namespace Aequus
         public static void BroadcastAwakened(string npcName)
         {
             Broadcast("Announcement.HasAwoken", BossSummonMessage, npcName);
+        }
+
+        public static string GetRarityNameValue(int rare)
+        {
+            if (AequusItem.RarityNames.TryGetValue(rare, out string rarityName))
+            {
+                return Language.GetTextValue(rarityName);
+            }
+
+            if (rare >= ItemRarityID.Count)
+            {
+                return Language.GetTextValue(AequusHelpers.CapSpaces(RarityLoader.GetRarity(rare).Name)).Replace(" Rarity", "");
+            }
+            return GetText("Unknown");
         }
 
         public static bool ContainsKey(string key)

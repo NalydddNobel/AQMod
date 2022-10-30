@@ -2169,6 +2169,13 @@ Mods: {
 					3: On our home planet, pylons simply cannot exist, the net amount of 'happy' energy on it is -30mw.
 					4: You haven't been making deals with any cat-like creatures... right?
 				}
+
+				AnalysisRarityQuest: My scanners indicate signs of {Rarity}-rare objects. It would be of great service to me and my department if you could locate one of these relics from your world.
+				AnalysisRarityCoinsQuest: My scanners indicate signs of {Rarity}-rare objects, worth {Coins}. It would be of great service to me and my department if you could locate one of these relics from your world.
+				AnalysisRarityQuest2: "That '{Item}' would be a perfect sample for our research, may we have it?"
+				AnalysisRarityQuestComplete: Thank you for your service.
+				AnalysisRarityQuestNoQuest: You have done enough work for now. Although I have a pending sample request which will be coming in at {Time} if you are interested.
+				AnalysisButton: Analysis
 			}
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
@@ -2293,9 +2300,9 @@ Mods: {
 				}
 
 				Night: This time of the day is always so relaxing. You get a closer view of the shooting stars passing through the cloudy islands. It's amazing.
-				BloodMoon: The sky is p-pretty menancing looking today... I-I just hope that there won't be any f-flying threats up here...eheh... not that I am worried about it or anything.
+				BloodMoon: The sky is p-pretty menacing looking today... I-I just hope that there won't be any f-flying threats up here...eheh... not that I am worried about it or anything.
 				
-				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isnt a sky merchant, but wait, I am.
+				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isn't a sky merchant, but wait, I am.
 				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
 				Pirate: Recently, {Pirate} talked to me about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
 
@@ -2332,8 +2339,8 @@ Mods: {
 				HateCrowded: I have heard about your species... you like cramping others into tight spaces and give them the bare minimum to survive yet still produce what you want. I don't like how you are seemingly proving this correct.
 				LikeBiome: This place, {BiomeName}, is quite good. I will add it to my catalogue of 'Locations to spend a large amount of time in'
 				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
-				DislikeBiome: I am generally not a fan of {BiomeName}, but it does work for doing studies I guess.
-				HateBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+				DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+				HateBiome: Are you trying to make me go through living hell? What is wrong with your species?
 				LoveNPC: I greatly adore {NPCName}, their parts are so highly functional!
 				LikeNPC: "{NPCName} is quite nice. Although they aren't the best in science experiments, too busy with their less important stuff I guess."
 				DislikeNPC: I do not have the greatest opinion on {NPCName}. Atleast they aren't decorated in a dumb outfit.
@@ -2341,19 +2348,19 @@ Mods: {
 			}
 
 			Occultist: {
-				Content: This place is good enough, could definitely get better service in the Underworld Domain though.
+				Content: This place is good enough, could definitely get better internet service in the Underworld Domain though.
 				NoHome: Hey? Are you trying to make me go back to living in the Gore Nest?
 				FarFromHome: Oh, you caught me snooping around the place, I'll be home by midnight, I promise.
 				LoveSpace: Oh yes! This place is quite great, my own room... plus some people to practice magic on!
 				DislikeCrowded: Erm- There's quite a lot of people here. That'd be great if my spells could hypnotize more than 2 folks.
-				HateCrowded: I can't stand the croudedness of this place! There's no point in being secretive if your every move can be heard by the entire town.
-				LikeBiome: "{BiomeName} is great, could be better."
+				HateCrowded: I can't stand the crowdedness of this place! There's no point in being secretive if your every move can be heard by the entire town.
+				LikeBiome: "The {BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
 				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
-				DislikeBiome: Ah yes, {BiomeName}, my favorite place to throw my garbage.
+				DislikeBiome: Ah yes, the {BiomeName}, my favorite place to throw my garbage.
 				HateBiome: Y'know, it's kind of funny how the Underworld is more enjoyable than {BiomeName}.
 				LoveNPC: Hey, tell {NPCName} I finished making them chocolate pancakes!- Hehe- They're one of my favorite people.
 				LikeNPC: "{NPCName} has never flinched when I tried fire spells on them. They must have incredible pain tolerance!" 
-				DislikeNPC: "{NPCName} is quite annoying, atleast not as bad as some of friends from Hell."
+				DislikeNPC: "{NPCName} is quite annoying, atleast not as bad as some of my friends from Hell."
 				HateNPC: I've literally sent {NPCName} to hell and back... too bad that spell wipes there memory after finishing.
 			}
 

@@ -27,6 +27,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -70,6 +71,63 @@ namespace Aequus
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
+
+        public static void SaveRarity(TagCompound tag, string modKey, string vanillaKey, int rare)
+        {
+            if (rare > ItemRarityID.Purple)
+            {
+                tag[modKey] = RarityLoader.GetRarity(rare).FullName;
+            }
+            else
+            {
+                tag[vanillaKey] = rare;
+            }
+        }
+
+        public static bool LoadRarity(TagCompound tag, string modKey, string vanillaKey, out int value)
+        {
+            value = default(int);
+            if (tag.TryGet(modKey, out string rarityName))
+            {
+                var split = rarityName.Split('/');
+                if (!ModLoader.TryGetMod(split[0], out var mod))
+                {
+                    return false;
+                }
+                if (!mod.TryFind<ModRarity>(split[1], out var rare))
+                {
+                    return false;
+                }
+                value = rare.Type;
+                return true;
+            }
+            else if (tag.TryGet(vanillaKey, out int rare))
+            {
+                value = rare;
+                return true;
+            }
+            return false;
+        }
+
+        public static void AddToTime(double time, double add, bool dayTime, out double result, out bool resultDayTime)
+        {
+            while (add > 0)
+            {
+                double max = dayTime ? Main.dayLength : Main.nightLength;
+                if (time + add > max)
+                {
+                    add -= (max - time);
+                    dayTime = !dayTime;
+                }
+                else
+                {
+                    time += add;
+                    add = 0;
+                }
+            }
+            result = time;
+            resultDayTime = dayTime;
+        }
 
         public static Color ReadColor(string text)
         {

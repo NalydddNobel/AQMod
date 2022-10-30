@@ -12,7 +12,7 @@ namespace Aequus.Items.Misc.Dyes
         public virtual Ref<Effect> Effect => FromPath("ParentDyeShader");
         public abstract string Pass { get; }
         public virtual int Rarity => ItemRarityID.Blue;
-        public virtual int Value => Item.sellPrice(gold: 1, silver: 50);
+        public virtual int Value => Item.sellPrice(gold: 0, silver: 50);
         public virtual ArmorShaderData CreateShaderData()
         {
             return new ArmorShaderData(Effect, Pass);
