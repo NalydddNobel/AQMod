@@ -9,12 +9,15 @@ using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Tiles;
+using log4net;
+using log4net.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -109,8 +112,18 @@ namespace Aequus
             return false;
         }
 
+        public static void DebugTagCompound(TagCompound tag, ILog logger)
+        {
+            foreach (var val in tag)
+            {
+                logger.Debug(val.Key + ": " + val.Value.ToString());
+            }
+        }
+
         public static void AddToTime(double time, double add, bool dayTime, out double result, out bool resultDayTime)
         {
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             while (add > 0)
             {
                 double max = dayTime ? Main.dayLength : Main.nightLength;
@@ -124,9 +137,17 @@ namespace Aequus
                     time += add;
                     add = 0;
                 }
+                if (stopWatch.ElapsedMilliseconds > 10)
+                    break;
             }
+            stopWatch.Stop();
             result = time;
             resultDayTime = dayTime;
+        }
+
+        public static Color ValueColor(int value)
+        {
+            return value >= Item.platinum ? Colors.CoinPlatinum : (value >= Item.gold ? Colors.CoinGold : (value >= Item.silver ? Colors.CoinSilver : (value >= Item.copper ? Colors.CoinCopper : Color.Gray)));
         }
 
         public static Color ReadColor(string text)

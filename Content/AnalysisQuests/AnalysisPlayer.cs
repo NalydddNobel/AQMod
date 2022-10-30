@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -11,6 +12,7 @@ namespace Aequus.Content.AnalysisQuests
         public int completed;
         public int timeForNextQuest;
         public bool dayTimeForNextQuest;
+        public int questResetTime;
         public QuestInfo quest;
 
         public override void Initialize()
@@ -22,6 +24,12 @@ namespace Aequus.Content.AnalysisQuests
         public override void SaveData(TagCompound tag)
         {
             tag["Completed"] = completed;
+
+            if (questResetTime > 0)
+            {
+                tag["ResetTime"] = questResetTime;
+            }
+
             if (timeForNextQuest > 0)
             {
                 tag["TimeForNextQuest"] = timeForNextQuest;
@@ -34,6 +42,7 @@ namespace Aequus.Content.AnalysisQuests
         {
             quest = QuestInfo.LoadData(tag);
             completed = tag.Get<int>("Completed");
+            questResetTime = tag.Get<int>("ResetTime");
             timeForNextQuest = tag.Get<int>("TimeForNextQuest");
             dayTimeForNextQuest = tag.Get<bool>("DayTimeForNextQuest");
         }
@@ -52,7 +61,6 @@ namespace Aequus.Content.AnalysisQuests
             }
 
             int highestValue = 0;
-            int highestValueSearched = 0;
             var rareList = new List<TrackedItemRarity>();
             foreach (var rare in AnalysisSystem.RareTracker)
             {
@@ -62,14 +70,15 @@ namespace Aequus.Content.AnalysisQuests
                 {
                     highestValue = rare.Value.highestValueObtained;
                 }
-                if (rare.Value.HighestValueSearch > highestValueSearched)
-                {
-                    highestValueSearched = rare.Value.HighestValueSearch;
-                }
             }
 
-            valueWantedMax = Math.Min(valueWantedMax, highestValueSearched);
+            valueWantedMax = Math.Min(valueWantedMax, highestValue);
             int valueWantedMin = (int)(valueWantedMax * (1 - Math.Pow(0.9999f, questsCompletedScaleFactor)));
+
+            Main.NewText(highestValue, Color.BlueViolet);
+            Main.NewText(valueWantedMin, Color.AliceBlue);
+            Main.NewText(valueWantedMax, Color.Orange);
+            //Main.NewText(highestValueSearched, Color.Red);
 
             if (rareList.Count == 0)
                 return;
@@ -77,9 +86,10 @@ namespace Aequus.Content.AnalysisQuests
             for (int i = 0; i < 100; i++)
             {
                 var checkRare = Main.rand.Next(rareList);
-                if (checkRare.LowestValueSearch <= valueWantedMax)
+                if (checkRare.highestValueObtained >= valueWantedMax)
                 {
-                    SetQuest(checkRare, questsCompletedScaleFactor < 2 ? 0 : Main.rand.Next(valueWantedMin, valueWantedMax));
+                    Main.NewText($"{checkRare.rare}: {checkRare.highestValueObtained}", Color.Red);
+                    SetQuest(checkRare, Main.rand.Next(valueWantedMin, valueWantedMax));
                     break;
                 }
             }
@@ -87,9 +97,11 @@ namespace Aequus.Content.AnalysisQuests
 
         public void SetQuest(TrackedItemRarity rarity, int value)
         {
+            Main.NewText("Set Quest");
             quest.itemRarity = rarity.rare;
             quest.itemValue = value;
             quest.isValid = true;
+            questResetTime = 43200;
         }
 
         public override void PostUpdate()
@@ -98,6 +110,17 @@ namespace Aequus.Content.AnalysisQuests
             {
                 timeForNextQuest = 0;
                 dayTimeForNextQuest = false;
+                if (questResetTime >= 0)
+                    quest.isValid = false;
+                questResetTime = -1;
+            }
+            if (questResetTime > 0)
+            {
+                questResetTime--;
+                if (questResetTime == 0)
+                {
+                    quest.isValid = false;
+                }
             }
         }
     }

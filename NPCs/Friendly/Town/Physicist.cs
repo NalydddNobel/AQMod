@@ -202,7 +202,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Main.npcChatCornerItem > 0 ? "Submit" : AequusText.GetText("Chat.Physicist.AnalysisButton");
+            button2 = Main.npcChatCornerItem > 0 ? AequusText.GetText("Chat.Physicist.AnalysisButtonComplete") : AequusText.GetText("Chat.Physicist.AnalysisButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -215,10 +215,10 @@ namespace Aequus.NPCs.Friendly.Town
 
             var player = Main.LocalPlayer;
             var questPlayer = player.GetModPlayer<AnalysisPlayer>();
-
-            if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0)
+            //Main.NewText(questPlayer.completed);
+            if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0 && questPlayer.questResetTime <= 0)
             {
-                questPlayer.RefreshQuest(Main.LocalPlayer.GetModPlayer<AnalysisPlayer>().completed);
+                questPlayer.RefreshQuest(questPlayer.completed);
             }
             if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0)
             {
@@ -230,7 +230,14 @@ namespace Aequus.NPCs.Friendly.Town
             if (Main.npcChatCornerItem > 0 && validItem != null)
             {
                 var popupItem = validItem.Clone();
+                popupItem.position = player.position;
+                popupItem.width = player.width;
+                popupItem.height = player.height;
                 popupItem.stack = 1;
+                var itemText = PopupText.NewText(PopupTextContext.RegularItemPickup, popupItem, 1);
+                Main.popupText[itemText].name = $"{Main.popupText[itemText].name} (-1)";
+                Main.popupText[itemText].position.X = Main.LocalPlayer.Center.X - FontAssets.ItemStack.Value.MeasureString(Main.popupText[itemText].name).X / 2f;
+
                 validItem.stack--;
                 if (validItem.stack <= 0)
                 {
@@ -244,9 +251,6 @@ namespace Aequus.NPCs.Friendly.Town
                 SoundEngine.PlaySound(SoundID.Grab);
                 Main.npcChatCornerItem = 0;
                 Main.npcChatText = AequusText.GetText("Chat.Physicist.AnalysisRarityQuestComplete");
-                var itemText = PopupText.NewText(PopupTextContext.Advanced, popupItem, 1);
-                Main.popupText[itemText].name = $"{Main.popupText[itemText].name} (-1)";
-                Main.popupText[itemText].position.X = Main.LocalPlayer.Center.X - FontAssets.ItemStack.Value.MeasureString(Main.popupText[itemText].name).X / 2f;
                 return;
             }
             Main.npcChatText = QuestChat(questPlayer.quest);
@@ -278,14 +282,10 @@ namespace Aequus.NPCs.Friendly.Town
         public bool CanBeQuestItem(Item item, QuestInfo questInfo)
         {
             return !item.favorited && !item.IsAir && !item.IsACoin && 
-                item.rare == questInfo.itemRarity && item.value >= questInfo.itemValue;
+                item.OriginalRarity == questInfo.itemRarity && !Main.itemAnimationsRegistered.Contains(item.type);
         }
         public string QuestChat(QuestInfo questInfo)
         {
-            if (questInfo.itemValue > 0)
-            {
-                return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityCoinsQuest", new { Rarity = AequusText.GetRarityNameValue(questInfo.itemRarity), Coins = questInfo.itemValue, });
-            }
             return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.GetRarityNameValue(questInfo.itemRarity), });
         }
 

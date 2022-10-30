@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.AnalysisQuests

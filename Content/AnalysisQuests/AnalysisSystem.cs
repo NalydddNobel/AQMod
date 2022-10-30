@@ -106,11 +106,11 @@ namespace Aequus.Content.AnalysisQuests
         {
             if (!tag.TryGet("TrackedRarities", out int val))
                 return;
-            for (int i = 0; i < RareTracker.Count; i++)
+            for (int i = 0; i < val; i++)
             {
                 if (AequusHelpers.LoadRarity(tag, $"RarityName{i}", $"Rarity{i}", out int value))
                 {
-                    RareTracker.Add(val, new TrackedItemRarity() { highestValueObtained = tag.Get<int>($"Value{i}"), });
+                    RareTracker.Add(value, new TrackedItemRarity() { rare = value, highestValueObtained = tag.Get<int>($"Value{i}"), });
                 }
             }
         }

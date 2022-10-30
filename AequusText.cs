@@ -95,6 +95,63 @@ namespace Aequus
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
 
+        public static string PriceText(int value, bool buy = false)
+        {
+            string text = "";
+            int platinum = 0;
+            int gold = 0;
+            int silver = 0;
+            int copper = 0;
+            int itemValue = value;
+            if (itemValue < 1)
+            {
+                itemValue = 1;
+            }
+            if (itemValue >= 1000000)
+            {
+                platinum = itemValue / 1000000;
+                itemValue -= platinum * 1000000;
+            }
+            if (itemValue >= 10000)
+            {
+                gold = itemValue / 10000;
+                itemValue -= gold * 10000;
+            }
+            if (itemValue >= 100)
+            {
+                silver = itemValue / 100;
+                itemValue -= silver * 100;
+            }
+            if (itemValue >= 1)
+            {
+                copper = itemValue;
+            }
+
+            if (platinum > 0)
+            {
+                text = text + platinum + " " + Lang.inter[15].Value + " ";
+            }
+            if (gold > 0)
+            {
+                if (!string.IsNullOrEmpty(text))
+                    text += " ";
+                text = text + gold + " " + Lang.inter[16].Value;
+            }
+            if (silver > 0)
+            {
+                if (!string.IsNullOrEmpty(text))
+                    text += " ";
+                text = text + silver + " " + Lang.inter[17].Value;
+            }
+            if (copper > 0)
+            {
+                if (!string.IsNullOrEmpty(text))
+                    text += " ";
+                text = text + copper + " " + Lang.inter[18].Value;
+            }
+            return text;
+        }
+
         public static string WatchTime(double time, bool dayTime)
         {
             string text = "AM";

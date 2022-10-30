@@ -2171,11 +2171,16 @@ Mods: {
 				}
 
 				AnalysisRarityQuest: My scanners indicate signs of {Rarity}-rare objects. It would be of great service to me and my department if you could locate one of these relics from your world.
-				AnalysisRarityCoinsQuest: My scanners indicate signs of {Rarity}-rare objects, worth {Coins}. It would be of great service to me and my department if you could locate one of these relics from your world.
+				AnalysisRarityCoinsQuest: 
+					'''
+					My scanners indicate signs of {Rarity}-rare objects. 
+					Object must be worth at minimum [{Coins}]. It would be of great service to me and my department if you could locate one of these relics from your world.
+					'''
 				AnalysisRarityQuest2: "That '{Item}' would be a perfect sample for our research, may we have it?"
 				AnalysisRarityQuestComplete: Thank you for your service.
 				AnalysisRarityQuestNoQuest: You have done enough work for now. Although I have a pending sample request which will be coming in at {Time} if you are interested.
 				AnalysisButton: Analysis
+				AnalysisButtonComplete: Submit
 			}
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
