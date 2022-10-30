@@ -276,6 +276,7 @@ Mods: {
 			Nimrod: 猎手
 
 			# Pets #
+			PersonalDronePack: 个人无人机包
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 			SwagLookingEye: 潮流眼球
@@ -396,6 +397,8 @@ Mods: {
 			Hexoplasm: 冥狱融质
 			ItemScrap: 废料
 
+			PhaseMirror: 相位镜
+
 			InactivePylonCleanser: 未激活的晶塔清扫机
 			InactivePylonHealer: 未激活的晶塔治疗机
 			InactivePylonGunner: 未激活的晶塔火炮机
@@ -426,6 +429,8 @@ Mods: {
 
 			UnholyCore: 不洁核心
 
+			HoloLens: 全息透镜
+			HyperJet: 超级喷气发动机
 			AnglerBroadcaster: 海滨广播器
 			RichMansMonocle: 富翁的单片眼镜
 
@@ -1050,6 +1055,7 @@ Mods: {
 				降低恶魔围攻事件的进攻时间
 				'''
 
+			HyperJet: 增加你右键物品拾取功能的速度
 			AnglerBroadcaster: 显示你当前的任务鱼
 			RichMansMonocle: 在NPC商店外查看商品价格
 
@@ -1204,6 +1210,7 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			PersonalDronePack: 召唤一个无人机提供光线并探测稀有物体和生物
 			SwagLookingEye: 
 				'''
 				召唤一只潮流眼睛跟着你
@@ -2169,6 +2176,18 @@ Mods: {
 					3: 在我们的星球上, 晶塔根本不可能存在, 它的'幸福'净值为-30mw.
 					4: 你没有和任何像猫一样的生物做过交易...对吗?
 				}
+
+				AnalysisRarityQuest: 我的扫描仪显示出有{Rarity}稀有度物件的迹象. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+				AnalysisRarityCoinsQuest: 
+					'''
+					我的扫描仪显示出有{Rarity}稀有度物件的迹象.
+					物件至少价值[{Coins}]铂金. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+					'''
+				AnalysisRarityQuest2: "'{Item}'将是我们研究的完美样本, 可以给我们吗?"
+				AnalysisRarityQuestComplete: 感谢你的服务.
+				AnalysisRarityQuestNoQuest: 你现在做的工作已经够多了. 尽管我有一个待定的样本请求, 如果你感兴趣, 将会在{Time}收到.
+				AnalysisButton: 分析
+				AnalysisButtonComplete: 提交
 			}
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
@@ -2332,8 +2351,8 @@ Mods: {
 				HateCrowded: 我听说过你这个物种...你喜欢把别人挤在狭小的空间里, 给他们最低限度的生存空间, 但仍然生产你想要的东西. 我不喜欢你是如何证明这一点的.
 				LikeBiome: 这个地方, {BiomeName}, 挺好的. 我将把它添加到我的'地点目录'中, 花大量时间在其中.
 				LoveBiome: 住在{BiomeName}对我和我的无人机来说都很好, 让我想起了我的家乡.
-				DislikeBiome: 我一般不喜欢{BiomeName}, 但我想它确实对学习有用.
-				HateBiome: 真的， 我不相信我面前的地方是真实的， 一定是你为外来游客搭建的海市蜃楼.
+				DislikeBiome: 真的, 我不相信我面前的地方是真实的, 一定是你为外来游客搭建的海市蜃楼.
+				HateBiome: 你想让我经历地狱吗? 你的物种有什么毛病?
 				LoveNPC: 我非常崇拜{NPCName}, 他们的部分功能非常强大!
 				LikeNPC: "{NPCName}很不错. 虽然他们在科学实验中不是最好的, 我想他们太忙于不太重要的事情了."
 				DislikeNPC: 我对{NPCName}的看法不是很好. 至少他们没有穿愚蠢的衣服.
@@ -2341,19 +2360,19 @@ Mods: {
 			}
 
 			Occultist: {
-				Content: 这个地方挺好的, 虽然我可以在地狱得到更好的服务.
+				Content: 这个地方挺好的, 虽然我可以在地狱得到更好的互联网服务.
 				NoHome: 嘿? 你是想让我回到血巢中生活吗?
 				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 我会在午夜前到家, 我保证.
 				LoveSpace: 哦是的! 这个地方很不错, 我独有的房间... 还有一些人在附近练习魔法!
 				DislikeCrowded: 额- 这里有很多人. 如果我的咒语能催眠两个人以上就好了.
-				HateCrowded: 我不能忍受这个拥挤的地方! 如果你的一举一动都能被全镇人听到, 那么保密就没有意义了.
-				LikeBiome: "{BiomeName}很好, 但还能更好."
+				HateCrowded: 我不能忍受这个地方的拥挤度! 如果你的一举一动都能被全镇人听到, 那么保密就没有意义了.
+				LikeBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天, 你应该加入我."
 				LoveBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天, 你应该加入我."
 				DislikeBiome: 啊是的, {BiomeName}, 我最喜欢扔垃圾的地方.
 				HateBiome: 你知道的, 虽然这有点可笑, 但地狱比{BiomeName}更好.
 				LoveNPC: 嘿, 告诉{NPCName}我把巧克力煎饼做好了!- 呵呵- 他们是我最喜欢的人之一.
 				LikeNPC: "当我对他们施火咒时, {NPCName}他从不退缩. 他们一定有着难以置信的疼痛耐受力!" 
-				DislikeNPC: "{NPCName}很烦人, 至少没有一些来自地狱的朋友那么坏."
+				DislikeNPC: "{NPCName}很烦人, 至少没有一些我那些来自地狱的朋友那么坏."
 				HateNPC: 我字面意义上的把{NPCName}送到地狱然后回来了... 可惜的是, 咒语结束后会抹去被施咒者的记忆.
 			}
 
