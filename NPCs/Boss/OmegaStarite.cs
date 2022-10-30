@@ -10,7 +10,7 @@ using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Pets;
+using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Weapons.Melee;

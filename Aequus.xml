@@ -306,12 +306,12 @@
         </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.DragonBall"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Light.DragonBall"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.RedSpriteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.LightningRod"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Light.LightningRod"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">

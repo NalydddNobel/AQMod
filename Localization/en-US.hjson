@@ -276,6 +276,7 @@ Mods: {
 			Nimrod: Nimrod
 
 			# Pets #
+			PersonalDronePack: Personal Drone Pack
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
 			SwagLookingEye: Swag Looking Eye
@@ -396,6 +397,8 @@ Mods: {
 			Hexoplasm: Hexoplasm
 			ItemScrap: Scrap
 
+			PhaseMirror: Phase Mirror
+
 			InactivePylonCleanser: Inactive Pylon Cleanser
 			InactivePylonHealer: Inactive Pylon Healer
 			InactivePylonGunner: Inactive Pylon Gunner
@@ -426,6 +429,8 @@ Mods: {
 
 			UnholyCore: Unholy Core
 
+			HoloLens: Holo Lens
+			HyperJet: Hyper Jet
 			AnglerBroadcaster: Seaside Broadcaster
 			RichMansMonocle: Rich Man's Monocle
 
@@ -1050,6 +1055,7 @@ Mods: {
 				Decreases the length of the Demon Siege event
 				'''
 
+			HyperJet: Increases the speed of your right click item pickup function
 			AnglerBroadcaster: Shows you the current quest fish
 			RichMansMonocle: View item prices outside of shops
 
@@ -1204,14 +1210,15 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			PersonalDronePack: Summons a Drone to provide light and detect rare objects and creatures
 			SwagLookingEye: 
 				'''
-				Summons a swag eye to follow you
+				Summons a Swag Eye to follow you
 				'glaze...'
 				'''
 			DragonBall: 
 				'''
-				Summons an omega starite mini
+				Summons an Omega Starite mini
 				'Ball Incarnate'
 				'''
 

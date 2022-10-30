@@ -17,7 +17,27 @@ namespace Aequus.Content.AnalysisQuests
 
         public override void Load()
         {
-            IgnoreItem = new HashSet<int>();
+            IgnoreItem = new HashSet<int>()
+            {
+                ItemID.MartianConduitPlating,
+                ItemID.MartianConduitWall,
+                ItemID.LaserDrill,
+                ItemID.ChargedBlasterCannon,
+                ItemID.AntiGravityHook,
+                ItemID.MartianCostumeMask,
+                ItemID.MartianCostumeShirt,
+                ItemID.MartianCostumePants,
+                ItemID.MartianUniformHelmet,
+                ItemID.MartianUniformTorso,
+                ItemID.MartianUniformPants,
+                ItemID.BrainScrambler,
+                ItemID.LaserMachinegun,
+                ItemID.Xenopopper,
+                ItemID.XenoStaff,
+                ItemID.CosmicCarKey,
+                ItemID.ElectrosphereLauncher,
+                ItemID.InfluxWaver,
+            };
             IgnoreRarities = new HashSet<int>()
             {
                 ItemRarityID.Quest,

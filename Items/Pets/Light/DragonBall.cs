@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Pets
+namespace Aequus.Items.Pets.Light
 {
     public class DragonBall : ModItem
     {

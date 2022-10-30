@@ -282,11 +282,11 @@ namespace Aequus.NPCs.Friendly.Town
         public bool CanBeQuestItem(Item item, QuestInfo questInfo)
         {
             return !item.favorited && !item.IsAir && !item.IsACoin && 
-                item.OriginalRarity == questInfo.itemRarity && !Main.itemAnimationsRegistered.Contains(item.type);
+                item.OriginalRarity == questInfo.itemRarity && !AnalysisSystem.IgnoreItem.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
         }
         public string QuestChat(QuestInfo questInfo)
         {
-            return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.GetRarityNameValue(questInfo.itemRarity), });
+            return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.ColorCommand(AequusText.GetRarityNameValue(questInfo.itemRarity), AequusHelpers.GetRarityColor(questInfo.itemRarity)), });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

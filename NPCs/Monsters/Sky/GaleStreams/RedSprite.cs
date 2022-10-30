@@ -7,7 +7,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Pets;
+using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.RedSpriteProjs;

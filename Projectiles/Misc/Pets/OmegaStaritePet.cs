@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
@@ -23,6 +24,7 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.tileCollide = false;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
+            Projectile.extraUpdates = 1;
         }
 
         private float innerRingRotation;
@@ -33,38 +35,69 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             Player player = Main.player[Projectile.owner];
             AequusHelpers.UpdateProjActive<OmegaStariteBuff>(Projectile);
-            Vector2 gotoPos = player.Center;
+            var gotoPos = player.Center + new Vector2((player.width / 2f + Projectile.width * 2.25f) * player.direction, player.height / -2f + Projectile.height - 32f);
             var center = Projectile.Center;
             float distance = (center - gotoPos).Length();
-            innerRingRotation += 0.0314f;
-            innerRingRoll += 0.0157f;
-            innerRingPitch += 0.01f;
-            if (distance < (player.width + Projectile.width) * 2f)
+            if (Projectile.numUpdates == -1)
             {
-                Projectile.velocity += player.velocity * 0.01f;
-                if (Projectile.velocity.Length() > 1.5f)
+                innerRingRotation += 0.0314f;
+                innerRingRoll += 0.0157f;
+                innerRingPitch += 0.01f;
+            }
+            if (distance < 2000f)
+            {
+                float amount = 0.025f;
+                if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
                 {
-                    Projectile.velocity *= 0.97f;
+                    distance = Math.Max(distance * 2f, 100f);
+                    amount *= 2f;
+                }
+                if (distance < (player.width + Projectile.width))
+                {
+                    amount = 0.001f;
+                    if (Projectile.numUpdates == -1)
+                    {
+                        Projectile.position += player.velocity * 0.75f;
+                    }
+                    if (Projectile.velocity.Length() > 0.1f)
+                    {
+                        Projectile.velocity.X *= 0.97f;
+                        Projectile.velocity.Y *= 0.97f;
+                    }
                 }
                 else
                 {
-                    Projectile.velocity *= 0.99f;
+                    if (distance > 200f)
+                    {
+                        amount *= 2f;
+                    }
+                    if (distance > 600f)
+                    {
+                        amount *= 2f;
+                    }
+                    Projectile.position += Main.player[Projectile.owner].velocity / 4f;
                 }
-            }
-            else if (distance < 2000f)
-            {
-                float amount = 0.005f;
-                if (distance > 600f)
+                int directionX = Math.Sign(gotoPos.X - Projectile.Center.X);
+                if (Projectile.velocity.X.Abs() < 6f || Math.Sign(Projectile.velocity.X) != directionX)
                 {
-                    amount *= 2f;
+                    if (Math.Sign(Projectile.velocity.X) != directionX)
+                        Projectile.velocity.X *= 0.985f;
+                    Projectile.velocity.X += directionX * amount;
                 }
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(gotoPos - center) * 20f, amount);
+                int directionY = Math.Sign(gotoPos.Y - Projectile.Center.Y);
+                if (Projectile.velocity.Y.Abs() < 6f || Math.Sign(Projectile.velocity.Y) != directionY)
+                {
+                    if (Math.Sign(Projectile.velocity.X) != directionX)
+                        Projectile.velocity.X *= 0.985f;
+                    Projectile.velocity.Y += directionY * amount;
+                }
             }
             else
             {
                 Projectile.Center = player.Center;
                 Projectile.velocity *= 0.1f;
             }
+            Lighting.AddLight(Projectile.Center, new Vector3(0.05f, 0.3f, 0.5f) * 4f);
         }
 
         private void DrawGlowy(Texture2D texture, Vector2 drawCoordinates, Rectangle frame, Color color, float scale = 1f)

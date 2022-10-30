@@ -7,8 +7,6 @@ using Aequus.Common;
 using Aequus.Common.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content;
-using Aequus.Content.AnalysisQuests;
-using Aequus.Content.CursorDyes;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Graphics.PlayerLayers;
@@ -105,6 +103,7 @@ namespace Aequus
 
         public float darkness;
 
+        public bool accStackSplit;
         public bool accShowQuestFish;
         public bool accPriceMonocle;
 
@@ -537,6 +536,7 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accStackSplit = false;
             accSentrySlot = false;
             accGroundCrownCrit = 0;
             accDarknessCrownDamage = 0f;

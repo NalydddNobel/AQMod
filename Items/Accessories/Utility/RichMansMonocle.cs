@@ -25,5 +25,10 @@ namespace Aequus.Items.Accessories.Utility
         {
             aequus.accPriceMonocle = true;
         }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.Aequus().accPriceMonocle = true;
+        }
     }
 }

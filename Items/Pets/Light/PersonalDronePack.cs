@@ -6,9 +6,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Pets
+namespace Aequus.Items.Pets.Light
 {
-    public class LightningRod : ModItem
+    public class PersonalDronePack : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -17,12 +17,11 @@ namespace Aequus.Items.Pets
 
         public override void SetDefaults()
         {
-            Item.DefaultToVanitypet(ModContent.ProjectileType<RedSpritePet>(), ModContent.BuffType<RedSpriteBuff>());
+            Item.DefaultToVanitypet(ModContent.ProjectileType<OmegaStaritePet>(), ModContent.BuffType<OmegaStariteBuff>());
             Item.width = 20;
             Item.height = 20;
-            Item.value = Item.sellPrice(gold: 5);
-            Item.rare = ItemRarityID.Master;
-            Item.master = true;
+            Item.value = Item.sellPrice(gold: 2);
+            Item.rare = ItemRarityID.Pink;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

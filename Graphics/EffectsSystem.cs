@@ -221,7 +221,8 @@ namespace Aequus.Graphics
                 }
                 if (!Lighting.NotRetro)
                 {
-                    GamestarRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
+                    if (GamestarRenderer.Instance.IsReady)
+                        GamestarRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 }
                 else if (GamestarRenderer.Instance.IsReady)
                 {

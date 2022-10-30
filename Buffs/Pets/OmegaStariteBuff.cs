@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Pets;
+﻿using Aequus.Items.Pets.Light;
 using Aequus.Projectiles.Misc.Pets;
 using Terraria.ModLoader;
 
@@ -9,6 +9,7 @@ namespace Aequus.Buffs.Pets
     /// </summary>
     public class OmegaStariteBuff : PetBuffBase
     {
+        protected override bool LightPet => true;
         protected override int PetProj => ModContent.ProjectileType<OmegaStaritePet>();
     }
 }

@@ -75,6 +75,52 @@ namespace Aequus
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
+        public static Color GetRarityColor(int rare)
+        {
+            switch (rare) 
+            {
+                default:
+                    if (rare > ItemRarityID.Purple)
+                    {
+                        return RarityLoader.GetRarity(rare).RarityColor;
+                    }
+                    return Color.White;
+
+                case ItemRarityID.Master:
+                    return new Color(255, (byte)(Main.masterColor * 200f), 0, 255);
+                case ItemRarityID.Expert:
+                    return Main.DiscoColor;
+                case ItemRarityID.Quest:
+                    return Colors.RarityAmber;
+                case ItemRarityID.Gray:
+                    return Color.Gray;
+                case ItemRarityID.White:
+                    return Color.White;
+                case ItemRarityID.Blue:
+                    return Colors.RarityBlue;
+                case ItemRarityID.Green:
+                    return Colors.RarityGreen;
+                case ItemRarityID.Orange:
+                    return Colors.RarityOrange;
+                case ItemRarityID.LightRed:
+                    return Colors.RarityRed;
+                case ItemRarityID.Pink:
+                    return Colors.RarityPink;
+                case ItemRarityID.LightPurple:
+                    return Colors.RarityPurple;
+                case ItemRarityID.Lime:
+                    return Colors.RarityLime;
+                case ItemRarityID.Yellow:
+                    return Colors.RarityYellow;
+                case ItemRarityID.Cyan:
+                    return Colors.RarityCyan;
+                case ItemRarityID.Red:
+                    return Colors.RarityDarkRed;
+                case ItemRarityID.Purple:
+                    return Colors.RarityDarkPurple;
+            }
+        }
+
         public static void SaveRarity(TagCompound tag, string modKey, string vanillaKey, int rare)
         {
             if (rare > ItemRarityID.Purple)

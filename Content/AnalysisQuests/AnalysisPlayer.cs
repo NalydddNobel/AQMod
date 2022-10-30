@@ -75,9 +75,9 @@ namespace Aequus.Content.AnalysisQuests
             valueWantedMax = Math.Min(valueWantedMax, highestValue);
             int valueWantedMin = (int)(valueWantedMax * (1 - Math.Pow(0.9999f, questsCompletedScaleFactor)));
 
-            Main.NewText(highestValue, Color.BlueViolet);
-            Main.NewText(valueWantedMin, Color.AliceBlue);
-            Main.NewText(valueWantedMax, Color.Orange);
+            //Main.NewText(highestValue, Color.BlueViolet);
+            //Main.NewText(valueWantedMin, Color.AliceBlue);
+            //Main.NewText(valueWantedMax, Color.Orange);
             //Main.NewText(highestValueSearched, Color.Red);
 
             if (rareList.Count == 0)
@@ -88,7 +88,7 @@ namespace Aequus.Content.AnalysisQuests
                 var checkRare = Main.rand.Next(rareList);
                 if (checkRare.highestValueObtained >= valueWantedMax)
                 {
-                    Main.NewText($"{checkRare.rare}: {checkRare.highestValueObtained}", Color.Red);
+                    //Main.NewText($"{checkRare.rare}: {checkRare.highestValueObtained}", Color.Red);
                     SetQuest(checkRare, Main.rand.Next(valueWantedMin, valueWantedMax));
                     break;
                 }
@@ -106,7 +106,7 @@ namespace Aequus.Content.AnalysisQuests
 
         public override void PostUpdate()
         {
-            if (Main.dayTime == dayTimeForNextQuest && Main.time >= timeForNextQuest)
+            if (timeForNextQuest != 0 && Main.dayTime == dayTimeForNextQuest && Main.time >= timeForNextQuest)
             {
                 timeForNextQuest = 0;
                 dayTimeForNextQuest = false;
