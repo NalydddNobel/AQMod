@@ -133,18 +133,18 @@ namespace Aequus.NPCs.Friendly.Town
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonGunner>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonHealer>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
+            if (AequusWorld.downedOmegaStarite)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsBlock>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmancipationGrill>());
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
+            if (AequusWorld.downedOmegaStarite)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
             if (AequusWorld.downedDustDevil)
-            {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TornadoInABottle>());
-            }
 
             if (!Main.dayTime)
             {
@@ -155,7 +155,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            return AequusWorld.downedOmegaStarite;
+            return AequusWorld.downedUltraStarite || AequusWorld.downedOmegaStarite;
         }
 
         public override List<string> SetNPCNameList()
@@ -244,6 +244,12 @@ namespace Aequus.NPCs.Friendly.Town
                     validItem.TurnToAir();
                 }
                 questPlayer.completed++;
+                var items = questPlayer.GetAnalysisRewardDrops();
+                var source = player.talkNPC != -1 ? Main.npc[player.talkNPC].GetSource_GiftOrReward() : player.GetSource_GiftOrReward();
+                foreach (var i in items)
+                {
+                    player.QuickSpawnClonedItem(source, i, i.stack);
+                }
                 int time = Main.rand.Next(28800, 43200);
                 AequusHelpers.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);
                 questPlayer.timeForNextQuest = (int)Math.Min(result, dayTime ? Main.dayLength - 60 : Main.nightLength - 60);

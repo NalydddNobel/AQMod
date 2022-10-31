@@ -1,5 +1,6 @@
 ﻿using Aequus.Content;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Utility
@@ -17,7 +18,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.width = 16;
             Item.height = 16;
             Item.accessory = true;
-            Item.rare = ItemDefaults.RarityOmegaStarite;
+            Item.rare = ItemRarityID.Blue;
             Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = Item.buyPrice(gold: 5);
         }

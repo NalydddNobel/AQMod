@@ -75,6 +75,8 @@ namespace Aequus
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
+        
+
         public static Color GetRarityColor(int rare)
         {
             switch (rare) 
@@ -296,6 +298,17 @@ namespace Aequus
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
         }
 
+        public static bool IsInCustomTileInteractionRange(this Player player, int x, int y, int extraX, int extraY)
+        {
+            int tileRangeX = Player.tileRangeX;
+            int tileRangeY = Player.tileRangeY;
+            Player.tileRangeX += 15;
+            Player.tileRangeY += 15;
+            bool value = player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY);
+            Player.tileRangeX = tileRangeX;
+            Player.tileRangeY = tileRangeY;
+            return value;
+        }
         public static bool Zen(this Player player, bool? active = null)
         {
             var zen = player.GetModPlayer<ZenPlayer>();
@@ -304,6 +317,10 @@ namespace Aequus
             return zen.forceZen;
         }
 
+        public static bool HasItemCheckAllBanks<T>(this Player player) where T : ModItem
+        {
+            return HasItemCheckAllBanks(player, ModContent.ItemType<T>());
+        }
         public static bool HasItemCheckAllBanks(this Player player, int item)
         {
             return player.HasItem(item) ||
@@ -378,6 +395,7 @@ namespace Aequus
         {
             var hsl = Main.rgbToHsl(color);
             hsl.X += hueAdd;
+            hsl.X %= 1f;
             return Main.hslToRgb(hsl);
         }
 

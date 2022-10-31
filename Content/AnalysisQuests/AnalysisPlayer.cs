@@ -1,7 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items;
+using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Pets.Light;
+using Aequus.Items.Tools;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -97,7 +101,6 @@ namespace Aequus.Content.AnalysisQuests
 
         public void SetQuest(TrackedItemRarity rarity, int value)
         {
-            Main.NewText("Set Quest");
             quest.itemRarity = rarity.rare;
             quest.itemValue = value;
             quest.isValid = true;
@@ -122,6 +125,48 @@ namespace Aequus.Content.AnalysisQuests
                     quest.isValid = false;
                 }
             }
+        }
+
+        public List<Item> GetAnalysisRewardDrops()
+        {
+            var l = new List<Item>();
+            AddMainRewardDrops(l);
+            return l;
+        }
+
+        public void AddMainRewardDrops(List<Item> item)
+        {
+            bool addedAny = false;
+            var potentialRewards = new List<Item>();
+            if (!Player.HasItemCheckAllBanks<PersonalDronePack>() && Player.miscEquips[Player.miscSlotLight].type != ModContent.ItemType<PersonalDronePack>())
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<PersonalDronePack>());
+                addedAny = true;
+            }
+            if (!Player.HasItemCheckAllBanks<HoloLens>())
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
+                addedAny = true;
+            }
+            if (!Player.HasItemCheckAllBanks<HyperJet>())
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
+                addedAny = true;
+            }
+            if ((!addedAny || Main.netMode != NetmodeID.SinglePlayer) && !Player.HasItemCheckAllBanks<PhaseMirror>())
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
+                addedAny = true;
+            }
+            if (!addedAny)
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<PersonalDronePack>());
+                potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
+                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
+                potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
+            }
+            item.Add(Main.rand.Next(potentialRewards));
+            potentialRewards.Clear();
         }
     }
 }

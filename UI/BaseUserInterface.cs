@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -19,6 +20,9 @@ namespace Aequus.UI
             SetStaticDefaults();
         }
 
+        public virtual void Update(GameTime gameTime)
+        {
+        }
         public abstract bool Draw(SpriteBatch spriteBatch);
     }
 }

@@ -145,6 +145,10 @@ namespace Aequus.UI
         public override void UpdateUI(GameTime gameTime)
         {
             leftInvOffset = 0;
+            foreach (var i in UserInterfaces)
+            {
+                i.Update(gameTime);
+            }
             Aequus.InventoryInterface.Update(gameTime);
             Aequus.NPCTalkInterface.Update(gameTime);
             if (Main.mouseItem != null && !Main.mouseItem.IsAir)

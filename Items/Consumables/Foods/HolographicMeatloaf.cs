@@ -19,7 +19,7 @@ namespace Aequus.Items.Consumables.Foods
             Item.DefaultToFood(20, 20, BuffID.WellFed, 36000);
             Item.maxStack = 1;
             Item.consumable = false;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 5);
         }
 

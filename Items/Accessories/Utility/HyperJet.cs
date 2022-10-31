@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -27,6 +28,8 @@ namespace Aequus.Items.Accessories.Utility
             orig(inv, context, slot);
             if (Main.stackSplit <= 2 && AequusHelpers.iterations == 0)
             {
+                if (Main.stackDelay > 2)
+                    Main.stackDelay = Math.Max(Main.stackDelay / 2, 2);
                 if (!inv[0].IsAir && oldStack != inv[0].stack)
                 {
                     if (Main.LocalPlayer.Aequus().accStackSplit && Main.stackDelay < 7)
@@ -78,7 +81,7 @@ namespace Aequus.Items.Accessories.Utility
             {
                 if (t.Name == "ItemName")
                 {
-                    t.Text += $" {AequusText.GetText(active ? "Active" : "Inactive")}";
+                    t.Text += $" ({AequusText.GetText(active ? "Active" : "Inactive")})";
                 }
             }
         }

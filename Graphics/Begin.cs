@@ -71,6 +71,21 @@ namespace Aequus.Graphics
                 }
                 spriteBatch.Begin(spriteSort, null, null, null, rasterizer, null, Main.UIScaleMatrix);
             }
+            public static void BeginWMatrix(SpriteBatch spriteBatch, bool useScissorRectangle = false, Matrix? matrix = null)
+            {
+                BeginWMatrix(spriteBatch, Regular, useScissorRectangle, matrix);
+            }
+            public static void BeginWMatrix(SpriteBatch spriteBatch, SpriteSortMode spriteSort, bool useScissorRectangle = false, Matrix? matrix = null)
+            {
+                RasterizerState rasterizer = null;
+                if (useScissorRectangle)
+                {
+                    rasterizer = new RasterizerState();
+                    rasterizer.CullMode = CullMode.None;
+                    rasterizer.ScissorTestEnable = true;
+                }
+                spriteBatch.Begin(spriteSort, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
+            }
         }
     }
 }

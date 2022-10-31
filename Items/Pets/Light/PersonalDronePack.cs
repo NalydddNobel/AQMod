@@ -17,7 +17,7 @@ namespace Aequus.Items.Pets.Light
 
         public override void SetDefaults()
         {
-            Item.DefaultToVanitypet(ModContent.ProjectileType<OmegaStaritePet>(), ModContent.BuffType<OmegaStariteBuff>());
+            Item.DefaultToVanitypet(ModContent.ProjectileType<DronePet>(), ModContent.BuffType<DroneBuff>());
             Item.width = 20;
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 2);

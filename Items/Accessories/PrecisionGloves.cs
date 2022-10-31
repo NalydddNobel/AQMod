@@ -16,7 +16,7 @@ namespace Aequus.Items.Accessories
             Item.width = 20;
             Item.height = 20;
             Item.accessory = true;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 5);
         }
 

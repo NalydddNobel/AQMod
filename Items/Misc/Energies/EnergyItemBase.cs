@@ -62,17 +62,19 @@ namespace Aequus.Items.Misc.Energies
         {
             var coloring = new Color(255, 255, 255, 200) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, 0.8f, 1f);
 
+            SpriteBatchCache cache = null;
             if (Aequus.HQ)
             {
+                cache = new SpriteBatchCache(spriteBatch);
                 Main.spriteBatch.End();
-                Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
+                Begin.UI.BeginWMatrix(spriteBatch, Begin.Shader, useScissorRectangle: true, cache.transformMatrix);
                 var drawData = new DrawData(Aura.Value, position, null, coloring, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
+                cache.Begin(spriteBatch);
             }
 
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -80,14 +82,14 @@ namespace Aequus.Items.Misc.Energies
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
+                Begin.UI.BeginWMatrix(spriteBatch, Begin.Shader, useScissorRectangle: true, cache.transformMatrix);
                 var drawData = new DrawData(Aura.Value, position, null, coloring.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
 
                 Main.spriteBatch.End();
-                Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
+                cache.Begin(spriteBatch);
             }
             return false;
         }

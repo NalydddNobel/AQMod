@@ -299,6 +299,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Aequus.Buffs.Pets.DroneBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Pets.Light.PersonalDronePack"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Pets.FamiliarPickaxe"/>

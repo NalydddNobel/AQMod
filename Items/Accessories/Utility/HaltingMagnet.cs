@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.width = 16;
             Item.height = 16;
             Item.accessory = true;
-            Item.rare = ItemDefaults.RarityOmegaStarite + 1;
+            Item.rare = ItemRarityID.Orange;
             Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = Item.buyPrice(gold: 6);
         }

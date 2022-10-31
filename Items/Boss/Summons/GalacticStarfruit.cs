@@ -21,7 +21,7 @@ namespace Aequus.Items.Boss.Summons
             Item.DefaultToHoldUpItem();
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
             Item.consumable = true;
             Item.maxStack = 9999;
             Item.value = Item.buyPrice(gold: 2);

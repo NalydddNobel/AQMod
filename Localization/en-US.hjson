@@ -974,7 +974,7 @@ Mods: {
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
 				'Oh, goody. Holographic meatloaf again! When am I gonna get some real food?'
-				{$CommonItemTooltip.MajorStats}
+				{$CommonItemTooltip.MinorStats}
 				'''
 			NeutronYogurt:
 				'''
@@ -992,6 +992,12 @@ Mods: {
 			MorayPollen: Allows for potions to be thrown
 			MistralPollen: Empowers potions, only 1 can be active at a time
 			MoonflowerPollen: Doubles the duration of potions
+
+			PhaseMirror: 
+				'''
+				Allows you to return home at will
+				Teleport to party members by clicking their head on the fullscreen map
+				'''
 
 			InactivePylonCleanser: Throw near a pylon to reactivate it
 			InactivePylonHealer: Throw near a pylon to reactivate it
@@ -1055,6 +1061,7 @@ Mods: {
 				Decreases the length of the Demon Siege event
 				'''
 
+			HoloLens: Allows you to view the contents of locked and unlocked chests without opening them
 			HyperJet: Increases the speed of your right click item pickup function
 			AnglerBroadcaster: Shows you the current quest fish
 			RichMansMonocle: View item prices outside of shops
@@ -1210,7 +1217,11 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
-			PersonalDronePack: Summons a Drone to provide light and detect rare objects and creatures
+			PersonalDronePack: 
+				'''
+				Summons a Drone to provide light 
+				Can detect rare objects and creatures
+				'''
 			SwagLookingEye: 
 				'''
 				Summons a Swag Eye to follow you

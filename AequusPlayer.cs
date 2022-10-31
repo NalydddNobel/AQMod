@@ -58,8 +58,9 @@ namespace Aequus
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
         public static int Team;
-        public static float? PlayerDrawScale;
-        public static int? PlayerDrawForceDye;
+        public float? CustomDrawShadow;
+        public float? DrawScale;
+        public int? DrawForceDye;
 
         private static MethodInfo Player_ItemCheck_Shoot;
 
@@ -1623,6 +1624,33 @@ namespace Aequus
                 drawInfo.hidesBottomSkin = true;
                 drawInfo.hidesTopSkin = true;
             }
+            if (CustomDrawShadow != null)
+            {
+                drawInfo.shadow = CustomDrawShadow.Value;
+                float val = 1f - CustomDrawShadow.Value;
+                drawInfo.colorArmorBody *= val;
+                drawInfo.colorArmorHead *= val;
+                drawInfo.colorArmorLegs *= val;
+                drawInfo.colorBodySkin *= val;
+                drawInfo.colorElectricity *= val;
+                drawInfo.colorEyes *= val;
+                drawInfo.colorEyeWhites *= val;
+                drawInfo.colorHair *= val;
+                drawInfo.colorHead *= val;
+                drawInfo.colorLegs *= val;
+                drawInfo.colorMount *= val;
+                drawInfo.colorPants *= val;
+                drawInfo.colorShirt *= val;
+                drawInfo.colorShoes *= val;
+                drawInfo.colorUnderShirt *= val;
+                drawInfo.ArkhalisColor *= val;
+                drawInfo.armGlowColor *= val;
+                drawInfo.bodyGlowColor *= val;
+                drawInfo.floatingTubeColor *= val;
+                drawInfo.headGlowColor *= val;
+                drawInfo.itemColor *= val;
+                drawInfo.legsGlowColor *= val;
+            }
         }
 
         public override void HideDrawLayers(PlayerDrawSet drawInfo)
@@ -1666,7 +1694,7 @@ namespace Aequus
             {
                 return;
             }
-            if (PlayerDrawScale != null)
+            if (DrawScale != null)
             {
                 var drawPlayer = info.drawPlayer;
                 var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
@@ -1674,18 +1702,18 @@ namespace Aequus
                 for (int i = 0; i < info.DrawDataCache.Count; i++)
                 {
                     DrawData data = info.DrawDataCache[i];
-                    data.position -= (data.position - to) * (1f - PlayerDrawScale.Value);
-                    data.scale *= PlayerDrawScale.Value;
+                    data.position -= (data.position - to) * (1f - DrawScale.Value);
+                    data.scale *= DrawScale.Value;
                     info.DrawDataCache[i] = data;
                 }
             }
-            if (PlayerDrawForceDye != null)
+            if (DrawForceDye != null)
             {
                 var drawPlayer = info.drawPlayer;
                 for (int i = 0; i < info.DrawDataCache.Count; i++)
                 {
                     DrawData data = info.DrawDataCache[i];
-                    data.shader = PlayerDrawForceDye.Value;
+                    data.shader = DrawForceDye.Value;
                     info.DrawDataCache[i] = data;
                 }
             }

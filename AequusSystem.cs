@@ -101,6 +101,7 @@ namespace Aequus
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
                 OmniPaintUI.Instance.Enabled = false;
+                ChestLensInterface.Enabled = false;
             }
             if (StariteBottleTile.blessedPlayerDelay > 0)
                 StariteBottleTile.blessedPlayerDelay--;
