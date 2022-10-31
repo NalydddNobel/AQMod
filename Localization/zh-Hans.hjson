@@ -974,7 +974,7 @@ Mods: {
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
 				'哦, 好极了. 又是全息肉饼! 我什么时候才能吃到真正的食物?'
-				{$CommonItemTooltip.MajorStats}
+				{$CommonItemTooltip.MinorStats}
 				'''
 			NeutronYogurt:
 				'''
@@ -992,6 +992,12 @@ Mods: {
 			MorayPollen: 允许投掷药水
 			MistralPollen: 强化药水, 同时只能激活一个强化药水
 			MoonflowerPollen: 翻倍药水的持续时间
+
+			PhaseMirror: 
+				'''
+				允许你随意回家
+				通过在大地图上点击队员头像来传送至对方位置
+				'''
 
 			InactivePylonCleanser: 扔到晶塔附近以重新激活它
 			InactivePylonHealer: 扔到晶塔附近以重新激活它
@@ -1055,6 +1061,7 @@ Mods: {
 				降低恶魔围攻事件的进攻时间
 				'''
 
+			HoloLens: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
 			HyperJet: 增加你右键物品拾取功能的速度
 			AnglerBroadcaster: 显示你当前的任务鱼
 			RichMansMonocle: 在NPC商店外查看商品价格
@@ -1210,7 +1217,11 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
-			PersonalDronePack: 召唤一个无人机提供光线并探测稀有物体和生物
+			PersonalDronePack: 
+				'''
+				召唤一个提供光线的无人机
+				可以探测稀有物体和生物
+				'''
 			SwagLookingEye: 
 				'''
 				召唤一只潮流眼睛跟着你
