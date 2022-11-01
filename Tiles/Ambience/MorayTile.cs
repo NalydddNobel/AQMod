@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Misc;
-using Aequus.Items.Placeable.Seeds;
+using Aequus.Items.Placeable.Nature;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

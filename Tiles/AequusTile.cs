@@ -225,7 +225,75 @@ namespace Aequus.Tiles
             Circles.Clear();
         }
 
-        public void GrowPearl(int i, int j)
+        public static bool GrowGrass(int x, int y, int tileID)
+        {
+            for (int k = -1; k <= 1; k++)
+            {
+                for (int l = -1; l <= 1; l++)
+                {
+                    if (!Main.tile[x + k, y + l].IsFullySolid())
+                    {
+                        Main.tile[x, y].TileType = (ushort)tileID;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        public static bool TryGrowMosshroom(int i, int j, int style)
+        {
+            if (Main.tile[i + 1, j].TileType != Main.tile[i, j].TileType)
+            {
+                return false;
+            }
+            for (int k = 0; k < 2; k++)
+            {
+                if (Main.tile[i + k, j].Slope != SlopeType.Solid || Main.tile[i + k, j].IsHalfBlock)
+                {
+                    return false;
+                }
+            }
+            int checkSize = 5;
+            j -= 2;
+            if (CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), ModContent.TileType<GlowingMossMushrooms>()))
+            {
+                return false;
+            }
+            for (int k = 0; k < 2; k++)
+            {
+                for (int l = 0; l < 2; l++)
+                {
+                    if (Main.tile[i + k, j + l].HasTile && !Main.tileCut[Main.tile[i + k, j + l].TileType])
+                    {
+                        return false;
+                    }
+                }
+            }
+            for (int k = 0; k < 2; k++)
+            {
+                for (int l = 0; l < 2; l++)
+                {
+                    WorldGen.KillTile(i + k, j + l);
+                    if (Main.tile[i + k, j + l].HasTile)
+                        return false;
+                }
+            }
+            int frame = WorldGen.genRand.Next(3) + style * 3;
+            for (int k = 0; k < 2; k++)
+            {
+                for (int l = 0; l < 2; l++)
+                {
+                    WorldGen.KillTile(i + k, j + l);
+                    Main.tile[i + k, j + l].Active(value: true);
+                    Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<GlowingMossMushrooms>();
+                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * 18);
+                    Main.tile[i + k, j + l].TileFrameY = (short)(l * 18);
+                }
+            }
+
+            return false;
+        }
+        public static void GrowPearl(int i, int j)
         {
             for (int k = -7; k <= 7; k++)
             {
@@ -286,37 +354,6 @@ namespace Aequus.Tiles
                 }
             }
         }
-        public override void RandomUpdate(int i, int j, int type)
-        {
-            switch (type)
-            {
-                case TileID.Cloud:
-                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
-                    {
-                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 15);
-                    }
-                    break;
-
-                case TileID.Meteorite:
-                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
-                    {
-                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
-                    }
-                    break;
-            }
-            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
-            {
-                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(150))
-                {
-                    TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
-                        ModContent.TileType<MorayTile>());
-                }
-                if (WorldGen.genRand.NextBool(150))
-                {
-                    GrowPearl(i, j);
-                }
-            }
-        }
         public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile, int checkSize = 6)
         {
             for (int y = j - 1; y > 20; y--)
@@ -334,6 +371,59 @@ namespace Aequus.Tiles
                 }
             }
             return false;
+        }
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            switch (type)
+            {
+                case TileID.Cloud:
+                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 15);
+                    }
+                    break;
+
+                case TileID.Meteorite:
+                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
+                    {
+                        TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
+                    }
+                    break;
+
+                case TileID.Stone:
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1500))
+                    {
+                        TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
+                    }
+                    break;
+
+                case TileID.ArgonMoss:
+                case TileID.ArgonMossBrick:
+                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
+                    break;
+
+                case TileID.KryptonMoss:
+                case TileID.KryptonMossBrick:
+                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
+                    break;
+
+                case TileID.XenonMoss:
+                case TileID.XenonMossBrick:
+                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
+                    break;
+            }
+            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
+            {
+                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(150))
+                {
+                    TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
+                        ModContent.TileType<MorayTile>());
+                }
+                if (WorldGen.genRand.NextBool(150))
+                {
+                    GrowPearl(i, j);
+                }
+            }
         }
 
         public override bool CanKillTile(int i, int j, int type, ref bool blockDamaged)
@@ -438,7 +528,7 @@ namespace Aequus.Tiles
 
         public static bool CheckForType(Rectangle rect, ArrayInterpreter<int> type)
         {
-            return !CheckTiles(rect, (i, j, tile) => !type.Arr.ContainsAny(tile.TileType));
+            return !CheckTiles(rect, (i, j, tile) => !tile.HasTile || !type.Arr.ContainsAny(tile.TileType));
         }
         public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
         {

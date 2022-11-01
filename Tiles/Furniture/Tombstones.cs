@@ -32,7 +32,7 @@ namespace Aequus.Tiles.Furniture
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(100, 20, 10, 255), CreateMapEntryName("HellstoneTombstone"));
+            AddMapEntry(new Color(100, 20, 10, 255), CreateMapEntryName("AshTombstone"));
             DustType = 37;
             AdjTiles = new int[] { TileID.Tombstones };
         }

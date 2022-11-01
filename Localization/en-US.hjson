@@ -443,6 +443,15 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
+			ArgonMushroom: Argon Mushroom
+			KryptonMushroom: Krypton Mushroom
+			XenonMushroom: Xenon Mushroom
+			NeonMushroom: Neon Mushroom
+			HeliumMushroom: Helium Mushroom
+			MoonflowerSeeds: Moonflower Seeds
+
+			FamiliarPickaxe: Familiar Pickaxe
+
 			StariteBottle: Starite in a Bottle
 			GoreNest: Gore Nest
 
@@ -479,14 +488,9 @@ Mods: {
 			CrabPot: Crab Pot
 			PalePufferfish: Pale Pufferfish
 			VampireSquid: Vampire Squid
-			MoonflowerSeeds: Moonflower Seeds
-			SedimentSandBlock: Sedimentary Sand Block
 			SeaPickle: Sea Pickle
 			CrabsonTrophy: Crabson Trophy
 			HellTombstone: Hell Tombstone
-			ArgonMushroom: Argon Mushroom
-			KryptonMushroom: Krypton Mushroom
-			XenonMushroom: Xenon Mushroom
 			OceanRavineWall: Crab Crevice Wall
 			PotionofContainers: Containers Potion
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
@@ -513,7 +517,6 @@ Mods: {
 			SimplifiedDye: Simplified Dye
 			OutlineDye: Outline Dye
 			RainbowOutlineDye: Rainbow Outline Dye
-			FamiliarPickaxe: Familiar Pickaxe
 			HeartLamp: Heart Lamp
 			StariteinaBottle: Starite in a Bottle
 			YuckyOrb: Charming Lure
@@ -1217,6 +1220,7 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			FamiliarPickaxe: Summons a mini version of yourself
 			PersonalDronePack: 
 				'''
 				Summons a Drone to provide light 
@@ -1229,7 +1233,7 @@ Mods: {
 				'''
 			DragonBall: 
 				'''
-				Summons an Omega Starite mini
+				Summons an Omega Starite Mini
 				'Ball Incarnate'
 				'''
 
@@ -1252,6 +1256,10 @@ Mods: {
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
+			ArgonMushroom: "'A sight to dwell upon and never forget'"
+			KryptonMushroom: "'A sight to dwell upon and never forget'"
+			XenonMushroom: "'A sight to dwell upon and never forget'"
+			MoonflowerSeeds: Blooms and produces pollen near midnight
 			EmancipationGrill: 
 				'''
 				When touched, all owned portals will be removed
@@ -1317,10 +1325,6 @@ Mods: {
 				'''
 
 			CrabPot: Uses bait to catch things in the water
-
-			MoonflowerSeeds: Blooms and produces pollen near midnight
-
-			FamiliarPickaxe: Summons a mini version of yourself
 
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
@@ -1724,26 +1728,22 @@ Mods: {
 		}
 
 		MapObject: {
+			ArgonMushroom: Argon Mushroom
+			KryptonMushroom: Krypton Mushroom
+			XenonMushroom: Xenon Mushroom
+			NeonMushroom: Neon Mushroom
+			HeliumMushroom: Helium Mushroom
 			FishingCrates: Crate
 			RecyclingMachine: Recycling Machine
 			Moonflower: Moonflower
 			GlimmeringStatueTile: Ultimate Crystal
 			SeaPickle: Sea Pickle
-			HellstoneTombstone: Hell Tombstone
+			AshTombstone: Ash Tombstone
 			GoreNest: Gore Nest
-			NobleMushrooms: Noble Mushroom
 			Painting: Painting
 			Trophies: Trophy
 			Banners: Banner
-			ExoticCoral: Exotic Coral
-			FishingCraftingStation: Fishing Utility Crafting Station
-			BuriedDirtChest: Buried Dirt Chest
-			Dungeon: Dungeon
-			Crustacium: Crustacium
 			WallClocks: Wall Clock
-			AQChairs: Chair
-			AQTables: Table
-			LightbulbTile: Lightbulb
 		}
 
 		WorldGeneration: {

@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -78,7 +79,14 @@ namespace Aequus.Projectiles.Misc
             {
                 return;
             }
+            Projectile.localAI[0]--;
+            if (Projectile.localAI[0] > 0f)
+            {
+                return;
+            }
 
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
             var map = new TileMapCache(new Rectangle(minX - 15, minY - 15, maxX - minX + 30, maxY - minY + 30).Fluffize(padding: 10));
             for (int k = 0; k < 2; k++)
             {
@@ -147,6 +155,7 @@ namespace Aequus.Projectiles.Misc
                     }
                 }
             }
+            Projectile.localAI[0] = stopWatch.ElapsedMilliseconds + 10f;
         }
 
         public Color ChooseDecentColorForGrownTile(Tile tile, TileDataCache cache)
