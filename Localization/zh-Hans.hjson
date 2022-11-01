@@ -443,6 +443,15 @@ Mods: {
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
+			ArgonMushroom: 氩蘑菇
+			KryptonMushroom: 氪蘑菇
+			XenonMushroom: 氙蘑菇
+			NeonMushroom: 氖蘑菇
+			HeliumMushroom: 氦蘑菇
+			MoonflowerSeeds: 月光花种
+
+			FamiliarPickaxe: 令人熟悉的镐子
+
 			StariteBottle: 瓶中星源
 			GoreNest: 血巢
 
@@ -479,14 +488,9 @@ Mods: {
 			CrabPot: 蟹笼
 			PalePufferfish: 苍白河豚
 			VampireSquid: 吸血乌贼
-			MoonflowerSeeds: 月光花种
-			SedimentSandBlock: 沉积沙块
 			SeaPickle: 海泡菜
 			CrabsonTrophy: 巨蟹蛤纪念章
 			HellTombstone: 地狱墓碑
-			ArgonMushroom: 氩蘑菇
-			KryptonMushroom: 氪蘑菇
-			XenonMushroom: 氙蘑菇
 			OceanRavineWall: 蟹伏岩隙墙
 			PotionofContainers: 传箱药水
 			PotionofContainersTag: "{$Mods.Aequus.ItemName.PotionofContainers}"
@@ -513,7 +517,6 @@ Mods: {
 			SimplifiedDye: 简化染料
 			OutlineDye: 轮廓描边染料
 			RainbowOutlineDye: 彩虹轮廓描边染料
-			FamiliarPickaxe: 令人熟悉的镐子
 			HeartLamp: 心灯
 			StariteinaBottle: 瓶中星源
 			YuckyOrb: 迷人诱饵
@@ -1217,6 +1220,7 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			FamiliarPickaxe: 召唤一个迷你版的你自己
 			PersonalDronePack: 
 				'''
 				召唤一个提供光线的无人机
@@ -1252,6 +1256,10 @@ Mods: {
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
+			ArgonMushroom: "'一个值得留恋且永远不会忘记的东西'"
+			KryptonMushroom: "'一个值得留恋且永远不会忘记的东西'"
+			XenonMushroom: "'一个值得留恋且永远不会忘记的东西'"
+			MoonflowerSeeds: 会在午夜附近开花并产生花粉
 			EmancipationGrill: 
 				'''
 				会抹去与其接触的传送门
@@ -1317,10 +1325,6 @@ Mods: {
 				'''
 
 			CrabPot: 使用鱼饵来捕捉水里的东西
-
-			MoonflowerSeeds: 会在午夜时分开花并产生花粉
-
-			FamiliarPickaxe: 召唤一个迷你版的你自己
 
 			Transistor: 阻止柔光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
@@ -1724,26 +1728,22 @@ Mods: {
 		}
 
 		MapObject: {
+			ArgonMushroom: 氩蘑菇
+			KryptonMushroom: 氪蘑菇
+			XenonMushroom: 氙蘑菇
+			NeonMushroom: 氖蘑菇
+			HeliumMushroom: 氦蘑菇
 			FishingCrates: 板条箱
 			RecyclingMachine: 回收机
 			Moonflower: 月光花种
 			GlimmeringStatueTile: 终极晶体
 			SeaPickle: 海泡菜
-			HellTombstone: 地狱墓碑
+			AshTombstone: 灰烬墓碑
 			GoreNest: 血巢
-			NobleMushrooms: 华贵蘑菇
 			Painting: 画作
 			Trophies: 纪念章
 			Banners: 旗
-			ExoticCoral: 奇异珊瑚
-			FishingCraftingStation: 渔具加工站
-			BuriedDirtChest: 被掩埋的土箱
-			Dungeon: 地牢
-			Crustacium: 硬壳
 			WallClocks: 挂钟
-			AQChairs: 椅子
-			AQTables: 桌子
-			LightbulbTile: 灯泡
 		}
 
 		WorldGeneration: {
