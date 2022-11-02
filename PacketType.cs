@@ -21,9 +21,10 @@ namespace Aequus
         SyncNecromancyNPC,
         SyncDronePoint,
         CarpenterBountiesCompleted,
-        CoatingTileSquare,
+        AequusTileSquare,
         OnKillEffect,
         ApplyNameTagToNPC,
+        RequestChestItems,
         Count,
     }
 

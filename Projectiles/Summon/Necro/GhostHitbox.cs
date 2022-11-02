@@ -25,7 +25,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.DamageType = NecromancyDamageClass.Instance;
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.timeLeft = 100;
+            Projectile.timeLeft = 120;
         }
 
         public override bool? CanCutTiles()
@@ -35,14 +35,16 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void AI()
         {
+            //AequusHelpers.dustDebug(Projectile.getRect());
             int npc = (int)Projectile.ai[0];
             if (Main.npc[npc].active)
             {
                 Projectile.timeLeft = 2;
             }
-            Projectile.position = Main.npc[npc].position;
-            Projectile.width = Main.npc[npc].width;
-            Projectile.height = Main.npc[npc].height;
+            int size = (int)Projectile.ai[1];
+            Projectile.position = Main.npc[npc].position - new Vector2(size / 2f);
+            Projectile.width = Main.npc[npc].width + size;
+            Projectile.height = Main.npc[npc].height + size;
             Projectile.wet = Main.npc[npc].wet;
             Projectile.lavaWet = Main.npc[npc].lavaWet;
             Projectile.honeyWet = Main.npc[npc].honeyWet;

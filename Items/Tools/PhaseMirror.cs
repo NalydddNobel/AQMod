@@ -14,6 +14,14 @@ namespace Aequus.Items.Tools
         public override void Load()
         {
             On.Terraria.Player.HasUnityPotion += Player_HasUnityPotion;
+            On.Terraria.Player.TakeUnityPotion += Player_TakeUnityPotion;
+        }
+
+        private static void Player_TakeUnityPotion(On.Terraria.Player.orig_TakeUnityPotion orig, Player self)
+        {
+            if (self.HasItemInInvOrVoidBag(ModContent.ItemType<PhaseMirror>()))
+                return;
+            orig(self);
         }
 
         private static bool Player_HasUnityPotion(On.Terraria.Player.orig_HasUnityPotion orig, Player self)

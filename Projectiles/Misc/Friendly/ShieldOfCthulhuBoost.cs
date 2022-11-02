@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
+namespace Aequus.Projectiles.Misc.Friendly
 {
     public class ShieldOfCthulhuBoost : ModProjectile
     {

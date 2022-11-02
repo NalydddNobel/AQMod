@@ -7,11 +7,15 @@ namespace Aequus.Buffs.Debuffs.Necro
     {
         public override string Texture => Aequus.Debuff;
         public override float Tier => 3f;
+        public override int DamageSet => 75;
+        public override float BaseSpeed => 1.25f;
 
         public override void Update(NPC npc, ref int buffIndex)
         {
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-            zombie.zombieDrain = 5 * AequusHelpers.NPCREGEN;
+            zombie.ghostDebuffDOT = 40;
+            zombie.ghostDamage = DamageSet;
+            zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
             zombie.RenderLayer(GhostOutlineRenderer.IDs.Osiris);
         }

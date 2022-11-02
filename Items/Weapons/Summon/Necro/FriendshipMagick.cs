@@ -11,6 +11,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override void SetDefaults()
         {
             Item.DefaultToNecromancy(60);
+            Item.SetWeaponValues(50, 0f);
             Item.shoot = ModContent.ProjectileType<FriendshipMagickProj>();
             Item.shootSpeed = 30f;
             Item.rare = ItemRarityID.Pink;

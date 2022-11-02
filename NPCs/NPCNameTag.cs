@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Common.GlobalNPCs;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -61,6 +63,43 @@ namespace Aequus.NPCs
             {
                 Mod.Logger.Debug($"netID: {npc.netID}, {npc}");
                 Mod.Logger.Debug(NameTag == null ? "Null" : NameTag);
+            }
+        }
+
+        public override void ResetEffects(NPC npc)
+        {
+            if (!HasNameTag)
+                return;
+
+            string text = NameTag.ToLower();
+            if (NPCID.Sets.Skeletons[npc.type] && (text == "papyrus" || text == "skeletor"))
+            {
+                npc.Aequus().disabledContactDamage = true;
+            }
+            else if (npc.type == NPCID.Werewolf && (text == "the scarewolf" || text == "big bad wolf"))
+            {
+                npc.Aequus().disabledContactDamage = true;
+            }
+            else if (npc.type == NPCID.Crab && (text == "mr krabs" || text == "krab"))
+            {
+                npc.Aequus().disabledContactDamage = true;
+            }
+            else if (npc.type == NPCID.Unicorn && text == "pegasus")
+            {
+                npc.Aequus().disabledContactDamage = true;
+            }
+            else if ((npc.type == NPCID.Moth || npc.type == NPCID.Mothron || npc.type == NPCID.MothronSpawn) && text == "cata")
+            {
+                npc.Aequus().disabledContactDamage = true;
+                npc.StatSpeed() += 1f;
+            }
+            else if (npc.ToBannerItem() == ItemID.ScarecrowBanner && (text == "birdy" || text == "beardy"))
+            {
+                npc.Aequus().disabledContactDamage = true;
+            }
+            else if (text == "little zumbo")
+            {
+                npc.Aequus().disabledContactDamage = true;
             }
         }
     }

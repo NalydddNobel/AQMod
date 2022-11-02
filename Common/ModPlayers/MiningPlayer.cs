@@ -78,7 +78,12 @@ namespace Aequus.Common.ModPlayers
                 AequusTile.LoadEchoWalls();
                 if (AequusTile.WallIDToItemID.TryGetValue(Main.tile[x, y].WallType, out int itemID))
                 {
-                    Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
+                    int i = Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
+                    }
+
                     bool gen = WorldGen.gen;
                     WorldGen.gen = true;
                     try
@@ -108,7 +113,11 @@ namespace Aequus.Common.ModPlayers
                 {
                     AchievementsHelper.CurrentlyMining = true;
 
-                    Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
+                    int i = Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
+                    }
 
                     int netModeHackForSpawningProjectiles = Main.netMode;
                     Main.netMode = NetmodeID.MultiplayerClient;

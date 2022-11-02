@@ -24,7 +24,6 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override void SetStaticDefaults()
         {
-            CoreOfMight.SpawnData.Add(new BaseCore.EnemySpawn_Any4Sides(Type));
             Main.npcFrameCount[Type] = 5;
             base.SetStaticDefaults();
         }
@@ -64,11 +63,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
-            var n = NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, Type, NPC.whoAmI, ai0: NPC.ai[0], ai1: NPC.ai[1], ai3: ai3);
-            n.TryGetGlobalNPC<AequusNPC>(out var aequus);
-            NPC.TryGetGlobalNPC<AequusNPC>(out var myAequus);
-            aequus.jungleCoreInvasion = myAequus.jungleCoreInvasion;
-            aequus.jungleCoreInvasionIndex = myAequus.jungleCoreInvasionIndex;
+            NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, Type, NPC.whoAmI, ai0: NPC.ai[0], ai1: NPC.ai[1], ai3: ai3);
         }
 
         public override Vector2 DetermineTargetPosition()

@@ -20,7 +20,6 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
 
         public override void SetStaticDefaults()
         {
-            CoreOfMight.SpawnData.Add(new BaseCore.EnemySpawn_Any4Sides(Type));
             Main.npcFrameCount[Type] = 1;
         }
 

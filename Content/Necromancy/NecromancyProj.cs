@@ -89,7 +89,10 @@ namespace Aequus.Content.Necromancy
         {
             projectile.hostile = false;
             projectile.friendly = true;
-            projectile.owner = Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner;
+            var zombie = Main.npc[npc].GetGlobalNPC<NecromancyNPC>();
+            projectile.owner = zombie.zombieOwner;
+            if (zombie.ghostDamage > 0)
+                projectile.damage = zombie.ghostDamage;
             projectile.DamageType = NecromancyDamageClass.Instance;
             if (!projectile.usesLocalNPCImmunity)
             {
@@ -196,19 +199,6 @@ namespace Aequus.Content.Necromancy
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (isZombie)
-            {
-                float multiplier = NecromancyNPC.GetDamageMultiplier(Main.npc[zombieNPCOwner], projectile.damage);
-                if (Main.masterMode)
-                {
-                    multiplier *= 3f;
-                }
-                else if (Main.expertMode)
-                {
-                    multiplier *= 2f;
-                }
-                damage = (int)(damage * multiplier);
-            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)

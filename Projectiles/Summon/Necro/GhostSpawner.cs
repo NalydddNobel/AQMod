@@ -43,9 +43,11 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             zombie.zombieOwner = Projectile.owner;
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
-            zombie.zombieTimerMax *= 5;
-            zombie.zombieTimer *= 5;
+            zombie.zombieTimerMax *= 2;
+            zombie.zombieTimer *= 2;
             zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+            zombie.ghostDamage = Projectile.damage;
+            zombie.ghostSpeed = Projectile.ai[1];
         }
 
         public int DetermineNPCType(int type)

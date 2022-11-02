@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
+namespace Aequus.Projectiles.Misc.Friendly
 {
     public class CelesteTorusProj : ModProjectile
     {

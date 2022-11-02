@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Graphics;
-using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

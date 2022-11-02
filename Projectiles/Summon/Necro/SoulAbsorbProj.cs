@@ -18,7 +18,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
             Projectile.timeLeft = 240;
-            Projectile.extraUpdates = 5;
+            Projectile.extraUpdates = 1;
             Projectile.alpha = 255;
         }
 
@@ -29,23 +29,15 @@ namespace Aequus.Projectiles.Summon.Necro
                 return;
             }
             Projectile.ai[0]++;
-            if (Projectile.ai[0] < 45f)
+            var difference = Main.player[Projectile.owner].Center - Projectile.Center;
+            if (difference.Length() < Main.player[Projectile.owner].width)
             {
-                Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.075f, 0.075f));
-                Projectile.velocity *= 1.01f;
+                Projectile.Kill();
+                Projectile.velocity = difference;
             }
             else
             {
-                var difference = Main.player[Projectile.owner].Center - Projectile.Center;
-                if (difference.Length() < Main.player[Projectile.owner].width)
-                {
-                    Projectile.Kill();
-                    Projectile.velocity = difference;
-                }
-                else
-                {
-                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, difference / 16f, 0.1f);
-                }
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, difference / 16f, 0.1f);
             }
             float separation = 2f;
             var v = Vector2.Normalize(Projectile.velocity) * separation;

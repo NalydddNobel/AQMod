@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
+namespace Aequus.Projectiles.Misc.Friendly
 {
     public class DavyJonesAnchorProj : ModProjectile
     {
@@ -84,7 +84,7 @@ namespace Aequus.Projectiles.Misc
         {
             width = 10;
             height = 10;
-            fallThrough = Main.npc[AttatchedNPC].position.Y > (Projectile.position.Y + Projectile.height);
+            fallThrough = Main.npc[AttatchedNPC].position.Y > Projectile.position.Y + Projectile.height;
             return true;
         }
 

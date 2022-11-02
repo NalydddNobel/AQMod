@@ -45,7 +45,7 @@ namespace Aequus.Content.Necromancy
         public static ActiveZombieInfo Zombie { get; private set; }
         public static PlayerTargetHack TargetHack { get; set; }
 
-        public int zombieDrain;
+        public int ghostDebuffDOT;
         public int conversionChance;
 
         public bool isZombie;
@@ -56,6 +56,8 @@ namespace Aequus.Content.Necromancy
         public int hitCheckDelay;
         public int slotsConsumed;
         public int renderLayer;
+        public int ghostDamage;
+        public float ghostSpeed;
 
         public int netUpdateTimer;
 
@@ -154,9 +156,9 @@ namespace Aequus.Content.Necromancy
         public override void ResetEffects(NPC npc)
         {
             conversionChance = 0;
-            if (zombieDrain > 0)
+            if (ghostDebuffDOT > 0)
             {
-                zombieDrain--;
+                ghostDebuffDOT--;
             }
             if (isZombie)
             {
@@ -175,6 +177,12 @@ namespace Aequus.Content.Necromancy
             {
                 var stats = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
                 stats.Aggro?.OnPreAI(npc, this);
+                if (ghostDamage > 0)
+                {
+                    npc.defDamage = ghostDamage;
+                    npc.damage = ghostDamage;
+                }
+                npc.StatSpeed() += ghostSpeed;
                 if (zombieTimer == 0)
                 {
                     int time = Main.player[zombieOwner].Aequus().ghostLifespan;
@@ -211,7 +219,6 @@ namespace Aequus.Content.Necromancy
                 npc.npcSlots = 0f;
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead || !Main.player[npc.target].hostile || Main.player[npc.target].team == Main.player[zombieOwner].team)
                 {
-                    npc.target = zombieOwner;
                     float prioritizeMultiplier = stats.PrioritizePlayerMultiplier.GetValueOrDefault(npc.noGravity ? 2f : 1f);
                     int npcTarget = GetNPCTarget(npc, Main.player[zombieOwner], npc.netID, npc.type, prioritizeMultiplier);
 
@@ -248,17 +255,13 @@ namespace Aequus.Content.Necromancy
                                 {
                                     if (zombie.zombieNPCOwner == npc.whoAmI)
                                     {
-                                        hitCheckDelay = 300;
+                                        hitCheckDelay = 120;
                                         return;
                                     }
                                 }
                             }
-                            float multiplier = GetDamageMultiplier(npc, npc.damage);
-                            int damage = (int)(npc.damage * multiplier);
-                            int p = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), damage, 3f, zombieOwner, npc.whoAmI);
-                            Main.projectile[p].width = npc.width;
-                            Main.projectile[p].height = npc.height;
-                            Main.projectile[p].position = npc.position;
+                            int damage = ghostDamage > 0 ? ghostDamage : (int)(npc.damage * GetDamageMultiplier(npc, npc.damage));
+                            int p = Projectile.NewProjectile(npc.GetSource_FromThis(), npc.position, Vector2.Normalize(npc.velocity) * 0.01f, ModContent.ProjectileType<GhostHitbox>(), damage, 3f, zombieOwner, npc.whoAmI, 64f);
                             Main.projectile[p].originalDamage = damage;
                         }
                         catch
@@ -284,7 +287,13 @@ namespace Aequus.Content.Necromancy
             {
                 var stats = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
                 stats.Aggro?.OnPostAI(npc, this);
-
+                if (ghostDamage > 0)
+                {
+                    npc.defDamage = ghostDamage;
+                    npc.damage = ghostDamage;
+                }
+                npc.target = zombieOwner;
+                //Main.NewText($"{ghostDamage} | {npc.damage}");
                 npc.dontTakeDamage = true;
                 RestoreTarget();
                 var player = Main.player[zombieOwner];
@@ -298,7 +307,7 @@ namespace Aequus.Content.Necromancy
 
                 if (isZombie && aequus.setGravetenderGhost == npc.whoAmI && !stats.DontModifyVelocity)
                 {
-                    npc.Aequus().statSpeed *= 1.5f;
+                    npc.StatSpeed() *= 1.5f;
                 }
 
                 if (Main.netMode != NetmodeID.Server)
@@ -371,9 +380,9 @@ namespace Aequus.Content.Necromancy
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            if (zombieDrain > 0)
+            if (ghostDebuffDOT > 0)
             {
-                int dot = zombieDrain / AequusHelpers.NPCREGEN;
+                int dot = ghostDebuffDOT / AequusHelpers.NPCREGEN;
                 npc.AddRegen(-dot);
                 if (damage < dot)
                     damage = dot;
@@ -484,13 +493,15 @@ namespace Aequus.Content.Necromancy
         }
         public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound)
         {
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().isZombie = true;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieOwner = zombieOwner;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieDebuffTier = zombieDebuffTier;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimer = zombieNPC.GetGlobalNPC<NecromancyNPC>().zombieTimerMax =
-                Main.player[zombieOwner].Aequus().ghostLifespan;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().renderLayer = renderLayer;
-            zombieNPC.GetGlobalNPC<NecromancyNPC>().OnSpawnZombie(zombieNPC);
+            var zombie = zombieNPC.GetGlobalNPC<NecromancyNPC>();
+            zombie.isZombie = true;
+            zombie.zombieOwner = zombieOwner;
+            zombie.zombieDebuffTier = zombieDebuffTier;
+            zombie.zombieTimer = zombie.zombieTimerMax = Main.player[zombieOwner].Aequus().ghostLifespan;
+            zombie.renderLayer = renderLayer;
+            zombie.ghostSpeed = ghostSpeed;
+            zombie.ghostDamage = ghostDamage;
+            zombie.OnSpawnZombie(zombieNPC);
             zombieNPC.Center = position;
             zombieNPC.velocity = velocity * 0.25f;
             zombieNPC.direction = direction;
@@ -628,7 +639,7 @@ namespace Aequus.Content.Necromancy
             }
             else
             {
-                writer.Write(zombieDrain);
+                writer.Write(ghostDebuffDOT);
             }
             writer.Write(zombieOwner);
             writer.Write(zombieDebuffTier);
@@ -646,7 +657,7 @@ namespace Aequus.Content.Necromancy
             }
             else
             {
-                zombieDrain = reader.ReadInt32();
+                ghostDebuffDOT = reader.ReadInt32();
             }
             zombieOwner = reader.ReadInt32();
             zombieDebuffTier = reader.ReadSingle();

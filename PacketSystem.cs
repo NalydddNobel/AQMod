@@ -40,7 +40,6 @@ namespace Aequus
                 PacketType.ExporterQuestsCompleted,
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
-                PacketType.SyncDronePoint,
             };
             TileCoatingSync = new List<Rectangle>();
         }
@@ -70,7 +69,7 @@ namespace Aequus
                     //Send((p) =>
                     //{
                     //    AequusTileData.SendSquare(p, TileCoatingSync[0]);
-                    //}, PacketType.CoatingTileSquare);
+                    //}, PacketType.AequusTileSquare);
                 }
                 catch
                 {
@@ -91,7 +90,7 @@ namespace Aequus
 
         public override bool HijackSendData(int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7)
         {
-            if (msgType == MessageID.TileSquare && (TileChangeType)number5 == TileChangeType.None)
+            if (msgType == MessageID.TileSquare)
             {
                 TileCoatingSync.Add(new Rectangle(number, (int)number2, (int)number3, (int)number4));
             }
@@ -234,6 +233,38 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.RequestChestItems:
+                    {
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            int player = reader.ReadInt32();
+                            int chestID = reader.ReadInt32();
+                            if (Main.chest[chestID] != null)
+                            {
+                                var p = Aequus.GetPacket(PacketType.RequestChestItems);
+                                p.Write(chestID);
+                                for (int i = 0; i < Chest.maxItems; i++)
+                                {
+                                    ItemIO.Send(Main.chest[chestID].item[i], p, writeStack: true);
+                                }
+                                p.Send(toClient: player);
+                            }
+                        }
+                        else
+                        {
+                            int chestID = reader.ReadInt32();
+                            if (Main.chest[chestID].item == null)
+                            {
+                                Main.chest[chestID].item = new Item[Chest.maxItems];
+                            }
+                            for (int i = 0; i < Chest.maxItems; i++)
+                            {
+                                Main.chest[chestID].item[i] = ItemIO.Receive(reader, readStack: true);
+                            }
+                        }
+                    }
+                    break;
+
                 case PacketType.ApplyNameTagToNPC:
                     {
                         NameTag.ApplyNametagToNPC(reader.ReadInt32(), reader.ReadString());
@@ -246,9 +277,9 @@ namespace Aequus
                     }
                     break;
 
-                case PacketType.CoatingTileSquare:
+                case PacketType.AequusTileSquare:
                     {
-                        AequusTileData.ReadSquares(reader);
+                        AequusTileData.ReadSquare(reader);
                     }
                     break;
 

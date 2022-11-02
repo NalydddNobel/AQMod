@@ -12,7 +12,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
             {
                 candle.ClearPrefix();
                 candle.soulLimit = Math.Max((int)(candle.soulLimit * 1.25f), candle.soulLimit + 1);
-                candle.useSouls = Math.Max((int)(candle.useSouls * 0.75f), candle.useSouls - 1);
+                candle.soulCost = Math.Max((int)(candle.soulCost * 0.75f), candle.soulCost - 1);
             }
         }
 

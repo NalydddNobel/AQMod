@@ -21,6 +21,7 @@ namespace Aequus.UI
 
             public ChestLensInfo(Point point)
             {
+                timer = 0f;
                 this.point = point;
                 drawPoint = point.ToWorldCoordinates(0f, 0f);
                 drawPoint.X += TileObjectData.GetTileData(Main.tile[point]).Width * 16f / 2f;
@@ -33,6 +34,23 @@ namespace Aequus.UI
 
             public bool Update(GameTime gameTime, Point mousePoint)
             {
+                int chestID = Chest.FindChest(point.X, point.Y);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    if (chestID == -1)
+                    {
+                        return false;
+                    }
+                    var c = Main.chest[chestID];
+                    if (!c.IsSynced() || Main.GameUpdateCount % 30 == 0)
+                    {
+                        var p = Aequus.GetPacket(PacketType.RequestChestItems);
+                        p.Write(Main.myPlayer);
+                        p.Write(chestID);
+                        p.Send();
+                        return true;
+                    }
+                }
                 if (point == mousePoint && (!(Main.LocalPlayer.chestX == point.X && Main.LocalPlayer.chestY == point.Y) || Main.LocalPlayer.chest == -1))
                 {
                     if (timer < 5f)
@@ -49,7 +67,12 @@ namespace Aequus.UI
 
             public void Draw(SpriteBatch spriteBatch)
             {
-                var c = Main.chest[Chest.FindChest(point.X, point.Y)];
+                if (timer <= 0f)
+                    return;
+                int chestID = Chest.FindChest(point.X, point.Y);
+                if (chestID == -1)
+                    return;
+                var c = Main.chest[chestID];
                 float opacity = (float)Math.Pow(timer / 5f, 2f);
                 float inventoryScale = Main.inventoryScale;
                 var texture = TextureAssets.InventoryBack13.Value;

@@ -15,21 +15,30 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
-        public int soulLimit;
-        public int defSoulLimit { get; protected set; }
-        public int useSouls;
-        public int defUseSouls { get; protected set; }
-        public int npcSummon;
+        public int OriginalSoulLimit { get; protected set; }
+        public int OriginalSoulCost { get; protected set; }
+        public float OriginalNPCSpeed { get; protected set; }
+        public int NPCToSummon { get; protected set; }
 
-        protected void DefaultToCandle(int limit, int souls, int npc)
+        public int soulLimit;
+        public int soulCost;
+        public float npcSpeed;
+
+        protected void DefaultToCandle(int summonDamage, int limit, int souls, int npc, float speed = 0f)
         {
             Item.holdStyle = ItemHoldStyle;
             Item.DamageType = NecromancyDamageClass.Instance; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
+
+            OriginalSoulLimit = limit;
+            OriginalSoulCost = souls;
+            OriginalNPCSpeed = speed;
+
             soulLimit = limit;
-            useSouls = souls;
-            defSoulLimit = limit;
-            defUseSouls = souls;
-            npcSummon = npc;
+            soulCost = souls;
+            npcSpeed = speed;
+            
+            NPCToSummon = npc;
+            Item.damage = summonDamage;
             Item.useTime = 40;
             Item.useAnimation = 40;
             Item.useStyle = ItemUseStyleID.HoldUp;
@@ -37,8 +46,8 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
         }
         public void ClearPrefix()
         {
-            soulLimit = defSoulLimit;
-            useSouls = defUseSouls;
+            soulLimit = OriginalSoulLimit;
+            soulCost = OriginalSoulCost;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
@@ -72,15 +81,15 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override bool CanUseItem(Player player)
         {
-            return player.Aequus().candleSouls >= useSouls;
+            return player.Aequus().candleSouls >= soulCost;
         }
 
         public override bool? UseItem(Player player)
         {
             var aequus = player.Aequus();
-            if (aequus.candleSouls >= useSouls)
+            if (aequus.candleSouls >= soulCost)
             {
-                var ghost = NecromancyDatabase.TryGet(npcSummon, out var g) ? g : default(GhostInfo);
+                var ghost = NecromancyDatabase.TryGet(NPCToSummon, out var g) ? g : default(GhostInfo);
                 int slots = ghost.SlotsUsed;
                 if (aequus.ghostSlots + slots > aequus.ghostSlotsMax)
                 {
@@ -96,7 +105,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
                         }
                     }
                 }
-                aequus.candleSouls -= useSouls;
+                aequus.candleSouls -= soulCost;
                 SpawnGhost(player);
             }
             return true;
@@ -108,18 +117,27 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             player.LimitPointToPlayerReachableArea(ref position);
             if (Main.myPlayer == player.whoAmI)
             {
-                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<GhostSpawner>(), Item.damage, 0f, player.whoAmI, npcSummon);
+                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<GhostSpawner>(), Item.damage, 0f, player.whoAmI, NPCToSummon, npcSpeed);
             }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            for (int j = 0; j < tooltips.Count; j++)
+            {
+                if (tooltips[j].Name == "Knockback")
+                {
+                    tooltips.RemoveAt(j);
+                    j--;
+                }
+            }
+
             int i = tooltips.GetIndex("UseMana");
             tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("ItemTooltip.Common.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
-            tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("ItemTooltip.Common.UseSouls", useSouls)));
+            tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("ItemTooltip.Common.UseSouls", soulCost)));
 
-            TooltipsGlobalItem.PercentageModifier(useSouls, defUseSouls, "PrefixSoulCost", tooltips, higherIsGood: false);
-            TooltipsGlobalItem.PercentageModifier(soulLimit, defSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
+            TooltipsGlobalItem.PercentageModifier(soulCost, OriginalSoulCost, "PrefixSoulCost", tooltips, higherIsGood: false);
+            TooltipsGlobalItem.PercentageModifier(soulLimit, OriginalSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
         }
 
         public override int ChoosePrefix(UnifiedRandom rand)

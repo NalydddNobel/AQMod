@@ -84,6 +84,8 @@ namespace Aequus.Projectiles.Summon.Necro
                                     n.renderLayer = GhostOutlineRenderer.IDs.Friendship;
                                     n.SpawnZombie_SetZombieStats(Main.npc[i], Main.npc[i].Center, Main.npc[i].velocity, Main.npc[i].direction, Main.npc[i].spriteDirection, out bool playSound);
                                     n.slotsConsumed = 0;
+                                    n.ghostDamage = 50;
+                                    n.ghostSpeed = 2f;
                                     n.zombieTimer /= 10;
                                     n.zombieTimerMax /= 10;
                                     if (playSound)

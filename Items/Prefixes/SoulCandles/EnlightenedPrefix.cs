@@ -11,7 +11,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
             if (item.ModItem is BaseSoulCandle candle)
             {
                 candle.ClearPrefix();
-                candle.useSouls = Math.Max((int)(candle.useSouls * 1.25f), candle.useSouls + 1);
+                candle.soulCost = Math.Max((int)(candle.soulCost * 1.25f), candle.soulCost + 1);
             }
         }
 

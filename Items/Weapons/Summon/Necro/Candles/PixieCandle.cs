@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(32, 8, NPCID.Pixie);
+            DefaultToCandle(120, 32, 8, NPCID.Pixie, 1f);
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;

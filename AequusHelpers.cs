@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.GlobalItems;
+using Aequus.Common.GlobalNPCs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Graphics.RenderTargets;
@@ -333,6 +334,18 @@ namespace Aequus
         public static bool HasItemInInvOrVoidBag(this Player player, int item)
         {
             return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
+        }
+
+        public static bool IsSynced(this Chest chest)
+        {
+            if (chest.item == null)
+                return false;
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (chest.item[i] == null)
+                    return false;
+            }
+            return true;
         }
 
         public static bool HasItem(this Chest chest, int item)
@@ -1528,6 +1541,10 @@ namespace Aequus
         public static AequusItem Aequus(this Item item)
         {
             return item.GetGlobalItem<AequusItem>();
+        }
+        public static ref float StatSpeed(this NPC npc)
+        {
+            return ref npc.GetGlobalNPC<StatSpeedGlobalNPC>().statSpeed;
         }
         public static AequusNPC Aequus(this NPC npc)
         {

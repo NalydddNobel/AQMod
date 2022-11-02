@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
+namespace Aequus.Projectiles.Misc.Friendly
 {
     public class Bonesaw : ModProjectile
     {

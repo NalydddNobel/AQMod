@@ -15,7 +15,7 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.Aequus().statSpeed *= 0.75f;
+            npc.StatSpeed() *= 0.75f;
         }
     }
 }

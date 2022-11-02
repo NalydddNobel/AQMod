@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(24, 6, NPCID.CursedSkull);
+            DefaultToCandle(40, 24, 6, NPCID.CursedSkull, 1f);
             Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.DungeonValue;
             Item.flame = true;

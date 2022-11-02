@@ -60,9 +60,12 @@ namespace Aequus.Content.DronePylons
             {
                 foreach (var t in pylons)
                 {
-                    foreach (var pair in t)
+                    if (Aequus.LogMore)
                     {
-                        Mod.Logger.Info(pair.Key + ": " + pair.Value);
+                        foreach (var pair in t)
+                        {
+                            Mod.Logger.Info(pair.Key + ": " + pair.Value);
+                        }
                     }
                     var p = PylonDronePoint.DeserializeData(t);
                     if (p != null)
@@ -115,18 +118,13 @@ namespace Aequus.Content.DronePylons
 
         public static bool TryGetDroneData(int i, int j, out PylonDronePoint drones)
         {
-            drones = null;
-            if (!ValidSpot(i, j))
-            {
-                return false;
-            }
             return Drones.TryGetValue(FixedPoint(i, j), out drones);
         }
 
         public static PylonDronePoint AddDrone(int i, int j)
         {
             var d = new PylonDronePoint() { location = FixedPoint(i, j), };
-            Drones.Add(d.Location, d);
+            Drones[d.Location] = d;
             return d;
         }
 
@@ -178,7 +176,7 @@ namespace Aequus.Content.DronePylons
 
         public static void RecievePacket(BinaryReader reader, Point dronePoint)
         {
-            Aequus.Instance.Logger.Debug($"Syncing drone data at point: {dronePoint}");
+            //Aequus.Instance.Logger.Debug($"Syncing drone data at point: {dronePoint}");
             var d = FindOrAddDrone(dronePoint);
             d.RecieveData(reader);
         }

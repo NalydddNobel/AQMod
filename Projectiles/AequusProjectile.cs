@@ -3,6 +3,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Ranged;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;

@@ -353,11 +353,11 @@ namespace Aequus.Content.DronePylons
         {
             MaxDrones = reader.ReadInt32();
             int amt = reader.ReadInt32();
-            Aequus.Instance.Logger.Debug($"Has {amt} drones");
+            //Aequus.Instance.Logger.Debug($"Has {amt} drones");
             for (int i = 0; i < amt; i++)
             {
                 int netID = reader.ReadInt32();
-                Aequus.Instance.Logger.Debug($"NetID: {netID} ({DroneSlot.NetIDToDroneType[netID].FullName})");
+                //Aequus.Instance.Logger.Debug($"NetID: {netID} ({DroneSlot.NetIDToDroneType[netID].FullName})");
                 if (ActiveDrones.Count <= i)
                 {
                     ActiveDrones.Add((DroneSlot)DroneSlot.NetIDToDroneType[netID].Clone());

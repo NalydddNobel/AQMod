@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 using Terraria;
 
@@ -103,12 +104,11 @@ namespace Aequus.Tiles
             }
         }
 
-        public static void ReadSquares(BinaryReader reader)
+        public static void ReadSquare(BinaryReader reader)
         {
-            int amt = reader.ReadInt32();
-            for (int k = 0; k < amt; k++)
+            var r = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+            if (Netplay.Clients[Main.myPlayer].SectionRange(Math.Max(r.Width, r.Height), r.X, r.Y))
             {
-                var r = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
                 for (int i = r.X; i < r.X + r.Width; i++)
                 {
                     for (int j = r.Y; j < r.Y + r.Height; j++)
@@ -123,6 +123,10 @@ namespace Aequus.Tiles
                         }
                     }
                 }
+            }
+            else
+            {
+                reader.BaseStream.Position += r.Width * r.Height;
             }
         }
     }

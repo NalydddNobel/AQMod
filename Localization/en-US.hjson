@@ -541,10 +541,7 @@ Mods: {
 			OmegaStariteMask: Omega Starite Mask
 			OmegaStariteTrophy: Omega Starite Trophy
 			SuspiciousLookingSteak: Suspicious Looking Steak
-			HermitShell: Clamshell Helmet
-			StriderPalms: Strider Palms
 			CrabRod: Crab Rod
-			CrabShell: Crab Shell
 			MoonlightWall: Moonlight Wall
 			ExoticCoral: Exotic Coral
 			ExoticStarfish: Exotic Starfish
@@ -1454,6 +1451,7 @@ Mods: {
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
+			DroneBuff: Scanner Drone
 			OmegaStariteBuff: Omega Starite Mini
 			TorraBuff: Swag Eye
 			RedSpriteBuff: Red Sprite
@@ -1521,6 +1519,7 @@ Mods: {
 			RedSpriteMinionBuff: The red sprite will fight for you
 			SnowflakeBuff: The snowflake will fight for you
 
+			DroneBuff: The Drone will scan for rare objects
 			FamiliarBuff: Despite everything, it's still you
 			OmegaStariteBuff: The smallest solar system imaginable
 			TorraBuff: "'GLAZE???!?'"
@@ -1868,7 +1867,7 @@ Mods: {
 
 			Carpenter: An ant which decided to not be a cog in a big machine, opting to become a carpenter due to their love of housing. Moves into houses which have 4 unique furniture objects.
 			Occultist: Previously a member of a demonic occult, the Occultist is trying to re-integrate themselves back into society. Still has the habit to create rituals and cast dangerous spells.
-			SkyMerchant: A smart hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
+			SkyMerchant: A smart Hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
 			Physicist: Coming from a neighboring planet, the Physicist observed unnatural phenomena on your world, and is here to investigate. Doesn't believe in magic or fairy tales.
 			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
 
@@ -2449,6 +2448,7 @@ Mods: {
 				7: Square
 				8: Terra
 				9: Chill
+				10: Bubby
 			}
 
 			// EXAMPLE: Fry's Sword of Darkness

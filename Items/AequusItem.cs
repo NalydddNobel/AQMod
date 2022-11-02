@@ -12,7 +12,7 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
-using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using Microsoft.Xna.Framework;

@@ -2,9 +2,11 @@
 using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -34,10 +36,28 @@ namespace Aequus.Tiles.Furniture
             AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("WallClocks"));
         }
 
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
+        {
+            return true;
+        }
+
         public override bool RightClick(int i, int j)
         {
             Main.NewText($"Time: {AequusText.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
+        }
+
+        public override void NearbyEffects(int i, int j, bool closer)
+        {
+            if (closer)
+            {
+                Main.LocalPlayer.accWatch = Math.Max(2, Main.LocalPlayer.accWatch);
+            }
+        }
+
+        public override void KillMultiTile(int i, int j, int frameX, int frameY)
+        {
+            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<CrabClock>());
         }
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
@@ -61,11 +81,6 @@ namespace Aequus.Tiles.Furniture
             spriteBatch.Draw(texture, drawCoordinates, handFrame, color, progress * MathHelper.TwoPi * 48f + MathHelper.Pi, origin, 1f, SpriteEffects.None, 0f);
             handFrame.Y -= 16;
             spriteBatch.Draw(texture, drawCoordinates, handFrame, color, progress * MathHelper.TwoPi * 2f + MathHelper.Pi, origin, 1f, SpriteEffects.None, 0f);
-        }
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<CrabClock>());
         }
 
         public void Render(int i, int j, TileRenderLayer layer)
