@@ -541,10 +541,7 @@ Mods: {
 			OmegaStariteMask: 终末之星面具
 			OmegaStariteTrophy: 终末之星纪念章
 			SuspiciousLookingSteak: 可疑牛排
-			HermitShell: 蟹壳头盔
-			StriderPalms: 长足护胫
 			CrabRod: 螃蟹钓竿
-			CrabShell: 蟹壳
 			MoonlightWall: 月光墙
 			ExoticCoral: 奇异珊瑚
 			ExoticStarfish: 奇异海星
@@ -1454,6 +1451,7 @@ Mods: {
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
+			roneBuff: 扫描者无人机
 			OmegaStariteBuff: 迷你终末之星
 			TorraBuff: 潮流眼球
 			RedSpriteBuff: 红色精灵
@@ -1521,6 +1519,7 @@ Mods: {
 			RedSpriteMinionBuff: 红色精灵会为你而战
 			SnowflakeBuff: 雪花会为你而战
 
+			DroneBuff: 无人机会扫描附近的稀有物体
 			FamiliarBuff: 尽管如此, 它仍是你
 			OmegaStariteBuff: 你所能想象的最小的类太阳系
 			TorraBuff: "'玻璃???!?'"
@@ -2449,6 +2448,7 @@ Mods: {
 				7: Square
 				8: Terra
 				9: Chill
+				10: Bubby
 			}
 
 			// EXAMPLE: Fry's Sword of Darkness
