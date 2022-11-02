@@ -27,8 +27,11 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
                 {
                     cache = new SpriteBatchCache(Main.spriteBatch);
                     Main.spriteBatch.End();
-                    Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+                    Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, cache.rasterizerState, null, cache.transformMatrix);
+                    var loc = Main.LocalPlayer.position;
+                    Main.LocalPlayer.Center = Main.MouseWorld;
                     GameShaders.Armor.Apply(cursorShaderID, Main.LocalPlayer, new DrawData(TextureAssets.Cursors[0].Value, Main.MouseScreen, TextureAssets.Cursors[0].Value.Bounds, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0));
+                    Main.LocalPlayer.position = loc;
                 }
                 return true;
             }
