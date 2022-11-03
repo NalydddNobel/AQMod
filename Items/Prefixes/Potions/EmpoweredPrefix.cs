@@ -24,6 +24,7 @@ namespace Aequus.Items.Prefixes.Potions
             {
                 item.buffType = buff;
             }
+            item.buffTime /= 2;
         }
 
         public override void ModifyValue(ref float valueMult)

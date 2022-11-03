@@ -16,7 +16,7 @@ namespace Aequus.Items.Accessories.Vanity
         {
             Item.DefaultToAccessory(20, 10);
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(silver: 20);
+            Item.value = Item.buyPrice(gold: 1);
             Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.vanity = true;
         }

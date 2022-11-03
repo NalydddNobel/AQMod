@@ -4,9 +4,9 @@ using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Items.Misc.Dyes
+namespace Aequus.Items.Misc.Dyes.Ancient
 {
-    public class BreakdownDye : DyeItemBase
+    public class AncientBreakdownDye : DyeItemBase
     {
         public override string Pass => "ColorDistortPass";
 

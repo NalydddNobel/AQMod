@@ -19,6 +19,8 @@ namespace Aequus.Projectiles.Misc
 {
     public class SuperPhysicsGunProj : PhysicsGunProj
     {
+        public override string Texture => Aequus.BlankTexture;
+
         public Point frameImportant;
 
         public override void Load()

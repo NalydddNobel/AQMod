@@ -37,5 +37,13 @@ namespace Aequus.Items.Tools.FishingRods
             }
             return true;
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BeeWax, 8)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
     }
 }

@@ -23,8 +23,6 @@ namespace Aequus.Projectiles.Misc
         public static HashSet<int> TilePickupBlacklist { get; private set; }
         public static HashSet<int> TileBlocksLaser { get; private set; }
 
-        public override string Texture => Aequus.BlankTexture;
-
         public Vector2 mouseWorld;
         public Color mouseColor;
 
@@ -35,6 +33,11 @@ namespace Aequus.Projectiles.Misc
                 TileID.AntiPortalBlock,
             };
             TileBlocksLaser = new HashSet<int>();
+        }
+
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[Type] = 5;
         }
 
         public override void SetDefaults()
@@ -166,6 +169,7 @@ namespace Aequus.Projectiles.Misc
             Main.player[Projectile.owner].itemTime = 2;
             Main.player[Projectile.owner].itemAnimation = 2;
             Projectile.timeLeft = 2;
+            Projectile.LoopingFrame(3);
 
             if ((int)Projectile.ai[1] == 2)
             {
@@ -336,11 +340,9 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
+            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.03f, 0.03f));
             if ((int)Projectile.ai[1] < 3)
             {
-                DrawGun();
-
                 var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
@@ -367,6 +369,7 @@ namespace Aequus.Projectiles.Misc
                 list.Add(Projectile.Center);
                 prim.Draw(list.ToArray());
 
+                DrawGun();
             }
 
             if ((int)Projectile.ai[1] >= 2)
@@ -409,27 +412,26 @@ namespace Aequus.Projectiles.Misc
 
         public void DrawGun()
         {
-            int itemID = ModContent.ItemType<PhysicsGun>();
-            Main.instance.LoadItem(itemID);
-            var texture = TextureAssets.Item[itemID];
+            Projectile.GetDrawInfo(out var texture, out var _, out var frame, out var origin, out int _);
+            frame.Width /= 2;
+            origin = frame.Size() / 2f;
 
             var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;
             var dir = Vector2.Normalize(difference);
             var drawCoords = Main.player[Projectile.owner].MountedCenter + dir * -24f;
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
-            var origin = texture.Value.Size() / 2f;
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun>().Texture + "_Glow", AssetRequestMode.ImmediateLoad);
+            frame.X = frame.Width;
             var coloring = mouseColor;
             foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
             {
-                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
+                Main.EntitySpriteDraw(texture, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
                     rotation, origin, Projectile.scale, spriteEffects, 0);
             }
-            Main.EntitySpriteDraw(glowTexture.Value, drawCoords - Main.screenPosition, null, coloring,
+            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, coloring,
                 rotation, origin, Projectile.scale, spriteEffects, 0);
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Accessories.Fishing;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -94,6 +95,17 @@ namespace Aequus.Items.Consumables.Bait
         public override bool ConsumeItem(Player player)
         {
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<DevilsTongue>()
+                .AddIngredient<Ramishroom>()
+                .AddIngredient<RegrowingBait>()
+                .AddIngredient<NeonGenesis>()
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
         }
     }
 }

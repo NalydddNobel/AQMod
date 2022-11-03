@@ -166,7 +166,7 @@ namespace Aequus.Common.ModPlayers
                 goto PostProbeFish;
             }
 
-            if (IsBasicFish(itemDrop) || attempt.common && Main.rand.NextBool(3))
+            if (IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(3)))
             {
                 var chooseableFish = new List<int>();
                 if (attempt.heightLevel < HeightLevel_Underworld)
@@ -193,7 +193,7 @@ namespace Aequus.Common.ModPlayers
 
             if (attempt.heightLevel >= HeightLevel_Underground && Main.rand.NextBool())
             {
-                if (attempt.veryrare)
+                if (attempt.legendary)
                 {
                     switch (Main.rand.Next(4))
                     {

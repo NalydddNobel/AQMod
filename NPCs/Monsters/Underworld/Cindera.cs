@@ -2,7 +2,7 @@
 using Aequus.Buffs;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon;
-using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
@@ -395,7 +395,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             this.CreateLoot(npcLoot)
                 .Add<DemonicEnergy>(chance: 20, stack: 1)
                 .AddOptions(chance: 12, ItemID.MagmaStone, ModContent.ItemType<WarHorn>())
-                .Add<HellBeamDye>(chance: 16, stack: 1)
+                .Add<AncientHellBeamDye>(chance: 16, stack: 1)
                 .Add(new Conditions.DontStarveIsNotUp(), ItemID.BatBat, chance: 250, stack: 1)
                 .Add(new Conditions.DontStarveIsUp(), ItemID.BatBat, chance: 100, stack: 1);
         }

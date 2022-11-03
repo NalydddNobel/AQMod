@@ -5,12 +5,12 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes
+namespace Aequus.Items.Misc.Dyes.Ancient
 {
-    public class ScorchingDye : DyeItemBase
+    public class AncientScorchingDye : DyeItemBase
     {
         public override Ref<Effect> Effect => FromPath("Dyes/ScorchingDyeShader");
-        public override string Pass => "ScorchingDyePass";
+        public override string Pass => "RedSpritePass";
         public override int Rarity => ItemRarityID.Orange;
 
         public override ArmorShaderData CreateShaderData()
@@ -27,6 +27,7 @@ namespace Aequus.Items.Misc.Dyes
                 .AddIngredient(ItemID.BottledWater)
                 .AddIngredient<Fluorescence>()
                 .AddTile(TileID.DyeVat)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .TryRegisterAfter(ItemID.FlameDye);
         }
     }

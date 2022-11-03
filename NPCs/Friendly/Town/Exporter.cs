@@ -167,7 +167,6 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrabClock>());
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<SedimentaryRock>());
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(copper: 2);
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SeaPickle>());
             shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoticPearl>());
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
         }
@@ -210,19 +209,6 @@ namespace Aequus.NPCs.Friendly.Town
         public override string GetChat()
         {
             var player = Main.LocalPlayer;
-            //if (player.armor[0].headSlot == 97 && Main.rand.NextBool())
-            //{
-            //    return GetChatText("VanityEyePatch");
-            //}
-            //if (player.armor[0].headSlot == 68 && Main.rand.NextBool())
-            //{
-            //    return GetChatText("PirateVanitySet");
-            //}
-            //if (Main.xMas && Main.rand.NextBool())
-            //{
-            //    return GetChatText("XMas");
-            //}
-
             var chat = new SelectableChat("Mods.Aequus.Chat.Exporter.");
 
             chat.Add("Basic.0");
@@ -232,7 +218,6 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 chat.Add("Night.0");
                 chat.Add("Night.1");
-                //textChoices.Add(GetChatText("Night.2"));
                 if (Main.bloodMoon)
                 {
                     chat.Add("BloodMoon.0");
@@ -248,12 +233,10 @@ namespace Aequus.NPCs.Friendly.Town
             if (player.ZoneBeach)
             {
                 chat.Add("Ocean.0");
-                //chat.Add("Ocean.1");
-                //chat.Add("Ocean.2");
-
+            }
+            if (player.Aequus().ZoneCrabCrevice)
+            {
                 chat.Add("CrabCrevice.0");
-                //chat.Add("CrabCrevice.1");
-                //chat.Add("CrabCrevice.2");
             }
 
             if (NPC.AnyNPCs(NPCID.Angler))

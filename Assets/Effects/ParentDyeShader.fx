@@ -131,10 +131,8 @@ float4 RedSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 {
     float4 color = tex2D(uImage0, coords);
     float2 textureCoords = FrameFix(coords);
-    color = lerp(color, tex2D(uImage0, float2((textureCoords.x + sin(uTime * 20 + textureCoords.y * 30) * 0.05f) % 1, textureCoords.y)), 0.5f);
-    color.r *= uColor.r;
-    color.g *= uColor.g;
-    color.b *= uColor.b; 
+    color = lerp(color, tex2D(uImage0, float2((coords.x + sin(uTime * 20 + textureCoords.y * 30) * 0.05f) % 1, coords.y)), 0.5f);
+    color.rgb *= uColor;
     return color * sampleColor;
 }
 

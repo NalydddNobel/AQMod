@@ -27,7 +27,7 @@ namespace Aequus.Items.Misc.Dyes
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
+                .AddIngredient(ItemID.BottledWater)
                 .AddIngredient<UltimateEnergy>()
                 .AddTile(TileID.DyeVat)
                 .TryRegisterAfter(ItemID.IntenseRainbowDye);

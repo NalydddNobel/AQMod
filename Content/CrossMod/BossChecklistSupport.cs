@@ -7,7 +7,7 @@ using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
 using Aequus.Items.Pets.Light;
@@ -221,7 +221,7 @@ namespace Aequus.Content.CrossMod
                         ItemID.MagmaStone,
                         ItemID.ObsidianRose,
                         ModContent.ItemType<DemonicEnergy>(),
-                        ModContent.ItemType<HellBeamDye>(),
+                        ModContent.ItemType<AncientHellBeamDye>(),
                     },
                     null);
 
@@ -247,7 +247,7 @@ namespace Aequus.Content.CrossMod
                 string demonSiegeItemList = "";
                 foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
                 {
-                    if (d.Value.BossChecklistHide)
+                    if (d.Value.Hide)
                         continue;
 
                     if (demonSiegeItemList.Length != 0)

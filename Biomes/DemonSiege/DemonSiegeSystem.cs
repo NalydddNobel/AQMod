@@ -262,7 +262,7 @@ namespace Aequus.Biomes.DemonSiege
                 if (RegisteredSacrifices.ContainsKey(baseItem))
                 {
                     var val = RegisteredSacrifices[baseItem];
-                    val.BossChecklistHide = AequusHelpers.UnboxBoolean.Unbox(args[3]);
+                    val.Hide = AequusHelpers.UnboxBoolean.Unbox(args[3]);
                     RegisteredSacrifices[baseItem] = val;
                     return ModCallManager.Success;
                 }

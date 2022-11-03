@@ -1,27 +1,27 @@
 ﻿using Aequus.Graphics.ShaderData;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Dyes
 {
     public class FrostbiteDye : DyeItemBase
     {
-        public override string Pass => "HoriztonalWavePass";
-        public override int Rarity => ItemDefaults.RarityGaleStreams - 1;
+        public override Ref<Effect> Effect => FromPath("Dyes/FrostbiteDyeShader");
+        public override string Pass => "FrostbitePass";
+        public override int Rarity => ItemRarityID.Orange;
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
-            {
-                return v * new Vector3(0.05f, 0.2f, 0.9f);
-            }).UseColor(new Vector3(0.05f, 0.2f, 0.9f)).UseSecondaryColor(new Vector3(0.1f, 0.4f, 2f));
+            return new ArmorCustomTexture(Effect, Pass, ModContent.Request<Texture2D>("Aequus/Items/Misc/Dyes/FrostbiteShine"));
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
+                .AddIngredient(ItemID.BottledWater)
                 .AddIngredient<FrozenTear>()
                 .AddTile(TileID.DyeVat)
                 .TryRegisterAfter(ItemID.FlameDye);

@@ -1,32 +1,31 @@
 ﻿using Aequus.Graphics.ShaderData;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes
+namespace Aequus.Items.Misc.Dyes.Ancient
 {
-    public class ScorchingDye : DyeItemBase
+    public class AncientFrostbiteDye : DyeItemBase
     {
-        public override Ref<Effect> Effect => FromPath("Dyes/ScorchingDyeShader");
-        public override string Pass => "ScorchingDyePass";
-        public override int Rarity => ItemRarityID.Orange;
+        public override string Pass => "HoriztonalWavePass";
+        public override int Rarity => ItemDefaults.RarityGaleStreams - 1;
 
         public override ArmorShaderData CreateShaderData()
         {
             return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
             {
-                return v * new Vector3(0.549f, 0f, 0.082f);
-            }).UseColor(new Color(140, 0, 21, 255));
+                return v * new Vector3(0.05f, 0.2f, 0.9f);
+            }).UseColor(new Vector3(0.05f, 0.2f, 0.9f)).UseSecondaryColor(new Vector3(0.1f, 0.4f, 2f));
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<Fluorescence>()
+                .AddIngredient<FrozenTear>()
                 .AddTile(TileID.DyeVat)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .TryRegisterAfter(ItemID.FlameDye);
         }
     }

@@ -4,6 +4,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Dyes;
+using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -225,7 +226,7 @@ namespace Aequus.NPCs.Friendly.Town
             switch (Main.GetMoonPhase())
             {
                 case MoonPhase.Full:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BreakdownDye>());
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AncientBreakdownDye>());
                     break;
                 case MoonPhase.ThreeQuartersAtLeft:
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CensorDye>());
@@ -238,6 +239,9 @@ namespace Aequus.NPCs.Friendly.Town
                     break;
                 case MoonPhase.QuarterAtRight:
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SimplifiedDye>());
+                    break;
+                case MoonPhase.HalfAtRight:
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HueshiftDye>());
                     break;
             }
 

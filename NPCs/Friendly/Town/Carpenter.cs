@@ -56,9 +56,9 @@ namespace Aequus.NPCs.Friendly.Town
 
             NPC.Happiness
                 .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Truffle, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Hate);
