@@ -367,6 +367,9 @@ Mods: {
 			RecyclingMachine: Recycling Machine
 
 			# Dyes #
+			TidalDye: Tidal Dye
+			ScorchingDye: Scorching Dye
+			FrostbiteDye: Frostbite Dye
 			EnchantedDye: Enchanted Dye
 			ScrollDye: Scroll Dye
 			DiscoDye: Disco Dye
