@@ -10,9 +10,12 @@ Mods: {
 		}
 
 		Announcement: {
+			YinYang: 光与暗的远古魂灵扁的不耐烦了...
+			DustDevilSpaceSquid: 风开始分离...
+			DustDevilRedSprite: 风开始旋转...
 			OrganicEventSight: 丛林的神经被刺激了...
 			OrganicEventFright: 丛林的恐惧蔓延开来...
-			OrganicEventMight: 丛林的根须变硬了...
+			OrganicEventMight: 丛林的根须立于地面之上...
 			GlimmerStart: 一缕柔光出现在了天空中...
 			GlimmerEnd: 柔光渐渐消失...
 		}
@@ -231,6 +234,7 @@ Mods: {
 			Crabax: 蟹斧
 
 			# Baits # 
+			CrateBait: 板条箱鱼饵
 			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果
 			Omnibait: 全能鱼饵
@@ -368,9 +372,20 @@ Mods: {
 
 			# Dyes #
 			TidalDye: 潮汐染料
-			CensorDye: 监察染料
 			ScorchingDye: 烧灼染料
 			FrostbiteDye: 霜寒染料
+			EnchantedDye: 附魔染料
+			ScrollDye: 眩惑染料
+			DiscoDye: 迪斯科染料
+			SimplifiedDye: 简化染料
+			OutlineDye: 轮廓描边染料
+			RainbowOutlineDye: 彩虹轮廓描边染料
+			CensorDye: 监察染料
+			AncientHellBeamDye: 远古狱光染料
+			AncientBreakdownDye: 远古故障染料
+			AncientTidalDye: 远古潮汐染料
+			AncientScorchingDye: 远古烧灼染料
+			AncientFrostbiteDye: 远古霜寒染料
 
 			# Summons #
 			HypnoticPearl: 催眠珍珠
@@ -394,6 +409,9 @@ Mods: {
 			MistralPollen: 梦幻花粉
 			MoonflowerPollen: 月光花粉
 
+			BloodyTearFragment: 血泪石
+			Fluorescence: 荧光
+			FrozenTear: 冰霜之泪
 			Hexoplasm: 冥狱融质
 			ItemScrap: 废料
 
@@ -482,8 +500,6 @@ Mods: {
 			Baozhu: 爆竹
 			JerryClawFlail: 蟹蛤之爪
 			PiranhaPot: 食人罐
-			Fluorescence: 荧光
-			FrozenTear: 冰霜之泪
 			NuclearFeather: 核子之羽
 			CrabPot: 蟹笼
 			PalePufferfish: 苍白河豚
@@ -497,26 +513,6 @@ Mods: {
 			NoonPotion: 午光药水
 			OpposingPotion: 对立药水
 			Baguette: 法棍
-			SpoilsPotion: 超量药水
-			SpreadPotion: 扩散药水
-			ShadePotion: 暗影药水
-			MysteryGrail: 神秘圣杯
-			SaintsFlow: 圣贤之流
-			RedLicorice: 红甘草
-			GrapePhanta: 幻影葡萄
-			PeeledCarrot: 胡龙卜
-			TemperatureHairDye: 气温染发剂
-			NalydDye: 极顶染料
-			RedSpriteDye: 灼炎染料
-			EnchantedDye: 附魔染料
-			ScrollDye: 眩惑染料
-			HellBeamDye: 狱光染料
-			BreakdownDye: 故障染料
-			DiscoDye: 迪斯科染料
-			HypnoDye: 色彩分离染料
-			SimplifiedDye: 简化染料
-			OutlineDye: 轮廓描边染料
-			RainbowOutlineDye: 彩虹轮廓描边染料
 			HeartLamp: 心灯
 			StariteinaBottle: 瓶中星源
 			YuckyOrb: 迷人诱饵
@@ -622,10 +618,14 @@ Mods: {
 				攻击造成暴击时对敌人造成碧蓝之火减益
 				[c/{Color}:...在你的生命值为满的前提下]
 				'''
+			SteakEyes: 
+				'''
+				暴击会额外造成50%伤害
+				'''
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
-				执行此效果需要消耗10银币
+				执行此效果需要消耗5银币
 				'''
 			BlackPhial: 
 				'''
@@ -1101,6 +1101,11 @@ Mods: {
 				DevilsTongueDisabled: 非罕见捕鱼获转化为垃圾已禁用
 			}
 
+			CrateBait: 
+				'''
+				将低级板条箱转化为生物群落板条箱
+				捕捞到生物群落板条箱时会立即消耗
+				'''
 			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
@@ -1874,31 +1879,6 @@ Mods: {
 			SnobsterCritter: 史莱姆自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
 		}
 
-		HermitCrab: {
-			Storage: 存储
-			StorageFull: 你的存储空间满了!
-
-			Chat: {
-				0: 你有很多我想买的东西. 我相信我们能达成交易.
-				1: 和你讨价还价可真... 令人愉悦. 我们做个交易吧.
-				2: 当我离开我的壳时我的皮肤感到很痒... 快点.
-				3: 你见过任意一只龙虾吗? 我一直在尝试远离他们, 出于某些原因, 他们极度渴望蟹类的血.
-			}
-
-			BloodMoon: 我记得在某个相同的夜晚, 我的朋友转变成了一只野兽并袭击了我! 我甚至不能相信我的同类.
-			StoredAt: 储存在{0}
-			SecondAgo: 已在{0}秒前储存此物品
-			SecondsAgo: 已在{0}秒前储存此物品
-			MinuteAgo: 已在{0}分钟前储存此物品
-			MinutesAgo: 已在{0}分钟前储存此物品
-			HourAgo: 已在{0}小时前储存此物品
-			HoursAgo: 已在{0}小时前储存此物品
-			DayAgo: 已在{0}天前储存此物品
-			DaysAgo: 已在{0}天前储存此物品
-			MonthAgo: 已在{0}月前储存此物品
-			MonthsAgo: 已在{0}月前储存此物品
-		}
-
 		PaintingSignature: {
 			Water: "'W.特尔'"
 			SplitModFrFrWtf: "'Dr.不酷'"
@@ -2205,7 +2185,7 @@ Mods: {
 				Basic: {
 					0: 每当我匆忙做事的时候, 我都会担心我可能会错过又好又热的咖喱!
 					1: 每个砖与块都有助于构成一栋美妙建筑!
-					2: 讨厌的杀虫剂准备毒害被动和平的襀翅目
+					2: 讨厌的杀虫剂准备毒害被动和平的襀翅目!
 				}
 
 				BloodMoon: 月亮是红色的, 死神来了! 希望我们不会失去我们的脑袋!
@@ -2238,40 +2218,22 @@ Mods: {
 				Basic: {
 					0: 仅为恁, 我的朋友, 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
 					1: 所有收益都会捐给慈善机构 — 我所说的慈善机构是指我的银行账户!
-					2: No Text, do not translate
-					3: No Text, do not translate
-					4: No Text, do not translate
 				}
 
 				Night: {
 					0: 今晚夜色真美, 非常适合买点什么!
 					1: 恁知道的, 大鱼会在月亮出来的时候更活跃. 最好去钓鱼!
-					2: No Text, do not translate
 				}
 
 				BloodMoon: {
 					0: 当海潮和雨水变红的时候, 一只强大的乌贼就冲出海面, 把船给毁了! 
 					1: 我在吃午饭, 一条特别的金鱼. 我没想到今晚的月亮升起时会它会变得如此邪恶.
-					2: No Text, do not translate
 
 					WanderingEyeFish: 我今晚出去钓鱼了, 然后我钓到了一条长着大眼睛的鱼! 我从那只眼球上赚了30达布隆.
-					ZombieMerman: No Text, do not translate
-					HemogoblinShark: No Text, do not translate
-					BloodEel: No Text, do not translate
-					Dreadnautilus: No Text, do not translate
 				}
 
-				Ocean: {
-					0: 如果愿望是鱼...如果愿望是鱼, 我就不会因为骗税而被通缉!
-					1: No Text, do not translate
-					2: No Text, do not translate
-				}
-
-				CrabCrevice: {
-					0: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
-					1: No Text, do not translate
-					2: No Text, do not translate
-				}
+				Ocean: 如果愿望是鱼...如果愿望是鱼, 我就不会因为骗税而被通缉!
+				CrabCrevice: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
 
 				Angler: "{Angler}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你见过的还多."
 				Pirate: 耶! 我和{Pirate}在公海上相遇过几次. 但那都是美好的过去了...
@@ -2279,16 +2241,9 @@ Mods: {
 				TaxCollector: 我躲着{TaxCollector}已经七年了! 别让他知道我在这里!!
 				Stylist: 有一次我要求{Stylist}给我修剪头发. 但她却砍掉了我的触角! 我是说我的感知头发!
 
-				PhysicistTownNPC: No Text, do not translate
-				OccultistTownNPC: No Text, do not translate
-
 				Crabson: 吓我一跳! 恁杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
 
 				PirateInvasion: 我在海盗时代就认识这些小伙子. 他是公海上第十七位最可怕的船员!
-				XMas: No Text, do not translate
-
-				VanityEyePatch: No Text, do not translate
-				PirateVanitySet: No Text, do not translate
 
 				ThieveryComplete: {
 					0: 耶哈哈, 这个{ItemName}非常好! 我会把这个添加到我的收藏中. ——恁也可以把这个添加到恁的收藏!
