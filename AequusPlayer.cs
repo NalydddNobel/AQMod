@@ -1436,14 +1436,22 @@ namespace Aequus
             }
         }
 
-        public void CheckBloodDice(ref int damage)
+        public bool CheckBloodDice(ref int damage)
         {
-            if (bloodDiceDamage > 0f && Player.CanBuyItem(bloodDiceMoney))
+            if (bloodDiceDamage > 0f)
             {
-                SoundEngine.PlaySound(SoundID.Coins);
-                Player.BuyItem(bloodDiceMoney);
+                if (bloodDiceMoney > 0)
+                {
+                    if (!Player.CanBuyItem(bloodDiceMoney))
+                    {
+                        return false;
+                    }
+                    SoundEngine.PlaySound(SoundID.Coins);
+                    Player.BuyItem(bloodDiceMoney);
+                }
                 damage = (int)(damage * (1f + bloodDiceDamage / 2f));
             }
+            return false;
         }
 
         public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)

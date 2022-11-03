@@ -28,7 +28,18 @@ namespace Aequus.Common.ModPlayers
                 }
 
                 var item = new Item();
-                item.SetDefaults(Main.rand.NextBool() ? ModContent.ItemType<Omnibait>() : ModContent.ItemType<LegendberryBait>());
+                switch (Main.rand.Next(3)) 
+                {
+                    case 0:
+                        item.SetDefaults(ModContent.ItemType<Omnibait>());
+                        break;
+                    case 1:
+                        item.SetDefaults(ModContent.ItemType<LegendberryBait>());
+                        break;
+                    case 2:
+                        item.SetDefaults(ModContent.ItemType<CrateBait>());
+                        break;
+                }
 
                 if (Main.rand.Next(25) <= Player.anglerQuestsFinished)
                 {

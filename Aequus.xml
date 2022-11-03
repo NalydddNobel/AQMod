@@ -564,7 +564,7 @@
             <param name="sonarPosition"></param>
             <returns>Return false to prevent Aequus from running fish checks.</returns>
         </member>
-        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishItem.ModifyFishItem(Terraria.Item)">
+        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
             <summary>
             
             </summary>

@@ -9,6 +9,7 @@ using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
@@ -63,7 +64,7 @@ namespace Aequus.Common.ModPlayers
                 var item = ContentSamples.ItemsByType[itemDrop];
                 if (npcSpawn <= 0 && item.rare != -1)
                 {
-                    if (player.Aequus().accDevilsTongue && (item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1) || !attempt.legendary && !attempt.veryrare && !attempt.rare))
+                    if (player.Aequus().accDevilsTongue && ((item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1)) || (!attempt.legendary && !attempt.veryrare && !attempt.rare)))
                     {
                         itemDrop = Main.rand.Next(TrashItemIDs);
                         item = ContentSamples.ItemsByType[itemDrop];
@@ -105,7 +106,6 @@ namespace Aequus.Common.ModPlayers
                         }
                     }
                 }
-
             }
         }
 
@@ -166,7 +166,7 @@ namespace Aequus.Common.ModPlayers
                 goto PostProbeFish;
             }
 
-            if (IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(3)))
+            if (IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(5)))
             {
                 var chooseableFish = new List<int>();
                 if (attempt.heightLevel < HeightLevel_Underworld)
@@ -246,8 +246,13 @@ namespace Aequus.Common.ModPlayers
                 }
             }
 
+            if (baitUsed?.ModItem is CrateBait crateBait)
+            {
+                CrateBait.ConvertCrate(Player, attempt, ref itemDrop);
+            }
+
         PostProbeFish:
-            if (Main.myPlayer == Player.whoAmI && baitUsed.type == ModContent.ItemType<Omnibait>())
+            if (Main.myPlayer == Player.whoAmI && baitUsed?.type == ModContent.ItemType<Omnibait>())
             {
                 aequus.omnibait = false;
                 Player.UpdateBiomes(); // Kind of cheaty
@@ -263,7 +268,7 @@ namespace Aequus.Common.ModPlayers
         {
             if (baitUsed?.ModItem is IModifyFishItem modBait)
             {
-                modBait.ModifyFishItem(fish);
+                modBait.ModifyFishItem(Player, fish);
             }
             if (Player.HeldItem.ModItem is CrabRod)
             {

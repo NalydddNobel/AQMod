@@ -9,7 +9,7 @@ namespace Aequus.Items.Consumables.Bait
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 50;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()
@@ -32,10 +32,10 @@ namespace Aequus.Items.Consumables.Bait
         public override void AddRecipes()
         {
             CreateRecipe(10)
+                .AddIngredient(ItemID.BloodWater, 10)
                 .AddIngredient(ItemID.Ichor, 10)
-                .AddIngredient(ItemID.BloodWater)
                 .AddTile(TileID.Bottles)
-                .TryRegisterBefore((ItemID.EnchantedNightcrawler));
+                .TryRegisterBefore(ItemID.EnchantedNightcrawler);
         }
     }
 }

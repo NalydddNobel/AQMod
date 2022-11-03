@@ -5,6 +5,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
@@ -353,45 +354,54 @@ namespace Aequus.Items
             switch (item.type)
             {
                 case ItemID.PlanteraBossBag:
-                    {
-                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
-                    }
+                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     break;
 
                 case ItemID.TwinsBossBag:
                 case ItemID.DestroyerBossBag:
                 case ItemID.SkeletronPrimeBossBag:
-                    {
-                        itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
-                    }
+                    itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
                     break;
 
                 case ItemID.IronCrate:
                 case ItemID.IronCrateHard:
-                    {
-                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
-                        itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
-                    }
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
+                    itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
+                    break;
+
+                case ItemID.CorruptFishingCrate:
+                case ItemID.CorruptFishingCrateHard:
+                case ItemID.CrimsonFishingCrate:
+                case ItemID.CrimsonFishingCrateHard:
+                case ItemID.DungeonFishingCrate:
+                case ItemID.DungeonFishingCrateHard:
+                case ItemID.HallowedFishingCrate:
+                case ItemID.HallowedFishingCrateHard:
+                case ItemID.JungleFishingCrate:
+                case ItemID.JungleFishingCrateHard:
+                case ItemID.LavaCrate:
+                case ItemID.LavaCrateHard:
+                case ItemID.OasisCrate:
+                case ItemID.OasisCrateHard:
+                case ItemID.OceanCrate:
+                case ItemID.OceanCrateHard:
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                     break;
 
                 case ItemID.FloatingIslandFishingCrate:
                 case ItemID.FloatingIslandFishingCrateHard:
-                    {
-                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Slingshot>(), 3));
-                    }
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Slingshot>(), 3));
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                     break;
 
                 case ItemID.FrozenCrate:
                 case ItemID.FrozenCrateHard:
-                    {
-                        itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrystalDagger>(), 3));
-                    }
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrystalDagger>(), 3));
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                     break;
 
                 case ItemID.LockBox:
-                    {
-                        itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
-                    }
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
                     break;
             }
         }

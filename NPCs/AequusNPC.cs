@@ -8,6 +8,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Placeable;
@@ -155,8 +156,27 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
                     break;
 
+                case NPCID.BloodNautilus:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 2, maximumDropped: 6));
+                    break;
+
+                case NPCID.BloodEelHead:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>()));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
+                    break;
+                case NPCID.GoblinShark:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), maximumDropped: 3));
+                    break;
+
+                case NPCID.Clown:
+                case NPCID.EyeballFlyingFish:
+                case NPCID.ZombieMerman:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>()));
+                    break;
+
                 case NPCID.BloodZombie:
                 case NPCID.Drippler:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), 25));
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
                     break;
 
@@ -167,7 +187,6 @@ namespace Aequus.NPCs
                 case NPCID.DiggerHead:
                 case NPCID.DuneSplicerHead:
                 case NPCID.SeekerHead:
-                case NPCID.BloodEelHead:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
                     break;
 

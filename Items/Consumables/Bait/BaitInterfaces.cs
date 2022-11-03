@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Bait
         /// 
         /// </summary>
         /// <param name="fish"></param>
-        void ModifyFishItem(Item fish);
+        void ModifyFishItem(Player player, Item fish);
     }
     internal interface IModifyFishAttempt
     {

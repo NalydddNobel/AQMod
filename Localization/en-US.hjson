@@ -10,9 +10,12 @@ Mods: {
 		}
 
 		Announcement: {
+			YinYang: The ancient spirits of light and dark grow impatient...
+			DustDevilSpaceSquid: The wind start to break apart...
+			DustDevilRedSprite: The wind begins to swirl...
 			OrganicEventSight: The nerves of the jungle become stimulated...
 			OrganicEventFright: The horrors of the jungle crawl out...
-			OrganicEventMight: The roots of the jungle harden...
+			OrganicEventMight: The roots of the jungle stand their ground...
 			GlimmerStart: A glimmer appears in the sky...
 			GlimmerEnd: The glimmer begins to fade away...
 		}
@@ -231,6 +234,7 @@ Mods: {
 			Crabax: Crabax
 
 			# Baits # 
+			CrateBait: Crate Bait
 			RegrowingBait: Regenerative Bait
 			LegendberryBait: Legend Berry
 			Omnibait: Omni Bait
@@ -405,6 +409,9 @@ Mods: {
 			MistralPollen: Mistral Pollen
 			MoonflowerPollen: Moonflower Pollen
 
+			BloodyTearFragment: Bloody Tearstone
+			Fluorescence: Fluorescence
+			FrozenTear: Frozen Tear
 			Hexoplasm: Hexoplasm
 			ItemScrap: Scrap
 
@@ -493,8 +500,6 @@ Mods: {
 			Baozhu: Baozhu
 			JerryClawFlail: Jerry Claw
 			PiranhaPot: Piranha Pot
-			Fluorescence: Fluorescence
-			FrozenTear: Frozen Tear
 			NuclearFeather: Nuclear Feather
 			CrabPot: Crab Pot
 			PalePufferfish: Pale Pufferfish
@@ -613,10 +618,14 @@ Mods: {
 				Crits inflicts blue fire to nearby enemies
 				[c/{Color}:...If you are at max health]
 				'''
+			SteakEyes: 
+				'''
+				50% more damage from critical strikes
+				'''
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
-				This effect costs 10 silver to perform
+				This effect costs 5 silver to perform
 				'''
 			BlackPhial: 
 				'''
@@ -1092,6 +1101,11 @@ Mods: {
 				DevilsTongueDisabled: Non-rare catches turn into trash is disabled
 			}
 
+			CrateBait: 
+				'''
+				Converts low-tiered crates into biome crates
+				Instantly consumed when catching a biome crate
+				'''
 			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
@@ -1863,31 +1877,6 @@ Mods: {
 			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
 
 			SnobsterCritter: Slimes naturally evolve to their environment, looks like this one decided that becoming a lobster is the right way to go.
-		}
-
-		HermitCrab: {
-			Storage: Storage
-			StorageFull: Your storage is full!
-
-			Chat: {
-				0: You have many things I wish to buy. I'm sure we can strike a bargain.
-				1: Haggling with you can be so... entertaining. Let's make a deal.
-				2: My skin feels itchy when I'm outside of my shell... make this quick
-				3: Have you seen any lobsters? I've been trying to stay away from them, for some reason they have a thirst for crabby blood
-			}
-
-			BloodMoon: I remember one of these nights, my friend turned into a feral creature and attacked me! I can't even trust my own kind.
-			StoredAt: Stored at {0}
-			SecondAgo: Stored this item {0} second ago
-			SecondsAgo: Stored this item {0} seconds ago
-			MinuteAgo: Stored this item {0} minute ago
-			MinutesAgo: Stored this item {0} minutes ago
-			HourAgo: Stored this item {0} hour ago
-			HoursAgo: Stored this item {0} hours ago
-			DayAgo: Stored this item {0} day ago
-			DaysAgo: Stored this item {0} days ago
-			MonthAgo: Stored this item {0} month ago
-			MonthsAgo: Stored this item {0} months ago
 		}
 
 		PaintingSignature: {
