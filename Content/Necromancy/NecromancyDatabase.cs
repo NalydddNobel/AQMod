@@ -16,14 +16,14 @@ namespace Aequus.Content.Necromancy
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }
-        public static HashSet<string> AutogeneratorIgnoreMods { get; private set; }
+        public static List<string> AutogeneratorIgnoreMods { get; private set; }
 
         public override void Load()
         {
             NecromancyDebuffs = new List<int>();
             AggressionType.LoadAggressions();
             PopulateLegacyEnemyStats();
-            AutogeneratorIgnoreMods = new HashSet<string>() { "Aequus", };
+            AutogeneratorIgnoreMods = new List<string>() { "Aequus", };
         }
         private static void PopulateLegacyEnemyStats()
         {
@@ -171,6 +171,7 @@ namespace Aequus.Content.Necromancy
                 }
 
                 NPCs.Add(i, GhostInfo.Autogenerate(n));
+                Aequus.Instance.Logger.Debug(Lang.GetNPCNameValue(i) + ": " + NPCs[i]);
             }
         }
         public static void AutogenPriorities()

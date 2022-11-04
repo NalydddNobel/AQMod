@@ -1,20 +1,15 @@
 ﻿using Aequus.Graphics.Tiles;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
+using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -40,6 +35,7 @@ namespace Aequus.Tiles.Furniture
         public const int UltraStariteBanner = 14;
         public const int CoconutCrabBanner = 15;
         public const int BreadofCthulhuBanner = 16;
+        public const int BloodMimicBanner = 17;
 
         public static int BannerToItem(int style)
         {
@@ -152,6 +148,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<CoconutCrab>();
                 case BreadofCthulhuBanner:
                     return ModContent.NPCType<BreadOfCthulhu>();
+                case BloodMimicBanner:
+                    return ModContent.NPCType<BloodMimic>();
             }
             return 0;
         }

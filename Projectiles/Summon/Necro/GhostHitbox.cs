@@ -10,6 +10,8 @@ namespace Aequus.Projectiles.Summon.Necro
     {
         public override string Texture => Aequus.BlankTexture;
 
+        public int NPC => (int)Projectile.ai[0];
+
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.MinionShot[Type] = true;
@@ -49,6 +51,19 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.lavaWet = Main.npc[npc].lavaWet;
             Projectile.honeyWet = Main.npc[npc].honeyWet;
             Projectile.velocity = Vector2.Normalize(Main.npc[npc].velocity) * 0.1f;
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            return NPCLoader.CanHitNPC(Main.npc[NPC], target);
+        }
+
+        public override bool CanHitPlayer(Player target)
+        {
+            int c = CooldownSlot;
+            var value = NPCLoader.CanHitPlayer(Main.npc[NPC], target, ref c);
+            CooldownSlot = c;
+            return value;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

@@ -37,7 +37,7 @@ namespace Aequus.Biomes.Glimmer
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
             }
-            if (!checkDistance || GlimmerBiome.omegaStarite != -1)
+            if (!checkDistance || GlimmerBiome.omegaStarite != -1 || Main.gameMenu)
             {
                 realOpacity = Opacity;
             }

@@ -1457,6 +1457,7 @@ Mods: {
 			SnowflakeBuff: Snowflake
 
 			DroneBuff: Scanner Drone
+			FamiliarBuff: Familiar
 			OmegaStariteBuff: Omega Starite Mini
 			TorraBuff: Swag Eye
 			RedSpriteBuff: Red Sprite
@@ -1732,6 +1733,8 @@ Mods: {
 		}
 
 		MapObject: {
+			HypnoticPearl: Hypnotic Pearl
+			Pearl: Pearl
 			ArgonMushroom: Argon Mushroom
 			KryptonMushroom: Krypton Mushroom
 			XenonMushroom: Xenon Mushroom

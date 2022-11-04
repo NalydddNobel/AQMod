@@ -3,12 +3,12 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,8 +39,8 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.value = Item.buyPrice(silver: 50);
             NPC.knockBackResist = 0.4f;
             NPC.rarity = 1;
-            Banner = Item.NPCtoBanner(NPCID.Mimic);
-            BannerItem = ItemID.MimicBanner;
+            Banner = Type;
+            BannerItem = ModContent.ItemType<BloodMimicBanner>();
 
             spawnedGroup = false;
         }
@@ -135,8 +135,11 @@ namespace Aequus.NPCs.Monsters.Night
         {
             if (!spawnedGroup)
             {
-                var tileLocation = NPC.Center.ToTileCoordinates();
-                SpawnGroup(tileLocation.X, tileLocation.Y);
+                if (NPC.CountNPCS(NPC.type) == 1)
+                {
+                    var tileLocation = NPC.Center.ToTileCoordinates();
+                    SpawnGroup(tileLocation.X, tileLocation.Y);
+                }
                 spawnedGroup = true;
             }
             if (NPC.life < NPC.lifeMax)
@@ -168,7 +171,7 @@ namespace Aequus.NPCs.Monsters.Night
             int spawnCount = Main.rand.Next(3, 8);
             var player = Main.player[Player.FindClosest(new Vector2(tileX, tileY) * 16f, 16, 16)];
             Rectangle playerSights = new Rectangle((int)player.position.X / 16 - NPC.safeRangeX, (int)player.position.Y / 16 - NPC.safeRangeY, NPC.safeRangeX * 2, NPC.safeRangeY * 2);
-            var source = new EntitySource_SpawnNPC("Aequus:BloodMimic");
+            var source = NPC.GetSource_FromThis();
 
             if ((int)NPC.ai[1] == 0)
             {

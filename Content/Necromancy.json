@@ -267,6 +267,10 @@
   },
 
   "Polarities": {
+    "Hydra": "0",
+    "HydraHead": "0",
+
+    "Zombat": "1;NightTime",
     "BloodBat": "1;NightTime",
     "ConeShell": "1",
     "AlkaliSpirit": "1",
@@ -274,15 +278,22 @@
     "StalagBeetle": "1",
     "Rattler": "1",
     "Mussel": "1",
+    "GraniteCrawler": "1",
+    "Salthopper": "1",
+    "StellatedSlime": "1",
+    "BatSlime": "1",
 
-    "BatSlime": "2",
     "Alkalabomination": "2",
     "Limeshell": "2",
     "Slimey": "2",
     "NestGuardian": "2",
     "BrineDweller": "2",
+    "GraniteStomper": "2",
+    "GreatStellatedSlime": "2;NightTime",
+    "SeaSerpent": "2",
+    "Kraken": "2",
 
-    "GreatStellatedSlime": "3;NightTime"
+    "InfernalArrow": "3"
   },
 
   "CalamityMod": {

@@ -3,6 +3,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Items.Prefixes.SoulCandles;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -58,10 +59,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
         public void UpdatePlayerSoulLimit(Player player)
         {
             var aequus = player.Aequus();
-            if (aequus.heldSoulCandle < soulLimit)
-            {
-                aequus.heldSoulCandle = soulLimit;
-            }
+            aequus.heldSoulCandle = Math.Max(aequus.heldSoulCandle, soulLimit);
         }
 
         public override void HoldItem(Player player)

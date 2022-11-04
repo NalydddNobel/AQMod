@@ -19,7 +19,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.Audio;
@@ -75,8 +77,6 @@ namespace Aequus
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
-
-        
 
         public static Color GetRarityColor(int rare)
         {
@@ -1462,6 +1462,13 @@ namespace Aequus
                 projectile.frame = (projectile.frame + 1) % Main.projFrames[projectile.type];
                 projectile.frameCounter = 0;
             }
+        }
+
+        public static void WriteText(this Stream stream, string text, Encoding encoding = null)
+        {
+            encoding ??= Encoding.ASCII;
+            var val = encoding.GetBytes(text);
+            stream.Write(val, 0, val.Length);
         }
 
         public static T GetValue<T>(this PropertyInfo property, object obj)

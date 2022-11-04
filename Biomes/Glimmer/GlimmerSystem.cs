@@ -225,7 +225,7 @@ namespace Aequus.Biomes.Glimmer
             {
                 tag["PeacefulGlimmerX"] = PeacefulGlimmerBiome.TileLocationX;
             }
-            if (GlimmerBiome.TileLocation == Point.Zero)
+            if (!GlimmerBiome.EventActive)
             {
                 return;
             }
