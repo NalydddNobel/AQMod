@@ -223,7 +223,6 @@
     "JungleCreeper": "4",
     "Lihzahrd": "4",
     "Moth": "4",
-    "RuneWizard": "4",
     "DeadlySphere": "4;Eclipse",
     "Eyezor": "4;Eclipse",
     "Nailhead": "4;Eclipse",
@@ -269,6 +268,7 @@
   "Polarities": {
     "Hydra": "0",
     "HydraHead": "0",
+    "MantleOWar": "0",
 
     "Zombat": "1;NightTime",
     "BloodBat": "1;NightTime",
@@ -293,6 +293,19 @@
     "SeaSerpent": "2",
     "Kraken": "2",
 
+    "Uraraneid": "3;Pestilence",
+    "TendrilAmalgam": "3;Pestilence",
+    "RavenousCursed": "3;Pestilence",
+    "LivingSpine": "3;Pestilence",
+    "Crimago": "3;Pestilence",
+    "LightEater": "3;Pestilence",
+    "Painbow": "3;Rapture",
+    "SunKnight": "3;Rapture",
+    "Aequorean": "3;Rapture",
+    "Trailblazer": "3;Rapture",
+    "SunServitor": "3;Rapture",
+    "IlluminantScourer": "3;Rapture",
+    "Pegasus": "3;Rapture",
     "InfernalArrow": "3"
   },
 

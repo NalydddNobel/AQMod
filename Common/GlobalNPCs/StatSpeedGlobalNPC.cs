@@ -16,11 +16,7 @@ namespace Aequus.Common.GlobalNPCs
 
         public override void Load()
         {
-            IgnoreStatSpeed = new HashSet<int>()
-            {
-                NPCID.CultistBoss,
-                NPCID.HallowBoss,
-            };
+            IgnoreStatSpeed = new HashSet<int>();
             On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
         }
         private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
@@ -37,6 +33,39 @@ namespace Aequus.Common.GlobalNPCs
             self.velocity /= velocityBoost;
         }
 
+        public override void SetStaticDefaults()
+        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading stat speed interactions array...");
+            }
+            var val = Aequus.GetContentArrayFile("IgnoreStatSpeed");
+            foreach (var modDict in val)
+            {
+                if (modDict.Key == "Vanilla")
+                {
+                    foreach (var npcName in modDict.Value)
+                    {
+                        IgnoreStatSpeed.Add(NPCID.Search.GetId(npcName));
+                    }
+                }
+                else if (ModLoader.TryGetMod(modDict.Key, out var mod))
+                {
+                    if (Aequus.LogMore)
+                    {
+                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
+                    }
+                    foreach (var npcName in modDict.Value)
+                    {
+                        if (mod.TryFind<ModNPC>(npcName, out var modNPC))
+                        {
+                            IgnoreStatSpeed.Add(modNPC.Type);
+                        }
+                    }
+                }
+            }
+        }
+
         public override void ResetEffects(NPC npc)
         {
             statSpeed = 1f;
@@ -44,7 +73,7 @@ namespace Aequus.Common.GlobalNPCs
 
         public override void PostAI(NPC npc)
         {
-            if (npc.noTileCollide && statSpeed != 1f)
+            if (npc.noTileCollide && statSpeed != 1f && !IgnoreStatSpeed.Contains(npc.netID))
             {
                 npc.position += npc.velocity * (statSpeed - 1f);
             }

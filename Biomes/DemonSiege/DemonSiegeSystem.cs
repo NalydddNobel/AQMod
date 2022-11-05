@@ -41,6 +41,20 @@ namespace Aequus.Biomes.DemonSiege
             }
         }
 
+        public override void AddRecipes()
+        {
+            foreach (var s in RegisteredSacrifices.Values)
+            {
+                if (s.Hide)
+                    continue;
+
+                Recipe.Create(s.NewItem)
+                    .AddIngredient(s.OriginalItem)
+                    .AddTile<GoreNestDummy>()
+                    .TryRegisterAfter(s.OriginalItem);
+            }
+        }
+
         public override void Unload()
         {
             RegisteredSacrifices?.Clear();

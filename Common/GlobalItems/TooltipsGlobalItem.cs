@@ -176,10 +176,10 @@ namespace Aequus.Common.GlobalItems
                     { IsModifier = true, IsModifierBad = false, });
                 }
 
-                if (Main.hardMode && !AequusWorld.downedEventDemon && DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && !val.Hide && val.Progression == UpgradeProgressionType.PreHardmode)
-                {
-                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")) { OverrideColor = HintColor, });
-                }
+                //if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && !val.Hide && val.Progression == UpgradeProgressionType.PreHardmode)
+                //{
+                //    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")));
+                //}
                 //TestLootBagTooltip(item, tooltips);
             }
             catch

@@ -3,6 +3,7 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
@@ -75,7 +76,7 @@ namespace Aequus.Tiles
         {
             if (orig(x, y, context))
             {
-                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable;
+                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable && Main.LocalPlayer.HeldItem?.ModItem is not SilkPickaxe;
             }
             return false;
         }
@@ -92,11 +93,25 @@ namespace Aequus.Tiles
         public void AddRecipes(Aequus aequus)
         {
             LoadEchoWalls();
+            AutoCreateSilkTouchSets(aequus);
+            LoadPylonColors();
+        }
+        private static void AutoCreateSilkTouchSets(Aequus aequus)
+        {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Auto Creating silk touch ids...");
+            }
             foreach (var i in ContentSamples.ItemsByType)
             {
                 if (i.Value.createTile > -1)
                 {
                     var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle);
+                    if (ItemID.Sets.flowerPacketInfo[i.Key] != null)
+                    {
+                        AddFlowerPacket(i.Key, ItemID.Sets.flowerPacketInfo[i.Key]);
+                        continue;
+                    }
                     if (TileIDToItemID.ContainsKey(tileID))
                     {
                         if (!i.Value.consumable || i.Key == TileIDToItemID[tileID])
@@ -124,9 +139,30 @@ namespace Aequus.Tiles
                     WallIDToItemID[i.Value.createWall] = i.Key;
                 }
             }
-            LoadPylonColors();
         }
-        public static void LoadEchoWalls()
+        private static void AddFlowerPacket(int itemID, FlowerPacketInfo flowerPacketInfo)
+        {
+            if (itemID == ItemID.FlowerPacketWild)
+                return;
+
+            foreach (var i in flowerPacketInfo.stylesOnPurity)
+            {
+                TileIDToItemID[new TileKey(TileID.Plants, i)] = itemID;
+            }
+            foreach (var i in flowerPacketInfo.stylesOnCorruption)
+            {
+                TileIDToItemID[new TileKey(TileID.CorruptPlants, i)] = itemID;
+            }
+            foreach (var i in flowerPacketInfo.stylesOnCrimson)
+            {
+                TileIDToItemID[new TileKey(TileID.CrimsonPlants, i)] = itemID;
+            }
+            foreach (var i in flowerPacketInfo.stylesOnHallow)
+            {
+                TileIDToItemID[new TileKey(TileID.HallowedPlants, i)] = itemID;
+            }
+        }
+        private static void LoadEchoWalls()
         {
             if (Aequus.LogMore)
             {

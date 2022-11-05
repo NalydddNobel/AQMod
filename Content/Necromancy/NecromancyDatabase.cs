@@ -53,16 +53,17 @@ namespace Aequus.Content.Necromancy
 
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
-            if (Aequus.LogMore)
-            {
-                Aequus.Instance.Logger.Info("Loading necromancy stats...");
-            }
             LoadEntriesFile();
             AutogenEntries();
             AutogenPriorities();
         }
         public static void LoadEntriesFile()
         {
+            if (Aequus.LogMore)
+            {
+                Aequus.Instance.Logger.Info("Loading necromancy stats...");
+            }
+
             var val = Aequus.GetContentFile("Necromancy");
             foreach (var modDict in val)
             {
@@ -108,10 +109,10 @@ namespace Aequus.Content.Necromancy
                         }
                         if (mod.TryFind<ModNPC>(name, out var modNPC))
                         {
-                            if (Aequus.LogMore)
-                            {
-                                Aequus.Instance.Logger.Info($"{data.Key}/{modNPC.Type}: {data.Value}");
-                            }
+                            //if (Aequus.LogMore)
+                            //{
+                            //    Aequus.Instance.Logger.Info($"{data.Key}/{modNPC.Type}: {data.Value}");
+                            //}
                             var info = ReadGhostInfo(data.Value);
                             if (checkBanners)
                             {
@@ -171,7 +172,7 @@ namespace Aequus.Content.Necromancy
                 }
 
                 NPCs.Add(i, GhostInfo.Autogenerate(n));
-                Aequus.Instance.Logger.Debug(Lang.GetNPCNameValue(i) + ": " + NPCs[i]);
+                //Aequus.Instance.Logger.Debug(Lang.GetNPCNameValue(i) + ": " + NPCs[i]);
             }
         }
         public static void AutogenPriorities()

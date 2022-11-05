@@ -378,6 +378,16 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
+            Projectile.damage = 0;
+            Projectile.ai[0] = 1f;
+            Projectile.ai[1] = target.whoAmI;
+            Projectile.alpha = 0;
+            Projectile.netUpdate = true;
+        }
+
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
         {
             width = 10;

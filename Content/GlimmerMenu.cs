@@ -13,7 +13,7 @@ namespace Aequus.Content
     {
         public override Asset<Texture2D> MoonTexture => ModContent.Request<Texture2D>(Aequus.BlankTexture);
 
-        public float Opacity;
+        public static float Opacity;
 
         public override void OnSelected()
         {

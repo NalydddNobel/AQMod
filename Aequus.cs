@@ -124,6 +124,16 @@ namespace Aequus
             PacketSystem.HandlePacket(reader);
         }
 
+        public static Dictionary<string, List<string>> GetContentArrayFile(string name)
+        {
+            using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
+            {
+                using (var streamReader = new StreamReader(stream))
+                {
+                    return JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(streamReader.ReadToEnd());
+                }
+            }
+        }
         public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name)
         {
             using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))

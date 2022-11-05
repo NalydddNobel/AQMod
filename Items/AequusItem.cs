@@ -128,10 +128,10 @@ namespace Aequus.Items
                         if (Aequus.LogMore)
                             Aequus.Instance.Logger.Info($"Autoloaded rarity key: {key}");
                     }
-                    else if (Aequus.LogMore)
-                    {
-                        Aequus.Instance.Logger.Info($"Key not found: {key}");
-                    }
+                    //else if (Aequus.LogMore)
+                    //{
+                    //    Aequus.Instance.Logger.Info($"Key not found: {key}");
+                    //}
                 }
                 catch
                 {

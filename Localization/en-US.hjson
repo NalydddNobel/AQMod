@@ -797,7 +797,7 @@ Mods: {
 				'''
 			Narrizuul:
 				'''
-				{$Mods.Aequus.ItemTooltip.Misc.Unobtainable}
+				A relic birthed in an alternate universe
 				{$Mods.Aequus.ItemTooltip.Misc.Nalyddd}
 				'''
 			StudiesOfTheInkblot:
@@ -1360,10 +1360,8 @@ Mods: {
 			}
 
 			Misc: {
-				DemonSiegeHint: May be upgraded at a Gore Nest...
 				AnglerHint: The Angler may be interested in this...
 				ExporterHint: The Exporter may be interested in this...
-				Unobtainable: A relic birthed in an alternate universe
 				DevItem: "'Smells like roses'"
 			}
 

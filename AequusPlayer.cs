@@ -965,6 +965,7 @@ namespace Aequus
 
             if (Main.myPlayer == Player.whoAmI)
             {
+                NecromancyNPC.CheckZombies--;
                 UpdateMaxZombies();
             }
 

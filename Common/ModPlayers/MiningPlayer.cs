@@ -75,7 +75,7 @@ namespace Aequus.Common.ModPlayers
         {
             if (Main.tile[x, y].WallType > WallID.None)
             {
-                AequusTile.LoadEchoWalls();
+                //AequusTile.LoadEchoWalls();
                 if (AequusTile.WallIDToItemID.TryGetValue(Main.tile[x, y].WallType, out int itemID))
                 {
                     int i = Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
@@ -145,6 +145,9 @@ namespace Aequus.Common.ModPlayers
                 return ItemID.Hive;
 
             int style = TileObjectData.GetTileStyle(tile);
+            if (tile.TileType == TileID.Plants || tile.TileType == TileID.CorruptPlants || tile.TileType == TileID.CrimsonPlants || tile.TileType == TileID.HallowedPlants)
+                style = tile.TileFrameX / 18;
+            //Main.NewText(style);
             if (AequusTile.TileIDToItemID.TryGetValue(new TileKey(tile.TileType, style == -1 ? 0 : style), out int value) && ContentSamples.ItemsByType[value].consumable)
             {
                 return value;

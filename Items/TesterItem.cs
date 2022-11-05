@@ -37,6 +37,11 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
+            foreach (var item in Common.GlobalNPCs.StatSpeedGlobalNPC.IgnoreStatSpeed)
+            {
+                Main.NewText(Lang.GetNPCNameValue(item));
+            }
+            return true;
             var c = Path.DirectorySeparatorChar;
             var path = $"{Main.SavePath}{c}Mods{c}AequusWiki";
             Directory.CreateDirectory(path);

@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Content;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -37,7 +38,11 @@ namespace Aequus.Biomes.Glimmer
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
             }
-            if (!checkDistance || GlimmerBiome.omegaStarite != -1 || Main.gameMenu)
+            if (Main.gameMenu)
+            {
+                realOpacity = GlimmerMenu.Opacity;
+            }
+            else if (!checkDistance || GlimmerBiome.omegaStarite != -1)
             {
                 realOpacity = Opacity;
             }
@@ -79,7 +84,13 @@ namespace Aequus.Biomes.Glimmer
 
             spriteBatch.Draw(skyTexture.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
 
-            DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
+            try
+            {
+                DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
+            }
+            catch
+            {
+            }
         }
         public void DrawStars(SpriteBatch spriteBatch, float minDepth, float maxDepth, int y, float approxProgress)
         {

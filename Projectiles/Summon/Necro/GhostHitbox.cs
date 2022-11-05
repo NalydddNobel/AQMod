@@ -28,6 +28,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.timeLeft = 120;
+            Projectile.ignoreWater = true;
         }
 
         public override bool? CanCutTiles()

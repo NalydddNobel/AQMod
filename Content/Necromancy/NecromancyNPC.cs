@@ -40,6 +40,8 @@ namespace Aequus.Content.Necromancy
             }
         }
 
+        public static byte CheckZombies;
+
         public static SoundStyle ZombieRecruitSound { get; private set; }
 
         public static ActiveZombieInfo Zombie { get; private set; }
@@ -67,10 +69,96 @@ namespace Aequus.Content.Necromancy
         {
             Zombie = new ActiveZombieInfo();
             On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
+            On.Terraria.NPC.FindFirstNPC += NPC_FindFirstNPC;
+            On.Terraria.NPC.AnyNPCs += NPC_AnyNPCs;
+            On.Terraria.NPC.CountNPCS += NPC_CountNPCS;
             if (!Main.dedServ)
             {
                 ZombieRecruitSound = Aequus.GetSound("zombierecruit");
             }
+        }
+
+        private static int NPC_FindFirstNPC(On.Terraria.NPC.orig_FindFirstNPC orig, int Type)
+        {
+            if (CheckZombies == 0)
+            {
+                return orig(Type);
+            }
+            var npcs = new List<NPC>();
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie))
+                {
+                    if (zombie.isZombie)
+                    {
+                        npcs.Add(Main.npc[i]);
+                        Main.npc[i].active = false;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            int val = orig(Type);
+            foreach (var npc in npcs)
+            {
+                npc.active = true;
+            }
+            return val;
+        }
+
+        private static bool NPC_AnyNPCs(On.Terraria.NPC.orig_AnyNPCs orig, int Type)
+        {
+            if (CheckZombies == 0)
+            {
+                return orig(Type);
+            }
+            var npcs = new List<NPC>();
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie))
+                {
+                    if (zombie.isZombie)
+                    {
+                        npcs.Add(Main.npc[i]);
+                        Main.npc[i].active = false;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            bool val = orig(Type);
+            foreach (var npc in npcs)
+            {
+                npc.active = true;
+            }
+            return val;
+        }
+
+        private static int NPC_CountNPCS(On.Terraria.NPC.orig_CountNPCS orig, int Type)
+        {
+            if (CheckZombies == 0)
+            {
+                return orig(Type);
+            }
+            var npcs = new List<NPC>();
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
+                {
+                    npcs.Add(Main.npc[i]);
+                    Main.npc[i].active = false;
+                }
+            }
+            int amt = orig(Type);
+            foreach (var npc in npcs)
+            {
+                npc.active = true;
+            }
+            return amt;
         }
 
         #region Hooks
@@ -172,6 +260,7 @@ namespace Aequus.Content.Necromancy
 
         public override bool PreAI(NPC npc)
         {
+            CheckZombies = 10;
             Zombie.Reset();
             if (isZombie)
             {
@@ -473,6 +562,21 @@ namespace Aequus.Content.Necromancy
 
         public void SpawnZombie(NPC npc)
         {
+            var myZombie = npc.GetGlobalNPC<NecromancyNPC>();
+            myZombie.zombieTimer = 1;
+            myZombie.zombieTimerMax = 1;
+            int myPriority = myZombie.DespawnPriority(npc);
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == myZombie.zombieOwner && zombie.slotsConsumed > 0)
+                {
+                    int priority = zombie.DespawnPriority(Main.npc[i]);
+                    if (priority > myPriority)
+                    {
+                        return;
+                    }
+                }
+            }
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
             if (n < 200)
             {
