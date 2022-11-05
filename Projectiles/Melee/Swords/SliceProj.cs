@@ -57,12 +57,14 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             if (swingTimeMax == 0)
             {
-                swingTimeMax = (int)(Main.player[Projectile.owner].itemAnimationMax * Math.Clamp(1.5f - Main.player[Projectile.owner].Aequus().itemUsage / 300f, 0.8f, 1.5f));
+                swingTimeMax = (int)(Main.player[Projectile.owner].itemAnimationMax * Math.Clamp(1.5f - Main.player[Projectile.owner].Aequus().itemUsage / 600f, 0.66f, 1.5f));
                 swingTime = swingTimeMax;
-                Main.player[Projectile.owner].itemTime = swingTimeMax + 10;
-                Main.player[Projectile.owner].itemTimeMax = swingTimeMax + 10;
-                Main.player[Projectile.owner].itemAnimation = swingTimeMax + 10;
-                Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + 10;
+                scale += Main.rand.NextFloat(0.25f);
+                int delay = 1;
+                Main.player[Projectile.owner].itemTime = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemTimeMax = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemAnimation = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + delay;
             }
             base.AI();
 
@@ -107,6 +109,8 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
+            if (progress < 0.5f)
+                return base.GetOffsetVector(progress);
             return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.7f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
         }
 
@@ -178,9 +182,10 @@ namespace Aequus.Projectiles.Melee.Swords
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = glowColor.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * (0.4f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f));
+                float scaling = Math.Clamp(2.5f - Main.player[Projectile.owner].itemAnimationMax / 8f, 1f, 10f);
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 20f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f, effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f + 20f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 2f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f - 40f * (scaling - 1f) + 20f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f - 40f * (scaling - 1f) + 20f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 2f) * scaling, effects, 0);
             }
             return false;
         }

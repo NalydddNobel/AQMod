@@ -3,6 +3,7 @@ using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
+using Aequus.NPCs.Friendly;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -157,6 +158,27 @@ namespace Aequus.Tiles.Misc
             {
                 SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
                 DrawPointsCache.Add(new Point(i, j));
+                //if (!DemonSiegeSystem.ActiveSacrifices.ContainsKey(new Point(i, j)) && Main.LocalPlayer.IsInCustomTileInteractionRange(i + 1, j - 3, 5, 5))
+                //{
+                //    int portal = NPC.FindFirstNPC(ModContent.NPCType<GoreNestPortal>());
+                //    if (portal == -1)
+                //    {
+                //        if (Main.netMode != NetmodeID.MultiplayerClient)
+                //        {
+                //            NPC.NewNPCDirect(new EntitySource_Misc("Aequus: Gore Nest"), new Vector2(i * 16f, j * 16f), ModContent.NPCType<GoreNestPortal>(), ai0: i, ai1: j);
+                //        }
+                //        else
+                //        {
+
+                //        }
+                //    }
+                //    else if (new Rectangle(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y - 48, 48, 48).Contains(Main.mouseX, Main.mouseY))
+                //    {
+                //        Main.npc[portal].position = new Vector2(i * 16f, j * 16f - 48);
+                //        Main.npc[portal].ai[0] = i;
+                //        Main.npc[portal].ai[1] = j;
+                //    }
+                //}
             }
         }
 

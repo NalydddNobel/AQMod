@@ -31,12 +31,13 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public int combo;
 
+        private float armRotation;
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
         public virtual float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
 
-        public virtual bool SwingSwitchDir => AnimProgress > 0.4f && AnimProgress < 0.6f;
+        public virtual bool SwingSwitchDir => AnimProgress > 0.6f && AnimProgress < 0.7f;
 
         public override void SetDefaults()
         {
@@ -58,10 +59,9 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             var player = Main.player[Projectile.owner];
 
-            if (player.itemAnimation <= 1)
+            if (player.itemAnimation > 1 && player.ownedProjectileCounts[Type] <= 1)
             {
-                Projectile.Kill();
-                return;
+                Projectile.timeLeft = 2;
             }
 
             var aequus = player.GetModPlayer<AequusPlayer>();
@@ -88,17 +88,17 @@ namespace Aequus.Projectiles.Melee.Swords
                     progress = 0.5f;
                     forced50 = true;
                 }
-                float swingProgress = SwingProgress(progress);
+                float swingProgress = SwingProgress(Math.Clamp(progress, 0f, 1f));
                 AngleVector = GetOffsetVector(swingProgress);
                 Projectile.position = arm + AngleVector * hitboxOutwards;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
                 UpdateSwing(progress, swingProgress);
+                SetArmRotation(player, progress, swingProgress);
                 float s = Projectile.scale;
                 Projectile.scale = GetScale(swingProgress);
                 visualOutwards = (int)GetVisualOuter(progress, swingProgress);
-                SetArmRotation(player, AngleVector);
             }
 
             _init = true;
@@ -175,18 +175,37 @@ namespace Aequus.Projectiles.Melee.Swords
             swingDirection *= Projectile.direction;
         }
 
-        protected virtual void SetArmRotation(Player player, Vector2 rotation)
+        protected virtual void SetArmRotation(Player player, float progress, float swingProgress)
         {
-            float value = MathHelper.WrapAngle(rotation.ToRotation() + (float)Math.PI / 2f);
-            float angle = Math.Abs(value);
-            int dir = Math.Sign(value);
-            //if (dir != player.direction && damaging)
-            //{
-            //	player.direction = dir;
-            //}
-            // arm angling code, thanks Split!
-            int frame = (angle <= 0.6f) ? 1 : ((angle >= (MathHelper.PiOver2 - 0.1f) && angle <= MathHelper.PiOver4 * 3f) ? 3 : ((!(angle > MathHelper.Pi * 3f / 4f)) ? 2 : 4));
-            player.bodyFrame.Y = player.bodyFrame.Height * frame;
+            var diff = Main.player[Projectile.owner].MountedCenter - Projectile.Center;
+            if (Math.Sign(diff.X) == -player.direction || progress < 0.1f)
+            {
+                var v = diff;
+                v.X = Math.Abs(diff.X);
+                armRotation = v.ToRotation();
+            }
+
+            if (armRotation > 1.1f)
+            {
+                player.bodyFrame.Y = 56;
+            }
+            else if (armRotation > 0.5f)
+            {
+                player.bodyFrame.Y = 56 * 2;
+            }
+            else if (armRotation < -0.5f)
+            {
+                player.bodyFrame.Y = 56 * 4;
+            }
+            else
+            {
+                player.bodyFrame.Y = 56 * 3;
+            }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
         }
 
         public override void SendExtraAI(BinaryWriter writer)

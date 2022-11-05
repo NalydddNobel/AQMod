@@ -18,8 +18,8 @@ namespace Aequus.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
+            Projectile.width = 120;
+            Projectile.height = 120;
             Projectile.timeLeft = 360;
             Projectile.friendly = true;
             Projectile.tileCollide = false;

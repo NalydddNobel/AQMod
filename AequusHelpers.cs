@@ -305,7 +305,7 @@ namespace Aequus
             int tileRangeY = Player.tileRangeY;
             Player.tileRangeX += 15;
             Player.tileRangeY += 15;
-            bool value = player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY);
+            bool value = player.IsInTileInteractionRange(x, y);
             Player.tileRangeX = tileRangeX;
             Player.tileRangeY = tileRangeY;
             return value;
