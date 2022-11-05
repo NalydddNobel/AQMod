@@ -1456,7 +1456,8 @@ Mods: {
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
-			roneBuff: 扫描者无人机
+			DroneBuff: 扫描者无人机
+			FamiliarBuff: 你熟悉的东西
 			OmegaStariteBuff: 迷你终末之星
 			TorraBuff: 潮流眼球
 			RedSpriteBuff: 红色精灵
@@ -1732,6 +1733,8 @@ Mods: {
 		}
 
 		MapObject: {
+			HypnoticPearl: 催眠珍珠
+			Pearl: 珍珠
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
 			XenonMushroom: 氙蘑菇
