@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee
@@ -17,8 +18,8 @@ namespace Aequus.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 20;
-            Projectile.height = 20;
+            Projectile.width = 40;
+            Projectile.height = 40;
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.alpha = 0;
@@ -27,8 +28,8 @@ namespace Aequus.Projectiles.Melee
             Projectile.DamageType = DamageClass.Melee;
             Projectile.tileCollide = false;
             Projectile.friendly = true;
-            Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 24;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 32;
             Projectile.manualDirectionChange = true;
             Projectile.ignoreWater = true;
         }
@@ -39,7 +40,7 @@ namespace Aequus.Projectiles.Melee
             float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee);
             if (stabLength == 0f)
             {
-                stabLength = 32f * speedMultiplier;
+                stabLength = 34f * speedMultiplier;
                 Projectile.netUpdate = true;
             }
             var playerCenter = player.RotatedRelativePoint(player.MountedCenter, true);
@@ -57,8 +58,8 @@ namespace Aequus.Projectiles.Melee
                     AequusHelpers.CappedMeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
-                Projectile.ai[0] = 1f + (float)Math.Sin(player.itemAnimation / (float)player.itemAnimationMax * MathHelper.Pi) * stabLength;
-                Projectile.ai[0] += 25;
+                Projectile.ai[0] = (float)Math.Sin((1f - player.itemAnimation / (float)player.itemAnimationMax) * (MathHelper.PiOver4 * 3f)) * stabLength;
+                Projectile.ai[0] += 2;
                 //if (player.itemAnimation < player.itemAnimationMax / 3f)
                 //{
                 //    Projectile.ai[0] = MathHelper.Lerp(Projectile.ai[0], 0f, MathHelper.Clamp(lerpAmount + 0.55f, 0.8f, 1f));
@@ -77,7 +78,14 @@ namespace Aequus.Projectiles.Melee
             Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
             Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4 * Projectile.spriteDirection;
+            if (Projectile.spriteDirection == -1)
+                Projectile.rotation += MathHelper.Pi;
+            var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Grass, 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
+            d.velocity *= 0.1f;
+            d.velocity += Vector2.Normalize(Projectile.velocity).UnNaN() * 1.35f;
+            d.fadeIn = d.scale + 0.1f;
+            d.noGravity = true;
             player.ChangeDir(Projectile.direction);
         }
 
@@ -85,9 +93,13 @@ namespace Aequus.Projectiles.Melee
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var drawColor = Projectile.GetAlpha(lightColor);
-            var swordTip = Projectile.Center;
+            var swordTip = Projectile.Center + Vector2.Normalize(Projectile.velocity) * Projectile.Size / 2f;
             var origin = new Vector2(texture.Width, 0f);
-            var effects = SpriteEffects.None;
+            if (Projectile.spriteDirection == -1)
+            {
+                origin = Vector2.Zero;
+            }
+            var effects = Projectile.spriteDirection.ToSpriteEffect();
             Main.EntitySpriteDraw(texture, swordTip - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
         }

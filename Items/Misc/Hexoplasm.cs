@@ -23,5 +23,19 @@ namespace Aequus.Items.Misc
         {
             return new Color(200, 200, 200, 0);
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Ectoplasm)
+                .AddIngredient(ItemID.SoulofNight)
+                .AddTile(TileID.MythrilAnvil)
+                .TryRegisterAfter(ItemID.SpectreBar);
+            Recipe.Create(ItemID.Ectoplasm)
+                .AddIngredient(Type)
+                .AddIngredient(ItemID.SoulofLight)
+                .AddTile(TileID.MythrilAnvil)
+                .TryRegisterAfter(ItemID.SpectreBar);
+        }
     }
 }

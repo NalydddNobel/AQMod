@@ -208,7 +208,7 @@ namespace Aequus.Content.Necromancy
                     if (parentZombie.isZombie)
                     {
                         info.SetZombieNPCInfo(npc, zombie);
-                        zombie.OnSpawnZombie(npc);
+                        zombie.ApplyStaticStats(npc);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             PacketSystem.SyncNecromancyOwner(npc.whoAmI, info.Player);
@@ -566,16 +566,26 @@ namespace Aequus.Content.Necromancy
             myZombie.zombieTimer = 1;
             myZombie.zombieTimerMax = 1;
             int myPriority = myZombie.DespawnPriority(npc);
-            for (int i = 0; i < Main.maxNPCs; i++)
+            var myAequus = Main.player[myZombie.zombieOwner].Aequus();
+            myZombie.ApplyStaticStats(npc);
+            int slotsToConsume = myZombie.slotsConsumed;
+            if (myAequus.ghostSlotsOld + slotsToConsume >= myAequus.ghostSlotsMax)
             {
-                if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == myZombie.zombieOwner && zombie.slotsConsumed > 0)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    int priority = zombie.DespawnPriority(Main.npc[i]);
-                    if (priority > myPriority)
+                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == myZombie.zombieOwner && zombie.slotsConsumed > 0)
                     {
-                        return;
+                        int priority = zombie.DespawnPriority(Main.npc[i]);
+                        if (priority < myPriority)
+                        {
+                            slotsToConsume -= zombie.slotsConsumed;
+                            if (slotsToConsume <= 0)
+                                break;
+                        }
                     }
                 }
+                if (slotsToConsume > 0)
+                    return;
             }
             int n = NPC.NewNPC(npc.GetSource_Death("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
             if (n < 200)
@@ -605,7 +615,7 @@ namespace Aequus.Content.Necromancy
             zombie.renderLayer = renderLayer;
             zombie.ghostSpeed = ghostSpeed;
             zombie.ghostDamage = ghostDamage;
-            zombie.OnSpawnZombie(zombieNPC);
+            zombie.ApplyStaticStats(zombieNPC);
             zombieNPC.Center = position;
             zombieNPC.velocity = velocity * 0.25f;
             zombieNPC.direction = direction;
@@ -627,7 +637,7 @@ namespace Aequus.Content.Necromancy
             playSound = true;
         }
 
-        public void OnSpawnZombie(NPC npc)
+        public void ApplyStaticStats(NPC npc)
         {
             slotsConsumed = NecromancyDatabase.TryGet(npc, out var g) ? g.slotsUsed.GetValueOrDefault(1) : 0;
         }

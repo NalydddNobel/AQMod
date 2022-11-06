@@ -374,7 +374,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
             }
             if (Projectile.alpha < 150 || hasValidTarget)
-                Projectile.damage = 1;
+                Projectile.damage = 50;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 

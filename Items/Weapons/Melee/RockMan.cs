@@ -1,5 +1,6 @@
 ﻿using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,10 +19,10 @@ namespace Aequus.Items.Weapons.Melee
             Item.width = 30;
             Item.height = 30;
             Item.DamageType = DamageClass.Melee;
-            Item.damage = 20;
-            Item.knockBack = 3f;
-            Item.useAnimation = 24;
-            Item.useTime = 24;
+            Item.damage = 28;
+            Item.knockBack = 5f;
+            Item.useAnimation = 15;
+            Item.useTime = 15;
             Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Blue;
@@ -45,7 +46,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f));
+            velocity = velocity.RotatedBy((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) * 0.15f);
             position += Vector2.Normalize(velocity) * 10f;
         }
     }

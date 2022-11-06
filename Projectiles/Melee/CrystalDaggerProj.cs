@@ -17,8 +17,8 @@ namespace Aequus.Projectiles.Melee
 
         public override void SetDefaults()
         {
-            Projectile.width = 20;
-            Projectile.height = 20;
+            Projectile.width = 36;
+            Projectile.height = 36;
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.alpha = 0;
@@ -71,9 +71,9 @@ namespace Aequus.Projectiles.Melee
                 {
                     Projectile.ai[0] = MathHelper.Lerp(Projectile.ai[0], stabLength, MathHelper.Clamp(lerpAmount + 0.55f, 0.8f, 1f));
 
-                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
+                    var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
                     d.velocity *= 0.1f;
-                    d.velocity += Vector2.Normalize(-Projectile.velocity).UnNaN() * 1.35f;
+                    d.velocity += Vector2.Normalize(Projectile.velocity).UnNaN() * 1.35f;
                 }
             }
             if (player.itemAnimation == 0)

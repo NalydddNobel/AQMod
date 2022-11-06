@@ -200,6 +200,7 @@ Mods: {
 			HailstormStaff: Hailstorm Staff
 
 			# Soul Candles
+			DragonsBreath: Dragon's Last Breath
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
 			PixieCandle: Fallen Angel
@@ -855,6 +856,11 @@ Mods: {
 				Uses half a minion slot
 				'''
 
+			DragonsBreath: 
+				'''
+				Summon a phantasmal dragon to fight for you
+				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
+				'''
 			CrimsonCandle:
 				'''
 				Summons a blood crawler to fight for you

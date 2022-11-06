@@ -109,7 +109,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             return true;
         }
 
-        public void SpawnGhost(Player player)
+        public virtual void SpawnGhost(Player player)
         {
             var position = Main.MouseWorld;
             player.LimitPointToPlayerReachableArea(ref position);
