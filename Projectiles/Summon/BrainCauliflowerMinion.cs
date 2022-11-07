@@ -1,5 +1,7 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +12,7 @@ namespace Aequus.Projectiles.Summon
     {
         public override void SetStaticDefaults()
         {
+            Main.projFrames[Type] = 7;
             Main.projPet[Type] = true;
 
             ProjectileID.Sets.MinionTargettingFeature[Type] = true;
@@ -59,16 +62,17 @@ namespace Aequus.Projectiles.Summon
             }
 
             Projectile.gfxOffY = (int)AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f - minionPos * 0.5f, -3f, 0f);
+            Projectile.LoopingFrame(5);
             Projectile.CollideWithOthers();
-            Projectile.rotation = Projectile.velocity.X * 0.05f;
+            Projectile.rotation = Projectile.velocity.X * 0.03f;
             switch ((int)Projectile.ai[0])
             {
                 case 0:
                     {
                         var goalPosition = IdlePosition(Main.player[Projectile.owner], leader, minionPos, count);
-                        float speed = Projectile.GetMinionReturnSpeed(8f, 1.25f);
+                        float speed = Projectile.GetMinionReturnSpeed(12f, 1.25f);
                         Projectile.tileCollide = false;
-                        int target = Projectile.FindTargetWithLineOfSight(1200f);
+                        int target = Projectile.FindTargetWithLineOfSight(600f);
                         if (target != -1)
                         {
                             Projectile.ai[0] = 1f;
@@ -82,7 +86,7 @@ namespace Aequus.Projectiles.Summon
                             Projectile.spriteDirection = Main.player[Projectile.owner].direction;
                             break;
                         }
-                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(goalPosition - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * speed, 0.02f);
+                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(goalPosition - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * speed, 0.05f);
                         if (Projectile.localAI[1] <= 0)
                         {
                             Projectile.spriteDirection = Projectile.direction;
@@ -96,10 +100,10 @@ namespace Aequus.Projectiles.Summon
 
                 case 1:
                     {
-                        int target = Projectile.FindTargetWithLineOfSight(1800f);
+                        int target = Projectile.FindTargetWithLineOfSight(1000f);
                         if (target == -1)
                         {
-                            target = Projectile.FindTargetWithinRange(1000f)?.whoAmI ?? -1;
+                            target = Projectile.FindTargetWithinRange(800f)?.whoAmI ?? -1;
                         }
                         if (target == -1 || Main.player[Projectile.owner].Distance(Main.npc[target].Center) > 2000f)
                         {
@@ -109,7 +113,6 @@ namespace Aequus.Projectiles.Summon
                             break;
                         }
 
-                        Projectile.ai[1]--;
                         if (Projectile.ai[1] < -80f)
                         {
                             Projectile.ai[1] = Main.rand.Next(10);
@@ -119,12 +122,22 @@ namespace Aequus.Projectiles.Summon
                             Projectile.velocity -= velocity;
                         }
                         var goalPosition = Main.npc[target].Center + -Projectile.DirectionTo(Main.npc[target].Center) * 180f;
-                        if ((Projectile.Center - goalPosition).Length() <= 30f)
+                        if ((Projectile.Center - Main.npc[target].Center).Length() <= 200f)
                         {
+                            Projectile.ai[1] -= 1.5f;
+                            for (int i = 0; i < 4; i++)
+                            {
+                                if (Main.rand.NextBool((int)Math.Max(10 + Projectile.ai[1] / 10f, 1)))
+                                {
+                                    var off = Main.rand.NextVector2Unit() * Main.rand.NextFloat(Math.Max(80 + Projectile.ai[1], 1), Math.Max(100 + Projectile.ai[1], 1));
+                                    var spawnLoc = new Vector2(Projectile.position.X + Projectile.width / 2f, Projectile.position.Y - Projectile.height / 4f) + off;
+                                    Dust.NewDustPerfect(spawnLoc, ModContent.DustType<MonoDust>(), off / Main.rand.NextFloat(-12f, -8f), newColor: Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.33f, 0.66f)).UseA(0), Scale: Main.rand.NextFloat(0.75f, 1.5f));
+                                }
+                            }
                             Projectile.velocity *= 0.9f;
                             break;
                         }
-                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(goalPosition - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 10f, 0.02f);
+                        Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(goalPosition - Projectile.Center).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 16f, 0.05f);
                         Projectile.spriteDirection = Projectile.direction;
                     }
                     break;

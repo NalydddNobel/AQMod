@@ -137,6 +137,7 @@ namespace Aequus.Projectiles.Summon
                 target.StrikeNPC(2000, 1f, Projectile.direction);
                 Projectile.ai[1]++;
             }
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
         }
 
         public override bool PreDraw(ref Color lightColor)

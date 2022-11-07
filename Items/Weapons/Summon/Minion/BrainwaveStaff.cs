@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
 
         public override void SetDefaults()
         {
-            Item.damage = 42;
+            Item.damage = 32;
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
             Item.width = 26;

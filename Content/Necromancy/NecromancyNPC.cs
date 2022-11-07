@@ -530,7 +530,7 @@ namespace Aequus.Content.Necromancy
             var myAequus = Main.player[myZombie.zombieOwner].Aequus();
             myZombie.ApplyStaticStats(npc);
             int slotsToConsume = myZombie.slotsConsumed;
-            if (myAequus.ghostSlotsOld + slotsToConsume >= myAequus.ghostSlotsMax)
+            if (myAequus.ghostSlotsOld + slotsToConsume > myAequus.ghostSlotsMax)
             {
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
