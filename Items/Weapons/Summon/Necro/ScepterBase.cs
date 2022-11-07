@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class BaseScepter : ModItem
+    public abstract class ScepterBase : ModItem
     {
         public override void SetStaticDefaults()
         {

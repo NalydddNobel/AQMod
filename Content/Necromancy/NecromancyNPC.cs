@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
-using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -48,6 +48,7 @@ namespace Aequus.Content.Necromancy
         public static PlayerTargetHack TargetHack { get; set; }
 
         public int ghostDebuffDOT;
+        public float pandoraBox;
         public int conversionChance;
 
         public bool isZombie;
@@ -223,7 +224,7 @@ namespace Aequus.Content.Necromancy
             if (isZombie)
             {
                 var color = Color.White;
-                int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
                 if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                 {
                     color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
@@ -243,6 +244,10 @@ namespace Aequus.Content.Necromancy
 
         public override void ResetEffects(NPC npc)
         {
+            if (!npc.HasBuff<PandorasCurse>())
+            {
+                pandoraBox = 1f;
+            }
             conversionChance = 0;
             if (ghostDebuffDOT > 0)
             {
@@ -389,11 +394,6 @@ namespace Aequus.Content.Necromancy
                 var aequus = player.GetModPlayer<AequusPlayer>();
                 aequus.ghostSlots += slotsConsumed;
 
-                if (zombieOwner == Main.myPlayer && aequus.accPandorasBox != null)
-                {
-                    UsePandorasBox(npc, aequus, aequus.accPandorasBox, Zombie.NPCTarget);
-                }
-
                 if (isZombie && aequus.setGravetenderGhost == npc.whoAmI && !stats.DontModifyVelocity)
                 {
                     npc.StatSpeed() *= 1.5f;
@@ -404,7 +404,7 @@ namespace Aequus.Content.Necromancy
                     if (Main.rand.NextBool(6))
                     {
                         var color = new Color(50, 150, 255, 100);
-                        int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                        int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
                         if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                         {
                             color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
@@ -442,39 +442,12 @@ namespace Aequus.Content.Necromancy
             Zombie.Reset();
         }
 
-        public void UsePandorasBox(NPC npc, AequusPlayer aequus, Item pandorasBox, int target)
-        {
-            if (target == -1)
-            {
-                return;
-            }
-
-            if (Main.rand.NextBool(aequus.pandorasBoxChance))
-            {
-                PandorasBox_SpawnProjectile(npc, aequus, pandorasBox, target, Main.rand.Next(PandorasBox.ProjectileTypesShot));
-            }
-        }
-        public void PandorasBox_SpawnProjectile(NPC npc, AequusPlayer aequus, Item pandorasBox, int target, int projectileType)
-        {
-            var to = npc.DirectionTo(Main.npc[target].Center);
-            float speed = 8f;
-            if (projectileType == ProjectileID.DemonScythe)
-            {
-                speed = 0.2f;
-            }
-            int damage = 40;
-            damage += aequus.Player.GetWeaponDamage(pandorasBox);
-            Projectile.NewProjectileDirect(npc.GetSource_Accessory(pandorasBox), npc.Center, to * speed, projectileType, damage, 1f, Main.myPlayer);
-        }
-
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             if (ghostDebuffDOT > 0)
             {
-                int dot = ghostDebuffDOT / AequusHelpers.NPCREGEN;
-                npc.AddRegen(-dot);
-                if (damage < dot)
-                    damage = dot;
+                npc.AddRegen(-(int)(ghostDebuffDOT * pandoraBox));
+                damage = Math.Max(damage, ghostDebuffDOT / 20);
             }
         }
 
@@ -482,19 +455,7 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie && !GhostOutlineRenderer.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
-                int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
-                if (GhostOutlineRenderer.necromancyRenderers.Length <= index)
-                {
-                    Array.Resize(ref GhostOutlineRenderer.necromancyRenderers, index + 1);
-                }
-
-                if (GhostOutlineRenderer.necromancyRenderers[index] == null)
-                {
-                    int team = Main.player[zombieOwner].team;
-                    GhostOutlineRenderer.necromancyRenderers[index] = new GhostOutlineRenderer(team, index, () => Main.teamColor[team]);
-                }
-
-                GhostOutlineRenderer.necromancyRenderers[index].Add(npc.whoAmI);
+                GhostOutlineRenderer.Target(Main.player[zombieOwner], renderLayer).Add(npc.whoAmI);
             }
             return true;
         }
@@ -546,7 +507,7 @@ namespace Aequus.Content.Necromancy
             if (zombieOwner == Main.myPlayer)
             {
                 color = Color.White;
-                int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[zombieOwner], renderLayer);
+                int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
                 if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                 {
                     color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();

@@ -31,7 +31,7 @@ namespace Aequus.Common.Utilities
         }
         public float Rand(float max)
         {
-            return AequusHelpers.FromByte(Rand(), max);
+            return Math.Min(AequusHelpers.FromByte(Rand(), max), max);
         }
         public float Rand(float min, float max)
         {

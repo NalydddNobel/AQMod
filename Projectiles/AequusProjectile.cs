@@ -29,7 +29,6 @@ namespace Aequus.Projectiles
         public static int pIdentity;
         public static int pNPC;
 
-        public bool fishDamage;
         public bool heatDamage;
         public ushort frenzyTime;
 
@@ -416,7 +415,7 @@ namespace Aequus.Projectiles
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (fishDamage && (target.wet || target.HasBuff(BuffID.Wet)))
+            if (sourceItemUsed == ModContent.ItemType<StarPhish>() && (target.wet || target.HasBuff(BuffID.Wet)))
             {
                 damage = (int)(damage * 1.25f);
             }
@@ -448,7 +447,7 @@ namespace Aequus.Projectiles
             }
             if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
             {
-                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid > 0 && Main.rand.NextBool(Math.Max(6 / Main.player[projectile.owner].Aequus().accFrostburnTurretSquid, 1)))
+                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid > 0 && Main.rand.NextBool(Math.Max(3 / Main.player[projectile.owner].Aequus().accFrostburnTurretSquid, 1)))
                 {
                     target.AddBuff(BuffID.Frostburn2, 240 * Main.player[projectile.owner].Aequus().accFrostburnTurretSquid);
                 }
@@ -529,7 +528,6 @@ namespace Aequus.Projectiles
 
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            bitWriter.WriteBit(fishDamage);
             binaryWriter.Write(timeAlive);
             bitWriter.WriteBit(frenzyTime > 0);
             if (frenzyTime > 0)
@@ -570,7 +568,6 @@ namespace Aequus.Projectiles
 
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
-            fishDamage = bitReader.ReadBit();
             timeAlive = binaryReader.ReadInt32();
             if (bitReader.ReadBit())
             {

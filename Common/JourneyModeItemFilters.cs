@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Items.Weapons.Summon.Necro;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;
@@ -19,7 +19,7 @@ namespace Aequus.Common
 
         private static bool Weapon_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.Weapon.orig_FitsFilter orig, ItemFilters.Weapon self, Item entry)
         {
-            return orig(self, entry) || entry.ModItem is BaseSoulCandle;
+            return orig(self, entry) || entry.ModItem is SoulCandleBase;
         }
         private static bool MiscAccessories_FitsFilter(On.Terraria.GameContent.Creative.ItemFilters.MiscAccessories.orig_FitsFilter orig, ItemFilters.MiscAccessories self, Item entry)
         {

@@ -1,6 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
-using Aequus.Projectiles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -8,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    public class StarPhish : ModItem, ItemHooks.IOnSpawnProjectile
+    public class StarPhish : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -48,11 +46,6 @@ namespace Aequus.Items.Weapons.Ranged
                 Main.dust[d].velocity.Y = v.Y * Main.rand.NextFloat(6f, 12f);
             }
             return true;
-        }
-
-        public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
-        {
-            aequusProjectile.fishDamage = true;
         }
     }
 }

@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class Revenant : BaseScepter
+    public class Revenant : ScepterBase
     {
         public override void SetStaticDefaults()
         {

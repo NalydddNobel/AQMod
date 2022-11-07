@@ -199,6 +199,10 @@ Mods: {
 			DisturbanceStaff: Disturbance Staff
 			HailstormStaff: Hailstorm Staff
 
+			# Soul Tapers
+			PrimeTaperCandle: Tyranny's Resurgance
+			SkeletronTaperCandle: Malediction
+
 			# Soul Candles
 			DragonsBreath: Dragon's Last Breath
 			CrimsonCandle: Flesh Lighter
@@ -428,6 +432,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			VictorsReward: Victor's Reward
 			NameTag: Name Tag
 			FertilePowder: Fertilizer Box
 			WhitePhial: White Phial
@@ -636,7 +641,7 @@ Mods: {
 			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
 				'''
-				Your ghosts may fire a random projectile at enemies
+				Enemies hit by ghosts will take extra damage from ghost minion conversion debuffs
 				Increases the speed of ghost projectiles
 				'''
 			BloodiedBucket: 
@@ -675,7 +680,7 @@ Mods: {
 				'''
 				Automatically use a sentry staff while you are in combat
 				Increase your max number of sentries by 1
-				Sentry attacks have a small chance to inflict frostburn
+				Sentry attacks have a small chance to inflict frostbite
 				'''
 			SentrySquid:
 				'''
@@ -731,7 +736,7 @@ Mods: {
 			Slice:
 				'''
 				Gains speed over time and fires piercing snowflakes
-				Inflicts frostburn on hit
+				Inflicts frostbite on hit
 				'''
 			Vrang: Throw 3 boomerangs at once
 			Mallet:
@@ -794,12 +799,12 @@ Mods: {
 				'''
 				You will fall slower while holding this, hold down to fall at regular speed
 				Right click to perform a double jump
-				'Looks quite menacing'
+				'Nothing bad ever happens to {PlayerName}!'
 				'''
 			Narrizuul:
 				'''
 				A relic birthed in an alternate universe
-				{$Mods.Aequus.ItemTooltip.Misc.Nalyddd}
+				'Smells like roses'
 				'''
 			StudiesOfTheInkblot:
 				'''
@@ -855,6 +860,10 @@ Mods: {
 				Summons a snowflake to fight for you
 				Uses half a minion slot
 				'''
+
+			# Soul Tapers
+			PrimeTaperCandle: Applies Skeletron Prime's arms to a ghost minion
+			SkeletronTaperCandle: Applies Skeletron's arms to a ghost minion
 
 			DragonsBreath: 
 				'''
@@ -1013,6 +1022,11 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			VictorsReward: 
+				'''
+				Permanently allows you to respawn at maximum life
+				'Granted to the ones who go the extra mile!'
+				'''
 			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
 			FertilePowder: Causes all nearby tiles to instantly grow
 			WhitePhial: Permanently increase buff duration by 25% 

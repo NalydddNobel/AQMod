@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class ZombieScepter : BaseScepter
+    public class ZombieScepter : ScepterBase
     {
         public override void SetDefaults()
         {
@@ -26,13 +26,13 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterAfter((ItemID.RainbowRod));
+                .TryRegisterAfter(ItemID.RainbowRod);
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 4)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterAfter((ItemID.RainbowRod));
+                .TryRegisterAfter(ItemID.RainbowRod);
         }
     }
 }

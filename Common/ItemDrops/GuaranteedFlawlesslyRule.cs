@@ -38,6 +38,7 @@ namespace Aequus.Common.ItemDrops
                 if (info.npc.playerInteraction[i] && !flags[i])
                 {
                     anyoneNoHit = true;
+                    break;
                 }
             }
             if (anyoneNoHit || info.player.RollLuck(10) <= 1)

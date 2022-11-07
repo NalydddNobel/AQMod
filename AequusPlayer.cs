@@ -74,6 +74,12 @@ namespace Aequus
 
         public int CursorDye { get => cursorDyeOverride > 0 ? cursorDyeOverride : cursorDye; set => cursorDye = value; }
 
+        /// <summary>
+        /// Enabled by <see cref="VictorsReward"/>
+        /// </summary>
+        [SaveData("MaxLifeRespawn")]
+        [SaveDataAttribute.IsListedBoolean]
+        public bool maxLifeRespawnReward;
         [SaveData("Scammer")]
         [SaveDataAttribute.IsListedBoolean]
         public bool hasUsedRobsterScamItem;
@@ -225,8 +231,7 @@ namespace Aequus
         public int setGravetenderCheck;
         public int setGravetenderGhost;
 
-        public Item accPandorasBox;
-        public int pandorasBoxChance;
+        public int accPandorasBox;
 
         public Item accSentrySquid;
         public int turretSquidTimer;
@@ -310,7 +315,7 @@ namespace Aequus
         /// </summary>
         public uint netInteractionCooldown;
 
-        public int heldSoulCandle;
+        public int soulLimit;
 
         public int turretSlotCount;
 
@@ -532,6 +537,14 @@ namespace Aequus
             }
         }
 
+        public override void OnRespawn(Player player)
+        {
+            if (maxLifeRespawnReward)
+            {
+                player.statLife = Math.Max(player.statLife, player.statLifeMax2);
+            }
+        }
+
         public void ResetArmor()
         {
             setSeraphim = null;
@@ -553,8 +566,7 @@ namespace Aequus
             accLittleInferno = 0;
             accRitualSkull = false;
             accRamishroom = null;
-            accPandorasBox = null;
-            pandorasBoxChance = 0;
+            accPandorasBox = 0;
             bloodDiceMoney = 0;
             bloodDiceDamage = 0f;
             accHyperCrystal = null;
@@ -623,7 +635,7 @@ namespace Aequus
             debuffDuration = 1f;
             luckRerolls = 0;
             antiGravityItemRadius = 0f;
-            heldSoulCandle = 0;
+            soulLimit = 0;
             pickTileDamage = 1f;
             ghostSlotsMax = 1;
             ghostProjExtraUpdates = 0;
@@ -1596,7 +1608,7 @@ namespace Aequus
         /// <param name="proj"></param>
         public void NecromancyHit(NPC target, Projectile proj)
         {
-            if (candleSouls < heldSoulCandle)
+            if (candleSouls < soulLimit)
             {
                 target.AddBuffToHeadOrSelf(ModContent.BuffType<SoulStolen>(), 300);
             }

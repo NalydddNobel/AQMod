@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -135,6 +136,17 @@ namespace Aequus.Items.Weapons.Magic
                 return true;
             }
             return false;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (var t in tooltips)
+            {
+                if (t.Name.StartsWith("Tooltip"))
+                {
+                    t.Text = AequusHelpers.FormatWith(t.Text, new { PlayerName = Main.LocalPlayer.name, });
+                }
+            }
         }
     }
 }

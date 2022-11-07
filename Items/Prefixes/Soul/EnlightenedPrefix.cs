@@ -1,23 +1,23 @@
-﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
+﻿using Aequus.Items.Weapons;
 using System;
 using Terraria;
 
-namespace Aequus.Items.Prefixes.SoulCandles
+namespace Aequus.Items.Prefixes.Soul
 {
-    public class BlessedPrefix : SoulCandlePrefix
+    public class EnlightenedPrefix : SoulWeaponPrefix
     {
         public override void Apply(Item item)
         {
-            if (item.ModItem is BaseSoulCandle candle)
+            if (item.ModItem is SoulWeaponBase candle)
             {
-                candle.ClearPrefix();
+                candle.ClearSoulFields();
                 candle.soulCost = Math.Max((int)(candle.soulCost * 1.25f), candle.soulCost + 1);
             }
         }
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult -= 0.1f;
+            valueMult -= 0.25f;
         }
     }
 }

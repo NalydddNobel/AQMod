@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class Insurgency : BaseScepter
+    public class Insurgency : ScepterBase
     {
         public override void SetDefaults()
         {
@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.MythrilAnvil)
-                .TryRegisterAfter((ItemID.RainbowRod));
+                .TryRegisterAfter(ItemID.RainbowRod);
         }
     }
 }

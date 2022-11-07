@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class FriendshipMagick : BaseScepter
+    public class FriendshipMagick : ScepterBase
     {
         public override void SetDefaults()
         {

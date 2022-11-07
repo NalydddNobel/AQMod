@@ -69,15 +69,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accPandorasBox = Item;
-            if (aequus.pandorasBoxChance == 0 || aequus.pandorasBoxChance < 140)
-            {
-                aequus.pandorasBoxChance = 140;
-            }
-            else
-            {
-                aequus.pandorasBoxChance = Math.Max(aequus.pandorasBoxChance / 2, 1);
-            }
+            aequus.accPandorasBox++;
             aequus.ghostProjExtraUpdates += 1;
         }
     }

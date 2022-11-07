@@ -111,7 +111,7 @@ namespace Aequus.Content.Necromancy
             if (isZombie)
             {
                 var color = Color.White;
-                int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[projectile.owner], renderLayer);
+                int index = GhostOutlineRenderer.TargetID(Main.player[projectile.owner], renderLayer);
                 if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                 {
                     color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
@@ -179,7 +179,7 @@ namespace Aequus.Content.Necromancy
                 NecromancyNPC.RestoreTarget();
                 if (Main.rand.NextBool(6))
                 {
-                    int index = GhostOutlineRenderer.GetScreenTargetIndex(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
+                    int index = GhostOutlineRenderer.TargetID(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
                     var color = new Color(50, 150, 255, 100);
                     if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
                     {
@@ -237,6 +237,21 @@ namespace Aequus.Content.Necromancy
                 zombieDebuffTier = reader.ReadSingle();
                 renderLayer = reader.ReadByte();
             }
+        }
+
+        public static bool AnyOwnedByNPC(NPC npc, int proj)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].friendly && Main.projectile[i].type == proj && Main.projectile[i].TryGetGlobalProjectile<NecromancyProj>(out var zombie))
+                {
+                    if (zombie.isZombie && zombie.zombieNPCOwner == npc.whoAmI)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

@@ -1,8 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics;
+using Aequus.Particles.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster.RedSpriteProjs
@@ -24,14 +28,16 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             Projectile.hostile = true;
             Projectile.aiStyle = -1;
             Projectile.ignoreWater = true;
-            Projectile.timeLeft = 16;
+            Projectile.timeLeft = 24;
+            Projectile.hide = true;
         }
 
         public override void AI()
         {
             var center = Projectile.Center;
-            float minimumLength = 280f;
+            float minimumLength = 128f;
             byte closest = Player.FindClosest(Projectile.position, Projectile.width, Projectile.height);
+            Projectile.alpha += 10;
             if (Main.player[closest].dead || !Main.player[closest].active)
             {
                 return;
@@ -40,11 +46,39 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             {
                 minimumLength = Main.player[closest].position.Y + Main.player[closest].height - center.Y;
             }
-            for (Projectile.ai[0] = minimumLength; Projectile.ai[0] < 1500f; Projectile.ai[0] += 4f)
+            Projectile.ai[0] = Math.Max(minimumLength, Projectile.ai[0]);
+            float maxLength = Projectile.ai[0] + 96f;
+            if ((Main.player[Main.myPlayer].Center - center).Length() < 1000f)
+            {
+                if ((int)Projectile.localAI[0] == 0)
+                {
+                    ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.5f);
+                    EffectsSystem.Shake.Set(12f, 0.9f);
+                    for (int i = 0; i < 20; i++)
+                    {
+                        var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),
+                            Main.rand.NextVector2Unit() * Main.rand.NextFloat(12f) + new Vector2(0f, 8f), newColor: Color.Orange.UseA(0), Scale: Main.rand.NextFloat(0.8f, 3f));
+                        d.noGravity = true;
+                    }
+                }
+                else if ((int)Projectile.localAI[0] == 1)
+                {
+                    ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.75f);
+                    EffectsSystem.Shake.Set(32f, 0.8f);
+                    for (int i = 0; i < 50; i++)
+                    {
+                        var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),
+                            Main.rand.NextVector2Unit(-MathHelper.Pi, MathHelper.Pi) * Main.rand.NextFloat(24f), newColor: Color.Orange.UseA(0), Scale: Main.rand.NextFloat(0.8f, 3.5f));
+                        d.noGravity = true;
+                    }
+                }
+            }
+            for (; Projectile.ai[0] < Math.Min(maxLength, 2500f); Projectile.ai[0] += 4f)
             {
                 if (!Collision.CanHit(center, 1, 1, new Vector2(center.X, center.Y + Projectile.ai[0]), 1, 1))
                 {
                     Projectile.ai[0] -= 4f;
+                    Projectile.localAI[0]++;
                     break;
                 }
             }
@@ -66,33 +100,43 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             return new Color(255, 255, 255, 255);
         }
 
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            behindNPCsAndTiles.Add(index);
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
-            var drawPosition = Projectile.Center;
+            var drawPosition = Projectile.Center + new Vector2(0f, 8f);
             var scale = new Vector2(Projectile.scale, Projectile.scale);
-            scale.X -= 1f - Projectile.timeLeft / 32f;
-            lightColor = Projectile.GetAlpha(lightColor);
+            //scale.X -= 1f - Projectile.timeLeft / 32f;
+            lightColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, 0);
             var orig = new Vector2(texture.Width / 2f, frame.Height - 4f);
-            float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
+            //float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
 
-            int separation = frame.Height - 6;
+            int separation = frame.Height - 4;
             var glow = TextureCache.Bloom[4].Value;
-            var glowScale = new Vector2(Projectile.ai[0] / glow.Width * 2f, scale.X * 2f);
-            var thunderGlowOrig = new Vector2(glow.Width / 4f, glow.Height / 2f);
-            var glowBright = new Color(200, 140, 30);
-            var glowDark = new Color(80, 20, 2, 0);
+            var glowScale = new Vector2(1f, scale.X * 2f);
+            var thunderGlowOrig = new Vector2(glow.Width / 2f, glow.Height / 2f);
+            var glowBright = new Color(200, 140, 30) * (float)Math.Pow(Projectile.Opacity, 3f);
+            var glowDark = new Color(80, 20, 2, 0) * (float)Math.Pow(Projectile.Opacity, 3f);
 
-            Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, Projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 20, 2, 0), Projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, new Vector2(glowScale.X, glowScale.Y * 1.5f), SpriteEffects.None, 0f);
+            var rand = EffectsSystem.EffectRand;
+            int r = rand.SetRand((int)Projectile.position.X);
+
+            if (Projectile.localAI[0] > 0f)
+                Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, Projectile.ai[0]) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(100, 20, 2, 0), Projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, new Vector2(glowScale.X, glowScale.Y * 1.5f), SpriteEffects.None, 0f);
 
             if (ClientConfig.Instance.HighQuality)
             {
-                var clr = new Color(255, 100, 0, 20);
+                var clr = new Color(255, 100, 0, 20) * (float)Math.Pow(Projectile.Opacity, 16f);
                 for (int i = 0; i < 8; i++)
                 {
+                    rand.SetRand((int)Projectile.position.X);
                     float length2 = Projectile.ai[0];
-                    var off = new Vector2(electric, 0f).RotatedBy(MathHelper.PiOver4 * i);
+                    var off = new Vector2(2f, 0f).RotatedBy(MathHelper.PiOver4 * i);
                     off.X *= scale.X;
                     while (true)
                     {
@@ -110,14 +154,19 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                         }
                         else
                         {
-                            frame.Y = (Main.rand.Next(2) + 1) * frame.Height;
+                            frame.Y = (rand.Rand() / 128 + 1) * frame.Height;
                             Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, clr, Projectile.rotation, orig, scale, SpriteEffects.None, 0f);
                         }
                     }
                 }
+                rand.SetRand((int)Projectile.position.X);
             }
 
             float length = Projectile.ai[0];
+
+            var glow2 = TextureCache.Bloom[0].Value;
+            var glow2Orig = glow2.Size() / 2f;
+            Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
 
             while (true)
             {
@@ -125,26 +174,29 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                 length -= separation;
                 if (length < separation)
                 {
-                    var glow2 = TextureCache.Bloom[0].Value;
-                    var glow2Orig = glow2.Size() / 2f;
-                    Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
                     frame.Y = 1 * frame.Height;
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, Projectile.rotation, orig, scale, SpriteEffects.None, 0f);
                     frame.Y = 0;
                     Main.spriteBatch.Draw(texture, drawPosition - Main.screenPosition, frame, lightColor, Projectile.rotation, orig, scale, SpriteEffects.None, 0f);
                     frame.Y = frame.Height * 3;
-                    Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, Projectile.ai[0] - frame.Height / 2f) - Main.screenPosition, null, glowDark, Projectile.rotation, glow2Orig, scale * 3f, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(texture, drawPosition + new Vector2(0f, Projectile.ai[0]) - Main.screenPosition, frame, lightColor, Projectile.rotation, orig, scale, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, Projectile.ai[0] - frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
+                    if (Projectile.localAI[0] > 0f)
+                    {
+                        Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, Projectile.ai[0] - frame.Height / 2f) - Main.screenPosition, null, glowDark, Projectile.rotation, glow2Orig, scale * 3f, SpriteEffects.None, 0f);
+                        Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, Projectile.ai[0] - frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
+                    }
                     break;
                 }
                 else
                 {
-                    frame.Y = (Main.rand.Next(2) + 1) * frame.Height;
+                    frame.Y = (rand.Rand() / 128 + 1) * frame.Height;
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, frame, lightColor, Projectile.rotation, orig, scale, SpriteEffects.None, 0f);
                 }
             }
-            Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, Projectile.ai[0] / 2f) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(255, 220, 20, 0), Projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, glowScale, SpriteEffects.None, 0f);
+            if (Projectile.localAI[0] > 0f)
+                Main.spriteBatch.Draw(glow, drawPosition + new Vector2(0f, Projectile.ai[0]) - Main.screenPosition, new Rectangle(0, 0, glow.Width / 2, glow.Height), new Color(255, 220, 20, 0), Projectile.rotation + MathHelper.PiOver2, thunderGlowOrig, glowScale, SpriteEffects.None, 0f);
+
+            rand.SetRand(r);
             return false;
         }
     }

@@ -5,8 +5,8 @@ using Aequus.Items.Pets;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Scepters;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration
@@ -86,41 +87,9 @@ namespace Aequus.Content.WorldGeneration
                     {
                         if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom || style == ChestType.RichMahogany)
                         {
-                            rockmanChests.Add(k);
-
-                            if (!placedItems.Contains(ModContent.ItemType<SwordCursor>()) || r.NextBool(20))
-                            {
-                                for (int i = 0; i < Chest.maxItems; i++)
-                                {
-                                    if (c.item[i].IsAir)
-                                    {
-                                        c.item[i].SetDefaults(ModContent.ItemType<SwordCursor>());
-                                        placedItems?.Add(ModContent.ItemType<SwordCursor>());
-                                        break;
-                                    }
-                                }
-                            }
-                            if (r.NextBool(5))
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
-
-                            switch (r.Next(5))
-                            {
-                                case 0:
-                                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
-                                    break;
-
-                                case 1:
-                                    c.Insert(ModContent.ItemType<BattleAxe>(), 1);
-                                    break;
-
-                                case 2:
-                                    c.Insert(ModContent.ItemType<Bellows>(), 1);
-                                    break;
-                            }
+                            UndergroundChestLoot(k, c, rockmanChests, placedItems, r);
                         }
-                        else if (style == ChestType.LockedGold)
+                        else if (style == ChestType.LockedGold && Main.wallDungeon[Main.tile[c.x, c.y].WallType])
                         {
                             int choice = -1;
                             for (int i = 0; i < 4; i++)
@@ -156,7 +125,7 @@ namespace Aequus.Content.WorldGeneration
                                 placedItems.Add(ModContent.ItemType<CrystalDagger>());
                             }
                         }
-                        else if (style == ChestType.Skyware)
+                        else if (style == ChestType.Skyware || (style == ChestType.LockedGold && !Main.wallDungeon[Main.tile[c.x, c.y].WallType]))
                         {
                             if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool())
                             {
@@ -169,11 +138,7 @@ namespace Aequus.Content.WorldGeneration
                     {
                         if (style == ChestType.DeadMans)
                         {
-                            rockmanChests.Add(k);
-                            if (r.NextBool())
-                            {
-                                AddGlowCore(c, placedItems);
-                            }
+                            UndergroundChestLoot(k, c, rockmanChests, placedItems, r);
                         }
                         else if (style == ChestType.Sandstone)
                         {
@@ -199,6 +164,42 @@ namespace Aequus.Content.WorldGeneration
                 var c = Main.chest[rockmanChests[r.Next(rockmanChests.Count)]];
                 AequusWorld.Structures.Add("RockManChest", new Point(c.x, c.y));
                 c.Insert(ModContent.ItemType<RockMan>(), r.Next(Chest.maxItems - 1));
+            }
+        }
+        public static void UndergroundChestLoot(int k, Chest c, List<int> rockmanChests, HashSet<int> placedItems, UnifiedRandom r)
+        {
+            rockmanChests.Add(k);
+
+            if (!placedItems.Contains(ModContent.ItemType<SwordCursor>()) || r.NextBool(20))
+            {
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (c.item[i].IsAir)
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<SwordCursor>());
+                        placedItems?.Add(ModContent.ItemType<SwordCursor>());
+                        break;
+                    }
+                }
+            }
+            if (r.NextBool(5))
+            {
+                AddGlowCore(c, placedItems);
+            }
+
+            switch (r.Next(5))
+            {
+                case 0:
+                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
+                    break;
+
+                case 1:
+                    c.Insert(ModContent.ItemType<BattleAxe>(), 1);
+                    break;
+
+                case 2:
+                    c.Insert(ModContent.ItemType<Bellows>(), 1);
+                    break;
             }
         }
         public static bool AddGlowCore(Chest c, HashSet<int> placedItems = null)

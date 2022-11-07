@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class Osiris : BaseScepter
+    public class Osiris : ScepterBase
     {
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                 .AddIngredient(ItemID.DarkShard, 2)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
-                .TryRegisterAfter((ItemID.RainbowRod));
+                .TryRegisterAfter(ItemID.RainbowRod);
         }
     }
 }

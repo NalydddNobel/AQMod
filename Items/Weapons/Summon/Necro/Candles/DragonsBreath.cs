@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public class DragonsBreath : BaseSoulCandle
+    public class DragonsBreath : SoulCandleBase
     {
         public override void SetStaticDefaults()
         {

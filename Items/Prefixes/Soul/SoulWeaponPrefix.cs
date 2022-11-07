@@ -1,14 +1,14 @@
-﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
+﻿using Aequus.Items.Weapons.Summon.Necro;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Items.Prefixes.SoulCandles
+namespace Aequus.Items.Prefixes.Soul
 {
-    public abstract class SoulCandlePrefix : ModPrefix
+    public abstract class SoulWeaponPrefix : ModPrefix
     {
-        private static List<SoulCandlePrefix> Prefixes;
+        private static List<SoulWeaponPrefix> Prefixes;
 
         public override void SetStaticDefaults()
         {
@@ -19,7 +19,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
         {
             if (Prefixes == null)
             {
-                Prefixes = new List<SoulCandlePrefix>();
+                Prefixes = new List<SoulWeaponPrefix>();
             }
             Prefixes.Add(this);
             OnLoad();
@@ -30,7 +30,7 @@ namespace Aequus.Items.Prefixes.SoulCandles
 
         public override bool CanRoll(Item item)
         {
-            return item.ModItem is BaseSoulCandle;
+            return item.ModItem is SoulCandleBase;
         }
 
         public static ModPrefix ChoosePrefix(Item item, UnifiedRandom rand)

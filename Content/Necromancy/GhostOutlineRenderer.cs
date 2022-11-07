@@ -3,6 +3,7 @@ using Aequus.Graphics.RenderTargets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -12,9 +13,10 @@ namespace Aequus.Content.Necromancy
     public class GhostOutlineRenderer : ScreenTarget
     {
         public static StaticMiscShaderInfo Necromancy { get; private set; }
-        public static GhostOutlineRenderer[] necromancyRenderers;
+        internal static GhostOutlineRenderer[] necromancyRenderers;
         public static GhostOutlineRenderer[] NecromancyRenderers { get => necromancyRenderers; }
 
+        public readonly List<Projectile> Projs;
         public readonly DrawList NPCs;
         public readonly int Team;
         public int Index;
@@ -55,6 +57,7 @@ namespace Aequus.Content.Necromancy
             Index = index;
             DrawColor = color;
             NPCs = new DrawList();
+            Projs = new List<Projectile>();
         }
 
         public override void Load(Mod mod)
@@ -106,12 +109,19 @@ namespace Aequus.Content.Necromancy
                     {
                         Main.instance.DrawNPC(n, Main.npc[n].behindTiles);
                     }
+                    foreach (var p in Projs)
+                    {
+                        if (!p.active)
+                            continue;
+                        Main.instance.DrawProj(p.whoAmI);
+                    }
                 }
                 catch
                 {
                 }
                 RenderingNow = false;
                 DrawList.ForceRender = false;
+                Projs.Clear();
                 NPCs.Clear();
                 Main.spriteBatch.End();
 
@@ -148,9 +158,24 @@ namespace Aequus.Content.Necromancy
             _wasPrepared = false;
         }
 
-        public static int GetScreenTargetIndex(Player player, int suggestedTarget = 0)
+        public static GhostOutlineRenderer Target(Player player, int suggestedTarget = 0)
         {
-            if (Main.myPlayer == player.whoAmI || player.team == 0 && !player.hostile)
+            int index = TargetID(player, suggestedTarget);
+            if (necromancyRenderers.Length <= index)
+            {
+                Array.Resize(ref necromancyRenderers, index + 1);
+            }
+            if (necromancyRenderers[index] == null)
+            {
+                int team = player.team;
+                necromancyRenderers[index] = new GhostOutlineRenderer(team, index, () => Main.teamColor[team]);
+            }
+            return necromancyRenderers[index];
+        }
+
+        public static int TargetID(Player player, int suggestedTarget = 0)
+        {
+            if (Main.myPlayer == player.whoAmI || player.team == 0 || !player.hostile)
             {
                 return Math.Max(suggestedTarget, 0);
             }

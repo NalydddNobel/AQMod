@@ -1,28 +1,20 @@
-﻿using Aequus.Common.GlobalItems;
-using Aequus.Content.Necromancy;
-using Aequus.Items.Prefixes.SoulCandles;
+﻿using Aequus.Content.Necromancy;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
-namespace Aequus.Items.Weapons.Summon.Necro.Candles
+namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class BaseSoulCandle : ModItem, ItemHooks.IUpdateVoidBag
+    public abstract class SoulCandleBase : SoulWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
-        public int OriginalSoulLimit { get; protected set; }
-        public int OriginalSoulCost { get; protected set; }
         public float OriginalNPCSpeed { get; protected set; }
         public int NPCToSummon { get; protected set; }
 
-        public int soulLimit;
-        public int soulCost;
         public float npcSpeed;
 
         protected void DefaultToCandle(int summonDamage, int limit, int souls, int npc, float speed = 0f)
@@ -37,7 +29,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             soulLimit = limit;
             soulCost = souls;
             npcSpeed = speed;
-            
+
             NPCToSummon = npc;
             Item.damage = summonDamage;
             Item.useTime = 40;
@@ -45,41 +37,10 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
         }
-        public void ClearPrefix()
-        {
-            soulLimit = OriginalSoulLimit;
-            soulCost = OriginalSoulCost;
-        }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
         {
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.SummonWeapon;
-        }
-
-        public void UpdatePlayerSoulLimit(Player player)
-        {
-            var aequus = player.Aequus();
-            aequus.heldSoulCandle = Math.Max(aequus.heldSoulCandle, soulLimit);
-        }
-
-        public override void HoldItem(Player player)
-        {
-            UpdatePlayerSoulLimit(player);
-        }
-
-        public override void UpdateInventory(Player player)
-        {
-            UpdatePlayerSoulLimit(player);
-        }
-
-        void ItemHooks.IUpdateVoidBag.UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
-        {
-            UpdatePlayerSoulLimit(player);
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return player.Aequus().candleSouls >= soulCost;
         }
 
         public override bool? UseItem(Player player)
@@ -129,18 +90,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
                     j--;
                 }
             }
-
-            int i = tooltips.GetIndex("UseMana");
-            tooltips.Insert(i, new TooltipLine(Mod, "CarryingSouls", AequusText.GetText("ItemTooltip.Common.CarryingSouls", Main.LocalPlayer.Aequus().candleSouls, soulLimit)));
-            tooltips.Insert(i, new TooltipLine(Mod, "UseSouls", AequusText.GetText("ItemTooltip.Common.UseSouls", soulCost)));
-
-            TooltipsGlobalItem.PercentageModifier(soulCost, OriginalSoulCost, "PrefixSoulCost", tooltips, higherIsGood: false);
-            TooltipsGlobalItem.PercentageModifier(soulLimit, OriginalSoulLimit, "PrefixSoulLimit", tooltips, higherIsGood: true);
-        }
-
-        public override int ChoosePrefix(UnifiedRandom rand)
-        {
-            return SoulCandlePrefix.ChoosePrefix(Item, rand).Type;
+            base.ModifyTooltips(tooltips);
         }
     }
 }

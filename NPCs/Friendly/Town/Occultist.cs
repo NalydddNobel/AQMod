@@ -7,6 +7,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Tapers;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
 using System;
@@ -128,6 +129,10 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
+            if (NPC.downedBoss3)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletronTaperCandle>());
+            }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfTheGrounded>());

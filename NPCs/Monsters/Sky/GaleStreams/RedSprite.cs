@@ -408,13 +408,13 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                             }
                             else
                             {
-                                if (timer < 3
-                                    && Main.netMode != NetmodeID.Server &&
-                                    (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
-                                {
-                                    ScreenFlash.Flash.Set(NPC.Center, 0.75f);
-                                    EffectsSystem.Shake.Set(8f);
-                                }
+                                //if (timer < 3
+                                //    && Main.netMode != NetmodeID.Server &&
+                                //    (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                //{
+                                //    ScreenFlash.Flash.Set(NPC.Center, 0.75f);
+                                //    EffectsSystem.Shake.Set(8f);
+                                //}
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
@@ -690,10 +690,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 float xOffset = 1500f * NPC.direction;
                 var velocity = new Vector2(4.5f * -NPC.direction, 0f);
                 int damage = NPC.FixedDamage();
-                if (Math.Sign(velocity.X) == Math.Sign(Main.player[NPC.target].velocity.X))
-                {
-                    velocity.X += Main.player[NPC.target].velocity.X / 3;
-                }
                 if ((int)NPC.ai[3] % 60 == 0)
                 {
                     NPC.TargetClosest(faceTarget: false);
@@ -702,7 +698,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         Projectile.NewProjectile(NPC.GetSource_FromAI(), new Vector2(Main.player[NPC.target].position.X + xOffset, Main.player[NPC.target].position.Y + Main.player[NPC.target].height / 2f), velocity, ModContent.ProjectileType<RedSpriteWindFire>(), damage, 1f, Main.myPlayer);
                     }
                 }
-                if (Main.rand.NextBool(Main.expertMode ? 30 : 60))
+                if (Main.rand.NextBool(Main.expertMode ? 60 : 120))
                 {
                     var position = center;
                     position.X += xOffset;

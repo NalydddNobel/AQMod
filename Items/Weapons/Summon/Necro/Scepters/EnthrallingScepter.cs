@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
-    public class EnthrallingScepter : BaseScepter
+    public class EnthrallingScepter : ScepterBase
     {
         public override void SetStaticDefaults()
         {

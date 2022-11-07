@@ -118,7 +118,6 @@ namespace Aequus.Items
         }
 
         public static Conditions.NotExpert NotExpertCondition => new Conditions.NotExpert();
-        public static FlawlessCondition FlawlessCondition => new FlawlessCondition();
 
         public static Drops AddLoot(this Item npc, ItemLoot loot)
         {

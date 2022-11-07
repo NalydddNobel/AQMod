@@ -52,6 +52,11 @@
             <param name="identity"></param>
             <returns></returns>
         </member>
+        <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Consumables.VictorsReward"/>
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.whitePhial">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.WhitePhial"/>
@@ -400,7 +405,7 @@
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
             <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.Insurgency"/> is tier 4</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Necro.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Necro.Scepters.Insurgency"/> is tier 4</para>
             <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
             <para>Parameter 4+ (Optional): Two paired arguments. One string and one value</para>
             <para>A successful mod call would look like:</para>

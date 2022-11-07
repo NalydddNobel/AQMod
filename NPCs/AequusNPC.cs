@@ -7,6 +7,7 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -31,7 +32,7 @@ namespace Aequus.NPCs
 {
     public class AequusNPC : GlobalNPC
     {
-        public struct OnKillPlayerInfo
+        public struct OnKillInfo
         {
             public Player player;
             public AequusPlayer aequus;
@@ -198,6 +199,13 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => !AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
                     break;
             }
+            if (npc.boss)
+            {
+                if (npc.type != NPCID.MoonLordHand && npc.type != NPCID.MoonLordHead && npc.type != NPCID.MartianSaucerCore)
+                {
+                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<VictorsReward>()));
+                }
+            }
         }
 
         public override void SetDefaults(NPC npc)
@@ -221,9 +229,6 @@ namespace Aequus.NPCs
         public override void ResetEffects(NPC npc)
         {
             disabledContactDamage = false;
-            if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTag) && nameTag.HasNameTag)
-            {
-            }
         }
 
         public void PostAI_VelocityBoostHack(NPC npc)
@@ -386,7 +391,7 @@ namespace Aequus.NPCs
 
                 if (dot >= 0)
                 {
-                    npc.AddRegen(-dot);
+                    npc.AddRegenOld(-dot);
                     if (damageNumbers < dot)
                         damageNumbers = dot;
                 }
@@ -439,13 +444,13 @@ namespace Aequus.NPCs
             }
             return false;
         }
-        public void CheckSouls(NPC npc, List<OnKillPlayerInfo> players)
+        public void CheckSouls(NPC npc, List<OnKillInfo> players)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 foreach (var p in players)
                 {
-                    if (p.aequus.candleSouls < p.aequus.heldSoulCandle)
+                    if (p.aequus.candleSouls < p.aequus.soulLimit)
                     {
                         Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, p.player.whoAmI);
                         p.aequus.candleSouls++;
@@ -457,7 +462,7 @@ namespace Aequus.NPCs
                 var candlePlayers = new List<int>();
                 foreach (var p in players)
                 {
-                    if (p.aequus.candleSouls < p.aequus.heldSoulCandle)
+                    if (p.aequus.candleSouls < p.aequus.soulLimit)
                     {
                         candlePlayers.Add(p.player.whoAmI);
                     }
@@ -477,7 +482,7 @@ namespace Aequus.NPCs
                 }
             }
         }
-        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<OnKillPlayerInfo> players)
+        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<OnKillInfo> players)
         {
             if (zombie.ghostDebuffDOT > 0 && info.EnoughPower(zombie.zombieDebuffTier))
             {
@@ -505,13 +510,13 @@ namespace Aequus.NPCs
                 EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
             }
         }
-        public List<OnKillPlayerInfo> GetCloseEnoughPlayers(NPC npc)
+        public List<OnKillInfo> GetCloseEnoughPlayers(NPC npc)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                return new List<OnKillPlayerInfo>() { new OnKillPlayerInfo { player = Main.LocalPlayer, aequus = Main.LocalPlayer.Aequus(), distance = npc.Distance(Main.LocalPlayer.Center) }, };
+                return new List<OnKillInfo>() { new OnKillInfo { player = Main.LocalPlayer, aequus = Main.LocalPlayer.Aequus(), distance = npc.Distance(Main.LocalPlayer.Center) }, };
             }
-            var list = new List<OnKillPlayerInfo>();
+            var list = new List<OnKillInfo>();
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (Main.player[i].active && !Main.player[i].dead)
@@ -519,7 +524,7 @@ namespace Aequus.NPCs
                     float d = npc.Distance(Main.player[i].Center);
                     if (d < 1000f)
                     {
-                        list.Add(new OnKillPlayerInfo { player = Main.player[i], aequus = Main.player[i].Aequus(), distance = d, });
+                        list.Add(new OnKillInfo { player = Main.player[i], aequus = Main.player[i].Aequus(), distance = d, });
                     }
                 }
             }

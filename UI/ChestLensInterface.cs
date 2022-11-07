@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
+﻿using Aequus.Items.Weapons.Summon.Necro;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -131,7 +131,7 @@ namespace Aequus.UI
                         return 0.5f;
                     return 0.1f;
                 }
-                if (item.ModItem is BaseSoulCandle)
+                if (item.ModItem is SoulCandleBase)
                     return 0.5f;
                 if (item.shoot > ProjectileID.None)
                     return 0.5f;

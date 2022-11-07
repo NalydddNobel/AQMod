@@ -67,7 +67,6 @@ namespace Aequus.Projectiles.Summon
                     {
                         var goalPosition = IdlePosition(Main.player[Projectile.owner], leader, minionPos, count);
                         float speed = Projectile.GetMinionReturnSpeed(8f, 1.25f);
-
                         Projectile.tileCollide = false;
                         int target = Projectile.FindTargetWithLineOfSight(1200f);
                         if (target != -1)
@@ -134,7 +133,7 @@ namespace Aequus.Projectiles.Summon
 
         public override Vector2 IdlePosition(Player player, int leader, int minionPos, int count)
         {
-            return new Vector2(player.position.X + player.width / 2f - (Projectile.width * 2 * (minionPos + 2)) * player.direction, player.position.Y + Projectile.height);
+            return new Vector2(player.position.X + player.width / 2f - (Projectile.width * 2 * (minionPos + 2)) * player.direction, player.position.Y);
         }
 
         public override bool PreDraw(ref Color lightColor)

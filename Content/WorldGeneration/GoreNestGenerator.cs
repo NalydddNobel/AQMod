@@ -269,7 +269,7 @@ namespace Aequus.Content.WorldGeneration
         {
             int slot = 0;
             c.item[slot].SetDefaults(WorldGen.crimson ? ItemID.LightsBane : ItemID.BloodButcherer); // Opposite evil sword
-            c.item[slot++].GetGlobalItem<ItemNameTag>().NameTag = "$Mods.Aequus.GoreNestTombstones.Names." + WorldGen.genRand.Next(10) + "|$Mods.Aequus.GoreNestTombstones.Sword";
+            c.item[slot++].GetGlobalItem<ItemNameTag>().NameTag = "$Mods.Aequus.GoreNestTombstones.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequus.GoreNestTombstones.Sword";
             if (WorldGen.genRand.NextBool())
             {
                 c.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverPickaxe, ItemID.TungstenPickaxe, ItemID.GoldPickaxe, ItemID.PlatinumPickaxe));

@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Candles
 {
-    public class CrimsonCandle : BaseSoulCandle
+    public class CrimsonCandle : SoulCandleBase
     {
         public override void SetStaticDefaults()
         {

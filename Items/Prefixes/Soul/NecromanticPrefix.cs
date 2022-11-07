@@ -1,18 +1,18 @@
-﻿using Aequus.Items.Weapons.Summon.Necro.Candles;
+﻿using Aequus.Items.Weapons;
 using System;
 using Terraria;
 
-namespace Aequus.Items.Prefixes.SoulCandles
+namespace Aequus.Items.Prefixes.Soul
 {
-    public class NecromanticPrefix : SoulCandlePrefix
+    public class NecromanticPrefix : SoulWeaponPrefix
     {
         public override void Apply(Item item)
         {
-            if (item.ModItem is BaseSoulCandle candle)
+            if (item.ModItem is SoulWeaponBase candle)
             {
-                candle.ClearPrefix();
+                candle.ClearSoulFields();
                 candle.soulLimit = Math.Max((int)(candle.soulLimit * 1.25f), candle.soulLimit + 1);
-                candle.soulCost = Math.Max((int)(candle.soulCost * 0.75f), candle.soulCost - 1);
+                candle.soulCost = Math.Min((int)(candle.soulCost * 0.75f), candle.soulCost - 1);
             }
         }
 
