@@ -199,6 +199,10 @@ Mods: {
 			DisturbanceStaff: 扰乱法杖
 			HailstormStaff: 雹暴法杖
 
+			# Soul Tapers
+			PrimeTaperCandle: 暴政之归
+			SkeletronTaperCandle: 咒灭
+
 			# Soul Candles
 			DragonsBreath: 龙之绝息
 			CrimsonCandle: 灼光者
@@ -428,6 +432,7 @@ Mods: {
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteBag: 宝藏袋 (终末之星)
 
+			VictorsReward: 胜者的奖励
 			NameTag: 命名标签
 			FertilePowder: 肥料箱
 			WhitePhial: 白色药瓶
@@ -636,7 +641,7 @@ Mods: {
 			BoneRing: 有几率对敌人造成虚弱效果
 			PandorasBox: 
 				'''
-				你的幽魂有几率向敌人发射随机弹幕
+				被幽魂击中的敌人会受到来自幽魂仆从转化减益的额外伤害
 				增加幽魂的弹幕速度
 				'''
 			BloodiedBucket: 
@@ -675,7 +680,7 @@ Mods: {
 				'''
 				当你处于战斗中时会自动召唤哨兵
 				增加最大哨兵栏位
-				哨兵攻击有小几率造成霜火减益
+				哨兵攻击有小几率造成霜寒减益
 				'''
 			SentrySquid:
 				'''
@@ -731,7 +736,7 @@ Mods: {
 			Slice:
 				'''
 				快速挥砍并发射穿刺雪花
-				击中敌人时会造成霜火减益
+				击中敌人时会造成霜寒减益
 				'''
 			Vrang: 同时扔出三个回旋镖
 			Mallet:
@@ -794,12 +799,12 @@ Mods: {
 				'''
 				手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
 				右键进行一次二段跳跳跃
-				'看起来贼危险'
+				'{PlayerName}身上从未发生过坏事!'
 				'''
 			Narrizuul:
 				'''
 				来自另一个宇宙的遗物
-				{$Mods.Aequus.ItemTooltip.Misc.Nalyddd}
+				'闻起来像玫瑰'
 				'''
 			StudiesOfTheInkblot:
 				'''
@@ -855,6 +860,10 @@ Mods: {
 				召唤雪花为你而战
 				占据半格召唤栏位
 				'''
+			
+			# Soul Tapers
+			PrimeTaperCandle: 为幽魂仆从装备机械骷髅王的手臂
+			SkeletronTaperCandle:  为幽魂仆从装备骷髅王的手臂
 
 			DragonsBreath: 
 				'''
@@ -1013,6 +1022,11 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 
+			VictorsReward: 
+				'''
+				永久性使你在重生时以满血复活
+				'给那些加倍努力的人!'
+				'''
 			NameTag: 可在天空商人处重命名, 重命名后对着NPC使用以重命NPC的名字
 			FertilePowder: 强制附近的所有物块进行生长
 			WhitePhial: 永久性延长25%增益持续时间
