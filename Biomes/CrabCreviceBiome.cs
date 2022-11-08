@@ -39,7 +39,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
-            if (SedimentaryRockTile.BiomeCount > 50)
+            if (SedimentaryRockTile.BiomeCount > 150)
                 return true;
 
             var loc = player.Center.ToTileCoordinates();

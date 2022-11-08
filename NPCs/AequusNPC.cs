@@ -56,6 +56,7 @@ namespace Aequus.NPCs
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
+        public bool noAITest;
 
         public override void Load()
         {
@@ -214,6 +215,7 @@ namespace Aequus.NPCs
             {
                 heatDamage = true;
             }
+            noAITest = false;
         }
 
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
@@ -231,8 +233,9 @@ namespace Aequus.NPCs
             disabledContactDamage = false;
         }
 
-        public void PostAI_VelocityBoostHack(NPC npc)
+        public override bool PreAI(NPC npc)
         {
+            return !noAITest;
         }
         public void PostAI_DoDebuffEffects(NPC npc)
         {
@@ -281,8 +284,6 @@ namespace Aequus.NPCs
         public override void PostAI(NPC npc)
         {
             oldLife = npc.life;
-
-            PostAI_VelocityBoostHack(npc);
 
             if (Main.netMode == NetmodeID.Server)
             {

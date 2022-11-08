@@ -5,7 +5,9 @@ using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Ranged;
 using Aequus.UI.CarpenterUI;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
@@ -101,6 +103,12 @@ namespace Aequus.NPCs.Friendly.Town
         {
             this.CreateEntry(database, bestiaryEntry)
                 .AddMainSpawn(BestiaryBuilder.Underground);
+        }
+
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            this.CreateLoot(npcLoot)
+                .Add<BlockGlove>(chance: 6, stack: 1);
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)

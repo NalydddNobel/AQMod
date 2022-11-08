@@ -86,7 +86,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                 int type = ModContent.NPCType<Trapper>();
                 for (int i = 0; i < count; i++)
                 {
-                    NPC.NewNPC(NPC.GetSource_FromThis("Aequus:TrapperImpInit"), spawnX, spawnY, type, NPC.whoAmI, 0f, NPC.whoAmI + 1f);
+                    NPC.NewNPC(NPC.GetSource_FromAI(), spawnX, spawnY, type, NPC.whoAmI, 0f, NPC.whoAmI + 1f);
                 }
             }
             NPC.TargetClosest(faceTarget: false);

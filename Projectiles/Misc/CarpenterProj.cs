@@ -154,10 +154,11 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
-            if ((int)Projectile.ai[0] == 0)
+            if ((int)Projectile.ai[1] == 0)
             {
                 Projectile.velocity.Y -= 2f;
                 Projectile.ai[0] = Main.rand.Next(SelectableTiles) + 1f;
+                Projectile.ai[1]++;
                 Projectile.netUpdate = true;
             }
             Projectile.velocity.X *= 0.99f;

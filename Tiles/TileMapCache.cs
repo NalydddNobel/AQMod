@@ -88,6 +88,28 @@ namespace Aequus.Tiles
             }
         }
 
+        public void ClearArea()
+        {
+            for (int i = Area.X; i < Area.X + Area.Width; i++)
+            {
+                for (int j = Area.Y; j < Area.Y + Area.Height; j++)
+                {
+                    Main.tile[i, j].ClearEverything();
+                }
+            }
+        }
+        public void ResetArea()
+        {
+            for (int i = 0; i < Area.Width; i++)
+            {
+                for (int j = 0; j < Area.Height; j++)
+                {
+                    cachedInfo[i, j].Set(Main.tile[i + Area.X, j + Area.Y]);
+                }
+            }
+        }
+
+
         public TileMapCache Clone()
         {
             var tileMapCache = new TileMapCache(Area, new TileDataCache[Width, Height], WorldID);

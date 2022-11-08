@@ -1,6 +1,8 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.StatSheet;
 using Aequus.Items.Weapons.Magic;
+using Aequus.NPCs.Friendly.Critter;
+using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -37,11 +39,38 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            foreach (var item in Common.GlobalNPCs.StatSpeedGlobalNPC.IgnoreStatSpeed)
+            OblivisionWikiImage();
+            return true;
+        }
+        private static void OblivisionWikiImage()
+        {
+            var n = NPC.NewNPCDirect(null, Main.MouseWorld, ModContent.NPCType<OblivisionCritter>());
+            n.Aequus().noAITest = true;
+        }
+
+        private static void TrapperImpWikiImage()
+        {
+            var n = NPC.NewNPCDirect(null, Main.MouseWorld.NumFloor(4), ModContent.NPCType<TrapperImp>());
+            n.Aequus().noAITest = true;
+
+            foreach (var v in AequusHelpers.CircularVector(3, -MathHelper.PiOver2))
+            {
+                var n2 = NPC.NewNPCDirect(n.GetSource_FromAI(), (Main.MouseWorld + v * 125f).NumFloor(4), ModContent.NPCType<Trapper>(), n.whoAmI, ai1: n.whoAmI + 1f);
+                n2.Aequus().noAITest = true;
+                n2.rotation = v.ToRotation() + MathHelper.PiOver2;
+            }
+        }
+
+        private static void WriteNPCsInHashSet(HashSet<int> hash)
+        {
+            foreach (var item in hash)
             {
                 Main.NewText(Lang.GetNPCNameValue(item));
             }
-            return true;
+        }
+
+        private static void WriteToFileNecromancyWiki()
+        {
             var c = Path.DirectorySeparatorChar;
             var path = $"{Main.SavePath}{c}Mods{c}AequusWiki";
             Directory.CreateDirectory(path);
@@ -78,7 +107,7 @@ namespace Aequus.Items
                 {
                     list.Value.Sort((a, b) => a.Item2.CompareTo(b.Item2));
                     stream.WriteText($"== Tier {list.Key} ==\n");
-                    //stream.WriteText("{{infocard|class=terraria compact|text=\n");
+                    stream.WriteText("{{infocard|class=terraria compact|text=\n");
                     stream.WriteText("{{itemlist|width=18em|class=terraria\n");
                     foreach (var val in list.Value)
                     {
@@ -90,13 +119,16 @@ namespace Aequus.Items
 
                 Utils.OpenFolder(path);
             }
-            //var clr = Color.Red.HueAdd(Main.rand.NextFloat(1f));
-            //foreach (var s in StatSheetManager.RegisteredStats)
-            //{
-            //    Main.NewText($"{Language.GetTextValue(s.DisplayName)}: {s.ProvideStatText()}", Color.Lerp(clr, Color.White, 0.75f));
-            //    clr = clr.HueAdd(Main.rand.NextFloat(0.1f));
-            //}
-            return true;
+        }
+
+        private static void WriteStatSheetInfoTest()
+        {
+            var clr = Color.Red.HueAdd(Main.rand.NextFloat(1f));
+            foreach (var s in StatSheetManager.RegisteredStats)
+            {
+                Main.NewText($"{Language.GetTextValue(s.DisplayName)}: {s.ProvideStatText()}", Color.Lerp(clr, Color.White, 0.75f));
+                clr = clr.HueAdd(Main.rand.NextFloat(0.1f));
+            }
         }
     }
 }

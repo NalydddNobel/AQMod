@@ -43,6 +43,15 @@ namespace Aequus.Tiles
         public byte LiquidAmount => Liquid.Amount;
         public ushort WallType => Wall.Type;
 
+        public void SetTile(Tile tile)
+        {
+            tile.Get<TileTypeData>() = Type;
+            tile.Get<LiquidData>() = Liquid;
+            tile.Get<TileWallWireStateData>() = Misc;
+            tile.Get<WallTypeData>() = Wall;
+            tile.Get<AequusTileData>() = Aequus;
+        }
+
         public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall, AequusTileData aequus)
         {
             Type = type;

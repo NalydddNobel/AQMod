@@ -35,10 +35,16 @@ namespace Aequus.Common.ModPlayers
         private static void Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool(On.Terraria.Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player Player, Item sItem, out bool canHitWalls, int x, int y)
         {
             bool? customCanHitWalls = null;
-            if (Main.myPlayer == Player.whoAmI && !Player.GetModPlayer<MiningPlayer>().UseSpecialTools(sItem, x, y, ref customCanHitWalls))
+            if (Main.myPlayer == Player.whoAmI && AequusHelpers.iterations == 0)
             {
-                canHitWalls = customCanHitWalls ?? false;
-                return;
+                AequusHelpers.iterations++;
+                if (!Player.GetModPlayer<MiningPlayer>().UseSpecialTools(sItem, x, y, ref customCanHitWalls))
+                {
+                    AequusHelpers.iterations = 0;
+                    canHitWalls = customCanHitWalls ?? false;
+                    return;
+                }
+                AequusHelpers.iterations = 0;
             }
             orig(Player, sItem, out canHitWalls, x, y);
             canHitWalls = customCanHitWalls ?? canHitWalls;
@@ -46,9 +52,11 @@ namespace Aequus.Common.ModPlayers
 
         public bool UseSpecialTools(Item sItem, int x, int y, ref bool? canHitWalls)
         {
+            AequusHelpers.iterations++;
             bool mineBlock = true;
             if (crabax != null && !Main.mouseRight && UseCrabax(sItem))
             {
+                AequusHelpers.iterations = 0;
                 if (sItem.pick == 0 && sItem.hammer == 0)
                     return true;
             }

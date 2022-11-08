@@ -5,8 +5,9 @@ namespace Aequus
 {
     public class ColorHelper
     {
-        internal static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
-        internal static Color BlueSlimeColor => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
+        public static Color GreenSlimeColor => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
+        public static Color BlueSlimeColor => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
+        public static readonly Color FurnitureColor = new Color(191, 142, 111, 255);
 
         public interface IColorGradient
         {

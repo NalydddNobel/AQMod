@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.GlobalItems;
-using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;
+using Aequus.Tiles.Furniture.Oblivion;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -224,7 +224,7 @@ namespace Aequus.Content.WorldGeneration
                 if (!Main.tile[v.X, v.Y].HasTile)
                 {
                     AequusHelpers.dustDebug(v.X, v.Y);
-                    int c = WorldGen.PlaceChest(v.X, v.Y, style: ChestType.Shadow);
+                    int c = WorldGen.PlaceChest(v.X, v.Y, type: (ushort)ModContent.TileType<OblivionChestTile>());
                     if (c != -1)
                     {
                         FillChest(Main.chest[c]);

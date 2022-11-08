@@ -97,7 +97,7 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
-			Heliosis: Heliosis
+			SpiritBottle: Bottle O' Spirits
 			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
 			DavyJonesAnchor: Davy Jones's Anchor
@@ -167,7 +167,8 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 			
-			# Ranged
+			# Ranged Weapons
+			BlockGlove: Block-s-ing Glove
 			Deltoid: Deltoid
 			StarPhish: Star Phish
 			SnowflakeCannon: Snowflake Cannon
@@ -239,6 +240,7 @@ Mods: {
 			Crabax: Crabax
 
 			# Baits # 
+			Heliosis: Heliosis
 			CrateBait: Crate Bait
 			RegrowingBait: Regenerative Bait
 			LegendberryBait: Legend Berry
@@ -579,6 +581,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SpiritBottle: Increases your max number of ghosts by 1
 			HyperCrystal: Attacks gain a temporary damaging crystal
 			CelesteTorus:
 				'''
@@ -679,7 +682,7 @@ Mods: {
 			IcebergKraken:
 				'''
 				Automatically use a sentry staff while you are in combat
-				Increase your max number of sentries by 1
+				Increases your max number of sentries by 1
 				Sentry attacks have a small chance to inflict frostbite
 				'''
 			SentrySquid:
@@ -710,6 +713,7 @@ Mods: {
 			Headless: Decapitates you
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			# Melee Weapons
 			PhaseDisc: 
 				'''
 				Penetrates more enemies the closer the moon is to full
@@ -752,6 +756,8 @@ Mods: {
 			UltimateSword: "'Just a fragment of true potential'"
 			RockMan: An ancient relic, originally used to cut lemons
 
+			# Ranged Weapons
+			BlockGlove: Consumes blocks as ammo
 			Hitscanner: Fires a massive spread of instantly hitting bullets
 			Flameblaster:
 				'''
@@ -1750,7 +1756,12 @@ Mods: {
 			True: You will no longer drop graves
 		}
 
+		Containers: {
+			OblivionChestTile: Oblivion Chest
+		}
+
 		MapObject: {
+			OblivionChestTile: Oblivion Chest
 			HypnoticPearl: Hypnotic Pearl
 			Pearl: Pearl
 			ArgonMushroom: Argon Mushroom
@@ -2090,7 +2101,7 @@ Mods: {
 				UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
 				GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
 				InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
-				BlackPhial: Black magic sustains the liquid within this phial, a single drop can make an elephant deathly ill.
+				BlackPhial: Black magic sustains the liquid within this phial, a single drop can even make a pigron deathly ill.
 				WhoopieCushion: *Poomf*
 			}
 

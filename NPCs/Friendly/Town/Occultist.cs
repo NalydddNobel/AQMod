@@ -139,6 +139,10 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
             shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());
+            if (!Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SpiritBottle>());
+            }
             if (Main.hardMode)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
