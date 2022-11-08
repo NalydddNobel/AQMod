@@ -97,7 +97,7 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
-			Heliosis: 日射病
+			SpiritBottle: 魂灵之瓶
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
 			DavyJonesAnchor: 深海阎王的锚
@@ -167,7 +167,8 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
-			# Ranged
+			# Ranged Weapons
+			BlockGlove: 物块手套
 			Deltoid: 增量
 			StarPhish: 螺旋海星吹筒
 			SnowflakeCannon: 雪花大炮
@@ -239,6 +240,7 @@ Mods: {
 			Crabax: 蟹斧
 
 			# Baits # 
+			Heliosis: 日射饵
 			CrateBait: 板条箱鱼饵
 			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果
@@ -579,6 +581,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SpiritBottle: 增加1格最大幽魂仆从栏位
 			HyperCrystal: 攻击会附带一个临时性的晶体
 			CelesteTorus:
 				'''
@@ -710,6 +713,7 @@ Mods: {
 			Headless: 将你斩首
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
+			# Melee Weapons
 			PhaseDisc: 
 				'''
 				越接近满月，可穿透敌人的数量便越多
@@ -752,6 +756,8 @@ Mods: {
 			UltimateSword: "'只是真正潜能的一小部分'"
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
+			# Ranged Weapons
+			BlockGlove: 消耗物块作为弹药
 			Hitscanner: 发射一大片会瞬间命中敌人的子弹
 			Flameblaster:
 				'''
@@ -1750,7 +1756,12 @@ Mods: {
 			True: 你现在不会掉落墓碑
 		}
 
+		Containers: {
+			OblivionChestTile: 被遗忘的宝箱
+		}
+
 		MapObject: {
+			OblivionChestTile: 被遗忘的宝箱
 			HypnoticPearl: 催眠珍珠
 			Pearl: 珍珠
 			ArgonMushroom: 氩蘑菇
@@ -2090,7 +2101,7 @@ Mods: {
 				UnholyCore: 我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
 				GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
 				InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
-				BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使大象病入膏肓.
+				BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
 				WhoopieCushion: *Poomf*
 			}
 
