@@ -255,7 +255,7 @@ namespace Aequus.NPCs
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        float diff = nightfallSpeed;
+                        float diff = nightfallSpeed * 2;
                         if (diff > 1f)
                         {
                             int damage = (int)diff;
@@ -277,12 +277,13 @@ namespace Aequus.NPCs
                                 damage /= 2;
                                 damage += 50;
                             }
-                            int defense = npc.defense;
-                            npc.defense /= 2;
                             npc.StrikeNPCNoInteraction(damage, 0f, 0);
                             npc.velocity *= 0.2f;
                             npc.netUpdate = true;
-                            npc.defense = defense;
+                            if (Main.netMode == NetmodeID.Server)
+                            {
+                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, damage);
+                            }
                         }
                     }
                     if (nightfallSpeed > 1f)
