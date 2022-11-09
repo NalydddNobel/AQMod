@@ -12,7 +12,21 @@ namespace Aequus
 
         public static GameplayConfig Instance;
 
-        //[Header(Key + "Gameplay.General.Header")]
+        [Header(Key + "Gameplay.General.Header")]
+
+        [MemberBGColor]
+        [Name("Gameplay.General.EarlyGravityGlobe")]
+        [Desc("Gameplay.General.EarlyGravityGlobe")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyGravityGlobe { get; set; }
+
+        [MemberBGColor]
+        [Name("Gameplay.General.EarlyPortalGun")]
+        [Desc("Gameplay.General.EarlyPortalGun")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyPortalGun { get; set; }
 
         [Header(Key + "Gameplay.Recipes.Header")]
 
@@ -23,25 +37,22 @@ namespace Aequus
         [ReloadRequired]
         public bool VoidBagRecipe { get; set; }
 
-        [MemberBGColor]
-        [Name("Gameplay.Recipes.PhoenixBlaster")]
-        [Desc("Gameplay.Recipes.PhoenixBlaster")]
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool PhoenixBlasterRecipe { get; set; }
-
         //[Header(Key + "Gameplay.Drops.Header")]
 
         public override void AddCustomTranslations()
         {
-            Text("Recipes.PhoenixBlaster", new
+            Text("General.EarlyGravityGlobe", new
             {
-                PhoenixBlaster = AequusText.ItemCommand(ItemID.PhoenixBlaster),
+                Item = AequusText.ItemCommand(ItemID.GravityGlobe),
+            });
+            Text("General.EarlyPortalGun", new
+            {
+                Item = AequusText.ItemCommand(ItemID.PortalGun),
             });
             Text("Recipes.VoidBag", new
             {
-                VoidVault = AequusText.ItemCommand(ItemID.VoidVault),
-                VoidBag = AequusText.ItemCommand(ItemID.VoidLens),
+                Item1 = AequusText.ItemCommand(ItemID.VoidVault),
+                Item2 = AequusText.ItemCommand(ItemID.VoidLens),
             });
         }
     }

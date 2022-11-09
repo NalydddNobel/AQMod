@@ -150,10 +150,6 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DemonCursor>(), 100));
                     break;
 
-                case NPCID.QueenBee:
-                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
-                    break;
-
                 case NPCID.Pixie:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
                     break;
@@ -192,8 +188,19 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
                     break;
 
+                case NPCID.MoonLordCore:
+                    if (GameplayConfig.Instance.EarlyGravityGlobe)
+                        npcLoot.RemoveWhere((itemDrop) => itemDrop is ItemDropWithConditionRule dropRule && dropRule.itemId == ItemID.GravityGlobe);
+                    if (GameplayConfig.Instance.EarlyPortalGun)
+                        npcLoot.RemoveWhere((itemDrop) => itemDrop is ItemDropWithConditionRule dropRule && dropRule.itemId == ItemID.PortalGun);
+                    break;
+
                 case NPCID.CultistBoss:
                     npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
+                    break;
+
+                case NPCID.Plantera:
+                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     break;
 
                 case NPCID.WallofFlesh:

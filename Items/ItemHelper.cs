@@ -159,6 +159,11 @@ namespace Aequus.Items
             return false;
         }
 
+        public static Item FindRequiredItem(this Recipe recipe, int itemID)
+        {
+            return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == ItemID.GravityGlobe);
+        }
+
         public static Recipe ReplaceItem(this Recipe r, int item, int newItem, int newItemStack = -1)
         {
             for (int i = 0; i < r.requiredItem.Count; i++)

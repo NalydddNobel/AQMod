@@ -231,6 +231,11 @@ namespace Aequus.Items
                 item.value = Item.buyPrice(gold: 15);
             }
 
+            if (GameplayConfig.Instance.EarlyGravityGlobe)
+            {
+                item.expert = false;
+            }
+
             prefixPotionsBounded = false;
             accStacks = 1;
         }
@@ -353,6 +358,14 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
+
+                case ItemID.MoonLordBossBag:
+                    if (GameplayConfig.Instance.EarlyGravityGlobe)
+                        itemLoot.RemoveWhere((itemDrop) => itemDrop is CommonDrop commonDrop && commonDrop.itemId == ItemID.GravityGlobe);
+                    if (GameplayConfig.Instance.EarlyPortalGun)
+                        itemLoot.RemoveWhere((itemDrop) => itemDrop is CommonDrop commonDrop && commonDrop.itemId == ItemID.PortalGun);
+                    break;
+
                 case ItemID.PlanteraBossBag:
                     itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     break;

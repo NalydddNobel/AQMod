@@ -2001,15 +2001,19 @@ Mods: {
 			Gameplay: {
 				General: {
 					Header: "[c/ddddff:General]"
+
+					EarlyGravityGlobe: "{Item} Early Gravity Globe"
+					EarlyGravityGlobeTooltip: Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
+
+					EarlyPortalGun: "{Item} Early Portal Gun"
+					EarlyPortalGunTooltip: Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
 				}
 
 				Recipes: {
 					Header: "[c/ddddff:Recipe Changes]"
 
-					PhoenixBlaster: "{PhoenixBlaster} Phoenix Blaster Recipe"
-					PhoenixBlasterTooltip: Changes the phoenix blaster's recipe to use Demonic Energy
-					VoidBag: "{VoidVault}/{VoidBag} Void Bag Recipe"
-					VoidBagTooltip: Changes the void bag and vault's recipes to use Demonic Energy and a money trough/safe
+					VoidBag: "{Item1}/{Item2} Void Bag Recipe"
+					VoidBagTooltip: Changes the Void Bag/Vault's recipes to use Demonic Energy.
 				}
 
 				Drops: {

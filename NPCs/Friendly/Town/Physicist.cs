@@ -106,6 +106,16 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
+            if (GameplayConfig.Instance.EarlyPortalGun)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.PortalGun);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
+            }
+            if (GameplayConfig.Instance.EarlyGravityGlobe)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.GravityGlobe);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+            }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PrecisionGloves>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());

@@ -33,6 +33,20 @@ namespace Aequus.Items.Recipes
             for (int i = 0; i < Main.recipe.Length; i++)
             {
                 Recipe r = Main.recipe[i];
+                if (GameplayConfig.Instance.EarlyGravityGlobe)
+                {
+                    if (r.HasIngredient(ItemID.GravityGlobe) && !r.HasIngredient(ItemID.LunarBar))
+                    {
+                        r.AddIngredient(ItemID.LunarBar, 5);
+                    }
+                }
+                if (GameplayConfig.Instance.EarlyPortalGun)
+                {
+                    if (r.HasIngredient(ItemID.PortalGun) && !r.HasIngredient(ItemID.LunarBar))
+                    {
+                        r.AddIngredient(ItemID.LunarBar, 5);
+                    }
+                }
                 switch (r.createItem?.type)
                 {
                     case ItemID.PumpkinMoonMedallion:
