@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,7 +18,20 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
         }
 
-        public static void AddStack(NPC npc, int time, int stacksAmt, bool inflictOnFireInsteadIfItsImmune = true)
+
+        public override bool ReApply(NPC npc, int time, int buffIndex)
+        {
+            npc.Aequus().crimsonHellfireStacks++;
+            return false;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            var aequus = npc.Aequus();
+            aequus.crimsonHellfireStacks = Math.Max(aequus.crimsonHellfireStacks, (byte)1);
+        }
+
+        public static void AddBuff(NPC npc, int time, bool inflictOnFireInsteadIfItsImmune = true)
         {
             if (npc.buffImmune[ModContent.BuffType<CrimsonHellfire>()])
             {
@@ -29,8 +43,6 @@ namespace Aequus.Buffs.Debuffs
             }
 
             AequusBuff.InflictAndPlaySound<CrimsonHellfire>(npc, time, BlueFire.InflictDebuffSound.WithPitch(-0.2f));
-            npc.Aequus().crimsonHellfireStacks += (byte)stacksAmt;
-            npc.netUpdate = true;
         }
     }
 }

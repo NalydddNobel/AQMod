@@ -44,7 +44,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            CorruptionHellfire.AddStack(target, 240, 1);
+            CorruptionHellfire.AddBuff(target, 240);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

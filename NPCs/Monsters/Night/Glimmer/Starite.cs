@@ -96,42 +96,23 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float x = NPC.velocity.X.Abs() * hitDirection;
             if (NPC.life <= 0)
             {
-                if (NPC.life == -33333)
+                for (int i = 0; i < 25; i++)
                 {
-                    for (int i = 0; i < 60; i++)
-                    {
-                        var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.Yellow.UseB(128), Color.White, Main.rand.NextFloat(0.2f, 1f)).UseA(0));
-                        d.velocity *= 0.2f;
-                        d.velocity += d.position - NPC.Center;
-                    }
-                    for (int i = 0; i < 50; i++)
-                    {
-                        var b = new BloomParticle(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
-                        b.Velocity += (b.Position - NPC.Center) / 2f;
-                        EffectsSystem.AbovePlayers.Add(b);
-                    }
-                    for (int i = 0; i < 20; i++)
-                    {
-                        var b = new BloomParticle(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(10, 42), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
-                        b.Velocity += (b.Position - NPC.Center) / 3f;
-                        EffectsSystem.AbovePlayers.Add(b);
-                    }
-                    for (int i = 0; i < 25; i++)
-                    {
-                        var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), DustID.Enchanted_Gold + Main.rand.Next(2), newColor: Color.White.UseA(0));
-                        d.velocity *= 0.1f;
-                        d.velocity += (d.position - NPC.Center) / 2f;
-                    }
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.Yellow.UseB(128), Color.White, Main.rand.NextFloat(0.2f, 1f)).UseA(0));
+                    d.velocity *= 0.2f;
+                    d.velocity += (d.position - NPC.Center) / 6f;
                 }
                 for (int i = 0; i < 30; i++)
                 {
-                    int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 57 + Main.rand.Next(2));
-                    Main.dust[d].velocity.X += x;
-                    Main.dust[d].velocity.Y = -Main.rand.NextFloat(2f, 6f);
+                    var b = new BloomParticle(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
+                    b.Velocity += (b.Position - NPC.Center) / 2f;
+                    EffectsSystem.AbovePlayers.Add(b);
                 }
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 25; i++)
                 {
-                    Gore.NewGore(NPC.GetSource_Death(), NPC.Center, new Vector2(Main.rand.NextFloat(-5f, 5f) + x, Main.rand.NextFloat(-5f, 5f)), 16 + Main.rand.Next(2));
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), DustID.Enchanted_Gold + Main.rand.Next(2), newColor: Color.White.UseA(0));
+                    d.velocity *= 0.1f;
+                    d.velocity += (d.position - NPC.Center) / 6f;
                 }
             }
             else
@@ -467,16 +448,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override bool CheckDead()
         {
-            if (NPC.ai[0] == -1f)
-                return true;
-            NPC.ai[0] = -1f;
-            NPC.ai[1] = 0f;
-            NPC.ai[2] = 0f;
-            NPC.ai[3] = 0f;
-            NPC.velocity *= 0.5f;
-            NPC.dontTakeDamage = true;
-            NPC.life = NPC.lifeMax;
-            return false;
+            return true;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -611,7 +583,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             return new int[]
                 {
                     ModContent.ItemType<SuperStarSword>(),
-                    ModContent.ItemType<WowHat>(),
+                    ModContent.ItemType<Nightfall>(),
                     ModContent.ItemType<StariteStaff>(),
                     ModContent.ItemType<HyperCrystal>(),
                 };

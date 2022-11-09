@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             Item.width = 40;
             Item.height = 40;
-            Item.SetWeaponValues(60, 8f, 0);
+            Item.SetWeaponValues(60, 3f, 0);
             Item.useTime = 14;
             Item.useAnimation = 14;
             Item.rare = ItemRarityID.LightPurple;
@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.LightDisc)
+                .AddIngredient(ItemID.LightDisc, 5)
                 .AddIngredient<Valari>()
                 .AddIngredient<UltimateEnergy>()
                 .AddTile(TileID.MythrilAnvil)

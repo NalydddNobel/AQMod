@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.GlobalNPCs;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +14,11 @@ namespace Aequus.NPCs
         public bool HasNameTag => NameTag != null;
 
         public override bool InstancePerEntity => true;
+
+        public override void Load()
+        {
+            base.Load();
+        }
 
         public override bool PreAI(NPC npc)
         {
@@ -31,7 +37,7 @@ namespace Aequus.NPCs
 
         public override bool NeedSaving(NPC npc)
         {
-            return NameTag != null;
+            return NameTag != null && WorldGen.InWorld((int)(npc.position.X / 16f), (int)(npc.position.Y / 16f));
         }
 
         public override void SaveData(NPC npc, TagCompound tag)

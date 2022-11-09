@@ -38,8 +38,8 @@ namespace Aequus.NPCs.Friendly.Critter
 
         public override void SetDefaults()
         {
-            NPC.width = 12;
-            NPC.height = 12;
+            NPC.width = 24;
+            NPC.height = 24;
             NPC.aiStyle = -1;
             NPC.damage = 0;
             NPC.defense = 0;
@@ -63,12 +63,21 @@ namespace Aequus.NPCs.Friendly.Critter
                 return;
             }
 
-            float x = NPC.velocity.X.Abs() * hitDirection;
-            int amt = NPC.life <= 0 ? 10 : 1;
+            int amt = NPC.life <= 0 ? 30 : 1;
             for (int i = 0; i < amt; i++)
             {
-                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Smoke, newColor: Color.Black.UseA(0));
-                d.velocity.X += x;
+                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Smoke, newColor: Color.Black);
+                d.velocity *= 0.75f;
+                d.noGravity = true;
+                d.fadeIn = d.scale + 0.1f;
+            }
+            for (int i = 0; i < amt / 3; i++)
+            {
+                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Firework_Red);
+                d.position += Vector2.Normalize(d.velocity) * NPC.width / 2f;
+                d.velocity *= 0.9f;
+                d.noGravity = true;
+                d.fadeIn = d.scale + 0.1f;
             }
         }
 

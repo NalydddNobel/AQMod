@@ -170,13 +170,14 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 {
                     NPC.localAI[0] = Main.rand.Next(100);
                 }
-                NPC.velocity *= 0.9f;
+                NPC.velocity *= 0.98f;
+                NPC.rotation += 0.06f * (1f + NPC.ai[2] / 60f);
                 if (NPC.ai[2] > 0f)
                     NPC.ai[2] = 0f;
-                NPC.ai[2] -= 1.5f;
+                NPC.ai[2] -= 1f - NPC.ai[2] / 120f;
                 for (int i = 0; i < Main.rand.Next(2, 14); i++)
                 {
-                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 5f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
                     d.velocity *= 0.2f;
                     d.velocity += (NPC.Center - d.position) / 8f;
                     d.scale = Main.rand.NextFloat(0.3f, 2f);
@@ -615,6 +616,10 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 float progress = Math.Clamp((NPC.ai[1] - 10f) / 75f, 0f, 1f);
                 armsPullIn = Math.Clamp(progress, 0.05f, 1.1f);
             }
+            if (dying)
+            {
+                armsPullIn = MathHelper.Lerp(armsPullIn, 1f, NPC.ai[2] / -60f);
+            }
             for (int i = -2; i < 3; i++)
             {
                 int armID = i;
@@ -630,7 +635,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 lengthMultiplier += (1f - armsPullIn) * 0.1f;
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * armID * armsPullIn;
                 if (dying)
-                    rotation += Main.rand.NextFloat(-0.76f, 0.76f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
+                {
+                    rotation += Main.rand.NextFloat(-0.76f, 0.76f) * Main.rand.NextFloat(NPC.ai[2] / 240f);
+                }
 
                 if (armsPullIn <= 0.6f)
                 {
@@ -649,9 +656,13 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     lengthMultiplier -= Math.Abs(armID) * 0.05f * (1f - armsPullIn);
                 }
 
-                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
+                var n = (rotation - MathHelper.PiOver2).ToRotationVector2();
+                var armPos = NPC.position + offset + n * ((armLength + NPC.ai[3]) * lengthMultiplier) - screenPos;
                 if (dying)
-                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 2f), Main.rand.NextFloat(NPC.ai[2] / 2f));
+                {
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 8f), Main.rand.NextFloat(NPC.ai[2] / 8f));
+                    armPos += n * NPC.ai[2] * 2f;
+                }
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
                 rotation = innerArmsRotation + MathHelper.TwoPi / 5f * armID;

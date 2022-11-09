@@ -92,7 +92,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            CrimsonHellfire.AddStack(target, 240, 1);
+            CrimsonHellfire.AddBuff(target, 240);
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -199,7 +199,7 @@ namespace Aequus.Content.CrossMod
                     new List<int>()
                     {
                         ModContent.ItemType<SuperStarSword>(),
-                        ModContent.ItemType<WowHat>(),
+                        ModContent.ItemType<Nightfall>(),
                         ModContent.ItemType<StariteStaff>(),
                         ModContent.ItemType<HyperCrystal>(),
                         ItemID.Nazar,

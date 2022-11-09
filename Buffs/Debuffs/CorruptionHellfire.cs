@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -17,7 +18,19 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
         }
 
-        public static void AddStack(NPC npc, int time, int stacksAmt, bool inflictOnFireInsteadIfItsImmune = true)
+        public override bool ReApply(NPC npc, int time, int buffIndex)
+        {
+            npc.Aequus().corruptionHellfireStacks++;
+            return false;
+        }
+
+        public override void Update(NPC npc, ref int buffIndex)
+        {
+            var aequus = npc.Aequus();
+            aequus.corruptionHellfireStacks = Math.Max(aequus.corruptionHellfireStacks, (byte)1);
+        }
+
+        public static void AddBuff(NPC npc, int time, bool inflictOnFireInsteadIfItsImmune = true)
         {
             if (npc.buffImmune[ModContent.BuffType<CorruptionHellfire>()])
             {
@@ -29,8 +42,6 @@ namespace Aequus.Buffs.Debuffs
             }
 
             AequusBuff.InflictAndPlaySound<CorruptionHellfire>(npc, time, BlueFire.InflictDebuffSound.WithPitch(-0.2f));
-            npc.Aequus().corruptionHellfireStacks += (byte)stacksAmt;
-            npc.netUpdate = true;
         }
     }
 }

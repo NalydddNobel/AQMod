@@ -124,7 +124,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            CorruptionHellfire.AddStack(target, 120, 1);
+            CorruptionHellfire.AddBuff(target, 120);
         }
 
         public override bool PreDraw(ref Color lightColor)

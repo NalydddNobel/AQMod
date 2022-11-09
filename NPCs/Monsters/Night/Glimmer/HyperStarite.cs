@@ -150,13 +150,14 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 {
                     NPC.localAI[0] = Main.rand.Next(100);
                 }
-                NPC.velocity *= 0.9f;
+                NPC.velocity *= 0.97f;
+                NPC.rotation += 0.1f * (1f + NPC.ai[2] / 60f);
                 if (NPC.ai[2] > 0f)
                     NPC.ai[2] = 0f;
-                NPC.ai[2] -= 2f;
+                NPC.ai[2] -= 1f - NPC.ai[2] / 60f;
                 for (int i = 0; i < Main.rand.Next(2, 6); i++)
                 {
-                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[2] * Main.rand.NextFloat(0.2f, 1f) * 3f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(new Color(255, 20, 100), new Color(255, 150, 250), Math.Min(Main.rand.NextFloat(1f) - NPC.ai[2] / 60f, 1f)).UseA(0));
                     d.velocity *= 0.2f;
                     d.velocity += (NPC.Center - d.position) / 8f;
                     d.scale = Main.rand.NextFloat(0.3f, 2f);
@@ -471,9 +472,13 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 float rotation = NPC.rotation + MathHelper.TwoPi / 5f * i;
                 if (dying)
                     rotation += Main.rand.NextFloat(-0.2f, 0.2f) * Main.rand.NextFloat(NPC.ai[2] / 60f);
-                var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + NPC.ai[3]) - screenPos;
+                var n = (rotation - MathHelper.PiOver2).ToRotationVector2();
+                var armPos = NPC.position + offset + n * (armLength + NPC.ai[3]) - screenPos;
                 if (dying)
-                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
+                {
+                    armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 8f), Main.rand.NextFloat(NPC.ai[2] / 8f));
+                    armPos += n * NPC.ai[2] / 2f;
+                }
                 Main.spriteBatch.Draw(texture, armPos.Floor(), armFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
                 rotation += MathHelper.TwoPi / 10f;

@@ -64,7 +64,23 @@ namespace Aequus.Projectiles.Melee
                     Projectile.Kill();
                 }
             }
-            Projectile.rotation += 0.125f;
+            Projectile.rotation += 0.125f * Projectile.direction;
+            Lighting.AddLight(Projectile.Center, new Vector3(0.5f, 0.4f, 0.5f));
+            if (Main.GameUpdateCount % 8 == 0)
+            {
+                if (Main.rand.NextBool())
+                {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.YellowTorch, -Projectile.velocity.X * 0.3f, -Projectile.velocity.Y * 0.3f, Scale: Main.rand.NextFloat(1f, 2f));
+                    d.fadeIn = d.scale + 0.2f;
+                    d.noGravity = true;
+                }
+                else
+                {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.FrostHydra, -Projectile.velocity.X * 0.3f, -Projectile.velocity.Y * 0.3f);
+                    d.fadeIn = d.scale + 0.2f;
+                    d.noGravity = true;
+                }
+            }
             var hitbox = Projectile.getRect();
             for (int i = 0; i < Main.maxItems; i++)
             {
@@ -87,7 +103,7 @@ namespace Aequus.Projectiles.Melee
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height);
             Vector2 offset = new Vector2(Projectile.width / 2, Projectile.height / 2);
             var effects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            var color = new Color(40, 80, 150, 40);
+            var color = new Color(90, 80, 90, 40);
             var origin = frame.Size() / 2f;
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {

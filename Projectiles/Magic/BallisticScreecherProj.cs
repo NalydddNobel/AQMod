@@ -94,7 +94,7 @@ namespace Aequus.Projectiles.Magic
         {
             if (crit)
             {
-                CrimsonHellfire.AddStack(target, 300, 3);
+                CrimsonHellfire.AddBuff(target, 300);
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     if (i == target.whoAmI)
@@ -103,7 +103,7 @@ namespace Aequus.Projectiles.Magic
                     }
                     if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].Distance(target.Center) < 180f)
                     {
-                        CrimsonHellfire.AddStack(Main.npc[i], 300, 3);
+                        CrimsonHellfire.AddBuff(Main.npc[i], 300);
                     }
                 }
                 for (int i = 0; i < 100; i++)

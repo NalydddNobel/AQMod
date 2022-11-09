@@ -14,6 +14,11 @@ namespace Aequus.Common.GlobalNPCs
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
+        public StatSpeedGlobalNPC()
+        {
+            statSpeed = 1f;
+        }
+
         public override void Load()
         {
             IgnoreStatSpeed = new HashSet<int>();
@@ -64,6 +69,11 @@ namespace Aequus.Common.GlobalNPCs
                     }
                 }
             }
+        }
+
+        public override void SetDefaults(NPC npc)
+        {
+            statSpeed = 1f;
         }
 
         public override void ResetEffects(NPC npc)

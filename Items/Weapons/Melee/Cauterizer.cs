@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
-            CrimsonHellfire.AddStack(target, 240, 1);
+            CrimsonHellfire.AddBuff(target, 240);
         }
     }
 }

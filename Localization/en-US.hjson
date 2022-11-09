@@ -178,6 +178,7 @@ Mods: {
 			Slingshot: Slingshot
 
 			# Magic
+			Nightfall: Nightfall
 			Umystick: Umystick
 			Narrizuul: Narrizuul
 			StudiesOfTheInkblot: Studies of the Inkblot
@@ -186,7 +187,6 @@ Mods: {
 			SurgeRod: Surge Rod
 			PentalScythe: Pental Scythe
 			Gamestar: Gamestar
-			WowHat: "'Wow-zer' Hat"
 			Snowgrave: Snowgrave
 			BallisticScreecher: Bombarder Rod
 			Triacanthorn: Triacanthorn
@@ -801,6 +801,11 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+			Nightfall: 
+				'''
+				Increases the gravity of your enemies to deadly levels
+				Effect becomes stronger on consecutive hits
+				'''
 			Umystick:
 				'''
 				You will fall slower while holding this, hold down to fall at regular speed
@@ -829,11 +834,10 @@ Mods: {
 				'''
 			PentalScythe: 
 				'''
-				Casts firey demon scythes that explode
+				Casts explosive demon scythes
 				Hits large targets multiple times
 				'''
 			Gamestar: Shoots a stream of compressed data
-			WowHat: Casts a variety of spells
 			Snowgrave:
 				'''
 				Summons a deadly snowblast from below
@@ -2322,6 +2326,11 @@ Mods: {
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name
 				RenameChatButton: Rename Item
+			}
+
+			Angler: {
+				LegendaryFishReward: Thanks LOSER! You have no clue about the power of this thing, don't you?
+				LegendaryFish: Hey, HEY! I see that Legendary Fish you have on you. You think I can have it if I give you some shiny reward?
 			}
 		}
 

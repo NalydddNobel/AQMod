@@ -230,10 +230,12 @@ namespace Aequus.Items
                 item.rare = ItemRarityID.Blue;
                 item.value = Item.buyPrice(gold: 15);
             }
-
-            if (GameplayConfig.Instance.EarlyGravityGlobe)
+            else if (item.type == ItemID.GravityGlobe)
             {
-                item.expert = false;
+                if (GameplayConfig.Instance.EarlyGravityGlobe)
+                {
+                    item.expert = false;
+                }
             }
 
             prefixPotionsBounded = false;

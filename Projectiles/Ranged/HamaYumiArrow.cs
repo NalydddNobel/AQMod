@@ -66,7 +66,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            CorruptionHellfire.AddStack(target, 60, 1);
+            CorruptionHellfire.AddBuff(target, 60);
             if (Main.netMode != NetmodeID.Server)
             {
                 SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);

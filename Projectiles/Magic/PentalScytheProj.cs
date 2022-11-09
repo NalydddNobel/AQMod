@@ -2,7 +2,6 @@
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -15,25 +14,32 @@ namespace Aequus.Projectiles.Magic
     {
         public override void SetStaticDefaults()
         {
-            this.SetTrail(10);
+            Main.projFrames[Type] = 2;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 50;
-            Projectile.height = 50;
+            Projectile.width = 60;
+            Projectile.height = 60;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.timeLeft = 180;
             Projectile.alpha = 200;
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;
+            Projectile.scale = 0.8f;
             Projectile.localNPCHitCooldown = 5;
         }
 
         public override void AI()
         {
-            Projectile.rotation += (0.35f + Projectile.velocity.Length() * 0.025f) * Projectile.direction;
+            if (Projectile.alpha > 0)
+            {
+                Projectile.alpha -= 10;
+                if (Projectile.alpha < 0)
+                    Projectile.alpha = 0;
+            }
+            Projectile.rotation += (0.7f + Projectile.velocity.Length() * 0.025f) * Projectile.direction;
             if (Projectile.ai[1] == 0f)
             {
                 Projectile.ai[1] = Projectile.velocity.Length();
@@ -42,15 +48,14 @@ namespace Aequus.Projectiles.Magic
             Projectile.ai[0]++;
             float velocityMultipler = (float)Math.Sin(Math.Pow(Math.Min(Projectile.ai[0] * 0.025f, MathHelper.PiOver2) / MathHelper.PiOver2, 2) * MathHelper.PiOver2);
             Projectile.velocity = Vector2.Normalize(Projectile.velocity) * Projectile.ai[1] * velocityMultipler;
-
+            if (Projectile.localAI[0] > 0f)
+                Projectile.localAI[0]--;
+            else if (Projectile.originalDamage > 0)
+                Projectile.damage = Projectile.originalDamage;
             int amt = (int)Math.Max(Projectile.velocity.Length() / 3f, 1);
-            for (int i = 0; i < 2; i++)
-            {
-                var d = Dust.NewDustDirect(Projectile.Center + new Vector2(Projectile.width / 2f * Main.rand.NextFloat(), 0f).RotatedBy(Main.rand.NextFloat(-1f, 1f) + Projectile.rotation), 8, 8, DustID.Torch);
-                d.scale *= Main.rand.NextFloat(1f, 1.525f);
-                d.velocity = Vector2.Normalize(d.position - Projectile.Center).RotatedBy(MathHelper.PiOver2 * Projectile.direction) * d.velocity.Length() * Projectile.velocity.Length() / 3f * d.scale + Projectile.velocity;
-                d.noGravity = true;
-            }
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, -Projectile.velocity.X * 0.5f, -Projectile.velocity.Y * 0.5f, Scale: Main.rand.NextFloat(1f, 2f));
+            d.fadeIn = d.scale + 0.1f;
+            d.noGravity = true;
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -72,27 +77,23 @@ namespace Aequus.Projectiles.Magic
             target.AddBuff(BuffID.OnFire3, 360);
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f,
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner, target.whoAmI + 1);
+            Projectile.localAI[0] = 5f;
+            Projectile.damage = 0;
+            Projectile.originalDamage = (int)(Projectile.originalDamage * 0.9f);
+            if (Projectile.originalDamage <= 0)
+            {
+                Projectile.Kill();
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
 
-            var auraTexture = ModContent.Request<Texture2D>(Texture + "_Aura", AssetRequestMode.ImmediateLoad).Value;
-            float opacity = Math.Clamp(Projectile.velocity.Length() / 20f, 0.2f, 1f);
-            var auraOrigin = auraTexture.Size() / 2f;
-            for (int i = 0; i < trailLength; i++)
-            {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
-                Main.spriteBatch.Draw(auraTexture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(120, 50, 33, 0) * opacity * p, Projectile.oldRot[i], auraOrigin, Projectile.scale, SpriteEffects.None, 0f);
-            }
-            float offsetRotation = 10f;
-            Main.spriteBatch.Draw(auraTexture, Projectile.position + offset + new Vector2(offsetRotation, 0f).RotatedBy(Projectile.rotation) - Main.screenPosition, null, new Color(120, 50, 33, 0) * opacity, Projectile.rotation, auraOrigin, Projectile.scale, SpriteEffects.None, 0f);
-            float amt = AequusHelpers.Wave(Projectile.rotation % MathHelper.TwoPi, 0.5f, 1f) * opacity;
-            var color = Color.Lerp(Color.Orange, Color.White, amt);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset + new Vector2(offsetRotation, 0f).RotatedBy(Projectile.rotation) - Main.screenPosition, frame, color * 0.2f, Projectile.rotation - 0.2f, origin, Projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset + new Vector2(offsetRotation, 0f).RotatedBy(Projectile.rotation + 0.2f) - Main.screenPosition, frame, color * 0.2f, Projectile.rotation + 0.2f, origin, Projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset + new Vector2(offsetRotation, 0f).RotatedBy(Projectile.rotation - 0.2f) - Main.screenPosition, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            origin.X -= 4f;
+            var auraFrame = new Rectangle(frame.X, frame.Y + frame.Height, frame.Width, frame.Height);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, auraFrame, Color.Red * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Color.White.UseA(128) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
     }
@@ -109,12 +110,12 @@ namespace Aequus.Projectiles.Magic
         public override void SetDefaults()
         {
             Projectile.DefaultToExplosion(90, DamageClass.Magic, 20);
-            Projectile.scale = 1.2f;
+            Projectile.scale = 1f;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.OrangeRed.UseA(150) * 0.8f;
+            return new Color(255, 100, 40, 128);
         }
 
         public override bool? CanHitNPC(NPC target)
@@ -124,14 +125,15 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server)
+            if (Projectile.frame == 0 && Projectile.frameCounter ==0 && Main.netMode != NetmodeID.Server)
             {
+                Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.1f), Projectile.Center);
                 for (int i = 0; i < 10; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
                     EffectsSystem.BehindProjs.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        Color.Yellow.UseA(0) * Main.rand.NextFloat(0.3f, 0.7f), Color.Red.UseA(0) * Main.rand.NextFloat(0.05f, 0.15f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                        Color.OrangeRed.UseA(0), Color.Red.UseA(0) * Main.rand.NextFloat(0.05f, 0.3f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
                 }
                 for (int i = 0; i < 15; i++)
                 {
@@ -141,7 +143,7 @@ namespace Aequus.Projectiles.Magic
                 }
             }
             Projectile.frameCounter++;
-            if (Projectile.frameCounter > 3)
+            if (Projectile.frameCounter > 2)
             {
                 Projectile.frameCounter = 0;
                 Projectile.frame++;

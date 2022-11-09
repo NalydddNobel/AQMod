@@ -64,7 +64,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (Main.rand.NextBool(3))
             {
-                CrimsonHellfire.AddStack(target, 120, 1);
+                CrimsonHellfire.AddBuff(target, 120);
             }
             if (Main.netMode != NetmodeID.Server)
             {
