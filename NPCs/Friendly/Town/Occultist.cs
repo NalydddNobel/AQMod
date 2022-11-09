@@ -8,7 +8,10 @@ using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Items.Weapons.Summon.Necro.Tapers;
+using Aequus.Particles.Dusts;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
@@ -32,7 +35,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
             NPCID.Sets.AttackFrameCount[NPC.type] = 4;
             NPCID.Sets.DangerDetectRange[NPC.type] = 400;
-            NPCID.Sets.AttackType[NPC.type] = 0; // -1 is none? 0 is shoot, 1 is magic shoot?, 2 is dryad aura, 3 is melee
+            NPCID.Sets.AttackType[NPC.type] = 2;
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 2;
@@ -87,36 +90,8 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
+            NPC.lavaImmune = true;
             AnimationType = NPCID.Guide;
-        }
-
-        public override void HitEffect(int hitDirection, double damage)
-        {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
-            for (int k = 0; k < dustAmount; k++)
-            {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
-            }
-            if (NPC.life <= 0)
-            {
-                for (int i = 0; i < 2; i++)
-                    GoreHelper.DeathGore(NPC, "Occultist_3", Main.rand.NextVector2Circular(NPC.width / 2f, NPC.width / 2f));
-
-                for (int i = -1; i <= 1; i += 2)
-                    GoreHelper.DeathGore(NPC, "Occultist_4", new Vector2(NPC.width / 2f * i, NPC.height / 2f));
-
-                for (int i = 0; i < 2; i++)
-                    GoreHelper.DeathGore(NPC, "Occultist_5", Main.rand.NextVector2Circular(NPC.width / 2f, NPC.width / 2f));
-
-                GoreHelper.DeathGore(NPC, "Occultist_2");
-                GoreHelper.DeathGore(NPC, "Occultist_1");
-                GoreHelper.DeathGore(NPC, "Occultist_0", new Vector2(0f, -NPC.height / 2f));
-
-                if (Main.rand.NextBool(4))
-                {
-                    GoreHelper.DeathGore(NPC, "Occultist_6", default, new Vector2(0f, -2f));
-                }
-            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -218,6 +193,44 @@ namespace Aequus.NPCs.Friendly.Town
             return !toKingStatue;
         }
 
+        public override void AI()
+        {
+            if ((int)NPC.ai[0] == 14)
+            {
+                NPC.ai[1] += 0.9f;
+                if (Main.GameUpdateCount % 7 == 0)
+                {
+                    var d = Dust.NewDustDirect(NPC.position + new Vector2(0f, NPC.height - 4), NPC.width, 4, DustID.PurpleCrystalShard, 0f, -4f);
+                    d.velocity *= 0.5f;
+                    d.velocity.X *= 0.5f;
+                    d.noGravity = true;
+                }
+            }
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (Main.netMode == NetmodeID.Server)
+                return;
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            for (int k = 0; k < dustAmount; k++)
+            {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<SpaceSquidBlood>(), NPC.velocity.X, NPC.velocity.Y);
+            }
+            if (NPC.life <= 0)
+            {
+                var g = GoreHelper.DeathGore(NPC, "Occultist_1");
+                g.rotation += MathHelper.Pi;
+                GoreHelper.DeathGore(NPC, "Occultist_1");
+                GoreHelper.DeathGore(NPC, "Occultist_0", new Vector2(0f, -NPC.height / 2f + 8f));
+
+                if (Main.rand.NextBool(4))
+                {
+                    GoreHelper.DeathGore(NPC, "Occultist_2", default, new Vector2(0f, -2f));
+                }
+            }
+        }
+
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
         {
             damage = 20;
@@ -226,20 +239,48 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
         {
-            cooldown = 12;
-            randExtraCooldown = 20;
+            cooldown = 60;
+            randExtraCooldown = 2;
+        }
+
+        public override void TownNPCAttackMagic(ref float auraLightMultiplier)
+        {
+            auraLightMultiplier = 0f;
         }
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            projType = ProjectileID.Hellwing;
-            attackDelay = 1;
+            NPCID.Sets.AttackType[NPC.type] = 2;
+            projType = ModContent.ProjectileType<OccultistProjSpawner>();
+            attackDelay = 12;
         }
 
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset)
         {
             multiplier = 6f;
             randomOffset = 1.5f;
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (NPC.frame.Y >= NPC.frame.Height * 21)
+            {
+                NPC.frameCounter = 0;
+                NPC.frame.Y = NPC.frame.Height * 20;
+            }
+            NPC.GetDrawInfo(out var t, out var off, out var frame, out var orig, out int _);
+            off.Y += NPC.gfxOffY - 4f;
+            spriteBatch.Draw(t, NPC.position + off - screenPos, frame, drawColor, NPC.rotation, orig, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            if ((int)NPC.ai[0] == 14)
+            {
+                var bloomFrame = TextureCache.Bloom[0].Value.Frame(verticalFrames: 2);
+                spriteBatch.Draw(TextureCache.Bloom[0].Value, NPC.position + off - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
+                    bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, TextureCache.Bloom[0].Value.Size() / 2f, NPC.scale * 0.5f, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+                var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (int)(Main.GlobalTimeWrappedHourly * 9f) % 4);
+                spriteBatch.Draw(TextureAssets.Extra[51].Value, NPC.position + off - screenPos + new Vector2(4f * -NPC.spriteDirection, NPC.height / 2f + 8f).RotatedBy(NPC.rotation),
+                    auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            }
+            return false;
         }
     }
 }

@@ -9,6 +9,11 @@ namespace Aequus.Items.Weapons.Ranged
 {
     public class BlockGlove : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.AleThrowingGlove);

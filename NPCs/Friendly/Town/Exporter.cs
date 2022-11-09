@@ -96,7 +96,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void HitEffect(int hitDirection, double damage)
         {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 12, 20);
+            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++)
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, newColor: new Color(200, 200, 200, 100));
@@ -390,7 +390,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
         {
-            int itemType = ItemID.TerraBlade;
+            int itemType = ItemID.DyeTradersScimitar;
             Main.instance.LoadItem(itemType);
             item = TextureAssets.Item[itemType].Value;
             itemSize = 40;
