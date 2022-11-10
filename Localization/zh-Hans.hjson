@@ -178,6 +178,7 @@ Mods: {
 			Slingshot: 弹弓
 
 			# Magic
+			Nightfall: 黄昏
 			Umystick: 秘伞
 			Narrizuul: 耀宇遗光
 			StudiesOfTheInkblot: 墨迹研究学
@@ -186,7 +187,6 @@ Mods: {
 			SurgeRod: 电涌杖
 			PentalScythe: 回旋魔镰
 			Gamestar: 游戏之星
-			WowHat: "'喔师'帽"
 			Snowgrave: 雪墓
 			BallisticScreecher: 轰炸者手杖
 			Triacanthorn: 三棘卷须
@@ -801,6 +801,11 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+			Nightfall: 
+				'''
+				将你的敌人的重力增加至致命级别
+				连续击中时效果会变得更强
+				'''
 			Umystick:
 				'''
 				手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
@@ -829,11 +834,10 @@ Mods: {
 				'''
 			PentalScythe: 
 				'''
-				发射会爆炸的烈焰魔镰
+				发射爆炸性烈焰魔镰
 				会多次命中大型目标
 				'''
 			Gamestar: 发送压缩数据流
-			WowHat: 施放各种法术
 			Snowgrave:
 				'''
 				在下方召唤向上喷涌的致命冰雪风暴
@@ -2001,13 +2005,17 @@ Mods: {
 			Gameplay: {
 				General: {
 					Header: "[c/ddddff:常规]"
+
+					EarlyGravityGlobe: "{Item} 早期重力重力球"
+					EarlyGravityGlobeTooltip: 允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
+
+					EarlyPortalGun: "{Item} 早期传送门枪"
+					EarlyPortalGunTooltip: 允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
 				}
 
 				Recipes: {
 					Header: "[c/ddddff:合成表更改]"
 
-					PhoenixBlaster: "{PhoenixBlaster} 凤凰爆破枪合成表"
-					PhoenixBlasterTooltip: 更改凤凰爆破枪的合成表以使用恶魔能量
 					VoidBag: "{VoidVault}/{VoidBag} 虚空袋合成表"
 					VoidBagTooltip: 更改虚空袋或虚空保险箱的合成表以使用恶魔能量和钱箱/保险箱
 				}
@@ -2318,7 +2326,12 @@ Mods: {
 				PlaceHere: 放置于此处来重命名你的物品
 				PressHere: 按下来设置你物品的名字
 				RenameChatButton: 重命名物品
-				}
+			}
+
+			Angler: {
+				LegendaryFishReward: 谢谢, 失败者! 你对这东西的威力一无所知, 不是吗?
+				LegendaryFish: 嘿, 嘿! 我看到你身上的传奇鱼类了. 你认为如果我给你一些闪亮的奖励的话我能拥有它吗?
+			}
 			}
 
 		TownNPCMood: {
