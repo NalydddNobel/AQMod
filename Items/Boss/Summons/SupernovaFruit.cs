@@ -38,9 +38,13 @@ namespace Aequus.Items.Boss.Summons
 
         public override bool? UseItem(Player player)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 NPC.SpawnBoss((int)player.position.X, (int)player.position.Y - 1600, ModContent.NPCType<OmegaStarite>(), player.whoAmI);
+            }
+            else if (Main.myPlayer == player.whoAmI)
+            {
+                NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: ModContent.NPCType<OmegaStarite>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

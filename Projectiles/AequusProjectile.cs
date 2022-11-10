@@ -415,7 +415,7 @@ namespace Aequus.Projectiles
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (sourceItemUsed == ModContent.ItemType<StarPhish>() && (target.wet || target.HasBuff(BuffID.Wet)))
+            if (sourceItemUsed == ModContent.ItemType<StarPhish>() && (target.wet || target.honeyWet || target.lavaWet || target.HasBuff(BuffID.Wet)))
             {
                 damage = (int)(damage * 1.25f);
             }

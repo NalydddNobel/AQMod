@@ -19,6 +19,7 @@ using Aequus.Projectiles.Monster.OmegaStariteProjs;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -347,7 +348,7 @@ namespace Aequus.NPCs.Boss
             }
             else if (NPC.life <= 0)
             {
-                SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
+                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/dead", 0.5f), NPC.Center);
                 for (int k = 0; k < 60; k++)
                 {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
@@ -1086,6 +1087,10 @@ namespace Aequus.NPCs.Boss
                 rings[i].rotationVelocity *= 0f;
             }
             NPC.ai[1] += 0.5f;
+            if ((int)(NPC.ai[1] * 2f) == 40)
+            {
+                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/explosion", 0.66f, -0.05f), NPC.Center);
+            }
             if (NPC.ai[1] > DEATHTIME * 1.314f)
             {
                 NPC.life = -33333;
@@ -1474,7 +1479,7 @@ namespace Aequus.NPCs.Boss
             {
                 spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + i, SpriteEffects.None, 0f);
             }
-            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity - (int)intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + ((int)intensity + 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
 
             if (!NPC.IsABestiaryIconDummy)
             {
@@ -1524,10 +1529,12 @@ namespace Aequus.NPCs.Boss
             if (intensity > 3f)
             {
                 float intensity2 = intensity - 2f;
+                float raysScaler = intensity2;
                 if (NPC.ai[1] > DEATHTIME)
                 {
                     float scale = (NPC.ai[1] - DEATHTIME) * 0.2f;
                     scale *= scale;
+                    raysScaler += scale;
                     Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(120, 120, 120, 0) * intensity2, NPC.rotation, spotlightOrig, scale, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * intensity2, NPC.rotation, spotlightOrig, scale * 2.15f, SpriteEffects.None, 0f);
                 }
@@ -1536,6 +1543,36 @@ namespace Aequus.NPCs.Boss
                     Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(120, 120, 120, 0) * intensity2, NPC.rotation, spotlightOrig, deathSpotlightScale, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * intensity2, NPC.rotation, spotlightOrig, deathSpotlightScale * 2f, SpriteEffects.None, 0f);
                 }
+
+                var shineColor = new Color(200, 40, 150, 0) * raysScaler * NPC.Opacity;
+
+                var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
+                var lightRayOrigin = lightRay.Size() / 2f;
+
+                var r = EffectsSystem.EffectRand;
+                int seed = r.SetRand((int)NPC.localAI[0]);
+                int i = 0;
+                foreach (float f in AequusHelpers.Circular((int)(80 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0]))
+                {
+                    var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.1f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
+                    rayScale.X *= 0.02f;
+                    rayScale.X *= (float)Math.Pow(raysScaler, Math.Min(rayScale.Y, 1f));
+                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * NPC.Opacity, f, lightRayOrigin, raysScaler * rayScale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * NPC.Opacity, f, lightRayOrigin, raysScaler * rayScale * 2f, SpriteEffects.None, 0f);
+                    i++;
+                }
+                r.SetRand(seed);
+                var bloom = TextureCache.Bloom[2].Value;
+                var bloomOrigin = bloom.Size() / 2f;
+                raysScaler *= 0.7f;
+                Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * raysScaler * NPC.Opacity, 0f, bloomOrigin, raysScaler, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * 0.5f * raysScaler * NPC.Opacity, 0f, bloomOrigin, raysScaler * 1.4f, SpriteEffects.None, 0f);
+
+                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+                var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+                var shineOrigin = shine.Size() / 2f;
+                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * raysScaler, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * raysScaler, SpriteEffects.None, 0);
             }
             return false;
         }

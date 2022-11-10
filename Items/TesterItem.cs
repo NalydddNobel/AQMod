@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.StatSheet;
 using Aequus.Items.Weapons.Magic;
+using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
@@ -39,8 +40,19 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            OblivisionWikiImage();
+            SpawnDeadStarite();
             return true;
+        }
+
+        private static void SpawnDeadStarite()
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<OmegaStarite>())
+                {
+                    Main.npc[i].StrikeNPCNoInteraction(99999, 0f, 0, crit: true);
+                }
+            }
         }
         private static void OblivisionWikiImage()
         {

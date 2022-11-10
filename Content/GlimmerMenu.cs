@@ -77,6 +77,7 @@ namespace Aequus.Content
         public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor)
         {
             //DebugDrawBiomes();
+            logoScale *= 0.84f;
             Main.dayTime = false;
             Main.time = Main.nightLength / 2;
             return true;

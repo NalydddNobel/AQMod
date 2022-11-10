@@ -29,23 +29,23 @@ namespace Aequus.Items.Misc
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.SuspiciousLookingEye);
             Recipe.Create(ItemID.BloodMoonMonolith)
-                .AddIngredient(Type, 4)
+                .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.VoidMonolith);
             Recipe.Create(ItemID.BloodyMachete)
-                .AddIngredient(Type, 12)
+                .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.BloodRainBow)
-                .AddIngredient(Type, 12)
+                .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.VampireFrogStaff)
-                .AddIngredient(Type, 12)
+                .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.BloodFishingRod)
-                .AddIngredient(Type, 12)
+                .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.BloodHamaxe)

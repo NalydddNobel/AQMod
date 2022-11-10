@@ -14,25 +14,24 @@ namespace Aequus.Projectiles.Ranged
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailingMode[Type] = 2;
-            ProjectileID.Sets.TrailCacheLength[Type] = 14;
+            ProjectileID.Sets.TrailCacheLength[Type] = 7;
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 14;
-            Projectile.height = 14;
+            Projectile.width = 40;
+            Projectile.height = 40;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = -1;
             Projectile.aiStyle = -1;
             Projectile.noEnchantments = true;
             Projectile.timeLeft = 240;
-            Projectile.extraUpdates = 3;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, 60);
+            return new Color(255, 255, 255, 128);
         }
 
         public override void AI()
@@ -52,7 +51,11 @@ namespace Aequus.Projectiles.Ranged
                 }
                 return;
             }
-            Projectile.rotation += 0.1f * Projectile.direction;
+            if (Projectile.rotation == 0f)
+            {
+                Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+            }
+            Projectile.rotation += 0.3f * Projectile.direction;
             Projectile.ai[0] += 1f;
             var center = Projectile.Center;
             if (Projectile.ai[0] >= 3f)
@@ -63,33 +66,35 @@ namespace Aequus.Projectiles.Ranged
                     Projectile.alpha = 0;
                 }
             }
-            if (Projectile.ai[0] >= 15f)
+            if (Projectile.ai[0] >= 20f)
             {
-                Projectile.velocity.Y += 0.1f;
+                Projectile.velocity.Y += 0.6f;
                 if (Projectile.velocity.Y > 24f)
                 {
                     Projectile.velocity.Y = 24f;
                 }
-                Projectile.velocity.X *= 0.997f;
+                Projectile.velocity.X *= 0.99f;
             }
             if (Projectile.alpha == 0)
             {
-                int d = Dust.NewDust(center, 4, 4, DustID.Torch);
-                Main.dust[d].scale = 1.5f;
-                Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = Main.dust[d].velocity * 0.25f;
-                Main.dust[d].velocity = Main.dust[d].velocity.RotatedBy(-MathHelper.Pi / 2f * Projectile.direction);
-                d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 50, 10, 10));
-                Main.dust[d].scale = 1.75f * Main.rand.NextFloat(0.5f, 1.1f);
-                Main.dust[d].noGravity = true;
-                Main.dust[d].velocity = Projectile.velocity * 0.2f * Main.rand.NextFloat(0.9f, 1.1f);
+                //int d = Dust.NewDust(center, 4, 4, DustID.Torch, Scale: Main.rand.NextFloat(1f, 1.5f));
+                //Main.dust[d].noGravity = true;
+                //Main.dust[d].velocity = Main.dust[d].velocity * 0.25f;
+                //Main.dust[d].velocity = Main.dust[d].velocity.RotatedBy(-MathHelper.Pi / 2f * Projectile.direction);
+                //d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(175, 50, 10, 10));
+                //Main.dust[d].scale = 1.75f * Main.rand.NextFloat(0.5f, 1.1f);
+                //Main.dust[d].noGravity = true;
+                //Main.dust[d].velocity = Projectile.velocity * 0.2f * Main.rand.NextFloat(0.9f, 1.1f);
 
-                if (Main.rand.NextBool(8))
+                var d = Dust.NewDustPerfect(Projectile.Center + (Projectile.rotation - MathHelper.PiOver2).ToRotationVector2() * 12f,
+                    DustID.Torch, Scale: Main.rand.NextFloat(1.6f, 2f));
+                d.noGravity = true;
+                d.velocity *= 0.2f;
+                if (Main.GameUpdateCount % 2 == 0)
                 {
-                    d = Dust.NewDust(center, 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(150, 10, 2, 20));
-                    Main.dust[d].scale = 1.25f;
-                    Main.dust[d].noGravity = true;
-                    Main.dust[d].velocity *= Main.rand.NextFloat(0.9f, 1.75f);
+                    d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 
+                        -Projectile.velocity.X * 0.3f, -Projectile.velocity.Y * 0.3f, newColor: new Color(255, 150, 80, 128), Scale: Main.rand.NextFloat(0.85f, 2f));
+                    d.noGravity = true;
                 }
             }
             Projectile.spriteDirection = Projectile.direction;
@@ -123,7 +128,7 @@ namespace Aequus.Projectiles.Ranged
             {
                 SoundEngine.PlaySound(SoundID.Item14.WithPitch(0.1f), Projectile.Center);
             }
-            var center = Projectile.Center;
+            var center = Projectile.Center - Vector2.Normalize(Projectile.velocity) * Projectile.width / 12f;
             float radius = Projectile.Size.Length() / 2f * 0.55f;
             for (int i = 0; i < 20; i++)
             {
@@ -144,17 +149,18 @@ namespace Aequus.Projectiles.Ranged
             {
                 var velo = Projectile.velocity * 9f;
                 center += Projectile.velocity * 4f;
-                for (int i = 0; i < 13; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     var shootTo = velo.RotatedBy(Main.rand.NextFloat(MathHelper.TwoPi));
-                    var shootLocation = center + Vector2.Normalize(shootTo) * 15f;
+                    var shootLocation = center + Vector2.Normalize(shootTo) * 10f;
                     if (Collision.SolidCollision(shootLocation, 16, 16))
                     {
                         shootLocation = center;
                         shootTo = -shootTo;
                     }
-                    int p = Projectile.NewProjectile(Projectile.GetSource_Death(), shootLocation, shootTo, ProjectileID.MolotovFire + Main.rand.Next(3), Projectile.damage, Projectile.knockBack, Projectile.owner);
-                    Main.projectile[p].extraUpdates += 2;
+                    int p = Projectile.NewProjectile(Projectile.GetSource_Death(), shootLocation, shootTo, ProjectileID.MolotovFire + Main.rand.Next(3), 
+                        Projectile.damage / 2, Projectile.knockBack / 10f, Projectile.owner);
+                    Main.projectile[p].extraUpdates += 1;
                 }
             }
         }
@@ -163,7 +169,7 @@ namespace Aequus.Projectiles.Ranged
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = texture.Frame();
-            var origin = new Vector2(frame.Width / 2f, 5f);
+            var origin = new Vector2(frame.Width / 2f, frame.Height / 2f);
             var color = Projectile.GetAlpha(lightColor);
             var offset = Projectile.Size / 2f;
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];

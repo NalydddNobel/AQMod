@@ -33,7 +33,6 @@ namespace Aequus.Projectiles.Magic
             Projectile.penetrate = -1;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.ArmorPenetration = 10;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -70,13 +69,13 @@ namespace Aequus.Projectiles.Magic
                     {
                         for (int i = 0; i < 6; i++)
                         {
-                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.3f, 0.6f));
+                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.3f, 1f));
                             d.color *= d.scale * 2f;
                             d.velocity *= d.scale;
                         }
                         for (int i = 0; i < 2; i++)
                         {
-                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.4f, 0.6f));
+                            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.4f, 1f));
                             d.color *= d.scale * 2f;
                             d.velocity *= d.scale;
                             d.fadeIn = d.scale + Main.rand.NextFloat(0.5f, 0.8f);
@@ -92,7 +91,17 @@ namespace Aequus.Projectiles.Magic
                 {
                     var v = Vector2.Normalize(Projectile.velocity);
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity,
-                        Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.75f, (int)(Projectile.ai[1] + 1f) % 2);
+                        Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.8f, (int)(Projectile.ai[1] + 1f) % 2);
+                    if (Main.myPlayer == Projectile.owner)
+                    {
+                        int index = -(int)(Projectile.ai[0] / 0.8f);
+                        if (index % 8 == 0)
+                        {
+                            int i = (index % 16 == 0 ? -1 : 1) * Projectile.direction;
+                            var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, v.RotatedBy(MathHelper.PiOver4 / 2f * i) * 5f,
+                                ModContent.ProjectileType<TriacanthornBolt>(), Projectile.damage / 2, Projectile.knockBack / 2f, Projectile.owner);
+                        }
+                    }
                     Projectile.ai[0] = -21f;
                 }
             }
@@ -104,18 +113,6 @@ namespace Aequus.Projectiles.Magic
                 {
                     Projectile.ai[0] = -22f;
                     SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
-                    if (Main.myPlayer == Projectile.owner)
-                    {
-                        var v = Vector2.Normalize(Projectile.velocity);
-                        for (int i = -2; i < 3; i++)
-                        {
-                            if (i != 0)
-                            {
-                                var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, v.RotatedBy(MathHelper.PiOver4 / 2f * i) * 1.5f,
-                                    ModContent.ProjectileType<TriacanthornBolt>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
-                            }
-                        }
-                    }
                 }
             }
             Projectile.frame = (int)Projectile.ai[1];
@@ -159,31 +156,26 @@ namespace Aequus.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 8;
-            Projectile.height = 8;
+            Projectile.width = 12;
+            Projectile.height = 12;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.extraUpdates = 15;
-            Projectile.ArmorPenetration = 10;
+            Projectile.extraUpdates = 3;
+            Projectile.timeLeft = 180;
         }
 
         public override void AI()
         {
-            int target = Projectile.FindTargetWithLineOfSight(500f);
-            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptionThorns);
-            d.velocity *= 0.1f;
+            int target = Projectile.FindTargetWithLineOfSight(400f);
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptionThorns, Projectile.velocity.Y * 0.3f, Projectile.velocity.Y * 0.3f);
+            d.velocity *= 0.2f;
             d.noGravity = true;
-            if (Projectile.ai[0] < 1f)
-            {
-                Projectile.ai[0] += 0.05f;
-                if (Projectile.ai[0] > 1f)
-                {
-                    Projectile.ai[0] = 1f;
-                }
-            }
+            d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.Y * 0.3f, Projectile.velocity.Y * 0.3f, newColor: Color.BlueViolet.UseA(0) * 0.6f);
+            d.velocity *= 0.5f;
+            d.noGravity = true;
             if (target != -1)
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * 1.25f, 0.05f * Projectile.ai[0]);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * 5f, 0.04f);
             }
             Projectile.rotation = Projectile.velocity.ToRotation();
         }

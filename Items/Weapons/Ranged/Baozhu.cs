@@ -15,7 +15,8 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void SetDefaults()
         {
-            Item.damage = 55;
+            Item.damage = 40;
+            Item.crit = 11;
             Item.DamageType = DamageClass.Ranged;
             Item.useTime = 26;
             Item.useAnimation = 26;
@@ -24,14 +25,14 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.shoot = ModContent.ProjectileType<BaozhuProj>();
-            Item.shootSpeed = 8.5f;
             Item.UseSound = SoundID.Item1;
             Item.value = ItemDefaults.GaleStreamsValue;
             Item.noMelee = true;
-            Item.knockBack = 7f;
+            Item.knockBack = 4f;
             Item.noUseGraphic = true;
             Item.autoReuse = true;
+            Item.shoot = ModContent.ProjectileType<BaozhuProj>();
+            Item.shootSpeed = 15f;
         }
 
         public override void AddRecipes()

@@ -56,6 +56,10 @@ namespace Aequus.Biomes.Glimmer
                 {
                     realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - PeacefulGlimmerBiome.CalcTiles(Main.LocalPlayer) / (float)PeacefulGlimmerBiome.MaxTiles, 0f), 0.05f);
                 }
+                else
+                {
+                    realOpacity = Opacity;
+                }
             }
         }
 
@@ -118,7 +122,7 @@ namespace Aequus.Biomes.Glimmer
 
         public override bool IsActive()
         {
-            return active || Opacity > 0f;
+            return active || realOpacity > 0f || Opacity > 0f;
         }
 
         public override float GetCloudAlpha()

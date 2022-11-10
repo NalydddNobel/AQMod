@@ -255,10 +255,10 @@ namespace Aequus.NPCs
                 {
                     if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        float diff = nightfallSpeed * 2;
+                        float diff = nightfallSpeed;
                         if (diff > 1f)
                         {
-                            int damage = (int)diff;
+                            int damage = (int)diff * 2;
                             if (damage > 25)
                             {
                                 damage -= 25;

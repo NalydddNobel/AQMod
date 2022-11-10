@@ -786,10 +786,7 @@ Mods: {
 				66% chance to not consume ammo
 				'''
 			Raygun: Converts bullets into extremely fast rays
-			BoundBow: 
-				'''
-				Infinitely regenerates ammo over time
-				'''
+			BoundBow: Infinitely regenerates ammo over time
 			Slingsaber: 
 				'''
 				Bring your cursor out in order to charge the shot more

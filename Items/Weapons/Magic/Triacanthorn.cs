@@ -33,6 +33,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 10;
             Item.knockBack = 1f;
             Item.shoot = ModContent.ProjectileType<TriacanthornProj>();
+            Item.ArmorPenetration = 10;
             Item.shootSpeed = 16f;
             Item.noMelee = true;
         }

@@ -125,7 +125,7 @@ namespace Aequus.Graphics
                 }
                 ClampSpeed();
                 var difference = ScreenTarget - Main.screenPosition;
-                cameraProgress -= speed / 50f;
+                cameraProgress -= speed / 200f + cameraProgress * 0.1f;
                 if (cameraProgress <= 0f)
                 {
                     returning = false;
