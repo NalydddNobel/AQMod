@@ -72,7 +72,8 @@ namespace Aequus.NPCs
             if (spawnInfo.Player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
             {
                 AdjustSpawns(pool, 0.75f);
-                pool.Add(ModContent.NPCType<Meteor>(), 2f);
+                if (GaleStreamsBiome.IsThisSpace(spawnInfo.SpawnTileY * 16f))
+                    pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
             {

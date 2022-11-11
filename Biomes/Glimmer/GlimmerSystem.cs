@@ -1,6 +1,7 @@
 ﻿using Aequus.NPCs.Boss;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.Enums;
@@ -70,15 +71,16 @@ namespace Aequus.Biomes.Glimmer
                 var x = GlimmerBiome.TileLocation.X;
                 if (GlimmerBiome.TileLocation.Y == -1 || GlimmerBiome.TileLocation.Y == (int)Main.worldSurface)
                 {
-                    GlimmerBiome.TileLocation = FindGroundFor(GlimmerBiome.TileLocation);
+                    GlimmerBiome.TileLocation = CheckGround(GlimmerBiome.TileLocation);
                 }
                 else if (AequusHelpers.IsSectionLoaded(GlimmerBiome.TileLocation))
                 {
                     if (!Main.tile[GlimmerBiome.TileLocation].IsSolid())
                     {
-                        GlimmerBiome.TileLocation = FindGroundFor(GlimmerBiome.TileLocation);
+                        GlimmerBiome.TileLocation = CheckGround(GlimmerBiome.TileLocation);
                     }
                 }
+                GlimmerBiome.TileLocation = CheckGround(GlimmerBiome.TileLocation);
 
                 if (Main.netMode == NetmodeID.Server && GlimmerBiome.TileLocation.X != x)
                 {
@@ -104,7 +106,7 @@ namespace Aequus.Biomes.Glimmer
 
         public static void BeginEvent(Point where)
         {
-            GlimmerBiome.TileLocation = FindGroundFor(where);
+            GlimmerBiome.TileLocation = CheckGround(where);
 
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
@@ -123,8 +125,7 @@ namespace Aequus.Biomes.Glimmer
                 {
                     if (Main.player[j].active && !Main.player[j].dead)
                     {
-                        int playerX = (int)(Main.player[j].position.X / 16);
-                        if ((x - playerX).Abs() < GlimmerBiome.SuperStariteTile)
+                        if ((x - Main.player[j].GetSpawnX()).Abs() > GlimmerBiome.SuperStariteTile)
                         {
                             goto FoundSpot;
                         }
@@ -160,14 +161,13 @@ namespace Aequus.Biomes.Glimmer
             return (int)((player.position.X + player.width) / 16 - GlimmerBiome.TileLocation.X).Abs();
         }
 
-        public static Point FindGroundFor(Point p)
+        public static Point CheckGround(Point p)
         {
-            if (p.Y <= 30)
-            {
-                p.Y = 30;
-            }
+            ushort min = (ushort)(90 * (Main.maxTilesY / (AequusWorld.SmallHeight / 2)));
+            min -= 50;
+            p.Y = Math.Max(p.Y, min);
 
-            for (ushort j = 180; j <= Main.worldSurface; j++)
+            for (ushort j = min; j <= Main.worldSurface; j++)
             {
                 if (!AequusHelpers.IsSectionLoaded(p.X, j))
                     continue;
@@ -180,7 +180,7 @@ namespace Aequus.Biomes.Glimmer
             }
             if (p.Y != (int)Main.worldSurface)
             {
-                for (ushort j = (ushort)p.Y; j > 40; j--)
+                for (ushort j = (ushort)p.Y; j > min; j--)
                 {
                     for (ushort k = 0; k < 10; k++)
                     {
@@ -198,6 +198,7 @@ namespace Aequus.Biomes.Glimmer
                 FoundInvalidSpot:
                     continue;
                 }
+                return p;
             }
             p.Y = (ushort)Main.worldSurface;
             return p;

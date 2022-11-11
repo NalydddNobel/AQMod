@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Items.Misc.Energies;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -42,6 +43,15 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accAmmoRenewalPack = Item;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.AmmoBox)
+                .AddIngredient<AquaticEnergy>()
+                .AddTile(TileID.Anvils)
+                .TryRegisterBefore(ItemID.CursedBullet);
         }
 
         public static void DropAmmo(Player player, NPC npc, Item ammoBackpack)

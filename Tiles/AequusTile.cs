@@ -92,9 +92,9 @@ namespace Aequus.Tiles
 
         public void AddRecipes(Aequus aequus)
         {
-            LoadEchoWalls();
+            LoadEchoWallSet();
             AutoCreateSilkTouchSets(aequus);
-            LoadPylonColors();
+            LoadPylonColorsSet();
         }
         private static void AutoCreateSilkTouchSets(Aequus aequus)
         {
@@ -162,7 +162,7 @@ namespace Aequus.Tiles
                 TileIDToItemID[new TileKey(TileID.HallowedPlants, i)] = itemID;
             }
         }
-        private static void LoadEchoWalls()
+        private static void LoadEchoWallSet()
         {
             if (Aequus.LogMore)
             {
@@ -195,7 +195,7 @@ namespace Aequus.Tiles
             }
         }
 
-        public static void LoadPylonColors()
+        public static void LoadPylonColorsSet()
         {
             if (Aequus.LogMore)
             {

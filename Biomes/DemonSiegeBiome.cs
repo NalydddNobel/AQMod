@@ -28,7 +28,7 @@ namespace Aequus.Biomes
         {
             if (!Main.dedServ)
             {
-                music = new ConfiguredMusicData(MusicID.Monsoon);
+                music = new ConfiguredMusicData(MusicID.Monsoon, MusicID.OtherworldlyPlantera);
                 Filters.Scene[ScreenFilterKey] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
             }
             On.Terraria.Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;

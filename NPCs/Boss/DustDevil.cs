@@ -47,7 +47,7 @@ namespace Aequus.NPCs.Boss
         {
             if (!Main.dedServ)
             {
-                music = new ConfiguredMusicData(MusicID.Boss2);
+                music = new ConfiguredMusicData(MusicID.Boss2, MusicID.OtherworldlyBoss2);
                 LegacyDrawBack = new DrawList();
                 LegacyDrawFront = new DrawList();
             }

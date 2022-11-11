@@ -19,27 +19,23 @@ namespace Aequus.Tiles
             {
                 if (inv[slot].type == ItemID.LockBox && player.Aequus().hasSkeletonKey)
                 {
-                    InnerOpenLockbox(inv[slot], player, player.OpenLockBox);
+                    if (ItemLoader.ConsumeItem(inv[slot], player))
+                    {
+                        inv[slot].stack--;
+                    }
+                    if (inv[slot].stack < 0)
+                    {
+                        inv[slot].SetDefaults();
+                    }
+                    SoundEngine.PlaySound(SoundID.Unlock);
+                    Main.stackSplit = 30;
+                    Main.mouseRightRelease = false;
+                    player.OpenLockBox(inv[slot].type);
+                    Recipe.FindRecipes();
                     return true;
                 }
             }
             return orig(inv, context, slot, player);
-        }
-        public static void InnerOpenLockbox(Item item, Player player, Action<int> opening)
-        {
-            if (ItemLoader.ConsumeItem(item, player))
-            {
-                item.stack--;
-            }
-            if (item.stack < 0)
-            {
-                item.SetDefaults();
-            }
-            SoundEngine.PlaySound(SoundID.Unlock);
-            Main.stackSplit = 30;
-            Main.mouseRightRelease = false;
-            opening(item.type);
-            Recipe.FindRecipes();
         }
 
         public override void RightClick(int i, int j, int type)

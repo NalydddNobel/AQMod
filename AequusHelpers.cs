@@ -11,7 +11,6 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Tiles;
 using log4net;
-using log4net.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -31,7 +30,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
@@ -80,7 +78,7 @@ namespace Aequus
 
         public static Color GetRarityColor(int rare)
         {
-            switch (rare) 
+            switch (rare)
             {
                 default:
                     if (rare > ItemRarityID.Purple)
@@ -299,12 +297,16 @@ namespace Aequus
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
         }
 
+        public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
+        public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
+        public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+
         public static bool IsInCustomTileInteractionRange(this Player player, int x, int y, int extraX, int extraY)
         {
             int tileRangeX = Player.tileRangeX;
             int tileRangeY = Player.tileRangeY;
-            Player.tileRangeX += 15;
-            Player.tileRangeY += 15;
+            Player.tileRangeX += extraX;
+            Player.tileRangeY += extraY;
             bool value = player.IsInTileInteractionRange(x, y);
             Player.tileRangeX = tileRangeX;
             Player.tileRangeY = tileRangeY;

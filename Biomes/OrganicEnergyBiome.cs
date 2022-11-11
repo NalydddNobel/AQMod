@@ -22,7 +22,7 @@ namespace Aequus.Biomes
         {
             if (!Main.dedServ)
             {
-                music = new ConfiguredMusicData(MusicID.Temple);
+                music = new ConfiguredMusicData(MusicID.Temple, MusicID.OtherworldlyUnderworld);
             }
         }
 

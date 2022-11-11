@@ -56,7 +56,7 @@ namespace Aequus.NPCs.Boss
             if (!Main.dedServ)
             {
                 BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
-                music = new ConfiguredMusicData(MusicID.Boss3);
+                music = new ConfiguredMusicData(MusicID.Boss3, MusicID.OtherworldlyBoss1);
             }
         }
 
@@ -872,7 +872,6 @@ namespace Aequus.NPCs.Boss
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
                 .Add<AquaticEnergy>(stack: 3)
-                .AddOptions(1, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<AmmoBackpack>())
                 .RegisterCondition();
         }
 

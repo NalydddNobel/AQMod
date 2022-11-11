@@ -43,6 +43,7 @@ namespace Aequus
         public static float SkiesDarknessGoToSpeed;
 
         private static bool requestedHookAccess;
+        public static bool otherworldMusic;
 
         public static object Hook(MethodInfo info, MethodInfo info2)
         {

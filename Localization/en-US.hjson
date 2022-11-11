@@ -108,7 +108,7 @@ Mods: {
 			FlashwayNecklace: Flashway Necklace
 			HaltingMagnet: Halting Magnet
 			HaltingMachine: Halting Machine
-			AmmoBackpack: Ammo Renewal Pack
+			AmmoBackpack: Ammo Pack
 			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
@@ -1944,6 +1944,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyMosshroom: Any Moss Mushroom
 			AnyEctoplasm: Any Ectoplasm
 		}
 

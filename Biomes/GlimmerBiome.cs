@@ -41,7 +41,7 @@ namespace Aequus.Biomes
         {
             if (!Main.dedServ)
             {
-                music = new ConfiguredMusicData(MusicID.MartianMadness);
+                music = new ConfiguredMusicData(MusicID.MartianMadness, MusicID.OtherworldlyEerie);
             }
         }
 

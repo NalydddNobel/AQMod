@@ -1,6 +1,9 @@
 ﻿using Aequus.Content;
+using Aequus.Items.Misc.Energies;
+using Aequus.Items.Recipes;
 using Aequus.Projectiles.Misc;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Healing
@@ -30,6 +33,15 @@ namespace Aequus.Items.Accessories.Healing
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cMendshroom = dyeItem.dye;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddRecipeGroup(AequusRecipes.AnyMosshrooms)
+                .AddIngredient<AquaticEnergy>()
+                .AddTile(TileID.Anvils)
+                .TryRegisterBefore(ItemID.CharmofMyths);
         }
     }
 }

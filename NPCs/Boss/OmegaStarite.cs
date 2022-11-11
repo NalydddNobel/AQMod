@@ -192,7 +192,7 @@ namespace Aequus.NPCs.Boss
             if (!Main.dedServ)
             {
                 HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 1f, -0.025f, 0.05f);
-                music = new ConfiguredMusicData(MusicID.Boss5);
+                music = new ConfiguredMusicData(MusicID.Boss5, MusicID.OtherworldlyLunarBoss);
             }
         }
 

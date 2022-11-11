@@ -20,7 +20,6 @@ namespace Aequus.Items.Boss.Bags
                 .Add<Crabax>(chance: 1, stack: 1)
                 .Add<CrabsonMask>(chance: 7, stack: 1)
                 .Add<AquaticEnergy>(chance: 1, stack: 3)
-                .AddOptions(chance: 1, ModContent.ItemType<Mendshroom>(), ModContent.ItemType<AmmoBackpack>())
                 .Coins<Crabson>();
         }
     }

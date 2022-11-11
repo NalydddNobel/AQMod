@@ -27,7 +27,7 @@ namespace Aequus.Biomes
         {
             if (!Main.dedServ)
             {
-                music = new ConfiguredMusicData(MusicID.Sandstorm);
+                music = new ConfiguredMusicData(MusicID.Sandstorm, MusicID.OtherworldlyTowers);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Aequus.Biomes
             // 1200 / 6 * 16 = 3200
             // you can then find a number to multiply by in order to get the same result as dividing by 6 and multiplying by 16
             // 3200 / 1200 = 2.6666-....
-            return y < Main.maxTilesY * 2.66666666f; // 200 tiles in small, 300 in medium, 400 in large
+            return y < (Main.maxTilesY * 2.66666666f) - (30f * 16f); // 200 tiles in small, 300 in medium, 400 in large
         }
 
         public static bool TimeForMeteorSpawns()

@@ -6,6 +6,7 @@ using Aequus.Tiles.Furniture;
 using Aequus.Tiles.PhysicistBlocks;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,8 +36,11 @@ namespace Aequus
         /// </summary>
         public static ValueCache<bool> Main_dayTime { get; private set; }
 
+        public static FieldInfo Field_Main_swapMusic { get; private set; }
+
         public override void Load()
         {
+            Field_Main_swapMusic = typeof(Main).GetField("swapMusic", BindingFlags.NonPublic | BindingFlags.Static);
             Main_invasionSize = new ValueCache<int>(() => ref Main.invasionSize);
             Main_invasionType = new ValueCache<int>(() => ref Main.invasionType);
             Main_bloodMoon = new ValueCache<bool>(() => ref Main.bloodMoon);
@@ -64,6 +68,10 @@ namespace Aequus
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;
             AequusPlayer.PlayerContext = -1;
+            if (Field_Main_swapMusic != null)
+            {
+                Aequus.otherworldMusic = (bool)Field_Main_swapMusic.GetValue(null);
+            }
             if (Main_invasionSize.IsCaching)
             {
                 Main_invasionSize.EndCaching();

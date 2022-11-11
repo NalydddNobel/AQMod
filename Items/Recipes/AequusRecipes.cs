@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Placeable.Nature.MossMushrooms;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -10,19 +11,21 @@ namespace Aequus.Items.Recipes
     public class AequusRecipes : ModSystem
     {
         private static RecipeGroup anyEctoplasm;
+        private static RecipeGroup anyMosshrooms;
         public static RecipeGroup AnyEctoplasm { get => anyEctoplasm; }
+        public static RecipeGroup AnyMosshrooms { get => anyMosshrooms; }
 
         public override void AddRecipeGroups()
         {
             NewGroup("AnyEctoplasm", ref anyEctoplasm,
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
+            NewGroup("AnyMosshroom", ref anyMosshrooms,
+                ModContent.ItemType<ArgonMushroom>(), ModContent.ItemType<KryptonMushroom>(), ModContent.ItemType<XenonMushroom>());
         }
 
         private static RecipeGroup NewGroup(string name, ref RecipeGroup group, params int[] items)
         {
-            group = new RecipeGroup(
-                () => AequusText.GetText("RecipeGroup." + name),
-                items);
+            group = new RecipeGroup(() => AequusText.GetText("RecipeGroup." + name), items);
             RecipeGroup.RegisterGroup("Aequus:" + name, group);
             return group;
         }

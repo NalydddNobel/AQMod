@@ -18,6 +18,13 @@ namespace Aequus
 {
     public class AequusWorld : ModSystem
     {
+        public const int SmallWidth = 4200;
+        public const int SmallHeight = 1200;
+        public const int MedWidth = 6400;
+        public const int MedHeight = 1800;
+        public const int LargeWidth = 8400;
+        public const int LargeHeight = 2400;
+
         public static int TileCountsMultiplier;
 
         private static FieldInfo SceneMetrics__tileCounts;
