@@ -74,7 +74,18 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .UseColor(Color.Orange * 1.2f);
+                .UseColor(Color.Orange * 1.2f)
+                .SetQuote(ModContent.ItemType<FoolsGoldRing>(), () => Language.GetTextValue($"Mods.Aequus.ShopQuote.Exporter.FoolsGoldRing_{(Main.LocalPlayer.Male ? "Male" : "Female")}"))
+                .SetQuote(ModContent.ItemType<RichMansMonocle>(), () =>
+                {
+                    string s = Language.GetTextValue("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle");
+                    string taxCollector = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector);
+                    if (!string.IsNullOrEmpty(taxCollector))
+                    {
+                        s += "\n" + Language.GetTextValueWith("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle_TaxCollector", new { TaxCollector = taxCollector, });
+                    }
+                    return s;
+                });
             ExporterQuests.NPCTypesNoSpawns.Add(Type);
         }
 

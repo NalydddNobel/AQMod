@@ -161,7 +161,7 @@ namespace Aequus.Projectiles.Magic
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.extraUpdates = 3;
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 80;
         }
 
         public override void AI()

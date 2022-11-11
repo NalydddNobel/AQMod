@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Magic
 {
-    public class BallisticScreecherProj : ModProjectile
+    public class BombarderRodProj : ModProjectile
     {
         public override string Texture => $"{Aequus.VanillaTexture}Projectile_{ProjectileID.Flamelash}";
 
@@ -78,11 +78,25 @@ namespace Aequus.Projectiles.Magic
                 }
             }
 
-            if (Projectile.ai[0] < 25f)
+            var target = Projectile.FindTargetWithLineOfSight(240f);
+            if (target != -1)
+            {
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, 
+                    Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * Projectile.velocity.Length(), 0.05f)) * Projectile.velocity.Length();
+            }
+            else if (Projectile.ai[0] < 25f)
             {
                 Projectile.velocity = Projectile.velocity.RotatedBy(0.04f * -Projectile.ai[1] * (Math.Max(Projectile.ai[0], 0f) / 25f));
             }
             Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
+            if (Collision.SolidCollision(Projectile.position - new Vector2(32f, 32f), Projectile.width + 64, Projectile.height + 64))
+            {
+                Projectile.ai[0]++;
+            }
+            if (Collision.SolidCollision(Projectile.position - new Vector2(16f, 16f), Projectile.width + 32, Projectile.height + 32))
+            {
+                Projectile.ai[0]++;
+            }
             Projectile.ai[0]++;
             if ((int)Projectile.ai[0] == 0)
             {
@@ -106,11 +120,11 @@ namespace Aequus.Projectiles.Magic
                         CrimsonHellfire.AddBuff(Main.npc[i], 300);
                     }
                 }
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 75; i++)
                 {
                     var d = Dust.NewDustDirect(target.position, target.width, target.height, DustID.Torch, Scale: Main.rand.NextFloat(1f, 4f) * Projectile.Opacity);
                     d.velocity *= 0.5f;
-                    d.velocity = Vector2.Normalize(target.Center - d.position) * Main.rand.NextFloat() * 30f;
+                    d.velocity = Vector2.Normalize(target.Center - d.position) * Main.rand.NextFloat() * 16f;
                     d.noGravity = true;
                 }
             }

@@ -105,6 +105,7 @@ Mods: {
 			CrownOfTheGrounded: Crown of the Grounded
 			CrownOfDarkness: Crown of Darkness
 			CrownOfBlood: Crown of Blood
+			HeartshatterNecklace: Heartshatter Necklace
 			FlashwayNecklace: Flashway Necklace
 			HaltingMagnet: Halting Magnet
 			HaltingMachine: Halting Machine
@@ -112,6 +113,7 @@ Mods: {
 			MothmanMask: Mothman Mask
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
+			PhoenixRing: Phoenix Ring
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
@@ -188,7 +190,7 @@ Mods: {
 			PentalScythe: Pental Scythe
 			Gamestar: Gamestar
 			Snowgrave: Snowgrave
-			BallisticScreecher: Bombarder Rod
+			BombarderRod: Bombarder Rod
 			Triacanthorn: Triacanthorn
 
 			# Summon
@@ -605,10 +607,11 @@ Mods: {
 				'''
 			CrownOfTheGrounded: 10% increased critical strike chance while on solid ground
 			CrownOfDarkness: 10% increased damage while in the dark
-			CrownOfBlood:
+			CrownOfBlood: Boosts the item in your first accessory slot
+			HeartshatterNecklace: 
 				'''
-				Boosts the item in your first accessory slot
-				However all stats are decreased and regeneration is disabled
+				{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+				{$ItemTooltip.PanicNecklace}
 				'''
 			FlashwayNecklace: Gives you a brief period of invulnerability before allowing you to be struck
 			HaltingMagnet: 
@@ -640,6 +643,11 @@ Mods: {
 				'''
 				Chance to inflict a random debuff on hit
 				50% increased duration on debuffs applied to enemies
+				'''
+			PhoenixRing: 
+				'''
+				{$Mods.Aequus.ItemTooltip.BoneRing}
+				All attacks inflict fire damage
 				'''
 			BoneRing: Chance to inflict weakness on enemies
 			PandorasBox: 
@@ -840,7 +848,11 @@ Mods: {
 				Summons a deadly snowblast from below
 				'Watch what happens when I cast a spell I don't know!'
 				'''
-			BallisticScreecher: Critical strikes inflict crimson fire to nearby enemies
+			BombarderRod: 
+				'''
+				Critical strikes inflict crimson fire to nearby enemies
+				Imprecise at close range
+				'''
 			Triacanthorn: 
 				'''
 				Summons splitting vile tendrils
@@ -1530,7 +1542,7 @@ Mods: {
 			EmpoweredWrath: Increases damage by 20%
 
 			FoolsGoldRingBuff: Improved stats from collecting coins
-			FlashwayNecklaceCooldown: Temporarily disables the flashway necklace
+			FlashwayNecklaceCooldown: Cannot use flash shield
 
 			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
 			NeutronYogurtBuff: Greatly increased gravity
@@ -2025,8 +2037,21 @@ Mods: {
 		}
 
 		ShopQuote: {
+			Clothier: {
+				FamiliarPickaxe: Hey? You wouldn't happen to find this little pickaxe familiar looking right?
+			}
+
 			Mechanic: {
 				SantankSentry: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
+			}
+
+			DyeTrader: {
+				DyableCursor: 
+					'''
+					My parents said we all have a point of pure focus, called a 'cursor'.
+					Your 'cursor' may like trying out a new coat of paint.
+					Although it may be a bit dull on the boring dyes.
+					'''
 			}
 
 			Carpenter: {
@@ -2036,7 +2061,10 @@ Mods: {
 					Used with the Shutterstocker™ to capture images.
 					Save your best buildings with the most captivating clips!
 					'''
+				SilkPickaxe: With fibers embroided with sticky silky substances, it can be incredibly gentle!
+				SilkHammer: "{$Mods.Aequus.ShopQuote.Carpenter.SilkPickaxe}"
 				ImpenetrableCoating: A clear, strong paste which only a pickaxe can get through!
+				OliverPainting: I can't find out why I find this piece so facinating!
 				OmniPaint: 
 					'''
 					Using a special dye and paint container, you can easily pick out what color of paint
@@ -2048,6 +2076,11 @@ Mods: {
 			}
 
 			Exporter: {
+				Mallet: 
+					'''
+					Some crazy guy stopped by to hand me a mallet, said something about breakin' vases?
+					I'll sell it to ya, not for free of course.
+					'''
 				GoldRing: 
 					'''
 					Said to attract coins, yet this ring hasn't ripped a bank off of the ground! 
@@ -2063,11 +2096,12 @@ Mods: {
 					Took this of one of me maties' corpses, 
 					you two look similar enough eh?
 					'''
-				FoolsGoldRing: 
+				FoolsGoldRing_Male: 
 					'''
 					The ladies would love ye for wearing this, 
 					just don't tell them ye secret!
 					'''
+				FoolsGoldRing_Female: Er... this ring is made of pure 24 carat gold! Perfect for a lass like you!
 				FaultyCoin: 
 					'''
 					Slip this as a regular coin, 
@@ -2078,21 +2112,27 @@ Mods: {
 					Don't like payin' for full? 
 					This forged card will knock down ye common prices by a lot.
 					'''
-				RecyclingMachine: 
+				GrandReward: 
 					'''
-					Littering is a crime worse than bein' a pirate. 
-					Keep yeself safe with this cheap recycler!
+					Ye like getting more buck from your bangs? 
+					This here item is ye choice.
 					'''
 				SkeletonKey: 
 					'''
 					Need ye a way to unlock some forgotten booty but ye keys keep breaking?
 					Purchase now!
 					'''
-				GrandReward: 
+				RecyclingMachine: 
 					'''
-					Ye like getting more buck from your bangs? 
-					This here item is ye choice.
+					Littering is a crime worse than bein' a pirate. 
+					Keep yeself safe with this cheap recycler!
 					'''
+				RichMansMonocle: Ripped this off one of my debters after er... 'paying him off' with my sword.
+				RichMansMonocle_TaxCollector: Hey... has {TaxCollector} said anything about recognizing me?
+				FishyFins: Pirates keep the fins of Mermen as trophies, said to also ward them off from becomin' zombies too!
+				CrabClock: A neat decoration from my ol' cap's quarters... until I stole it!
+				SedimentaryRock: While that crustacean was awful, his caves has some good tasting sand!
+				HypnoticPearl: I... can't stop looking at it... you can look at it forever too (For a price)
 			}
 
 			Occultist: {
@@ -2101,13 +2141,31 @@ Mods: {
 					Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
 					Like all living things however, I have to put their suffering to an end.
 					'''
-				OccultistCandle: I find it useful for rituals, tehe-
+				OccultistCandle: I find it useful for rituals, tehe~
+				SkeletronTaperCandle: 
+					'''
+					Thinking that possessing dead corpses isn't dark? 
+					Why not double up your curses and grant them the dark hands of Skeletron!
+					'''
+				CrownOfBlood: 
+					'''
+					The origin of this garment will be the least of your worries...
+					this garment empowers the accessory you'd call 'special'.
+					'''
+				CrownOfDarkness: Birthed from smelting dark matter, this garment becomes frail in the light.
+				CrownOfTheGrounded: Cursed to be bound to this planet, this garment becomes limp while airborn.
 				Meathook: A hook extracted from my arch rival's weaponry... he won't find me here right?
 				ShadowKey: Used for unlocking the loot of the Underworld, weird that the demons didn't give each chest a different keyhole so pillaging isn't as easy.
 				UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
+				SpiritBottle: 
+					'''
+					An ancient concoction used to quench the thirst of angsty spirits. 
+					You might be able to possess more bodies if you bribe them with a drink!
+					'''
+				BlackPhial: Pure black magic created the liquid within this phial, a single drop can even make a pigron deathly ill.
 				GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
+				GoreNestPainting: My first painting! I really liked making my own red paint for it!
 				InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
-				BlackPhial: Black magic sustains the liquid within this phial, a single drop can even make a pigron deathly ill.
 				WhoopieCushion: *Poomf*
 			}
 
@@ -2117,6 +2175,13 @@ Mods: {
 					A zero point energy field manipulator I created for my kindergarten science fair.
 					Much more high-tech compared to the dirt rod.
 					'''
+				PortalGun: The pinnacle of current technology. This 'ASHPD' is how I got here in the first place.
+				GravityGlobe: 
+					'''
+					When flipped upside down, local gravity becomes reversed. 
+					Disguised as an unassuming globe for it to easily pass weak security.
+					'''
+				PrecisionGloves: Specifically used by ones training in medicine, these gloves reward the wearer for using proper precision.
 				HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
 				HolographicMeatloaf: 
 					'''
@@ -2162,6 +2227,7 @@ Mods: {
 					Powerful radiation is being emitted from this apple.
 					Now that you are touching it, I would expect you to be dead before next week.
 					'''
+				ExLydSpacePainting: A render of a space travel force I have not heard much about. After investigating here, I may research them further.
 				HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
 			}
 
@@ -2187,6 +2253,12 @@ Mods: {
 				YinYangPaintingsSeparate: The strange name of this painting and mysterious figure must elude to something...
 				HomeworldPainting: An incredible piece of artwork showing what theorists believe the Starite's homeworld looks like.
 				SkyrimRocks: Rocks with words encrypted in an ancient dragon language, unfortunately I don't know many who can translate it.
+				AncientBreakdownDye: The effect on color it has is similar to prismatic, but not shiny. I'd show you how it works but that'd break my buisiness model.
+				CensorDye: Commonly used on TV shows... hey what do you mean by 'Post-Processing'?
+				OutlineDye: Applies an aura around whatever you desire, the ingredients behind such an ability are undocumented.
+				ScrollDye: Said to take you through your 'true space'. I dunno, ask the feline people of Elsweyr who traded this off for a slime banner.
+				SimplifiedDye: Said to help mix blemishes and bruises into your skin, might work on armor or hair though. Haven't tried.
+				HueshiftDye: Used by meditating monks to 'View the entire wavelength'. You should take a trip to Elder Island to see how they utilize it.
 			}
 		}
 
@@ -2293,7 +2365,7 @@ Mods: {
 
 				ThieveryFailed: {
 					0: Try looking for some fancy relics. Not the ones dropped by bosses- but the rare jeweled ones that landlubbers buy. They normally leave them lying around in ye houses.
-					1: Ye don't have anything stolen goods I want on ye person! I only want jeweled furniture which ye townfolk buy.
+					1: Ye don't have any stolen goods I want on ye person! I only want jeweled furniture which ye townfolk buy.
 				}
 
 				UpgradeBurgerButton: Upgrade Burger?

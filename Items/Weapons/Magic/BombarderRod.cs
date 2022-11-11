@@ -8,7 +8,8 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Magic
 {
     [GlowMask]
-    public class BallisticScreecher : ModItem
+    [LegacyName("BallisticScreecher")]
+    public class BombarderRod : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,28 +20,27 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 22;
+            Item.SetWeaponValues(30, 2f, 11);
             Item.DamageType = DamageClass.Magic;
-            Item.useTime = 9;
-            Item.useAnimation = 9;
+            Item.useTime = 8;
+            Item.useAnimation = 8;
             Item.width = 32;
             Item.height = 32;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemDefaults.RarityDemonSiege;
-            Item.shoot = ModContent.ProjectileType<BallisticScreecherProj>();
+            Item.shoot = ModContent.ProjectileType<BombarderRodProj>();
             Item.shootSpeed = 8.5f;
-            Item.mana = 6;
+            Item.mana = 4;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item88.WithVolume(0.5f).WithPitchOffset(0.8f);
             Item.value = ItemDefaults.DemonSiegeValue;
-            Item.knockBack = 2f;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             position += Vector2.Normalize(velocity) * 38f;
-            velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+            velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f));
         }
     }
 }

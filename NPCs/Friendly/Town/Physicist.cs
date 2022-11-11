@@ -153,10 +153,8 @@ namespace Aequus.NPCs.Friendly.Town
 
             if (AequusWorld.downedOmegaStarite)
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
-            if (AequusWorld.downedDustDevil)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TornadoInABottle>());
 
-            if (!Main.dayTime)
+            if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ExLydSpacePainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());

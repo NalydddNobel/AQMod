@@ -210,6 +210,7 @@ namespace Aequus
         public float bloodDiceDamage;
         public int bloodDiceMoney;
         public bool accGrandReward;
+        public int accBoneBurningRing;
         public int accBoneRing;
 
         public int accBlackPhial;
@@ -1595,6 +1596,10 @@ namespace Aequus
                         target.AddBuff(buff, 150);
                     }
                 }
+            }
+            if (accBoneBurningRing > 0)
+            {
+                target.AddBuff(BuffID.OnFire3, 360 * accBoneBurningRing);
             }
             if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
             {

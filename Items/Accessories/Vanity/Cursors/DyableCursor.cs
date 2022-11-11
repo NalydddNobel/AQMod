@@ -2,10 +2,13 @@
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ShopQuotesMod;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Vanity.Cursors
 {
@@ -45,6 +48,12 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
                     cache = null;
                 }
             }
+        }
+
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.DyeTrader, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.DyeTrader.DyableCursor");
         }
 
         public override ICursorDye InitalizeDye()

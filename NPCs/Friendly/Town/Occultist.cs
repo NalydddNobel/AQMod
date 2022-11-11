@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -120,10 +121,11 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (Main.hardMode)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
+                if (!Main.dayTime)
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
             }
-            if (!Main.dayTime)
+            if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());

@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Accessories.Summon.Necro
 {
     public class SpiritBottle : ModItem
     {
