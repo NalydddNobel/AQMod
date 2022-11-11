@@ -517,7 +517,7 @@ namespace Aequus.NPCs
                 {
                     zombie.SpawnZombie(npc);
                 }
-                int ammoBackpackChance = (int)Math.Max(10f - npc.value / 1000f, 1f);
+                int ammoBackpackChance = 3;
                 foreach (var tuple in players)
                 {
                     if (!npc.playerInteraction[tuple.player.whoAmI])
