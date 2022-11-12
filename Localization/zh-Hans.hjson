@@ -105,13 +105,15 @@ Mods: {
 			CrownOfTheGrounded: 地缚王冠
 			CrownOfDarkness: 黑暗王冠
 			CrownOfBlood: 鲜血王冠
+			HeartshatterNecklace: 碎心者项链
 			FlashwayNecklace: 晖耀项链
 			HaltingMagnet: 凝滞磁铁
 			HaltingMachine: 凝滞仪
-			AmmoBackpack: 弹药恢复包
+			AmmoBackpack: 弹药包
 			MothmanMask: 天蛾人面具
 			HighSteaks: 高级牛排
 			BlackPhial: 黑色药瓶
+			PhoenixRing: 菲尼克斯戒指
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
 			TheReconstruction: 改造
@@ -188,7 +190,7 @@ Mods: {
 			PentalScythe: 回旋魔镰
 			Gamestar: 游戏之星
 			Snowgrave: 雪墓
-			BallisticScreecher: 轰炸者手杖
+			BombarderRod: 轰炸者手杖
 			Triacanthorn: 三棘卷须
 
 			# Summon
@@ -605,10 +607,11 @@ Mods: {
 				'''
 			CrownOfTheGrounded: 当站在实心地面上时增加10%暴击率
 			CrownOfDarkness: 当处于黑暗中时增加10%伤害
-			CrownOfBlood:
+			CrownOfBlood: 强化你第一个饰品栏中的物品
+			HeartshatterNecklace: 
 				'''
-				强化你第一个饰品栏中的物品
-				然而你的各项属性降低且无法再生生命值
+				{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+				{$ItemTooltip.PanicNecklace}
 				'''
 			FlashwayNecklace: 允许你在受到攻击之前无敌一小段时间
 			HaltingMagnet: 
@@ -640,6 +643,11 @@ Mods: {
 				'''
 				有几率对敌人造成随机减益
 				对敌人造成的减益持续时间延长50%
+				'''
+			PhoenixRing: 
+				'''
+				{$Mods.Aequus.ItemTooltip.BoneRing}
+				所有攻击都会造成火焰伤害
 				'''
 			BoneRing: 有几率对敌人造成虚弱效果
 			PandorasBox: 
@@ -840,7 +848,11 @@ Mods: {
 				在下方召唤向上喷涌的致命冰雪风暴
 				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 				'''
-			BallisticScreecher: 攻击造成暴击时对附近的敌人造成猩红减益
+			BombarderRod: 
+				'''
+				攻击造成暴击时对附近的敌人造成猩红减益
+				近距离时并不精准
+				'''
 			Triacanthorn: 
 				'''
 				召唤会分裂的邪恶卷须
@@ -1530,7 +1542,7 @@ Mods: {
 			EmpoweredWrath: 伤害增加20%
 
 			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
-			FlashwayNecklaceCooldown: 暂时禁用晖耀项链
+			FlashwayNecklaceCooldown: 无法使用晖耀护盾
 
 			AstralCookieBuff: 大幅度提升魔法属性, 小幅度提升其他属性
 			NeutronYogurtBuff: 大幅度增加重力
@@ -1944,6 +1956,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyMosshroom: 任意苔藓蘑菇
 			AnyEctoplasm: 任意灵质
 		}
 
@@ -2024,8 +2037,21 @@ Mods: {
 		}
 
 		ShopQuote: {
+			Clothier: {
+				FamiliarPickaxe: 嘿? 你不会碰巧发现这把小镐子看起来很熟悉吧, 对吗?
+			}
+
 			Mechanic: {
 				SantankSentry: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
+			}
+
+			DyeTrader: {
+				DyableCursor: 
+					'''
+					我的父母说我们都有一个纯粹的焦点, 叫做'光标'
+					你的'光标'也许想尝试一层新漆.
+					尽管在这些无聊的染料上可能有点乏味.
+					'''
 			}
 
 			Carpenter: {
@@ -2035,7 +2061,10 @@ Mods: {
 					与快门储像机™一起使用以捕获图像
 					用最吸引人的剪片来保存你最好的建筑!
 					'''
+				SilkPickaxe: 纤维上绣有粘性丝状物质, 非常暖和!
+				SilkHammer: "{$Mods.Aequus.ShopQuote.Carpenter.SilkPickaxe}"
 				ImpenetrableCoating: 一种只有镐子才能穿过的干净又强力的涂料!
+				OliverPainting: 我不明白为什么我觉得这件事这么容易!
 				OmniPaint: 
 					'''
 					使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
@@ -2047,6 +2076,11 @@ Mods: {
 			}
 
 			Exporter: {
+				Mallet: 
+					'''
+					有个疯子停下来递给我一个木槌, 并说了些关于打破花瓶的事?
+					我会把它卖给恁, 当然不是免费的.
+					'''
 				GoldRing: 
 					'''
 					据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 
@@ -2062,11 +2096,12 @@ Mods: {
 					我从我一个配偶的尸体上拿到了这个, 
 					恁俩看起来很像啊, 不是吗?
 					'''
-				FoolsGoldRing: 
+				FoolsGoldRing_Male: 
 					'''
 					女士们会喜欢恁戴着这个的, 
 					但千万不要告诉她们恁的秘密!
 					'''
+				FoolsGoldRing_Female: 呃...这枚戒指是由24克拉纯金制成的! 非常适合你这样的女孩!
 				FaultyCoin: 
 					'''
 					把这个视作一枚普通硬币, 如果他们抓不到恁, 
@@ -2077,21 +2112,27 @@ Mods: {
 					不喜欢付全款? 
 					这张伪造的卡会使恁的财产花费降低许多.
 					'''
-				RecyclingMachine: 
+				GrandReward: 
 					'''
-					乱扔垃圾是比当海盗更严重的罪行. 
-					用这个廉价的回收机保证恁自己的安全吧!
+					恁喜欢通过打架来赚钱吗? 
+					这个物品是恁的不二之选.
 					'''
 				SkeletonKey: 
 					'''
 					恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 
 					买一个吧!
 					'''
-				GrandReward: 
+				RecyclingMachine: 
 					'''
-					恁喜欢通过打架来赚钱吗? 
-					这个物品是恁的不二之选.
+					乱扔垃圾是比当海盗更严重的罪行. 
+					用这个廉价的回收机保证恁自己的安全吧!
 					'''
+				RichMansMonocle: 从我的债主身上撕下来的呃...用我的'还债'剑.
+				RichMansMonocle_TaxCollector: 嘿...{TaxCollector}有没有说过任何承认我的话?
+				FishyFins: 海盗们把鱼鳍当作战利品, 还说要防止他们也变成僵尸!
+				CrabClock: 我很久以前住的地方的一件整洁的装饰物...直到我偷了他!
+				SedimentaryRock: 虽然那甲壳动物很可怕, 他的洞穴里有一些味道很好的沙子!
+				HypnoticPearl: 我...不能停止看着它...你也可以永远看着它 (只需花上一些小钱)
 			}
 
 			Occultist: {
@@ -2100,13 +2141,31 @@ Mods: {
 					在墓地测试复活咒语, 似乎这个墓地想要有一个活着的灵魂.
 					然而, 就像所有生物一样, 我必须结束他们的痛苦.
 					'''
-				OccultistCandle: 我觉得它对仪式很有用, 这-
+				OccultistCandle: 我发现它对仪式很有用, 呵呵~
+				SkeletronTaperCandle: 
+					'''
+					认为拥有尸体并不黑暗?
+					那为什么不加倍诅咒并赋予它们骷髅王的黑暗之手!
+					'''
+				CrownOfBlood: 
+					'''
+					这件衣服的来历是你最不需要担心的...
+					这件衣服赋予了你称之为'特殊'的饰品.
+					'''
+				CrownOfDarkness: 提炼自暗物质, 这件衣服在光明下回变得脆弱.
+				CrownOfTheGrounded: 被诅咒被束缚在这个星球上, 这件衣服在空中时会变得缓慢.
 				Meathook: 从我劲敌的武器上拿出来的钩子...他不会知道我在这的, 对吧?
 				ShadowKey: 用于解锁地狱的战利品, 奇怪的是, 恶魔没有给每个箱子一个不同的钥匙孔, 所以抢劫并不是很容易.
-				UnholyCore: 我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
+				UnholyCore: A我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
+				SpiritBottle: 
+					'''
+					一瓶远古秘药, 用于让远古愤怒灵魂止渴.
+					如果你用饮料贿赂它们, 你可能会拥有更多尸体!
+					'''
+				BlackPhial: 纯粹的黑魔法造就了瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
 				GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
+				GoreNestPainting: 我的第一副画作! 我真的喜欢自制红色油漆并画上去!
 				InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
-				BlackPhial: 黑魔法维持着这个瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
 				WhoopieCushion: *Poomf*
 			}
 
@@ -2116,6 +2175,13 @@ Mods: {
 					我在幼儿园科学展上创造的零点能量场操纵仪,
 					与泥土法杖相比, 它的科技含量相当地高.
 					'''
+				PortalGun: 当前科技的顶点. 这个'ASHPD'是我第一次到达这里的原因.
+				GravityGlobe: 
+					'''
+					当上下颠倒时, 局部重力会反转. 
+					伪装成一个不起眼的球体, 以轻松通过弱安全性.
+					'''
+				PrecisionGloves: 这些手套是专门用于医学训练者的, 它用于奖励佩戴者使用适当的精度.
 				HaltingMachine: 解决无法解决的问题, 如果你不喜欢下落的东西, 它可能会有用.
 				HolographicMeatloaf: 
 					'''
@@ -2161,6 +2227,7 @@ Mods: {
 					这个苹果正在释放出强大的辐射.
 					现在你正接触着它, 我不指望你能活到下周.
 					'''
+				ExLydSpacePainting: 一个我没怎么听说过的太空旅行部队的渲染图, 在调查这里后, 我可能会进一步研究它们.
 				HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
 			}
 
@@ -2186,6 +2253,12 @@ Mods: {
 				YinYangPaintingsSeparate: 这幅画奇怪的名字和怪异的图像一定在逃避着什么...
 				HomeworldPainting: 这是一幅令人难以置信的艺术品, 展示了理论家们认为星源的家园是什么样子.
 				SkyrimRocks: 岩石上有用古代龙语加密的文字, 不幸的是, 我不知道有谁能翻译它.
+				AncientBreakdownDye: 它对颜色的影响类似于棱镜, 但并不闪亮. 我会告诉你它是如何工作的, 但那会打破我的某个模型.
+				CensorDye: 常用于电视节目...嘿, 你说的'处理后'是什么意思?
+				OutlineDye: 在你想要的任何东西周围施加光环, 这种能力背后的要素是未经证实的.
+				ScrollDye: 据说会带你穿越你的'真实空军'. 我不知道, 问问艾斯维尔的那些把这个换成了一条粘糊糊的横幅的猫科动物们.
+				SimplifiedDye: 据说会有助于疤痕和淤青融入你的皮肤, 但可能适用于盔甲或头发. 还没有试过.
+				HueshiftDye: 冥想僧侣用于'查看整个波长'. 你应该去老岛问问他们怎么使用这个.
 			}
 		}
 
