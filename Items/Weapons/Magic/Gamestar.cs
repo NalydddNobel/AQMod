@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.shoot = ModContent.ProjectileType<GamestarProj>();
             Item.shootSpeed = 25f;
-            Item.mana = 8;
+            Item.mana = 14;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item75.WithPitch(1f);
             Item.value = ItemDefaults.OmegaStariteValue;

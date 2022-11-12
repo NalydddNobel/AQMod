@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

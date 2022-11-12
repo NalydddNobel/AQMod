@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemRarityID.Yellow;
             Item.shoot = ModContent.ProjectileType<PentalScytheProj>();
             Item.shootSpeed = 25f;
-            Item.mana = 7;
+            Item.mana = 14;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item109;
             Item.value = ItemDefaults.DemonSiegeValue;

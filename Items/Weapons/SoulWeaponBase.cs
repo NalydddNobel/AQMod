@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Items.Prefixes.Soul;
 using System;
 using System.Collections.Generic;

@@ -6,6 +6,7 @@ using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.NPCs.GlobalNPCs;
 using Aequus.Projectiles.Monster.DustDevilProjs;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -208,7 +209,7 @@ namespace Aequus.NPCs.Boss
                 }
             }
 
-            SpawnManagerGlobalNPC.ForceZen(NPC);
+            SpawnsManager.ForceZen(NPC);
 
             if (Action != ACTION_GOODBYE && !NPC.HasValidTarget)
             {

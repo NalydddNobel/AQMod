@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common
 {
-    public struct FlaskID
+    public class FlaskID
     {
         public const byte Venom = 1;
         public const byte CursedInferno = 2;

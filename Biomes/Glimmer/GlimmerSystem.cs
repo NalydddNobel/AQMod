@@ -51,6 +51,19 @@ namespace Aequus.Biomes.Glimmer
             }
         }
 
+        public static void DeleteFallenStarsWithin(int x)
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == ProjectileID.FallingStar && Main.projectile[i].Center.X > x * 16f - 1000f && Main.projectile[i].Center.X < x * 16f + 1000f)
+                {
+                    Main.projectile[i].damage = 0;
+                    Main.projectile[i].noDropItem = true;
+                    Main.projectile[i].Kill();
+                }
+            }
+        }
+
         public override void PreUpdatePlayers()
         {
             if (GlimmerSceneEffect.cantTouchThis > 0)
@@ -81,7 +94,7 @@ namespace Aequus.Biomes.Glimmer
                     }
                 }
                 GlimmerBiome.TileLocation = CheckGround(GlimmerBiome.TileLocation);
-
+                DeleteFallenStarsWithin(GlimmerBiome.TileLocation.X);
                 if (Main.netMode == NetmodeID.Server && GlimmerBiome.TileLocation.X != x)
                 {
                     SendGlimmerStatus();
@@ -89,6 +102,7 @@ namespace Aequus.Biomes.Glimmer
             }
             if (PeacefulGlimmerBiome.EventActive)
             {
+                DeleteFallenStarsWithin(PeacefulGlimmerBiome.TileLocationX);
                 if (Main.dayTime || Main.bloodMoon || Main.snowMoon || Main.pumpkinMoon)
                 {
                     PeacefulGlimmerBiome.TileLocationX = 0;

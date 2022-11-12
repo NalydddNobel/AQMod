@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Accessories;
+using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             if (projIdentity > -1)
             {
                 projIdentity = AequusHelpers.FindProjectileIdentity(Projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesManager>(out var value))
                 {
                     Projectile.Kill();
                     return;

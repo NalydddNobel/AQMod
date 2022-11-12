@@ -17,7 +17,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Common.GlobalItems
+namespace Aequus.Items.GlobalItems
 {
     public class TooltipsGlobalItem : GlobalItem
     {

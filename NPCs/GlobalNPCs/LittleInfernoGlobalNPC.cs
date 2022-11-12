@@ -8,18 +8,18 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.GlobalNPCs
+namespace Aequus.NPCs.GlobalNPCs
 {
     public class LittleInfernoGlobalNPC : GlobalNPC
     {
-        public bool active;
+        public bool infernoActive;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
         public override void SetDefaults(NPC npc)
         {
-            active = false;
+            infernoActive = false;
         }
 
         public override void AI(NPC npc)
@@ -36,7 +36,7 @@ namespace Aequus.Common.GlobalNPCs
                             {
                                 if (Main.player[i].Aequus().accLittleInferno > 0)
                                 {
-                                    active = true;
+                                    infernoActive = true;
                                 }
                             }
                         }
@@ -44,7 +44,7 @@ namespace Aequus.Common.GlobalNPCs
                     }
                 }
             }
-            if (active)
+            if (infernoActive)
             {
                 int player = npc.HasValidTarget ? npc.target : Player.FindClosest(npc.position, npc.width, npc.height);
                 LittleInferno.InfernoPotionEffect(Main.player[player], npc.Center, npc.whoAmI);
@@ -56,7 +56,7 @@ namespace Aequus.Common.GlobalNPCs
                         return;
                     }
                 }
-                active = false;
+                infernoActive = false;
             }
         }
 
@@ -64,7 +64,7 @@ namespace Aequus.Common.GlobalNPCs
         {
             if (!npc.IsABestiaryIconDummy)
             {
-                if (active)
+                if (infernoActive)
                 {
                     float opacity = 0.5f;
                     int time = 0;
@@ -87,12 +87,12 @@ namespace Aequus.Common.GlobalNPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            bitWriter.WriteBit(active);
+            bitWriter.WriteBit(infernoActive);
         }
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
-            active = bitReader.ReadBit();
+            infernoActive = bitReader.ReadBit();
         }
     }
 }

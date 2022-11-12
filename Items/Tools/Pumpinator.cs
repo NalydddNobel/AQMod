@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;

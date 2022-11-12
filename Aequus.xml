@@ -9,11 +9,6 @@
             A helper class which contains many useful methods
             </summary>
         </member>
-        <member name="F:Aequus.AequusHelpers.iterations">
-            <summary>
-            A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
-            </summary>
-        </member>
         <member name="P:Aequus.AequusHelpers.HasMouseItem">
             <summary>
             Determines whether or not the mouse has an item
@@ -348,11 +343,6 @@
             <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Common.GlobalItems.CooldownGlobalItem.HasWeaponCooldown">
-            <summary>
-            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
-            </summary>
-        </member>
         <member name="F:Aequus.Content.CarpenterBounties.CarpenterBounty.ConditionInfo.Carpenter">
             <summary>
             Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.
@@ -607,6 +597,11 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
+        <member name="P:Aequus.Items.GlobalItems.CooldownGlobalItem.HasWeaponCooldown">
+            <summary>
+            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
+            </summary>
+        </member>
         <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
             
@@ -750,14 +745,14 @@
             Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>
         </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.SentryAccessoriesGlobalProj@)">
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>
             <param name="player">The owner of this projectile.</param>
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
     </members>
 </doc>

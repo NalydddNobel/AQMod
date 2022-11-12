@@ -1,14 +1,15 @@
 ﻿using Aequus;
 using Aequus.Common;
-using Aequus.Common.GlobalItems;
-using Aequus.Common.GlobalNPCs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
+using Aequus.Items.GlobalItems;
 using Aequus.NPCs;
+using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
@@ -48,10 +49,8 @@ namespace Aequus
         public const char AirCharacter = '⠀';
         public const string AirString = "⠀";
 
-        /// <summary>
-        /// A static integer used for counting how many iterations for an iterative process has occured. Use this to prevent infinite loops, and always be sure to reset to 0 afterwards.
-        /// </summary>
         public static int iterations;
+        public static bool AnyIterations => iterations > 0;
 
         /// <summary>
         /// Determines whether or not the mouse has an item
@@ -295,6 +294,15 @@ namespace Aequus
         {
             return x > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
+        }
+
+        public static Item HeldItemFixed(this Player player)
+        {
+            if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir)
+            {
+                return Main.mouseItem;
+            }
+            return player.HeldItem;
         }
 
         public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
@@ -983,7 +991,7 @@ namespace Aequus
             {
                 return player;
             }
-            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var santankSentry))
+            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesManager>(out var santankSentry))
             {
                 return santankSentry.dummyPlayer;
             }
@@ -997,7 +1005,7 @@ namespace Aequus
             if (projIdentity > -1)
             {
                 projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesManager>(out var value))
                 {
                     if (Main.myPlayer == projectile.owner)
                     {
@@ -2151,6 +2159,7 @@ namespace Aequus
         {
             void ILoadable.Load(Mod mod)
             {
+                iterations = 0;
             }
 
             void IOnModLoad.OnModLoad(Aequus aequus)

@@ -68,6 +68,7 @@ namespace Aequus
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;
             AequusPlayer.PlayerContext = -1;
+            AequusUI.CurrentItemSlot = new AequusUI.ItemSlotContext();
             if (Field_Main_swapMusic != null)
             {
                 Aequus.otherworldMusic = (bool)Field_Main_swapMusic.GetValue(null);

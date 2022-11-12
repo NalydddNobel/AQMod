@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

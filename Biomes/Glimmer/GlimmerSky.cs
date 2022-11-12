@@ -90,7 +90,10 @@ namespace Aequus.Biomes.Glimmer
 
             try
             {
-                DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
+                if (Main.spriteBatch != null && !Main.spriteBatch.IsDisposed && Main.instance.GraphicsDevice != null && !Main.instance.GraphicsDevice.IsDisposed)
+                {
+                    DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
+                }
             }
             catch
             {

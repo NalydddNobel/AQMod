@@ -2,6 +2,7 @@
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Ranged;
@@ -86,6 +87,40 @@ namespace Aequus.Projectiles
         {
             HeatDamage = new HashSet<int>()
             {
+                ProjectileID.FireWhipProj,
+                ProjectileID.FireWhip,
+                ProjectileID.DaybreakExplosion,
+                ProjectileID.Daybreak,
+                ProjectileID.SolarWhipSwordExplosion,
+                ProjectileID.SolarWhipSword,
+                ProjectileID.DD2BetsyFlameBreath,
+                ProjectileID.DD2BetsyFireball,
+                ProjectileID.Fireball,
+                ProjectileID.FlamethrowerTrap,
+                ProjectileID.FlamesTrap,
+                ProjectileID.DD2FlameBurstTowerT3Shot,
+                ProjectileID.DD2FlameBurstTowerT2Shot,
+                ProjectileID.DD2FlameBurstTowerT1Shot,
+                ProjectileID.DD2PhoenixBowShot,
+                ProjectileID.InfernoHostileBolt,
+                ProjectileID.InfernoHostileBlast,
+                ProjectileID.InfernoFriendlyBolt,
+                ProjectileID.InfernoFriendlyBlast,
+                ProjectileID.HelFire,
+                ProjectileID.Cascade,
+                ProjectileID.Flames,
+                ProjectileID.FlamethrowerTrap,
+                ProjectileID.Sunfury,
+                ProjectileID.FlamingMace,
+                ProjectileID.Flamelash,
+                ProjectileID.Flamarang,
+                ProjectileID.BallofFire,
+                ProjectileID.BlueFlare,
+                ProjectileID.Flare,
+                ProjectileID.FlamingArrow,
+                ProjectileID.MolotovFire,
+                ProjectileID.MolotovFire2,
+                ProjectileID.MolotovFire3,
                 ProjectileID.CultistBossFireBall,
                 ProjectileID.CultistBossFireBallClone,
                 ProjectileID.EyeFire,
@@ -95,6 +130,9 @@ namespace Aequus.Projectiles
             };
             BlacklistSpecialEffects = new HashSet<int>()
             {
+                ProjectileID.MolotovFire,
+                ProjectileID.MolotovFire2,
+                ProjectileID.MolotovFire3,
                 ProjectileID.VilethornBase,
                 ProjectileID.NettleBurstLeft,
                 ProjectileID.NettleBurstRight,
@@ -174,7 +212,7 @@ namespace Aequus.Projectiles
                 }
             }
         }
-        public void OnSpawn_Inherit(Projectile projectile, IEntitySource source)
+        public void TryInherit(Projectile projectile, IEntitySource source)
         {
             if (!projectile.hostile && projectile.HasOwner())
             {
@@ -190,12 +228,20 @@ namespace Aequus.Projectiles
                 {
                     sourceItemUsed = itemUse_WithAmmo.Item.netID;
                     sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+                    if (itemUse_WithAmmo.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
+                    {
+                        onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                    }
                 }
             }
             else if (source is EntitySource_ItemUse itemUse)
             {
                 if (itemUse.Item != null)
                     sourceItemUsed = itemUse.Item.netID;
+                if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
+                {
+                    onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                }
             }
             else if (source is EntitySource_Parent parent)
             {
@@ -210,7 +256,7 @@ namespace Aequus.Projectiles
                     && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accSentryInheritence != null)
                     {
                         var aequus = Main.player[projectile.owner].Aequus();
-                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesGlobalProj>();
+                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesManager>();
                         pWhoAmI = projectile.whoAmI;
                         pIdentity = projectile.identity;
                         try
@@ -246,20 +292,6 @@ namespace Aequus.Projectiles
             }
         }
 
-        public void OnSpawn_CheckItem(Projectile projectile, IEntitySource source)
-        {
-        }
-
-        public void OnSpawn_CheckBonesaw(Projectile projectile, EntitySource_ItemUse itemUse)
-        {
-            if (projectile.type == ProjectileID.BoneGloveProj && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
-            {
-                transform = ModContent.ProjectileType<Bonesaw>();
-                projectile.velocity *= 1.25f;
-                projectile.damage = (int)(projectile.damage * 1.5f);
-            }
-        }
-
         public override void OnSpawn(Projectile projectile, IEntitySource source)
         {
             sourceItemUsed = -1;
@@ -273,19 +305,15 @@ namespace Aequus.Projectiles
 
             try
             {
-                OnSpawn_Inherit(projectile, source);
+                TryInherit(projectile, source);
 
                 if (source is EntitySource_ItemUse itemUse)
                 {
-                    OnSpawn_CheckBonesaw(projectile, itemUse);
-                }
-
-                if (sourceItemUsed > Main.maxItemTypes)
-                {
-                    var item = ContentSamples.ItemsByType[sourceItemUsed];
-                    if (item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
+                    if (projectile.type == ProjectileID.BoneGloveProj && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
                     {
-                        onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                        transform = ModContent.ProjectileType<Bonesaw>();
+                        projectile.velocity *= 1.25f;
+                        projectile.damage = (int)(projectile.damage * 1.5f);
                     }
                 }
             }
@@ -529,6 +557,11 @@ namespace Aequus.Projectiles
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(timeAlive);
+            bitWriter.WriteBit(transform > 0);
+            if (transform > 0)
+            {
+                binaryWriter.Write(transform);
+            }
             bitWriter.WriteBit(frenzyTime > 0);
             if (frenzyTime > 0)
             {
@@ -569,6 +602,10 @@ namespace Aequus.Projectiles
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
             timeAlive = binaryReader.ReadInt32();
+            if (bitReader.ReadBit())
+            {
+                transform = binaryReader.ReadInt32();
+            }
             if (bitReader.ReadBit())
             {
                 frenzyTime = binaryReader.ReadUInt16();

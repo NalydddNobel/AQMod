@@ -16,6 +16,7 @@ namespace Aequus.Buffs.Debuffs
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
             AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
+            AequusBuff.CountsAsFire.Add(Type);
         }
 
         public override bool ReApply(NPC npc, int time, int buffIndex)

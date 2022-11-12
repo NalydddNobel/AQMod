@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Ranged;

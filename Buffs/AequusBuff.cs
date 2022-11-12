@@ -47,6 +47,8 @@ namespace Aequus.Buffs
                 BuffID.OnFire3,
                 BuffID.Frostburn,
                 BuffID.Frostburn2,
+                BuffID.ShadowFlame,
+                BuffID.CursedInferno,
             };
             DemonSiegeEnemyImmunity = new List<int>()
             {

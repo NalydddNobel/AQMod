@@ -16,6 +16,21 @@ namespace Aequus.Graphics
         private static Dictionary<string, short> texturePathToGlowMaskID;
         private static Dictionary<int, short> itemIDToGlowMask;
 
+        public static void AddGlowmask(string texturePath)
+        {
+            texturePathToGlowMaskID.Add(texturePath, -1);
+        }
+
+        public static bool TryGetID(string texture, out short id)
+        {
+            id = -1;
+            if (itemIDToGlowMask != null && texturePathToGlowMaskID.TryGetValue(texture, out var index))
+            {
+                id = index;
+                return true;
+            }
+            return false;
+        }
         public static short GetID(int itemID)
         {
             if (itemIDToGlowMask != null && itemIDToGlowMask.TryGetValue(itemID, out var index))
@@ -35,15 +50,24 @@ namespace Aequus.Graphics
 
         void ILoadable.Load(Mod mod)
         {
+            if (Main.dedServ)
+                return;
+            itemIDToGlowMask = new Dictionary<int, short>();
+            texturePathToGlowMaskID = new Dictionary<string, short>();
         }
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
             if (Main.dedServ)
                 return;
-            itemIDToGlowMask = new Dictionary<int, short>();
-            texturePathToGlowMaskID = new Dictionary<string, short>();
             var masks = TextureAssets.GlowMask.ToList();
+            foreach (var s in texturePathToGlowMaskID)
+            {
+                var customTexture = ModContent.Request<Texture2D>(s.Key, AssetRequestMode.ImmediateLoad);
+                customTexture.Value.Name = s.Key;
+                texturePathToGlowMaskID[s.Key] = (short)masks.Count;
+                masks.Add(customTexture);
+            }
             foreach (var m in Aequus.Instance.GetContent<ModItem>())
             {
                 var attr = m?.GetType().GetAttribute<GlowMaskAttribute>();

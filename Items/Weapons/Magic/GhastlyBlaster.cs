@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.scale = 1.2f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noUseGraphic = true;
-            Item.mana = 20;
+            Item.mana = 30;
         }
 
         public override bool AltFunctionUse(Player player)

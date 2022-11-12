@@ -20,10 +20,10 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.SetWeaponValues(30, 2f, 11);
+            Item.SetWeaponValues(18, 2f, 11);
             Item.DamageType = DamageClass.Magic;
-            Item.useTime = 8;
-            Item.useAnimation = 8;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.width = 32;
             Item.height = 32;
             Item.noMelee = true;
@@ -31,7 +31,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.shoot = ModContent.ProjectileType<BombarderRodProj>();
             Item.shootSpeed = 8.5f;
-            Item.mana = 4;
+            Item.mana = 6;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item88.WithVolume(0.5f).WithPitchOffset(0.8f);
             Item.value = ItemDefaults.DemonSiegeValue;

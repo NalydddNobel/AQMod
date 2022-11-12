@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.GlobalItems
+namespace Aequus.Items.GlobalItems
 {
     public class ItemNameTag : GlobalItem
     {

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.GlobalItems;
-using Aequus.NPCs;
+﻿using Aequus.Items.GlobalItems;
+using Aequus.NPCs.GlobalNPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;

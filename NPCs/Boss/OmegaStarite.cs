@@ -14,6 +14,7 @@ using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Weapons.Melee;
+using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.OmegaStariteProjs;
 using Aequus.Sounds;
@@ -240,7 +241,7 @@ namespace Aequus.NPCs.Boss
         {
             NPC.width = 120;
             NPC.height = 120;
-            NPC.lifeMax = 8000;
+            NPC.lifeMax = 12000;
             NPC.damage = 25;
             NPC.defense = 18;
             NPC.DeathSound = SoundID.NPCDeath55;
@@ -391,9 +392,22 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public void KillFallenStars()
+        {
+            for (int i = 0; i < Main.maxProjectiles; i++)
+            {
+                if (Main.projectile[i].active && Main.projectile[i].type == ProjectileID.FallingStar && NPC.Distance(Main.projectile[i].Center) < 2000f)
+                {
+                    Main.projectile[i].damage = 0;
+                    Main.projectile[i].noDropItem = true;
+                    Main.projectile[i].Kill();
+                }
+            }
+        }
+
         public override void AI()
         {
-            SpawnManagerGlobalNPC.ForceZen(NPC);
+            SpawnsManager.ForceZen(NPC);
             if (Main.dayTime)
             {
                 NPC.life = -1;
@@ -404,6 +418,7 @@ namespace Aequus.NPCs.Boss
                 return;
             }
             GlimmerBiome.omegaStarite = NPC.whoAmI;
+            KillFallenStars();
             var center = NPC.Center;
             var player = Main.player[NPC.target];
             var plrCenter = player.Center;
@@ -1086,6 +1101,17 @@ namespace Aequus.NPCs.Boss
             {
                 rings[i].rotationVelocity *= 0f;
             }
+            if (NPC.ai[1] > 20f && NPC.ai[1] < DEATHTIME * 1f)
+            {
+                for (int i = 0; i < NPC.ai[1] / 40f; i++)
+                {
+                    var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[1] * Main.rand.NextFloat(0.2f, 3f) * 3f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.HotPink, Color.White, Math.Min(Main.rand.NextFloat(1f) - NPC.ai[1] / 10f, 1f)).UseA(0));
+                    d.velocity *= 0.2f;
+                    d.velocity += (NPC.Center - d.position) / 8f;
+                    d.scale = Main.rand.NextFloat(0.3f, 2f + NPC.ai[1] / 30f);
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                }
+            }
             NPC.ai[1] += 0.5f;
             if ((int)(NPC.ai[1] * 2f) == 40)
             {
@@ -1385,9 +1411,18 @@ namespace Aequus.NPCs.Boss
                 {
                     ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, FocusPriority.BossDefeat, 12f, 60);
                 }
+                float val = MathHelper.Clamp(3f - intensity, 0f, 1f);
+                if (val < 0.1f)
+                {
+                    Music = MusicID.Night;
+                }
+                for (int i = 0; i < Main.musicFade.Length; i++)
+                {
+                    Main.musicFade[i] = Math.Min(Main.musicFade[i], val);
+                }
 
-                ScreenFlash.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.6f, 0.75f));
-                EffectsSystem.Shake.Set(intensity * 2f);
+                ScreenFlash.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f));
+                EffectsSystem.Shake.Set(intensity * 2.25f);
 
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
@@ -1475,10 +1510,12 @@ namespace Aequus.NPCs.Boss
             Vector2 origin = NPC.frame.Size() / 2f;
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
             var clr = drawColor * 0.25f;
-            for (int i = 0; i < intensity; i++)
-            {
-                spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + i, SpriteEffects.None, 0f);
-            }
+            //for (int i = 0; i < intensity; i++)
+            //{
+            //    spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + i, SpriteEffects.None, 0f);
+            //}
+            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + intensity, SpriteEffects.None, 0f);
+
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
 
             if (!NPC.IsABestiaryIconDummy)

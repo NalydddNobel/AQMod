@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
@@ -12,7 +11,7 @@ namespace Aequus.Items.Boss.Bags
     public class OmegaStariteBag : TreasureBagBase
     {
         protected override int InternalRarity => ItemRarityID.LightRed;
-        protected override bool PreHardmode => false;
+        protected override bool PreHardmode => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

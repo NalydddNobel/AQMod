@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Oblivion;

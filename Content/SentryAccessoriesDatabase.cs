@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles;
+﻿using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,7 +16,7 @@ namespace Aequus.Content
         public struct OnAIInfo
         {
             public Projectile Projectile;
-            public SentryAccessoriesGlobalProj SentryAccessories;
+            public SentryAccessoriesManager SentryAccessories;
             public Item Accessory;
             public Player Player;
         }
@@ -164,7 +164,7 @@ namespace Aequus.Content
         }
         public static void BoneGlove_OnShoot(OnShootInfo info)
         {
-            info.ParentProjectile.TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var parentSentry);
+            info.ParentProjectile.TryGetGlobalProjectile<SentryAccessoriesManager>(out var parentSentry);
             if (Main.myPlayer != info.Player.whoAmI || parentSentry == null || parentSentry.dummyPlayer == null)
             {
                 return;

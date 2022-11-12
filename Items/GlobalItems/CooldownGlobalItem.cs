@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Common.GlobalItems
+namespace Aequus.Items.GlobalItems
 {
     public class CooldownGlobalItem : GlobalItem
     {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Common.GlobalItems;
+using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;

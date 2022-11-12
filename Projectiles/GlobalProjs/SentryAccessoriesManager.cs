@@ -1,13 +1,11 @@
 ﻿using Aequus.Content;
 using Aequus.Items.Accessories;
 using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles
+namespace Aequus.Projectiles.GlobalProjs
 {
-    public class SentryAccessoriesGlobalProj : GlobalProjectile
+    public class SentryAccessoriesManager : GlobalProjectile
     {
         public Player dummyPlayer;
         public bool appliedItemStatChanges;
@@ -21,7 +19,7 @@ namespace Aequus.Projectiles
 
         public override GlobalProjectile Clone(Projectile projectile, Projectile projectileClone)
         {
-            var clone = (SentryAccessoriesGlobalProj)base.Clone(projectile, projectileClone);
+            var clone = (SentryAccessoriesManager)base.Clone(projectile, projectileClone);
             if (dummyPlayer != null)
                 clone.dummyPlayer = AequusPlayer.ProjectileClone(dummyPlayer);
             return clone;
@@ -76,7 +74,7 @@ namespace Aequus.Projectiles
                 {
                     if (SentryAccessoriesDatabase.OnAI.TryGetValue(i.type, out var ai))
                     {
-                        ai(new SentryAccessoriesDatabase.OnAIInfo() { Projectile = projectile, SentryAccessories = this, Player = Main.player[projectile.owner], Accessory = i, }) ;
+                        ai(new SentryAccessoriesDatabase.OnAIInfo() { Projectile = projectile, SentryAccessories = this, Player = Main.player[projectile.owner], Accessory = i, });
                     }
                     else if (aequus.accExpertBoost)
                     {

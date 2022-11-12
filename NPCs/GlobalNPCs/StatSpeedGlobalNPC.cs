@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.GlobalNPCs
+namespace Aequus.NPCs.GlobalNPCs
 {
     public class StatSpeedGlobalNPC : GlobalNPC
     {

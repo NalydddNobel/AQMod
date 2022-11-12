@@ -7,6 +7,7 @@ using Aequus.Items.Boss.Bags;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.GlobalNPCs;
 using Aequus.Projectiles.Monster.CrabsonProjs;
 using Aequus.Sounds;
 using Microsoft.Xna.Framework;
@@ -153,7 +154,7 @@ namespace Aequus.NPCs.Boss
 
         public override void AI()
         {
-            SpawnManagerGlobalNPC.ForceZen(NPC);
+            SpawnsManager.ForceZen(NPC);
             if (NPC.alpha > 0)
             {
                 NPC.alpha -= 5;

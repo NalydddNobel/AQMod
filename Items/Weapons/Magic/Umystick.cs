@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.UseSound = SoundID.Item1;
             Item.DamageType = DamageClass.Magic;
             Item.knockBack = 4f;
-            Item.mana = 12;
+            Item.mana = 20;
             Item.holdStyle = ItemHoldStyleID.HoldHeavy;
             Item.channel = true;
             Item.noMelee = true;
@@ -38,6 +38,13 @@ namespace Aequus.Items.Weapons.Magic
         }
 
         public override void HoldStyle(Player player, Rectangle heldItemFrame)
+        {
+            if (player.HeldItemFixed().ModItem is Umystick umystick)
+            {
+                umystick.HandleHoldStyleFixed(player);
+            }
+        }
+        private void HandleHoldStyleFixed(Player player)
         {
             if (player.itemAnimation > 0)
                 return;
@@ -75,7 +82,7 @@ namespace Aequus.Items.Weapons.Magic
                     if (Main.myPlayer == player.whoAmI && maxSpeed && !player.mouseInterface)
                     {
                         int oldMana = Item.mana;
-                        Item.mana *= 5;
+                        Item.mana *= 3;
                         if (Main.mouseRight && Main.mouseRightRelease && player.CheckMana(Item, pay: true) && !aequus.HasCooldown)
                         {
                             aequus.SetCooldown(180, ignoreStats: true, itemReference: Item);

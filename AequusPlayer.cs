@@ -23,6 +23,7 @@ using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
@@ -143,6 +144,7 @@ namespace Aequus
         public Point eventDemonSiege;
 
         public bool hurt;
+        public bool grounded;
 
         /// <summary>
         /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="ClosestEnemy"/>
@@ -343,6 +345,7 @@ namespace Aequus
         /// Helper for whether or not the player is in danger
         /// </summary>
         public bool InDanger => closestEnemy != -1;
+        public bool InDarkness => darkness > 0.8f;
 
         public override void Load()
         {
@@ -868,12 +871,14 @@ namespace Aequus
                 HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
             }
 
-            if (accDarknessCrownDamage > 0f)
+            if (accDarknessCrownDamage > 0f && InDarkness)
             {
-                Player.GetDamage(DamageClass.Generic) += accDarknessCrownDamage * darkness;
+                Player.GetDamage(DamageClass.Generic) += accDarknessCrownDamage;
             }
+            grounded = false;
             if (accGroundCrownCrit > 0 && Player.velocity.Y == 0f && Player.oldVelocity.Y == 0f)
             {
+                grounded = true;
                 Player.GetCritChance(DamageClass.Generic) += accGroundCrownCrit;
             }
             if (gravityTile != 0)
@@ -936,7 +941,7 @@ namespace Aequus
             if (Player.selectedItem != lastSelectedItem)
             {
                 lastSelectedItem = Player.selectedItem;
-                itemSwitch = 30;
+                itemSwitch = Math.Max((ushort)30, itemSwitch);
                 itemUsage = 0;
                 itemHits = 0;
             }
@@ -1320,7 +1325,7 @@ namespace Aequus
             {
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var sentry))
+                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
                     {
                         sentry.UpdateInheritance(Main.projectile[i]);
                     }
@@ -1646,6 +1651,10 @@ namespace Aequus
 
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
         {
+            if (!Main.gameMenu && Player.HeldItem.ModItem is ItemHooks.IPreDrawPlayer preDrawPlayer)
+            {
+                preDrawPlayer.PreDrawPlayer(Player, this, ref drawInfo);
+            }
             if (Player.front > 0 && Player.front == PumpkingCloak.FrontID)
             {
                 drawInfo.hidesBottomSkin = true;
@@ -2021,9 +2030,9 @@ namespace Aequus
             On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
             On.Terraria.Player.DropTombstone += Player_DropTombstone;
-            On.Terraria.NPC.NPCLoot_DropMoney += Hook_NoMoreMoney;
-            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += Hook_RerollLoot;
-            On.Terraria.Player.RollLuck += Hook_ModifyLuckRoll;
+            On.Terraria.NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
+            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+            On.Terraria.Player.RollLuck += Player_RollLuck;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
@@ -2158,7 +2167,7 @@ namespace Aequus
             orig(self, coinsOwned, deathText, hitDirection);
         }
 
-        private static void Hook_NoMoreMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
+        private static void NPC_NPCLoot_DropMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.Aequus().accGrandReward)
             {
@@ -2167,7 +2176,7 @@ namespace Aequus
             orig(self, closestPlayer);
         }
 
-        private static ItemDropAttemptResult Hook_RerollLoot(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
+        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
         {
             var result = orig(self, rule, info);
             if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
@@ -2183,8 +2192,8 @@ namespace Aequus
                                 return result;
                             }
                         }
-                        var result2 = orig(self, rule, info);
                         AequusHelpers.iterations++;
+                        var result2 = orig(self, rule, info);
                         if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
                         {
                             AequusHelpers.iterations = 0;
@@ -2201,7 +2210,7 @@ namespace Aequus
             return result;
         }
 
-        private static int Hook_ModifyLuckRoll(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
+        private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
         {
             int rolled = orig(self, range);
             if (AequusHelpers.iterations == 0)
@@ -2240,24 +2249,6 @@ namespace Aequus
                 }
             }
             return rolledAmt;
-        }
-
-        public static int FoolsGoldCoinCurse(Player player)
-        {
-            for (int i = 0; i < 59; i++)
-            {
-                if (player.inventory[i].IsACoin)
-                {
-                    player.inventory[i].TurnToAir();
-                }
-                if (i == 58)
-                {
-                    Main.mouseItem = player.inventory[i].Clone();
-                }
-            }
-            player.lostCoins = 0;
-            player.lostCoinString = "";
-            return 0;
         }
 
         private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)

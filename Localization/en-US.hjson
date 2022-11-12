@@ -832,7 +832,7 @@ Mods: {
 				$parentVal: Automatically refills using the closest liquid
 				AmountLeft: "{Amount}% {Liquid} Left"
 			}
-			GhastlyBlaster: "'Your eyes deceive you, this is not a sword'"
+			GhastlyBlaster: "'Your eyes deceive you, I am not a sword'"
 			SurgeRod:
 				'''
 				Casts a create a thundercloud net to fry your foes

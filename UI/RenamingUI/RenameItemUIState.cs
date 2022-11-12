@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;

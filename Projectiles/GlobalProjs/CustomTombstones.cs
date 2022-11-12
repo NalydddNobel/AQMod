@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles
+namespace Aequus.Projectiles.GlobalProjs
 {
-    public class CustomTombstonesGlobalProj : GlobalProjectile
+    public class CustomTombstones : GlobalProjectile
     {
         public static List<int> HellTombstones { get; private set; }
 

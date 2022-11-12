@@ -1,11 +1,9 @@
-﻿using Aequus.Common.GlobalNPCs;
-using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs
+namespace Aequus.NPCs.GlobalNPCs
 {
     public class NPCNameTag : GlobalNPC
     {

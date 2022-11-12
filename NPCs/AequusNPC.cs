@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.GlobalNPCs;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.Necromancy;
@@ -14,6 +13,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -162,21 +162,21 @@ namespace Aequus.NPCs
                     break;
 
                 case NPCID.BloodNautilus:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 2, maximumDropped: 6));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 6, maximumDropped: 12));
                     break;
 
                 case NPCID.BloodEelHead:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>()));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 3, maximumDropped: 6));
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
                     break;
                 case NPCID.GoblinShark:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), maximumDropped: 3));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 3, maximumDropped: 6));
                     break;
 
                 case NPCID.Clown:
                 case NPCID.EyeballFlyingFish:
                 case NPCID.ZombieMerman:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>()));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 1, maximumDropped: 3));
                     break;
 
                 case NPCID.BloodZombie:
@@ -326,7 +326,7 @@ namespace Aequus.NPCs
 
             return !noAITest;
         }
-        public void PostAI_DoDebuffEffects(NPC npc)
+        public void DebuffEffects(NPC npc)
         {
             if (npc.HasBuff<AethersWrath>())
             {
@@ -378,7 +378,7 @@ namespace Aequus.NPCs
             {
                 return;
             }
-            PostAI_DoDebuffEffects(npc);
+            DebuffEffects(npc);
         }
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
@@ -424,6 +424,7 @@ namespace Aequus.NPCs
 
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
+            bool applyAequusOiled = false;
             if (npc.HasBuff<AethersWrath>())
             {
                 if (npc.lifeRegen > 0)
@@ -431,7 +432,8 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 50;
-                damage += 5;
+                applyAequusOiled = true;
+                damage = Math.Max(damage, 10);
             }
             if (npc.HasBuff<MindfungusDebuff>())
             {
@@ -440,7 +442,7 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 16 + 8 * mindfungusStacks;
-                damage += 9;
+                damage = Math.Max(damage, 5 + mindfungusStacks);
             }
             else
             {
@@ -453,7 +455,8 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 30;
-                damage += 3;
+                applyAequusOiled = true;
+                damage = Math.Max(damage, 6);
             }
             if (npc.HasBuff<Bleeding>())
             {
@@ -462,13 +465,27 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 8;
-                damage++;
             }
-            UpdateDebuffStack(npc, npc.HasBuff<CorruptionHellfire>(), ref corruptionHellfireStacks, ref damage, 20, 1f);
-            UpdateDebuffStack(npc, npc.HasBuff<CrimsonHellfire>(), ref crimsonHellfireStacks, ref damage, 20, 1.1f);
+            bool debuff = npc.HasBuff<CorruptionHellfire>();
+            applyAequusOiled |= debuff;
+            UpdateDebuffStack(npc, debuff, ref corruptionHellfireStacks, ref damage, 20, 1f);
+            debuff = npc.HasBuff<CrimsonHellfire>();
+            applyAequusOiled |= debuff;
+            UpdateDebuffStack(npc, debuff, ref crimsonHellfireStacks, ref damage, 20, 1.1f);
+            
             UpdateDebuffStack(npc, npc.HasBuff<LocustDebuff>(), ref locustStacks, ref damage, 20, 1f);
+
+            if (npc.oiled && applyAequusOiled && !(npc.onFire || npc.onFire2 || npc.onFire3 || npc.onFrostBurn || npc.onFrostBurn2 || npc.shadowFlame))
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 50;
+                damage = Math.Max(damage, 10);
+            }
         }
-        public void UpdateDebuffStack(NPC npc, bool has, ref byte stacks, ref int damageNumbers, byte cap = 20, float dotMultiplier = 1f)
+        public void UpdateDebuffStack(NPC npc, bool has, ref byte stacks, ref int twoSecondsDamageNumbers, byte cap = 20, float dotMultiplier = 1f)
         {
             if (!has)
             {
@@ -482,8 +499,7 @@ namespace Aequus.NPCs
                 if (dot >= 0)
                 {
                     npc.AddRegenOld(-dot);
-                    if (damageNumbers < dot)
-                        damageNumbers = dot;
+                    twoSecondsDamageNumbers = Math.Max(twoSecondsDamageNumbers, dot / 5);
                 }
             }
         }

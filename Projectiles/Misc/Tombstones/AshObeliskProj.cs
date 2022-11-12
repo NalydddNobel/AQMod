@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.GlobalProjs;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -18,7 +19,7 @@ namespace Aequus.Projectiles.Misc.Tombstones
 
         public override void SetStaticDefaults()
         {
-            CustomTombstonesGlobalProj.HellTombstones.Add(Type);
+            CustomTombstones.HellTombstones.Add(Type);
         }
 
         public override void Unload()

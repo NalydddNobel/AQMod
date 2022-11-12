@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,8 +18,8 @@ namespace Aequus.Projectiles.Magic
 
         public override void SetDefaults()
         {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 24;
+            Projectile.height = 24;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Magic;
             Projectile.timeLeft = 60;
@@ -34,9 +35,15 @@ namespace Aequus.Projectiles.Magic
                 Projectile.alpha = 0;
                 if (Projectile.localAI[0] == 0f)
                 {
+                    Projectile.Center = Main.npc[(int)Projectile.ai[0] - 1].Center + Projectile.velocity;
+                    Projectile.velocity = Vector2.Zero;
                     Projectile.localAI[0] = Main.rand.NextFloat(MathHelper.TwoPi);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        var d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.White, Color.HotPink, 0.6f).UseA(75), Scale: Main.rand.NextFloat(1f, 1.5f));
+                        d.velocity = (Projectile.localAI[0] + MathHelper.PiOver2).ToRotationVector2() * i / 2f * (Main.rand.NextBool() ? -1f : 1f);
+                    }
                 }
-                Projectile.Center = Main.npc[(int)Projectile.ai[0] - 1].Center;
                 Projectile.rotation = Projectile.localAI[0];
                 Projectile.scale += 0.33f;
                 if (Projectile.scale > 3f)
@@ -46,7 +53,13 @@ namespace Aequus.Projectiles.Magic
                 return;
             }
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            if (Projectile.alpha > 0)
+            if (Projectile.timeLeft < 30)
+            {
+                Projectile.alpha += 8;
+                if (Projectile.alpha > 255)
+                    Projectile.alpha = 255;
+            }
+            else if (Projectile.alpha > 0)
             {
                 Projectile.alpha -= 20;
                 if (Projectile.alpha < 0)
@@ -78,7 +91,7 @@ namespace Aequus.Projectiles.Magic
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Color.Lerp(Color.White, Color.HotPink, 0.33f) * Projectile.Opacity, Projectile.rotation, origin, new Vector2(1f, Projectile.scale) * 0.4f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Color.Lerp(Color.White, Color.HotPink, 0.6f).UseA(150) * Projectile.Opacity, Projectile.rotation, origin, new Vector2(1f, Projectile.scale) * 0.4f, SpriteEffects.None, 0f);
             return false;
         }
     }

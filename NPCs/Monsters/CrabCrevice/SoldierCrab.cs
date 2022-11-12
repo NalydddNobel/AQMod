@@ -35,7 +35,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.damage = 50;
             NPC.knockBackResist = 0.1f;
             NPC.aiStyle = -1;
-            NPC.defense = 12;
+            NPC.defense = 8;
             NPC.value = Item.buyPrice(silver: 3);
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath1;

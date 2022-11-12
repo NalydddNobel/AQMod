@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Graphics;
 using Aequus.Projectiles.Magic;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -8,15 +8,17 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace Aequus.Items.Weapons.Magic
 {
-    public class LiquidGun : ModItem
+    public class LiquidGun : ModItem, ItemHooks.IPreDrawPlayer
     {
         public struct LiquidInfo
         {
@@ -41,14 +43,14 @@ namespace Aequus.Items.Weapons.Magic
         }
 
         private static Dictionary<byte, LiquidInfo> liquidCatalogue;
+        private static Asset<Texture2D> originalTextureCache;
 
-        public virtual byte LiquidAmountMax => 100;
+        public virtual byte LiquidAmountMax => 75;
 
         public byte LiquidType;
         public byte LiquidAmount;
 
-        private Asset<Texture2D> conversionTextureCache;
-        private Asset<Texture2D> conversionTextureGlowMaskCache;
+        private Asset<Texture2D> altTextureCache;
 
         protected override bool CloneNewInstances => true;
 
@@ -81,6 +83,12 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetStaticDefaults()
         {
+            if (!Main.dedServ)
+            {
+                AequusGlowMasks.AddGlowmask($"{Texture}Lava_Glow");
+                AequusGlowMasks.AddGlowmask($"{Texture}Shimmer_Glow");
+                originalTextureCache = TextureAssets.Item[Type];
+            }
             SacrificeTotal = 1;
         }
 
@@ -111,7 +119,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void SetDefaults()
         {
-            Item.damage = 19;
+            Item.damage = 17;
             Item.DamageType = DamageClass.Magic;
             Item.width = 30;
             Item.height = 30;
@@ -122,9 +130,9 @@ namespace Aequus.Items.Weapons.Magic
             Item.shootSpeed = 1f;
             Item.value = Item.sellPrice(gold: 7, silver: 50);
             Item.autoReuse = true;
-            Item.knockBack = 1f;
-            Item.useTime = 12;
-            Item.useAnimation = 12;
+            Item.knockBack = 1.5f;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
             Item.UseSound = SoundID.SplashWeak.WithPitchOffset(-0.1f);
             Item.noUseGraphic = true;
             Item.channel = true;
@@ -136,6 +144,14 @@ namespace Aequus.Items.Weapons.Magic
         }
 
         public override void HoldItem(Player player)
+        {
+            if (player.HeldItemFixed().ModItem is LiquidGun liquidGun)
+            {
+                liquidGun.HandleHoldEffectsFixed(player);
+            }
+        }
+
+        private void HandleHoldEffectsFixed(Player player)
         {
             if (LiquidAmount >= LiquidAmountMax)
             {
@@ -180,7 +196,7 @@ namespace Aequus.Items.Weapons.Magic
             if (closestX != 0 && closestY != 0)
             {
                 var m = this;
-                byte liquidAmt = 8;
+                byte liquidAmt = 4;
                 if (!player.CheckMana(20, pay: false))
                 {
                     return;
@@ -236,34 +252,33 @@ namespace Aequus.Items.Weapons.Magic
             }
         }
 
+        public void ClearTexture()
+        {
+            altTextureCache = null;
+            Item.glowMask = -1;
+            if (Main.dedServ)
+                return;
+            TextureAssets.Item[Type] = originalTextureCache;
+        }
         public void CheckTexture()
         {
-            if (LiquidAmount == 0 || Main.dedServ)
+            if (Main.dedServ || LiquidAmount == 0)
             {
-                conversionTextureCache = null;
-                conversionTextureGlowMaskCache = null;
+                ClearTexture();
                 return;
             }
 
-            if (conversionTextureCache != null)
+            if (altTextureCache != null)
                 return;
 
             if (!liquidCatalogue.TryGetValue(LiquidType, out var info))
             {
-                conversionTextureCache = null;
-                conversionTextureGlowMaskCache = null;
+                ClearTexture();
                 return;
             }
 
-            conversionTextureCache = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad);
-            if (ModContent.RequestIfExists<Texture2D>($"{info.TexturePath}_Glow", out var glowMask))
-            {
-                conversionTextureGlowMaskCache = glowMask;
-            }
-            else
-            {
-                conversionTextureGlowMaskCache = null;
-            }
+            TextureAssets.Item[Type] = altTextureCache = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad);
+            AequusGlowMasks.TryGetID($"{info.TexturePath}_Glow", out Item.glowMask);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -278,11 +293,10 @@ namespace Aequus.Items.Weapons.Magic
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var center = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
-            var bottom = center + new Vector2(0f, TextureAssets.InventoryBack.Value.Height / 2f) * Main.inventoryScale;
-
-            if (LiquidAmount > 0)
+            if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && LiquidAmount > 0)
             {
+                var center = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
+                var bottom = center + new Vector2(0f, TextureAssets.InventoryBack.Value.Height / 2f) * Main.inventoryScale;
                 if (Main.playerInventory)
                 {
                     bottom.Y -= 12f * Main.inventoryScale;
@@ -296,9 +310,9 @@ namespace Aequus.Items.Weapons.Magic
                 DrawHealthbar(spriteBatch, TextureAssets.Hb1.Value, bottom, color, LiquidAmount / (float)LiquidAmountMax);
             }
             CheckTexture();
-            if (conversionTextureCache != null)
+            if (altTextureCache != null)
             {
-                spriteBatch.Draw(conversionTextureCache.Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(altTextureCache.Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
                 return false;
             }
             return true;
@@ -322,19 +336,16 @@ namespace Aequus.Items.Weapons.Magic
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
         {
             CheckTexture();
-            if (conversionTextureCache != null)
+            return true;
+        }
+
+        public void PreDrawPlayer(Player player, AequusPlayer aequus, ref PlayerDrawSet drawInfo)
+        {
+            CheckTexture();
+            if (altTextureCache != null)
             {
-                Item.GetItemDrawData(out var frame);
-                var drawLoc = Item.position + new Vector2(Item.width / 2f, Item.height - conversionTextureCache.Value.Height / 2f) - Main.screenPosition;
-                var origin = conversionTextureCache.Value.Size() / 2f;
-                spriteBatch.Draw(conversionTextureCache.Value, drawLoc, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
-                if (conversionTextureGlowMaskCache != null)
-                {
-                    spriteBatch.Draw(conversionTextureGlowMaskCache.Value, drawLoc, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
-                }
-                return false;
+                TextureAssets.Item[Type] = altTextureCache;
             }
-            return false;
         }
     }
 }

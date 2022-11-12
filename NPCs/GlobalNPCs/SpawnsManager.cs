@@ -16,9 +16,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.NPCs
+namespace Aequus.NPCs.GlobalNPCs
 {
-    public class SpawnManagerGlobalNPC : GlobalNPC
+    public class SpawnsManager : GlobalNPC
     {
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
@@ -47,10 +47,6 @@ namespace Aequus.NPCs
             {
                 spawnRate *= 3;
                 maxSpawns = Math.Min(maxSpawns, 2);
-            }
-            if (player.GetModPlayer<AequusPlayer>().ZoneCrabCrevice)
-            {
-                maxSpawns = (int)(maxSpawns * 0.75f);
             }
         }
 

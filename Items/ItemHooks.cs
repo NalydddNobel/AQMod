@@ -19,6 +19,11 @@ namespace Aequus.Items
         {
         }
 
+        public interface IPreDrawPlayer
+        {
+            void PreDrawPlayer(Player player, AequusPlayer aequus, ref PlayerDrawSet drawInfo);
+        }
+
         public interface IOnSpawnProjectile
         {
             void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source);

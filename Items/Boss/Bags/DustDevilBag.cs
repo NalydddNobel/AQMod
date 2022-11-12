@@ -8,7 +8,7 @@ namespace Aequus.Items.Boss.Bags
     public class DustDevilBag : TreasureBagBase
     {
         protected override int InternalRarity => ItemRarityID.LightPurple;
-        protected override bool PreHardmode => false;
+        protected override bool PreHardmode => true;
 
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

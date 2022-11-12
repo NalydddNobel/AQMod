@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.SetWeaponValues(9, 1f);
             Item.DefaultToMagicWeapon(ModContent.ProjectileType<NightfallProj>(), 24, 12f, true);
-            Item.mana = 6;
+            Item.mana = 10;
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemDefaults.RarityGlimmer;
