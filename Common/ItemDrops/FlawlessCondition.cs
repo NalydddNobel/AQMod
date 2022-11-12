@@ -6,8 +6,6 @@ namespace Aequus.Common.ItemDrops
 {
     public class FlawlessCondition : IItemDropRuleCondition, IProvideItemConditionDescription
     {
-        public bool isHidden;
-
         public virtual bool CanDrop(DropAttemptInfo info)
         {
             if (info.npc != null)
@@ -27,7 +25,7 @@ namespace Aequus.Common.ItemDrops
 
         bool IItemDropRuleCondition.CanShowItemDropInUI()
         {
-            return !isHidden;
+            return true;
         }
 
         public virtual string GetConditionDescription()

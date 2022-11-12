@@ -81,6 +81,11 @@ namespace Aequus.NPCs
             AddHooks();
         }
 
+        public override void ModifyGlobalLoot(GlobalLoot globalLoot)
+        {
+            globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
+        }
+
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             switch (npc.type)
@@ -208,13 +213,6 @@ namespace Aequus.NPCs
                 case NPCID.WallofFlesh:
                     npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => !AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
                     break;
-            }
-            if (npc.boss)
-            {
-                if (npc.type != NPCID.MoonLordHand && npc.type != NPCID.MoonLordHead && npc.type != NPCID.MartianSaucerCore)
-                {
-                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<VictorsReward>()));
-                }
             }
         }
 

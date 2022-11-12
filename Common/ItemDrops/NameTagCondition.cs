@@ -32,7 +32,7 @@ namespace Aequus.Common.ItemDrops
             {
                 if (i != 0)
                     value += ", ";
-                value += validNames[i];
+                value += $"'{validNames[i]}'";
             }
             return Language.GetTextValueWith("Mods.Aequus.DropCondition.NameTag", new { NameTag = value, });
         }

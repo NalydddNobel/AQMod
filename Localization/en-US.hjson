@@ -46,6 +46,7 @@ Mods: {
 		}
 		
 		DropCondition: {
+			NameTag: Only dropped when named {NameTag}
 			AllMechs: Dropped when all 3 mechanical bosses are defeated
 			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
 			OtherwiseChance: 100% droprate if '{0}' conditions are met

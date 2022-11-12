@@ -551,6 +551,7 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            accGlowCore = 0;
             accStackSplit = false;
             accSentrySlot = false;
             accGroundCrownCrit = 0;

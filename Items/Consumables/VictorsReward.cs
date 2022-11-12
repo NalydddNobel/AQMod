@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using Aequus.Common.ItemDrops;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,9 +9,35 @@ namespace Aequus.Items.Consumables
 {
     public class VictorsReward : ModItem
     {
+        public static HashSet<int> InvalidNPCIDs { get; private set; }
+
+        public class DropCondition : FlawlessCondition 
+        {
+            public override bool CanDrop(DropAttemptInfo info)
+            {
+                return info.npc.boss && !InvalidNPCIDs.Contains(info.npc.type) && base.CanDrop(info);
+            }
+        }
+
+        public override void Load()
+        {
+            InvalidNPCIDs = new HashSet<int>()
+            {
+                NPCID.MoonLordHand,
+                NPCID.MoonLordHead,
+                NPCID.MartianSaucerCore,
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+        }
+
+        public override void Unload()
+        {
+            InvalidNPCIDs?.Clear();
+            InvalidNPCIDs = null;
         }
 
         public override void SetDefaults()
