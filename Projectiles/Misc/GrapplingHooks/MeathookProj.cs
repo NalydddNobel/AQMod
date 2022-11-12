@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override void ModifyDamageHitbox(ref Rectangle hitbox)
         {
-            hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 5f);
+            hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 6f);
         }
 
         public override bool PreAI()
@@ -77,16 +77,9 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                 }
                 return false;
             }
-            else
+            if ((int)Projectile.ai[0] == 1)
             {
-                int target = Projectile.FindTargetWithLineOfSight(150f);
-                if (target != -1)
-                {
-                    if (Main.player[Projectile.owner].Distance(Main.npc[target].Center) > Main.player[Projectile.owner].Distance(Projectile.Center))
-                    {
-                        Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Main.player[Projectile.owner].DirectionTo(Main.npc[target].Center) * Projectile.velocity.Length(), 0.4f)) * Projectile.velocity.Length();
-                    }
-                }
+                Projectile.damage = 0;
             }
             return true;
         }
@@ -131,7 +124,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override float GrappleRange()
         {
-            return 500f;
+            return 480f;
         }
 
         public override void NumGrappleHooks(Player player, ref int numHooks)
@@ -146,7 +139,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override void GrapplePullSpeed(Player player, ref float speed)
         {
-            speed = 14f;
+            speed = connectedNPC > 0 ? 13f : 10f;
         }
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

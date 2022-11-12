@@ -44,15 +44,19 @@ namespace Aequus.Projectiles.Ranged
 
         public override void Kill(int timeLeft)
         {
-            var point = Projectile.Center.ToTileCoordinates();
-            if (!WorldGen.InWorld(point.X, point.Y, 20))
-                return;
-            var map = new TileMapCache(new Rectangle(point.X - 2, point.Y - 2, 5, 5));
-            map.ClearArea();
-            Main.tile[point].Active(value: true);
-            Main.tile[point].TileType = (ushort)Projectile.ai[0];
-            WorldGen.KillTile(point.X, point.Y);
-            map.ResetArea();
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                var point = Projectile.Center.ToTileCoordinates();
+                if (!WorldGen.InWorld(point.X, point.Y, 20))
+                    return;
+
+                var map = new TileMapCache(new Rectangle(point.X - 2, point.Y - 2, 5, 5));
+                map.ClearArea();
+                Main.tile[point].Active(value: true);
+                Main.tile[point].TileType = (ushort)Projectile.ai[0];
+                WorldGen.KillTile(point.X, point.Y, noItem: Main.rand.NextBool(4));
+                map.ResetArea();
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

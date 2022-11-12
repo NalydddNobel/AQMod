@@ -160,12 +160,12 @@ namespace Aequus.NPCs.Friendly.Town
             }
 
             var npcOwner = Main.npc[npcOwnerIndex];
-            var gotoLocation = npcOwner.Center + new Vector2(npcOwner.width * 1.5f * npcOwner.direction, 0f);
+            var gotoLocation = npcOwner.Center + new Vector2(npcOwner.width * 1.5f * npcOwner.direction, -18f);
 
             NPC.direction = npcOwner.direction;
             NPC.spriteDirection = npcOwner.spriteDirection;
             var difference = gotoLocation - NPC.Center;
-            if (difference.Length() < 30f)
+            if (difference.Length() < 15f)
             {
                 if (NPC.velocity.Length() < 0.2f)
                 {
@@ -179,7 +179,12 @@ namespace Aequus.NPCs.Friendly.Town
             }
             else
             {
-                NPC.velocity += difference / 600f;
+                NPC.velocity += difference / 300f;
+                if (NPC.velocity.Length() > 7f)
+                {
+                    NPC.velocity.Normalize();
+                    NPC.velocity *= 7f;
+                }
                 if (difference.Length() > 2000f)
                 {
                     NPC.Center = npcOwner.Center;
@@ -200,7 +205,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 NPC.velocity += npcOwner.DirectionTo(NPC.Center).UnNaN() * 0.075f;
             }
-            NPC.rotation = MathHelper.Clamp(NPC.velocity.X * 0.1f, -1f, 1f);
+            NPC.rotation = MathHelper.Clamp(NPC.velocity.X * 0.05f, -1f, 1f);
         }
 
         public override void FindFrame(int frameHeight)

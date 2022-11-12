@@ -835,7 +835,7 @@ namespace Aequus
             velocity *= height;
             float rotation = velocity.ToRotation() + MathHelper.PiOver2;
             var origin = new Vector2(frame.Width / 2f, frame.Height / 2f);
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < length + 1; i++)
             {
                 var position = currentPosition + velocity * i;
                 Main.EntitySpriteDraw(chain, position - screenPos, frame, getLighting(position), rotation, origin, 1f, SpriteEffects.None, 0);

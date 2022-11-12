@@ -17,6 +17,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.AleThrowingGlove);
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.damage = 12;
             Item.useTime = 17;
             Item.useAnimation = 17;

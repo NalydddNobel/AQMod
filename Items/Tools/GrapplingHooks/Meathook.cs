@@ -15,22 +15,17 @@ namespace Aequus.Items.Tools.GrapplingHooks
 
         public override void SetDefaults()
         {
-            Item.width = 20;
-            Item.height = 20;
-            Item.damage = 35;
-            Item.knockBack = 1f;
+            Item.CloneDefaults(ItemID.DualHook);
+            Item.damage = 30;
             Item.shoot = ModContent.ProjectileType<MeathookProj>();
-            Item.shootSpeed = 12f;
-            Item.noUseGraphic = true;
-            Item.UseSound = SoundID.Item1;
-            Item.rare = ItemRarityID.LightRed;
-            Item.noMelee = true;
             Item.value = Item.buyPrice(gold: 10);
+            Item.shootSpeed /= 2f;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.RemoveCritChance();
+            tooltips.RemoveKnockback();
         }
     }
 }
