@@ -832,7 +832,7 @@ Mods: {
 				$parentVal: 自动使用最近的液体重新装填
 				AmountLeft: "剩余{Amount}%{Liquid}"
 			}
-			GhastlyBlaster: "'你的眼睛欺骗了你, 这不是一把剑'"
+			GhastlyBlaster: "'你的眼睛欺骗了你, 我不是一把剑'"
 			SurgeRod:
 				'''
 				投射雷云网来轰击你的敌人
