@@ -46,6 +46,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			NameTag: 仅会在命名为{NameTag}时掉落
 			AllMechs: 仅会在3个机械Boss全部被击败时掉落
 			NotBeatenDemonSiege:仅在恶魔围攻未完成时掉落
 			OtherwiseChance: 在'{0}'满足条件时拥有100%掉落几率
