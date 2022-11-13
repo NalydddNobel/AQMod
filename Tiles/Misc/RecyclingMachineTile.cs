@@ -259,7 +259,7 @@ namespace Aequus.Tiles.Misc
                     ItemIO.Send(item, p, writeStack: true);
                     p.Write(timeLeft);
                 }
-            }, PacketType.SyncRecyclingMachine);
+            }, PacketType.Unused2);
         }
 
         public override void NetReceive(BinaryReader reader)

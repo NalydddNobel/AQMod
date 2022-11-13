@@ -176,22 +176,25 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie)
             {
-                NecromancyNPC.RestoreTarget();
-                if (Main.rand.NextBool(6))
+                if (Main.netMode != NetmodeID.Server)
                 {
-                    int index = GhostOutlineRenderer.TargetID(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
-                    var color = new Color(50, 150, 255, 100);
-                    if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
+                    NecromancyNPC.RestoreTarget();
+                    if (Main.rand.NextBool(6))
                     {
-                        color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                        color.A = 100;
-                    }
+                        int index = GhostOutlineRenderer.TargetID(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
+                        var color = new Color(50, 150, 255, 100);
+                        if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
+                        {
+                            color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
+                            color.A = 100;
+                        }
 
-                    var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), newColor: color);
-                    d.velocity *= 0.3f;
-                    d.velocity += projectile.velocity * 0.2f;
-                    d.scale *= projectile.scale;
-                    d.noGravity = true;
+                        var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), newColor: color);
+                        d.velocity *= 0.3f;
+                        d.velocity += projectile.velocity * 0.2f;
+                        d.scale *= projectile.scale;
+                        d.noGravity = true;
+                    }
                 }
             }
             NecromancyNPC.Zombie.Reset();

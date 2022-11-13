@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Common;
+using Aequus.Items.Misc.Energies;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -54,26 +55,30 @@ namespace Aequus.Items.Accessories
                 .TryRegisterBefore(ItemID.CursedBullet);
         }
 
-        public static void DropAmmo(Player player, NPC npc, Item ammoBackpack)
+        public static void DropAmmo(Player player, EnemyKillInfo npc, Item ammoBackpack)
         {
             var neededAmmoTypes = GetAmmoTypesToSpawn(player, npc, ammoBackpack);
             if (neededAmmoTypes.Count > 0)
             {
                 int chosenType = Main.rand.Next(neededAmmoTypes);
                 int stack = DetermineStack(chosenType, player, npc, ammoBackpack);
-                Item.NewItem(player.GetSource_Accessory(ammoBackpack), npc.getRect(), chosenType, stack);
+                int i = Item.NewItem(player.GetSource_Accessory(ammoBackpack), npc.Rect, chosenType, stack);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
+                }
             }
         }
-        public static int DetermineStack(int itemToSpawn, Player player, NPC npc, Item ammoBackpack)
+        public static int DetermineStack(int itemToSpawn, Player player, EnemyKillInfo npc, Item ammoBackpack)
         {
             float m = StackMultiplier(itemToSpawn, player, npc, ammoBackpack);
             return (int)Math.Max((Main.rand.Next(50) + 1) * m, 1);
         }
-        public static float StackMultiplier(int itemToSpawn, Player player, NPC npc, Item ammoBackpack)
+        public static float StackMultiplier(int itemToSpawn, Player player, EnemyKillInfo npc, Item ammoBackpack)
         {
             return 1f - Math.Clamp(ContentSamples.ItemsByType[itemToSpawn].value / (Item.silver * (Math.Max(npc.value, Item.silver * 2.5f) / (Item.silver * 5f))), 0f, 1f);
         }
-        public static List<int> GetAmmoTypesToSpawn(Player player, NPC npc, Item ammoBackpack)
+        public static List<int> GetAmmoTypesToSpawn(Player player, EnemyKillInfo npc, Item ammoBackpack)
         {
             var l = new List<int>();
             bool fullSlots = !player.inventory[Main.InventoryAmmoSlotsStart].IsAir && !player.inventory[Main.InventoryAmmoSlotsStart + 1].IsAir
@@ -82,13 +87,13 @@ namespace Aequus.Items.Accessories
             for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
             {
                 var item = player.inventory[i];
-                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.damage == 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0)
+                if (item.IsAir || !item.consumable || item.makeNPC > 0 || item.damage == 0 || item.ammo <= ItemID.None || ContentSamples.ItemsByType[item.ammo].makeNPC > 0 || item.bait > 0 || item.stack >= item.maxStack)
                 {
                     continue;
                 }
                 if ((!fullSlots || item.type == item.ammo) && !AmmoBlacklist.Contains(item.ammo) && !l.Contains(item.ammo) && Main.rand.NextBool(3))
                     l.Add(item.ammo);
-                if (item.stack < item.maxStack && !AmmoBlacklist.Contains(item.type) && !l.Contains(item.type))
+                if (!AmmoBlacklist.Contains(item.type) && !l.Contains(item.type))
                     l.Add(item.type);
             }
 

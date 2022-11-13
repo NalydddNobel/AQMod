@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords
@@ -95,7 +96,10 @@ namespace Aequus.Projectiles.Melee.Swords
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
                 UpdateSwing(progress, swingProgress);
-                SetArmRotation(player, progress, swingProgress);
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    SetArmRotation(player, progress, swingProgress);
+                }
                 float s = Projectile.scale;
                 Projectile.scale = GetScale(swingProgress);
                 visualOutwards = (int)GetVisualOuter(progress, swingProgress);

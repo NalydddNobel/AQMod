@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.Necromancy;
@@ -32,13 +33,6 @@ namespace Aequus.NPCs
 {
     public class AequusNPC : GlobalNPC
     {
-        public struct OnKillInfo
-        {
-            public Player player;
-            public AequusPlayer aequus;
-            public float distance;
-        }
-
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
         public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
@@ -472,7 +466,7 @@ namespace Aequus.NPCs
             debuff = npc.HasBuff<CrimsonHellfire>();
             applyAequusOiled |= debuff;
             UpdateDebuffStack(npc, debuff, ref crimsonHellfireStacks, ref damage, 20, 1.1f);
-            
+
             UpdateDebuffStack(npc, npc.HasBuff<LocustDebuff>(), ref locustStacks, ref damage, 20, 1f);
 
             if (npc.oiled && applyAequusOiled && !(npc.onFire || npc.onFire2 || npc.onFire3 || npc.onFrostBurn || npc.onFrostBurn2 || npc.shadowFlame))
@@ -506,135 +500,19 @@ namespace Aequus.NPCs
 
         public override bool SpecialOnKill(NPC npc)
         {
-            if (Main.netMode == NetmodeID.MultiplayerClient
-                || npc.SpawnedFromStatue || NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type])
+            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
             {
-                return false;
+                return true;
             }
 
             if (Main.netMode != NetmodeID.Server && npc.HasBuff<SnowgraveDebuff>())
             {
-                DeathEffect_SnowgraveFreeze(npc);
-            }
-
-            var players = GetCloseEnoughPlayers(npc);
-
-            if (npc.realLife == -1 || npc.realLife == npc.whoAmI)
-            {
-                if (npc.HasBuff<SoulStolen>())
+                if (SnowgraveCorpse.CanFreezeNPC(npc))
                 {
-                    CheckSouls(npc, players);
-                }
-                var info = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
-                var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-                if ((info.PowerNeeded != 0f || zombie.zombieDebuffTier >= 100f) && GhostKill(npc, zombie, info, players))
-                {
-                    zombie.SpawnZombie(npc);
-                }
-                int ammoBackpackChance = 3;
-                foreach (var tuple in players)
-                {
-                    if (!npc.playerInteraction[tuple.player.whoAmI])
-                    {
-                        continue;
-                    }
-                    if (npc.value > (Item.copper * 20) && tuple.aequus.accAmmoRenewalPack != null && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
-                    {
-                        int stacks = tuple.aequus.accAmmoRenewalPack.Aequus().accStacks;
-                        for (int i = 0; i < stacks; i++)
-                        {
-                            AmmoBackpack.DropAmmo(tuple.player, npc, tuple.aequus.accAmmoRenewalPack);
-                        }
-                    }
+                    EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
                 }
             }
             return false;
-        }
-        public void CheckSouls(NPC npc, List<OnKillInfo> players)
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                foreach (var p in players)
-                {
-                    if (p.aequus.candleSouls < p.aequus.soulLimit)
-                    {
-                        Projectile.NewProjectile(npc.GetSource_Death(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, p.player.whoAmI);
-                        p.aequus.candleSouls++;
-                    }
-                }
-            }
-            else
-            {
-                var candlePlayers = new List<int>();
-                foreach (var p in players)
-                {
-                    if (p.aequus.candleSouls < p.aequus.soulLimit)
-                    {
-                        candlePlayers.Add(p.player.whoAmI);
-                    }
-                }
-
-                if (candlePlayers.Count > 0)
-                {
-                    PacketSystem.Send((p) =>
-                    {
-                        p.Write(candlePlayers.Count);
-                        p.WriteVector2(npc.Center);
-                        for (int i = 0; i < candlePlayers.Count; i++)
-                        {
-                            p.Write(candlePlayers[i]);
-                        }
-                    }, PacketType.CandleSouls);
-                }
-            }
-        }
-        public bool GhostKill(NPC npc, NecromancyNPC zombie, GhostInfo info, List<OnKillInfo> players)
-        {
-            if (zombie.ghostDebuffDOT > 0 && info.EnoughPower(zombie.zombieDebuffTier))
-            {
-                return true;
-            }
-            if (zombie.conversionChance > 0 && Main.rand.NextBool(zombie.conversionChance))
-            {
-                return true;
-            }
-            //for (int i = 0; i < players.Count; i++)
-            //{
-            //    if (players[i].Aequus().dreamMask && Main.rand.NextBool(4))
-            //    {
-            //        zombie.zombieOwner = players[i].whoAmI;
-            //        zombie.zombieDebuffTier = info.PowerNeeded;
-            //        return true;
-            //    }
-            //}
-            return false;
-        }
-        public void DeathEffect_SnowgraveFreeze(NPC npc)
-        {
-            if (SnowgraveCorpse.CanFreezeNPC(npc))
-            {
-                EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
-            }
-        }
-        public List<OnKillInfo> GetCloseEnoughPlayers(NPC npc)
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                return new List<OnKillInfo>() { new OnKillInfo { player = Main.LocalPlayer, aequus = Main.LocalPlayer.Aequus(), distance = npc.Distance(Main.LocalPlayer.Center) }, };
-            }
-            var list = new List<OnKillInfo>();
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                if (Main.player[i].active && !Main.player[i].dead)
-                {
-                    float d = npc.Distance(Main.player[i].Center);
-                    if (d < 1000f)
-                    {
-                        list.Add(new OnKillInfo { player = Main.player[i], aequus = Main.player[i].Aequus(), distance = d, });
-                    }
-                }
-            }
-            return list;
         }
 
         public override void OnKill(NPC npc)
@@ -642,23 +520,25 @@ namespace Aequus.NPCs
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
                 return;
 
+            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie))
+            {
+                zombie.CreateGhost(npc);
+            }
+
             for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (npc.playerInteraction[i])
                 {
+                    var info = new EnemyKillInfo(npc);
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.player[i].Aequus().OnKillEffect(npc.netID, npc.position, npc.width, npc.height, npc.lifeMax);
+                        Main.player[i].Aequus().OnKillEffect(info);
                         continue;
                     }
 
                     var p = Aequus.GetPacket(PacketType.OnKillEffect);
                     p.Write(i);
-                    p.Write(npc.netID);
-                    p.WriteVector2(npc.position);
-                    p.Write(npc.width);
-                    p.Write(npc.height);
-                    p.Write(npc.lifeMax);
+                    info.WriteData(p);
                     p.Send(toClient: i);
                 }
             }

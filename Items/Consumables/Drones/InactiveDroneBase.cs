@@ -31,7 +31,7 @@ namespace Aequus.Items.Consumables.Drones
 
         public override bool? UseItem(Player player)
         {
-            if (Main.myPlayer != player.whoAmI)
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 return false;
             }

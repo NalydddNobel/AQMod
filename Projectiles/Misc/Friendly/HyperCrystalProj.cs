@@ -72,6 +72,18 @@ namespace Aequus.Projectiles.Misc.Friendly
                 Projectile.ai[1]++;
                 Projectile.rotation += Projectile.ai[1] * 0.001f;
             }
+            else if ((int)Projectile.ai[0] == 3)
+            {
+                Projectile.velocity *= 0.98f;
+                Projectile.ai[1]++;
+            }
+            else if ((int)Projectile.ai[0] == 4)
+            {
+                if (Projectile.numUpdates == -1)
+                    Projectile.position += Main.player[Projectile.owner].velocity;
+                Projectile.velocity = Projectile.velocity.RotatedBy(0.01f * Projectile.direction);
+                Projectile.ai[1]++;
+            }
             if ((Projectile.alpha == 255 || Projectile.alpha < 200) && Projectile.Distance(Main.player[Projectile.owner].Center) > 240f)
             {
                 Projectile.Kill();

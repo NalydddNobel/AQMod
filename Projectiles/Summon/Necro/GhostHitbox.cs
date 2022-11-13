@@ -42,9 +42,21 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             //AequusHelpers.dustDebug(Projectile.getRect());
             int npc = (int)Projectile.ai[0];
-            if (Main.npc[npc].active)
+            if (Main.npc[npc].active && Main.npc[npc].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
             {
-                Projectile.timeLeft = 2;
+                if (Main.netMode != NetmodeID.SinglePlayer && zombie.zombieTimer > zombie.zombieTimerMax - 30)
+                {
+                    Projectile.timeLeft = Math.Max(Projectile.timeLeft, 10);
+                }
+                else
+                {
+                    Projectile.timeLeft = 2;
+                }
+                Projectile.localAI[0]++;
+                if (Projectile.localAI[0] > 20f)
+                {
+                    Main.npc[npc].netUpdate = true;
+                }
             }
             int size = (int)Projectile.ai[1];
             Projectile.position = Main.npc[npc].position - new Vector2(size / 2f);

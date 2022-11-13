@@ -80,7 +80,7 @@ namespace Aequus.Projectiles.Misc
                 return;
             }
             Projectile.localAI[0]--;
-            if (Projectile.localAI[0] > 0f)
+            if (Main.netMode == NetmodeID.MultiplayerClient || Projectile.localAI[0] > 0f)
             {
                 return;
             }

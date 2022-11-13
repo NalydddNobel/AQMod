@@ -53,23 +53,22 @@ namespace Aequus.Projectiles.Misc
                         var plrHitbox = Main.player[i].Hitbox;
                         if (Projectile.Hitbox.Intersects(plrHitbox))
                         {
-                            Main.player[i].Heal(1 + (int)(Main.player[i].statLifeMax * 0.02f));
+                            Main.player[i].Heal(Math.Max(Main.player[i].statLifeMax / 25, 1));
                             SoundEngine.PlaySound(SoundID.Grab.WithVolume(0.6f), Projectile.Center);
                             SoundEngine.PlaySound(SoundID.Item4.WithVolume(0.15f).WithPitchOffset(0.5f), Projectile.Center);
                             Projectile.Kill();
                             for (int k = 0; k < 40; k++)
                             {
-                                Dust d;
                                 if (Main.rand.NextBool(4))
                                 {
-                                    d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
                                         ModContent.DustType<MendshroomDustSpore>(), Scale: Main.rand.NextFloat(0.5f, 1f));
                                     d.velocity *= 0.5f;
                                     d.velocity -= Projectile.velocity * 0.1f;
                                 }
                                 else
                                 {
-                                    d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
+                                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height,
                                         ModContent.DustType<MonoDust>(), newColor: new Color(20, 200, 150, 128) * Main.rand.NextFloat(0.5f, 1f), Scale: Main.rand.NextFloat(0.5f, 2f));
                                     d.velocity *= 0.5f;
                                     d.velocity -= Projectile.velocity * 0.75f * Main.rand.NextFloat();
@@ -154,7 +153,7 @@ namespace Aequus.Projectiles.Misc
             Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cMendshroom);
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
             Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor).UseA(0) * 2f * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.2f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor).UseA(0) * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.2f, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * 0.35f * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0);
             return false;
         }

@@ -27,6 +27,7 @@ using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
+using Aequus.Projectiles.Summon.Necro;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using System;
@@ -1899,15 +1900,38 @@ namespace Aequus
             return count;
         }
 
-        public void OnKillEffect(int npcType, Vector2 position, int width, int height, int lifeMax)
+        public void OnKillEffect(EnemyKillInfo npc)
         {
+            if (npc.SoulStolen)
+            {
+                if (candleSouls < soulLimit)
+                {
+                    if (Main.myPlayer == Player.whoAmI)
+                    {
+                        Projectile.NewProjectile(Player.GetSource_FromThis(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, 
+                            ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, Player.whoAmI);
+                    }
+                    candleSouls++;
+                }
+            }
+            if (accAmmoRenewalPack != null)
+            {
+                int ammoBackpackChance = 3;
+                if (npc.value > (Item.copper * 20) && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
+                {
+                    if (Main.myPlayer == Player.whoAmI)
+                    {
+                        int stacks = accAmmoRenewalPack.Aequus().accStacks;
+                        for (int i = 0; i < stacks; i++)
+                        {
+                            AmmoBackpack.DropAmmo(Player, npc, accAmmoRenewalPack);
+                        }
+                    }
+                }
+            }
             if (accArmFloaties > 0 && Player.breath < Player.breathMax)
             {
-                Player.breath += Player.breathMax / 4 * accArmFloaties;
-                if (Player.breath > Player.breathMax - 1)
-                {
-                    Player.breath = Player.breathMax - 1;
-                }
+                Player.breath = Math.Min(Player.breath + Player.breathMax / 4 * accArmFloaties, Player.breathMax - 1);
             }
         }
 

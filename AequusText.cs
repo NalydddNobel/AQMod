@@ -285,11 +285,11 @@ namespace Aequus
         public static void Broadcast(string text, Color color)
         {
             text = "Mods.Aequus." + text;
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Main.NewText(Language.GetTextValue(text), color);
             }
-            else if (Main.netMode == NetmodeID.Server)
+            else
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), color);
             }

@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
+using Aequus.Content.Necromancy;
 using Aequus.Content.StatSheet;
 using Aequus.Items.Weapons.Magic;
-using Aequus.NPCs.Boss;
-using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -40,27 +40,34 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            SpawnDeadStarite();
+            SpawnGlimmer();
             return true;
         }
 
-        private static void SpawnDeadStarite()
+        private static void SpawnGlimmer()
+        {
+            GlimmerBiome.TileLocation = Point.Zero;
+            GlimmerSystem.BeginEvent();
+        }
+
+        private static void KillOfType(int npcID)
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<OmegaStarite>())
+                if (Main.npc[i].active && Main.npc[i].type == npcID)
                 {
                     Main.npc[i].StrikeNPCNoInteraction(99999, 0f, 0, crit: true);
                 }
             }
         }
-        private static void OblivisionWikiImage()
+        private static NPC NoAINPC(int npcID)
         {
-            var n = NPC.NewNPCDirect(null, Main.MouseWorld, ModContent.NPCType<OblivisionCritter>());
+            var n = NPC.NewNPCDirect(null, Main.MouseWorld, npcID);
             n.Aequus().noAITest = true;
+            return n;
         }
 
-        private static void TrapperImpWikiImage()
+        private static void NoAITrapperImp()
         {
             var n = NPC.NewNPCDirect(null, Main.MouseWorld.NumFloor(4), ModContent.NPCType<TrapperImp>());
             n.Aequus().noAITest = true;

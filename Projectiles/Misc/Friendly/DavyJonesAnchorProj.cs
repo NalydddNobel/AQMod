@@ -52,23 +52,25 @@ namespace Aequus.Projectiles.Misc.Friendly
             Projectile.CollideWithOthers();
             Projectile.velocity.Y += 0.4f;
             var npcCenter = Main.npc[AttatchedNPC].Center;
-            if (Main.netMode != NetmodeID.MultiplayerClient)
+            float minDistance = 100f;
+            float distance = Projectile.Distance(npcCenter);
+            Projectile.ai[1] = 0f;
+            if (distance > minDistance)
             {
-                float minDistance = 100f;
-                float distance = Projectile.Distance(npcCenter);
-                Projectile.ai[1] = 0f;
-                if (distance > minDistance)
+                var velocityAdd = Projectile.DirectionTo(npcCenter) * ((distance - minDistance / 2f) / minDistance) * 0.4f;
+                Projectile.velocity += velocityAdd;
+                Main.npc[AttatchedNPC].velocity -= velocityAdd * Main.npc[AttatchedNPC].knockBackResist * 0.75f;
+                if ((int)Projectile.ai[1] != 1 || Projectile.localAI[0] > 20f)
                 {
-                    var velocityAdd = Projectile.DirectionTo(npcCenter) * ((distance - minDistance / 2f) / minDistance) * 0.4f;
-                    Projectile.velocity += velocityAdd;
-                    Main.npc[AttatchedNPC].velocity -= velocityAdd * Main.npc[AttatchedNPC].knockBackResist * 0.75f;
-                    Projectile.ai[1] = 1f;
+                    Main.npc[AttatchedNPC].netUpdate = true;
                 }
+                Projectile.localAI[0]++;
+                Projectile.ai[1] = 1f;
+            }
 
-                if (Projectile.velocity.Y.Abs() < 0.8f)
-                {
-                    Projectile.velocity.X *= 0.9f;
-                }
+            if (Projectile.velocity.Y.Abs() < 0.8f)
+            {
+                Projectile.velocity.X *= 0.9f;
             }
 
             if (Projectile.velocity.Length() <= 0.11f)

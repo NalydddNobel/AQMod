@@ -521,6 +521,24 @@ namespace Aequus.Content.Necromancy
             return Color.Lerp(color, (color * 0.5f).UseA(255), 1f - lifeRatio);
         }
 
+        public bool CheckCanConvertIntoGhost(NPC npc)
+        {
+            if (conversionChance > 0 && Main.rand.NextBool(conversionChance))
+            {
+                return true;
+            }
+            var staticGhostInfo = NecromancyDatabase.TryGet(npc, out var g) ? g : default(GhostInfo);
+            return (staticGhostInfo.PowerNeeded != 0f || zombieDebuffTier >= 100f) && ghostDebuffDOT > 0
+                    && staticGhostInfo.EnoughPower(zombieDebuffTier);
+        }
+        public void CreateGhost(NPC npc)
+        {
+            if (CheckCanConvertIntoGhost(npc))
+            {
+                SpawnZombie(npc);
+            }
+        }
+
         public void SpawnZombie(NPC npc)
         {
             var myZombie = npc.GetGlobalNPC<NecromancyNPC>();
@@ -710,6 +728,8 @@ namespace Aequus.Content.Necromancy
             {
                 writer.Write(zombieTimer);
                 writer.Write(zombieTimerMax);
+                writer.Write(ghostDamage);
+                writer.Write(ghostSpeed);
                 writer.Write(slotsConsumed);
             }
             else
@@ -728,6 +748,8 @@ namespace Aequus.Content.Necromancy
                 isZombie = true;
                 zombieTimer = reader.ReadInt32();
                 zombieTimerMax = reader.ReadInt32();
+                ghostDamage = reader.ReadInt32();
+                ghostSpeed = reader.ReadSingle();
                 slotsConsumed = reader.ReadInt32();
             }
             else

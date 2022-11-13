@@ -125,7 +125,7 @@ namespace Aequus.Biomes.Glimmer
 
         public override bool IsActive()
         {
-            return active || realOpacity > 0f || Opacity > 0f;
+            return active || realOpacity > 0.01f || Opacity > 0f;
         }
 
         public override float GetCloudAlpha()

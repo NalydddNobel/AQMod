@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
+using Aequus.Common;
 using Aequus.Content;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.DronePylons;
@@ -34,7 +35,7 @@ namespace Aequus
         {
             logPacketType = new HashSet<PacketType>()
             {
-                PacketType.CandleSouls,
+                PacketType.Unused,
                 PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
                 PacketType.ExporterQuestsCompleted,
@@ -273,7 +274,9 @@ namespace Aequus
 
                 case PacketType.OnKillEffect:
                     {
-                        Main.player[reader.ReadInt32()].Aequus().OnKillEffect(reader.ReadInt32(), reader.ReadVector2(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                        var player = Main.player[reader.ReadInt32()];
+                        var info = EnemyKillInfo.ReceiveData(reader);
+                        player.Aequus().OnKillEffect(info);
                     }
                     break;
 
@@ -326,28 +329,6 @@ namespace Aequus
 
                 case PacketType.GlimmerStatus:
                     GlimmerSystem.ReadGlimmerStatus(reader);
-                    break;
-
-                case PacketType.CandleSouls:
-                    {
-                        int amt = reader.ReadInt32();
-                        var v = reader.ReadVector2();
-                        for (int i = 0; i < amt; i++)
-                        {
-                            int player = reader.ReadInt32();
-                            if (Main.myPlayer == player)
-                                Projectile.NewProjectile(new EntitySource_Sync("PacketType.GiveoutEnemySouls"), v, Main.rand.NextVector2Unit() * 1.5f, ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, player);
-                            Main.player[player].GetModPlayer<AequusPlayer>().candleSouls++;
-                        }
-                    }
-                    break;
-
-                case PacketType.SyncRecyclingMachine:
-                    break;
-
-                case PacketType.Unused:
-                    {
-                    }
                     break;
 
                 case PacketType.RemoveDemonSiege:

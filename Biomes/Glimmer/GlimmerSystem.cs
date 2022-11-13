@@ -130,25 +130,30 @@ namespace Aequus.Biomes.Glimmer
 
         public static bool BeginEvent()
         {
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 int x = Main.rand.Next(200, Main.maxTilesX - 200);
-                if ((x - Main.spawnTileX).Abs() < 100)
+                if ((x - Main.spawnTileX).Abs() < GlimmerBiome.SuperStariteTile)
                     continue;
-                for (int j = 0; j < Main.maxPlayers; j++)
+                if (i < 100)
                 {
-                    if (Main.player[j].active && !Main.player[j].dead)
+                    bool nearBed = false;
+                    for (int j = 0; j < Main.maxPlayers; j++)
                     {
-                        if ((x - Main.player[j].GetSpawnX()).Abs() > GlimmerBiome.SuperStariteTile)
+                        if (Main.player[j].active && !Main.player[j].dead && Main.player[j].GetSpawnY() <= Main.worldSurface)
                         {
-                            goto FoundSpot;
+                            //AequusText.Broadcast($"{j}/{(x - Main.player[j].GetSpawnX()).Abs()}", Color.Red);
+                            if ((x - Main.player[j].GetSpawnX()).Abs() <= GlimmerBiome.HyperStariteTile)
+                            {
+                                nearBed = true;
+                                break;
+                            }
                         }
                     }
+                    if (nearBed)
+                        continue;
                 }
-
-                continue;
-
-            FoundSpot:
+                //AequusText.Broadcast((x - Main.spawnTileX).Abs().ToString(), Main.DiscoColor);
                 BeginEvent(new Point(x, -1));
                 return true;
             }

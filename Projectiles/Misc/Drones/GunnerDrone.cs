@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Consumables.Drones;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -60,11 +59,11 @@ namespace Aequus.Projectiles.Misc.Drones
                     if (Projectile.ai[0] > 15f)
                     {
                         var shootPosition = Projectile.Center + new Vector2(0f, 12f);
-                        if (Main.netMode != NetmodeID.MultiplayerClient || Main.myPlayer == Projectile.owner)
+                        if (Main.myPlayer == Projectile.owner)
                         {
                             var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), shootPosition, Vector2.Normalize(target.Center - shootPosition).RotatedBy(Main.rand.NextFloat(-0.04f, 0.04f)) * 10f, ProjectileID.Bullet,
                                 Projectile.damage, Projectile.knockBack, Projectile.owner);
-                            p.ArmorPenetration += Projectile.damage / 2;
+                            p.ArmorPenetration += 5;
                             p.npcProj = true;
                         }
                         SoundEngine.PlaySound(SoundID.Item11, Projectile.Center);
