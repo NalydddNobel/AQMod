@@ -623,7 +623,7 @@ Mods: {
 			HaltingMachine: 附近的物品会现在漂浮而非下落
 			Ramishroom: 钓竿会额外扔出一个浮标
 			DevilsTongue: 将非稀有渔获转化为垃圾
-			AmmoBackpack: 敌人会掉落你所消耗的弹药
+			AmmoBackpack: 击杀敌人时会为你补充弹药
 			MothmanMask:
 				'''
 				增加15%伤害和暴击率
