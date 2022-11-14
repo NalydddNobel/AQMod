@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Tapers
 
         public override void SetDefaults()
         {
-            DefaultToTaper(0, 24, 12);
+            DefaultToTaper(0, 3);
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(gold: 3);
             Item.flame = true;
@@ -36,11 +36,11 @@ namespace Aequus.Items.Weapons.Summon.Necro.Tapers
             return base.CanApplyTaper(npc, player) && !NecromancyProj.AnyOwnedByNPC(npc, ModContent.ProjectileType<SkeletronHandProj>());
         }
 
-        public override void ApplySupportEffects(Player player, NPC npc)
+        public override void ApplySupportEffects(Player player, NPC npc, int soulGemDamage)
         {
             for (int i = -1; i <= 1; i += 2)
             {
-                var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), npc.Center, Vector2.UnitX * 4f * i, ModContent.ProjectileType<SkeletronHandProj>(), npc.damage, 1f, player.whoAmI);
+                var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), npc.Center, Vector2.UnitX * 4f * i, ModContent.ProjectileType<SkeletronHandProj>(), npc.damage + soulGemDamage, 1f, player.whoAmI);
                 p.spriteDirection = i;
                 p.direction = i;
                 p.ai[0] = npc.whoAmI;

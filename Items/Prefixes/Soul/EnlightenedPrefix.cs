@@ -6,18 +6,23 @@ namespace Aequus.Items.Prefixes.Soul
 {
     public class EnlightenedPrefix : SoulWeaponPrefix
     {
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
+        {
+            damageMult -= 0.05f;
+            knockbackMult -= 0.15f;
+        }
+
         public override void Apply(Item item)
         {
-            if (item.ModItem is SoulWeaponBase candle)
+            if (item.ModItem is SoulGemWeaponBase candle)
             {
                 candle.ClearSoulFields();
-                candle.soulCost = Math.Max((int)(candle.soulCost * 1.25f), candle.soulCost + 1);
             }
         }
 
         public override void ModifyValue(ref float valueMult)
         {
-            valueMult -= 0.25f;
+            valueMult += 0.25f;
         }
     }
 }

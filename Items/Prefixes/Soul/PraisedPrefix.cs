@@ -1,18 +1,10 @@
-﻿using Aequus.Items.Weapons;
-using System;
-using Terraria;
-
-namespace Aequus.Items.Prefixes.Soul
+﻿namespace Aequus.Items.Prefixes.Soul
 {
     public class PraisedPrefix : SoulWeaponPrefix
     {
-        public override void Apply(Item item)
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
         {
-            if (item.ModItem is SoulWeaponBase candle)
-            {
-                candle.ClearSoulFields();
-                candle.soulLimit = Math.Min((int)(candle.soulLimit * 0.75f), candle.soulLimit - 1);
-            }
+            damageMult -= 0.1f;
         }
 
         public override void ModifyValue(ref float valueMult)

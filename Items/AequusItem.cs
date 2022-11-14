@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
@@ -34,6 +35,7 @@ namespace Aequus.Items
     {
         public delegate bool CustomCoatingFunction(int x, int y, Player player);
 
+        public static HashSet<int> PrioritizeVoidBagPickup { get; private set; }
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
@@ -58,6 +60,7 @@ namespace Aequus.Items
 
         public override void Load()
         {
+            PrioritizeVoidBagPickup = new HashSet<int>();
             FruitIDs = new List<int>()
             {
                 ItemID.Apple,
@@ -150,6 +153,8 @@ namespace Aequus.Items
 
         public override void Unload()
         {
+            PrioritizeVoidBagPickup?.Clear();
+            PrioritizeVoidBagPickup = null;
             ItemToBannerCache?.Clear();
             ItemToBannerCache = null;
             RemoveCustomCoating?.Clear();
@@ -211,6 +216,17 @@ namespace Aequus.Items
                 player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
             }
             naturallyDropped = false;
+            if (PrioritizeVoidBagPickup.Contains(item.type))
+            {
+                if (AequusHelpers.TryStackingInto(player.bank4.item, Chest.maxItems, item))
+                {
+                    PopupText.NewText(PopupTextContext.ItemPickupToVoidContainer, item, item.stack);
+                    item.TurnToAir();
+                    SoundEngine.PlaySound(SoundID.Grab.WithVolume(0.3f).WithPitchOffset(0.6f));
+                    SoundEngine.PlaySound(SoundID.Item130.WithVolume(0.4f).WithPitchOffset(0.5f));
+                    return false;
+                }
+            }
             return true;
         }
 

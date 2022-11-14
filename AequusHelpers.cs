@@ -202,6 +202,17 @@ namespace Aequus
             return new Color(int.Parse(val[0].Trim()), int.Parse(val[1].Trim()), int.Parse(val[2].Trim()), val.Length > 3 ? int.Parse(val[3].Trim()) : 255);
         }
 
+        public static bool ConsumeItem(Player player, Item item)
+        {
+            if (ItemLoader.ConsumeItem(item, player))
+            {
+                item.stack--;
+            }
+            if (item.stack <= 0)
+                item.TurnToAir();
+            return true;
+        }
+
         public static void Transform(this Item item, int newType)
         {
             int prefix = item.prefix;
@@ -341,6 +352,17 @@ namespace Aequus
                 player.bank4.HasItem(item);
         }
 
+        public static Item FindItemInInvOrVoidBag(this Player player, Predicate<Item> search, out bool inVoidBag)
+        {
+            var i = player.FindItem(search);
+            inVoidBag = false;
+            if (i != null)
+                return i;
+            inVoidBag = true;
+            if (player.HasItem(ItemID.VoidLens))
+                return player.bank4.FindItem(search);
+            return null;
+        }
         public static bool HasItemInInvOrVoidBag(this Player player, int item)
         {
             return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
@@ -356,6 +378,78 @@ namespace Aequus
                     return false;
             }
             return true;
+        }
+
+        public static Item FindItem(this Player player, Predicate<Item> search)
+        {
+            for (int i = 0; i < Main.InventorySlotsTotal; i++)
+            {
+                if (!player.inventory[i].IsAir && search(player.inventory[i]))
+                    return player.inventory[i];
+            }
+            return null;
+        }
+
+        public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item)
+        {
+            while (item.stack > 0)
+            {
+                var i = FindSuitableSlot(inv, maxSlots, item);
+                if (i == -1)
+                    return false;
+                if (inv[i].IsAir)
+                {
+                    inv[i] = item.Clone();
+                    return true;
+                }
+                int stack = inv[i].stack + item.stack;
+                if (stack > inv[i].maxStack)
+                {
+                    item.stack = stack - inv[i].maxStack;
+                    inv[i].stack = inv[i].maxStack;
+                    continue;
+                }
+                inv[i].stack = stack;
+                return true;
+            }
+            return false;
+        }
+
+        public static int FindSuitableSlot(this Item[] inv, int maxSlots, Item item)
+        {
+            if (item.stack != item.maxStack)
+            {
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (inv[i].type == item.type && inv[i].stack < inv[i].maxStack && inv[i].prefix == item.prefix && ItemLoader.CanStack(item, inv[i]))
+                        return i;
+                }
+            }
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (inv[i].IsAir)
+                    return i;
+            }
+            return -1;
+        }
+
+        public static Item FindEmptySlot(this Chest chest)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (chest.item[i].IsAir)
+                    return chest.item[i];
+            }
+            return null;
+        }
+        public static Item FindItem(this Chest chest, Predicate<Item> search)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (!chest.item[i].IsAir && search(chest.item[i]))
+                    return chest.item[i];
+            }
+            return null;
         }
 
         public static bool HasItem(this Chest chest, int item)

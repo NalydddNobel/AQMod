@@ -90,8 +90,7 @@ Mods: {
 			BuffDuration: "{0} duration"
 			BuffEmpowerment: "{0} buff strength"
 
-			PrefixSoulLimit: "{0} soul capacity"
-			PrefixSoulCost: "{0} soul cost"
+			SoulGemTier: "{0} ammo cost"
 		}
 
 		nalyd: "'Smells like roses'"
@@ -265,6 +264,12 @@ Mods: {
 			FrostPotion: Frost Potion
 
 			PotionOfResurrection: Potion of Resurrection
+
+			# Soul Gems #
+			PettySoulGem: Petty Soul Gem
+			LesserSoulGem: Lesser Soul Gem
+			GreaterSoulGem: Greater Soul Gem
+			GrandSoulGem: Grand Soul Gem
 
 			# Critter Items #
 			Snobster: Snobster
@@ -528,7 +533,6 @@ Mods: {
 			StariteinaBottle: Starite in a Bottle
 			YuckyOrb: Charming Lure
 			WaterFisg: Water Fish
-			Crabdaughter: Crabdaughter
 			Transistor: Transistor
 			EclipseGlasses: Eclipse Glasses
 			Cosmicanon: Cosmicanon
@@ -885,41 +889,13 @@ Mods: {
 			PrimeTaperCandle: Applies Skeletron Prime's arms to a ghost minion
 			SkeletronTaperCandle: Applies Skeletron's arms to a ghost minion
 
-			DragonsBreath: 
-				'''
-				Summon a phantasmal dragon to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			CrimsonCandle:
-				'''
-				Summons a blood crawler to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			CorruptionCandle:
-				'''
-				Summons an eater of souls to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			PixieCandle:
-				'''
-				Summons a pixie to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			BloodMoonCandle:
-				'''
-				Summons a blood zombie to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			DungeonCandle:
-				'''
-				Summons a cursed skull to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			OccultistCandle:
-				'''
-				Summons a demon to fight for you
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
+			DragonsBreath: Summon a phantasmal dragon to fight for you
+			CrimsonCandle: Summons a blood crawler to fight for you
+			CorruptionCandle: Summons an eater of souls to fight for you
+			PixieCandle: Summons a pixie to fight for you
+			BloodMoonCandle: Summons a blood zombie to fight for you
+			DungeonCandle: Summons a cursed skull to fight for you
+			OccultistCandle: Summons a demon to fight for you
 
 			FriendshipMagick: Become friends with strong enemies!
 			Insurgency: 
@@ -1177,6 +1153,14 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
+
+			# Soul Gems #
+			PettySoulGem: Captures the souls of weak creatures
+			LesserSoulGem: Captures the souls of strong creatures
+			GreaterSoulGem: Captures the souls of powerful creatures
+			GrandSoulGem: Captures the souls of very powerful creatures
+
+			# Legendary Fish #
 			CrabDaughter:
 				'''
 				A legendary fish enriched with aquatic energy
@@ -1393,10 +1377,10 @@ Mods: {
 
 				RouletteDrop: The item below is guaranteed to drop
 
-				NecromancyStaff: Slain enemies may convert into ghosts
-				NecromancyCandle: Automatically absorbs the souls of enemies killed by minions
-				UseSouls: Uses {0} enemy souls
-				CarryingSouls: Carrying {0} of {1} souls
+				NecromancyStaff: Slain enemies may convert into ghost minions
+
+				# Ex: Uses Petty soul gems as ammo
+				SoulGemCost: Uses {SoulTier} soul gems as ammo
 			}
 
 			Misc: {
@@ -2612,6 +2596,13 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: Quest Fish
+		}
+
+		SoulGemTier: {
+			1: Petty
+			2: Lesser
+			3: Greater
+			4: Grand
 		}
 
 		Water: Water

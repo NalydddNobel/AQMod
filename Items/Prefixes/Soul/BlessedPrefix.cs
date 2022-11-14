@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Weapons;
 using System;
 using Terraria;
+using Terraria.Utilities;
 
 namespace Aequus.Items.Prefixes.Soul
 {
@@ -8,11 +9,16 @@ namespace Aequus.Items.Prefixes.Soul
     {
         public override void Apply(Item item)
         {
-            if (item.ModItem is SoulWeaponBase soul)
+            if (item.ModItem is SoulGemWeaponBase soulWeapon)
             {
-                soul.ClearSoulFields();
-                soul.soulCost = Math.Max((int)(soul.soulCost * 1.1f), soul.soulCost + 1);
+                soulWeapon.ClearSoulFields();
+                soulWeapon.tier = Math.Min(soulWeapon.tier + 1, SoulGemWeaponBase.MaxTier);
             }
+        }
+
+        public override bool CanChoose(Item item, SoulGemWeaponBase soulGem, UnifiedRandom rand)
+        {
+            return soulGem.OriginalTier < SoulGemWeaponBase.MaxTier;
         }
 
         public override void ModifyValue(ref float valueMult)

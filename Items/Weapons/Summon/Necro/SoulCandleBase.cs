@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class SoulCandleBase : SoulWeaponBase
+    public abstract class SoulCandleBase : SoulGemWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
@@ -17,17 +17,15 @@ namespace Aequus.Items.Weapons.Summon.Necro
 
         public float npcSpeed;
 
-        protected void DefaultToCandle(int summonDamage, int limit, int souls, int npc, float speed = 0f)
+        protected void DefaultToCandle(int summonDamage, int ammoTier, int npc, float speed = 0f)
         {
             Item.holdStyle = ItemHoldStyle;
             Item.DamageType = NecromancyDamageClass.Instance; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
 
-            OriginalSoulLimit = limit;
-            OriginalSoulCost = souls;
+            OriginalTier = ammoTier;
+            tier = ammoTier;
             OriginalNPCSpeed = speed;
 
-            soulLimit = limit;
-            soulCost = souls;
             npcSpeed = speed;
 
             NPCToSummon = npc;
@@ -46,37 +44,40 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public override bool? UseItem(Player player)
         {
             var aequus = player.Aequus();
-            if (aequus.candleSouls >= soulCost)
+            var ghost = NecromancyDatabase.TryGet(NPCToSummon, out var g) ? g : default(GhostInfo);
+            int slots = ghost.SlotsUsed;
+            if (aequus.ghostSlots + slots > aequus.ghostSlotsMax)
             {
-                var ghost = NecromancyDatabase.TryGet(NPCToSummon, out var g) ? g : default(GhostInfo);
-                int slots = ghost.SlotsUsed;
-                if (aequus.ghostSlots + slots > aequus.ghostSlotsMax)
+                int priority = ghost.despawnPriority;
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    int priority = ghost.despawnPriority;
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    if (Main.npc[i].active && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.zombieOwner == player.whoAmI)
                     {
-                        if (Main.npc[i].active && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.zombieOwner == player.whoAmI)
+                        if (priority <= n.DespawnPriority(Main.npc[i]))
                         {
-                            if (priority <= n.DespawnPriority(Main.npc[i]))
-                            {
-                                return false;
-                            }
+                            return false;
                         }
                     }
                 }
-                aequus.candleSouls -= soulCost;
-                SpawnGhost(player);
+            }
+            var item = FindUsableSoulGem(player);
+            if (item == null)
+                return false;
+            int damage = item.damage;
+            if (AequusHelpers.ConsumeItem(player, item))
+            {
+                SpawnGhost(player, damage);
             }
             return true;
         }
 
-        public virtual void SpawnGhost(Player player)
+        public virtual void SpawnGhost(Player player, int soulGemDamage)
         {
             var position = Main.MouseWorld;
             player.LimitPointToPlayerReachableArea(ref position);
             if (Main.myPlayer == player.whoAmI)
             {
-                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<GhostSpawner>(), Item.damage, 0f, player.whoAmI, NPCToSummon, npcSpeed);
+                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<GhostSpawner>(), Item.damage + soulGemDamage, 0f, player.whoAmI, NPCToSummon, npcSpeed);
             }
         }
 

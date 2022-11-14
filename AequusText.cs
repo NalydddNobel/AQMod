@@ -19,6 +19,8 @@ namespace Aequus
         public static Color BossSummonMessage => new Color(175, 75, 255, 255);
         internal static Color EventMessage => new Color(50, 255, 130, 255);
 
+        public static string Unknown => AequusText.GetText("Unknown");
+
         public static void NewFromDict(string key, string key2, object obj)
         {
             NewFromDict(key, key2, (text) => AequusHelpers.FormatWith(text, obj));

@@ -3,6 +3,8 @@ using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
+using Aequus.Items.Consumables.SoulGems;
+using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
@@ -130,9 +132,34 @@ namespace Aequus.NPCs.Friendly.Town
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
             }
-            if (!Main.dayTime && Main.bloodMoon)
+            if (!Main.dayTime)
             {
-                shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
+                if (Main.bloodMoon)
+                {
+                    shop.item[nextSlot].SetDefaults<BloodyTearFragment>();
+                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
+                    shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
+                }
+                else
+                {
+                    if (Main.hardMode)
+                    {
+                        if (NPC.downedAncientCultist)
+                        {
+                            shop.item[nextSlot].SetDefaults<GrandSoulGem>();
+                            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 4);
+                        }
+                        if (NPC.downedPlantBoss)
+                        {
+                            shop.item[nextSlot].SetDefaults<GreaterSoulGem>();
+                            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 3);
+                        }
+                        shop.item[nextSlot].SetDefaults<LesserSoulGem>();
+                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 2);
+                    }
+                    shop.item[nextSlot].SetDefaults<PettySoulGem>();
+                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 25);
+                }
             }
         }
 

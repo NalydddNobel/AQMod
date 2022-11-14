@@ -32,6 +32,7 @@ namespace Aequus.Items.GlobalItems
 
         [SaveData("NameTag")]
         public string NameTag;
+        public string nameTag2;
         [SaveData("RenameCount")]
         public int RenameCount;
 
@@ -191,6 +192,10 @@ namespace Aequus.Items.GlobalItems
                 {
                     item.SetNameOverride(GetDecodedName()); // Hope that name overrides aren't important to some other mod lul
                 }
+            }
+            else if (!string.IsNullOrEmpty(nameTag2))
+            {
+                item.SetNameOverride(decodeName(nameTag2));
             }
             else
             {

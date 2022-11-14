@@ -255,6 +255,20 @@ namespace Aequus.Content.Necromancy
             return ModCallManager.Success;
         }
 
+        public static int GetSoulGemTier(int netID)
+        {
+            int tier = 0;
+            if (TryGet(netID, out var info))
+            {
+                tier = (int)info.PowerNeeded;
+            }
+            if (tier == 0)
+            {
+                return (int)GhostInfo.Autogenerate(ContentSamples.NpcsByNetId[netID]).PowerNeeded;
+            }
+            return tier;
+        }
+
         /// <summary>
         /// Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
         /// <para>If you are wanting to use a safer method, please use <see cref="TryGet(int, out GhostInfo)"/></para>

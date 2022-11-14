@@ -17,20 +17,20 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(120, 100, 20, NPCID.CultistDragonHead, -0.1f);
+            DefaultToCandle(120, 4, NPCID.CultistDragonHead, -0.1f);
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.sellPrice(gold: 10);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }
 
-        public override void SpawnGhost(Player player)
+        public override void SpawnGhost(Player player, int soulGemDamage)
         {
             var position = Main.MouseWorld;
             player.LimitPointToPlayerReachableArea(ref position);
             if (Main.myPlayer == player.whoAmI)
             {
-                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<DragonsBreathSpawner>(), Item.damage, 0f, player.whoAmI, ai1: npcSpeed);
+                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<DragonsBreathSpawner>(), Item.damage + soulGemDamage, 0f, player.whoAmI, ai1: npcSpeed);
             }
         }
 

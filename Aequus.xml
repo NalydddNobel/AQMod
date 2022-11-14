@@ -216,13 +216,6 @@
             If the player has too many zombies, it kills the oldest and least prioritized one.
             </summary>
         </member>
-        <member name="M:Aequus.AequusPlayer.NecromancyHit(Terraria.NPC,Terraria.Projectile)">
-            <summary>
-            Inflicts <see cref="T:Aequus.Buffs.Debuffs.SoulStolen"/> if the player is able to get more candle souls
-            </summary>
-            <param name="target"></param>
-            <param name="proj"></param>
-        </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary>
             Called right before all player layers have been drawn

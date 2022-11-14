@@ -6,20 +6,17 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class SoulTaperBase : SoulWeaponBase
+    public abstract class SoulTaperBase : SoulGemWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
-        protected void DefaultToTaper(int summonDamage, int limit, int souls)
+        protected void DefaultToTaper(int summonDamage, int ammoTier)
         {
             Item.holdStyle = ItemHoldStyle;
             Item.DamageType = NecromancyDamageClass.Instance;
 
-            OriginalSoulLimit = limit;
-            OriginalSoulCost = souls;
-
-            soulLimit = limit;
-            soulCost = souls;
+            OriginalTier = ammoTier;
+            tier = ammoTier;
             Item.damage = summonDamage;
             Item.useTime = 40;
             Item.useAnimation = 40;
@@ -37,28 +34,30 @@ namespace Aequus.Items.Weapons.Summon.Necro
             if (Main.myPlayer != player.whoAmI)
                 return null;
 
-            var aequus = player.Aequus();
-            if (aequus.candleSouls >= soulCost)
-            {
-                int chosenNPC = -1;
-                float distance = 64f;
+            int chosenNPC = -1;
+            float distance = 64f;
 
-                for (int i = 0; i < Main.maxNPCs; i++)
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (CanApplyTaper(Main.npc[i], player))
                 {
-                    if (CanApplyTaper(Main.npc[i], player))
+                    float d = Main.npc[i].Distance(Main.MouseWorld);
+                    if (d < distance)
                     {
-                        float d = Main.npc[i].Distance(Main.MouseWorld);
-                        if (d < distance)
-                        {
-                            chosenNPC = i;
-                            distance = d;
-                        }
+                        chosenNPC = i;
+                        distance = d;
                     }
                 }
-                if (chosenNPC != -1)
+            }
+            if (chosenNPC != -1)
+            {
+                var item = FindUsableSoulGem(player);
+                if (item == null)
+                    return false;
+                int damage = item.damage;
+                if (AequusHelpers.ConsumeItem(player, item))
                 {
-                    aequus.candleSouls -= soulCost;
-                    ApplySupportEffects(player, Main.npc[chosenNPC]);
+                    ApplySupportEffects(player, Main.npc[chosenNPC], damage);
                 }
             }
             return true;
@@ -68,7 +67,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
             return npc.active && (npc.realLife == -1 || npc.realLife == npc.whoAmI) && !NPCID.Sets.ProjectileNPC[npc.type] && npc.TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.zombieOwner == player.whoAmI;
         }
 
-        public abstract void ApplySupportEffects(Player player, NPC npc);
+        public abstract void ApplySupportEffects(Player player, NPC npc, int soulGemDamage);
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

@@ -1,10 +1,12 @@
-﻿using Aequus.Items.Weapons.Summon.Necro;
+﻿using Aequus.Items.Prefixes.Soul;
+using Aequus.Items.Weapons;
+using Aequus.Items.Weapons.Summon.Necro;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Items.Prefixes.Soul
+namespace Aequus.Items.Prefixes
 {
     public abstract class SoulWeaponPrefix : ModPrefix
     {
@@ -35,18 +37,21 @@ namespace Aequus.Items.Prefixes.Soul
 
         public static ModPrefix ChoosePrefix(Item item, UnifiedRandom rand)
         {
-            for (int i = 0; i < 1000; i++)
+            if (item.ModItem is SoulGemWeaponBase soulGem)
             {
-                var p = Prefixes[rand.Next(Prefixes.Count)];
-                if (p.CanChoose(item, rand))
+                for (int i = 0; i < 1000; i++)
                 {
-                    return p;
+                    var p = Prefixes[rand.Next(Prefixes.Count)];
+                    if (p.CanChoose(item, soulGem, rand))
+                    {
+                        return p;
+                    }
                 }
             }
             return ModContent.GetInstance<DiabolicPrefix>();
         }
 
-        public virtual bool CanChoose(Item item, UnifiedRandom rand)
+        public virtual bool CanChoose(Item item, SoulGemWeaponBase soulGem, UnifiedRandom rand)
         {
             return true;
         }

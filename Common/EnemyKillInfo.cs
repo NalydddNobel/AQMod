@@ -18,8 +18,6 @@ namespace Aequus.Common
         public Vector2 Center => new Vector2(position.X + width / 2f, position.Y + height / 2f);
         public Rectangle Rect => new Rectangle((int)position.X, (int)position.Y, width, height);
 
-        public bool SoulStolen => miscInfo[0];
-
         public EnemyKillInfo(NPC npc)
         {
             position = npc.position;
@@ -28,7 +26,7 @@ namespace Aequus.Common
             netID = npc.netID;
             lifeMax = npc.lifeMax;
             value = npc.value;
-            miscInfo = new BitsByte(npc.HasBuff<SoulStolen>());
+            miscInfo = 0;
         }
 
         public void WriteData(BinaryWriter writer)
@@ -40,7 +38,7 @@ namespace Aequus.Common
             writer.Write(netID);
             writer.Write(lifeMax);
             writer.Write(value);
-            writer.Write(miscInfo);
+            //writer.Write(miscInfo);
         }
 
         public static EnemyKillInfo ReceiveData(BinaryReader reader)
@@ -53,7 +51,7 @@ namespace Aequus.Common
             info.netID = reader.ReadInt32();
             info.lifeMax = reader.ReadInt32();
             info.value = reader.ReadSingle();
-            info.miscInfo = reader.ReadByte();
+            //info.miscInfo = reader.ReadByte();
             return info;
         }
     }

@@ -17,6 +17,7 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables;
+using Aequus.Items.Consumables.SoulGems;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
@@ -27,7 +28,6 @@ using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Aequus.Projectiles.Summon.Necro;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using System;
@@ -67,9 +67,6 @@ namespace Aequus
         private static MethodInfo Player_ItemCheck_Shoot;
 
         public int projectileIdentity = -1;
-
-        [SaveData("Souls")]
-        public int candleSouls;
 
         public int cursorDye;
         public int cursorDyeOverride;
@@ -372,7 +369,6 @@ namespace Aequus
             clone.timeSinceLastHit = timeSinceLastHit;
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
-            clone.candleSouls = candleSouls;
             clone.boundedPotionIDs = new List<int>(boundedPotionIDs);
             clone.darkness = darkness;
         }
@@ -384,7 +380,7 @@ namespace Aequus
             var bb = new BitsByte(
                 darkness != aequus.darkness,
                 timeSinceLastHit != aequus.timeSinceLastHit,
-                candleSouls != aequus.candleSouls,
+                false, // Unused
                 omniPaint != aequus.omniPaint,
                 (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
                 aequus.instaShieldTime != instaShieldTime,
@@ -411,7 +407,6 @@ namespace Aequus
                     }
                     if (bb[2])
                     {
-                        p.Write(candleSouls);
                     }
                     if (bb[3])
                     {
@@ -465,7 +460,6 @@ namespace Aequus
             }
             if (bb[2])
             {
-                candleSouls = reader.ReadInt32();
             }
             if (bb[3])
             {
@@ -516,7 +510,6 @@ namespace Aequus
             boundBowAmmo = BoundBowMaxAmmo;
             boundBowAmmoTimer = 60;
             CursorDye = -1;
-            candleSouls = 0;
             ghostTombstones = false;
             moroSummonerFruit = false;
             hasUsedRobsterScamItem = false;
@@ -1530,11 +1523,6 @@ namespace Aequus
             if (target.type != NPCID.TargetDummy)
                 CheckLeechHook(target, damage);
             OnHitEffects(target, damage, knockback, crit);
-
-            if (proj.DamageType.CountsAsClass(DamageClass.Summon) || proj.minion || proj.sentry)
-            {
-                NecromancyHit(target, proj);
-            }
         }
         public void CheckLeechHook(NPC target, int damage)
         {
@@ -1611,18 +1599,6 @@ namespace Aequus
             if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);
-            }
-        }
-        /// <summary>
-        /// Inflicts <see cref="SoulStolen"/> if the player is able to get more candle souls
-        /// </summary>
-        /// <param name="target"></param>
-        /// <param name="proj"></param>
-        public void NecromancyHit(NPC target, Projectile proj)
-        {
-            if (candleSouls < soulLimit)
-            {
-                target.AddBuffToHeadOrSelf(ModContent.BuffType<SoulStolen>(), 300);
             }
         }
 
@@ -1900,20 +1876,91 @@ namespace Aequus
             return count;
         }
 
-        public void OnKillEffect(EnemyKillInfo npc)
+        public void TryFillSoulGems(EnemyKillInfo npc)
         {
-            if (npc.SoulStolen)
+            int tier = 0;
+            if (NecromancyDatabase.TryGet(npc.netID, out var info))
             {
-                if (candleSouls < soulLimit)
+                tier = (int)info.PowerNeeded;
+            }
+            if (tier == 0)
+            {
+                tier = (int)GhostInfo.Autogenerate(ContentSamples.NpcsByNetId[npc.netID]).PowerNeeded;
+            }
+            if (tier <= 0 || tier > 4)
+            {
+                return;
+            }
+            var soulGem = Player.FindItemInInvOrVoidBag((item) => item.ModItem is SoulGemBase soulGemBase && soulGemBase.filled < tier && soulGemBase.Tier >= tier, out bool inVoidBag);
+            if (soulGem != null)
+            {
+                if (Main.myPlayer == Player.whoAmI)
                 {
-                    if (Main.myPlayer == Player.whoAmI)
+                    soulGem.stack--;
+                    Item newSoulGem = null;
+                    if (!inVoidBag)
                     {
-                        Projectile.NewProjectile(Player.GetSource_FromThis(), npc.Center, Main.rand.NextVector2Unit() * 1.5f, 
-                            ModContent.ProjectileType<SoulAbsorbProj>(), 0, 0f, Player.whoAmI);
+                        var canStack = Player.FindItem((item) => item.type == soulGem.type && item.ModItem is SoulGemBase compareGem && compareGem.filled == tier);
+                        if (canStack != null)
+                        {
+                            newSoulGem = canStack;
+                            newSoulGem.stack++;
+                        }
+                        else if (soulGem.stack <= 0)
+                        {
+                            soulGem.stack = 1;
+                            newSoulGem = soulGem;
+                        }
                     }
-                    candleSouls++;
+                    if (newSoulGem == null && inVoidBag)
+                    {
+                        var canStack = Player.bank4.FindItem((item) => item.type == soulGem.type && item.ModItem is SoulGemBase compareGem && compareGem.filled == tier);
+                        if (canStack != null)
+                        {
+                            newSoulGem = canStack;
+                            newSoulGem.stack++;
+                        }
+                        else
+                        {
+                            canStack = Player.bank4.FindEmptySlot();
+                            if (canStack != null)
+                            {
+                                newSoulGem = canStack;
+                                newSoulGem.SetDefaults(soulGem.type);
+                            }
+                            else if (soulGem.stack <= 0)
+                            {
+                                soulGem.stack = 1;
+                                newSoulGem = soulGem;
+                            }
+                        }
+                    }
+
+                    if (newSoulGem == null)
+                    {
+                        newSoulGem = Player.QuickSpawnItemDirect(Player.GetSource_OpenItem(soulGem.type), soulGem.type);
+                        newSoulGem.ModItem<SoulGemBase>().filled = tier;
+                        newSoulGem.ModItem<SoulGemBase>().OnFillSoulGem(Player, npc);
+                        newSoulGem.newAndShiny = !ItemID.Sets.NeverAppearsAsNewInInventory[soulGem.type];
+                    }
+                    else
+                    {
+                        newSoulGem.ModItem<SoulGemBase>().filled = tier;
+                        newSoulGem.ModItem<SoulGemBase>().OnFillSoulGem(Player, npc);
+                        newSoulGem.Center = Player.Top;
+                        SoundEngine.PlaySound(SoundID.Grab, Player.Top);
+                        int p = PopupText.NewText(inVoidBag ? PopupTextContext.ItemPickupToVoidContainer : PopupTextContext.RegularItemPickup, newSoulGem, 1);
+                        Main.popupText[p].lifeTime /= 4;
+                        Main.popupText[p].lifeTime *= 3;
+                    }
+                    SoundEngine.PlaySound(SoundID.Item4.WithVolume(0.5f).WithPitchOffset(0.3f), Player.Center);
                 }
             }
+        }
+
+        public void OnKillEffect(EnemyKillInfo npc)
+        {
+            TryFillSoulGems(npc);
             if (accAmmoRenewalPack != null)
             {
                 int ammoBackpackChance = 3;

@@ -1,18 +1,21 @@
 ﻿using Aequus.Items.Weapons;
-using System;
 using Terraria;
 
 namespace Aequus.Items.Prefixes.Soul
 {
     public class DivinePrefix : SoulWeaponPrefix
     {
+        public override void SetStats(ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus)
+        {
+            damageMult -= 0.15f;
+            knockbackMult -= 0.15f;
+        }
+
         public override void Apply(Item item)
         {
-            if (item.ModItem is SoulWeaponBase candle)
+            if (item.ModItem is SoulGemWeaponBase candle)
             {
                 candle.ClearSoulFields();
-                candle.soulLimit = Math.Min((int)(candle.soulLimit * 0.75f), candle.soulLimit - 1);
-                candle.soulCost = Math.Max((int)(candle.soulCost * 1.25f), candle.soulCost + 1);
             }
         }
 
