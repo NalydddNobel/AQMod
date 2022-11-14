@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
@@ -50,24 +51,17 @@ namespace Aequus.Items.Consumables.SoulGems
             Item.maxStack = 9999;
             if (filled > 0)
             {
-                SetFilledDefaultsFull();
+                setFilledDefaults();
             }
         }
 
-        public void SetFilledDefaultsFull()
+        public void setFilledDefaults()
         {
             if (Item.TryGetGlobalItem<ItemNameTag>(out var nameTag))
             {
                 nameTag.nameTag2 = $"$Mods.Aequus.ItemName.{Name} ($Mods.Aequus.SoulGemTier.{filled}|)";
                 nameTag.updateNameTag(Item);
             }
-            SetFilledDefaults();
-        }
-
-        public abstract void SetFilledDefaults();
-
-        public virtual void OnFillSoulGem(Player player, EnemyKillInfo npc)
-        {
             switch (filled)
             {
                 case 1:
@@ -83,7 +77,14 @@ namespace Aequus.Items.Consumables.SoulGems
                     Item.damage = 60;
                     break;
             }
-            SetFilledDefaultsFull();
+            SetFilledDefaults();
+        }
+
+        protected abstract void SetFilledDefaults();
+
+        public virtual void OnFillSoulGem(Player player, EnemyKillInfo npc)
+        {
+            setFilledDefaults();
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -138,7 +139,18 @@ namespace Aequus.Items.Consumables.SoulGems
         public override void LoadData(TagCompound tag)
         {
             filled = tag.Get<int>("SoulGemTier");
-            SetFilledDefaultsFull();
+            setFilledDefaults();
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write((byte)filled);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            filled = reader.ReadByte();
+            setFilledDefaults();
         }
     }
 }
