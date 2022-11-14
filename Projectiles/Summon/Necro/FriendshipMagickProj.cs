@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -81,7 +82,7 @@ namespace Aequus.Projectiles.Summon.Necro
                                 {
                                     n.zombieOwner = Projectile.owner;
                                     n.DebuffTier(Tier);
-                                    n.renderLayer = GhostOutlineRenderer.IDs.Friendship;
+                                    n.renderLayer = GhostRenderer.IDs.FriendshipMagick;
                                     n.SpawnZombie_SetZombieStats(Main.npc[i], Main.npc[i].Center, Main.npc[i].velocity, Main.npc[i].direction, Main.npc[i].spriteDirection, out bool playSound);
                                     n.slotsConsumed = 0;
                                     n.ghostDamage = 50;

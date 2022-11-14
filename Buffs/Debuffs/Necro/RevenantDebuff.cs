@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Terraria;
 
 namespace Aequus.Buffs.Debuffs.Necro
@@ -26,7 +27,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineRenderer.IDs.Revenant);
+            zombie.RenderLayer(GhostRenderer.IDs.Revenant);
         }
     }
 }

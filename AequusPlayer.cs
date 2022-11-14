@@ -8,6 +8,7 @@ using Aequus.Common.Players;
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics;
 using Aequus.Graphics.PlayerLayers;
 using Aequus.Graphics.Primitives;
@@ -1479,7 +1480,7 @@ namespace Aequus
                     zombie.conversionChance = 1;
                     zombie.zombieDebuffTier = 3.1f;
                     zombie.zombieOwner = Player.whoAmI;
-                    zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+                    zombie.renderLayer = GhostRenderer.IDs.BloodRed;
                     damage = 2500;
                 }
             }

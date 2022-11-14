@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
@@ -309,7 +310,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - progress) * 0.35f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             }
 
-            if (!GhostOutlineRenderer.RenderingNow)
+            if (!GhostRenderer.Rendering)
             {
                 float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))

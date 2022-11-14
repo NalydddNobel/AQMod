@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -110,13 +111,7 @@ namespace Aequus.Content.Necromancy
         {
             if (isZombie)
             {
-                var color = Color.White;
-                int index = GhostOutlineRenderer.TargetID(Main.player[projectile.owner], renderLayer);
-                if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
-                {
-                    color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                    color.A = 100;
-                }
+                var color = GhostRenderer.GetColorTarget(Main.player[projectile.owner], renderLayer).getDrawColor().UseA(100);
 
                 float wave = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10f);
                 color *= (wave + 1f) / 2f * 0.5f;
@@ -181,14 +176,7 @@ namespace Aequus.Content.Necromancy
                     NecromancyNPC.RestoreTarget();
                     if (Main.rand.NextBool(6))
                     {
-                        int index = GhostOutlineRenderer.TargetID(Main.player[Main.npc[zombieNPCOwner].GetGlobalNPC<NecromancyNPC>().zombieOwner], renderLayer);
-                        var color = new Color(50, 150, 255, 100);
-                        if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
-                        {
-                            color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                            color.A = 100;
-                        }
-
+                        var color = GhostRenderer.GetColorTarget(Main.player[projectile.owner], renderLayer).getDrawColor().UseA(100);
                         var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), newColor: color);
                         d.velocity *= 0.3f;
                         d.velocity += projectile.velocity * 0.2f;

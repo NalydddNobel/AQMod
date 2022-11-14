@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
-using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss;
@@ -157,24 +157,8 @@ namespace Aequus.Graphics
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
-            if (GhostOutlineRenderer.NecromancyRenderers != null)
-            {
-                for (int i = 0; i < GhostOutlineRenderer.NecromancyRenderers.Length; i++)
-                {
-                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null)
-                    {
-                        if (GhostOutlineRenderer.NecromancyRenderers[i].NPCs.Count > 0)
-                        {
-                            GhostOutlineRenderer.NecromancyRenderers[i].Request();
-                            GhostOutlineRenderer.NecromancyRenderers[i].DisposeTime = 0;
-                            GhostOutlineRenderer.NecromancyRenderers[i].PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
-                            continue;
-                        }
-
-                        GhostOutlineRenderer.NecromancyRenderers[i].CheckDisposal();
-                    }
-                }
-            }
+            GhostRenderer.Instance.CheckSelfRequest();
+            GhostRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             foreach (var r in Renderers)
             {
                 r.CheckSelfRequest();
@@ -212,13 +196,7 @@ namespace Aequus.Graphics
             orig(self);
             try
             {
-                for (int i = 0; i < GhostOutlineRenderer.NecromancyRenderers.Length; i++)
-                {
-                    if (GhostOutlineRenderer.NecromancyRenderers[i] != null && GhostOutlineRenderer.NecromancyRenderers[i].IsReady)
-                    {
-                        GhostOutlineRenderer.NecromancyRenderers[i].DrawOntoScreen(Main.spriteBatch);
-                    }
-                }
+                GhostRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 if (!Lighting.NotRetro)
                 {
                     if (GamestarRenderer.Instance.IsReady)

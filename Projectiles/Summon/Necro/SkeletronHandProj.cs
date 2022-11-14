@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -34,6 +35,11 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 30;
             Projectile.aiStyle = -1;
+        }
+
+        public override bool? CanCutTiles()
+        {
+            return false;
         }
 
         public override void AI()
@@ -319,7 +325,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            GhostOutlineRenderer.Target(Main.player[Projectile.owner], NPC.GetGlobalNPC<NecromancyNPC>().renderLayer).Projs.Add(Projectile);
+            GhostRenderer.GetColorTarget(Main.player[Projectile.owner], NPC.GetGlobalNPC<NecromancyNPC>().renderLayer).Projs.Add(Projectile);
         }
 
         public override bool PreDraw(ref Color lightColor)

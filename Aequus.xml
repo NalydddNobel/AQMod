@@ -379,11 +379,6 @@
             Tier for post-Golem Minibosses and post-ML enemies
             </summary>
         </member>
-        <member name="F:Aequus.Content.Necromancy.GhostOutlineRenderer.IDs.Count">
-            <summary>
-            Use and increase respectively for custom Necromancy Screen Renderer layers.
-            </summary>
-        </member>
         <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
@@ -432,6 +427,11 @@
             <param name="npc">The NPC instance</param>
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="F:Aequus.Content.Necromancy.Renderer.GhostRenderer.IDs.Count">
+            <summary>
+            Use and increase respectively for custom Necromancy Screen Renderer layers.
+            </summary>
         </member>
         <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
             <summary>

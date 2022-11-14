@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineRenderer.IDs.Insurgent);
+            zombie.RenderLayer(GhostRenderer.IDs.Insurgency);
 
             if (Main.myPlayer == zombie.zombieOwner && Main.rand.NextBool(60))
             {

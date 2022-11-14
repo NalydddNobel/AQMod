@@ -49,14 +49,14 @@ namespace Aequus.Items.Consumables.SoulGems
             Item.height = 12;
             Item.consumable = true;
             Item.maxStack = 9999;
-            if (filled > 0)
-            {
-                setFilledDefaults();
-            }
+            setFilledDefaults();
         }
 
         public void setFilledDefaults()
         {
+            if (filled <= 0)
+                return;
+
             if (Item.TryGetGlobalItem<ItemNameTag>(out var nameTag))
             {
                 nameTag.nameTag2 = $"$Mods.Aequus.ItemName.{Name} ($Mods.Aequus.SoulGemTier.{filled}|)";

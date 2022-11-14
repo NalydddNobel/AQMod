@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -28,7 +29,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostOutlineRenderer.IDs.Zombie);
+            zombie.RenderLayer(GhostRenderer.IDs.ZombieScepter);
         }
 
         public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff

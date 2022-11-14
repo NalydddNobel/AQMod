@@ -1,4 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
+using Aequus.Items.Consumables.SoulGems;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -41,11 +44,12 @@ namespace Aequus.Projectiles.Summon.Necro
 
         protected virtual void OnSpawnZombie(NPC npc, NecromancyNPC zombie)
         {
+            var soulGem = ContentSamples.ItemsByType[Projectile.Aequus().sourceItemUsed].ModItem as SoulGemBase;
             zombie.zombieOwner = Projectile.owner;
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
-            zombie.zombieTimerMax *= 2;
-            zombie.zombieTimer *= 2;
-            zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+            zombie.zombieTimerMax = (int)(zombie.zombieTimerMax * 1f + 0.25f * (soulGem?.Tier).GetValueOrDefault(0));
+            zombie.zombieTimer *= zombie.zombieTimerMax;
+            zombie.renderLayer = GhostRenderer.IDs.BloodRed;
             zombie.ghostDamage = Projectile.damage;
             zombie.ghostSpeed = Projectile.ai[1];
         }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,7 +31,7 @@ namespace Aequus.Buffs.Debuffs
                 var zombie = npc.GetGlobalNPC<NecromancyNPC>();
                 zombie.conversionChance = 2;
                 zombie.zombieDebuffTier = 1.1f;
-                zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+                zombie.renderLayer = GhostRenderer.IDs.BloodRed;
             }
         }
     }

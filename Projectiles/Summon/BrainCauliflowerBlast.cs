@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles;
@@ -131,7 +132,7 @@ namespace Aequus.Projectiles.Summon
             {
                 var zombie = target.GetGlobalNPC<NecromancyNPC>();
                 zombie.conversionChance = 1;
-                zombie.renderLayer = GhostOutlineRenderer.IDs.BloodRed;
+                zombie.renderLayer = GhostRenderer.IDs.BloodRed;
                 zombie.zombieDebuffTier = 2.1f;
                 zombie.zombieOwner = Projectile.owner;
                 target.StrikeNPC(2000, 1f, Projectile.direction);

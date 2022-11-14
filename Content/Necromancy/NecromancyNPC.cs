@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
@@ -221,15 +222,9 @@ namespace Aequus.Content.Necromancy
 
         public override Color? GetAlpha(NPC npc, Color drawColor)
         {
-            if (isZombie)
+            if (isZombie && Main.netMode != NetmodeID.Server)
             {
-                var color = Color.White;
-                int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
-                if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
-                {
-                    color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                    color.A = 100;
-                }
+                var color = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor().UseA(100);
 
                 float wave = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f);
                 color *= (wave + 1f) / 2f * 0.5f;
@@ -403,13 +398,7 @@ namespace Aequus.Content.Necromancy
                 {
                     if (Main.rand.NextBool(6))
                     {
-                        var color = new Color(50, 150, 255, 100);
-                        int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
-                        if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
-                        {
-                            color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                            color.A = 100;
-                        }
+                        var color = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor().UseA(100);
                         var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoDust>(), newColor: color);
                         d.velocity *= 0.2f;
                         d.velocity += npc.velocity * 0.4f;
@@ -453,9 +442,9 @@ namespace Aequus.Content.Necromancy
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (isZombie && !GhostOutlineRenderer.RenderingNow && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
+            if (isZombie && !GhostRenderer.Rendering && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type])
             {
-                GhostOutlineRenderer.Target(Main.player[zombieOwner], renderLayer).Add(npc.whoAmI);
+                GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).NPCs.Add(npc);
             }
             return true;
         }
@@ -503,21 +492,7 @@ namespace Aequus.Content.Necromancy
         public Color DetermineHealthbarColor(NPC npc, float lifeRatio)
         {
             int team = Main.player[zombieOwner].team;
-            Color color;
-            if (zombieOwner == Main.myPlayer)
-            {
-                color = Color.White;
-                int index = GhostOutlineRenderer.TargetID(Main.player[zombieOwner], renderLayer);
-                if (GhostOutlineRenderer.necromancyRenderers.Length > index && GhostOutlineRenderer.necromancyRenderers[index] != null)
-                {
-                    color = GhostOutlineRenderer.necromancyRenderers[index].DrawColor();
-                    color.A = 100;
-                }
-            }
-            else
-            {
-                color = Main.teamColor[Main.player[zombieOwner].team];
-            }
+            var color = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor().UseA(100);
             return Color.Lerp(color, (color * 0.5f).UseA(255), 1f - lifeRatio);
         }
 
