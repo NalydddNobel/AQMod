@@ -90,8 +90,7 @@ Mods: {
 			BuffDuration: "{0}持续时间"
 			BuffEmpowerment: "{0}增益强度"
 
-			PrefixSoulLimit: "{0}灵魂容量"
-			PrefixSoulCost: "{0}灵魂消耗"
+			SoulGemTier: "{0}弹药消耗"
 		}
 
 		nalyd: "'闻起来像玫瑰'"
@@ -265,6 +264,12 @@ Mods: {
 			FrostPotion: 冰霜药水
 
 			PotionOfResurrection: 复活药水
+
+			# Soul Gems #
+			PettySoulGem: 小灵魂宝石
+			LesserSoulGem: 较小的灵魂宝石
+			GreaterSoulGem: 较大的灵魂宝石
+			GrandSoulGem: 大灵魂宝石
 
 			# Critter Items #
 			Snobster: 势利鬼虾
@@ -528,7 +533,6 @@ Mods: {
 			StariteinaBottle: 瓶中星源
 			YuckyOrb: 迷人诱饵
 			WaterFisg: 水鱼
-			Crabdaughter: 蟹蛤之子
 			Transistor: 晶体管
 			EclipseGlasses: 日蚀眼镜
 			Cosmicanon: 星宇律则
@@ -885,41 +889,13 @@ Mods: {
 			PrimeTaperCandle: 为幽魂仆从装备机械骷髅王的手臂
 			SkeletronTaperCandle:  为幽魂仆从装备骷髅王的手臂
 
-			DragonsBreath: 
-				'''
-				召唤一条幻影龙为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			CrimsonCandle:
-				'''
-				召唤一只血爬虫为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			CorruptionCandle:
-				'''
-				召唤一只灵魂吞噬者为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			PixieCandle:
-				'''
-				召唤一只精灵为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			BloodMoonCandle:
-				'''
-				召唤一只血僵尸为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			DungeonCandle:
-				'''
-				召唤一颗诅咒颅骨为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
-			OccultistCandle:
-				'''
-				召唤一只恶魔为你而战
-				{$Mods.Aequus.ItemTooltip.Common.NecromancyCandle}
-				'''
+			DragonsBreath: 召唤一条幻影龙为你而战
+			CrimsonCandle: 召唤一只血爬虫为你而战
+			CorruptionCandle: 召唤一只灵魂吞噬者为你而战
+			PixieCandle: 召唤一只精灵为你而战
+			BloodMoonCandle: 召唤一只血僵尸为你而战
+			DungeonCandle: 召唤一颗诅咒颅骨为你而战
+			OccultistCandle: 召唤一只恶魔为你而战
 
 			FriendshipMagick: 与强大的敌人成为朋友!
 			Insurgency: 
@@ -1177,6 +1153,14 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
+
+			# Soul Gems #
+			PettySoulGem: 捕获弱小生物的灵魂
+			LesserSoulGem: 捕获强壮生物的灵魂
+			GreaterSoulGem: 捕获强大生物的灵魂
+			GrandSoulGem: 捕获非常强大生物的灵魂
+
+			# Legendary Fish #
 			CrabDaughter:
 				'''
 				一种身上带有海蓝能量的传奇鱼类
@@ -1393,10 +1377,10 @@ Mods: {
 
 				RouletteDrop: 下列物品必定掉落
 
-				NecromancyStaff: 击杀敌人可能会将其转化为幽魂
-				NecromancyCandle: 自动吸收被召唤物击杀的敌人的灵魂
-				UseSouls: 使用{0}敌人的灵魂
-				CarryingSouls: 携带{1}灵魂中的{0}灵魂
+				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+
+				# Ex: Uses Petty soul gems as ammo
+				SoulGemCost: 使用{SoulTier}灵魂宝石作为弹药
 			}
 
 			Misc: {
@@ -2612,6 +2596,13 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: 任务鱼
+		}
+
+		SoulGemTier: {
+			1: 小
+			2: 较小的
+			3: 较大的
+			4: 大
 		}
 
 		Water: 水
