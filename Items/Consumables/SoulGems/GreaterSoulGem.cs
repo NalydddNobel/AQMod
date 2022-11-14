@@ -8,7 +8,7 @@ namespace Aequus.Items.Consumables.SoulGems
     {
         public override int Tier => 3;
 
-        public override void SetFilledDefaults()
+        protected override void SetFilledDefaults()
         {
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(silver: 75);
