@@ -1,221 +1,228 @@
 ﻿using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords
 {
-    public class MirrorsCallProj : SwordProjectileBaseCircular
+    public class MirrorsCallProj : SwordProjectileBase
     {
         public override string Texture => AequusHelpers.GetPath<MirrorsCall>();
 
-        public override float Radius => 104.65f;
-        public override float VisualHoldout => 8f;
-        public override float HitboxHoldout => 45f;
-        public override float AltFunctionSpeedup => 0.6f;
-        public override float AltFunctionScale => 2f;
-        public override float AltFunctionHitboxScale => 1.25f;
+        public int swingTimePrev;
+        public int swingTime;
+        public int swingTimeMax;
 
-        public SwordSlashPrimRenderer prim;
-        public SwordSlashPrimRenderer colorPrim;
-        public float colorProgress;
+        public override float AnimProgress => 1f - swingTime / (float)swingTimeMax;
 
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            ProjectileID.Sets.TrailCacheLength[Type] = 48;
+            ProjectileID.Sets.TrailCacheLength[Type] = 80;
         }
 
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 216;
-            Projectile.height = 216;
-            Projectile.extraUpdates = 10;
+            Projectile.width = 120;
+            Projectile.height = 120;
+            hitboxOutwards = 45;
+            visualOutwards = 8;
+            rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White;
-        }
-
-        public override bool? CanDamage()
-        {
-            return SwingProgress > 0.3f && damageTime < 8;
+            return lightColor.MaxRGBA(222);
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.myPlayer == Projectile.owner)
+        }
+
+        protected override void Initialize(Player player, AequusPlayer aequus)
+        {
+            base.Initialize(player, aequus);
+            if (aequus.itemCombo > 0)
             {
-                bool rightClick = Main.player[Projectile.owner].altFunctionUse == 2;
-                float explosionScale = !rightClick ? 0.66f : 1f;
-                EffectsSystem.Shake.Set(8f * explosionScale);
-                MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, explosionScale);
-                float damageScale = !rightClick ? 0.8f : 1.8f;
-                int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
-                    Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * damageScale), Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].scale = explosionScale;
-                Main.projectile[p].width = (int)(Main.projectile[p].width * explosionScale);
-                Main.projectile[p].height = (int)(Main.projectile[p].height * explosionScale);
-                Main.projectile[p].Center = target.Center;
-                Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
+                swingDirection *= -1;
             }
         }
 
-        public override void Initalize(Player player, AequusPlayer aequusPlayer)
+        public override void AI()
         {
-            base.Initalize(player, aequusPlayer);
-            int direction = -Projectile.direction;
-            if (combo > 0)
+            if (swingTimeMax == 0)
             {
-                direction = -direction;
+                rotationOffset += Main.rand.NextFloat(-0.1f, 0.1f);
+                swingTimeMax = (int)(Main.player[Projectile.owner].itemAnimationMax * Math.Clamp(1.5f - Main.player[Projectile.owner].Aequus().itemUsage / 200f, 0.8f, 1.25f));
+                swingTime = swingTimeMax;
+                scale += Main.rand.NextFloat(0.25f);
+                int delay = 1;
+                Main.player[Projectile.owner].itemTime = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemTimeMax = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemAnimation = swingTimeMax + delay;
+                Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + delay;
             }
-            angleVector = BaseAngleVector.RotatedBy(MathHelper.PiOver2 * -direction);
-            colorProgress = Main.rand.NextFloat(0f, 8f);
+            base.AI();
+
+            float progress = AnimProgress;
+            if (progress > 0.33f && progress < 0.75f)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, 
+                        newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    d.scale *= Projectile.scale * 0.6f;
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                    if (i == 0)
+                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                }
+            }
+
+            if (swingTime <= 1)
+            {
+                Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+            }
+            if (!playedSound && AnimProgress > 0.4f)
+            {
+                playedSound = true;
+                SoundEngine.PlaySound(SoundHelpers.SwordSwoosh.WithPitchOffset(0.5f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)), Projectile.Center);
+            }
+            swingTimePrev = swingTime;
+            swingTime--;
         }
 
-        protected override void UpdateSwing(Player player, AequusPlayer aequus)
+        public override void UpdateSwing(float progress, float interpolatedSwingProgress)
         {
-            int direction = -Projectile.direction;
-            if (combo > 0)
+            var player = Main.player[Projectile.owner];
+            if (progress == 0.5f && Main.myPlayer == Projectile.owner && player.altFunctionUse != 2)
             {
-                direction = -direction;
+                for (int i = -1; i <= 1; i++)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
+                        AngleVector.RotatedBy(i * 0.15f) * Projectile.velocity.Length() * 10f,
+                        ModContent.ProjectileType<MirrorsCallBullet>(), (int)(Projectile.damage * 0.33f), Projectile.knockBack / 4f, Projectile.owner);
+                }
             }
-            else if (damageTime == 1 && Main.myPlayer == player.whoAmI && player.altFunctionUse != 2)
+            if (progress > 0.8f)
             {
-                int damage = (int)(Projectile.damage * 0.25f);
-                var source = Projectile.GetSource_FromAI();
-                int p = Projectile.NewProjectile(source, player.Center, Projectile.velocity * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress;
-                p = Projectile.NewProjectile(source, player.Center, Projectile.velocity.RotatedBy(-0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress + Main.rand.NextFloat(0.2f);
-                p = Projectile.NewProjectile(source, player.Center, Projectile.velocity.RotatedBy(0.2f) * 20f, ModContent.ProjectileType<MirrorsCallBullet>(), damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].ModProjectile<MirrorsCallBullet>().colorProgress = colorProgress - Main.rand.NextFloat(0.2f);
+                float p = 1f - (1f - progress) / 0.2f;
+                Projectile.alpha = (int)(p * 255);
             }
-            float rotationSpeed = MathHelper.Pi * swing * swingMultiplier * direction;
-            angleVector = AngleVector.RotatedBy(rotationSpeed);
-
-            colorProgress += Main.rand.NextFloat(-0.2f, 0.2f);
-
-            UpdateSwing_Dust(player, direction);
-        }
-        private void UpdateSwing_Dust(Player player, int direction)
-        {
-            int dustChance = (int)(3 / Projectile.scale);
-            if (Main.netMode != NetmodeID.Server && (dustChance <= 1 || Main.rand.NextBool(dustChance)))
+            if (progress < 0.35f)
             {
-                var d = Dust.NewDustDirect(player.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * Main.rand.NextFloat(0.5f, 1.25f), Main.rand.NextFloat(0.75f, 1.5f));
-                d.position = player.Center + angleVector * Main.rand.NextFloat(20f, Radius * Projectile.scale);
-                d.velocity *= 0.1f;
-                d.velocity += AngleVector.RotatedBy(MathHelper.PiOver2 * direction + Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(1.5f, 3.5f);
+                float p = 1f - (progress) / 0.35f;
+                Projectile.alpha = (int)(p * 255);
             }
         }
 
-        protected override void OnReachMaxProgress()
+        public override Vector2 GetOffsetVector(float progress)
         {
-            if (swingMultiplier < 0.05f)
+            if (progress < 0.5f)
+                return base.GetOffsetVector(progress);
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
+        }
+
+        public override float SwingProgress(float progress)
+        {
+            return GenericSwing2(progress);
+        }
+        public override float GetScale(float progress)
+        {
+            float scale = base.GetScale(progress);
+            if (progress > 0.1f && progress < 0.9f)
             {
-                base.OnReachMaxProgress();
-                Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+                return scale + 0.7f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
-            else
+            return scale;
+        }
+        public override float GetVisualOuter(float progress, float swingProgress)
+        {
+            if (progress > 0.8f)
             {
-                //Main.NewText(Main.player[Projectile.owner].meleeSpeed);
-                swingMultiplier *= 0.9f - (Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee) - 1f) / 8f;
+                float p = 1f - (1f - progress) / 0.2f;
+                return -20f * p;
             }
+            if (progress < 0.35f)
+            {
+                float p = 1f - progress / 0.35f;
+                return -20f * p;
+            }
+            return 0f;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
+            var glowColor = AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f;
             var texture = TextureAssets.Projectile[Type].Value;
-            var origin = new Vector2(0f, texture.Height);
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = center + AngleVector * VisualHoldout;
-            var drawColor = Projectile.GetAlpha(lightColor);
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
-            int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
             float size = texture.Size().Length();
             var effects = SpriteEffects.None;
-            float trailOutwards = texture.Size().Length() * Projectile.scale - 38f * Projectile.scale;
-            bool reverseTrail = Projectile.direction == -1 ? combo > 0 : combo == 0;
-            var oldPos = Array.ConvertAll(Projectile.oldPos, (v) => Vector2.Normalize(v) * trailOutwards);
-            if (Main.LocalPlayer.gravDir == -1)
-            {
-                for (int i = 0; i < oldPos.Length; i++)
-                {
-                    oldPos[i].Y = -oldPos[i].Y;
-                }
-            }
-            if (prim == null)
-            {
-                prim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => new Color(255, 255, 255, 0) * (1f - p));
-            }
-            if (colorPrim == null)
-            {
-                colorPrim = new SwordSlashPrimRenderer(TextureAssets.Extra[ExtrasID.EmpressBladeTrail].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f) * Projectile.scale, (p) => AequusHelpers.GetRainbowHue(Projectile, colorProgress).UseA(0) * (1f - p));
-            }
-            if (reverseTrail)
-            {
-                prim.coord1 = 0f;
-                prim.coord2 = 1f;
-                colorPrim.coord1 = 0f;
-                colorPrim.coord2 = 1f;
-            }
-            else
-            {
-                prim.coord1 = 1f;
-                prim.coord2 = 0f;
-                colorPrim.coord1 = 1f;
-                colorPrim.coord2 = 0f;
-            }
-            prim.drawOffset = center;
-            colorPrim.drawOffset = center;
-            prim.Draw(oldPos);
-            colorPrim.Draw(oldPos);
 
-            float intensity = 0f;
-            if (SwingProgress > 0.25f && SwingProgress < 0.75f)
+            var origin = new Vector2(0f, texture.Height);
+
+            var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly);
+            for (int i = 0; i < circular.Length; i++)
             {
-                intensity = (float)Math.Sin((SwingProgress - 0.25f) * 2f * MathHelper.Pi);
+                Vector2 v = circular[i];
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, glowColor * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            }
+            var glowTexture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
+            float trailAlpha = 1f;
+            for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.01f)
+            {
+                InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
+                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.5f * trailAlpha, (handPosition - (handPosition + offsetVector * hitboxOutwards)).ToRotation() + rotationOffset, origin, scale, effects, 0);
+                trailAlpha -= 0.05f;
             }
 
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, handPosition - Main.screenPosition, null, Projectile.rotation, origin, Projectile.scale, effects, drawWhite: false, rainbowOffsetScaleMultiplier: 4f + 16f * intensity);
+            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            //if (SwingProgress > 0.25f && SwingProgress < 0.75f)
-            //{
-            //    Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            if (AnimProgress > 0.2f && AnimProgress < 0.8f)
+            {
+                float swishProgress = (AnimProgress - 0.2f) / 0.6f;
+                glowColor = Color.Lerp(glowColor, Color.White.UseA(0), 0.5f) * 1.25f;
+                float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
+                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            //    Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
-            //    var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
-            //    var shineOrigin = shine.Size() / 2f;
-            //    var shineLocation = handPosition - Main.screenPosition + (Projectile.rotation - MathHelper.PiOver4).ToRotationVector2() * ((size - 8f) * Projectile.scale);
-            //    MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, opacity: intensity * intensity);
-            //    MirrorsCall.DrawRainbowAura(Main.spriteBatch, shine, shineLocation, null, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, opacity: intensity * intensity);
-            //}
-
+                var swish = Swish2Texture.Value;
+                var swishOrigin = swish.Size() / 2f;
+                var swishColor = glowColor.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
+                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * (0.4f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f));
+                float scaling = 1.5f;
+                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f - 40f * (scaling - 1f) + 45f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f - 40f * (scaling - 1f) + 45f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 2f) * scaling, effects, 0);
+            }
             return false;
         }
 
         public override void SendExtraAI(BinaryWriter writer)
         {
             base.SendExtraAI(writer);
-            writer.Write(colorProgress);
+            writer.Write(Projectile.scale);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             base.ReceiveExtraAI(reader);
-            colorProgress = reader.ReadSingle();
+            Projectile.scale = reader.ReadSingle();
         }
     }
 
@@ -226,9 +233,9 @@ namespace Aequus.Projectiles.Melee.Swords
         public override string Texture => "Aequus/Assets/Bullet";
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
-            Projectile.timeLeft = 360;
+            Projectile.width = 24;
+            Projectile.height = 24;
+            Projectile.timeLeft = 75;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
@@ -238,7 +245,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.White;
+            return Color.White.UseA(0) * Projectile.Opacity;
         }
 
         public override void AI()
@@ -246,36 +253,52 @@ namespace Aequus.Projectiles.Melee.Swords
             var target = Projectile.FindTargetWithinRange(400f);
             if (target != null)
             {
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(target.Center - Projectile.Center) * 20f, 0.5f);
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(target.Center - Projectile.Center) * 10f, 0.05f);
+            }
+            if (Projectile.timeLeft <= 30)
+            {
+                Projectile.alpha += 8;
+                Projectile.velocity *= 0.95f;
             }
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            if (Projectile.numUpdates == 0 && Main.rand.NextBool(Projectile.alpha / 8 + 1))
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, -Projectile.velocity.X, -Projectile.velocity.Y, Projectile.alpha,
+                    newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
+                d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                d.noGravity = true;
+            }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (Main.myPlayer == Projectile.owner)
             {
-                EffectsSystem.Shake.Set(4f);
-                MirrorsCallExplosion.ExplosionEffects(Projectile.owner, target.Center, colorProgress, 0.75f);
-                int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
-                    Vector2.Normalize(target.Center - Main.player[Projectile.owner].Center), ModContent.ProjectileType<MirrorsCallExplosion>(), (int)(Projectile.damage * 0.4f), Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].scale = 0.4f;
-                Main.projectile[p].width = (int)(Main.projectile[p].width * 0.4f);
-                Main.projectile[p].height = (int)(Main.projectile[p].height * 0.4f);
-                Main.projectile[p].Center = target.Center;
-                Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
+                var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
+                for (int i = 0; i < 30; i++)
+                {
+                    var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
+                    d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
+                    d.noGravity = true;
+                }
+                Projectile.NewProjectile(Projectile.GetSource_Death(), position, new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = TextureAssets.Projectile[Type].Value;
             var bloom = TextureCache.Bloom[0].Value;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.55f, opacity: 0.5f, drawWhite: false, rainbowScaleMultiplier: 0.6f, rainbowOffsetScaleMultiplier: 8f);
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, bloom, drawCoordinates, null, 0f, bloom.Size() / 2f, Projectile.scale * 0.7f, opacity: 0.25f, drawWhite: false, rainbowScaleMultiplier: 0.75f, rainbowOffsetScaleMultiplier: 8f);
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale);
-            MirrorsCall.DrawRainbowAura(Projectile.owner, Main.spriteBatch, texture, drawCoordinates, null, Projectile.rotation, texture.Size() / 2f, Projectile.scale, opacity: 0.5f, drawWhite: false);
+            var circular = AequusHelpers.CircularVector(8, Projectile.rotation);
+            Projectile.GetDrawInfo(out var texture, out var _, out var _, out var origin, out int _);
+            var drawCoords = Projectile.Center - Main.screenPosition;
+            for (int i = 0; i < circular.Length; i++)
+            {
+                Vector2 v = circular[i];
+                Main.EntitySpriteDraw(texture, drawCoords + v * 4f * Projectile.scale, null, AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly + i * 0.1f).UseA(0) * 0.5f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            }
+            Main.EntitySpriteDraw(texture, drawCoords, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
     }
@@ -287,8 +310,8 @@ namespace Aequus.Projectiles.Melee.Swords
         public override string Texture => Aequus.BlankTexture;
         public override void SetDefaults()
         {
-            Projectile.width = 400;
-            Projectile.height = 400;
+            Projectile.width = 160;
+            Projectile.height = 160;
             Projectile.timeLeft = 6;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
@@ -305,18 +328,23 @@ namespace Aequus.Projectiles.Melee.Swords
             for (int i = 0; i < amt; i++)
             {
                 var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(40 * scale);
-                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, AequusHelpers.GetRainbowHue(player, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
+                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, AequusHelpers.GetRainbowColor(player, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
             }
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.myPlayer == Projectile.owner && Projectile.scale >= 0.4f)
+            if (Main.myPlayer == Projectile.owner)
             {
-                int p = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center,
-                    Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center), Type, Projectile.damage, Projectile.knockBack, Projectile.owner);
-                Main.projectile[p].scale = Projectile.scale - 0.2f;
-                Main.projectile[p].ModProjectile<MirrorsCallExplosion>().colorProgress = colorProgress + 1f;
+                var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
+                for (int i = 0; i < 30; i++)
+                {
+                    var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
+                    d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
+                    d.noGravity = true;
+                }
+                Projectile.NewProjectile(Projectile.GetSource_Death(), position, new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
             }
         }
 

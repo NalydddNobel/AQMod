@@ -428,7 +428,7 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="F:Aequus.Content.Necromancy.Renderer.GhostRenderer.IDs.Count">
+        <member name="F:Aequus.Content.Necromancy.Renderer.ColorTargetID.Count">
             <summary>
             Use and increase respectively for custom Necromancy Screen Renderer layers.
             </summary>
@@ -721,21 +721,6 @@
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
             <summary>
             An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionSpeedup">
-            <summary>
-            Multiplies the use time by this value when the player is using the right click function of the item. Lower numbers means faster speed
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionScale">
-            <summary>
-            Multiplies the scale by this value when the player is using the right click function of the item. Higher numbers means larger weapon
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Melee.SwordProjectileBaseCircular.AltFunctionHitboxScale">
-            <summary>
-            Multiplies the hitbox's dimensions by this value when the player is using the right click function of the item. Higher numbers means larger hitbox dimensions
             </summary>
         </member>
         <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">

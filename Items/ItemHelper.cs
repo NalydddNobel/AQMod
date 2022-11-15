@@ -105,12 +105,6 @@ namespace Aequus.Items
             return i;
         }
 
-        public static void UsesLife(this List<TooltipLine> tooltips, ModItem item, int amt)
-        {
-            tooltips.Insert(GetIndex(tooltips, "UseMana"),
-                new TooltipLine(item.Mod, "UsesLife", AequusText.GetText("Tooltips.UsesLife", amt)));
-        }
-
         public static TooltipLine Find(this List<TooltipLine> tooltips, string name)
         {
             return tooltips.Find((t) => t.Mod == "Terraria" && t.Name.Equals(name));

@@ -696,20 +696,21 @@ namespace Aequus
             DrawLine(start, (start - end).ToRotation(), (end - start).Length(), width, color);
         }
 
-        public static Color GetRainbowHue(Projectile projectile, float index)
+        public static Color GetRainbowColor(Projectile projectile, float index)
         {
             float laserLuminance = 0.5f;
             float laserAlphaMultiplier = 0f;
             float lastPrismHue = projectile.GetLastPrismHue(index % 6f, ref laserLuminance, ref laserAlphaMultiplier);
-            return Main.hslToRgb(lastPrismHue, 1f, laserLuminance);
+            float lastPrismHue2 = projectile.GetLastPrismHue((index + 1f) % 6f, ref laserLuminance, ref laserAlphaMultiplier);
+            return Main.hslToRgb(MathHelper.Lerp(lastPrismHue, lastPrismHue2, index.Abs() % 1f), 1f, laserLuminance);
         }
-        public static Color GetRainbowHue(int player, float position)
+        public static Color GetRainbowColor(int player, float position)
         {
-            return GetRainbowHue(new Projectile() { owner = player }, position);
+            return GetRainbowColor(new Projectile() { owner = player }, position);
         }
-        public static Color GetRainbowHue(Player player, float position)
+        public static Color GetRainbowColor(Player player, float position)
         {
-            return GetRainbowHue(player.whoAmI, position);
+            return GetRainbowColor(player.whoAmI, position);
         }
 
         public static T TryFindChildElement<T>(UIElement element) where T : UIElement

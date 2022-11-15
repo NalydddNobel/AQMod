@@ -132,7 +132,7 @@ namespace Aequus.Projectiles.Summon
             {
                 var zombie = target.GetGlobalNPC<NecromancyNPC>();
                 zombie.conversionChance = 1;
-                zombie.renderLayer = GhostRenderer.IDs.BloodRed;
+                zombie.renderLayer = ColorTargetID.BloodRed;
                 zombie.zombieDebuffTier = 2.1f;
                 zombie.zombieOwner = Projectile.owner;
                 target.StrikeNPC(2000, 1f, Projectile.direction);

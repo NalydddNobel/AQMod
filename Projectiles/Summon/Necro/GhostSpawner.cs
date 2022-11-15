@@ -49,7 +49,7 @@ namespace Aequus.Projectiles.Summon.Necro
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
             zombie.zombieTimerMax = (int)(zombie.zombieTimerMax * 1f + 0.25f * (soulGem?.Tier).GetValueOrDefault(0));
             zombie.zombieTimer *= zombie.zombieTimerMax;
-            zombie.renderLayer = GhostRenderer.IDs.BloodRed;
+            zombie.renderLayer = ColorTargetID.BloodRed;
             zombie.ghostDamage = Projectile.damage;
             zombie.ghostSpeed = Projectile.ai[1];
         }

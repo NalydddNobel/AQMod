@@ -31,7 +31,7 @@ namespace Aequus.Buffs.Debuffs
                 var zombie = npc.GetGlobalNPC<NecromancyNPC>();
                 zombie.conversionChance = 2;
                 zombie.zombieDebuffTier = 1.1f;
-                zombie.renderLayer = GhostRenderer.IDs.BloodRed;
+                zombie.renderLayer = ColorTargetID.BloodRed;
             }
         }
     }

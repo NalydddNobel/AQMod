@@ -159,7 +159,7 @@ namespace Aequus.Projectiles.Magic
 
         internal static Color NarrizuulRainbow(Projectile projectile, float position)
         {
-            return AequusHelpers.GetRainbowHue(projectile, position % 6f);
+            return AequusHelpers.GetRainbowColor(projectile, position % 6f);
         }
     }
 }

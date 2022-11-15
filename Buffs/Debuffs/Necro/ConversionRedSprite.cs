@@ -20,7 +20,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             var ghost = npc.GetGlobalNPC<NecromancyNPC>();
             ghost.DebuffTier(3);
             ghost.ConversionChance(8);
-            ghost.RenderLayer(GhostRenderer.IDs.BloodRed);
+            ghost.RenderLayer(ColorTargetID.BloodRed);
         }
     }
 }

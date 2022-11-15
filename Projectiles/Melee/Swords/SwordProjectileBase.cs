@@ -37,6 +37,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
         public virtual float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
+        public float lastAnimProgress;
 
         public virtual bool SwingSwitchDir => AnimProgress > 0.6f && AnimProgress < 0.7f;
 
@@ -84,13 +85,14 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 var arm = Main.GetPlayerArmPosition(Projectile);
                 float progress = AnimProgress;
+                lastAnimProgress = progress;
                 if (!forced50 && progress >= 0.5f)
                 {
                     progress = 0.5f;
                     forced50 = true;
                 }
-                float swingProgress = SwingProgress(Math.Clamp(progress, 0f, 1f));
-                AngleVector = GetOffsetVector(swingProgress);
+                InterpolateSword(progress, out var angleVector, out float swingProgress, out float scale, out float outer);
+                AngleVector = angleVector;
                 Projectile.position = arm + AngleVector * hitboxOutwards;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
@@ -100,9 +102,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 {
                     SetArmRotation(player, progress, swingProgress);
                 }
-                float s = Projectile.scale;
-                Projectile.scale = GetScale(swingProgress);
-                visualOutwards = (int)GetVisualOuter(progress, swingProgress);
+                Projectile.scale = scale;
+                visualOutwards = (int)outer;
             }
 
             _init = true;
@@ -153,6 +154,13 @@ namespace Aequus.Projectiles.Melee.Swords
         public virtual float GetVisualOuter(float progress, float swingProgress)
         {
             return visualOutwards;
+        }
+        public void InterpolateSword(float progress, out Vector2 offsetVector, out float swingProgress, out float scale, out float outer)
+        {
+            swingProgress = SwingProgress(progress);
+            offsetVector = GetOffsetVector(swingProgress);
+            scale = GetScale(swingProgress);
+            outer = (int)GetVisualOuter(progress, swingProgress);
         }
 
         public void UpdateDirection(Player player)

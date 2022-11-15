@@ -18,7 +18,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostRenderer.IDs.Osiris);
+            zombie.RenderLayer(ColorTargetID.Osiris);
         }
     }
 }

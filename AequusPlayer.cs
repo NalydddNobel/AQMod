@@ -1480,7 +1480,7 @@ namespace Aequus
                     zombie.conversionChance = 1;
                     zombie.zombieDebuffTier = 3.1f;
                     zombie.zombieOwner = Player.whoAmI;
-                    zombie.renderLayer = GhostRenderer.IDs.BloodRed;
+                    zombie.renderLayer = ColorTargetID.BloodRed;
                     damage = 2500;
                 }
             }

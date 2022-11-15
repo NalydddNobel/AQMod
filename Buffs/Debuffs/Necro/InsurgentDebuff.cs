@@ -29,7 +29,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostRenderer.IDs.Insurgency);
+            zombie.RenderLayer(ColorTargetID.Insurgency);
 
             if (Main.myPlayer == zombie.zombieOwner && Main.rand.NextBool(60))
             {

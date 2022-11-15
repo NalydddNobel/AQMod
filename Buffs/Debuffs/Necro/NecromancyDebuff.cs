@@ -29,7 +29,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostRenderer.IDs.ZombieScepter);
+            zombie.RenderLayer(ColorTargetID.ZombieScepter);
         }
 
         public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff

@@ -80,7 +80,7 @@ namespace Aequus.Items.GlobalItems
 
                 if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
-                    tooltips.Insert(tooltips.GetIndex("Master"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color });
+                    tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color });
                 }
 
                 if (Main.npcShop > 0)

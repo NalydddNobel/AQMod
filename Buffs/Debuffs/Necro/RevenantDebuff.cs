@@ -27,7 +27,7 @@ namespace Aequus.Buffs.Debuffs.Necro
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);
-            zombie.RenderLayer(GhostRenderer.IDs.Revenant);
+            zombie.RenderLayer(ColorTargetID.Revenant);
         }
     }
 }
