@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
@@ -182,8 +183,31 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.");
 
-            chat.Add("Basic.0");
-            chat.Add("Basic.1");
+            if (!Main.dayTime)
+            {
+                if (Main.bloodMoon)
+                {
+                    chat.Add("BloodMoon.0");
+                    chat.Add("BloodMoon.1");
+                    chat.Add("BloodMoon.2");
+                }
+                else
+                {
+                    chat.Add("Night.0");
+                    chat.Add("Night.1");
+                    chat.Add("Night.2");
+                }
+                if (GlimmerBiome.EventActive)
+                {
+                    chat.Add("Glimmer");
+                }
+            }
+            else
+            {
+                chat.Add("Basic.0");
+                chat.Add("Basic.1");
+                chat.Add("Basic.2");
+            }
 
             return chat.Get();
         }

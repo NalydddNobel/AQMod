@@ -1891,7 +1891,7 @@ Mods: {
 			Carpenter: An ant which decided to not be a cog in a big machine, opting to become a carpenter due to their love of housing. Moves into houses which have 4 unique furniture objects.
 			Occultist: Previously a member of a demonic occult, the Occultist is trying to re-integrate themselves back into society. Still has the habit to create rituals and cast dangerous spells.
 			SkyMerchant: A smart Hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
-			Physicist: Coming from a neighboring planet, the Physicist observed unnatural phenomena on your world, and is here to investigate. Doesn't believe in magic or fairy tales.
+			Physicist: Coming from a neighboring planet, the Physicist observed unnatural phenomena on your world, and is here to investigate. Doesn't believe in magic.
 			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
 
 			SnobsterCritter: Slimes naturally evolve to their environment, looks like this one decided that becoming a lobster is the right way to go.
@@ -2247,8 +2247,15 @@ Mods: {
 					1: Well, it does seem there is something to chaos theory after all, yes?
 					2: Pylons aren't actually magic, how else do villagers arrive to your towns? By foot? No, by calling the 'galactic taxi'. Pylons are just alien 'telephone booths' basically.
 					3: On our home planet, pylons simply cannot exist, the net amount of 'happy' energy on it is -30mw.
-					4: You haven't been making deals with any cat-like creatures... right?
 				}
+				Glimmer: A powerful object has fallen from space, I have aimed my probes to analyze this object far above its landing position, unfortunately one seems to have been hit by a 'Falling Star'.
+				BloodMoon: Eratic behaviors seem to come from creatures during a 'Blood Moon'. I seem to be unable to match the behavoirs analyzed using a basic red light. So the cause must be more mysterious...
+
+				SoTSMod: { 
+					0: When I was first calibrating my portals to transport me here, I discovered a disturbance created by some sort of floating-ship object. It may be in my best interest to investigate this.
+					1: You haven't been making deals with any cat-like creatures... right?
+				}
+				PolaritiesMod: Hey, can you find my large magnet? It's about 12ft in length and width, it is necessary to do gravity experiments on this planet.  
 
 				AnalysisRarityQuest: My scanners indicate signs of {Rarity}-rare objects. It would be of great service to me and my department if you could locate one of these relics from your world.
 				AnalysisRarityCoinsQuest: 
@@ -2292,12 +2299,22 @@ Mods: {
 				Basic: {
 					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
 					1: Your heroic journey ended after you talked to me! Ha ha!
+					2: You wouldn't mind becoming my subject tonight right?
 				}
+				Night: {
+					0: Darkness... something I cannot live without.
+					1: Hey, can you hold this voidsent flame for me? I'll be back quick-
+					2: I'm having an inner meeting right now, do not disturb!
+				}
+				BloodMoon: { 
+					0: I'm having an inner meeting right now, do not disturb!
+					1: Why... WHY! I can be the most eldritch thing in the world and still have to suffer!
+					2: Get away, go away, I don't need you, I don't need anyone here, I just need myself!
+				}
+				Glimmer: I love the atmosphere tonight, reminds me of my first time possessing someone... the sparks and auras of life still within, as I corrupt them with my presence... so good...
 			}
 
-			Exporter: {
-				Introduction: Me name be {0} and I be dedicated to bringing ye only the most dubiously sourced goods I can find!
-								
+			Exporter: {								
 				Basic: {
 					0: Just for ye, my friend, I'll give ye a little deal. Buy one, get another for the same price!
 					1: All proceeds go to charity- and by charity I mean me bank account!
@@ -2316,7 +2333,7 @@ Mods: {
 				}
 
 				Ocean: If wishes were fishes... if wishes were fishes I wouldn't be wanted for tax fraud!
-				CrabCrevice: I'd rather be in Davy Jones' Locker than down here in this... crab-infested hellhole!
+				CrabCrevice: I'd rather be in Davy Jones's Locker than down here in this... crab-infested hellhole!
 
 				Angler: "{Angler} keeps boasting to me about some little fish he caught. Lad, I've sailed the high seas since I left me egg! I've caught me more fish than ye've ever seen."
 				Pirate: Yarrgh! Me and {Pirate} crossed paths a couple of times on the high seas. Those were the good old days...

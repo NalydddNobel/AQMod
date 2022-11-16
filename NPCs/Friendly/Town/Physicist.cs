@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
@@ -53,21 +54,18 @@ namespace Aequus.NPCs.Friendly.Town
                 .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Truffle, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Hate)
-                .SetNPCAffection(NPCID.SantaClaus, AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate)
                 .SetNPCAffection<Occultist>(AffectionLevel.Hate);
 
-            NPCHappiness.Get(NPCID.GoblinTinkerer).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.GoblinTinkerer).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Cyborg).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Steampunker).SetNPCAffection(Type, AffectionLevel.Dislike);
-            NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Hate);
+            NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Dislike);
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
                 .UseColor(Color.SkyBlue * 1.2f);
@@ -199,11 +197,30 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Physicist.");
 
-            chat.Add("Basic.0");
-            chat.Add("Basic.1");
-            chat.Add("Basic.2");
-            chat.Add("Basic.3");
-            chat.Add("Basic.4");
+            if (GlimmerBiome.EventActive && Main.rand.NextBool())
+            {
+                chat.Add("Glimmer");
+            }
+            else if (Main.bloodMoon && Main.rand.NextBool())
+            {
+                chat.Add("BloodMoon");
+            }
+            else
+            {
+                chat.Add("Basic.0");
+                chat.Add("Basic.1");
+                chat.Add("Basic.2");
+                chat.Add("Basic.3");
+            }
+            if (ModLoader.TryGetMod("SoTS", out var soTS))
+            {
+                chat.Add("SoTSMod.0");
+                chat.Add("SoTSMod.1");
+            }
+            if (ModLoader.TryGetMod("Polarities", out var polarities))
+            {
+                chat.Add("PolaritiesMod");
+            }
 
             return chat.Get();
         }

@@ -279,7 +279,6 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Carpenter.");
 
-
             if (GlimmerBiome.EventActive && Main.rand.NextBool())
             {
                 chat.Add("Glimmer");
