@@ -1,8 +1,6 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Buffs.Empowered;
-using Aequus.Content;
-using Aequus.Items;
-using Aequus.Items.Prefixes.Potions;
+﻿using Aequus.Content;
+using Aequus.Content.ItemRarities;
+using Aequus.Items.Prefixes;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using System;
@@ -19,21 +17,8 @@ using Terraria.UI.Chat;
 
 namespace Aequus.Items.GlobalItems
 {
-    public class TooltipsGlobalItem : GlobalItem
+    public class TooltipsGlobal : GlobalItem
     {
-        public interface IDrawRarity
-        {
-            void DrawDevTooltip(DrawableTooltipLine line)
-            {
-                DrawDevTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-            }
-            void DrawDevTooltip(string text, int x, int y, Color color)
-            {
-                DrawDevTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
-            }
-            void DrawDevTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color);
-        }
-
         public struct ItemDedication
         {
             public readonly Color color;
@@ -90,7 +75,7 @@ namespace Aequus.Items.GlobalItems
                 }
                 else if (aequus.accPriceMonocle)
                 {
-                    if (item.value >= 0 && (item.type < ItemID.CopperCoin || item.type > ItemID.PlatinumCoin) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
+                    if ((item.value >= 0 && !item.IsACoin) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
                     {
                         AddPriceTooltip(player, item, tooltips);
                     }
@@ -136,44 +121,9 @@ namespace Aequus.Items.GlobalItems
                     }
                 }
 
-                if (item.prefix == ModContent.PrefixType<DoubledTimePrefix>() && item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
+                if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is AequusPrefix aequusPrefix)
                 {
-                    PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
-                }
-                else if (item.prefix == ModContent.PrefixType<EmpoweredPrefix>())
-                {
-                    if (AequusText.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{AequusText.ItemKeyName(item.type, Mod)}", out string text))
-                    {
-                        foreach (var tt in tooltips)
-                        {
-                            if (tt.Name == "Tooltip0")
-                            {
-                                tt.Text = text;
-                            }
-                        }
-                    }
-
-                    float statIncrease = 1f;
-                    if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff)
-                    {
-                        statIncrease = empoweredBuff.StatIncrease;
-                    }
-                    PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
-                }
-                else if (item.prefix == ModContent.PrefixType<SplashPrefix>())
-                {
-                    for (int i = 0; i < tooltips.Count; i++)
-                    {
-                        if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "PrefixShootSpeed")
-                        {
-                            tooltips[i] = new TooltipLine(Mod, "PrefixSplash", AequusText.GetText("Prefixes.SplashPotion")) { IsModifier = true, IsModifierBad = false, };
-                        }
-                    }
-                }
-                else if (item.prefix == ModContent.PrefixType<BoundedPrefix>())
-                {
-                    tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, "PrefixBounded", AequusText.GetText("Prefixes.BoundedPotion"))
-                    { IsModifier = true, IsModifierBad = false, });
+                    aequusPrefix.ModifyTooltips(item, tooltips);
                 }
 
                 //if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && !val.Hide && val.Progression == UpgradeProgressionType.PreHardmode)
@@ -520,7 +470,7 @@ namespace Aequus.Items.GlobalItems
             {
                 if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare)
                 {
-                    drawRare.DrawDevTooltip(line);
+                    drawRare.DrawTooltipLine(line);
                     return false;
                 }
             }
@@ -558,18 +508,6 @@ namespace Aequus.Items.GlobalItems
         public static void DrawDedicatedTooltip(DrawableTooltipLine line)
         {
             DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-        }
-
-        public static void DrawDevTooltip(DrawableTooltipLine line)
-        {
-            DrawDevTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-        }
-        public static void DrawDevTooltip(string text, int x, int y, Color color)
-        {
-            DrawDevTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
-        }
-        public static void DrawDevTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
-        {
         }
     }
 }

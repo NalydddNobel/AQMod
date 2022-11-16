@@ -428,11 +428,6 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
-        <member name="F:Aequus.Content.Necromancy.Renderer.ColorTargetID.Count">
-            <summary>
-            Use and increase respectively for custom Necromancy Screen Renderer layers.
-            </summary>
-        </member>
         <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
             <summary>
             Adds a structure to the list
@@ -590,9 +585,9 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
-        <member name="P:Aequus.Items.GlobalItems.CooldownGlobalItem.HasWeaponCooldown">
+        <member name="P:Aequus.Items.GlobalItems.CooldownsItem.HasWeaponCooldown">
             <summary>
-            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
+            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
             </summary>
         </member>
         <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">

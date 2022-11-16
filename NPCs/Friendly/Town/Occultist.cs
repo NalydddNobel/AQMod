@@ -3,7 +3,6 @@ using Aequus.Content;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables.SoulGems;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -106,10 +105,10 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
+            //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
             if (NPC.downedBoss3)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletronTaperCandle>());
+                //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletronTaperCandle>());
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
@@ -142,23 +141,8 @@ namespace Aequus.NPCs.Friendly.Town
                 }
                 else
                 {
-                    if (Main.hardMode)
-                    {
-                        if (NPC.downedAncientCultist)
-                        {
-                            shop.item[nextSlot].SetDefaults<GrandSoulGem>();
-                            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 4);
-                        }
-                        if (NPC.downedPlantBoss)
-                        {
-                            shop.item[nextSlot].SetDefaults<GreaterSoulGem>();
-                            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 3);
-                        }
-                        shop.item[nextSlot].SetDefaults<LesserSoulGem>();
-                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 2);
-                    }
-                    shop.item[nextSlot].SetDefaults<PettySoulGem>();
-                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 25);
+                    shop.item[nextSlot].SetDefaults<SoulGem>();
+                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 50);
                 }
             }
         }

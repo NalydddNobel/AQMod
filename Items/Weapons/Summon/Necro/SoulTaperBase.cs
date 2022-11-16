@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class SoulTaperBase : SoulGemWeaponBase
+    public abstract class SoulTaperBase : LegacySoulGemWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
@@ -51,14 +51,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
             }
             if (chosenNPC != -1)
             {
-                var item = FindUsableSoulGem(player);
-                if (item == null)
-                    return false;
-                int damage = item.damage;
-                if (AequusHelpers.ConsumeItem(player, item))
-                {
-                    ApplySupportEffects(player, Main.npc[chosenNPC], damage);
-                }
+                ApplySupportEffects(player, Main.npc[chosenNPC], 0);
             }
             return true;
         }

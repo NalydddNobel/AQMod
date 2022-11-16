@@ -10,13 +10,13 @@ using Terraria.UI;
 
 namespace Aequus.Items.GlobalItems
 {
-    public class CooldownGlobalItem : GlobalItem
+    public class CooldownsItem : GlobalItem
     {
         public const int CooldownBackFramesX = 26;
         public static Asset<Texture2D> CooldownBack { get; private set; }
 
         /// <summary>
-        /// Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown
+        /// Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
         /// </summary>
         public static HashSet<int> HasWeaponCooldown { get; private set; }
 

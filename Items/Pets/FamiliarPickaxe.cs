@@ -16,7 +16,7 @@ namespace Aequus.Items.Pets
         {
             SacrificeTotal = 1;
             ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.Clothier, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.Clothier.FamiliarPickaxe");
-            TooltipsGlobalItem.Dedicated[Type] = new TooltipsGlobalItem.ItemDedication(new Color(200, 65, 70, 255));
+            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(200, 65, 70, 255));
         }
 
         public override void SetDefaults()

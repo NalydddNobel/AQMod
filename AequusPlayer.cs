@@ -18,7 +18,7 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables;
-using Aequus.Items.Consumables.SoulGems;
+using Aequus.Items.Misc;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
@@ -1879,108 +1879,13 @@ namespace Aequus
 
         public void TryFillSoulGems(EnemyKillInfo npc)
         {
-            int tier = 0;
-            if (NecromancyDatabase.TryGet(npc.netID, out var info))
-            {
-                tier = (int)info.PowerNeeded;
-            }
-            if (tier == 0)
-            {
-                tier = (int)GhostInfo.Autogenerate(ContentSamples.NpcsByNetId[npc.netID]).PowerNeeded;
-            }
-            if (tier <= 0 || tier > 4)
-            {
-                return;
-            }
-            var soulGem = Player.FindItemInInvOrVoidBag((item) => item.ModItem is SoulGemBase soulGemBase && soulGemBase.filled < tier && soulGemBase.Tier >= tier, out bool inVoidBag);
-            if (soulGem != null)
-            {
-                if (Main.myPlayer == Player.whoAmI)
-                {
-                    soulGem.stack--;
-                    Item newSoulGem = null;
-                    if (!inVoidBag)
-                    {
-                        var canStack = Player.FindItem((item) => item.type == soulGem.type && item.ModItem is SoulGemBase compareGem && compareGem.filled == tier);
-                        if (canStack != null)
-                        {
-                            newSoulGem = canStack;
-                            newSoulGem.stack++;
-                        }
-                        else if (soulGem.stack <= 0)
-                        {
-                            soulGem.stack = 1;
-                            newSoulGem = soulGem;
-                        }
-                    }
-                    if (newSoulGem == null && inVoidBag)
-                    {
-                        var canStack = Player.bank4.FindItem((item) => item.type == soulGem.type && item.ModItem is SoulGemBase compareGem && compareGem.filled == tier);
-                        if (canStack != null)
-                        {
-                            newSoulGem = canStack;
-                            newSoulGem.stack++;
-                        }
-                        else
-                        {
-                            canStack = Player.bank4.FindEmptySlot();
-                            if (canStack != null)
-                            {
-                                newSoulGem = canStack;
-                                newSoulGem.SetDefaults(soulGem.type);
-                            }
-                            else if (soulGem.stack <= 0)
-                            {
-                                soulGem.stack = 1;
-                                newSoulGem = soulGem;
-                            }
-                        }
-                    }
-
-                    if (newSoulGem == null)
-                    {
-                        newSoulGem = Player.QuickSpawnItemDirect(Player.GetSource_OpenItem(soulGem.type), soulGem.type);
-                        newSoulGem.ModItem<SoulGemBase>().filled = tier;
-                        newSoulGem.ModItem<SoulGemBase>().OnFillSoulGem(Player, npc);
-                        newSoulGem.newAndShiny = !ItemID.Sets.NeverAppearsAsNewInInventory[soulGem.type];
-                    }
-                    else
-                    {
-                        newSoulGem.ModItem<SoulGemBase>().filled = tier;
-                        newSoulGem.ModItem<SoulGemBase>().OnFillSoulGem(Player, npc);
-                        newSoulGem.Center = Player.Top;
-                        SoundEngine.PlaySound(SoundID.Grab, Player.Top);
-                        int p = PopupText.NewText(inVoidBag ? PopupTextContext.ItemPickupToVoidContainer : PopupTextContext.RegularItemPickup, newSoulGem, 1);
-                        Main.popupText[p].lifeTime /= 4;
-                        Main.popupText[p].lifeTime *= 3;
-                    }
-                    SoundEngine.PlaySound(SoundID.Item4.WithVolume(0.5f).WithPitchOffset(0.3f), Player.Center);
-                }
-            }
         }
 
         public void OnKillEffect(EnemyKillInfo npc)
         {
-            TryFillSoulGems(npc);
-            if (accAmmoRenewalPack != null)
-            {
-                int ammoBackpackChance = 3;
-                if (npc.value > (Item.copper * 20) && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
-                {
-                    if (Main.myPlayer == Player.whoAmI)
-                    {
-                        int stacks = accAmmoRenewalPack.Aequus().accStacks;
-                        for (int i = 0; i < stacks; i++)
-                        {
-                            AmmoBackpack.DropAmmo(Player, npc, accAmmoRenewalPack);
-                        }
-                    }
-                }
-            }
-            if (accArmFloaties > 0 && Player.breath < Player.breathMax)
-            {
-                Player.breath = Math.Min(Player.breath + Player.breathMax / 4 * accArmFloaties, Player.breathMax - 1);
-            }
+            SoulGem.TryFillSoulGems(Player, this, npc);
+            AmmoBackpack.Proc(Player, this, npc);
+            ArmFloaties.Proc(Player, this, npc);
         }
 
         public static bool CanScamNPC(NPC npc)

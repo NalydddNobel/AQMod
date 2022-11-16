@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Buffs.Empowered;
+using Aequus.Items.GlobalItems;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Prefixes.Potions
 {
-    public class EmpoweredPrefix : ModPrefix
+    public class EmpoweredPrefix : AequusPrefix
     {
         public static Dictionary<int, int> ItemToEmpoweredBuff { get; private set; }
 
@@ -35,6 +37,27 @@ namespace Aequus.Items.Prefixes.Potions
         public override bool CanRoll(Item item)
         {
             return ItemToEmpoweredBuff.ContainsKey(item.type);
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        {
+            if (AequusText.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{AequusText.ItemKeyName(item.type, Mod)}", out string text))
+            {
+                foreach (var tt in tooltips)
+                {
+                    if (tt.Name == "Tooltip0")
+                    {
+                        tt.Text = text;
+                    }
+                }
+            }
+
+            float statIncrease = 1f;
+            if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff)
+            {
+                statIncrease = empoweredBuff.StatIncrease;
+            }
+            TooltipsGlobal.PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
         }
     }
 }

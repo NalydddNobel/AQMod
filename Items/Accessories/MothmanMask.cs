@@ -12,7 +12,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            TooltipsGlobalItem.Dedicated.Add(Type, new TooltipsGlobalItem.ItemDedication(new Color(50, 75, 250, 255)));
+            TooltipsGlobal.Dedicated.Add(Type, new TooltipsGlobal.ItemDedication(new Color(50, 75, 250, 255)));
         }
 
         public override void SetDefaults()

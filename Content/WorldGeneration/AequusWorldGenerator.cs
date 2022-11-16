@@ -224,7 +224,7 @@ namespace Aequus.Content.WorldGeneration
                 case 1:
                     return ModContent.ItemType<Revenant>();
                 case 2:
-                    return ModContent.ItemType<DungeonCandle>();
+                    return ModContent.ItemType<Revenant>(); // return ModContent.ItemType<DungeonCandle>();
                 case 3:
                     return ModContent.ItemType<PandorasBox>();
             }

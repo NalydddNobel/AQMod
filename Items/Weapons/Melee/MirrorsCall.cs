@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            TooltipsGlobalItem.Dedicated[Type] = new TooltipsGlobalItem.ItemDedication(new Color(110, 110, 128, 255));
+            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()
@@ -61,7 +61,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             AequusHelpers.GetItemDrawData(Item, out var frame);
             var texture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
-            Main.spriteBatch.Draw(texture, ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f), frame, AequusHelpers.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly),
+            Main.spriteBatch.Draw(texture, ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f), frame, AequusHelpers.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
                 rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 

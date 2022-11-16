@@ -135,8 +135,9 @@ namespace Aequus.NPCs.GlobalNPCs
                     pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
                 }
                 pool.Add(NPCID.Crab, 1f);
-                pool.Add(NPCID.SeaSnail, 0.1f);
+                pool.Add(NPCID.SeaSnail, 0.05f);
                 pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
+                pool.Add(ModContent.NPCType<CoconutCrab>(), 0.5f);
                 if (spawnInfo.Water)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))

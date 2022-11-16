@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,6 +38,14 @@ namespace Aequus.Items.Accessories
         {
             EquippedCache.Add(player.whoAmI);
             player.Aequus().accArmFloaties++;
+        }
+
+        public static void Proc(Player player, AequusPlayer aequus, EnemyKillInfo npc)
+        {
+            if (aequus.accArmFloaties > 0 && player.breath < player.breathMax)
+            {
+                player.breath = Math.Min(player.breath + player.breathMax / 4 * aequus.accArmFloaties, player.breathMax - 1);
+            }
         }
     }
 }

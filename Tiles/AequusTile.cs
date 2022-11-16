@@ -543,7 +543,7 @@ namespace Aequus.Tiles
             switch (c)
             {
                 case 1:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
+                    //Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
                     break;
             }
         }
@@ -553,7 +553,7 @@ namespace Aequus.Tiles
             switch (c)
             {
                 case 1:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
+                    //Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
                     break;
             }
         }

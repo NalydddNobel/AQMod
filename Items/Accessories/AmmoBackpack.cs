@@ -55,6 +55,24 @@ namespace Aequus.Items.Accessories
                 .TryRegisterBefore(ItemID.CursedBullet);
         }
 
+        public static void Proc(Player player, AequusPlayer aequus, EnemyKillInfo npc)
+        {
+            if (aequus.accAmmoRenewalPack != null)
+            {
+                int ammoBackpackChance = 3;
+                if (npc.value > (Item.copper * 20) && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance)))
+                {
+                    if (Main.myPlayer == player.whoAmI)
+                    {
+                        int stacks = aequus.accAmmoRenewalPack.Aequus().accStacks;
+                        for (int i = 0; i < stacks; i++)
+                        {
+                            DropAmmo(player, npc, aequus.accAmmoRenewalPack);
+                        }
+                    }
+                }
+            }
+        }
         public static void DropAmmo(Player player, EnemyKillInfo npc, Item ammoBackpack)
         {
             var neededAmmoTypes = GetAmmoTypesToSpawn(player, npc, ammoBackpack);

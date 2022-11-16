@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common
+﻿namespace Aequus.Items
 {
     public static class ItemSortingPriority
     {

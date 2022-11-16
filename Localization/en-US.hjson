@@ -89,8 +89,6 @@ Mods: {
 			SplashPotion: +Throwable
 			BuffDuration: "{0} duration"
 			BuffEmpowerment: "{0} buff strength"
-
-			SoulGemTier: "{0} ammo cost"
 		}
 
 		nalyd: "'Smells like roses'"
@@ -265,12 +263,6 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			# Soul Gems #
-			PettySoulGem: Petty Soul Gem
-			LesserSoulGem: Lesser Soul Gem
-			GreaterSoulGem: Greater Soul Gem
-			GrandSoulGem: Grand Soul Gem
-
 			# Critter Items #
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
@@ -424,6 +416,10 @@ Mods: {
 			MistralPollen: Mistral Pollen
 			MoonflowerPollen: Moonflower Pollen
 
+			SoulGem: Empty Soul Gem
+			SoulGemFilled: Soul Gem
+
+			Mussel: Mussel
 			BloodyTearFragment: Bloody Tearstone
 			Fluorescence: Fluorescence
 			FrozenTear: Frozen Tear
@@ -432,9 +428,9 @@ Mods: {
 
 			PhaseMirror: Phase Mirror
 
-			InactivePylonCleanser: Inactive Pylon Cleanser
-			InactivePylonHealer: Inactive Pylon Healer
-			InactivePylonGunner: Inactive Pylon Gunner
+			InactivePylonCleanser: Pylon Cleanser
+			InactivePylonHealer: Pylon Healer
+			InactivePylonGunner: Pylon Gunner
 
 			CelesitalEightBall: Celestial 8-Ball
 			
@@ -1150,15 +1146,10 @@ Mods: {
 
 			PotionOfResurrection: Teleports you to the location of your most recent death
 
+			SoulGem: Captures the souls of enemies
+
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
-
-
-			# Soul Gems #
-			PettySoulGem: Captures the souls of weak creatures
-			LesserSoulGem: Captures the souls of strong creatures
-			GreaterSoulGem: Captures the souls of powerful creatures
-			GrandSoulGem: Captures the souls of very powerful creatures
 
 			# Legendary Fish #
 			CrabDaughter:
@@ -1378,9 +1369,6 @@ Mods: {
 				RouletteDrop: The item below is guaranteed to drop
 
 				NecromancyStaff: Slain enemies may convert into ghost minions
-
-				# Ex: Uses Petty soul gems as ammo
-				SoulGemCost: Uses {SoulTier} soul gems as ammo
 			}
 
 			Misc: {
@@ -2596,13 +2584,6 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: Quest Fish
-		}
-
-		SoulGemTier: {
-			1: Petty
-			2: Lesser
-			3: Greater
-			4: Grand
 		}
 
 		Water: Water

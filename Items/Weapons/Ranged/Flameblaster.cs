@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            CooldownGlobalItem.HasWeaponCooldown.Add(Type);
+            CooldownsItem.HasWeaponCooldown.Add(Type);
         }
 
         private void DefaultUse()

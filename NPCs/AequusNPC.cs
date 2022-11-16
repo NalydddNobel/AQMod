@@ -9,7 +9,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Consumables.SoulGems;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
@@ -78,7 +77,6 @@ namespace Aequus.NPCs
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
-            globalLoot.Add(new SoulGemDropRule());
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
         }
 
@@ -86,40 +84,6 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
-                case NPCID.Necromancer:
-                case NPCID.NecromancerArmored:
-                case NPCID.DiabolistRed:
-                case NPCID.DiabolistWhite:
-                case NPCID.RaggedCaster:
-                case NPCID.RaggedCasterOpenCoat:
-                case NPCID.RuneWizard:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GreaterSoulGem>(), 2));
-                    break;
-
-                case NPCID.Tim:
-                case NPCID.DarkCaster:
-                case NPCID.Medusa:
-                case NPCID.DesertDjinn:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LesserSoulGem>(), 2));
-                    break;
-                case NPCID.IlluminantBat:
-                case NPCID.IlluminantSlime:
-                case NPCID.Mummy:
-                case NPCID.BloodMummy:
-                case NPCID.DarkMummy:
-                case NPCID.LightMummy:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LesserSoulGem>(), 25));
-                    break;
-
-                case NPCID.FireImp:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LesserSoulGem>(), 5));
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PettySoulGem>(), 2));
-                    break;
-
-                case NPCID.GoblinSorcerer:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PettySoulGem>(), 2));
-                    break;
-
                 case NPCID.Scarecrow1:
                 case NPCID.Scarecrow2:
                 case NPCID.Scarecrow3:
@@ -184,13 +148,11 @@ namespace Aequus.NPCs
                     break;
 
                 case NPCID.Demon:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LesserSoulGem>(), 5));
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PettySoulGem>(), 2));
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DemonCursor>(), 100));
                     break;
 
                 case NPCID.Pixie:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
+                    //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
                     break;
 
                 case NPCID.BloodNautilus:
@@ -214,7 +176,7 @@ namespace Aequus.NPCs
                 case NPCID.BloodZombie:
                 case NPCID.Drippler:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), 25));
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
+                    //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
                     break;
 
                 case NPCID.DevourerHead:

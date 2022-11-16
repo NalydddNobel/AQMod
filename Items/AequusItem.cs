@@ -430,7 +430,7 @@ namespace Aequus.Items
                     break;
 
                 case ItemID.LockBox:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), /*ModContent.ItemType<DungeonCandle>(),*/ ModContent.ItemType<PandorasBox>()));
                     break;
             }
         }

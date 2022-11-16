@@ -1654,9 +1654,9 @@ namespace Aequus
             return npc2;
         }
 
-        public static TooltipsGlobalItem AequusTooltips(this Item item)
+        public static TooltipsGlobal AequusTooltips(this Item item)
         {
-            return item.GetGlobalItem<TooltipsGlobalItem>();
+            return item.GetGlobalItem<TooltipsGlobal>();
         }
         public static AequusItem Aequus(this Item item)
         {

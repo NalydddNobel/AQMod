@@ -1,5 +1,4 @@
 ﻿using Aequus.Graphics;
-using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,13 +8,13 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content
+namespace Aequus.Content.ItemRarities
 {
-    public class DevItemRarity : ModRarity, TooltipsGlobalItem.IDrawRarity
+    public class DevItemRarity : ModRarity, IDrawRarity
     {
         public override Color RarityColor => Color.Lerp(Color.Violet, Color.MediumPurple, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f));
 
-        public void DrawDevTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
+        public void DrawTooltipLine(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
         {
             if (string.IsNullOrWhiteSpace(text)) // since you can rename items.
             {

@@ -14,7 +14,7 @@ namespace Aequus.Items.Pets
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            TooltipsGlobalItem.Dedicated.Add(Type, new TooltipsGlobalItem.ItemDedication(new Color(80, 60, 255, 255)));
+            TooltipsGlobal.Dedicated.Add(Type, new TooltipsGlobal.ItemDedication(new Color(80, 60, 255, 255)));
         }
 
         public override void SetDefaults()

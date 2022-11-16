@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
-    public abstract class SoulCandleBase : SoulGemWeaponBase
+    public abstract class SoulCandleBase : LegacySoulGemWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
@@ -16,6 +16,11 @@ namespace Aequus.Items.Weapons.Summon.Necro
         public int NPCToSummon { get; protected set; }
 
         public float npcSpeed;
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
 
         protected void DefaultToCandle(int summonDamage, int ammoTier, int npc, float speed = 0f)
         {
@@ -34,6 +39,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
             Item.useAnimation = 40;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
+            Item.mana = 20;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
@@ -60,14 +66,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
                     }
                 }
             }
-            var item = FindUsableSoulGem(player);
-            if (item == null)
-                return false;
-            int damage = item.damage;
-            if (AequusHelpers.ConsumeItem(player, item))
-            {
-                SpawnGhost(player, damage);
-            }
+            SpawnGhost(player, 0);
             return true;
         }
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Content;
+﻿using Aequus.Content.ItemRarities;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
