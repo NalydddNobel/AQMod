@@ -15,7 +15,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public static Asset<Texture2D> SwishTexture => ModContent.Request<Texture2D>(typeof(SwordProjectileBase).Namespace.Replace('.', '/') + "/Swish", AssetRequestMode.ImmediateLoad);
         public static Asset<Texture2D> Swish2Texture => ModContent.Request<Texture2D>(typeof(SwordProjectileBase).Namespace.Replace('.', '/') + "/Swish2", AssetRequestMode.ImmediateLoad);
 
-        public static SoundStyle HeavySwing => Aequus.GetSounds("heavysword_", 4, 0.66f, 0f, 0.2f);
+        public static SoundStyle HeavySwing => Aequus.GetSounds("Item/swordSwoosh", 7, 0.66f, 0f, 0.2f);
 
         private bool _init;
         public int swingDirection;

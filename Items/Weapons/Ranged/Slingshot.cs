@@ -27,7 +27,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ModContent.ProjectileType<SlingshotProj>();
             Item.noUseGraphic = true;
             Item.shootSpeed = 7.5f;
-            Item.UseSound = new SoundStyle("Aequus/Sounds/Items/Slingshot/stretch") { Volume = 0.2f, };
+            Item.UseSound = Aequus.GetSound("Item/Slingshot/stretch", 0.2f);
             Item.value = Item.sellPrice(gold: 2);
             Item.knockBack = 1f;
             Item.useAmmo = SlingshotAmmos.BirdAmmo;

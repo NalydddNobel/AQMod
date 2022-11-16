@@ -21,7 +21,7 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             if (!Main.dedServ)
             {
-                CRUNCHSonicBreakingSound = Aequus.GetSound("sonicmeteor", 0.6f);
+                CRUNCHSonicBreakingSound = Aequus.GetSound("sonicMeteor", 0.6f);
             }
         }
 

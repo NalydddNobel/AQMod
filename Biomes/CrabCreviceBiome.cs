@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes.CrabCrevice;
-using Aequus.Sounds;
 using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.ID;

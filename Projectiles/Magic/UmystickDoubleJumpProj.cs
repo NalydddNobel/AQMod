@@ -29,7 +29,7 @@ namespace Aequus.Projectiles.Magic
             {
                 controlMouseRight = true;
                 _playedSound = true;
-                SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Umystick/jump", 0, 2), Main.player[Projectile.owner].Center);
+                SoundEngine.PlaySound(Aequus.GetSounds("Item/Umystick/jump", 2), Main.player[Projectile.owner].Center);
             }
 
             if (Main.myPlayer == Projectile.owner)

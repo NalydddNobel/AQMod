@@ -383,7 +383,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     {
                         if (Aequus.ShouldDoScreenEffect(NPC.Center))
                         {
-                            Aequus.DarkenSky(0.5f, 0.05f);
+                            SkyDarkness.DarkenSky(0.5f, 0.05f);
                         }
                         NPC.direction = 0;
                         NPC.rotation = NPC.rotation.AngleLerp(0f, 0.1f);
@@ -422,7 +422,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                         EffectsSystem.Shake.Set(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            SoundEngine.PlaySound(SoundHelpers.Thunderclap, NPC.Center);
+                                            SoundEngine.PlaySound(Aequus.GetSounds("RedSprite/thunderClap", 2), NPC.Center);
                                         }
                                         int dustAmount = 50;
                                         if (!ClientConfig.Instance.HighQuality)
@@ -480,7 +480,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     {
                         if (Aequus.ShouldDoScreenEffect(NPC.Center))
                         {
-                            Aequus.DarkenSky(0.4f, 0.05f);
+                            SkyDarkness.DarkenSky(0.4f, 0.05f);
                         }
                         NPC.rotation = MathHelper.WrapAngle(NPC.rotation);
                         NPC.rotation *= 0.8f;

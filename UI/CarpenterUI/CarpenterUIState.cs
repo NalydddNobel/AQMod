@@ -62,7 +62,7 @@ namespace Aequus.UI.CarpenterUI
             Main.playerInventory = !Main.mouseItem.IsAir || selected != null;
             if (NotTalkingTo<Carpenter>())
             {
-                Aequus.NPCTalkInterface.SetState(null);
+                Aequus.UserInterface.SetState(null);
                 return;
             }
 
@@ -112,7 +112,7 @@ namespace Aequus.UI.CarpenterUI
                         SoundEngine.PlaySound(SoundID.Chat);
                         Main.playerInventory = true;
                         Main.npcChatText = responseMessage;
-                        Aequus.NPCTalkInterface.SetState(null);
+                        Aequus.UserInterface.SetState(null);
                         if (completed)
                         {
                             Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Add(selected.bounty.FullName);

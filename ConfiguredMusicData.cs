@@ -1,27 +1,25 @@
-﻿using System;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
-namespace Aequus.Sounds
+namespace Aequus
 {
     public class ConfiguredMusicData
     {
         private string mod;
         private int customMusicID;
         private int baseMusicID;
-        private int baseOtherworldyMusicID;
+        private int unusedOtherworldlyMusicID;
 
         internal ConfiguredMusicData(int musicID, int otherWorldMusic)
         {
             mod = "Aequus";
             baseMusicID = musicID;
-            baseOtherworldyMusicID = otherWorldMusic;
+            unusedOtherworldlyMusicID = otherWorldMusic;
             customMusicID = -1;
         }
 
         public int GetID()
         {
-            return customMusicID != -1 ? customMusicID : !Aequus.otherworldMusic ? baseMusicID : baseOtherworldyMusicID;
+            return customMusicID != -1 ? customMusicID : baseMusicID;
         }
 
         public void SetMusic(Mod mod, string musicPath)

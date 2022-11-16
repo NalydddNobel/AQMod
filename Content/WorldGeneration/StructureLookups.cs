@@ -6,6 +6,9 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.WorldGeneration
 {
+    /// <summary>
+    /// A <see cref="Dictionary{TKey, TValue}"/> of {<see cref="string"/>, <see cref="Point"/>} for looking up special structures in the world.
+    /// </summary>
     public class StructureLookups : IEnumerable<KeyValuePair<string, Point>>
     {
         private Dictionary<string, Point> inner;

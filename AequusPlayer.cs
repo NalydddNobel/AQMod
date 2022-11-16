@@ -1081,7 +1081,7 @@ namespace Aequus
                         volume = 0.55f;
                         EffectsSystem.Shake.Set(4);
                     }
-                    SoundEngine.PlaySound(Aequus.GetSound("boundbow_recharge").WithVolume(volume));
+                    SoundEngine.PlaySound(Aequus.GetSound("Item/boundBowRecharge").WithVolume(volume));
 
                     Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
                     Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
@@ -1570,8 +1570,15 @@ namespace Aequus
 
             if (accMothmanMask != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 300 * accMothmanMask.Aequus().accStacks);
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound);
+                AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.Aequus().accStacks, out bool canPlaySound);
+                if (canPlaySound)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
+                    }
+                    SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+                }
             }
             if (accBlackPhial > 0)
             {

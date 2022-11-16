@@ -177,6 +177,7 @@ namespace Aequus.Biomes.Glimmer
                                 p.Write(Main.myPlayer);
                             }, PacketType.SpawnOmegaStarite);
                         }
+                        AequusWorld.downedEventCosmic = true;
                         SoundEngine.PlaySound(SoundID.Roar, Main.LocalPlayer.Center);
                         drawCoords -= Main.screenPosition;
                     }

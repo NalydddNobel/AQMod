@@ -37,9 +37,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public Asset<Texture2D> DefeatedTexture => ModContent.Request<Texture2D>(Texture + "Defeated", AssetRequestMode.ImmediateLoad);
         public Asset<Texture2D> DefeatedGlowTexture => ModContent.Request<Texture2D>(Texture + "Defeated_Glow", AssetRequestMode.ImmediateLoad);
 
-        public static SoundStyle SpaceGunSound { get; private set; }
-        public static SoundStyle SnowflakeShootSound { get; private set; }
-        public static SoundStyle AwesomeDeathraySound { get; private set; }
+        public static SoundStyle SpaceGunSound => Aequus.GetSound("SpaceSquid/spaceGun");
+        public static SoundStyle SnowflakeShootSound => Aequus.GetSound("SpaceSquid/snowflakeShoot");
+        public static SoundStyle AwesomeDeathraySound => Aequus.GetSound("SpaceSquid/deathray");
 
         public int frameIndex;
 
@@ -50,16 +50,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
         private float _brightnessTimer;
         private float _brightness;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                SpaceGunSound = new SoundStyle("Aequus/Sounds/SpaceSquid/spacegun");
-                SnowflakeShootSound = new SoundStyle("Aequus/Sounds/SpaceSquid/snowflakeshoot");
-                AwesomeDeathraySound = new SoundStyle("Aequus/Sounds/SpaceSquid/awesomedeathray");
-            }
-        }
 
         public override void SetStaticDefaults()
         {
@@ -297,7 +287,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                             {
                                 if (Aequus.ShouldDoScreenEffect(NPC.Center))
                                 {
-                                    Aequus.DarkenSky(0.5f, 0.05f);
+                                    SkyDarkness.DarkenSky(0.5f, 0.05f);
                                 }
                                 var eyePos = GetEyePos();
                                 Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 80, 0), 0.9f);

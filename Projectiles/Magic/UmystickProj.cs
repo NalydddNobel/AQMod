@@ -72,7 +72,7 @@ namespace Aequus.Projectiles.Magic
                 {
                     Projectile.localAI[0] = 100f;
                     _gfxOffY = 14f;
-                    SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Umystick/shoot", 2) { Volume = 0.44f, PitchVariance = 0.33f }, Projectile.Center);
+                    SoundEngine.PlaySound(Aequus.GetSounds("Item/Umystick/shoot", 3, 0.44f, variance: 0.33f), Projectile.Center);
                     if (Main.myPlayer == Projectile.owner)
                     {
                         var shootPosition = Projectile.Center;

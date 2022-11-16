@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
+using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Content;
 using Aequus.Content.AnalysisQuests;
@@ -123,15 +124,13 @@ namespace Aequus
             packet.Send(to, ignore);
         }
 
-        public static void SendSound(string name, Vector2? location = null, float? volume = null, float? pitch = null)
+        public static void SyncSound(SoundPacket soundID, Vector2 location)
         {
-            Send((p) =>
-            {
-                p.Write(name);
-                LegacyFlaggedWrite(location != null, (p) => p.WriteVector2(location.Value), p);
-                LegacyFlaggedWrite(volume != null, (p) => p.Write(volume.Value), p);
-                LegacyFlaggedWrite(pitch != null, (p) => p.Write(pitch.Value), p);
-            }, PacketType.SyncZombieRecruitSound);
+            var p = Aequus.GetPacket(PacketType.SyncSound);
+            p.Write((byte)soundID);
+            p.Write(location.X);
+            p.Write(location.Y);
+            p.Send();
         }
 
         public static void LegacyFlaggedWrite(bool flag, Action<ModPacket> writeAction, ModPacket p)
@@ -367,6 +366,7 @@ namespace Aequus
 
                 case PacketType.SpawnOmegaStarite:
                     NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
+                    AequusWorld.downedEventCosmic = true;
                     break;
 
                 case PacketType.ExporterQuestsCompleted:
@@ -389,8 +389,38 @@ namespace Aequus
                     DemonSiegeSacrifice.ReceiveStatus(reader);
                     break;
 
-                case PacketType.SyncZombieRecruitSound:
-                    SoundEngine.PlaySound(NecromancyNPC.ZombieRecruitSound, reader.ReadVector2());
+                case PacketType.SyncSound:
+                    {
+                        var soundID = (SoundPacket)reader.ReadByte();
+                        var position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            SyncSound(soundID, position);
+                            break;
+                        }
+                        switch (soundID)
+                        {
+                            case SoundPacket.RecruitZombie:
+                                SoundEngine.PlaySound(NecromancyNPC.RecruitZombieSound, position);
+                                break;
+
+                            case SoundPacket.InflictBleeding:
+                                SoundEngine.PlaySound(Bleeding.InflictDebuffSound, position);
+                                break;
+
+                            case SoundPacket.InflictBurning:
+                                SoundEngine.PlaySound(BlueFire.InflictDebuffSound, position);
+                                break;
+
+                            case SoundPacket.InflictBurning2:
+                                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f), position);
+                                break;
+
+                            case SoundPacket.InflictNightfall:
+                                SoundEngine.PlaySound(NightfallDebuff.InflictDebuffSound, position);
+                                break;
+                        }
+                    }
                     break;
 
                 case PacketType.SyncAequusPlayer:

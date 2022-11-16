@@ -12,7 +12,7 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             if (npc.type == NPCID.DungeonSpirit && AequusHelpers.HereditarySource(source, out var ent) && ent is NPC parent)
             {
-                if (Heckto.Spawnable.Contains(parent.type))
+                if (Heckto.SpawnableIDs.Contains(parent.type))
                 {
                     npc.Transform(ModContent.NPCType<Heckto>());
                 }

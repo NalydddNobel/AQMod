@@ -324,7 +324,7 @@ namespace Aequus.NPCs.Friendly.Town
                     {
                         Main.playerInventory = false;
                         Main.npcChatText = "";
-                        Aequus.NPCTalkInterface.SetState(new CarpenterUIState());
+                        Aequus.UserInterface.SetState(new CarpenterUIState());
                         return;
                     }
                 }

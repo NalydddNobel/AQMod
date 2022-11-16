@@ -2,6 +2,12 @@
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
+using Aequus.Items.Consumables;
+using Aequus.Items.Tools.Misc;
+using Aequus.NPCs.Boss;
+using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.Monsters.Night.Glimmer;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc;
@@ -25,76 +31,120 @@ namespace Aequus
         public const int LargeWidth = 8400;
         public const int LargeHeight = 2400;
 
+        /// <summary>
+        /// Used by the <see cref="Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
+        /// </summary>
         public static int TileCountsMultiplier;
 
         private static FieldInfo SceneMetrics__tileCounts;
         private static MethodInfo WorldGen_UpdateWorld_OvergroundTile;
         private static MethodInfo WorldGen_UpdateWorld_UndergroundTile;
 
+        /// <summary>
+        /// Whether or not the <see cref="WhiteFlag"/> item was used.
+        /// </summary>
         [SaveData("WhiteFlag")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
-        public static bool whiteFlag;
+        public static bool usedWhiteFlag;
 
+        /// <summary>
+        /// Whether or not the Glimmer event was completed.
+        /// </summary>
         [SaveData("Glimmer")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedEventCosmic;
+        /// <summary>
+        /// Whether or not the Demon Siege event was completed.
+        /// </summary>
         [SaveData("DemonSiege")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedEventDemon;
+        /// <summary>
+        /// Whether or not the Gale Streams event was completed.
+        /// </summary>
         [SaveData("GaleStreams")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedEventAtmosphere;
 
+        /// <summary>
+        /// Whether or not the <see cref="SpaceSquid"/> miniboss was defeated.
+        /// </summary>
         [SaveData("SpaceSquid")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedSpaceSquid;
+        /// <summary>
+        /// Whether or not the <see cref="RedSprite"/> miniboss was defeated.
+        /// </summary>
         [SaveData("RedSprite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedRedSprite;
 
+        /// <summary>
+        /// Whether or not the <see cref="Crabson"/> boss was defeated.
+        /// </summary>
         [SaveData("Crabson")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedCrabson;
 
+        /// <summary>
+        /// Unused.
+        /// </summary>
         [SaveData("Upriser")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedUpriser;
 
+        /// <summary>
+        /// Whether or not the <see cref="HyperStarite"/> enemy was defeated.
+        /// </summary>
         [SaveData("HyperStarite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedHyperStarite;
+        /// <summary>
+        /// Whether or not the <see cref="UltraStarite"/> enemy was defeated.
+        /// </summary>
         [SaveData("UltraStarite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedUltraStarite;
+        /// <summary>
+        /// Whether or not the <see cref="OmegaStarite"/> boss was defeated.
+        /// </summary>
         [SaveData("OmegaStarite")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedOmegaStarite;
 
+        /// <summary>
+        /// Whether or not the <see cref="DustDevil"/> boss was defeated.
+        /// </summary>
         [SaveData("DustDevil")]
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedDustDevil;
 
+        /// <summary>
+        /// A tracker of the total amount of Shadow Orbs broken in the world, this is currently unused.
+        /// </summary>
         [SaveData("ShadowOrbs")]
         public static int shadowOrbsBrokenTotal;
 
+        /// <summary>
+        /// How many times the tinkerer should re-roll items for a potential higher value prefix. 
+        /// This value flips between 0 and 3 depending on if the <see cref="TinkerersGuidebook"/> has been consumed.
+        /// </summary>
         [SaveData("TinkererRerolls")]
         public static int tinkererRerolls;
 
         public static StructureLookups Structures { get; internal set; }
-
-        public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
 
         public override void Load()
         {
@@ -115,7 +165,7 @@ namespace Aequus
 
         private static bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
         {
-            return !whiteFlag && orig();
+            return !usedWhiteFlag && orig();
         }
 
         private static void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
@@ -149,7 +199,7 @@ namespace Aequus
 
         public void ResetWorldData()
         {
-            whiteFlag = false;
+            usedWhiteFlag = false;
             TileCountsMultiplier = 0;
             shadowOrbsBrokenTotal = 0;
             downedEventCosmic = false;
@@ -166,7 +216,6 @@ namespace Aequus
 
         public override void OnWorldLoad()
         {
-            Aequus.SkiesDarkness = 1f;
             if (Main.netMode != NetmodeID.Server)
             {
                 AdvancedRulerInterface.Instance.Reset();
@@ -176,7 +225,6 @@ namespace Aequus
 
         public override void OnWorldUnload()
         {
-            Aequus.SkiesDarkness = 1f;
             if (Main.netMode != NetmodeID.Server)
             {
                 AdvancedRulerInterface.Instance.Reset();

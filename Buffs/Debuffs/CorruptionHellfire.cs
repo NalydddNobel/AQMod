@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -42,7 +43,15 @@ namespace Aequus.Buffs.Debuffs
                 return;
             }
 
-            AequusBuff.InflictAndPlaySound<CorruptionHellfire>(npc, time, BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            AequusBuff.ApplyBuff<CorruptionHellfire>(npc, time, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, npc.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            }
         }
     }
 }

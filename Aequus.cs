@@ -4,14 +4,12 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -29,21 +27,27 @@ namespace Aequus
         public const string Buff = "Terraria/Images/Buff";
 
         public static Aequus Instance { get; private set; }
-        public static UserInterface InventoryInterface { get; private set; }
-        public static UserInterface NPCTalkInterface { get; private set; }
+        public static UserInterface UserInterface { get; private set; }
 
+        /// <summary>
+        /// Determines whether or not the "Game World" is active. This means that the game is most likely running regular tick updates.
+        /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
+        /// <summary>
+        /// Easier to write version of <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.HighQuality">HighQuality</see>.
+        /// </summary>
         public static bool HQ => ClientConfig.Instance.HighQuality;
+        /// <summary>
+        /// Easier to write version of <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.InfoDebugLogs">HighQuality</see>.
+        /// </summary>
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
+        /// <summary>
+        /// Better way to write the following check <code><see cref="Main.hardMode"/> || <see cref="AequusWorld.downedOmegaStarite"/></code>
+        /// </summary>
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
-        public static float SkiesDarkness;
-        public static float SkiesDarknessGoTo;
-        public static float SkiesDarknessGoToSpeed;
-
         private static bool requestedHookAccess;
-        public static bool otherworldMusic;
 
         public static object Hook(MethodInfo info, MethodInfo info2)
         {
@@ -56,6 +60,13 @@ namespace Aequus
             return null;
         }
 
+        /// <summary>
+        /// Easier to write version of 
+        /// <code><see cref="ModPacket"/> packet = <see cref="Instance"/>.<see cref="Mod.GetPacket(int)">GetPacket(int)</see>;</code>
+        /// <code>packet.Write((<see cref="byte"/>)<see cref="PacketType"/>.XXX);</code>
+        /// </summary>
+        /// <param name="type">The ID of the Packet</param>
+        /// <returns></returns>
         public static ModPacket GetPacket(PacketType type)
         {
             var p = Instance.GetPacket();
@@ -67,43 +78,14 @@ namespace Aequus
         {
             requestedHookAccess = false;
             Instance = this;
-            SkiesDarkness = 1f;
             if (Main.netMode != NetmodeID.Server)
             {
-                InventoryInterface = new UserInterface();
-                NPCTalkInterface = new UserInterface();
+                UserInterface = new UserInterface();
             }
 
             foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IOnModLoad>(Code))
             {
                 t.OnModLoad(this);
-            }
-
-            On.Terraria.Main.SetBackColor += Hook_DarkenBackground;
-        }
-
-        private static void Hook_DarkenBackground(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
-        {
-            orig(info, out sunColor, out moonColor);
-
-            if (SkiesDarkness != 1f)
-            {
-                SkiesDarkness = Math.Clamp(SkiesDarkness, 0.1f, 1f);
-
-                byte a = Main.ColorOfTheSkies.A;
-                Main.ColorOfTheSkies *= SkiesDarkness;
-                Main.ColorOfTheSkies.A = a;
-
-                if (GameWorldActive)
-                {
-                    if (SkiesDarkness > 0.9999f)
-                    {
-                        SkiesDarkness = 1f;
-                    }
-                    SkiesDarkness = MathHelper.Lerp(SkiesDarkness, SkiesDarknessGoTo, SkiesDarknessGoToSpeed);
-                    SkiesDarknessGoTo = 1f;
-                    SkiesDarknessGoToSpeed = 0.02f;
-                }
             }
         }
 
@@ -111,8 +93,7 @@ namespace Aequus
         {
             requestedHookAccess = false;
             Instance = null;
-            InventoryInterface = null;
-            NPCTalkInterface = null;
+            UserInterface = null;
         }
 
         public override object Call(params object[] args)
@@ -148,32 +129,7 @@ namespace Aequus
 
         public static bool ShouldDoScreenEffect(Vector2 where)
         {
-            return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 3000f;
-        }
-
-        public static void DarkenSky(float to, float speed = 0.05f)
-        {
-            SkiesDarkness -= 0.01f;
-            SkiesDarknessGoTo = Math.Min(SkiesDarknessGoTo, to);
-            SkiesDarknessGoToSpeed = Math.Max(SkiesDarknessGoToSpeed, speed);
-        }
-
-        public static string LiquidName(byte liquidType)
-        {
-            switch (liquidType)
-            {
-                default:
-                    return "Unknown";
-
-                case LiquidID.Water:
-                    return Language.GetTextValue("Mods.Aequus.Water");
-                case LiquidID.Lava:
-                    return Language.GetTextValue("Mods.Aequus.Lava");
-                case LiquidID.Honey:
-                    return Language.GetTextValue("Mods.Aequus.Honey");
-                case 3:
-                    return Language.GetTextValue("Mods.Aequus.Shimmer");
-            }
+            return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 1500f;
         }
 
         internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f)

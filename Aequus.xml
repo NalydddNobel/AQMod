@@ -4,6 +4,35 @@
         <name>Aequus</name>
     </assembly>
     <members>
+        <member name="P:Aequus.Aequus.GameWorldActive">
+            <summary>
+            Determines whether or not the "Game World" is active. This means that the game is most likely running regular tick updates.
+            </summary>
+        </member>
+        <member name="P:Aequus.Aequus.HQ">
+            <summary>
+            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.HighQuality">HighQuality</see>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Aequus.LogMore">
+            <summary>
+            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.InfoDebugLogs">HighQuality</see>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Aequus.HardmodeTier">
+            <summary>
+            Better way to write the following check <code><see cref="F:Terraria.Main.hardMode"/> || <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></code>
+            </summary>
+        </member>
+        <member name="M:Aequus.Aequus.GetPacket(Aequus.PacketType)">
+            <summary>
+            Easier to write version of 
+            <code><see cref="T:Terraria.ModLoader.ModPacket"/> packet = <see cref="P:Aequus.Aequus.Instance"/>.<see cref="M:Terraria.ModLoader.Mod.GetPacket(System.Int32)">GetPacket(int)</see>;</code>
+            <code>packet.Write((<see cref="T:System.Byte"/>)<see cref="T:Aequus.PacketType"/>.XXX);</code>
+            </summary>
+            <param name="type">The ID of the Packet</param>
+            <returns></returns>
+        </member>
         <member name="T:Aequus.AequusHelpers">
             <summary>
             A helper class which contains many useful methods
@@ -262,6 +291,82 @@
             Caches <see cref="F:Terraria.Main.dayTime"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusWorld.TileCountsMultiplier">
+            <summary>
+            Used by the <see cref="T:Aequus.NPCs.Friendly.Town.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.usedWhiteFlag">
+            <summary>
+            Whether or not the <see cref="T:Aequus.Items.Tools.Misc.WhiteFlag"/> item was used.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedEventCosmic">
+            <summary>
+            Whether or not the Glimmer event was completed.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedEventDemon">
+            <summary>
+            Whether or not the Demon Siege event was completed.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedEventAtmosphere">
+            <summary>
+            Whether or not the Gale Streams event was completed.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedSpaceSquid">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.SpaceSquid"/> miniboss was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedRedSprite">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.RedSprite"/> miniboss was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedCrabson">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson"/> boss was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedUpriser">
+            <summary>
+            Unused.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedHyperStarite">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Night.Glimmer.HyperStarite"/> enemy was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedUltraStarite">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Night.Glimmer.UltraStarite"/> enemy was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedOmegaStarite">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite"/> boss was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.downedDustDevil">
+            <summary>
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil"/> boss was defeated.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.shadowOrbsBrokenTotal">
+            <summary>
+            A tracker of the total amount of Shadow Orbs broken in the world, this is currently unused.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusWorld.tinkererRerolls">
+            <summary>
+            How many times the tinkerer should re-roll items for a potential higher value prefix. 
+            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Consumables.TinkerersGuidebook"/> has been consumed.
+            </summary>
+        </member>
         <member name="M:Aequus.AequusWorld.OreTiers">
             <summary>
             
@@ -428,6 +533,11 @@
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
         </member>
+        <member name="T:Aequus.Content.WorldGeneration.StructureLookups">
+            <summary>
+            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
+            </summary>
+        </member>
         <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
             <summary>
             Adds a structure to the list
@@ -506,6 +616,11 @@
         <member name="P:Aequus.Graphics.EffectsSystem.AbovePlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
+        </member>
+        <member name="T:Aequus.Graphics.SkyDarkness">
+            <summary>
+            Used for darken-ing the sky for flashy visual effects
             </summary>
         </member>
         <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">

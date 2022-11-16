@@ -11,16 +11,6 @@ namespace Aequus.Items.Weapons.Magic
 {
     public class StudiesOfTheInkblot : ModItem
     {
-        public static SoundStyle? IHateTouhouSound { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                IHateTouhouSound = new SoundStyle("Aequus/Sounds/Items/touhoushoot");
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
@@ -45,7 +35,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.knockBack = 0f;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = IHateTouhouSound;
+            Item.UseSound = Aequus.GetSound("Item/touhouShoot");
             Item.rare = ItemRarityID.Red;
             Item.shootSpeed = 10f;
             Item.autoReuse = true;

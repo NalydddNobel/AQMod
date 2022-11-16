@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,6 +9,8 @@ namespace Aequus.Buffs.Debuffs
     public class NightfallDebuff : ModBuff
     {
         public override string Texture => Aequus.Debuff;
+
+        public static SoundStyle InflictDebuffSound => SoundID.Item4.WithPitch(0.6f).WithVolume(0.5f);
 
         public override void SetStaticDefaults()
         {
@@ -30,7 +33,15 @@ namespace Aequus.Buffs.Debuffs
 
         public static void AddBuff(NPC npc, int time)
         {
-            AequusBuff.InflictAndPlaySound<NightfallDebuff>(npc, time, SoundID.Item4.WithPitch(0.6f).WithVolume(0.5f));
+            AequusBuff.ApplyBuff<NightfallDebuff>(npc, time, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictNightfall, npc.Center);
+                }
+                SoundEngine.PlaySound(InflictDebuffSound, npc.Center);
+            }
         }
     }
 }

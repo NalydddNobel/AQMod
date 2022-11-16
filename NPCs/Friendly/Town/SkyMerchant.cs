@@ -128,7 +128,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             Main.playerInventory = true;
             Main.npcChatText = "";
-            Aequus.NPCTalkInterface.SetState(new RenameItemUIState());
+            Aequus.UserInterface.SetState(new RenameItemUIState());
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
@@ -434,7 +434,7 @@ namespace Aequus.NPCs.Friendly.Town
                 }
                 if (Main.netMode != NetmodeID.Server)
                 {
-                    SoundEngine.PlaySound(Aequus.GetSound("slidewhistle", 0.5f), NPC.Center);
+                    SoundEngine.PlaySound(Aequus.GetSound("slideWhistle", 0.5f), NPC.Center);
                 }
             }
 
@@ -871,7 +871,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.life = NPC.lifeMax;
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundEngine.PlaySound(Aequus.GetSound("slidewhistle", 0.5f), NPC.Center);
+                SoundEngine.PlaySound(Aequus.GetSound("slideWhistle", 0.5f), NPC.Center);
             }
             if (NPC.velocity.X <= 0)
             {

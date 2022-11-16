@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -62,7 +61,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 1.5f;
             Item.autoReuse = true;
-            Item.UseSound = new SoundStyle("Aequus/Sounds/Items/raygun") { Volume = 0.2f, };
+            Item.UseSound = Aequus.GetSound("Item/raygun");
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.OmegaStariteValue;
             Item.knockBack = 1f;

@@ -20,15 +20,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 {
     public class WhiteSlime : ModNPC
     {
-        public static SoundStyle BoowompSadFaceSound { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                BoowompSadFaceSound = Aequus.GetSound("boowomp");
-            }
-        }
+        public static SoundStyle BoowompSadFaceSound => Aequus.GetSound("boowomp");
 
         public override void SetStaticDefaults()
         {

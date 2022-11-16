@@ -16,12 +16,12 @@ namespace Aequus.NPCs.Monsters
 {
     public class Heckto : ModNPC
     {
-        public static HashSet<int> Spawnable { get; private set; }
-        public static SoundStyle HeckoMoan_wtfDidIJustWrite { get; private set; }
+        public static HashSet<int> SpawnableIDs { get; private set; }
+        public static SoundStyle ZombieMoanSound => new SoundStyle(SoundID.ZombieMoan.SoundPath, 53, 2);
 
         public override void Load()
         {
-            Spawnable = new HashSet<int>()
+            SpawnableIDs = new HashSet<int>()
             {
                 NPCID.HellArmoredBones,
                 NPCID.HellArmoredBonesMace,
@@ -30,16 +30,12 @@ namespace Aequus.NPCs.Monsters
                 NPCID.DiabolistRed,
                 NPCID.DiabolistWhite,
             };
-            if (!Main.dedServ)
-            {
-                HeckoMoan_wtfDidIJustWrite = new SoundStyle(SoundID.ZombieMoan.SoundPath, 53, 2);
-            }
         }
 
         public override void Unload()
         {
-            Spawnable?.Clear();
-            Spawnable = null;
+            SpawnableIDs?.Clear();
+            SpawnableIDs = null;
         }
 
         public override void SetStaticDefaults()
@@ -120,7 +116,7 @@ namespace Aequus.NPCs.Monsters
                 return;
             if (Main.rand.NextBool(400))
             {
-                SoundEngine.PlaySound(HeckoMoan_wtfDidIJustWrite, NPC.Center);
+                SoundEngine.PlaySound(ZombieMoanSound, NPC.Center);
             }
         }
 

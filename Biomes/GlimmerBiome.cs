@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes.Glimmer;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

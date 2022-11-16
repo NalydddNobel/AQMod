@@ -13,17 +13,6 @@ namespace Aequus.Projectiles.Magic
 {
     public class SnowgraveProj : ModProjectile
     {
-        public static SoundStyle SnowgraveSound { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                SnowgraveSound = new SoundStyle("Aequus/Sounds/Items/snowgrave")
-                { Volume = 0.75f, PitchVariance = 0f, Pitch = 0f, };
-            }
-        }
-
         public override void SetDefaults()
         {
             Projectile.width = 180;
@@ -148,7 +137,7 @@ namespace Aequus.Projectiles.Magic
             if (Main.netMode != NetmodeID.Server && !_playedSound)
             {
                 _playedSound = true;
-                SoundEngine.PlaySound(SnowgraveProj.SnowgraveSound, Projectile.Center);
+                SoundEngine.PlaySound(Aequus.GetSound("Item/snowgrave", 0.75f), Projectile.Center);
             }
             Projectile.velocity.Y = 8f;
             if (Main.myPlayer == Projectile.owner)

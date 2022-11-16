@@ -407,7 +407,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void OnKill()
         {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
             NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStariteCritter>());
         }
 

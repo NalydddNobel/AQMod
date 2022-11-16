@@ -486,7 +486,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void OnKill()
         {
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedUltraStarite, Type);
-            AequusWorld.downedEventCosmic = true;
         }
 
         public override int SpawnNPC(int tileX, int tileY)

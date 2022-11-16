@@ -79,7 +79,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
 
         public override void RightClick(Player player)
         {
-            SoundEngine.PlaySound(Aequus.GetSound("Item/slotmachine", 0.3f, 0.05f, 0.075f));
+            SoundEngine.PlaySound(Aequus.GetSound("Item/slotMachine", 0.3f, 0.05f, 0.075f));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

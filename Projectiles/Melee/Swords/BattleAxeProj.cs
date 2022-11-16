@@ -80,8 +80,11 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             if (Main.rand.NextBool(5))
             {
-                if (Main.netMode != NetmodeID.Server)
-                    SoundEngine.PlaySound(Bleeding.InflictDebuffSound, target.Center);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBleeding, target.Center);
+                }
+                SoundEngine.PlaySound(Bleeding.InflictDebuffSound, target.Center);
                 target.AddBuff(ModContent.BuffType<Bleeding>(), 240);
             }
         }

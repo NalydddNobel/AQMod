@@ -9,7 +9,6 @@ using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Projectiles.Monster.CrabsonProjs;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

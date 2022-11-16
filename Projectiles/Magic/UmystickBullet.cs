@@ -13,18 +13,10 @@ namespace Aequus.Projectiles.Magic
 {
     public class UmystickBullet : ModProjectile
     {
-        public static SoundStyle UmysticDestroyd { get; private set; }
+        public static SoundStyle UmystickDestroyed => Aequus.GetSounds("Item/Umystick/destroy", 4);
 
         protected TrailRenderer prim;
-        protected Color _glowClr;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                UmysticDestroyd = new SoundStyle("Aequus/Sounds/Items/Umystick/destroy", 3) { Volume = 0.6f, };
-            }
-        }
+        protected Color _glowColorCache;
 
         public override void SetStaticDefaults()
         {
@@ -50,15 +42,15 @@ namespace Aequus.Projectiles.Magic
             {
                 Projectile.frame = Main.rand.Next(Main.projFrames[Projectile.type]);
                 Projectile.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
-                _glowClr = new Color(128, 70, 70, 0);
+                _glowColorCache = new Color(128, 70, 70, 0);
                 if (Projectile.frame == 1)
-                    _glowClr = new Color(90, 128, 50, 0);
+                    _glowColorCache = new Color(90, 128, 50, 0);
                 else if (Projectile.frame == 2)
-                    _glowClr = new Color(70, 70, 128, 0);
+                    _glowColorCache = new Color(70, 70, 128, 0);
 
                 for (int i = 0; i < 10; i++)
                 {
-                    Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowClr * 2f, 1f);
+                    Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowColorCache * 2f, 1f);
                 }
             }
             if ((int)Projectile.ai[0] < 40f)
@@ -77,7 +69,7 @@ namespace Aequus.Projectiles.Magic
             }
             if (Main.rand.NextBool(9))
             {
-                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowClr * 2f, 1f);
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowColorCache * 2f, 1f);
             }
             Projectile.rotation += Projectile.velocity.Length() * Main.rand.NextFloat(0.01f, 0.0157f);
         }
@@ -109,14 +101,14 @@ namespace Aequus.Projectiles.Magic
             prim.Draw(Projectile.oldPos);
             //Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, Color.White, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowColorCache, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
 
         public Color GetTrailColor(float progress)
         {
-            return (_glowClr * 2f).UseA(20).HueAdd((Projectile.frame != 0 ? progress : -progress) * 0.33f) * (1f - progress);
+            return (_glowColorCache * 2f).UseA(20).HueAdd((Projectile.frame != 0 ? progress : -progress) * 0.33f) * (1f - progress);
         }
 
         public override void Kill(int timeLeft)
@@ -125,7 +117,7 @@ namespace Aequus.Projectiles.Magic
             float size = Projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server)
             {
-                SoundEngine.PlaySound(UmysticDestroyd, Projectile.Center);
+                SoundEngine.PlaySound(UmystickDestroyed, Projectile.Center);
             }
             for (int i = 0; i < 30; i++)
             {
@@ -134,7 +126,7 @@ namespace Aequus.Projectiles.Magic
                 Main.dust[d].position = center + n * Main.rand.NextFloat(0f, size);
                 Main.dust[d].velocity = n * Main.rand.NextFloat(2f, 7f);
                 Main.dust[d].scale = Main.rand.NextFloat(0.8f, 1.75f);
-                Main.dust[d].color = _glowClr * Main.rand.NextFloat(0.8f, 2f);
+                Main.dust[d].color = _glowColorCache * Main.rand.NextFloat(0.8f, 2f);
             }
         }
     }

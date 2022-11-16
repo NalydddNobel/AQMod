@@ -34,10 +34,10 @@ namespace Aequus.Items.Tools.Misc
 
         public override bool? UseItem(Player player)
         {
-            AequusWorld.whiteFlag = !AequusWorld.whiteFlag;
+            AequusWorld.usedWhiteFlag = !AequusWorld.usedWhiteFlag;
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                AequusText.Broadcast($"WhiteFlag.{(AequusWorld.whiteFlag ? "True" : "False")}", TextColor);
+                AequusText.Broadcast($"WhiteFlag.{(AequusWorld.usedWhiteFlag ? "True" : "False")}", TextColor);
             }
             return true;
         }

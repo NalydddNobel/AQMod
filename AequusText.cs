@@ -354,7 +354,7 @@ namespace Aequus
             switch (liquidType)
             {
                 default:
-                    return "Unknown";
+                    return Unknown;
 
                 case LiquidID.Water:
                     return Language.GetTextValue("Mods.Aequus.Water");

@@ -142,8 +142,9 @@ namespace Aequus.Buffs
             }
         }
 
-        public static bool InflictAndPlaySound(NPC target, int type, int time, SoundStyle sound)
+        public static bool AddBuffSpecial(NPC target, int type, int time, out bool canPlaySound)
         {
+            canPlaySound = false;
             if (target.life <= 0)
             {
                 return false;
@@ -154,16 +155,13 @@ namespace Aequus.Buffs
             target.AddBuff(type, time);
 
             bool hasBuff = target.HasBuff(type);
-            if (!hasBuffOld && hasBuff)
-            {
-                SoundEngine.PlaySound(sound);
-            }
+            canPlaySound = !hasBuffOld && hasBuff;
             return hasBuff;
         }
 
-        public static bool InflictAndPlaySound<T>(NPC target, int time, SoundStyle sound) where T : ModBuff
+        public static bool ApplyBuff<T>(NPC target, int time, out bool canPlaySound) where T : ModBuff
         {
-            return InflictAndPlaySound(target, ModContent.BuffType<T>(), time, sound);
+            return AddBuffSpecial(target, ModContent.BuffType<T>(), time, out canPlaySound);
         }
 
         public static bool AddStaticImmunity(int npc, params int[] buffList)

@@ -26,7 +26,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 16f;
             Item.useAmmo = AmmoID.Bullet;
-            Item.UseSound = Aequus.GetSound("doomshotgun");
+            Item.UseSound = Aequus.GetSound("Item/doomShotgun");
             Item.value = Item.sellPrice(gold: 4);
             Item.autoReuse = true;
             Item.knockBack = 1f;

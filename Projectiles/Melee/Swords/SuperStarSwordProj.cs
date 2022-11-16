@@ -127,7 +127,15 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            AequusBuff.InflictAndPlaySound<BlueFire>(target, 240, BlueFire.InflictDebuffSound);
+            AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound); 
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

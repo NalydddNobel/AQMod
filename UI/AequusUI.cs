@@ -149,8 +149,7 @@ namespace Aequus.UI
             {
                 i.Update(gameTime);
             }
-            Aequus.InventoryInterface.Update(gameTime);
-            Aequus.NPCTalkInterface.Update(gameTime);
+            Aequus.UserInterface.Update(gameTime);
             if (Main.mouseItem != null && !Main.mouseItem.IsAir)
             {
                 specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
@@ -172,7 +171,7 @@ namespace Aequus.UI
         public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
         {
             leftInvOffset = 0;
-            ManageUserInterfaceLayer(layers, Aequus.NPCTalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
+            ManageUserInterfaceLayer(layers, Aequus.UserInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
 
             foreach (var i in UserInterfaces)
             {
@@ -268,7 +267,7 @@ namespace Aequus.UI
                 {
                     PlayerInput.Triggers.JustPressed.Grapple = false;
                 }
-                Aequus.NPCTalkInterface.SetState(null);
+                Aequus.UserInterface.SetState(null);
             }
         }
 

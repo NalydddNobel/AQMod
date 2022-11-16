@@ -1,13 +1,11 @@
-﻿using System.IO;
-
-namespace Aequus
+﻿namespace Aequus
 {
     public enum PacketType : byte
     {
         RequestTileSectionFromServer,
         SyncNecromancyOwner,
         SyncAequusPlayer,
-        SyncZombieRecruitSound,
+        SyncSound,
         DemonSiegeSacrificeStatus,
         StartDemonSiege,
         RemoveDemonSiege,
@@ -27,18 +25,16 @@ namespace Aequus
         RequestChestItems,
         RequestAnalysisQuest,
         SpawnShutterstockerClip,
-        Count,
+        Count
     }
 
-    public static class PacketTypeExtensions
+    public enum SoundPacket : byte
     {
-        public static void Write(this BinaryWriter writer, PacketType packetType)
-        {
-            writer.Write((byte)packetType);
-        }
-        public static PacketType ReadPacketType(this BinaryReader reader)
-        {
-            return (PacketType)reader.ReadByte();
-        }
+        RecruitZombie,
+        InflictBleeding,
+        InflictBurning,
+        InflictBurning2,
+        InflictNightfall,
+        Count
     }
 }

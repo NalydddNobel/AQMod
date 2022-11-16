@@ -40,10 +40,10 @@ namespace Aequus.Content.Necromancy
                 NPCTarget = -1;
             }
         }
+        
+        public static SoundStyle RecruitZombieSound => Aequus.GetSound("recruitZombie");
 
         public static byte CheckZombies;
-
-        public static SoundStyle ZombieRecruitSound { get; private set; }
 
         public static ActiveZombieInfo Zombie { get; private set; }
         public static PlayerTargetHack TargetHack { get; set; }
@@ -74,10 +74,6 @@ namespace Aequus.Content.Necromancy
             On.Terraria.NPC.FindFirstNPC += NPC_FindFirstNPC;
             On.Terraria.NPC.AnyNPCs += NPC_AnyNPCs;
             On.Terraria.NPC.CountNPCS += NPC_CountNPCS;
-            if (!Main.dedServ)
-            {
-                ZombieRecruitSound = Aequus.GetSound("zombierecruit");
-            }
         }
 
         private static int NPC_FindFirstNPC(On.Terraria.NPC.orig_FindFirstNPC orig, int Type)
@@ -550,11 +546,11 @@ namespace Aequus.Content.Necromancy
                 {
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        PacketSystem.Send((p) => p.WriteVector2(npc.Center), PacketType.SyncZombieRecruitSound);
+                        PacketSystem.SyncSound(SoundPacket.RecruitZombie, npc.Center);
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        SoundEngine.PlaySound(ZombieRecruitSound);
+                        SoundEngine.PlaySound(RecruitZombieSound, npc.Center);
                     }
                 }
             }

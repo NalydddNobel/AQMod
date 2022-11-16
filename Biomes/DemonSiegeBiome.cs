@@ -1,5 +1,4 @@
-﻿using Aequus.Sounds;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;

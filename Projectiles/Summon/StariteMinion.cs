@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -207,9 +208,18 @@ namespace Aequus.Projectiles.Summon
                 dustAmount *= 2;
             }
 
-            if (Main.rand.NextBool(9) && AequusBuff.InflictAndPlaySound<BlueFire>(target, 120, BlueFire.InflictDebuffSound))
+            if (Main.rand.NextBool(9))
             {
-                dustAmount *= 2;
+                AequusBuff.ApplyBuff<BlueFire>(target, 120, out bool canPlaySound);
+                if (canPlaySound)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
+                    }
+                    SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+                    dustAmount *= 2;
+                }
             }
             for (int i = 0; i < dustAmount; i++)
             {

@@ -102,7 +102,7 @@ namespace Aequus.Projectiles.Ranged
                 }
                 if (!_playedSound)
                 {
-                    SoundEngine.PlaySound(new SoundStyle("Aequus/Sounds/Items/Slingshot/shoot", 2), player.Center);
+                    SoundEngine.PlaySound(Aequus.GetSounds("Item/Slingshot/Shoot", 3), player.Center);
                     _playedSound = true;
                 }
                 Projectile.velocity.Y += Gravity;

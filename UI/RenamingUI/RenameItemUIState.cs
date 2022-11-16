@@ -82,7 +82,7 @@ namespace Aequus.UI.RenameItemUI
             base.Update(gameTime);
             if (Main.LocalPlayer.talkNPC == -1 || Main.npc[Main.LocalPlayer.talkNPC].type != ModContent.NPCType<SkyMerchant>())
             {
-                Aequus.NPCTalkInterface.SetState(null);
+                Aequus.UserInterface.SetState(null);
             }
         }
 

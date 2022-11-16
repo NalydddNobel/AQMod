@@ -17,7 +17,6 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.OmegaStariteProjs;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -700,7 +699,7 @@ namespace Aequus.NPCs.Boss
                         {
                             if (PlrCheck())
                             {
-                                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/starbullets", 0.3f, 0.5f, 0.1f), NPC.Center);
+                                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/starBullets", 0.3f, 0.5f, 0.1f), NPC.Center);
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;

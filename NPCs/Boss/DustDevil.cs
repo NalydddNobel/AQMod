@@ -8,7 +8,6 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Projectiles.Monster.DustDevilProjs;
-using Aequus.Sounds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;

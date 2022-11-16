@@ -98,7 +98,7 @@ namespace Aequus.Projectiles.Melee.Swords
             if (!playedSound && AnimProgress > 0.4f)
             {
                 playedSound = true;
-                SoundEngine.PlaySound(SoundHelpers.SwordSwoosh.WithPitchOffset(0.5f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)), Projectile.Center);
+                SoundEngine.PlaySound(Aequus.GetSounds("Item/swordSwoosh", 7, 1f, 0.5f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)), Projectile.Center);
             }
             swingTimePrev = swingTime;
             swingTime--;
