@@ -71,9 +71,11 @@ namespace Aequus.Projectiles.Melee.Swords
             player.heldProj = Projectile.whoAmI;
             if (!_init)
             {
+                Projectile.scale = 1f;
                 Initialize(player, player.Aequus());
                 scale = Projectile.scale;
                 Projectile.netUpdate = true;
+                _init = true;
             }
 
             if (SwingSwitchDir)
@@ -105,8 +107,6 @@ namespace Aequus.Projectiles.Melee.Swords
                 Projectile.scale = scale;
                 visualOutwards = (int)outer;
             }
-
-            _init = true;
         }
 
         public virtual void UpdateSwing(float progress, float interpolatedSwingProgress)

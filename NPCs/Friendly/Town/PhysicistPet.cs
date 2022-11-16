@@ -186,9 +186,10 @@ namespace Aequus.NPCs.Friendly.Town
                     NPC.velocity.Normalize();
                     NPC.velocity *= 7f;
                 }
-                if (difference.Length() > 2000f)
+                if (difference.Length() > 900f)
                 {
                     NPC.Center = npcOwner.Center;
+                    NPC.netUpdate = true;
                 }
             }
             if (NPC.position.Y < npcOwner.position.Y)

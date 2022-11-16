@@ -28,6 +28,7 @@ namespace Aequus.NPCs.Friendly.Town
     public class Physicist : ModNPC
     {
         public int spawnPet;
+        public static int awaitQuest;
 
         public override void SetStaticDefaults()
         {
@@ -221,12 +222,28 @@ namespace Aequus.NPCs.Friendly.Town
                 return;
             }
 
+            awaitQuest = 30;
+            QuestButtonPressed();
+        }
+        public static void QuestButtonPressed()
+        {
             var player = Main.LocalPlayer;
             var questPlayer = player.GetModPlayer<AnalysisPlayer>();
             //Main.NewText(questPlayer.completed);
             if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0 && questPlayer.questResetTime <= 0)
             {
-                questPlayer.RefreshQuest(questPlayer.completed);
+                questPlayer.quest = default(QuestInfo);
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    var p = Aequus.GetPacket(PacketType.RequestAnalysisQuest);
+                    p.Write(Main.myPlayer);
+                    p.Write(questPlayer.completed);
+                    p.Send();
+                }
+                else
+                {
+                    questPlayer.RefreshQuest(questPlayer.completed);
+                }
             }
             if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0)
             {
@@ -275,7 +292,7 @@ namespace Aequus.NPCs.Friendly.Town
                 Main.npcChatText += $"\n{AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest2", new { Item = validItem.Name, })}";
             }
         }
-        public Item FindPotentialQuestItem(Player player, QuestInfo questInfo)
+        public static Item FindPotentialQuestItem(Player player, QuestInfo questInfo)
         {
             for (int i = 0; i < Main.InventorySlotsTotal; i++)
             {
@@ -293,12 +310,12 @@ namespace Aequus.NPCs.Friendly.Town
             }
             return null;
         }
-        public bool CanBeQuestItem(Item item, QuestInfo questInfo)
+        public static bool CanBeQuestItem(Item item, QuestInfo questInfo)
         {
             return !item.favorited && !item.IsAir && !item.IsACoin && 
                 item.OriginalRarity == questInfo.itemRarity && !AnalysisSystem.IgnoreItem.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
         }
-        public string QuestChat(QuestInfo questInfo)
+        public static string QuestChat(QuestInfo questInfo)
         {
             return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.ColorCommand(AequusText.GetRarityNameValue(questInfo.itemRarity), AequusHelpers.GetRarityColor(questInfo.itemRarity)), });
         }

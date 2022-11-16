@@ -324,6 +324,8 @@ namespace Aequus.Tiles
                     Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<GlowingMossMushrooms>();
                     Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * 18);
                     Main.tile[i + k, j + l].TileFrameY = (short)(l * 18);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i + - 1, j + l - 1, 3, 3);
                 }
             }
 
@@ -401,7 +403,13 @@ namespace Aequus.Tiles
                         if (Main.tile[i, y + 1].TileType == validTile[k] && !CheckForType(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), tile))
                         {
                             WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
-                            return Main.tile[i, y].TileType == tile;
+                            if (Main.tile[i, y].TileType == tile)
+                            {
+                                if (Main.netMode != NetmodeID.SinglePlayer)
+                                    NetMessage.SendTileSquare(-1, i - 1, y - 1, 3, 3);
+                                return true;
+                            }
+                            return false;
                         }
                     }
                 }

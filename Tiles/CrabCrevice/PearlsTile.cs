@@ -17,6 +17,7 @@ namespace Aequus.Tiles.CrabCrevice
             Main.tileShine2[Type] = true;
             Main.tileOreFinderPriority[Type] = 110;
             Main.tileSpelunker[Type] = true;
+            Main.tileNoFail[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;

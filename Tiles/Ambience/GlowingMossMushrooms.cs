@@ -138,6 +138,8 @@ namespace Aequus.Tiles.Ambience
                     if (AequusTile.GrowGrass(x, y, moss))
                     {
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                            NetMessage.SendTileSquare(-1, x, y);
                         reps += 4;
                         maxDist = 10;
                         i = x;
@@ -147,17 +149,21 @@ namespace Aequus.Tiles.Ambience
                 }
                 else if (Main.tile[x, y].TileType == TileID.GrayBrick)
                 {
+                    int brickMoss = TileID.ArgonMossBrick;
                     switch (frame)
                     {
-                        case Argon:
-                            AequusTile.GrowGrass(x, y, TileID.ArgonMossBrick);
-                            break;
                         case Krypton:
-                            AequusTile.GrowGrass(x, y, TileID.KryptonMossBrick);
+                            brickMoss = TileID.KryptonMossBrick;
                             break;
                         case Xenon:
-                            AequusTile.GrowGrass(x, y, TileID.XenonMossBrick);
+                            brickMoss = TileID.XenonMossBrick;
                             break;
+                    }
+                    if (AequusTile.GrowGrass(x, y, brickMoss))
+                    {
+                        WorldGen.SquareTileFrame(x, y, resetFrame: true);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                            NetMessage.SendTileSquare(-1, x, y);
                     }
                 }
             }

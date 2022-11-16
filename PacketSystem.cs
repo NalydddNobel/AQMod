@@ -2,12 +2,14 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Common;
 using Aequus.Content;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables;
+using Aequus.Items.Tools.Camera;
 using Aequus.NPCs.Boss;
-using Aequus.Projectiles.Summon.Necro;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -15,7 +17,6 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -41,6 +42,8 @@ namespace Aequus
                 PacketType.ExporterQuestsCompleted,
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
+                PacketType.RequestAnalysisQuest,
+                PacketType.SpawnShutterstockerClip,
             };
             TileCoatingSync = new List<Rectangle>();
         }
@@ -234,6 +237,49 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.SpawnShutterstockerClip:
+                    {
+                        int player = reader.ReadInt32();
+                        int i = Item.NewItem(Main.player[player].GetSource_ItemUse_WithPotentialAmmo(Main.player[player].HeldItem, Main.player[player].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[player].getRect(),
+                            ModContent.ItemType<ShutterstockerClip>());
+                        if (i == -1)
+                        {
+                            return;
+                        }
+                        Main.item[i].ModItem<ShutterstockerClip>().NetReceive(reader);
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
+                    }
+                    break;
+
+                case PacketType.RequestAnalysisQuest:
+                    {
+                        int player = reader.ReadInt32();
+                        var modPlayer = Main.player[player].GetModPlayer<AnalysisPlayer>();
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            int completed = reader.ReadInt32();
+                            modPlayer.RefreshQuest(completed);
+                            var quest = modPlayer.quest;
+                            if (quest.isValid)
+                            {
+                                var p = Aequus.GetPacket(PacketType.RequestAnalysisQuest);
+                                p.Write(player);
+                                quest.NetSend(p);
+                                p.Send(toClient: player);
+                            }
+                        }
+                        else
+                        {
+                            modPlayer.quest = QuestInfo.NetRecieve(reader);
+                            if (player == Main.myPlayer && Physicist.awaitQuest > 0)
+                            {
+                                Physicist.QuestButtonPressed();
+                            }
+                        }
+                    }
+                    break;
+
                 case PacketType.RequestChestItems:
                     {
                         if (Main.netMode == NetmodeID.Server)

@@ -25,6 +25,8 @@ namespace Aequus
         OnKillEffect,
         ApplyNameTagToNPC,
         RequestChestItems,
+        RequestAnalysisQuest,
+        SpawnShutterstockerClip,
         Count,
     }
 

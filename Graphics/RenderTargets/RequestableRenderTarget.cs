@@ -73,5 +73,10 @@ namespace Aequus.Graphics.RenderTargets
         {
             return false;
         }
+
+        protected bool IsTargetUsable(RenderTarget2D target)
+        {
+            return target != null && !target.IsDisposed && !target.IsContentLost;
+        }
     }
 }

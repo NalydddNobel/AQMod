@@ -13,6 +13,7 @@ namespace Aequus.Tiles.CrabCrevice
             Main.tileFrameImportant[Type] = true;
             Main.tileLighted[Type] = true;
             Main.tileObsidianKill[Type] = true;
+            Main.tileNoFail[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;

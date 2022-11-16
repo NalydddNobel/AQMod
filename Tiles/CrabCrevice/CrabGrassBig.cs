@@ -13,6 +13,7 @@ namespace Aequus.Tiles.CrabCrevice
         {
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
+            Main.tileNoFail[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
             TileObjectData.newTile.StyleHorizontal = true;

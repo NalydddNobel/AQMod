@@ -8,6 +8,7 @@ using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             if (player.GetModPlayer<AequusPlayer>().ZoneDemonSiege)
             {
-                spawnRate = 100;
-                maxSpawns = 8;
+                spawnRate = Math.Min(spawnRate, 100);
+                maxSpawns = Math.Max(maxSpawns, 8);
                 return;
             }
             if (player.Zen())
@@ -47,6 +48,21 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 spawnRate *= 3;
                 maxSpawns = Math.Min(maxSpawns, 2);
+            }
+            if (player.Aequus().ZoneGlimmer)
+            {
+                spawnRate /= 3;
+                maxSpawns = (int)(maxSpawns * 1.25f);
+            }
+            else if (player.Aequus().ZonePeacefulGlimmer)
+            {
+                spawnRate /= 2;
+                maxSpawns /= 2;
+            }
+            if (player.Aequus().ZoneCrabCrevice)
+            {
+                spawnRate /= 2;
+                maxSpawns = (int)(maxSpawns * 1.25f);
             }
         }
 
@@ -118,15 +134,16 @@ namespace Aequus.NPCs.GlobalNPCs
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
                     {
-                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.025f);
+                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.03f);
                     }
                 }
                 else
                 {
-                    pool.Add(ModContent.NPCType<DwarfStariteCritter>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 2f : 0.01f);
+                    pool.Add(ModContent.NPCType<DwarfStariteCritter>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
                 }
             }
-            if (spawnInfo.Player.Aequus().ZoneCrabCrevice)
+            if (spawnInfo.Player.Aequus().ZoneCrabCrevice
+                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
                 pool.Clear();
                 pool.Add(NPCID.Seahorse, 0.01f);
@@ -137,7 +154,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 pool.Add(NPCID.Crab, 1f);
                 pool.Add(NPCID.SeaSnail, 0.05f);
                 pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
-                pool.Add(ModContent.NPCType<CoconutCrab>(), 0.5f);
+                pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
                 if (spawnInfo.Water)
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))

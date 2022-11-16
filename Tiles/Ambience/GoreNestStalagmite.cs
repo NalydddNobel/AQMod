@@ -12,6 +12,7 @@ namespace Aequus.Tiles.Ambience
         {
             Main.tileNoAttach[Type] = true;
             Main.tileFrameImportant[Type] = true;
+            Main.tileNoFail[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
             TileObjectData.newTile.StyleHorizontal = true;

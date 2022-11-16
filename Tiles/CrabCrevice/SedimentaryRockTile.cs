@@ -24,7 +24,7 @@ namespace Aequus.Tiles.CrabCrevice
             DustType = DustID.Sand;
             ItemDrop = ModContent.ItemType<SedimentaryRock>();
             HitSound = SoundID.Tink;
-            MineResist = 1.5f;
+            MineResist = 1.25f;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

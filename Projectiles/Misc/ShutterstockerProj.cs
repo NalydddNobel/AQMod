@@ -5,6 +5,7 @@ using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -18,7 +19,7 @@ namespace Aequus.Projectiles.Misc
     {
         public Vector2 mouseWorld;
 
-        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 60f); }
+        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 36f); }
         public int CalculatedPhotoSize => (int)Projectile.ai[0];
 
         public override void SetDefaults()
@@ -103,13 +104,37 @@ namespace Aequus.Projectiles.Misc
 
             if (Main.myPlayer == Projectile.owner)
             {
-                var item = AequusItem.SetDefaults<ShutterstockerClip>();
+                Item item;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
+                }
+                else
+                {
+                    int i = Item.NewItem(player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, player.HeldItem.useAmmo, "Shutterstock Photo Creation"), player.getRect(),
+                        ModContent.ItemType<ShutterstockerClip>());
+                    if (i == -1)
+                    {
+                        return;
+                    }
+                    item = Main.item[i];
+                }
+
                 int size = CalculatedPhotoSize + ShutterstockerSceneRenderer.TilePadding;
                 var coords = Projectile.Center.ToTileCoordinates();
                 var rect = new Rectangle(coords.X - size / 2, coords.Y - size / 2, size, size);
                 item.ModItem<ShutterstockerClip>().SetClip(rect);
-                ShutterstockerSceneRenderer.renderRequests.Add(item.ModItem<ShutterstockerClip>());
-                player.QuickSpawnClonedItem(player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, player.HeldItem.useAmmo, "Shutterstock Photo Creation"), item, 1);
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    ShutterstockerSceneRenderer.RenderRequests.Add(item.ModItem<ShutterstockerClip>());
+                }
+                else
+                {
+                    var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
+                    p.Write(Projectile.owner);
+                    item.ModItem<ShutterstockerClip>().NetSend(p);
+                    p.Send();
+                }
             }
 
             if (Main.netMode == NetmodeID.Server)
@@ -145,6 +170,18 @@ namespace Aequus.Projectiles.Misc
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(mouseWorld.X);
+            writer.Write(mouseWorld.Y);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            mouseWorld.X = reader.ReadSingle();
+            mouseWorld.Y = reader.ReadSingle();
         }
     }
 }

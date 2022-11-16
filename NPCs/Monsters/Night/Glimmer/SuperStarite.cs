@@ -58,7 +58,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.knockBackResist = 0f;
-            NPC.value = Item.buyPrice(silver: 30);
+            NPC.value = Item.buyPrice(silver: 8);
             NPC.npcSlots = 2f;
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<SuperStariteBanner>();

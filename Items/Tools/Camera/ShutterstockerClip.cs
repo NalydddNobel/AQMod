@@ -137,7 +137,7 @@ namespace Aequus.Items.Tools.Camera
                 if (TooltipTexture == null)
                     TooltipTexture = new Ref<RenderTarget2D>();
 
-                ShutterstockerSceneRenderer.renderRequests.Add(this);
+                ShutterstockerSceneRenderer.RenderRequests.Add(this);
                 return;
             }
 
@@ -212,7 +212,9 @@ namespace Aequus.Items.Tools.Camera
                 return;
             }
 
-            writer.Write(daytime);
+            var bb = new BitsByte(daytime, reviewed);
+            writer.Write(bb);
+            writer.Write(timeCreatedSerialized);
             writer.Write(time);
             writer.Write(worldXPercent);
             writer.Write(worldYPercent);
@@ -232,7 +234,10 @@ namespace Aequus.Items.Tools.Camera
             if (reader.ReadBoolean())
                 return;
 
-            daytime = reader.ReadBoolean();
+            var bb = (BitsByte)reader.ReadByte();
+            daytime = bb[0];
+            reviewed = bb[1];
+            timeCreatedSerialized = reader.ReadInt64();
             time = reader.ReadInt32();
             worldXPercent = reader.ReadSingle();
             worldYPercent = reader.ReadSingle();

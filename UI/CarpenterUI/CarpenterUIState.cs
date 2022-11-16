@@ -107,7 +107,7 @@ namespace Aequus.UI.CarpenterUI
                         Main.mouseLeftRelease = false;
 
                         bool completed = selected.bounty.CheckConditions(new CarpenterBounty.ConditionInfo(clip, Main.npc[Main.LocalPlayer.talkNPC]), out string responseMessage);
-                        ShutterstockerSceneRenderer.renderRequests.Add(clip);
+                        ShutterstockerSceneRenderer.RenderRequests.Add(clip);
                         clip.reviewed = true;
                         SoundEngine.PlaySound(SoundID.Chat);
                         Main.playerInventory = true;

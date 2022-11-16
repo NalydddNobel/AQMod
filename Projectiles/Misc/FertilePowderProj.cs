@@ -75,10 +75,6 @@ namespace Aequus.Projectiles.Misc
                     d.velocity = Projectile.velocity * 0.3f;
                 }
             }
-            if (Main.myPlayer != Projectile.owner)
-            {
-                return;
-            }
             Projectile.localAI[0]--;
             if (Main.netMode == NetmodeID.MultiplayerClient || Projectile.localAI[0] > 0f)
             {

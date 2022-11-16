@@ -12,67 +12,74 @@ namespace Aequus.Graphics.RenderTargets
 {
     public class ShutterstockerSceneRenderer : RequestableRenderTarget
     {
-        public static List<ShutterstockerClip> renderRequests;
         public const int TileSize = 16;
-        public const int TilePadding = 12;
+        public const int TilePadding = 6;
+
         public static int TilePaddingForChecking => TilePadding - 2;
+
+        public static List<ShutterstockerClip> RenderRequests { get; private set; }
 
         public override void Load(Mod mod)
         {
             base.Load(mod);
-            renderRequests = new List<ShutterstockerClip>();
+            RenderRequests = new List<ShutterstockerClip>();
         }
 
         public override void Unload()
         {
-            renderRequests?.Clear();
-            renderRequests = null;
+            RenderRequests?.Clear();
+            RenderRequests = null;
             base.Unload();
         }
 
         protected override void PrepareRenderTargetsForDrawing(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            if (renderRequests.Count == 0 || renderRequests[0].tileMap == null || renderRequests[0].TooltipTexture == null)
+            if (RenderRequests.Count == 0 || RenderRequests[0].tileMap == null || RenderRequests[0].TooltipTexture == null)
                 return;
 
             int size = TileSize;
             int sub = TilePadding * TileSize;
-            PrepareARenderTarget_WithoutListeningToEvents(ref _target, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.PreserveContents);
-            PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, renderRequests[0].tileMap.Width * size - sub, renderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.DiscardContents);
+            PrepareARenderTarget_WithoutListeningToEvents(ref _target, device, RenderRequests[0].tileMap.Width * size - sub, RenderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.PreserveContents);
+            PrepareARenderTarget_WithoutListeningToEvents(ref helperTarget, device, RenderRequests[0].tileMap.Width * size - sub, RenderRequests[0].tileMap.Height * size - sub, RenderTargetUsage.DiscardContents);
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            if (renderRequests.Count == 0)
+            if (RenderRequests.Count == 0 || !IsTargetUsable(_target) || !IsTargetUsable(helperTarget))
                 return;
 
-            if (renderRequests[0].tileMap == null || renderRequests[0].tileMap == null)
+            if (RenderRequests[0].Item == null || 
+                RenderRequests[0].tileMap == null)
             {
-                renderRequests.RemoveAt(0);
+                RenderRequests.RemoveAt(0);
                 return;
             }
 
-            var tileMap = renderRequests[0].tileMap;
-            var texture = renderRequests[0].TooltipTexture;
+            var tileMap = RenderRequests[0].tileMap;
+            var texture = RenderRequests[0].TooltipTexture;
 
-            DrawCapture(device, spriteBatch, tileMap, renderRequests[0]);
+            try
+            {
+                DrawCapture(tileMap, RenderRequests[0]);
+                spriteBatch.Begin();
+                device.SetRenderTarget(_target);
+                device.Clear(Color.Transparent);
 
-            spriteBatch.Begin();
-            device.SetRenderTarget(_target);
-            device.Clear(Color.Transparent);
+                spriteBatch.Draw(helperTarget, new Rectangle(0, 0, helperTarget.Width, helperTarget.Height), Color.White);
 
-            spriteBatch.Draw(helperTarget, new Rectangle(0, 0, helperTarget.Width, helperTarget.Height), Color.White);
+                spriteBatch.End();
 
-            spriteBatch.End();
-
-            texture.Value = _target;
-
+                texture.Value = _target;
+            }
+            catch
+            {
+            }
             _target = null;
 
-            renderRequests.RemoveAt(0);
+            RenderRequests.RemoveAt(0);
 
         }
-        private void DrawCapture(GraphicsDevice device, SpriteBatch spriteBatch, TileMapCache map, ShutterstockerClip clip)
+        private static void DrawCapture(TileMapCache map, ShutterstockerClip clip)
         {
             var area = map.Area;
 
@@ -120,6 +127,7 @@ namespace Aequus.Graphics.RenderTargets
                 {
                     entities.Add(Main.player[i]);
                     Main.player[i].active = false;
+                    Main.player[i].outOfRange = true;
                 }
             }
 
@@ -253,7 +261,7 @@ namespace Aequus.Graphics.RenderTargets
 
         protected override bool SelfRequest()
         {
-            return renderRequests.Count > 0;
+            return RenderRequests.Count > 0;
         }
     }
 }

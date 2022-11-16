@@ -47,5 +47,10 @@
 
   "Fargowiltas": {
     "SiblingPylonTile": "0, 82, 44"
+  },
+
+  "Spooky": {
+    "SpookyBiomePylon": "255, 150, 30",
+    "SpookyHellPylon": "145, 30, 255"
   }
 }
