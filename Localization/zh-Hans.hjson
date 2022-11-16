@@ -89,8 +89,6 @@ Mods: {
 			SplashPotion: +可投掷
 			BuffDuration: "{0}持续时间"
 			BuffEmpowerment: "{0}增益强度"
-
-			SoulGemTier: "{0}弹药消耗"
 		}
 
 		nalyd: "'闻起来像玫瑰'"
@@ -265,12 +263,6 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			# Soul Gems #
-			PettySoulGem: 小灵魂宝石
-			LesserSoulGem: 较小的灵魂宝石
-			GreaterSoulGem: 较大的灵魂宝石
-			GrandSoulGem: 大灵魂宝石
-
 			# Critter Items #
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
@@ -424,6 +416,10 @@ Mods: {
 			MistralPollen: 梦幻花粉
 			MoonflowerPollen: 月光花粉
 
+			SoulGem: 空灵魂宝石
+			SoulGemFilled: 灵魂宝石
+
+			Mussel: 蚌
 			BloodyTearFragment: 血泪石
 			Fluorescence: 荧光
 			FrozenTear: 冰霜之泪
@@ -432,9 +428,9 @@ Mods: {
 
 			PhaseMirror: 相位镜
 
-			InactivePylonCleanser: 未激活的晶塔清扫机
-			InactivePylonHealer: 未激活的晶塔治疗机
-			InactivePylonGunner: 未激活的晶塔火炮机
+			InactivePylonCleanser: 晶塔清扫机
+			InactivePylonHealer: 晶塔治疗机
+			InactivePylonGunner: 晶塔火炮机
 
 			CelesitalEightBall: 星界八号球
 
@@ -1149,16 +1145,11 @@ Mods: {
 				'''
 
 			PotionOfResurrection: 将你传送至上次死亡时的位置
+
+			SoulGem: 捕获敌人的灵魂
 			
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
-
-
-			# Soul Gems #
-			PettySoulGem: 捕获弱小生物的灵魂
-			LesserSoulGem: 捕获强壮生物的灵魂
-			GreaterSoulGem: 捕获强大生物的灵魂
-			GrandSoulGem: 捕获非常强大生物的灵魂
 
 			# Legendary Fish #
 			CrabDaughter:
@@ -1378,9 +1369,6 @@ Mods: {
 				RouletteDrop: 下列物品必定掉落
 
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
-
-				# Ex: Uses Petty soul gems as ammo
-				SoulGemCost: 使用{SoulTier}灵魂宝石作为弹药
 			}
 
 			Misc: {
@@ -2596,13 +2584,6 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: 任务鱼
-		}
-
-		SoulGemTier: {
-			1: 小
-			2: 较小的
-			3: 较大的
-			4: 大
 		}
 
 		Water: 水
