@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons
 {
+    [Obsolete("Soul gem weapon experiment ended, souls gems were cut.")]
     public abstract class LegacySoulGemWeaponBase : ModItem
     {
         public const int MaxTier = 4;

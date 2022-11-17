@@ -42,6 +42,17 @@ namespace Aequus.Projectiles.Summon.Necro
 
         protected virtual void OnSpawnZombie(NPC npc, NecromancyNPC zombie)
         {
+            zombie.MakeRoomForMe(npc, out int killMinion);
+            if (killMinion != -1)
+            {
+                Main.npc[killMinion].life = -1;
+                Main.npc[killMinion].HitEffect();
+                Main.npc[killMinion].active = false;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, killMinion, 9999 + Main.npc[killMinion].lifeMax * 2 + Main.npc[killMinion].defense * 2);
+                }
+            }
             zombie.zombieOwner = Projectile.owner;
             zombie.SpawnZombie_SetZombieStats(npc, Projectile.Center, Projectile.velocity, 0, 0, out bool _);
             zombie.renderLayer = ColorTargetID.BloodRed;

@@ -202,8 +202,8 @@ Mods: {
 			HailstormStaff: Hailstorm Staff
 
 			# Soul Tapers
-			PrimeTaperCandle: Tyranny's Resurgance
-			SkeletronTaperCandle: Malediction
+			PrimeCandle: Tyranny's Resurgance
+			SkeletronCandle: Malediction
 
 			# Soul Candles
 			DragonsBreath: Dragon's Last Breath
@@ -890,8 +890,12 @@ Mods: {
 				'''
 
 			# Soul Tapers
-			PrimeTaperCandle: Applies Skeletron Prime's arms to a ghost minion
-			SkeletronTaperCandle: Applies Skeletron's arms to a ghost minion
+			PrimeCandle: 
+				'''
+				Applies Skeletron Prime's arms to a ghost minion
+				Consumes bloody tearstones
+				'''
+			SkeletronCandle: Applies Skeletron's arms to a ghost minion
 
 			DragonsBreath: Summon a phantasmal dragon to fight for you
 			CrimsonCandle: Summons a blood crawler to fight for you
@@ -2123,7 +2127,7 @@ Mods: {
 					Like all living things however, I have to put their suffering to an end.
 					'''
 				OccultistCandle: I find it useful for rituals, tehe~
-				SkeletronTaperCandle: 
+				SkeletronCandle: 
 					'''
 					Thinking that possessing dead corpses isn't dark? 
 					Why not double up your curses and grant them the dark hands of Skeletron!

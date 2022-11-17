@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -52,6 +53,8 @@ namespace Aequus.Items
         public static int DungeonValue => Item.sellPrice(gold: 1, silver: 75);
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
+
+        public static int AmmoBloodyTearstone => ModContent.ItemType<BloodyTearFragment>();
 
         public static void SetGlowMask(this Item item)
         {

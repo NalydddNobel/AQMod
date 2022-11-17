@@ -37,7 +37,6 @@ namespace Aequus.Projectiles.Misc.Drones
 
         public override void AI()
         {
-
             base.AI();
 
             healingAuraOpacity = Math.Clamp(healingAuraOpacity, 0f, 1f);
@@ -255,7 +254,7 @@ namespace Aequus.Projectiles.Misc.Drones
             float distance = 2400f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax)
+                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
                 {
                     float d = Projectile.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance)
@@ -272,7 +271,7 @@ namespace Aequus.Projectiles.Misc.Drones
             distance = 3200f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax)
+                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
                 {
                     float d = Projectile.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, Projectile.position, Projectile.width, Projectile.height))

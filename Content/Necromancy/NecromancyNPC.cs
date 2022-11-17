@@ -301,6 +301,7 @@ namespace Aequus.Content.Necromancy
                 npc.boss = false;
                 npc.alpha = Math.Max(npc.alpha, 60);
                 npc.dontTakeDamage = true;
+                npc.SpawnedFromStatue = true;
                 npc.npcSlots = 0f;
                 if (!Main.player[npc.target].active || Main.player[npc.target].dead || !Main.player[npc.target].hostile || Main.player[npc.target].team == Main.player[zombieOwner].team)
                 {
@@ -523,39 +524,40 @@ namespace Aequus.Content.Necromancy
             }
         }
 
+        public bool MakeRoomForMe(NPC npc, out int killMinion)
+        {
+            float lowestPriority = float.MaxValue;
+            killMinion = -1;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == zombieOwner && zombie.slotsConsumed > 0)
+                {
+                    int priority = zombie.DespawnPriority(Main.npc[i]);
+                    if (priority < lowestPriority)
+                    {
+                        killMinion = i;
+                        lowestPriority = priority;
+                    }
+                }
+            }
+            return killMinion != -1;
+        }
         public bool CanSpawnZombie(NPC npc, bool justChecking = true)
         {
             ApplyStaticStats(npc);
             bool forceSpawn = false;
             if (Main.player[zombieOwner].HasMinionAttackTargetNPC && Main.player[zombieOwner].MinionAttackTargetNPC == npc.whoAmI)
             {
-                float lowestPriority = float.MaxValue;
-                int lowestPriorityZombie = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
+                MakeRoomForMe(npc, out int killMinion);
+                if (!justChecking && killMinion != -1)
                 {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == zombieOwner && zombie.slotsConsumed > 0)
+                    Main.npc[killMinion].life = -1;
+                    Main.npc[killMinion].HitEffect();
+                    Main.npc[killMinion].active = false;
+                    if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        int priority = zombie.DespawnPriority(Main.npc[i]);
-                        if (priority < lowestPriority)
-                        {
-                            lowestPriorityZombie = i;
-                            lowestPriority = priority;
-                        }
+                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, killMinion, 9999 + Main.npc[killMinion].lifeMax * 2 + Main.npc[killMinion].defense * 2);
                     }
-                }
-                if (lowestPriorityZombie != -1)
-                {
-                    if (!justChecking)
-                    {
-                        Main.npc[lowestPriorityZombie].life = -1;
-                        Main.npc[lowestPriorityZombie].HitEffect();
-                        Main.npc[lowestPriorityZombie].active = false;
-                        if (Main.netMode != NetmodeID.SinglePlayer)
-                        {
-                            NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, lowestPriorityZombie, 9999 + Main.npc[lowestPriorityZombie].lifeMax * 2 + Main.npc[lowestPriorityZombie].defense * 2);
-                        }
-                    }
-                    return true;
                 }
             }
             if (!forceSpawn)
@@ -602,6 +604,16 @@ namespace Aequus.Content.Necromancy
                 SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection, out bool playSound);
                 if (playSound)
                 {
+                    if (Main.netMode != NetmodeID.Server)
+                    {
+                        var clr = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor().UseA(25) * 0.8f;
+                        for (int i = 0; i < 50; i++)
+                        {
+                            var d = Dust.NewDustDirect(Main.npc[n].position, Main.npc[n].width, Main.npc[n].height, ModContent.DustType<GhostDrainDust>(), newColor: clr.HueAdd(Main.rand.NextFloat(-0.02f, 0.02f)).UseA(25), Scale: Main.rand.NextFloat(0.75f, 1.75f));
+                            d.customData = Main.player[zombieOwner];
+                            d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(8f);
+                        }
+                    }
                     if (Main.netMode == NetmodeID.Server)
                     {
                         PacketSystem.SyncSound(SoundPacket.RecruitZombie, npc.Center);
@@ -641,16 +653,6 @@ namespace Aequus.Content.Necromancy
             if (Main.netMode == NetmodeID.Server)
             {
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, zombieNPC.whoAmI);
-            }
-            else
-            {
-                var clr = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor().UseA(25) * 0.8f;
-                for (int i = 0; i < 50; i++)
-                {
-                    var d = Dust.NewDustDirect(zombieNPC.position, zombieNPC.width, zombieNPC.height, ModContent.DustType<GhostDrainDust>(), newColor: clr.HueAdd(Main.rand.NextFloat(-0.02f, 0.02f)).UseA(25), Scale: Main.rand.NextFloat(0.75f, 1.75f));
-                    d.customData = Main.player[zombieOwner];
-                    d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(8f);
-                }
             }
             playSound = true;
         }

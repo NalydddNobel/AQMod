@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro
 {
+    [Obsolete("Soul gem weapon experiment ended, souls gems were cut.")]
     public abstract class SoulCandleBase : LegacySoulGemWeaponBase
     {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
