@@ -1459,7 +1459,7 @@ Mods: {
 
 			PiranhaPlantBuff: 邪恶植物
 			BrainCauliflowerBuff: 脑菜花
-			MindfungusBuff: 心灵真菌
+			MindfungusBuff: 猩红催眠菇
 			StariteBuff: 星之源
 			ScribbleNotebookBuff: 涂鸦
 			CorruptPlantBuff: 腐化植物
@@ -1528,7 +1528,7 @@ Mods: {
 
 			PiranhaPlantBuff: 邪恶植物会为你而战
 			BrainCauliflowerBuff: 脑菜花会为你而战
-			MindfungusBuff: 心灵真菌会为你而战
+			MindfungusBuff: 猩红催眠菇会为你而战
 			StariteBuff: 星之源会为你而战
 			ScribbleNotebookBuff: 物体会为你而战
 			CorruptPlantBuff: 腐化植物会为你而战
@@ -2148,7 +2148,7 @@ Mods: {
 					我在幼儿园科学展上创造的零点能量场操纵仪,
 					与泥土法杖相比, 它的科技含量相当地高.
 					'''
-				PortalGun: 当前科技的顶点. 这个'ASHPD'是我第一次到达这里的原因.
+				PortalGun: 当前科技的顶点. 这个'量子隧穿仪器'是我第一次到达这里的原因.
 				GravityGlobe: 
 					'''
 					当上下颠倒时, 局部重力会反转. 
