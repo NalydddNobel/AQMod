@@ -93,9 +93,9 @@ namespace Aequus.Projectiles.Misc.Friendly
                 Projectile.velocity = Projectile.velocity.RotatedBy(0.025f * Projectile.localAI[0]);
                 Projectile.ai[1]++;
             }
-            if ((Projectile.alpha == 255 || Projectile.alpha < 50) && Projectile.Distance(Main.player[Projectile.owner].Center) > 240f)
+            if ((Projectile.alpha == 255 || Projectile.alpha < 50) && Projectile.Distance(Main.player[Projectile.owner].Center) > 320f)
             {
-                var n = Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center) * 240f;
+                var n = Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center) * 320f;
                 for (int i = 0; i < 60; i++)
                 {
                     float rotation = Main.rand.NextFloat(-0.1f, 0.1f);

@@ -48,11 +48,6 @@ namespace Aequus
             Main_dayTime = new ValueCache<bool>(() => ref Main.dayTime);
         }
 
-        public override void ModifySunLightColor(ref Color tileColor, ref Color backgroundColor)
-        {
-            base.ModifySunLightColor(ref tileColor, ref backgroundColor);
-        }
-
         public override void Unload()
         {
             Main_invasionSize = null;

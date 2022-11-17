@@ -25,8 +25,8 @@ namespace Aequus.Items.Armor.Gravetender
 
         public override void UpdateEquip(Player player)
         {
-            player.manaCost -= 0.15f;
             player.Aequus().ghostSlotsMax++;
+            player.Aequus().ghostLifespan += 1800;
         }
 
         public override void AddRecipes()

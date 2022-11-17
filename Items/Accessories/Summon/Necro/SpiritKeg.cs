@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
         {
             var aequus = player.Aequus();
             aequus.ghostLifespan += 3600;
-            player.Aequus().ghostSlotsMax++;
+            aequus.ghostSlotsMax++;
         }
 
         public override void AddRecipes()

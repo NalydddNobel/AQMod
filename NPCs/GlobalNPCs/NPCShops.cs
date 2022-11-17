@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Pets;
 using Aequus.Items.Weapons.Ranged;
 using Terraria;
@@ -25,6 +26,7 @@ namespace Aequus.NPCs.GlobalNPCs
                                 break;
                             }
                         }
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MercerTonic>());
                     }
                     break;
 

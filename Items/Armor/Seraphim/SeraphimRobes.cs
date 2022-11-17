@@ -28,7 +28,7 @@ namespace Aequus.Items.Armor.Seraphim
         public override void UpdateEquip(Player player)
         {
             player.GetDamage<SummonDamageClass>() += 0.2f;
-            player.manaCost -= 0.25f;
+            player.Aequus().ghostLifespan += 3600;
             player.Aequus().ghostSlotsMax += 2;
         }
 

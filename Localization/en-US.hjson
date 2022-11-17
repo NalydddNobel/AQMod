@@ -95,6 +95,8 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			SpiritKeg: Keg O' Spirits
+			CartilageRing: Cartilage Ring
 			SpiritBottle: Bottle O' Spirits
 			PrecisionGloves: Precision Gloves
 			ArmFloaties: Arm Floaties
@@ -467,6 +469,7 @@ Mods: {
 
 			ImpenetrableCoating: Impenetrable Coating
 
+			MercerTonic: Mercer Tonic
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
 			ShutterstockerClipAmmo: Shutterstocker Clip
@@ -588,7 +591,7 @@ Mods: {
 			SpiritKeg: 
 				'''
 				Increases your max number of ghosts by 1
-				Greatly increases the lifespan of your ghosts
+				Increases the duration of your ghost minions by 1 minute
 				'''
 			SpiritBottle: Increases your max number of ghosts by 1
 			HyperCrystal: Attacks gain a temporary damaging crystal
@@ -644,7 +647,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
-				This effect costs 5 silver to perform
+				This effect costs 1 silver to perform
 				'''
 			BlackPhial: 
 				'''
@@ -666,7 +669,7 @@ Mods: {
 				'''
 			BloodiedBucket: 
 				'''
-				Greatly increases the lifespan of your ghosts
+				Increases the duration of your ghost minions by 1 minute
 				'I know your type: tall, dark, and dead'
 				'''
 			RitualisticSkull: Converts all but one of your minion slots into ghost slots
@@ -933,7 +936,7 @@ Mods: {
 			GravetenderHood: 10% increased summon damage
 			GravetenderRobes: 
 				'''
-				15% reduced mana cost
+				Increases the duration of your ghost minions by 30 seconds
 				Increases your max number of ghosts by 1
 				'''
 
@@ -944,8 +947,8 @@ Mods: {
 				'''
 			SeraphimRobes: 
 				'''
-				25% reduced mana cost
 				20% increased summon damage
+				Increases the duration of your ghost minions by 1 minute
 				Increases your max number of ghosts by 2
 				'''
 
@@ -1105,6 +1108,11 @@ Mods: {
 				'''
 			ImpenetrableCoating: Prevents tiles from being destroyed with weapons
 
+			MercerTonic: 
+				'''
+				Supremely increases spawnrates for a few seconds when used
+				While active, all other spawnrate effects except this will be disabled
+				'''
 			Bellows: 
 				'''
 				Moves you in the opposite direction you are aiming
