@@ -226,8 +226,13 @@ namespace Aequus.Projectiles.Summon
                     Main.EntitySpriteDraw(t, (Projectile.oldPos[i] + off - Main.screenPosition).Floor(), frame, new Color(30, 30, 30, 0) * p * p, Projectile.oldRot[i], origin, Projectile.scale + 0.4f * (1f - p), Projectile.spriteDirection.ToSpriteEffect(), 0);
                 }
             }
-            var v = Projectile.position + off - Main.screenPosition;
-            v = (int)Projectile.ai[0] == 1 && npcAttached > -1 ? v : v.Floor();
+            var v = Projectile.position + off - Main.screenPosition.Floor();
+            
+            if ((int)Projectile.ai[0] == 0 && npcAttached <= 0)
+            {
+                v += Main.OffsetsPlayerHeadgear[Main.player[Projectile.owner].bodyFrame.Y / 56];
+                v = v.Floor();
+            }
             Main.EntitySpriteDraw(t, v, frame, lightColor, Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection.ToSpriteEffect(), 0);
             if (drawT)
             {

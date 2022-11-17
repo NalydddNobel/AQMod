@@ -136,8 +136,6 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 if (Main.bloodMoon)
                 {
-                    shop.item[nextSlot].SetDefaults<BloodyTearFragment>();
-                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
                     shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
                 }
                 else

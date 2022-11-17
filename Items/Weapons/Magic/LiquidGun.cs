@@ -269,7 +269,10 @@ namespace Aequus.Items.Weapons.Magic
             }
 
             if (altTextureCache != null)
+            {
+                TextureAssets.Item[Type] = altTextureCache;
                 return;
+            }
 
             if (!liquidCatalogue.TryGetValue(LiquidType, out var info))
             {

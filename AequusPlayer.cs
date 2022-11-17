@@ -1271,7 +1271,7 @@ namespace Aequus
                             Main.npc[i].active = false;
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999);
+                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999 + Main.npc[i].lifeMax * 2 + Main.npc[i].defense * 2);
                             }
                         }
                     }

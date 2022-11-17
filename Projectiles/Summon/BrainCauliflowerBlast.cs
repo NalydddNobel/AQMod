@@ -135,6 +135,7 @@ namespace Aequus.Projectiles.Summon
                 zombie.renderLayer = ColorTargetID.BloodRed;
                 zombie.zombieDebuffTier = 2.1f;
                 zombie.zombieOwner = Projectile.owner;
+                zombie.ghostDamage = Math.Max(zombie.ghostDamage, 40);
                 target.StrikeNPC(2000, 1f, Projectile.direction);
                 Projectile.ai[1]++;
             }

@@ -1459,7 +1459,7 @@ Mods: {
 
 			PiranhaPlantBuff: Vile Plant
 			BrainCauliflowerBuff: Brain Cauliflower
-			MindfungusBuff: Mindfungus
+			MindfungusBuff: Crimson Hypnoshroom
 			StariteBuff: Starite
 			ScribbleNotebookBuff: Scribble
 			CorruptPlantBuff: Corrupt Plant
@@ -1528,7 +1528,7 @@ Mods: {
 
 			PiranhaPlantBuff: The vile plant will fight for you
 			BrainCauliflowerBuff: The brain cauliflower will fight for you			
-			MindfungusBuff: The mindfungus will fight for you			
+			MindfungusBuff: The crimson hypnoshroom will fight for you			
 			StariteBuff: The starite will fight for you
 			ScribbleNotebookBuff: The object will fight for you
 			CorruptPlantBuff: The corrupted plant will fight for you

@@ -50,14 +50,11 @@ namespace Aequus.Buffs.Debuffs.Necro
             {
                 npc.buffImmune[ModContent.BuffType<T>()] = false;
             }
-            if (cheat || (NecromancyDatabase.TryGet(npc, out var value) && value.EnoughPower(tier)))
+            npc.AddBuff(ModContent.BuffType<T>(), time);
+            npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                npc.AddBuff(ModContent.BuffType<T>(), time);
-                npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    PacketSystem.SyncNecromancyOwner(npc.whoAmI, player);
-                }
+                PacketSystem.SyncNecromancyOwner(npc.whoAmI, player);
             }
         }
     }

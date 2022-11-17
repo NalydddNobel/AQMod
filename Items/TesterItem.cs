@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -40,8 +41,19 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
 
-            SpawnGlimmer();
+            SpawnPhysicalTestDummies(NPCID.BlueArmoredBones);
             return true;
+        }
+
+        private static void SpawnPhysicalTestDummies(int npciD)
+        {
+            var m = Main.MouseWorld.ToTileCoordinates().ToWorldCoordinates();
+            for (int i = 0; i < 5; i++)
+            {
+                var n = NPC.NewNPCDirect(null, m + new Vector2(90f * (i - 2), 0f), npciD);
+                n.Aequus().noAITest = true;
+                n.knockBackResist = 0f;
+            }
         }
 
         private static void SpawnGlimmer()

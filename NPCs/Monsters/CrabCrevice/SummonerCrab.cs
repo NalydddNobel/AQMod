@@ -52,6 +52,18 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             this.CreateEntry(database, bestiaryEntry);
         }
 
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            if (NPC.life <= 0)
+            {
+                for (int i = 0; i < 50; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 1.25f);
+                }
+            }
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
+        }
+
         public override bool PreAI()
         {
             if (state < 2)

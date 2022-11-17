@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -17,10 +18,11 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            var ghost = npc.GetGlobalNPC<NecromancyNPC>();
-            ghost.DebuffTier(3);
-            ghost.ConversionChance(8);
-            ghost.RenderLayer(ColorTargetID.BloodRed);
+            var zombie = npc.GetGlobalNPC<NecromancyNPC>();
+            zombie.DebuffTier(3);
+            zombie.ConversionChance(8);
+            zombie.ghostDamage = Math.Max(zombie.ghostDamage, 20);
+            zombie.RenderLayer(ColorTargetID.BloodRed);
         }
     }
 }
