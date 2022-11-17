@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Accessories.Summon.Necro
 {
-    public class PhoenixRing : ModItem
+    public class SpiritKeg : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,26 +13,28 @@ namespace Aequus.Items.Accessories
 
         public override void SetDefaults()
         {
-            Item.DefaultToAccessory(20, 14);
-            Item.rare = ItemRarityID.LightRed;
+            Item.width = 24;
+            Item.height = 24;
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 3);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accBoneRing++;
-            aequus.accBoneBurningRing++;
+            aequus.ghostLifespan += 3600;
+            player.Aequus().ghostSlotsMax++;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BoneRing>()
-                .AddIngredient(ItemID.MagmaStone)
-                .AddIngredient(ItemID.Bone, 30)
+                .AddIngredient<SpiritBottle>()
+                .AddIngredient<BloodiedBucket>()
+                .AddIngredient(ItemID.Keg)
                 .AddTile(TileID.TinkerersWorkbench)
-                .TryRegisterBefore(ItemID.NecroHelmet);
+                .TryRegisterBefore(ItemID.PapyrusScarab);
         }
     }
 }

@@ -8,53 +8,9 @@ namespace Aequus.Items.Accessories.Summon.Necro
 {
     public class PandorasBox : ModItem
     {
-        public static List<int> ProjectileTypesShot { get; private set; }
-
-        public override void Load()
-        {
-            ProjectileTypesShot = new List<int>()
-            {
-                ProjectileID.WoodenArrowFriendly,
-                ProjectileID.FireArrow,
-                ProjectileID.ImpFireball,
-                ProjectileID.Shuriken,
-                ProjectileID.BallofFire,
-                ProjectileID.GreenLaser,
-                ProjectileID.WaterBolt,
-                ProjectileID.Bone,
-                ProjectileID.SpikyBall,
-                ProjectileID.WaterStream,
-                ProjectileID.HarpyFeather,
-                ProjectileID.DemonScythe,
-                ProjectileID.ThrowingKnife,
-                ProjectileID.PoisonedKnife,
-                ProjectileID.PoisonDart,
-                ProjectileID.Stinger,
-                ProjectileID.PoisonDartBlowgun,
-                ProjectileID.AmethystBolt,
-                ProjectileID.TopazBolt,
-                ProjectileID.SapphireBolt,
-                ProjectileID.EmeraldBolt,
-                ProjectileID.RubyBolt,
-                ProjectileID.DiamondBolt,
-                ProjectileID.AmberBolt,
-                ProjectileID.SnowBallFriendly,
-                ProjectileID.IceSpike,
-                ProjectileID.Bee,
-                ProjectileID.Bullet,
-                ProjectileID.StarAnise,
-            };
-        }
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-        }
-
-        public override void Unload()
-        {
-            ProjectileTypesShot?.Clear();
-            ProjectileTypesShot = null;
         }
 
         public override void SetDefaults()

@@ -112,6 +112,7 @@ Mods: {
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
 			PhoenixRing: Phoenix Ring
+			CartilageRing: Cartilage Ring
 			BoneRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
@@ -584,6 +585,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SpiritKeg: 
+				'''
+				Increases your max number of ghosts by 1
+				Greatly increases the lifespan of your ghosts
+				'''
 			SpiritBottle: Increases your max number of ghosts by 1
 			HyperCrystal: Attacks gain a temporary damaging crystal
 			CelesteTorus:
@@ -645,15 +651,17 @@ Mods: {
 				Chance to inflict a random debuff on hit
 				50% increased duration on debuffs applied to enemies
 				'''
-			PhoenixRing: 
+			PhoenixRing: Attacks may inflict weakness and fire damage on enemies
+			CartilageRing: 
 				'''
-				{$Mods.Aequus.ItemTooltip.BoneRing}
-				All attacks inflict fire damage
+				Enemies hit by ghosts will take extra damage from scepter debuffs
+				Increases the speed of ghost projectiles
+				Attacks may inflict weakness on enemies
 				'''
-			BoneRing: Chance to inflict weakness on enemies
+			BoneRing: Attacks may inflict weakness on enemies
 			PandorasBox: 
 				'''
-				Enemies hit by ghosts will take extra damage from ghost minion conversion debuffs
+				Enemies hit by ghosts will take extra damage from scepter debuffs
 				Increases the speed of ghost projectiles
 				'''
 			BloodiedBucket: 
