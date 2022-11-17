@@ -135,25 +135,27 @@ namespace Aequus.Content.AnalysisQuests
             }
         }
 
+        // Rarity database is server-side only...
+
         public override void NetSend(BinaryWriter writer)
         {
-            writer.Write(RareTracker.Count);
-            foreach (var rare in RareTracker)
-            {
-                writer.Write(rare.Key);
-                rare.Value.NetSend(writer);
-            }
+            //writer.Write(RareTracker.Count);
+            //foreach (var rare in RareTracker)
+            //{
+            //    writer.Write(rare.Key);
+            //    rare.Value.NetSend(writer);
+            //}
         }
 
         public override void NetReceive(BinaryReader reader)
         {
-            int count = reader.ReadInt32();
-            RareTracker?.Clear();
-            foreach (var rare in RareTracker)
-            {
-                int rareValue = reader.ReadInt32();
-                RareTracker.Add(rareValue, TrackedItemRarity.NetReceive(reader, rareValue));
-            }
+            //int count = reader.ReadInt32();
+            //RareTracker?.Clear();
+            //foreach (var rare in RareTracker)
+            //{
+            //    int rareValue = reader.ReadInt32();
+            //    RareTracker.Add(rareValue, TrackedItemRarity.NetReceive(reader, rareValue));
+            //}
         }
     }
 }

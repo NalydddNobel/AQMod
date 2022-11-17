@@ -40,10 +40,6 @@ namespace Aequus.Items.Boss.Summons
             {
                 result = GlimmerSystem.BeginEvent();
             }
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
-            }
             return result;
         }
 

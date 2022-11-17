@@ -202,10 +202,9 @@ namespace Aequus.Content
                 int selectedPoint = rand.Next(points.Count);
 
                 WorldGen.PlaceTile(points[selectedPoint].X, points[selectedPoint].Y - 1, tileID, mute: true);
-
-                AequusHelpers.dustDebug(points[selectedPoint]);
                 if (Main.tile[points[selectedPoint].X, points[selectedPoint].Y - 1].TileType == tileID)
                 {
+                    NetMessage.SendTileSquare(-1, points[selectedPoint].X - 1, points[selectedPoint].Y - 1, 3, 3);
                     return true;
                 }
                 points.RemoveAt(selectedPoint);

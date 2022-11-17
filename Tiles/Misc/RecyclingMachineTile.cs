@@ -250,6 +250,7 @@ namespace Aequus.Tiles.Misc
 
         public override void NetSend(BinaryWriter writer)
         {
+            return;
             PacketSystem.Send((p) =>
             {
                 p.Write(item != null);

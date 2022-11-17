@@ -290,21 +290,25 @@ namespace Aequus.Items
         public override bool? UseItem(Item item, Player player)
         {
             var aequus = player.Aequus();
-            if (item.damage > 0 && !item.noUseGraphic && !item.noMelee
-                && aequus.accHyperCrystal != null && aequus.hyperCrystalCooldownMelee == 0)
+            if (item.damage > 0 && !item.noUseGraphic && !item.noMelee && !item.IsATool()
+                && aequus.accHyperCrystal != null && aequus.hyperCrystalCooldown <= aequus.hyperCrystalCooldownMax && aequus.hyperCrystalCooldownMelee <= 0)
             {
-                aequus.hyperCrystalCooldownMelee = aequus.hyperCrystalCooldownMax;
-                if (Main.myPlayer == player.whoAmI)
+                if (aequus.hyperCrystalCooldown <= 0)
                 {
-                    if (item.useStyle == ItemUseStyleID.Swing && item.shoot == ProjectileID.None)
+                    aequus.hyperCrystalCooldown = aequus.hyperCrystalCooldownMax;
+                    aequus.hyperCrystalCooldownMelee = aequus.hyperCrystalCooldown + item.useTime;
+                    if (Main.myPlayer == player.whoAmI)
                     {
-                        Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center + new Vector2(0f, -80f - player.height), new Vector2(3f * player.direction, 3f),
-                            ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 4f);
-                    }
-                    else
-                    {
-                        Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center, Vector2.Normalize(Main.MouseWorld - player.Center) * 4f,
-                            ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 3f);
+                        if (item.useStyle == ItemUseStyleID.Swing || item.channel)
+                        {
+                            Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center + new Vector2(0f, -80f - player.height), new Vector2(3f * player.direction, 2f),
+                                ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 4f);
+                        }
+                        else
+                        {
+                            Projectile.NewProjectile(player.GetSource_Accessory(aequus.accHyperCrystal), player.Center, Vector2.Normalize(Main.MouseWorld - player.Center) * 4f,
+                                ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item), player.GetWeaponKnockback(item), player.whoAmI, ai0: 3f);
+                        }
                     }
                 }
             }

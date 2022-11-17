@@ -243,11 +243,11 @@ namespace Aequus.NPCs.Friendly.Town
 
             if (player.ZoneBeach)
             {
-                chat.Add("Ocean.0");
+                chat.Add("Ocean");
             }
             if (player.Aequus().ZoneCrabCrevice)
             {
-                chat.Add("CrabCrevice.0");
+                chat.Add("CrabCrevice");
             }
 
             if (NPC.AnyNPCs(NPCID.Angler))

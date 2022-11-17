@@ -38,6 +38,9 @@ namespace Aequus
             logPacketType = new HashSet<PacketType>()
             {
                 PacketType.Unused,
+                PacketType.Unused2,
+                PacketType.Unused3,
+                PacketType.Unused4,
                 PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
                 PacketType.ExporterQuestsCompleted,
@@ -236,6 +239,21 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.SyncRarityObtained:
+                    {
+                        int rare = reader.ReadInt32();
+                        int value = reader.ReadInt32();
+                        if (AnalysisSystem.RareTracker.TryGetValue(rare, out var val))
+                        {
+                            val.highestValueObtained = Math.Max(val.highestValueObtained, value);
+                        }
+                        else
+                        {
+                            AnalysisSystem.RareTracker[rare] = new TrackedItemRarity() { rare = rare, highestValueObtained = value };
+                        }
+                    }
+                    break;
+
                 case PacketType.SpawnShutterstockerClip:
                     {
                         int player = reader.ReadInt32();

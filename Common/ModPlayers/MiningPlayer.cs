@@ -97,6 +97,10 @@ namespace Aequus.Common.ModPlayers
                     try
                     {
                         WorldGen.KillWall(x, y);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            NetMessage.SendTileSquare(-1, x, y);
+                        }
                         Player.ApplyItemTime(sItem, 0.5f);
                     }
                     catch
@@ -132,6 +136,10 @@ namespace Aequus.Common.ModPlayers
                     try
                     {
                         WorldGen.KillTile(x, y);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            NetMessage.SendTileSquare(-1, x, y);
+                        }
                         Player.ApplyItemTime(sItem);
                         Player.toolTime = (int)(Player.itemTime * Player.pickSpeed);
                     }

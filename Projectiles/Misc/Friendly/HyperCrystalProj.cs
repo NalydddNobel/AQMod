@@ -56,7 +56,7 @@ namespace Aequus.Projectiles.Misc.Friendly
                 Projectile.scale = 1f + Projectile.localAI[0] * 0.3f;
                 Projectile.velocity = Main.projectile[aequus.sourceProj].velocity;
                 Projectile.Center = Vector2.Lerp(Projectile.Center,
-                    Main.projectile[aequus.sourceProj].oldPosition + Main.projectile[aequus.sourceProj].Size / 2f + new Vector2(Math.Max(Main.projectile[aequus.sourceProj].width, 20) * (float)Math.Sin(Projectile.ai[1]), 0f).RotatedBy(Projectile.rotation), 0.05f + (255 - Projectile.alpha) / 2000f) - Projectile.velocity;
+                    Main.projectile[aequus.sourceProj].oldPosition + Main.projectile[aequus.sourceProj].Size / 2f + new Vector2(Math.Max(Main.projectile[aequus.sourceProj].width, 20) * (float)Math.Sin(Projectile.ai[1]), 0f).RotatedBy(Projectile.rotation), 0.075f + (255 - Projectile.alpha) / 2000f) - Projectile.velocity;
             }
             else if ((int)Projectile.ai[0] == 1)
             {
@@ -81,17 +81,48 @@ namespace Aequus.Projectiles.Misc.Friendly
             {
                 if (Projectile.numUpdates == -1)
                     Projectile.position += Main.player[Projectile.owner].velocity;
-                Projectile.velocity = Projectile.velocity.RotatedBy(0.01f * Projectile.direction);
+                if (Projectile.localAI[0] == 0f || Projectile.alpha > 200)
+                {
+                    Projectile.localAI[0] = Projectile.direction;
+                }
+                if (Projectile.timeLeft > 4)
+                {
+                    Projectile.timeLeft -= 1;
+                }
+
+                Projectile.velocity = Projectile.velocity.RotatedBy(0.025f * Projectile.localAI[0]);
                 Projectile.ai[1]++;
             }
-            if ((Projectile.alpha == 255 || Projectile.alpha < 200) && Projectile.Distance(Main.player[Projectile.owner].Center) > 240f)
+            if ((Projectile.alpha == 255 || Projectile.alpha < 50) && Projectile.Distance(Main.player[Projectile.owner].Center) > 240f)
             {
+                var n = Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center) * 240f;
+                for (int i = 0; i < 60; i++)
+                {
+                    float rotation = Main.rand.NextFloat(-0.1f, 0.1f);
+                    if (Main.rand.NextBool(2))
+                    {
+                        rotation += Main.rand.NextFloat(-0.2f, 0.2f);
+                    }
+                    if (Main.rand.NextBool(4))
+                    {
+                        rotation += Main.rand.NextFloat(-0.2f, 0.2f);
+                    }
+                    if (Main.rand.NextBool(8))
+                    {
+                        rotation += Main.rand.NextFloat(-0.2f, 0.2f);
+                    }
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + n.RotatedBy(rotation), ModContent.DustType<MonoDust>(),
+                        newColor: Color.Lerp(new Color(100, 255, 255, 100), new Color(100, 255, 100, 100), Main.rand.NextFloat()) * Main.rand.NextFloat(0.33f, 1f), Scale: Main.rand.NextFloat(0.5f, 1.35f));
+                    d.velocity *= 0.3f;
+                    d.velocity += -n / 240f;
+                    d.customData = Main.player[Projectile.owner];
+                }
                 Projectile.Kill();
             }
 
             if (Projectile.alpha > 0 && Projectile.numUpdates == -1)
             {
-                Projectile.alpha -= 10;
+                Projectile.alpha -= 18;
                 if (Projectile.alpha < 0)
                 {
                     Projectile.alpha = 0;

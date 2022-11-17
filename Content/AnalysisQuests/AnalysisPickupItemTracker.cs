@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.AnalysisQuests
@@ -13,13 +14,23 @@ namespace Aequus.Content.AnalysisQuests
                 int rare = item.OriginalRarity;
                 if (!AnalysisSystem.IgnoreRarities.Contains(rare))
                 {
-                    if (AnalysisSystem.RareTracker.TryGetValue(rare, out var val))
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        val.highestValueObtained = Math.Max(val.highestValueObtained, item.value);
+                        var p = Aequus.GetPacket(PacketType.SyncRarityObtained);
+                        p.Write(rare);
+                        p.Write(item.value);
+                        p.Send();
                     }
                     else
                     {
-                        AnalysisSystem.RareTracker[rare] = new TrackedItemRarity() { rare = rare, highestValueObtained = item.value };
+                        if (AnalysisSystem.RareTracker.TryGetValue(rare, out var val))
+                        {
+                            val.highestValueObtained = Math.Max(val.highestValueObtained, item.value);
+                        }
+                        else
+                        {
+                            AnalysisSystem.RareTracker[rare] = new TrackedItemRarity() { rare = rare, highestValueObtained = item.value };
+                        }
                     }
 
                     //Main.NewText($"{item.value} | {rare}:{AequusText.GetRarityNameValue(rare)}");

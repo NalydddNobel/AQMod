@@ -213,6 +213,11 @@ namespace Aequus
             return true;
         }
 
+        public static bool IsATool(this Item item)
+        {
+            return item.pick > 0 || item.axe > 0 || item.hammer > 0;
+        }
+
         public static void Transform(this Item item, int newType)
         {
             int prefix = item.prefix;

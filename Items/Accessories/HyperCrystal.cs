@@ -41,7 +41,7 @@ namespace Aequus.Items.Accessories
             }
             else
             {
-                aequus.hyperCrystalCooldownMax = 15;
+                aequus.hyperCrystalCooldownMax = 20;
             }
         }
 

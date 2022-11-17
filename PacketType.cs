@@ -25,6 +25,7 @@
         RequestChestItems,
         RequestAnalysisQuest,
         SpawnShutterstockerClip,
+        SyncRarityObtained,
         Count
     }
 

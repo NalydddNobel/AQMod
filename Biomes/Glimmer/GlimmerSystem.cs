@@ -40,9 +40,9 @@ namespace Aequus.Biomes.Glimmer
             }
             if (Main.GetMoonPhase() != MoonPhase.Full && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad))
             {
-                if (!WorldGen.spawnEye && Main.rand.NextBool(chance) && BeginEvent())
+                if (!WorldGen.spawnEye && Main.rand.NextBool(chance))
                 {
-                    AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+                    BeginEvent();
                 }
                 if (!GlimmerBiome.EventActive && Main.rand.NextBool())
                 {
@@ -122,7 +122,8 @@ namespace Aequus.Biomes.Glimmer
         {
             GlimmerBiome.TileLocation = CheckGround(where);
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
+            AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+            if (Main.netMode == NetmodeID.Server)
             {
                 SendGlimmerStatus();
             }

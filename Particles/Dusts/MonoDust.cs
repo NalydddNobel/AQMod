@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -30,6 +31,13 @@ namespace Aequus.Particles.Dusts
                 Vector3 lightColor;
                 lightColor = dust.color.ToVector3() * 0.5f;
                 Lighting.AddLight(dust.position, lightColor);
+            }
+            if (dust.customData != null)
+            {
+                if (dust.customData is Player player)
+                {
+                    dust.position += player.velocity * Math.Min(dust.scale * 2f, 1f);
+                }
             }
             dust.position += dust.velocity;
             return false;
