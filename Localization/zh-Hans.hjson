@@ -95,6 +95,8 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			SpiritKeg: 魂灵之桶
+			CartilageRing: 软骨戒指
 			SpiritBottle: 魂灵之瓶
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
@@ -201,8 +203,8 @@ Mods: {
 			HailstormStaff: 雹暴法杖
 
 			# Soul Tapers
-			PrimeTaperCandle: 暴政之归
-			SkeletronTaperCandle: 咒灭
+			PrimeCandle: 暴政之归
+			SkeletronCandle: 咒灭
 
 			# Soul Candles
 			DragonsBreath: 龙之绝息
@@ -466,6 +468,7 @@ Mods: {
 
 			ImpenetrableCoating: 无法穿过的涂料
 
+			MercerTonic: 商人补药
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
 			ShutterstockerClipAmmo: 快门储像机剪片
@@ -584,6 +587,11 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			SpiritKeg: 
+				'''
+				增加1格最大幽魂仆从栏位
+				延长1分钟幽魂仆从的存在时间
+				'''
 			SpiritBottle: 增加1格最大幽魂仆从栏位
 			HyperCrystal: 攻击会附带一个临时性的晶体
 			CelesteTorus:
@@ -638,27 +646,29 @@ Mods: {
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
-				执行此效果需要消耗5银币
+				执行此效果需要消耗1银币
 				'''
 			BlackPhial: 
 				'''
-				有几率对敌人造成随机减益
+				攻击有几率对敌人造成随机减益
 				对敌人造成的减益持续时间延长50%
 				'''
-			PhoenixRing: 
+			PhoenixRing: 攻击有几率对敌人造成虚弱减益和火焰伤害
+			CartilageRing: 
 				'''
-				{$Mods.Aequus.ItemTooltip.BoneRing}
-				所有攻击都会造成火焰伤害
+				被幽魂击中的敌人会受到来自王权减益的额外伤害
+				增加幽魂的弹幕速度
+				攻击有几率对敌人造成虚弱减益
 				'''
-			BoneRing: 有几率对敌人造成虚弱效果
+			BoneRing: 攻击有几率对敌人造成虚弱效果
 			PandorasBox: 
 				'''
-				被幽魂击中的敌人会受到来自幽魂仆从转化减益的额外伤害
+				被幽魂击中的敌人会受到来自王权减益的额外伤害
 				增加幽魂的弹幕速度
 				'''
 			BloodiedBucket: 
 				'''
-				大幅度增加幽魂的存在时间
+				延长1分钟幽魂仆从的存在时间
 				'我知道你的成分: 高大、暗黑以及是死的'
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
@@ -882,8 +892,12 @@ Mods: {
 				'''
 			
 			# Soul Tapers
-			PrimeTaperCandle: 为幽魂仆从装备机械骷髅王的手臂
-			SkeletronTaperCandle:  为幽魂仆从装备骷髅王的手臂
+			PrimeCandle: 
+				'''
+				为幽魂仆从装备机械骷髅王的手臂
+				消耗血泪石
+				'''
+			SkeletronCandle:  为幽魂仆从装备骷髅王的手臂
 
 			DragonsBreath: 召唤一条幻影龙为你而战
 			CrimsonCandle: 召唤一只血爬虫为你而战
@@ -921,7 +935,7 @@ Mods: {
 			GravetenderHood: 增加10%召唤伤害
 			GravetenderRobes: 
 				'''
-				减少15%法力消耗
+				延长30秒幽魂仆从的存在时间
 				增加最大幽魂仆从栏位
 				'''
 
@@ -932,8 +946,8 @@ Mods: {
 				'''
 			SeraphimRobes: 
 				'''
-				减少25%法力消耗
 				增加20%召唤伤害
+				延长1分钟幽魂仆从的存在时间
 				增加2格最大幽魂仆从栏位
 				'''
 
@@ -973,7 +987,7 @@ Mods: {
 				能够同时砍伐多颗树木
 				砍伐时长按右键以禁用此能力
 				'''
-			BattleAxe: 有几率使敌人流血
+			BattleAxe: 攻击有几率使敌人流血
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
@@ -1093,6 +1107,11 @@ Mods: {
 				'''
 			ImpenetrableCoating: 防止物块被武器摧毁
 
+			MercerTonic: 
+				'''
+				使用后会在几秒内大幅度增加刷怪率
+				当激活时, 除此之外的所有其他刷怪效果都将被禁用
+				'''
 			Bellows: 
 				'''
 				将你向你瞄准的反方向推开
@@ -2115,7 +2134,7 @@ Mods: {
 					然而, 就像所有生物一样, 我必须结束他们的痛苦.
 					'''
 				OccultistCandle: 我发现它对仪式很有用, 呵呵~
-				SkeletronTaperCandle: 
+				SkeletronCandle: 
 					'''
 					认为拥有尸体并不黑暗?
 					那为什么不加倍诅咒并赋予它们骷髅王的黑暗之手!
