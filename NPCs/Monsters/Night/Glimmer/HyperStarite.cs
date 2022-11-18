@@ -2,7 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles.Dusts;

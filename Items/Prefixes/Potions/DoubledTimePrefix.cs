@@ -27,8 +27,8 @@ namespace Aequus.Items.Prefixes.Potions
         public override bool CanRoll(Item item)
         {
             return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
-                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.meleeBuff[item.buffType] &&
-                !AequusBuff.ConcoctibleBuffsBlacklist.Contains(item.buffType);
+                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] &&
+                !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

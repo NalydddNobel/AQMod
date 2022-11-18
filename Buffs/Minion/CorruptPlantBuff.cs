@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion
 {
-    public class CorruptPlantBuff : UniMinionBuffBase
+    public class CorruptPlantBuff : BaseUniMinionBuff
     {
         protected override int minionProj => ModContent.ProjectileType<CorruptPlantMinion>();
         protected override int CounterProj => ModContent.ProjectileType<CorruptPlantCounter>();

@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Buffs.Empowered
+namespace Aequus.Buffs.Misc.Empowered
 {
     public class EmpoweredShine : EmpoweredBuffBase
     {

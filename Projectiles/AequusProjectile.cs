@@ -320,7 +320,7 @@ namespace Aequus.Projectiles
             catch
             {
             }
-            if (projectile.friendly && projectile.damage > 0 && !projectile.npcProj && projectile.timeLeft > 60 && projectile.type != ModContent.ProjectileType<HyperCrystalProj>())
+            if (sourceNPC == -1 && projectile.friendly && projectile.damage > 0 && !projectile.npcProj && projectile.timeLeft > 60 && projectile.type != ModContent.ProjectileType<HyperCrystalProj>())
             {
                 var aequus = Main.player[projectile.owner].Aequus();
 

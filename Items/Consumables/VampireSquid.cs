@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Buffs.Misc;
 using Aequus.Common.Players;
 using Microsoft.Xna.Framework;
 using Terraria;

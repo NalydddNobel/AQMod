@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Buffs;
+using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;

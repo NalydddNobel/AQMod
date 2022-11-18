@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Buffs.Misc;
 using System;
 using System.Reflection;
 using Terraria;
@@ -23,6 +23,7 @@ namespace Aequus.Items.Consumables.BuffPotions
             {
                 spawnRate = 5;
                 maxSpawns = 5;
+                player.townNPCs = 0f;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     if (Main.npc[i].active && (Main.npc[i].friendly || Main.npc[i].boss || Main.npc[i].IsProbablyACritter()) && !Main.npc[i].townNPC)
@@ -56,7 +57,23 @@ namespace Aequus.Items.Consumables.BuffPotions
             Item.consumable = true;
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item3;
-            Item.value = Item.buyPrice(silver: 20);
+            Item.value = Item.buyPrice(silver: 50);
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return !player.HasBuff<TonicSpawnratesBuff>() && !player.HasBuff<TonicSpawnratesDebuff>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater)
+                .AddIngredient(ItemID.RockLobster)
+                .AddIngredient(ItemID.Deathweed)
+                .AddIngredient(ItemID.Shiverthorn)
+                .AddTile(TileID.Bottles)
+                .TryRegisterAfter(ItemID.BattlePotion);
         }
     }
 }

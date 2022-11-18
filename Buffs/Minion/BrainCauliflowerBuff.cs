@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion
 {
-    public class BrainCauliflowerBuff : MinionBuffBase
+    public class BrainCauliflowerBuff : BaseMinionBuff
     {
         protected override int MinionProj => ModContent.ProjectileType<BrainCauliflowerMinion>();
     }

@@ -3,6 +3,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Placeable.Furniture;

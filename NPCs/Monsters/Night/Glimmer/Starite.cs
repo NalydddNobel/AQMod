@@ -3,7 +3,7 @@ using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
-using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;

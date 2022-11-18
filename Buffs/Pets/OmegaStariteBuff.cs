@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Pets
     /// <summary>
     /// Applied by <see cref="DragonBall"/>
     /// </summary>
-    public class OmegaStariteBuff : PetBuffBase
+    public class OmegaStariteBuff : BasePetBuff
     {
         protected override bool LightPet => true;
         protected override int PetProj => ModContent.ProjectileType<OmegaStaritePet>();

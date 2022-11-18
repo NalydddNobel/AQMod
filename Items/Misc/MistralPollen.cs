@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Empowered;
+﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Items.Prefixes.Potions;
 using Terraria;
 using Terraria.ID;

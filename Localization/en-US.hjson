@@ -259,6 +259,7 @@ Mods: {
 			CinnamonRoll: Cinnamon Roll
 			SpicyEel: Spicy Eel
 
+			NecromancyPotion: Necromancy Potion
 			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
 			FrostPotion: Frost Potion
@@ -1144,6 +1145,7 @@ Mods: {
 			IchorPopper: Increases bait power by 35% when in the crimson
 			MysticPopper: Increases bait power by 25% when in the hallow
 
+			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
 			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
@@ -1397,6 +1399,8 @@ Mods: {
 			}
 
 			Empowered: {
+				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
+				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
 				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
 				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
 				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
@@ -1446,14 +1450,19 @@ Mods: {
 		}
 
 		BuffName: {
+			TonicSpawnratesDebuff: Tonic Cooldown
+			TonicSpawnratesBuff: Tonic
 			NoonBuff: Noon
 			AstralCookieBuff: Astral Cookie
 			NeutronYogurtBuff: Neutron Yogurt
 			BloodthirstBuff: Bloodthirst
+			NecromancyPotionBuff: Necromancy
 			SentryBuff: Sentry
 			FrostBuff: Frost
 			SpicyEelBuff: Spicy Eel
 
+			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
+			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
 			EmpoweredArchery: "{$BuffName.Archery}"
 			EmpoweredEndurance: "{$BuffName.Endurance}"
 			EmpoweredFishing: "{$BuffName.Fishing}"
@@ -1472,7 +1481,7 @@ Mods: {
 			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
 
-			NecromancyOwnerBuff: Necromancy
+			NecromancyOwnerBuff: Ghost Minions
 
 			GravetenderMinionBuff: Gravetender
 
@@ -1508,6 +1517,8 @@ Mods: {
 		}
 
 		BuffDescription: {
+			TonicSpawnratesDebuff: You can not use the Mercer Tonic
+			TonicSpawnratesBuff: Enemies are attracted to your smell
 			BloodthirstBuff: Enemies always drop hearts
 			NoonBuff:
 				'''
@@ -1515,9 +1526,12 @@ Mods: {
 				You always have daytime-only effects active
 				Prevents nighttime-only effects from working
 				'''
+			NecromancyPotionBuff: Increases your max number of ghosts by 1 
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 			
+			EmpoweredNecromancy: Increases your max number of ghosts by 2
+			EmpoweredSentry: Increases your max number of sentries by 2
 			EmpoweredArchery: 20% increased arrow damage and 20% increased arrow speed
 			EmpoweredEndurance: Reduces damage taken by 20%
 			EmpoweredFishing: Increases fishing power by 30

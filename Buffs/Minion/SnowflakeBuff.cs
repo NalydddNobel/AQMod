@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion
 {
-    public class SnowflakeBuff : MinionBuffBase
+    public class SnowflakeBuff : BaseMinionBuff
     {
         protected override int MinionProj => ModContent.ProjectileType<SnowflakeMinion>();
     }

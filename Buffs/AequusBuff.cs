@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Empowered;
+﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
@@ -15,16 +15,16 @@ namespace Aequus.Buffs
 {
     public class AequusBuff : GlobalBuff, IPostSetupContent
     {
-        public static HashSet<int> ConcoctibleBuffsBlacklist { get; private set; }
-        public static HashSet<int> CountsAsFire { get; private set; }
+        public static HashSet<int> ConcoctibleBuffIDsBlacklist { get; private set; }
+        public static HashSet<int> IsFire { get; private set; }
         public static HashSet<int> DontChangeDuration { get; private set; }
-        public static HashSet<int> CountsAsBuff { get; private set; }
+        public static HashSet<int> IsActuallyABuff { get; private set; }
 
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
 
         public override void Load()
         {
-            ConcoctibleBuffsBlacklist = new HashSet<int>()
+            ConcoctibleBuffIDsBlacklist = new HashSet<int>()
             {
                 BuffID.Tipsy,
                 BuffID.Honey,
@@ -32,16 +32,15 @@ namespace Aequus.Buffs
             };
             DontChangeDuration = new HashSet<int>()
             {
-                BuffID.Campfire,
-                BuffID.HeartLamp,
-                BuffID.Sunflower,
                 BuffID.Lucky,
             };
-            CountsAsBuff = new HashSet<int>()
+            IsActuallyABuff = new HashSet<int>()
             {
                 BuffID.Tipsy,
+                BuffID.HeartLamp,
+                BuffID.Campfire,
             };
-            CountsAsFire = new HashSet<int>()
+            IsFire = new HashSet<int>()
             {
                 BuffID.OnFire,
                 BuffID.OnFire3,
@@ -103,19 +102,19 @@ namespace Aequus.Buffs
             {
                 if (BuffID.Sets.IsFedState[i])
                 {
-                    ConcoctibleBuffsBlacklist.Add(i);
+                    ConcoctibleBuffIDsBlacklist.Add(i);
                 }
             }
         }
 
         public override void Unload()
         {
-            CountsAsBuff?.Clear();
-            CountsAsBuff = null;
+            IsActuallyABuff?.Clear();
+            IsActuallyABuff = null;
             DontChangeDuration?.Clear();
             DontChangeDuration = null;
-            CountsAsFire?.Clear();
-            CountsAsFire = null;
+            IsFire?.Clear();
+            IsFire = null;
             DemonSiegeEnemyImmunity?.Clear();
             DemonSiegeEnemyImmunity = null;
         }

@@ -2086,13 +2086,13 @@ namespace Aequus
         private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player self, int type, int time1)
         {
             int amt = orig(self, type, time1);
-            if (AequusBuff.DontChangeDuration.Contains(type))
+            if (Main.buffNoTimeDisplay[type] || AequusBuff.DontChangeDuration.Contains(type))
             {
                 return amt;
             }
 
             var aequus = self.Aequus();
-            if (Main.debuff[type] && !AequusBuff.CountsAsBuff.Contains(type))
+            if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
             {
                 if (aequus.debuffDuration != 1f)
                     amt = (int)(amt * aequus.debuffDuration);

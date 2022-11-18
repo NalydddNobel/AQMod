@@ -26,7 +26,6 @@ namespace Aequus.NPCs.GlobalNPCs
                                 break;
                             }
                         }
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MercerTonic>());
                     }
                     break;
 

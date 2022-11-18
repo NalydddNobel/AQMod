@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
+namespace Aequus.Buffs.Misc
 {
     public class VampirismNight : ModBuff
     {

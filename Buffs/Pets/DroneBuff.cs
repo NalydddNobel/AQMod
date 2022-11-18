@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Pets
     /// <summary>
     /// Applied by <see cref="PersonalDronePack"/>
     /// </summary>
-    public class DroneBuff : PetBuffBase
+    public class DroneBuff : BasePetBuff
     {
         protected override bool LightPet => true;
         protected override int PetProj => ModContent.ProjectileType<DronePet>();

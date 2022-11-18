@@ -1,22 +1,21 @@
-﻿using Terraria;
+﻿using Aequus.Common.Players;
+using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Minion
+namespace Aequus.Buffs.Misc
 {
-    public abstract class MountBuffBase : ModBuff
+    public class VampirismDay : ModBuff
     {
-        public abstract int MountType { get; }
-
         public override void SetStaticDefaults()
         {
+            Main.debuff[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.mount.SetMount(MountType, player);
-            player.buffTime[buffIndex] = 10;
+            player.GetModPlayer<PlayerVampirism>().daylightBurning = true;
         }
     }
 }

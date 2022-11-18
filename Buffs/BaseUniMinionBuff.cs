@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Aequus.Buffs.Minion
 {
-    public abstract class UniMinionBuffBase : MinionBuffBase
+    public abstract class BaseUniMinionBuff : BaseMinionBuff
     {
         protected sealed override int MinionProj => CounterProj;
         protected abstract int minionProj { get; }

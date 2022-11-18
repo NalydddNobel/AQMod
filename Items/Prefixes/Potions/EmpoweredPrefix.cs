@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Empowered;
+﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Items.GlobalItems;
 using System.Collections.Generic;
 using Terraria;

@@ -2,21 +2,21 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Buffs.Empowered
+namespace Aequus.Buffs.Misc.Empowered
 {
-    public class EmpoweredFishing : EmpoweredBuffBase
+    public class EmpoweredSwiftness : EmpoweredBuffBase
     {
-        public override int OriginalBuffType => BuffID.Fishing;
+        public override int OriginalBuffType => BuffID.Swiftness;
 
         public override void SetStaticDefaults()
         {
-            EmpoweredPrefix.ItemToEmpoweredBuff.Add(ItemID.FishingPotion, Type);
+            EmpoweredPrefix.ItemToEmpoweredBuff.Add(ItemID.SwiftnessPotion, Type);
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
             base.Update(player, ref buffIndex);
-            player.fishingSkill += 30;
+            player.moveSpeed += 0.5f;
         }
     }
 }

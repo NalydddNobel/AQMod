@@ -26,7 +26,7 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             if (!npc.SpawnedFromStatue && npc.justHit)
             {
-                foreach (var b in AequusBuff.CountsAsFire)
+                foreach (var b in AequusBuff.IsFire)
                 {
                     if (npc.HasBuff(b))
                     {
@@ -51,7 +51,7 @@ namespace Aequus.NPCs.GlobalNPCs
 
                 for (int i = 0; i < NPC.maxBuffs; i++)
                 {
-                    if (AequusBuff.CountsAsFire.Contains(npc.buffType[i]))
+                    if (AequusBuff.IsFire.Contains(npc.buffType[i]))
                     {
                         return;
                     }
@@ -70,7 +70,7 @@ namespace Aequus.NPCs.GlobalNPCs
                     int time = 0;
                     for (int i = 0; i < NPC.maxBuffs; i++)
                     {
-                        if (AequusBuff.CountsAsFire.Contains(npc.buffType[i]))
+                        if (AequusBuff.IsFire.Contains(npc.buffType[i]))
                         {
                             time = Math.Max(npc.buffTime[i], time);
                         }

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion
 {
-    public abstract class MinionBuffBase : ModBuff
+    public abstract class BaseMinionBuff : ModBuff
     {
         protected abstract int MinionProj { get; }
 

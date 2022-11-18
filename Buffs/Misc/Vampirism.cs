@@ -1,10 +1,9 @@
 ﻿using Aequus.Common.Players;
-using Aequus.Items;
 using Terraria;
 
-namespace Aequus.Buffs
+namespace Aequus.Buffs.Misc
 {
-    public class Vampirism : TimerActiveBuff
+    public class Vampirism : BaseSpecialTimerBuff
     {
         public override int GetTick(Player player)
         {
@@ -15,7 +14,7 @@ namespace Aequus.Buffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            AequusBuff.ConcoctibleBuffsBlacklist.Add(Type);
+            AequusBuff.ConcoctibleBuffIDsBlacklist.Add(Type);
         }
 
         public override void Update(Player player, ref int buffIndex)

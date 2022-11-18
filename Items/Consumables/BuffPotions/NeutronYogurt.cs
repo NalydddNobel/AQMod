@@ -4,14 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Foods
+namespace Aequus.Items.Consumables.BuffPotions
 {
     public class NeutronYogurt : ModItem
     {
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
-            this.StaticDefaultsToDrink(Color.Yellow);
+            this.StaticDefaultsToDrink(Color.HotPink);
         }
 
         public override void SetDefaults()

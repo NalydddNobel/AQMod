@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Misc;
 using Aequus.Common.Players;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

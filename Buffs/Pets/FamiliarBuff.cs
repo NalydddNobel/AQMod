@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Pets
     /// <summary>
     /// Applied by <see cref="FamiliarPickaxe"/>
     /// </summary>
-    public class FamiliarBuff : PetBuffBase
+    public class FamiliarBuff : BasePetBuff
     {
         protected override int PetProj => ModContent.ProjectileType<FamiliarPet>();
     }

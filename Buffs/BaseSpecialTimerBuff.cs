@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs
 {
-    public abstract class TimerActiveBuff : ModBuff
+    public abstract class BaseSpecialTimerBuff : ModBuff
     {
         public abstract int GetTick(Player player);
 

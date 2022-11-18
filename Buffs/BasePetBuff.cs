@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Pets
 {
-    public abstract class PetBuffBase : ModBuff
+    public abstract class BasePetBuff : ModBuff
     {
         protected virtual bool LightPet => false;
         protected abstract int PetProj { get; }

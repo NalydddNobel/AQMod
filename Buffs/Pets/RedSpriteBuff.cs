@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Pets
     /// <summary>
     /// Applied by <see cref="LightningRod"/>
     /// </summary>
-    public class RedSpriteBuff : PetBuffBase
+    public class RedSpriteBuff : BasePetBuff
     {
         protected override bool LightPet => true;
         protected override int PetProj => ModContent.ProjectileType<RedSpritePet>();

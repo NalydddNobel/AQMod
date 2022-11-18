@@ -34,5 +34,14 @@ namespace Aequus.Items.Accessories
                 aequus.instaShieldCooldown = 180;
             }
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.PanicNecklace)
+                .AddIngredient<FlashwayNecklace>()
+                .AddTile(TileID.TinkerersWorkbench)
+                .TryRegisterAfter(ItemID.SweetheartNecklace);
+        }
     }
 }

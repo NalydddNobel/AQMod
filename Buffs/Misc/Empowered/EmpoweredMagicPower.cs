@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Empowered
+namespace Aequus.Buffs.Misc.Empowered
 {
     public class EmpoweredMagicPower : EmpoweredBuffBase
     {
