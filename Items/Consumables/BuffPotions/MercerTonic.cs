@@ -73,7 +73,7 @@ namespace Aequus.Items.Consumables.BuffPotions
                 .AddIngredient(ItemID.Deathweed)
                 .AddIngredient(ItemID.Shiverthorn)
                 .AddTile(TileID.Bottles)
-                .TryRegisterAfter(ItemID.BattlePotion);
+                .TryRegisterBefore(ItemID.BattlePotion);
         }
     }
 }
