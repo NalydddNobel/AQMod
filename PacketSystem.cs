@@ -239,7 +239,13 @@ namespace Aequus
             }
             switch (type)
             {
-                case PacketType.SyncRarityObtained:
+                case PacketType.ZombieConvertEffects:
+                    {
+                        NecromancyNPC.ConvertEffects(new Vector2(reader.ReadSingle(), reader.ReadSingle()), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                    }
+                    break;
+
+                case PacketType.AnalysisRarity:
                     {
                         int rare = reader.ReadInt32();
                         int value = reader.ReadInt32();
@@ -418,10 +424,6 @@ namespace Aequus
                         }
                         switch (soundID)
                         {
-                            case SoundPacket.RecruitZombie:
-                                SoundEngine.PlaySound(NecromancyNPC.RecruitZombieSound, position);
-                                break;
-
                             case SoundPacket.InflictBleeding:
                                 SoundEngine.PlaySound(Bleeding.InflictDebuffSound, position);
                                 break;

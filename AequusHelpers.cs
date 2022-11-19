@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
+using Aequus.Content.Necromancy;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.GlobalItems;
@@ -288,6 +289,12 @@ namespace Aequus
             int result = num4 / tileObjectData.StyleMultiplier;
             _ = num4 % tileObjectData.StyleMultiplier;
             return result;
+        }
+
+        public static bool IsZombieAndInteractible(this NPC npc, int plr)
+        {
+            return npc.active && (npc.realLife == -1 || npc.realLife == npc.whoAmI) && !NPCID.Sets.ProjectileNPC[npc.type] &&
+                    npc.TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.slotsConsumed > 0 && n.zombieOwner == plr;
         }
 
         public static void AddBuffToHeadOrSelf(this NPC npc, int buffID, int buffDuration)

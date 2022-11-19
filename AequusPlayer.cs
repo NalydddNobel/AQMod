@@ -17,6 +17,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
+using Aequus.Items.Armor.Gravetender;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools.Misc;
@@ -31,6 +32,7 @@ using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,6 +42,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.GameInput;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -59,6 +62,7 @@ namespace Aequus
         public static int PlayerContext;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
+        public static ModKeybind KeybindSetbonusAlt { get; private set; }
 
         public static int Team;
         public float? CustomDrawShadow;
@@ -230,10 +234,9 @@ namespace Aequus
         public Item setSeraphim;
 
         public Item setGravetender;
-        public int setGravetenderCheck;
-        public int setGravetenderGhost;
+        public int gravetenderGhost;
 
-        public int accPandorasBox;
+        public float zombieDebuffMultiplier;
 
         public Item accSentrySquid;
         public int turretSquidTimer;
@@ -351,6 +354,7 @@ namespace Aequus
             LoadHooks();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
+            KeybindSetbonusAlt = KeybindLoader.RegisterKeybind(Mod, "Armor Setbonus Alt", Keys.V);
         }
 
         public override void Unload()
@@ -566,7 +570,7 @@ namespace Aequus
             accLittleInferno = 0;
             accRitualSkull = false;
             accRamishroom = null;
-            accPandorasBox = 0;
+            zombieDebuffMultiplier = 0f;
             bloodDiceMoney = 0;
             bloodDiceDamage = 0f;
             accHyperCrystal = null;
@@ -839,6 +843,17 @@ namespace Aequus
             }
         }
 
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (KeybindSetbonusAlt.JustPressed)
+            {
+                if (setGravetender != null)
+                {
+                    GravetenderHood.ActivateGravetenderWisp(Player, this);
+                }
+            }
+        }
+
         public override void PostUpdateEquips()
         {
             if (whitePhial)
@@ -945,12 +960,20 @@ namespace Aequus
 
         public override void PostUpdate()
         {
-            if (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server && !Player.outOfRange)
                 DoDebuffEffects();
 
             if (antiGravityItemRadius > 0f)
             {
-                AequusItem.AntiGravityNearbyItems(Player.Center, antiGravityItemRadius);
+                var position = Player.Center;
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type]
+                        && Vector2.Distance(Main.item[i].Center, position) < antiGravityItemRadius)
+                    {
+                        Main.item[i].Aequus().noGravityTime = 30;
+                    }
+                }
             }
 
             if (accGlowCore > 0)
@@ -990,12 +1013,24 @@ namespace Aequus
 
             if (setGravetender != null)
             {
-                GravetenderSetBonus(setGravetender);
+                if (setGravetender.shoot > ProjectileID.None && Player.ownedProjectileCounts[setGravetender.shoot] <= 0)
+                {
+                    Projectile.NewProjectile(Player.GetSource_Accessory(setGravetender), Player.Center, -Vector2.UnitY, setGravetender.shoot,
+                        Player.GetWeaponDamage(setGravetender), Player.GetWeaponKnockback(setGravetender), Player.whoAmI);
+                }
+                if (setGravetender.buffType > 0)
+                {
+                    Player.AddBuff(setGravetender.buffType, 2, quiet: true);
+                }
+                if (gravetenderGhost > -1 && (!Main.npc[gravetenderGhost].active || !Main.npc[gravetenderGhost].friendly || Main.npc[gravetenderGhost].townNPC || 
+                    !Main.npc[gravetenderGhost].TryGetGlobalNPC<NecromancyNPC>(out var zombie) || !zombie.isZombie || zombie.zombieOwner != Player.whoAmI))
+                {
+                    gravetenderGhost = -1;
+                }
             }
             else
             {
-                setGravetenderCheck = 0;
-                setGravetenderGhost = -1;
+                gravetenderGhost = -1;
             }
 
             if (accSentrySquid != null && turretSquidTimer == 0)
@@ -1119,47 +1154,6 @@ namespace Aequus
             if (boundBowAmmo >= BoundBowMaxAmmo)
             {
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
-            }
-        }
-
-        public void GravetenderSetBonus(Item gravetenderHood)
-        {
-            if (gravetenderHood.shoot > ProjectileID.None && Player.ownedProjectileCounts[setGravetender.shoot] <= 0)
-            {
-                Projectile.NewProjectile(Player.GetSource_Accessory(setGravetender), Player.Center, -Vector2.UnitY, setGravetender.shoot,
-                    Player.GetWeaponDamage(setGravetender), Player.GetWeaponKnockback(setGravetender), Player.whoAmI);
-            }
-            if (gravetenderHood.buffType > 0)
-            {
-                Player.AddBuff(setGravetender.buffType, 2, quiet: true);
-            }
-
-            if (setGravetenderCheck > 0)
-            {
-                setGravetenderCheck--;
-                if (setGravetenderGhost > -1 && !Main.npc[setGravetenderGhost].active)
-                {
-                    setGravetenderCheck = 0;
-                }
-            }
-
-            if (setGravetenderCheck <= 0)
-            {
-                setGravetenderGhost = -1;
-                setGravetenderCheck = 20;
-                int power = 0;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Player.Distance(Main.npc[i].Center) < 2000f && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI && zombie.slotsConsumed > 0)
-                    {
-                        int npcPower = zombie.DespawnPriority(Main.npc[i]);
-                        if (npcPower > power)
-                        {
-                            setGravetenderGhost = i;
-                            power = npcPower;
-                        }
-                    }
-                }
             }
         }
 

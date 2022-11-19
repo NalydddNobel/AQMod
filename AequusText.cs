@@ -410,5 +410,21 @@ namespace Aequus
 
             return name.Replace('/', '_');
         }
+
+        public static string GetKeybindKeys(ModKeybind keybind)
+        {
+            string value = "";
+            foreach (var s in keybind.GetAssignedKeys())
+            {
+                if (!string.IsNullOrEmpty(value))
+                    value += ", ";
+                value += s;
+            }
+            if (string.IsNullOrEmpty(value))
+            {
+                value = GetText("KeyUnbound");
+            }
+            return value;
+        }
     }
 }

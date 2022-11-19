@@ -657,15 +657,15 @@ Mods: {
 			PhoenixRing: Attacks may inflict weakness and fire damage on enemies
 			CartilageRing: 
 				'''
-				Enemies hit by ghosts will take extra damage from scepter debuffs
-				Increases the speed of ghost projectiles
+				Enemies take extra damage from scepter debuffs
+				Ghost minion projectiles travel at twice the speed
 				Attacks may inflict weakness on enemies
 				'''
 			BoneRing: Attacks may inflict weakness on enemies
 			PandorasBox: 
 				'''
-				Enemies hit by ghosts will take extra damage from scepter debuffs
-				Increases the speed of ghost projectiles
+				Enemies take extra damage from scepter debuffs
+				Ghost minion projectiles travel at twice the speed
 				'''
 			BloodiedBucket: 
 				'''
@@ -1762,7 +1762,7 @@ Mods: {
 				Instantly kill and convert powerful enemies to ghost minions when in need
 				Take reduced damage when you have no ghost minions active
 				'''
-			Gravetender: Summons a wisp to empower your ghosts
+			Gravetender: Press <{Keybind}> while hovering over a ghost minion to empower them
 		}
 
 		WhiteFlag: {
@@ -1940,7 +1940,6 @@ Mods: {
 		CrabSeason: Crab Season
 
 		Common: {
-			KeyUnbound: "'Unbound Key'"
 			KeyBound: "'{0}' Key"
 
 			CrabSeason: Crab Season
@@ -2641,6 +2640,7 @@ Mods: {
 		Honey: Honey
 		Shimmer: Shimmer
 
+		KeyUnbound: Unbound Key
 		Finished: Finished
 		Unknown: Unknown
 		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.

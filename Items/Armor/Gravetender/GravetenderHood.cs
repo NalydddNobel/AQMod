@@ -32,7 +32,7 @@ namespace Aequus.Items.Armor.Gravetender
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AequusText.GetText("ArmorSetBonus.Gravetender");
+            player.setBonus = AequusText.GetTextWith("ArmorSetBonus.Gravetender", new { Keybind = AequusText.GetKeybindKeys(AequusPlayer.KeybindSetbonusAlt), });
             player.Aequus().setGravetender = Item;
         }
 
@@ -48,13 +48,36 @@ namespace Aequus.Items.Armor.Gravetender
                 .AddIngredient(ItemID.RottenChunk, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterBefore((ItemID.GravediggerShovel));
+                .TryRegisterBefore(ItemID.GravediggerShovel);
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(ItemID.Vertebrae, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterBefore((ItemID.GravediggerShovel));
+                .TryRegisterBefore(ItemID.GravediggerShovel);
+        }
+
+        public static void ActivateGravetenderWisp(Player player, AequusPlayer aequus)
+        {
+            int chosenNPC = -1;
+            float distance = 64f;
+
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].IsZombieAndInteractible(player.whoAmI) && aequus.gravetenderGhost != i)
+                {
+                    float d = Main.npc[i].Distance(Main.MouseWorld);
+                    if (d < distance)
+                    {
+                        chosenNPC = i;
+                        distance = d;
+                    }
+                }
+            }
+            if (chosenNPC != -1)
+            {
+                aequus.gravetenderGhost = chosenNPC;
+            }
         }
     }
 }

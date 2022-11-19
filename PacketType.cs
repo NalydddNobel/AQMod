@@ -25,13 +25,13 @@
         RequestChestItems,
         RequestAnalysisQuest,
         SpawnShutterstockerClip,
-        SyncRarityObtained,
+        AnalysisRarity,
+        ZombieConvertEffects,
         Count
     }
 
     public enum SoundPacket : byte
     {
-        RecruitZombie,
         InflictBleeding,
         InflictBurning,
         InflictBurning2,

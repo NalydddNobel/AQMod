@@ -16,7 +16,7 @@ namespace Aequus.Content.AnalysisQuests
                 {
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
-                        var p = Aequus.GetPacket(PacketType.SyncRarityObtained);
+                        var p = Aequus.GetPacket(PacketType.AnalysisRarity);
                         p.Write(rare);
                         p.Write(item.value);
                         p.Send();

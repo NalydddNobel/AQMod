@@ -52,9 +52,7 @@ namespace Aequus.Items.Weapons.Summon.Necro
 
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == Main.npc[i].whoAmI) && !NPCID.Sets.ProjectileNPC[Main.npc[i].type] && 
-                    Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.zombieOwner == player.whoAmI 
-                    && CanApply(Main.npc[i], player))
+                if (Main.npc[i].IsZombieAndInteractible(player.whoAmI) && CanApply(Main.npc[i], player))
                 {
                     float d = Main.npc[i].Distance(Main.MouseWorld);
                     if (d < distance)

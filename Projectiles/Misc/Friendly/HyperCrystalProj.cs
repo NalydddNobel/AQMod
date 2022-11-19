@@ -23,7 +23,6 @@ namespace Aequus.Projectiles.Misc.Friendly
             Projectile.width = 48;
             Projectile.height = 48;
             Projectile.friendly = true;
-            Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
             Projectile.alpha = 255;
             Projectile.extraUpdates = 2;
@@ -128,6 +127,13 @@ namespace Aequus.Projectiles.Misc.Friendly
                     Projectile.alpha = 0;
                 }
             }
+        }
+
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+        {
+            width = 8;
+            height = 8;
+            return true;
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)

@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.accPandorasBox++;
+            aequus.zombieDebuffMultiplier++;
             aequus.ghostProjExtraUpdates += 1;
             aequus.accBoneRing++;
         }

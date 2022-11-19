@@ -45,12 +45,12 @@ namespace Aequus.Projectiles.Summon.Misc
 
             Projectile.LoopingFrame(7);
 
-            Projectile.rotation = Projectile.velocity.X * 0.2f;
+            Projectile.rotation = Projectile.velocity.X * 0.075f;
             var aequus = Main.player[Projectile.owner].Aequus();
-            var gotoPosition = aequus.setGravetenderGhost != -1 ?
-                Main.npc[aequus.setGravetenderGhost].Center + new Vector2(0f, -Main.npc[aequus.setGravetenderGhost].height - Projectile.height)
+            var gotoPosition = aequus.gravetenderGhost > -1 ?
+                Main.npc[aequus.gravetenderGhost].Center + new Vector2(0f, -Main.npc[aequus.gravetenderGhost].height - Projectile.height)
                 : DefaultIdlePosition();
-
+            var velocityMin = 4f;
             var diff = gotoPosition - Projectile.Center;
             if ((Main.player[Projectile.owner].Center - Projectile.Center).Length() > 2000f)
             {
@@ -58,23 +58,36 @@ namespace Aequus.Projectiles.Summon.Misc
                 Projectile.velocity *= 0.1f;
                 diff = Vector2.UnitY;
             }
-            var ovalDiff = new Vector2(diff.X, diff.Y *= 3f);
+            var ovalDiff = new Vector2(diff.X, diff.Y * 3f);
             float ovalLength = ovalDiff.Length();
-            if (ovalLength > 40f)
+            if (ovalLength > 28f)
             {
-                var velocity = diff / 80f;
-                if (velocity.Length() < 4f)
+                var velocity = diff / 50f;
+                if (velocity.Length() < velocityMin)
                 {
                     velocity = Vector2.Normalize(velocity).UnNaN() * 4f;
                 }
-                Projectile.velocity = Vector2.Lerp(Projectile.velocity, velocity, 0.015f);
+                if (Math.Sign(velocity.X) != Math.Sign(Projectile.velocity.X))
+                {
+                    Projectile.velocity.X *= 0.99f;
+                }
+
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, velocity, 0.01f);
+            }
+            else
+            {
+                Projectile.velocity *= 0.95f;
+            }
+            if (Projectile.numUpdates == -1)
+            {
+                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * Main.npc[aequus.gravetenderGhost].StatSpeed() : Main.player[Projectile.owner].velocity) * 0.97f;
             }
 
-            Lighting.AddLight(Projectile.Center, new Vector3(0.4f, 0.05f, 0.1f));
+            Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0f, 0.05f));
 
-            if (aequus.setGravetenderGhost != -1)
+            if (aequus.gravetenderGhost != -1)
             {
-                Projectile.spriteDirection = Math.Sign(Main.npc[aequus.setGravetenderGhost].velocity.X);
+                Projectile.spriteDirection = Math.Sign(Main.npc[aequus.gravetenderGhost].velocity.X);
             }
             else
             {

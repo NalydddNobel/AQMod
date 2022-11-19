@@ -479,17 +479,5 @@ namespace Aequus.Items
             Main.item[i].stack = item.stack;
             return i;
         }
-
-        public static void AntiGravityNearbyItems(Vector2 position, float distance)
-        {
-            for (int i = 0; i < Main.maxItems; i++)
-            {
-                if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type]
-                    && Vector2.Distance(Main.item[i].Center, position) < distance)
-                {
-                    Main.item[i].Aequus().noGravityTime = 30;
-                }
-            }
-        }
     }
 }

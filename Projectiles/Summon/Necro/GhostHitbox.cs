@@ -83,12 +83,6 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.player[Projectile.owner].Aequus().accPandorasBox > 0)
-            {
-                var zombie = target.GetGlobalNPC<NecromancyNPC>();
-                zombie.pandoraBox = Math.Max(zombie.pandoraBox, Main.player[Projectile.owner].Aequus().accPandorasBox + 1);
-                target.AddBuff(ModContent.BuffType<PandorasCurse>(), 300);
-            }
             target.AddBuff(ModContent.BuffType<SoulStolen>(), 1200);
         }
     }
