@@ -657,15 +657,15 @@ Mods: {
 			PhoenixRing: 攻击有几率对敌人造成虚弱减益和火焰伤害
 			CartilageRing: 
 				'''
-				被幽魂击中的敌人会受到来自王权减益的额外伤害
-				增加幽魂的弹幕速度
+				敌人会受到来自王权减益的额外伤害
+				幽魂仆从的弹幕速度翻倍
 				攻击有几率对敌人造成虚弱减益
 				'''
 			BoneRing: 攻击有几率对敌人造成虚弱效果
 			PandorasBox: 
 				'''
-				被幽魂击中的敌人会受到来自王权减益的额外伤害
-				增加幽魂的弹幕速度
+				敌人会受到来自王权减益的额外伤害
+				幽魂仆从的弹幕速度翻倍
 				'''
 			BloodiedBucket: 
 				'''
@@ -1762,7 +1762,7 @@ Mods: {
 				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
 				当你没有任何幽魂仆从时你所受到的伤害降低
 				'''
-			Gravetender: 召唤一缕魂灵来强化你的幽魂
+			Gravetender: 当光标悬浮在幽魂仆从上方时按下<{Keybind}>会强化它们
 		}
 
 		WhiteFlag: {
@@ -1940,7 +1940,6 @@ Mods: {
 		CrabSeason: 蟹季
 
 		Common: {
-			KeyUnbound: "'按键未绑定'"
 			KeyBound: "'{0}'键"
 
 			CrabSeason: 蟹季
@@ -2641,6 +2640,7 @@ Mods: {
 		Honey: 蜂蜜
 		Shimmer: 微光
 
+		KeyUnbound: 按键未绑定
 		Finished: 完成的
 		Unknown: 位置
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
