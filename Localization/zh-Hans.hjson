@@ -259,6 +259,7 @@ Mods: {
 			CinnamonRoll: 肉桂卷
 			SpicyEel: 香辣鳗鱼
 
+			NecromancyPotion: 死灵药水
 			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
 			FrostPotion: 冰霜药水
@@ -1144,6 +1145,7 @@ Mods: {
 			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
 			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
+			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
 			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
@@ -1397,6 +1399,8 @@ Mods: {
 			}
 
 			Empowered: {
+				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
+				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
 				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
 				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
 				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
@@ -1446,14 +1450,19 @@ Mods: {
 		}
 
 		BuffName: {
+			TonicSpawnratesDebuff: 补药冷却
+			TonicSpawnratesBuff: 补药
 			NoonBuff: 正午
 			AstralCookieBuff: 星体饼干
 			NeutronYogurtBuff: 中子酸奶
 			BloodthirstBuff: 嗜血
+			NecromancyPotionBuff: 死灵
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
 			SpicyEelBuff: 香辣鳗鱼
 
+			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
+			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
 			EmpoweredArchery: "{$BuffName.Archery}"
 			EmpoweredEndurance: "{$BuffName.Endurance}"
 			EmpoweredFishing: "{$BuffName.Fishing}"
@@ -1472,7 +1481,7 @@ Mods: {
 			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
 
-			NecromancyOwnerBuff: 死灵
+			NecromancyOwnerBuff: 幽魂仆从
 
 			GravetenderMinionBuff: 守墓人
 
@@ -1508,6 +1517,8 @@ Mods: {
 		}
 
 		BuffDescription: {
+			TonicSpawnratesDebuff: 你无法使用商人补药
+			TonicSpawnratesBuff: 敌人被你的气味吸引
 			BloodthirstBuff: 敌人必定掉落红心
 			NoonBuff:
 				'''
@@ -1515,9 +1526,12 @@ Mods: {
 				会使仅在白天生效的效果生效
 				阻止仅在夜晚生效的效果生效
 				'''
+			NecromancyPotionBuff: 增加1格最大幽魂仆从栏位
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
+			EmpoweredNecromancy: 增加2格最大幽魂仆从栏位
+			EmpoweredSentry: 增加2格最大哨兵栏位
 			EmpoweredArchery: 箭矢伤害和速度增加20%
 			EmpoweredEndurance: 所受伤害降低20%
 			EmpoweredFishing: 渔力增加30点
