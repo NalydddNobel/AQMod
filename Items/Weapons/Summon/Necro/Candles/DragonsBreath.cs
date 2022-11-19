@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
-using Aequus.Projectiles.Summon.Necro;
+using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -17,21 +17,11 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(120, 4, NPCID.CultistDragonHead, -0.1f);
+            DefaultToCandle<DragonsBreathProj>(120);
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.sellPrice(gold: 10);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
-        }
-
-        public override void SpawnGhost(Player player, int soulGemDamage)
-        {
-            var position = Main.MouseWorld;
-            player.LimitPointToPlayerReachableArea(ref position);
-            if (Main.myPlayer == player.whoAmI)
-            {
-                Projectile.NewProjectileDirect(player.GetSource_ItemUse_WithPotentialAmmo(Item, 0), position, Vector2.Zero, ModContent.ProjectileType<DragonsBreathSpawner>(), Item.damage + soulGemDamage, 0f, player.whoAmI, ai1: npcSpeed);
-            }
         }
 
         public override void HoldStyle(Player player, Rectangle heldItemFrame)

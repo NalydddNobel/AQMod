@@ -842,5 +842,10 @@
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
             <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
     </members>
 </doc>

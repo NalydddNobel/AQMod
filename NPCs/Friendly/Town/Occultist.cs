@@ -106,7 +106,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
-            //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletronCandle>());

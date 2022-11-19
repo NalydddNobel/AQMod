@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Summon.CandleSpawners;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -13,7 +14,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(40, 2, NPCID.Demon, 0.66f);
+            DefaultToCandle<PurgatoryProj>(40);
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(gold: 10);
             Item.flame = true;

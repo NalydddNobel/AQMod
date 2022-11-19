@@ -45,6 +45,8 @@ namespace Aequus.Content.Necromancy.Renderer
                     new RenderData(() => new Color(80, 255, 200, 255)), // Insurgency
                     new RenderData(() => new Color(255, 10, 10, 255)), // Blood Red
                     new RenderData(() => new Color(255, 100, 255, 255)), // Friendship Magick
+                    new RenderData(() => Color.BlueViolet), // Demon Purple
+                    new RenderData(() => Color.Blue), // Dungeon Dark Blue
                     new RenderData(() => Main.teamColor[0]), // PVP Team White
                     new RenderData(() => Main.teamColor[1]), // PVP Team Red
                     new RenderData(() => Main.teamColor[2]), // PVP Team Green

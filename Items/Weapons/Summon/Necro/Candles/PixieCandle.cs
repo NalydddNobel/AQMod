@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles.Summon.CandleSpawners;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -13,7 +15,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(120, 2, NPCID.Pixie, 1f);
+            DefaultToCandle<FallenAngelProj>(120);
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;
@@ -26,6 +28,22 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             player.itemLocation.Y += 8f;
 
             Lighting.AddLight(player.itemLocation, TorchID.Torch);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Candle)
+                .AddIngredient(ItemID.PixieDust, 50)
+                .AddIngredient<DemonicEnergy>()
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.PlatinumCandle)
+                .AddIngredient(ItemID.PixieDust, 50)
+                .AddIngredient<DemonicEnergy>()
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }

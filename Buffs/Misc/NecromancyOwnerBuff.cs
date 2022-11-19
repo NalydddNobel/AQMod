@@ -3,7 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Minion
+namespace Aequus.Buffs.Misc
 {
     public class NecromancyOwnerBuff : ModBuff
     {

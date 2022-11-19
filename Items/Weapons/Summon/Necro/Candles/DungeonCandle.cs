@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Summon.CandleSpawners;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -13,7 +14,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(40, 1, NPCID.CursedSkull, 1f);
+            DefaultToCandle<WretchednessProj>(40);
             Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.DungeonValue;
             Item.flame = true;

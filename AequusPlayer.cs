@@ -2,7 +2,7 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Minion;
+using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.Players;
 using Aequus.Common.Utilities;
@@ -1381,6 +1381,11 @@ namespace Aequus
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
             timeSinceLastHit = 0;
+            if (Player.HasBuff(ModContent.BuffType<RitualBuff>()))
+            {
+                SoundEngine.PlaySound(SoundID.NPCDeath39, Player.Center);
+                Player.ClearBuff(ModContent.BuffType<RitualBuff>());
+            }
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)

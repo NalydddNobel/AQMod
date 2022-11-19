@@ -34,6 +34,9 @@ namespace Aequus.Projectiles.Summon
             public const int Bomb = 11;
             public const int Exclamation = 12;
             public const int Energetic = 13;
+            /// <summary>
+            /// 🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            /// </summary>
             public const int Thirsty = 14;
             public const int Gravestone = 15;
         }
@@ -297,6 +300,11 @@ namespace Aequus.Projectiles.Summon
             {
                 l.Add(EmojiID.Heart);
             }
+            if (player.companionCube)
+            {
+                l.Add(EmojiID.Heart);
+                l.Add(EmojiID.Flame);
+            }
             if ((heldItem.type > ItemID.None && ItemID.Sets.ItemsThatCountAsBombsForDemolitionistToSpawn[heldItem.type]) || player.isNearNPC(NPCID.Demolitionist, 800f))
             {
                 l.Add(EmojiID.Bomb);
@@ -304,7 +312,6 @@ namespace Aequus.Projectiles.Summon
             }
             if (player.isNearNPC(ModContent.NPCType<Occultist>(), 800f))
             {
-                l.Add(EmojiID.Bomb);
                 l.Add(EmojiID.Flame);
             }
 

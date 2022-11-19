@@ -33,9 +33,9 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 120;
-            Projectile.height = 120;
-            hitboxOutwards = 45;
+            Projectile.width = 180;
+            Projectile.height = 180;
+            hitboxOutwards = 60;
             visualOutwards = 8;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }

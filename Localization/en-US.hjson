@@ -906,13 +906,13 @@ Mods: {
 				'''
 			SkeletronCandle: Applies Skeletron's arms to a ghost minion
 
-			DragonsBreath: Summon a phantasmal dragon to fight for you
-			CrimsonCandle: Summons a blood crawler to fight for you
-			CorruptionCandle: Summons an eater of souls to fight for you
-			PixieCandle: Summons a pixie to fight for you
-			BloodMoonCandle: Summons a blood zombie to fight for you
-			DungeonCandle: Summons a cursed skull to fight for you
-			OccultistCandle: Summons a demon to fight for you
+			DragonsBreath: Summon a Phantasmal Dragon to fight for you
+			CrimsonCandle: Summons a Blood Crawler to fight for you
+			CorruptionCandle: Summons an Eater of Souls to fight for you
+			PixieCandle: Summons a Pixie to fight for you
+			BloodMoonCandle: Summons a Blood Zombie to fight for you
+			DungeonCandle: Summons a Cursed Skull to fight for you
+			OccultistCandle: Summons a Demon to fight for you
 
 			FriendshipMagick: Become friends with strong enemies!
 			Insurgency: 
@@ -1487,6 +1487,7 @@ Mods: {
 			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
 
+			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
 
 			GravetenderMinionBuff: Gravetender
@@ -1563,6 +1564,7 @@ Mods: {
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
+			RitualBuff: You are performing a ritual... don't get distracted!
 			NecromancyOwnerBuff: You are controlling the dead
 
 			PiranhaPlantBuff: The vile plant will fight for you

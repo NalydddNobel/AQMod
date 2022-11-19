@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Misc;
+using Aequus.Projectiles.Summon.CandleSpawners;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -13,7 +15,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(20, 1, NPCID.BloodZombie, 1f);
+            DefaultToCandle<BloodMoonCandleProj>(20);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;
@@ -26,6 +28,20 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             player.itemLocation.Y += 8f;
 
             Lighting.AddLight(player.itemLocation, Color.Red.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.Candle)
+                .AddIngredient<BloodyTearFragment>(6)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.PlatinumCandle)
+                .AddIngredient<BloodyTearFragment>(6)
+                .AddTile(TileID.DemonAltar)
+                .Register();
         }
     }
 }

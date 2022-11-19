@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Projectiles.Summon.CandleSpawners;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -13,7 +14,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle(16, 1, NPCID.BloodCrawler);
+            DefaultToCandle<FleshLighterProj>(16);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;

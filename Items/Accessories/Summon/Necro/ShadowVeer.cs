@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,8 +16,8 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Yellow;
-            Item.value = Item.sellPrice(gold: 4);
+            Item.rare = ItemRarityID.Green;
+            Item.value = Item.sellPrice(gold: 1);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -29,9 +28,13 @@ namespace Aequus.Items.Accessories.Summon.Necro
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.BlackBelt)
-                .AddIngredient<Hexoplasm>(8)
-                .AddIngredient<SoulGemFilled>(5)
+                .AddIngredient(ItemID.Cobweb, 100)
+                .AddIngredient(ItemID.DemoniteBar, 10)
+                .AddTile(TileID.DemonAltar)
+                .TryRegisterBefore(ItemID.MasterNinjaGear);
+            CreateRecipe()
+                .AddIngredient(ItemID.Cobweb, 100)
+                .AddIngredient(ItemID.CrimtaneBar, 10)
                 .AddTile(TileID.DemonAltar)
                 .TryRegisterBefore(ItemID.MasterNinjaGear);
         }
