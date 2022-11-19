@@ -95,6 +95,9 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			ShadowVeer: Shadow Veer
+			SouljointCuffs: Souljoint Cuffs
+			NaturesCruelty: Nature's Cruelty
 			SpiritKeg: Keg O' Spirits
 			CartilageRing: Cartilage Ring
 			SpiritBottle: Bottle O' Spirits
@@ -588,6 +591,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ShadowVeer: Ghost minions will do shadow dashes at targetted enemies
+			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit
+			NaturesCruelty: 25% of damage taken is dealt to your ghost minions
 			SpiritKeg: 
 				'''
 				Increases your max number of ghosts by 1

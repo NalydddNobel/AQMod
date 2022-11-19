@@ -324,6 +324,10 @@ namespace Aequus
 
         public int turretSlotCount;
 
+        public float ghostHealthDR;
+        public int ghostShadowDash;
+        public int ghostChains;
+
         public int ghostSlotsMax;
         public int ghostSlotsOld;
         public int ghostSlots;
@@ -553,6 +557,9 @@ namespace Aequus
             setSeraphim = null;
             setGravetender = null;
 
+            ghostChains = 0;
+            ghostHealthDR = 0f;
+            ghostShadowDash = 0;
             accGlowCore = 0;
             accHyperJet = false;
             accSentrySlot = false;
@@ -1418,6 +1425,43 @@ namespace Aequus
             if (npc.HasBuff<Weakness>())
             {
                 damage = (int)(damage * WeaknessDamageMultiplier);
+            }
+
+            if (ghostHealthDR > 0f)
+            {
+                float amount = 1f - ghostHealthDR;
+                var list = new List<Point>();
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].IsZombieAndInteractible(Player.whoAmI) && !Main.npc[i].GetGlobalNPC<NecromancyNPC>().statFreezeLifespan)
+                    {
+                        list.Add(new Point(i, Main.npc[i].GetGlobalNPC<NecromancyNPC>().DespawnPriority(Main.npc[i])));
+                    }
+                }
+                if (list.Count != 0)
+                {
+                    int damageToRemove = (int)(damage * amount);
+                    damage -= damageToRemove;
+                    list.Sort((npc, npc2) => npc.Y.CompareTo(npc2.Y));
+                    while (list.Count > 0 && damageToRemove > 0)
+                    {
+                        var n = Main.npc[list[0].X];
+                        int life = (int)(n.lifeMax * n.GetGlobalNPC<NecromancyNPC>().ZombieLifespanPercentage);
+                        life -= damageToRemove;
+                        if (life < 0)
+                        {
+                            damageToRemove = -life;
+                            n.KillMe(quiet: false);
+                        }
+                        else
+                        {
+                            damageToRemove = 0;
+                            n.GetGlobalNPC<NecromancyNPC>().zombieTimer = (int)(life / (float)n.lifeMax * n.GetGlobalNPC<NecromancyNPC>().zombieTimerMax);
+                        }
+                        list.RemoveAt(0);
+                    }
+                    damage += damageToRemove;
+                }
             }
 
             if (npc.Aequus().heatDamage && Player.HasBuff<FrostBuff>())

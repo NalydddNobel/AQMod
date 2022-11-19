@@ -1,5 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Necromancy.Renderer;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -83,7 +85,25 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SoulStolen>(), 1200);
+            if (target.life > 0 && Main.player[Projectile.owner].Aequus().ghostChains > 0 && !Main.npc[NPC].Aequus().childNPC)
+            {
+                var zombie = Main.npc[NPC].GetGlobalNPC<NecromancyNPC>();
+                zombie.ghostChainsTime = 300 * Main.player[Projectile.owner].Aequus().ghostChains;
+                if (zombie.ghostChainsNPC != target.whoAmI)
+                {
+                    zombie.ghostChainsNPC = target.whoAmI;
+                    var diff = target.Center - Projectile.Center;
+                    int amt = (int)(diff.Length() / 4f);
+                    var clr = GhostRenderer.GetColorTarget(Main.player[Projectile.owner], zombie.renderLayer).getDrawColor().UseA(25) * 0.8f;
+                    for (int i = 0; i < amt; i++)
+                    {
+                        var d = Dust.NewDustDirect(Projectile.Center + diff * Main.rand.NextFloat(1f) - new Vector2(12f, 12f), 24, 24,
+                            ModContent.DustType<MonoSparkleDust>(), newColor: clr.HueAdd(Main.rand.NextFloat(-0.02f, 0.02f)).UseA(25), Scale: Main.rand.NextFloat(0.75f, 1.33f));
+                        d.velocity *= 1.2f;
+                        d.fadeIn = d.scale + 1f;
+                    }
+                }
+            }
         }
     }
 }

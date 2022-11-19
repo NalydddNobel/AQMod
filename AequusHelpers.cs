@@ -291,6 +291,17 @@ namespace Aequus
             return result;
         }
 
+        public static void KillMe(this NPC npc, bool quiet = false)
+        {
+            npc.life = -1;
+            npc.HitEffect();
+            npc.active = false;
+            if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
+            {
+                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, 9999 + npc.lifeMax * 2 + npc.defense * 2);
+            }
+        }
+
         public static bool IsZombieAndInteractible(this NPC npc, int plr)
         {
             return npc.active && (npc.realLife == -1 || npc.realLife == npc.whoAmI) && !NPCID.Sets.ProjectileNPC[npc.type] &&

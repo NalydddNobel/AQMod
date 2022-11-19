@@ -16,6 +16,7 @@ namespace Aequus.Content.Necromancy.Renderer
         public static GhostRenderer Instance { get; private set; }
         public static List<RenderTarget2D> OrphanedRenderTargets { get; private set; }
         public static RenderData[] Colors { get; private set; }
+        public static List<(NPC, NPC)> ChainedUpNPCs { get; private set; }
 
         public static bool Rendering { get; set; }
 
@@ -33,6 +34,7 @@ namespace Aequus.Content.Necromancy.Renderer
             if (!Main.dedServ)
             {
                 Instance = this;
+                ChainedUpNPCs = new List<(NPC, NPC)>();
                 OrphanedRenderTargets = new List<RenderTarget2D>();
                 Colors = new RenderData[]
                 {
@@ -80,6 +82,29 @@ namespace Aequus.Content.Necromancy.Renderer
             NecromancyShader = null;
             Colors = null;
             base.Unload();
+        }
+
+        public static void DrawChainedNPCs()
+        {
+            if (ChainedUpNPCs.Count > 0)
+            {
+                var t = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}SoulChains").Value;
+                foreach (var v in ChainedUpNPCs)
+                {
+                    int i = 0;
+                    AequusHelpers.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) => 
+                    {
+                        var zombie = v.Item1.GetGlobalNPC<NecromancyNPC>();
+                        float m = 0.5f;
+                        if (zombie.ghostChainsTime < 30)
+                        {
+                            m *= zombie.ghostChainsTime / 30f;
+                        }
+                        return GetColorTarget(Main.player[zombie.zombieOwner], zombie.renderLayer).getDrawColor().UseA(128) * m;
+                    });
+                }
+                ChainedUpNPCs.Clear();
+            }
         }
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)

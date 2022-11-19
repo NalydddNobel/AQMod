@@ -241,12 +241,6 @@ namespace Aequus.Graphics
             try
             {
                 GlimmerSceneEffect.DrawUltimateSword();
-                NPCsBehindAllNPCs.renderingNow = true;
-                for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
-                {
-                    Main.instance.DrawNPC(NPCsBehindAllNPCs.Index(i), behindTiles);
-                }
-                NPCsBehindAllNPCs.Clear();
 
                 if (!behindTiles)
                 {
@@ -274,6 +268,17 @@ namespace Aequus.Graphics
 
                     }
                 }
+                else
+                {
+                    GhostRenderer.DrawChainedNPCs();
+                }
+
+                NPCsBehindAllNPCs.renderingNow = true;
+                for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
+                {
+                    Main.instance.DrawNPC(NPCsBehindAllNPCs.Index(i), behindTiles);
+                }
+                NPCsBehindAllNPCs.Clear();
             }
             catch
             {

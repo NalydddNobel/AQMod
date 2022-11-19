@@ -13,10 +13,8 @@ using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Placeable;
-using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
-using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -24,6 +22,7 @@ using System.IO;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -53,6 +52,7 @@ namespace Aequus.NPCs
         public byte nightfallStacks;
         public float nightfallSpeed;
         public bool noAITest;
+        public bool childNPC;
 
         public override void Load()
         {
@@ -219,6 +219,15 @@ namespace Aequus.NPCs
             noAITest = false;
         }
 
+        public override void OnSpawn(NPC npc, IEntitySource source)
+        {
+            if (AequusHelpers.HereditarySource(source, out var ent))
+            {
+                childNPC = true;
+                NecromancyNPC.InheritFromParent(npc, ent);
+            }
+        }
+
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {
             return !disabledContactDamage;
@@ -317,7 +326,6 @@ namespace Aequus.NPCs
                 if (nightfallSpeed < 0f || npc.velocity.Y < 0f)
                     nightfallSpeed = 0f;
             }
-
             return !noAITest;
         }
         public void DebuffEffects(NPC npc)
@@ -580,7 +588,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -629,6 +637,7 @@ namespace Aequus.NPCs
                 nightfallStacks = binaryReader.ReadByte();
                 nightfallSpeed = binaryReader.ReadSingle();
             }
+            childNPC = bb[5];
         }
 
         #region Hooks
@@ -677,6 +686,40 @@ namespace Aequus.NPCs
         {
             if (self.TryGetGlobalNPC<BitCrushedGlobalNPC>(out var bitCrushed) && !bitCrushed.CheckUpdateNPC(self, i))
                 return;
+            if (AequusHelpers.iterations == 0 && self.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
+            {
+                var aequus = Main.player[zombie.zombieOwner].Aequus();
+                if (aequus.ghostShadowDash > 0)
+                {
+                    if (zombie.shadowDashTimer > 240 - aequus.ghostShadowDash * 10)
+                    {
+                        AequusHelpers.iterations++;
+                        for (int k = 0; k < 3; k++)
+                        {
+                            for (int l = 0; l < 2; l++)
+                            {
+                                var d = Dust.NewDustDirect(self.position, self.width, self.height, DustID.Smoke, Alpha: 100, newColor: Color.Black, Scale: Main.rand.NextFloat(1f, 1.5f));
+                                d.velocity *= 0.25f;
+                                d.velocity -= self.velocity * 0.25f;
+                            }
+                            if (self.velocity.Length() < 3f)
+                                self.velocity = Vector2.Normalize(self.velocity).UnNaN() * 3f;
+                            var v = self.velocity;
+                            orig(self, i);
+                            self.velocity = Vector2.Lerp(v, self.velocity, 0.2f);
+                            if (Vector2.Distance(self.oldPosition, self.position).UnNaN() < 1f)
+                            {
+                                break;
+                            }
+                        }
+                        AequusHelpers.iterations = 0;
+                    }
+                }
+                else
+                {
+                    zombie.shadowDashTimer = 0;
+                }
+            }
             orig(self, i);
         }
 
