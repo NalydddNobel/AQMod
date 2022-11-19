@@ -1,11 +1,15 @@
 ﻿using Aequus.Content.Necromancy;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.UI
 {
     public class NecromancyInterface : BaseUserInterface
     {
+        public static int SelectedGhost;
+
         public override string Layer => AequusUI.InterfaceLayers.EntityHealthBars_16;
 
         public override bool Draw(SpriteBatch spriteBatch)
@@ -16,6 +20,12 @@ namespace Aequus.UI
                 {
                     n.DrawHealthbar(Main.npc[i], spriteBatch, Main.screenPosition);
                 }
+            }
+            if (SelectedGhost > -1 && Main.npc[SelectedGhost].IsZombieAndInteractible(Main.myPlayer))
+            {
+                var texture = ModContent.Request<Texture2D>("Aequus/Assets/UI/NecromancySelectionCursor").Value;
+                var frame = texture.Frame(verticalFrames: 8, frameY: (int)(Main.GameUpdateCount / 6 % 8));
+                spriteBatch.Draw(texture, Main.npc[SelectedGhost].Center - Main.screenPosition, frame, new Color(255, 255, 255, 128) * 0.65f, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }
             return true;
         }

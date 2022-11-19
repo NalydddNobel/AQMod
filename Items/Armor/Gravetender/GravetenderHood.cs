@@ -1,6 +1,8 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Projectiles.Summon.Misc;
+using Aequus.UI;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -60,7 +62,7 @@ namespace Aequus.Items.Armor.Gravetender
         public static void ActivateGravetenderWisp(Player player, AequusPlayer aequus)
         {
             int chosenNPC = -1;
-            float distance = 64f;
+            float distance = 128f;
 
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -76,7 +78,12 @@ namespace Aequus.Items.Armor.Gravetender
             }
             if (chosenNPC != -1)
             {
-                aequus.gravetenderGhost = chosenNPC;
+                NecromancyInterface.SelectedGhost = chosenNPC;
+                if (AequusPlayer.KeybindSetbonusAlt.JustPressed)
+                {
+                    aequus.gravetenderGhost = chosenNPC;
+                    SoundEngine.PlaySound(SoundID.Item4, player.Center);
+                }
             }
         }
     }

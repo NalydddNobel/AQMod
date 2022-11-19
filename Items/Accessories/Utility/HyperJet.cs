@@ -32,7 +32,7 @@ namespace Aequus.Items.Accessories.Utility
                     Main.stackDelay = Math.Max(Main.stackDelay / 2, 2);
                 if (!inv[0].IsAir && oldStack != inv[0].stack)
                 {
-                    if (Main.LocalPlayer.Aequus().accStackSplit && Main.stackDelay < 7)
+                    if (Main.LocalPlayer.Aequus().accHyperJet && Main.stackDelay < 7)
                     {
                         for (int i = 0; i < 7 - Main.stackDelay; i++)
                         {
@@ -60,19 +60,19 @@ namespace Aequus.Items.Accessories.Utility
         public override void UpdateInventory(Player player)
         {
             if (active)
-                player.Aequus().accStackSplit = true;
+                player.Aequus().accHyperJet = true;
         }
 
         void ItemHooks.IUpdateVoidBag.UpdateBank(Player player, AequusPlayer aequus, int slot, int bank)
         {
             if (active)
-                player.Aequus().accStackSplit = true;
+                player.Aequus().accHyperJet = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             if (active)
-                player.Aequus().accStackSplit = true;
+                player.Aequus().accHyperJet = true;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

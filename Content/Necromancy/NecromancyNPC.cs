@@ -283,7 +283,7 @@ namespace Aequus.Content.Necromancy
 
                 if (aequus.gravetenderGhost == npc.whoAmI && !stats.DontModifyVelocity)
                 {
-                    npc.StatSpeed() *= 1.5f;
+                    npc.StatSpeed() *= 1.33f;
                     statFreezeLifespan = true;
                 }
 

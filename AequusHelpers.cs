@@ -1674,6 +1674,15 @@ namespace Aequus
         {
             return item.GetGlobalItem<AequusItem>();
         }
+        public static Vector2 GetSpeedStats(this NPC npc) 
+        {
+            var velocityBoost = new Vector2(npc.StatSpeed());
+            if (!npc.noGravity)
+            {
+                velocityBoost.Y = MathHelper.Lerp(1f, velocityBoost.Y, npc.GetGlobalNPC<StatSpeedGlobalNPC>().jumpSpeedInterpolation);
+            }
+            return velocityBoost;
+        }
         public static ref float StatSpeed(this NPC npc)
         {
             return ref npc.GetGlobalNPC<StatSpeedGlobalNPC>().statSpeed;

@@ -114,7 +114,7 @@ namespace Aequus
 
         public float darkness;
 
-        public bool accStackSplit;
+        public bool accHyperJet;
         public bool accShowQuestFish;
         public bool accPriceMonocle;
 
@@ -376,6 +376,7 @@ namespace Aequus
             clone.increasedRegen = increasedRegen;
             clone.boundedPotionIDs = new List<int>(boundedPotionIDs);
             clone.darkness = darkness;
+            clone.gravetenderGhost = gravetenderGhost;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -385,7 +386,7 @@ namespace Aequus
             var bb = new BitsByte(
                 darkness != aequus.darkness,
                 timeSinceLastHit != aequus.timeSinceLastHit,
-                false, // Unused
+                gravetenderGhost != aequus.gravetenderGhost,
                 omniPaint != aequus.omniPaint,
                 (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
                 aequus.instaShieldTime != instaShieldTime,
@@ -397,57 +398,56 @@ namespace Aequus
 
             if (bb > 0 || bb2 > 0)
             {
-                PacketSystem.Send((p) =>
+                var p = Aequus.GetPacket(PacketType.SyncAequusPlayer);
+                p.Write((byte)Player.whoAmI);
+                p.Write(bb);
+                p.Write(bb2);
+                if (bb[0])
                 {
-                    p.Write((byte)Player.whoAmI);
-                    p.Write(bb);
-                    p.Write(bb2);
-                    if (bb[0])
+                    p.Write(darkness);
+                }
+                if (bb[1])
+                {
+                    p.Write(timeSinceLastHit);
+                }
+                if (bb[2])
+                {
+                    p.Write(gravetenderGhost);
+                }
+                if (bb[3])
+                {
+                    p.Write(omniPaint);
+                }
+                if (bb[4])
+                {
+                    p.Write(itemCombo);
+                    p.Write(itemSwitch);
+                    p.Write(itemUsage);
+                    p.Write(itemCooldown);
+                    p.Write(itemCooldownMax);
+                }
+                if (bb[5])
+                {
+                    p.Write(instaShieldTime);
+                }
+                if (bb[6])
+                {
+                    p.Write(boundedPotionIDs.Count);
+                    for (int i = 0; i < boundedPotionIDs.Count; i++)
                     {
-                        p.Write(darkness);
+                        p.Write(boundedPotionIDs[i]);
                     }
-                    if (bb[1])
-                    {
-                        p.Write(timeSinceLastHit);
-                    }
-                    if (bb[2])
-                    {
-                    }
-                    if (bb[3])
-                    {
-                        p.Write(omniPaint);
-                    }
-                    if (bb[4])
-                    {
-                        p.Write(itemCombo);
-                        p.Write(itemSwitch);
-                        p.Write(itemUsage);
-                        p.Write(itemCooldown);
-                        p.Write(itemCooldownMax);
-                    }
-                    if (bb[5])
-                    {
-                        p.Write(instaShieldTime);
-                    }
-                    if (bb[6])
-                    {
-                        p.Write(boundedPotionIDs.Count);
-                        for (int i = 0; i < boundedPotionIDs.Count; i++)
-                        {
-                            p.Write(boundedPotionIDs[i]);
-                        }
-                    }
-                    if (bb[7])
-                    {
-                        p.Write(boundBowAmmo);
-                        p.Write(boundBowAmmoTimer);
-                    }
-                    if (bb2[0])
-                    {
-                        p.Write(summonHelmetTimer);
-                    }
-                    return true;
-                }, PacketType.SyncAequusPlayer);
+                }
+                if (bb[7])
+                {
+                    p.Write(boundBowAmmo);
+                    p.Write(boundBowAmmoTimer);
+                }
+                if (bb2[0])
+                {
+                    p.Write(summonHelmetTimer);
+                }
+                p.Send();
             }
         }
 
@@ -554,7 +554,7 @@ namespace Aequus
             setGravetender = null;
 
             accGlowCore = 0;
-            accStackSplit = false;
+            accHyperJet = false;
             accSentrySlot = false;
             accGroundCrownCrit = 0;
             accDarknessCrownDamage = 0f;
@@ -845,12 +845,9 @@ namespace Aequus
 
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (KeybindSetbonusAlt.JustPressed)
+            if (setGravetender != null)
             {
-                if (setGravetender != null)
-                {
-                    GravetenderHood.ActivateGravetenderWisp(Player, this);
-                }
+                GravetenderHood.ActivateGravetenderWisp(Player, this);
             }
         }
 

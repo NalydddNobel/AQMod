@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace Aequus.NPCs.GlobalNPCs
         public static HashSet<int> IgnoreStatSpeed { get; private set; }
 
         public float statSpeed;
+        public float jumpSpeedInterpolation;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -17,6 +19,7 @@ namespace Aequus.NPCs.GlobalNPCs
         public StatSpeedGlobalNPC()
         {
             statSpeed = 1f;
+            jumpSpeedInterpolation = 0.5f;
         }
 
         public override void Load()
@@ -32,10 +35,12 @@ namespace Aequus.NPCs.GlobalNPCs
                 return;
             }
 
-            float velocityBoost = self.StatSpeed();
-            self.velocity *= velocityBoost;
+            var velocityBoost = self.GetSpeedStats();
+            self.velocity.X *= velocityBoost.X;
+            self.velocity.Y *= velocityBoost.Y;
             orig(self);
-            self.velocity /= velocityBoost;
+            self.velocity.X /= velocityBoost.X;
+            self.velocity.Y /= velocityBoost.Y;
         }
 
         public override void SetStaticDefaults()
@@ -79,6 +84,7 @@ namespace Aequus.NPCs.GlobalNPCs
         public override void ResetEffects(NPC npc)
         {
             statSpeed = 1f;
+            jumpSpeedInterpolation = 0.5f;
         }
 
         public override void PostAI(NPC npc)

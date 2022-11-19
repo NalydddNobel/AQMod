@@ -56,6 +56,7 @@ namespace Aequus.Projectiles.Summon.Misc
             {
                 Projectile.Center = Main.player[Projectile.owner].Center;
                 Projectile.velocity *= 0.1f;
+                aequus.gravetenderGhost = -1;
                 diff = Vector2.UnitY;
             }
             var ovalDiff = new Vector2(diff.X, diff.Y * 3f);
@@ -80,7 +81,7 @@ namespace Aequus.Projectiles.Summon.Misc
             }
             if (Projectile.numUpdates == -1)
             {
-                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * Main.npc[aequus.gravetenderGhost].StatSpeed() : Main.player[Projectile.owner].velocity) * 0.97f;
+                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * Main.npc[aequus.gravetenderGhost].GetSpeedStats() : Main.player[Projectile.owner].velocity) * 0.97f;
             }
 
             Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0f, 0.05f));
