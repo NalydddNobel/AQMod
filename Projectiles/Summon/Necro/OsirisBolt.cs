@@ -79,7 +79,7 @@ namespace Aequus.Projectiles.Summon.Necro
             for (int i = 0; i < 3; i++)
             {
                 var normal = Main.rand.NextVector2Unit();
-                var p = Projectile.NewProjectile(source, target.Center + normal * distance, normal * 3f, LocustType(Main.player[Projectile.owner]), Projectile.damage, Projectile.knockBack, Projectile.owner, 0f, target.whoAmI);
+                var p = Projectile.NewProjectile(source, target.Center + normal * distance, normal * 3f, LocustType(Main.player[Projectile.owner]), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0f, target.whoAmI);
             }
         }
         public int LocustType(Player player)

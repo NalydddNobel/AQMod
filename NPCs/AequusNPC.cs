@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Debuffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;
@@ -250,6 +251,11 @@ namespace Aequus.NPCs
 
         public override bool PreAI(NPC npc)
         {
+            if (npc.type == NPCID.Probe)
+            {
+                npc.buffImmune[ModContent.BuffType<OsirisDebuff>()] = false;
+                npc.buffImmune[ModContent.BuffType<InsurgentDebuff>()] = false;
+            }
             if (nightfallStacks > 0 && !npc.noTileCollide && npc.knockBackResist > 0f)
             {
                 if (npc.velocity.Y != npc.oldVelocity.Y && npc.oldVelocity.Y >= 1f && (npc.velocity.Y.Abs() < 0.5f || npc.collideY))
