@@ -16,6 +16,7 @@ namespace Aequus.Tiles.PhysicistBlocks
             AddMapEntry((Color.Blue * 0.1f).UseA(255));
             DustType = DustID.Ambient_DarkBrown;
             ItemDrop = ModContent.ItemType<PhysicsBlock>();
+            HitSound = SoundID.Tink;
             PhysicsGunProj.TilePickupBlacklist.Add(Type);
         }
 

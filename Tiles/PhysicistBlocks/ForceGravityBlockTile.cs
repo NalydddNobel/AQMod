@@ -1,18 +1,21 @@
 ﻿using Aequus.Graphics;
+using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Tiles.PhysicistBlocks
 {
-    public class ForceGravityBlockTile : ModTile
+    public class ForceGravityBlockTile : ModTile, ISpecialTileRenderer
     {
+        public const int TileHeightRegular = 12;
+        public const int TileHeightMax = 24;
+
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
@@ -21,6 +24,7 @@ namespace Aequus.Tiles.PhysicistBlocks
             AddMapEntry(Color.Blue);
             DustType = DustID.BlueCrystalShard;
             ItemDrop = ModContent.ItemType<ForceGravityBlock>();
+            HitSound = SoundID.Tink;
         }
 
         public override bool Slope(int i, int j)
@@ -32,9 +36,9 @@ namespace Aequus.Tiles.PhysicistBlocks
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 0.05f;
-            g = 0.05f;
-            b = 0.35f;
+            r = 0.1f;
+            g = 0.5f;
+            b = 1f;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -42,40 +46,51 @@ namespace Aequus.Tiles.PhysicistBlocks
             if (Main.tile[i, j].IsActuated)
                 return true;
 
-            int tileHeightMax = 13;
-            if (Main.tile[i, j].WallType == WallID.SapphireGemspark)
-            {
-                tileHeightMax *= 2;
-            }
-            int tileHeight = GetTileHeight(i, j, tileHeightMax);
+            int tileHeight = GetTileHeight(i, j);
             if (tileHeight == 0)
                 return true;
 
-            //Main.NewText((i + j) == (54 * 2));
+            SpecialTileRenderer.AddSolid(i, j, TileRenderLayer.PostDrawWalls);
+
             var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura");
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
             var scale = new Vector2(16f, (tileHeight * 16 + 32) / frame.Height);
             spriteBatch.Draw(texture, drawCoords, frame, Color.White.UseA(0) * 0.35f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura2"), drawCoords, frame, Color.White.UseA(0) * 0.15f, 0f, new Vector2(0f, frame.Height), scale, SpriteEffects.None, 0f);
-
-            DrawParticles(i, j, tileHeight, spriteBatch);
-
-            foreach (var p in GetInteractiblePlayers(i, j, tileHeight))
-            {
-                p.Aequus().gravityTile = 20;
-            }
             return true;
         }
 
-        public void DrawParticles(int i, int j, int tileHeight, SpriteBatch spriteBatch)
+        public static int GetTileHeight(int i, int j)
+        {
+            int max = Main.tile[i, j].WallType != WallID.None ? TileHeightMax : TileHeightRegular;
+            for (int l = 1; l < max; l++)
+            {
+                if (j - l < 10)
+                {
+                    return l;
+                }
+                if (Main.tile[i, j - l].IsSolid())
+                {
+                    return l;
+                }
+            }
+            return max;
+        }
+
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
+        {
+            DrawParticles(i, j, GetTileHeight(i, j), Main.spriteBatch);
+        }
+
+        public static void DrawParticles(int i, int j, int tileHeight, SpriteBatch spriteBatch)
         {
             var rand = EffectsSystem.EffectRand;
             int seed = rand.SetRand(i * j + j - i);
 
             var texture = PaintsRenderer.TryGetPaintedTexture(i, j, AequusHelpers.GetPath<MonoDust>());
             var origin = new Vector2(4f, 4f);
-            var drawCoords = new Vector2(i * 16f, j * 16f + 8f - tileHeight * 16f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
+            var drawCoords = new Vector2(i * 16f, j * 16f + 8f - tileHeight * 16f) - Main.screenPosition;
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
             for (int k = 0; k < dustAmt; k++)
             {
@@ -103,40 +118,6 @@ namespace Aequus.Tiles.PhysicistBlocks
             }
 
             rand.SetRand(seed);
-        }
-
-        public List<Player> GetInteractiblePlayers(int i, int j, int tileHeight)
-        {
-            var r = new Rectangle(i * 16, j * 16, 16, tileHeight * 16);
-            r.Y -= tileHeight * 16;
-            var p = new List<Player>();
-            for (int k = 0; k < Main.maxPlayers; k++)
-            {
-                if (Main.player[k].active && !Main.player[k].dead && !Main.player[k].ghost)
-                {
-                    if (r.Intersects(Main.player[k].getRect()))
-                    {
-                        p.Add(Main.player[k]);
-                    }
-                }
-            }
-            return p;
-        }
-
-        public int GetTileHeight(int i, int j, int maxHeight = 20)
-        {
-            for (int k = 1; k < maxHeight; k++)
-            {
-                if (j - k < 10)
-                {
-                    return k;
-                }
-                if (Main.tile[i, j - k].IsSolid())
-                {
-                    return k;
-                }
-            }
-            return maxHeight;
         }
     }
 }

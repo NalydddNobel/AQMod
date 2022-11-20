@@ -14,6 +14,7 @@ namespace Aequus.Graphics.Tiles
 
         public static Action PreDrawTiles;
         public static Dictionary<TileRenderLayer, List<Point>> DrawPoints { get; private set; }
+        public static Dictionary<TileRenderLayer, List<Point>> SolidDrawPoints { get; private set; }
         public static Dictionary<int, int> ModHangingVines { get; private set; }
 
         private static FieldInfo _addSpecialPointSpecialPositions;
@@ -27,6 +28,11 @@ namespace Aequus.Graphics.Tiles
             _addSpecialPointSpecialPositions = typeof(TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
             _addSpecialPointSpecialsCount = typeof(TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
 
+            SolidDrawPoints = new Dictionary<TileRenderLayer, List<Point>>();
+            for (int i = 0; i < (int)TileRenderLayer.Count; i++)
+            {
+                SolidDrawPoints[(TileRenderLayer)i] = new List<Point>();
+            }
             DrawPoints = new Dictionary<TileRenderLayer, List<Point>>();
             for (int i = 0; i < (int)TileRenderLayer.Count; i++)
             {
@@ -38,6 +44,13 @@ namespace Aequus.Graphics.Tiles
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+            On.Terraria.Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
+        }
+
+        private static void Main_DoDraw_WallsAndBlacks(On.Terraria.Main.orig_DoDraw_WallsAndBlacks orig, Main self)
+        {
+            orig(self);
+            DrawRender(TileRenderLayer.PostDrawWalls);
         }
 
         private static void TileDrawing_DrawMultiTileVinesInWind(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
@@ -68,6 +81,16 @@ namespace Aequus.Graphics.Tiles
             Add(new Point(i, j), renderLayer);
         }
 
+        public static void AddSolid(Point p, TileRenderLayer renderLayer)
+        {
+            SolidDrawPoints[renderLayer].Add(p);
+        }
+
+        public static void AddSolid(int i, int j, TileRenderLayer renderLayer)
+        {
+            AddSolid(new Point(i, j), renderLayer);
+        }
+
         private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
         {
             DrawRender(TileRenderLayer.PreDrawMasterRelics);
@@ -85,17 +108,34 @@ namespace Aequus.Graphics.Tiles
         private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
         {
             orig(self, solidLayer, forRenderTargets, intoRenderTargets);
-            bool flag = intoRenderTargets || Lighting.UpdateEveryFrame;
-            if (!solidLayer && flag)
+            if (intoRenderTargets || Lighting.UpdateEveryFrame)
             {
-                PreDrawTiles?.Invoke();
-
-                foreach (var l in DrawPoints.Values)
-                    l.Clear();
+                if (!solidLayer)
+                {
+                    PreDrawTiles?.Invoke();
+                    foreach (var l in DrawPoints.Values)
+                    {
+                        l.Clear();
+                    }
+                }
+                else
+                {
+                    foreach (var l in SolidDrawPoints.Values)
+                    {
+                        l.Clear();
+                    }
+                }
             }
         }
         public static void DrawRender(TileRenderLayer layer)
         {
+            foreach (var p in SolidDrawPoints[layer])
+            {
+                if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
+                {
+                    renderer.Render(p.X, p.Y, layer);
+                }
+            }
             foreach (var p in DrawPoints[layer])
             {
                 if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
@@ -107,6 +147,15 @@ namespace Aequus.Graphics.Tiles
 
         void ILoadable.Unload()
         {
+            if (SolidDrawPoints != null)
+            {
+                foreach (var l in SolidDrawPoints.Values)
+                {
+                    l.Clear();
+                }
+                SolidDrawPoints?.Clear();
+                SolidDrawPoints = null;
+            }
             if (DrawPoints != null)
             {
                 foreach (var l in DrawPoints.Values)
@@ -116,6 +165,8 @@ namespace Aequus.Graphics.Tiles
                 DrawPoints?.Clear();
                 DrawPoints = null;
             }
+            _addSpecialPointSpecialsCount = null;
+            _addSpecialPointSpecialPositions = null;
             PreDrawTiles = null;
         }
     }

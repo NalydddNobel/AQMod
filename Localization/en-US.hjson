@@ -331,7 +331,7 @@ Mods: {
 			EmancipationGrill: Emancipation Grill
 			PhysicsBlock: Physics Block
 			ForceGravityBlock: Gravity Block
-			ForceAntiGravityBlock: Anti Gravity Block
+			ForceAntiGravityBlock: Anti-Gravity Block
 
 			# Paintings #
 			SkyrimRock3: Push
@@ -1311,8 +1311,16 @@ Mods: {
 				Prevents the physic gun's laser or portal gun's bolts from passing through
 				'''
 			PhysicsBlock: Cannot be carried by the physics gun
-			ForceGravityBlock: Forces players above to obey gravity
-			ForceAntiGravityBlock: Forces players below to flip gravity
+			ForceGravityBlock: 
+				'''
+				Forces players above to obey gravity
+				Increased area of effect when placed infront of walls
+				'''
+			ForceAntiGravityBlock: 
+				'''
+				Forces players below to flip gravity
+				Increased area of effect when placed infront of walls
+				'''
 			GoreNest:
 				'''
 				May upgrade evil weapons

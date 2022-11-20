@@ -630,5 +630,39 @@ namespace Aequus.Tiles
             }
             WorldGen.KillTile(i, j);
         }
+
+        public static sbyte GetGravityTileStatus(Vector2 location)
+        {
+            var tileCoords = location.ToTileCoordinates();
+            if (WorldGen.InWorld(tileCoords.X, tileCoords.Y) && WorldGen.InWorld(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) && WorldGen.InWorld(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax) &&
+                (!AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y) || !AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) || !AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax)))
+            {
+                return 0;
+            }
+
+            for (int j = 0; j < ForceGravityBlockTile.TileHeightMax; j++)
+            {
+                if (WorldGen.InWorld(tileCoords.X, tileCoords.Y + j) && Main.tile[tileCoords.X, tileCoords.Y + j].HasTile
+                    && Main.tile[tileCoords.X, tileCoords.Y + j].TileType == ModContent.TileType<ForceGravityBlockTile>())
+                {
+                    int calcHeight = ForceGravityBlockTile.GetTileHeight(tileCoords.X, tileCoords.Y + j);
+                    if (j > calcHeight)
+                        break;
+                    return 1;
+                }
+            }
+            for (int j = 0; j < ForceAntiGravityBlockTile.TileHeightMax; j++)
+            {
+                if (WorldGen.InWorld(tileCoords.X, tileCoords.Y - j) && Main.tile[tileCoords.X, tileCoords.Y - j].HasTile
+                    && Main.tile[tileCoords.X, tileCoords.Y - j].TileType == ModContent.TileType<ForceAntiGravityBlockTile>())
+                {
+                    int calcHeight = ForceAntiGravityBlockTile.GetTileHeight(tileCoords.X, tileCoords.Y - j);
+                    if (j > calcHeight)
+                        break;
+                    return -1;
+                }
+            }
+            return 0;
+        }
     }
 }

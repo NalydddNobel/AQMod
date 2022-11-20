@@ -30,6 +30,7 @@ using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
+using Aequus.Tiles;
 using Aequus.Tiles.PhysicistBlocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -707,22 +708,14 @@ namespace Aequus
             instaShieldTimeMax = 0;
         }
 
-        public void HandleGravityBlocks()
+        public void CheckGravityBlocks()
         {
-            if (gravityTile < 0)
-                gravityTile++;
-            else if (gravityTile > 0)
-                gravityTile--;
-            if (gravityTile != 0)
+            gravityTile = AequusTile.GetGravityTileStatus(Player.Center);
+            int gravity = gravityTile < 0 ? -1 : 1;
+            if (Player.gravDir != gravity)
             {
-                int newGravity = Math.Sign(gravityTile);
-                if (Player.gravDir != newGravity)
-                {
-                    Player.gravDir = newGravity;
-                    SoundEngine.PlaySound(SoundID.Item8, Player.position);
-                }
-                Player.gravControl = false;
-                Player.gravControl2 = false;
+                Player.gravDir = gravity;
+                SoundEngine.PlaySound(SoundID.Item8, Player.position);
             }
         }
 
@@ -792,7 +785,11 @@ namespace Aequus
             cursorDye = -1;
             cursorDyeOverride = 0;
 
-            HandleGravityBlocks();
+            if (gravityTile != 0)
+            {
+                Player.gravControl = false;
+                Player.gravControl2 = false;
+            }
 
             if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
                 leechHookNPC = -1;
@@ -860,6 +857,8 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            CheckGravityBlocks();
+
             if (whitePhial)
             {
                 buffDuration += 0.25f;

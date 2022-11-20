@@ -399,6 +399,10 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(difference2) * speed, 0.025f);
                 }
             }
+            if (NPC.velocity.Length() < 2f)
+            {
+                NPC.velocity = NPC.velocity.SafeNormalize(-Vector2.UnitY) * 2f;
+            }
             NPC.rotation = NPC.velocity.ToRotation();
         }
 

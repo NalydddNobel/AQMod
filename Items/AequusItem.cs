@@ -11,9 +11,9 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Items.Weapons.Summon.Necro.Scepters;
 using Aequus.Projectiles.Misc.Friendly;
+using Aequus.Tiles;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -52,6 +52,7 @@ namespace Aequus.Items
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
+        public bool reversedGravity;
         public byte noGravityTime;
         public int accStacks;
         public bool naturallyDropped;
@@ -256,10 +257,14 @@ namespace Aequus.Items
 
             prefixPotionsBounded = false;
             accStacks = 1;
+            noGravityTime = 0;
+            reversedGravity = false;
         }
 
         public override void OnSpawn(Item item, IEntitySource source)
         {
+            noGravityTime = 0;
+            reversedGravity = false;
             if (source is EntitySource_Loot)
             {
                 naturallyDropped = true;
@@ -269,6 +274,7 @@ namespace Aequus.Items
         public override void UpdateInventory(Item item, Player player)
         {
             noGravityTime = 0;
+            reversedGravity = false;
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
@@ -278,6 +284,24 @@ namespace Aequus.Items
                 item.velocity.Y *= 0.95f;
                 gravity = 0f;
                 noGravityTime--;
+            }
+            if (reversedGravity)
+            {
+                gravity = -gravity;
+                if (item.velocity.Y < -maxFallSpeed)
+                {
+                    item.velocity.Y = -maxFallSpeed;
+                }
+            }
+        }
+
+        public void CheckGravityTiles(Item item)
+        {
+            bool old = reversedGravity;
+            reversedGravity = AequusTile.GetGravityTileStatus(item.Center) < 0;
+            if (reversedGravity != old)
+            {
+                item.velocity.Y = -item.velocity.Y;
             }
         }
 
@@ -343,9 +367,18 @@ namespace Aequus.Items
             return true;
         }
 
+        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
+        {
+            if (reversedGravity)
+            {
+                rotation = MathHelper.Pi - rotation;
+            }
+            return true;
+        }
+
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            var bb = new BitsByte(naturallyDropped);
+            var bb = new BitsByte(naturallyDropped, reversedGravity);
             writer.Write(bb);
             writer.Write(noGravityTime);
         }
@@ -354,6 +387,7 @@ namespace Aequus.Items
         {
             var bb = (BitsByte)reader.ReadByte();
             naturallyDropped = bb[0];
+            reversedGravity = bb[1];
             noGravityTime = reader.ReadByte();
         }
 

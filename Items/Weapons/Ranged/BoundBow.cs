@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles.Ranged;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,7 +31,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.rare = ItemRarityID.LightRed;
-            Item.shoot = ProjectileID.UnholyArrow;
+            Item.shoot = ModContent.ProjectileType<BoundBowProj>();
             Item.shootSpeed = 24.5f;
             Item.UseSound = SoundID.Item5;
             Item.value = Item.sellPrice(gold: 2, silver: 75);
@@ -59,7 +60,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(6f);
+            return new Vector2(8f);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
