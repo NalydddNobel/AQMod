@@ -95,6 +95,9 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			ShadowVeer: 影行者
+			SouljointCuffs: 魂结镣铐
+			NaturesCruelty: 大自然的残忍
 			SpiritKeg: 魂灵之桶
 			CartilageRing: 软骨戒指
 			SpiritBottle: 魂灵之瓶
@@ -588,6 +591,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			ShadowVeer: 幽魂仆从会对被标记的敌人进行暗影冲刺
+			SouljointCuffs: 幽魂仆从在近战击中敌人时会粘在敌人身上
+			NaturesCruelty: 你的幽魂仆从会承受25%你所受到的伤害
 			SpiritKeg: 
 				'''
 				增加1格最大幽魂仆从栏位
@@ -1481,6 +1487,7 @@ Mods: {
 			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
 
+			RitualBuff: 仪式
 			NecromancyOwnerBuff: 幽魂仆从
 
 			GravetenderMinionBuff: 守墓人
@@ -1557,6 +1564,7 @@ Mods: {
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
+			RitualBuff: 你正在进行一场仪式...不要分神!
 			NecromancyOwnerBuff: 你正掌控死亡
 
 			PiranhaPlantBuff: 邪恶植物会为你而战
