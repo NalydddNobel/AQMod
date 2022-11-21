@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Misc.Friendly
 {
     public class HyperCrystalProj : ModProjectile
     {
+        public const float MaxDistance = 300f;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 2;
@@ -62,7 +64,7 @@ namespace Aequus.Projectiles.Misc.Friendly
                 float speed = Projectile.velocity.Length();
                 if (speed != 4f)
                 {
-                    Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 4f;
+                    Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitY) * 4f;
                 }
             }
             else if ((int)Projectile.ai[0] == 2)
@@ -92,9 +94,9 @@ namespace Aequus.Projectiles.Misc.Friendly
                 Projectile.velocity = Projectile.velocity.RotatedBy(0.025f * Projectile.localAI[0]);
                 Projectile.ai[1]++;
             }
-            if ((Projectile.alpha == 255 || Projectile.alpha < 50) && Projectile.Distance(Main.player[Projectile.owner].Center) > 320f)
+            if ((Projectile.alpha == 255 || Projectile.alpha < 50) && Projectile.Distance(Main.player[Projectile.owner].Center) > MaxDistance)
             {
-                var n = Vector2.Normalize(Projectile.Center - Main.player[Projectile.owner].Center) * 320f;
+                var n = (Projectile.Center - Main.player[Projectile.owner].Center).SafeNormalize(Vector2.UnitY) * MaxDistance;
                 for (int i = 0; i < 60; i++)
                 {
                     float rotation = Main.rand.NextFloat(-0.1f, 0.1f);
@@ -155,13 +157,13 @@ namespace Aequus.Projectiles.Misc.Friendly
             {
                 return;
             }
-            SoundEngine.PlaySound(SoundID.DD2_WitherBeastDeath.WithVolume(0.6f), Projectile.Center);
+            SoundEngine.PlaySound(SoundID.DD2_WitherBeastDeath.WithVolume(0.33f), Projectile.Center.UnNaN());
             for (int i = 0; i < 34; i++)
             {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(),
                     newColor: Color.Lerp(new Color(100, 255, 255, 100), new Color(100, 255, 100, 100), Main.rand.NextFloat()), Scale: Main.rand.NextFloat(0.5f, 1.1f));
                 d.velocity *= 0.5f;
-                d.velocity += Vector2.Normalize(Projectile.velocity) * Main.rand.NextFloat(15f);
+                d.velocity += Projectile.velocity.SafeNormalize(Vector2.UnitY) * Main.rand.NextFloat(15f);
             }
         }
 

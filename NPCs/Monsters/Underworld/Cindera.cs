@@ -393,7 +393,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<DemonicEnergy>(chance: 20, stack: 1)
+                .Add<DemonicEnergy>(chance: 10, stack: 1)
                 .AddOptions(chance: 12, ItemID.MagmaStone, ModContent.ItemType<WarHorn>())
                 .Add<AncientHellBeamDye>(chance: 16, stack: 1)
                 .Add(new Conditions.DontStarveIsNotUp(), ItemID.BatBat, chance: 250, stack: 1)

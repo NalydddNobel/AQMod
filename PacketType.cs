@@ -12,7 +12,7 @@
         Unused,
         Unused2,
         Unused3,
-        Unused4,
+        RequestGlimmerEvent,
         ExporterQuestsCompleted,
         SpawnOmegaStarite,
         GlimmerStatus,

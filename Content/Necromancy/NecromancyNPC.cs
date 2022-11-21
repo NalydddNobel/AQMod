@@ -498,7 +498,7 @@ namespace Aequus.Content.Necromancy
                     }
                 }
             }
-            else if (ghostDebuffDOT > 0 && zombieOwner >= 0 && zombieOwner < Main.maxPlayers)
+            else if (ghostDebuffDOT > 0 && zombieOwner == Main.myPlayer)
             {
                 if (Main.netMode != NetmodeID.Server && (Main.GameUpdateCount % 14 == 0 || Main.rand.NextBool(14)))
                 {
@@ -867,7 +867,7 @@ namespace Aequus.Content.Necromancy
 
         public void Send(BinaryWriter writer)
         {
-            var bb = new BitsByte(isZombie, shadowDashTimer > 0, ghostChainsNPC > -1, zombieOwner > 0);
+            var bb = new BitsByte(isZombie, shadowDashTimer > 0, ghostChainsNPC > -1, zombieOwner > -1);
             writer.Write(bb);
             if (isZombie)
             {

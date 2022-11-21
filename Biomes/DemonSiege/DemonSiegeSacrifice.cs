@@ -4,6 +4,7 @@ using Aequus.NPCs.Boss;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -56,12 +57,12 @@ namespace Aequus.Biomes.DemonSiege
         }
         public int DetermineLength()
         {
-            int time = 600;
+            int time = 7200;
             foreach (var i in Items)
             {
                 if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var value))
                 {
-                    int newTime = 3600 * (int)(value.Progression + 1);
+                    int newTime = 7200 * (int)(value.Progression + 1);
                     if (!unholyCoreUsed)
                     {
                         newTime = (int)(newTime * 1.33f);
@@ -70,10 +71,7 @@ namespace Aequus.Biomes.DemonSiege
                     {
                         newTime *= 2;
                     }
-                    if (time < newTime)
-                    {
-                        time = newTime;
-                    }
+                    time = Math.Max(time, newTime);
                 }
             }
             return time;

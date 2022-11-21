@@ -35,12 +35,8 @@ namespace Aequus.Items.Boss.Summons
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(SoundID.Roar, player.position);
-            bool result = false;
-            if (Main.myPlayer == player.whoAmI)
-            {
-                result = GlimmerSystem.BeginEvent();
-            }
-            return result;
+            GlimmerSystem.BeginEvent();
+            return GlimmerBiome.EventActive;
         }
 
         public override void AddRecipes()

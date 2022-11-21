@@ -1,4 +1,5 @@
-﻿using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
@@ -40,7 +41,7 @@ namespace Aequus
                 PacketType.Unused,
                 PacketType.Unused2,
                 PacketType.Unused3,
-                PacketType.Unused4,
+                PacketType.RequestGlimmerEvent,
                 PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
                 PacketType.ExporterQuestsCompleted,
@@ -239,6 +240,19 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.RequestGlimmerEvent:
+                    {
+                        if (!GlimmerBiome.EventActive)
+                        {
+                            GlimmerSystem.BeginEvent();
+                        }
+                        else
+                        {
+                            GlimmerSystem.SendGlimmerStatus();
+                        }
+                    }
+                    break;
+
                 case PacketType.ZombieConvertEffects:
                     {
                         NecromancyNPC.ConvertEffects(new Vector2(reader.ReadSingle(), reader.ReadSingle()), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());

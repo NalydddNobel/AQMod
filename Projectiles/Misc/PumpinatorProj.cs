@@ -88,7 +88,7 @@ namespace Aequus.Projectiles.Misc
                             continue;
                         }
                         if (Projectile.Colliding(myRect, player.getRect()))
-                            player.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
+                            player.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack * 0.025f;
                     }
                 }
             }

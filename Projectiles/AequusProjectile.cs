@@ -324,7 +324,7 @@ namespace Aequus.Projectiles
             {
                 var aequus = Main.player[projectile.owner].Aequus();
 
-                if (aequus.accHyperCrystal != null && aequus.hyperCrystalCooldown == 0)
+                if (aequus.accHyperCrystal != null && aequus.hyperCrystalCooldown == 0 && projectile.Distance(Main.player[projectile.owner].Center) < HyperCrystalProj.MaxDistance)
                 {
                     aequus.hyperCrystalCooldown = aequus.hyperCrystalCooldownMax;
                     int oldPIdentity = pIdentity;

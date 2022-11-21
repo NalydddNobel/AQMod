@@ -710,12 +710,16 @@ namespace Aequus
 
         public void CheckGravityBlocks()
         {
+            bool swapGravity = gravityTile != 0;
             gravityTile = AequusTile.GetGravityTileStatus(Player.Center);
-            int gravity = gravityTile < 0 ? -1 : 1;
-            if (Player.gravDir != gravity)
+            if (swapGravity)
             {
-                Player.gravDir = gravity;
-                SoundEngine.PlaySound(SoundID.Item8, Player.position);
+                int gravity = gravityTile < 0 ? -1 : 1;
+                if (Player.gravDir != gravity)
+                {
+                    Player.gravDir = gravity;
+                    SoundEngine.PlaySound(SoundID.Item8, Player.position);
+                }
             }
         }
 

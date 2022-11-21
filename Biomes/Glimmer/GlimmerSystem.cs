@@ -123,7 +123,7 @@ namespace Aequus.Biomes.Glimmer
             GlimmerBiome.TileLocation = CheckGround(where);
 
             AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 SendGlimmerStatus();
             }
@@ -131,6 +131,12 @@ namespace Aequus.Biomes.Glimmer
 
         public static bool BeginEvent()
         {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                Aequus.GetPacket(PacketType.RequestGlimmerEvent).Send();
+                return false;
+            }
+
             for (int i = 0; i < 1000; i++)
             {
                 int x = Main.rand.Next(200, Main.maxTilesX - 200);

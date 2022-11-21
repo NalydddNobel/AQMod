@@ -28,7 +28,6 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
             base.OnSpawnZombie(npc, zombie);
             if (npc.whoAmI == 0)
             {
-                Kill(Projectile.timeLeft);
                 npc.active = false;
                 PacketSystem.SyncNPC(npc);
                 return;

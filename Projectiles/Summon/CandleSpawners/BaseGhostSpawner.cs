@@ -35,6 +35,16 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
             return false;
         }
 
+        public override bool? CanHitNPC(NPC target)
+        {
+            return false;
+        }
+
+        public override bool CanHitPvp(Player target)
+        {
+            return false;
+        }
+
         public override void AI()
         {
             if (Projectile.timeLeft < 25)
@@ -67,14 +77,10 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
             {
                 if ((int)Projectile.ai[0] == 0)
                 {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                    if (Main.myPlayer == Projectile.owner)
                     {
-                        int x = (int)Projectile.position.X + Projectile.width / 2;
-                        int y = (int)Projectile.position.Y + Projectile.height / 2;
-                        int type = NPCType();
-                        int n = NPC.NewNPC(new EntitySource_Misc("Aequus:NecromancySpawn"), x, y, type);
-                        OnSpawnZombie(Main.npc[n], Main.npc[n].GetGlobalNPC<NecromancyNPC>());
-                        PacketSystem.SyncNPC(Main.npc[n]);
+                        int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.velocity, Type, Projectile.damage, Projectile.knockBack, Projectile.owner, ai0: 2f);
+                        Main.projectile[p].Kill();
                     }
                     SpawnEffects();
                 }
@@ -87,6 +93,19 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
         }
 
         public abstract int NPCType();
+
+        public override void Kill(int timeLeft)
+        {
+            if ((int)Projectile.ai[0] == 2 && Main.netMode == NetmodeID.Server)
+            {
+                int x = (int)Projectile.position.X + Projectile.width / 2;
+                int y = (int)Projectile.position.Y + Projectile.height / 2;
+                int type = NPCType();
+                int n = NPC.NewNPC(new EntitySource_Misc("Aequus:NecromancySpawn"), x, y, type);
+                OnSpawnZombie(Main.npc[n], Main.npc[n].GetGlobalNPC<NecromancyNPC>());
+                PacketSystem.SyncNPC(Main.npc[n]);
+            }
+        }
 
         protected virtual void OnSpawnZombie(NPC npc, NecromancyNPC zombie)
         {
@@ -106,6 +125,7 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
             zombie.renderLayer = AuraColor;
             zombie.ghostDamage = Projectile.damage;
             zombie.ghostSpeed += SpeedAdd;
+
         }
         protected virtual void SpawnEffects()
         {

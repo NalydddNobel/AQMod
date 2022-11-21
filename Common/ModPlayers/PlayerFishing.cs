@@ -193,7 +193,7 @@ namespace Aequus.Common.ModPlayers
 
             if (attempt.heightLevel >= HeightLevel_Underground && Main.rand.NextBool())
             {
-                if (attempt.legendary)
+                if (attempt.veryrare)
                 {
                     switch (Main.rand.Next(4))
                     {
