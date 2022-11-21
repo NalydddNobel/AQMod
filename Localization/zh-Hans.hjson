@@ -1311,8 +1311,16 @@ Mods: {
 				阻止物理学枪和传送门枪的弹幕穿过
 				'''
 			PhysicsBlock: 无法被物理学枪抓取
-			ForceGravityBlock: 迫使上方的玩家服从重力
-			ForceAntiGravityBlock: 迫使下方的玩家翻转重力
+			ForceGravityBlock: 
+				'''
+				迫使上方的玩家服从重力
+				当放置在墙壁前方时, 影响范围会扩大
+				'''
+			ForceAntiGravityBlock: 
+				'''
+				迫使下方的玩家翻转重力
+				当放置在墙壁前方时, 影响范围会扩大
+				'''
 			GoreNest:
 				'''
 				可升级邪恶武器
