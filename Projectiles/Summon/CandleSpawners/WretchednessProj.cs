@@ -47,8 +47,7 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
                 0f, TextureCache.Bloom[3].Value.Size() / 2f, Projectile.scale * 0.75f, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, drawCoords, null, Color.Black * Projectile.Opacity,
                 0f, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureAssets.Extra[ExtrasID.WebbedAir].Value, Projectile.Center - Main.screenPosition, null, new Color(255, 180, 80, 128) * Projectile.Opacity,
-                Projectile.rotation, new Vector2(37f, 39f), Projectile.scale * Projectile.Opacity * 0.8f, SpriteEffects.None, 0);
+            QuickDrawAura(drawCoords, Color.LightYellow.UseA(0), Color.Yellow * 0.25f);
             Main.EntitySpriteDraw(TextureAssets.Extra[ExtrasID.CultistRitual].Value, Projectile.Center - Main.screenPosition, null, Color.White.UseA(0) * Projectile.Opacity,
                 -Projectile.rotation, TextureAssets.Extra[ExtrasID.CultistRitual].Value.Size() / 2f, Projectile.scale * Projectile.Opacity * 0.33f, SpriteEffects.None, 0);
             return false;

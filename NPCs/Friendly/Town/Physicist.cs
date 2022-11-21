@@ -112,8 +112,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (GameplayConfig.Instance.EarlyGravityGlobe)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.GravityGlobe);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+                shop.item[nextSlot++].SetDefaults(ItemID.GravityGlobe);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PrecisionGloves>());

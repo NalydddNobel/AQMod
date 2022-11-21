@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -29,16 +30,8 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.scale = 0.5f;
         }
 
-        public override bool PreAI()
+        public void CopyPlayerAttributes(Player parent)
         {
-            var parent = Main.player[Projectile.owner];
-            if (dummyPlayer == null)
-            {
-                dummyPlayer = new Player();
-            }
-
-            AequusHelpers.UpdateProjActive<FamiliarBuff>(Projectile);
-
             // copies player attributes
             dummyPlayer.eyeColor = parent.eyeColor;
             dummyPlayer.hairColor = parent.hairColor;
@@ -77,6 +70,32 @@ namespace Aequus.Projectiles.Misc.Pets
             dummyPlayer.whoAmI = Projectile.owner;
 
             dummyPlayer.PlayerFrame();
+        }
+        public void TryCopyingMrPlagueRaceAttributes(Player parent)
+        {
+            if (MrPlagueRacesSupport.TryGetMrPlagueRacePlayer(dummyPlayer, out var racePlayer) && MrPlagueRacesSupport.TryGetMrPlagueRacePlayer(parent, out var parentRacePlayer))
+            {
+                foreach (var f in MrPlagueRacesSupport.RacePlayerFieldInfo)
+                {
+                    f.SetValue(racePlayer, f.GetValue(parentRacePlayer));
+                }
+                return;
+            }
+        }
+        public override bool PreAI()
+        {
+            var parent = Main.player[Projectile.owner];
+            if (dummyPlayer == null)
+            {
+                dummyPlayer = new Player();
+            }
+
+            AequusHelpers.UpdateProjActive<FamiliarBuff>(Projectile);
+            CopyPlayerAttributes(parent);
+            if (MrPlagueRacesSupport.MrPlagueRaces != null)
+            {
+                TryCopyingMrPlagueRaceAttributes(parent);
+            }
             return true;
         }
 

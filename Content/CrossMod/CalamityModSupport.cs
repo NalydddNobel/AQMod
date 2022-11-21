@@ -8,7 +8,6 @@ namespace Aequus.Content.CrossMod
     internal class CalamityModSupport : IAddRecipes, ILoadBefore
     {
         public static Mod CalamityMod { get; private set; }
-        public static Mod CatalystMod { get; private set; }
 
         Type ILoadBefore.LoadBefore => typeof(NecromancyDatabase);
 
@@ -19,21 +18,15 @@ namespace Aequus.Content.CrossMod
         void IAddRecipes.AddRecipes(Aequus aequus)
         {
             CalamityMod = null;
-            CatalystMod = null;
             if (ModLoader.TryGetMod("CalamityMod", out var calamityMod))
             {
                 CalamityMod = calamityMod;
-            }
-            if (ModLoader.TryGetMod("CatalystMod", out var catalystMod))
-            {
-                CatalystMod = catalystMod;
             }
         }
 
         void ILoadable.Unload()
         {
             CalamityMod = null;
-            CatalystMod = null;
         }
     }
 }

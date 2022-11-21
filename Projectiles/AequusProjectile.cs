@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Buffs;
+using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
@@ -332,6 +333,26 @@ namespace Aequus.Projectiles
                     Projectile.NewProjectile(Main.player[projectile.owner].GetSource_Accessory(aequus.accHyperCrystal), projectile.Center, projectile.velocity,
                         ModContent.ProjectileType<HyperCrystalProj>(), projectile.damage, projectile.knockBack, projectile.owner);
                     pIdentity = oldPIdentity;
+                }
+                if (Main.player[projectile.owner].HasBuff<DeathsEmbraceBuff>())
+                {
+                    float rotation = Main.rand.NextFloat(-0.025f, 0.025f);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (Main.rand.NextBool())
+                        {
+                            rotation += Main.rand.NextFloat(-0.05f, 0.05f);
+                        }
+                    }
+                    if (Main.rand.NextBool(6))
+                    {
+                        rotation += Main.rand.NextFloat(-0.075f, 0.075f);
+                    }
+                    if (Main.rand.NextBool(12))
+                    {
+                        rotation += Main.rand.NextFloat(-0.075f, 0.075f);
+                    }
+                    projectile.velocity = projectile.velocity.RotatedBy(rotation);
                 }
             }
         }

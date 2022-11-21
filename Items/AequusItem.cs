@@ -252,6 +252,7 @@ namespace Aequus.Items
                 if (GameplayConfig.Instance.EarlyGravityGlobe)
                 {
                     item.expert = false;
+                    item.value = Item.buyPrice(gold: 5);
                 }
             }
 

@@ -48,7 +48,7 @@ namespace Aequus.NPCs.Friendly.Critter
             NPC.DeathSound = SoundID.NPCDeath6;
             NPC.npcSlots = 0.5f;
             NPC.noGravity = true;
-            NPC.catchItem = (short)ModContent.ItemType<DwarfStarite>();
+            //NPC.catchItem = (short)ModContent.ItemType<DwarfStarite>();
         }
 
         public override Color? GetAlpha(Color drawColor)

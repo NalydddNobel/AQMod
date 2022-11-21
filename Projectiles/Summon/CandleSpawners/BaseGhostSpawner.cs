@@ -2,10 +2,11 @@
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,7 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
 {
     public abstract class BaseGhostSpawner : ModProjectile
     {
-        public override string Texture => Aequus.BlankTexture;
+        public override string Texture => "Aequus/Projectiles/Summon/CandleSpawners/SpawnEffect";
         public virtual float SpeedAdd => 0f;
         public virtual int AuraColor => ColorTargetID.BloodRed;
 
@@ -96,7 +97,7 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
 
         public override void Kill(int timeLeft)
         {
-            if ((int)Projectile.ai[0] == 2 && Main.netMode == NetmodeID.Server)
+            if ((int)Projectile.ai[0] == 2 && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 int x = (int)Projectile.position.X + Projectile.width / 2;
                 int y = (int)Projectile.position.Y + Projectile.height / 2;
@@ -129,6 +130,16 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
         }
         protected virtual void SpawnEffects()
         {
+        }
+
+        protected void QuickDrawAura(Vector2 drawCoords, Color mainColor, Color auraColor)
+        {
+            var frame = TextureAssets.Projectile[Type].Value.Frame(verticalFrames: 2, frameY: 0);
+            var origin = frame.Size() / 2f + new Vector2(-1f);
+            Main.EntitySpriteDraw(TextureAssets.Projectile[Type].Value, Projectile.Center - Main.screenPosition, new Rectangle(frame.X, frame.Y + frame.Height, frame.Width, frame.Height), auraColor * Projectile.Opacity,
+                Projectile.rotation, origin, Projectile.scale * Projectile.Opacity * 0.66f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(TextureAssets.Projectile[Type].Value, Projectile.Center - Main.screenPosition, frame, mainColor * Projectile.Opacity,
+                Projectile.rotation, origin, Projectile.scale * Projectile.Opacity * 0.66f, SpriteEffects.None, 0);
         }
     }
 }

@@ -1592,6 +1592,12 @@ namespace Aequus
         }
         public void OnHitEffects(NPC target, int damage, float knockback, bool crit)
         {
+            int deathsEmbrace = Player.FindBuffIndex(ModContent.BuffType<DeathsEmbraceBuff>());
+            if (deathsEmbrace != -1)
+            {
+                Player.buffTime[deathsEmbrace] = Math.Max(Player.buffTime[deathsEmbrace], 300);
+            }
+
             if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
             {
                 int amt = accDavyJonesAnchor.Aequus().accStacks;
@@ -1651,6 +1657,10 @@ namespace Aequus
             {
                 target.AddBuff(ModContent.BuffType<Weakness>(), 360);
             }
+        }
+
+        public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+        {
         }
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

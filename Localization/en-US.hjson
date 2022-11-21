@@ -262,6 +262,7 @@ Mods: {
 			CinnamonRoll: Cinnamon Roll
 			SpicyEel: Spicy Eel
 
+			DeathsEmbrace: Death's Embrace
 			NecromancyPotion: Necromancy Potion
 			BloodthirstPotion: Bloodthirst Potion
 			SentryPotion: Sentry Potion
@@ -1151,6 +1152,13 @@ Mods: {
 			IchorPopper: Increases bait power by 35% when in the crimson
 			MysticPopper: Increases bait power by 25% when in the hallow
 
+			DeathsEmbrace: 
+				'''
+				15% increased damage and critical strike chance
+				Makes attacks slightly inaccurate
+				Attacks make you redrink the potion automatically
+				{{Once the buff wears off, you instantly die...}}
+				'''
 			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
 			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
@@ -1464,6 +1472,7 @@ Mods: {
 		}
 
 		BuffName: {
+			DeathsEmbraceBuff: Death's Embrace
 			TonicSpawnratesDebuff: Tonic Cooldown
 			TonicSpawnratesBuff: Tonic
 			NoonBuff: Noon
@@ -1532,6 +1541,7 @@ Mods: {
 		}
 
 		BuffDescription: {
+			DeathsEmbraceBuff: Why are you reading this... you're going to die
 			TonicSpawnratesDebuff: You can not use the Mercer Tonic
 			TonicSpawnratesBuff: Enemies are attracted to your smell
 			BloodthirstBuff: Enemies always drop hearts
@@ -2649,6 +2659,10 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: Quest Fish
+		}
+
+		DeathMessage: {
+			DeathsEmbrace: "{0} took one final drink..."
 		}
 
 		Water: Water

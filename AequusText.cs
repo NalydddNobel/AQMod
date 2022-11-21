@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Chat;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
