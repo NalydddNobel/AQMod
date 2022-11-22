@@ -29,7 +29,7 @@ namespace Aequus.Tiles.Ambience
 
         public override bool IsBlooming(int i, int j)
         {
-            return !Main.WindyEnoughForKiteDrops;
+            return Main.raining && !Main.dayTime;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -47,12 +47,29 @@ namespace Aequus.Tiles.Ambience
             {
                 Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MorayPollen>(), Main.rand.Next(3) + 1);
             }
+            if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
+            {
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoraySeeds>(), Main.rand.Next(3) + 1);
+            }
             return false;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
             num = 6;
+        }
+
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            var texture = TextureAssets.Tile[Type].Value;
+            var effects = SpriteEffects.None;
+            SetSpriteEffects(i, j, ref effects);
+            var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, FrameWidth, FrameHeight);
+            var offset = (AequusHelpers.TileDrawOffset - Main.screenPosition).Floor();
+            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
+            spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow").Value, groundPosition + offset, frame, Color.White, 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            return false;
         }
     }
 }

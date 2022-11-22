@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,6 +20,8 @@ namespace Aequus.Buffs
         public static HashSet<int> IsActuallyABuff { get; private set; }
 
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
+
+        public static Dictionary<int, List<int>> PotionConflicts;
 
         public override void Load()
         {
@@ -58,20 +59,76 @@ namespace Aequus.Buffs
                 BuffID.Ichor,
                 BuffID.Oiled,
             };
+            PotionConflicts = new Dictionary<int, List<int>>();
             On.Terraria.NPC.AddBuff += NPC_AddBuff;
+            On.Terraria.Player.AddBuff += Player_AddBuff; ;
+            On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On.Terraria.Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
         }
 
-        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On.Terraria.Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player self, int attemptedType)
+        private static void addPotionConflict(int buffID, int conflictor)
         {
-            if (!orig(self, attemptedType))
-                return false;
+            if (!PotionConflicts.ContainsKey(buffID))
+            {
+                PotionConflicts[buffID] = new List<int>() { conflictor };
+                return;
+            }
+            if (PotionConflicts[buffID].Contains(conflictor))
+                return;
+            PotionConflicts[buffID].Add(conflictor);
+        }
+        public static void AddPotionConflict(int buffID, int buffID2)
+        {
+            addPotionConflict(buffID, buffID2);
+            addPotionConflict(buffID2, buffID);
+        }
 
+        private static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack)
+        {
+            if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null)
+            {
+                for (int i = 0; i < Player.MaxBuffs; i++)
+                {
+                    if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i])))
+                    {
+                        player.DelBuff(i);
+                    }
+                }
+            }
+            orig(player, type, timeToAdd, quiet, foodHack);
+        }
+
+        private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1)
+        {
+            int amt = orig(player, type, time1);
+            if (Main.buffNoTimeDisplay[type] || DontChangeDuration.Contains(type))
+            {
+                return amt;
+            }
+
+            player.Aequus().DetermineBuffTimeToAdd(type, ref amt);
+            return amt;
+        }
+
+        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On.Terraria.Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType)
+        {
+            if (!orig(player, attemptedType))
+                return false;
+            if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(attemptedType), out var l) && l != null)
+            {
+                for (int i = 0; i < Player.MaxBuffs; i++)
+                {
+                    if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i])))
+                    {
+                        return false;
+                    }
+                }
+            }
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (self.buffType[i] < Main.maxBuffTypes)
+                if (player.buffType[i] < Main.maxBuffTypes)
                     continue;
-                var modBuff = BuffLoader.GetBuff(self.buffType[i]);
+                var modBuff = BuffLoader.GetBuff(player.buffType[i]);
                 if (modBuff is not EmpoweredBuffBase empoweredBuff)
                     continue;
 
@@ -81,7 +138,7 @@ namespace Aequus.Buffs
             return true;
         }
 
-        private static void NPC_AddBuff(On.Terraria.NPC.orig_AddBuff orig, NPC self, int type, int time, bool quiet)
+        private static void NPC_AddBuff(On.Terraria.NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet)
         {
             if (Main.debuff[type])
             {
@@ -92,7 +149,7 @@ namespace Aequus.Buffs
                 }
             }
 
-            orig(self, type, time, quiet);
+            orig(npc, type, time, quiet);
         }
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
@@ -109,6 +166,10 @@ namespace Aequus.Buffs
 
         public override void Unload()
         {
+            PotionConflicts?.Clear();
+            PotionConflicts = null;
+            ConcoctibleBuffIDsBlacklist?.Clear();
+            ConcoctibleBuffIDsBlacklist = null;
             IsActuallyABuff?.Clear();
             IsActuallyABuff = null;
             DontChangeDuration?.Clear();

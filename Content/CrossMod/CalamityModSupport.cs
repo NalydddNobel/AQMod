@@ -1,15 +1,11 @@
 ﻿using Aequus.Common;
-using Aequus.Content.Necromancy;
-using System;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
-    internal class CalamityModSupport : IAddRecipes, ILoadBefore
+    internal class CalamityModSupport : IAddRecipes
     {
         public static Mod CalamityMod { get; private set; }
-
-        Type ILoadBefore.LoadBefore => typeof(NecromancyDatabase);
 
         void ILoadable.Load(Mod mod)
         {

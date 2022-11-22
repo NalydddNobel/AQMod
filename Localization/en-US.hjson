@@ -52,14 +52,14 @@ Mods: {
 			OtherwiseChance: 100% droprate if '{0}' conditions are met
 			OnFirstKill: Dropped only on first kill
 			OreTier: { 
-				0: Only dropped in worlds with copper ore
-				1: Only dropped in worlds with tin ore
-				2: Only dropped in worlds with iron ore
-				3: Only dropped in worlds with lead ore
-				4: Only dropped in worlds with silver ore
-				5: Only dropped in worlds with tungsten ore
-				6: Only dropped in worlds with gold ore
-				7: Only dropped in worlds with platinum ore
+				0: Only dropped in worlds with Copper Ore
+				1: Only dropped in worlds with Tin Ore
+				2: Only dropped in worlds with Iron Ore
+				3: Only dropped in worlds with Lead Ore
+				4: Only dropped in worlds with Silver Ore
+				5: Only dropped in worlds with Tungsten Ore
+				6: Only dropped in worlds with Gold Ore
+				7: Only dropped in worlds with Platinum Ore
 			}
 			Flawless: Dropped when defeated flawlessly
 			Trophy: 100% droprate when defeated flawlessly
@@ -486,6 +486,9 @@ Mods: {
 			XenonMushroom: Xenon Mushroom
 			NeonMushroom: Neon Mushroom
 			HeliumMushroom: Helium Mushroom
+			MistralSeeds: Mistral Seeds
+			MoraySeeds: Moray Seeds
+			ManacleSeeds: Manacle Seeds
 			MoonflowerSeeds: Moonflower Seeds
 
 			FamiliarPickaxe: Familiar Pickaxe
@@ -1311,6 +1314,9 @@ Mods: {
 			ArgonMushroom: "'A sight to dwell upon and never forget'"
 			KryptonMushroom: "'A sight to dwell upon and never forget'"
 			XenonMushroom: "'A sight to dwell upon and never forget'"
+			MistralSeeds: Blooms and produces pollen while the wind is strong
+			MoraySeeds: Blooms and produces pollen during rainy nights
+			ManacleSeeds: Blooms and produces pollen in the morning
 			MoonflowerSeeds: Blooms and produces pollen near midnight
 			EmancipationGrill: 
 				'''
@@ -1412,6 +1418,11 @@ Mods: {
 				RouletteDrop: The item below is guaranteed to drop
 
 				NecromancyStaff: Slain enemies may convert into ghost minions
+
+				NewPotionsBalancing: Cannot be used with {PotionName} Potion
+
+				# Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
 			}
 
 			Misc: {
@@ -1482,6 +1493,7 @@ Mods: {
 			NecromancyPotionBuff: Necromancy
 			SentryBuff: Sentry
 			FrostBuff: Frost
+			BaguetteBuff: Baguette
 			SpicyEelBuff: Spicy Eel
 
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
@@ -1816,7 +1828,10 @@ Mods: {
 			HeliumMushroom: Helium Mushroom
 			FishingCrates: Crate
 			RecyclingMachine: Recycling Machine
-			Moonflower: Moonflower
+			ManacleTile: Manacle
+			MistralTile: Mistral
+			MorayTile: Moray
+			MoonflowerTile: Moonflower
 			GlimmeringStatueTile: Ultimate Crystal
 			SeaPickle: Sea Pickle
 			AshTombstone: Ash Tombstone
@@ -2294,6 +2309,91 @@ Mods: {
 		}
 
 		Chat: {
+			Guide: {
+				Glimmer: Do you see these lights? That glow heralds the arrival of living stars. Try heading for its origin and see what you can find!
+			}
+			Merchant: {
+				Glimmer: I think this glittering night would reflect wonderfully off of your coins! Why not try it out, eh?
+			}
+			Nurse: {
+				Glimmer: Oh, this is a wonderful sight. I've always loved the little beauties the world has hidden away, but it looks like this one decided to come to me!
+			}
+			Demolitionist: {
+				Glimmer: When I was a little- well, littler lad, I wanted to visit the stars, but dwarves won't fly so high. Nowadays I'm content with just seeing 'em shine like this.
+			}
+			DyeTrader: {
+				Glimmer: Those colors... magnificent! If you can find a dye recipe that recreates that glow you simply must share it with me!
+			}
+			Angler: {
+				Glimmer: The sky lights? Yeah, sure, they're cool, but not as cool as fish. WAIT! What if they attract some new fish?! I've gotta get in on this!
+			}
+			Dryad: {
+				Glimmer: What are these lights? I've never seen anything like it in all my years...
+			}
+			ArmsDealer: {
+				Glimmer: Think I saw a rainbow sword out there. Why's it always swords, huh? Can't we have ancient gun shrines or something for once?
+			}
+			DD2Bartender: {
+				Glimmer: I'm not normally one for mixing fancy drinks, but this sky's stirring some inspiration. How about a Starite Special?
+			}
+			Stylist: {
+				Glimmer: Hmm... I'm in the mood to practice my gradients tonight. Do you mind possibly looking a little silly for a while, hun?
+			}
+			GoblinTinkerer: {
+				Glimmer: See, that's what I'm talking about! The other goblins wouldn't care at all for a sight like this. I'm glad you guys have some taste.
+			}
+			WitchDoctor: {
+				Glimmer: The sky's glow may seem serene, but bright colors in nature are a deadly warning. Take caution tonight, my friend.
+			}
+			PartyGirl: {
+				Glimmer: Wow, it's like the sky's having a party too! I wish it could look like this every night!
+			}
+			Wizard: {
+				Glimmer: Wait, the sky... oh beanstalks, did I leave that spell going?
+			}
+			TaxCollector: {
+				Glimmer: All those glittery lights... reminds me of the holidays. Bah.
+			}
+			Truffle: {
+				Glimmer: I feel... something from the stars tonight. I'm not sure it's a good something, either.
+			}
+			Pirate: {
+				Glimmer: Red sky at night, sailors' delight... err, what does blue-n'-purple sky at night mean?
+			}
+			SantaClaus: {
+				Glimmer: Oh ho, this sky is wonderful! Just like the auroras at the North Pole!
+			}
+			Princess: {
+				Glimmer: The sky tonight is simply mesmerizing! It reminds me of the light shows they would hold at the castle...
+			}
+			TravellingMerchant: {
+				Glimmer: What a beautiful shine in the sky tonight! If it looks like this all the time here, I'll have to stay the night more often!
+			}
+			SkeletonMerchant: {
+				Glimmer: I keep hearing thuds from above, like something's hitting the ground really hard. What are you folks doing up there?
+			}
+			BestiaryGirl: {
+				Glimmer: The sky's totally nice and all, but I just hope the falling stars don't hurt any critters...
+			}
+			Painter: {
+				Glimmer: The way the colors blend together... it's like a nebula in my own backyard! Talk about inspirational!
+			}
+			Golfer: {
+				Glimmer: Now there's a backdrop to end all backdrops. Too bad golfing's mostly about staring at the ground.
+			}
+			Clothier: {
+				Glimmer: You see quite a few things living a life like mine, but this sky is definitely one of the ones I wouldn't mind a repeat of.
+			}
+			Mechanic: {
+				Glimmer: I wonder... you think this star power would make for a good green energy source?
+			}
+			Steampunker: {
+				Glimmer: Cor, now that's a sight! Far cry from the dreary weather where I come from, I'll tell you what.
+			}
+			Cyborg: {
+				Glimmer: I theorize that these atmospheric lights are caused by interference from anomalous energies related to the Starites.
+			}
+			
 			PhysicistPet: {
 				0: Beep boop.
 				1: Beep bop.
@@ -2706,3 +2806,8 @@ Mods: {
 		}
 	}
 }
+
+"TownNPCMood_Princess.LoveNPC_Aequus/Carpenter": "{NPCName} is really adorable! I would love for them to build me a house!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Exporter": "{NPCName} is always willing to give me fancy jewelry!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Physicist": "{NPCName} is so mysterious... I would love for her to stick around!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Occultist": "{NPCName} has been casting nice healing spells on me!"

@@ -21,6 +21,11 @@ namespace Aequus.NPCs.GlobalNPCs
 {
     public class SpawnsManager : GlobalNPC
     {
+        public static bool CanSpawnGlimmerEnemies(Player player)
+        {
+            return player.Aequus().ZoneGlimmer && (player.townNPCs < 2f || GlimmerSystem.CalcTiles(player) < 60);
+        }
+
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
             if (player.GetModPlayer<AequusPlayer>().ZoneDemonSiege)
@@ -49,9 +54,9 @@ namespace Aequus.NPCs.GlobalNPCs
                 spawnRate *= 3;
                 maxSpawns = Math.Min(maxSpawns, 2);
             }
-            if (player.Aequus().ZoneGlimmer)
+            if (CanSpawnGlimmerEnemies(player))
             {
-                spawnRate /= 3;
+                spawnRate /= 2;
                 maxSpawns = (int)(maxSpawns * 1.25f);
             }
             else if (player.Aequus().ZonePeacefulGlimmer)
@@ -66,14 +71,81 @@ namespace Aequus.NPCs.GlobalNPCs
             }
         }
 
+        public static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (tiles < GlimmerBiome.SuperStariteTile)
+            {
+                pool.Clear();
+            }
+            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 2f);
+            pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
+
+            if (CanSpawnGlimmerEnemies(spawnInfo.Player))
+            {
+                if (tiles < GlimmerBiome.SuperStariteTile)
+                {
+                    pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiome.SuperStariteSpawn);
+                }
+                int hyperStariteCount = tiles < GlimmerBiome.UltraStariteTile ? 2 : 1;
+                if (tiles < GlimmerBiome.HyperStariteTile && NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
+                {
+                    pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
+                }
+                if (tiles < GlimmerBiome.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
+                {
+                    pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
+                }
+            }
+        }
+        public static void DemonSiegeEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            pool.Clear();
+            pool.Add(ModContent.NPCType<TrapperImp>(), 0.33f);
+            pool.Add(ModContent.NPCType<Cindera>(), 0.33f);
+            pool.Add(ModContent.NPCType<Magmabubble>(), 0.33f);
+        }
+        public static void GaleStreamsEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
+            if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
+            {
+                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
+                pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
+            }
+            if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
+                pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
+            if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY))
+            {
+                pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
+            }
+            pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
+        }
+        public static void CrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            pool.Clear();
+            pool.Add(NPCID.Seahorse, 0.01f);
+            if (Main.hardMode)
+            {
+                pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
+            }
+            pool.Add(NPCID.Crab, 1f);
+            pool.Add(NPCID.SeaSnail, 0.05f);
+            pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
+            pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
+            if (spawnInfo.Water)
+            {
+                if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
+                    pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
+                pool.Add(NPCID.PinkJellyfish, 0.1f);
+                pool.Add(NPCID.Shark, 0.05f);
+                pool.Add(NPCID.Squid, 0.05f);
+            }
+        }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (spawnInfo.Player.Aequus().ZoneDemonSiege)
             {
-                pool.Clear();
-                pool.Add(ModContent.NPCType<TrapperImp>(), 0.33f);
-                pool.Add(ModContent.NPCType<Cindera>(), 0.33f);
-                pool.Add(ModContent.NPCType<Magmabubble>(), 0.33f);
+                DemonSiegeEnemies(pool, spawnInfo);
                 return;
             }
             if (DontAddNewSpawns(spawnInfo))
@@ -89,19 +161,7 @@ namespace Aequus.NPCs.GlobalNPCs
             }
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
             {
-                AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
-                if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
-                {
-                    pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
-                    pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
-                }
-                if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
-                    pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
-                if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY))
-                {
-                    pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
-                }
-                pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
+                GaleStreamsEnemies(pool, spawnInfo);
             }
             if (!Main.dayTime && surface)
             {
@@ -110,22 +170,7 @@ namespace Aequus.NPCs.GlobalNPCs
                     int tiles = GlimmerSystem.CalcTiles(spawnInfo.Player);
                     if (tiles < GlimmerBiome.MaxTiles)
                     {
-                        if (tiles < GlimmerBiome.SuperStariteTile)
-                        {
-                            pool.Clear();
-                            pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiome.SuperStariteSpawn);
-                        }
-                        pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 2f);
-                        pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
-                        int hyperStariteCount = tiles < GlimmerBiome.UltraStariteTile ? 2 : 1;
-                        if (tiles < GlimmerBiome.HyperStariteTile && NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
-                        {
-                            pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
-                        }
-                        if (tiles < GlimmerBiome.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
-                        {
-                            pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
-                        }
+                        GlimmerEnemies(tiles, pool, spawnInfo);
                         return;
                     }
                 }
@@ -145,24 +190,7 @@ namespace Aequus.NPCs.GlobalNPCs
             if (spawnInfo.Player.Aequus().ZoneCrabCrevice
                 && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                pool.Clear();
-                pool.Add(NPCID.Seahorse, 0.01f);
-                if (Main.hardMode)
-                {
-                    pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
-                }
-                pool.Add(NPCID.Crab, 1f);
-                pool.Add(NPCID.SeaSnail, 0.05f);
-                pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
-                pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
-                if (spawnInfo.Water)
-                {
-                    if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
-                        pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
-                    pool.Add(NPCID.PinkJellyfish, 0.1f);
-                    pool.Add(NPCID.Shark, 0.05f);
-                    pool.Add(NPCID.Squid, 0.05f);
-                }
+                CrabCreviceEnemies(pool, spawnInfo);
             }
         }
 

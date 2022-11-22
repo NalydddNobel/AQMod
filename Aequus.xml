@@ -427,20 +427,6 @@
             Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="M:Aequus.Common.ILoadBefore.SortBefore(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.ILoadAfter.SortAfter(System.Type)">
-            <summary>
-            
-            </summary>
-            <param name="t">The loadable type. EX: <see cref="T:Aequus.Common.IOnModLoad"/></param>
-            <returns></returns>
-        </member>
         <member name="F:Aequus.Content.CarpenterBounties.CarpenterBounty.ConditionInfo.Carpenter">
             <summary>
             Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.

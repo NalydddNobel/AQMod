@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Melee
                 {
                     Main.item[i].Center = Projectile.Center;
                     Main.timeItemSlotCannotBeReusedFor[i] = 2;
-                    if (!Main.item[i].instanced)
+                    if (!Main.item[i].instanced && Main.netMode == NetmodeID.Server)
                     {
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i);
                     }

@@ -51,7 +51,7 @@ namespace Aequus.Tiles.Furniture
         {
             if (closer)
             {
-                Main.LocalPlayer.accWatch = Math.Max(2, Main.LocalPlayer.accWatch);
+                Main.SceneMetrics.HasClock = true;
             }
         }
 

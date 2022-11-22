@@ -83,7 +83,7 @@ namespace Aequus
                 UserInterface = new UserInterface();
             }
 
-            foreach (var t in AutoloadHelper.GetAndOrganizeOfType<IOnModLoad>(Code))
+            foreach (var t in GetContent<IOnModLoad>())
             {
                 t.OnModLoad(this);
             }

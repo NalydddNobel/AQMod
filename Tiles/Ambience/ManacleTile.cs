@@ -11,24 +11,24 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles.Ambience
 {
-    public class MistralTile : HerbTileBase
+    public class ManacleTile : HerbTileBase
     {
         protected override int[] GrowableTiles => new int[]
         {
-            TileID.Grass,
-            TileID.HallowedGrass,
-            TileID.Cloud,
-            TileID.RainCloud,
-            TileID.SnowCloud,
+            TileID.Ash,
+            TileID.Hellstone,
+            TileID.Obsidian,
+            TileID.ObsidianBrick,
+            TileID.HellstoneBrick,
         };
 
-        protected override Color MapColor => new Color(186, 122, 255, 255);
-        public override Vector3 GlowColor => new Vector3(0.1f, 0.66f, 0.15f);
-        protected override int DrawOffsetY => -8;
+        protected override Color MapColor => new Color(75, 2, 17, 255);
+        public override Vector3 GlowColor => new Vector3(0.66f, 0.15f, 0.1f);
+        protected override int DrawOffsetY => -10;
 
         public override bool IsBlooming(int i, int j)
         {
-            return Main.WindyEnoughForKiteDrops;
+            return Main.dayTime && Main.time < 17100;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
@@ -44,11 +44,11 @@ namespace Aequus.Tiles.Ambience
         {
             if (Main.tile[i, j].TileFrameX >= FrameShiftX)
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralPollen>(), 1);
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<ManaclePollen>(), Main.rand.Next(3) + 1);
             }
             if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralSeeds>(), Main.rand.Next(3) + 1);
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<ManacleSeeds>(), Main.rand.Next(3) + 1);
             }
             return false;
         }
@@ -69,6 +69,5 @@ namespace Aequus.Tiles.Ambience
             spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;
         }
-
     }
 }

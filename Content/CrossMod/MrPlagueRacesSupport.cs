@@ -14,6 +14,11 @@ namespace Aequus.Content.CrossMod
         public static ModPlayer MrPlagueRacesPlayer { get; private set; }
         public static List<FieldInfo> RacePlayerFieldInfo { get; private set; }
 
+        bool ILoadable.IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.HasMod("MrPlagueRaces");
+        }
+
         public void Load(Mod mod)
         {
             MrPlagueRaces = null;

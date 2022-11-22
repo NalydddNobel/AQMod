@@ -48,5 +48,14 @@ namespace Aequus.Buffs.Misc.Empowered
             drawParams.DrawColor.A = a;
             return true;
         }
+
+        public static int GetDepoweredBuff(int buffID)
+        {
+            if (buffID > Main.maxBuffTypes && BuffLoader.GetBuff(buffID) is EmpoweredBuffBase empoweredBuff)
+            {
+                return empoweredBuff.OriginalBuffType;
+            }
+            return buffID;
+        }
     }
 }

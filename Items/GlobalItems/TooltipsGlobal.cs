@@ -1,4 +1,6 @@
-﻿using Aequus.Content;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Misc.Empowered;
+using Aequus.Content;
 using Aequus.Content.ItemRarities;
 using Aequus.Items.Prefixes;
 using Aequus.NPCs.Friendly.Town;
@@ -89,14 +91,36 @@ namespace Aequus.Items.GlobalItems
                 if (ExporterQuests.QuestItems.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
-                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
+                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
                 if (AequusItem.LegendaryFishIDs.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))
-                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+                }
+                int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
+                if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0)
+                {
+                    string text = "";
+                    if (l.Count == 1)
+                    {
+                        text = AequusText.GetTextWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
+                    }
+                    else
+                    {
+                        for (int i = 0; i < l.Count - 1; i++)
+                        {
+                            if (!string.IsNullOrEmpty(text))
+                            {
+                                text += ", ";
+                            }
+                            text += Lang.GetBuffName(l[i]);
+                        }
+                        text = AequusText.GetTextWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
+                    }
+                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "PotionConflict", text));
                 }
 
                 if (item.pick > 0)

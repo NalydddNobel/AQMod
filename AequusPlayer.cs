@@ -1948,6 +1948,20 @@ namespace Aequus
             ArmFloaties.Proc(Player, this, npc);
         }
 
+        public void DetermineBuffTimeToAdd(int type, ref int amt)
+        {
+            if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
+            {
+                if (debuffDuration != 1f)
+                    amt = (int)(amt * debuffDuration);
+            }
+            else
+            {
+                if (buffDuration != 1f && !Main.meleeBuff[type])
+                    amt = (int)(amt * buffDuration);
+            }
+        }
+
         public static bool CanScamNPC(NPC npc)
         {
             return npc.type != ModContent.NPCType<Exporter>();
@@ -2062,7 +2076,6 @@ namespace Aequus
         {
             On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
             On.Terraria.Player.TryPainting += Player_TryPainting;
-            On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
             On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
@@ -2134,28 +2147,6 @@ namespace Aequus
                 }
             }
             return false;
-        }
-
-        private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player self, int type, int time1)
-        {
-            int amt = orig(self, type, time1);
-            if (Main.buffNoTimeDisplay[type] || AequusBuff.DontChangeDuration.Contains(type))
-            {
-                return amt;
-            }
-
-            var aequus = self.Aequus();
-            if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
-            {
-                if (aequus.debuffDuration != 1f)
-                    amt = (int)(amt * aequus.debuffDuration);
-            }
-            else
-            {
-                if (aequus.buffDuration != 1f && !Main.meleeBuff[type])
-                    amt = (int)(amt * aequus.buffDuration);
-            }
-            return amt;
         }
 
         private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)

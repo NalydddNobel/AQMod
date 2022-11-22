@@ -20,12 +20,12 @@ namespace Aequus.Tiles.CrabCrevice
             Main.tileNoFail[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
-            TileID.Sets.SwaysInWindBasic[Type] = true;
 
             AddMapEntry(new Color(190, 200, 222), CreateMapEntryName("Pearl"));
             AddMapEntry(new Color(105, 186, 220), CreateMapEntryName("HypnoticPearl"));
             DustType = DustID.Glass;
             ItemDrop = ItemID.WhitePearl;
+            HitSound = SoundID.Shatter;
         }
 
         public override ushort GetMapOption(int i, int j)
