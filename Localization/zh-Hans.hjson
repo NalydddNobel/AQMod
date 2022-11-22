@@ -486,6 +486,9 @@ Mods: {
 			XenonMushroom: 氙蘑菇
 			NeonMushroom: 氖蘑菇
 			HeliumMushroom: 氦蘑菇
+			MistralSeeds: 寒风花种
+			MoraySeeds: 海鳝花种
+			ManacleSeeds: 镣铐花种
 			MoonflowerSeeds: 月光花种
 
 			FamiliarPickaxe: 令人熟悉的镐子
@@ -1311,6 +1314,9 @@ Mods: {
 			ArgonMushroom: "'一个值得留恋且永远不会忘记的东西'"
 			KryptonMushroom: "'一个值得留恋且永远不会忘记的东西'"
 			XenonMushroom: "'一个值得留恋且永远不会忘记的东西'"
+			MistralSeeds: 会在大风天开花并产生花粉
+			MoraySeeds: 会在雨夜开花并产生花粉
+			ManacleSeeds: 会在早晨开花并产生花粉
 			MoonflowerSeeds: 会在午夜附近开花并产生花粉
 			EmancipationGrill: 
 				'''
@@ -1412,6 +1418,11 @@ Mods: {
 				RouletteDrop: 下列物品必定掉落
 
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+
+				NewPotionsBalancing: 无法与{PotionName}药水一同使用
+
+				# Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
 			}
 
 			Misc: {
@@ -1482,6 +1493,7 @@ Mods: {
 			NecromancyPotionBuff: 死灵
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
+			BaguetteBuff: 法棍
 			SpicyEelBuff: 香辣鳗鱼
 
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
@@ -1816,7 +1828,10 @@ Mods: {
 			HeliumMushroom: 氦蘑菇
 			FishingCrates: 板条箱
 			RecyclingMachine: 回收机
-			Moonflower: 月光花种
+			ManacleTile: 镣铐花
+			MistralTile: 寒风花
+			MorayTile: 海鳝花
+			MoonflowerTile: 月光花
 			GlimmeringStatueTile: 终极晶体
 			SeaPickle: 海泡菜
 			AshTombstone: 灰烬墓碑
@@ -2294,6 +2309,91 @@ Mods: {
 		}
 
 		Chat: {
+			Guide: {
+				Glimmer: 你看见那些光了吗? 那光芒预示着生命之星的到来. 试着去寻找它的源头, 看看你能找到什么!
+			}
+			Merchant: {
+				Glimmer: 我想这闪闪发光的夜晚会从你的硬币上反射出奇妙的光芒! 为什么不试试呢, 嗯?
+			}
+			Nurse: {
+				Glimmer: 哦, 这是一个美妙的景象. 我一直都喜欢这个世界藏匿起来的美好事物, 但看起来这件似乎决定来主动找我!
+			}
+			Demolitionist: {
+				Glimmer: 当我还是一个小- 好吧, 小男孩, 我想去拜访星星, 但矮人不能飞得很高. 现在我只满足于看到它们这样发光.
+			}
+			DyeTrader: {
+				Glimmer: 那些色彩...美妙至极! 如果你能找到一种能重现那种光彩的染料配方, 你必须和我分享!
+			}
+			Angler: {
+				Glimmer: 天上的光? 是的, 当然, 很酷, 但比起鱼来说差远了. 等下! 如果它们吸引了新的鱼呢?! 我必须参与进来!
+			}
+			Dryad: {
+				Glimmer: 那些光是什么? 我这么多年来从未见过这样的事...
+			}
+			ArmsDealer: {
+				Glimmer: 我想我看到了一把彩虹剑. 为什么总是剑, 嗯? 难道我们就不能有一次枪支圣地或是其它的生命吗?
+			}
+			DD2Bartender: {
+				Glimmer: 我通常不喜欢混合幻想饮料, 但这片天空给了我新的灵感. 特殊星源怎样?
+			}
+			Stylist: {
+				Glimmer: 嗯...今晚我有心情练习梯度. 你介意暂时看起来有点傻吗, 嗯?
+			}
+			GoblinTinkerer: {
+				Glimmer: 看, 这就是我所说的! 其他哥布林根本不在乎这样的景象. 我很高兴你们有品味.
+			}
+			WitchDoctor: {
+				Glimmer: 天空中的辉光似乎很平静, 但自然界中明亮的颜色是致命的警告g. 今晚要小心, 我的朋友.
+			}
+			PartyGirl: {
+				Glimmer: 哇哦, i就像天空也在开派对! 我希望每晚都是这样!
+			}
+			Wizard: {
+				Glimmer: 等下, 天空...哦, 豆茎, 我把那个咒语忘了吗?
+			}
+			TaxCollector: {
+				Glimmer: 那些亮光...让我想起了假期. 呸.
+			}
+			Truffle: {
+				Glimmer: 我感到...今晚, 来自星星的某些东西. 我也不确定这是一件好事.
+			}
+			Pirate: {
+				Glimmer: 夜晚的红色天空, 水手们的快乐...err, 那夜晚蓝紫色的天空意味着什么?
+			}
+			SantaClaus: {
+				Glimmer: 哦不, 这天空棒极了! 就像北极的极光一样!
+			}
+			Princess: {
+				Glimmer: 今晚的天空简直令人着迷! 这让我想起了他们在城堡里举办的灯光秀...
+			}
+			TravellingMerchant: {
+				Glimmer: 今晚的天空多么美丽! 如果这里一直都是这样的话, 我就得多呆一晚了!
+			}
+			SkeletonMerchant: {
+				Glimmer: 我不断听到从上面传来的砰砰声, 好像有什么东西在狠狠地砸在地上. 你们在上面干什么?
+			}
+			BestiaryGirl: {
+				Glimmer: 天空很好, 但我只希望坠落的星星不会伤害任何动物...
+			}
+			Painter: {
+				Glimmer: 颜色融合在一起的方式...就像我后院的星云! 谈论励志!
+			}
+			Golfer: {
+				Glimmer: 现在有一个背景来终结所有的背景. 太糟糕了, 打高尔夫球主要是盯着地面.
+			}
+			Clothier: {
+				Glimmer: 你看到很多人过着和我一样的生活, 但这片天空绝对是我不介意重复的天空之一.
+			}
+			Mechanic: {
+				Glimmer: 我想...你认为这种星星能量会成为一种良好的绿色能源吗
+			}
+			Steampunker: {
+				Glimmer: 啊呀, 这是一种景象! 我跟你说, 这和我来的地方的沉闷天气完全不同.
+			}
+			Cyborg: {
+				Glimmer: 我的理论是, 这些大气光是由与恒星有关的异常能量的干扰造成的.
+			}
+
 			PhysicistPet: {
 				0: 哔哔啵.
 				1: 哔啵.
@@ -2706,3 +2806,8 @@ Mods: {
 		}
 	}
 }
+
+"TownNPCMood_Princess.LoveNPC_Aequus/Carpenter": "{NPCName}真可爱! 我希望他们能给我建一所房子!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Exporter": "{NPCName}总是愿意给我精美的珠宝!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Physicist": "{NPCName}太神秘了...我希望她能留下来!"
+"TownNPCMood_Princess.LoveNPC_Aequus/Occultist": "{NPCName}一直在我身上释放不错的治疗法术!"
