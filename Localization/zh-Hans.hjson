@@ -262,6 +262,7 @@ Mods: {
 			CinnamonRoll: 肉桂卷
 			SpicyEel: 香辣鳗鱼
 
+			DeathsEmbrace: 死亡之拥
 			NecromancyPotion: 死灵药水
 			BloodthirstPotion: 嗜血药水
 			SentryPotion: 哨兵药水
@@ -1151,6 +1152,13 @@ Mods: {
 			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
 			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
+			DeathsEmbrace: 
+				'''
+				增加15%伤害和暴击率
+				小幅度降低攻击的准确度
+				攻击时会使你自动饮用该药水
+				{{一旦增益消失, 你会立刻死亡...}}
+				'''
 			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
 			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
@@ -1464,6 +1472,7 @@ Mods: {
 		}
 
 		BuffName: {
+			DeathsEmbraceBuff: 死亡之拥
 			TonicSpawnratesDebuff: 补药冷却
 			TonicSpawnratesBuff: 补药
 			NoonBuff: 正午
@@ -1532,6 +1541,7 @@ Mods: {
 		}
 
 		BuffDescription: {
+			DeathsEmbraceBuff: 你为什么会读这个...你正走向死亡
 			TonicSpawnratesDebuff: 你无法使用商人补药
 			TonicSpawnratesBuff: 敌人被你的气味吸引
 			BloodthirstBuff: 敌人必定掉落红心
@@ -2649,6 +2659,10 @@ Mods: {
 
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: 任务鱼
+		}
+
+		DeathMessage: {
+			DeathsEmbrace: "{0}饮下了最后一口药水..."
 		}
 
 		Water: 水
