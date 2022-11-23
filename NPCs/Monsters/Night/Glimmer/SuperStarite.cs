@@ -31,6 +31,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),
             });
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -52,6 +52,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 Scale = 0.6f,
             });
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)

@@ -43,6 +43,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 Position = new Vector2(0f, 17f),
                 PortraitPositionYOverride = 36,
             });
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -106,7 +107,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 {
                     var b = new BloomParticle(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
                     b.Velocity += (b.Position - NPC.Center) / 2f;
-                    EffectsSystem.AbovePlayers.Add(b);
+                    EffectsSystem.ParticlesAbovePlayers.Add(b);
                 }
                 for (int i = 0; i < 25; i++)
                 {

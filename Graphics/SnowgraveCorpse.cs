@@ -112,7 +112,11 @@ namespace Aequus.Graphics
             {
                 if (Amt == 0 && AmtOld > (Aequus.HQ ? 30 : 10))
                 {
-                    timeActive = Math.Max(timeActive, maxTimeActive - 60);
+                    timeActive = Math.Max(timeActive, maxTimeActive - 30);
+                }
+                if (timeActive > 2 && timeActive < 10 && Collision.SolidCollision(TopLeft, _width, _height))
+                {
+                    LocalPosition.Y -= 4f;
                 }
                 timeActive++;
                 if (timeActive > maxTimeActive)
@@ -186,7 +190,7 @@ namespace Aequus.Graphics
                     if (_scale == Vector2.Zero)
                     {
                         _scale = Draw_DetermineIceSize(iceTexture, npc.frame);
-                        _width = (int)(iceTexture.Width * _scale.X);
+                        _width = npc.frame.Width;
                         _height = (int)(iceTexture.Height * _scale.Y);
                     }
                     if (_iceOrigin == Vector2.Zero)
@@ -213,6 +217,7 @@ namespace Aequus.Graphics
                     }
 
                     spritebatch.Draw(iceTexture, drawCoordinates, null, iceColor, 0f, _iceOrigin, _scale, SpriteEffects.None, 0f);
+                    //AequusHelpers.DrawRectangle(new Rectangle((int)(TopLeft.X - Main.screenPosition.X), (int)(TopLeft.Y - Main.screenPosition.Y), _width, _height), Color.Red.UseA(0));
                 }
                 catch
                 {

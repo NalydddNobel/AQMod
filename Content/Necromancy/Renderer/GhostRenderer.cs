@@ -112,7 +112,7 @@ namespace Aequus.Content.Necromancy.Renderer
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
             Rendering = true;
-            DrawList.ForceRender = true;
+            LegacyDrawList.ForceRender = true;
             for (int i = 0; i < Colors.Length; i++)
             {
                 RenderData render = Colors[i];
@@ -159,7 +159,7 @@ namespace Aequus.Content.Necromancy.Renderer
                 }
             }
             Rendering = false;
-            DrawList.ForceRender = false;
+            LegacyDrawList.ForceRender = false;
         }
         public void DrawOntoScreen(SpriteBatch spriteBatch)
         {

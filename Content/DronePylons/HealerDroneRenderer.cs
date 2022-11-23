@@ -46,7 +46,7 @@ namespace Aequus.Content.DronePylons
             if (HealPairs.Count > 0)
             {
                 RenderingNow = true;
-                DrawList.ForceRender = true;
+                LegacyDrawList.ForceRender = true;
                 try
                 {
                     bool cleared = false;
@@ -94,7 +94,7 @@ namespace Aequus.Content.DronePylons
                 {
                 }
                 RenderingNow = false;
-                DrawList.ForceRender = false;
+                LegacyDrawList.ForceRender = false;
                 HealPairs.Clear();
 
                 //device.SetRenderTarget(helperTarget);

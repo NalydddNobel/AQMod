@@ -50,7 +50,6 @@ namespace Aequus.Projectiles.Magic
 
         public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            damage -= (int)Projectile.ai[0];
             damage = Math.Max(damage, 1);
             if (target.position.X + target.width / 2f < Main.player[Projectile.owner].position.X + Main.player[Projectile.owner].width / 2f)
             {
@@ -64,15 +63,8 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            target.AddBuff(ModContent.BuffType<SnowgraveDebuff>(), 60);
-            if (target.IsTheDestroyer())
-            {
-                Projectile.ai[0] += 12.5f;
-            }
-            else
-            {
-                Projectile.ai[0] += 4f;
-            }
+            target.AddBuff(ModContent.BuffType<SnowgraveDebuff>(), 240);
+            Projectile.damage = (int)(Projectile.damage * 0.5f);
             var center = target.Center;
             float l = target.Size.Length() / 4f;
             float r = Main.rand.NextFloat(-(MathHelper.TwoPi / 12f), MathHelper.TwoPi / 12f);

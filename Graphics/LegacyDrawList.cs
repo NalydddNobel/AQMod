@@ -2,7 +2,7 @@
 
 namespace Aequus.Graphics
 {
-    public class DrawList
+    public class LegacyDrawList
     {
         public int Count => List.Count;
 
@@ -11,7 +11,7 @@ namespace Aequus.Graphics
         public bool RenderingNow => renderingNow || ForceRender;
         public static bool ForceRender;
 
-        public DrawList()
+        public LegacyDrawList()
         {
             List = new List<int>();
             renderingNow = false;
@@ -32,5 +32,10 @@ namespace Aequus.Graphics
             renderingNow = false;
             List.Clear();
         }
+    }
+    public class DrawList<T> : List<T> 
+    {
+        public bool renderNow;
+        public bool Render => renderNow || EffectsSystem.ForceRenderDrawlists;
     }
 }

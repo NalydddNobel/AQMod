@@ -782,7 +782,7 @@ namespace Aequus.Content.WorldGeneration
             var leftX = LeftX(sizeX);
             for (int i = leftX; i < leftX + sizeX; i++)
             {
-                for (int j = 0; j < Main.maxTilesY; j++)
+                for (int j = 0; j < Main.UnderworldLayer - 200; j++)
                 {
                     if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.Pots)
                     {

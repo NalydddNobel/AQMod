@@ -240,7 +240,7 @@ namespace Aequus
         public float zombieDebuffMultiplier;
 
         public Item accSentrySquid;
-        public int turretSquidTimer;
+        public int sentrySquidTimer;
 
         public Item accMendshroom;
         public int cMendshroom;
@@ -524,7 +524,7 @@ namespace Aequus
             moroSummonerFruit = false;
             hasUsedRobsterScamItem = false;
 
-            turretSquidTimer = 120;
+            sentrySquidTimer = 120;
             itemCooldown = 0;
             itemCooldownMax = 0;
             itemCombo = 0;
@@ -615,11 +615,11 @@ namespace Aequus
             accSentrySquid = null;
             if (!InDanger)
             {
-                turretSquidTimer = Math.Min(turretSquidTimer, 240);
+                sentrySquidTimer = Math.Min(sentrySquidTimer, 240);
             }
-            if (turretSquidTimer > 0)
+            if (sentrySquidTimer > 0)
             {
-                turretSquidTimer--;
+                sentrySquidTimer--;
             }
 
             if (expertBoostWormScarfTimer > 0)
@@ -1040,9 +1040,9 @@ namespace Aequus
                 gravetenderGhost = -1;
             }
 
-            if (accSentrySquid != null && turretSquidTimer == 0)
+            if (accSentrySquid != null && sentrySquidTimer == 0)
             {
-                UpdateSentrySquid(Player.Aequus().closestEnemy);
+                SentrySquid.UseEquip(Player, this);
             }
 
             if (accSentryInheritence != null)
@@ -1076,7 +1076,7 @@ namespace Aequus
             {
                 int amt = (int)(Player.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.AbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.ParticlesAbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
@@ -1143,7 +1143,7 @@ namespace Aequus
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
-                        EffectsSystem.AbovePlayers.Add(particle);
+                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
                         if (i < 2)
                         {
                             prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
@@ -1151,7 +1151,7 @@ namespace Aequus
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                             particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                             particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
-                            EffectsSystem.BehindPlayers.Add(particle);
+                            EffectsSystem.ParticlesBehindPlayers.Add(particle);
                         }
                     }
                 }
@@ -1162,90 +1162,6 @@ namespace Aequus
             {
                 boundBowAmmoTimer = BoundBowRegenerationDelay;
             }
-        }
-
-        /// <summary>
-        /// Attempts to place a sentry down near the <see cref="NPC"/> at <see cref="closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="ClosestEnemy"/>
-        /// </summary>
-        public void UpdateSentrySquid(int closestEnemy)
-        {
-            if (closestEnemy == -1 || !Main.npc[closestEnemy].active || Player.maxTurrets <= 0)
-            {
-                turretSquidTimer = 30;
-                return;
-            }
-
-            var item = SentrySquid_GetStaff();
-            if (item == null)
-            {
-                turretSquidTimer = 30;
-                return;
-            }
-
-            if (Player.Aequus().turretSlotCount >= Player.maxTurrets)
-            {
-                int oldestSentry = -1;
-                int time = int.MaxValue;
-                for (int i = 0; i < Main.maxProjectiles; i++)
-                {
-                    if (Main.projectile[i].active && Main.projectile[i].owner == Player.whoAmI && Main.projectile[i].WipableTurret)
-                    {
-                        if (Main.projectile[i].timeLeft < time)
-                        {
-                            oldestSentry = i;
-                            time = Main.projectile[i].timeLeft;
-                        }
-                    }
-                }
-                if (oldestSentry != -1)
-                {
-                    Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
-                }
-                turretSquidTimer = 30;
-                return;
-            }
-
-            if (!SentrySquid.TurretStaffs.TryGetValue(item.type, out var sentryUsage))
-            {
-                sentryUsage = SentrySquid.TurretStaffUsage.Default;
-            }
-            if (sentryUsage.TrySummoningThisSentry(Player, item, Main.npc[closestEnemy]))
-            {
-                Player.UpdateMaxTurrets();
-                if (Player.maxTurrets > 1)
-                {
-                    turretSquidTimer = 240;
-                }
-                else
-                {
-                    turretSquidTimer = 3000;
-                }
-                if (Main.netMode != NetmodeID.Server && item.UseSound != null)
-                {
-                    SoundEngine.PlaySound(item.UseSound.Value, Main.npc[closestEnemy].Center);
-                }
-            }
-            else
-            {
-                turretSquidTimer = 30;
-            }
-        }
-        /// <summary>
-        /// Determines an item to use as a Sentry Staff for <see cref="UpdateSentrySquid"/>
-        /// </summary>
-        /// <returns></returns>
-        public Item SentrySquid_GetStaff()
-        {
-            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
-            {
-                // A very small check which doesn't care about checking damage and such, so this could be easily manipulated.
-                if (!Player.inventory[i].IsAir && Player.inventory[i].sentry && Player.inventory[i].shoot > ProjectileID.None && (!Player.inventory[i].DD2Summon || !DD2Event.Ongoing)
-                    && ItemLoader.CanUseItem(Player.inventory[i], Player))
-                {
-                    return Player.inventory[i];
-                }
-            }
-            return null;
         }
 
         /// <summary>
@@ -1990,7 +1906,7 @@ namespace Aequus
                 {
                     var mousePos = setMousePos.Value - Main.screenPosition;
                     Main.mouseX = (int)mousePos.X;
-                    Main.mouseX = (int)mousePos.Y;
+                    Main.mouseY = (int)mousePos.Y;
                 }
 
                 Player_ItemCheck_Shoot.Invoke(player, new object[] { player.whoAmI, item, player.GetWeaponDamage(item), });

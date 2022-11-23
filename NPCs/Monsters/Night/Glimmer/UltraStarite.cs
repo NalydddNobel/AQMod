@@ -56,6 +56,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 Scale = 0.6f,
             });
+            SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -572,7 +573,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                         if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15))
                         {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                            EffectsSystem.AbovePlayers.Add(
+                            EffectsSystem.ParticlesAbovePlayers.Add(
                                 new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
                                 ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
                                 Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi)));

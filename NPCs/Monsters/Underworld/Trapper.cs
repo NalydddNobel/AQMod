@@ -211,41 +211,38 @@ namespace Aequus.NPCs.Monsters.Underworld
 
         public override void DrawBehind(int index)
         {
-            EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+            EffectsSystem.NPCsBehindAllNPCs.Add(NPC);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (!NPC.IsABestiaryIconDummy)
+            if (!NPC.IsABestiaryIconDummy && EffectsSystem.NPCsBehindAllNPCs.Render)
             {
-                if (EffectsSystem.NPCsBehindAllNPCs.RenderingNow)
+                var chainTexture = TrapperChainTexture;
+                if (!chainTexture.IsLoaded)
                 {
-                    var chainTexture = TrapperChainTexture;
-                    if (!chainTexture.IsLoaded)
-                    {
-                        return false;
-                    }
-                    int npcOwner = (int)NPC.ai[1] - 1;
-                    int height = chainTexture.Value.Height - 2;
-                    var npcCenter = NPC.Center;
-                    var trapImpCenter = Main.npc[npcOwner].Center;
-                    var velocity = npcCenter - trapImpCenter;
-                    int length = (int)(velocity.Length() / height);
-                    velocity.Normalize();
-                    velocity *= height;
-                    float rotation = velocity.ToRotation() + MathHelper.PiOver2;
-                    var origin = new Vector2(chainTexture.Value.Width / 2f, chainTexture.Value.Height / 2f);
-                    for (int j = 1; j < length; j++)
-                    {
-                        var position = trapImpCenter + velocity * j;
-                        var color = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
-                        if (j < 6)
-                            color *= 1f / 6f * j;
-                        spriteBatch.Draw(chainTexture.Value, position - screenPos, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
-                    }
-                    if (!DrawList.ForceRender)
-                        return false;
+                    return false;
                 }
+                int npcOwner = (int)NPC.ai[1] - 1;
+                int height = chainTexture.Value.Height - 2;
+                var npcCenter = NPC.Center;
+                var trapImpCenter = Main.npc[npcOwner].Center;
+                var velocity = npcCenter - trapImpCenter;
+                int length = (int)(velocity.Length() / height);
+                velocity.Normalize();
+                velocity *= height;
+                float rotation = velocity.ToRotation() + MathHelper.PiOver2;
+                var origin = new Vector2(chainTexture.Value.Width / 2f, chainTexture.Value.Height / 2f);
+                for (int j = 1; j < length; j++)
+                {
+                    var position = trapImpCenter + velocity * j;
+                    var color = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
+                    if (j < 6)
+                        color *= 1f / 6f * j;
+                    spriteBatch.Draw(chainTexture.Value, position - screenPos, null, color, rotation, origin, 1f, SpriteEffects.None, 0f);
+                }
+                if (!LegacyDrawList.ForceRender)
+                    return false;
             }
 
             var drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);

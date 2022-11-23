@@ -28,8 +28,8 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_SUCTIONENEMIES = 3;
         public const int ACTION_SUCTIONTILES = 2;
 
-        public static DrawList LegacyDrawBack { get; internal set; }
-        public static DrawList LegacyDrawFront { get; internal set; }
+        public static LegacyDrawList LegacyDrawBack { get; internal set; }
+        public static LegacyDrawList LegacyDrawFront { get; internal set; }
         public static ConfiguredMusicData music { get; private set; }
 
         public float HPRatio => NPC.life / (float)NPC.lifeMax;
@@ -48,8 +48,8 @@ namespace Aequus.NPCs.Boss
             if (!Main.dedServ)
             {
                 music = new ConfiguredMusicData(MusicID.Boss2, MusicID.OtherworldlyBoss2);
-                LegacyDrawBack = new DrawList();
-                LegacyDrawFront = new DrawList();
+                LegacyDrawBack = new LegacyDrawList();
+                LegacyDrawFront = new LegacyDrawList();
             }
         }
 

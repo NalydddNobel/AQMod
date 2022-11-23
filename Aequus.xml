@@ -229,17 +229,6 @@
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
             </summary>
         </member>
-        <member name="M:Aequus.AequusPlayer.UpdateSentrySquid(System.Int32)">
-            <summary>
-            Attempts to place a sentry down near the <see cref="T:Terraria.NPC"/> at <see cref="F:Aequus.AequusPlayer.closestEnemy"/>'s index. Doesn't do anything if the index is -1, the enemy is not active, or the player has no turret slots. Runs after <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.SentrySquid_GetStaff">
-            <summary>
-            Determines an item to use as a Sentry Staff for <see cref="M:Aequus.AequusPlayer.UpdateSentrySquid(System.Int32)"/>
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Aequus.AequusPlayer.UpdateMaxZombies">
             <summary>
             If the player has too many zombies, it kills the oldest and least prioritized one.
@@ -594,12 +583,12 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.BehindPlayers">
+        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesBehindPlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
             </summary>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.AbovePlayers">
+        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesAbovePlayers">
             <summary>
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
             </summary>

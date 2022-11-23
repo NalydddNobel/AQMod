@@ -809,7 +809,7 @@ namespace Aequus.NPCs.Boss
 
         public override void DrawBehind(int index)
         {
-            EffectsSystem.NPCsBehindAllNPCs.Add(NPC.whoAmI);
+            EffectsSystem.NPCsBehindAllNPCs.Add(NPC);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -828,7 +828,7 @@ namespace Aequus.NPCs.Boss
                 RenderClaw(NPC, spriteBatch, screenPos, drawColor);
                 return false;
             }
-            if (EffectsSystem.NPCsBehindAllNPCs.RenderingNow)
+            if (LegacyDrawList.ForceRender)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;

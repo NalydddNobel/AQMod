@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,11 +14,10 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public struct TurretStaffUsage
         {
-            public static TurretStaffUsage Default => new TurretStaffUsage(isGrounded: false, range: 2000);
+            public static TurretStaffUsage Default => new TurretStaffUsage(isGrounded: false, range: 500f);
 
             public readonly bool IsGrounded;
             public readonly float Range;
-            public readonly bool DoNotUse;
             /// <summary>
             /// Player is the player who is summoning the sentry
             /// <para>Item is the item used to summon the sentry</para>
@@ -27,7 +28,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             /// </summary>
             public Func<Player, Item, NPC, bool> customAction;
 
-            public TurretStaffUsage(bool isGrounded = false, float range = 2000f) : this(null, isGrounded, range)
+            public TurretStaffUsage(bool isGrounded = false, float range = 800f) : this(null, isGrounded, range)
             {
             }
 
@@ -36,7 +37,6 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 IsGrounded = isGrounded;
                 Range = range;
                 this.customAction = customAction;
-                DoNotUse = false;
             }
 
             public TurretStaffUsage(bool doNotUse)
@@ -44,26 +44,21 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 IsGrounded = false;
                 Range = -1f;
                 customAction = null;
-                DoNotUse = true;
             }
 
-            private Vector2? FindGroundedSpot(int x, int y)
+            private static Vector2? FindGroundedSpot(int x, int y)
             {
                 for (int j = 0; j < 25; j++)
                 {
                     if (Main.tile[x, y + j].HasTile && Main.tile[x, y + j].SolidType())
                     {
-                        return new Vector2(x * 16f + 8f, (y + j) * 16f - 32f);
+                        return new Vector2(x * 16f + 8f, (y + j) * 16f - 64f);
                     }
                 }
                 return null;
             }
             public bool TrySummoningThisSentry(Player player, Item item, NPC target)
             {
-                if (DoNotUse)
-                {
-                    return false;
-                }
                 if (customAction?.Invoke(player, item, target) == true)
                 {
                     return true;
@@ -73,7 +68,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
                 if (IsGrounded)
                 {
-                    List<Vector2> validLocations = new List<Vector2>();
+                    var validLocations = new List<Vector2>();
                     int x = ((int)target.position.X + target.width / 2) / 16;
                     int y = (int)target.position.Y / 16;
                     for (int i = -5; i <= 5; i++)
@@ -114,17 +109,32 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                     }
                     if (Main.myPlayer == player.whoAmI)
                     {
-                        AequusPlayer.ShootProj(player, item, source, resultPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), resultPosition);
+                        for (int i = 0; i < 50; i++)
+                        {
+                            var shootPosition = resultPosition;
+                            shootPosition.X += target.width / 2f;
+                            shootPosition.Y += Main.rand.NextFloat(-64f, 120f);
+                            if (Main.myPlayer == player.whoAmI && Collision.CanHitLine(shootPosition, 2, 2, target.position, target.width, target.height))
+                            {
+                                AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                                break;
+                            }
+                        }
                     }
                 }
                 else
                 {
-                    var shootPosition = target.position;
-                    shootPosition.X += target.width / 2f;
-                    shootPosition.Y -= 200f;
                     if (Main.myPlayer == player.whoAmI)
                     {
-                        AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                        for (int i = 0; i < 50; i++)
+                        {
+                            var shootPosition = target.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(Range);
+                            if (Collision.CanHitLine(shootPosition, 2, 2, target.position, target.width, target.height))
+                            {
+                                AequusPlayer.ShootProj(player, item, source, shootPosition, Vector2.Zero, item.shoot, player.GetWeaponDamage(item), player.GetWeaponKnockback(item, item.knockBack), shootPosition);
+                                break;
+                            }
+                        }
                     }
                 }
                 return true;
@@ -137,22 +147,23 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             TurretStaffs = new Dictionary<int, TurretStaffUsage>()
             {
-                [ItemID.DD2BallistraTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2BallistraTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2BallistraTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.HoundiusShootius] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.DD2BallistraTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.DD2BallistraTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.DD2BallistraTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
                 [ItemID.DD2ExplosiveTrapT1Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
-                [ItemID.DD2ExplosiveTrapT2Popper] = new TurretStaffUsage(isGrounded: true, range: 75f),
-                [ItemID.DD2ExplosiveTrapT3Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
-                [ItemID.DD2FlameburstTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2FlameburstTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
-                [ItemID.DD2FlameburstTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 600f),
+                [ItemID.DD2ExplosiveTrapT2Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
+                [ItemID.DD2ExplosiveTrapT3Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
+                [ItemID.DD2FlameburstTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.DD2FlameburstTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.DD2FlameburstTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
                 [ItemID.DD2LightningAuraT1Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
                 [ItemID.DD2LightningAuraT2Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
                 [ItemID.DD2LightningAuraT3Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
                 [ItemID.QueenSpiderStaff] = new TurretStaffUsage(isGrounded: true, range: 300f),
-                [ItemID.StaffoftheFrostHydra] = new TurretStaffUsage(isGrounded: true, range: 1000f),
-                [ItemID.RainbowCrystalStaff] = new TurretStaffUsage(isGrounded: false, range: 500f),
-                [ItemID.MoonlordTurretStaff] = new TurretStaffUsage(isGrounded: false, range: 1250f),
+                [ItemID.StaffoftheFrostHydra] = new TurretStaffUsage(isGrounded: true, range: 900f),
+                [ItemID.RainbowCrystalStaff] = new TurretStaffUsage(isGrounded: false, range: 400f),
+                [ItemID.MoonlordTurretStaff] = new TurretStaffUsage(isGrounded: false, range: 900f),
             };
         }
 
@@ -183,6 +194,83 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 player.Aequus().equippedHat = Type;
                 player.Aequus().cHat = dyeItem.dye;
             }
+        }
+
+        public static void UseEquip(Player player, AequusPlayer aequus)
+        {
+            if (aequus.closestEnemy == -1 || !Main.npc[aequus.closestEnemy].active || player.maxTurrets <= 0)
+            {
+                aequus.sentrySquidTimer = 30;
+                return;
+            }
+
+            var item = FindUsableStaff(player);
+            if (item == null)
+            {
+                aequus.sentrySquidTimer = 30;
+                return;
+            }
+
+            if (aequus.turretSlotCount >= player.maxTurrets)
+            {
+                int oldestSentry = -1;
+                int time = int.MaxValue;
+                for (int i = 0; i < Main.maxProjectiles; i++)
+                {
+                    if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].WipableTurret)
+                    {
+                        if (Main.projectile[i].timeLeft < time)
+                        {
+                            oldestSentry = i;
+                            time = Main.projectile[i].timeLeft;
+                        }
+                    }
+                }
+                if (oldestSentry != -1)
+                {
+                    Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
+                }
+                aequus.sentrySquidTimer = 32;
+                return;
+            }
+
+            if (!TurretStaffs.TryGetValue(item.type, out var sentryUsage))
+            {
+                sentryUsage = TurretStaffUsage.Default;
+            }
+            if (sentryUsage.TrySummoningThisSentry(player, item, Main.npc[aequus.closestEnemy]))
+            {
+                player.UpdateMaxTurrets();
+                if (player.maxTurrets > 1)
+                {
+                    aequus.sentrySquidTimer = player.Aequus().turretSlotCount >= player.maxTurrets - 1 ? 180 : 60;
+                }
+                else
+                {
+                    aequus.sentrySquidTimer = 3000;
+                }
+                if (Main.netMode != NetmodeID.Server && item.UseSound != null)
+                {
+                    SoundEngine.PlaySound(item.UseSound.Value, Main.npc[aequus.closestEnemy].Center);
+                }
+            }
+            else
+            {
+                aequus.sentrySquidTimer = 30;
+            }
+        }
+
+        public static Item FindUsableStaff(Player player)
+        {
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                if (!player.inventory[i].IsAir && player.inventory[i].sentry && player.inventory[i].damage > 0 && player.inventory[i].shoot > ProjectileID.None && (!player.inventory[i].DD2Summon || !DD2Event.Ongoing)
+                    && ItemLoader.CanUseItem(player.inventory[i], player))
+                {
+                    return player.inventory[i];
+                }
+            }
+            return null;
         }
     }
 }

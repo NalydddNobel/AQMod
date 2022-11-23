@@ -345,14 +345,14 @@ namespace Aequus.NPCs
                     var spawnLocation = Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f;
                     spawnLocation.Y -= 4f;
                     var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
-                    EffectsSystem.BehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
                     if (Main.rand.NextBool(12))
                     {
                         var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(4f, 7f));
                         float scale = Main.rand.NextFloat(1f, 2f);
                         float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        EffectsSystem.BehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale, rotation));
+                        EffectsSystem.ParticlesBehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale, rotation));
                     }
                 }
             }
@@ -360,21 +360,21 @@ namespace Aequus.NPCs
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
             if (npc.HasBuff<CorruptionHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
             if (npc.HasBuff<CrimsonHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.BehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
@@ -519,11 +519,11 @@ namespace Aequus.NPCs
                 return true;
             }
 
-            if (Main.netMode != NetmodeID.Server && npc.HasBuff<SnowgraveDebuff>())
+            if (Main.netMode != NetmodeID.Server)
             {
-                if (SnowgraveCorpse.CanFreezeNPC(npc))
+                if (npc.HasBuff<SnowgraveDebuff>() && SnowgraveCorpse.CanFreezeNPC(npc))
                 {
-                    EffectsSystem.BehindProjs.Add(new SnowgraveCorpse(npc.Center, npc));
+                    EffectsSystem.ParticlesBehindAllNPCs.Add(new SnowgraveCorpse(npc.Center, npc));
                 }
             }
             return false;
@@ -741,7 +741,7 @@ namespace Aequus.NPCs
                     }
                 }
 
-                if (Main.netMode != NetmodeID.Server)
+                if (Main.netMode == NetmodeID.Server)
                 {
                     goto Orig;
                 }

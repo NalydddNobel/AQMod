@@ -361,10 +361,16 @@ namespace Aequus.Projectiles
         {
             if (transform > 0)
             {
-                int p = Projectile.NewProjectile(new EntitySource_Misc($"Aequus: Transform"), projectile.Center, projectile.velocity, transform,
-                    projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
-                Main.projectile[p].miscText = projectile.miscText;
+                if (Main.myPlayer == projectile.owner)
+                {
+                    int p = Projectile.NewProjectile(new EntitySource_Misc($"Aequus: Transform"), projectile.Center, projectile.velocity, transform,
+                        projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
+                    Main.projectile[p].miscText = projectile.miscText;
+                }
+
                 projectile.Kill();
+                transform = 0;
+                return false;
             }
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
             {
@@ -488,8 +494,7 @@ namespace Aequus.Projectiles
             }
             if (sourceItemUsed != 0 && projectile.friendly && projectile.HasOwner())
             {
-                var i = Main.player[projectile.owner].HeldItem;
-                if (sourceItemUsed == i.type)
+                if (sourceItemUsed == Main.player[projectile.owner].HeldItemFixed().type)
                 {
                     Main.player[projectile.owner].Aequus().itemHits++;
                 }
