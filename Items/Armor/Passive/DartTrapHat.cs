@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus.Graphics.PlayerLayers;
+using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Armor.Passive
 {
     [AutoloadEquip(EquipType.Head)]
-    public class DartTrapHat : ModItem
+    public class DartTrapHat : ModItem, ItemHooks.IUpdateItemDye
     {
         public virtual int TimeBetweenShots => 320;
         public virtual int ProjectileShot => ModContent.ProjectileType<DartTrapHatProj>();
@@ -17,6 +18,7 @@ namespace Aequus.Items.Armor.Passive
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            StackingHatEffect.Blacklist.Add(Item.headSlot);
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
@@ -34,10 +36,11 @@ namespace Aequus.Items.Armor.Passive
 
         public override void UpdateEquip(Player player)
         {
+            var aequus = player.Aequus();
+            aequus.wearingSummonHelmet = true;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
             if (Main.myPlayer == player.whoAmI)
             {
-                var aequus = player.Aequus();
-                aequus.wearingSummonHelmet = true;
                 aequus.summonHelmetTimer--;
                 if (aequus.summonHelmetTimer <= 0)
                 {
@@ -54,8 +57,11 @@ namespace Aequus.Items.Armor.Passive
                     }
                     aequus.summonHelmetTimer = TimeBetweenShots;
                 }
-                player.GetDamage(DamageClass.Summon) += 0.10f;
             }
+        }
+
+        public override void UpdateVanity(Player player)
+        {
         }
 
         public override void AddRecipes()
@@ -65,13 +71,19 @@ namespace Aequus.Items.Armor.Passive
                 .AddIngredient(ItemID.CopperBar, 8)
                 .AddRecipeGroup("PresurePlate")
                 .AddTile(TileID.Anvils)
-                .TryRegisterBefore((ItemID.CopperBar));
+                .TryRegisterBefore(ItemID.CopperBar);
             CreateRecipe()
                 .AddIngredient(ItemID.DartTrap)
                 .AddIngredient(ItemID.TinBar, 8)
                 .AddRecipeGroup("PresurePlate")
                 .AddTile(TileID.Anvils)
-                .TryRegisterBefore((ItemID.CopperBar));
+                .TryRegisterBefore(ItemID.CopperBar);
+        }
+
+        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            if (player.Aequus().stackingHat == 0)
+                player.Aequus().stackingHat = Item.headSlot;
         }
     }
 }

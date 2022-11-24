@@ -25,6 +25,7 @@ namespace Aequus.Projectiles.Misc
 
         public Vector2 mouseWorld;
         public Color mouseColor;
+        public bool realBlock;
 
         public override void Load()
         {
@@ -57,6 +58,10 @@ namespace Aequus.Projectiles.Misc
 
         public void PlaceTile()
         {
+            if (!realBlock || Main.myPlayer != Projectile.owner)
+            {
+                return;
+            }
             var player = Main.player[Projectile.owner];
             for (int k = 0; k < 50; k++)
             {
@@ -244,8 +249,18 @@ namespace Aequus.Projectiles.Misc
                             WorldGen.KillTile(checkTileCoords.X, checkTileCoords.Y, noItem: true);
                             if (Main.netMode != NetmodeID.SinglePlayer)
                             {
-                                NetMessage.SendTileSquare(-1, checkTileCoords.X, checkTileCoords.Y);
+                                if (Main.myPlayer == player.whoAmI)
+                                {
+                                    var p = Aequus.GetPacket(PacketType.PhysicsGunBlock);
+                                    p.Write(player.whoAmI);
+                                    p.Write(checkTileCoords.X);
+                                    p.Write(checkTileCoords.Y);
+                                    p.Send();
+                                }
+                                break;
                             }
+
+                            realBlock = true;
                             break;
                         }
                     }

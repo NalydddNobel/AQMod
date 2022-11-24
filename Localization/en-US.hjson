@@ -998,7 +998,7 @@ Mods: {
 				Can chop multiple trees at once
 				Hold right click to disable this ability
 				'''
-			BattleAxe: Chance to inflict bleeding on enemies
+			BattleAxe: Chance to make enemies bleed life
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"

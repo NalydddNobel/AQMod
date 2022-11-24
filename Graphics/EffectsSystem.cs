@@ -256,13 +256,11 @@ namespace Aequus.Graphics
             var particleSettings = new ParticleRendererSettings();
             try
             {
-                ParticlesBehindAllNPCs.Draw(Main.spriteBatch);
-
-                GlimmerSceneEffect.DrawUltimateSword();
-
                 if (!behindTiles)
                 {
-                    foreach (var p in DDParticleSystem.CachedBackParticles)
+                    GlimmerSceneEffect.DrawUltimateSword();
+
+                    foreach (var p in DustDevilParticleSystem.CachedBackParticles)
                     {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }
@@ -288,15 +286,16 @@ namespace Aequus.Graphics
                 }
                 else
                 {
+                    ParticlesBehindAllNPCs.Draw(Main.spriteBatch);
                     GhostRenderer.DrawChainedNPCs();
+                    NPCsBehindAllNPCs.renderNow = true;
+                    for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
+                    {
+                        Main.instance.DrawNPC(NPCsBehindAllNPCs[i].whoAmI, behindTiles);
+                    }
+                    NPCsBehindAllNPCs.renderNow = false;
+                    NPCsBehindAllNPCs.Clear();
                 }
-
-                NPCsBehindAllNPCs.renderNow = true;
-                for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
-                {
-                    Main.instance.DrawNPC(NPCsBehindAllNPCs[i].whoAmI, behindTiles);
-                }
-                NPCsBehindAllNPCs.Clear();
             }
             catch
             {
@@ -320,7 +319,7 @@ namespace Aequus.Graphics
                 }
                 else
                 {
-                    foreach (var p in DDParticleSystem.CachedFrontParticles)
+                    foreach (var p in DustDevilParticleSystem.CachedFrontParticles)
                     {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }

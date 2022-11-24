@@ -52,7 +52,7 @@ namespace Aequus.Projectiles.Misc.Pets
 
             // copies proj attributes
             dummyPlayer.width = Projectile.width;
-            dummyPlayer.head = Projectile.height;
+            dummyPlayer.height = Projectile.height;
             dummyPlayer.oldVelocity = Projectile.oldVelocity;
             dummyPlayer.velocity = Projectile.velocity;
             dummyPlayer.oldDirection = Projectile.oldDirection;

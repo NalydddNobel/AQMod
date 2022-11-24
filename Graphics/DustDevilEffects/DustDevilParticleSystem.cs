@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.DustDevilEffects
 {
-    public class DDParticleSystem : ModSystem
+    public class DustDevilParticleSystem : ModSystem
     {
         public static List<IDDParticleManipulator> Manipulators;
         public static List<DDParticle> Particles;

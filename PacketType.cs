@@ -11,7 +11,7 @@
         RemoveDemonSiege,
         Unused,
         Unused2,
-        Unused3,
+        PhysicsGunBlock,
         RequestGlimmerEvent,
         ExporterQuestsCompleted,
         SpawnOmegaStarite,

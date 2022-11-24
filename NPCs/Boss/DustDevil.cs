@@ -173,7 +173,7 @@ namespace Aequus.NPCs.Boss
                         pull = 0.001f,
                     };
 
-                    DDParticleSystem.Manipulators.Add(Tornado);
+                    DustDevilParticleSystem.Manipulators.Add(Tornado);
                 }
                 Tornado.Position = new Vector3(NPC.Center, 0f);
                 Tornado.timeLeft = 4;
@@ -187,7 +187,7 @@ namespace Aequus.NPCs.Boss
                         continue;
                     }
                     var p = new DDParticle(loc, new Vector3(Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), Color.White * 0.8f, Main.rand.NextFloat(0.75f, 1.8f), Main.rand.NextFloat(MathHelper.TwoPi));
-                    DDParticleSystem.AddParticle(p);
+                    DustDevilParticleSystem.AddParticle(p);
 
                     if (Main.rand.NextBool(12))
                     {
@@ -202,7 +202,7 @@ namespace Aequus.NPCs.Boss
                             p = new DDParticle(loc - v * j * 0.2f, v, Color.White, Main.rand.NextFloat(0.75f, 1.5f), Main.rand.NextFloat(MathHelper.TwoPi));
                             p.frame.X = 0;
                             p.OnAdd();
-                            DDParticleSystem.AddParticle(p);
+                            DustDevilParticleSystem.AddParticle(p);
                         }
                     }
                 }

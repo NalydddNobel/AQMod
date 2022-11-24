@@ -416,7 +416,7 @@ namespace Aequus.NPCs
                     }
                 }
             }
-            if (npc.life >= 0 && npc.HasBuff<Bleeding>())
+            if (npc.life >= 0 && npc.HasBuff<BattleAxeBleeding>())
             {
                 if (Main.rand.NextBool(3))
                 {
@@ -466,13 +466,13 @@ namespace Aequus.NPCs
                 applyAequusOiled = true;
                 damage = Math.Max(damage, 6);
             }
-            if (npc.HasBuff<Bleeding>())
+            if (npc.HasBuff<BattleAxeBleeding>())
             {
                 if (npc.lifeRegen > 0)
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 8;
+                npc.lifeRegen -= 16;
             }
             bool debuff = npc.HasBuff<CorruptionHellfire>();
             applyAequusOiled |= debuff;
@@ -746,7 +746,7 @@ namespace Aequus.NPCs
                     goto Orig;
                 }
 
-                if (self.HasBuff<Bleeding>())
+                if (self.HasBuff<BattleAxeBleeding>())
                 {
                     int amt = (int)Math.Min(4.0 + dmg / 20.0, 20.0);
                     for (int i = 0; i < amt; i++)

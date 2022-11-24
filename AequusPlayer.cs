@@ -18,6 +18,7 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Armor.Gravetender;
+using Aequus.Items.Armor.Passive;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools.Misc;
@@ -127,6 +128,7 @@ namespace Aequus
         public int cEyes;
         public int equippedEars;
         public int cEars;
+        public int stackingHat;
 
         public int leechHookNPC;
 
@@ -555,6 +557,8 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            stackingHat = 0;
+
             setSeraphim = null;
             setGravetender = null;
 
@@ -1613,6 +1617,16 @@ namespace Aequus
             {
                 drawInfo.hidesBottomSkin = true;
                 drawInfo.hidesTopSkin = true;
+            }
+            if (stackingHat > 0 && StackingHatEffect.Blacklist.Contains(drawInfo.drawPlayer.head))
+            {
+                stackingHat = 0;
+            }
+            if (stackingHat > 0)
+            {
+                drawInfo.hideHair = false;
+                drawInfo.fullHair = true;
+                drawInfo.hatHair = true;
             }
             if (CustomDrawShadow != null)
             {

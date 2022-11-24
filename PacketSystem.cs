@@ -12,6 +12,7 @@ using Aequus.Items.Consumables;
 using Aequus.Items.Tools.Camera;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
+using Aequus.Projectiles.Misc;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -40,7 +41,7 @@ namespace Aequus
             {
                 PacketType.Unused,
                 PacketType.Unused2,
-                PacketType.Unused3,
+                PacketType.PhysicsGunBlock,
                 PacketType.RequestGlimmerEvent,
                 PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
@@ -240,6 +241,34 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.PhysicsGunBlock:
+                    {
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            int plr = reader.ReadInt32();
+                            int x = reader.ReadInt32();
+                            int y = reader.ReadInt32();
+                            if (!Main.tile[x, y].IsFullySolid() || Main.tileFrameImportant[Main.tile[x, y].TileType] || PhysicsGunProj.TilePickupBlacklist.Contains(Main.tile[x, y].TileType) || !WorldGen.CanKillTile(x, y))
+                            {
+                                return;
+                            }
+                            WorldGen.KillTile(x, y, noItem: true);
+                            NetMessage.SendTileSquare(-1, x, y, 3);
+                            Aequus.GetPacket(PacketType.PhysicsGunBlock).Send(toClient: plr);
+                        }
+                        else
+                        {
+                            for (int i = 0; i < Main.maxProjectiles; i++)
+                            {
+                                if (Main.projectile[i].active && Main.projectile[i].owner == Main.myPlayer && Main.projectile[i].ModProjectile is PhysicsGunProj physGun)
+                                {
+                                    physGun.realBlock = true;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
                 case PacketType.RequestGlimmerEvent:
                     {
                         if (!GlimmerBiome.EventActive)
@@ -439,7 +468,7 @@ namespace Aequus
                         switch (soundID)
                         {
                             case SoundPacket.InflictBleeding:
-                                SoundEngine.PlaySound(Bleeding.InflictDebuffSound, position);
+                                SoundEngine.PlaySound(BattleAxeBleeding.InflictDebuffSound, position);
                                 break;
 
                             case SoundPacket.InflictBurning:

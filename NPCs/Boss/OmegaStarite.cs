@@ -223,7 +223,7 @@ namespace Aequus.NPCs.Boss
                     BuffID.Poisoned,
                     BuffID.Frostburn,
                     BuffID.Frostburn2,
-                    ModContent.BuffType<Bleeding>(),
+                    ModContent.BuffType<BattleAxeBleeding>(),
                 },
             };
             Main.npcFrameCount[NPC.type] = 14;

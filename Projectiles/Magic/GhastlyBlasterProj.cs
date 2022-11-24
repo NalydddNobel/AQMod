@@ -65,6 +65,7 @@ namespace Aequus.Projectiles.Magic
             if (Projectile.ai[1] == 0f)
             {
                 Projectile.direction = aequus.itemCombo > 0 ? -1 : 1;
+                Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.direction * 0.7f);
                 AequusHelpers.CappedMeleeScale(Projectile);
                 Projectile.netUpdate = true;
                 Projectile.ai[1] += 1f;
@@ -93,8 +94,21 @@ namespace Aequus.Projectiles.Magic
             Projectile.position.Y = playerCenter.Y - Projectile.height / 2;
             if (!player.frozen && !player.stoned)
             {
-                Projectile.ai[1] += 1f / (Projectile.extraUpdates + 1);
-                Projectile.ai[0] = (float)Math.Sin(SwordProjectileBase.GenericSwing1(progress, 2f) * MathHelper.Pi);
+                float val = 1f / (Projectile.extraUpdates + 1);
+                Projectile.ai[1] += val;
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    //int sign = Math.Sign();
+                    //Projectile.ai[0] = Math.Clamp(Projectile.ai[0] + sign * 0.001f * val, -0.05f * val, 0.05f * val);
+                    //if (Math.Sign(Projectile.ai[0]) != sign)
+                    //{
+                    //    Projectile.ai[0] *= 0.9f;
+                    //}
+                    Projectile.velocity = AequusHelpers.rotateTowards(Projectile.Center, Projectile.velocity, Main.MouseWorld, 0.03f * val);
+                    Projectile.netUpdate = true;
+                }
+
+                //Projectile.velocity = Projectile.velocity.RotatedBy();
             }
             float p = 0f;
             if (progress < 0.2f)
@@ -107,7 +121,7 @@ namespace Aequus.Projectiles.Magic
             }
             Projectile.Opacity = 1f - p;
             Projectile.velocity = Vector2.Normalize(Projectile.velocity);
-            var dir = Vector2.Normalize(Projectile.velocity.RotatedBy((float)Math.Sin(progress - 0.5f) * 1.33f * Projectile.direction)).UnNaN();
+            var dir = Projectile.velocity.SafeNormalize(-Vector2.UnitY);
             Projectile.position += dir * (Projectile.ai[0] * 30f + 15f);
             Projectile.spriteDirection = Projectile.velocity.X > 0f ? -1 : 1;
             Projectile.rotation = dir.ToRotation() + (Projectile.spriteDirection == 1 ? MathHelper.Pi : 0f);
@@ -176,7 +190,7 @@ namespace Aequus.Projectiles.Magic
         public void DrawLaser()
         {
             float progress = 1f - Projectile.ai[1] / (Main.player[Projectile.owner].itemAnimationMax * 2f);
-            var dir = Vector2.Normalize(Projectile.velocity.RotatedBy((float)Math.Sin(progress - 0.5f) * 1.33f * Projectile.direction)).UnNaN();
+            var dir = Projectile.velocity.SafeNormalize(-Vector2.UnitY);
 
             var startPosition = Projectile.Center - Main.screenPosition + dir * 46f;
             var endPosition = Projectile.Center + dir * Projectile.localAI[0] - Main.screenPosition;

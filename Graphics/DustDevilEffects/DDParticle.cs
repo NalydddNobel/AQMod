@@ -82,7 +82,7 @@ namespace Aequus.Graphics.DustDevilEffects
         public virtual void UpdateManipulators()
         {
             activeManipulators.Clear();
-            foreach (var m in DDParticleSystem.Manipulators)
+            foreach (var m in DustDevilParticleSystem.Manipulators)
             {
                 if (Vector3.Distance(Position, m.Position) < m.InteractionRange)
                 {

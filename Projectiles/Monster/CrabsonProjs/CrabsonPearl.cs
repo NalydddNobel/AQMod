@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -16,6 +17,8 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
         public static Asset<Texture2D> WhiteTexture { get; private set; }
 
         private float _light;
+
+        public int Amt => Main.expertMode ? Main.getGoodWorld ? 16 : 8 : 4;
 
         public override void Load()
         {
@@ -49,6 +52,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
         {
             Projectile.velocity *= 0.96f;
             int explodeTime = 16;
+            Projectile.localAI[0] += 0.016f;
             if (Projectile.timeLeft < explodeTime)
             {
                 if (!Main.getGoodWorld)
@@ -123,11 +127,10 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
             }
             if ((int)Projectile.ai[1] == 1)
             {
-                float add = Main.expertMode ? MathHelper.PiOver4 : MathHelper.PiOver2;
+                float add = MathHelper.TwoPi / Amt;
                 float speed = 10f;
                 if (Main.getGoodWorld)
                 {
-                    add /= 2f;
                     speed *= 2f;
                 }
                 for (float r = 0; r <= MathHelper.TwoPi; r += add + 0.001f)
@@ -146,6 +149,18 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
             var origin = texture.Size() / 2f;
             var drawColor = Projectile.GetAlpha(lightColor);
             Main.EntitySpriteDraw(texture, Projectile.position + offset, null, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            if ((int)Projectile.ai[1] == 1)
+            {
+                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+                var line = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
+                float telegraphThingy = (float)Math.Pow(Projectile.localAI[0], 3f);
+                for (int i = 0; i < Amt; i++)
+                {
+                    float r = Projectile.rotation + MathHelper.TwoPi / Amt * i;
+                    Main.EntitySpriteDraw(line, Projectile.position + offset + r.ToRotationVector2() * 20f * Projectile.scale, null, Color.LightBlue.UseA(5) * telegraphThingy,
+                        r + MathHelper.PiOver2, line.Size() / 2f, new Vector2(Projectile.scale * telegraphThingy, Projectile.scale * telegraphThingy * 4f), SpriteEffects.None, 0);
+                }
+            }
             if (_light > 0f)
             {
                 Main.EntitySpriteDraw(WhiteTexture.Value, Projectile.position + offset, null, Color.White * _light, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);

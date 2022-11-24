@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs
 {
-    public class Bleeding : ModBuff
+    public class BattleAxeBleeding : ModBuff
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Bleeding;
 

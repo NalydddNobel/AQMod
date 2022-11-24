@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.width = 40;
             Item.height = 40;
-            Item.damage = 58;
+            Item.damage = 78;
             Item.useTime = 38;
             Item.useAnimation = 25;
             Item.autoReuse = true;

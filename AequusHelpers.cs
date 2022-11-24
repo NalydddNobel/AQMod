@@ -76,6 +76,13 @@ namespace Aequus
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
+        public static Vector2 rotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
+        {
+            float scaleFactor = currentVelocity.Length();
+            float targetAngle = currentPosition.AngleTo(targetPosition);
+            return currentVelocity.ToRotation().AngleTowards(targetAngle, maxChange).ToRotationVector2() * scaleFactor;
+        }
+
         public static Color GetRarityColor(int rare)
         {
             switch (rare)

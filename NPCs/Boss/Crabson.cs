@@ -18,6 +18,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -312,8 +313,9 @@ namespace Aequus.NPCs.Boss
                 {
                     NPC.damage = NPC.defDamage * 2;
                     NPC.velocity.X = 0f;
-                    NPC.velocity.Y = Main.expertMode ? 32f : 16f;
                     int fallingTime = Main.expertMode ? 10 : 20;
+                    float max = Main.expertMode ? 50f : 20f;
+                    NPC.velocity.Y = Math.Min(NPC.velocity.Y + max / fallingTime, max);
                     if (NPC.ai[1] > smashTime + fallingTime)
                     {
                         NPC.noGravity = true;
@@ -543,8 +545,8 @@ namespace Aequus.NPCs.Boss
                     Main.npc[n].realLife = NPC.whoAmI;
                     Main.npc[n].defense *= 4;
                     Main.npc[n].defDefense = Main.npc[n].defense;
-                    Main.npc[n].width += 20;
-                    Main.npc[n].height += 50;
+                    Main.npc[n].width -= 24;
+                    Main.npc[n].height += 30;
                     if (Main.getGoodWorld)
                     {
                         float scale = 2f;
@@ -828,14 +830,85 @@ namespace Aequus.NPCs.Boss
                 RenderClaw(NPC, spriteBatch, screenPos, drawColor);
                 return false;
             }
-            if (LegacyDrawList.ForceRender)
+
+            if (EffectsSystem.NPCsBehindAllNPCs.Render)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
                 DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
             }
-            return true;
+            else
+            {
+                Main.spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Center - screenPos, NPC.frame, drawColor,
+                    NPC.rotation, TextureAssets.Npc[Type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+                if (!NPC.IsABestiaryIconDummy)
+                {
+                    if ((int)NPC.ai[0] == ACTION_CLAWSLAMS)
+                    {
+                        DrawClawsTelegraph(Left);
+                        DrawClawsTelegraph(Right);
+                    }
+                }
+            }
+            return false;
+        }
+        private void DrawClawsTelegraph(NPC npc)
+        {
+            if (Collision.SolidCollision(npc.position, npc.width, npc.height))
+            {
+                return;
+            }
+            float opacity = 1f;
+            if (npc.ai[1] < -25f)
+            {
+                opacity -= (float)Math.Pow((npc.ai[1] + 25f) / 25f, 2f);
+            }
+            if (npc.ai[1] > 50f)
+            {
+                opacity -= (float)Math.Pow((npc.ai[1] - 50f) / 25f, 2f);
+            }
+            if (opacity <= 0f)
+                return;
+            var tileCoords = npc.BottomLeft.ToTileCoordinates();
+            int min = 0;
+            int max = npc.width / 16;
+            if (npc.direction == -1)
+            {
+                max += 2;
+            }
+            else
+            {
+                min -= 2;
+            }
+            for (int i = min; i <= max; i++)
+            {
+                for (int j = 0; j < 80; j++)
+                {
+                    if (WorldGen.InWorld(tileCoords.X + i, tileCoords.Y + j, 25) && Main.tile[tileCoords.X + i, tileCoords.Y + j].IsFullySolid())
+                    {
+                        var coords = new Vector2((tileCoords.X + i) * 16f, (tileCoords.Y + j) * 16f + 16f) - Main.screenPosition;
+                        var frame = new Rectangle(TextureCache.Bloom[0].Value.Width / 2, 0, 1, TextureCache.Bloom[0].Value.Height / 2);
+                        var origin = new Vector2(0f, frame.Height);
+                        Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords,
+                            frame, Color.Blue.UseA(0) * 0.6f * opacity, 0f,
+                            origin, new Vector2(16f, 1f), SpriteEffects.None, 0f);
+                        if (i == min)
+                        {
+                            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords,
+                                frame, Color.DeepSkyBlue.UseA(0) * 0.6f * opacity, 0f,
+                                origin, new Vector2(2f, 2f), SpriteEffects.None, 0f);
+                        }
+                        if (i == max)
+                        {
+                            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords + new Vector2(14f, 0f),
+                                frame, Color.DeepSkyBlue.UseA(0) * 0.6f * opacity, 0f,
+                                origin, new Vector2(2f, 2f), SpriteEffects.None, 0f);
+                        }
+                        break;
+                    }
+                }
+            }
         }
         private void RenderClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

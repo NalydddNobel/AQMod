@@ -84,8 +84,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 {
                     PacketSystem.SyncSound(SoundPacket.InflictBleeding, target.Center);
                 }
-                SoundEngine.PlaySound(Bleeding.InflictDebuffSound, target.Center);
-                target.AddBuff(ModContent.BuffType<Bleeding>(), 240);
+                SoundEngine.PlaySound(BattleAxeBleeding.InflictDebuffSound, target.Center);
+                target.AddBuff(ModContent.BuffType<BattleAxeBleeding>(), 240);
             }
         }
 
