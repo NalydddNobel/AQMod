@@ -998,7 +998,7 @@ Mods: {
 				能够同时砍伐多颗树木
 				砍伐时长按右键以禁用此能力
 				'''
-			BattleAxe: 攻击有几率使敌人流血
+			BattleAxe: 攻击有几率使敌人流失生命
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
