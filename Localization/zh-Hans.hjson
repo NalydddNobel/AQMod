@@ -2382,7 +2382,7 @@ Mods: {
 					BountyButton: 查看赏金
 					SubmitPhoto: 提交照片
 					Blueprint: 蓝图
-					BlueprintFakeCopyright:  Ⓒ 2022 木工蚁, 锌. 版权所有
+					BlueprintFakeCopyright: Ⓒ 2022 木工蚁, 锌. 版权所有
 					Reward: "奖励:"
 					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
 				}
