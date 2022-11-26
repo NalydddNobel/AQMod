@@ -2496,82 +2496,82 @@ Mods: {
 
 			SkyMerchant: {
 				Basic: {
-					0: My stock is just flying off the shelves today!
-					1: What goes up must come down, except my prices! Or, wait, was it stocks?
-					2: My best customers are the harpies! That's a joke. They keep trying to pop my balloon and I am terrified.
-					3: I'm on {WorldName} right now, right? Okay, good, so this discounted map isn't bogus. That's a relief.
-					4: My wares will surely make your wallet lightweight! Is that one good? I've had a lot of time to think up slogans.
+					0: 今儿我的货刚被一扫而空! 
+					1: 上升的东西一定会下降, 除了我的卖价! 或者, 会是我的货物吗?
+					2: 我最好的买家是鸟妖们! 哦, 我开玩笑的. 其实她们一直想戳爆我的热气球, 我害怕极了.
+					3: 我现在是在{WorldName}没错吧? 好, 太棒了, 这样说来我这幅打折买来的地图就不是假货了. 真让我松了一口气.
+					4: 我的商品会让你的钱包飘飘欲飞! 这句怎么样? 我有很多时间来想宣传口号.
 				}
 
-				Night: This time of the day is always so relaxing. You get a closer view of the shooting stars passing through the cloudy islands. It's amazing.
-				BloodMoon: Man, looks scary down there tonight. Good thing I'm safe in the sky, right? ...R-right?
-				Glimmer: Excuse me if I seem a bit tense! I've had to patch my balloon from stars tearing through it three times tonight!
-				SolarEclipse: I always try and track the eclipses to end up in the path of totality. Now there's a sight that never gets old!
-				Thunderstorm: I don't think I can overstate how much danger I'm in right now. Can you buy enough to let me afford life insurance?
-				Graveyard: Can't say this is the most pleasant landing spot I've ever seen, but it has got me wondering about filling a balloon with ectoplasm...
+				Night: 这可是一天中最让人放松的时刻. 你可以近距离地看着流行划过这些云雾缭绕的空岛. 多么神奇. 
+				BloodMoon: 伙计, 今晚地上看起来真吓人. 好在这天上是安全的, 没错吧? 没...没错吧? 
+				Glimmer: 抱歉我看起来有些紧张! 今晚我得给我的热气球打几个补丁, 因为它被星星击穿了三次! 
+				SolarEclipse: 我总是喜欢追踪日食并找到能看见日全食的那条航道. 如今我正处在这永不过时的胜景之下! 
+				Thunderstorm: 我可不想夸大我现在的危险处境. 你能多买点东西好让我买得起一份人寿保险吗? 
+				Graveyard: 虽然不能说这是我最喜欢的着陆点, 但这让我想到了或许可以把灵气填进我的热气球里...
 				
-				Merchant: I'm sure your merchants are always bragging about how high their sales are or whatever, but are they the ones literally riding hot air balloons? Didn't think so, pal.
-				TravellingMerchant: I just don't get how {TravellingMerchant} is so... efficient. He doesn't even use airmail!
-				Pirate: Think I could convince your pirate pal to lend me one of his crew's flying battleships? I bet it'd do wonders for my marketing!
-				Steampunker: Do you know a '{Steampunker}'? I met this girl while restocking on an airship and she seemed awfully interested in this island.
-				Demolitionist: Dwarves live underground, so elves go to the sky. It's simple, really.
+				Merchant: 我相信你见过的商人们都会吹嘘他们的销售额如何如何, 但他们乘过热气球么? 我可不这么认为, 伙计.
+				TravellingMerchant: 我不明白为什么{TravellingMerchant}如此的...高效. 他甚至不用航空邮件!
+				Pirate: 你觉得我能说服海盗把他手下的那一艘飞天战舰借给我吗? 我敢打赌, 这将让我的营业额再创新高!
+				Steampunker: 你认识'{Steampunker}'吗? 我在一艘飞艇上补给的时候遇到了她, 她看起来对这座岛很感兴趣.
+				Demolitionist: 矮人住在地下, 那么精灵就住到天上. 这是很简单的道理, 真的.
 
-				PlaceHere: Place here to rename your item
-				PressHere: Press to set the item's name
-				RenameChatButton: Rename Item
+				PlaceHere: 将你的物品放在此处以重命名
+				PressHere: 按下这个按键来设定物品名称
+				RenameChatButton: 重命名物品
 			}
 
 			Angler: {
-				LegendaryFishReward: Thanks LOSER! You have no clue about the power of this thing, don't you?
-				LegendaryFish: Hey, HEY! I see that Legendary Fish you have on you. You think I can have it if I give you some shiny reward?
+				LegendaryFishReward: 谢谢你, 失! 败! 者! 你对这玩意的威力一无所知, 不是么? 
+				LegendaryFish: 嘿, 嘿! 我看见你身上的传奇鱼类了, 你觉得我能拥有它吗? 如果我给你些闪闪发光的奖励的话. 
 			}
 		}
 
 		TownNPCMood: {
 			Carpenter: {
-				Content: With my house, I've got no complaint. The construction and decor are all quite great!
-				NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
-				FarFromHome: I like to concept my work outdoors, but I'll soon return to my familiar floors.
+				Content: 我觉得我的房间无可挑剔. 建筑样式和内部装饰的质量提无可提!
+				NoHome: 根据我那儿的规矩, 这样我可没法住下. 能请你给我造个新的住所吗?
+				FarFromHome: 我在屋外构思工作, 但我很快就会回到熟悉的房间劳作.
 
-				LoveSpace: So much room to plan and build! With this location I'm simply thrilled!
-				DislikeCrowded: There's starting to be quite a crowd. It'll be hard to draft blueprints if it gets too loud...
-				HateCrowded: With so many folks sharing a rug, I worry I might get squashed like a bug!
+				LoveSpace: 有如此大的空间可以用来建设和规划! 在这儿让我心花绽华!
+				DislikeCrowded: 这儿开始变得有些喧闹了. 如果太吵的话我就很难起草蓝图了...
+				HateCrowded: 如此多人共处一室, 恐怕不出一时我将如害虫般被人压实!
 
 				LikeBiome: "[LikeBiomeQuote]"
-				LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
-				LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
-				LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
-				DislikeBiome: The Jungle is where my old hive lay... I fear that here I cannot stay.
-				HateBiome: From being in {BiomeName}, I must abstain! One wrong step and I'll surely fall to the hivemind again!
+				LikeBiome_Forest: 森林是一处宁静的乐园! 在这里建设的机会如花朵满园.
+				LikeBiome_Underground: 可供雕刻与收集的石料绵延数里, 地下正适合我这样的邻里.
+				LoveBiome: 住在{BiomeName}令我欢心无疑, 让我想起了许多曾经居住的营地.
+				DislikeBiome: 丛林曾为我的旧居...我恐怕不能在此定居.
+				HateBiome: 居住在{BiomeName}, 我得谨行而慎操! 一步迈错就将坠入旧巢!
 
-				LoveNPC: "{NPCName} understands aesthetic like no one else! With him I could build a commonwealth!"
-				LikeNPC: "{NPCName} loves nature's embrace, around them I can't help but feel safe."
-				LikeNPC_Princess: "{NPCName} has asked I build a castle! I must work quickly to not be a hassle!"
-				DislikeNPC: "{NPCName}'s guns leave many holes to patch. It's work, but I can't say me and him are a match."
-				HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
+				LoveNPC: "{NPCName}在美学一道登极而翔! 有他在我能建立我的理想之乡!"
+				LikeNPC: "{NPCName}与自然同心, 与其相处我倍感安心."
+				LikeNPC_Princess: "{NPCName}让我建造城堡! 我得加班加点免得成为麻烦包!"
+				DislikeNPC: "{NPCName}的枪打出了许多窟窿等待修补. 虽是工作但我不觉得能与他为伍."
+				HateNPC: "{NPCName}始终酝酿着爆炸...与他为邻, 我的建筑转瞬即炸."
 			}
 
 			Physicist: {
-				Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
-				NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
-				FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
+				Content: 现在我周围的环境是可以接受的. 正如他们在火星上所说的, 活着的士兵就是快乐的士兵.
+				NoHome: 我想向我的家乡申请一个空投实验室, 但...我忘带了我的无线电装置. 你能为我造一个栖息之处吗?
+				FarFromHome: 科学家的工作可不适合心智薄弱之人. 譬如, 我偶尔得离开我的房子.
 
-				LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
-				DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
-				HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
+				LoveSpace: 我喜欢任何定义下的“空间”. 有如此充足的空间来布置设备实在是太好了.
+				DislikeCrowded: 附近大量的生命体使我仪器的读数受到了些影响, 若有更充足的空间我将不胜感激.
+				HateCrowded: 我曾听说过你们这个物种不顾他人感受的住房习惯的传言. 不幸的是, 这是事实.
 
-				LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
-				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
-				DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+				LikeBiome: 沙漠的晴朗天气对深空观察和向我的家乡发送消息来说都是理想的条件, 这非常棒!
+				LoveBiome: 生活在{BiomeName}对我和我的无人机都很好, 这让我想到了我的家乡.
+				DislikeBiome: 我实在是无法相信我面前的一切都是真的, 这环境一定是你为其它访客准备的海市蜃楼.
 				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
-				HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
+				HateBiome_Hallow: 神圣之地是一个多么幼稚的地方. 它的存在就是对我这样的人智力的侮辱.
+				HateBiome_Evils: 我的设备在{BiomeName}不断地报错, 空气里像是有一种挥之不去的病毒.
 
-				LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
-				LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
-				LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
-				DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
-				HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
+				LoveNPC: "{NPCName}实在是太迷人了! 拥有真正智慧的AI即便在我们的科学家那里也是梦想般的存在!"
+				LikeNPC: "{NPCName}是一个合格的工程师. 很高兴能和一个能理解我的专业知识的人交谈."
+				LikeNPC_Princess: "{NPCName}已经就与我的种族的关系对我伸出了橄榄枝. 虽然我并非大使, 但我很高兴看到你们的统治者是公平公正的."
+				DislikeNPC: "{NPCName}的方法让我感到困惑和失望. 仪式和寓言对解开世界之谜没有任何帮助."
+				HateNPC: "{NPCName}在我看来太过异想天开了. 他们难道不知道“魔法”只是高度发达的科技吗?"
 			}
 
 			Occultist: {
