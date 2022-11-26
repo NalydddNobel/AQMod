@@ -27,6 +27,7 @@
         SpawnShutterstockerClip,
         AnalysisRarity,
         ZombieConvertEffects,
+        GravityChestPickupEffect,
         Count
     }
 

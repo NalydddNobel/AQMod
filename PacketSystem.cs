@@ -14,6 +14,7 @@ using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles;
+using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -241,6 +242,18 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.GravityChestPickupEffect:
+                    {
+                        var itemPos = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+                        int left = reader.ReadInt32();
+                        int top = reader.ReadInt32();
+                        if (Main.netMode != NetmodeID.Server)
+                        {
+                            GravityChestTile.ItemPickupEffect(itemPos, new Vector2(left * 16f + 16f, top * 16f + 16f));
+                        }
+                    }
+                    break;
+
                 case PacketType.PhysicsGunBlock:
                     {
                         if (Main.netMode == NetmodeID.Server)

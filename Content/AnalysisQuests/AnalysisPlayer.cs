@@ -1,6 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Pets.Light;
+using Aequus.Items.Placeable.Furniture.Gravity;
 using Aequus.Items.Tools;
 using System;
 using System.Collections.Generic;
@@ -131,6 +132,10 @@ namespace Aequus.Content.AnalysisQuests
         {
             var l = new List<Item>();
             AddMainRewardDrops(l);
+            if (Main.rand.NextBool())
+            {
+                l.Add(AequusItem.SetDefaults<GravityChest>());
+            }
             return l;
         }
 
@@ -148,11 +153,6 @@ namespace Aequus.Content.AnalysisQuests
                 potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
                 addedAny = true;
             }
-            if (!Player.HasItemCheckAllBanks<HyperJet>())
-            {
-                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
-                addedAny = true;
-            }
             if ((!addedAny || Main.netMode != NetmodeID.SinglePlayer) && !Player.HasItemCheckAllBanks<PhaseMirror>())
             {
                 potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
@@ -162,7 +162,6 @@ namespace Aequus.Content.AnalysisQuests
             {
                 potentialRewards.Add(AequusItem.SetDefaults<PersonalDronePack>());
                 potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
-                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
                 potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
             }
             item.Add(Main.rand.Next(potentialRewards));

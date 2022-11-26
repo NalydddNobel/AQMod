@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;
 using Aequus.Tiles;
@@ -39,8 +40,6 @@ namespace Aequus
         public static ValueCache<bool> Main_dayTime { get; private set; }
 
         public static FieldInfo Field_Main_swapMusic { get; private set; }
-
-        public static int ReversedGravityCheck;
 
         public override void Load()
         {
@@ -96,22 +95,8 @@ namespace Aequus
             CelesteTorus.RenderPoints?.Clear();
             ArmFloaties.EquippedCache?.Clear();
             ResetCaches();
-
-            ReversedGravityCheck--;
-            if (ReversedGravityCheck <= 0)
-            {
-                var stopWatch = new Stopwatch();
-                stopWatch.Start();
-                for (int i = 0; i < Main.maxItems; i++)
-                {
-                    if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type])
-                    {
-                        Main.item[i].Aequus().CheckGravityTiles(Main.item[i]);
-                    }
-                }
-                stopWatch.Stop();
-                ReversedGravityCheck = Math.Min((int)stopWatch.ElapsedMilliseconds, 30);
-            }
+            AequusItem.CheckItemGravity();
+            AequusItem.CheckItemAbsorber();
         }
 
         public override void PreUpdatePlayers()

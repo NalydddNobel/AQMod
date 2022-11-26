@@ -1,3 +1,6 @@
+
+# NOTICE: Do not translate text surrounded in [] or {}. They are for combining text together, usually.
+
 Mods: {
 	Aequus: {
 		BiomeName: {
@@ -493,6 +496,10 @@ Mods: {
 
 			FamiliarPickaxe: Familiar Pickaxe
 
+			GravityChest: Gravity Chest
+
+			OblivionChest: Oblivion Chest
+
 			StariteBottle: Starite in a Bottle
 			GoreNest: Gore Nest
 
@@ -537,7 +544,6 @@ Mods: {
 			OpposingPotion: Opposing Potion
 			Baguette: Baguette
 			HeartLamp: Heart Lamp
-			StariteinaBottle: Starite in a Bottle
 			YuckyOrb: Charming Lure
 			WaterFisg: Water Fish
 			Transistor: Transistor
@@ -1311,6 +1317,8 @@ Mods: {
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
+			GravityChest: May pickup nearby items
+
 			ArgonMushroom: "'A sight to dwell upon and never forget'"
 			KryptonMushroom: "'A sight to dwell upon and never forget'"
 			XenonMushroom: "'A sight to dwell upon and never forget'"
@@ -1335,6 +1343,7 @@ Mods: {
 				Forces players below to flip gravity
 				Increased area of effect when placed infront of walls
 				'''
+			StariteBottle: Heals mana for nearby players
 			GoreNest:
 				'''
 				May upgrade evil weapons
@@ -1814,10 +1823,12 @@ Mods: {
 		}
 
 		Containers: {
+			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
 		}
 
 		MapObject: {
+			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
 			HypnoticPearl: Hypnotic Pearl
 			Pearl: Pearl
@@ -1926,49 +1937,49 @@ Mods: {
 		}
 
 		Bestiary: {
-			DustDevil: A powerful elemental, seeking the power of the Aether. Its sheer existence sustains a cyclone, catching dust, debris, and animals.
-			Crabson: Birthed from a interspecies relationship. Created its own domain under the ocean floor and feeds off unsuspecting prey from above. Sometimes hosts puppet shows featuring Mister and Miss Claw.
-			
+			Crabson: One of many strange ocean crossbreeds, this colossal crustacean is half crab and half clam. It lurks deep within the Crevice, producing strange pearls that enthrall lesser crabs to do its bidding.
+			OmegaStarite: The power of a supernova rumbles within its thick shell. An anomaly in the starite life cycle, it seeks out sources of energy to grow ever stronger, using its orbiting orbs as both offense and defense.
+			DustDevil: A powerful elemental spirit with control over both flame and frost. It uses this power to stir up violent gales, forming a constant tornado around its body for protection.
+						
 			Vineroot: Angry Trappers enpowered by the Souls of Might, blooming into beautiful- yet deadly- flowers.
 
-			CoconutCrab: Evolved a natural camoflauge, disguising as a coconut. Sleeps in and jumps off palm trees in the early morning.
-			SoldierCrab: Named for their knight-like appearance. The orange armor of this crab is actually cobalt covered in layers of grime.
-			SummonerCrabMinion: Would be unable to rest and shelter their eggs without the Hijivarch, luckily they have each other.
-			SummonerCrab: Would be unable to scavenge enough food without help from the Fleers, luckily they have each other.
-			CrabFish: Lurks in the darkness, using its lure to emit coin noises and sparkles to attract unknowing prey...
+			SnobsterCritter: Adapting to the environment is a key element of slime behavior. Looks like this one decided becoming a lobster was the way to go.
+			CoconutCrab: Its thick brown shell both disguises it as an ordinary coconut and defends it from predators. It hides in palm trees, dropping out to fall onto anyone standing in the wrong spot.
+			SoldierCrab: Key warriors in the Crab-Lobster Civil War. They valiantly defend the Crevice from intruders with their sharpened claws, keen enough to slice deadly waves through the air itself.
+			SummonerCrabMinion: These small winged crabs coexist with the Hijivarch, ferrying food to it and protecting it from predators in exchange for having a home.
+			SummonerCrab: One of the four legendary Class Crabs. Its extraneous shell segment allows Fleers to live inside, enabling a unique symbiotic relationship.
+			CrabFish: This fish is a skilled impersonator, able to pull off both "crab" and "money"! It uses its sparkly golden lures to draw greedy adventurers and other enjoyers of shinies to their doom.
 
-			BloodMimic: Due to the blood moon's dominance over corpses, unlucky looters who were slain while stealing may mutate with chests, creating a monster.
+			BloodMimic: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
 			
-			Heckto: The Molten Legion betrayed their kin, allowing their souls to be consumed by a gore nest. Hexoplasm is the result of their spirits being combined with demonic energy.
+			Heckto: When the armies of the Molten Legion pledged allegiance to the forces of Oblivion at the Gore Nests, their souls were irreversibly contaminated with hell energy, forming these strange spirits when freed.
 
-			BreadOfCthulhu: Cthulhu's lost lunch, reanimated from the contaminated waters, this loathesome loaf does not intend to be eaten. May be caught instead of trash.
+			BreadOfCthulhu: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
 			
-			DwarfStariteCritter: A harmless starite, its small scale prevents its magic from being lethal, so it just hovers around.
-			OmegaStarite: An Omega Starite sent from outer space to scout for a valuable resource. An anomaly in the starite life-cycle in need of constant life support from its shell, in exchange it can produce vasts amounts of energy.
-			UltraStarite: As super starites age, they gain the ability to channel their bullets into an aimable beam. Combining the pros and cons of super and hyper starites.
-			HyperStarite: A fierce starite, obtaining super speed and extending arms in order to eliminate groups of prey. Although this evolution sacrifices the range and utility of bullets.
-			SuperStarite: As starites get older, they get better at sustaining their magic energy, allowing them to grow in size and shoot energy bullets.
-			Starite: A fragment of a long ago supernova, its strong magical force gave it life. Must replenish its mystic energy to stay alive.
+			DwarfStariteCritter: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+			UltraStarite: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+			HyperStarite: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+			SuperStarite: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+			Starite: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
 			
-			OblivisionCritter: Demonic tears caused by the disruptive portals of the gore nests. While harmless, they seem to observe and study nearby creatures, who knows why...
-			Magmabubble: Grew legs after consuming a blood crawler, its lava body is too heavy to climb on walls however.
-			TrapperImp: This Fire Imp uses wicked magic to entrap and rot away clingers to become its personal pets.
-			Cindera: Has a disgusting, yet deadly face, similar to that of a face monster.
+			OblivisionCritter: Strange rifts formed from the spatial disturbances caused by Gore Nest portals. They seem harmless, but their unerring, analytic gaze is quite unnerving...
+			Magmabubble: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+			TrapperImp: By chaining trappers to itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+			Cindera: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
 			
-			SpaceSquid: A mysterious squid hailing from an advanced interstellar civilization. Made entirely out of snow due to it being easier to teleport long distances.
-			RedSprite: A mysterious thunderous discharge struck a nimbus, both the thunder and the nimbus' souls were combined to create an evil abomination.
-			Vraine: Aerodynamic birds which come in packs of 3-9. Their temperature sensative beaks determine how aggressive they are.
-			StreamingBalloon: Resourceful slimes may ride miniature hot air balloons to find food. They fly above their pray and explode their own balloons to fall atop them.
-			WhiteSlime: Originally a jungle slime, it absorbed the properties of the sun through a 24-hour tanning session. Rumored to taste like cinnamon.
-			Meteor: Early in the morning, floating meteors appear to eat debris in space. May leave a crater on the planet if pushed out of orbit.
+			SpaceSquid: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
+			RedSprite: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
+			Vraine: Migratory birds that travel in flocks, going where the wind takes them. Its beak is highly sensitive to minute changes in temperatures, and it will change its behavior accordingly.
+			StreamingBalloon: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
+			WhiteSlime: A slime exposed to high-altitude sunrays will eventually begin to take on a glow of its own. Rumored to taste like cinnamon.
+			Meteor: Peaceful relatives of the Meteor Heads, these large chunks of rock generally just go where the wind takes them. And if that just so happens to be into the ground, well, it's hardly their fault.
 
-			Carpenter: An ant which decided to not be a cog in a big machine, opting to become a carpenter due to their love of housing. Moves into houses which have 4 unique furniture objects.
-			Occultist: Previously a member of a demonic occult, the Occultist is trying to re-integrate themselves back into society. Still has the habit to create rituals and cast dangerous spells.
-			SkyMerchant: A smart Hunter who created a hot air balloon to hunt flying creatures. Can be seen in the sky during windy days.
-			Physicist: Coming from a neighboring planet, the Physicist observed unnatural phenomena on your world, and is here to investigate. Doesn't believe in magic.
-			Exporter: The Exporter is a fence with a historic relation to pirates. All proceeds sold will be re-sold to folks looking for the 'best deals'.
-
-			SnobsterCritter: Slimes naturally evolve to their environment, looks like this one decided that becoming a lobster is the right way to go.
+			Carpenter: This ant decided to abandon the hivemind of his former home and follow his passion for building. He's a bit of a snob, though, and will only move into houses with enough decoration.
+			Occultist: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+			SkyMerchant: Half deliveryman and half thrillseeker, this elf crosses the world on his hot air balloon. If you can catch up with him on a windy day, he'll be happy to share some of his stock!
+			Physicist: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
+			PhysicistPet: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+			Exporter: An unscrupulous lobster trader who's always got his eye on the best deals, willing to cross oceans to make the biggest bucks. His most recent voyage came to an undignified end in the Crab Crevice.
 		}
 
 		PaintingSignature: {
@@ -2101,210 +2112,104 @@ Mods: {
 			}
 
 			Carpenter: {
-				Shutterstocker: With a snap and a shutter it allows clips to take in just enough light to make an image!
-				ShutterstockerClipAmmo: 
-					'''
-					Used with the Shutterstocker™ to capture images.
-					Save your best buildings with the most captivating clips!
-					'''
-				SilkPickaxe: With fibers embroided with sticky silky substances, it can be incredibly gentle!
-				SilkHammer: "{$Mods.Aequus.ShopQuote.Carpenter.SilkPickaxe}"
-				ImpenetrableCoating: A clear, strong paste which only a pickaxe can get through!
-				OliverPainting: I can't find out why I find this piece so facinating!
-				OmniPaint: 
-					'''
-					Using a special dye and paint container, you can easily pick out what color of paint
-					you want without the hassle of cleaning off your brush!
-					Don't let it touch your skin, it may cause permanent coloring and damage.
-					'''
-				AdvancedRuler: Our most advanced ruler yet, with many features, buttons, and dumb complications!
-				WhiteFlag: Don't wave this up for too long, unless you plan on getting completely colonized by goblins expecting this island to be weak.
+				Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
+				ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
+				SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
+				SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
+				ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
+				OliverPainting: There's something about this painting... it's simply so fascinating.
+				OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
+				AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
+				WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
 			}
 
 			Exporter: {
-				Mallet: 
-					'''
-					Some crazy guy stopped by to hand me a mallet, said something about breakin' vases?
-					I'll sell it to ya, not for free of course.
-					'''
-				GoldRing: 
-					'''
-					Said to attract coins, yet this ring hasn't ripped a bank off of the ground! 
-					Purchasable for a cheap price!
-					'''
-				LuckyCoin: 
-					'''
-					My ol' captain's first coin, said to be lucky, 
-					but ye old lobster don't believe in myths like that.
-					'''
-				DiscountCard: 
-					'''
-					Took this of one of me maties' corpses, 
-					you two look similar enough eh?
-					'''
-				FoolsGoldRing_Male: 
-					'''
-					The ladies would love ye for wearing this, 
-					just don't tell them ye secret!
-					'''
-				FoolsGoldRing_Female: Er... this ring is made of pure 24 carat gold! Perfect for a lass like you!
-				FaultyCoin: 
-					'''
-					Slip this as a regular coin, 
-					ye get a free deal if they don't catch ye, scallywag.
-					'''
-				ForgedCard: 
-					'''
-					Don't like payin' for full? 
-					This forged card will knock down ye common prices by a lot.
-					'''
-				GrandReward: 
-					'''
-					Ye like getting more buck from your bangs? 
-					This here item is ye choice.
-					'''
-				SkeletonKey: 
-					'''
-					Need ye a way to unlock some forgotten booty but ye keys keep breaking?
-					Purchase now!
-					'''
-				RecyclingMachine: 
-					'''
-					Littering is a crime worse than bein' a pirate. 
-					Keep yeself safe with this cheap recycler!
-					'''
-				RichMansMonocle: Ripped this off one of my debters after er... 'paying him off' with my sword.
-				RichMansMonocle_TaxCollector: Hey... has {TaxCollector} said anything about recognizing me?
-				FishyFins: Pirates keep the fins of Mermen as trophies, said to also ward them off from becomin' zombies too!
-				CrabClock: A neat decoration from my ol' cap's quarters... until I stole it!
-				SedimentaryRock: While that crustacean was awful, his caves has some good tasting sand!
-				HypnoticPearl: I... can't stop looking at it... you can look at it forever too (For a price)
+				Mallet: That's it! I'm sellin' me mallet!
+				GoldRing: This trinket's s'pposed to attract coins, but it ain't pulled a bank out o' the ground yet. If ye want it, ye can have it.
+				LuckyCoin: Me ol' captain's first coin. They say it's lucky, but this old lobster don't believe in such things.
+				DiscountCard: Swiped this off one o' me crewmate's corpses. You two look enough alike, eh?
+				FoolsGoldRing_Male: This'll fetch ye some ladies in no time flat- just don't tell 'em yer secret!
+				FoolsGoldRing_Female: Have ye got yer eye on someone, lass? This ring's made o' pure 24-carat gold! Promise!
+				FaultyCoin: Slip this as a regular coin n' ye'll get a free deal if they don't catch ye. Confidence is key!
+				ForgedCard: This card's linked ta... someone's account, somewhere. Certainly not yers!
+				GrandReward: Not gettin' enough buck from yer bang? Try this beaut on fer size.
+				SkeletonKey: This'll let ye slip into any golden chest, guaranteed or yer money back- and it won't break, either!
+				RecyclingMachine: Litterin's a crime worse than bein' a pirate. Keep yerself safe and reuse yer craftin' scraps here!
+				RichMansMonocle: Ripped this off one o' me debters after... payin' him off. With me sword.
+				RichMansMonocle_TaxCollector: ".. has {TaxCollector} said anythin' about recognizin' me?"
+				FishyFins: Us pirates keep the fins o' mermen as trophies. Plus, they can't turn inta zombies if they can't swim! Hopefully.
+				CrabClock: "'Tis now time fer crab! I took this one off o' me old captain's cabin."
+				SedimentaryRock: Somethin' feels off about these rocks... somethin' crabby. Take 'em off my claws, will ye?
+				HypnoticPearl: There's somethin' about this pearl... I can't stop lookin' at it. Ye can look at it too, fer a price.
 			}
 
 			Occultist: {
-				GhostlyGrave: 
-					'''
-					Was testing some revival spells at a graveyard, seems like this grave wanted to have a living soul! 
-					Like all living things however, I have to put their suffering to an end.
-					'''
-				OccultistCandle: I find it useful for rituals, tehe~
-				SkeletronCandle: 
-					'''
-					Thinking that possessing dead corpses isn't dark? 
-					Why not double up your curses and grant them the dark hands of Skeletron!
-					'''
-				CrownOfBlood: 
-					'''
-					The origin of this garment will be the least of your worries...
-					This garment empowers the accessory you'd call 'special'.
-					'''
-				CrownOfDarkness: Birthed from smelting dark matter, this garment becomes frail in the light.
-				CrownOfTheGrounded: Cursed to be bound to this planet, this garment becomes limp while airborn.
-				Meathook: A hook extracted from my arch rival's weaponry... he won't find me here right?
-				ShadowKey: Used for unlocking the loot of the Underworld, weird that the demons didn't give each chest a different keyhole so pillaging isn't as easy.
-				UnholyCore: An eldritch core I stole from a museum at the sixth circle, said to be able to charge demonic energy or something?
-				SpiritBottle: 
-					'''
-					An ancient concoction used to quench the thirst of angsty spirits. 
-					You might be able to possess more bodies if you bribe them with a drink!
-					'''
-				BlackPhial: Pure black magic created the liquid within this phial, a single drop can even make a pigron deathly ill.
-				GoreNest: Quite a common plant in Oblivion, I picked some out when doing some vacationing there.
-				GoreNestPainting: My first painting! I really liked making my own red paint for it!
-				InsurgentPainting: Keep associating with me and you might just end up becoming the demon painted on this canvas!
-				WhoopieCushion: *Poomf*
+				GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
+				OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
+				SkeletronCandle: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+				CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
+				CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
+				CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
+				Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
+				ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
+				UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
+				SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
+				BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
+				GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
+				GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
+				InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
+				WhoopieCushion: *Pbbbfht*
 			}
 
 			Physicist: {
-				PhysicsGun: 
-					'''
-					A zero point energy field manipulator I created for my kindergarten science fair.
-					Much more high-tech compared to the dirt rod.
-					'''
-				PortalGun: The pinnacle of current technology. This 'Quantum Tunneling Device' is how I got here in the first place.
-				GravityGlobe: 
-					'''
-					When flipped upside down, local gravity becomes reversed. 
-					Disguised as an unassuming globe for it to easily pass weak security.
-					'''
-				PrecisionGloves: Specifically used by ones training in medicine, these gloves reward the wearer for using proper precision.
-				HaltingMachine: Solves the unsolvable, and may be of use if you don't like stuff falling.
-				HolographicMeatloaf: 
-					'''
-					A massive hit with photosynthetic creatures.
-					This meatloaf is cooked with the most delicious tasting light.
-					'''
-					
-				BloodMoonStarter: A strange artifact I discovered when observing this world during a 'Blood Moon'.
-				GalacticStarfruit: Who would have known earthly fruits could control the stars of the cosmos?
-				SolarTablet: 
-					'''
-					A strange artifact I discovered when observing a recently opened ancient temple.
-					My scanners sense a strange amount of dark matter present inside the artifact.
-					'''
+				PhysicsGun: This zero point energy field manipulator sees common use in laboratories. It excels in handling large objects or hazardous materials.
+				PortalGun: This quantum tunneling device allows you to open seamless gateways through space. It is how I arrived here in the first place!
+				GravityGlobe: Flipping this device upside down will reverse its holder's local gravity. It is disguised as a simple decorative object for ease of transport.
+				PrecisionGloves: Designed for training in medical and nanotech work, these gloves reward their wearer for making accurate operations.
+				HaltingMachine: This device neutralizes local gravity on small objects. Useful for those accustomed to working in zero gravity.
+				HolographicMeatloaf: Popular with photosynthetic species. This meatloaf is projected with only the highest-quality light.
 
-				InactivePylonGunner: 
-					'''
-					Without a connection to the net, it cannot function. 
-					Fortunately your 'pylons' connect directly to that network.
-					'''
-				InactivePylonHealer: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
-				InactivePylonCleanser: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
-					
-				ForceAntiGravityBlock: 
-					'''
-					A special type of plating manufactured for 'flying saucers'. 
-					Features an anti-gravity beam shooting below.
-					'''
-				ForceGravityBlock: 
-					'''
-					A special type of plating manufactured for 'flying saucers'. 
-					It generates its own gravitational pull and negates all anti-gravity effects.
-					'''
-				PhysicsBlock: 
-					'''
-					A special type of plating manufactured for 'flying saucers'. 
-					Its unique composition prevents it from being carried by the physics gun.
-					'''
-				EmancipationGrill: Shimmering, semi-transparent particle fields which will vaporize any unauthorized equipment that passes through it.
+				BloodMoonStarter: I discovered this artifact while doing research on a "blood moon". The watery crystal at its core contains high amounts of an unknown energy.
+				GalacticStarfruit: The energy readings from this fruit are nearly identical to those observed during a "glimmer". I recommend you use with caution.
+				SolarTablet: I discovered this artifact while exploring underground in this island's lush areas. Scans indicate an unusual concentration of dark energy within.
 
-				SupernovaFruit: 
-					'''
-					Powerful radiation is being emitted from this apple.
-					Now that you are touching it, I would expect you to be dead before next week.
-					'''
-				ExLydSpacePainting: A render of a space travel force I have not heard much about. After investigating here, I may research them further.
-				HomeworldPainting: A depiction of the starite's homeworld. Unfortunately, it's too far away for me to teleport there and confirm.
+				InactivePylonGunner: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
+				InactivePylonHealer: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
+				InactivePylonCleanser: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
+					
+				ForceAntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
+				ForceGravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.
+				PhysicsBlock: This material was designed to absorb all energies that attempt to act upon it. As a result, it cannot be manipulated by the Physics Gun.
+				EmancipationGrill: This semi-transparent particle field will vaporize any unauthorized material that passes through it. Designed to destroy contraband automatically, but may detect false positives on teeth or inner ears.
+
+				SupernovaFruit: This apple is emitting incredible amounts of radiation. I project that handling it without sufficient protective gear would reduce your lifespan to about 2.5 minutes.
+				
+				ExLydSpacePainting: This mural seems to depict a spacefaring race I have not heard of before. Perhaps I should investigate them after my business is concluded here.
+				HomeworldPainting: A speculative depiction of the Starite homeworld. Unfortunately, it is too far away for me to teleport there and confirm.
 			}
 
 			SkyMerchant: {
-				BalloonKit: Old and hardy, portable hot air ballons have been sought after for quite a while, and here they are!
-				Pumpinator: A strange piece of tech I purchased from an airship. The sucking feature doesn't work unfortunately, what a scam!
-				Nimrod: 
-					'''
-					Lightning striking a lake can kill hundreds of fish, unfortunately this fishing rod can only catch about 3 fish per strike.
-					Or maybe the wizard who crafted this is concerned about the trout population.
-					'''
-				FlashwayNecklace: Made with extremely precise craftmanship by a thundersmith, this garment gives you the split second reflexes to dodge an attack!
-				NameTag: A name tag enriched with magic properties, I can engrain a name into it if you so desire.
-				EquippedAcc: Hm, that accessory equipped on your person is quite nice, maybe this one has better craftmanship however?
-				Banners:
-					'''
-					Ah yes, creating carpets and rugs out of your prey's corpses is quite out of balloon fashion.
-					Hangable banners are so much better in my opinion.
-					'''
-				BongBongPainting: An abnormal creature is depicted in this art, someone may apprieciate this creature's style though.
-				CatalystPainting: The artist who painted this must hate lunatic cultists, which is fair.
-				YinYangPainting: Dark and evils forces depicted to act in harmony, some believe this is true.
-				YinYangPaintingsSeparate: The strange name of this painting and mysterious figure must elude to something...
-				HomeworldPainting: An incredible piece of artwork showing what theorists believe the Starite's homeworld looks like.
-				SkyrimRocks: Rocks with words encrypted in an ancient dragon language, unfortunately I don't know many who can translate it.
-				AncientBreakdownDye: The effect on color it has is similar to prismatic, but not shiny. I'd show you how it works but that'd break my buisiness model.
-				CensorDye: Commonly used on TV shows... hey what do you mean by 'Post-Processing'?
-				OutlineDye: Applies an aura around whatever you desire, the ingredients behind such an ability are undocumented.
-				ScrollDye: Said to take you through your 'true space'. I dunno, ask the feline people of Elsweyr who traded this off for a slime banner.
-				SimplifiedDye: Said to help mix blemishes and bruises into your skin, might work on armor or hair though. Haven't tried.
-				HueshiftDye: Used by meditating monks to 'View the entire wavelength'. You should take a trip to Elder Island to see how they utilize it.
+				BalloonKit: Jealous of my digs, huh? Why not buy your very own hot air balloon?
+				Pumpinator: Bought this one off an airship crew. It's super helpful for navigating; just point it where you want the wind to go!
+				Nimrod: Lightning striking a lake can kill hundreds of fish, but best I can do is three. Maybe the wizard who made this was concerned about the trout population?
+				FlashwayNecklace: Crafted by a master thundersmith, this jewelry will grant lightning-fast reflexes to dodge any attack!
+				NameTag: A lower-tech alternative to sticking label maker tags on your pets. I can imbue a name into it for you to use!
+
+				EquippedAcc: Hmm... that accessory you've got is a nice one for sure, but maybe I can pique your interest with this?
+				Banners: Trophies and rugs are a bit... brutish for my tastes. How about a more symbolic representation of mass slaughter?
+
+				BongBongPainting: This abstract painting seems to depict some sort of creature. Are you the kind of person that would want this on your wall?
+				CatalystPainting: Whoever came up with this piece must've not been fond of the Lunar Cult. Which, you know, fair!
+				YinYangPainting: Light and dark, coexisting in harmony. Do you think it could ever happen?
+				YinPainting: They say this piece depicts the ancient spirit of dark. Wonder which poor sap had to get it to pose for a portrait.
+				YangPainting: They say this piece depicts the ancient spirit of light. Speaking of, I've been flying through a lot more rainbows lately...
+				SkyrimRocks: This stone is carved with an ancient dragon language. Sadly, I haven't yet found anyone who can translate it...
+				AncientBreakdownDye: Guaranteed to be the best dye to use at EDM raves, or your money back... if you can find me again!
+				CensorDye: They use this all the time on TV shows! ...what do you mean, 'editing'?
+				OutlineDye: You'll always be the center of attention with a giant white border around your clothes!
+				ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
+				SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
+				HueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
 			}
 		}
 
@@ -2401,19 +2306,43 @@ Mods: {
 
 			Physicist: {
 				Basic: {
-					0: Quite the exotic gravity, my homeworld's gravitational pull is 62.5% less stronger.
-					1: Well, it does seem there is something to chaos theory after all, yes?
-					2: Pylons aren't actually magic, how else do villagers arrive to your towns? By foot? No, by calling the 'galactic taxi'. Pylons are just alien 'telephone booths' basically.
-					3: On our home planet, pylons simply cannot exist, the net amount of 'happy' energy on it is -30mw.
+					0: Quite the exotic gravity you have here. My planet's pull is only about 38% the strength.
+					1: It seems there is something to chaos theory after all...
+					2: Not all seeing further is by standing on the shoulders of giants. Some use flying saucers instead.
+
+					# Do not translate the 'alien text'
+					3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. Oh, my apologies, I must have slipped back into my native language."
 				}
-				Glimmer: A powerful object has fallen from space, I have aimed my probes to analyze this object far above its landing position, unfortunately one seems to have been hit by a 'Falling Star'.
-				BloodMoon: Eratic behaviors seem to come from creatures during a 'Blood Moon'. I seem to be unable to match the behavoirs analyzed using a basic red light. So the cause must be more mysterious...
+				Night: {
+					0: My homeworld should be visible in the sky from here... do you see it? Hm. Likely not, with ocular receptors like that.
+				}
+				BloodMoon: {
+					0: These conditions appear to have an effect on human biology, but investigating it has been... difficult.
+					1: I have been unable to recreate the erratic behaviors caused by these events with a simple red light. Something more must be at play.
+				}
+				Graveyard: { 
+					0: Is this how you bury your dead? Rather formal, compared to the mass graves on my homeworld.
+					1: Do you hear that sound? Have I left my PKE meter on debug mode again?
+				}
+				Glimmer: {
+					0: The glittering lights that mark the arrival of the stars... there is so much yet to learn from this still.
+					1: All of my data probes keep getting hit by falling stars! Infuriating!
+				}
+
+				MartianMadness: What is happening?! I had not authorized an invasion! I had nothing to do with this!
+				MartianMadness2: I apologize for my... overly militant superiors. At least you fended them off in one piece.
+				LunarPillars: All of my sensors are going haywire! This world's moon is emitting incredibly powerful waves of energy, and its projected area is centered directly on this island!
+				Pylon: This "pylon" technology is incredible. My homeworld could utilize it well, if only its average happiness levels were not in the negative.
+				WindyDay: My eyes are quite sensitive to the wind. If only I had brought a pair of goggles...
+				Rain: Fascinating! I knew of it before, of course, but seeing liquid precipitation in person is an entirely different experience.
+				Thunderstorm: What was that sound? We don't have anything like this on my planet!
+				Party: This 'party' is most unnatural. How do you sustain such levels of festivity?
 
 				SoTSMod: { 
 					0: When I was first calibrating my portals to transport me here, I discovered a disturbance created by some sort of floating-ship object. It may be in my best interest to investigate this.
 					1: You haven't been making deals with any cat-like creatures... right?
 				}
-				PolaritiesMod: Hey, can you find my large magnet? It's about 12ft in length and width, it is necessary to do gravity experiments on this planet.  
+				PolaritiesMod: Have you seen my giant magnet? About 12 feet long? I leave it unattended for one moment and it vanishes on me...
 
 				AnalysisRarityQuest: My scanners indicate signs of {Rarity}-rare objects. It would be of great service to me and my department if you could locate one of these relics from your world.
 				AnalysisRarityCoinsQuest: 
@@ -2431,17 +2360,23 @@ Mods: {
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
 			Carpenter: {
 				Basic: {
-					0: As I scurry and I hurry I worry I might miss out on nice, hot, curry!
-					1: Each block and each brick contributes to a beautiful blooming building!
-					2: Pesky pesticides prepared to poison passive peaceful plecopteras!
+					0: Every last brick and panel of shingling contributes to a beautiful, blooming building!
+					1: Tonight I think I'll have some curry. To finish this project in time I'd better hurry!
+					2: Ant tunnels don't have very much glamor. That's why I left with just my hammer.
+					Rare: My favorite hue has got to be orange. It lends a... it... oh dear.
 				}
 
-				BloodMoon: The Moon is red, up comes the dead! Surely we don't lose our heads!
-				Glimmer: The sky shimmers, the ground glimmers, you think the stars will be sweet or bitter?
+				BloodMoon: Strange beasts rise as the moon drips red. Best just hope you don't lose your head!
+				Glimmer: Reflections shine as the sky is a-glitter. Will the stars we meet be sweet or bitter?
 				Eclipse: The night is back to take day's time! Don't look at the sun, it may stare back!
+				WindyDay: Across the land the air makes a migration! I hope these buildings have a strong foundation!
+				Rain: With quite the downpour we are presented. This is just why shelter was invented!
+				Thunderstorm: Over our heads, dark clouds take form. Once again I fear it's time for a storm.
+				Party: The time for celebration is nigh! Put away your bad mood and join this high!
 				GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
+				Graveyard: The dead won't stay down and spirits rise! Is it not truly the end when someone dies?
 
-				NoBounty: It's very unfortunate to say that I'm all out of bounties to give, maybe come back later?
+				NoBounty: Well done, you've emptied my docket! For now there's nothing to do, but I'll draft up more challenges for you to pocket.
 
 				UI: {
 					BountyButton: View Bounties
@@ -2455,65 +2390,97 @@ Mods: {
 
 			Occultist: {
 				Basic: {
-					0: This place is so chilly, I have to cover myself up in robes just to exist in this dimension!
-					1: Your heroic journey ended after you talked to me! Ha ha!
-					2: You wouldn't mind becoming my subject tonight right?
+					0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
+					1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
+					2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
+					3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
+					Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
 				}
 				Night: {
-					0: Darkness... something I cannot live without.
-					1: Hey, can you hold this voidsent flame for me? I'll be back quick-
-					2: I'm having an inner meeting right now, do not disturb!
+					0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
+					1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
 				}
 				BloodMoon: { 
-					0: I'm having an inner meeting right now, do not disturb!
-					1: Why... WHY! I can be the most eldritch thing in the world and still have to suffer!
-					2: Get away, go away, I don't need you, I don't need anyone here, I just need myself!
+					0: Quiet, please! I'm having an inner council meeting!
+					1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
+					2: I've been thinking up a new curse. Want to be my test subject? Come here...
+					3: Go away! I don't need you right now! I don't need anyone!
 				}
-				Glimmer: I love the atmosphere tonight, reminds me of my first time possessing someone... the sparks and auras of life still within, as I corrupt them with my presence... so good...
+
+				Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
+
+				Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
+				EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
+				WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
+				Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
+				Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
+				Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
+				Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
+				Glimmer: What? No! Where did my darkness go? Put it back!
 			}
 
 			Exporter: {								
 				Basic: {
-					0: Just for ye, my friend, I'll give ye a little deal. Buy one, get another for the same price!
-					1: All proceeds go to charity- and by charity I mean me bank account!
+					0: Still can't believe ye downed that forsaken crab. Cursed thing single-clawedly sunk me ship!
+					1: Just for ye, my friend, I'll give ye a special deal. Buy one, get one fer the same price!
+					2: All proceeds go ta charity! And this old lobster's the most charitable feller I know.
+					Male: "{PlayerName}, me boy! How're ye holdin' up?"
+					Female: "{PlayerName}, me girl! How're ye holdin' up?"
 				}
 
 				Night: {
 					0: It be a beautiful night tonight. Perfect setting to buy something!
-					1: Ye know, big fish be more active when the moon's out. Better get to fishing!
+					Male: Ye know, the biggest fish're out when the moon's up. You into fishin', lad?
+					Female: Ye know, the biggest fish're out when the moon's up. You into fishin', lass?
 				}
 
 				BloodMoon: {
-					0: The tides and the rain turned red, a mighty squid came up and destroyed the ship! 
-					1: I was eating lunch, a goldfish specifically. I didn't expect it to turn evil when the moon rose tonight.
+					0: I was just 'bout ta have me evenin' snack when it came back ta life and attacked me! Now I've seen everythin'.
+					1: When the seas run red, a pirate faces the finest test o' his will and skill. Dare ye take on the hordes o' horrid beasties fer the treasures that lie within?
 
-					WanderingEyeFish: I went out fishing tonight and I caught me a fish with a massive eye! I made thirty dubloons off that eyeball.
+					WanderingEyeFish: One time I went fishin' in the red waters n' caught a giant eyeball! Made thirty doubloons off o' that beaut.
 				}
 
-				Ocean: If wishes were fishes... if wishes were fishes I wouldn't be wanted for tax fraud!
-				CrabCrevice: I'd rather be in Davy Jones's Locker than down here in this... crab-infested hellhole!
+				Glimmer: The sparklin' sky reminds me o' the glint of a treasure pile. Wonder if I could pull off stealin' a star...
 
-				Angler: "{Angler} keeps boasting to me about some little fish he caught. Lad, I've sailed the high seas since I left me egg! I've caught me more fish than ye've ever seen."
+				Ocean: If wishes were fishes... I wouldn't be wanted fer tax evasion.
+				CrabCrevice: I'd rather be in Davy Jones's Locker than down here in this... crab-infested hellhole!
+				WindyDay: Shiver me timbers, what a gale! This'd be a perfect day fer sailin'!
+				Rain: Rain's a lovely thing fer us crustaceans. Keeps the ol' shell moist.
+				Thunderstorm: Aye, 'tis be the kind o' weather that sinks ships. Glad ta be land-bound fer once.
+				Party: Love parties, I do! Great excuse to slip around n' nab some booty while the folks're distracted!
+				MusicBox: Yes, hello! I was wonderin' if ye could play that song again?
+				Graveyard: Am I really gonna defile these graves fer money? O' course I am!!
+
+				Angler: "{Angler} keeps showin' me whatever odd fish he dredged up. Hate te say it, but the cricket's a prodigy; might e'en have a shot at the Duke one day, I reckon."
 				Pirate: Yarrgh! Me and {Pirate} crossed paths a couple of times on the high seas. Those were the good old days...
 				Truffle: "{Truffle} reminds me... one time I found this worm underground covered in mushrooms! I tried to use it as bait, but I didn't pull anything up."
 				TaxCollector: I've been hiding from {TaxCollector} for seven years! Don't let him know I be here!
-				Stylist: One time I asked {Stylist} to trim me hair. Instead, she chopped me antennae off! I meant me sensor hairs!
+				Stylist: I asked {Stylist} fer a cut once, but she chopped off me antennae! Guess I shoulda specified the sensor hairs...
 
 				Crabson: Shiver me timbers! Ye killed that god-forsaken crab monster. That beastie be the same one who sunk me ship last year!
 
-				PirateInvasion: I know these lads from me days as a buccaneer. They were the seventeenth-most-feared crew on the high seas!
+				PirateInvasion: Aye, I know those lads. They're the seventeenth most feared pirate crew in the seven seas!
+				DukeFishron: Ye even managed ta fillet the mutant terror?! Poseidon almighty, maybe I oughta be givin' ye a discount after all.
+				MoonLord: That there was the strangest kraken I ever did see.
+
+				Evils: Do ye smell it? That smell... that smelly smell that smells... smelly?
 
 				ThieveryComplete: {
-					0: Yarr har har har, this {ItemName} is mighty fine! I'll add this to my collection. --And you can add this to yours!
-					1: I knows someone who'd like this {ItemName}. Now here's ye payment, I gotta go!
-					2: How much does this cost? About 100 gold doubloons...? Well it costs that now! --And here's ye payment.
-					3: How's it feel to be a thief? I say it feels good, getting paid for taking other landlubber's things. Here's ye payment little feller.
-					4: Good job not getting caught! -What do you mean they didn't care you stole ye {ItemName}? Ah whatever, here's ye payment.
+					0: And there ye have it! Here's yer cut o' the booty. Lion's share goes ta me, o' course.
+					1: Good work not gettin' caught! ...What d'ye mean they didn't care ye took their {ItemName}? Ah whatever, here's yer pay.
+					2: Oho, now that's a mighty fine {ItemName}! Into the stash ye go... and here's somethin' for yer own!
+					3: How much d'ye reckon this {ItemName}'s worth? Twenty gold doubloons? Thirty? Mm, prob'ly better ta highball. Fifty. Here's yer reward.
+					4: How's it feel ta be a thief? I reckon it feels good, nabbin' some poor sap's stuff and sellin' it off. Now, let me reverse-steal this loot onto ye.
+					Male: Nicely done, lad! Wasn't so hard, was it? Here's yer payment, keep 'em comin'!
+					Female: Nicely done, lass! Wasn't so hard, was it? Here's yer payment, keep 'em comin'!
 				}
 
 				ThieveryFailed: {
-					0: Try looking for some fancy relics. Not the ones dropped by bosses- but the rare jeweled ones that landlubbers buy. They normally leave them lying around in ye houses.
-					1: Ye don't have any stolen goods I want on ye person! I only want jeweled furniture which ye townfolk buy.
+					0: The landlubbers ye've strewn about {WorldName} will set out fancy trinkets on occasion. Those're what I'm lookin' fer!
+					1: Keep an eye peeled fer fancy relics. Not th' ones bosses drop, but the gilded stuff yer citizens'll strew about.
+					Male: Ye haven't got anything I want on ye, lad! I'm lookin fer the jeweled furniture yer townsfolk like.
+					Female: Ye haven't got anything I want on ye, lass! I'm lookin fer the jeweled furniture yer townsfolk like.
 				}
 
 				UpgradeBurgerButton: Upgrade Burger?
@@ -2529,17 +2496,25 @@ Mods: {
 
 			SkyMerchant: {
 				Basic: {
-					0: Some of my items sell like they're on the fly
-					1: Our most satisfied customers are the harpies. Come check out my items for lightweight prices!
-					2: I remember that one time when I was travelling in the sky. I was greeted by two young familiar brats on mystic bird creatures, what a fun time back then... Oh uhh, hey! Welcome to the skyline shop!
+					0: My stock is just flying off the shelves today!
+					1: What goes up must come down, except my prices! Or, wait, was it stocks?
+					2: My best customers are the harpies! That's a joke. They keep trying to pop my balloon and I am terrified.
+					3: I'm on {WorldName} right now, right? Okay, good, so this discounted map isn't bogus. That's a relief.
+					4: My wares will surely make your wallet lightweight! Is that one good? I've had a lot of time to think up slogans.
 				}
 
 				Night: This time of the day is always so relaxing. You get a closer view of the shooting stars passing through the cloudy islands. It's amazing.
-				BloodMoon: The sky is p-pretty menacing looking today... I-I just hope that there won't be any f-flying threats up here...eheh... not that I am worried about it or anything.
+				BloodMoon: Man, looks scary down there tonight. Good thing I'm safe in the sky, right? ...R-right?
+				Glimmer: Excuse me if I seem a bit tense! I've had to patch my balloon from stars tearing through it three times tonight!
+				SolarEclipse: I always try and track the eclipses to end up in the path of totality. Now there's a sight that never gets old!
+				Thunderstorm: I don't think I can overstate how much danger I'm in right now. Can you buy enough to let me afford life insurance?
+				Graveyard: Can't say this is the most pleasant landing spot I've ever seen, but it has got me wondering about filling a balloon with ectoplasm...
 				
-				Merchant: Ugh, {Merchant} always talks about how high up he is with his sales, how ironic from him since he isn't a sky merchant, but wait, I am.
-				TravellingMerchant: I am curious how {TravellingMerchant} is getting his job done better than me. He doesn't even use airmail!
-				Pirate: Recently, {Pirate} talked to me about his crew. I was pretty interested in that flying ship he mentioned. Could provide our delivery service with extreme carrying capacity!
+				Merchant: I'm sure your merchants are always bragging about how high their sales are or whatever, but are they the ones literally riding hot air balloons? Didn't think so, pal.
+				TravellingMerchant: I just don't get how {TravellingMerchant} is so... efficient. He doesn't even use airmail!
+				Pirate: Think I could convince your pirate pal to lend me one of his crew's flying battleships? I bet it'd do wonders for my marketing!
+				Steampunker: Do you know a '{Steampunker}'? I met this girl while restocking on an airship and she seemed awfully interested in this island.
+				Demolitionist: Dwarves live underground, so elves go to the sky. It's simple, really.
 
 				PlaceHere: Place here to rename your item
 				PressHere: Press to set the item's name
@@ -2554,71 +2529,107 @@ Mods: {
 
 		TownNPCMood: {
 			Carpenter: {
-				Content: I like this place, quite nice, quite decorated.
-				NoHome: I have been expelled from my previous colony, hoping to find housing here though.
-				FarFromHome: You must've caught me testing out new paints and materials out here! I do wish I were home though.
-				LoveSpace: I haven't found a single thing I can critique about my house, it's just great!
-				DislikeCrowded: This village is quite nice, but it's also nice to have silence when building structures.
-				HateCrowded: This village is quite nice, but it's also nice to have silence when building structures.
-				LikeBiome: I am really liking the {BiomeName}, it is quite good.
+				Content: With my house, I've got no complaint. The construction and decor are all quite great!
+				NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
+				FarFromHome: I like to concept my work outdoors, but I'll soon return to my familiar floors.
+
+				LoveSpace: So much room to plan and build! With this location I'm simply thrilled!
+				DislikeCrowded: There's starting to be quite a crowd. It'll be hard to draft blueprints if it gets too loud...
+				HateCrowded: With so many folks sharing a rug, I worry I might get squashed like a bug!
+
+				LikeBiome: "[LikeBiomeQuote]"
+				LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
+				LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
 				LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
-				DislikeBiome: I am generally not a fan of {BiomeName}, but it does work for doing studies I guess.
-				HateBiome: I... really dislike the {BiomeName}... do you have any other houses I can take up?
-				LoveNPC: I greatly adore {NPCName}, they are a great friend to have!
-				LikeNPC: "{NPCName} is quite nice."
-				DislikeNPC: I do not have the greatest opinion on {NPCName}.
-				HateNPC: I... really don't like {NPCName}... they just seem to not be welcoming and kind.
+				DislikeBiome: The Jungle is where my old hive lay... I fear that here I cannot stay.
+				HateBiome: From being in {BiomeName}, I must abstain! One wrong step and I'll surely fall to the hivemind again!
+
+				LoveNPC: "{NPCName} understands aesthetic like no one else! With him I could build a commonwealth!"
+				LikeNPC: "{NPCName} loves nature's embrace, around them I can't help but feel safe."
+				LikeNPC_Princess: "{NPCName} has asked I build a castle! I must work quickly to not be a hassle!"
+				DislikeNPC: "{NPCName}'s guns leave many holes to patch. It's work, but I can't say me and him are a match."
+				HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
 			}
 
 			Physicist: {
-				Content: In practice, this place is quite nice, however in theory, probably not.
-				NoHome: Are you the king of this world? If so, I would like to request a usable home and laboratory for my experiments.
-				FarFromHome: Similar to an electron, I suddenly seem to appear far from home.
-				LoveSpace: It's now scientific rule that this space is quite amazing.
-				DislikeCrowded: The increased amount of living specimens in this town is starting to become too much.
-				HateCrowded: I have heard about your species... you like cramping others into tight spaces and give them the bare minimum to survive yet still produce what you want. I don't like how you are seemingly proving this correct.
-				LikeBiome: This place, {BiomeName}, is quite good. I will add it to my catalogue of 'Locations to spend a large amount of time in'
+				Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
+				NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
+				FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
+
+				LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
+				DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
+				HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
+
+				LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
 				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
 				DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
-				HateBiome: Are you trying to make me go through living hell? What is wrong with your species?
-				LoveNPC: I greatly adore {NPCName}, their parts are so highly functional!
-				LikeNPC: "{NPCName} is quite nice. Although they aren't the best in science experiments, too busy with their less important stuff I guess."
-				DislikeNPC: I do not have the greatest opinion on {NPCName}. Atleast they aren't decorated in a dumb outfit.
-				HateNPC: Ew, {NPCName}? I can't stand them, they have to stop pretending to be all 'whimsical and magical'.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
+				HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
+
+				LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
+				LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
+				LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
+				DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
+				HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
 			}
 
 			Occultist: {
-				Content: This place is good enough, could definitely get better internet service in the Underworld Domain though.
-				NoHome: Hey? Are you trying to make me go back to living in the Gore Nest?
-				FarFromHome: Oh, you caught me snooping around the place, I'll be home by midnight, I promise.
-				LoveSpace: Oh yes! This place is quite great, my own room... plus some people to practice magic on!
-				DislikeCrowded: Erm- There's quite a lot of people here. That'd be great if my spells could hypnotize more than 2 folks.
-				HateCrowded: I can't stand the crowdedness of this place! There's no point in being secretive if your every move can be heard by the entire town.
-				LikeBiome: "The {BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+				Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+				NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+				FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+
+				LoveSpace: Plenty of room to practice my spells here... hahaha...
+				DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+				HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+
+				LikeBiome: "The temperatures are a bit more agreeable in the Desert, I think."
 				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
-				DislikeBiome: Ah yes, the {BiomeName}, my favorite place to throw my garbage.
-				HateBiome: Y'know, it's kind of funny how the Underworld is more enjoyable than {BiomeName}.
-				LoveNPC: Hey, tell {NPCName} I finished making them chocolate pancakes!- Hehe- They're one of my favorite people.
-				LikeNPC: "{NPCName} has never flinched when I tried fire spells on them. They must have incredible pain tolerance!" 
+				DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+				HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+
+				LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+				LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+				LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+				LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
 				DislikeNPC: "{NPCName} is quite annoying, atleast not as bad as some of my friends from Hell."
-				HateNPC: I've literally sent {NPCName} to hell and back... too bad that spell wipes their memory after finishing.
+				HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
 			}
 
 			Exporter: {
-				Content: This place is good matey! Could always be better though, yo ho ho!
-				NoHome: How will I store my stolen goods without me ship!? Definitely not digging up a lobster crevice that's for sure!
-				FarFromHome: "{$Mods.Aequus.TownNPCMood.Exporter.NoHome}"
-				LoveSpace: Yarr this place is mighty fine lad, could probably setup shop here and continue my work.
-				DislikeCrowded: I would be liking this place, many people to steal from, yet many more eyes to spot you.
-				HateCrowded: Once enough people are in a place, it's hard to steal anything anymore! Get some of these maties out'ta here!
+				Content: "[NeutralQuote]"
+				Content_Male: All's good with me, lad. Could always be better, though...
+				Content_Female: All's good with me, lass. Could always be better, though...
+
+				NoHome: "[HomelessQuote]"
+				NoHome_Male: Haven't even got a dinghy to me name, lad. Could this old lobster bother ye fer a house?
+				NoHome_Female: Haven't even got a dinghy to me name, lass. Could this old lobster bother ye fer a house?
+
+				FarFromHome: Hrmm, did I steal me house on accident? Oh, it's just o'er there. Silly old lobster.
+
+				LoveSpace: Plenty o' room for me n' my legitimate goods out here. Yo ho ho!
+				DislikeCrowded: "[CrowdedQuote1]"
+				DislikeCrowded_Male: Can't say I'm a fan o' the close quarters, me lad. Someone's bound ta get suspicious hearin' me scuttle about.
+				DislikeCrowded_Female: Can't say I'm a fan o' the close quarters, me lass. Someone's bound ta get suspicious hearin' me scuttle about.
+				HateCrowded: There's eyes around e'ery corner! How's a lobster to make a livin' like this?
+
 				LikeBiome: "Arhhg, {BiomeName} is not too bad matey, better than me ship!"
-				LoveBiome: "Arhhg, {BiomeName} is the best place to consider home."
-				DislikeBiome: Matey, {BiomeName} makes me shell dry!
-				HateBiome: "Argh! {BiomeName} is such a horrible place to be in, I'd rather be on me ship!"
-				LoveNPC: "{NPCName} has to be one of my most favorite crewmates- or well, housemates, I haven't gotten them to join me crew yet."
-				LikeNPC: Y'know {NPCName}? This landlubber cleaned off a barnacle which was growing on me chest! Their appreciation for animals gave me a lot of respect for them. 
-				DislikeNPC: Can't stand {NPCName}! I'm wanting to kick him off me ship- Err, house?
-				HateNPC: I DON'T WANT TO BE ANYWHERE NEAR {NPCName}! This landlubber reported all of my acts of tax evasion!
+				LoveBiome: The Ocean's me home turf. Ah, the lawless waters...
+				DislikeBiome: "[DislikeBiomeQuote]"
+				DislikeBiome_Desert: Can't say I like the Desert, matey. This temperature's dryin' me shell out!
+				DislikeBiome_Snow: Can't say I like the Snow, matey. This temperature's dryin' me shell out!
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_CrabCrevice: Can't stand the Crab Crevice... feel like that monster's goin' te drag me back te the depths any moment now...
+				HateBiome_Evils: There ain't a lick o' swindlin' to be done in {BiomeName}. Place is bilge incarnate!
+
+				LoveNPC: "{NPCName}'s me old matey! We've had plenty o' adventures together on the high seas."
+				LikeNPC: "{NPCName} isn't afraid ta go below board ta get what he wants, an attitude I admire fer sure!" 
+				LikeNPC_Princess: "{NPCName} is workin' ta get me pardoned by the kingdom. I've been framed, I tell ye... framed." 
+				DislikeNPC: "{NPCName}... now there's a landlubber if I e'er saw one."
+				HateNPC: I don't want ta be anywhere NEAR {NPCName}! That bilge rat reported all me acts o' tax evasion!
 			}
 		}
 		
@@ -2713,9 +2724,10 @@ Mods: {
 				Hint: (Hint: Use Biome Hair Dye to discover biome color)
 
 				Reply: {
-					NoHouses: I don't see any houses in this image, try taking a better snip of what you want to show me. 
-					ImproperlyColoredHouses: Unfortunately this house don't fit the coloring criteria of the bounty, try painting the building or using blocks which fit the biome's color.
-					Complete: Oh that structure fits in perfectly with the biome, perfect choice of colors! I should hang this clip up on my wall- oh I'm going too far aren't I...
+					NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
+					ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
+					NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
+					Complete: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
 				}
 			}
 
@@ -2724,16 +2736,16 @@ Mods: {
 				Description: Build a pirate ship
 				Requirements:
 					'''
-					Walls must be partially submerged underwater
+					Walls must be submerged underwater
 					Suitable for 2 town NPCs
 					15+ Furniture
 					'''
 
 				Reply: {
-					NotEnoughRooms: You forgot to make this build have suitable housing, I don't think a pirate crew would want to sleep on the deck, oh, and it's written on the bounty that it needs rooms.
-					NotEnoughWater: The walls are not submerged in water, unfortunately I find it hard to call this a ship.
-					NotEnoughFurniture: "{$Mods.Aequus.Bounty.Common.NotEnoughFurniture}"
-					Completed: Good job on creating a ship! It should be able to sail out to sea in no-time! Well, probably not, I don't think ships of that type can set sail.
+					NotEnoughRooms: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
+					NotEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
+					NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
+					Completed: The ship is finished, and we can set sail! Or so I would say, if it was real.
 				}
 			}
 
@@ -2748,11 +2760,11 @@ Mods: {
 					'''
 
 				Reply: {
-					NoWaterfalls: Oh dear I see no waterfalls in this photo, you can't have a fountain without water! Then it's just a fancy statue.
-					ShortWaterfalls: The waterfalls shown in this fountain are simply too short, be sure they go down by 7 blocks!
-					NoCraftedBlocks: You are getting there but do remember to use crafted blocks! Maybe pile up some stone and turn them into nice bricks?
-					NotSymmetric: Your fountain is quite close to being great! But make sure the tiles completely symmetric!
-					Completed: That fountain is quite spectactular! You have great potential as a builder, I can see it in you.
+					NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
+					ShortWaterfalls: TThe waterfall is so small and domestic. Raise it up and let gravity make something majestic!
+					NoCraftedBlocks: Getting close, but I've asked for crafted blocks. Have you got some bricks in your toolbox?
+					NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
+					Completed: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
 				}
 			}
 		}

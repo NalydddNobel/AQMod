@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
@@ -77,6 +78,8 @@ namespace Aequus.NPCs.Friendly.Town
                 })
                 .AddDefaultText((i) =>
                 {
+                    if (i != ModContent.ItemType<FlashwayNecklace>())
+                        return null;
                     return ContentSamples.ItemsByType[i].accessory ? Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc") : null;
                 })
                 .SetQuote(ModContent.ItemType<SkyrimRock1>(), "Mods.Aequus.ShopQuote.SkyMerchant.SkyrimRocks")
@@ -383,6 +386,7 @@ namespace Aequus.NPCs.Friendly.Town
             chat.Add("Basic.0");
             chat.Add("Basic.1");
             chat.Add("Basic.2");
+            chat.Add("Basic.3", new { WorldName = Main.worldName, });
 
             if (!Main.dayTime)
             {
@@ -391,6 +395,22 @@ namespace Aequus.NPCs.Friendly.Town
                 {
                     chat.Add("BloodMoon");
                 }
+                if (GlimmerBiome.EventActive)
+                {
+                    chat.Add("Glimmer");
+                }
+            }
+            if (Main.eclipse)
+            {
+                chat.Add("Eclipse");
+            }
+            if (Main.IsItStorming)
+            {
+                chat.Add("Thunderstorm");
+            }
+            if (Main.LocalPlayer.ZoneGraveyard)
+            {
+                chat.Add("Graveyard");
             }
 
             if (NPC.AnyNPCs(NPCID.Merchant))
@@ -399,6 +419,10 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("TravellingMerchant", new { TravellingMerchant = NPC.GetFirstNPCNameOrNull(NPCID.TravellingMerchant) });
             if (NPC.AnyNPCs(NPCID.Pirate))
                 chat.Add("Pirate", new { Pirate = NPC.GetFirstNPCNameOrNull(NPCID.Pirate) });
+            if (NPC.AnyNPCs(NPCID.Steampunker))
+                chat.Add("Steampunker", new { Steampunker = NPC.GetFirstNPCNameOrNull(NPCID.Steampunker) });
+            if (NPC.AnyNPCs(NPCID.Demolitionist))
+                chat.Add("Demolitionist", new { Demolitionist = NPC.GetFirstNPCNameOrNull(NPCID.Demolitionist) });
 
             return chat.Get();
         }

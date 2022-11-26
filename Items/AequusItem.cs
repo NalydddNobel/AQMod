@@ -14,11 +14,14 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro.Scepters;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;
+using Aequus.Tiles.Furniture.Gravity;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -35,7 +38,6 @@ namespace Aequus.Items
     {
         public delegate bool CustomCoatingFunction(int x, int y, Player player);
 
-        public static HashSet<int> PrioritizeVoidBagPickup { get; private set; }
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
@@ -49,8 +51,9 @@ namespace Aequus.Items
 
         private static Dictionary<int, int> ItemToBannerCache;
 
-        public override bool InstancePerEntity => true;
-        protected override bool CloneNewInstances => true;
+        public static int ReversedGravityCheck;
+        public static int SuctionChestCheck;
+        public static int suctionChestCheckAmt;
 
         public bool reversedGravity;
         public byte noGravityTime;
@@ -59,9 +62,11 @@ namespace Aequus.Items
         public bool unOpenedChestItem;
         public bool prefixPotionsBounded;
 
+        public override bool InstancePerEntity => true;
+        protected override bool CloneNewInstances => true;
+
         public override void Load()
         {
-            PrioritizeVoidBagPickup = new HashSet<int>();
             FruitIDs = new List<int>()
             {
                 ItemID.Apple,
@@ -154,8 +159,6 @@ namespace Aequus.Items
 
         public override void Unload()
         {
-            PrioritizeVoidBagPickup?.Clear();
-            PrioritizeVoidBagPickup = null;
             ItemToBannerCache?.Clear();
             ItemToBannerCache = null;
             RemoveCustomCoating?.Clear();
@@ -217,17 +220,6 @@ namespace Aequus.Items
                 player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
             }
             naturallyDropped = false;
-            if (PrioritizeVoidBagPickup.Contains(item.type))
-            {
-                if (AequusHelpers.TryStackingInto(player.bank4.item, Chest.maxItems, item))
-                {
-                    PopupText.NewText(PopupTextContext.ItemPickupToVoidContainer, item, item.stack);
-                    item.TurnToAir();
-                    SoundEngine.PlaySound(SoundID.Grab.WithVolume(0.3f).WithPitchOffset(0.6f));
-                    SoundEngine.PlaySound(SoundID.Item130.WithVolume(0.4f).WithPitchOffset(0.5f));
-                    return false;
-                }
-            }
             return true;
         }
 
@@ -296,13 +288,128 @@ namespace Aequus.Items
             }
         }
 
-        public void CheckGravityTiles(Item item)
+
+        public void CheckGravityTiles(Item item, int i)
         {
             bool old = reversedGravity;
             reversedGravity = AequusTile.GetGravityTileStatus(item.Center) < 0;
             if (reversedGravity != old)
             {
                 item.velocity.Y = -item.velocity.Y;
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, number: i);
+                }
+            }
+        }
+
+        public bool CheckItemAbsorber(Item item, int i)
+        {
+            var tileCoords = item.Center.ToTileCoordinates();
+            int searchSize = 20;
+            for (int k = 0; k < suctionChestCheckAmt; k++)
+            {
+                int x = tileCoords.X + Main.rand.Next(-searchSize, searchSize);
+                int y = tileCoords.Y + Main.rand.Next(-searchSize, searchSize);
+                if (!WorldGen.InWorld(x, y) || !Main.tile[x, y].HasTile || !Main.tileContainer[Main.tile[x, y].TileType])
+                {
+                    continue;
+                }
+                if (Main.tile[x, y].TileType > Main.maxTileSets && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
+                {
+                    int left = x - Main.tile[x, y].TileFrameX / 18;
+                    int top = y - Main.tile[x, y].TileFrameY / 18;
+                    int chestID = Chest.FindChest(left, top);
+                    if (chestID != -1 && gravityChest.PickupItemLogic(x, y, chestID, item, this))
+                    {
+                        if (!AequusHelpers.TryStackingInto(Main.chest[chestID].item, Chest.maxItems, item, out int chestItemIndex))
+                        {
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                                NetMessage.SendData(MessageID.SyncChestItem, number: chestID, number2: chestItemIndex);
+                            continue;
+                        }
+                        var itemPos = item.Center;
+                        item.TurnToAir();
+                        item.active = false;
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            NetMessage.SendData(MessageID.SyncItem, number: i);
+                            var r = new Rectangle(left - searchSize, top - searchSize, searchSize * 2 + 2, searchSize * 2 + 2).WorldRectangle();
+                            for (int m = 0; m < Main.maxPlayers; m++)
+                            {
+                                if (ScreenCulling.ServerSafeInView(Main.player[m].Center, r))
+                                {
+                                    var p = Aequus.GetPacket(PacketType.GravityChestPickupEffect);
+                                    p.Write(itemPos.X);
+                                    p.Write(itemPos.Y);
+                                    p.Write(left);
+                                    p.Write(top);
+                                    p.Send(toClient: m);
+                                }
+                            }
+                        }
+                        else 
+                        {
+                            ScreenCulling.SetPadding(padding: 20);
+                            if (ScreenCulling.OnScreenWorld(Main.LocalPlayer.Center))
+                            {
+                                GravityChestTile.ItemPickupEffect(itemPos, new Vector2(left * 16f + 16f, top * 16f + 16f));
+                            }
+                        }
+                        suctionChestCheckAmt += 3;
+                        if (suctionChestCheckAmt > 30)
+                            suctionChestCheckAmt = 30;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static void CheckItemGravity()
+        {
+            ReversedGravityCheck--;
+            if (ReversedGravityCheck <= 0)
+            {
+                var stopWatch = new Stopwatch();
+                stopWatch.Start();
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && !Main.item[i].IsAir && !ItemID.Sets.ItemNoGravity[Main.item[i].type])
+                    {
+                        Main.item[i].Aequus().CheckGravityTiles(Main.item[i], i);
+                    }
+                }
+                stopWatch.Stop();
+                ReversedGravityCheck = Math.Min((int)stopWatch.ElapsedMilliseconds, 30);
+            }
+        }
+        public static void CheckItemAbsorber()
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+                return;
+
+            SuctionChestCheck--;
+            if (SuctionChestCheck <= 0)
+            {
+                if (Main.rand.NextBool(40))
+                {
+                    suctionChestCheckAmt--;
+                    if (suctionChestCheckAmt <= 2)
+                        suctionChestCheckAmt = 2;
+                }
+                var stopWatch = new Stopwatch();
+                stopWatch.Start();
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && !Main.item[i].IsAir)
+                    {
+                        if (Main.item[i].Aequus().CheckItemAbsorber(Main.item[i], i))
+                            break;
+                    }
+                }
+                stopWatch.Stop();
+                SuctionChestCheck = Math.Min((int)stopWatch.ElapsedMilliseconds, 30);
             }
         }
 

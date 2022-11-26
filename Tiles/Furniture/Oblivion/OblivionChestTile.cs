@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Placeable.Furniture.Oblivion;
+﻿using Aequus.Items.Placeable.Furniture.Gravity;
+using Aequus.Items.Placeable.Furniture.Oblivion;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

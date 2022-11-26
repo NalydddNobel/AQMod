@@ -102,7 +102,7 @@ namespace Aequus.Content.CarpenterBounties
                         int furnCount = CarpenterSystem.CountDecorInsideHouse(info.Map, house.Value, null);
                         if (furnCount < 5)
                         {
-                            message = NotEnoughFurniture();
+                            message = Language.GetTextValue(ReplyKey + ".NotEnoughFurniture");
                             continue;
                         }
                         message = Language.GetTextValue(ReplyKey + ".Complete");

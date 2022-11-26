@@ -135,7 +135,7 @@ namespace Aequus.Projectiles.Magic
                 var endPoint = Projectile.Center + dir * Projectile.localAI[0];
                 if (Main.rand.NextBool(Projectile.extraUpdates / 3 + 1))
                 {
-                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height, DustID.AncientLight, -dir.X * 2f, -dir.Y * 2f, 128, Color.White, 0.2f + 1f * (float)Math.Pow(Projectile.ai[0], 2f));
+                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height, DustID.AncientLight, -dir.X * 2f, -dir.Y * 2f, 128, Color.White, 0.2f + 1f * (float)Math.Pow(Projectile.Opacity, 2f));
                     d.velocity *= 0.45f;
                     d.scale *= 2.45f;
                     d.noGravity = true;

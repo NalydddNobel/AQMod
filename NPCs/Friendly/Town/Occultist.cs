@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.NPCHappiness;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
@@ -22,6 +23,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -30,7 +32,7 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
-    public class Occultist : ModNPC
+    public class Occultist : ModNPC, IModifyShoppingSettings
     {
         public override void SetStaticDefaults()
         {
@@ -60,10 +62,11 @@ namespace Aequus.NPCs.Friendly.Town
             });
 
             NPC.Happiness
-                .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<HallowBiome>(AffectionLevel.Dislike)
+                .SetBiomeAffection<SnowBiome>(AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
@@ -181,6 +184,17 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.");
 
+            if (Main.hardMode)
+            {
+                if (!NPC.downedMechBossAny && !NPC.downedQueenSlime && !AequusWorld.downedDustDevil)
+                {
+                    chat.Add("EarlyHardmode");
+                }
+                if (NPC.downedGolemBoss && !NPC.TowerActiveNebula && !NPC.TowerActiveSolar && !NPC.TowerActiveStardust && !NPC.TowerActiveVortex && NPC.MoonLordCountdown <= 0 && !NPC.AnyNPCs(NPCID.MoonLordCore))
+                {
+                    chat.Add("Cultists");
+                }
+            }
             if (!Main.dayTime)
             {
                 if (Main.bloodMoon)
@@ -193,7 +207,6 @@ namespace Aequus.NPCs.Friendly.Town
                 {
                     chat.Add("Night.0");
                     chat.Add("Night.1");
-                    chat.Add("Night.2");
                 }
                 if (GlimmerBiome.EventActive)
                 {
@@ -205,7 +218,23 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("Basic.0");
                 chat.Add("Basic.1");
                 chat.Add("Basic.2");
+                chat.Add("Basic.3");
+                if (Main.rand.NextBool(7))
+                    chat.Add("Basic.Rare");
             }
+
+            if (Main.IsItAHappyWindyDay)
+                chat.Add("WindyDay");
+            if (Main.raining)
+                chat.Add("Rain");
+            if (Main.IsItStorming)
+                chat.Add("Thunderstorm");
+            if (BirthdayParty.PartyIsUp)
+                chat.Add("Party");
+            if (player.ZoneGraveyard)
+                chat.Add("Graveyard");
+            if (NPC.AnyNPCs(NPCID.Princess))
+                chat.Add("Princess");
 
             return chat.Get();
         }
@@ -316,6 +345,14 @@ namespace Aequus.NPCs.Friendly.Town
                     auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
             }
             return false;
+        }
+
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
+        {
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|", 
+                $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|", 
+                $"TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
         }
     }
 }

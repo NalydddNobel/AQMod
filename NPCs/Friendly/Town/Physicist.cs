@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
+using Aequus.Content.NPCHappiness;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
@@ -18,6 +19,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -26,10 +28,11 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
-    public class Physicist : ModNPC
+    public class Physicist : ModNPC, IModifyShoppingSettings
     {
-        public int spawnPet;
         public static int awaitQuest;
+
+        public int spawnPet;
 
         public override void SetStaticDefaults()
         {
@@ -52,13 +55,11 @@ namespace Aequus.NPCs.Friendly.Town
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<HallowBiome>(AffectionLevel.Hate)
                 .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.GoblinTinkerer, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Steampunker, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Mechanic, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.DD2Bartender, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Hate)
+                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Wizard, AffectionLevel.Hate)
                 .SetNPCAffection<Occultist>(AffectionLevel.Hate);
 
@@ -193,16 +194,23 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override string GetChat()
         {
+            if (Main.invasionType == InvasionID.MartianMadness)
+            {
+                return AequusText.GetText("Chat.Physicist.MartianMadness");
+            }
+
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Physicist.");
 
             if (GlimmerBiome.EventActive && Main.rand.NextBool())
             {
-                chat.Add("Glimmer");
+                chat.Add("Glimmer.0");
+                chat.Add("Glimmer.1");
             }
             else if (Main.bloodMoon && Main.rand.NextBool())
             {
-                chat.Add("BloodMoon");
+                chat.Add("BloodMoon.0");
+                chat.Add("BloodMoon.1");
             }
             else
             {
@@ -210,6 +218,27 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("Basic.1");
                 chat.Add("Basic.2");
                 chat.Add("Basic.3");
+            }
+            if (Main.IsItAHappyWindyDay)
+            {
+                chat.Add("WindyDay");
+            }
+            if (Main.raining)
+            {
+                chat.Add("Rain");
+            }
+            if (Main.IsItStorming)
+            {
+                chat.Add("Thunderstorm");
+            }
+            if (BirthdayParty.PartyIsUp)
+            {
+                chat.Add("Party");
+            }
+            if (player.ZoneGraveyard)
+            {
+                chat.Add("Graveyard.0");
+                chat.Add("Graveyard.1");
             }
             if (ModLoader.TryGetMod("SoTS", out var soTS))
             {
@@ -219,6 +248,14 @@ namespace Aequus.NPCs.Friendly.Town
             if (ModLoader.TryGetMod("Polarities", out var polarities))
             {
                 chat.Add("PolaritiesMod");
+            }
+            if (NPC.downedMartians)
+            {
+                chat.Add("MartianMadness2");
+            }
+            if (NPC.TowerActiveNebula || NPC.TowerActiveSolar || NPC.TowerActiveStardust || NPC.TowerActiveVortex || NPC.MoonLordCountdown > 0 || NPC.AnyNPCs(NPCID.MoonLordCore))
+            {
+                chat.Add("LunarPillars");
             }
 
             return chat.Get();
@@ -381,7 +418,7 @@ namespace Aequus.NPCs.Friendly.Town
                         return;
                     }
                 }
-                if (Main.netMode == NetmodeID.Server)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                     NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI, NPC.whoAmI);
             }
         }
@@ -394,6 +431,12 @@ namespace Aequus.NPCs.Friendly.Town
                 Main.npc[pet].Center = NPC.Center;
                 Main.npc[pet].netUpdate = true;
             }
+        }
+
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
+        {
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
+                $"Mods.Aequus.TownNPCMood.Physicist.HateBiome_{(player.ZoneHallow ? "Hallow" : "Evils")}", (s) => new { BiomeName = s[1], });
         }
     }
 }

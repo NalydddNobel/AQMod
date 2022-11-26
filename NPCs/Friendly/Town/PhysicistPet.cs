@@ -25,11 +25,6 @@ namespace Aequus.NPCs.Friendly.Town
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
-                Hide = true,
-            });
-
             NameTag.CanBeRenamedOverride.Add(Type, true);
         }
 

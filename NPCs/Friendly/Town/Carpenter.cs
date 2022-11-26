@@ -1,13 +1,14 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
+using Aequus.Content.NPCHappiness;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
-using Aequus.Projectiles.Ranged;
 using Aequus.UI.CarpenterUI;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
@@ -18,6 +19,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -27,8 +29,10 @@ using Terraria.ObjectData;
 namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
-    public class Carpenter : ModNPC
+    public class Carpenter : ModNPC, IModifyShoppingSettings
     {
+        private int thunderDelay;
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -58,12 +62,14 @@ namespace Aequus.NPCs.Friendly.Town
 
             NPC.Happiness
                 .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Like)
-                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Like)
+                .SetBiomeAffection<JungleBiome>(AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.Painter, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Love)
+                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Truffle, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.Cyborg, AffectionLevel.Hate);
+                .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Hate);
 
             NPCHappiness.Get(NPCID.Truffle).SetNPCAffection(Type, AffectionLevel.Love);
             NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Like);
@@ -287,6 +293,24 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 chat.Add("BloodMoon");
             }
+
+            if (Main.IsItAHappyWindyDay)
+            {
+                chat.Add("WindyDay");
+            }
+            else if (Main.IsItStorming)
+            {
+                chat.Add("Thunderstorm");
+            }
+
+            if (Main.raining)
+            {
+                chat.Add("Rain");
+            }
+            if (Main.rand.NextBool(7))
+            {
+                chat.Add("Basic.Rare");
+            }
             else
             {
                 chat.Add("Basic.0");
@@ -297,6 +321,14 @@ namespace Aequus.NPCs.Friendly.Town
             if (NPC.downedGoblins || Main.invasionType == InvasionID.GoblinArmy)
             {
                 chat.Add("GoblinArmy");
+            }
+            if (BirthdayParty.PartyIsUp)
+            {
+                chat.Add("Party");
+            }
+            if (Main.LocalPlayer.ZoneGraveyard)
+            {
+                chat.Add("Party");
             }
 
             return chat.Get();
@@ -331,9 +363,29 @@ namespace Aequus.NPCs.Friendly.Town
             }
         }
 
+        public override void AI()
+        {
+            if (thunderDelay > 0)
+            {
+                thunderDelay--;
+                NPC.velocity.X *= 0f;
+            }
+            else if (Main.lightning > 0.5f)
+            {
+                thunderDelay = 60;
+                NPC.velocity.Y = -4f;
+                var d= Dust.NewDustPerfect(NPC.Top, ModContent.DustType<CarpenterSurpriseDust>(), Scale: 0.25f);
+                d.velocity.X *= 0f;
+                d.velocity.Y = -3f;
+                d.position.Y -= 8f;
+                d.noLight = true;
+                d.fadeIn = 1f;
+            }
+        }
+
         public override bool CanGoToStatue(bool toKingStatue)
         {
-            return !toKingStatue;
+            return true;
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback)
@@ -359,6 +411,11 @@ namespace Aequus.NPCs.Friendly.Town
             multiplier = 10f;
             gravityCorrection = 0f;
             randomOffset = 2f;
+        }
+
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
+        {
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", AequusText.GetText($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY >= Main.worldSurface ? "Forest" : "Underground")}"));
         }
     }
 }

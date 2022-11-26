@@ -1,5 +1,7 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Biomes;
+using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.NPCHappiness;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
@@ -21,6 +23,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
@@ -29,7 +32,7 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.Friendly.Town
 {
     [AutoloadHead()]
-    public class Exporter : ModNPC
+    public class Exporter : ModNPC, IModifyShoppingSettings
     {
         public override void SetStaticDefaults()
         {
@@ -58,16 +61,18 @@ namespace Aequus.NPCs.Friendly.Town
             });
 
             NPC.Happiness
-                .SetBiomeAffection<OceanBiome>(AffectionLevel.Like)
+                .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
+                .SetBiomeAffection<CrabCreviceBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)
                 .SetNPCAffection(NPCID.ArmsDealer, AffectionLevel.Love)
-                .SetNPCAffection(NPCID.Dryad, AffectionLevel.Like)
-                .SetNPCAffection(NPCID.Clothier, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Angler, AffectionLevel.Like)
+                .SetNPCAffection(NPCID.WitchDoctor, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Golfer, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Hate);
 
-            NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Love);
+            NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Angler).SetNPCAffection(Type, AffectionLevel.Love);
             NPCHappiness.Get(NPCID.Pirate).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.ArmsDealer).SetNPCAffection(Type, AffectionLevel.Like);
@@ -82,7 +87,7 @@ namespace Aequus.NPCs.Friendly.Town
                     string taxCollector = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector);
                     if (!string.IsNullOrEmpty(taxCollector))
                     {
-                        s += "\n" + Language.GetTextValueWith("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle_TaxCollector", new { TaxCollector = taxCollector, });
+                        s += Language.GetTextValueWith("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle_TaxCollector", new { TaxCollector = taxCollector, });
                     }
                     return s;
                 });
@@ -222,13 +227,16 @@ namespace Aequus.NPCs.Friendly.Town
             var player = Main.LocalPlayer;
             var chat = new SelectableChat("Mods.Aequus.Chat.Exporter.");
 
+            string gender = player.Gender();
             chat.Add("Basic.0");
             chat.Add("Basic.1");
+            chat.Add("Basic.2");
+            chat.Add($"Basic.{gender}");
 
             if (!Main.dayTime)
             {
                 chat.Add("Night.0");
-                chat.Add("Night.1");
+                chat.Add($"Night.{gender}");
                 if (Main.bloodMoon)
                 {
                     chat.Add("BloodMoon.0");
@@ -239,6 +247,28 @@ namespace Aequus.NPCs.Friendly.Town
                         chat.Add("BloodMoon.WanderingEyeFish");
                     }
                 }
+                if (GlimmerBiome.EventActive)
+                {
+                    chat.Add("Glimmer");
+                }
+            }
+
+            if (Main.IsItAHappyWindyDay)
+            {
+                chat.Add("WindyDay");
+            }
+
+            if (Main.raining)
+            {
+                chat.Add("Rain");
+            }
+            if (Main.IsItStorming)
+            {
+                chat.Add("Thunderstorm");
+            }
+            if (BirthdayParty.PartyIsUp)
+            {
+                chat.Add("Party");
             }
 
             if (player.ZoneBeach)
@@ -248,6 +278,10 @@ namespace Aequus.NPCs.Friendly.Town
             if (player.Aequus().ZoneCrabCrevice)
             {
                 chat.Add("CrabCrevice");
+            }
+            if (player.ZoneGraveyard)
+            {
+                chat.Add("Graveyard");
             }
 
             if (NPC.AnyNPCs(NPCID.Angler))
@@ -266,9 +300,17 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("Crabson");
             }
 
-            if (Main.invasionType == InvasionID.PirateInvasion || Main.rand.NextBool(4) && NPC.downedPirates)
+            if (Main.invasionType == InvasionID.PirateInvasion || NPC.downedPirates)
             {
                 chat.Add("PirateInvasion");
+            }
+            if (NPC.downedFishron)
+            {
+                chat.Add("PirateInvasion");
+            }
+            if (NPC.downedMoonlord)
+            {
+                chat.Add("MoonLord");
             }
 
             return chat.Get();
@@ -314,7 +356,13 @@ namespace Aequus.NPCs.Friendly.Town
             InnerOnQuestCompleted_SpawnLoot(player, i);
 
             SoundEngine.PlaySound(SoundID.Grab);
-            Main.npcChatText = AequusText.GetTextWith("Chat.Exporter.ThieveryComplete." + Main.rand.Next(5), new { ItemName = player.inventory[i].Name });
+            int type = Main.rand.Next(6);
+            if (type == 5)
+            {
+                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.Gender()}");
+                return;
+            }
+            Main.npcChatText = AequusText.GetTextWith("Chat.Exporter.ThieveryComplete." + type, new { ItemName = player.inventory[i].Name });
         }
         public void InnerOnQuestCompleted_SpawnLoot(Player player, int i)
         {
@@ -379,7 +427,13 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public void OnQuestFailed(Player player)
         {
-            Main.npcChatText = AequusText.GetText("Chat.Exporter.ThieveryFailed." + Main.rand.Next(2));
+            int type = Main.rand.Next(3);
+            if (type == 2)
+            {
+                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.Gender()}");
+                return;
+            }
+            Main.npcChatText = AequusText.GetTextWith($"Chat.Exporter.ThieveryFailed.{type}", new { WorldName = Main.worldName, });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
@@ -413,6 +467,17 @@ namespace Aequus.NPCs.Friendly.Town
         {
             itemWidth = 30;
             itemHeight = 30;
+        }
+
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
+        {
+            string gender = player.Gender();
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", AequusText.GetText($"TownNPCMood.Exporter.Content_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", AequusText.GetText($"TownNPCMood.Exporter.NoHome_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", AequusText.GetText($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", AequusText.GetText($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
+                $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.Aequus().ZoneCrabCrevice ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
         }
     }
 }

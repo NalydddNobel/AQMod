@@ -32,6 +32,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
@@ -420,11 +421,12 @@ namespace Aequus
             return null;
         }
 
-        public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item)
+        public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item, out int i)
         {
+            i = -1;
             while (item.stack > 0)
             {
-                var i = FindSuitableSlot(inv, maxSlots, item);
+                i = FindSuitableSlot(inv, maxSlots, item);
                 if (i == -1)
                     return false;
                 if (inv[i].IsAir)
@@ -1008,6 +1010,25 @@ namespace Aequus
                 return true;
             }
             return false;
+        }
+
+        public static string ReplaceTextWithStringArgs(ref string text, string needsToStartWith, string key, Func<string[], object> turnStringArgsIntoObject)
+        {
+            int i = text.IndexOf(needsToStartWith);
+            if (i > -1)
+            {
+                string val = text.Substring(i).Split('+')[0];
+                ReplaceText(ref text, $"{val}+",
+                    Language.GetTextValueWith(key, turnStringArgsIntoObject(val.Replace('+', ' ').Split('|'))));
+            }
+            return text;
+        }
+        public static string ReplaceText(ref string text, string oldText, string newText)
+        {
+            Main.NewText(oldText);
+            Main.NewText(newText);
+            text = text.Replace(oldText, newText);
+            return text;
         }
 
         public static string FormatWith(this string text, object obj)
@@ -1723,6 +1744,10 @@ namespace Aequus
             NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
+        public static string Gender(this Player player)
+        {
+            return player.Male ? "Male" : "Female";
+        }
         public static void AddLifeRegen(this Player player, int regen)
         {
             if (regen < 0)

@@ -7,6 +7,11 @@ namespace Aequus
     {
         public static Rectangle renderBox;
 
+        public static bool ServerSafeInView(Vector2 vector, Rectangle myVisibleLocation)
+        {
+            return new Rectangle((int)vector.X - 1000, (int)vector.Y - 600, 2000, 1200).Intersects(myVisibleLocation);
+        }
+
         public static bool OnScreenWorld(Vector2 position)
         {
             return OnScreen(position - Main.screenPosition);
