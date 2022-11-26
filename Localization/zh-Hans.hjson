@@ -1,3 +1,6 @@
+
+# NOTICE: Do not translate text surrounded in [] or {}. They are for combining text together, usually.
+
 Mods: {
 	Aequus: {
 		BiomeName: {
@@ -493,6 +496,10 @@ Mods: {
 
 			FamiliarPickaxe: 令人熟悉的镐子
 
+			GravityChest: 重力箱
+
+			OblivionChest: 遗境箱
+
 			StariteBottle: 瓶中星源
 			GoreNest: 血巢
 
@@ -537,7 +544,6 @@ Mods: {
 			OpposingPotion: 对立药水
 			Baguette: 法棍
 			HeartLamp: 心灯
-			StariteinaBottle: 瓶中星源
 			YuckyOrb: 迷人诱饵
 			WaterFisg: 水鱼
 			Transistor: 晶体管
@@ -1311,6 +1317,8 @@ Mods: {
 			VraineBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			WhiteSlimeBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 
+			GravityChest: 可能会拾起附近的物品
+
 			ArgonMushroom: "'一个值得留恋且永远不会忘记的东西'"
 			KryptonMushroom: "'一个值得留恋且永远不会忘记的东西'"
 			XenonMushroom: "'一个值得留恋且永远不会忘记的东西'"
@@ -1335,6 +1343,7 @@ Mods: {
 				迫使下方的玩家翻转重力
 				当放置在墙壁前方时, 影响范围会扩大
 				'''
+			StariteBottle: 为附近的玩家回复法力值
 			GoreNest:
 				'''
 				可升级邪恶武器
@@ -1814,11 +1823,13 @@ Mods: {
 		}
 
 		Containers: {
-			OblivionChestTile: 被遗忘的宝箱
+			GravityChestTile: 重力箱
+			OblivionChestTile: 遗境箱
 		}
 
 		MapObject: {
-			OblivionChestTile: 被遗忘的宝箱
+			GravityChestTile: 重力箱
+			OblivionChestTile: 遗境箱
 			HypnoticPearl: 催眠珍珠
 			Pearl: 珍珠
 			ArgonMushroom: 氩蘑菇
@@ -1926,49 +1937,49 @@ Mods: {
 		}
 		
 		Bestiary: {
-			DustDevil: 一种强大的元素, 寻求着以太的强大力量. 它的存在维系着一个旋风, 捕捉着灰尘、碎片和动物.
-			Crabson: 诞生自种间关系. 在海洋底下创造了自己的领地, 并从上面以毫无戒备的猎物为食. 有时会举办木偶戏，主角是爪先生和爪小姐.
+			Crabson: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
+			OmegaStarite: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
+			DustDevil: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
+						
+			Vineroot: 被力量之魂强化的愤怒捕手, 会绽放处美丽- 但致命的- 花朵.
 
-			Vineroot: 被力量之魂驱使的愤怒陷阱, 会绽放成美丽- 但致命的- 花朵.
+			SnobsterCritter: 史莱姆会自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
+			CoconutCrab: 它厚厚的棕色外壳既可以把自身伪装成椰子, 又能保护它免受捕食者的袭击. 它会躲在棕榈树上, 并且会掉落在任何站在错误位置的人的头上.
+			SoldierCrab: 蟹虾内战中的关键战士. 它们用锋利的利爪英勇的保护岩隙不受入侵者的侵害, 敏锐到足以将致命的海浪从空中劈开.
+			SummonerCrabMinion: 这些小型翼蟹会与活巢体蟹共存, 会运送食物给活巢体蟹并保护它免受捕食者的攻击以换取一个家.
+			SummonerCrab: 四大传奇级螃蟹之一. 它的额外外壳的部分允许蟹蚤在其中存活从而形成一种独特的共生关系.
+			CrabFish: 这条鱼是一位熟练的模仿者, 既能模仿"螃蟹"又能模仿"钱"! 它用闪闪发光的金色诱饵吸引贪婪的冒险家和其他享受闪闪发光物体的人走向灭亡.
 
-			CoconutCrab: 演化出的天然迷彩, 可以伪装成椰子. 会睡在椰子树上, 并且会在清晨从椰子树上跳下.
-			SoldierCrab: 因其骑士般的外表而得名. 这只螃蟹的橙色盔甲实际上是钴覆盖着一层又一层的污垢.
-			SummonerCrabMinion: 如果没有活体巢蟹, 它们将无法休息和庇护它们的蛋, 幸运的是他们拥有彼此.
-			SummonerCrab: 如果没有蟹蚤的帮助, 它们将无法收集足够的食物, 幸运的是他们拥有彼此.
-			CrabFish: 在黑暗中潜伏, 会用它的诱饵发出硬币般的噪音和火花来吸引未知的猎物...
+			BloodMimic: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
+			
+			Heckto: 当熔火军团的军队在血巢宣誓效忠于遗忘者的力量时, 他们的灵魂不可逆转地被地狱能量污染了, 在解脱后形成了这些奇怪的灵体.
 
-			BloodMimic: 由于血月对尸体的影响, 在盗窃过程中不幸被杀的宝箱劫掠者可能会随着宝箱变异, 创造出一个怪物.
+			BreadOfCthulhu: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+			
+			DwarfStariteCritter: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+			UltraStarite: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+			HyperStarite: 随着能量的进一步过剩, 星源获得了能够分离部分自身并将其作为危险武器在轨道上挥舞的能力.
+			SuperStarite: 聚集了足够能量的星源最终会进化为这种装甲形态. 它们更加坚硬并且能将过剩的能量作为弹幕发射.
+			Starite: 生命星尘的一个碎片, 被不可知的力量赋予了生命. 如果没有充满天空的奇异光线所赋予的能量, 它们就无法长久的生存.
+			
+			OblivisionCritter: 血巢入口造成的空间扰动形成了一个奇怪的裂缝. 它们看起来无害, 但它们无误的、分析性的凝视让人很不安...
+			Magmabubble: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
+			TrapperImp: 通过将捕手拴在自己身上, 使它们的身体枯萎, 并破坏它们的意志, 这只小鬼获得了完全听从其命令的致命宠物.
+			Cindera: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+			
+			SpaceSquid: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
+			RedSprite: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
+			Vraine: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
+			StreamingBalloon: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
+			WhiteSlime: 暴露在高海拔阳光下的史莱姆最终会开始发光. 据说味道像肉桂.
+			Meteor: 爱好和平的陨石头近亲, 这些大块岩石通常只会随风飘流. 如果这恰好发生在地面上, 好吧, 这几乎不是它们的错.
 
-			Heckto: 熔火军团背叛了他们的同类, 让他们的灵魂被血巢吞噬. 冥狱融质是他们的灵魂与恶魔能量结合后的产物.
-
-			BreadOfCthulhu: 克苏鲁丢失的午餐, 自污染的水中复活, 这个讨厌的面包不想被吃掉. 可代替垃圾被捕获.
-
-			DwarfStariteCritter: 一种无害的星源. 它的小尺寸不允许它正确地传递它的魔法能力, 所以它只是在周围徘徊.
-			OmegaStarite: 一颗从外太空被派去寻找有价值的资源的终末之星. 星源生命周期中的一种异常现象, 需要来自其外壳的持续生命支持, 作为交换, 它可以产生大量的能量.
-			UltraStarite: 随着超级星源的衰老, 它们获得了可将子弹引导进可瞄准的光束的能力. 结合了极耀源星和巨耀源星的优缺点.
-			HyperStarite: 一种凶猛的星源, 获得超高的速度并可伸出肢体以消灭成群的猎物. 尽管这种演化牺牲了子弹的射程和效果.
-			SuperStarite: 随着星源变得更加衰老, 它们更善于维持它们的魔法能量, 允许它们扩大规模并发射能量子弹.
-			Starite: 很久以前的超新星碎片, 强大的魔法力赋予了它生命. 必须补充其神秘能量才能生存.
-
-			OblivisionCritter: 恶魔之泪是由血巢的破坏性传送门造成的. 虽然无害, 但它们似乎在观察和研究附近的生物, 没人知道为什么...
-			Magmabubble: 在吞食了一条血爬行动物后长出了腿, 但它的熔岩身躯太重了, 爬不上墙壁.
-			TrapperImp: 这只火焰小鬼用邪恶的魔法诱捕和侵蚀附着者, 并将其作为自己的宠物.
-			Cindera: 有一张令人厌恶且致命的脸, 类似于脸怪.
-
-			SpaceSquid: 来自先进星际文明的神秘乌贼. 完全由雪制成, 因而容易进行远距离传送.
-			RedSprite: 一次, 一道神秘的闪电击中了一团雨云. 雷霆和雨云的灵魂结合在了一起并创造处了一个邪恶的怪物.
-			Vraine: 一群通常有3-9只的非常符合空气动力学的鸟类. 对温度敏感的喙决定了它们的攻击性.
-			StreamingBalloon: 更机智的史莱姆乘坐着微型热气球在更高的天空中寻找着食物. 它们故意飞近猎物, 而后击破自己的气球, 落在猎物身上.
-			WhiteSlime: 最初是一种有着光合作用的丛林史莱姆, 在通过24小时的日光浴后, 它吸收了太阳的能力. 据说味道像肉桂.
-			Meteor: 清晨, 漂浮的流星似乎吞噬了太空中的碎片. 当被推离轨道时可能会留下陨石坑.
-
-			Carpenter: 一只蚂蚁决定不再是大机器上的齿轮, 因为热爱房屋而选择成为木匠. 会搬进有着4个独特家具物件的房子.
-			Occultist: 这位神秘学者之前是恶魔信仰的一员, 现在正慢慢地试图将自己重新融入社会. 尽管如此, 他们仍然有创造仪式和施放危险咒语的习惯.
-			SkyMerchant: 一位聪明的猎人创造了热气球来捕猎飞行生物. 在有风的日子里可以看到他在天空中飞翔.
-			Physicist: 来自邻近行星, 物理学家在你的世界上观察到了非自然现象, 是来调查的. 不相信魔法.
-			Exporter: 发货人是一位与海盗有着历史渊源的销赃犯. 所得的收益都会发放给位于世界各地的那些寻找'最佳交易'的可疑人士.
-
-			SnobsterCritter: 史莱姆自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
+			Carpenter: 这只蚂蚁决定放弃在从前家里的虫群思维, 并追随他对建造的热情. 不过他有点势利, 只会搬进有足够装饰的房子.
+			Occultist: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
+			SkyMerchant: 一半是快递员, 一半是寻求刺激者, 这个精灵乘坐热气球穿越了世界. 如果你能在刮风的日子赶上他, 他会很高兴和你分享他的货物!
+			Physicist: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
+			PhysicistPet: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
+			Exporter: 一个不择手段的龙虾商人, 他总是盯着最好的交易, 愿意漂洋过海赚大钱. 他最近的一次航行在螃蟹码头以不体面的方式结束.
 		}
 
 		PaintingSignature: {
@@ -2101,210 +2112,104 @@ Mods: {
 			}
 
 			Carpenter: {
-				Shutterstocker: 只需要一个按钮和一个快门, 它会允许剪片吸收足够的光线来制作图像!
-				ShutterstockerClipAmmo: 
-					'''
-					与快门储像机™一起使用以捕获图像
-					用最吸引人的剪片来保存你最好的建筑!
-					'''
-				SilkPickaxe: 纤维上绣有粘性丝状物质, 非常暖和!
-				SilkHammer: "{$Mods.Aequus.ShopQuote.Carpenter.SilkPickaxe}"
-				ImpenetrableCoating: 一种只有镐子才能穿过的干净又强力的涂料!
-				OliverPainting: 我不明白为什么我觉得这件事这么容易!
-				OmniPaint: 
-					'''
-					使用专用染料和油漆容器, 你可以很容易地分辨出油漆的颜色
-						你可以很简单的把刷子刷干净!
-						不要让它接触到你的皮肤, 它可能会导致永久性着色和伤害.
-					'''
-				AdvancedRuler: 我们迄今为止最先进的尺子, 有许多功能、按钮和愚蠢的复杂性!
-				WhiteFlag: 不要挥舞太久, 除非你打算被认为这个岛很弱的哥布林殖民.
+				Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
+				ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
+				SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
+				SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
+				ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
+				OliverPainting: There's something about this painting... it's simply so fascinating.
+				OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
+				AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
+				WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
 			}
 
 			Exporter: {
-				Mallet: 
-					'''
-					有个疯子停下来递给我一个木槌, 并说了些关于打破花瓶的事?
-					我会把它卖给恁, 当然不是免费的.
-					'''
-				GoldRing: 
-					'''
-					据说能吸引钱币, 但这枚戒指并没有把一个银行从地上扯下来! 
-					能以一个较便宜的价格买到!
-					'''
-				LuckyCoin: 
-					'''
-					我的老船长的第一枚硬币, 据说能够带来好运, 
-					但恁这只老龙虾不相信这样的神话.
-					'''
-				DiscountCard: 
-					'''
-					我从我一个配偶的尸体上拿到了这个, 
-					恁俩看起来很像啊, 不是吗?
-					'''
-				FoolsGoldRing_Male: 
-					'''
-					女士们会喜欢恁戴着这个的, 
-					但千万不要告诉她们恁的秘密!
-					'''
-				FoolsGoldRing_Female: 呃...这枚戒指是由24克拉纯金制成的! 非常适合你这样的女孩!
-				FaultyCoin: 
-					'''
-					把这个视作一枚普通硬币, 如果他们抓不到恁, 
-					恁就可以得到一笔免费的交易, 淘气鬼.
-					'''
-				ForgedCard: 
-					'''
-					不喜欢付全款? 
-					这张伪造的卡会使恁的财产花费降低许多.
-					'''
-				GrandReward: 
-					'''
-					恁喜欢通过打架来赚钱吗? 
-					这个物品是恁的不二之选.
-					'''
-				SkeletonKey: 
-					'''
-					恁需要一种方法来解锁一些被遗忘的战利品, 但恁的钥匙一直在碎裂吗? 
-					买一个吧!
-					'''
-				RecyclingMachine: 
-					'''
-					乱扔垃圾是比当海盗更严重的罪行. 
-					用这个廉价的回收机保证恁自己的安全吧!
-					'''
-				RichMansMonocle: 从我的债主身上撕下来的呃...用我的'还债'剑.
-				RichMansMonocle_TaxCollector: 嘿...{TaxCollector}有没有说过任何承认我的话?
-				FishyFins: 海盗们把鱼鳍当作战利品, 还说要防止他们也变成僵尸!
-				CrabClock: 我很久以前住的地方的一件整洁的装饰物...直到我偷了他!
-				SedimentaryRock: 虽然那甲壳动物很可怕, 他的洞穴里有一些味道很好的沙子!
-				HypnoticPearl: 我...不能停止看着它...你也可以永远看着它 (只需花上一些小钱)
+				Mallet: That's it! I'm sellin' me mallet!
+				GoldRing: This trinket's s'pposed to attract coins, but it ain't pulled a bank out o' the ground yet. If ye want it, ye can have it.
+				LuckyCoin: Me ol' captain's first coin. They say it's lucky, but this old lobster don't believe in such things.
+				DiscountCard: Swiped this off one o' me crewmate's corpses. You two look enough alike, eh?
+				FoolsGoldRing_Male: This'll fetch ye some ladies in no time flat- just don't tell 'em yer secret!
+				FoolsGoldRing_Female: Have ye got yer eye on someone, lass? This ring's made o' pure 24-carat gold! Promise!
+				FaultyCoin: Slip this as a regular coin n' ye'll get a free deal if they don't catch ye. Confidence is key!
+				ForgedCard: This card's linked ta... someone's account, somewhere. Certainly not yers!
+				GrandReward: Not gettin' enough buck from yer bang? Try this beaut on fer size.
+				SkeletonKey: This'll let ye slip into any golden chest, guaranteed or yer money back- and it won't break, either!
+				RecyclingMachine: Litterin's a crime worse than bein' a pirate. Keep yerself safe and reuse yer craftin' scraps here!
+				RichMansMonocle: Ripped this off one o' me debters after... payin' him off. With me sword.
+				RichMansMonocle_TaxCollector: ".. has {TaxCollector} said anythin' about recognizin' me?"
+				FishyFins: Us pirates keep the fins o' mermen as trophies. Plus, they can't turn inta zombies if they can't swim! Hopefully.
+				CrabClock: "'Tis now time fer crab! I took this one off o' me old captain's cabin."
+				SedimentaryRock: Somethin' feels off about these rocks... somethin' crabby. Take 'em off my claws, will ye?
+				HypnoticPearl: There's somethin' about this pearl... I can't stop lookin' at it. Ye can look at it too, fer a price.
 			}
 
 			Occultist: {
-				GhostlyGrave: 
-					'''
-					在墓地测试复活咒语, 似乎这个墓地想要有一个活着的灵魂.
-					然而, 就像所有生物一样, 我必须结束他们的痛苦.
-					'''
-				OccultistCandle: 我发现它对仪式很有用, 呵呵~
-				SkeletronCandle: 
-					'''
-					认为拥有尸体并不黑暗?
-					那为什么不加倍诅咒并赋予它们骷髅王的黑暗之手!
-					'''
-				CrownOfBlood: 
-					'''
-					这件衣服的来历是你最不需要担心的...
-					这件衣服赋予了你称之为'特殊'的饰品.
-					'''
-				CrownOfDarkness: 提炼自暗物质, 这件衣服在光明下回变得脆弱.
-				CrownOfTheGrounded: 被诅咒被束缚在这个星球上, 这件衣服在空中时会变得缓慢.
-				Meathook: 从我劲敌的武器上拿出来的钩子...他不会知道我在这的, 对吧?
-				ShadowKey: 用于解锁地狱的战利品, 奇怪的是, 恶魔没有给每个箱子一个不同的钥匙孔, 所以抢劫并不是很容易.
-				UnholyCore: A我在第六界域从博物馆那偷出来的怪异核心, 据说可以充能恶魔能量或是其他的东西?
-				SpiritBottle: 
-					'''
-					一瓶远古秘药, 用于让远古愤怒灵魂止渴.
-					如果你用饮料贿赂它们, 你可能会拥有更多尸体!
-					'''
-				BlackPhial: 纯粹的黑魔法造就了瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
-				GoreNest: 一种在被遗忘之地中很常见的植物, 我在那里度假时挑了一些.
-				GoreNestPainting: 我的第一副画作! 我真的喜欢自制红色油漆并画上去!
-				InsurgentPainting: 继续与我联系, 你最终有可能变为这张画布上的一只恶魔!
-				WhoopieCushion: *Poomf*
+				GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
+				OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
+				SkeletronCandle: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+				CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
+				CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
+				CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
+				Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
+				ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
+				UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
+				SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
+				BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
+				GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
+				GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
+				InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
+				WhoopieCushion: *Pbbbfht*
 			}
 
 			Physicist: {
-				PhysicsGun: 
-					'''
-					我在幼儿园科学展上创造的零点能量场操纵仪,
-					与泥土法杖相比, 它的科技含量相当地高.
-					'''
-				PortalGun: 当前科技的顶点. 这个'量子隧穿仪器'是我第一次到达这里的原因.
-				GravityGlobe: 
-					'''
-					当上下颠倒时, 局部重力会反转. 
-					伪装成一个不起眼的球体, 以轻松通过弱安全性.
-					'''
-				PrecisionGloves: 这些手套是专门用于医学训练者的, 它用于奖励佩戴者使用适当的精度.
-				HaltingMachine: 解决无法解决的问题, 如果你不喜欢下落的东西, 它可能会有用.
-				HolographicMeatloaf: 
-					'''
-					对用光合作用的生物的巨大打击.
-					这种肉饼是用最美味的清淡食物烹制的.
-					'''
-					
-				BloodMoonStarter: 我在一次'血月'事件的观察中在这个世界上发现了一件奇怪的人工制品.
-				GalacticStarfruit: 谁会知道地球上的果实可以控制宇宙中的恒星呢?
-				SolarTablet: 
-					'''
-					我在观察一座最近打开的神庙时发现了一件奇怪的人工制品.
-					我的扫描器能感觉到这件人工制品中有大量奇怪的暗物质.
-					'''
+				PhysicsGun: This zero point energy field manipulator sees common use in laboratories. It excels in handling large objects or hazardous materials.
+				PortalGun: This quantum tunneling device allows you to open seamless gateways through space. It is how I arrived here in the first place!
+				GravityGlobe: Flipping this device upside down will reverse its holder's local gravity. It is disguised as a simple decorative object for ease of transport.
+				PrecisionGloves: Designed for training in medical and nanotech work, these gloves reward their wearer for making accurate operations.
+				HaltingMachine: This device neutralizes local gravity on small objects. Useful for those accustomed to working in zero gravity.
+				HolographicMeatloaf: Popular with photosynthetic species. This meatloaf is projected with only the highest-quality light.
 
-				InactivePylonGunner: 
-					'''
-					如果没有与网络连接, 它就无法正常工作.
-					幸运的是, 你的'晶塔'会直接连接到那个网络.
-					'''
-				InactivePylonHealer: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
-				InactivePylonCleanser: "{$Mods.Aequus.ShopQuote.Physicist.InactivePylonGunner}"
-					
-				ForceAntiGravityBlock: 
-					'''
-					一种为'飞碟'制造的特殊镀层.
-					下方会发射反重力光束.
-					'''
-				ForceGravityBlock: 
-					'''
-					一种为'飞碟'制造的特殊镀层.
-					它的自身会产生引力并抵消所有反重力效果.
-					'''
-				PhysicsBlock: 
-					'''
-					一种为'飞碟'制造的特殊镀层.
-					其独特的成分会阻隔物理学枪的抓取效果.
-					'''
-				EmancipationGrill: 闪耀的、半透明的粒子场将抹去任何经过它的未经授权的设备.
+				BloodMoonStarter: I discovered this artifact while doing research on a "blood moon". The watery crystal at its core contains high amounts of an unknown energy.
+				GalacticStarfruit: The energy readings from this fruit are nearly identical to those observed during a "glimmer". I recommend you use with caution.
+				SolarTablet: I discovered this artifact while exploring underground in this island's lush areas. Scans indicate an unusual concentration of dark energy within.
 
-				SupernovaFruit: 
-					'''
-					这个苹果正在释放出强大的辐射.
-					现在你正接触着它, 我不指望你能活到下周.
-					'''
-				ExLydSpacePainting: 一个我没怎么听说过的太空旅行部队的渲染图, 在调查这里后, 我可能会进一步研究它们.
-				HomeworldPainting: 描述了星源的家园. 不幸的是, 它太远了, 我无法传送到那里并确认.
+				InactivePylonGunner: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
+				InactivePylonHealer: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
+				InactivePylonCleanser: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
+					
+				ForceAntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
+				ForceGravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.
+				PhysicsBlock: This material was designed to absorb all energies that attempt to act upon it. As a result, it cannot be manipulated by the Physics Gun.
+				EmancipationGrill: This semi-transparent particle field will vaporize any unauthorized material that passes through it. Designed to destroy contraband automatically, but may detect false positives on teeth or inner ears.
+
+				SupernovaFruit: This apple is emitting incredible amounts of radiation. I project that handling it without sufficient protective gear would reduce your lifespan to about 2.5 minutes.
+				
+				ExLydSpacePainting: This mural seems to depict a spacefaring race I have not heard of before. Perhaps I should investigate them after my business is concluded here.
+				HomeworldPainting: A speculative depiction of the Starite homeworld. Unfortunately, it is too far away for me to teleport there and confirm.
 			}
 
 			SkyMerchant: {
-				BalloonKit: 老态龙钟, 便携式热气球一直是人们追求的目标, 并且它们就在这!
-				Pumpinator: 我从飞艇上买的一种奇怪的技术. 很不幸, 吸气功能不起作用, 真是个骗局!
-				Nimrod: 
-					'''
-					雷击湖面可以杀死数百条鱼, 不幸的是, 这种鱼竿每次只能钓3条鱼.
-					或者是制作这个鱼竿的巫师担心鳟鱼的数量.
-					'''
-				FlashwayNecklace: 这件衣服由雷霆工匠用极其精确的工艺制作而成, 能让你在瞬间闪避攻击!
-				NameTag: 具有神奇属性的命名标签, 如果你愿意, 我可以把名字刻在上面.
-				EquippedAcc: 嗯, 你身上的那个饰品很好, 不过, 也许这件的工艺更好?
-				Banners:
-					'''
-					啊是的, 用猎物的尸体制作地毯已经过时了.
-					在我看来, 悬挂横幅更好.
-					'''
-				BongBongPainting: 这幅画描绘了一种不正常的生物, 不过有人可能会欣赏这种生物的风格.
-				CatalystPainting: 画这幅画的艺术家肯定憎恨疯狂的邪教, 这是公平的.
-				YinYangPainting: 黑暗和邪恶力量的和谐相处, 有人认为这是真的.
-				YinYangPaintingsSeparate: 这幅画奇怪的名字和怪异的图像一定在逃避着什么...
-				HomeworldPainting: 这是一幅令人难以置信的艺术品, 展示了理论家们认为星源的家园是什么样子.
-				SkyrimRocks: 岩石上有用古代龙语加密的文字, 不幸的是, 我不知道有谁能翻译它.
-				AncientBreakdownDye: 它对颜色的影响类似于棱镜, 但并不闪亮. 我会告诉你它是如何工作的, 但那会打破我的某个模型.
-				CensorDye: 常用于电视节目...嘿, 你说的'处理后'是什么意思?
-				OutlineDye: 在你想要的任何东西周围施加光环, 这种能力背后的要素是未经证实的.
-				ScrollDye: 据说会带你穿越你的'真实空军'. 我不知道, 问问艾斯维尔的那些把这个换成了一条粘糊糊的横幅的猫科动物们.
-				SimplifiedDye: 据说会有助于疤痕和淤青融入你的皮肤, 但可能适用于盔甲或头发. 还没有试过.
-				HueshiftDye: 冥想僧侣用于'查看整个波长'. 你应该去老岛问问他们怎么使用这个.
+				BalloonKit: Jealous of my digs, huh? Why not buy your very own hot air balloon?
+				Pumpinator: Bought this one off an airship crew. It's super helpful for navigating; just point it where you want the wind to go!
+				Nimrod: Lightning striking a lake can kill hundreds of fish, but best I can do is three. Maybe the wizard who made this was concerned about the trout population?
+				FlashwayNecklace: Crafted by a master thundersmith, this jewelry will grant lightning-fast reflexes to dodge any attack!
+				NameTag: A lower-tech alternative to sticking label maker tags on your pets. I can imbue a name into it for you to use!
+
+				EquippedAcc: Hmm... that accessory you've got is a nice one for sure, but maybe I can pique your interest with this?
+				Banners: Trophies and rugs are a bit... brutish for my tastes. How about a more symbolic representation of mass slaughter?
+
+				BongBongPainting: This abstract painting seems to depict some sort of creature. Are you the kind of person that would want this on your wall?
+				CatalystPainting: Whoever came up with this piece must've not been fond of the Lunar Cult. Which, you know, fair!
+				YinYangPainting: Light and dark, coexisting in harmony. Do you think it could ever happen?
+				YinPainting: They say this piece depicts the ancient spirit of dark. Wonder which poor sap had to get it to pose for a portrait.
+				YangPainting: They say this piece depicts the ancient spirit of light. Speaking of, I've been flying through a lot more rainbows lately...
+				SkyrimRocks: This stone is carved with an ancient dragon language. Sadly, I haven't yet found anyone who can translate it...
+				AncientBreakdownDye: Guaranteed to be the best dye to use at EDM raves, or your money back... if you can find me again!
+				CensorDye: They use this all the time on TV shows! ...what do you mean, 'editing'?
+				OutlineDye: You'll always be the center of attention with a giant white border around your clothes!
+				ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
+				SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
+				HueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
 			}
 		}
 
@@ -2401,25 +2306,49 @@ Mods: {
 
 			Physicist: {
 				Basic: {
-					0: 很怪的重力, 我家乡的引力比现在弱62.5%.
-					1: 好吧, 看来混沌理论是有点道理的, 对吗?
-					2: 晶塔并不是魔法, 不然镇民们是如何到达你的城镇的? 用脚? 不, 是通过呼叫'星河出租车'. 晶塔基本上只是外星人的'电话亭'.
-					3: 在我们的星球上, 晶塔根本不可能存在, 它的'幸福'净值为-30mw.
+					0: 你这里有着奇特的重力. 我星球的引力对于这里来说只有38%.
+					1: 好吧, 看来混沌理论是有点道理的...
+					2: 并非所有人都要站在巨人的肩膀上才能看到更远. 有些人选择用飞碟.
+
+					# Do not translate the 'alien text'
+					3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. 哦, 抱歉, 我一定是又切换回了我的母语."
 				}
-				Glimmer: 一件强大的物体从太空中坠落, 我用我的探测器来分析这个远高于着陆位置的物体, 不幸的是, 其中一个似乎被'坠落之星'击中了.
-				BloodMoon: 在'血月'期间, 不规则行为似乎来自生物本身. 我似乎无法用基础的红灯来分析匹配这些行为. 所以原因一定更神秘...
+				Night: {
+					0: 从这里应该能够看到我就家园...你看见它了吗? 嗯, 有着这样的眼部感受器大概不行.
+				}
+				BloodMoon: {
+					0: 这些状况似乎对人类生物学有影响, 但要调查起来...非常困难.
+					1: 我无法用简单的红灯重现这些事件造成的不稳定行为. 一定有更多的东西在发挥作用.
+				}
+				Graveyard: { 
+					0: 这就是你埋葬死者的方式吗? 与我家乡的万人坑相比, 这是相当正式的.
+					1: 你听见那声音了吗? 我是否又将我的PKE仪表置入了调试模式?
+				}
+				Glimmer: {
+					0: 闪烁的亮光意味着星星的到来...仍有很多东西要学习.
+					1: 我所有的数据探测器都被坠落的星星击中了! 令人恼火!
+				}
+
+				MartianMadness: 发生了什么?! 我没有授权入侵! 我和这件事无关!
+				MartianMadness2: 我为我...过度好战的上级道歉. 至少你挡住了他们.
+				LunarPillars: 我所有的传感器都乱了! 这个世界上的月球正在发射出令人难以置信的强大能量波, 其投射的区域直接集中在这座岛屿上!
+				Pylon: 这种"晶塔"技术令人难以置信. 我的家园应该可以很好的利用它, 只要幸福度不为负数.
+				WindyDay: 我的眼睛对风很敏感. 如果我带了一副护目镜就好了...
+				Rain: 令人着迷! 我以前就知道, 当然, 但亲眼目睹液体沉淀是完全不同的体验.
+				Thunderstorm: 那是什么声音? 我们的星球上没有这样的东西!
+				Party: '派对'是最反常的. 你如何维持这样的节日水平?
 
 				SoTSMod: { 
 					0: 当我第一次校准传送门以将我传送至此时, 我发现了一种由某种漂浮的船只物体造成的干扰. 调查此事可能符合我的最大利益.
 					1: 你没有和任何类似猫的生物做过交易...对吗?
 				}
-				PolaritiesMod: 嘿, 你能找到我的大磁铁吗? 它的长度和宽度大约12英尺, 在这个星球上做重力实验是必要的.  
+				PolaritiesMod: 嘿, 你看到我的大型磁铁了吗? 它大约有12英尺长? 我差不多有一刻没看着它, 它就直接消失了.
 
 				AnalysisRarityQuest: 我的扫描仪显示出有{Rarity}稀有度物件的迹象. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
 				AnalysisRarityCoinsQuest: 
 					'''
 					我的扫描仪显示出有{Rarity}稀有度物件的迹象.
-					物件至少价值[{Coins}]铂金. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+					物件至少价值[{Coins}]白金. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
 					'''
 				AnalysisRarityQuest2: "'{Item}'将是我们研究的完美样本, 可以给我们吗?"
 				AnalysisRarityQuestComplete: 感谢你的服务.
@@ -2431,23 +2360,29 @@ Mods: {
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
 			Carpenter: {
 				Basic: {
-					0: 每当我匆忙做事的时候, 我都会担心我可能会错过又好又热的咖喱!
-					1: 每个砖与块都有助于构成一栋美妙建筑!
-					2: 讨厌的杀虫剂准备毒害被动和平的襀翅目!
+					0: 每块砖块和镶板都是一座美丽、绽放的建筑的组成部分!
+					1: 今晚我想来点咖喱. 为了及时完成这个项目, 我最好快点!
+					2: 蚂蚁隧道并没有太多诱惑力. 这就是为什么我只带着锤子离开的原因.
+					Rare: 我最喜欢的色调是橙色. 它增添了一种...它...哦亲爱的.
 				}
 
-				BloodMoon: 月亮是红色的, 死神来了! 希望我们不会失去我们的脑袋!
-				Glimmer: 天空与大地都在闪烁, 你认为星星是甜的还是苦的?
+				BloodMoon: 月亮红色, 奇怪的野兽就来了! 只是希望你不要弄丢了你的脑袋!
+				Glimmer: 反射的光芒就像天空一样闪亮. 我们遇到的星星是甜的还是苦的?
 				Eclipse: 黑夜回来替代了白天的时间! 不要看太阳, 它可能会回以注视!
+				WindyDay: 越过大地, 空气在迁移! 我希望这些建筑有着结实的地基!
+				Rain: 伴随着倾盆大雨, 我们来到了这里. 这就是为什么要发明庇护所!
+				Thunderstorm: 在我们的头顶上, 乌云密布. 我担心现在又一次是暴风雨了.
+				Party: 庆祝的时间快到了! 收起你的坏心情, 加入这场狂欢!
 				GoblinArmy: 当他们发动战争并闯入你的门时, 你就应该知道不要与那些地上的哥布林混在一起!
+				Graveyard: 死者不会留下但魂灵会升起! 某人的死亡并非是真结局对吗?
 
-				NoBounty: 很不幸的是, 我已经没有钱了, 也许以后再来吧?
+				NoBounty: 好吧, 你清空了我的单据! 现在没什么可做的, 但我会起草更多的挑战, 让你来承担!
 
 				UI: {
 					BountyButton: 查看赏金
 					SubmitPhoto: 提交照片
 					Blueprint: 蓝图
-					BlueprintFakeCopyright: Ⓒ 2022 木工蚁, 锌. 版权所有
+					BlueprintFakeCopyright:  Ⓒ 2022 木工蚁, 锌. 版权所有
 					Reward: "奖励:"
 					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
 				}
@@ -2455,70 +2390,102 @@ Mods: {
 
 			Occultist: {
 				Basic: {
-					0: 这个地方太冷了, 我不得不穿上长袍才能存在这个维度中生存!
-					1: 和我谈话后你的英雄之旅就结束了! 哈哈!
-					2: 你不会介意今晚由我支配吧?
+					0: 蠢货! 通过和我说话，你触发了一个陷阱，迫使你服从我的命令！现在，请买点东西。
+					1: 啊啊啊啊...哈哈哈哈- 哦. 呃. 你好, 专做好事的人?
+					2: 想知道我在这件斗篷下的样子? 哈哈哈, 在你的梦里! 事实上, 不要做梦, 因为我在你的床上放了一个探知符文, 我会知道你做了什么梦的.
+					3: 你的维度太冷了, 我可得把自己裹得严严实实.
+					Rare: 请愿者? 别开玩笑了, 我什么都没记住. 我的咒语书替我记得那些.
 				}
 				Night: {
-					0: 黑暗...我离不开的东西.
-					1: 嘿, 你能帮我拿着这个无效火焰吗? 我很快就会回-
-					2: 我现在正在开一个内部会议, 请勿打扰!
+					0: 黑暗笼罩着这片大地...这就是我活着的目的. 是的,我知道这里每天都会发生, 让我拥有这个.
+					1: 打扰一下, 你能快点握住这团虚无的火焰吗? 我马上回来~!
 				}
 				BloodMoon: { 
-					0: 我现在正在开一个内部会议, 请勿打扰!
-					1: 为什么...为什么! 我可以成为世界上最长寿的人, 还要忍受痛苦!
-					2: 离开这, 离远点, 我不需要你, 我这里不需要任何人, 我只需要自己!
+					0: 安静点, 求你了! 我现在正在开一个内部会议!
+					1: 无路可逃. 即使是最长寿的人也会在红月的照耀下受苦.
+					2: 我一直在想一个新的诅咒. 想成为我的测试对象吗? 过来...
+					3: 离远点! 我现在不需要你! 我不需要任何人!
 				}
-				Glimmer: 我喜欢今晚的气氛, 让我想起第一次拥有某人...生命的火花和光环仍然存在, 因为我的存在使他们堕落...太好了...
+
+				Princess: 我最想做的就是从内部推翻君主制. 当然, 这只是假设.
+
+				Cultists: 你见过邪教徒在地牢里鬼鬼祟祟吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
+				EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
+				WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
+				Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
+				Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
+				Party: 他们不想让我把蛋糕变回原来的样子. 我保证我这次没在蛋糕内混入任何东西!
+				Graveyard: 哦, 你好, 幽灵! 你会为我的仪式提供极好的燃料...
+				Glimmer: 什么? 不! 我的黑暗去哪了? 把它还回来!
 			}
-			
-			Exporter: {
+
+			Exporter: {								
 				Basic: {
-					0: 仅为恁, 我的朋友, 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
-					1: 所有收益都会捐给慈善机构 — 我所说的慈善机构是指我的银行账户!
+					0: 还是不敢相信你吃了那只被遗弃的螃蟹. 该死的东西一爪击沉了我的船!
+					1: 仅为恁, 我的朋友. 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
+					2: 所有收益都会捐给慈善机构! 并且这只老龙虾是我认识的最慈善的家伙!
+					Male: "{PlayerName}, 我的小伙子! 恁手上拿着什么呢?"
+					Female: "{PlayerName}, 我的小姑娘! 恁手上拿着什么呢?"
 				}
 
 				Night: {
-					0: 今晚夜色真美, 非常适合买点什么!
-					1: 恁知道的, 大鱼会在月亮出来的时候更活跃. 最好去钓鱼!
+					0: 今晚夜色真美. 非常适合买点什么!
+					Male: 恁知道的, 最大的鱼会在月亮出来的时候更活跃. 你喜欢钓鱼吗, 小伙子?
+					Female: 恁知道的, 最大的鱼会在月亮出来的时候更活跃. 你喜欢钓鱼吗, 小姑娘?
 				}
 
 				BloodMoon: {
-					0: 当海潮和雨水变红的时候, 一只强大的乌贼就冲出海面, 把船给毁了! 
-					1: 我在吃午饭, 一条特别的金鱼. 我没想到今晚的月亮升起时会它会变得如此邪恶.
+					0: 我正要吃晚饭, 突然它复活并袭击了我! 现在我看到了一切.
+					1: 当大海变红时, 海盗的意志和技艺将面临最严峻的考验. 你敢用里面的宝藏来对付一群可怕的野兽吗?
 
-					WanderingEyeFish: 我今晚出去钓鱼了, 然后我钓到了一条长着大眼睛的鱼! 我从那只眼球上赚了30达布隆.
+					WanderingEyeFish: 又一次我在红色的水中钓鱼, 钓上来了一颗大眼球! 我从那个美人身上弄到了三十个达布隆.
 				}
 
-				Ocean: 如果愿望是鱼...如果愿望是鱼, 我就不会因为骗税而被通缉!
-				CrabCrevice: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+				Glimmer: 闪闪发光的天空让我想起了宝藏堆的闪光. 不知道我能不能偷一颗星星...
 
-				Angler: "{Angler}一直在向我吹嘘他捕到的一些小鱼. 小伙子, 自从我离开蛋后, 我就一直在公海航行! 我钓到的鱼比你见过的还多."
-				Pirate: 耶! 我和{Pirate}在公海上相遇过几次. 但那都是美好的过去了...
+				Ocean: 如果愿望是鱼...我就不会因为骗税而被通缉.
+				CrabCrevice: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+				WindyDay: 我的木头在颤抖, 多么大的风啊! 这将是一个完美的一天!
+				Rain: 下雨对我们甲壳类动物来说是件好事. 保持甲壳湿润.
+				Thunderstorm: 是的, 这是一种使船只沉没的天气. 很高兴我这次是在陆地上.
+				Party: 最爱派对了, 我愿意! 趁着人们分心的时候溜来溜去拿战利品的好借口!
+				MusicBox: 是的, 你好! 我在想你能不能再弹一次那首歌?
+				Graveyard: 我真的会为了钱而玷污这些坟墓吗? 我当然会了!!
+
+				Angler: "{Angler}一直向我展示他挖出来的奇怪的鱼. 我不想这样说, 但蟋蟀是个天才. 我想我某一天会向公爵开枪."
+				Pirate: Yarrgh! 我和{Pirate}在公海上相遇过几次. 那是美好的过去了...
 				Truffle: "{Truffle}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来."
-				TaxCollector: 我躲着{TaxCollector}已经七年了! 别让他知道我在这里!!
-				Stylist: 有一次我要求{Stylist}给我修剪头发. 但她却砍掉了我的触角! 我是说我的感知头发!
+				TaxCollector: 我躲着{TaxCollector}已经七年了! 别让他知道我在这里!
+				Stylist: 有一次我要求{Stylist}给我修剪头发, 但她却砍掉了我的触角! 我想我应该指定传感器毛发...
 
 				Crabson: 吓我一跳! 恁杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
 
-				PirateInvasion: 我在海盗时代就认识这些小伙子. 他是公海上第十七位最可怕的船员!
+				PirateInvasion: 是的, 我认识那些小伙子. 他们是七海中第十七个最可怕的海盗船员!
+				DukeFishron: 恁甚至成功地消除了变种人恐惧?! 全能的波塞冬啊, 或许我应该给恁一个折扣.
+				MoonLord: 那是我见过的最奇怪的克拉肯.
+
+				Evils: 恁闻到了吗? 那闻起来...那气味闻起来就像闻到...那气味?
 
 				ThieveryComplete: {
-					0: 耶哈哈, 这个{ItemName}非常好! 我会把这个添加到我的收藏中. ——恁也可以把这个添加到恁的收藏!
-					1: 我知道有人会喜欢这个{ItemName}的. 这是恁的报酬, 我得走了!
-					2: 这个要多少钱? 大概100个黄金达布隆...? 好吧, 它现在值那个价了! ——这是恁的报酬.
-					3: 当小偷感觉如何? 我说, 通过拿走其他旱鸭子的东西来赚钱的感觉真棒. 这是恁的报酬, 小家伙.
-					4: 干得好, 没被抓住! —恁说它们不在乎恁偷了恁的{ItemName}是什么意思? 啊管他的, 这是恁的报酬.
+					0: 就在这里! 这是恁的战利品. 剩下的就全都归我了.
+					1: 没被抓住, 干得好! ...恁什么意思, 他们不在乎恁拿走他们的ItemName}? 啊管他呢, 这是恁的报酬.
+					2: 哦不, 现在它可能是个好的{ItemName}! 恁去藏东西吧...并且这有属于你自己的东西!
+					3: 恁觉得这个{ItemName}值多少? 二十个金达布隆? 三十? Mm, 也许应该再高点. 五十. 这是恁的奖励.
+					4: 当小偷感觉如何? 我觉得感觉不错, 拿走一些可怜傻瓜的东西然后卖掉. 现在, 让我反向偷窃这个战利品给你.
+					Male: 干得漂亮, 小伙子! 没那么难吧? 这是你的付款, 看紧了!
+					Female: 干得漂亮, 小姑娘! 没那么难吧? 这是你的付款, 看紧了!
 				}
 
 				ThieveryFailed: {
-					0: 试着找些精美的遗物. 不是那些掉落自Boss的— 是旱鸭子买的稀有珠宝. 他们通常把那些珠宝留在恁房子里.
-					1: 恁身上没有我想要的任何赃物! 我只想要恁镇上的人买的珠宝家具.
+					0: 你放在{WorldName}世界各地的旱鸭子们有时会陈列处一些精美的小饰品. 这些就是我要寻找的!
+					1: 留意那些精美的圣物. 不是那些Boss掉落的, 而是你的镇子里居民乱丢的镀金的东西.
+					Male: 恁身上没有我想要的东西, 小伙子! 我在找你的镇民喜欢的珠宝家具.
+					Female: 恁身上没有我想要的东西, 小姑娘! 我在找你的镇民喜欢的珠宝家具.
 				}
 
 				UpgradeBurgerButton: 升级汉堡?
 				ThieveryButton: 偷窃
-			
+
 				ShopPrice: {
 					Platinum: 白金达布隆
 					Gold: 黄金达布隆
@@ -2529,96 +2496,140 @@ Mods: {
 
 			SkyMerchant: {
 				Basic: {
-					0: 我卖某些物品的速度跟它们飞的一样快.
-					1: 我们最满意的客户是鹰身女妖. 来看看我的商品, 价格便宜!
-					2: 我记得有一次我在空中旅行. 两个熟悉神秘鸟类生物的小家伙向我打招呼, 那是多么有趣的时光啊...哦, 呃, 嘿! 欢迎来到天际商店!
+					0: My stock is just flying off the shelves today!
+					1: What goes up must come down, except my prices! Or, wait, was it stocks?
+					2: My best customers are the harpies! That's a joke. They keep trying to pop my balloon and I am terrified.
+					3: I'm on {WorldName} right now, right? Okay, good, so this discounted map isn't bogus. That's a relief.
+					4: My wares will surely make your wallet lightweight! Is that one good? I've had a lot of time to think up slogans.
 				}
 
-				Night: 一天的这个时候总是令人放松. 你可以更近距离地看到流星穿过多云的岛屿. 太神奇了.
-				BloodMoon: 今晚的天空看起来很-很危险...我-我只是希望这里不会有任何空中威胁...呃...我并不担心这件事.
+				Night: This time of the day is always so relaxing. You get a closer view of the shooting stars passing through the cloudy islands. It's amazing.
+				BloodMoon: Man, looks scary down there tonight. Good thing I'm safe in the sky, right? ...R-right?
+				Glimmer: Excuse me if I seem a bit tense! I've had to patch my balloon from stars tearing through it three times tonight!
+				SolarEclipse: I always try and track the eclipses to end up in the path of totality. Now there's a sight that never gets old!
+				Thunderstorm: I don't think I can overstate how much danger I'm in right now. Can you buy enough to let me afford life insurance?
+				Graveyard: Can't say this is the most pleasant landing spot I've ever seen, but it has got me wondering about filling a balloon with ectoplasm...
+				
+				Merchant: I'm sure your merchants are always bragging about how high their sales are or whatever, but are they the ones literally riding hot air balloons? Didn't think so, pal.
+				TravellingMerchant: I just don't get how {TravellingMerchant} is so... efficient. He doesn't even use airmail!
+				Pirate: Think I could convince your pirate pal to lend me one of his crew's flying battleships? I bet it'd do wonders for my marketing!
+				Steampunker: Do you know a '{Steampunker}'? I met this girl while restocking on an airship and she seemed awfully interested in this island.
+				Demolitionist: Dwarves live underground, so elves go to the sky. It's simple, really.
 
-				Merchant: 呃, {Merchant}总是谈论他的销售额有多高, 他不是一个天空商人, 真是讽刺, 但等下, 我是.
-				TravellingMerchant: 我很好奇{TravellingMerchant}是如何比我做得更好的. 他甚至不用航空邮寄!
-				Pirate: 最近, {Pirate}对我谈到了他的船员. 我对他提到的那艘飞艇很感兴趣. 可以为我们的配送服务提供极大的承载能力!
-
-				PlaceHere: 放置于此处来重命名你的物品
-				PressHere: 按下来设置你物品的名字
-				RenameChatButton: 重命名物品
+				PlaceHere: Place here to rename your item
+				PressHere: Press to set the item's name
+				RenameChatButton: Rename Item
 			}
 
 			Angler: {
-				LegendaryFishReward: 谢谢, 失败者! 你对这东西的威力一无所知, 不是吗?
-				LegendaryFish: 嘿, 嘿! 我看到你身上的传奇鱼类了. 你认为如果我给你一些闪亮的奖励的话我能拥有它吗?
+				LegendaryFishReward: Thanks LOSER! You have no clue about the power of this thing, don't you?
+				LegendaryFish: Hey, HEY! I see that Legendary Fish you have on you. You think I can have it if I give you some shiny reward?
 			}
-			}
+		}
 
 		TownNPCMood: {
 			Carpenter: {
-				Content: 我喜欢这个地方, 挺不错的, 装饰得很好.
-				NoHome: 我被驱逐出我以前的殖民地, 希望能在这里找到房子.
-				FarFromHome: 你一定是抓到我在这里测试新颜料和材料了! 我真希望我当时在家.
-				LoveSpace: 我还没有找到我房子可以批评的地方, 真是太棒了!
-				DislikeCrowded: 这个镇子挺不错的, 但建造建筑群时保持安静也很好.
-				HateCrowded: 这个镇子挺不错的, 但建造建筑群时保持安静也很好.
-				LikeBiome: 我真的喜欢{BiomeName}, 它很好.
-				LoveBiome: 住在{BiomeName}对我来说很好, 让我想起了我以前所在的殖民地.
-				DislikeBiome: 我一般不喜欢{BiomeName}, 但我想这对学习确实有用.
-				HateBiome: 我...真的不喜欢{BiomeName}...你还有其他可供我入住的房子吗?
-				LoveNPC: 我非常崇拜{NPCName}, 他们值得拥有的好朋友!
-				LikeNPC: "{NPCName}挺不错的."
-				DislikeNPC: 我对{NPCName}没有最好的想法.
-				HateNPC: 我...真的不喜欢{NPCName}...他们只是看起来不友好.
+				Content: With my house, I've got no complaint. The construction and decor are all quite great!
+				NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
+				FarFromHome: I like to concept my work outdoors, but I'll soon return to my familiar floors.
+
+				LoveSpace: So much room to plan and build! With this location I'm simply thrilled!
+				DislikeCrowded: There's starting to be quite a crowd. It'll be hard to draft blueprints if it gets too loud...
+				HateCrowded: With so many folks sharing a rug, I worry I might get squashed like a bug!
+
+				LikeBiome: "[LikeBiomeQuote]"
+				LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
+				LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
+				LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
+				DislikeBiome: The Jungle is where my old hive lay... I fear that here I cannot stay.
+				HateBiome: From being in {BiomeName}, I must abstain! One wrong step and I'll surely fall to the hivemind again!
+
+				LoveNPC: "{NPCName} understands aesthetic like no one else! With him I could build a commonwealth!"
+				LikeNPC: "{NPCName} loves nature's embrace, around them I can't help but feel safe."
+				LikeNPC_Princess: "{NPCName} has asked I build a castle! I must work quickly to not be a hassle!"
+				DislikeNPC: "{NPCName}'s guns leave many holes to patch. It's work, but I can't say me and him are a match."
+				HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
 			}
 
 			Physicist: {
-				Content: 事实上这个地方很不错, 但理论上可能不是.
-				NoHome: 你是这个世界的国王吗? 如果是, 我想为我的实验申请一个可用的家和实验室.
-				FarFromHome: 类似于电子, 我突然好像离家很远.
-				LoveSpace: 现在的科学规则是来看, 这个空间相当神奇.
-				DislikeCrowded: 这个城镇中的活体标本越来越多了.
-				HateCrowded: 我听说过你这个物种...你喜欢把别人挤在狭小的空间里, 给他们最低限度的生存空间, 但仍然生产你想要的东西. 我不喜欢你是如何证明这一点的.
-				LikeBiome: 这个地方, {BiomeName}, 挺好的. 我将把它添加到我的'地点目录'中, 花大量时间在其中.
-				LoveBiome: 住在{BiomeName}对我和我的无人机来说都很好, 让我想起了我的家乡.
-				DislikeBiome: 真的, 我不相信我面前的地方是真实的, 一定是你为外来游客搭建的海市蜃楼.
-				HateBiome: 你想让我经历地狱吗? 你的物种有什么毛病?
-				LoveNPC: 我非常崇拜{NPCName}, 他们的部分功能非常强大!
-				LikeNPC: "{NPCName}很不错. 虽然他们在科学实验中不是最好的, 我想他们太忙于不太重要的事情了."
-				DislikeNPC: 我对{NPCName}的看法不是很好. 至少他们没有穿愚蠢的衣服.
-				HateNPC: 额, {NPCName}? 我无法忍受他们, 他们必须停止假装自己是'异想天开和神奇的'.
+				Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
+				NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
+				FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
+
+				LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
+				DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
+				HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
+
+				LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
+				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
+				DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
+				HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
+
+				LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
+				LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
+				LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
+				DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
+				HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
 			}
 
 			Occultist: {
-				Content: 这个地方挺好的, 虽然我可以在地狱得到更好的互联网服务.
-				NoHome: 嘿? 你是想让我回到血巢中生活吗?
-				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 我会在午夜前到家, 我保证.
-				LoveSpace: 哦是的! 这个地方很不错, 我独有的房间... 还有一些人在附近练习魔法!
-				DislikeCrowded: 额- 这里有很多人. 如果我的咒语能催眠两个人以上就好了.
-				HateCrowded: 我不能忍受这个地方的拥挤度! 如果你的一举一动都能被全镇人听到, 那么保密就没有意义了.
-				LikeBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天, 你应该加入我."
-				LoveBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天, 你应该加入我."
-				DislikeBiome: 啊是的, {BiomeName}, 我最喜欢扔垃圾的地方.
-				HateBiome: 你知道的, 虽然这有点可笑, 但地狱比{BiomeName}更好.
-				LoveNPC: 嘿, 告诉{NPCName}我把巧克力煎饼做好了!- 呵呵- 他们是我最喜欢的人之一.
-				LikeNPC: "当我对他们施火咒时, {NPCName}他从不退缩. 他们一定有着难以置信的疼痛耐受力!" 
-				DislikeNPC: "{NPCName}很烦人, 至少没有一些我那些来自地狱的朋友那么坏."
-				HateNPC: 我字面意义上的把{NPCName}送到地狱然后回来了... 可惜的是, 咒语结束后会抹去被施咒者的记忆.
+				Content: 这个地方很舒适. 可能会用上更多折磨, 但乞丐是没有选择的, 你懂吗?
+				NoHome: Hmm. Hm hm hm. 我现在没有地方住.
+				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 看起来是这样的! 我会在黄昏前到家, 我保证.
+
+				LoveSpace: 这里有足够的空间练习我的咒语...哈哈哈...
+				DislikeCrowded: 我在转身的时候不能不小心诅咒别人! 我不介意那部分, 但是, 你知道的.
+				HateCrowded: 这里有太多的人了! 当每个角落都有人盯着我时, 我就没法偷偷摸摸做事了!
+
+				LikeBiome: "沙漠里的气温更加宜居一些, 我认为."
+				LoveBiome: "{BiomeName}是我最喜欢的练习仪式的地方之一! 总有一天, 你应该加入我."
+				DislikeBiome: Mm, 是的, 神圣之地. 我最喜欢的倾倒垃圾的地方之一.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Snow: 我-这-这太冷-冷了...无法施-施展咒语因为我的手-手指冻麻了....
+				HateBiome_Evils: 作为一位合格的好人, {BiomeName}这个地方不适合我! 绝对不适合!
+
+				LoveNPC: "{NPCName}...现在有人尊重并害怕一个好的诅咒. 哦, 我和他一定会有很多快乐的! 哈哈哈!"
+				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+				LikeNPC_Clothier: "{NPCName}从未在我的咒语前退缩过一次. 我喜欢这种韧性."
+				LikeNPC_Demolitionist: "{NPCName}用他的手艺制造如此多的混乱! 要是我能让他让我给他的炸弹附加魔法就好了..."
+				LikeNPC_Princess: "{NPCName}是如此的...容易上当! 我说的每一句话她都听得懂, 我爱它!"
+				DislikeNPC: "{NPCName}很烦人, 至少没有我的一些来自地狱的朋友那么糟糕."
+				HateNPC: "{NPCName}已经被诅咒了而她根本不在乎! 我该怎么办?!"
 			}
 
 			Exporter: {
-				Content: 这地方真不错, 伙计! 但总会有更好的, 呦吼吼!
-				NoHome: 如果没有我的船, 我该怎么储存我的赃物!? 肯定不是挖龙虾裂隙, 肯定不是!
-				FarFromHome: "{$Mods.Aequus.TownNPCMood.Exporter.NoHome}"
-				LoveSpace: 呀小伙子, 这地方真不错, 也许可以在这里开店以继续我的工作.
-				DislikeCrowded: 我会喜欢这个地方的, 这有很多人都想偷东西, 还有许多的眼睛在注视着你.
-				HateCrowded: 当有足够多的人挤在一个地方时, 就很难再偷东西了! 把那些伙计弄出去!
-				LikeBiome: "{BiomeName}不算太差, 伙计, 比我船好!"
-				LoveBiome: "{BiomeName}是最适合作为家的地方."
-				DislikeBiome: 哥儿们, {BiomeName}让我的壳都变干了!
-				HateBiome: "啊! {BiomeName}是个可怕的地方, 我宁愿待在我的船上!"
-				LoveNPC: "{NPCName}曾是我最喜爱的船员之-- 好吧, 室友, 我还没让他们加入我的团队."
-				LikeNPC: 你认识{NPCName}吗? 这个陆地机器人清除了我胸口上长的藤壶! 他们对动物的同情令我对他们很尊重. 
-				DislikeNPC: 我没法忍受{NPCName}! 我想把他踢出我的船-- 额, 屋子?
-				HateNPC:我不想住在{NPCName}附近! 这个旱鸭子举报了我所有的逃税行为!
+				Content: "[NeutralQuote]"
+				Content_Male: 我一切都好, 小伙子. 也许会更好, 也许...
+				Content_Female: 我一切都好, 小姑娘. 也许会更好, 也许...
+
+				NoHome: "[HomelessQuote]"
+				NoHome_Male: H我连一艘小船都没有, 小伙子. 我这只老龙虾能麻烦恁给我一座房子吗?
+				NoHome_Female: 我连一艘小船都没有, 小姑娘. 我这只老龙虾能麻烦恁给我一座房子吗?
+
+				FarFromHome: Hrmm, 我偶然偷到了我自己的房子吗? 哦, 它就在那. 愚蠢的老龙虾.
+
+				LoveSpace: 这里有足够的空间来存放我的合法物品. 哟吼吼!
+				DislikeCrowded: "[CrowdedQuote1]"
+				DislikeCrowded_Male: 不能说我是密集区域的粉丝吧, 我的小伙子. 肯定有人会怀疑我的行踪.
+				DislikeCrowded_Female: 不能说我是密集区域的粉丝吧, 我的小姑娘. 肯定有人会怀疑我的行踪.
+				HateCrowded: 每个角落里都有眼睛! 龙虾怎么能够忍受这种生活?
+
+				LikeBiome: "啊呃, {BiomeName}不算太糟, 伙计, 比我的船好多了!"
+				LoveBiome: 海洋是我的主场. 啊, 法律无法涉足的水域...
+				DislikeBiome: "[DislikeBiomeQuote]"
+				DislikeBiome_Desert: 不能说我喜欢沙漠吧, 伙计. 这儿的温度让我的壳都干透了!
+				DislikeBiome_Snow: 不能说我喜欢雪吧, 伙计. 这儿的温度让我的壳都干透了!
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_CrabCrevice: 无法忍受蟹伏岩隙...感觉那怪物随时会把我拖回深渊...
+				HateBiome_Evils: 在{BiomeName}中一点欺诈行为都没法做. 底舱污水的化身!
+
+				LoveNPC: "{NPCName}是我的老伙计! 我们在公海上一起经历了很多冒险."
+				LikeNPC: "{NPCName}并不害怕去甲板下方去获得他想要的东西, 我很欣赏这种做法!" 
+				LikeNPC_Princess: "{NPCName}在努力让我得到王国的赦免. 我被陷害了, 我告诉恁...被陷害了." 
+				DislikeNPC: "{NPCName}...如果我曾见过的话, 这有一个旱鸭子了."
+				HateNPC: 我不想在{NPCName}附近! 那个卑鄙的家伙举报了我所有的逃税行为!
 			}
 		}
 
@@ -2713,9 +2724,10 @@ Mods: {
 				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
 
 				Reply: {
-					NoHouses: 我在这张照片中没有看到任何房子, 试着把你想给我看的东西照下来.
-					ImproperlyColoredHouses: 不幸的是, 这座房子不符合赏金的着色标准, 请尝试粉刷建筑或使用符合生物群落颜色的物块.
-					Complete: 哦, 这个建筑与生物群落完美契合, 颜色的选择也很完美! 我应该把这个剪片挂在墙上——哦, 我有点太过了, 不是吗...
+					NoHouses: 对我来说这不像一座房子. 你把相框放在该放的地方了吗?
+					ImproperlyColoredHouses: 这是一座房子, 但看起来不太对劲. 请尝试刷漆或更改方块以匹配世界的景象.
+					NotEnoughFurniture: 如此平淡乏味! 请再放置一些你购买的家具.
+					Complete: 完美的房屋, 完全满足最后一点! 我可以把这个放在我的冰箱上!
 				}
 			}
 
@@ -2724,16 +2736,16 @@ Mods: {
 				Description: 建造一艘海盗船
 				Requirements:
 					'''
-					部分墙壁必须浸没在水下
+					墙壁必须浸没在水下
 					适合2位城镇NPC
 					15+家具
 					'''
 
 				Reply: {
-					NotEnoughRooms: 你忘了让这个建筑有合适的住房, 我不认为海盗船员会想在甲板上睡觉, 哦, 以及赏金上写着需要房间.
-					NotEnoughWater: 墙壁没有浸没在水中, 不幸的是, 我很难将其称呼为船.
-					NotEnoughFurniture: "{$Mods.Aequus.Bounty.Common.NotEnoughFurniture}"
-					Completed: 船造得不错! 它应该很快就能出海了! 嗯, 或许不是现在, 我认为那种船不能起航.
+					NotEnoughRooms: 海盗们没有足够的空间了! 它必须适合海上长途航行!
+					NotEnoughWater: 好的开始, 但这似乎还不够. 试着使船体沉得更深或者更宽.
+					NotEnoughFurniture: 一艘不错的船, 但缺乏家具让我感到沮丧. 我想要很多, 所以不要害怕!
+					Completed: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
 				}
 			}
 
@@ -2743,16 +2755,16 @@ Mods: {
 				Requirements:
 					'''
 					必须水平镜像
-					瀑布必须向下流过至少7个物块
+					瀑布必须向下流过至少7格方块
 					必须是由可制作的物块组成的 (例如: 灰砖)
 					'''
 
 				Reply: {
-					NoWaterfalls: 哦, 天哪, 我在这张照片里没有看到瀑布, 没有水就没有喷泉! 那它只是一尊精美的雕像.
-					ShortWaterfalls: 这个喷泉的瀑布实在太短了, 请确保水流向下流过了七格物块!
-					NoCraftedBlocks: 你就快要达成目标了, 但一定要记住使用可制作的物块! 也许可以堆放一些石头并把它们变成漂亮的砖块?
-					NotSymmetric: 你的喷泉非常棒! 但要确保物块完全对称!
-					Completed: 喷泉非常壮观! 作为一名建筑工人, 你有很大的潜力, 我能从你的身上看到它.
+					NoWaterfalls: 我并没有看到瀑布! 没有水流, 这只是一座有点破旧的雕像!
+					ShortWaterfalls: 瀑布是如此的小且时家用的. 拉高它, 让重力创造出更宏伟的东西!
+					NoCraftedBlocks: 接近了, 但我要求的是可制作的物块. 你的工具箱里有砖块吗?
+					NotSymmetric: 越来越近了, 但它必须是镜像的! 每侧都应是相同且匹配的!
+					Completed: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满!
 				}
 			}
 		}
