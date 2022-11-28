@@ -209,8 +209,7 @@ Mods: {
 			HailstormStaff: 雹暴法杖
 
 			# Soul Tapers
-			PrimeCandle: 暴政之归
-			SkeletronCandle: 咒灭
+			Malediction: 咒灭
 
 			# Soul Candles
 			DragonsBreath: 龙之绝息
@@ -909,12 +908,7 @@ Mods: {
 				'''
 			
 			# Soul Tapers
-			PrimeCandle: 
-				'''
-				为幽魂仆从装备机械骷髅王的手臂
-				消耗血泪石
-				'''
-			SkeletronCandle:  为幽魂仆从装备骷髅王的手臂
+			Malediction: 双击{0}以为幽魂仆从装备骷髅王的手臂
 
 			DragonsBreath: 召唤一条幻影龙为你而战
 			CrimsonCandle: 召唤一只血爬虫为你而战
@@ -1594,7 +1588,7 @@ Mods: {
 			EmpoweredWrath: 伤害增加20%
 
 			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
-			FlashwayNecklaceCooldown: 无法使用晖耀护盾
+			FlashwayNecklaceCooldown: 无法使用晖耀项链
 
 			AstralCookieBuff: 大幅度提升魔法属性, 小幅度提升其他属性
 			NeutronYogurtBuff: 大幅度增加重力
@@ -1809,7 +1803,7 @@ Mods: {
 				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
 				当你没有任何幽魂仆从时你所受到的伤害降低
 				'''
-			Gravetender: 当光标悬浮在幽魂仆从上方时按下<{Keybind}>会强化它们
+			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
 		}
 
 		WhiteFlag: {
@@ -2146,7 +2140,7 @@ Mods: {
 			Occultist: {
 				GhostlyGrave: 我在墓地里闲逛时, 察觉到这墓碑似乎想拥有灵魂! 也许它可以帮助你自己的...死亡境地?
 				OccultistCandle: 这是我最喜欢的仪式组成部分之一! 火焰燃烧得又好又热.
-				SkeletronCandle: 你觉得你的幽魂还没被诅咒吗 为什么不把地牢守卫的尸骨挖出来贴在它们上面?
+				Malediction: 你觉得你的幽魂还没被诅咒吗 为什么不把地牢守卫的尸骨挖出来贴在它们上面?
 				CrownOfBlood: 这个小饰品会增强你最心爱的饰品. 代价? 你会知道的...
 				CrownOfDarkness: 在遗境最黑暗的深渊中锻造, 这个小饰品的力量会在阳光下枯萎.
 				CrownOfTheGrounded: 这件小饰品由地壳的力量锻造而成, 如果你在空中, 那么它的力量会减弱.
