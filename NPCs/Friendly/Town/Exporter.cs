@@ -231,7 +231,7 @@ namespace Aequus.NPCs.Friendly.Town
             chat.Add("Basic.0");
             chat.Add("Basic.1");
             chat.Add("Basic.2");
-            chat.Add($"Basic.{gender}");
+            chat.Add($"Basic.{gender}", new { PlayerName = Main.LocalPlayer.name, });
 
             if (!Main.dayTime)
             {

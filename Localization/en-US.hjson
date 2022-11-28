@@ -209,8 +209,7 @@ Mods: {
 			HailstormStaff: Hailstorm Staff
 
 			# Soul Tapers
-			PrimeCandle: Tyranny's Resurgance
-			SkeletronCandle: Malediction
+			Malediction: Malediction
 
 			# Soul Candles
 			DragonsBreath: Dragon's Last Breath
@@ -909,12 +908,7 @@ Mods: {
 				'''
 
 			# Soul Tapers
-			PrimeCandle: 
-				'''
-				Applies Skeletron Prime's arms to a ghost minion
-				Consumes bloody tearstones
-				'''
-			SkeletronCandle: Applies Skeletron's arms to a ghost minion
+			Malediction: Double tap {0} to apply Skeletron's arms to a ghost minion
 
 			DragonsBreath: Summon a Phantasmal Dragon to fight for you
 			CrimsonCandle: Summons a Blood Crawler to fight for you
@@ -1594,7 +1588,7 @@ Mods: {
 			EmpoweredWrath: Increases damage by 20%
 
 			FoolsGoldRingBuff: Improved stats from collecting coins
-			FlashwayNecklaceCooldown: Cannot use flash shield
+			FlashwayNecklaceCooldown: Cannot use the flashway necklace
 
 			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
 			NeutronYogurtBuff: Greatly increased gravity
@@ -1809,7 +1803,7 @@ Mods: {
 				Instantly kill and convert powerful enemies to ghost minions when in need
 				Take reduced damage when you have no ghost minions active
 				'''
-			Gravetender: Press <{Keybind}> while hovering over a ghost minion to empower them
+			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}
 
 		WhiteFlag: {
@@ -2146,7 +2140,7 @@ Mods: {
 			Occultist: {
 				GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
 				OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
-				SkeletronCandle: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+				Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
 				CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
 				CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
 				CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.

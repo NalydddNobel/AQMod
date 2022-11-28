@@ -112,7 +112,8 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.SkyBiome);
+                .AddMainSpawn(BestiaryBuilder.SkyBiome)
+                .AddSpawn(BestiaryBuilder.WindyDayEvent);
         }
 
         public override void SetChatButtons(ref string button, ref string button2)

@@ -1025,8 +1025,6 @@ namespace Aequus
         }
         public static string ReplaceText(ref string text, string oldText, string newText)
         {
-            Main.NewText(oldText);
-            Main.NewText(newText);
             text = text.Replace(oldText, newText);
             return text;
         }

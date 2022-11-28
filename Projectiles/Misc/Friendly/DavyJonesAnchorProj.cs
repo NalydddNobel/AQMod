@@ -59,6 +59,11 @@ namespace Aequus.Projectiles.Misc.Friendly
             {
                 var velocityAdd = Projectile.DirectionTo(npcCenter) * ((distance - minDistance / 2f) / minDistance) * 0.4f;
                 Projectile.velocity += velocityAdd;
+                if (Projectile.velocity.Length() > 15f)
+                {
+                    Projectile.velocity.Normalize();
+                    Projectile.velocity *= 15f;
+                }
                 Main.npc[AttatchedNPC].velocity -= velocityAdd * Main.npc[AttatchedNPC].knockBackResist * 0.75f;
                 if ((int)Projectile.ai[1] != 1 || Projectile.localAI[0] > 20f)
                 {

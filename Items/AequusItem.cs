@@ -186,7 +186,7 @@ namespace Aequus.Items
                 var scrap = SetDefaults<ItemScrap>();
                 scrap.ModItem<ItemScrap>().Rarity = item.OriginalRarity;
                 scrap.ModItem<ItemScrap>().UpdateRarity();
-                Main.LocalPlayer.QuickSpawnClonedItemDirect(item.GetSource_FromThis("Recipe Scrap"), scrap, 1);
+                Main.LocalPlayer.QuickSpawnClonedItemDirect(item.GetSource_FromThis("Aequus: Recipe Scrap"), scrap, 1);
             }
         }
 

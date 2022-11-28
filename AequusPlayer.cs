@@ -14,11 +14,10 @@ using Aequus.Graphics.PlayerLayers;
 using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
-using Aequus.Items.Armor.Gravetender;
-using Aequus.Items.Armor.Passive;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools.Misc;
@@ -33,8 +32,8 @@ using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
 using Aequus.Tiles.PhysicistBlocks;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,9 +41,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Events;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameInput;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -64,7 +61,6 @@ namespace Aequus
         public static int PlayerContext;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
-        public static ModKeybind KeybindSetbonusAlt { get; private set; }
 
         public static int Team;
         public float? CustomDrawShadow;
@@ -201,9 +197,10 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public Item accGhostSupport;
+
         public float accPreciseCrits;
         public Item accDavyJonesAnchor;
-        public int davyJonesAnchorStack;
 
         public int accLittleInferno;
 
@@ -234,6 +231,9 @@ namespace Aequus
         public int hyperCrystalCooldownMelee;
         public int hyperCrystalCooldownMax;
 
+        public int selectGhostNPC;
+
+        public Item setbonusRef;
         public Item setSeraphim;
 
         public Item setGravetender;
@@ -361,7 +361,6 @@ namespace Aequus
             LoadHooks();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
-            KeybindSetbonusAlt = KeybindLoader.RegisterKeybind(Mod, "Armor Setbonus Alt", Keys.V);
         }
 
         public override void Unload()
@@ -559,9 +558,11 @@ namespace Aequus
         {
             stackingHat = 0;
 
+            setbonusRef = null;
             setSeraphim = null;
             setGravetender = null;
 
+            accGhostSupport = null;
             ghostChains = 0;
             ghostHealthDR = 0f;
             ghostShadowDash = 0;
@@ -577,7 +578,6 @@ namespace Aequus
             accPreciseCrits = 0f;
             accArmFloaties = 0;
             accDavyJonesAnchor = null;
-            davyJonesAnchorStack = 0;
             accWarHorn = 0;
             accLittleInferno = 0;
             accRitualSkull = false;
@@ -714,14 +714,15 @@ namespace Aequus
 
         public void CheckGravityBlocks()
         {
-            bool swapGravity = gravityTile != 0;
+            bool doEffects = gravityTile == 0;
             gravityTile = AequusTile.GetGravityTileStatus(Player.Center);
-            if (swapGravity)
+            if (gravityTile != 0)
             {
-                int gravity = gravityTile < 0 ? -1 : 1;
-                if (Player.gravDir != gravity)
+                Player.gravDir = gravityTile < 0 ? -1f : 1f;
+                if (doEffects)
                 {
-                    Player.gravDir = gravity;
+                    Player.controlJump = false;
+                    Player.velocity.Y = MathHelper.Clamp(Player.velocity.Y, -2f, 2f);
                     SoundEngine.PlaySound(SoundID.Item8, Player.position);
                 }
             }
@@ -793,6 +794,7 @@ namespace Aequus
             cursorDye = -1;
             cursorDyeOverride = 0;
 
+            selectGhostNPC = -1;
             if (gravityTile != 0)
             {
                 Player.gravControl = false;
@@ -855,17 +857,32 @@ namespace Aequus
             }
         }
 
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (setGravetender != null)
-            {
-                GravetenderHood.ActivateGravetenderWisp(Player, this);
-            }
-        }
-
         public override void PostUpdateEquips()
         {
             CheckGravityBlocks();
+
+            if (selectGhostNPC == -2)
+            {
+                int chosenNPC = -1;
+                float distance = 128f;
+
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].IsZombieAndInteractible(Player.whoAmI) && gravetenderGhost != i)
+                    {
+                        float d = Main.npc[i].Distance(Main.MouseWorld);
+                        if (d < distance)
+                        {
+                            chosenNPC = i;
+                            distance = d;
+                        }
+                    }
+                }
+                if (chosenNPC != -1)
+                {
+                    selectGhostNPC = chosenNPC;
+                }
+            }
 
             if (whitePhial)
             {
@@ -1033,7 +1050,7 @@ namespace Aequus
                 {
                     Player.AddBuff(setGravetender.buffType, 2, quiet: true);
                 }
-                if (gravetenderGhost > -1 && (!Main.npc[gravetenderGhost].active || !Main.npc[gravetenderGhost].friendly || Main.npc[gravetenderGhost].townNPC || 
+                if (gravetenderGhost > -1 && (!Main.npc[gravetenderGhost].active || !Main.npc[gravetenderGhost].friendly || Main.npc[gravetenderGhost].townNPC ||
                     !Main.npc[gravetenderGhost].TryGetGlobalNPC<NecromancyNPC>(out var zombie) || !zombie.isZombie || zombie.zombieOwner != Player.whoAmI))
                 {
                     gravetenderGhost = -1;
@@ -1564,7 +1581,7 @@ namespace Aequus
                     int buff = Main.rand.Next(BlackPhial.DebuffsAfflicted);
                     if (!target.buffImmune[buff])
                     {
-                        cdBlackPhial += 30;
+                        cdBlackPhial += 30 / accBlackPhial;
                         target.AddBuff(buff, 150);
                     }
                 }
@@ -1575,7 +1592,7 @@ namespace Aequus
             }
             if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
             {
-                target.AddBuff(ModContent.BuffType<Weakness>(), 360);
+                target.AddBuff(ModContent.BuffType<Weakness>(), 360 * accBoneRing);
             }
         }
 
@@ -2004,6 +2021,7 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.KeyDoubleTap += Player_KeyDoubleTap;
             On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
             On.Terraria.Player.TryPainting += Player_TryPainting;
             On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
@@ -2016,6 +2034,29 @@ namespace Aequus
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+        }
+
+        private static void Player_KeyDoubleTap(On.Terraria.Player.orig_KeyDoubleTap orig, Player player, int keyDir)
+        {
+            orig(player, keyDir);
+            if ((Main.ReversedUpDownArmorSetBonuses ? 1 : 0) != keyDir)
+            {
+                return;
+            }
+            var aequus = player.Aequus();
+            if (aequus.setbonusRef?.ModItem is ItemHooks.ISetbonusDoubleTap doubleTap)
+            {
+                doubleTap.OnDoubleTap(player, aequus, keyDir);
+            }
+            if (aequus.selectGhostNPC > 0 && aequus.accGhostSupport?.ModItem is INecromancySupportAcc necromancySupport 
+                && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer))
+            {
+                var zombie = Main.npc[aequus.selectGhostNPC].GetGlobalNPC<NecromancyNPC>();
+                if (!zombie.hasSupportEffects)
+                {
+                    necromancySupport.ApplySupportEffects(player, aequus, Main.npc[aequus.selectGhostNPC], zombie);
+                }
+            }
         }
 
         private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)

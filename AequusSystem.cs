@@ -107,7 +107,6 @@ namespace Aequus
                 AdvancedRulerInterface.Instance.Holding = false;
                 OmniPaintUI.Instance.Enabled = false;
                 ChestLensInterface.Enabled = false;
-                NecromancyInterface.SelectedGhost = -1;
             }
             if (StariteBottleTile.blessedPlayerDelay > 0)
                 StariteBottleTile.blessedPlayerDelay--;

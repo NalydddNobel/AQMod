@@ -310,9 +310,9 @@ namespace Aequus.Tiles.Misc
 
         public static Item GetUsableDemonSiegeItem(Player player)
         {
-            if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.HeldItem.type))
+            if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.HeldItemFixed().type))
             {
-                return player.HeldItem;
+                return player.HeldItemFixed();
             }
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
             {

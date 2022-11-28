@@ -164,7 +164,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
                                 if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Normalize(NPC.targetRect.Center.ToVector2() - NPC.Center) * 6f,
-                                        ModContent.ProjectileType<SoldierCrabProj>(), NPC.FixedDamage(), 1f, Main.myPlayer);
+                                        ModContent.ProjectileType<SoldierCrabProj>(), NPC.FixedDamage() / 3, 1f, Main.myPlayer);
                                 }
                             }
                             if (NPC.ai[1] > 35f)

@@ -61,6 +61,7 @@ namespace Aequus.NPCs.Friendly.Town
             });
 
             NPC.Happiness
+                .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<UndergroundBiome>(AffectionLevel.Like)
                 .SetBiomeAffection<JungleBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Like)

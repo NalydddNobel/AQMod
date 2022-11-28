@@ -11,7 +11,7 @@ namespace Aequus.Content.NPCHappiness
             On.Terraria.GameContent.ShopHelper.GetShoppingSettings += ShopHelper_GetShoppingSettings;
         }
 
-        private static ShoppingSettings ShopHelper_GetShoppingSettings(On.Terraria.GameContent.ShopHelper.orig_GetShoppingSettings orig, ShopHelper self, Terraria.Player player, Terraria.NPC npc)
+        private static ShoppingSettings ShopHelper_GetShoppingSettings(On.Terraria.GameContent.ShopHelper.orig_GetShoppingSettings orig, ShopHelper self, Player player, NPC npc)
         {
             var val = orig(self, player, npc);
             if (npc.ModNPC is IModifyShoppingSettings modifyMood)

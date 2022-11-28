@@ -10,7 +10,6 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Summon.Necro;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
@@ -103,7 +102,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateEntry(database, bestiaryEntry)
-                .AddMainSpawn(BestiaryBuilder.Underground);
+                .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
@@ -112,7 +111,7 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
             if (NPC.downedBoss3)
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletronCandle>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());

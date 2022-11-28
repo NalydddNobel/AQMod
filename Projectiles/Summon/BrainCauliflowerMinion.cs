@@ -116,7 +116,7 @@ namespace Aequus.Projectiles.Summon
                         if (Projectile.ai[1] < -80f)
                         {
                             Projectile.ai[1] = Main.rand.Next(10);
-                            var velocity = Projectile.DirectionTo(Main.npc[target].Center) * 10f;
+                            var velocity = Projectile.DirectionTo(Main.npc[target].Center) * 6.66f;
                             Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, velocity,
                                 ModContent.ProjectileType<BrainCauliflowerBlast>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                             Projectile.velocity -= velocity;

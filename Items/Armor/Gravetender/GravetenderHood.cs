@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Projectiles.Summon.Misc;
-using Aequus.UI;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -9,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Armor.Gravetender
 {
     [AutoloadEquip(EquipType.Head)]
-    public class GravetenderHood : ModItem
+    public class GravetenderHood : ModItem, ItemHooks.ISetbonusDoubleTap
     {
         public override void SetStaticDefaults()
         {
@@ -34,8 +33,11 @@ namespace Aequus.Items.Armor.Gravetender
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AequusText.GetTextWith("ArmorSetBonus.Gravetender", new { Keybind = AequusText.GetKeybindKeys(AequusPlayer.KeybindSetbonusAlt), });
-            player.Aequus().setGravetender = Item;
+            player.setBonus = AequusText.GetText("ArmorSetBonus.Gravetender", AequusText.ArmorSetBonusKey);
+            var aequus = player.Aequus();
+            aequus.setbonusRef = Item;
+            aequus.selectGhostNPC = -2;
+            aequus.setGravetender = Item;
         }
 
         public override void UpdateEquip(Player player)
@@ -59,31 +61,12 @@ namespace Aequus.Items.Armor.Gravetender
                 .TryRegisterBefore(ItemID.GravediggerShovel);
         }
 
-        public static void ActivateGravetenderWisp(Player player, AequusPlayer aequus)
+        public void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir)
         {
-            int chosenNPC = -1;
-            float distance = 128f;
-
-            for (int i = 0; i < Main.maxNPCs; i++)
+            if (aequus.selectGhostNPC > -1 && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer))
             {
-                if (Main.npc[i].IsZombieAndInteractible(player.whoAmI) && aequus.gravetenderGhost != i)
-                {
-                    float d = Main.npc[i].Distance(Main.MouseWorld);
-                    if (d < distance)
-                    {
-                        chosenNPC = i;
-                        distance = d;
-                    }
-                }
-            }
-            if (chosenNPC != -1)
-            {
-                NecromancyInterface.SelectedGhost = chosenNPC;
-                if (AequusPlayer.KeybindSetbonusAlt.JustPressed)
-                {
-                    aequus.gravetenderGhost = chosenNPC;
-                    SoundEngine.PlaySound(SoundID.Item4, player.Center);
-                }
+                aequus.gravetenderGhost = aequus.selectGhostNPC;
+                SoundEngine.PlaySound(SoundID.Item4, player.Center);
             }
         }
     }

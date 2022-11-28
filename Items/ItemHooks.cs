@@ -19,6 +19,11 @@ namespace Aequus.Items
         {
         }
 
+        public interface ISetbonusDoubleTap
+        {
+            void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir);
+        }
+
         public interface IPreDrawPlayer
         {
             void PreDrawPlayer(Player player, AequusPlayer aequus, ref PlayerDrawSet drawInfo);

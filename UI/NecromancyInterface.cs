@@ -8,8 +8,6 @@ namespace Aequus.UI
 {
     public class NecromancyInterface : BaseUserInterface
     {
-        public static int SelectedGhost;
-
         public override string Layer => AequusUI.InterfaceLayers.EntityHealthBars_16;
 
         public override bool Draw(SpriteBatch spriteBatch)
@@ -21,11 +19,12 @@ namespace Aequus.UI
                     n.DrawHealthbar(Main.npc[i], spriteBatch, Main.screenPosition);
                 }
             }
-            if (SelectedGhost > -1 && Main.npc[SelectedGhost].IsZombieAndInteractible(Main.myPlayer))
+            var aequus = Main.LocalPlayer.Aequus();
+            if (aequus.selectGhostNPC > -1 && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer))
             {
                 var texture = ModContent.Request<Texture2D>("Aequus/Assets/UI/NecromancySelectionCursor").Value;
                 var frame = texture.Frame(verticalFrames: 8, frameY: (int)(Main.GameUpdateCount / 6 % 8));
-                spriteBatch.Draw(texture, Main.npc[SelectedGhost].Center - Main.screenPosition, frame, new Color(255, 255, 255, 128) * 0.65f, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, Main.npc[aequus.selectGhostNPC].Center - Main.screenPosition, frame, new Color(255, 255, 255, 128) * 0.65f, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }
             return true;
         }

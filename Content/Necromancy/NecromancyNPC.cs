@@ -65,6 +65,7 @@ namespace Aequus.Content.Necromancy
         public int shadowDashTimer;
         public int ghostChainsNPC;
         public int ghostChainsTime;
+        public bool hasSupportEffects;
 
         public int netUpdateTimer;
 

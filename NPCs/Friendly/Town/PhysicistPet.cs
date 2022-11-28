@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Consumables;
+﻿using Aequus.Common;
+using Aequus.Items.Consumables;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.UI.RenameItemUI;
 using Microsoft.Xna.Framework;
@@ -9,6 +10,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -16,7 +18,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs.Friendly.Town
 {
-    public class PhysicistPet : ModNPC
+    public class PhysicistPet : ModNPC, IAddRecipes
     {
         public override void SetStaticDefaults()
         {
@@ -26,6 +28,11 @@ namespace Aequus.NPCs.Friendly.Town
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
 
             NameTag.CanBeRenamedOverride.Add(Type, true);
+        }
+
+        public void AddRecipes(Aequus aequus)
+        {
+            BestiaryBuilder.MoveBestiaryEntry(this, ContentSamples.NpcBestiarySortingId[ModContent.NPCType<Physicist>()] - 1);
         }
 
         public override void SetDefaults()
@@ -43,6 +50,12 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 1f;
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            this.CreateEntry(database, bestiaryEntry)
+                .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -123,6 +136,8 @@ namespace Aequus.NPCs.Friendly.Town
                 switch (nameTagNPC.NameTag.ToLower())
                 {
                     case "little zumbo":
+                    case "littlezumbo":
+                    case "pooper":
                         SoundEngine.PlaySound(SoundID.Item16);
                         return;
                 }
@@ -266,7 +281,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void SendExtraAI(BinaryWriter writer)
         {
-            writer.Write(NPC.GivenName ?? "No Name");
+            writer.Write(NPC.GivenName ?? "Pooper");
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)

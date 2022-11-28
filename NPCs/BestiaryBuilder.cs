@@ -1,4 +1,5 @@
 ﻿using Terraria.GameContent.Bestiary;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs
@@ -87,6 +88,42 @@ namespace Aequus.NPCs
         {
             modNPC.SpawnModBiomes = new int[] { ModContent.GetInstance<T>().Type };
             return modNPC.SpawnModBiomes;
+        }
+
+        public static void MoveBestiaryEntry(ModNPC modNPC, int sortingID)
+        {
+            int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
+            if (oldEntryID == sortingID)
+            {
+                return;
+            }
+            if (oldEntryID < sortingID)
+            {
+                for (int i = oldEntryID + 1; i <= sortingID; i++)
+                {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++)
+                    {
+                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i)
+                        {
+                            ContentSamples.NpcBestiarySortingId[k] = i - 1;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = oldEntryID - 1; i >= sortingID; i--)
+                {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++)
+                    {
+                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i)
+                        {
+                            ContentSamples.NpcBestiarySortingId[k] = i + 1;
+                        }
+                    }
+                }
+            }
+            ContentSamples.NpcBestiarySortingId[modNPC.Type] = sortingID;
         }
     }
 }
