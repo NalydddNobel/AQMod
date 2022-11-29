@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
+    [GlowMask]
     public class Osiris : ScepterBase
     {
         public override void SetDefaults()

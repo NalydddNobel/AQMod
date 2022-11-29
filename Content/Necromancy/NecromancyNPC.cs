@@ -98,7 +98,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie))
                 {
-                    if (zombie.isZombie)
+                    if (zombie.isZombie == !Zombie.IsZombieRunning)
                     {
                         npcs.Add(Main.npc[i]);
                         Main.npc[i].active = false;
@@ -128,7 +128,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie))
                 {
-                    if (zombie.isZombie)
+                    if (zombie.isZombie == !Zombie.IsZombieRunning)
                     {
                         npcs.Add(Main.npc[i]);
                         Main.npc[i].active = false;
@@ -156,7 +156,7 @@ namespace Aequus.Content.Necromancy
             var npcs = new List<NPC>();
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
+                if (Main.npc[i].active && Main.npc[i].type == Type && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie == !Zombie.IsZombieRunning)
                 {
                     npcs.Add(Main.npc[i]);
                     Main.npc[i].active = false;

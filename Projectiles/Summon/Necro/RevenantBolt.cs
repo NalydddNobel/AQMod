@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Graphics;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,7 +33,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
             Projectile.alpha = 250;
-            Projectile.scale = 0.6f;
+            Projectile.scale = 1.1f;
             Projectile.DamageType = NecromancyDamageClass.Instance;
         }
 
@@ -42,6 +44,16 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void AI()
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                var center = Projectile.Center;
+                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
+                {
+                    if (Main.rand.NextBool(3))
+                        EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 6f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(110, 160, 255, 100), Color.Blue.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+            }
+
             if (Projectile.alpha > 0)
             {
                 Projectile.alpha -= 10;
@@ -51,11 +63,11 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
             }
 
-            int target = Projectile.FindTargetWithLineOfSight(600f);
+            int target = Projectile.FindTargetWithLineOfSight(400f);
             if (target != -1)
             {
                 float speed = Projectile.velocity.Length();
-                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.05f)) * speed;
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.125f)) * speed;
             }
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
@@ -75,7 +87,6 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             primColor = new Color(40, 100, 255, 100) * Projectile.Opacity;
             primScale = 6f;
-            DrawTrail(timeMultiplier: -2.75f);
 
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = Projectile.Frame();

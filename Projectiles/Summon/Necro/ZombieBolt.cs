@@ -1,5 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,7 +31,6 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.aiStyle = -1;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
-            Projectile.scale = 0.5f;
             Projectile.DamageType = NecromancyDamageClass.Instance;
         }
 
@@ -45,15 +46,16 @@ namespace Aequus.Projectiles.Summon.Necro
                 var center = Projectile.Center;
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
                 {
-                    Dust.NewDustPerfect(center + v * Projectile.width, ModContent.DustType<MonoDust>(), Projectile.velocity * -0.1f + Main.rand.NextVector2Unit() * 0.2f, Math.Min(Projectile.alpha * 4, 255), new Color(1, 20, 100, 100), 1.5f);
+                    if (Main.rand.NextBool(3))
+                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 4f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(140, 130, 255, 100), Color.Blue.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
                 }
             }
 
-            int target = Projectile.FindTargetWithLineOfSight(600f);
+            int target = Projectile.FindTargetWithLineOfSight(300f);
             if (target != -1)
             {
                 float speed = Projectile.velocity.Length();
-                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.02f)) * speed;
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.npc[target].Center) * speed, 0.075f)) * speed;
             }
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
@@ -67,6 +69,17 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             NecromancyDebuff.ApplyDebuff<NecromancyDebuff>(target, 600, Projectile.owner);
+        }
+
+        public override void Kill(int timeLeft)
+        {
+            var center = Projectile.Center;
+            for (int i = 0; i < 12; i++)
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(222, 210, 255, 150));
+                d.velocity *= 0.2f;
+                d.velocity += (d.position - center) / 8f;
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
+    [GlowMask]
     public class ZombieScepter : ScepterBase
     {
         public override void SetDefaults()
@@ -12,7 +13,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Scepters
             Item.DefaultToNecromancy(30);
             Item.SetWeaponValues(10, 1f, 0);
             Item.shoot = ModContent.ProjectileType<ZombieBolt>();
-            Item.shootSpeed = 6f;
+            Item.shootSpeed = 9f;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
             Item.mana = 20;

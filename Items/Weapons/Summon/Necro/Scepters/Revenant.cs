@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
+    [GlowMask]
     public class Revenant : ScepterBase
     {
         public override void SetStaticDefaults()
@@ -17,7 +18,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Scepters
             Item.DefaultToNecromancy(25);
             Item.SetWeaponValues(40, 1f, 0);
             Item.shoot = ModContent.ProjectileType<RevenantBolt>();
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 11.5f;
             Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.DungeonValue;
             Item.mana = 15;

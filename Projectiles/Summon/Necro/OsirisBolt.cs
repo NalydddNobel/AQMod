@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Graphics;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,7 +34,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.localNPCHitCooldown = 6;
             Projectile.alpha = 250;
             Projectile.extraUpdates = 1;
-            Projectile.scale = 0.8f;
+            Projectile.scale = 1.33f;
             Projectile.DamageType = NecromancyDamageClass.Instance;
         }
 
@@ -43,6 +45,16 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void AI()
         {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                var center = Projectile.Center;
+                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
+                {
+                    if (Main.rand.NextBool(3))
+                        EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 8f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(255, 160, 100, 100), Color.OrangeRed.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+            }
+
             if (Projectile.alpha > 0)
             {
                 Projectile.alpha -= 13;
@@ -52,7 +64,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
             }
 
-            int target = Projectile.FindTargetWithLineOfSight(600f);
+            int target = Projectile.FindTargetWithLineOfSight(500f);
             if (target != -1)
             {
                 float speed = Projectile.velocity.Length();

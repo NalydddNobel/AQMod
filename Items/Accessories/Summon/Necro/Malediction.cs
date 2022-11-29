@@ -3,6 +3,8 @@ using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +15,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 5));
         }
 
         public override void SetDefaults()
@@ -45,6 +48,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
 
         public void ApplySupportEffects(Player player, AequusPlayer aequus, NPC npc, NecromancyNPC zombie)
         {
+            SoundEngine.PlaySound(SoundID.Item4, player.Center);
             player.CheckMana(Item.mana, pay: true);
             zombie.hasSupportEffects = true;
             for (int i = -1; i <= 1; i += 2)

@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Necro.Scepters
 {
+    [GlowMask]
     public class FriendshipMagick : ScepterBase
     {
         public override void SetDefaults()
