@@ -718,7 +718,7 @@ Mods: {
 				'''
 				Automatically use a sentry staff while you are in combat
 				Increases your max number of sentries by 1
-				Sentry attacks have a small chance to inflict frostbite
+				Sentry attacks may inflict frostbite
 				'''
 			SentrySquid:
 				'''

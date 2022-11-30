@@ -160,7 +160,6 @@ namespace Aequus.Content
 
         public static void SharkToothNecklace_OnShoot(OnShootInfo info)
         {
-            info.Projectile.ArmorPenetration += 5;
         }
         public static void BoneGlove_OnShoot(OnShootInfo info)
         {

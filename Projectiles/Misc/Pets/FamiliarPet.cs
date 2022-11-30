@@ -109,6 +109,7 @@ namespace Aequus.Projectiles.Misc.Pets
             dummyPlayer.Aequus().DrawScale = Projectile.scale;
             dummyPlayer.Aequus().DrawForceDye = Main.CurrentDrawnEntityShader;
             Main.spriteBatch.End();
+            dummyPlayer.Bottom = Projectile.Bottom;
             Main.PlayerRenderer.DrawPlayers(Main.Camera, new Player[] { dummyPlayer });
             batchData.Begin(Main.spriteBatch);
             return false;

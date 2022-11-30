@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -40,8 +39,9 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-
-            SpawnPhysicalTestDummies(NPCID.BlueArmoredBones);
+            Main.NewText(Main._drawInterfaceGameTime.ElapsedGameTime);
+            Main.NewText(Main.GameUpdateCount);
+            Main.NewText(Main.GlobalTimeWrappedHourly);
             return true;
         }
 

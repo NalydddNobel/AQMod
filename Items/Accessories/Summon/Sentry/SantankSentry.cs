@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.accessory = true;
             Item.rare = ItemRarityID.Yellow;
             Item.canBePlacedInVanityRegardlessOfConditions = true;
-            Item.value = Item.sellPrice(gold: 9);
+            Item.value = Item.buyPrice(gold: 10);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

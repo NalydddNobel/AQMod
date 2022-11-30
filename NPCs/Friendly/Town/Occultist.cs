@@ -10,7 +10,9 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
+using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Items.Weapons.Summon.Necro.Scepters;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
@@ -20,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
@@ -105,6 +108,55 @@ namespace Aequus.NPCs.Friendly.Town
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
+        public void AddDungeonItems(MoonPhase moonPhase, Item[] inv, ref int nextSlot)
+        {
+            switch (moonPhase)
+            {
+                case MoonPhase.Full:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.ShadowKey);
+                        inv[nextSlot++].SetDefaults<PandorasBox>();
+                    }
+                    break;
+                case MoonPhase.ThreeQuartersAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.Handgun);
+                    }
+                    break;
+                case MoonPhase.HalfAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.MagicMissile);
+                        inv[nextSlot++].SetDefaults<Revenant>();
+                    }
+                    break;
+                case MoonPhase.QuarterAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.CobaltShield);
+                    }
+                    break;
+                case MoonPhase.Empty:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.BlueMoon);
+                    }
+                    break;
+                case MoonPhase.QuarterAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.Muramasa);
+                        inv[nextSlot++].SetDefaults<DungeonCandle>();
+                    }
+                    break;
+                case MoonPhase.HalfAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.Valor);
+                    }
+                    break;
+                case MoonPhase.ThreeQuartersAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults<Valari>();
+                    }
+                    break;
+            }
+        }
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
@@ -112,12 +164,12 @@ namespace Aequus.NPCs.Friendly.Town
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
+                AddDungeonItems(Main.GetMoonPhase(), shop.item, ref nextSlot);
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfTheGrounded>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
-            shop.item[nextSlot++].SetDefaults(ItemID.ShadowKey);
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());
             if (!Main.dayTime)
             {

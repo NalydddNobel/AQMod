@@ -6,9 +6,13 @@ namespace Aequus.Common.Players
     {
         public override void PostUpdateEquips()
         {
-            if (Player.boneGloveItem != null)
+            if (Player.boneGloveItem != null && Player.boneGloveTimer > 1)
             {
                 Player.boneGloveTimer -= Player.boneGloveItem.Aequus().accStacks - 1;
+                if (Player.boneGloveTimer < 1)
+                {
+                    Player.boneGloveTimer = 1;
+                }
             }
         }
     }

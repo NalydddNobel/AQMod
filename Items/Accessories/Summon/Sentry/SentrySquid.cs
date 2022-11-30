@@ -95,7 +95,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         }
                         if (d < Range)
                         {
-                            d = Math.Min(d + Main.rand.Next(-150, 100), Range);
+                            d = Math.Min(d + Main.rand.Next(-(int)Range/ 3, (int)Range / 3), Range);
                         }
                         if (d < closest)
                         {
@@ -219,6 +219,10 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 {
                     if (Main.projectile[i].active && Main.projectile[i].owner == player.whoAmI && Main.projectile[i].WipableTurret)
                     {
+                        if (Collision.CanHitLine(Main.projectile[i].position, Main.projectile[i].width, Main.projectile[i].height, Main.npc[aequus.closestEnemy].position, Main.npc[aequus.closestEnemy].width, Main.npc[aequus.closestEnemy].height))
+                        {
+                            continue;
+                        }
                         if (Main.projectile[i].timeLeft < time)
                         {
                             oldestSentry = i;
@@ -230,7 +234,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                 {
                     Main.projectile[oldestSentry].timeLeft = Math.Min(Main.projectile[oldestSentry].timeLeft, 30);
                 }
-                aequus.sentrySquidTimer = 32;
+                aequus.sentrySquidTimer = 10;
                 return;
             }
 
@@ -264,10 +268,14 @@ namespace Aequus.Items.Accessories.Summon.Sentry
         {
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
             {
-                if (!player.inventory[i].IsAir && player.inventory[i].sentry && player.inventory[i].damage > 0 && player.inventory[i].shoot > ProjectileID.None && (!player.inventory[i].DD2Summon || !DD2Event.Ongoing)
-                    && ItemLoader.CanUseItem(player.inventory[i], player))
+                if (!player.inventory[i].IsAir && player.inventory[i].sentry && player.inventory[i].damage > 0 && player.inventory[i].shoot > ProjectileID.None)
                 {
-                    return player.inventory[i];
+                    if (player.inventory[i].DD2Summon && (DD2Event.Ongoing || !player.downedDD2EventAnyDifficulty))
+                    {
+                        continue;
+                    }
+                    if (ItemLoader.CanUseItem(player.inventory[i], player))
+                        return player.inventory[i];
                 }
             }
             return null;

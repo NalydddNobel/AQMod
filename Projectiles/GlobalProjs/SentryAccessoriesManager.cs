@@ -60,7 +60,8 @@ namespace Aequus.Projectiles.GlobalProjs
             dummyPlayer.UpdateDyes();
             dummyPlayer.whoAmI = projectile.owner;
             dummyPlayer.Aequus().projectileIdentity = projectile.identity;
-            dummyPlayer.wet = projectile.wet;
+            dummyPlayer.wetCount = projectile.wetCount;
+            dummyPlayer.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
             dummyPlayer.lavaWet = projectile.lavaWet;
             dummyPlayer.honeyWet = projectile.honeyWet;
             AequusProjectile.pWhoAmI = projectile.whoAmI;
