@@ -24,8 +24,7 @@ namespace Aequus.Projectiles.GlobalProjs
         {
             if (source is EntitySource_Misc misc && misc.Context == "PlayerDeath_TombStone")
             {
-                var player = Main.player[projectile.owner];
-                if (player.position.Y > Main.UnderworldLayer * 16f)
+                if (projectile.position.Y > Main.UnderworldLayer * 16f)
                 {
                     projectile.Aequus().transform = Main.rand.Next(HellTombstones);
                 }

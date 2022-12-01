@@ -112,7 +112,7 @@ namespace Aequus
 
         public float darkness;
 
-        public bool accHyperJet;
+        public int accHyperJet;
         public bool accShowQuestFish;
         public bool accPriceMonocle;
 
@@ -537,6 +537,10 @@ namespace Aequus
 
         public override void UpdateDead()
         {
+            if (accHyperJet > 0)
+            {
+                HyperJet.RespawnTime(Player, this);
+            }
             timeSinceLastHit = 0;
             hasExpertBoost = false;
             accExpertBoost = false;
@@ -567,7 +571,7 @@ namespace Aequus
             ghostHealthDR = 0f;
             ghostShadowDash = 0;
             accGlowCore = 0;
-            accHyperJet = false;
+            accHyperJet = 0;
             accSentrySlot = false;
             accGroundCrownCrit = 0;
             accDarknessCrownDamage = 0f;

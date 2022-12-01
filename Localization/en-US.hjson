@@ -1099,7 +1099,7 @@ Mods: {
 				'''
 
 			HoloLens: Allows you to view the contents of locked and unlocked chests without opening them
-			HyperJet: Increases the speed of your right click item pickup function
+			HyperJet: Decreased respawn time when it becomes safe
 			AnglerBroadcaster: Shows you the current quest fish
 			RichMansMonocle: View item prices outside of shops
 

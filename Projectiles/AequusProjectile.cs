@@ -372,6 +372,7 @@ namespace Aequus.Projectiles
                 transform = 0;
                 return false;
             }
+
             if (projectile.friendly && projectile.owner >= 0 && projectile.owner != 255)
             {
                 if (sourceProjIdentity > 0)
