@@ -6,6 +6,11 @@ namespace Aequus.Items.Accessories.Utility
 {
     public class HyperJet : ModItem, ItemHooks.IUpdateVoidBag
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

@@ -188,7 +188,6 @@ namespace Aequus.Projectiles.Misc.Friendly
                 Rotation = rotation,
                 Radius = currentRadius,
                 Scale = Projectile.scale,
-                Dye = Main.player[Projectile.owner].Aequus().cCelesteTorus,
 
                 Rotation2 = show2ndRing ? rotation2 : null,
             });

@@ -14,8 +14,9 @@ namespace Aequus.Projectiles.Misc.Pets
     {
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 4;
-            Main.projPet[Projectile.type] = true;
+            Main.projFrames[Type] = 4;
+            Main.projPet[Type] = true;
+            ProjectileID.Sets.LightPet[Type] = true;
         }
 
         public override void SetDefaults()

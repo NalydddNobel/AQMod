@@ -113,7 +113,7 @@ namespace Aequus.Tiles.Furniture
                 Wiring.SkipWire(x + 1, y + 2);
                 Wiring.SkipWire(x + 1, y + 3);
             }
-            NetMessage.SendTileSquare(-1, x, y + 1, 2, 4);
+            NetMessage.SendTileSquare(-1, x, y, 2, 4);
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

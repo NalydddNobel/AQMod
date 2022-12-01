@@ -7,7 +7,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,13 +19,13 @@ namespace Aequus.Items.Accessories
     {
         public struct RenderData
         {
+            public Player playerRef;
             public Vector3 Rotation;
             public Vector3? Rotation2;
             public Vector2 Position;
             public float Radius;
             public float Radius2;
             public float Scale;
-            public int Dye;
             public bool Eight;
 
             public Vector3[] TurnIntoRing()
@@ -87,7 +89,8 @@ namespace Aequus.Items.Accessories
             var orig = frame.Size() / 2f;
             foreach (var render in RenderPoints)
             {
-                if (render.Dye != 0)
+                int dye = (render.playerRef?.Aequus()?.cCelesteTorus).GetValueOrDefault(0);
+                if (dye != 0)
                 {
                     Begin.GeneralEntities.BeginShader(Main.spriteBatch);
                 }
@@ -104,8 +107,18 @@ namespace Aequus.Items.Accessories
                     if (rule(layerValue))
                     {
                         var center = render.Position + new Vector2(v.X, v.Y);
-                        Main.spriteBatch.Draw(texture, OrthographicView.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)).UseA(200), 0f, orig,
+                        var dd = new DrawData(texture, OrthographicView.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)).UseA(200), 0f, orig,
                             OrthographicView.GetViewScale(render.Scale, v.Z * DimensionZMultiplier), SpriteEffects.None, 0);
+                        if (dye != 0)
+                        {
+                            GameShaders.Armor.Apply(dye, render.playerRef, dd);
+                        }
+                        dd.Draw(Main.spriteBatch);
+                        if (dye != 0)
+                        {
+                            Main.spriteBatch.End();
+                            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                        }
                     }
                 }
                 Main.spriteBatch.End();

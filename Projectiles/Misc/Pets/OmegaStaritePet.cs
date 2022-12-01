@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Pets
@@ -15,6 +16,7 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.LightPet[Type] = true;
         }
 
         public override void SetDefaults()
