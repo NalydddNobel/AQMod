@@ -102,7 +102,7 @@ Mods: {
 			SouljointCuffs: 魂结镣铐
 			NaturesCruelty: 大自然的残忍
 			SpiritKeg: 魂灵之桶
-			CartilageRing: 碎骨戒指
+			CartilageRing: 骨质戒指
 			SpiritBottle: 魂灵之瓶
 			PrecisionGloves: 精准手套
 			ArmFloaties: 臂式救生装置
@@ -1099,7 +1099,7 @@ Mods: {
 				'''
 
 			HoloLens: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
-			HyperJet: 增加你右键物品拾取功能的速度
+			HyperJet: 当它变得安全时会缩减重生时间
 			AnglerBroadcaster: 显示你当前的任务鱼
 			RichMansMonocle: 在NPC商店外查看商品价格
 
