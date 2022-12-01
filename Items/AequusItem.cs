@@ -239,6 +239,14 @@ namespace Aequus.Items
                 item.rare = ItemRarityID.Blue;
                 item.value = Item.buyPrice(gold: 15);
             }
+            else if (item.type == ItemID.PortalGun)
+            {
+                if (GameplayConfig.Instance.EarlyPortalGun)
+                {
+                    item.expert = false;
+                    item.value = Item.buyPrice(gold: 10);
+                }
+            }
             else if (item.type == ItemID.GravityGlobe)
             {
                 if (GameplayConfig.Instance.EarlyGravityGlobe)

@@ -108,8 +108,7 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
             if (GameplayConfig.Instance.EarlyPortalGun)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.PortalGun);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
+                shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
             }
             if (GameplayConfig.Instance.EarlyGravityGlobe)
             {
