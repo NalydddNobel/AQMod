@@ -153,6 +153,11 @@ namespace Aequus.Content.AnalysisQuests
                 potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
                 addedAny = true;
             }
+            if (!Player.HasItemCheckAllBanks<HyperJet>())
+            {
+                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
+                addedAny = true;
+            }
             if ((!addedAny || Main.netMode != NetmodeID.SinglePlayer) && !Player.HasItemCheckAllBanks<PhaseMirror>())
             {
                 potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
@@ -160,6 +165,7 @@ namespace Aequus.Content.AnalysisQuests
             }
             if (!addedAny)
             {
+                potentialRewards.Add(AequusItem.SetDefaults<HyperJet>());
                 potentialRewards.Add(AequusItem.SetDefaults<PersonalDronePack>());
                 potentialRewards.Add(AequusItem.SetDefaults<HoloLens>());
                 potentialRewards.Add(AequusItem.SetDefaults<PhaseMirror>());
