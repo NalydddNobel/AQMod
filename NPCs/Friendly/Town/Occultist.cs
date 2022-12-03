@@ -385,7 +385,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             NPC.GetDrawInfo(out var t, out var off, out var frame, out var orig, out int _);
             off.Y += NPC.gfxOffY - 4f;
-            spriteBatch.Draw(t, NPC.position + off - screenPos, frame, drawColor, NPC.rotation, orig, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            spriteBatch.Draw(t, NPC.position + off - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, orig, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
             if ((int)NPC.ai[0] == 14)
             {
                 var bloomFrame = TextureCache.Bloom[0].Value.Frame(verticalFrames: 2);
@@ -400,10 +400,151 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|", 
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
-            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|", 
+            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|",
                 $"TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
+        }
+    }
+
+    public class OccultistHostile : Occultist
+    {
+        public override string Texture => ModContent.GetInstance<Occultist>().Texture;
+
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
+            Main.npcFrameCount[Type] = 25;
+            NPCID.Sets.ActsLikeTownNPC[Type] = true;
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            {
+                Hide = true,
+            });
+        }
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            NPC.lifeMax = 5000;
+            NPC.friendly = false;
+            NPC.rarity = 1;
+            NPC.townNPC = false;
+            NPC.dontTakeDamage = true;
+        }
+
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
+        {
+            return false;
+        }
+
+        public override bool PreAI()
+        {
+            int dir = Math.Sign(((int)NPC.ai[0] + 1) * 16 + 8 - NPC.Center.X);
+            if (NPC.direction != dir)
+            {
+                NPC.direction = dir;
+            }
+            if (AequusWorld.downedEventDemon)
+            {
+                NPC.ai[0] = 0f;
+                NPC.ai[1] = 0f;
+                NPC.Transform(ModContent.NPCType<Occultist>());
+            }
+            return false;
+        }
+
+        public static string RollChat(string dontRoll)
+        {
+            var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.");
+
+            for (int i = 0; i <= 11; i++)
+            {
+                chat.Add($"Hostile.{i}");
+            }
+
+            if (string.IsNullOrEmpty(dontRoll))
+            {
+                for (int i = 0; i < 25; i++)
+                {
+                    string t = chat.Get();
+                    if (t != dontRoll)
+                        return t;
+                }
+            }
+            return chat.Get();
+        }
+
+        public override bool CanChat()
+        {
+            return true;
+        }
+
+        public override string GetChat()
+        {
+            return RollChat(null);
+        }
+
+        public override void SetChatButtons(ref string button, ref string button2)
+        {
+            button = AequusText.GetText("Chat.Occultist.ListenButton");
+        }
+
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (firstButton)
+            {
+                Main.npcChatText = RollChat(Main.npcChatText);
+            }
+        }
+
+        public override bool CanGoToStatue(bool toKingStatue)
+        {
+            return false;
+        }
+
+        public static void CheckSpawn(int x, int y, int plr)
+        {
+            if (!AequusWorld.downedEventDemon && !NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>()))
+            {
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    var p = Aequus.GetPacket(PacketType.SpawnHostileOccultist);
+                    p.Write(x);
+                    p.Write(y);
+                    p.Send();
+                }
+                else
+                {
+                    int spawnX = (x + 1) * 16 + 8;
+                    int spawnY = (y + 1) * 16 + 8 + 24;
+                    int dir = Math.Sign(Main.player[plr].Center.X - spawnX);
+                    spawnX -= 48 * dir;
+                    int middleX = x + 1;
+                    dir = -dir;
+                    for (int k = 0; k < 3; k++)
+                    {
+                        int m = middleX + dir * 2 + k * dir;
+                        int n = y + 3;
+                        var t = Main.tile[m, n];
+                        if (!t.IsFullySolid())
+                        {
+                            WorldGen.PlaceTile(m, n, TileID.Ash);
+                        }
+                        t.Slope = SlopeType.Solid;
+                        t.IsHalfBlock = false;
+                        for (int l = 0; l < 4; l++)
+                        {
+                            if (Main.tile[m, n - l - 1].IsFullySolid())
+                            {
+                                WorldGen.KillTile(m, n - l - 1, noItem: true);
+                            }
+                        }
+                    }
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, middleX - 5, y - 5, 10, 10);
+                    NPC.NewNPC(new EntitySource_SpawnNPC(), spawnX, spawnY, ModContent.NPCType<OccultistHostile>(), ai0: x, ai1: y);
+                }
+            }
         }
     }
 }

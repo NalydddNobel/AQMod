@@ -730,12 +730,12 @@ namespace Aequus.NPCs.Friendly.Town
             if (balloonColor == 0)
                 balloonColor = Main.rand.Next(5) + 1;
             var frame = new Rectangle(texture.Width / 4 * frameX, texture.Height / 18 * (basketFrame % 18), texture.Width / 4, texture.Height / 18);
-            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
             texture = ModContent.Request<Texture2D>($"{Texture}Balloon", AssetRequestMode.ImmediateLoad).Value;
             frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
-            spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, drawColor, 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }
         public void DrawBalloon_UpdateBasketFrame(ref int frameX)
         {
@@ -815,7 +815,7 @@ namespace Aequus.NPCs.Friendly.Town
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
                 effects = SpriteEffects.FlipHorizontally;
-            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, drawColor, 0f, frame.Size() / 2f, 1f, effects, 0f);
+            spriteBatch.Draw(texture, NPC.Center - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, frame.Size() / 2f, 1f, effects, 0f);
         }
         public Rectangle GetFleeFrame(Texture2D fleeTexture)
         {

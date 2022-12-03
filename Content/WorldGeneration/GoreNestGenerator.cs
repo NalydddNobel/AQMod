@@ -223,7 +223,6 @@ namespace Aequus.Content.WorldGeneration
                 var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
                 if (!Main.tile[v.X, v.Y].HasTile)
                 {
-                    AequusHelpers.dustDebug(v.X, v.Y);
                     int c = WorldGen.PlaceChest(v.X, v.Y, type: (ushort)ModContent.TileType<OblivionChestTile>());
                     if (c != -1)
                     {

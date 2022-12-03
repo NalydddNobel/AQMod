@@ -39,9 +39,8 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            Main.NewText(Main._drawInterfaceGameTime.ElapsedGameTime);
-            Main.NewText(Main.GameUpdateCount);
-            Main.NewText(Main.GlobalTimeWrappedHourly);
+            AequusWorld.downedEventDemon = !AequusWorld.downedEventDemon;
+            Main.NewText(AequusWorld.downedEventDemon);
             return true;
         }
 

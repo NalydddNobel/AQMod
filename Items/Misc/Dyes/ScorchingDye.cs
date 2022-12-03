@@ -18,7 +18,7 @@ namespace Aequus.Items.Misc.Dyes
             return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
             {
                 return v * new Vector3(0.549f, 0f, 0.082f);
-            }).UseColor(new Color(140, 0, 21, 255));
+            }).UseColor(new Color(140, 0, 21, 255)).UseImage("Images/Misc/noise");
         }
 
         public override void AddRecipes()

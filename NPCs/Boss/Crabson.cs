@@ -765,6 +765,24 @@ namespace Aequus.NPCs.Boss
             }
         }
 
+        public void DrawSaggyChain2(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
+        {
+            int height = chain.Height + 8;
+            var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
+            var position = currentPosition;
+            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            for (int i = 0; i < 50; i++)
+            {
+                spriteBatch.Draw(chain, position - screenPos, null, NPC.GetNPCColorTintedByBuffs(Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f))), 0f, origin, 1f, SpriteEffects.None, 0f);
+                velo = Vector2.Normalize(Vector2.Lerp(velo, endPosition - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 300f, 0f, 0.99f))) * height;
+                position += velo;
+                float gravity = MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 500f, 0.4f, 1f);
+                velo.Y += gravity;
+                position.Y += 6f * gravity;
+                if (Vector2.Distance(position, endPosition) <= height)
+                    break;
+            }
+        }
         public static void DrawSaggyChain(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos)
         {
             int height = chain.Height + 8;
@@ -827,7 +845,7 @@ namespace Aequus.NPCs.Boss
             }
             if (IsClaw)
             {
-                RenderClaw(NPC, spriteBatch, screenPos, drawColor);
+                RenderClaw(NPC, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(drawColor));
                 return false;
             }
 
@@ -835,12 +853,12 @@ namespace Aequus.NPCs.Boss
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;
-                DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
-                DrawSaggyChain(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
+                DrawSaggyChain2(spriteBatch, chain, new Vector2(drawCoordinates.X - 24f, drawCoordinates.Y), Left.position + new Vector2(0f, Left.height / 2f - 24f), screenPos);
+                DrawSaggyChain2(spriteBatch, chain, new Vector2(drawCoordinates.X + 24f, drawCoordinates.Y), Right.Center + new Vector2(Right.width / 2f, -24f), screenPos);
             }
             else
             {
-                Main.spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Center - screenPos, NPC.frame, drawColor,
+                Main.spriteBatch.Draw(TextureAssets.Npc[Type].Value, NPC.Center - screenPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor),
                     NPC.rotation, TextureAssets.Npc[Type].Value.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
                 if (!NPC.IsABestiaryIconDummy)
                 {

@@ -1119,7 +1119,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         frameY: AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 6, Main.npcFrameCount[NPCID.AngryNimbus]));
                     var nimbusOrigin = nimbusFrame.Size() / 2f;
 
-                    Main.spriteBatch.Draw(nimbusTexture, drawPosition - screenPos, nimbusFrame, Color.Lerp(Color.White, drawColor, MathHelper.Clamp((NPC.ai[1] - 60f) / 20f, 0f, 1f)), NPC.rotation, nimbusOrigin, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(nimbusTexture, drawPosition - screenPos, nimbusFrame, Color.Lerp(Color.White, NPC.GetNPCColorTintedByBuffs(drawColor), MathHelper.Clamp((NPC.ai[1] - 60f) / 20f, 0f, 1f)), NPC.rotation, nimbusOrigin, scale, SpriteEffects.None, 0f);
                     return false;
                 }
             }
@@ -1136,7 +1136,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     drawPosition.X -= (scale.X - 1f) * 16f;
                 }
             }
-            DrawWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
+            DrawWithAura(spriteBatch, texture, drawPosition - screenPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, auraIntensity, bestiary: NPC.IsABestiaryIconDummy);
             Main.spriteBatch.Draw(GlowmaskTexture.Value, drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
         }

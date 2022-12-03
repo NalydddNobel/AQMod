@@ -10,7 +10,7 @@
         StartDemonSiege,
         RemoveDemonSiege,
         Unused,
-        Unused2,
+        SpawnHostileOccultist,
         PhysicsGunBlock,
         RequestGlimmerEvent,
         ExporterQuestsCompleted,

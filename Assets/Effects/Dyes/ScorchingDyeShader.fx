@@ -75,16 +75,12 @@ float4 RedSprite(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR
 float4 ScorchingDye(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COLOR0
 {
     float4 color = tex2D(uImage0, coords);
-    
     float2 pixelSize = 1 / uImageSize0;
     float2 fixedCoords = FrameFix2(coords);
-    float4 val = tex2D(uImage1, float2(fixedCoords.x / 8 * pixelSize.x, (fixedCoords.y / 8 + uTime * (0.03f + sin(fixedCoords.x * 20) * 0.01f)) % 1));
-    float brightness = (val.r + val.g);
-    brightness = brightness > 0.6f ? brightness - 0.6f : 0;
-    return lerp(float4(fixedCoords.y * min(color.r + color.g + color.b, 1), 0, 0, 1),
-    float4(1, (sin(uTime * 5) * 0.1f + 0.1f), 0, 1), brightness * 12) * color.a * sampleColor;
+    float4 val = tex2D(uImage1, float2(fixedCoords.x / 8 * pixelSize.x, (fixedCoords.y / 8 + uTime * (0.03f + sin(fixedCoords.x * 20) * 0.02f)) % 1));
+    float brightness = (val.r + val.g) * fixedCoords.y * color.r;
+    return lerp(float4(fixedCoords.y * min(color.r + color.g + color.b, 1), 0, 0, 1), float4(1, 0.1f, 0, 1), brightness * 12) * color.a * sampleColor;
 }
-
 technique Technique1
 {
     pass ScorchingDyePass

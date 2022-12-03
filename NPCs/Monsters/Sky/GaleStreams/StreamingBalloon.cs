@@ -402,8 +402,8 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             var texture = TextureAssets.Npc[Type].Value;
             var drawPosition = NPC.Center;
             var origin = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 4f);
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * (_balloonFrame + 1), NPC.frame.Y, NPC.frame.Width, NPC.frame.Height), drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * (_balloonFrame + 1), NPC.frame.Y, NPC.frame.Width, NPC.frame.Height), NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
             NPC renderNPC;
             if (NPC.IsABestiaryIconDummy)
@@ -480,10 +480,10 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
             }
 
-            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), alpha, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), NPC.GetNPCColorTintedByBuffs(alpha), NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
             if (npcClr != default(Color))
             {
-                Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), npcClr, NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPosition - screenPos, new Rectangle(NPC.frame.X + NPC.frame.Width * frameX, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height), NPC.GetNPCColorTintedByBuffs(npcClr), NPC.rotation, origin, NPC.scale * scale, SpriteEffects.None, 0f);
             }
             return false;
         }

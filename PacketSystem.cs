@@ -41,7 +41,7 @@ namespace Aequus
             logPacketType = new HashSet<PacketType>()
             {
                 PacketType.Unused,
-                PacketType.Unused2,
+                PacketType.SpawnHostileOccultist,
                 PacketType.PhysicsGunBlock,
                 PacketType.RequestGlimmerEvent,
                 PacketType.GlimmerStatus,

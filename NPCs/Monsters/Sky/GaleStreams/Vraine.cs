@@ -472,7 +472,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
             }
 
-            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
             if (NPC.ai[3] > 0f && transitionMax > 0)
             {
@@ -493,7 +493,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         overlayTexture = ColdTexture.Value;
                         break;
                 }
-                Main.spriteBatch.Draw(overlayTexture, drawPos, NPC.frame, Color.Lerp(drawColor, new Color(0, 0, 0, 0), progress), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(overlayTexture, drawPos, NPC.frame, Color.Lerp(NPC.GetNPCColorTintedByBuffs(drawColor), new Color(0, 0, 0, 0), progress), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
 
             return false;

@@ -260,7 +260,7 @@ namespace Aequus.Tiles.Misc
                     ItemIO.Send(item, p, writeStack: true);
                     p.Write(timeLeft);
                 }
-            }, PacketType.Unused2);
+            }, PacketType.SpawnHostileOccultist);
         }
 
         public override void NetReceive(BinaryReader reader)

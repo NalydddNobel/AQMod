@@ -797,7 +797,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
             if ((int)NPC.ai[0] == PHASE_DEAD)
             {
-                DrawDeathSequence(spriteBatch, drawPosition, screenPos, drawColor, effects);
+                DrawDeathSequence(spriteBatch, drawPosition, screenPos, NPC.GetNPCColorTintedByBuffs(drawColor), effects);
                 return false;
             }
             var texture = TextureAssets.Npc[Type].Value;
@@ -812,7 +812,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
             DrawBGAura(spriteBatch, texture, drawPosition, screenPos, NPC.frame, NPC.rotation, origin, scale, effects, NPC.IsABestiaryIconDummy);
 
-            spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, origin, scale, effects, 0f);
+            spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, scale, effects, 0f);
             spriteBatch.Draw(GlowmaskTexture.Value, drawPosition - screenPos, NPC.frame, Color.White, NPC.rotation, origin, scale, effects, 0f);
 
             if (!NPC.IsABestiaryIconDummy && Main.expertMode)
@@ -847,7 +847,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
             DrawBGAura(spriteBatch, texture.Value, drawPosition, screenPos, frame, NPC.rotation, origin, new Vector2(NPC.scale), effects, NPC.IsABestiaryIconDummy);
 
-            spriteBatch.Draw(texture.Value, NPC.Center - screenPos, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(texture.Value, NPC.Center - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, effects, 0f);
             spriteBatch.Draw(DefeatedGlowTexture.Value, NPC.Center - screenPos, frame, Color.White, NPC.rotation, origin, NPC.scale, effects, 0f);
         }
         private void RenderDeathrayTelegraph(SpriteBatch spriteBatch, Vector2 screenPos)

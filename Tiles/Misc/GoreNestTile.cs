@@ -4,6 +4,7 @@ using Aequus.Graphics.Tiles;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.Friendly;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -342,6 +343,7 @@ namespace Aequus.Tiles.Misc
 
         void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
+            OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
             InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
         }
     }
