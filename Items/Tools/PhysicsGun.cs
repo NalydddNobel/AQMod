@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -30,6 +31,7 @@ namespace Aequus.Items.Tools
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

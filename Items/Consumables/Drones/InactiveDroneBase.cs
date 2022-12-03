@@ -1,4 +1,5 @@
-﻿using Aequus.Content.DronePylons;
+﻿using Aequus.Content.AnalysisQuests;
+using Aequus.Content.DronePylons;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,7 @@ namespace Aequus.Items.Consumables.Drones
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 2;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

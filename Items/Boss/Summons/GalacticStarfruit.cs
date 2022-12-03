@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
+using Aequus.Content.AnalysisQuests;
 using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;
@@ -14,6 +15,7 @@ namespace Aequus.Items.Boss.Summons
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.WormFood];
             SacrificeTotal = 3;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

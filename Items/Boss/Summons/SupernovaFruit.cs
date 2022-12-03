@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
 using Aequus.NPCs.Boss;
@@ -20,6 +21,7 @@ namespace Aequus.Items.Boss.Summons
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.Abeemination];
             SacrificeTotal = 1;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

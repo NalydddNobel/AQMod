@@ -37,6 +37,11 @@ namespace Aequus.Content.AnalysisQuests
                 ItemID.CosmicCarKey,
                 ItemID.ElectrosphereLauncher,
                 ItemID.InfluxWaver,
+
+                ItemID.PortalGun,
+                ItemID.GravityGlobe,
+                ItemID.BloodMoonStarter,
+                ItemID.SolarTablet,
             };
             IgnoreRarities = new HashSet<int>()
             {

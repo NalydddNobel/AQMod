@@ -12,7 +12,7 @@ namespace Aequus.Items.Consumables
         {
             Item.damage = 0;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.shootSpeed = 12f;
+            Item.shootSpeed = 5f;
             Item.shoot = ModContent.ProjectileType<FertilePowderProj>();
             Item.width = 16;
             Item.height = 24;
@@ -29,8 +29,9 @@ namespace Aequus.Items.Consumables
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<SedimentaryRock>(5)
-                .AddIngredient(ItemID.PurificationPowder)
+                .AddIngredient<SedimentaryRock>(9)
+                .AddIngredient(ItemID.Bone, 9)
+                .AddIngredient(ItemID.AshBlock, 9)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

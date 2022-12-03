@@ -217,6 +217,10 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("Basic.1");
                 chat.Add("Basic.2");
                 chat.Add("Basic.3");
+                if (Main.dayTime)
+                {
+                    chat.Add("Night.0");
+                }
             }
             if (Main.IsItAHappyWindyDay)
             {
@@ -244,7 +248,7 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("SoTSMod.0");
                 chat.Add("SoTSMod.1");
             }
-            if (ModLoader.TryGetMod("Polarities", out var polarities))
+            if (NPC.downedGolemBoss && NPC.AnyNPCs(NPCID.Mechanic) && ModLoader.TryGetMod("Polarities", out var polarities))
             {
                 chat.Add("PolaritiesMod");
             }

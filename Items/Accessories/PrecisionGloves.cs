@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Content.AnalysisQuests;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +10,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

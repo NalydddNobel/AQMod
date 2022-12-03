@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.AnalysisQuests;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +13,7 @@ namespace Aequus.Items.Consumables.Foods
             SacrificeTotal = 1;
 
             this.StaticDefaultsToFood(Color.Brown.UseA(0) * 0.75f, Color.RosyBrown.UseA(0) * 0.75f, Color.Red.UseA(0) * 0.75f);
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

@@ -1,4 +1,5 @@
 ﻿using Aequus.Content;
+using Aequus.Content.AnalysisQuests;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +12,7 @@ namespace Aequus.Items.Accessories.Utility
         {
             SacrificeTotal = 1;
             SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()

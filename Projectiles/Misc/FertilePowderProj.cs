@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Diagnostics;
@@ -15,23 +14,29 @@ namespace Aequus.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            Projectile.width = 48;
-            Projectile.height = 48;
+            Projectile.width = 32;
+            Projectile.height = 32;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
             Projectile.alpha = 255;
             Projectile.ignoreWater = true;
             Projectile.hide = true;
+            Projectile.timeLeft = 40;
         }
 
         public override void AI()
         {
-            Projectile.velocity *= 0.95f;
+            Projectile.velocity.X *= 0.985f;
+            Projectile.velocity.Y += 0.2f;
             Projectile.ai[0]++;
             if (Projectile.velocity.Length() < 1f)
             {
                 Projectile.ai[0] = 180f;
+            }
+            if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+            {
+                Projectile.velocity *= 0.8f;
             }
             if ((int)Projectile.ai[0] == 180)
             {
@@ -84,18 +89,17 @@ namespace Aequus.Projectiles.Misc
             var stopWatch = new Stopwatch();
             stopWatch.Start();
             var map = new TileMapCache(new Rectangle(minX - 15, minY - 15, maxX - minX + 30, maxY - minY + 30).Fluffize(padding: 10));
-            for (int k = 0; k < 2; k++)
+            for (int i = minX; i < maxX; i++)
             {
-                for (int i = minX; i < maxX; i++)
+                for (int j = minY; j < maxY; j++)
                 {
-                    for (int j = minY; j < maxY; j++)
+                    Vector2 pos = new Vector2(i * 16, j * 16);
+                    if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f) || !Main.tile[i, j].HasTile)
                     {
-                        Vector2 pos = new Vector2(i * 16, j * 16);
-                        if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f) || !Main.tile[i, j].HasTile)
-                        {
-                            continue;
-                        }
-                        var cache = new TileDataCache(Main.tile[i, j]);
+                        continue;
+                    }
+                    if (Main.rand.NextBool(4) || Main.tile[i, j].IsFullySolid() || (Main.tile[i, j].HasTile && TileID.Sets.TreeSapling[Main.tile[i, j].TileType]))
+                    {
                         AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
                     }
                 }

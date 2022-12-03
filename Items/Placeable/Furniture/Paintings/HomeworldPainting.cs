@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Furniture;
+﻿using Aequus.Content.AnalysisQuests;
+using Aequus.Tiles.Furniture;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -9,6 +10,7 @@ namespace Aequus.Items.Placeable.Furniture.Paintings
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            AnalysisSystem.IgnoreItem.Add(Type);
         }
 
         public override void SetDefaults()
