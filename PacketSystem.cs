@@ -14,6 +14,7 @@ using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles;
+using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
 using System;
@@ -21,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -51,6 +53,8 @@ namespace Aequus
                 PacketType.StartDemonSiege,
                 PacketType.RequestAnalysisQuest,
                 PacketType.SpawnShutterstockerClip,
+                PacketType.SpawnPixelCameraClip,
+                PacketType.PlacePixelPainting,
             };
             TileCoatingSync = new List<Rectangle>();
         }
@@ -242,6 +246,32 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.PlacePixelPainting:
+                    {
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            int x = reader.ReadInt32();
+                            int y = reader.ReadInt32();
+                            var map = MapTileCache.NetReceive(reader);
+                            if (WorldGen.InWorld(x, y) && !TileEntity.ByPosition.ContainsKey(new Point16(x, y)))
+                            {
+                                TileEntity.PlaceEntityNet(x, y, ModContent.TileEntityType<TEPixelPainting>());
+                                if (TileEntity.ByPosition.TryGetValue(new Point16(x, y), out var te) && te is TEPixelPainting painting)
+                                {
+                                    painting.mapCache = map;
+                                    NetMessage.SendData(MessageID.TileEntitySharing, number: painting.ID, number2: painting.Position.X, number3: painting.Position.Y);
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case PacketType.SpawnHostileOccultist:
+                    {
+                        OccultistHostile.CheckSpawn(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                    }
+                    break;
+
                 case PacketType.GravityChestPickupEffect:
                     {
                         var itemPos = new Vector2(reader.ReadSingle(), reader.ReadSingle());
@@ -316,10 +346,25 @@ namespace Aequus
                     }
                     break;
 
+                case PacketType.SpawnPixelCameraClip:
+                    {
+                        int player = reader.ReadInt32();
+                        int i = Item.NewItem(Main.player[player].GetSource_ItemUse_WithPotentialAmmo(Main.player[player].HeldItem, Main.player[player].HeldItem.useAmmo), Main.player[player].getRect(),
+                            ModContent.ItemType<PixelCameraClip>());
+                        if (i == -1)
+                        {
+                            return;
+                        }
+                        Main.item[i].ModItem<PixelCameraClip>().photoState = reader.ReadInt32();
+                        Main.item[i].ModItem<PixelCameraClip>().NetReceive(reader);
+                        if (Main.netMode == NetmodeID.Server)
+                            NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
+                    }
+                    break;
                 case PacketType.SpawnShutterstockerClip:
                     {
                         int player = reader.ReadInt32();
-                        int i = Item.NewItem(Main.player[player].GetSource_ItemUse_WithPotentialAmmo(Main.player[player].HeldItem, Main.player[player].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[player].getRect(),
+                        int i = Item.NewItem(Main.player[player].GetSource_ItemUse_WithPotentialAmmo(Main.player[player].HeldItem, Main.player[player].HeldItem.useAmmo), Main.player[player].getRect(),
                             ModContent.ItemType<ShutterstockerClip>());
                         if (i == -1)
                         {

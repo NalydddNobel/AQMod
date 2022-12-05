@@ -519,6 +519,7 @@ namespace Aequus.NPCs.Friendly.Town
                     var p = Aequus.GetPacket(PacketType.SpawnHostileOccultist);
                     p.Write(x);
                     p.Write(y);
+                    p.Write(plr);
                     p.Send();
                 }
                 else

@@ -63,7 +63,7 @@ namespace Aequus
         /// <summary>
         /// Easier to write version of 
         /// <code><see cref="ModPacket"/> packet = <see cref="Instance"/>.<see cref="Mod.GetPacket(int)">GetPacket(int)</see>;</code>
-        /// <code>packet.Write((<see cref="byte"/>)<see cref="PacketType"/>.XXX);</code>
+        /// <code>packet.Write((<see cref="byte"/>)<see cref="PacketType"/>.X);</code>
         /// </summary>
         /// <param name="type">The ID of the Packet</param>
         /// <returns></returns>

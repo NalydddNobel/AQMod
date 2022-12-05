@@ -485,9 +485,10 @@ Mods: {
 			ImpenetrableCoating: Impenetrable Coating
 
 			MercerTonic: Mercer Tonic
+			PixelCamera: Pixelgrammer
+			PixelCameraClip: Pixelgrammer Clip
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
-			ShutterstockerClipAmmo: Shutterstocker Clip
 			PhysicsGun: Physics Gun
 			Pumpinator: Pumpinator
 			Bellows: Bellows
@@ -1109,7 +1110,16 @@ Mods: {
 			AnglerBroadcaster: Shows you the current quest fish
 			RichMansMonocle: View item prices outside of shops
 
-			Shutterstocker: Used to take photos with shutterstocker clips
+			PixelCamera: 
+				'''
+				Takes a snap of tiles and prints their map colors onto clips
+				Used to take photos with pixelgrammer clips
+				'''
+			Shutterstocker: 
+				'''
+				Takes a snap of tiles and prints them onto clips
+				Used to take photos with shutterstocker clips
+				'''
 			ShutterstockerClip: {
 				Reviewed: This clip has been reviewed by the Carpenter
 			}

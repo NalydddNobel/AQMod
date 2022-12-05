@@ -174,6 +174,9 @@ namespace Aequus.Graphics
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
+            if (Main.gameMenu)
+                return;
+
             GhostRenderer.Instance.CheckSelfRequest();
             GhostRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             foreach (var r in Renderers)

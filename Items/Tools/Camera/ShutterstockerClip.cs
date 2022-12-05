@@ -1,82 +1,51 @@
-﻿using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Graphics;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.UI.Chat;
 
 namespace Aequus.Items.Tools.Camera
 {
-    public class ShutterstockerClip : ModItem
+    public class ShutterstockerClip : PhotoClipBase<RenderTarget2D>
     {
         public float worldXPercent;
         public float worldYPercent;
         public int time;
         public bool daytime;
         public TileMapCache tileMap;
-        public Ref<RenderTarget2D> TooltipTexture;
         public bool reviewed;
-        public long timeCreatedSerialized;
 
-        public float TooltipTextureScale
-        {
-            get
-            {
-                float scale = 1f;
-                int maxSize = (Main.screenWidth < Main.screenHeight ? Main.screenWidth : Main.screenHeight) / 2;
-                int largestSide = (int)((TooltipTexture.Value.Width > TooltipTexture.Value.Height ? TooltipTexture.Value.Width : TooltipTexture.Value.Height) * scale);
-
-                if (largestSide > maxSize)
-                {
-                    return maxSize / (float)largestSide * scale;
-                }
-                return scale;
-            }
-        }
-
-        public DateTime TimeCreated { get => DateTime.FromBinary(timeCreatedSerialized); set => timeCreatedSerialized = value.ToBinary(); }
-        public string TimeCreatedString => TimeCreated.ToString("MM/dd/yy h:mm tt", Language.ActiveCulture.CultureInfo);
-        public bool AppendTimeCreatedTextToImage
-        {
-            get
-            {
-                var measurement = FontAssets.MouseText.Value.MeasureString(TimeCreatedString);
-                return TooltipTexture != null && TooltipTexture.Value != null && TooltipTexture.Value.Height > measurement.Y * 2f && TooltipTexture.Value.Width > measurement.X * 1.1f;
-            }
-        }
-
-        public bool HasTooltipTexture => TooltipTexture != null && TooltipTexture.Value != null && !TooltipTexture.Value.IsDisposed && !TooltipTexture.Value.IsContentLost;
+        public override bool HasTooltipTexture => base.HasTooltipTexture && !TooltipTexture.Value.IsContentLost;
 
         public override void SetDefaults()
         {
-            Item.width = 16;
-            Item.height = 16;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(gold: 1);
+            base.SetDefaults();
             tileMap = null;
         }
 
-        public void SetClip(Rectangle area)
+        public override void SetClip(Rectangle area)
         {
+            base.SetClip(area);
             tileMap = new TileMapCache(area);
             worldXPercent = area.X / (float)Main.maxTilesX;
             worldYPercent = area.Y / (float)Main.maxTilesY;
             daytime = Main.dayTime;
             time = (int)Main.time;
             reviewed = false;
-            TimeCreated = DateTime.Now;
         }
 
         public override void SaveData(TagCompound tag)
         {
+            base.SaveData(tag);
+
+            tag["Reviewed"] = reviewed;
+
             if (tileMap == null)
                 return;
 
@@ -85,12 +54,12 @@ namespace Aequus.Items.Tools.Camera
             tag["WorldYPercent"] = worldYPercent;
             tag["Daytime"] = daytime;
             tag["Time"] = time;
-            tag["Reviewed"] = reviewed;
-            tag["TimeCreated"] = timeCreatedSerialized;
         }
 
         public override void LoadData(TagCompound tag)
         {
+            base.LoadData(tag);
+            reviewed = tag.Get<bool>("Reviewed");
             if (tag.TryGet<TagCompound>("Map", out var val))
             {
                 tileMap = TileMapCache.DeserializeData(val);
@@ -98,8 +67,6 @@ namespace Aequus.Items.Tools.Camera
                 worldYPercent = tag.Get<float>("WorldYPercent");
                 daytime = tag.Get<bool>("Daytime");
                 time = tag.Get<int>("Time");
-                reviewed = tag.Get<bool>("Reviewed");
-                timeCreatedSerialized = tag.Get<long>("TimeCreated");
             }
         }
 
@@ -114,7 +81,6 @@ namespace Aequus.Items.Tools.Camera
                 TooltipTexture = new Ref<RenderTarget2D>();
 
             clone.tileMap = tileMap;
-            clone.TooltipTexture = TooltipTexture;
             clone.daytime = daytime;
             clone.time = time;
             clone.reviewed = reviewed;
@@ -122,90 +88,35 @@ namespace Aequus.Items.Tools.Camera
             return clone;
         }
 
-        public override bool CanBeConsumedAsAmmo(Item weapon, Player player)
+        public override void OnMissingTooltipTexture()
         {
-            return false;
-        }
+            if (TooltipTexture == null)
+                TooltipTexture = new Ref<RenderTarget2D>();
 
+            ShutterstockerSceneRenderer.RenderRequests.Add(this);
+        }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             if (tileMap == null)
                 return;
 
-            if (!HasTooltipTexture || (Main.mouseRight && Main.mouseRightRelease))
-            {
-                if (TooltipTexture == null)
-                    TooltipTexture = new Ref<RenderTarget2D>();
-
-                ShutterstockerSceneRenderer.RenderRequests.Add(this);
-                return;
-            }
-
-            int index = tooltips.GetIndex("Tooltip#");
-            float scale = TooltipTextureScale;
-            Item.AequusTooltips().FitTooltipBackground(tooltips, (int)(TooltipTexture.Value.Width * scale), (int)(TooltipTexture.Value.Height * scale), index, "Image");
-            bool timeTooltip = !AppendTimeCreatedTextToImage;
-            bool updateIndex = timeTooltip || reviewed;
-
-            if (!updateIndex)
-            {
-                return;
-            }
-
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Name.StartsWith("Fake"))
-                    index = i;
-            }
-
-            if (timeTooltip)
-            {
-                tooltips.Insert(index + 1, new TooltipLine(Mod, "Date", TimeCreatedString) { OverrideColor = Color.Lerp(Color.Yellow, Color.White, 0.5f), });
-            }
-
+            base.ModifyTooltips(tooltips);
             if (reviewed)
             {
+                int index = 0;
+                for (int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Name.StartsWith("Fake"))
+                        index = i;
+                }
                 tooltips.Insert(index + 1, new TooltipLine(Mod, "Reviewed", AequusText.GetText($"ItemTooltip.{Name}.Reviewed")) { OverrideColor = Color.Lerp(Color.BlueViolet, Color.White, 0.5f), });
             }
-        }
-
-        public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.Mod == "Aequus" && line.Name == "Image")
-            {
-                if (HasTooltipTexture)
-                {
-                    //line.Rotation = Main.GlobalTimeWrappedHourly;
-                    var scale = line.BaseScale * TooltipTextureScale;
-                    Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + new Vector2(8f), null, Color.Black, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                    if (Aequus.HQ)
-                    {
-                        foreach (var c in AequusHelpers.CircularVector(8))
-                        {
-                            Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + new Vector2(8f) + c * 4f, null, Color.Black * 0.2f, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                        }
-                        foreach (var c in AequusHelpers.CircularVector(32))
-                        {
-                            Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + c * 2f, null, Color.Black, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                        }
-                    }
-                    Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y), null, Color.White, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
-                    if (AppendTimeCreatedTextToImage)
-                    {
-                        var text = TimeCreatedString;
-                        var measurement = FontAssets.MouseText.Value.MeasureString(text);
-                        var drawCoords = new Vector2(line.X + 4, line.Y + TooltipTexture.Value.Height * scale.Y - measurement.Y / 2f - 8f);
-
-                        ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, drawCoords, Color.Lerp(Color.Yellow, Color.White, 0.5f), line.Rotation, Vector2.Zero, line.BaseScale);
-                    }
-                }
-                return false;
-            }
-            return true;
+            return;
         }
 
         public override void NetSend(BinaryWriter writer)
         {
+            base.NetSend(writer);
             writer.Write(tileMap == null);
             if (tileMap == null)
             {
@@ -214,7 +125,6 @@ namespace Aequus.Items.Tools.Camera
 
             var bb = new BitsByte(daytime, reviewed);
             writer.Write(bb);
-            writer.Write(timeCreatedSerialized);
             writer.Write(time);
             writer.Write(worldXPercent);
             writer.Write(worldYPercent);
@@ -231,13 +141,13 @@ namespace Aequus.Items.Tools.Camera
 
         public override void NetReceive(BinaryReader reader)
         {
+            base.NetReceive(reader);
             if (reader.ReadBoolean())
                 return;
 
             var bb = (BitsByte)reader.ReadByte();
             daytime = bb[0];
             reviewed = bb[1];
-            timeCreatedSerialized = reader.ReadInt64();
             time = reader.ReadInt32();
             worldXPercent = reader.ReadSingle();
             worldYPercent = reader.ReadSingle();
@@ -245,6 +155,30 @@ namespace Aequus.Items.Tools.Camera
             var rect = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
             var bufferLength = reader.ReadInt32();
             tileMap = new TileMapCache(rect, TileMapCache.DecompressInfo(rect.Width, rect.Height, reader.ReadBytes(bufferLength)), worldID);
+        }
+    }
+
+    public class ShutterstockerClipAmmo : ModItem
+    {
+        public static int AmmoID => ModContent.ItemType<ShutterstockerClipAmmo>();
+
+        public override string Texture => ModContent.GetInstance<ShutterstockerClip>().Texture;
+
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 5;
+            DisplayName.SetDefault("{$Mods.Aequus.ItemName.ShutterstockerClip}");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 16;
+            Item.height = 16;
+            Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(gold: 1);
+            Item.maxStack = 9999;
+            Item.ammo = AmmoID;
+            Item.consumable = true;
         }
     }
 }

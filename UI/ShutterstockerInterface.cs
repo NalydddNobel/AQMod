@@ -44,7 +44,7 @@ namespace Aequus.UI
                     continue;
 
                 var referenceFrame = Frame(0, 0);
-                var photoRect = Utils.CenteredRectangle(proj.Projectile.Center, new Vector2(proj.CalculatedPhotoSize * 16));
+                var photoRect = Utils.CenteredRectangle(proj.Projectile.Center, new Vector2(proj.PhotoSizeX * 16, proj.PhotoSizeY * 16));
                 photoRect.X -= (int)Main.screenPosition.X;
                 photoRect.Y -= (int)Main.screenPosition.Y;
                 var texture = Texture.Value;
@@ -64,7 +64,7 @@ namespace Aequus.UI
 
                 segmentFrame = Frame(0, 1);
                 segmentFrame2 = Frame(2, 1);
-                for (int i = 1; i < photoRect.Width / 16 - 1; i++)
+                for (int i = 1; i < photoRect.Height / 16 - 1; i++)
                 {
                     int y = photoRect.Y + i * 16;
                     spriteBatch.Draw(texture, new Vector2(photoRect.X, y), segmentFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

@@ -19,8 +19,9 @@ namespace Aequus.Projectiles.Misc
     {
         public Vector2 mouseWorld;
 
-        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 36f); }
-        public int CalculatedPhotoSize => (int)Projectile.ai[0];
+        public virtual float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 36f); }
+        public virtual int PhotoSizeX => (int)Projectile.ai[0];
+        public virtual int PhotoSizeY => (int)Projectile.ai[0];
 
         public override void SetDefaults()
         {
@@ -58,12 +59,15 @@ namespace Aequus.Projectiles.Misc
                 if (scrollWheel != 0)
                 {
                     PhotoSize += scrollWheel;
+                    Projectile.netUpdate = true;
                 }
             }
 
             var targetMouseWorld = mouseWorld.ToTileCoordinates().ToWorldCoordinates();
-            if (CalculatedPhotoSize % 2 == 0)
-                targetMouseWorld -= new Vector2(8f);
+            if (PhotoSizeX % 2 == 0)
+                targetMouseWorld.X -= 8f;
+            if (PhotoSizeY % 2 == 0)
+                targetMouseWorld.Y -= 8f;
             var diff = targetMouseWorld - Projectile.Center;
             float distance = diff.Length();
             if (distance <= 2f)
@@ -89,64 +93,60 @@ namespace Aequus.Projectiles.Misc
             AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
         }
 
-        public override bool OnTileCollide(Vector2 oldVelocity)
+        public virtual void SpawnClipItem(Rectangle tilesCaptured)
         {
-            return false;
-        }
+            Item item;
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
+            }
+            else
+            {
+                int i = Item.NewItem(Main.player[Projectile.owner].GetSource_ItemUse_WithPotentialAmmo(Main.player[Projectile.owner].HeldItem, Main.player[Projectile.owner].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[Projectile.owner].getRect(),
+                    ModContent.ItemType<ShutterstockerClip>());
+                if (i == -1)
+                {
+                    return;
+                }
+                item = Main.item[i];
+            }
 
-        public void SnapPhoto()
+            item.ModItem<ShutterstockerClip>().SetClip(tilesCaptured);
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                ShutterstockerSceneRenderer.RenderRequests.Add(item.ModItem<ShutterstockerClip>());
+            }
+            else
+            {
+                var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
+                p.Write(Projectile.owner);
+                item.ModItem<ShutterstockerClip>().NetSend(p);
+                p.Send();
+            }
+        }
+        public virtual void SnapPhoto()
         {
-            var player = Main.player[Projectile.owner];
-            if (!player.ConsumeItem(player.HeldItem.useAmmo))
+            if (!Main.player[Projectile.owner].ConsumeItem(Main.player[Projectile.owner].HeldItem.useAmmo))
             {
                 return;
             }
 
             if (Main.myPlayer == Projectile.owner)
             {
-                Item item;
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
-                }
-                else
-                {
-                    int i = Item.NewItem(player.GetSource_ItemUse_WithPotentialAmmo(player.HeldItem, player.HeldItem.useAmmo, "Shutterstock Photo Creation"), player.getRect(),
-                        ModContent.ItemType<ShutterstockerClip>());
-                    if (i == -1)
-                    {
-                        return;
-                    }
-                    item = Main.item[i];
-                }
-
-                int size = CalculatedPhotoSize + ShutterstockerSceneRenderer.TilePadding;
+                int sizeX = PhotoSizeX + ShutterstockerSceneRenderer.TilePadding;
+                int sizeY = PhotoSizeY + ShutterstockerSceneRenderer.TilePadding;
                 var coords = Projectile.Center.ToTileCoordinates();
-                var rect = new Rectangle(coords.X - size / 2, coords.Y - size / 2, size, size);
-                item.ModItem<ShutterstockerClip>().SetClip(rect);
-                if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    ShutterstockerSceneRenderer.RenderRequests.Add(item.ModItem<ShutterstockerClip>());
-                }
-                else
-                {
-                    var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
-                    p.Write(Projectile.owner);
-                    item.ModItem<ShutterstockerClip>().NetSend(p);
-                    p.Send();
-                }
+                SpawnClipItem(new Rectangle(coords.X - sizeX / 2, coords.Y - sizeY / 2, sizeX, sizeY));
             }
 
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server)
             {
-                return;
-            }
-
-            ScreenCulling.SetPadding(20);
-            if (ScreenCulling.OnScreenWorld(Projectile.getRect()))
-            {
-                Main.BlackFadeIn = 400;
-                SoundEngine.PlaySound(SoundID.Camera);
+                ScreenCulling.SetPadding(20);
+                if (ScreenCulling.OnScreenWorld(Projectile.getRect()))
+                {
+                    Main.BlackFadeIn = 400;
+                    SoundEngine.PlaySound(SoundID.Camera);
+                }
             }
         }
 
@@ -157,7 +157,7 @@ namespace Aequus.Projectiles.Misc
             return false;
         }
 
-        public void DrawHeldCamera()
+        public virtual void DrawHeldCamera()
         {
             var texture = TextureAssets.Projectile[Type];
 

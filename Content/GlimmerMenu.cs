@@ -78,8 +78,11 @@ namespace Aequus.Content
         {
             //DebugDrawBiomes();
             logoScale *= 0.84f;
-            Main.dayTime = false;
-            Main.time = Main.nightLength / 2;
+            if (!Main.lockMenuBGChange)
+            {
+                Main.dayTime = false;
+                Main.time = Main.nightLength / 2;
+            }
             return true;
         }
         public void DebugDrawBiomes()

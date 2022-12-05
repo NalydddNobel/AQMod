@@ -126,6 +126,8 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkHammer>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PixelCamera>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PixelCameraClipAmmo>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
                 if (!Main.dayTime)
                 {

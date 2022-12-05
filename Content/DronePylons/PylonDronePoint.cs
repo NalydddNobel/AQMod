@@ -176,7 +176,7 @@ namespace Aequus.Content.DronePylons
         {
             if (isActive || Main.netMode != NetmodeID.SinglePlayer || Main.rand.NextBool(Math.Clamp(60 - Main.frameRate, 5, 25)))
             {
-                if (netUpdates > 5)
+                if (netUpdates > 50)
                 {
                     netUpdates = 0;
                     if (Main.netMode == NetmodeID.Server)

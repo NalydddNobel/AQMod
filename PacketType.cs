@@ -28,6 +28,8 @@
         AnalysisRarity,
         ZombieConvertEffects,
         GravityChestPickupEffect,
+        SpawnPixelCameraClip,
+        PlacePixelPainting,
         Count
     }
 
