@@ -98,6 +98,15 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			PotionCanteen: {
+				$parentVal: 药水壶
+
+				# In game usage example: 
+				# Regeneration Canteen
+				# Ironskin Canteen
+				# Spelunker Canteen
+				AltName: "{PotionName}壶"
+			}
 			ShadowVeer: 影行者
 			SouljointCuffs: 魂结镣铐
 			NaturesCruelty: 大自然的残忍
@@ -600,6 +609,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			PotionCanteen: 装备后允许无限饮用该药水
 			ShadowVeer: 幽魂仆从会对被标记的敌人进行暗影冲刺
 			SouljointCuffs: 幽魂仆从在近战击中敌人时会粘在敌人身上
 			NaturesCruelty: 你的幽魂仆从会承受25%你所受到的伤害
@@ -767,11 +777,7 @@ Mods: {
 				'''
 			Valari: 可以拾取物品
 			ThunderClap: 召唤两个大手拍打你的敌人
-			MirrorsCall:
-				'''
-				<right>进行大范围挥舞, 但不会发射弹幕
-				'从你舒适的沙发上打击敌人!'
-				'''
+			MirrorsCall: '从你舒适的沙发上打击敌人!'
 			Slice:
 				'''
 				快速挥砍并发射穿刺雪花
