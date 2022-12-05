@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Recipes;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -32,7 +33,7 @@ namespace Aequus.Items.Weapons.Magic
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int p = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
-            Main.projectile[p].timeLeft = (int)((Main.MouseWorld - position).Length() / velocity.Length());
+            Main.projectile[p].timeLeft = Math.Max((int)((Main.MouseWorld - position).Length() / velocity.Length()), 4);
             return false;
         }
 

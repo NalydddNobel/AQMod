@@ -1,8 +1,11 @@
 ﻿using Aequus;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
+using Aequus.Graphics.RenderTargets;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -16,17 +19,19 @@ namespace Aequus.Projectiles.Magic
         public const int Amount = 6;
 
         public static float DrawOpacity;
+        public static bool DrawLightning;
 
         private TrailRenderer prim;
-        private TrailRenderer bloomPrim;
+        private TrailRenderer thunderPrim;
+        private TrailRenderer thunderBloomPrim;
 
         public int lightningCheck;
 
-        public Color lightningBloomColor = new Color(128, 30, 10, 0);
+        public Color lightningBloomColor = new Color(222, 80, 30, 50);
 
         public override void SetStaticDefaults()
         {
-            Main.projFrames[Projectile.type] = 11;
+            Main.projFrames[Projectile.type] = 6;
             ProjectileID.Sets.TrailingMode[Type] = 2;
             ProjectileID.Sets.TrailCacheLength[Type] = 8;
         }
@@ -56,10 +61,28 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
+            Lighting.AddLight(Projectile.Center, new Vector3(0.75f, 0.75f, 0.1f));
             if ((int)Projectile.ai[0] == -2 || Projectile.ai[0] > 0f)
             {
-                Projectile.rotation = 0f;
+                if (Projectile.localAI[1] < 3f)
+                {
+                    Projectile.localAI[1]++;
+                }
+                else
+                {
+                    Projectile.localAI[0] = Main.rand.Next(255);
+                    Projectile.localAI[1] = 0f;
+                }
                 Projectile.velocity *= 0.2f;
+                if (Projectile.frame < 5)
+                {
+                    Projectile.frameCounter++;
+                    if (Projectile.frameCounter > 4)
+                    {
+                        Projectile.frameCounter = 0;
+                        Projectile.frame++;
+                    }
+                }
                 if (Projectile.timeLeft > 60)
                 {
                     if ((int)Projectile.ai[0] == -2)
@@ -127,30 +150,19 @@ namespace Aequus.Projectiles.Magic
             }
             else
             {
+                if (Projectile.localAI[1] == 0f)
+                {
+                    Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    Projectile.localAI[1]++;
+                }
+                Projectile.rotation += 0.1f;
                 if ((int)Projectile.ai[0] == -1)
                 {
                     if (Projectile.timeLeft < 2)
                     {
                         Projectile.timeLeft = 10800;
                         Projectile.ai[0] = -2f;
-                        Projectile.frame = 4;
-                        Projectile.scale = 1f;
                         Projectile.netUpdate = true;
-                    }
-                    else if (Projectile.timeLeft < 8)
-                    {
-                        Projectile.scale += 0.12f;
-                    }
-                }
-                if (Projectile.frame != 4)
-                {
-                    Projectile.frameCounter++;
-                    if (Projectile.frameCounter > 4)
-                    {
-                        Projectile.frameCounter = 0;
-                        Projectile.frame++;
-                        if (Projectile.frame > 3)
-                            Projectile.frame = 0;
                     }
                 }
                 if (Projectile.timeLeft < 17)
@@ -163,6 +175,7 @@ namespace Aequus.Projectiles.Magic
                     Projectile.ai[0] = -1f;
                 }
             }
+            Projectile.CollideWithOthers(0.2f);
         }
         private int FindClosestSurge()
         {
@@ -195,6 +208,10 @@ namespace Aequus.Projectiles.Magic
                 Projectile.ai[aiIndex] = -2f;
                 return;
             }
+            else if (Main.rand.NextBool((int)Math.Max(20 - Projectile.Distance(Main.projectile[surge].Center) / 32, 2)))
+            {
+                Dust.NewDustPerfect(Vector2.Lerp(Projectile.Center, Main.projectile[surge].Center, Main.rand.NextFloat(1f)), ModContent.DustType<MonoDust>(), newColor: new Color(255, 200, 128, 135), Scale: Main.rand.NextFloat(1f, 2f));
+            }
 
             if (lightningCheck <= 0)
             {
@@ -213,22 +230,36 @@ namespace Aequus.Projectiles.Magic
             var color = Projectile.GetAlpha(lightColor);
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
-            if ((int)Projectile.ai[0] == -2 || Projectile.ai[0] > 0f)
+            DrawLightning = true;
+            CheckPrims();
+            PixelizationScreenRenderer.PrepareRender("SurgeRodProj", (sb) =>
             {
-                if ((int)Projectile.ai[0] != -2)
+                thunderPrim.drawOffset = Vector2.Zero;
+                thunderPrim.WorldTrail = false;
+                if ((int)Projectile.ai[0] == -2 || Projectile.ai[0] > 0f)
                 {
-                    DrawSurge((int)Projectile.ai[0] - 1);
+                    if ((int)Projectile.ai[0] != -2)
+                    {
+                        DrawSurge((int)Projectile.ai[0] - 1);
+                    }
+                    if ((int)Projectile.ai[1] != -2 && (int)Projectile.ai[1] != 0)
+                    {
+                        DrawSurge((int)Projectile.ai[1] - 1);
+                    }
                 }
-                if ((int)Projectile.ai[1] != -2 && (int)Projectile.ai[1] != 0)
-                {
-                    DrawSurge((int)Projectile.ai[1] - 1);
-                }
-            }
-            for (int i = 0; i < trailLength; i++)
+            });
+            if (prim == null)
             {
-                float progress = 1f - 1f / trailLength * i;
-                Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, new Color(188, 128, 10, 10) * progress * opacity, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0f);
+                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass,
+                    (p) => new Vector2(12f) * (1f - p), (p) => new Color(255, 50, 10, 200) * (float)Math.Pow(1f - p, 2f));
+                prim.drawOffset = Projectile.Size / 2f;
             }
+            prim.Draw(Projectile.oldPos);
+            //for (int i = 0; i < trailLength; i++)
+            //{
+            //    float progress = 1f - 1f / trailLength * i;
+            //    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, new Color(188, 128, 10, 10) * progress * opacity, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0f);
+            //}
             foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
             {
                 Main.spriteBatch.Draw(texture, Projectile.position + v * 2f + offset - Main.screenPosition, frame, new Color(128, 128, 10, 10) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
@@ -244,26 +275,28 @@ namespace Aequus.Projectiles.Magic
             DrawOpacity = Main.projectile[to].Opacity * Projectile.Opacity;
 
             CheckPrims();
-            GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 10f, difference, screenPosition);
+            GenerateAndDrawLightning(Projectile.localAI[0], difference, screenPosition);
             if (Aequus.HQ)
             {
-                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 15f, difference, screenPosition);
-                GenerateAndDrawLightning(Main.GlobalTimeWrappedHourly * 20f, difference, screenPosition);
+                GenerateAndDrawLightning(Projectile.localAI[0] * 2f, difference, screenPosition);
+                GenerateAndDrawLightning(Projectile.localAI[0] * 4f, difference, screenPosition);
             }
             //var normal = Vector2.Normalize(difference);
             //float length = Main.rand.NextFloat(difference.Length());
         }
         private void CheckPrims()
         {
-            if (prim == null)
+            if (thunderPrim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
-                    (p) => new Vector2(2f), (p) => new Color(255, 180, 160, 40) * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
+                thunderPrim = new ForceCoordTrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                    (p) => new Vector2(4f), (p) => new Color(255, 180, 160, 40) * (float)Math.Pow(DrawOpacity, 2f), obeyReversedGravity: false, worldTrail: false)
+                { coord1 = 1f, coord2 = 0f, };
             }
-            if (bloomPrim == null)
+            if (thunderBloomPrim == null)
             {
-                bloomPrim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
-                    (p) => new Vector2(8f), (p) => lightningBloomColor * DrawOpacity, obeyReversedGravity: false, worldTrail: false);
+                thunderBloomPrim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass,
+                    (p) => new Vector2(22f), (p) => lightningBloomColor * (float)Math.Pow(DrawOpacity, 2f), obeyReversedGravity: false, worldTrail: false)
+                { coord1 = 1f, coord2 = 0f, };
             }
         }
         private void GenerateAndDrawLightning(float timer, Vector2 difference, Vector2 screenPosition)
@@ -281,8 +314,8 @@ namespace Aequus.Projectiles.Magic
         }
         private void DrawLightningPrim(Vector2[] coordinates)
         {
-            prim.Draw(coordinates);
-            bloomPrim.Draw(coordinates);
+            thunderPrim.Draw(coordinates);
+            thunderBloomPrim.Draw(coordinates, Main.GlobalTimeWrappedHourly * 0.7f, 1.2f);
         }
         private Vector2[] GenerateLightningCoords(float timer, Vector2 difference, Vector2 screenPosition)
         {
@@ -290,18 +323,33 @@ namespace Aequus.Projectiles.Magic
             {
                 return null;
             }
-            Vector2[] coordinates = new Vector2[(ClientConfig.Instance.HighQuality ? 25 : 8)];
+            int amt = (int)Math.Max(difference.Length() / (ClientConfig.Instance.HighQuality ? 20 : 60), 6);
+            Vector2[] coordinates = new Vector2[amt];
             var rand = EffectsSystem.EffectRand;
-            int old = rand.SetRand((int)timer / 2 * 2);
+            int old = rand.SetRand((int)timer);
+            float intensity = 11f;
             for (int i = 0; i < coordinates.Length; i++)
             {
-                var offset = Vector2.Lerp(new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), new Vector2(rand.Rand() / 15f, rand.Rand() / 25f), timer / 2f % 1f);
+                var offset = new Vector2(rand.Rand(-intensity, intensity), rand.Rand(-intensity, intensity));
                 coordinates[i] = difference / (coordinates.Length - 1) * i + screenPosition + offset;
+                if (i > 0)
+                    coordinates[i] = Vector2.Lerp(coordinates[i], coordinates[i - 1], 0.15f);
             }
             rand.SetRand(old);
             return coordinates;
         }
 
+        public static void DrawResultTexture()
+        {
+            if (!DrawLightning)
+                return;
+
+            DrawLightning = false;
+            if (PixelizationScreenRenderer.TryGetResult("SurgeRodProj", out var texture))
+            {
+                Main.spriteBatch.Draw(texture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White);
+            }
+        }
 
         //public override void Kill(int timeLeft)
         //{

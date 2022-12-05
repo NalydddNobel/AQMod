@@ -153,12 +153,12 @@ namespace Aequus.Projectiles.Melee.Swords
             if (progress > 0.8f)
             {
                 float p = 1f - (1f - progress) / 0.2f;
-                return -20f * p;
+                return -14f * p;
             }
             if (progress < 0.35f)
             {
                 float p = 1f - progress / 0.35f;
-                return -20f * p;
+                return -14f * p;
             }
             return 0f;
         }
@@ -194,9 +194,9 @@ namespace Aequus.Projectiles.Melee.Swords
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            if (AnimProgress > 0.2f && AnimProgress < 0.8f)
+            if (AnimProgress > 0.3f && AnimProgress < 0.7f)
             {
-                float swishProgress = (AnimProgress - 0.2f) / 0.6f;
+                float swishProgress = (AnimProgress - 0.3f) / 0.5f;
                 glowColor = Color.Lerp(glowColor, Color.White.UseA(0), 0.5f) * 1.25f;
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);

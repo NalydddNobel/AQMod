@@ -123,18 +123,6 @@ namespace Aequus.Projectiles.Melee.Swords
         }
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            if (progress > 0.4f)
-            {
-                float p = 1f - (1f - progress) / 0.6f;
-                Projectile.alpha = (int)(p * 255);
-                return -33f * p;
-            }
-            if (progress < 0.4f)
-            {
-                float p = 1f - progress / 0.4f;
-                Projectile.alpha = (int)(p * 255);
-                return -10f * p;
-            }
             return 0f;
         }
 

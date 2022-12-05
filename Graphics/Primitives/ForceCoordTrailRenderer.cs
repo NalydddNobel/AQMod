@@ -6,12 +6,12 @@ using Terraria;
 
 namespace Aequus.Graphics.Primitives
 {
-    public class SwordSlashPrimRenderer : TrailRenderer
+    public class ForceCoordTrailRenderer : TrailRenderer
     {
         public float coord1;
         public float coord2;
 
-        public SwordSlashPrimRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2)) : base(texture, pass, getWidth, getColor, obeyReversedGravity, worldTrail, drawOffset)
+        public ForceCoordTrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2)) : base(texture, pass, getWidth, getColor, obeyReversedGravity, worldTrail, drawOffset)
         {
         }
 

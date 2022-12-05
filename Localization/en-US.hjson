@@ -777,11 +777,7 @@ Mods: {
 				'''
 			Valari: Can pick up items
 			ThunderClap: Spawns two giant hands to slap your enemies
-			MirrorsCall:
-				'''
-				<right> to do a large swing with no projectile
-				'Strike the enemy from the comfort of your couch!'
-				'''
+			MirrorsCall: 'Strike the enemy from the comfort of your couch!'
 			Slice:
 				'''
 				Gains speed over time and fires piercing snowflakes

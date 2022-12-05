@@ -133,13 +133,13 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 float p = 1f - (1f - progress) / 0.2f;
                 Projectile.alpha = (int)(p * 255);
-                return -20f * p;
+                return -10f * p;
             }
             if (progress < 0.35f)
             {
                 float p = 1f - (progress) / 0.35f;
                 Projectile.alpha = (int)(p * 255);
-                return -20f * p;
+                return -10f * p;
             }
             return 0f;
         }

@@ -78,7 +78,7 @@ namespace Aequus.NPCs.Friendly.Town
                 })
                 .AddDefaultText((i) =>
                 {
-                    if (i != ModContent.ItemType<FlashwayNecklace>())
+                    if (i == ModContent.ItemType<FlashwayNecklace>())
                         return null;
                     return ContentSamples.ItemsByType[i].accessory ? Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc") : null;
                 })

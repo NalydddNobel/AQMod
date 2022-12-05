@@ -5,6 +5,7 @@ using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -237,8 +238,13 @@ namespace Aequus.Graphics
 
         private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
         {
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
+            SurgeRodProj.DrawResultTexture();
+            Main.spriteBatch.End();
+
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
             ParticlesBehindProjs.Draw(Main.spriteBatch);
+
 
             ProjsBehindProjs.renderingNow = true;
             for (int i = 0; i < ProjsBehindProjs.Count; i++)

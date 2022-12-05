@@ -243,7 +243,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             if (length == maxLength)
                 d[^1] = npc.Center;
 
-            var prim = new SwordSlashPrimRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
+            var prim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
                 (p) =>
                 {
                     float op = 1f;
