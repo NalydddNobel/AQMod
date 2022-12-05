@@ -75,22 +75,7 @@ namespace Aequus.Projectiles.Summon
             }
             if (target == -1)
             {
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    NPC NPC = Main.npc[i];
-                    if (NPC.CanBeChasedBy())
-                    {
-                        var difference = Projectile.Center - center;
-                        float c = (float)Math.Sqrt(difference.X * difference.X + difference.Y * difference.Y);
-                        if (Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, Projectile.position, Projectile.width, Projectile.height))
-                            c *= 12;
-                        if (c < dist)
-                        {
-                            target = i;
-                            dist = c;
-                        }
-                    }
-                }
+                target = Projectile.FindTargetWithLineOfSight(650f);
             }
 
             Vector2 gotoPosition = target == -1 ? player.Center : Main.npc[target].Center;

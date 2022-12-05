@@ -1400,7 +1400,7 @@ namespace Aequus
                         if (life < 0)
                         {
                             damageToRemove = -life;
-                            n.KillMe(quiet: false);
+                            n.KillEffects(quiet: false);
                         }
                         else
                         {

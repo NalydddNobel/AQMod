@@ -1,10 +1,10 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.NPCs.Friendly.Town.Drones;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.DronePylons
 {
     public class GunnerDroneSlot : DroneSlot
     {
-        public override int ProjectileType => ModContent.ProjectileType<GunnerDrone>();
+        public override int NPCType => ModContent.NPCType<GunnerDrone>();
     }
 }

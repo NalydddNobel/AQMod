@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
@@ -24,12 +25,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace Aequus.Items
@@ -356,7 +357,7 @@ namespace Aequus.Items
                                 }
                             }
                         }
-                        else 
+                        else
                         {
                             ScreenCulling.SetPadding(padding: 20);
                             if (ScreenCulling.OnScreenWorld(Main.LocalPlayer.Center))
@@ -628,6 +629,39 @@ namespace Aequus.Items
             Main.item[i].Center = pos;
             Main.item[i].stack = item.stack;
             return i;
+        }
+
+        public static bool IsPotion(Item item)
+        {
+            return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
+                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] &&
+                !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
+        }
+
+        public static void SaveItemID(TagCompound tag, string key, int itemID)
+        {
+            if (itemID >= Main.maxItemTypes)
+            {
+                var modItem = ItemLoader.GetItem(itemID);
+                tag[$"{key}Key"] = $"{modItem.Mod.Name}:{modItem.Name}";
+                return;
+            }
+            tag[$"{key}ID"] = itemID;
+        }
+        public static int LoadItemID(TagCompound tag, string key)
+        {
+            if (tag.TryGet($"{key}Key", out string buffKey))
+            {
+                var val = buffKey.Split(":");
+                if (ModLoader.TryGetMod(val[0], out var mod))
+                {
+                    if (mod.TryFind<ModItem>(val[1], out var modItem))
+                    {
+                        return modItem.Type;
+                    }
+                }
+            }
+            return tag.Get<int>($"{key}ID");
         }
     }
 }

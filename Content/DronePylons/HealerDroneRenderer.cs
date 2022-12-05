@@ -60,7 +60,7 @@ namespace Aequus.Content.DronePylons
                         Main.gameMenu = true;
 
                         Main.instance.DrawNPC(pair.Item1, Main.npc[pair.Item1].behindTiles);
-                        Main.instance.DrawProj(pair.Item2);
+                        Main.instance.DrawNPC(pair.Item2, Main.npc[pair.Item2].behindTiles);
 
                         Main.gameMenu = flag;
 

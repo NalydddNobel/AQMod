@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Buffs;
+using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;
@@ -108,6 +109,7 @@ namespace Aequus
                 OmniPaintUI.Instance.Enabled = false;
                 ChestLensInterface.Enabled = false;
             }
+            AequusBuff.preventRightClick.Clear();
             if (StariteBottleTile.blessedPlayerDelay > 0)
                 StariteBottleTile.blessedPlayerDelay--;
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;

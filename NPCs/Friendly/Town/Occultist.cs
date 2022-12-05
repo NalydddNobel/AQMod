@@ -17,6 +17,7 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
@@ -178,7 +179,13 @@ namespace Aequus.NPCs.Friendly.Town
             if (Main.hardMode)
             {
                 if (!Main.dayTime)
+                {
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
+                }
+                else
+                {
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PotionCanteen>());
+                }
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
             }
             if (NPC.AnyNPCs(NPCID.Painter))
@@ -365,7 +372,6 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay)
         {
-            NPCID.Sets.AttackType[NPC.type] = 2;
             projType = ModContent.ProjectileType<OccultistProjSpawner>();
             attackDelay = 12;
         }
@@ -378,7 +384,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.frame.Y >= NPC.frame.Height * 21)
+            if (NPC.frame.Y >= NPC.frame.Height * 22)
             {
                 NPC.frameCounter = 0;
                 NPC.frame.Y = NPC.frame.Height * 20;
@@ -386,6 +392,10 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.GetDrawInfo(out var t, out var off, out var frame, out var orig, out int _);
             off.Y += NPC.gfxOffY - 4f;
             spriteBatch.Draw(t, NPC.position + off - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, orig, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            if (ModContent.RequestIfExists<Texture2D>($"{Texture}_Glow", out var glowmask, AssetRequestMode.ImmediateLoad))
+            {
+                spriteBatch.Draw(glowmask.Value, NPC.position + off - screenPos, frame, NPC.GetNPCColorTintedByBuffs(Color.White), NPC.rotation, orig, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            }
             if ((int)NPC.ai[0] == 14)
             {
                 var bloomFrame = TextureCache.Bloom[0].Value.Frame(verticalFrames: 2);
@@ -409,8 +419,6 @@ namespace Aequus.NPCs.Friendly.Town
 
     public class OccultistHostile : Occultist
     {
-        public override string Texture => ModContent.GetInstance<Occultist>().Texture;
-
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");

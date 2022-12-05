@@ -98,6 +98,15 @@ Mods: {
 
 		ItemName: {
 			# Accessories #
+			PotionCanteen: {
+				$parentVal: Potion Canteen
+
+				# In game usage example: 
+				# Regeneration Canteen
+				# Ironskin Canteen
+				# Spelunker Canteen
+				AltName: "{PotionName} Canteen"
+			}
 			ShadowVeer: Shadow Veer
 			SouljointCuffs: Souljoint Cuffs
 			NaturesCruelty: Nature's Cruelty
@@ -600,6 +609,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			PotionCanteen: Allows infinite use of a potion when equipped
 			ShadowVeer: Ghost minions will do shadow dashes at targetted enemies
 			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit
 			NaturesCruelty: 25% of damage taken is dealt to your ghost minions

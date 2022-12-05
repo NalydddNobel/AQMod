@@ -66,14 +66,13 @@ namespace Aequus.Projectiles.Magic
             {
                 Projectile.direction = aequus.itemCombo > 0 ? -1 : 1;
                 Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.direction * 0.7f);
-                AequusHelpers.CappedMeleeScale(Projectile);
                 Projectile.netUpdate = true;
                 Projectile.ai[1] += 1f;
             }
 
             if (Projectile.numUpdates == -1)
             {
-                if (Projectile.frame < 9 && (Projectile.frameCounter % 2 == 0 || Projectile.frame < 4))
+                if (Projectile.frame < 9 && (Projectile.frameCounter % 3 == 0 || Projectile.frame < 4))
                 {
                     Projectile.frame = (Projectile.frame + 1) % Main.projFrames[Type];
                     if (Projectile.frame == 7)
@@ -81,6 +80,17 @@ namespace Aequus.Projectiles.Magic
                         var s = SoundID.Item122;
                         s.PitchVariance = 0.1f;
                         SoundEngine.PlaySound(s, Projectile.Center);
+                    }
+                }
+                if (Projectile.frame >= 6 && Projectile.Opacity > 0.5f)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity * 32f, Projectile.width, Projectile.height, 
+                            DustID.AncientLight, Alpha: 128, Scale: Main.rand.NextFloat(2f));
+                        d.velocity += Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f)) * Main.rand.NextFloat(12f);
+                        d.velocity += player.velocity;
+                        d.noGravity = true;
                     }
                 }
                 Projectile.frameCounter++;
@@ -130,14 +140,15 @@ namespace Aequus.Projectiles.Magic
             Projectile.localAI[0] = ScanLaser(dir);
             Projectile.localAI[1] = dir.ToRotation();
 
-            if (progress > 0.25f && progress < 0.75f)
+            if (progress > 0.25f && progress < 0.75f && Projectile.localAI[0] < 1190f)
             {
                 var endPoint = Projectile.Center + dir * Projectile.localAI[0];
                 if (Main.rand.NextBool(Projectile.extraUpdates / 3 + 1))
                 {
-                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height, DustID.AncientLight, -dir.X * 2f, -dir.Y * 2f, 128, Color.White, 0.2f + 1f * (float)Math.Pow(Projectile.Opacity, 2f));
+                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height, 
+                        DustID.AncientLight, -dir.X * 2f, -dir.Y * 2f, 128, Color.White, 0.2f + 1f * (float)Math.Pow(Projectile.Opacity, 2f));
                     d.velocity *= 0.45f;
-                    d.scale *= 2.45f;
+                    d.scale *= 2.3f;
                     d.noGravity = true;
                 }
             }
@@ -159,6 +170,8 @@ namespace Aequus.Projectiles.Magic
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
+            if (Projectile.ai[1] / (Main.player[Projectile.owner].itemAnimationMax * 2f) < 0.33f)
+                return false;
             if (projHitbox.Intersects(targetHitbox))
             {
                 return true;
@@ -189,32 +202,41 @@ namespace Aequus.Projectiles.Magic
 
         public void DrawLaser()
         {
-            float progress = 1f - Projectile.ai[1] / (Main.player[Projectile.owner].itemAnimationMax * 2f);
+            float progress = Projectile.ai[1] / (Main.player[Projectile.owner].itemAnimationMax * 2f);
             var dir = Projectile.velocity.SafeNormalize(-Vector2.UnitY);
 
+            if (progress < 0.25f)
+            {
+                return;
+            }
+            progress -= 0.2f;
+            progress /= 0.45f;
+            progress = Math.Min(progress, 1f);
             var startPosition = Projectile.Center - Main.screenPosition + dir * 46f;
             var endPosition = Projectile.Center + dir * Projectile.localAI[0] - Main.screenPosition;
-            float scale = Projectile.Opacity * Projectile.scale;
-            var color = new Color(150, 180, 255, 128) * scale;
+            float scale = Projectile.scale * progress;
+            var color = new Color(150, 180, 255, 128) * progress * Projectile.Opacity;
 
-            AequusHelpers.DrawLine(startPosition + dir * 18f * scale, endPosition, 16f * scale, color);
             float rotation = dir.ToRotation() - MathHelper.PiOver2;
             var texture = ModContent.Request<Texture2D>(Texture + "Laser", AssetRequestMode.ImmediateLoad).Value;
             var frame = texture.Frame(verticalFrames: 3, frameY: 0);
             var origin = new Vector2(frame.Width / 2f, 6f);
             Main.spriteBatch.Draw(texture, startPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
-            float segmentBit = (frame.Height / 2f + 4f) * scale;
+            Main.spriteBatch.Draw(texture, startPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
+            float segmentBit = (frame.Height / 2f + 2.9f) * scale;
             int segments = (int)((startPosition - endPosition).Length() / segmentBit);
             frame = frame.Frame(0, 1);
             ScreenCulling.SetPadding(100);
-            for (int i = 0; i < segments; i++)
+            origin.Y += 4.2f;
+            for (int i = 1; i < segments; i++)
             {
                 var drawCoords = startPosition + dir * segmentBit * i;
                 if (!ScreenCulling.OnScreen(drawCoords))
                     return;
                 Main.spriteBatch.Draw(texture, drawCoords, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawCoords, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(texture, endPosition - dir * frame.Height / 2f * scale, frame.Frame(0, 1), color, rotation, origin, scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, endPosition - dir * frame.Height / 2f * scale, frame.Frame(0, 1), color * 3f, rotation, origin, scale, SpriteEffects.None, 0f);
 
         }
     }

@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.NPCs.Friendly.Town.Drones;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,7 +7,7 @@ namespace Aequus.Content.DronePylons
 {
     public class HealerDroneSlot : DroneSlot
     {
-        public override int ProjectileType => ModContent.ProjectileType<HealerDrone>();
+        public override int NPCType => ModContent.NPCType<HealerDrone>();
 
         public override void OnHardUpdate()
         {

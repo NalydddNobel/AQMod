@@ -116,7 +116,7 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
                 zombie.MakeRoomForMe(npc, out int killMinion);
                 if (killMinion != -1)
                 {
-                    Main.npc[killMinion].KillMe();
+                    Main.npc[killMinion].KillEffects();
                 }
             }
             zombie.zombieOwner = Projectile.owner;

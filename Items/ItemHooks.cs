@@ -12,11 +12,26 @@ namespace Aequus.Items
         {
             On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
             On.Terraria.Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
+            On.Terraria.PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
         }
-
 
         void ILoadable.Unload()
         {
+        }
+
+        public interface IHookPickupText
+        {
+            void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText);
+
+            internal static int PopupText_NewText_PopupTextContext_Item_int_bool_bool(On.Terraria.PopupText.orig_NewText_PopupTextContext_Item_int_bool_bool orig, PopupTextContext context, Item newItem, int stack, bool noStack, bool longText)
+            {
+                int original = orig(context, newItem, stack, noStack, longText);
+                if (newItem.ModItem is IHookPickupText hookPickupText)
+                {
+                    hookPickupText.OnPickupText(original, context, stack, noStack, longText);
+                }
+                return original;
+            }
         }
 
         public interface ISetbonusDoubleTap

@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Buffs
 {
@@ -22,6 +23,8 @@ namespace Aequus.Buffs
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
 
         public static Dictionary<int, List<int>> PotionConflicts;
+
+        public static List<int> preventRightClick;
 
         public override void Load()
         {
@@ -64,6 +67,8 @@ namespace Aequus.Buffs
             On.Terraria.Player.AddBuff += Player_AddBuff; ;
             On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On.Terraria.Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
+
+            preventRightClick = new List<int>();
         }
 
         private static void addPotionConflict(int buffID, int conflictor)
@@ -202,6 +207,11 @@ namespace Aequus.Buffs
             }
         }
 
+        public override bool RightClick(int type, int buffIndex)
+        {
+            return !preventRightClick.Contains(type);
+        }
+
         public static bool AddBuffSpecial(NPC target, int type, int time, out bool canPlaySound)
         {
             canPlaySound = false;
@@ -271,6 +281,32 @@ namespace Aequus.Buffs
                 k++;
             }
             return true;
+        }
+
+        public static void SaveBuffID(TagCompound tag, string key, int buffID)
+        {
+            if (buffID >= Main.maxBuffTypes)
+            {
+                var modBuff = BuffLoader.GetBuff(buffID);
+                tag[$"{key}Key"] = $"{modBuff.Mod.Name}:{modBuff.Name}";
+                return;
+            }
+            tag[$"{key}ID"] = buffID;
+        }
+        public static int LoadBuffID(TagCompound tag, string key)
+        {
+            if (tag.TryGet($"{key}Key", out string buffKey))
+            {
+                var val = buffKey.Split(":");
+                if (ModLoader.TryGetMod(val[0], out var mod))
+                {
+                    if (mod.TryFind<ModBuff>(val[1], out var modBuff))
+                    {
+                        return modBuff.Type;
+                    }
+                }
+            }
+            return tag.Get<int>($"{key}ID");
         }
     }
 }

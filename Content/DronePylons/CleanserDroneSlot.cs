@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.NPCs.Friendly.Town.Drones;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
@@ -12,7 +12,7 @@ namespace Aequus.Content.DronePylons
     {
         public CleanseType cleanseType;
 
-        public override int ProjectileType => ModContent.ProjectileType<CleanserDrone>();
+        public override int NPCType => ModContent.NPCType<CleanserDrone>();
 
         public override void OnAdd(Player player)
         {
@@ -81,20 +81,10 @@ namespace Aequus.Content.DronePylons
             {
                 int x = tilePos.X + Main.rand.Next(-60, 60);
                 int y = tilePos.Y + Main.rand.Next(-60, 60);
-                if (!WorldGen.InWorld(x, y))
+                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile 
+                    && (TileID.Sets.Crimson[Main.tile[x, y].TileType] || TileID.Sets.Corrupt[Main.tile[x, y].TileType]))
                 {
-                    continue;
-                }
-
-                if (Main.tile[x, y].HasTile)
-                {
-                    int type = Main.tile[x, y].TileType;
-                    if (TileID.Sets.Conversion.Grass[type] || TileID.Sets.Conversion.Stone[type] || TileID.Sets.Conversion.Sand[type]
-                         || TileID.Sets.Conversion.HardenedSand[type] || TileID.Sets.Conversion.Sandstone[type]
-                         || TileID.Sets.Conversion.GolfGrass[type] || TileID.Sets.Conversion.Ice[type] || TileID.Sets.Conversion.Thorn[type])
-                    {
-                        return new Point(x, y);
-                    }
+                    return new Point(x, y);
                 }
             }
 

@@ -141,7 +141,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonGunner>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonHealer>());
-            if (AequusWorld.downedOmegaStarite)
+            if (NPC.AnyNPCs(NPCID.Steampunker))
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());

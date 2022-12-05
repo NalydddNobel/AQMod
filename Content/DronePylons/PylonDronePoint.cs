@@ -1,9 +1,10 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.NPCs.Friendly.Town.Drones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -57,9 +58,9 @@ namespace Aequus.Content.DronePylons
             get
             {
                 int numOwned = 0;
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].ModProjectile is TownDroneBase townDrone)
+                    if (Main.npc[i].active && Main.npc[i].ModNPC is TownDroneBase townDrone)
                     {
                         if (townDrone.pylonSpot == Location)
                         {
@@ -70,18 +71,18 @@ namespace Aequus.Content.DronePylons
                 return numOwned;
             }
         }
-        public List<Projectile> OwnedDrones
+        public List<NPC> OwnedDrones
         {
             get
             {
-                var l = new List<Projectile>();
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                var l = new List<NPC>();
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].ModProjectile is TownDroneBase townDrone)
+                    if (Main.npc[i].active && Main.npc[i].ModNPC is TownDroneBase townDrone)
                     {
                         if (townDrone.pylonSpot == Location)
                         {
-                            l.Add(Main.projectile[i]);
+                            l.Add(Main.npc[i]);
                         }
                     }
                 }
@@ -190,30 +191,29 @@ namespace Aequus.Content.DronePylons
                     {
                         d.Location = Location;
                         d.OnHardUpdate();
-                        int proj = d.ProjectileType;
+                        int proj = d.NPCType;
                         for (int i = 0; i < quickList.Count; i++)
                         {
                             if (quickList[i].X == proj)
                             {
-                                quickList[i] = new Point(proj, quickList[i].Y + d.ProjectileAmt);
+                                quickList[i] = new Point(proj, quickList[i].Y + d.SpawnDronesAmount);
                                 goto Continue;
                             }
                         }
-                        quickList.Add(new Point(proj, d.ProjectileAmt));
+                        quickList.Add(new Point(proj, d.SpawnDronesAmount));
                     Continue:
                         continue;
                     }
 
-                    for (int i = 0; i < Main.maxProjectiles; i++)
+                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (Main.projectile[i].active && Main.projectile[i].friendly && Main.projectile[i].ModProjectile is TownDroneBase townDrone)
+                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].ModNPC is TownDroneBase townDrone)
                         {
-                            var gunner = Main.projectile[i].ModProjectile<TownDroneBase>();
                             if (townDrone.pylonSpot == Location)
                             {
                                 for (int k = 0; k < quickList.Count; k++)
                                 {
-                                    if (Main.projectile[i].type == quickList[k].X)
+                                    if (Main.npc[i].type == quickList[k].X)
                                     {
                                         if (quickList[k].Y <= 1)
                                         {
@@ -237,7 +237,7 @@ namespace Aequus.Content.DronePylons
                         foreach (var p in quickList)
                         {
                             for (int i = 0; i < p.Y; i++)
-                                Projectile.NewProjectile(null, spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), Main.rand.NextVector2Unit() * 5f, p.X, 20, 1f, Main.myPlayer);
+                                NPC.NewNPCDirect(new EntitySource_SpawnNPC("Pylon"), spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), p.X);
                         }
                     }
                 }

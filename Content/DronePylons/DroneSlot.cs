@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.Misc.Drones;
+﻿using Aequus.NPCs.Friendly.Town.Drones;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -10,8 +10,8 @@ namespace Aequus.Content.DronePylons
 {
     public abstract class DroneSlot : ModType, TagSerializable
     {
-        public abstract int ProjectileType { get; }
-        public virtual int ProjectileAmt => 1;
+        public abstract int NPCType { get; }
+        public virtual int SpawnDronesAmount => 1;
 
         public Point Location { get; internal set; }
         public Vector2 WorldLocation
@@ -85,12 +85,12 @@ namespace Aequus.Content.DronePylons
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].type == ProjectileType && Main.projectile[i].ModProjectile is TownDroneBase townDrone)
+                if (Main.npc[i].active && Main.npc[i].type == NPCType && Main.npc[i].ModNPC is TownDroneBase townDrone)
                 {
                     if (townDrone.pylonSpot == Location)
                     {
-                        Main.projectile[i].localAI[0] = 0f;
-                        Main.projectile[i].Kill();
+                        Main.npc[i].localAI[0] = 0f;
+                        Main.npc[i].Kill();
                         break;
                     }
                 }

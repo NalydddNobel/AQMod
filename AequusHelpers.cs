@@ -299,7 +299,18 @@ namespace Aequus
             return result;
         }
 
-        public static void KillMe(this NPC npc, bool quiet = false)
+        public static void Kill(this NPC npc, bool quiet = false)
+        {
+            npc.life = 1;
+            npc.StrikeNPC(npc.lifeMax, 0f, 0);
+            npc.active = false;
+            if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
+            {
+                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, npc.lifeMax);
+            }
+        }
+
+        public static void KillEffects(this NPC npc, bool quiet = false)
         {
             npc.life = -1;
             npc.HitEffect();
