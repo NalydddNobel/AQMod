@@ -8,7 +8,6 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
@@ -38,7 +37,7 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
     {
-        public const int ACTION_LASER_ORBTIAL_2 = 8;
+        public const int ACTION_LASER_ORBITAL_2 = 8;
         public const int ACTION_LASER_ORBITAL_1 = 7;
         public const int ACTION_STARS = 6;
         public const int ACTION_ASSAULT = 5;
@@ -223,6 +222,8 @@ namespace Aequus.NPCs.Boss
                     BuffID.Poisoned,
                     BuffID.Frostburn,
                     BuffID.Frostburn2,
+                    BuffID.Bleeding,
+                    ModContent.BuffType<BlueFire>(),
                     ModContent.BuffType<BattleAxeBleeding>(),
                 },
             };
@@ -431,7 +432,7 @@ namespace Aequus.NPCs.Boss
                     }
                     break;
 
-                case ACTION_LASER_ORBTIAL_2:
+                case ACTION_LASER_ORBITAL_2:
                     {
                         if (NPC.ai[1] == 0f)
                         {
@@ -905,7 +906,7 @@ namespace Aequus.NPCs.Boss
                                     NPC.velocity *= 0.1f;
                                     if (NPC.life / (float)NPC.lifeMax < 0.5f)
                                     {
-                                        NPC.ai[0] = ACTION_LASER_ORBTIAL_2;
+                                        NPC.ai[0] = ACTION_LASER_ORBITAL_2;
                                     }
                                     else
                                     {

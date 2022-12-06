@@ -35,7 +35,7 @@ namespace Aequus.Items.Boss.Summons
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !GlimmerBiome.EventActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool? UseItem(Player player)

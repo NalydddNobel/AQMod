@@ -31,6 +31,8 @@ namespace Aequus.Projectiles.Misc
 
         public override int PhotoSizeX => DimensionsForState[PhotoState].X * 8;
         public override int PhotoSizeY => DimensionsForState[PhotoState].Y * 8;
+        public override int ClipPaddingX => 0;
+        public override int ClipPaddingY => 0;
 
         public override void Load()
         {

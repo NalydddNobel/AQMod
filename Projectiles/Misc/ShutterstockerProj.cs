@@ -22,6 +22,8 @@ namespace Aequus.Projectiles.Misc
         public virtual float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 36f); }
         public virtual int PhotoSizeX => (int)Projectile.ai[0];
         public virtual int PhotoSizeY => (int)Projectile.ai[0];
+        public virtual int ClipPaddingX => ShutterstockerSceneRenderer.TilePadding;
+        public virtual int ClipPaddingY => ShutterstockerSceneRenderer.TilePadding;
 
         public override void SetDefaults()
         {
@@ -133,8 +135,8 @@ namespace Aequus.Projectiles.Misc
 
             if (Main.myPlayer == Projectile.owner)
             {
-                int sizeX = PhotoSizeX + ShutterstockerSceneRenderer.TilePadding;
-                int sizeY = PhotoSizeY + ShutterstockerSceneRenderer.TilePadding;
+                int sizeX = PhotoSizeX + ClipPaddingX;
+                int sizeY = PhotoSizeY + ClipPaddingY;
                 var coords = Projectile.Center.ToTileCoordinates();
                 SpawnClipItem(new Rectangle(coords.X - sizeX / 2, coords.Y - sizeY / 2, sizeX, sizeY));
             }

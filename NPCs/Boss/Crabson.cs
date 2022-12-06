@@ -166,7 +166,7 @@ namespace Aequus.NPCs.Boss
             int loops = Main.getGoodWorld ? 2 : 1;
             for (int k = 0; k < loops; k++)
             {
-                if (k >= 1)
+                if (k > 0)
                 {
                     NPC.position += NPC.velocity;
                 }
@@ -525,35 +525,32 @@ namespace Aequus.NPCs.Boss
             rightClaw = -1;
             crabson = NPC.whoAmI;
             NPC.realLife = NPC.whoAmI;
-            for (int i = -1; i <= 1; i++)
+            for (int i = -1; i <= 1; i += 2)
             {
-                if (i != 0)
+                int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, NPC.type);
+                if (i == -1)
                 {
-                    int n = NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, NPC.type);
-                    if (i == -1)
-                    {
-                        leftClaw = n;
-                    }
-                    else
-                    {
-                        rightClaw = n;
-                    }
-                    Main.npc[n].position.X += 150f * i;
-                    Main.npc[n].ai[0] = ACTION_INTRO;
-                    Main.npc[n].direction = i;
-                    Main.npc[n].spriteDirection = i;
-                    Main.npc[n].realLife = NPC.whoAmI;
-                    Main.npc[n].defense *= 4;
-                    Main.npc[n].defDefense = Main.npc[n].defense;
-                    Main.npc[n].width -= 24;
-                    Main.npc[n].height += 30;
-                    if (Main.getGoodWorld)
-                    {
-                        float scale = 2f;
-                        Main.npc[n].scale *= scale;
-                        Main.npc[n].width = (int)(Main.npc[n].width * scale);
-                        Main.npc[n].height = (int)(Main.npc[n].height * scale);
-                    }
+                    leftClaw = n;
+                }
+                else
+                {
+                    rightClaw = n;
+                }
+                Main.npc[n].position.X += 150f * i;
+                Main.npc[n].ai[0] = ACTION_INTRO;
+                Main.npc[n].direction = i;
+                Main.npc[n].spriteDirection = i;
+                Main.npc[n].realLife = NPC.whoAmI;
+                Main.npc[n].defense *= 4;
+                Main.npc[n].defDefense = Main.npc[n].defense;
+                Main.npc[n].width -= 24;
+                Main.npc[n].height += 30;
+                if (Main.getGoodWorld)
+                {
+                    float scale = 2f;
+                    Main.npc[n].scale *= scale;
+                    Main.npc[n].width = (int)(Main.npc[n].width * scale);
+                    Main.npc[n].height = (int)(Main.npc[n].height * scale);
                 }
             }
             var crab = (Crabson)Left.ModNPC;

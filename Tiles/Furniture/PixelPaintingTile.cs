@@ -19,7 +19,7 @@ namespace Aequus.Tiles.Furniture
 {
     public abstract class PixelPaintingTile : ModTile
     {
-        public override string Texture => Aequus.BlankTexture;
+        public override string Texture => AequusHelpers.GetPath<PixelPaintingTile>();
 
         public abstract int StateID { get; }
 
@@ -56,7 +56,25 @@ namespace Aequus.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            //Item.NewItem(i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.ElementalPurge>());
+            int x = i - Main.tile[i, j].TileFrameX / 18;
+            int y = j - Main.tile[i, j].TileFrameY / 18;
+            if (TileEntity.ByPosition.TryGetValue(new Point16(x, y), out var te) && te is TEPixelPainting painting)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    int itemIndex = Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 
+                        PixelCameraProj.DimensionsForState[StateID].X * 16, PixelCameraProj.DimensionsForState[StateID].Y * 16, ModContent.ItemType<PixelCameraClip>());
+                    if (itemIndex != -1 && itemIndex < Main.maxItems)
+                    {
+                        var clip = Main.item[itemIndex].ModItem<PixelCameraClip>();
+                        clip.mapCache = painting.mapCache;
+                        clip.timeCreatedSerialized = painting.timeCreated;
+                        clip.photoState = StateID;
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                            NetMessage.SendData(MessageID.SyncItem, number: itemIndex);
+                    }
+                }
+            }
             ModContent.GetInstance<TEPixelPainting>().Kill(i, j);
         }
 
@@ -83,8 +101,10 @@ namespace Aequus.Tiles.Furniture
                 {
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
+                    int frameX = Main.tile[i, j].TileFrameX / 18;
+                    int frameY = Main.tile[i, j].TileFrameY / 18;
                     Main.spriteBatch.Draw(painting.texture.Value, new Vector2(i * 16f, j * 16f) + AequusHelpers.TileDrawOffset - Main.screenPosition,
-                        new Rectangle(Main.tile[i, j].TileFrameX / 2, Main.tile[i, j].TileFrameY / 2, 8, 8), Lighting.GetColor(i, j), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                        new Rectangle(frameX * 8, frameY * 8, 8, 8), Lighting.GetColor(i, j), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin();
                 }
@@ -118,6 +138,7 @@ namespace Aequus.Tiles.Furniture
     public class TEPixelPainting : ModTileEntity
     {
         public MapTileCache mapCache;
+        public long timeCreated;
         public Ref<RenderTarget2D> texture;
         private int netSpam = -1;
 
@@ -142,6 +163,7 @@ namespace Aequus.Tiles.Furniture
                 var p = Aequus.GetPacket(PacketType.PlacePixelPainting);
                 p.Write(x);
                 p.Write(y);
+                p.Write(clip.timeCreatedSerialized);
                 clip.mapCache.NetSend(p);
                 p.Send();
                 return -1;
@@ -149,6 +171,7 @@ namespace Aequus.Tiles.Furniture
             int id = Place(x, y);
             if (ByID.TryGetValue(id, out var te) && te is TEPixelPainting paintingTE)
             {
+                paintingTE.timeCreated = clip.timeCreatedSerialized;
                 paintingTE.mapCache = clip.mapCache;
             }
             return id;
@@ -162,6 +185,7 @@ namespace Aequus.Tiles.Furniture
 
         public override void SaveData(TagCompound tag)
         {
+            tag["TimeCreated"] = timeCreated;
             if (mapCache.mapTiles == null)
                 return;
             tag["Width"] = mapCache.width;
@@ -172,6 +196,7 @@ namespace Aequus.Tiles.Furniture
 
         public override void LoadData(TagCompound tag)
         {
+            timeCreated = tag.Get<long>("TimeCreated");
             if (!tag.ContainsKey("MapTileIDs"))
                 return;
             mapCache.width = tag.Get<int>("Width");
@@ -193,6 +218,7 @@ namespace Aequus.Tiles.Furniture
         public override void NetSend(BinaryWriter writer)
         {
             base.NetSend(writer);
+            writer.Write(timeCreated);
             writer.Write(netSpam > 0);
             if (netSpam > 0)
             {
@@ -209,6 +235,7 @@ namespace Aequus.Tiles.Furniture
         public override void NetReceive(BinaryReader reader)
         {
             base.NetReceive(reader);
+            timeCreated = reader.ReadInt64();
             if (reader.ReadBoolean())
                 return;
             mapCache = MapTileCache.NetReceive(reader);

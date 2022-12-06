@@ -252,12 +252,14 @@ namespace Aequus
                         {
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
+                            long timeCreated = reader.ReadInt64();
                             var map = MapTileCache.NetReceive(reader);
                             if (WorldGen.InWorld(x, y) && !TileEntity.ByPosition.ContainsKey(new Point16(x, y)))
                             {
                                 TileEntity.PlaceEntityNet(x, y, ModContent.TileEntityType<TEPixelPainting>());
                                 if (TileEntity.ByPosition.TryGetValue(new Point16(x, y), out var te) && te is TEPixelPainting painting)
                                 {
+                                    painting.timeCreated = timeCreated;
                                     painting.mapCache = map;
                                     NetMessage.SendData(MessageID.TileEntitySharing, number: painting.ID, number2: painting.Position.X, number3: painting.Position.Y);
                                 }
