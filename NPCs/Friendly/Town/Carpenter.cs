@@ -140,7 +140,8 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 if (bountyPlayer.CompletedBounties.Contains(bounty.FullName))
                 {
-                    shop.item[nextSlot++] = bounty.ProvideBountyRewardItem();
+                    shop.item[nextSlot] = bounty.ProvideBountyRewardItem();
+                    shop.item[nextSlot++].stack = 1;
                 }
             }
         }

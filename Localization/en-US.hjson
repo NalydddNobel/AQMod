@@ -420,6 +420,7 @@ Mods: {
 
 			# Misc (and Legacy) #
 
+			XmasEnergy: Frolic Energy
 			HalloweenEnergy: Horrific Energy
 
 			OrganicEnergy: Organic Energy
@@ -2737,6 +2738,31 @@ Mods: {
 		Bounty: {
 			Common: {
 				NotEnoughFurniture: Place some more decoration and furniture in this build! It is feeling very bland and lacking.
+			}
+
+			WeirdRoofBounty: {
+				"$parentVal": Artist's Imagination
+				Description: Build a house with an irregular roof
+			}
+
+			TriangleRoofBounty: {
+				"$parentVal": Pointed Edge
+				Description: Build a house with a triangle roof
+			}
+
+			ThickHouseBounty: {
+				"$parentVal": Sturdy Abode
+				Description: Build a house with thick walls
+			}
+
+			ActuatorDoorBounty: {
+				"$parentVal": Secret Entrance
+				Description: Build a room locked behind an Actuator door
+			}
+
+			UnderworldFountainBounty: {
+				"$parentVal": Lav-ing Dontation
+				Description: Build a nice looking lava fountain
 			}
 
 			BiomePaletteBounty: {

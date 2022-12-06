@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Items.Tools.Camera;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -23,6 +25,15 @@ namespace Aequus.UI
 
         public virtual void Unload()
         {
+        }
+
+        public virtual void ConsumePlayerControls(Player player)
+        {
+        }
+
+        public virtual bool HoverSlot(Item[] inventory, int context, int slot)
+        {
+            return false; 
         }
 
         protected bool NotTalkingTo<T>() where T : ModNPC

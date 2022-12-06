@@ -85,6 +85,34 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
+                case NPCID.Everscream:
+                case NPCID.SantaNK1:
+                case NPCID.IceQueen:
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<XmasEnergy>()));
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsChristmas(), ModContent.ItemType<XmasEnergy>()));
+                    break;
+
+                case NPCID.SlimeRibbonWhite:
+                case NPCID.SlimeRibbonYellow:
+                case NPCID.SlimeRibbonGreen:
+                case NPCID.SlimeRibbonRed:
+                case NPCID.ZombieXmas:
+                case NPCID.ZombieSweater:
+                case NPCID.MisterStabby:
+                case NPCID.SnowmanGangsta:
+                case NPCID.SnowBalla:
+                case NPCID.ZombieElf:
+                case NPCID.ZombieElfBeard:
+                case NPCID.ZombieElfGirl:
+                case NPCID.ElfArcher:
+                case NPCID.Nutcracker:
+                case NPCID.NutcrackerSpinning:
+                case NPCID.Yeti:
+                case NPCID.ElfCopter:
+                case NPCID.Krampus:
+                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsChristmas(), ModContent.ItemType<XmasEnergy>()));
+                    break;
+
                 case NPCID.Scarecrow1:
                 case NPCID.Scarecrow2:
                 case NPCID.Scarecrow3:

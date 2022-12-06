@@ -12,6 +12,8 @@ namespace Aequus.Content.CarpenterBounties
 {
     public class FountainBounty : CarpenterBounty
     {
+        public virtual int LiquidWanted => LiquidID.Water;
+
         public override bool CheckConditions(ConditionInfo info, out string message)
         {
             message = "";
@@ -134,7 +136,7 @@ namespace Aequus.Content.CarpenterBounties
                 {
                     var checkPoint = new Point(i, j);
                     var tile = map.Get(checkPoint);
-                    if (tile.Liquid.Amount > 0)
+                    if (tile.LiquidAmount > 0 && tile.LiquidType == LiquidWanted)
                     {
                         for (int k = -1; k <= 1; k += 2)
                         {
@@ -203,7 +205,7 @@ namespace Aequus.Content.CarpenterBounties
                     {
                         var newPoint = new Point(checkedPoints[l].X + offsets[m].X, checkedPoints[l].Y + offsets[m].Y);
                         if (map.InSceneRenderedMap(newPoint.X, newPoint.Y) && !checkedPoints.Contains(newPoint) && !addPoints.Contains(newPoint) &&
-                            map[newPoint].LiquidAmount > 0 && !map[newPoint].IsFullySolid)
+                            map[newPoint].LiquidAmount > 0 && map[newPoint].LiquidType == LiquidWanted && !map[newPoint].IsFullySolid)
                         {
                             addPoints.Add(newPoint);
                             addedAny = true;

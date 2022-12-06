@@ -508,6 +508,22 @@ namespace Aequus
             }
         }
 
+        public override void SetControls()
+        {
+            if (Main.myPlayer == Player.whoAmI)
+            {
+                if (Aequus.UserInterface?.CurrentState is AequusUIState aequusUI)
+                {
+                    aequusUI.ConsumePlayerControls(Player);
+                }
+            }
+        }
+
+        public override bool HoverSlot(Item[] inventory, int context, int slot)
+        {
+            return Aequus.UserInterface?.CurrentState is AequusUIState aequusUI ? aequusUI.HoverSlot(inventory, context, slot) : false;
+        }
+
         public override void Initialize()
         {
             boundedPotionIDs = new List<int>();

@@ -14,10 +14,8 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Terraria.UI.Chat;
 
 namespace Aequus.UI.CarpenterUI
 {
@@ -26,7 +24,6 @@ namespace Aequus.UI.CarpenterUI
         public UIList bountyList;
         public UIScrollbar bountyListScrollBar;
 
-        public UIPanel selectionPanel;
         public UIList selectionPanelList;
         public UIScrollbar selectionPanelListScrollBar;
         public ItemSlotElement submissionSlot;
@@ -40,11 +37,10 @@ namespace Aequus.UI.CarpenterUI
         {
             OverrideSamplerState = SamplerState.LinearClamp;
 
-            Height.Set(0, 0.526f);
-            MinWidth.Set(400, 0f);
-            MaxWidth.Set(1000, 0f);
-            MinHeight.Set(400, 0f);
-            MaxHeight.Set(1000, 0f);
+            MinWidth.Set(300, 0f);
+            MinHeight.Set(300, 0f);
+            Width.Set(250, 0.275f);
+            Height.Set(0, 0.75f);
             Top.Set(100, 0f);
             HAlign = 0.5f;
 
@@ -68,7 +64,7 @@ namespace Aequus.UI.CarpenterUI
 
             if (selected != null)
             {
-                if (selectionPanel == null)
+                if (selectionPanelList == null)
                     SetViewBountyPanel();
             }
             else
@@ -90,6 +86,21 @@ namespace Aequus.UI.CarpenterUI
 
             if (submissionSlot != null && submissionSlot.IsMouseHovering && submissionSlot.HasItem)
             {
+                if (ItemSlot.ShiftInUse)
+                {
+                    int slot = Main.LocalPlayer.inventory.FindSuitableSlot(Main.InventorySlotsTotal, submissionSlot.item);
+                    if (slot != -1)
+                    {
+                        Main.cursorOverride = CursorOverrideID.InventoryToChest;
+                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        {
+                            if (submissionSlot.item == null)
+                                submissionSlot.item = new Item();
+                            Utils.Swap(ref Main.LocalPlayer.inventory[slot], ref submissionSlot.item);
+                            SoundEngine.PlaySound(SoundID.Grab);
+                        }
+                    }
+                }
                 AequusUI.HoverItem(submissionSlot.item);
             }
 
@@ -130,29 +141,16 @@ namespace Aequus.UI.CarpenterUI
                 }
             }
 
-            if (bountyList != null)
+            if (bountyList != null && bountyListScrollBar != null)
             {
-                var listBox = bountyList.GetDimensions().ToRectangle();
-                var listBoxDraw = listBox;
-                bountyListScrollBar.Height.Set(listBox.Height - 8 - bountyListScrollBar.Top.Pixels, 0f);
-                listBoxDraw.Y -= 4;
-                listBoxDraw.Height += 8;
-                Utils.DrawInvBG(spriteBatch, listBoxDraw);
+                bountyListScrollBar.Height.Set(bountyList.GetDimensions().ToRectangle().Height - 8 - bountyListScrollBar.Top.Pixels, 0f);
             }
-            if (selectionPanelList != null)
+            if (selectionPanelList != null && selectionPanelListScrollBar != null)
             {
-                ManageSelectionPanelScrollbarHeight();
+                selectionPanelListScrollBar.Height.Set(selectionPanelList.GetDimensions().ToRectangle().Height - 16 - selectionPanelListScrollBar.Top.Pixels, 0f);
+                //AequusHelpers.DrawRectangle(selectionPanel.GetDimensions().ToRectangle(), Color.Red);
             }
             base.DrawSelf(spriteBatch);
-        }
-
-        private void ManageSelectionPanelScrollbarHeight()
-        {
-            var listBox = selectionPanelList.GetDimensions().ToRectangle();
-            var listBoxDraw = listBox;
-            selectionPanelListScrollBar.Height.Set(listBox.Height - 8 - selectionPanelListScrollBar.Top.Pixels, 0f);
-            listBoxDraw.Y -= 4;
-            listBoxDraw.Height += 8;
         }
 
         protected override void DrawChildren(SpriteBatch spriteBatch)
@@ -172,22 +170,33 @@ namespace Aequus.UI.CarpenterUI
             Clear();
             selected = null;
 
-            Width.Set(128, 0.4f);
+            var selectionPanel = new UIPanel();
+            selectionPanel.Left.Set(20, 0f);
+            selectionPanel.Top.Set(20, 0f);
+            selectionPanel.Width.Set(-40, 1f);
+            selectionPanel.Height.Set(-40, 1f);
+            selectionPanel.BorderColor = selectionPanel.BackgroundColor * 2f;
+            float colorMult = 1f / (selectionPanel.BackgroundColor.A / 255f);
+            selectionPanel.BackgroundColor *= colorMult;
+
+            Append(selectionPanel);
 
             bountyList = new UIList();
-            bountyList.Left.Set(20, 0f);
-            bountyList.Top.Set(20, 0f);
-            bountyList.Width.Set(-20, 1f);
-            bountyList.Height.Set(-40, 1f);
+            bountyList.Left.Set(0, 0f);
+            bountyList.Top.Set(0, 0f);
+            bountyList.Width.Set(0, 1f);
+            bountyList.Height.Set(0, 1f);
 
             bountyListScrollBar = new UIScrollbar();
-            bountyListScrollBar.Left.Set(-28, 1f);
+            bountyListScrollBar.Left.Set(-24, 1f);
             bountyListScrollBar.Top.Set(8, 0f);
-            bountyListScrollBar.Height.Set(400, 0f);
+            bountyListScrollBar.Width.Set(32, 0f);
+            bountyListScrollBar.Height.Set(0, 1f);
             bountyList.SetScrollbar(bountyListScrollBar);
             bountyList.Append(bountyListScrollBar);
 
-            Append(bountyList);
+            selectionPanel.Append(bountyList);
+            Append(selectionPanel);
             Recalculate();
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
@@ -209,11 +218,9 @@ namespace Aequus.UI.CarpenterUI
 
         public void SetViewBountyPanel()
         {
-            Width = new StyleDimension(80, 0.35f);
-
             Clear();
 
-            selectionPanel = new UIPanel();
+            var selectionPanel = new UIPanel();
             selectionPanel.Left.Set(20, 0f);
             selectionPanel.Top.Set(20, 0f);
             selectionPanel.Width.Set(-40, 1f);
@@ -222,8 +229,6 @@ namespace Aequus.UI.CarpenterUI
             float colorMult = 1f / (selectionPanel.BackgroundColor.A / 255f);
             selectionPanel.BackgroundColor *= colorMult;
 
-            Append(selectionPanel);
-
             selectionPanelList = new UIList();
             selectionPanelList.Left.Set(32, 0f);
             selectionPanelList.Top.Set(0, 0f);
@@ -231,13 +236,14 @@ namespace Aequus.UI.CarpenterUI
             selectionPanelList.Height.Set(0, 1f);
 
             selectionPanelListScrollBar = new UIScrollbar();
-            selectionPanelListScrollBar.Left.Set(-12, 1f);
+            selectionPanelListScrollBar.Left.Set(-24, 1f);
             selectionPanelListScrollBar.Top.Set(8, 0f);
             selectionPanelListScrollBar.Width.Set(32, 0f);
-            selectionPanelListScrollBar.Height.Set(460, 0f);
+            selectionPanelListScrollBar.Height.Set(0, 1f);
             selectionPanelList.SetScrollbar(selectionPanelListScrollBar);
-            selectionPanel.Append(selectionPanelList);
             selectionPanel.Append(selectionPanelListScrollBar);
+
+            selectionPanel.Append(selectionPanelList);
 
             backButton = new UIImageButton(ModContent.Request<Texture2D>(Aequus.VanillaTexture + "UI/Bestiary/Button_Back", AssetRequestMode.ImmediateLoad))
             {
@@ -249,6 +255,7 @@ namespace Aequus.UI.CarpenterUI
             backButton.OnClick += BackButton_OnClick;
 
             selectionPanel.Append(backButton);
+            Append(selectionPanel);
             PopulateSelectPanelList(selected);
         }
 
@@ -256,6 +263,36 @@ namespace Aequus.UI.CarpenterUI
         {
             SoundEngine.PlaySound(SoundID.MenuClose);
             selected = null;
+        }
+
+        public override void ConsumePlayerControls(Player player)
+        {
+            if (player.controlInv && selected != null)
+            {
+                SoundEngine.PlaySound(SoundID.MenuClose);
+                selected = null;
+                player.controlInv = true;
+                player.releaseInventory = false;
+            }
+        }
+
+        public override bool HoverSlot(Item[] inventory, int context, int slot)
+        {
+            if (selected != null && inventory[slot].ModItem is ShutterstockerClip clip)
+            {
+                if (ItemSlot.ShiftInUse)
+                {
+                    Main.cursorOverride = CursorOverrideID.InventoryToChest;
+                    if (Main.mouseLeft && Main.mouseLeftRelease)
+                    {
+                        if (submissionSlot.item == null)
+                            submissionSlot.item = new Item();
+                        Utils.Swap(ref inventory[slot], ref submissionSlot.item);
+                        SoundEngine.PlaySound(SoundID.Grab);
+                    }
+                }
+            }
+            return false;
         }
 
         public void Clear()
@@ -267,7 +304,6 @@ namespace Aequus.UI.CarpenterUI
 
             bountyList = null;
             bountyListScrollBar = null;
-            selectionPanel = null;
             selectionPanelList = null;
             selectionPanelListScrollBar = null;
             backButton = null;
@@ -422,6 +458,7 @@ namespace Aequus.UI.CarpenterUI
             string texture = element.ListItem.BountyTexture;
             if (!ModContent.HasAsset(texture))
             {
+                texture = "Aequus/Assets/UI/NecromancySelectionCursor";
                 return;
             }
 

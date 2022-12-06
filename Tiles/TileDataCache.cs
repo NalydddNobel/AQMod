@@ -41,6 +41,7 @@ namespace Aequus.Tiles
         public ushort TileColor => Misc.TileColor;
         public ushort WallColor => Misc.WallColor;
         public byte LiquidAmount => Liquid.Amount;
+        public int LiquidType => Liquid.LiquidType;
         public ushort WallType => Wall.Type;
 
         public void SetTile(Tile tile)
