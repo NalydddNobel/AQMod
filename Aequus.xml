@@ -564,7 +564,7 @@
         </member>
         <member name="F:Aequus.Graphics.CameraFocus.hold">
             <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/>
             </summary>
         </member>
         <member name="F:Aequus.Graphics.CameraFocus.returning">
@@ -572,7 +572,7 @@
             Whether or not the camera is returning
             </summary>
         </member>
-        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)">
+        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)">
             <summary>
             Sets the camera target to a position, may return false if your priority is below a current target's priority
             </summary>
@@ -580,7 +580,7 @@
             <param name="target">A world coordinate to point the camera at</param>
             <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.FocusPriority,System.Single,System.Int32)"/></param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
         <member name="P:Aequus.Graphics.EffectsSystem.ParticlesBehindPlayers">

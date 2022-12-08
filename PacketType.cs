@@ -9,7 +9,7 @@
         DemonSiegeSacrificeStatus,
         StartDemonSiege,
         RemoveDemonSiege,
-        Unused,
+        PumpinatorWindSpeed,
         SpawnHostileOccultist,
         PhysicsGunBlock,
         RequestGlimmerEvent,

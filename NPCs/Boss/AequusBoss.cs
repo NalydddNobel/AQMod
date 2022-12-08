@@ -62,7 +62,7 @@ namespace Aequus.NPCs.Boss
             NPC.localAI[3] = 0f;
         }
 
-        public void SetCamera(string context = null, Vector2? position = null, FocusPriority priority = FocusPriority.BossDefeat, float speed = 12f, int hold = 60)
+        public void SetCamera(string context = null, Vector2? position = null, CameraPriority priority = CameraPriority.BossDefeat, float speed = 12f, int hold = 60)
         {
             ModContent.GetInstance<CameraFocus>().SetTarget(context ?? Name, position ?? NPC.Center, priority, speed, hold);
         }

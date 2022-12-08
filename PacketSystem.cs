@@ -23,6 +23,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -42,7 +43,6 @@ namespace Aequus
         {
             logPacketType = new HashSet<PacketType>()
             {
-                PacketType.Unused,
                 PacketType.SpawnHostileOccultist,
                 PacketType.PhysicsGunBlock,
                 PacketType.RequestGlimmerEvent,
@@ -246,6 +246,26 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.PumpinatorWindSpeed:
+                    {
+                        Main.windSpeedTarget = reader.ReadSingle();
+                        Main.windSpeedCurrent = reader.ReadSingle();
+                        Main.windCounter = reader.ReadInt32();
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            if (Main.windSpeedCurrent > 0.6f)
+                            {
+                                Sandstorm.StartSandstorm();
+                            }
+                            var p = Aequus.GetPacket(PacketType.PumpinatorWindSpeed);
+                            p.Write(Main.windSpeedTarget);
+                            p.Write(Main.windSpeedCurrent);
+                            p.Write(Main.windCounter);
+                            p.Send();
+                        }
+                    }
+                    break;
+
                 case PacketType.PlacePixelPainting:
                     {
                         if (Main.netMode == NetmodeID.Server)

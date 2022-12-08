@@ -1107,7 +1107,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             {
                 if (_importantDeath)
                 {
-                    ModContent.GetInstance<CameraFocus>().SetTarget("Red Sprite", NPC.Center, FocusPriority.MinibossDefeat, 6f, 60);
+                    ModContent.GetInstance<CameraFocus>().SetTarget("Red Sprite", NPC.Center, CameraPriority.MinibossDefeat, 6f, 60);
                 }
                 if (NPC.ai[1] > 60f)
                 {

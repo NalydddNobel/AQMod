@@ -43,6 +43,7 @@ namespace Aequus.Buffs
                 BuffID.Tipsy,
                 BuffID.HeartLamp,
                 BuffID.Campfire,
+                BuffID.CatBast,
             };
             IsFire = new HashSet<int>()
             {

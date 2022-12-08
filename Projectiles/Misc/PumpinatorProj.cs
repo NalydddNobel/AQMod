@@ -61,7 +61,7 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Colliding(myRect, npc.getRect()) &&
                     PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
                 {
-                    npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack / 30f * npc.knockBackResist;
+                    npc.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack * 0.02f * npc.knockBackResist;
                     npc.netUpdate = true;
                 }
             }
@@ -72,7 +72,7 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Colliding(myRect, proj.getRect()) &&
                     PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type))
                 {
-                    proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack;
+                    proj.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack * 0.33f;
                     proj.netUpdate = true;
                 }
             }
@@ -88,7 +88,7 @@ namespace Aequus.Projectiles.Misc
                             continue;
                         }
                         if (Projectile.Colliding(myRect, player.getRect()))
-                            player.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack * 0.025f;
+                            player.velocity += Vector2.Normalize(Projectile.velocity) * Projectile.knockBack * 0.066f;
                     }
                 }
             }

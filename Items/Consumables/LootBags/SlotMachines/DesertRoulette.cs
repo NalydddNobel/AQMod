@@ -10,7 +10,6 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             this.CreateLoot(itemLoot)
                 .Add(ItemID.EncumberingStone, chance: 8, stack: 1)
                 .Add(ItemID.DesertMinecart, chance: 8, stack: 1)
-                .Add(ItemID.CatBast, chance: 4, stack: 1)
                 .Add(ItemID.SilverCoin, chance: 1, stack: (50, 80))
                 .AddRouletteItem(ItemID.PharaohsMask)
                 .AddSpecialRouletteItem(ItemID.PharaohsRobe, ItemID.PharaohsMask)

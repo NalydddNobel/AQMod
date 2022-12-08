@@ -1,10 +1,9 @@
 ﻿namespace Aequus.Graphics
 {
-    public enum FocusPriority
+    public enum CameraPriority
     {
         None,
         Weak,
-        NPC,
         MinibossDefeat,
         BossDefeat,
         VeryImportant,

@@ -145,7 +145,7 @@ namespace Aequus
         /// </summary>
         public Point eventDemonSiege;
 
-        public bool hurt;
+        public bool hurtThisFrame;
         public bool grounded;
 
         /// <summary>
@@ -340,6 +340,8 @@ namespace Aequus
         public int timeSinceLastHit;
         public int idleTime;
 
+        public int sceneInvulnerability;
+
         public List<int> boundedPotionIDs;
 
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
@@ -383,6 +385,7 @@ namespace Aequus
             clone.boundedPotionIDs = new List<int>(boundedPotionIDs);
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
+            clone.sceneInvulnerability = sceneInvulnerability;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -400,7 +403,8 @@ namespace Aequus
                 boundBowAmmo != aequus.boundBowAmmo || boundBowAmmoTimer != aequus.boundBowAmmoTimer);
 
             var bb2 = new BitsByte(
-                summonHelmetTimer != aequus.summonHelmetTimer);
+                summonHelmetTimer != aequus.summonHelmetTimer,
+                sceneInvulnerability > 0);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -453,6 +457,10 @@ namespace Aequus
                 {
                     p.Write(summonHelmetTimer);
                 }
+                if (bb2[1])
+                {
+                    p.Write(sceneInvulnerability);
+                }
                 p.Send();
             }
         }
@@ -471,6 +479,7 @@ namespace Aequus
             }
             if (bb[2])
             {
+                gravetenderGhost = reader.ReadInt32();
             }
             if (bb[3])
             {
@@ -505,6 +514,10 @@ namespace Aequus
             if (bb2[0])
             {
                 summonHelmetTimer = reader.ReadInt32();
+            }
+            if (bb2[1])
+            {
+                sceneInvulnerability = reader.ReadInt32();
             }
         }
 
@@ -680,7 +693,7 @@ namespace Aequus
 
         public void UpdateInstantShield()
         {
-            if ((hurt || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
+            if ((hurtThisFrame || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
                 if (instaShieldTime == instaShieldTimeMax)
                 {
@@ -815,6 +828,10 @@ namespace Aequus
             cursorDyeOverride = 0;
 
             selectGhostNPC = -1;
+
+            if (sceneInvulnerability > 0)
+                sceneInvulnerability--;
+
             if (gravityTile != 0)
             {
                 Player.gravControl = false;
@@ -841,7 +858,7 @@ namespace Aequus
 
             forceDayState = 0;
             Team = Player.team;
-            hurt = false;
+            hurtThisFrame = false;
         }
 
         public override void PreUpdate()
@@ -1308,7 +1325,11 @@ namespace Aequus
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
         {
-            hurt = true;
+            if (sceneInvulnerability > 0)
+            {
+                return false;
+            }
+            hurtThisFrame = true;
             if (damage >= 1000)
             {
                 return true;
@@ -1380,7 +1401,7 @@ namespace Aequus
 
         public override void ModifyScreenPosition()
         {
-            ModContent.GetInstance<CameraFocus>().UpdateScreen();
+            ModContent.GetInstance<CameraFocus>().UpdateScreen(this);
             EffectsSystem.UpdateScreenPosition();
             Main.screenPosition = Main.screenPosition.Floor();
         }
@@ -1917,6 +1938,8 @@ namespace Aequus
 
         public void DetermineBuffTimeToAdd(int type, ref int amt)
         {
+            if (amt < 30)
+                return;
             if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
             {
                 if (debuffDuration != 1f)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +27,7 @@ namespace Aequus.Graphics
         /// <summary>
         /// A priority for determining whether or not a new camera focus can be added
         /// </summary>
-        public FocusPriority priority;
+        public CameraPriority priority;
         /// <summary>
         /// The speed of the camera
         /// </summary>
@@ -36,13 +37,14 @@ namespace Aequus.Graphics
         /// </summary>
         public float cameraProgress;
         /// <summary>
-        /// How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, FocusPriority, float, int)"/>
+        /// How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, CameraPriority, float, int)"/>
         /// </summary>
         public int hold;
         /// <summary>
         /// Whether or not the camera is returning
         /// </summary>
         public bool returning;
+        public bool makePlayerInvincible;
 
         private Vector2 ScreenTarget => target.Value - new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
 
@@ -61,7 +63,7 @@ namespace Aequus.Graphics
         {
             target = null;
             cameraPosition = null;
-            priority = FocusPriority.None;
+            priority = CameraPriority.None;
             speed = 10f;
             hold = 0;
             returning = false;
@@ -74,18 +76,18 @@ namespace Aequus.Graphics
         /// <param name="target">A world coordinate to point the camera at</param>
         /// <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
         /// <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-        /// <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, FocusPriority, float, int)"/></param>
+        /// <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="SetTarget(string, Vector2, CameraPriority, float, int)"/></param>
         /// <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        public bool SetTarget(string key, Vector2 target, FocusPriority priority, float speed = 6f, int hold = 25)
+        public bool SetTarget(string key, Vector2 target, CameraPriority priority, float speed = 6f, int hold = 25)
         {
-            if (key == Context)
-            {
-                this.hold = hold;
-            }
-            if (this.target == null || this.priority < priority)
+            if (this.target == null || this.priority < priority || key == Context)
             {
                 this.target = target;
                 this.priority = priority;
+                if (priority >= CameraPriority.MinibossDefeat)
+                {
+                    makePlayerInvincible = true;
+                }
                 this.speed = speed;
                 returning = false;
                 this.hold = hold;
@@ -95,8 +97,12 @@ namespace Aequus.Graphics
             return false;
         }
 
-        public void UpdateScreen()
+        public void UpdateScreen(AequusPlayer aequus)
         {
+            if (makePlayerInvincible)
+            {
+                aequus.sceneInvulnerability = Math.Max(aequus.sceneInvulnerability, 30);
+            }
             if (target != null && !returning)
             {
                 if (cameraPosition == null)
@@ -133,6 +139,7 @@ namespace Aequus.Graphics
                     cameraProgress = 0f;
                     cameraPosition = null;
                     Context = null;
+                    makePlayerInvincible = false;
                     return;
                 }
                 cameraPosition = Main.screenPosition + difference * cameraProgress;
@@ -141,7 +148,7 @@ namespace Aequus.Graphics
         }
         private void ClampSpeed()
         {
-            speed = MathHelper.Clamp(speed, 6f, 25f);
+            speed = MathHelper.Clamp(speed, 0.5f, 25f);
         }
 
         internal static Vector2 GetY_Check(Vector2 position)

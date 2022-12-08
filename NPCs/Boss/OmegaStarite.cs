@@ -9,6 +9,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -29,6 +30,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
@@ -929,6 +931,25 @@ namespace Aequus.NPCs.Boss
                     break;
 
                 case ACTION_INTRO:
+                    var r = NPC.getRect();
+                    r.Inflate(24, 24);
+                    for (int i = 0; i < Main.maxItems; i++)
+                    {
+                        if (Main.item[i].active&& Main.item[i].type == ItemID.Burger)
+                        {
+                            if (r.Intersects(Main.item[i].getRect()))
+                            {
+                                NPC.ai[0] = -100f;
+                                NPC.ai[1] = i;
+                                Main.item[i].noGrabDelay = 120;
+                                NPC.ai[2] = 0f;
+                                NPC.ai[3] = 0f;
+                                NPC.velocity *= 0.5f;
+                                NPC.netUpdate = true;
+                                return;
+                            }
+                        }
+                    }
                     Intro(center, plrCenter);
                     break;
 
@@ -953,12 +974,86 @@ namespace Aequus.NPCs.Boss
                 case ACTION_DEAD:
                     Die();
                     break;
+
+                case -100:
+                    {
+                        int item = (int)NPC.ai[1];
+                        if (!Main.item[item].active)
+                        {
+                            NPC.ai[0] = ACTION_ASSAULT;
+                            return;
+                        }
+                        Main.item[item].noGrabDelay = 120;
+                        NPC.velocity *= 0.95f;
+                        for (int i = 0; i < rings.Count; i++)
+                        {
+                            rings[i].rotationVelocity *= 0.99f;
+                        }
+                        NPC.ai[3]++;
+                        NPC.localAI[3]++;
+                        if ((int)NPC.localAI[3] == 100)
+                            SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/explosion", 0.66f, -0.05f), NPC.Center);
+                        if (NPC.ai[3] > 60f)
+                        {
+                            Main.item[item].velocity = Vector2.Zero;
+                            if (NPC.ai[3] < 1000f)
+                            {
+                                float amt = (float)Math.Sin((NPC.ai[3] * 0.02f - 60f) * 0.5f) * 2f;
+                                NPC.ai[2] += amt;
+                                if (amt < -1f)
+                                {
+                                    NPC.ai[3] = 1000f;
+                                }
+                            }
+                            else
+                            {
+                                if (NPC.ai[2] < 10f)
+                                {
+                                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                                    {
+                                        Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<Fi>(), 1);
+                                        if (Main.netMode == NetmodeID.SinglePlayer)
+                                        {
+                                            Main.NewText(Language.GetTextValue("Mods.Aequus.OmegaStariteEasterEgg", NPC.TypeName), AequusText.BossSummonMessage);
+                                        }
+                                        else
+                                        {
+                                            AequusText.Broadcast("Mods.Aequus.OmegaStariteEasterEgg", AequusText.BossSummonMessage, Lang.GetNPCName(Type).Key);
+                                        }
+                                    }
+                                    Main.item[item].stack--;
+                                    if (Main.item[item].stack <= 0)
+                                    {
+                                        Main.item[item].TurnToAir();
+                                        Main.item[item].active = false;
+                                    }
+                                    SoundEngine.PlaySound(SoundID.Item2, NPC.Center);
+                                    NPC.life = -33333;
+                                    NPC.KillEffects();
+                                    return;
+                                }
+                                else
+                                {
+                                    NPC.ai[2] -= 1f + (NPC.ai[3] - 1000f) * 0.01f;
+                                }
+                            }
+                            Main.item[item].Center = Vector2.Lerp(
+                                Main.item[item].Center,
+                                NPC.Center + Vector2.Normalize(Main.item[item].Center - NPC.Center) * NPC.ai[2],
+                                0.075f);
+                        }
+                        else
+                        {
+                            NPC.ai[2] = Vector2.Distance(NPC.Center, Main.item[item].Center);
+                        }
+                    }
+                    break;
             }
             for (int i = 0; i < rings.Count; i++)
             {
                 rings[i].Update(center + NPC.velocity);
             }
-            if (NPC.ai[0] != ACTION_DEAD)
+            if (NPC.ai[0] != ACTION_DEAD && Action != -100)
             {
                 int chance = 10 - (int)speed;
                 if (chance < 2 || Main.rand.NextBool(chance))
@@ -1079,6 +1174,10 @@ namespace Aequus.NPCs.Boss
         }
         public void Intro(Vector2 center, Vector2 plrCenter)
         {
+            if (NPC.ai[2] == 0f)
+            {
+                NPC.ai[2] = plrCenter.Y;
+            }
             LerpToDefaultRotationVelocity();
             if (center.Y > NPC.ai[2])
             {
@@ -1404,12 +1503,21 @@ namespace Aequus.NPCs.Boss
             }
             float intensity = 1f;
 
-            if (Action == ACTION_DEAD)
+            if (Action == -100)
+            {
+                var focus = Main.item[(int)NPC.ai[1]].Center;
+                intensity += NPC.localAI[3] / 60;
+                Lighting.GlobalBrightness -= intensity * 0.2f;
+                ScreenFlash.Flash.Set(Main.item[(int)NPC.ai[1]].Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.04f, 0.8f));
+                EffectsSystem.Shake.Set(intensity * 0.5f);
+                ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", focus, CameraPriority.VeryImportant, 0.5f, 60);
+            }
+            else if (Action == ACTION_DEAD)
             {
                 intensity += NPC.ai[1] / 20;
                 if (NPC.CountNPCS(Type) == 1)
                 {
-                    ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, FocusPriority.BossDefeat, 12f, 60);
+                    ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, CameraPriority.BossDefeat, 12f, 60);
                 }
                 float val = MathHelper.Clamp(3f - intensity, 0f, 1f);
                 if (val < 0.1f)
@@ -1462,26 +1570,42 @@ namespace Aequus.NPCs.Boss
             {
                 spriteBatch.Draw(omegiteTexture, position, omegiteFrame, drawColor, rotation, origin1, scale, SpriteEffects.None, 0f);
             });
-            if (intensity >= 1f)
+            float secretIntensity = 1f;
+            if (Action == -100)
+            {
+                DrawDeathLightRays(intensity, Main.item[(int)NPC.ai[1]].Center - screenPos, spotlight, spotlightColor, spotlightOrig, deathSpotlightScale, NPC.localAI[3] * 0.05f);
+                float decMult = Math.Clamp(2f - intensity * 0.4f, 0f, 1f);
+                    secretIntensity *= decMult;
+                byte a = drawColor.A;
+                drawColor *= secretIntensity;
+                drawColor.A = a;
+                a = clr3.A;
+                clr3 *= secretIntensity;
+                clr3.A = a;
+            }
+            if (intensity * secretIntensity >= 1f)
             {
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)
                 {
-                    for (int j = 0; j < intensity; j++)
+                    for (int j = 0; j < intensity * layerDepth; j++)
                     {
-                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f + xOff * 2f * j, 0f), omegiteFrame, clr3, rotation, origin1, scale, SpriteEffects.None, 0f);
-                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f - xOff * 2f * j, 0f), omegiteFrame, clr3, rotation, origin1, scale, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f + xOff * 2f * j, 0f), 
+                            omegiteFrame, clr3 * layerDepth, rotation, origin1, scale, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f - xOff * 2f * j, 0f), 
+                            omegiteFrame, clr3 * layerDepth, rotation, origin1, scale, SpriteEffects.None, 0f);
                     }
                 });
             }
-            if (intensity > 3f)
+            if (intensity * secretIntensity > 3f)
             {
-                float omegiteDeathDrawScale = deathSpotlightScale * 0.5f;
+                float omegiteDeathDrawScale = deathSpotlightScale * secretIntensity * 0.5f;
                 drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth)
                 {
                     spriteBatch.Draw(spotlight, position, null, drawColor, rotation, spotlightOrig, scale * omegiteDeathDrawScale, SpriteEffects.None, 0f);
                     spriteBatch.Draw(spotlight, position, null, spotlightColor, rotation, spotlightOrig, scale * omegiteDeathDrawScale * 2, SpriteEffects.None, 0f);
                 });
             }
+
             for (int i = 0; i < positions.Count; i++)
             {
                 if (positions[i].Z > 0f)
@@ -1494,12 +1618,12 @@ namespace Aequus.NPCs.Boss
                             omegiteTexture,
                             drawPosition,
                             omegiteFrame,
-                            drawColor,
+                            drawColor * secretIntensity,
                             drawScale,
                             omegiteOrigin,
                             NPC.rotation,
                             SpriteEffects.None,
-                            0f);
+                            secretIntensity);
                     }
                     positions.RemoveAt(i);
                     i--;
@@ -1514,9 +1638,9 @@ namespace Aequus.NPCs.Boss
             //{
             //    spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + i, SpriteEffects.None, 0f);
             //}
-            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + intensity, SpriteEffects.None, 0f);
+            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * secretIntensity, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + intensity, SpriteEffects.None, 0f);
 
-            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity)), NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity)) * secretIntensity, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
 
             if (!NPC.IsABestiaryIconDummy)
             {
@@ -1540,10 +1664,10 @@ namespace Aequus.NPCs.Boss
             }
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-            for (int j = 0; j < intensity; j++)
+            for (int j = 0; j < intensity * secretIntensity; j++)
             {
-                spriteBatch.Draw(texture, drawPos + new Vector2(2f + xOff * 2f * j, 0f), NPC.frame, clr3, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(texture, drawPos - new Vector2(2f + xOff * 2f * j, 0f), NPC.frame, clr3, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, drawPos + new Vector2(2f + xOff * 2f * j, 0f), NPC.frame, clr3 * secretIntensity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, drawPos - new Vector2(2f + xOff * 2f * j, 0f), NPC.frame, clr3 * secretIntensity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
             for (int i = 0; i < positions.Count; i++)
             {
@@ -1555,21 +1679,27 @@ namespace Aequus.NPCs.Boss
                         omegiteTexture,
                         drawPosition,
                         omegiteFrame,
-                        drawColor,
+                        drawColor * secretIntensity,
                         drawScale,
                         omegiteOrigin,
                         NPC.rotation,
                         SpriteEffects.None,
-                        0f);
+                        secretIntensity);
                 }
             }
-            if (intensity > 3f)
+            if (Action != -100)
+                DrawDeathLightRays(intensity, drawPos, spotlight, spotlightColor, spotlightOrig, deathSpotlightScale, NPC.ai[1]);
+            return false;
+        }
+        public void DrawDeathLightRays(float intensity, Vector2 drawPos, Texture2D spotlight, Color spotlightColor, Vector2 spotlightOrig, float deathSpotlightScale, float deathTime)
+        {
+            if (intensity > 3f || (Action == -100 && intensity > 2f))
             {
                 float intensity2 = intensity - 2f;
                 float raysScaler = intensity2;
-                if (NPC.ai[1] > DEATHTIME)
+                if (deathTime > DEATHTIME)
                 {
-                    float scale = (NPC.ai[1] - DEATHTIME) * 0.2f;
+                    float scale = (deathTime - DEATHTIME) * 0.2f;
                     scale *= scale;
                     raysScaler += scale;
                     Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(120, 120, 120, 0) * intensity2, NPC.rotation, spotlightOrig, scale, SpriteEffects.None, 0f);
@@ -1611,7 +1741,6 @@ namespace Aequus.NPCs.Boss
                 Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * raysScaler, SpriteEffects.None, 0);
                 Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * raysScaler, SpriteEffects.None, 0);
             }
-            return false;
         }
 
         public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

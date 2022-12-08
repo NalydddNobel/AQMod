@@ -61,7 +61,6 @@ namespace Aequus.Items.Tools
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled && !LanternNight.LanternsUp)
             {
                 float windChange = 0.02f * (1f - velocity.Y.Abs() / Item.shootSpeed) * Math.Sign(velocity.X);
-
                 if ((Main.windSpeedTarget + windChange).Abs() > 0.8f)
                 {
                     windChange = -(Main.windSpeedTarget - 0.8f * Math.Sign(Main.windSpeedTarget));
@@ -74,7 +73,15 @@ namespace Aequus.Items.Tools
                 Main.windCounter = Math.Min(Main.windCounter, 480);
                 if (Main.netMode != NetmodeID.SinglePlayer)
                 {
-                    //NetHelper.UpdateWindSpeeds();
+                    var p = Aequus.GetPacket(PacketType.PumpinatorWindSpeed);
+                    p.Write(Main.windSpeedTarget);
+                    p.Write(Main.windSpeedCurrent);
+                    p.Write(Main.windCounter);
+                    p.Send();
+                }
+                else if (Main.windSpeedCurrent > 0.6f)
+                {
+                    Sandstorm.StartSandstorm();
                 }
             }
             return true;

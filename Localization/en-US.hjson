@@ -286,6 +286,7 @@ Mods: {
 			DwarfStarite: Dwarf Starite
 
 			# Fish #
+			Fi: Fi
 			CrabDaughter: Crab Daughter
 			XenonFish: Xenon Fish
 			KryptonFish: Krypton Fish
@@ -1207,6 +1208,7 @@ Mods: {
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
 			# Legendary Fish #
+			Fi: One of the vital building blocks of the universe
 			CrabDaughter:
 				'''
 				A legendary fish enriched with aquatic energy
@@ -1912,7 +1914,7 @@ Mods: {
 			WhiteSlime: White Slime
 			StreamingBalloon: Streaming Balloon
 			Vraine: Vraine
-			Meteor: Meteor
+			Meteor: Orbiting Meteor
 
 			BreadOfCthulhu: Bread of Cthulhu
 
@@ -2838,7 +2840,8 @@ Mods: {
 		KeyUnbound: Unbound Key
 		Finished: Finished
 		Unknown: Unknown
-		OblivisionEasterEgg: <Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence.
+		OmegaStariteEasterEgg: "{0} has been satisfied!"
+		OblivisionEasterEgg: "<Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence."
 		Complete: Complete
 		Active: Active
 		Inactive: Inactive

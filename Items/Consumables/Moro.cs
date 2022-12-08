@@ -22,6 +22,7 @@ namespace Aequus.Items.Consumables
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
             Item.value = Item.sellPrice(gold: 2);
+            Item.maxStack = 9999;
         }
 
         public override bool? UseItem(Player player)

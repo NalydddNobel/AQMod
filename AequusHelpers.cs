@@ -312,7 +312,7 @@ namespace Aequus
 
         public static void KillEffects(this NPC npc, bool quiet = false)
         {
-            npc.life = -1;
+            npc.life = Math.Min(npc.life, -1);
             npc.HitEffect();
             npc.active = false;
             if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
