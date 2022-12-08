@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs
 {
-    public class Weakness : ModBuff
+    public class BoneRingWeakness : ModBuff
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Weak;
 

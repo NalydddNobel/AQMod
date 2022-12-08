@@ -419,7 +419,7 @@ namespace Aequus.NPCs
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
-            if (npc.HasBuff<Weakness>())
+            if (npc.HasBuff<BoneRingWeakness>())
             {
                 byte a = drawColor.A;
                 drawColor = (drawColor * 0.9f).UseA(a);

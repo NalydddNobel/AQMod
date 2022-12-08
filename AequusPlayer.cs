@@ -1408,7 +1408,7 @@ namespace Aequus
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (npc.HasBuff<Weakness>())
+            if (npc.HasBuff<BoneRingWeakness>())
             {
                 damage = (int)(damage * WeaknessDamageMultiplier);
             }
@@ -1461,7 +1461,7 @@ namespace Aequus
             var aequus = proj.Aequus();
             if (aequus.HasNPCOwner)
             {
-                if (Main.npc[aequus.sourceNPC].HasBuff<Weakness>())
+                if (Main.npc[aequus.sourceNPC].HasBuff<BoneRingWeakness>())
                 {
                     damage = (int)(damage * WeaknessDamageMultiplier);
                 }
@@ -1633,7 +1633,7 @@ namespace Aequus
             }
             if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
             {
-                target.AddBuff(ModContent.BuffType<Weakness>(), 360 * accBoneRing);
+                target.AddBuff(ModContent.BuffType<BoneRingWeakness>(), 360 * accBoneRing);
             }
         }
 

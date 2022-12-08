@@ -1,9 +1,8 @@
-﻿using Aequus.Items.Placeable.Furniture;
+﻿using Aequus.Buffs;
+using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -15,11 +14,6 @@ namespace Aequus.Tiles.Furniture
 {
     public class StariteBottleTile : ModTile
     {
-        public const int BlessingDelayMax = 90;
-
-        public static int blessedPlayerDelay;
-        public static Point BlesserTile;
-
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -50,17 +44,11 @@ namespace Aequus.Tiles.Furniture
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (closer && Main.tile[i, j].TileFrameY == 0 && blessedPlayerDelay <= 0 && Main.rand.NextBool(100))
+            if (closer && Main.tile[i, j].TileFrameY == 0)
             {
-                int mana = Math.Min(Main.LocalPlayer.statManaMax2 - Main.LocalPlayer.statMana, 20);
-                if (mana > 0)
-                {
-                    SoundEngine.PlaySound(SoundID.Item30.WithPitch(Main.rand.NextFloat(0.25f, 0.75f)).WithVolume(0.2f), new Vector2(i * 16f, j * 16f));
-                    Main.LocalPlayer.ManaEffect(mana);
-                    Main.LocalPlayer.statMana += mana;
-                    BlesserTile = new Point(i, j);
-                    blessedPlayerDelay = BlessingDelayMax;
-                }
+                int buffID = Main.LocalPlayer.FindBuffIndex(ModContent.BuffType<StariteBottleBuff>());
+                if (buffID == -1 || Main.LocalPlayer.buffTime[buffID] < 10)
+                    Main.LocalPlayer.AddBuff(ModContent.BuffType<StariteBottleBuff>(), 180);
             }
         }
 
@@ -70,10 +58,6 @@ namespace Aequus.Tiles.Furniture
 
         public int GetFrame(int i, int y)
         {
-            if (BlesserTile.X == i && BlesserTile.Y == y && blessedPlayerDelay > (BlessingDelayMax - 24))
-            {
-                return 3 + (BlessingDelayMax - blessedPlayerDelay) / 6;
-            }
             return 1 + (int)(Main.GameUpdateCount / 8 + i * i / y + y * y) % 2;
         }
 

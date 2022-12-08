@@ -110,8 +110,6 @@ namespace Aequus
                 ChestLensInterface.Enabled = false;
             }
             AequusBuff.preventRightClick.Clear();
-            if (StariteBottleTile.blessedPlayerDelay > 0)
-                StariteBottleTile.blessedPlayerDelay--;
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;
         }
 

@@ -1565,10 +1565,11 @@ Mods: {
 			VampirismNight: Cold Skin
 			VampirismDay: Sunlight
 
-			Weakness: Weakness
+			StariteBottleBuff: Starite Bottle
+			BoneRingWeakness: Weakness
 			CrimsonHellfire: Hellfire (Crimson)
 			CorruptionHellfire: Hellfire (Corruption)
-			Bleeding: Bleeding
+			BattleAxeBleeding: Bleeding
 			BitCrushed: Bit Crushed
 			BlueFire: Blue Fire
 			PickBreak: Pick Break
@@ -1637,15 +1638,15 @@ Mods: {
 
 			HotAirBalloonBuff: Up, up, and away!!!
 
-
 			Vampirism: You may become a vampire after this...
 			VampirismNight: Greatly increased stats, attacks may lifesteal
 			VampirismDay: Greatly decreased stats, you no longer get buffs from food
 
-			Weakness: "{$BuffDescription.Weak}"
+			StariteBottleBuff: Grants 20 mana when cleared
+			BoneRingWeakness: "{$BuffDescription.Weak}"
 			CrimsonHellfire: "{$BuffDescription.OnFire}"
 			CorruptionHellfire: "{$BuffDescription.OnFire}"
-			Bleeding: "{$BuffDescription.Bleeding}"
+			BattleAxeBleeding: "{$BuffDescription.Bleeding}"
 			BitCrushed: You are compressed!
 			BlueFire: The immense heat burns off your skin
 			PickBreak: Your mining power is halved
