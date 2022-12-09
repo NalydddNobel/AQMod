@@ -29,6 +29,8 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             Projectile.tileCollide = false;
             Projectile.timeLeft *= 10;
             Projectile.extraUpdates = 1;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 5;
             connectedNPC = -1;
         }
 

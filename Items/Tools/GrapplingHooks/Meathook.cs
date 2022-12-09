@@ -17,6 +17,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
         {
             Item.CloneDefaults(ItemID.DualHook);
             Item.damage = 30;
+            Item.knockBack = 0f;
             Item.shoot = ModContent.ProjectileType<MeathookProj>();
             Item.value = Item.buyPrice(gold: 10);
             Item.shootSpeed /= 2f;
@@ -26,6 +27,11 @@ namespace Aequus.Items.Tools.GrapplingHooks
         {
             tooltips.RemoveCritChance();
             tooltips.RemoveKnockback();
+        }
+
+        public override bool WeaponPrefix()
+        {
+            return true;
         }
     }
 }

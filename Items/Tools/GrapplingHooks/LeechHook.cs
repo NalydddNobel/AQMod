@@ -20,7 +20,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.width = 20;
             Item.height = 20;
             Item.damage = 12;
-            Item.knockBack = 1f;
+            Item.knockBack = 0f;
             Item.shoot = ModContent.ProjectileType<LeechHookProj>();
             Item.shootSpeed = 16f;
             Item.noUseGraphic = true;
@@ -33,11 +33,17 @@ namespace Aequus.Items.Tools.GrapplingHooks
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             tooltips.RemoveCritChance();
+            tooltips.RemoveKnockback();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             player.Aequus().leechHookNPC = -1;
+            return true;
+        }
+
+        public override bool WeaponPrefix()
+        {
             return true;
         }
     }
