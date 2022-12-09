@@ -116,6 +116,8 @@ namespace Aequus
         public bool accShowQuestFish;
         public bool accPriceMonocle;
 
+        public bool eyeGlint;
+
         public int equippedMask;
         public int cMask;
         public int equippedHat;
@@ -589,6 +591,7 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            eyeGlint = false;
             stackingHat = 0;
 
             setbonusRef = null;
@@ -1685,6 +1688,11 @@ namespace Aequus
                 drawInfo.hideHair = false;
                 drawInfo.fullHair = true;
                 drawInfo.hatHair = true;
+            }
+            if (eyeGlint)
+            {
+                drawInfo.colorEyeWhites = Color.White;
+                drawInfo.colorEyes = drawInfo.drawPlayer.eyeColor;
             }
             if (CustomDrawShadow != null)
             {
