@@ -23,25 +23,33 @@ namespace Aequus.Content.WorldGeneration
     {
         public static CrabCreviceGenerator GenCrabCrevice { get; private set; }
         public static GoreNestGenerator GenGoreNest { get; private set; }
+        public static RockmanChestGenerator RockmanGenerator { get; private set; }
 
         public override void Load()
         {
+            RockmanGenerator = new RockmanChestGenerator();
             GenCrabCrevice = new CrabCreviceGenerator();
             GenGoreNest = new GoreNestGenerator();
         }
 
         public override void Unload()
         {
+            RockmanGenerator = null;
             GenCrabCrevice = null;
+            GenGoreNest = null;
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
+            AddPass("Buried Chests", "Rockman Biome", (progress, configuration) =>
+            {
+                RockmanGenerator.GenerateRandomLocation();
+            }, tasks);
             AddPass("Beaches", "Crab Home", (progress, configuration) =>
             {
                 progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
-                GenCrabCrevice.Generate(null);
+                GenCrabCrevice.Generate(progress);
             }, tasks);
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>
             {
@@ -157,13 +165,6 @@ namespace Aequus.Content.WorldGeneration
                         }
                     }
                 }
-            }
-
-            if (rockmanChests.Count > 0)
-            {
-                var c = Main.chest[rockmanChests[r.Next(rockmanChests.Count)]];
-                AequusWorld.Structures.Add("RockManChest", new Point(c.x, c.y));
-                c.Insert(ModContent.ItemType<RockMan>(), r.Next(Chest.maxItems - 1));
             }
         }
         public static void UndergroundChestLoot(int k, Chest c, List<int> rockmanChests, HashSet<int> placedItems, UnifiedRandom r)

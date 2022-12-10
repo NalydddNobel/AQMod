@@ -58,6 +58,8 @@ namespace Aequus.Tiles.Misc
             Main.tileFrameImportant[Type] = true;
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
+            TileID.Sets.PreventsTileRemovalIfOnTopOfIt[Type] = true;
+            TileID.Sets.PreventsSandfall[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };

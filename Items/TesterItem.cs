@@ -2,6 +2,7 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.Necromancy;
 using Aequus.Content.StatSheet;
+using Aequus.Content.WorldGeneration;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
@@ -39,8 +40,10 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            AequusWorld.downedEventDemon = !AequusWorld.downedEventDemon;
-            Main.NewText(AequusWorld.downedEventDemon);
+            AequusWorldGenerator.RockmanGenerator.GenerateRandomLocation();
+            var p = AequusWorld.Structures.GetLocation("Rockman");
+            if (p != null)
+                Main.LocalPlayer.Teleport(p.Value.ToWorldCoordinates());
             return true;
         }
 

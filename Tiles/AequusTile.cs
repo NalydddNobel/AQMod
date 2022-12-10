@@ -18,7 +18,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles
 {
-    public class AequusTile : GlobalTile, IAddRecipes
+    public class AequusTile : GlobalTile, IPostSetupContent, IAddRecipes
     {
         public static Action ResetTileRenderPoints;
         public static Action DrawSpecialTilePoints;
@@ -53,6 +53,8 @@ namespace Aequus.Tiles
         public static Dictionary<Point, Color> PylonColors { get; private set; }
         public static Dictionary<TileKey, int> TileIDToItemID { get; private set; }
         public static Dictionary<int, int> WallIDToItemID { get; private set; }
+
+        internal static bool[] All;
 
         public override void Load()
         {
@@ -89,6 +91,15 @@ namespace Aequus.Tiles
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
         }
         #endregion
+
+        public void PostSetupContent(Aequus aequus)
+        {
+            All = new bool[TileLoader.TileCount];
+            for (int i = 0; i < All.Length; i++)
+            {
+                All[i] = true;
+            }
+        }
 
         public void AddRecipes(Aequus aequus)
         {

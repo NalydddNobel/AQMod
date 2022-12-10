@@ -25,10 +25,7 @@ namespace Aequus.Content.WorldGeneration
         /// <param name="location">The location of the structure in tile coordinates</param>
         internal void Add(string name, Point location)
         {
-            if (inner.ContainsKey(name))
-                return;
-
-            inner.Add(name, location);
+            inner[name] = location;
         }
 
         public int Count => inner.Count;

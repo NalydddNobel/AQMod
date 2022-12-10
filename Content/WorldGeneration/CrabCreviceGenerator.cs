@@ -734,9 +734,9 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
 
-
             GrowWalls(location.X, location.Y);
 
+            WorldGen.structures.AddProtectedStructure(new Rectangle(location.X - size, location.Y - size, size * 2, size * 2).Fluffize(5));
             AequusWorld.Structures.Add("CrabCrevice", location);
             int sizeX = size * 2;
             var leftX = LeftX(sizeX);

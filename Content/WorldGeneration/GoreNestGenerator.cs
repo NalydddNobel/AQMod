@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.GlobalItems;
+using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Oblivion;
@@ -71,10 +72,9 @@ namespace Aequus.Content.WorldGeneration
             {
                 return false;
             }
-            if (CheckForBlacklistedTiles(x, y))
-            {
+            var structure = new Rectangle(x - 60, y - 60, 120, 90).Fluffize(5);
+            if (!WorldGen.structures.CanPlace(structure, AequusTile.All) || CheckForBlacklistedTiles(x, y))
                 return false;
-            }
             y -= 2;
             for (int i = 0; i < 3; i++)
             {
@@ -111,6 +111,7 @@ namespace Aequus.Content.WorldGeneration
             GenerateChests(x, y);
             GenerateSigns(x, y);
             GenerateAmbientTiles(x, y);
+            WorldGen.structures.AddStructure(structure);
             return true;
         }
         public bool CheckForBlacklistedTiles(int x, int y)
