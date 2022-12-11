@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.DronePylons;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,7 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly.Town.Drones
+namespace Aequus.NPCs.Friendly.Drones
 {
     public abstract class TownDroneBase : ModNPC, IAddRecipes
     {
@@ -105,31 +106,33 @@ namespace Aequus.NPCs.Friendly.Town.Drones
                 }
                 if (pylonSpot == Point.Zero)
                 {
-                    NPC.KillEffects();
+                    NPC.localAI[0] = 0f;
+                    NPC.Kill();
                     NPC.netUpdate = true;
                     return;
                 }
                 NPC.netUpdate = true;
-                NPC.ai[3] = Main.rand.NextFloat(30f);
+                NPC.ai[3] = Main.rand.NextFloat(100f);
                 var townNPCs = PylonManager.NearbyTownNPCs;
                 int div = townNPCs.Count;
                 foreach (var n in townNPCs)
                 {
-                    NPC.damage += n.damage;
+                    NPC.damage += n.defense;
                 }
                 if (div != 0)
                     NPC.damage /= div;
+                NPC.defDamage = NPC.damage;
             }
             if (pylonSpot == Point.Zero || !DroneWorld.ValidSpot(pylonSpot.X, pylonSpot.Y))
             {
                 NPC.localAI[0] = 0f;
-                NPC.active = false;
+                NPC.Kill();
                 return;
             }
             if (!DroneWorld.Drones.TryGetValue(pylonSpot, out var drone))
             {
                 NPC.localAI[0] = 1f;
-                NPC.active = false;
+                NPC.Kill();
                 return;
             }
             if (!drone.isActive)
@@ -156,7 +159,7 @@ namespace Aequus.NPCs.Friendly.Town.Drones
 
         public override void OnKill()
         {
-            if ((int)NPC.localAI[0] == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+            if ((int)NPC.localAI[0] == 0)
             {
                 OnDeath();
             }
@@ -171,15 +174,6 @@ namespace Aequus.NPCs.Friendly.Town.Drones
             {
                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Electric);
                 d.noGravity = true;
-            }
-
-            if (Main.netMode == NetmodeID.MultiplayerClient && Main.rand.NextFloat() < 0.8f)
-            {
-                int i = Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ItemDrop);
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i);
-                }
             }
         }
 

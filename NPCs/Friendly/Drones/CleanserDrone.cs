@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly.Town.Drones
+namespace Aequus.NPCs.Friendly.Drones
 {
     public class CleanserDrone : TownDroneBase
     {
@@ -78,7 +78,7 @@ namespace Aequus.NPCs.Friendly.Town.Drones
                     if (solution > 0)
                     {
                         var spawnPosition = NPC.Center;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition, 
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition,
                             Vector2.Normalize(p.ToWorldCoordinates() + new Vector2(8f) - spawnPosition).RotatedBy(NPC.localAI[2] / 30f * NPC.direction) * 7.5f, solution, 0, 0, Main.myPlayer);
                     }
                 }

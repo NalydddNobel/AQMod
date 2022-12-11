@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Friendly.Town.Drones;
+﻿using Aequus.NPCs.Friendly.Drones;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

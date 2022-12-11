@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Friendly.Town.Drones;
+﻿using Aequus.NPCs.Friendly.Drones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -100,7 +100,7 @@ namespace Aequus.Content.DronePylons
                     if (Main.npc[i].active && Main.npc[i].townNPC && !Main.npc[i].homeless)
                     {
                         float d = Vector2.Distance(worldLocation, Main.npc[i].Home().ToWorldCoordinates());
-                        if (d < 1000f)
+                        if (d < 3000f)
                         {
                             l.Add(Main.npc[i]);
                         }
@@ -205,39 +205,42 @@ namespace Aequus.Content.DronePylons
                         continue;
                     }
 
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    if (isActive)
                     {
-                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].ModNPC is TownDroneBase townDrone)
+                        for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            if (townDrone.pylonSpot == Location)
+                            if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].ModNPC is TownDroneBase townDrone)
                             {
-                                for (int k = 0; k < quickList.Count; k++)
+                                if (townDrone.pylonSpot == Location)
                                 {
-                                    if (Main.npc[i].type == quickList[k].X)
+                                    for (int k = 0; k < quickList.Count; k++)
                                     {
-                                        if (quickList[k].Y <= 1)
+                                        if (Main.npc[i].type == quickList[k].X)
                                         {
-                                            quickList.RemoveAt(k);
-                                            break;
+                                            if (quickList[k].Y <= 1)
+                                            {
+                                                quickList.RemoveAt(k);
+                                                break;
+                                            }
+                                            quickList[k] = new Point(quickList[k].X, quickList[k].Y - 1);
                                         }
-                                        quickList[k] = new Point(quickList[k].X, quickList[k].Y - 1);
                                     }
                                 }
                             }
                         }
-                    }
 
-                    if (quickList.Count <= 0)
-                        return;
-
-                    var spawnLocation = Location.ToWorldCoordinates() + new Vector2(24f);
-
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        foreach (var p in quickList)
+                        if (quickList.Count > 0)
                         {
-                            for (int i = 0; i < p.Y; i++)
-                                NPC.NewNPCDirect(new EntitySource_SpawnNPC("Pylon"), spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), p.X);
+                            var spawnLocation = Location.ToWorldCoordinates() + new Vector2(24f);
+
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
+                            {
+                                foreach (var p in quickList)
+                                {
+                                    for (int i = 0; i < p.Y; i++)
+                                        NPC.NewNPCDirect(new EntitySource_SpawnNPC("Pylon"), spawnLocation + Main.rand.NextVector2Unit() * Main.rand.NextFloat(10f), p.X);
+                                }
+                            }
                         }
                     }
                 }

@@ -15,7 +15,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Friendly.Town.Drones
+namespace Aequus.NPCs.Friendly.Drones
 {
     public class HealerDrone : TownDroneBase
     {
@@ -40,6 +40,7 @@ namespace Aequus.NPCs.Friendly.Town.Drones
 
         public override void AI()
         {
+            Main.npcFrameCount[Type] = 7;
             base.AI();
 
             healingAuraOpacity = Math.Clamp(healingAuraOpacity, 0f, 1f);
@@ -118,14 +119,37 @@ namespace Aequus.NPCs.Friendly.Town.Drones
             int tileX = ((int)NPC.position.X + NPC.width / 2) / 16;
             int tileY = ((int)NPC.position.Y + NPC.height / 2) / 16;
 
+            if (target != null)
+            {
+                NPC.frameCounter++;
+                if (NPC.frameCounter > 7.0 && healingAuraOpacity > 0f)
+                {
+                    NPC.frame.Y += NPC.frame.Height;
+                    NPC.frameCounter = 0.0;
+                    if (NPC.frame.Y >= NPC.frame.Height * (Main.npcFrameCount[Type]))
+                    {
+                        NPC.frame.Y = NPC.frame.Height * 4;
+                    }
+                }
+            }
+            else if (NPC.frame.Y > 0)
+            {
+                NPC.frameCounter++;
+                NPC.frame.Y = Math.Min(NPC.frame.Y, NPC.frame.Height * 4);
+                if (NPC.frameCounter > 8.0 && healingAuraOpacity < 0.1f)
+                {
+                    NPC.frameCounter = 0.0;
+                    NPC.frame.Y -= NPC.frame.Height;
+                }
+            }
             if (target != null && targetDistance >= minDistance)
             {
                 var normal = Vector2.Normalize(target.Center - NPC.Center + new Vector2(0f, -20f));
-                NPC.velocity = Vector2.Lerp(NPC.velocity, normal * 6f, 0.01f);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, normal * 8f, 0.025f);
             }
             else if (target != null)
             {
-                if (NPC.velocity.Length() < 2f)
+                if (NPC.velocity.Length() < target.velocity.Length() * 0.1f)
                 {
                     if (NPC.Bottom.Y > target.Top.Y)
                     {
@@ -133,14 +157,19 @@ namespace Aequus.NPCs.Friendly.Town.Drones
                     }
                     NPC.velocity += target.velocity * 0.05f;
                 }
+                else
+                {
+                    NPC.velocity += Main.rand.NextVector2Unit() * 0.1f;
+                }
                 NPC.velocity *= 0.95f;
                 NPC.direction = Math.Sign(target.Center.X - NPC.Center.X);
-                if (NPC.direction == target.direction)
+                if (Math.Sign(target.Center.X - (NPC.Center.X - target.direction * (24f + target.width))) == target.direction)
                 {
+                    NPC.direction = target.direction;
                     NPC.position += target.velocity * 0.8f;
                 }
             }
-            else
+            else if (healingAuraOpacity < 0.1f)
             {
                 DefaultMovement();
             }
@@ -242,29 +271,35 @@ namespace Aequus.NPCs.Friendly.Town.Drones
                 return false;
             }
 
-            if (healingTarget > 0 && Main.npc[healingTarget - 1].active)
-            {
-                HealerDroneRenderer.Instance.AddHealingAura(healingTarget - 1, NPC.whoAmI, (float)Math.Pow(healingAuraOpacity, 2f));
-                Main.npc[healingTarget - 1].behindTiles = false;
-                if (healingAuraOpacity > 0f)
-                {
-                        DrawHealingPrim();
-                }
-            }
-
             spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor),
                 NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoords, frame, color * SpawnInOpacity,
                 NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+
+
+            if (healingTarget > 0 && Main.npc[healingTarget - 1].active)
+            {
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                HealerDroneRenderer.Instance.AddHealingAura(healingTarget - 1, NPC.whoAmI, (float)Math.Pow(healingAuraOpacity, 2f));
+                Main.npc[healingTarget - 1].behindTiles = false;
+                if (healingAuraOpacity > 0f)
+                {
+                    DrawHealingPrim();
+                }
+                Main.spriteBatch.End();
+                Begin.GeneralEntities.Begin(Main.spriteBatch);
+            }
             return false;
         }
 
         public void DrawHealingPrim()
         {
-            var prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass, (p) => new Vector2(6f), (p) => CombatText.HealLife.UseA(60) * (float)Math.Pow(healingAuraOpacity, 2f),
+            var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, 
+                (p) => new Vector2(6f), (p) => Color.Lerp(GetPylonColor(), CombatText.HealLife, p).UseA(60) * (float)Math.Pow(healingAuraOpacity, 2f),
                 drawOffset: Vector2.Zero);
 
-            var startPos = NPC.Center + new Vector2(0f, NPC.height * 0.4f);
+            var startPos = NPC.Center + new Vector2(5f * NPC.spriteDirection, 0f);
             var endPos = Main.npc[healingTarget - 1].Center;
             var difference = endPos - startPos;
             var dir = Vector2.Normalize(difference);
@@ -291,6 +326,7 @@ namespace Aequus.NPCs.Friendly.Town.Drones
             }
             //list.Add(new Vector2(NPC.Center.X, list[0].Y));
             list.Add(endPos);
+            prim.Draw(list.ToArray());
             prim.Draw(list.ToArray());
         }
 

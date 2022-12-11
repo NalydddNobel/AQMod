@@ -384,10 +384,10 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (NPC.frame.Y >= NPC.frame.Height * 22)
+            if (NPC.frame.Y >= NPC.frame.Height * 23)
             {
                 NPC.frameCounter = 0;
-                NPC.frame.Y = NPC.frame.Height * 20;
+                NPC.frame.Y = NPC.frame.Height * 21;
             }
             NPC.GetDrawInfo(out var t, out var off, out var frame, out var orig, out int _);
             off.Y += NPC.gfxOffY - 4f;

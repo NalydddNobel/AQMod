@@ -86,15 +86,19 @@ namespace Aequus.Projectiles.Monster
                     drawPos,
                     drawPos + n * Main.screenWidth * Projectile.direction,
                     drawPos + n * Main.screenWidth * 2f * Projectile.direction, };
-            //if (prim == null)
-            prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
-
-            //if (smokePrim == null)
-            smokePrim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+            if (prim == null)
             {
-                coord1 = 0f,
-                coord2 = 1f
-            };
+                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+            }
+
+            if (smokePrim == null)
+            {
+                smokePrim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+                {
+                    coord1 = 0f,
+                    coord2 = 1f
+                };
+            }
             if (Main.LocalPlayer.gravDir == -1)
             {
                 AequusHelpers.ScreenFlip(arr);
