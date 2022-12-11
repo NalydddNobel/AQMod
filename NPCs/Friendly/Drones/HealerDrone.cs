@@ -24,6 +24,11 @@ namespace Aequus.NPCs.Friendly.Drones
         public float healingAuraOpacity;
         public int healingTarget;
 
+        //public override void SetStaticDefaults()
+        //{
+        //    Main.npcFrameCount[Type] = 7;
+        //}
+
         public override void SetDefaults()
         {
             NPC.width = 20;
@@ -40,7 +45,6 @@ namespace Aequus.NPCs.Friendly.Drones
 
         public override void AI()
         {
-            Main.npcFrameCount[Type] = 7;
             base.AI();
 
             healingAuraOpacity = Math.Clamp(healingAuraOpacity, 0f, 1f);

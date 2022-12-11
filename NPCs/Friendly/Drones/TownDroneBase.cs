@@ -30,7 +30,7 @@ namespace Aequus.NPCs.Friendly.Drones
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             this.CreateEntry(database, bestiaryEntry)
-                .AddSpawn(BestiaryBuilder.SurfaceBiome);
+                .UseAsBackground(BestiaryBuilder.SkyBiome);
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
@@ -149,10 +149,10 @@ namespace Aequus.NPCs.Friendly.Drones
         public Color GetPylonColor()
         {
             if (NPC.IsABestiaryIconDummy)
-                return AequusTile.PylonColors[new Point(TileID.TeleportationPylon, 0)];
+                return Color.Cyan;
 
             if (AequusTile.PylonColors.TryGetValue(new Point(Main.tile[pylonSpot].TileType, Main.tile[pylonSpot].TileFrameX / 54), out var clr))
-                return clr;
+                return clr();
 
             return Color.White;
         }

@@ -50,7 +50,7 @@ namespace Aequus.Tiles
         private static List<IndestructibleCircle> CheckCircles;
         public static List<IndestructibleCircle> Circles { get; private set; }
 
-        public static Dictionary<Point, Color> PylonColors { get; private set; }
+        public static Dictionary<Point, Func<Color>> PylonColors { get; private set; }
         public static Dictionary<TileKey, int> TileIDToItemID { get; private set; }
         public static Dictionary<int, int> WallIDToItemID { get; private set; }
 
@@ -62,7 +62,7 @@ namespace Aequus.Tiles
             TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
-            PylonColors = new Dictionary<Point, Color>();
+            PylonColors = new Dictionary<Point, Func<Color>>();
 
             LoadHooks();
         }
@@ -219,7 +219,8 @@ namespace Aequus.Tiles
                 {
                     foreach (var pylonColor in modDict.Value)
                     {
-                        PylonColors[new Point(TileID.TeleportationPylon, int.Parse(pylonColor.Key))] = AequusHelpers.ReadColor(pylonColor.Value);
+                        var clr = AequusHelpers.ReadColor(pylonColor.Value);
+                        PylonColors[new Point(TileID.TeleportationPylon, int.Parse(pylonColor.Key))] = () => clr;
                     }
                 }
                 else if (ModLoader.TryGetMod(modDict.Key, out var mod))
@@ -244,7 +245,8 @@ namespace Aequus.Tiles
                             {
                                 Aequus.Instance.Logger.Info($"{pylonName}/{style}/{pylon.Type}: {pylonColor.Value}");
                             }
-                            PylonColors[new Point(pylon.Type, style)] = AequusHelpers.ReadColor(pylonColor.Value);
+                            var clr = AequusHelpers.ReadColor(pylonColor.Value);
+                            PylonColors[new Point(pylon.Type, style)] = () => clr;
                         }
                         else if (Aequus.LogMore)
                         {
@@ -253,6 +255,8 @@ namespace Aequus.Tiles
                     }
                 }
             }
+
+            PylonColors[new Point(TileID.TeleportationPylon, 8)] = () => Main.DiscoColor;
         }
 
         public override void Unload()
