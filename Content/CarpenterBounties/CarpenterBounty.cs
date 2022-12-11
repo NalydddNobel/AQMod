@@ -1,92 +1,72 @@
-﻿using Aequus.Items.Misc;
-using Aequus.Items.Tools.Camera;
-using Aequus.Tiles;
+﻿using Aequus.Items;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CarpenterBounties
 {
-    public abstract class CarpenterBounty : ModType
+    public class CarpenterBounty
     {
-        public class ConditionInfo
-        {
-            public TileMapCache Map { get; private set; }
-            /// <summary>
-            /// Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.
-            /// </summary>
-            public readonly NPC Carpenter;
-            public readonly Rectangle SamplingArea;
-
-            public int Width => Map.Width;
-            public int Height => Map.Height;
-            public TileDataCache this[int i, int j] { get => Map[i, j]; set => Map[i, j] = value; }
-            public TileDataCache this[Point p] { get => Map[p]; set => Map[p] = value; }
-
-            public ConditionInfo(TileMapCache map, NPC carpenter = null, Rectangle? worldArea = null)
-            {
-                Map = map;
-                Carpenter = carpenter;
-                SamplingArea = worldArea ?? new Rectangle(Main.maxTilesX / 2 - map.Width / 2, 200 + map.Height / 2, map.Width, map.Height);
-            }
-
-            public ConditionInfo(ShutterstockerClip clip, NPC carpenter = null) : this(clip.tileMap, carpenter,
-                new Rectangle((int)(clip.worldXPercent * Main.maxTilesX), (int)(clip.worldYPercent * Main.maxTilesY), clip.tileMap.Width, clip.tileMap.Height))
-            {
-            }
-
-            public void SwapWorldSample()
-            {
-                var map = new TileMapCache(SamplingArea);
-                for (int i = 0; i < Width; i++)
-                {
-                    for (int j = 0; j < Height; j++)
-                    {
-                        var p = new Point(SamplingArea.X + i, SamplingArea.Y + j);
-                        Main.tile[p].Get<TileTypeData>() = this[i, j].Type;
-                        Main.tile[p].Get<LiquidData>() = this[i, j].Liquid;
-                        Main.tile[p].Get<TileWallWireStateData>() = this[i, j].Misc;
-                        Main.tile[p].Get<WallTypeData>() = this[i, j].Wall;
-                        Main.tile[p].Get<AequusTileData>() = this[i, j].Aequus;
-                    }
-                }
-                Map = map;
-            }
-        }
-
         public int Type { get; internal set; }
-        public string ModKey => $"Mods.{Mod.Name}.Bounty";
-        public string LanguageKey => $"{ModKey}.{Name}";
-        public string ReplyKey => $"{LanguageKey}.Reply";
+        public List<Step> steps;
+        public Mod Mod { get; private set; }
+        public string Name { get; private set; }
+        public int ItemReward;
+        public int ItemStack;
+        private Func<bool> bountyAvailable;
 
-        public string CommonLanguageKey => $"Mods.Aequus.Bounty.Common";
-        public string CommonReplyKey => $"{CommonLanguageKey}.Reply";
+        public virtual string LanguageKey => $"Mods.{Mod.Name}.CarpenterBounty.{Name}";
 
-        public string NotEnoughFurniture()
+        public CarpenterBounty(Mod mod, string name)
         {
-            return Language.GetTextValue(CommonLanguageKey + ".NotEnoughFurniture");
+            Mod = mod;
+            Name = name;
+            steps = new List<Step>();
         }
 
-        protected sealed override void Register()
+        internal CarpenterBounty(string name) : this(Aequus.Instance, name)
         {
-            CarpenterSystem.RegisterBounty(this);
         }
 
-        public override void SetupContent()
+        public string FullName => $"{Mod.Name}/{Name}";
+
+        public CarpenterBounty SetReward(int itemID, int stack = 1)
         {
-            SetStaticDefaults();
+            ItemReward = itemID;
+            ItemStack = stack;
+            return this;
+        }
+        public CarpenterBounty SetReward<T>(int stack = 1) where T : ModItem
+        {
+            return SetReward(ModContent.ItemType<T>(), stack);
         }
 
-        public abstract Item ProvideBountyRewardItem();
+        public CarpenterBounty AddStep(Step step)
+        {
+            steps.Add(step);
+            return this;
+        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="info"></param>
-        /// <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
-        /// <returns></returns>
-        public abstract bool CheckConditions(ConditionInfo info, out string message);
+        public CarpenterBounty SetAvailability(Func<bool> isAvailable)
+        {
+            bountyAvailable = isAvailable;
+            return this;
+        }
+
+        public int Register()
+        {
+            return CarpenterSystem.RegisterBounty(this);
+        }
+
+        public Item ProvideBountyRewardItem()
+        {
+            var item = AequusItem.SetDefaults(ItemReward);
+            item.stack = ItemStack;
+            return item;
+        }
 
         public virtual void OnCompleteBounty(Player player, NPC npc)
         {
@@ -94,18 +74,67 @@ namespace Aequus.Content.CarpenterBounties
             player.QuickSpawnClonedItem(npc.GetSource_GiftOrReward(), reward, reward.stack);
         }
 
-        public virtual bool IsBountyAvailable()
+        public bool IsBountyAvailable()
         {
-            return true;
+            return bountyAvailable?.Invoke() != false;
         }
 
-        public virtual CarpenterBountyItem ProvideBountyItem()
+        public CarpenterBountyItem ProvidePortableBounty()
         {
-            var i = new Item();
-            i.SetDefaults(ModContent.ItemType<CarpenterBountyItem>());
-            var bounty = i.ModItem<CarpenterBountyItem>();
+            var item = AequusItem.SetDefaults<CarpenterBountyItem>();
+            var bounty = item.ModItem<CarpenterBountyItem>();
             bounty.BountyFullName = FullName;
             return bounty;
+        }
+
+        public StepResult CheckConditions(StepInfo info)
+        {
+            var result = new StepResult();
+            foreach (var step in steps)
+            {
+                step.Initialize(info);
+            }
+            foreach (var step in steps)
+            {
+                result = step.GetResult(this, info);
+                if (!result.success)
+                    break;
+            }
+            return result;
+        }
+
+        public static Rectangle GetSurroundings(StepInfo info, IEnumerable<List<Point>> pointsList)
+        {
+            var resultRectangle = new Rectangle(info.Width, info.Height, 1, 1);
+            foreach (var points in pointsList)
+            {
+                foreach (var w in points)
+                {
+                    resultRectangle.X = Math.Min(resultRectangle.X, w.X);
+                    resultRectangle.Y = Math.Min(resultRectangle.Y, w.Y);
+                }
+                foreach (var w in points)
+                {
+                    resultRectangle.Width = Math.Max(w.X - resultRectangle.X, resultRectangle.Width);
+                    resultRectangle.Height = Math.Max(w.Y - resultRectangle.Y, resultRectangle.Height);
+                }
+            }
+            return resultRectangle;
+        }
+        public static Rectangle GetSurroundings(StepInfo info, List<Point> points)
+        {
+            var resultRectangle = new Rectangle(info.Width, info.Height, 1, 1);
+            foreach (var w in points)
+            {
+                resultRectangle.X = Math.Min(resultRectangle.X, w.X);
+                resultRectangle.Y = Math.Min(resultRectangle.Y, w.Y);
+            }
+            foreach (var w in points)
+            {
+                resultRectangle.Width = Math.Max(w.X - resultRectangle.X, resultRectangle.Width);
+                resultRectangle.Height = Math.Max(w.Y - resultRectangle.Y, resultRectangle.Height);
+            }
+            return resultRectangle;
         }
     }
 }

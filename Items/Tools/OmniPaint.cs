@@ -18,7 +18,6 @@ namespace Aequus.Items.Tools
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.buyPrice(gold: 5);
             Item.consumable = false;
-            Item.paint = 0;
         }
 
         public override void UpdateInventory(Player player)

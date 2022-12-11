@@ -14,6 +14,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -117,18 +118,27 @@ namespace Aequus.UI.CarpenterUI
                     {
                         Main.mouseLeftRelease = false;
 
-                        bool completed = selected.bounty.CheckConditions(new CarpenterBounty.ConditionInfo(clip, Main.npc[Main.LocalPlayer.talkNPC]), out string responseMessage);
+                        var resultInfo = selected.bounty.CheckConditions(new StepInfo(clip));
                         ShutterstockerSceneRenderer.RenderRequests.Add(clip);
                         clip.reviewed = true;
-                        SoundEngine.PlaySound(SoundID.Chat);
                         Main.playerInventory = true;
-                        Main.npcChatText = responseMessage;
-                        Aequus.UserInterface.SetState(null);
-                        if (completed)
+                        if (resultInfo.success)
                         {
                             Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Add(selected.bounty.FullName);
                             selected.bounty.OnCompleteBounty(Main.LocalPlayer, Main.npc[Main.LocalPlayer.talkNPC]);
+                            Main.npcChatText = Language.GetTextValue($"{selected.bounty.LanguageKey}.Success");
+                            clip.reviewNotesLanguageKey = null;
+                            clip.reviewNotesPoints?.Clear();
+                            clip.reviewNotesPoints = null;
                         }
+                        else
+                        {
+                            Main.npcChatText = Language.GetTextValue(resultInfo.resultMessage);
+                            clip.reviewNotesLanguageKey = resultInfo.resultMessage;
+                            clip.reviewNotesPoints = resultInfo.interest;
+                        }
+                        Aequus.UserInterface.SetState(null);
+                        SoundEngine.PlaySound(SoundID.Chat);
                     }
                 }
                 else

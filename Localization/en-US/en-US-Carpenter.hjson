@@ -1,0 +1,72 @@
+Mods.Aequus: {
+	CarpenterBounty: {
+		Rule: {
+			WaterfallHeightStep: Waterfalls must flow down atleast {0} blocks
+			CraftableTilesStep: Must be made out of craftable blocks (Ex: Gray Brick)
+			NotCraftableTilesStep: Must be made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
+			SymmetricHorizontalStep: Must be horizontally symmetrical
+			FindHousesStep: Suitable for {0} town NPC(s)
+			FurnitureCountStep: "{0}+ Furniture"
+			WaterLineStep: Walls must be submerged underwater
+			BiomePaletteStep: House must be constructed using blocks and walls which match the biome's color
+		}
+		
+		Default: I cannot describe what is printed on these eyes! But this build is nearing demise!
+		NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
+		ShortWaterfalls: The waterfall is so small and domestic. Raise it up and let gravity make something majestic!
+		NoCraftedBlocks: Getting close, but I've asked for crafted blocks. Have you got some bricks in your toolbox?
+		NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
+		NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
+		NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
+
+		WeirdRoofBounty: {
+			"$parentVal": Artist's Imagination
+			Description: Build a house with an irregular roof
+		}
+
+		TriangleRoofBounty: {
+			"$parentVal": Pointed Edge
+			Description: Build a house with a triangle roof
+		}
+
+		ThickHouseBounty: {
+			"$parentVal": Sturdy Abode
+			Description: Build a house with thick walls
+		}
+
+		ActuatorDoorBounty: {
+			"$parentVal": Secret Entrance
+			Description: Build a room locked behind an Actuator door
+		}
+
+		UnderworldFountainBounty: {
+			"$parentVal": Lav-ing Dontation
+			Description: Build a nice looking lava fountain
+		}
+
+		BiomePaletteBounty: {
+			"$parentVal": Delicious Palette 
+			Description: Build a house which fits in
+			Hint: (Hint: Use Biome Hair Dye to discover biome color)
+
+			ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
+			Success: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
+		}
+
+		PirateShipBounty: {
+			"$parentVal": Pirate's Ship
+			Description: Build a pirate ship
+
+			NoHouses: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
+			WallsDontHaveEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
+			NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
+			Success: The ship is finished, and we can set sail! Or so I would say, if it was real.
+		}
+
+		FountainBounty: {
+			"$parentVal": Grand Fountain
+			Description: Build a nice looking fountain
+			Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+		}
+	}
+}

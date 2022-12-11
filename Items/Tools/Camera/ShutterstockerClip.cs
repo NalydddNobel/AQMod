@@ -1,12 +1,13 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Graphics.RenderTargets;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -20,6 +21,8 @@ namespace Aequus.Items.Tools.Camera
         public bool daytime;
         public TileMapCache tileMap;
         public bool reviewed;
+        public List<Point> reviewNotesPoints;
+        public string reviewNotesLanguageKey;
 
         public override bool HasTooltipTexture => base.HasTooltipTexture && !TooltipTexture.Value.IsContentLost;
 
@@ -27,6 +30,8 @@ namespace Aequus.Items.Tools.Camera
         {
             base.SetDefaults();
             tileMap = null;
+            reviewNotesPoints = null;
+            reviewNotesLanguageKey = null;
         }
 
         public override void SetClip(Rectangle area)
@@ -54,6 +59,13 @@ namespace Aequus.Items.Tools.Camera
             tag["WorldYPercent"] = worldYPercent;
             tag["Daytime"] = daytime;
             tag["Time"] = time;
+            if (reviewNotesLanguageKey != null)
+                tag["ReviewNotesLanguageKey"] = reviewNotesLanguageKey;
+            if (reviewNotesPoints != null && reviewNotesPoints.Count > 0)
+            {
+                tag["ReviewNotesPointsX"] = reviewNotesPoints.ConvertAll((p) => p.X);
+                tag["ReviewNotesPointsY"] = reviewNotesPoints.ConvertAll((p) => p.Y);
+            }
         }
 
         public override void LoadData(TagCompound tag)
@@ -67,6 +79,17 @@ namespace Aequus.Items.Tools.Camera
                 worldYPercent = tag.Get<float>("WorldYPercent");
                 daytime = tag.Get<bool>("Daytime");
                 time = tag.Get<int>("Time");
+                reviewNotesLanguageKey = tag.Get<string>("ReviewNotesLanguageKey");
+                var x = tag.Get<List<int>>("ReviewNotesPointsX");
+                var y = tag.Get<List<int>>("ReviewNotesPointsY");
+                if (x != null && y != null && x.Count == y.Count)
+                {
+                    reviewNotesPoints = new List<Point>();
+                    for (int i  = 0; i < x.Count; i++)
+                    {
+                        reviewNotesPoints.Add(new Point(x[i], y[i]));
+                    }
+                }
             }
         }
 
@@ -85,6 +108,8 @@ namespace Aequus.Items.Tools.Camera
             clone.time = time;
             clone.reviewed = reviewed;
             clone.timeCreatedSerialized = timeCreatedSerialized;
+            clone.reviewNotesLanguageKey = reviewNotesLanguageKey;
+            clone.reviewNotesPoints = reviewNotesPoints;
             return clone;
         }
 
@@ -109,7 +134,16 @@ namespace Aequus.Items.Tools.Camera
                     if (tooltips[i].Name.StartsWith("Fake"))
                         index = i;
                 }
-                tooltips.Insert(index + 1, new TooltipLine(Mod, "Reviewed", AequusText.GetText($"ItemTooltip.{Name}.Reviewed")) { OverrideColor = Color.Lerp(Color.BlueViolet, Color.White, 0.5f), });
+                index = Math.Min(index + 1, tooltips.Count);
+                tooltips.Insert(index, new TooltipLine(Mod, "Reviewed", AequusText.GetText($"ItemTooltip.{Name}.Reviewed")) { OverrideColor = Color.Lerp(Color.BlueViolet, Color.White, 0.5f), });
+                if (reviewNotesLanguageKey != null)
+                {
+                    string text = Language.GetTextValue(reviewNotesLanguageKey);
+                    if (text != reviewNotesLanguageKey)
+                    {
+                        tooltips.Insert(index, new TooltipLine(Mod, "ReviewNotes", $"* '{text}'") { OverrideColor = Color.Lerp(Color.OrangeRed, Color.White, 0.5f), });
+                    }
+                }
             }
             return;
         }
@@ -123,7 +157,7 @@ namespace Aequus.Items.Tools.Camera
                 return;
             }
 
-            var bb = new BitsByte(daytime, reviewed);
+            var bb = new BitsByte(daytime, reviewed, !string.IsNullOrEmpty(reviewNotesLanguageKey), reviewNotesPoints != null && reviewNotesPoints.Count > 0);
             writer.Write(bb);
             writer.Write(time);
             writer.Write(worldXPercent);
@@ -133,6 +167,19 @@ namespace Aequus.Items.Tools.Camera
             writer.Write(tileMap.Area.Y);
             writer.Write(tileMap.Area.Width);
             writer.Write(tileMap.Area.Height);
+            if (bb[2])
+            {
+                writer.Write(reviewNotesLanguageKey);
+            }
+            if (bb[3])
+            {
+                writer.Write(reviewNotesPoints.Count);
+                for (int i = 0; i < reviewNotesPoints.Count; i++)
+                {
+                    writer.Write((ushort)reviewNotesPoints[i].X);
+                    writer.Write((ushort)reviewNotesPoints[i].Y);
+                }
+            }
             var buffer = tileMap.CompressTileArray();
             writer.Write(buffer.Length);
             //Aequus.Instance.Logger.Debug(buffer.Length);
@@ -153,6 +200,19 @@ namespace Aequus.Items.Tools.Camera
             worldYPercent = reader.ReadSingle();
             int worldID = reader.ReadInt32();
             var rect = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+            if (bb[2])
+            {
+                reviewNotesLanguageKey = reader.ReadString();
+            }
+            if (bb[3])
+            {
+                reviewNotesPoints = new List<Point>();
+                int amt = reader.ReadInt32();
+                for (int i = 0; i < amt; i++)
+                {
+                    reviewNotesPoints.Add(new Point(reader.ReadUInt16(), reader.ReadUInt16()));
+                }
+            }
             var bufferLength = reader.ReadInt32();
             tileMap = new TileMapCache(rect, TileMapCache.DecompressInfo(rect.Width, rect.Height, reader.ReadBytes(bufferLength)), worldID);
         }

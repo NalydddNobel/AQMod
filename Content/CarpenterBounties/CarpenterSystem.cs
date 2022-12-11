@@ -1,5 +1,9 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Content.CarpenterBounties.Steps;
+using Aequus.Items.Tools;
+using Aequus.Items.Tools.Misc;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -22,6 +26,52 @@ namespace Aequus.Content.CarpenterBounties
             CraftableTileLookup = new Dictionary<int, bool>();
         }
 
+        public override void SetupContent()
+        {
+            new CarpenterBounty("FountainBounty")
+                .SetReward<AdvancedRuler>()
+                .AddStep(new WaterfallSearchStep(liquidWanted: LiquidID.Water)
+                    .AfterSuccess((i, s) =>
+                        i.GetInterest<CraftableTilesStep.CraftedTilesInterest>().givenRectangle = i.GetInterest<WaterfallSearchStep.WaterfallInterest>().resultRectangle))
+                .AddStep(new WaterfallHeightStep(minHeight: 7))
+                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var crafted = i.GetInterest<CraftableTilesStep.CraftedTilesInterest>();
+                        var symmetric = i.GetInterest<SymmetricHorizontalStep.Interest>();
+                        symmetric.givenRectangle = crafted.resultRectangle;
+                        symmetric.givenPoints = crafted.craftableTiles;
+                    }))
+                .AddStep(new SymmetricHorizontalStep())
+                .Register();
+
+            new CarpenterBounty("PirateShipBounty")
+                .SetReward<WhiteFlag>()
+                .AddStep(new FindHousesStep(minHouses: 2)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var houses = i.GetInterest<FindHousesStep.Interest>();
+                        i.GetInterest<WaterLineStep.Interest>().givenHouses = houses.housingWalls;
+                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = houses.housingWalls;
+                    }))
+                .AddStep(new WaterLineStep(minWaterLine: 5))
+                .AddStep(new FurnitureCountStep(minFurniture: 15))
+                .Register();
+
+            new CarpenterBounty("BiomePaletteBounty")
+                .SetReward<OmniPaint>()
+                .AddStep(new FindHousesStep(minHouses: 1)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var houses = i.GetInterest<FindHousesStep.Interest>();
+                        i.GetInterest<BiomePaletteStep.Interest>().givenHouses = houses.housingWalls;
+                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = houses.housingWalls;
+                    }))
+                .AddStep(new FurnitureCountStep(minFurniture: 5))
+                .AddStep(new BiomePaletteStep(minCredit: 0.5f))
+                .Register();
+        }
+
         public override void Unload()
         {
             BountiesByID?.Clear();
@@ -29,7 +79,7 @@ namespace Aequus.Content.CarpenterBounties
             CraftableTileLookup?.Clear();
         }
 
-        public static void RegisterBounty(CarpenterBounty bounty)
+        public static int RegisterBounty(CarpenterBounty bounty)
         {
             if (BountiesByID == null || BountiesByName == null)
             {
@@ -39,11 +89,13 @@ namespace Aequus.Content.CarpenterBounties
 
             string name = bounty.FullName;
             if (BountiesByName.ContainsKey(name))
-                throw new System.Exception($"{bounty.Mod.Name} added two bounties with the same name ({bounty.Name})");
+                throw new Exception($"{bounty.Mod.Name} added two bounties with the same name: ({bounty.Name})");
+            if (bounty.ItemReward == 0 || bounty.ItemReward >= ItemLoader.ItemCount || bounty.ItemStack <= 0)
+                throw new Exception($"{bounty.Mod.Name} added a bounty ({bounty.Name}) without a reward.");
             bounty.Type = BountyCount;
-            ModTypeLookup<CarpenterBounty>.Register(bounty);
             BountiesByID.Add(bounty);
             BountiesByName.Add(name, bounty);
+            return bounty.Type;
         }
 
         public static bool IsTileIDCraftable(int tileID)
@@ -78,6 +130,11 @@ namespace Aequus.Content.CarpenterBounties
             return false;
         }
 
+        public static bool TryGetBounty(string mod, string name, out CarpenterBounty bounty)
+        {
+            return BountiesByName.TryGetValue(mod + "/" + name, out bounty);
+        }
+
         public static CarpenterBounty GetBounty(int type)
         {
             return BountiesByID[type];
@@ -85,7 +142,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public static CarpenterBounty GetBounty(string mod, string name)
         {
-            return BountiesByName[mod + "." + name];
+            return BountiesByName[mod + "/" + name];
         }
 
         public static CarpenterBounty GetBounty(Mod mod, string name)

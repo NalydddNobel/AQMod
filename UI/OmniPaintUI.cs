@@ -47,9 +47,9 @@ namespace Aequus.UI
                 return;
 
             float scale = 1.25f;
-            var texture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "UI/PainterIcons", AssetRequestMode.ImmediateLoad).Value;
-            var frame = texture.Frame(horizontalFrames: 3, verticalFrames: 2, 0, 0, -2, -2);
-            var originPoint = new Vector2(470f, 20f);
+            var texture = ModContent.Request<Texture2D>("Aequus/UI/OmniPaintUI", AssetRequestMode.ImmediateLoad).Value;
+            var frame = texture.Frame(horizontalFrames: 4, verticalFrames: 2, 0, 0, -2, -2);
+            var originPoint = new Vector2(480f, 24f);
             var bg = new Rectangle((int)originPoint.X - 6, (int)originPoint.Y - 6, (frame.Width + 2) * 8 + 16, (frame.Height - 2) * 5 + 16).MultiplyWH(scale);
             Utils.DrawInvBG(spriteBatch, bg);
             if (bg.Contains(Main.mouseX, Main.mouseY))
@@ -66,9 +66,10 @@ namespace Aequus.UI
                     if (paint >= 32)
                         break;
                     var position = originPoint + new Vector2((frame.Width + 2) * i, (frame.Height - 2) * j) * scale;
+                    int frameX = paint >= 13 && paint <= 24 ? 2 : 0;
                     if (paintIDToShow == 0 && new Rectangle((int)position.X - 3, (int)position.Y - 3, frame.Width + 8, frame.Height + 6).Contains(Main.mouseX, Main.mouseY))
                     {
-                        spriteBatch.Draw(texture, position, frame.Frame(0, 1, -2, 0), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+                        spriteBatch.Draw(texture, position, frame.Frame(frameX, 1, -2, 0), Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
                         paintIDToShow = paint;
                         if (Main.mouseLeft && Main.mouseLeftRelease)
                         {
@@ -77,7 +78,7 @@ namespace Aequus.UI
                         }
                     }
 
-                    DrawPaintBucket(spriteBatch, texture, position, frame, scale, paint);
+                    DrawPaintBucket(spriteBatch, texture, position, frame.Frame(frameX, 0, -2, 0), scale, paint);
                 }
             }
             DrawPaintBucket(spriteBatch, texture, new Vector2(originPoint.X + 2, bg.Y + bg.Height / 5 * 4 - 4 + 2f), frame, scale, Main.LocalPlayer.Aequus().omniPaint);

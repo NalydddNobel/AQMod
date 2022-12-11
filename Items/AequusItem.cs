@@ -297,7 +297,6 @@ namespace Aequus.Items
             }
         }
 
-
         public void CheckGravityTiles(Item item, int i)
         {
             bool old = reversedGravity;

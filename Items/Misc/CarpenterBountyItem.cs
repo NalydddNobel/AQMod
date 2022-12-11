@@ -30,10 +30,31 @@ namespace Aequus.Items.Misc
             }
         }
 
-        public virtual string BountyName => Language.GetTextValue($"Mods.{bountyMod}.Bounty.{bountyName}");
+        public virtual string BountyName => Language.GetTextValue($"Mods.{bountyMod}.CarpenterBounty.{bountyName}");
         public string BountyFancyName => "~ " + BountyName + " ~";
-        public virtual string BountyDescription => Language.GetTextValue($"Mods.{bountyMod}.Bounty.{bountyName}.Description");
-        public virtual string BountyRequirements => Language.GetTextValue($"Mods.{bountyMod}.Bounty.{bountyName}.Requirements");
+        public virtual string BountyDescription => Language.GetTextValue($"Mods.{bountyMod}.CarpenterBounty.{bountyName}.Description");
+        public virtual string BountyRequirements { 
+            get 
+            {
+                if (CarpenterSystem.TryGetBounty(bountyMod, bountyName, out var bounty))
+                {
+                    var textValue = "";
+                    foreach (var s in bounty.steps)
+                    {
+                        var key = s.GetStepKey(bounty);
+                        if (!string.IsNullOrEmpty(key))
+                        {
+                            if (!string.IsNullOrEmpty(textValue))
+                                textValue += "\n";
+                            textValue += Language.GetTextValue(key);
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(textValue))
+                        return textValue;
+                }
+                return "n/a";
+            }
+        }
         public string BountyFancyRequirements
         {
             get

@@ -198,7 +198,7 @@ namespace Aequus.UI
                     OmniPaintUI.Instance.Render(Main.spriteBatch);
                 }
                 return true;
-            }, InterfaceScaleType.Game);
+            }, InterfaceScaleType.UI);
 
             InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () =>
             {

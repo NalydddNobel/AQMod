@@ -13,7 +13,6 @@ namespace Aequus.NPCs.AIs
         public virtual bool ValidTarget(Player player)
         {
             return player.wet && !player.dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height);
-
         }
 
         public virtual void LandMovement()

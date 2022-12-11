@@ -360,6 +360,7 @@ namespace Aequus.NPCs.Friendly.Town
                         Main.playerInventory = false;
                         Main.npcChatText = "";
                         Aequus.UserInterface.SetState(new CarpenterUIState());
+                        bountyPlayer.CompletedBounties.Clear();
                         return;
                     }
                 }

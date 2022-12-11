@@ -34,7 +34,7 @@ namespace Aequus.UI.CarpenterUI
         {
             this.bounty = bounty;
             bountyUICache = bountyUI;
-            listItem = bounty.ProvideBountyItem().Item;
+            listItem = bounty.ProvidePortableBounty().Item;
             rewardItem = bounty.ProvideBountyRewardItem();
         }
 

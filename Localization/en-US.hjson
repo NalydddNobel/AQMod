@@ -1114,12 +1114,12 @@ Mods: {
 			PixelCamera: 
 				'''
 				Takes a snap of tiles and prints their map colors onto clips
-				Used to take photos with pixelgrammer clips
+				Use the Scroll Wheel to change photo mode
 				'''
 			Shutterstocker: 
 				'''
 				Takes a snap of tiles and prints them onto clips
-				Used to take photos with shutterstocker clips
+				Use the Scroll Wheel to increase/decrease the photo size
 				'''
 			ShutterstockerClip: {
 				Reviewed: This clip has been reviewed by the Carpenter
@@ -2689,93 +2689,6 @@ Mods: {
 			17: Better not tell you now
 			18: Cannot predict now
 			19: Concentrate and ask again
-		}
-
-		Bounty: {
-			Common: {
-				NotEnoughFurniture: Place some more decoration and furniture in this build! It is feeling very bland and lacking.
-			}
-
-			WeirdRoofBounty: {
-				"$parentVal": Artist's Imagination
-				Description: Build a house with an irregular roof
-			}
-
-			TriangleRoofBounty: {
-				"$parentVal": Pointed Edge
-				Description: Build a house with a triangle roof
-			}
-
-			ThickHouseBounty: {
-				"$parentVal": Sturdy Abode
-				Description: Build a house with thick walls
-			}
-
-			ActuatorDoorBounty: {
-				"$parentVal": Secret Entrance
-				Description: Build a room locked behind an Actuator door
-			}
-
-			UnderworldFountainBounty: {
-				"$parentVal": Lav-ing Dontation
-				Description: Build a nice looking lava fountain
-			}
-
-			BiomePaletteBounty: {
-				"$parentVal": Delicious Palette 
-				Description: Build a house which fits in
-				Requirements:
-					'''
-					House must be constructed using blocks and walls which match the biome's color
-					Suitable for 1 town NPC
-					5+ Furniture
-					'''
-				Hint: (Hint: Use Biome Hair Dye to discover biome color)
-
-				Reply: {
-					NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
-					ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
-					NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
-					Complete: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
-				}
-			}
-
-			PirateShipBounty: {
-				"$parentVal": Pirate's Ship
-				Description: Build a pirate ship
-				Requirements:
-					'''
-					Walls must be submerged underwater
-					Suitable for 2 town NPCs
-					15+ Furniture
-					'''
-
-				Reply: {
-					NotEnoughRooms: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
-					NotEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
-					NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
-					Completed: The ship is finished, and we can set sail! Or so I would say, if it was real.
-				}
-			}
-
-			FountainBounty: {
-				"$parentVal": Grand Fountain
-				Description: Build a nice looking fountain
-				Requirements:
-					'''
-					Must be mirrored horizontally
-					Waterfalls must flow down atleast 7 blocks
-					Must be made out of craftable blocks (Ex: Gray Brick)
-					'''
-
-				Reply: {
-					NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
-					ShortWaterfalls: The waterfall is so small and domestic. Raise it up and let gravity make something majestic!
-					NoCraftedBlocks: Getting close, but I've asked for crafted blocks. Have you got some bricks in your toolbox?
-					NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
-					Completed: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
-				}
-			}
 		}
 
 		InfoDisplayName: {

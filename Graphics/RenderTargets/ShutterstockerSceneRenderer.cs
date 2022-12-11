@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.Graphics.Capture;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -66,6 +67,13 @@ namespace Aequus.Graphics.RenderTargets
                 device.Clear(Color.Transparent);
 
                 spriteBatch.Draw(helperTarget, new Rectangle(0, 0, helperTarget.Width, helperTarget.Height), Color.White);
+                if (RenderRequests[0].reviewNotesPoints != null)
+                {
+                    foreach (var p in RenderRequests[0].reviewNotesPoints)
+                    {
+                        spriteBatch.Draw(TextureAssets.Extra[ExtrasID.LaserRuler].Value, new Vector2((p.X - TilePadding / 2) * 16f, (p.Y - TilePadding / 2) * 16f), new Rectangle(0, 0, 16, 16), Color.Red * 0.33f);
+                    }
+                }
 
                 spriteBatch.End();
 

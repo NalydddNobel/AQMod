@@ -416,19 +416,6 @@
             Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="F:Aequus.Content.CarpenterBounties.CarpenterBounty.ConditionInfo.Carpenter">
-            <summary>
-            Carpenter town NPC that the player is talking to. If the player is not talking to a carpenter, this is set to null.
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.CarpenterBounties.CarpenterBounty.CheckConditions(Aequus.Content.CarpenterBounties.CarpenterBounty.ConditionInfo,System.String@)">
-            <summary>
-            
-            </summary>
-            <param name="info"></param>
-            <param name="message">Translated message that will either pop up in chat or be put into the carpenter's dialogue</param>
-            <returns></returns>
-        </member>
         <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
             For enemies which cannot be turned into player zombies

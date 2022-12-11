@@ -541,6 +541,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            omniPaint = 1;
             boundedPotionIDs = new List<int>();
             accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
