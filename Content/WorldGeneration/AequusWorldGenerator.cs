@@ -42,7 +42,7 @@ namespace Aequus.Content.WorldGeneration
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
-            AddPass("Buried Chests", "Rockman Biome", (progress, configuration) =>
+            AddPass("Statues", "Rockman Biome", (progress, configuration) =>
             {
                 RockmanGenerator.GenerateRandomLocation();
             }, tasks);
@@ -133,7 +133,7 @@ namespace Aequus.Content.WorldGeneration
                                 placedItems.Add(ModContent.ItemType<CrystalDagger>());
                             }
                         }
-                        else if (style == ChestType.Skyware || (style == ChestType.LockedGold && !Main.wallDungeon[Main.tile[c.x, c.y].WallType]))
+                        else if (style == ChestType.Skyware || (style == ChestType.LockedGold && !Main.wallDungeon[Main.tile[c.x, c.y].WallType] && c.y < (int)Main.worldSurface))
                         {
                             if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool())
                             {

@@ -5,12 +5,17 @@ using Aequus.Content.StatSheet;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
+using Hjson;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 namespace Aequus.Items
 {
@@ -40,10 +45,6 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            AequusWorldGenerator.RockmanGenerator.GenerateRandomLocation();
-            var p = AequusWorld.Structures.GetLocation("Rockman");
-            if (p != null)
-                Main.LocalPlayer.Teleport(p.Value.ToWorldCoordinates());
             return true;
         }
 

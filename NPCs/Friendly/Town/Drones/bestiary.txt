@@ -1,0 +1,17 @@
+
+GUNNER:   'A drone made by the physicist to
+ 	   protect your town, it draws energy
+ 	   from the town's pylon to power itself'
+
+
+HEALER:   'A drone made by the physicist to
+	   keep your town healthy, it draws 
+	   energy from the town's pylon to
+       	   power itself'
+
+
+CLEANSER: 'A drone made by the physicist in
+	   collaboration with the steampunker
+	   to keep your town pure and habitable,
+	   it draws energy from the town's pylon
+	   to power itself'

@@ -248,7 +248,7 @@ namespace Aequus.Biomes.DemonSiege
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                AequusText.Broadcast("ChatBroadcast.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
+                AequusText.Broadcast("Announcement.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
             }
         }
         public void OnFail_EatItems(bool clientOnly)
@@ -266,7 +266,7 @@ namespace Aequus.Biomes.DemonSiege
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                AequusText.Broadcast("ChatBroadcast.DemonSiegeFailEat", new Color(255, 210, 25, 255), itemList);
+                AequusText.Broadcast("Announcement.DemonSiegeFailEat", new Color(255, 210, 25, 255), itemList);
             }
         }
         public void SummonBoss1(bool voidRing)

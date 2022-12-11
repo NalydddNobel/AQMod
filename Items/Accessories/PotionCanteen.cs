@@ -2,6 +2,7 @@
 using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -27,6 +28,7 @@ namespace Aequus.Items.Accessories
             {
                 Item.rare += ContentSamples.ItemsByType[itemIDLookup].rare;
             }
+            Item.rare = Math.Min(Item.rare, ItemRarityID.Purple);
             Item.Prefix(Item.prefix);
         }
 
