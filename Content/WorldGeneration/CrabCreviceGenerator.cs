@@ -756,7 +756,7 @@ namespace Aequus.Content.WorldGeneration
 
                 if (Main.tile[randX, randY].HasTile && Main.tile[randX, randY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
                 {
-                    for (int k = 0; k < 5; k++)
+                    for (int k = 0; k < 500; k++)
                     {
                         AequusWorld.RandomUpdateTile(randX, randY, checkNPCSpawns: false);
                     }

@@ -144,6 +144,9 @@ namespace Aequus
         [SaveData("TinkererRerolls")]
         public static int tinkererRerolls;
 
+        [SaveData("ChristmasWorld")]
+        public static bool christmasWorld;
+
         public static StructureLookups Structures { get; internal set; }
 
         public override void Load()
@@ -283,17 +286,11 @@ namespace Aequus
         {
             if (y < Main.worldSurface)
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
-                }
+                WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
             }
             else
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
-                }
+                WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
             }
         }
 

@@ -72,11 +72,23 @@ namespace Aequus.Content.WorldGeneration
                 GenCrabCrevice.GrowPlants();
             }, tasks);
         }
-        private void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
+        public static void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)
         {
             int i = tasks.FindIndex((t) => t.Name.Equals(task));
             if (i != -1)
                 tasks.Insert(i + 1, new PassLegacy("Aequus: " + myName, generation));
+        }
+        public static void CopyPass(string name, int amt, List<GenPass> tasks)
+        {
+            int i = tasks.FindIndex((t) => t.Name.Equals(name));
+            if (i != -1)
+            {
+                var t = tasks[i];
+                for (int k = 0; k < amt; k++)
+                {
+                    tasks.Insert(i, new PassLegacy($"Aequus: {t.Name} {i}", (p, c) => t.Apply(p, c)));
+                }
+            }
         }
 
         public override void PostWorldGen()
