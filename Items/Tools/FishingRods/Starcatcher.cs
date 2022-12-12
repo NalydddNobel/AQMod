@@ -16,7 +16,7 @@ namespace Aequus.Items.Tools.FishingRods
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodFishingPole);
-            Item.fishingPole = 25;
+            Item.fishingPole = 45;
             Item.shootSpeed = 16f;
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(silver: 72);

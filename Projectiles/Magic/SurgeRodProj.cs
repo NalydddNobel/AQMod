@@ -306,10 +306,12 @@ namespace Aequus.Projectiles.Magic
             {
                 return;
             }
-            if (Main.LocalPlayer.gravDir == -1)
-            {
-                AequusHelpers.ScreenFlip(coordinates);
-            }
+            //for (int i = 0; i < 5 && i < coordinates.Length; i++)
+            //    AequusHelpers.dustDebug(coordinates[i] + Main.screenPosition);
+            //if (Main.LocalPlayer.gravDir == -1)
+            //{
+            //    AequusHelpers.ScreenFlip(coordinates);
+            //}
             DrawLightningPrim(coordinates);
         }
         private void DrawLightningPrim(Vector2[] coordinates)
@@ -347,7 +349,8 @@ namespace Aequus.Projectiles.Magic
             DrawLightning = false;
             if (PixelizationScreenRenderer.TryGetResult("SurgeRodProj", out var texture))
             {
-                Main.spriteBatch.Draw(texture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White);
+                Main.spriteBatch.Draw(texture, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), texture.Bounds, Color.White, 0f, Vector2.Zero,
+                    SpriteEffects.None, 0f);
             }
         }
 

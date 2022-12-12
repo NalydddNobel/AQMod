@@ -248,7 +248,6 @@ namespace Aequus.Graphics
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
             ParticlesBehindProjs.Draw(Main.spriteBatch);
 
-
             ProjsBehindProjs.renderingNow = true;
             for (int i = 0; i < ProjsBehindProjs.Count; i++)
             {

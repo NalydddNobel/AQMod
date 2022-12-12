@@ -72,6 +72,9 @@ namespace Aequus
 
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
+        public static Rectangle ScreenRectangleGravityFix => Main.LocalPlayer.gravDir == -1 ?
+            new Rectangle(Main.mouseX, Main.screenHeight, Main.screenWidth, -Main.screenHeight) : new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
+
         public static Regex SubstitutionRegex { get; private set; }
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }

@@ -860,8 +860,8 @@ Mods: {
 				'''
 			StudiesOfTheInkblot:
 				'''
-				'Rorschach in Danmaku'
-				'Subterranean Rose'
+				Left Click for 'Rorschach in Danmaku'
+				Right Click for 'Subterranean Rose'
 				'''
 			LiquidGun: { 
 				$parentVal: Automatically refills using the closest liquid
@@ -1095,12 +1095,12 @@ Mods: {
 
 			CrabRod: Grants money from successful catches
 			Starcatcher: Extra powerful when the stars are out
-			Buzzer: Casts a flying bee bobber
-			Nimrod:
+			Buzzer: 
 				'''
-				Casts a fishing cloud which creates 3 lightning bobbers to catch fish
-				Extra powerful during the rain
+				Casts a flying bee bobber
+				Applies honey effects while in use
 				'''
+			Nimrod: Casts a fishing cloud which creates 3 lightning bobbers to catch fish
 
 			UnholyCore: 
 				'''

@@ -19,6 +19,10 @@ namespace Aequus.Projectiles.Misc.Bobbers
 
         public override bool PreAI()
         {
+            if (Projectile.wet)
+            {
+                Main.player[Projectile.owner].AddBuff(BuffID.Honey, 1, quiet: true);
+            }
             if (gotoPosition.X <= -1f && gotoPosition.Y <= -1f)
             {
                 if (dropDelay != byte.MaxValue)

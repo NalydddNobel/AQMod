@@ -18,9 +18,9 @@ namespace Aequus.Items.Tools.FishingRods
         {
             Item.CloneDefaults(ItemID.WoodFishingPole);
             Item.value = Item.buyPrice(gold: 15);
-            Item.fishingPole = 20;
+            Item.fishingPole = 10;
             Item.shootSpeed = 16f;
-            Item.rare = ItemRarityID.LightPurple;
+            Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<NimrodBobber>();
         }
 

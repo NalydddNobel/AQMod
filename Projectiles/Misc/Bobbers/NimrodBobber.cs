@@ -51,13 +51,6 @@ namespace Aequus.Projectiles.Misc.Bobbers
                     Projectile.ai[0] = 1f;
                     Projectile.Center = Main.player[Projectile.owner].Center;
                 }
-                if (Main.raining)
-                {
-                    if (Projectile.ai[1] < -10)
-                    {
-                        Projectile.ai[1] += 5;
-                    }
-                }
             }
             else if ((int)Projectile.ai[0] == 1)
             {
@@ -201,7 +194,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
                             Projectile.netUpdate = true;
                         }
                     }
-                    if (Main.player[Projectile.owner].controlUseItem)
+                    if (Main.player[Projectile.owner].controlUseItem && Main.player[Projectile.owner].releaseUseItem)
                     {
                         Projectile.ai[0] = 1f;
                         gotoPosition.X = -2f;
@@ -266,7 +259,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
             var player = Main.player[Projectile.owner];
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            float x = Main.player[Projectile.owner].direction == -1 ? -64f : 50f;
+            float x = Main.player[Projectile.owner].direction == -1 ? -48f : 44f;
             AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(x, -38f),
                 getLighting: (v, c) => Color.Lerp(new Color(30, 60, 200, 128) * 0.5f, new Color(70, 155, 185, 180) * 0.8f, AequusHelpers.Wave(-(Main.GlobalTimeWrappedHourly * 5f + Projectile.whoAmI), 0f, 1f)));
             return false;

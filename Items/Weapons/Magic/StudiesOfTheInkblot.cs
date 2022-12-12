@@ -35,7 +35,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.knockBack = 0f;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = Aequus.GetSound("Item/touhouShoot");
+            Item.UseSound = Aequus.GetSound("touhouShoot");
             Item.rare = ItemRarityID.Red;
             Item.shootSpeed = 10f;
             Item.autoReuse = true;
