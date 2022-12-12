@@ -30,6 +30,7 @@
         GravityChestPickupEffect,
         SpawnPixelCameraClip,
         PlacePixelPainting,
+        RegisterPhotoClip,
         Count
     }
 

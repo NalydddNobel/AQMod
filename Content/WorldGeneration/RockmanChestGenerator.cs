@@ -12,11 +12,11 @@ namespace Aequus.Content.WorldGeneration
         public void GenerateRandomLocation()
         {
             int spawnedCount = 0;
-            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 3);
+            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
             for (int k = 0; k < 100000 && spawnedCount < amt; k++)
             {
                 var r = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
-                    new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 100), Main.maxTilesX / (AequusWorld.SmallWidth / 200)))).Fluffize(100);
+                    new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 150)))).Fluffize(100);
                 if (WorldGen.structures?.CanPlace(r, AequusTile.All) == true)
                     continue;
                 GrowGrass(r);
@@ -81,7 +81,7 @@ namespace Aequus.Content.WorldGeneration
                             }
                         }
                         WorldGen.SquareTileFrame(i, j);
-                        if (t.WallType > WallID.None && t.WallType != WallID.HiveUnsafe)
+                        if (t.WallType > WallID.None && t.WallType != WallID.HiveUnsafe && t.WallType != WallID.LihzahrdBrickUnsafe && !Main.wallDungeon[t.WallType])
                         {
                             t.WallType = WallID.FlowerUnsafe;
                         }

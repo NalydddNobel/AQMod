@@ -1,27 +1,34 @@
 ﻿using Aequus.NPCs.Friendly.Drones;
 using Microsoft.Xna.Framework;
-using System.IO;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DronePylons
 {
     public class CleanserDroneSlot : DroneSlot
     {
-        public CleanseType cleanseType;
+        public static Dictionary<Point, int> SpecialSolutions { get; private set; }
 
         public override int NPCType => ModContent.NPCType<CleanserDrone>();
 
+        public override void Load()
+        {
+            SpecialSolutions = new Dictionary<Point, int>()
+            {
+                [new Point(TileID.TeleportationPylon, 2)] = ProjectileID.HallowSpray,
+            };
+        }
+
+        public override void Unload()
+        {
+            SpecialSolutions?.Clear();
+            SpecialSolutions = null;
+        }
+
         public override void OnAdd(Player player)
         {
-            cleanseType = player.ZoneHallow ? CleanseType.Hallow : CleanseType.Purity;
-
-            if (Main.tile[Location].TileFrameX / 54 == 2)
-            {
-                cleanseType = CleanseType.Hallow;
-            }
         }
 
         public override void OnHardUpdate()
@@ -41,7 +48,7 @@ namespace Aequus.Content.DronePylons
                 if (p == Point.Zero)
                     return;
 
-                int solution = GetSolutionProjectileID(Main.tile[p].TileType);
+                int solution = GetSolutionProjectileID(p);
 
                 if (solution > 0)
                 {
@@ -54,73 +61,63 @@ namespace Aequus.Content.DronePylons
             }
         }
 
-        public int GetSolutionProjectileID(int tileType)
+        public int GetSolutionProjectileID(Point tilePos)
         {
-            bool hallow = cleanseType == CleanseType.Hallow || (Main.tile[Location].TileFrameX / 54) == 2;
-            if (hallow)
+            var tile = Main.tile[tilePos];
+            if (SpecialSolutions.TryGetValue(new Point(Main.tile[Location].TileType, Main.tile[Location].TileFrameX / 54), out int id))
             {
-                if (tileType != TileID.HallowedGrass && tileType != TileID.Pearlstone && tileType != TileID.Pearlsand
-                    && tileType != TileID.HallowHardenedSand && tileType != TileID.HallowSandstone && tileType != TileID.GolfGrassHallowed
-                    && tileType != TileID.HallowedIce)
-                {
-                    return ProjectileID.HallowSpray;
-                }
+                return id;
             }
-            else if (tileType != TileID.Grass && tileType != TileID.Stone && tileType != TileID.Sand
-                && tileType != TileID.HardenedSand && tileType != TileID.Sandstone && tileType != TileID.GolfGrass
-                && tileType != TileID.IceBlock && tileType != TileID.JungleThorns)
+            var pylonStand = Location + new Point(1, 4);
+            AequusHelpers.dustDebug(pylonStand);
+            if (TileID.Sets.Hallow[Main.tile[pylonStand].TileType])
             {
-                return ProjectileID.PureSpray;
+                return ProjectileID.HallowSpray;
             }
-            return 0;
+            if (Main.tile[pylonStand].TileType == TileID.MushroomGrass)
+            {
+                return ProjectileID.MushroomSpray;
+            }
+            if (TileID.Sets.Corrupt[Main.tile[pylonStand].TileType])
+            {
+                return ProjectileID.CorruptSpray;
+            }
+            if (TileID.Sets.Crimson[Main.tile[pylonStand].TileType])
+            {
+                return ProjectileID.CrimsonSpray;
+            }
+            return ProjectileID.PureSpray;
         }
 
-        public static Point FindConvertibleTile(Point tilePos)
+        public bool ShouldCleanse(Point tilePos)
+        {
+            var tile = Main.tile[tilePos];
+            var pylonStand = Location + new Point(1, 4);
+            if (Main.tile[pylonStand].TileType == TileID.MushroomGrass)
+            {
+                return Main.tile[pylonStand].TileType == TileID.JungleGrass;
+            }
+            if (TileID.Sets.Corrupt[Main.tile[pylonStand].TileType] || TileID.Sets.Crimson[Main.tile[pylonStand].TileType])
+            {
+                return TileID.Sets.Hallow[Main.tile[pylonStand].TileType] || TileID.Sets.Conversion.Grass[Main.tile[pylonStand].TileType]
+                    || TileID.Sets.Conversion.Stone[Main.tile[pylonStand].TileType] || TileID.Sets.Conversion.Sand[Main.tile[pylonStand].TileType]
+                    || TileID.Sets.Conversion.Ice[Main.tile[pylonStand].TileType];
+            }
+            return TileID.Sets.Corrupt[tile.TileType] || TileID.Sets.Crimson[tile.TileType];
+        }
+
+        public Point FindConvertibleTile(Point tilePos)
         {
             for (int i = 0; i < 1000; i++)
             {
                 int x = tilePos.X + Main.rand.Next(-60, 60);
                 int y = tilePos.Y + Main.rand.Next(-60, 60);
-                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile 
-                    && (TileID.Sets.Crimson[Main.tile[x, y].TileType] || TileID.Sets.Corrupt[Main.tile[x, y].TileType]))
+                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile && ShouldCleanse(tilePos))
                 {
                     return new Point(x, y);
                 }
             }
-
             return Point.Zero;
         }
-
-        public override TagCompound SerializeData()
-        {
-            var tag = base.SerializeData();
-            tag["CleanseType"] = (byte)cleanseType;
-            return tag;
-        }
-
-        public override void DeserializeData(TagCompound tag)
-        {
-            base.DeserializeData(tag);
-            if (tag.TryGet("CleanseType", out byte cleanseType))
-            {
-                this.cleanseType = (CleanseType)cleanseType;
-            }
-        }
-
-        public override void SendData(BinaryWriter packet)
-        {
-            packet.Write((byte)cleanseType);
-        }
-
-        public override void ReceiveData(BinaryReader reader)
-        {
-            cleanseType = (CleanseType)reader.ReadByte();
-        }
-    }
-
-    public enum CleanseType : byte
-    {
-        Purity = 0,
-        Hallow = 1,
     }
 }

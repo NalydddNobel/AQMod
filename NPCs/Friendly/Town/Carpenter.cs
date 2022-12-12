@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.NPCHappiness;
+using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
@@ -144,6 +145,8 @@ namespace Aequus.NPCs.Friendly.Town
                     shop.item[nextSlot++].stack = 1;
                 }
             }
+            if (Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Count > 0)
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom)
@@ -187,34 +190,6 @@ namespace Aequus.NPCs.Friendly.Town
                 }
             }
             return checkedPoints;
-        }
-
-        public static void GetHouseWallTiles(List<Point> insideTiles, out List<Point> leftPoints, out List<Point> rightPoints, out List<Point> topPoints, out List<Point> bottomPoints)
-        {
-            leftPoints = new List<Point>();
-            rightPoints = new List<Point>();
-            topPoints = new List<Point>();
-            bottomPoints = new List<Point>();
-
-            foreach (var p in insideTiles)
-            {
-                if (Main.tile[p.X - 1, p.Y].IsSolid())
-                {
-                    leftPoints.Add(new Point(p.X - 1, p.Y));
-                }
-                if (Main.tile[p.X + 1, p.Y].IsSolid())
-                {
-                    rightPoints.Add(new Point(p.X + 1, p.Y));
-                }
-                if (Main.tile[p.X, p.Y + 1].IsSolid())
-                {
-                    bottomPoints.Add(new Point(p.X, p.Y + 1));
-                }
-                if (Main.tile[p.X, p.Y - 1].IsSolid())
-                {
-                    topPoints.Add(new Point(p.X, p.Y - 1));
-                }
-            }
         }
 
         public static int CountDecorInsideHouse(List<Point> insideTiles)
@@ -360,7 +335,6 @@ namespace Aequus.NPCs.Friendly.Town
                         Main.playerInventory = false;
                         Main.npcChatText = "";
                         Aequus.UserInterface.SetState(new CarpenterUIState());
-                        bountyPlayer.CompletedBounties.Clear();
                         return;
                     }
                 }

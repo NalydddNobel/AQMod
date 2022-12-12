@@ -466,6 +466,7 @@ Mods: {
 			
 			OmniPaint: Omni Paint
 			AdvancedRuler: Advanced Ruler
+			CarpenterResetSheet: Carpenter Resignation Sheet
 			CarpenterBountyItem: Carpenter Bounty
 			AdventuringMap: Adventuring Map
 			SkeletonKey: Skeleton Key
@@ -1068,6 +1069,7 @@ Mods: {
 				* Hold shift and press left click remove the last placed ruler node
 				* Hold ctrl and press left click to swap between Line and Grid ruler modes
 				'''
+			CarpenterResetSheet: Resets your bounty progress for the Carpenter
 			AdventuringMap: 
 			{
 				"$parentVal": Digging below the marked 'X' may lead to a reward

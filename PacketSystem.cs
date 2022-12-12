@@ -55,6 +55,7 @@ namespace Aequus
                 PacketType.SpawnShutterstockerClip,
                 PacketType.SpawnPixelCameraClip,
                 PacketType.PlacePixelPainting,
+                PacketType.RegisterPhotoClip,
             };
             TileCoatingSync = new List<Rectangle>();
         }
@@ -246,6 +247,10 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.RegisterPhotoClip:
+                    //CarpenterSystem.RecieveClip(reader);
+                    break;
+
                 case PacketType.PumpinatorWindSpeed:
                     {
                         Main.windSpeedTarget = reader.ReadSingle();

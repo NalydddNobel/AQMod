@@ -24,10 +24,10 @@ namespace Aequus.NPCs.Friendly.Drones
         public float healingAuraOpacity;
         public int healingTarget;
 
-        //public override void SetStaticDefaults()
-        //{
-        //    Main.npcFrameCount[Type] = 7;
-        //}
+        public override void SetStaticDefaults()
+        {
+            Main.npcFrameCount[Type] = 7;
+        }
 
         public override void SetDefaults()
         {
