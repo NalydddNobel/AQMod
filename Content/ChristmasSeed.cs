@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.WorldGeneration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +14,7 @@ namespace Aequus.Content
         public static bool Active { get => AequusWorld.christmasWorld; set => AequusWorld.christmasWorld = value; }
 
         public static HashSet<int> DoNotConvert { get; private set; }
+        public static HashSet<int> SnowTiles { get; private set; }
         public static Dictionary<int, int> SpecialConversions { get; private set; }
         public static Dictionary<int, int> WallConversions { get; private set; }
         public static Dictionary<int, Action<int, int, Tile>> MoreSpecialConversions { get; private set; }
@@ -27,16 +29,27 @@ namespace Aequus.Content
                 TileID.BeeHive,
                 TileID.Hive,
             };
-            SpecialConversions = new Dictionary<int, int>()
+            SnowTiles = new HashSet<int>()
             {
-                [TileID.SnowBlock] = TileID.SnowBlock,
-                [TileID.IceBlock] = TileID.IceBlock,
-                [TileID.IceBrick] = TileID.IceBrick,
+                TileID.SnowBlock,
+                TileID.IceBlock,
+                TileID.IceBrick,
+                TileID.SnowBrick,
+                TileID.BorealWood,
+                TileID.Slush,
+                TileID.BlueDungeonBrick,
+                TileID.CrackedBlueDungeonBrick,
+                TileID.SnowCloud,
+                TileID.BreakableIce,
+            };
+            SpecialConversions = new Dictionary<int, int>(SnowTiles.ToDictionary((t) => t))
+            {
+                [TileID.Mud] = TileID.BreakableIce,
+
                 [TileID.Dirt] = TileID.SnowBlock,
-                [TileID.BorealWood] = TileID.BorealWood,
-                [TileID.Slush] = TileID.Slush,
-                [TileID.BlueDungeonBrick] = TileID.BlueDungeonBrick,
-                [TileID.CrackedBlueDungeonBrick] = TileID.CrackedBlueDungeonBrick,
+
+                [TileID.Cloud] = TileID.SnowCloud,
+                [TileID.RainCloud] = TileID.SnowCloud,
 
                 [TileID.Silt] = TileID.Slush,
                 [TileID.DesertFossil] = TileID.Slush,
@@ -109,6 +122,7 @@ namespace Aequus.Content
                 [TileID.Tin] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Iron] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Lead] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
+                [TileID.Silver] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Tungsten] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Gold] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Platinum] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
@@ -150,9 +164,18 @@ namespace Aequus.Content
                 [WallID.SilverBrick] = WallID.SnowBrick,
                 [WallID.GoldBrick] = WallID.SnowBrick,
                 [WallID.DiscWall] = WallID.SnowBrick,
-                [WallID.ObsidianBrickUnsafe] = WallID.IceBrick,
-                [WallID.HellstoneBrickUnsafe] = WallID.IceBrick,
+                [WallID.ObsidianBrickUnsafe] = WallID.SnowWallUnsafe,
+                [WallID.HellstoneBrickUnsafe] = WallID.SnowWallUnsafe,
             };
+        }
+
+        public override void Unload()
+        {
+            DoNotConvert?.Clear();
+            SnowTiles?.Clear();
+            SpecialConversions?.Clear();
+            WallConversions?.Clear();
+            MoreSpecialConversions?.Clear();
         }
 
         public override void PreWorldGen()
@@ -229,11 +252,25 @@ namespace Aequus.Content
                     for (int j = 0; j < Main.maxTilesY; j++)
                     {
                         CheckIce(i, j);
+                        if (WorldGen.InWorld(i, j, 400) && WorldGen.genRand.NextBool(30))
+                        {
+                            WorldGen.PlaceTile(i, j, TileID.Presents, style: WorldGen.genRand.Next(8));
+                        }
+                        if (WorldGen.InWorld(i, j, 5) && Main.tile[i, j].TileType == TileID.SnowCloud && Main.tile[i, j + 1].IsFullySolid())
+                        {
+                            Main.tile[i, j].TileType = TileID.SnowBlock;
+                        }
                     }
                 }
             }, tasks);
             tasks.RemoveAll((t) => t.Name == "Wall Variety");
             tasks.RemoveAll((t) => t.Name == "Moss");
+        }
+
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
+        {
+            if (Active)
+                Main.SceneMetrics.SnowTileCount += 300;
         }
 
         public static void CheckIce(int x, int y)
@@ -249,11 +286,6 @@ namespace Aequus.Content
             {
                 t.TileType = TileID.SnowBlock;
             }
-            else if (Main.tileFrameImportant[t.TileType] || DoNotConvert.Contains(t.TileType))
-            {
-                if (!Main.tileContainer[t.TileType] && !TileID.Sets.IsATreeTrunk[t.TileType] && !TileID.Sets.TreeSapling[t.TileType])
-                    t.TileColor = PaintID.DeepCyanPaint;
-            }
             else if (SpecialConversions.TryGetValue(t.TileType, out int tileType))
             {
                 t.TileType = (ushort)tileType;
@@ -261,6 +293,11 @@ namespace Aequus.Content
             else if (MoreSpecialConversions.TryGetValue(t.TileType, out var action))
             {
                 action(x, y, t);
+            }
+            else if (Main.tileFrameImportant[t.TileType] || DoNotConvert.Contains(t.TileType))
+            {
+                if (!Main.tileContainer[t.TileType] && !TileID.Sets.IsATreeTrunk[t.TileType] && !TileID.Sets.TreeSapling[t.TileType])
+                    t.TileColor = PaintID.CyanPaint;
             }
             else if (t.IsFullySolid() && !Main.tileFrameImportant[t.TileType])
             {
@@ -292,7 +329,7 @@ namespace Aequus.Content
                 {
                     t.WallType = WallID.SnowWallUnsafe;
                 }
-                if (t.WallType == WallID.LihzahrdBrickUnsafe)
+                if (t.WallType == WallID.HiveUnsafe || t.WallType == WallID.LihzahrdBrickUnsafe)
                 {
                     t.WallColor = PaintID.DeepCyanPaint;
                 }
@@ -332,6 +369,48 @@ namespace Aequus.Content
             if (ChristmasSeedSystem.Active && type == TileID.IceBrick)
             {
                 player.AddBuff(BuffID.Frostburn, 1);
+            }
+        }
+
+        public override void RandomUpdate(int i, int j, int type)
+        {
+            if (!ChristmasSeedSystem.Active)
+                return;
+
+            if (Main.raining)
+            {
+                if (!ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j].TileType) && !ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j].TileType) && !Main.tile[i, j - 1].IsFullySolid())
+                {
+                    Christmasify(i, j);
+                }
+                else if (ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j - 1].TileType) || ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j - 1].TileType))
+                {
+                    int y = j;
+                    do
+                    {
+                        Christmasify(i, y - 1);
+                        Christmasify(i, y);
+                        y++;
+                    }
+                    while (y < j + 50 && WorldGen.InWorld(i, y, 5) && !Main.tile[i, y].IsFullySolid() && !Main.tileFrameImportant[Main.tile[i, y].TileType]);
+                }
+            }
+        }
+
+        public static void Christmasify(int x, int y)
+        {
+            int tileID = Main.tile[x, y].TileType;
+            byte paint = Main.tile[x, y].TileColor;
+            int wall = Main.tile[x, y].WallType;
+            byte paintWall = Main.tile[x, y].WallColor;
+            ChristmasSeedSystem.CheckIce(x, y);
+            if (tileID != Main.tile[x, y].TileType || wall != Main.tile[x, y].WallType || paintWall != Main.tile[x,y].WallColor || paint != Main.tile[x, y].TileColor)
+            {
+                WorldGen.TileFrame(x, y);
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    NetMessage.SendTileSquare(-1, x - 1, y - 1, 3, 3);
+                }
             }
         }
     }
