@@ -95,7 +95,7 @@ namespace Aequus.NPCs.Friendly.Drones
                                     NPC.frame.Y = NPC.frame.Height * (int)(NPC.frameCounter / amtPerFrame + 1);
                                     if (Main.tile[loc.X + NPC.direction, loc.Y].IsFullySolid())
                                     {
-                                        NPC.rotation = Utils.AngleLerp(NPC.rotation, MathHelper.PiOver2 * -NPC.direction, 0.33f);
+                                        NPC.rotation = Utils.AngleLerp(NPC.rotation, MathHelper.PiOver2 * -NPC.direction, 0.2f);
                                     }
                                 }
 
