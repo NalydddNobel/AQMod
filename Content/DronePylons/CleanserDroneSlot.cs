@@ -17,7 +17,10 @@ namespace Aequus.Content.DronePylons
         {
             SpecialSolutions = new Dictionary<Point, int>()
             {
+                [new Point(TileID.TeleportationPylon, 0)] = ProjectileID.PureSpray,
+                [new Point(TileID.TeleportationPylon, 1)] = ProjectileID.PureSpray,
                 [new Point(TileID.TeleportationPylon, 2)] = ProjectileID.HallowSpray,
+                [new Point(TileID.TeleportationPylon, 7)] = ProjectileID.MushroomSpray,
             };
         }
 
@@ -64,10 +67,6 @@ namespace Aequus.Content.DronePylons
         public int GetSolutionProjectileID(Point tilePos)
         {
             var tile = Main.tile[tilePos];
-            if (SpecialSolutions.TryGetValue(new Point(Main.tile[Location].TileType, Main.tile[Location].TileFrameX / 54), out int id))
-            {
-                return id;
-            }
             var pylonStand = Location + new Point(1, 4);
             if (TileID.Sets.Hallow[Main.tile[pylonStand].TileType])
             {
@@ -85,6 +84,10 @@ namespace Aequus.Content.DronePylons
             {
                 return ProjectileID.CrimsonSpray;
             }
+            if (SpecialSolutions.TryGetValue(new Point(Main.tile[Location].TileType, Main.tile[Location].TileFrameX / 54), out int id))
+            {
+                return id;
+            }
             return ProjectileID.PureSpray;
         }
 
@@ -99,9 +102,22 @@ namespace Aequus.Content.DronePylons
             }
             if (TileID.Sets.Corrupt[Main.tile[pylonStand].TileType] || TileID.Sets.Crimson[Main.tile[pylonStand].TileType])
             {
-                return TileID.Sets.Hallow[tile.TileType] || TileID.Sets.Conversion.Grass[tile.TileType]
-                    || TileID.Sets.Conversion.Stone[tile.TileType] || TileID.Sets.Conversion.Sand[tile.TileType]
-                    || TileID.Sets.Conversion.Ice[tile.TileType];
+                return TileID.Sets.Hallow[tile.TileType] || tile.IsConvertibleProbably();
+            }
+            if (SpecialSolutions.TryGetValue(new Point(Main.tile[Location].TileType, Main.tile[Location].TileFrameX / 54), out int id))
+            {
+                if (id == ProjectileID.PureSpray && TileID.Sets.Hallow[tile.TileType])
+                {
+                    return true;
+                }
+                if (id == ProjectileID.HallowSpray && !TileID.Sets.Hallow[tile.TileType] && tile.IsConvertibleProbably())
+                {
+                    return true;
+                }
+                if (id == ProjectileID.MushroomSpray && tile.TileType == TileID.JungleGrass)
+                {
+                    return true;
+                }
             }
             return TileID.Sets.Corrupt[tile.TileType] || TileID.Sets.Crimson[tile.TileType];
         }

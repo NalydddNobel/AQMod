@@ -1916,6 +1916,12 @@ namespace Aequus
             return center + n * new Vector2(x, y);
         }
 
+        public static bool IsConvertibleProbably(this Tile tile)
+        {
+            return TileID.Sets.Conversion.Grass[tile.TileType]
+                    || TileID.Sets.Conversion.Stone[tile.TileType] || TileID.Sets.Conversion.Sand[tile.TileType]
+                    || TileID.Sets.Conversion.Ice[tile.TileType];
+        }
         public static void Slope(this Tile tile, byte value)
         {
             tile.Slope = (SlopeType)value;
