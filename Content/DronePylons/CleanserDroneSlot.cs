@@ -69,7 +69,6 @@ namespace Aequus.Content.DronePylons
                 return id;
             }
             var pylonStand = Location + new Point(1, 4);
-            AequusHelpers.dustDebug(pylonStand);
             if (TileID.Sets.Hallow[Main.tile[pylonStand].TileType])
             {
                 return ProjectileID.HallowSpray;
@@ -93,26 +92,27 @@ namespace Aequus.Content.DronePylons
         {
             var tile = Main.tile[tilePos];
             var pylonStand = Location + new Point(1, 4);
+            //AequusHelpers.dustDebug(pylonStand);
             if (Main.tile[pylonStand].TileType == TileID.MushroomGrass)
             {
-                return Main.tile[pylonStand].TileType == TileID.JungleGrass;
+                return tile.TileType == TileID.JungleGrass;
             }
             if (TileID.Sets.Corrupt[Main.tile[pylonStand].TileType] || TileID.Sets.Crimson[Main.tile[pylonStand].TileType])
             {
-                return TileID.Sets.Hallow[Main.tile[pylonStand].TileType] || TileID.Sets.Conversion.Grass[Main.tile[pylonStand].TileType]
-                    || TileID.Sets.Conversion.Stone[Main.tile[pylonStand].TileType] || TileID.Sets.Conversion.Sand[Main.tile[pylonStand].TileType]
-                    || TileID.Sets.Conversion.Ice[Main.tile[pylonStand].TileType];
+                return TileID.Sets.Hallow[tile.TileType] || TileID.Sets.Conversion.Grass[tile.TileType]
+                    || TileID.Sets.Conversion.Stone[tile.TileType] || TileID.Sets.Conversion.Sand[tile.TileType]
+                    || TileID.Sets.Conversion.Ice[tile.TileType];
             }
             return TileID.Sets.Corrupt[tile.TileType] || TileID.Sets.Crimson[tile.TileType];
         }
 
         public Point FindConvertibleTile(Point tilePos)
         {
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 5000; i++)
             {
-                int x = tilePos.X + Main.rand.Next(-60, 60);
-                int y = tilePos.Y + Main.rand.Next(-60, 60);
-                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile && ShouldCleanse(tilePos))
+                int x = tilePos.X + Main.rand.Next(-50, 50);
+                int y = tilePos.Y + Main.rand.Next(-50, 50);
+                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile && ShouldCleanse(new Point(x, y)))
                 {
                     return new Point(x, y);
                 }

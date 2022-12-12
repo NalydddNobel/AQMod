@@ -56,6 +56,11 @@ namespace Aequus.Projectiles.Misc
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, end, 10f * Projectile.scale, ref _);
         }
 
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             var npc = Main.npc[(int)Projectile.ai[0]];

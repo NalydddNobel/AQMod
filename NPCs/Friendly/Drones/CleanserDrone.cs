@@ -40,19 +40,23 @@ namespace Aequus.NPCs.Friendly.Drones
             var pylonDiff = pylonSpot.ToWorldCoordinates() - NPC.Center;
             NPC.CollideWithOthers(0.1f);
             CleanserDroneSlot slot = null;
-            foreach (var drones in PylonManager.ActiveDrones)
+            if (pylonSpot != Point.Zero)
             {
-                if (drones is CleanserDroneSlot cleanserSlot)
+                foreach (var drones in PylonManager.ActiveDrones)
                 {
-                    slot = cleanserSlot;
+                    if (drones is CleanserDroneSlot cleanserSlot)
+                    {
+                        slot = cleanserSlot;
+                    }
+                }
+                if (slot == null)
+                {
+                    NPC.Kill();
+                    return;
                 }
             }
-            if (slot == null)
-            {
-                NPC.Kill();
-                return;
-            }    
 
+            int amtPerFrame = 6;
             switch ((int)NPC.ai[0])
             {
                 case 0:
@@ -71,15 +75,40 @@ namespace Aequus.NPCs.Friendly.Drones
                         {
                             NPC.localAI[3] = Utils.AngleTowards(NPC.localAI[3], NPC.direction == -1 ? MathHelper.Pi : 0f, 0.1f);
                         }
+                        bool doAnimation = true;
                         if (NPC.ai[0] != 3)
                         {
-                            base.AI();
                             float wave = AequusHelpers.Wave(NPC.ai[3] * 0.1f, -1f, 1f);
-                            NPC.velocity.X = Math.Clamp(NPC.velocity.X + Main.rand.NextFloat(-0.05f + wave * 0.05f, 0.05f + wave * 0.05f), -1.5f, 1.5f);
+                            NPC.velocity.X = Math.Clamp(NPC.velocity.X + wave * 0.05f, -1.5f, 1.5f);
+                            base.AI();
                             var loc = NPC.Center.ToTileCoordinates();
                             if (Main.tile[loc.X + NPC.direction, loc.Y].IsFullySolid() || NPC.collideX)
                             {
-                                NPC.velocity.Y = -6f;
+                                if (NPC.collideX)
+                                {
+                                    doAnimation = false;
+                                    NPC.frameCounter += NPC.velocity.Y.Abs() * 0.25;
+                                    if (NPC.frameCounter > 11 * amtPerFrame)
+                                    {
+                                        NPC.frameCounter = 0.0;
+                                    }
+                                    NPC.frame.Y = NPC.frame.Height * (int)(NPC.frameCounter / amtPerFrame + 1);
+                                    if (Main.tile[loc.X + NPC.direction, loc.Y].IsFullySolid())
+                                    {
+                                        NPC.rotation = Utils.AngleLerp(NPC.rotation, MathHelper.PiOver2 * -NPC.direction, 0.33f);
+                                    }
+                                }
+
+                                NPC.velocity.Y = -5.5f;
+                                if (Main.tile[loc.X, loc.Y - 1].IsFullySolid() && NPC.collideY)
+                                {
+                                    NPC.velocity.X -= NPC.direction * 3f;
+                                    NPC.ai[3] += 10f;
+                                }
+                            }
+                            else
+                            {
+                                NPC.rotation *= 0.9f;
                             }
                             if (Main.rand.NextBool(1000))
                             {
@@ -90,35 +119,35 @@ namespace Aequus.NPCs.Friendly.Drones
                         else
                         {
                             NPC.velocity.X *= 0.96f;
-                            if (Main.rand.NextBool(500))
+                            if (Main.rand.NextBool(NPC.velocity.Y.Abs() > 1f ? 30 : 500))
                             {
                                 NPC.ai[0] = 0f;
                             }
                         }
-                        int amtPerFrame = 6;
-                        if (NPC.velocity.Y.Abs() < 0.1f)
+                        if (doAnimation)
                         {
-                            if (NPC.velocity.X.Abs() < 0.1f)
+                            if (NPC.velocity.Y.Abs() < 0.1f)
                             {
-                                NPC.frameCounter = 0.0;
-                                NPC.frame.Y = 0;
+                                if (NPC.velocity.X.Abs() < 0.1f)
+                                {
+                                    NPC.frameCounter = 0.0;
+                                    NPC.frame.Y = 0;
+                                }
+                                else
+                                {
+                                    NPC.frameCounter += NPC.velocity.X.Abs() * 0.7;
+                                    if (NPC.frameCounter > 11 * amtPerFrame)
+                                    {
+                                        NPC.frameCounter = 0.0;
+                                    }
+                                    NPC.frame.Y = NPC.frame.Height * (int)(NPC.frameCounter / amtPerFrame + 1);
+                                }
                             }
                             else
                             {
-                                NPC.frameCounter += NPC.velocity.X.Abs() * 0.7;
-                                if (NPC.frameCounter > 11 * amtPerFrame)
-                                {
-                                    NPC.frameCounter = 0.0;
-                                }
-                                NPC.frame.Y = NPC.frame.Height * (int)(NPC.frameCounter / amtPerFrame + 1);
+                                NPC.frameCounter -= 0.0;
+                                NPC.frame.Y = NPC.frame.Height * 6;
                             }
-                        }
-                        else
-                        {
-                            NPC.frameCounter -= 0.1;
-                            if (NPC.frameCounter <= 0.0)
-                                NPC.frameCounter = 6.0 * amtPerFrame;
-                            NPC.frame.Y = NPC.frame.Height * 6;
                         }
                         if (pylonDiff.Length() > 1700f || NPC.ai[1] >= 5000f)
                         {
@@ -140,20 +169,25 @@ namespace Aequus.NPCs.Friendly.Drones
 
                         NPC.ai[1]++;
                         NPC.spriteDirection = NPC.direction;
-                        
-                        if (NPC.ai[1] > 60f)
+
+                        if (NPC.ai[1] > 60f && slot != null)
                         {
                             var convertibleTile = FindConvertibleTile(slot);
                             if (convertibleTile == Point.Zero)
                                 return;
 
-                            NPC.ai[0] = 1f;
-                            NPC.ai[1] = convertibleTile.X;
-                            NPC.ai[2] = convertibleTile.Y;
-                            NPC.localAI[2] = 0f;
-                            NPC.localAI[3] = NPC.direction == -1 ? MathHelper.Pi : 0f;
-                            NPC.direction = Main.rand.NextBool() ? -1 : 1;
-                            NPC.netUpdate = true;
+                            int solution = slot.GetSolutionProjectileID(convertibleTile);
+                            if (solution > 0f)
+                            {
+                                NPC.ai[0] = 1f;
+                                NPC.ai[1] = convertibleTile.X;
+                                NPC.ai[2] = convertibleTile.Y;
+                                NPC.ai[3] = solution;
+                                NPC.localAI[2] = 0f;
+                                NPC.localAI[3] = NPC.direction == -1 ? MathHelper.Pi : 0f;
+                                NPC.direction = Main.rand.NextBool() ? -1 : 1;
+                                NPC.netUpdate = true;
+                            }
                         }
                     }
                     break;
@@ -165,9 +199,7 @@ namespace Aequus.NPCs.Friendly.Drones
                         NPC.localAI[3] = Utils.AngleTowards(NPC.localAI[3], Math.Abs((p.ToWorldCoordinates() - NPC.Center - new Vector2(0f, 20f).RotatedBy(NPC.rotation) * NPC.scale).ToRotation()) + NPC.localAI[2] / 30f * NPC.direction, 0.4f);
                         if (NPC.localAI[2] % 5 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
                         {
-                            int pylonStyle = (int)NPC.localAI[1] - 1;
-                            int tileType = Main.tile[p].TileType;
-                            int solution = slot.GetSolutionProjectileID(p);
+                            int solution = (int)NPC.ai[3];
 
                             if (solution > 0)
                             {
