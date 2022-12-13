@@ -178,6 +178,16 @@ namespace Aequus.Content
             MoreSpecialConversions?.Clear();
         }
 
+        public override void PreUpdateEntities()
+        {
+            if (!Active)
+            {
+                return;
+            }
+
+            Main.xMas = true;
+        }
+
         public override void PreWorldGen()
         {
             if (WorldGen.currentWorldSeed.Trim().ToLower() == "rockman")
@@ -192,7 +202,7 @@ namespace Aequus.Content
             {
                 return;
             }
-            Load();
+
             AequusWorldGenerator.CopyPass("Floating Islands", 5, tasks);
             AequusWorldGenerator.CopyPass("Silt", 5, tasks);
             AequusWorldGenerator.CopyPass("Webs", 10, tasks);
@@ -245,6 +255,10 @@ namespace Aequus.Content
                     }
                 }
             }, tasks);
+            AequusWorldGenerator.AddPass("Guide", "SANTA", (progress, configuration) =>
+            {
+                NPC.NewNPC(null, Main.spawnTileX * 16, Main.spawnTileY * 16, NPCID.SantaClaus);
+            }, tasks);
             AequusWorldGenerator.AddPass("Micro Biomes", "Christmas Seed 2", (progress, configuration) =>
             {
                 for (int i = 0; i < Main.maxTilesX; i++)
@@ -263,8 +277,10 @@ namespace Aequus.Content
                     }
                 }
             }, tasks);
-            tasks.RemoveAll((t) => t.Name == "Wall Variety");
-            tasks.RemoveAll((t) => t.Name == "Moss");
+
+            AequusWorldGenerator.RemovePass("Wall Variety", tasks);
+            AequusWorldGenerator.RemovePass("Moss", tasks);
+            AequusWorldGenerator.RemovePass("Guide", tasks);
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)

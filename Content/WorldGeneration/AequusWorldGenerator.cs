@@ -90,6 +90,14 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
         }
+        public static void RemovePass(string name, List<GenPass> tasks)
+        {
+            int i = tasks.FindIndex((t) => t.Name.Equals(name));
+            if (i != -1)
+            {
+                tasks[i] = new PassLegacy(tasks[i].Name, (p, c) => { });
+            }
+        }
 
         public override void PostWorldGen()
         {

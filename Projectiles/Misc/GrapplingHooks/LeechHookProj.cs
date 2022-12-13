@@ -38,6 +38,10 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override bool PreAI()
         {
+            if (Projectile.position.HasNaNs())
+            {
+                Projectile.Kill();
+            }
             if (connectedNPC > -1 && (!Main.npc[connectedNPC].active || ProjectileLoader.GrappleOutOfRange(Projectile.Distance(Main.player[Projectile.owner].Center) * 0.75f, Projectile)))
             {
                 connectedNPC = -1;
@@ -130,11 +134,11 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             velocity *= height;
             float rotation = velocity.ToRotation() + MathHelper.PiOver2;
             var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
+            float progress = 0f;
             for (int i = 0; i < 650; i++)
             {
                 var diff = endPosition - currentPosition;
                 float length = diff.Length();
-                float progress = MathHelper.Clamp(1f - length / range, 0.1f, 1f);
                 float scale = Projectile.scale;
                 var color = AequusHelpers.GetColor(currentPosition);
                 if (progress > 0.25f)
@@ -142,7 +146,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                     scale *= Math.Max(1f - (progress - 0.25f) / 0.75f, 0.35f);
                 }
                 var addVelocity = velocity;
-                if (progress <= 0.5f)
+                if (progress <= 0.5f && progress > 0.2f)
                 {
                     addVelocity = Vector2.Normalize(Vector2.Lerp(addVelocity, diff, (progress - 0.1f) / 0.2f) * 0.02f) * height;
                 }
@@ -151,6 +155,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                     addVelocity = addVelocity.RotatedBy(Math.Sin(i * 0.1f + Main.GlobalTimeWrappedHourly * 6f + Projectile.Center.Length() / 64f) * 0.1f * scale);
                 }
                 currentPosition += addVelocity * scale;
+                progress += 0.033f;
                 if (length <= height)
                     break;
                 Main.EntitySpriteDraw(chain, currentPosition - Main.screenPosition, null, color, addVelocity.ToRotation() + MathHelper.PiOver2, origin, scale, SpriteEffects.None, 0);

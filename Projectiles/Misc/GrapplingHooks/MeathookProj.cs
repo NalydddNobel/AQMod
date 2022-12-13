@@ -41,6 +41,10 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override bool PreAI()
         {
+            if (Projectile.position.HasNaNs())
+            {
+                Projectile.Kill();
+            }
             if (connectedNPC > -1 && !Main.npc[connectedNPC].active)
             {
                 connectedNPC = -1;

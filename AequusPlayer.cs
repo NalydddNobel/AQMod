@@ -1539,36 +1539,27 @@ namespace Aequus
 
         public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.type != NPCID.TargetDummy)
+            if (!target.immortal)
                 CheckLeechHook(target, damage);
             OnHitEffects(target, damage, knockback, crit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (target.type != NPCID.TargetDummy)
+            if (!target.immortal)
                 CheckLeechHook(target, damage);
             OnHitEffects(target, damage, knockback, crit);
         }
         public void CheckLeechHook(NPC target, int damage)
         {
-            if (leechHookNPC == target.whoAmI && Player.statLife < Player.statLifeMax2)
+            if (leechHookNPC == target.whoAmI)
             {
-                int lifeHealed = Math.Min(Math.Max(damage / 5, 1), (int)Player.lifeSteal);
-                if (lifeHealed + Player.statLife > Player.statLifeMax2)
+                int lifeHealed = Math.Min(Math.Max(damage / 5, 1), Math.Clamp((int)Player.lifeSteal, 1, 10));
+                int lifeSteal = CalcHealing(Player, lifeHealed);
+                Player.Heal(lifeHealed);
+                if (lifeSteal > 0)
                 {
-                    lifeHealed = Player.statLifeMax2 - Player.statLife;
-                }
-                if (lifeHealed > 0)
-                {
-                    Player.lifeSteal -= lifeHealed;
-                    Player.statLife += lifeHealed;
-                    Player.HealEffect(lifeHealed);
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        NetMessage.SendData(MessageID.PlayerHeal, -1, -1, null, Player.whoAmI, lifeHealed);
-                        NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, Player.whoAmI, lifeHealed);
-                    }
+                    Player.lifeSteal -= lifeSteal;
                 }
             }
         }
@@ -2480,6 +2471,13 @@ namespace Aequus
                 return Main.player[Main.projectile[AequusProjectile.pWhoAmI].owner];
             }
             return null;
+        }
+        
+        public static int CalcHealing(Player player, int healAmt)
+        {
+            if (player.statLife + healAmt > player.statLifeMax2)
+                return player.statLifeMax2 - player.statLife;
+            return healAmt;
         }
     }
 }

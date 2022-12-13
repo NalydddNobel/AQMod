@@ -245,6 +245,24 @@ namespace Aequus.NPCs.Friendly.Drones
             return slot.FindConvertibleTile(tilePos);
         }
 
+        public override void FindFrame(int frameHeight)
+        {
+            if (NPC.IsABestiaryIconDummy)
+            {
+                NPC.frameCounter++;
+                if (NPC.frameCounter > 6.0)
+                {
+                    NPC.frameCounter = 0.0;
+                    NPC.frame.Y += NPC.frame.Height;
+                    if (NPC.frame.Y > NPC.frame.Height * (Main.npcFrameCount[Type] - 1))
+                    {
+                        NPC.frame.Y = NPC.frame.Height;
+                    }
+                }
+                NPC.alpha = 0;
+            }
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             NPC.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
@@ -255,6 +273,13 @@ namespace Aequus.NPCs.Friendly.Drones
             var gun = ModContent.Request<Texture2D>($"{Texture}_Gun", AssetRequestMode.ImmediateLoad).Value;
             var gunOrigin = new Vector2(29.5f, gun.Height / 2f);
             var lightColor = NPC.GetNPCColorTintedByBuffs(drawColor) * NPC.Opacity;
+
+            if (NPC.IsABestiaryIconDummy)
+            {
+                NPC.alpha = 0;
+                lightColor = Color.White;
+            }
+
             var gunPosition = NPC.position + off - new Vector2(0f, 19f).RotatedBy(NPC.rotation) * NPC.scale;
             var effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             var gunEffects = effects;
