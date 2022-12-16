@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Fish.Legendary
+namespace Aequus.Items.Fish.Legendary
 {
-    public class Blobfish : ModItem
+    public class CrabDaughter : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +16,7 @@ namespace Aequus.Items.Misc.Fish.Legendary
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)
-                .Add<Starcatcher>(chance: 1, stack: 1);
+                .Add<CrabRod>(chance: 1, stack: 1);
         }
 
         public override void SetDefaults()

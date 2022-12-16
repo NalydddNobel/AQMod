@@ -33,10 +33,13 @@ namespace Aequus.Items.Weapons.Magic
             Item.shoot = ModContent.ProjectileType<SnowgraveProjSpawner>();
         }
 
+        // mana cost is 80% less effective on this item!
         public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
         {
-            reduce = MathHelper.Lerp(reduce, 1f, 0.8f); // mana cost is 80% less effective on this item!
-            mult = MathHelper.Lerp(reduce, 1f, 0.8f);
+            if (reduce < 0f)
+                reduce = MathHelper.Lerp(reduce, 0f, 0.8f); 
+            if (mult < 0f)
+                mult = MathHelper.Lerp(reduce, 1f, 0.8f);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

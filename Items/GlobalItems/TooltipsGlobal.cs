@@ -2,7 +2,7 @@
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Content;
 using Aequus.Content.ItemRarities;
-using Aequus.Items.Misc.Fish.Legendary;
+using Aequus.Items.Fish.Quest;
 using Aequus.Items.Prefixes;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
@@ -492,14 +492,7 @@ namespace Aequus.Items.GlobalItems
                 }
                 if (line.Name == "DedicatedItem")
                 {
-                    if (item.ModItem is Fi)
-                    {
-                        Fi.DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
-                    }
-                    else
-                    {
-                        DrawDedicatedTooltip(line);
-                    }
+                    DrawDedicatedTooltip(line);
                     return false;
                 }
             }

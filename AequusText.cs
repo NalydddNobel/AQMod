@@ -351,7 +351,7 @@ namespace Aequus
             return text != key;
         }
 
-        public static string LiquidName(byte liquidType)
+        public static string LiquidName(int liquidType)
         {
             switch (liquidType)
             {

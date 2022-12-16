@@ -3,9 +3,10 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Consumables.LootBags;
+using Aequus.Items.Fish;
+using Aequus.Items.Fish.Legendary;
+using Aequus.Items.Fish.Quest;
 using Aequus.Items.Misc;
-using Aequus.Items.Misc.Fish;
-using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
@@ -148,6 +149,14 @@ namespace Aequus.Common.ModPlayers
                 goto PostProbeFish;
             }
 
+            if (!Main.anglerQuestFinished && Main.rand.NextBool(10))
+            {
+                if (QuestFish(ModContent.ItemType<BrickFish>()) && BrickFish.CheckVillagerBuildings(attempt, Player))
+                {
+                    itemDrop = ModContent.ItemType<BrickFish>();
+                }
+            }
+
             if (attempt.inLava)
             {
                 if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4))
@@ -257,6 +266,11 @@ namespace Aequus.Common.ModPlayers
                 aequus.omnibait = false;
                 Player.UpdateBiomes(); // Kind of cheaty
             }
+        }
+
+        private bool QuestFish(int questFish)
+        {
+            return Aequus.IsAnglerQuest(questFish) && !Player.HasItem(questFish);
         }
 
         public static bool IsBasicFish(int itemDrop)

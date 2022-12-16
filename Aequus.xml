@@ -667,6 +667,71 @@
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
             </summary>
         </member>
+        <member name="P:Aequus.Items.ItemDefaults.CrabCreviceValue">
+            <summary>
+            1 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.GlimmerValue">
+            <summary>
+            1 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.DemonSiegeValue">
+            <summary>
+            2 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.OmegaStariteValue">
+            <summary>
+            4 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.GaleStreamsValue">
+            <summary>
+            4 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.DustDevilValue">
+            <summary>
+            5 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.PotionsValue">
+            <summary>
+            2 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.CorruptionValue">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.CrimsonValue">
+            <summary>
+            55 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.BloodMimicItemValue">
+            <summary>
+            1 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.DungeonValue">
+            <summary>
+            1 gold 75 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.PostMechsEnergyWeaponValue">
+            <summary>
+            6 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.PillarWeaponValue">
+            <summary>
+            10 gold
+            </summary>
+        </member>
         <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">
             <summary>
             

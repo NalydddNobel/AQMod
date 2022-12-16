@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Content;
 using Aequus.Items.Weapons.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -101,10 +102,10 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         {
                             NPC.ai[2] = NPCID.LavaSlime;
                         }
-                        //else if (XmasSeed.XmasWorld)
-                        //{
-                        //    NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
-                        //}
+                        else if (ChristmasSeedSystem.Active)
+                        {
+                            NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
+                        }
                         else
                         {
                             var selectableEnemies = EnemyList();

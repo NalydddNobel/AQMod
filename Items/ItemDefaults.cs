@@ -11,7 +11,7 @@ namespace Aequus.Items
 {
     public static class ItemDefaults
     {
-        public const int RarityCrabCrevice = ItemRarityID.Blue;
+        public const int RarityCrabCrevice = ItemRarityID.Green;
         public const int RarityGlimmer = ItemRarityID.Green;
         public const int RarityDemonSiege = ItemRarityID.Orange;
         public const int RarityOmegaStarite = ItemRarityID.LightRed;
@@ -38,20 +38,58 @@ namespace Aequus.Items
         public const int RarityPillars = ItemRarityID.Red;
         public const int RarityMoonLord = ItemRarityID.Red;
 
-        public static int CrabCreviceValue => Item.sellPrice(silver: 25);
-        public static int GlimmerValue => Item.sellPrice(silver: 75);
+        /// <summary>
+        /// 1 gold 50 silver
+        /// </summary>
+        public static int CrabCreviceValue => Item.sellPrice(gold: 1, silver: 50);
+        /// <summary>
+        /// 1 gold
+        /// </summary>
+        public static int GlimmerValue => Item.sellPrice(gold: 1);
+        /// <summary>
+        /// 2 gold 50 silver
+        /// </summary>
         public static int DemonSiegeValue => Item.sellPrice(gold: 2, silver: 50);
-        public static int MemorialistItemBuyValue => Item.buyPrice(gold: 20);
+        /// <summary>
+        /// 4 gold 50 silver
+        /// </summary>
         public static int OmegaStariteValue => Item.sellPrice(gold: 4, silver: 50);
+        /// <summary>
+        /// 4 gold
+        /// </summary>
         public static int GaleStreamsValue => Item.sellPrice(gold: 4);
+        /// <summary>
+        /// 5 gold
+        /// </summary>
         public static int DustDevilValue => Item.sellPrice(gold: 5);
 
+        /// <summary>
+        /// 2 silver
+        /// </summary>
         public static int PotionsValue => Item.sellPrice(silver: 2);
+        /// <summary>
+        /// 50 silver
+        /// </summary>
         public static int CorruptionValue => Item.sellPrice(silver: 50);
+        /// <summary>
+        /// 55 silver
+        /// </summary>
         public static int CrimsonValue => Item.sellPrice(silver: 55);
+        /// <summary>
+        /// 1 gold
+        /// </summary>
         public static int BloodMimicItemValue => Item.sellPrice(gold: 1);
+        /// <summary>
+        /// 1 gold 75 silver
+        /// </summary>
         public static int DungeonValue => Item.sellPrice(gold: 1, silver: 75);
+        /// <summary>
+        /// 6 gold 50 silver
+        /// </summary>
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
+        /// <summary>
+        /// 10 gold
+        /// </summary>
         public static int PillarWeaponValue => Item.sellPrice(gold: 10);
 
         public static int AmmoBloodyTearstone => ModContent.ItemType<BloodyTearFragment>();

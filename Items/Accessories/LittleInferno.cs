@@ -16,7 +16,6 @@ namespace Aequus.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

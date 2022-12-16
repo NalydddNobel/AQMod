@@ -31,7 +31,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 14;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item109;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = Item.sellPrice(gold: 6);
             Item.knockBack = 2f;
         }
 

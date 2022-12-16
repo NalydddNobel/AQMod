@@ -76,7 +76,7 @@ namespace Aequus
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
-
+        
         public static Vector2 rotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
         {
             float scaleFactor = currentVelocity.Length();
@@ -347,6 +347,84 @@ namespace Aequus
         {
             return x > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
                 && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
+        }
+
+        public static List<string> GetStringListOfBiomes(this Player player)
+        {
+            var biomes = new List<string>();
+
+            if (player.ZoneDungeon)
+            {
+                biomes.Add("Bestiary_Biomes.TheDungeon");
+            }
+            if (player.ZoneLihzhardTemple)
+            {
+                biomes.Add("Bestiary_Biomes.TheTemple");
+            }
+            if (player.ZoneCorrupt)
+            {
+                biomes.Add("Bestiary_Biomes.TheCorruption");
+            }
+            if (player.ZoneCrimson)
+            {
+                biomes.Add("Bestiary_Biomes.Crimson");
+            }
+            if (player.ZoneHallow)
+            {
+                biomes.Add("Bestiary_Biomes.TheHallow");
+            }
+            if (player.ZoneForest)
+            {
+                biomes.Add("Mods.Aequus.BiomeName.Forest");
+            }
+            if (player.ZoneJungle)
+            {
+                biomes.Add("Bestiary_Biomes.Jungle");
+            }
+            if (player.ZoneSnow)
+            {
+                biomes.Add("Mods.Aequus.BiomeName.Snow_Tundra");
+            }
+            if (player.ZoneBeach)
+            {
+                biomes.Add("Bestiary_Biomes.Ocean");
+            }
+            else if (player.ZoneDesert || player.ZoneUndergroundDesert)
+            {
+                biomes.Add("Bestiary_Biomes.Desert");
+            }
+            if (player.ZoneGemCave)
+            {
+                biomes.Add("Mods.Aequus.BiomeName.GemCave");
+            }
+            if (player.ZoneGranite)
+            {
+                biomes.Add("Bestiary_Biomes.Granite");
+            }
+            if (player.ZoneMarble)
+            {
+                biomes.Add("Bestiary_Biomes.Marble");
+            }
+            if (player.ZoneGlowshroom)
+            {
+                biomes.Add("ItemName.GlowingMushroom");
+            }
+            if (player.ZoneMeteor)
+            {
+                biomes.Add("Bestiary_Biomes.Meteor");
+            }
+
+            foreach (var m in ModLoader.Mods)
+            {
+                foreach (var modBiome in m.GetContent<ModBiome>())
+                {
+                    if (player.InModBiome(modBiome))
+                    {
+                        biomes.Add($"Mods.{modBiome.Mod.Name}.BiomeName.{modBiome.Name}");
+                    }
+                }
+            }
+            return biomes;
         }
 
         public static Item HeldItemFixed(this Player player)
@@ -663,6 +741,13 @@ namespace Aequus
         public static bool IsSectionLoaded(Point p)
         {
             return IsSectionLoaded(p.X, p.Y);
+        }
+
+        public static T[] CloneArray<T>(this T[] array)
+        {
+            var array2 = new T[array.Length];
+            array.CopyTo(array2, 0);
+            return array2;
         }
 
         public static T2[] GetSpecific<T, T2>(this List<T> arr, Func<T, T2> get)
@@ -1373,6 +1458,11 @@ namespace Aequus
                 }
             }
             return l;
+        }
+
+        public static IEntitySource GetSource_TileBreak(this ModTile modTile, int i, int j, string? context = null)
+        {
+            return new EntitySource_TileBreak(i, j, context);
         }
 
         public static void HideBestiaryEntry(this ModNPC npc)

@@ -140,5 +140,23 @@ namespace Aequus
         {
             return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
         }
+
+        public static bool IsAnglerQuest(int itemType)
+        {
+            return Main.anglerQuestItemNetIDs.IndexInRange(Main.anglerQuest) && Main.anglerQuestItemNetIDs[Main.anglerQuest] == itemType;
+        }
+
+        public static bool SetQuestFish(int itemType)
+        {
+            for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
+            {
+                if (Main.anglerQuestItemNetIDs[i]== itemType)
+                {
+                    Main.anglerQuest = i;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

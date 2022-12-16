@@ -23,13 +23,13 @@ namespace Aequus.Items.Weapons.Magic
 
         private void DefaultUse()
         {
-            Item.damage = 200;
             Item.useTime = 1;
             Item.useAnimation = 1;
             Item.mana = 2;
         }
         public override void SetDefaults()
         {
+            Item.damage = 200;
             Item.width = 16;
             Item.height = 16;
             Item.knockBack = 0f;
@@ -54,7 +54,6 @@ namespace Aequus.Items.Weapons.Magic
         {
             if (player.altFunctionUse == 2)
             {
-                Item.damage = 600;
                 Item.useTime = 62;
                 Item.useAnimation = 62;
                 Item.mana = 80;
@@ -102,7 +101,7 @@ namespace Aequus.Items.Weapons.Magic
                 for (int i = 0; i < 62; i++)
                 {
                     int p = Projectile.NewProjectile(source, position, new Vector2(speed * 0.3f, 0f).RotatedBy(MathHelper.TwoPi / 62f * i),
-                        ModContent.ProjectileType<TouhouBullet>(), damage, knockback, player.whoAmI, 100f + 40f * (1f / 62f * ((i + rand) % 62f)), speed * 0.5f);
+                        ModContent.ProjectileType<TouhouBullet>(), damage * 3, knockback, player.whoAmI, 100f + 40f * (1f / 62f * ((i + rand) % 62f)), speed * 0.5f);
                     Main.projectile[p].localAI[0] = 1.5f;
                     Main.projectile[p].frame = aequus.itemCombo > 0 ? 1 : 5;
                 }

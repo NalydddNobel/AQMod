@@ -97,7 +97,7 @@ namespace Aequus.NPCs.Monsters.Sky
                         Main.dust[d].noGravity = true;
                         Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
                     }
-                    if (Main.netMode != NetmodeID.MultiplayerClient && NPC.oldVelocity.Length() > 7.5f)
+                    if (Main.netMode != NetmodeID.MultiplayerClient && NPC.downedBoss2 && NPC.oldVelocity.Length() > 7.5f)
                     {
                         GaleStreamsBiome.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
@@ -167,14 +167,14 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             this.CreateLoot(npcLoot)
                 .Add<Pumpinator>(chance: 15, stack: 1)
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 3), new ItemDrop(ItemID.CopperBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 3), new ItemDrop(ItemID.TinBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.IronOre, 3), new ItemDrop(ItemID.IronBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.LeadOre, 3), new ItemDrop(ItemID.LeadBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.SilverOre, 4), new ItemDrop(ItemID.SilverBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TungstenOre, 4), new ItemDrop(ItemID.TungstenBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.GoldOre, 4), new ItemDrop(ItemID.GoldBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.PlatinumOre, 4), new ItemDrop(ItemID.PlatinumBar, 1)));
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 1, 3), new ItemDrop(ItemID.CopperBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 1, 3), new ItemDrop(ItemID.TinBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, false), new ItemDrop(ItemID.IronOre, 1, 3), new ItemDrop(ItemID.IronBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, true), new ItemDrop(ItemID.LeadOre, 1, 3), new ItemDrop(ItemID.LeadBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, false), new ItemDrop(ItemID.SilverOre, 1, 4), new ItemDrop(ItemID.SilverBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, true), new ItemDrop(ItemID.TungstenOre, 1, 4), new ItemDrop(ItemID.TungstenBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, false), new ItemDrop(ItemID.GoldOre, 1, 4), new ItemDrop(ItemID.GoldBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, true), new ItemDrop(ItemID.PlatinumOre, 1, 4), new ItemDrop(ItemID.PlatinumBar, 1)));
         }
     }
 }

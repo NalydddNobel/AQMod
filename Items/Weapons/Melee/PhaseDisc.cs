@@ -23,7 +23,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.rare = ItemRarityID.LightPurple;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.value = Item.sellPrice(gold: 15);
+            Item.value = Item.sellPrice(gold: 3);
             Item.DamageType = DamageClass.Melee;
             Item.noMelee = true;
             Item.noUseGraphic = true;

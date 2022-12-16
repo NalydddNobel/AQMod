@@ -10,6 +10,10 @@ Mods: {
 			CrabCreviceBiome: Crab Crevice
 			GaleStreamsBiome: Gale Streams
 			DemonSiegeBiome: Demon Siege
+
+			Forest: Forest
+			Snow_Tundra: Tundra
+			GemCave: Gem Cave
 		}
 
 		Announcement: {
@@ -284,8 +288,7 @@ Mods: {
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
 
-			# Fish #
-			Fi: Fi
+		# Legendary Fish
 			CrabDaughter: Crab Daughter
 			XenonFish: Xenon Fish
 			KryptonFish: Krypton Fish
@@ -294,17 +297,21 @@ Mods: {
 			Blobfish: Blobfish
 			GoreFish: Gore Fish
 
+		# Quest Fish
+			BrickFish: Brick Fish
+		
+		# Fish
 			Leecheel: Leecheel
 			Depthscale: Depthscale
 			IcebergFish: Iceberg Fish
 
-			# Fishing Rods #
+		# Fishing Rods
 			CrabRod: Crab Rod
 			Starcatcher: Starcatcher
 			Buzzer: Buzzer
 			Nimrod: Nimrod
 
-			# Pets #
+		# Pets
 			PersonalDronePack: Personal Drone Pack
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
@@ -336,7 +343,7 @@ Mods: {
 			SpaceSquidMask: Space Squid Mask
 			BreadOfCthulhuMask: Bread of Cthulhu Mask
 
-			# Blocks & Walls #
+		# Blocks & Walls
 			SedimentaryRockWall: Sedimentary Rock Wall
 			SedimentaryRock: Sedimentary Rock
 
@@ -345,7 +352,7 @@ Mods: {
 			ForceGravityBlock: Gravity Block
 			ForceAntiGravityBlock: Anti-Gravity Block
 
-			# Paintings #
+		# Paintings
 			SkyrimRock3: Push
 			SkyrimRock2: Balance
 			SkyrimRock1: Force
@@ -361,7 +368,7 @@ Mods: {
 			CatalystPainting: Rock from an Alternate Universe
 			OriginPainting: Origin
 
-			# Relics & Trophies #
+		# Relics & Trophies
 			RedSpriteTrophy: Red Sprite Trophy
 
 			SpaceSquidRelic: Space Squid Relic
@@ -369,7 +376,7 @@ Mods: {
 			CrabsonRelic: Crabson Relic
 			OmegaStariteRelic: Omega Starite Relic
 
-			# Banners #
+		# Banners
 			BreadOfCthulhuBanner: Bread of Cthulhu Banner
 			CoconutCrabBanner: Coconut Crab Banner
 			SoldierCrabBanner: Soldier Crab Banner
@@ -385,7 +392,9 @@ Mods: {
 			VraineBanner: Vraine Banner
 			WhiteSlimeBanner: White Slime Banner
 
-			# Gravestones #
+		# Furniture Misc
+			FishSign: Fishing Pond Sign
+
 			AshCrossGraveMarker: Ash Cross Grave Marker
 			AshGraveMarker: Ash Grave Marker
 			AshGravestone: Ash Gravestone
@@ -457,6 +466,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			ShimmerFish: Shimmer Fish
 			VictorsReward: Victor's Reward
 			NameTag: Name Tag
 			FertilePowder: Fertilizer Box
@@ -613,7 +623,7 @@ Mods: {
 
 		ItemTooltip: {
 			PotionCanteen: Allows infinite use of a potion when equipped
-			ShadowVeer: Ghost minions will do shadow dashes at targetted enemies
+			ShadowVeer: Ghost minions will do shadow dashes at targeted enemies
 			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit
 			NaturesCruelty: 25% of damage taken is dealt to your ghost minions
 			SpiritKeg: 
@@ -668,10 +678,7 @@ Mods: {
 				Crits inflicts blue fire to nearby enemies
 				[c/{Color}:...If you are at max health]
 				'''
-			SteakEyes: 
-				'''
-				50% more damage from critical strikes
-				'''
+			SteakEyes: 50% more damage from critical strikes
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
@@ -703,7 +710,7 @@ Mods: {
 			RitualisticSkull: Converts all but one of your minion slots into ghost slots
 			RabbitsFoot: Increases luck for the wearer
 			TheReconstruction: {
-				$parentVal: Increases the strength of expert accessories
+				$parentVal: Increases the strength of expert items
 				EoCShield: 
 					'''
 					Increased dash attack range, debuffs wear off faster while dashing
@@ -752,6 +759,8 @@ Mods: {
 				'''
 
 			# Vanity
+			EyeGlint: Makes your eyes appear fully bright
+			XmasCursor: Transforms your mouse cursor
 			PumpkingCloak: Removes your body and legs from this realm
 			PumpkingCursor: Transforms your mouse cursor
 			HealthCursor: Causes your mouse cursor to darken the lower your life
@@ -870,7 +879,7 @@ Mods: {
 			GhastlyBlaster: "'Your eyes deceive you, I am not a sword'"
 			SurgeRod:
 				'''
-				Casts a create a thundercloud net to fry your foes
+				Casts a thundercloud net to fry your foes
 				Allows 6 to be out at once
 				'''
 			PentalScythe: 
@@ -882,6 +891,7 @@ Mods: {
 			Snowgrave:
 				'''
 				Summons a deadly snowblast from below
+				Mana reduction is 80% less effective
 				'Watch what happens when I cast a spell I don't know!'
 				'''
 			BombarderRod: 
@@ -1048,6 +1058,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			ShimmerFish: Starts a new Angler Quest
 			VictorsReward: 
 				'''
 				Permanently allows you to respawn at maximum life
@@ -1208,8 +1219,7 @@ Mods: {
 			Fluorescence: "'Pulsates with violence'"
 			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
 
-			# Legendary Fish #
-			Fi: One of the vital building blocks of the universe
+		# Legendary Fish
 			CrabDaughter:
 				'''
 				A legendary fish enriched with aquatic energy
@@ -1246,6 +1256,9 @@ Mods: {
 				A legendary fish enriched with demonic energy
 				'Caught in Lava while near a Gore Nest'
 				'''
+
+		# Quest Fish
+			BrickFish: "'Caught near villager buildings'"
 
 			CrabCreviceCrate: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabCreviceCrateHard: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1383,6 +1396,9 @@ Mods: {
 				The birthplace of Aequus
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
+
+		# Furniture Misc
+			FishSign: Shows the stats of a nearby fishing pool
 
 			HypnoticPearl:
 				'''
@@ -1726,7 +1742,6 @@ Mods: {
 			TriacanthornBolt: Triacanthorn Shot
 			TriacanthornProj: Triacanthorn
 			UmystickBullet: Menacing Moon
-			TouhouBullet: Magic Bullet
 			SurgeRodHitbox: Surge
 			SnowgraveProj: Snowgrave
 			NarrizuulProj: Narrizuul
@@ -1866,6 +1881,14 @@ Mods: {
 			Trophies: Trophy
 			Banners: Banner
 			WallClocks: Wall Clock
+
+			FishSignTile: {
+				$parentVal: Fishing Pond Sign
+				NoLiquid: No Liquid Nearby
+				LiquidAmount: Total {LiquidName}: {WaterAmount}
+				DepthLayer: Layer: {Layer}
+				Biomes: Nearby Biomes: {Biomes}
+			}
 		}
 
 		WorldGeneration: {
@@ -1982,6 +2005,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyQuestFish: Any Quest Fish
 			AnyMosshroom: Any Moss Mushroom
 			AnyEctoplasm: Any Ectoplasm
 		}

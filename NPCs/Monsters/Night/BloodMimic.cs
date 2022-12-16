@@ -71,21 +71,6 @@ namespace Aequus.NPCs.Monsters.Night
                 .Add<PotionOfResurrection>(chance: 5, stack: 1);
         }
 
-        //public override void NPCLoot()
-        //{
-        //    Rectangle rect = NPC.getRect();
-        //    if (NPC.CountNPCS(NPC.type) <= 1)
-        //    {
-        //        var choices = new List<int> { ModContent.ItemType<TargeoftheBlodded>(), ModContent.ItemType<CrusadersCrossbow>(), };
-        //        if (NPC.downedBoss3)
-        //            choices.Add(ModContent.ItemType<ATM>());
-        //        if (NPC.downedPlantBoss)
-        //            choices.Add(ModContent.ItemType<VampireHook>());
-        //        int choice = Main.rand.Next(choices.Count);
-        //        Item.NewItem(rect, choices[choice]);
-        //    }
-        //}
-
         protected override int GetJumpTimer() => NPC.ai[1] == 0f ? 5 : 10;
 
         public override void HitEffect(int hitDirection, double damage)

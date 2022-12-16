@@ -8,8 +8,8 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
+using Aequus.Items.Fish.Quest;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Fish.Legendary;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -1011,7 +1011,7 @@ namespace Aequus.NPCs.Boss
                                 {
                                     if (Main.netMode != NetmodeID.MultiplayerClient)
                                     {
-                                        Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<Fi>(), 1);
+                                        Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<BrickFish>(), 1);
                                         if (Main.netMode == NetmodeID.SinglePlayer)
                                         {
                                             Main.NewText(Language.GetTextValue("Mods.Aequus.OmegaStariteEasterEgg", NPC.TypeName), AequusText.BossSummonMessage);

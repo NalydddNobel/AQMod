@@ -820,7 +820,7 @@ namespace Aequus.Content.Necromancy
                     }
                     if (i == minionTarget)
                     {
-                        c /= 6f * prioritizePlayerMultiplier;
+                        c /= 12f * prioritizePlayerMultiplier;
                     }
                     if (c < distance)
                     {

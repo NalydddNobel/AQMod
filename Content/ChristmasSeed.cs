@@ -178,6 +178,16 @@ namespace Aequus.Content
             MoreSpecialConversions?.Clear();
         }
 
+        public override void OnWorldLoad()
+        {
+            Active = false;
+        }
+
+        public override void OnWorldUnload()
+        {
+            Active = false;
+        }
+
         public override void PreUpdateEntities()
         {
             if (!Active)

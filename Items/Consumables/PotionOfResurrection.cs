@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables
         public override void SetStaticDefaults()
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Red, Color.DarkRed, };
-            this.SetResearch(20);
+            SacrificeTotal = 20;
         }
 
         public override void SetDefaults()

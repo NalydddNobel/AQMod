@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Fish
+namespace Aequus.Items.Fish
 {
     public class Depthscale : ModItem
     {

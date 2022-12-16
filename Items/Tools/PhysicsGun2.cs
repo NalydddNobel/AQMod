@@ -17,7 +17,6 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
             DisplayName.SetDefault("Super Physics Gun");
             Tooltip.SetDefault("Testing Item");
         }

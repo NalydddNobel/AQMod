@@ -5,9 +5,15 @@ Please report bugs to the steam workshop page, forums page, or discord server.
 [c/7EC8E3:Content]
 [c/7EC8E3:>] 300+ Items
 [c/7EC8E3:>] 20+ Enemies
-[c/7EC8E3:>] 5 Shop NPCs
-[c/7EC8E3:>] 3 Bosses
-[c/7EC8E3:>] 3 Events
+[c/7EC8E3:>] 5 New Town NPCs!
+[c/7EC8E3:>] A New Biome!
+[c/7EC8E3:>] 3 New Bosses!
+[c/7EC8E3:>] 3 New Events!
+[c/7EC8E3:>] Summoner 'Necromancy' Class - Control your enemies!
+[c/7EC8E3:>] Modifiers for Potions!
+[c/7EC8E3:>] Pylon Defense Drones!
+[c/7EC8E3:>] Rewards for building!
+[c/7EC8E3:>] Plenty O' new Fishing items!
 [c/7EC8E3:>] A ton of bugs.. and more!
 
 The mod updates each month with new content, and also to continue working after preview and stable merge.
