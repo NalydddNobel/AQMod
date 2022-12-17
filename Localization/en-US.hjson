@@ -1665,7 +1665,7 @@ Mods: {
 			CorruptionHellfire: "{$BuffDescription.OnFire}"
 			BattleAxeBleeding: "{$BuffDescription.Bleeding}"
 			BitCrushed: You are compressed!
-			BlueFire: The immense heat burns off your skin
+			BlueFire: The immense heat burns off your skin!
 			PickBreak: Your mining power is halved
 		}
 

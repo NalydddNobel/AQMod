@@ -20,7 +20,7 @@ namespace Aequus.NPCs.GlobalNPCs
                     {
                         for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
                         {
-                            if (inv[i].type == ModContent.ItemType<StarPhish>())
+                            if (inv[i].useAmmo == AmmoID.Dart)
                             {
                                 AddAvoidDupes(ItemID.Seed, Item.buyPrice(copper: 3), shop, ref nextSlot);
                                 break;

@@ -4,6 +4,7 @@ using Aequus.Content.CarpenterBounties;
 using Aequus.Content.NPCHappiness;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Coatings;
+using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
@@ -134,6 +135,10 @@ namespace Aequus.NPCs.Friendly.Town
                 {
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
                 }
+            }
+            if (NPC.AnyNPCs(NPCID.Angler))
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishSign>());
             }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();

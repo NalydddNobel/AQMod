@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Content;
 using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -102,7 +103,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         {
                             NPC.ai[2] = NPCID.LavaSlime;
                         }
-                        else if (ChristmasSeedSystem.Active)
+                        else if (ChristmasSeedSystem.Active || (Main.xMas && Main.rand.NextBool()))
                         {
                             NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }
@@ -125,7 +126,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 {
                                     ItemID.ShinyRedBalloon,
                                     ItemID.Starfury,
+                                    ItemID.LuckyHorseshoe,
                                     ItemID.CreativeWings,
+                                    ModContent.ItemType<Slingshot>(),
                                     //ModContent.ItemType<CinnamonRoll>(),
                                     //ModContent.ItemType<TemperatureHairDye>(),
                                 };
@@ -134,7 +137,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                     selectableLoot.Add(ModContent.ItemType<Umystick>());
                                 }
                             }
-                            else if (Main.rand.NextBool(9))
+                            else if (Main.rand.NextBool(4))
                             {
                                 selectableLoot = new List<int>()
                                 {
@@ -378,15 +381,18 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            int goodItemsChance = 2 * 3;
-            int randomItemChance = 9 * 8;
+            int goodItemsChance = 2 * 5;
+            int randomItemChance = 4 * 8;
 
             this.CreateLoot(npcLoot)
-                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.CreativeWings, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.LuckyHorseshoe, goodItemsChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.Starfury, goodItemsChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.ShinyRedBalloon, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.CreativeWings, goodItemsChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ModContent.ItemType<Slingshot>(), goodItemsChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlue, randomItemChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBlueAndYellow, randomItemChance))
+                .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRed, randomItemChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteRedAndYellow, randomItemChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteYellow, randomItemChance))
                 .Add(new StreamingBalloonSlimeInsideDropRule(ItemID.KiteBunny, randomItemChance))

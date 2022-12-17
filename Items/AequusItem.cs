@@ -6,6 +6,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
@@ -13,6 +14,7 @@ using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Necro.Scepters;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
@@ -425,6 +427,10 @@ namespace Aequus.Items
         {
             if (player.Aequus().accBloodCrownSlot != -2)
                 accStacks = 1;
+            if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime])
+            {
+                player.npcTypeNoAggro[ModContent.NPCType<WhiteSlime>()] = true;
+            }
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -528,7 +534,6 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
-
                 case ItemID.MoonLordBossBag:
                     if (GameplayConfig.Instance.EarlyGravityGlobe)
                         itemLoot.RemoveWhere((itemDrop) => itemDrop is CommonDrop commonDrop && commonDrop.itemId == ItemID.GravityGlobe);
@@ -544,6 +549,11 @@ namespace Aequus.Items
                 case ItemID.DestroyerBossBag:
                 case ItemID.SkeletronPrimeBossBag:
                     itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
+                    break;
+
+                case ItemID.GoldenCrate:
+                case ItemID.GoldenCrateHard:
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SwordCursor>(), 4));
                     break;
 
                 case ItemID.IronCrate:

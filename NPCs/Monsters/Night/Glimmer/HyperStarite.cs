@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             NPC.width = 50;
             NPC.height = 50;
-            NPC.lifeMax = 125;
+            NPC.lifeMax = 200;
             NPC.damage = 80;
             NPC.defense = 8;
             NPC.HitSound = SoundID.NPCHit5;

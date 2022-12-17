@@ -78,14 +78,8 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             if (Aequus.HardmodeTier)
             {
                 NPC.lifeMax *= 2;
-                NPC.knockBackResist = 0f;
+                NPC.knockBackResist *= 0.25f;
             }
-            //if (AQMod.calamityMod.IsActive)
-            //{
-            //    NPC.lifeMax = (int)(NPC.lifeMax * 2.5f);
-            //    NPC.damage = (int)(NPC.damage * 1.5f);
-            //    NPC.defense *= 2;
-            //}
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -137,7 +131,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
             else
             {
-                if (NPC.velocity.Y < -0.1f || NPC.HasValidTarget && NPC.position.Y + NPC.height - 2 < Main.player[NPC.target].position.Y + Main.player[NPC.target].height - 10)
+                if (NPC.velocity.Y < -0.1f || (NPC.HasValidTarget && !Main.player[NPC.target].npcTypeNoAggro[Type] && NPC.position.Y + NPC.height - 2 < Main.player[NPC.target].position.Y + Main.player[NPC.target].height - 10))
                     NPC.noTileCollide = true;
                 else
                     NPC.noTileCollide = false;
@@ -153,7 +147,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         NPC.ai[1] = 0f;
                         NPC.ai[0] += 900f;
                         bool close = false;
-                        if (NPC.HasValidTarget)
+                        if (NPC.HasValidTarget && !Main.player[NPC.target].npcTypeNoAggro[Type])
                         {
                             close = Vector2.Distance(NPC.Center, Main.player[NPC.target].Center) < 360f;
                         }
@@ -219,7 +213,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 dustRate -= 8;
             }
 
-            if (Main.GameUpdateCount % dustRate == 0)
+            if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % dustRate == 0)
             {
                 if (dustRate >= 11 || Main.rand.NextBool(12 - dustRate))
                 {
@@ -333,8 +327,8 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.CreateLoot(npcLoot)
                 .Add<Umystick>(new Conditions.IsHardmode(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
-                .Add(ItemID.Gel, chance: 1, stack: (5, 15))
-                .Add<CinnamonRoll>(chance: 15, stack: 1);
+                .Add<CinnamonRoll>(chance: 15, stack: 1)
+                .Add(ItemID.Gel, chance: 1, stack: (5, 15));
         }
     }
 }

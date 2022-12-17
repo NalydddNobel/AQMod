@@ -19,6 +19,11 @@ Mods.Aequus: {
 		NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
 		NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
 
+		PondBridgeBounty: {
+			"$parentVal": Bridging Over
+			Description: Build a bridge over water
+		}
+
 		WeirdRoofBounty: {
 			"$parentVal": Artist's Imagination
 			Description: Build a house with an irregular roof

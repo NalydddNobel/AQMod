@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.CursorDyes;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Vanity.Cursors
@@ -10,14 +9,6 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
         public override ICursorDye InitalizeDye()
         {
             return new TextureChangeCursor($"{Texture}/SwordCursor");
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<DyableCursor>()
-                .AddIngredient(ItemID.Diamond, 2)
-                .Register();
         }
     }
 }

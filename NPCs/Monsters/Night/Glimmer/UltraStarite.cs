@@ -65,8 +65,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
                 .Add<ManaCursor>(chance: 4, stack: 1)
-                .Add<AstralCookie>(chance: 1, stack: 1)
                 .Add(ItemID.Nazar, chance: 50, stack: 1)
+                .Add<AstralCookie>(chance: 1, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
 
@@ -80,7 +80,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             NPC.width = 50;
             NPC.height = 50;
-            NPC.lifeMax = 1200;
+            NPC.lifeMax = 1500;
             NPC.damage = 50;
             NPC.defense = 20;
             NPC.HitSound = SoundID.NPCHit5;

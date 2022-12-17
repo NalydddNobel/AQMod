@@ -441,7 +441,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         {
             var whenAllNPCsAreDead = new LastAliveCondition(Type);
             this.CreateLoot(npcLoot)
-                .Add<Vrang>(whenAllNPCsAreDead, chance: 8, stack: 1);
+                .Add<Vrang>(whenAllNPCsAreDead, chance: 3, stack: 1);
         }
 
         //public override void NPCLoot()

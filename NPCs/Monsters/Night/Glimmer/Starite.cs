@@ -150,6 +150,14 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 NPC.active = false;
                 return;
             }
+            if (NPC.justHit)
+            {
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.ai[1] = MathHelper.Clamp(NPC.ai[1] + Main.rand.Next(30, 50), 0f, 160f);
+                NPC.localAI[0] = 180f;
+                NPC.TargetClosest(faceTarget: true);
+                NPC.netUpdate = true;
+            }
             Vector2 center = NPC.Center;
             const float collisionMult = 0.8f;
             if (NPC.collideX)
@@ -409,28 +417,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.noGravity = false;
         }
 
-        private void OnHit(int plr, int damage)
-        {
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                NPC.ai[1] = MathHelper.Clamp(NPC.ai[1] + Main.rand.Next(30, 50), 0f, 160f);
-                NPC.localAI[0] = MathHelper.Clamp(damage * 8, 0f, 800f);
-                if (plr > 0 && plr < 255)
-                    NPC.target = plr;
-                NPC.netUpdate = true;
-            }
-        }
-
-        public override void OnHitByItem(Player player, Item item, int damage, float knockback, bool crit)
-        {
-            OnHit(player.whoAmI, damage);
-        }
-
-        public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
-        {
-            OnHit(projectile.owner, damage);
-        }
-
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.expertMode)
@@ -562,7 +548,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     BuffID.Confused,
                     BuffID.OnFire,
                     BuffID.OnFire3,
-                    BuffID.ShadowFlame,
                     BuffID.Frostburn,
                     BuffID.Frostburn2,
                     BuffID.Ichor,

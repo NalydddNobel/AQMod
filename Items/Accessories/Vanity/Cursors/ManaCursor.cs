@@ -13,13 +13,5 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
         {
             return new ColorChangeCursor(() => Color.Lerp(Color.White, Color.Blue, MathHelper.Clamp(Main.LocalPlayer.statMana / (float)Main.LocalPlayer.statManaMax2, 0f, 1f)));
         }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<DyableCursor>()
-                .AddIngredient(ItemID.ManaCrystal)
-                .Register();
-        }
     }
 }
