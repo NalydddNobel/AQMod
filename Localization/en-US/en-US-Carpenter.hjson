@@ -1,12 +1,13 @@
 Mods.Aequus: {
 	CarpenterBounty: {
 		Rule: {
+			FindBridgeStep: Build a bridge {0} blocks long, with a pool of water atleast {1} blocks deep
 			WaterfallHeightStep: Waterfalls must flow down atleast {0} blocks
 			CraftableTilesStep: Must be made out of craftable blocks (Ex: Gray Brick)
 			NotCraftableTilesStep: Must be made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
 			SymmetricHorizontalStep: Must be horizontally symmetrical
 			FindHousesStep: Suitable for {0} town NPC(s)
-			FurnitureCountStep: "{0}+ Furniture"
+			FurnitureCountStep: "{0}+ unique pieces of Furniture or Decoration objects"
 			WaterLineStep: Walls must be submerged underwater
 			BiomePaletteStep: House must be constructed using blocks and walls which match the biome's color
 		}
@@ -22,6 +23,7 @@ Mods.Aequus: {
 		PondBridgeBounty: {
 			"$parentVal": Bridging Over
 			Description: Build a bridge over water
+			NoBridge: There is no bridge in sight! Or maybe your bridge is lacking in length, width, and height? Try increasing the size of your bridge or water pool to get it looking just right!
 		}
 
 		WeirdRoofBounty: {
@@ -46,12 +48,12 @@ Mods.Aequus: {
 
 		UnderworldFountainBounty: {
 			"$parentVal": Lav-ing Dontation
-			Description: Build a nice looking lava fountain
+			Description: Build a lava fountain
 		}
 
 		BiomePaletteBounty: {
 			"$parentVal": Delicious Palette 
-			Description: Build a house which fits in
+			Description: Build a house which fits in with its biome
 			Hint: (Hint: Use Biome Hair Dye to discover biome color)
 
 			ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
@@ -70,7 +72,7 @@ Mods.Aequus: {
 
 		FountainBounty: {
 			"$parentVal": Grand Fountain
-			Description: Build a nice looking fountain
+			Description: Build a fountain
 			Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
 		}
 	}

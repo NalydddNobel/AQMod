@@ -345,8 +345,8 @@ namespace Aequus
 
         public static bool InSceneRenderedMap(this TileMapCache map, int x, int y)
         {
-            return x > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
-                && y > (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y < (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
+            return x >= (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x <= (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
+                && y >= (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y <= (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
         }
 
         public static List<string> GetStringListOfBiomes(this Player player)

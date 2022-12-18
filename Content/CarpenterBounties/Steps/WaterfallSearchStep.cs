@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace Aequus.Content.CarpenterBounties.Steps
@@ -129,7 +128,7 @@ namespace Aequus.Content.CarpenterBounties.Steps
             waterfalls.Update(info);
             return new StepResult("NoWaterfalls")
             {
-                success = waterfalls.waterfalls.Count > 0
+                success = waterfalls.waterfalls.Count > 0 && waterfalls.waterfalls.ContainsAny((p) => info[p].LiquidType == LiquidWanted)
             };
         }
     }

@@ -136,10 +136,6 @@ namespace Aequus.NPCs.Friendly.Town
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
                 }
             }
-            if (NPC.AnyNPCs(NPCID.Angler))
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishSign>());
-            }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)

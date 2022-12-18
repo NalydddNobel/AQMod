@@ -6,7 +6,7 @@ namespace Aequus.Content.CarpenterBounties.Steps
 {
     public class CraftableTilesStep : Step
     {
-        public class CraftedTilesInterest : StepInterest
+        public class Interest : StepInterest
         {
             public List<Point> craftableTiles;
             public List<Point> nonCraftableTiles;
@@ -82,12 +82,12 @@ namespace Aequus.Content.CarpenterBounties.Steps
 
         protected override void Init(StepInfo info)
         {
-            info.AddInterest(new CraftedTilesInterest());
+            info.AddInterest(new Interest());
         }
 
         protected override StepResult ProvideResult(StepInfo info)
         {
-            var interest = info.GetInterest<CraftedTilesInterest>();
+            var interest = info.GetInterest<Interest>();
             interest.Update(info);
             return new StepResult("NoCraftedBlocks")
             {

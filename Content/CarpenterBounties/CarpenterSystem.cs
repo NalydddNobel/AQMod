@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CarpenterBounties.Steps;
+using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
 using Aequus.Tiles;
@@ -32,12 +33,12 @@ namespace Aequus.Content.CarpenterBounties
                 .SetReward<AdvancedRuler>()
                 .AddStep(new WaterfallSearchStep(liquidWanted: LiquidID.Water)
                     .AfterSuccess((i, s) =>
-                        i.GetInterest<CraftableTilesStep.CraftedTilesInterest>().givenRectangle = i.GetInterest<WaterfallSearchStep.WaterfallInterest>().resultRectangle))
+                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = i.GetInterest<WaterfallSearchStep.WaterfallInterest>().resultRectangle))
                 .AddStep(new WaterfallHeightStep(minHeight: 7))
                 .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f)
                     .AfterSuccess((i, s) =>
                     {
-                        var crafted = i.GetInterest<CraftableTilesStep.CraftedTilesInterest>();
+                        var crafted = i.GetInterest<CraftableTilesStep.Interest>();
                         var symmetric = i.GetInterest<SymmetricHorizontalStep.Interest>();
                         symmetric.givenRectangle = crafted.resultRectangle;
                         symmetric.givenPoints = crafted.craftableTiles;
@@ -70,6 +71,41 @@ namespace Aequus.Content.CarpenterBounties
                 .AddStep(new FurnitureCountStep(minFurniture: 5))
                 .AddStep(new BiomePaletteStep(minCredit: 0.5f))
                 .Register();
+
+            new CarpenterBounty("PondBridgeBounty")
+                .SetReward<FishSign>()
+                .AddStep(new FindBridgeStep(waterTilesNeeded: 50, waterHeightNeeded: 4, liquidIDWanted: LiquidID.Water, bridgeLengthWanted: 12)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var bridge = i.GetInterest<FindBridgeStep.Interest>();
+                        var dict = new Dictionary<Point, List<Point>>() { [new Point(bridge.bridgeLocation.X, bridge.bridgeLocation.Y)] = TurnRectangleIntoUnoptimizedPointMess(bridge.bridgeLocation) };
+                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = dict;
+                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = bridge.bridgeLocation;
+                    }))
+                .AddStep(new FurnitureCountStep(minFurniture: 8))
+                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var crafted = i.GetInterest<CraftableTilesStep.Interest>();
+                        var symmetric = i.GetInterest<SymmetricHorizontalStep.Interest>();
+                        symmetric.givenRectangle = crafted.resultRectangle;
+                        symmetric.givenPoints = crafted.craftableTiles;
+                    }))
+                .AddStep(new SymmetricHorizontalStep())
+                .Register();
+        }
+
+        public static List<Point> TurnRectangleIntoUnoptimizedPointMess(Rectangle rectangle)
+        {
+            var p = new List<Point>();
+            for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
+            {
+                for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
+                {
+                    p.Add(new Point(i, j));
+                }
+            }
+            return p;
         }
 
         public override void Unload()
