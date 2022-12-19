@@ -144,8 +144,15 @@ namespace Aequus
         [SaveData("TinkererRerolls")]
         public static int tinkererRerolls;
 
-        [SaveData("ChristmasWorld")]
-        public static bool christmasWorld;
+        [SaveData("XmasWorld")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool xmasWorld;
+
+        [SaveData("XmasHats")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool xmasHats;
 
         public static StructureLookups Structures { get; internal set; }
 

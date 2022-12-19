@@ -18,6 +18,7 @@ namespace Aequus.NPCs.Friendly.Drones
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 13;
+            NPCID.Sets.ActsLikeTownNPC[Type] = true;
         }
 
         public override void SetDefaults()

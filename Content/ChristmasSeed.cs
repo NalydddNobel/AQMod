@@ -11,7 +11,7 @@ namespace Aequus.Content
 {
     public class ChristmasSeedSystem : ModSystem
     {
-        public static bool Active { get => AequusWorld.christmasWorld; set => AequusWorld.christmasWorld = value; }
+        public static bool Active { get => AequusWorld.xmasWorld; set => AequusWorld.xmasWorld = value; }
 
         public static HashSet<int> DoNotConvert { get; private set; }
         public static HashSet<int> SnowTiles { get; private set; }

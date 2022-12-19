@@ -466,6 +466,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			GiftingSpirit: Ice Queen's Spirit
 			ShimmerFish: Shimmer Fish
 			VictorsReward: Victor's Reward
 			NameTag: Name Tag
@@ -1058,6 +1059,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			GiftingSpirit: Toggles whether or not villagers will wear Christmas hats
 			ShimmerFish: Starts a new Angler Quest
 			VictorsReward: 
 				'''
