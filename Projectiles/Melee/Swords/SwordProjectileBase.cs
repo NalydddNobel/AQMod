@@ -39,6 +39,8 @@ namespace Aequus.Projectiles.Melee.Swords
         public virtual float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
         public float lastAnimProgress;
 
+        public int amountAllowedToHit;
+
         public virtual bool SwingSwitchDir => AnimProgress > 0.6f && AnimProgress < 0.7f;
 
         public override void SetDefaults()
@@ -50,6 +52,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.localNPCHitCooldown = 50;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.ignoreWater = true;
+            amountAllowedToHit = 2;
         }
 
         public override bool? CanDamage()
@@ -218,7 +221,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            Projectile.damage = (int)(Projectile.damage * 0.8f);
+            amountAllowedToHit--;
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            return amountAllowedToHit > 0 ? null : false;
         }
 
         public override void SendExtraAI(BinaryWriter writer)

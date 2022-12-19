@@ -31,6 +31,7 @@ namespace Aequus.Projectiles.Melee.Swords
             hitboxOutwards = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
+            amountAllowedToHit = 5;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -128,6 +129,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(ModContent.BuffType<AethersWrath>(), 1200);
         }
 

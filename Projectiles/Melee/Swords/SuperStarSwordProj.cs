@@ -127,6 +127,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            base.OnHitNPC(target, damage, knockback, crit);
             AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound); 
             if (canPlaySound)
             {

@@ -46,11 +46,18 @@ namespace Aequus.Content.WorldGeneration
             {
                 int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
                 int y = WorldGen.genRand.Next(MinY, MaxY);
-                if (TryGrowGoreNest(x, y))
+                try
                 {
-                    goreNestCount++;
-                    if (goreNestCount > Main.maxTilesX / 1500)
-                        break;
+                    if (TryGrowGoreNest(x, y))
+                    {
+                        goreNestCount++;
+                        if (goreNestCount > Main.maxTilesX / 1500)
+                            break;
+                    }
+                }
+                catch
+                {
+
                 }
             }
         }

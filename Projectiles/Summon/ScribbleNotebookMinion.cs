@@ -119,7 +119,6 @@ namespace Aequus.Projectiles.Summon
                 MinionTexture.VanillaItem(ItemID.PumpkinPie),
                 MinionTexture.VanillaItem(ItemID.JellyfishDivingGear),
                 MinionTexture.VanillaItem(ItemID.Present),
-                MinionTexture.VanillaItem(ItemID.BluePresent),
                 MinionTexture.VanillaItem(ItemID.GreenPresent),
                 MinionTexture.VanillaItem(ItemID.WoodenCrate),
                 MinionTexture.VanillaItem(ItemID.WoodenCrateHard),
@@ -274,7 +273,7 @@ namespace Aequus.Projectiles.Summon
 
             var player = Main.player[Projectile.owner];
             var heldItem = Main.player[Projectile.owner].HeldItem;
-            if (Main.dontStarveWorld || (heldItem.buffType > 0 && BuffID.Sets.IsWellFed[heldItem.buffType]))
+            if (Main.dontStarveWorld || (heldItem.buffType > 0 && BuffID.Sets.IsFedState[heldItem.buffType]))
             {
                 l.Add(EmojiID.Food);
             }
@@ -290,7 +289,7 @@ namespace Aequus.Projectiles.Summon
                 l.Add(EmojiID.Thirsty);
             }
             bool nearMechanic = player.isNearNPC(NPCID.Mechanic, 800f);
-            if (heldItem.mech || player.head == ArmorIDs.Head.EngineeringHelmet || nearMechanic)
+            if (heldItem.mech || player.head == ArmorIDs.Head.EngineeringHelmet || player.Aequus().accMothmanMask != null || nearMechanic)
             {
                 l.Add(EmojiID.Wrench);
             }

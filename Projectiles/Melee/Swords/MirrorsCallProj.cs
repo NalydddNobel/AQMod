@@ -38,6 +38,7 @@ namespace Aequus.Projectiles.Melee.Swords
             hitboxOutwards = 60;
             visualOutwards = 8;
             rotationOffset = -MathHelper.PiOver4 * 3f;
+            amountAllowedToHit = 5;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -47,6 +48,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            base.OnHitNPC(target, damage, knockback, crit);
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)

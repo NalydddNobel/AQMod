@@ -78,6 +78,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            base.OnHitNPC(target, damage, knockback, crit);
             if (Main.rand.NextBool(5))
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)

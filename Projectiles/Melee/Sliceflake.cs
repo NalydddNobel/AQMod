@@ -92,6 +92,7 @@ namespace Aequus.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
             target.AddBuff(BuffID.Frostburn2, 480);
         }
 

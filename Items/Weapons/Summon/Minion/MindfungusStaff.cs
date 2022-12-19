@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noMelee = true;
             Item.knockBack = 4f;
-            Item.value = (int)(ItemDefaults.CrimsonValue * 1.5f);
+            Item.value = ItemDefaults.CrimsonValue;
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item44;
             Item.shoot = ModContent.ProjectileType<MindfungusMinion>();
@@ -46,7 +46,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
         {
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 8)
-                .AddIngredient(ItemID.TissueSample, 4)
+                .AddIngredient(ItemID.ViciousMushroom, 4)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.TendonBow);
         }

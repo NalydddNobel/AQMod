@@ -1131,7 +1131,7 @@ Mods: {
 				Takes a snap of tiles and prints their map colors onto clips
 				Use the Scroll Wheel to change photo mode
 				'''
-			PixelCameraClip: Can be placed after capturing a photo
+			PixelCameraClipAmmo: Can be placed after capturing a photo
 			Shutterstocker: 
 				'''
 				Takes a snap of tiles and prints them onto clips
@@ -1568,7 +1568,7 @@ Mods: {
 			MindfungusBuff: Crimson Hypnoshroom
 			StariteBuff: Starite
 			ScribbleNotebookBuff: Scribble
-			CorruptPlantBuff: Corrupt Plant
+			CorruptPlantBuff: Corrupted Plant
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
@@ -1642,7 +1642,7 @@ Mods: {
 
 			PiranhaPlantBuff: The vile plant will fight for you
 			BrainCauliflowerBuff: The brain cauliflower will fight for you			
-			MindfungusBuff: The crimson hypnoshroom will fight for you			
+			MindfungusBuff: The crimson hypnoshroom will fight for you
 			StariteBuff: The starite will fight for you
 			ScribbleNotebookBuff: The object will fight for you
 			CorruptPlantBuff: The corrupted plant will fight for you

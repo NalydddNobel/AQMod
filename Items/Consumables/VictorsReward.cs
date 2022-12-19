@@ -23,8 +23,6 @@ namespace Aequus.Items.Consumables
         {
             InvalidNPCIDs = new HashSet<int>()
             {
-                NPCID.MoonLordHand,
-                NPCID.MoonLordHead,
                 NPCID.MartianSaucerCore,
             };
         }

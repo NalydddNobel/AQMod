@@ -87,6 +87,7 @@ namespace Aequus.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
             if (Main.rand.NextBool(12))
             {
                 AequusBuff.ApplyBuff<BlueFire>(target, 120, out bool canPlaySound);
