@@ -1129,6 +1129,7 @@ Mods: {
 				Takes a snap of tiles and prints their map colors onto clips
 				Use the Scroll Wheel to change photo mode
 				'''
+			PixelCameraClip: Can be placed after capturing a photo
 			Shutterstocker: 
 				'''
 				Takes a snap of tiles and prints them onto clips
@@ -1137,7 +1138,7 @@ Mods: {
 			ShutterstockerClip: {
 				Reviewed: This clip has been reviewed by the Carpenter
 			}
-			ShutterstockerClipAmmo: Photos printed onto these clips can be reviewed by the carpenter
+			ShutterstockerClipAmmo: Photos captured can be reviewed by the Carpenter
 
 			PhysicsGun: Can grab and throw blocks
 			Pumpinator:
@@ -2372,11 +2373,11 @@ Mods: {
 				NoBounty: Well done, you've emptied my docket! For now there's nothing to do, but I'll draft up more challenges for you to pocket.
 
 				UI: {
-					BountyButton: View Bounties
+					BountyButton: Bounties
 					SubmitPhoto: Submit Photo
 					Blueprint: Blueprint
 					BlueprintFakeCopyright: Ⓒ 2022 Carpenter Ant, Zinc. All rights reserved
-					Reward: "Reward:"
+					Reward: "Reward"
 					PurchaseBounty: Purchase a copy of this bounty for: {Coins}
 				}
 			}

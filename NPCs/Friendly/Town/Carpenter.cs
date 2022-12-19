@@ -128,8 +128,6 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkHammer>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PixelCamera>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PixelCameraClipAmmo>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
                 if (!Main.dayTime)
                 {
@@ -142,8 +140,16 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 if (bountyPlayer.CompletedBounties.Contains(bounty.FullName))
                 {
-                    shop.item[nextSlot] = bounty.ProvideBountyRewardItem();
-                    shop.item[nextSlot++].stack = 1;
+                    var items = bounty.ProvideBountyRewardItems();
+                    foreach (var item in items)
+                    {
+                        item.stack = 1;
+                        shop.item[nextSlot++] = item;
+                    }
+                }
+                else
+                {
+                    shop.item[nextSlot++] = bounty.ProvidePortableBounty().Item;
                 }
             }
             if (Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Count > 0)

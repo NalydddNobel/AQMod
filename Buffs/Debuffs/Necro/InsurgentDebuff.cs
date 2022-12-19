@@ -15,17 +15,17 @@ namespace Aequus.Buffs.Debuffs.Necro
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            int damageOverTime = 15;
+            int damageOverTime = 100;
             if (npc.life < 200)
             {
-                damageOverTime = 200;
+                damageOverTime = 800;
             }
             else if (npc.life < 500)
             {
-                damageOverTime = 25;
+                damageOverTime = 400;
             }
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-            zombie.ghostDebuffDOT = damageOverTime * AequusHelpers.NPCREGEN;
+            zombie.ghostDebuffDOT = damageOverTime;
             zombie.ghostDamage = DamageSet;
             zombie.ghostSpeed = BaseSpeed;
             zombie.DebuffTier(Tier);

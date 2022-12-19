@@ -40,6 +40,8 @@ namespace Aequus.Tiles
         public short TileFrameY => Misc.TileFrameY;
         public ushort TileColor => Misc.TileColor;
         public ushort WallColor => Misc.WallColor;
+        public bool HasActuator => Misc.HasActuator;
+        public int WireData => Misc.WireData;
         public byte LiquidAmount => Liquid.Amount;
         public int LiquidType => Liquid.LiquidType;
         public ushort WallType => Wall.Type;

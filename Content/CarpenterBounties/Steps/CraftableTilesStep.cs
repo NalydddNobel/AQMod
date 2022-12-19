@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Content.CarpenterBounties.Steps
 {
@@ -95,6 +96,13 @@ namespace Aequus.Content.CarpenterBounties.Steps
                 && interest.craftableTiles.Count / (float)(interest.craftableTiles.Count + interest.nonCraftableTiles.Count) >= 1f - RatioThreshold,
                 interest = interest.nonCraftableTiles,
             };
+        }
+
+        public override string GetStepKey(CarpenterBounty bounty)
+        {
+            if (RatioThreshold > 0f)
+                return Language.GetTextValue("Mods.Aequus.CarpenterBounty.Rule.CraftableTilesStep_2", $"{Math.Floor((1f - RatioThreshold) * 100f)}%");
+            return base.GetStepKey(bounty);
         }
     }
 }

@@ -534,7 +534,7 @@ namespace Aequus.NPCs
 
                 if (dot >= 0)
                 {
-                    npc.AddRegenOld(-dot);
+                    npc.AddRegen(-dot * 8);
                     twoSecondsDamageNumbers = Math.Max(twoSecondsDamageNumbers, dot / 5);
                 }
             }

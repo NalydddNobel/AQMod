@@ -35,7 +35,7 @@ namespace Aequus.UI.CarpenterUI
             this.bounty = bounty;
             bountyUICache = bountyUI;
             listItem = bounty.ProvidePortableBounty().Item;
-            rewardItem = bounty.ProvideBountyRewardItem();
+            rewardItem = bounty.ProvideBountyRewardItems()[0];
         }
 
         public void Setup()
@@ -51,7 +51,7 @@ namespace Aequus.UI.CarpenterUI
                 Top = new StyleDimension(10, 0f),
                 Left = new StyleDimension((int)(64 * 0.8f) + 20, 0f),
                 Width = new StyleDimension(-84, 1f),
-                BackgroundColor = new Color(43, 56, 101, 255),
+                BackgroundColor = new Color(33, 46, 80, 255),
                 PaddingLeft = 4f,
                 PaddingRight = 4f
             };
@@ -151,28 +151,6 @@ namespace Aequus.UI.CarpenterUI
         protected override void DrawChildren(SpriteBatch spriteBatch)
         {
             var rect = GetDimensions().ToRectangle();
-            var itemSlotRect = new Rectangle(rect.X + 10, rect.Y + 10, (int)(64 * 0.8f), (int)(64 * 0.8f));
-            if (itemSlotRect.Contains(Main.mouseX, Main.mouseY) && Main.mouseItem.IsAir)
-            {
-                bool buyItem = Main.mouseLeft && Main.mouseLeftRelease;
-                if (Main.mouseRight && Main.mouseRightRelease)
-                {
-                    buyItem = true;
-                    Main.mouseRightRelease = false;
-                }
-                if (buyItem)
-                {
-                    Main.LocalPlayer.GetItemExpectedPrice(listItem, out var calcForSelling, out var calcForBuying);
-
-                    if (Main.LocalPlayer.CanBuyItem(calcForBuying) && Main.LocalPlayer.BuyItem(calcForBuying))
-                    {
-                        Main.mouseItem = listItem.Clone();
-                        SoundEngine.PlaySound(SoundID.Coins);
-                        Main.mouseLeftRelease = false;
-                    }
-                }
-            }
-
             UpdatePanel(spriteBatch, rect);
             base.DrawChildren(spriteBatch);
             DrawItems(spriteBatch, rect);
@@ -200,18 +178,24 @@ namespace Aequus.UI.CarpenterUI
         public void DrawItems(SpriteBatch spriteBatch, Rectangle rect)
         {
             var itemSlotRect = new Rectangle(rect.X + 10, rect.Y + 10, (int)(64 * 0.8f), (int)(64 * 0.8f));
-            DrawItemSlot(spriteBatch, rect, itemSlotRect, listItem);
-            itemSlotRect.Y = rect.Y + rect.Height - 10 - itemSlotRect.Height;
             string rewardText = AequusText.GetText("Chat.Carpenter.UI.Reward");
             var rewardTextOrigin = FontAssets.MouseText.Value.MeasureString(rewardText);
             rewardTextOrigin.X /= 2f;
-            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, rewardText,
-                new Vector2(itemSlotRect.X + itemSlotRect.Width / 2f, itemSlotRect.Y), Color.White, 0f, rewardTextOrigin, Vector2.One * 0.75f);
             DrawItemSlot(spriteBatch, rect, itemSlotRect, rewardItem);
+            if (itemSlotRect.Contains(Main.mouseX, Main.mouseY))
+            {
+                AequusUI.HoverItem(rewardItem);
+            }
+            ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, rewardText,
+                new Vector2(itemSlotRect.X + itemSlotRect.Width / 2f, itemSlotRect.Y + 16), Color.White, 0f, rewardTextOrigin, Vector2.One * 0.75f);
         }
 
         public void DrawItemSlot(SpriteBatch spriteBatch, Rectangle rect, Rectangle itemSlotRect, Item item)
         {
+            if (itemSlotRect.Contains(Main.mouseX, Main.mouseY))
+            {
+                AequusUI.HoverItem(rewardItem);
+            }
             Utils.DrawInvBG(spriteBatch, itemSlotRect, new Color(40, 40, 100, 255) * AequusUI.invBackColorMultipler);
 
             Main.instance.LoadItem(item.type);
@@ -224,14 +208,9 @@ namespace Aequus.UI.CarpenterUI
                 scale = largestAmt / (float)rect.Width;
             }
 
-            //item.SetDefaults(ModContent.ItemType<Narrizuul>());
             item.GetItemDrawData(out var frame);
             spriteBatch.Draw(texture, itemSlotRect.Center(), frame, Color.White, 0f, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
 
-            if (itemSlotRect.Contains(Main.mouseX, Main.mouseY))
-            {
-                AequusUI.HoverItem(item);
-            }
         }
 
         public void HoverColor(bool value)

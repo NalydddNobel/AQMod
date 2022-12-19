@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.CarpenterBounties.Steps;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
+using Aequus.Items.Tools.Camera;
 using Aequus.Items.Tools.Misc;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -93,6 +94,22 @@ namespace Aequus.Content.CarpenterBounties
                     }))
                 .AddStep(new SymmetricHorizontalStep())
                 .Register();
+
+            new CarpenterBounty("ActuatorDoorBounty")
+                .SetReward<PixelCamera>()
+                .AddMiscUnlock<PixelCameraClipAmmo>()
+                .AddStep(new FindHousesStep(minHouses: 1)
+                    .AfterSuccess((i, s) =>
+                    {
+                        var houses = i.GetInterest<FindHousesStep.Interest>();
+                        i.GetInterest<ActuatorDoorStep.Interest>().givenHouses = houses.housingWalls;
+                        var r = TurnPointMessIntoRectangleBounds(houses.housingWalls.Values.First()); 
+                        r.Inflate(1, 1);
+                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = r;
+                    }))
+                .AddStep(new ActuatorDoorStep())
+                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0.5f))
+                .Register();
         }
 
         public static List<Point> TurnRectangleIntoUnoptimizedPointMess(Rectangle rectangle)
@@ -106,6 +123,25 @@ namespace Aequus.Content.CarpenterBounties
                 }
             }
             return p;
+        }
+        public static Rectangle TurnPointMessIntoRectangleBounds(List<Point> points)
+        {
+            var r = new Rectangle();
+            foreach (var p in points)
+            {
+                r.Width = Math.Max(r.Width, p.X);
+                r.Height = Math.Max(r.Height, p.Y);
+            }
+            r.X = r.Width;
+            r.Y = r.Height;
+            foreach (var p in points)
+            {
+                r.X = Math.Min(r.X, p.X);
+                r.Y = Math.Min(r.Y, p.Y);
+            }
+            r.Width -= r.X;
+            r.Height -= r.Y;
+            return r;
         }
 
         public override void Unload()

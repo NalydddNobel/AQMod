@@ -16,6 +16,7 @@ namespace Aequus.Content.CarpenterBounties
         public string Name { get; private set; }
         public int ItemReward;
         public int ItemStack;
+        public List<int> MiscUnlocks;
         private Func<bool> bountyAvailable;
 
         public virtual string LanguageKey => $"Mods.{Mod.Name}.CarpenterBounty.{Name}";
@@ -24,6 +25,7 @@ namespace Aequus.Content.CarpenterBounties
         {
             Mod = mod;
             Name = name;
+            MiscUnlocks = new List<int>();
             steps = new List<Step>();
         }
 
@@ -44,6 +46,15 @@ namespace Aequus.Content.CarpenterBounties
             return SetReward(ModContent.ItemType<T>(), stack);
         }
 
+        public CarpenterBounty AddMiscUnlock(int itemID)
+        {
+            MiscUnlocks.Add(itemID);
+            return this;
+        }
+        public CarpenterBounty AddMiscUnlock<T>() where T : ModItem
+        {
+            return AddMiscUnlock(ModContent.ItemType<T>());
+        }
         public CarpenterBounty AddStep(Step step)
         {
             steps.Add(step);
@@ -61,16 +72,19 @@ namespace Aequus.Content.CarpenterBounties
             return CarpenterSystem.RegisterBounty(this);
         }
 
-        public Item ProvideBountyRewardItem()
+        public List<Item> ProvideBountyRewardItems()
         {
-            var item = AequusItem.SetDefaults(ItemReward);
-            item.stack = ItemStack;
+            var item = new List<Item>() { AequusItem.SetDefaults(ItemReward) };
+            foreach (var misc in MiscUnlocks)
+            {
+                item.Add(AequusItem.SetDefaults(misc));
+            }
             return item;
         }
 
         public virtual void OnCompleteBounty(Player player, NPC npc)
         {
-            var reward = ProvideBountyRewardItem();
+            var reward = ProvideBountyRewardItems()[0];
             player.QuickSpawnClonedItem(npc.GetSource_GiftOrReward(), reward, reward.stack);
         }
 

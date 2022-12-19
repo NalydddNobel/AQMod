@@ -4,7 +4,9 @@ Mods.Aequus: {
 			FindBridgeStep: Build a bridge {0} blocks long, with a pool of water atleast {1} blocks deep
 			WaterfallHeightStep: Waterfalls must flow down atleast {0} blocks
 			CraftableTilesStep: Must be made out of craftable blocks (Ex: Gray Brick)
+			CraftableTilesStep_2: Must be atleast {0} made out of craftable blocks (Ex: Gray Brick)
 			NotCraftableTilesStep: Must be made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
+			NotCraftableTilesStep_2: Must be atleast {0} made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
 			SymmetricHorizontalStep: Must be horizontally symmetrical
 			FindHousesStep: Suitable for {0} town NPC(s)
 			FurnitureCountStep: "{0}+ unique pieces of Furniture or Decoration objects"
@@ -24,6 +26,7 @@ Mods.Aequus: {
 			"$parentVal": Bridging Over
 			Description: Build a bridge over water
 			NoBridge: There is no bridge in sight! Or maybe your bridge is lacking in length, width, and height? Try increasing the size of your bridge or water pool to get it looking just right!
+			Success: Quite the bustling boasting bridge! I would use it to cross from ridge to ridge!
 		}
 
 		WeirdRoofBounty: {
@@ -44,6 +47,8 @@ Mods.Aequus: {
 		ActuatorDoorBounty: {
 			"$parentVal": Secret Entrance
 			Description: Build a room locked behind an Actuator door
+			NoActuatorDoor: It's a house, but there are no actuator doors. Maybe try working on one that lets you go indoors?
+			Success: What a secret! A protected entrance to your base is something to never regret!
 		}
 
 		UnderworldFountainBounty: {

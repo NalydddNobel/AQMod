@@ -1633,14 +1633,6 @@ namespace Aequus
             }
             npc.lifeRegen += regen;
         }
-        public static void AddRegenOld(this NPC npc, int regen)
-        {
-            if (regen < 0 && npc.lifeRegen > 0)
-            {
-                npc.lifeRegen = 0;
-            }
-            npc.lifeRegen += regen * NPCREGEN;
-        }
 
         public static void Max(this (int, int) tuple, int value)
         {

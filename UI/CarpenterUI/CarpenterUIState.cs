@@ -249,7 +249,7 @@ namespace Aequus.UI.CarpenterUI
             selectionPanelListScrollBar.Left.Set(-24, 1f);
             selectionPanelListScrollBar.Top.Set(8, 0f);
             selectionPanelListScrollBar.Width.Set(32, 0f);
-            selectionPanelListScrollBar.Height.Set(0, 1f);
+            selectionPanelListScrollBar.Height.Set(-16, 1f);
             selectionPanelList.SetScrollbar(selectionPanelListScrollBar);
             selectionPanel.Append(selectionPanelListScrollBar);
 
