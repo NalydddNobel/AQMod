@@ -469,6 +469,7 @@ namespace Aequus.UI.CarpenterUI
             if (!ModContent.HasAsset(texture))
             {
                 texture = "Aequus/UI/CarpenterUI/Blueprints/Default";
+                return;
             }
 
             var panel = new UIPanel()
