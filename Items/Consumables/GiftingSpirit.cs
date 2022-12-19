@@ -61,7 +61,7 @@ namespace Aequus.Items.Consumables
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (WearsXmasHat(npc))
+            if (WearsXmasHat(npc) && npc.altTexture == 0)
             {
                 npc.altTexture = 1;
             }

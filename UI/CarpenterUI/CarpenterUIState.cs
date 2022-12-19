@@ -468,8 +468,7 @@ namespace Aequus.UI.CarpenterUI
             string texture = element.ListItem.BountyTexture;
             if (!ModContent.HasAsset(texture))
             {
-                texture = "Aequus/Assets/UI/NecromancySelectionCursor";
-                return;
+                texture = "Aequus/UI/CarpenterUI/Blueprints/Default";
             }
 
             var panel = new UIPanel()
@@ -507,7 +506,7 @@ namespace Aequus.UI.CarpenterUI
                 Width = new StyleDimension(0, 1f),
                 Top = new StyleDimension(44, 0f),
             };
-            textureElement.OnRecalculateTextureSize += () => panel.Height = new StyleDimension(textureElement.Height.Pixels + textureElement.Top.Pixels, 0f);
+            textureElement.OnRecalculateTextureSize += () => panel.Height = new StyleDimension(textureElement.Height.Pixels + textureElement.Top.Pixels + 16, 0f);
             panel.Append(textureElement);
 
             AddSeparator();
