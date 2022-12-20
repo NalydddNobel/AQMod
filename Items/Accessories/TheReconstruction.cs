@@ -318,7 +318,7 @@ namespace Aequus.Items.Accessories
                 {
                     return;
                 }
-                int add = 1;
+                int add = 0;
                 if (item.type == ItemID.BoneHelm)
                 {
                     add = 0;

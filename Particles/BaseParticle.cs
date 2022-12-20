@@ -23,7 +23,7 @@ namespace Aequus.Particles
             return Color;
         }
 
-        public bool ShouldBeRemovedFromRenderer { get; private set; }
+        public bool ShouldBeRemovedFromRenderer { get; protected set; }
 
         public BaseParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
         {

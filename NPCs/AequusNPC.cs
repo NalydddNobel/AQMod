@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;

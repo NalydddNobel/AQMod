@@ -122,6 +122,7 @@ namespace Aequus.Content.CrossMod
                     {
                         ModContent.ItemType<DustDevilRelic>(),
                         ModContent.ItemType<DustDevilBag>(),
+                        ModContent.ItemType<Stormcloak>(),
                         ModContent.ItemType<TornadoInABottle>(),
                         ModContent.ItemType<AtmosphericEnergy>(),
                     },

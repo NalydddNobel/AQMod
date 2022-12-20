@@ -23,6 +23,7 @@ namespace Aequus.Items.Weapons.Ranged
                 [ProjectileID.Bullet] = (p) => new Color(1, 255, 40, 255),
                 [ProjectileID.MeteorShot] = (p) => new Color(30, 255, 200, 255),
                 [ProjectileID.CrystalBullet] = (p) => new Color(200, 112, 145, 255),
+                [ProjectileID.CrystalShard] = (p) => new Color(200, 112, 145, 255),
                 [ProjectileID.CursedBullet] = (p) => new Color(120, 228, 50, 255),
                 [ProjectileID.IchorBullet] = (p) => new Color(228, 200, 50, 255),
                 [ProjectileID.ChlorophyteBullet] = (p) => new Color(135, 255, 120, 255),

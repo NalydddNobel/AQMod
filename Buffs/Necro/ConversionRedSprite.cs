@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs.Necro
+namespace Aequus.Buffs.Necro
 {
     public class ConversionRedSprite : ModBuff
     {

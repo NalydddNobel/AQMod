@@ -38,7 +38,7 @@ namespace Aequus
         [ImgArr(5)]
         public static Asset<Texture2D>[] Bloom { get; private set; }
         [ImgPath("Assets/Effects/Prims")]
-        [ImgArr(4)]
+        [ImgArr(5)]
         public static Asset<Texture2D>[] Trail { get; private set; }
 
         void ILoadable.Load(Mod mod)

@@ -393,8 +393,9 @@ namespace Aequus.Projectiles
             {
                 if (Main.myPlayer == projectile.owner && projectile.numUpdates == -1 && projectile.velocity.Length() > 1f)
                 {
-                    int p = Projectile.NewProjectile(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(projectile.velocity) * 0.01f, ModContent.ProjectileType<RaygunTrailProj>(), 0, 0f, projectile.owner);
-                    Main.projectile[p].rotation = projectile.velocity.ToRotation();
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(projectile.velocity) * 0.01f,
+                        ModContent.ProjectileType<RaygunTrailProj>(), 0, 0f, projectile.owner);
+                    Main.projectile[p].rotation = projectile.rotation;
                     Main.projectile[p].netUpdate = true;
                     Main.projectile[p].ModProjectile<RaygunTrailProj>().color = Raygun.GetColor(projectile).UseA(0);
                 }

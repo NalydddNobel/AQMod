@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Debuffs.Necro;
-using Aequus.Buffs.Minion;
+﻿using Aequus.Buffs.Minion;
+using Aequus.Buffs.Necro;
 using Aequus.Graphics;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

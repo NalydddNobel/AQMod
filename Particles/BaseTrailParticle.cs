@@ -21,5 +21,14 @@ namespace Aequus.Particles
                 AequusHelpers.UpdateCacheList(oldPos);
             }
         }
+
+        public void StretchTrail(Vector2 direction)
+        {
+            oldPos[0] = Position;
+            for (int i = 1; i < oldPos.Length; i++)
+            {
+                oldPos[i] = oldPos[i - 1] + direction * i;
+            }
+        }
     }
 }

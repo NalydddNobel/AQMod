@@ -14,7 +14,13 @@ namespace Aequus.Projectiles.Misc
     public class PumpinatorProj : ModProjectile
     {
         public virtual bool PushPlayers => true;
+        public virtual bool OnlyPushHostileProjectiles => false;
         public virtual bool OnlyPushHostilePlayers => false;
+        public virtual bool PushItems => true;
+        public virtual bool PushDust => true;
+        public virtual bool PushGore => true;
+        public virtual bool PushRain => true;
+        public virtual bool PushUIObjects => true;
 
         public int dustPushIndex;
 
@@ -34,6 +40,24 @@ namespace Aequus.Projectiles.Misc
         public override bool? CanCutTiles()
         {
             return false;
+        }
+
+        public virtual Vector2 GetWindVelocity(Vector2 entityLocation)
+        {
+            return Projectile.velocity;
+        }
+
+        public virtual void OnPushNPC(NPC npc)
+        {
+        }
+        public virtual void OnPushProj(Projectile proj)
+        {
+        }
+        public virtual void OnPushItem(Item item)
+        {
+        }
+        public virtual void OnPushPlayer(Player player)
+        {
         }
 
         public override void AI()
@@ -83,28 +107,34 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Colliding(myRect, npc.getRect()) &&
                     PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
                 {
-                    npc.velocity = Vector2.Lerp(npc.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.01f * npc.knockBackResist);
+                    npc.velocity = Vector2.Lerp(npc.velocity, GetWindVelocity(npc.Center), Projectile.knockBack * 0.01f * npc.knockBackResist);
                     npc.netUpdate = true;
+                    OnPushNPC(npc);
                 }
             }
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 var proj = Main.projectile[i];
-                if (i != Projectile.whoAmI && proj.active &&
-                    Projectile.Colliding(myRect, proj.getRect()) &&
-                    PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type))
+                if (i != Projectile.whoAmI && proj.active)
                 {
-                    proj.velocity = Vector2.Lerp(proj.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.01f);
+                    if ((OnlyPushHostileProjectiles && !proj.hostile) || !PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
+                        continue;
+                    proj.velocity = Vector2.Lerp(proj.velocity, GetWindVelocity(proj.Center), Projectile.knockBack * 0.01f);
                     proj.netUpdate = true;
+                    OnPushProj(proj);
                 }
             }
-            for (int i = 0; i < Main.maxItems; i++)
+            if (PushItems)
             {
-                var item = Main.item[i];
-                if (item.active &&
-                    Projectile.Colliding(myRect, item.getRect()))
+                for (int i = 0; i < Main.maxItems; i++)
                 {
-                    item.velocity = Vector2.Lerp(item.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.015f);
+                    var item = Main.item[i];
+                    if (item.active &&
+                        Projectile.Colliding(myRect, item.getRect()))
+                    {
+                        item.velocity = Vector2.Lerp(item.velocity, GetWindVelocity(item.Center), Projectile.knockBack * 0.015f);
+                        OnPushItem(item);
+                    }
                 }
             }
             if (PushPlayers)
@@ -120,7 +150,8 @@ namespace Aequus.Projectiles.Misc
                         }
                         if (Projectile.Colliding(myRect, player.getRect()))
                         {
-                            player.velocity = Vector2.Lerp(player.velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.01f);
+                            player.velocity = Vector2.Lerp(player.velocity, GetWindVelocity(player.Center), Projectile.knockBack * 0.01f);
+                            OnPushPlayer(player);
                         }
                     }
                 }
@@ -128,54 +159,69 @@ namespace Aequus.Projectiles.Misc
             myRect.Inflate(30, 30);
             if (Main.netMode != NetmodeID.Server)
             {
-                var stopWatch = new Stopwatch();
-                stopWatch.Start();
-                for (int i = dustPushIndex; i < Main.maxDust; i++)
+                if (PushDust)
                 {
-                    if (Main.dust[i].active && Main.dust[i].scale <= 3f && myRect.Contains(Main.dust[i].position.ToPoint()))
+                    var dustStopWatch = new Stopwatch();
+                    dustStopWatch.Start();
+                    for (; dustPushIndex < Main.maxDust; dustPushIndex++)
                     {
-                        Main.dust[i].scale = Math.Max(Main.dust[i].scale, 0.2f);
-                        Main.dust[i].velocity = Vector2.Lerp(Main.dust[i].velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.1f);
-                        if (stopWatch.ElapsedMilliseconds >= 1)
+                        int i = dustPushIndex;
+                        if (Main.dust[i].active && Main.dust[i].scale <= 3f && myRect.Contains(Main.dust[i].position.ToPoint()))
                         {
-                            dustPushIndex = 1;
-                            break;
+                            Main.dust[i].scale = Math.Max(Main.dust[i].scale, 0.2f);
+                            Main.dust[i].velocity = Vector2.Lerp(Main.dust[i].velocity, GetWindVelocity(Main.dust[i].position) * 0.5f, Projectile.knockBack * 0.04f);
+                            if (dustStopWatch.ElapsedMilliseconds >= 1)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    if (dustPushIndex >= Main.maxDust - 1)
+                    {
+                        dustPushIndex = 0;
+                    }
+                    dustStopWatch.Stop();
+                }
+                if (PushGore)
+                {
+                    for (int i = 0; i < Main.maxGore; i++)
+                    {
+                        if (Main.gore[i].active && Main.gore[i].scale <= 3f && myRect.Contains(Main.gore[i].position.ToPoint()))
+                        {
+                            Main.gore[i].timeLeft = Math.Max(Main.gore[i].timeLeft, 60);
+                            Main.gore[i].velocity = Vector2.Lerp(Main.gore[i].velocity, GetWindVelocity(Main.gore[i].position), Projectile.knockBack * 0.1f);
                         }
                     }
                 }
-                dustPushIndex = 0;
-                for (int i = 0; i < Main.maxGore; i++)
+                if (PushRain)
                 {
-                    if (Main.gore[i].active && Main.gore[i].scale <= 3f && myRect.Contains(Main.gore[i].position.ToPoint()))
+                    for (int i = 0; i < Main.maxRain; i++)
                     {
-                        Main.gore[i].timeLeft = Math.Max(Main.gore[i].timeLeft, 60);
-                        Main.gore[i].velocity = Vector2.Lerp(Main.gore[i].velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.1f);
+                        if (Main.rain[i].active && myRect.Contains(Main.rain[i].position.ToPoint()))
+                        {
+                            Main.rain[i].velocity = Vector2.Lerp(Main.rain[i].velocity, GetWindVelocity(Main.rain[i].position), Projectile.knockBack * 0.1f);
+                        }
                     }
                 }
-                for (int i = 0; i < Main.maxRain; i++)
+                if (PushUIObjects)
                 {
-                    if (Main.rain[i].active && myRect.Contains(Main.rain[i].position.ToPoint()))
+                    for (int i = 0; i < Main.maxCombatText; i++)
                     {
-                        Main.rain[i].velocity = Vector2.Lerp(Main.rain[i].velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.1f);
+                        if (Main.combatText[i].active && myRect.Contains(Main.combatText[i].position.ToPoint()))
+                        {
+                            Main.combatText[i].lifeTime = Math.Max(Main.combatText[i].lifeTime, 90);
+                            Main.combatText[i].velocity = Vector2.Lerp(Main.combatText[i].velocity, GetWindVelocity(Main.combatText[i].position), Projectile.knockBack * 0.1f);
+                        }
+                    }
+                    for (int i = 0; i < Main.maxItemText; i++)
+                    {
+                        if (Main.popupText[i].active && myRect.Contains(Main.popupText[i].position.ToPoint()))
+                        {
+                            Main.popupText[i].lifeTime = Math.Max(Main.popupText[i].lifeTime, 90);
+                            Main.popupText[i].velocity = Vector2.Lerp(Main.popupText[i].velocity, GetWindVelocity(Main.popupText[i].position), Projectile.knockBack * 0.1f);
+                        }
                     }
                 }
-                for (int i = 0; i < Main.maxCombatText; i++)
-                {
-                    if (Main.combatText[i].active && myRect.Contains(Main.combatText[i].position.ToPoint()))
-                    {
-                        Main.combatText[i].lifeTime = Math.Max(Main.combatText[i].lifeTime, 90);
-                        Main.combatText[i].velocity = Vector2.Lerp(Main.combatText[i].velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.1f);
-                    }
-                }
-                for (int i = 0; i < Main.maxItemText; i++)
-                {
-                    if (Main.popupText[i].active && myRect.Contains(Main.popupText[i].position.ToPoint()))
-                    {
-                        Main.popupText[i].lifeTime = Math.Max(Main.popupText[i].lifeTime, 90);
-                        Main.popupText[i].velocity = Vector2.Lerp(Main.popupText[i].velocity, Vector2.Normalize(Projectile.velocity) * Projectile.velocity.Length(), Projectile.knockBack * 0.1f);
-                    }
-                }
-                stopWatch.Stop();
             }
         }
         public virtual void DoDust()

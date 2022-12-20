@@ -7,6 +7,9 @@ namespace Aequus.Projectiles.Ranged
     public class FlameblasterWind : PumpinatorProj
     {
         public override bool OnlyPushHostilePlayers => true;
+        public override bool PushUIObjects => false;
+        public override bool PushItems => false;
+        public override bool OnlyPushHostileProjectiles => true;
 
         public override void SetDefaults()
         {

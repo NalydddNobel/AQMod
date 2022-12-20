@@ -2,7 +2,7 @@
 using Aequus.Content.Necromancy.Renderer;
 using Terraria;
 
-namespace Aequus.Buffs.Debuffs.Necro
+namespace Aequus.Buffs.Necro
 {
     public class RevenantDebuff : NecromancyDebuff
     {

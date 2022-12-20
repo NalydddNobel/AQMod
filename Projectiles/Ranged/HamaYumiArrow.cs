@@ -66,7 +66,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            CorruptionHellfire.AddBuff(target, 60);
+            CorruptionHellfire.AddBuff(target, 120);
             if (Main.netMode != NetmodeID.Server)
             {
                 SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
@@ -75,7 +75,7 @@ namespace Aequus.Projectiles.Ranged
             {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
             }
-
+            Projectile.damage = (int)(Projectile.damage * 0.75f);
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

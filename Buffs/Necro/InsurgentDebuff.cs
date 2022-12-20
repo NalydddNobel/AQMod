@@ -4,7 +4,7 @@ using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs.Necro
+namespace Aequus.Buffs.Necro
 {
     public class InsurgentDebuff : NecromancyDebuff
     {

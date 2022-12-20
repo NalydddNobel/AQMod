@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +16,15 @@ namespace Aequus.Projectiles.Ranged
         public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.PrincessWeapon;
 
         public Color color;
+        public static Dictionary<int, Action<Projectile, Projectile>> OnSpawnEffects { get; private set; }
+
+        public override void Load()
+        {
+            OnSpawnEffects = new Dictionary<int, Action<Projectile, Projectile>>()
+            {
+                [ProjectileID.CrystalShard] = (p, parent) => p.scale *= 0.4f,
+            };
+        }
 
         public override void SetDefaults()
         {
@@ -23,6 +35,20 @@ namespace Aequus.Projectiles.Ranged
             Projectile.timeLeft = 24;
             color = Color.White;
             color.A = 0;
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (AequusHelpers.HereditarySource(source, out var entity))
+            {
+                if (entity is Projectile parentProjectile)
+                {
+                    if (OnSpawnEffects.TryGetValue(parentProjectile.type, out var action))
+                    {
+                        action(Projectile, parentProjectile);
+                    }
+                }
+            }
         }
 
         public override void AI()
@@ -48,6 +74,7 @@ namespace Aequus.Projectiles.Ranged
             writer.Write(color.R);
             writer.Write(color.G);
             writer.Write(color.B);
+            writer.Write(Projectile.scale);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
@@ -56,6 +83,7 @@ namespace Aequus.Projectiles.Ranged
             color.G = reader.ReadByte();
             color.B = reader.ReadByte();
             color.A = 0;
+            Projectile.scale = reader.ReadSingle();
         }
     }
 }

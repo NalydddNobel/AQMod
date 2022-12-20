@@ -98,16 +98,8 @@ Mods: {
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
-			# Accessories #
-			PotionCanteen: {
-				$parentVal: Potion Canteen
-
-				# In game usage example: 
-				# Regeneration Canteen
-				# Ironskin Canteen
-				# Spelunker Canteen
-				AltName: "{PotionName} Canteen"
-			}
+		# Accessories
+			Stormcloak: Storm Cloak
 			ShadowVeer: Shadow Veer
 			SouljointCuffs: Souljoint Cuffs
 			NaturesCruelty: Nature's Cruelty
@@ -140,7 +132,17 @@ Mods: {
 			GrandReward: Grand Reward
 			GlowCore: Glow Beacon
 
-			# Summoner
+			PotionCanteen: {
+				$parentVal: Potion Canteen
+
+				# In game usage example: 
+				# Regeneration Canteen
+				# Ironskin Canteen
+				# Spelunker Canteen
+				AltName: "{PotionName} Canteen"
+			}
+
+		# Summoner
 			WarHorn: War Horn
 			MechsSentry: Sentinel 6510
 			SantankSentry: Sentry 6502
@@ -149,15 +151,15 @@ Mods: {
 			SentrySquid: Sentry Squid
 			IcebergKraken: Iceberg Kraken
 
-			# Healing
+		# Healing
 			Mendshroom: Mendshroom
 
-			# Fishing
+		# Fishing
 			NeonGenesis: Neon Genesis
 			Ramishroom: Ramishroom
 			DevilsTongue: Devil's Tongue
 
-			# Vanity
+		# Vanity
 			EyeGlint: Glint-In-Your-Eye
 			XmasCursor: Santa-NK1's Cursor
 			PumpkingCloak: Pumpking's Cloak
@@ -170,9 +172,7 @@ Mods: {
 			Headless: Headless
 			FishyFins: Fishy Fins
 
-			# Weapons #
-
-			# Melee
+		# Melee Weapons
 			PhaseDisc: Phase Disc
 			CrystalDagger: Crystal Dagger
 			Cauterizer: Cauterizer
@@ -187,7 +187,7 @@ Mods: {
 			MirrorsCall: Mirror's Call
 			Slice: Slice
 			
-			# Ranged Weapons
+		# Ranged Weapons
 			BlockGlove: Block-s-ing Glove
 			Deltoid: Deltoid
 			StarPhish: Star Phish
@@ -197,7 +197,7 @@ Mods: {
 			Slingsaber: Slingsaber
 			Slingshot: Slingshot
 
-			# Magic
+		# Magic Weapons
 			Nightfall: Nightfall
 			Umystick: Umystick
 			Narrizuul: Narrizuul
@@ -211,7 +211,7 @@ Mods: {
 			BombarderRod: Bombarder Rod
 			Triacanthorn: Triacanthorn
 
-			# Summon
+		# Summon Weapons
 			BrainwaveStaff: Brainwave Staff
 			MindfungusStaff: Mindfungus Staff
 			StariteStaff: Starite Staff
@@ -623,6 +623,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			Stormcloak: Push enemies away after taking damage
 			PotionCanteen: Allows infinite use of a potion when equipped
 			ShadowVeer: Ghost minions will do shadow dashes at targeted enemies
 			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit
@@ -710,22 +711,6 @@ Mods: {
 				'''
 			RitualisticSkull: Converts all but one of your minion slots into ghost slots
 			RabbitsFoot: Increases luck for the wearer
-			TheReconstruction: {
-				$parentVal: Increases the strength of expert items
-				EoCShield: 
-					'''
-					Increased dash attack range, debuffs wear off faster while dashing
-					Allows for an infinite duration dash while grounded
-					'''
-				WormScarf: You passively shoot lasers
-				BrainOfConfusion: You are protected by probes
-				BoneGlove: Crossbones are replaced by laser saws
-				HiveBackpack: May turn strong bees into mechanical bees
-				BoneHelm: Shadow hands are replaced with gestalts
-				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
-				SporeSac: Spores are replaced with explosive nanites
-				CelesteTorus: Grants an extra ring of orbs
-			}
 			MechsSentry:
 				'''
 				Sentries equip your accessories
@@ -758,6 +743,24 @@ Mods: {
 				You and your projectiles emit light
 				'A new hand touches the beacon...'
 				'''
+
+			TheReconstruction: {
+				$parentVal: Increases the strength of expert items
+				EoCShield: 
+					'''
+					Increased dash attack range, debuffs wear off faster while dashing
+					Allows for an infinite duration dash while grounded
+					'''
+				WormScarf: You passively shoot lasers
+				BrainOfConfusion: You are protected by probes
+				BoneGlove: Crossbones are replaced by laser saws
+				HiveBackpack: May turn strong bees into mechanical bees
+				BoneHelm: Shadow hands are replaced with gestalts
+				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+				SporeSac: Spores are replaced with explosive nanites
+				CelesteTorus: Grants an extra ring of orbs
+				Stormcloak: Taking damage inflicts Hellfire and Frostbite to nearby enemies
+			}
 
 			# Vanity
 			EyeGlint: Makes your eyes appear fully bright
@@ -1555,8 +1558,9 @@ Mods: {
 			EmpoweredThorns: "{$BuffName.Thorns}"
 			EmpoweredWrath: "{$BuffName.Wrath}"
 
+			StormcloakCooldown: Storm Cloak (Cooldown)
 			FoolsGoldRingBuff: Fool's Gold Ring
-			FlashwayNecklaceCooldown: Flashway Necklace Cooldown
+			FlashwayNecklaceCooldown: Flashway Necklace (Cooldown)
 
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
@@ -1627,8 +1631,9 @@ Mods: {
 			EmpoweredThorns: Attackers also take great damage
 			EmpoweredWrath: Increases damage by 20%
 
+			StormcloakCooldown: Cannot use the Storm Cloak
 			FoolsGoldRingBuff: Improved stats from collecting coins
-			FlashwayNecklaceCooldown: Cannot use the flashway necklace
+			FlashwayNecklaceCooldown: Cannot use the Flashway Necklace
 
 			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
 			NeutronYogurtBuff: Greatly increased gravity

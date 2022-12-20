@@ -1,9 +1,7 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Graphics.DustDevilEffects;
 using Aequus.Items.Boss.Bags;
-using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.GlobalNPCs;

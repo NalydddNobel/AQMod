@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
+using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
@@ -147,7 +148,8 @@ namespace Aequus
         /// </summary>
         public Point eventDemonSiege;
 
-        public bool hurtThisFrame;
+        public bool hurtAttempted;
+        public bool hurtSucceeded;
         public bool grounded;
 
         /// <summary>
@@ -198,6 +200,8 @@ namespace Aequus
         /// An amount of regen to add to the player in <see cref="UpdateLifeRegen"/>
         /// </summary>
         public int increasedRegen;
+
+        public Item accDustDevilExpert;
 
         public Item accGhostSupport;
 
@@ -592,6 +596,9 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            instaShieldTimeMax = 0;
+            instaShieldCooldown = 0;
+            accDustDevilExpert = null;
             eyeGlint = false;
             stackingHat = 0;
 
@@ -697,7 +704,7 @@ namespace Aequus
 
         public void UpdateInstantShield()
         {
-            if ((hurtThisFrame || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
+            if ((hurtAttempted || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
             {
                 if (instaShieldTime == instaShieldTimeMax)
                 {
@@ -729,8 +736,7 @@ namespace Aequus
                     int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
                     if (instaShieldCooldownBuffIndex == -1)
                     {
-                        if (Main.myPlayer == Player.whoAmI)
-                            Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
+                        Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
                     }
                     else if (Player.buffTime[instaShieldCooldownBuffIndex] <= 2)
                     {
@@ -862,7 +868,8 @@ namespace Aequus
 
             forceDayState = 0;
             Team = Player.team;
-            hurtThisFrame = false;
+            hurtAttempted = false;
+            hurtSucceeded = false;
         }
 
         public override void PreUpdate()
@@ -1333,7 +1340,7 @@ namespace Aequus
             {
                 return false;
             }
-            hurtThisFrame = true;
+            hurtAttempted = true;
             if (damage >= 1000)
             {
                 return true;
@@ -1365,6 +1372,7 @@ namespace Aequus
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
         {
+            hurtSucceeded = true;
             timeSinceLastHit = 0;
             if (Player.HasBuff(ModContent.BuffType<RitualBuff>()))
             {
@@ -1474,6 +1482,45 @@ namespace Aequus
             {
                 damage = (int)(damage * FrostPotionDamageMultiplier);
             }
+        }
+
+        public void OnHitByEffects(Entity entity, int damage, bool crit)
+        {
+            if (!hurtSucceeded)
+                return;
+
+            if (accDustDevilExpert != null && !Player.HasBuff<StormcloakCooldown>())
+            {
+                if (accExpertBoost && Player.ownedProjectileCounts[ModContent.ProjectileType<StormcloakExplosionProj>()] <= 0)
+                {
+                    for (int k = 0; k < 5; k++)
+                    {
+                        for (int i = 0; i <= 1; i++)
+                        {
+                            var spawnLoc = new Vector2(Player.position.X + Main.rand.Next(-100, 100), Player.position.Y + Main.rand.Next(-100, 100));
+                            Projectile.NewProjectile(Player.GetSource_OnHurt(entity), spawnLoc, Player.DirectionTo(spawnLoc) * 0.1f,
+                                ModContent.ProjectileType<StormcloakExplosionProj>(), 120, 0f, Player.whoAmI, ai0: i);
+                        }
+                    }
+                }
+                if (Player.ownedProjectileCounts[ModContent.ProjectileType<StormcloakProj>()] <= 0)
+                {
+                    Projectile.NewProjectile(Player.GetSource_OnHurt(entity), Player.Center, Vector2.Zero,
+                        ModContent.ProjectileType<StormcloakProj>(), 0, 20f, Player.whoAmI);
+                }
+                Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 240);
+            }
+        }
+
+
+        public override void OnHitByNPC(NPC npc, int damage, bool crit)
+        {
+            OnHitByEffects(npc, damage, crit);
+        }
+
+        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
+        {
+            OnHitByEffects(proj, damage, crit);
         }
 
         public bool CheckBloodDice(ref int damage)
@@ -2091,7 +2138,7 @@ namespace Aequus
             {
                 doubleTap.OnDoubleTap(player, aequus, keyDir);
             }
-            if (aequus.selectGhostNPC > 0 && aequus.accGhostSupport?.ModItem is INecromancySupportAcc necromancySupport 
+            if (aequus.selectGhostNPC > 0 && aequus.accGhostSupport?.ModItem is INecromancySupportAcc necromancySupport
                 && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer))
             {
                 var zombie = Main.npc[aequus.selectGhostNPC].GetGlobalNPC<NecromancyNPC>();
@@ -2472,7 +2519,7 @@ namespace Aequus
             }
             return null;
         }
-        
+
         public static int CalcHealing(Player player, int healAmt)
         {
             if (player.statLife + healAmt > player.statLifeMax2)

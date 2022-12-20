@@ -24,14 +24,14 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.instaShieldTimeMax += 10;
+            aequus.instaShieldTimeMax += 5;
             if (aequus.instaShieldCooldown > 0)
             {
                 aequus.instaShieldCooldown = Math.Max(aequus.instaShieldCooldown / 2, 1);
             }
             else
             {
-                aequus.instaShieldCooldown = 180;
+                aequus.instaShieldCooldown = 300;
             }
         }
     }

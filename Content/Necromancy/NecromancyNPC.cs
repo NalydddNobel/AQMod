@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Debuffs.Necro;
+using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;

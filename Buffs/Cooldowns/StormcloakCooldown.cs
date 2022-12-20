@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs
+namespace Aequus.Buffs.Cooldowns
 {
-    public class FlashwayNecklaceCooldown : ModBuff
+    public class StormcloakCooldown : ModBuff
     {
         public override void SetStaticDefaults()
         {
