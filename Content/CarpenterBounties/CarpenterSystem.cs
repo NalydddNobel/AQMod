@@ -103,7 +103,8 @@ namespace Aequus.Content.CarpenterBounties
                     {
                         var houses = i.GetInterest<FindHousesStep.Interest>();
                         i.GetInterest<ActuatorDoorStep.Interest>().givenHouses = houses.housingWalls;
-                        var r = TurnPointMessIntoRectangleBounds(houses.housingWalls.Values.First()); 
+                        var mess = houses.housingWalls.Count > 0 ? houses.housingWalls.Values.First() : new List<Point>() { new Point(0, 0), };
+                        var r = TurnPointMessIntoRectangleBounds(mess); 
                         r.Inflate(1, 1);
                         i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = r;
                     }))

@@ -1,4 +1,22 @@
 Mods.Aequus: {
+	ShopQuote: {
+		Carpenter: {
+			Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
+			ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
+			SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
+			SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
+			ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
+			OliverPainting: There's something about this painting... it's simply so fascinating.
+			
+			OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
+			AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
+			WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
+			FishSign: A novel lakeside decoration, to mark a favorite fishing location.
+			PixelCamera: With an aim and a snap, make a new painting from a part of your map!
+			CarpenterBountyItem: Need to remember what a bounty wants? Take this sheet out with you on your jaunts!
+		}
+	}
+
 	CarpenterBounty: {
 		Rule: {
 			FindBridgeStep: Build a bridge {0} blocks long, with a pool of water atleast {1} blocks deep
@@ -25,8 +43,8 @@ Mods.Aequus: {
 		PondBridgeBounty: {
 			"$parentVal": Bridging Over
 			Description: Build a bridge over water
-			NoBridge: There is no bridge in sight! Or maybe your bridge is lacking in length, width, and height? Try increasing the size of your bridge or water pool to get it looking just right!
-			Success: Quite the bustling boasting bridge! I would use it to cross from ridge to ridge!
+			NoBridge: This bridge is a bit too squalor! Try making it or the pond longer or taller!
+			Success: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
 		}
 
 		WeirdRoofBounty: {
@@ -47,8 +65,8 @@ Mods.Aequus: {
 		ActuatorDoorBounty: {
 			"$parentVal": Secret Entrance
 			Description: Build a room locked behind an Actuator door
-			NoActuatorDoor: It's a house, but there are no actuator doors. Maybe try working on one that lets you go indoors?
-			Success: What a secret! A protected entrance to your base is something to never regret!
+			NoActuatorDoor: There's not a single actuator door to be seen? Ask the Mechanic if you're not sure what I mean!
+			Success: "Success! One entrance, undercover! Any unwanted guests will need to be quite clever!"
 		}
 
 		UnderworldFountainBounty: {

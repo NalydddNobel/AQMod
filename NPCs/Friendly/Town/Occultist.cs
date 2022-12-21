@@ -11,6 +11,7 @@ using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Items.Weapons.Summon.Necro.Scepters;
 using Aequus.Particles.Dusts;
@@ -72,7 +73,7 @@ namespace Aequus.NPCs.Friendly.Town
                 .SetNPCAffection(NPCID.Demolitionist, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.TaxCollector, AffectionLevel.Like)
                 .SetNPCAffection(NPCID.Dryad, AffectionLevel.Dislike)
-                .SetNPCAffection(NPCID.Angler, AffectionLevel.Dislike)
+                .SetNPCAffection(NPCID.Guide, AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.BestiaryGirl, AffectionLevel.Hate);
 
             NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Love);
@@ -463,12 +464,31 @@ namespace Aequus.NPCs.Friendly.Town
 
         public static string RollChat(string dontRoll)
         {
-            var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.");
+            var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.Hostile.");
 
-            for (int i = 0; i <= 11; i++)
+            for (int i = 0; i <= 4; i++)
             {
-                chat.Add($"Hostile.{i}");
+                chat.Add(i.ToString());
             }
+
+            if (!WorldGen.crimson)
+            {
+                chat.Add("LightsBane");
+                chat.Add("DemonBow");
+                chat.Add("Vilethorn");
+                chat.Add("CorruptPot");
+                chat.Add("Corruption");
+            }
+            else
+            {
+                chat.Add("BloodButcherer");
+                chat.Add("TendonBow");
+                chat.Add("CrimsonRod");
+                chat.Add("Mindfungus");
+                chat.Add("Crimson");
+            }
+
+            AddNonDefaultChats(chat);
 
             if (string.IsNullOrEmpty(dontRoll))
             {
@@ -480,6 +500,32 @@ namespace Aequus.NPCs.Friendly.Town
                 }
             }
             return chat.Get();
+        }
+
+        public static void AddNonDefaultChats(SelectableChat chat)
+        {
+            CheckItem(ItemID.LightsBane, "LightsBane", chat);
+            CheckItem(ItemID.DemonBow, "DemonBow", chat);
+            CheckItem(ItemID.Vilethorn, "Vilethorn", chat);
+            CheckItem(ModContent.ItemType<CorruptPot>(), "CorruptPot", chat);
+            CheckItem(ItemID.BloodButcherer, "BloodButcherer", chat);
+            CheckItem(ItemID.TendonBow, "TendonBow", chat);
+            CheckItem(ItemID.CrimsonRod, "CrimsonRod", chat);
+            CheckItem(ModContent.ItemType<MindfungusStaff>(), "CorruptPot", chat);
+            var bny = Main.LocalPlayer.FindItem((i) => !i.IsAir && ItemID.Search.TryGetName(i.type, out string name) && name.Contains("Bunny"));
+            if (bny != null || Main.rand.NextBool(3))
+            {
+                if (bny != null)
+                    Main.NewText(bny);
+                chat.Add("Bunny");
+            }
+        }
+        public static void CheckItem(int itemType, string text, SelectableChat chat)
+        {
+            if (Main.LocalPlayer.HasItem(itemType))
+            {
+                chat.Add(text);
+            }
         }
 
         public override bool CanChat()

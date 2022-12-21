@@ -5,7 +5,7 @@ using Terraria.Localization;
 
 namespace Aequus.Common.Utilities
 {
-    internal struct SelectableChat
+    public struct SelectableChat
     {
         private readonly string AddKey;
         private readonly List<(string, Func<object>)> Text;

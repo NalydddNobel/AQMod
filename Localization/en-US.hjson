@@ -2116,18 +2116,6 @@ Mods: {
 					'''
 			}
 
-			Carpenter: {
-				Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
-				ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
-				SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
-				SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
-				ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
-				OliverPainting: There's something about this painting... it's simply so fascinating.
-				OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
-				AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
-				WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
-			}
-
 			Exporter: {
 				Mallet: That's it! I'm sellin' me mallet!
 				GoldRing: This trinket's s'pposed to attract coins, but it ain't pulled a bank out o' the ground yet. If ye want it, ye can have it.
@@ -2146,24 +2134,6 @@ Mods: {
 				CrabClock: "'Tis now time fer crab! I took this one off o' me old captain's cabin."
 				SedimentaryRock: Somethin' feels off about these rocks... somethin' crabby. Take 'em off my claws, will ye?
 				HypnoticPearl: There's somethin' about this pearl... I can't stop lookin' at it. Ye can look at it too, fer a price.
-			}
-
-			Occultist: {
-				GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
-				OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
-				Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
-				CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
-				CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
-				CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
-				Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
-				ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
-				UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
-				SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
-				BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
-				GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
-				GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
-				InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
-				WhoopieCushion: *Pbbbfht*
 			}
 
 			Physicist: {
@@ -2215,6 +2185,7 @@ Mods: {
 				ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
 				SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
 				HueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
+				TornadoInABottle: Found this thing on a sky island recently. I'm not a fan of how violently it's rattling, so if you could take it off my hands that'd be great.
 			}
 		}
 
@@ -2393,54 +2364,6 @@ Mods: {
 				}
 			}
 
-			Occultist: {
-				Basic: {
-					0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
-					1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
-					2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
-					3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
-					Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
-				}
-				Night: {
-					0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
-					1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
-				}
-				BloodMoon: { 
-					0: Quiet, please! I'm having an inner council meeting!
-					1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
-					2: I've been thinking up a new curse. Want to be my test subject? Come here...
-					3: Go away! I don't need you right now! I don't need anyone!
-				}
-
-				Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
-
-				Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
-				EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
-				WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
-				Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
-				Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
-				Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
-				Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
-				Glimmer: What? No! Where did my darkness go? Put it back!
-
-				Hostile: {
-					0: Can you hear them too? Calling out for you?
-					1: If you dare to brandish Light's Bane at this sight, you may be visited by some of my friends...
-					2: If you dare to brandish Blood Butcherer at this sight, be sure to be welcomed by my friends...
-					3: We would love to feel the darkness of a Demon Bow... 
-					4: We would love feeling the bloodlust of a Tendon Bow... 
-					5: Laying in a bed of Vilethorns would be dream-like...
-					6: Blood rain... all from the magic of a Crimson Rod...
-					7: Dark, frail plants are my favorite... you don't happen to have a Corrupt Pot right?
-					8: I wish I could grow a Mindfungus... but they never come out right...
-					9: Those eyes watching us... they are just making sure we stay in order...
-					10: I would love to be torn limb from limb... if it would satisfy the dark overlords...
-					11: I have met many 'promised' ones... I hope you share their fates...
-				}
-
-				ListenButton: Listen
-			}
-
 			Exporter: {								
 				Basic: {
 					0: Still can't believe ye downed that forsaken crab. Cursed thing single-clawedly sunk me ship!
@@ -2594,31 +2517,6 @@ Mods: {
 				LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
 				DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
 				HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
-			}
-
-			Occultist: {
-				Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
-				NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
-				FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
-
-				LoveSpace: Plenty of room to practice my spells here... hahaha...
-				DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
-				HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
-
-				LikeBiome: "The temperatures are a bit more agreeable in the Desert, I think."
-				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
-				DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
-				HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
-
-				LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
-				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-				LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
-				LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
-				LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
-				DislikeNPC: "{NPCName} is quite annoying, atleast not as bad as some of my friends from Hell."
-				HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
 			}
 
 			Exporter: {
