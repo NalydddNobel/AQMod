@@ -1015,7 +1015,11 @@ Mods: {
 
 			# Tools #
 			SilkHammer: Receive replacable versions of walls instead
-			SilkPickaxe: Receive replacable versions of blocks instead
+			SilkPickaxe: 
+				'''
+				Receive replacable versions of blocks instead
+				'May make nearby tiles extra fragile!'
+				'''
 			Crabax:
 				'''
 				Can chop multiple trees at once

@@ -1,17 +1,12 @@
 ﻿using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.DataStructures;
 
 namespace Aequus.Common.ModPlayers
 {
@@ -21,6 +16,7 @@ namespace Aequus.Common.ModPlayers
         public int maxCrabaxChops;
         public Item silkPick;
         public Item silkHammer;
+        public static Item SilkTouch;
 
         private delegate void ItemCheck_UseMiningTools_ActuallyUseMiningTool(Player player, Item sItem, out bool canHitWalls, int x, int y);
 
@@ -86,12 +82,6 @@ namespace Aequus.Common.ModPlayers
                 //AequusTile.LoadEchoWalls();
                 if (AequusTile.WallIDToItemID.TryGetValue(Main.tile[x, y].WallType, out int itemID))
                 {
-                    int i = Item.NewItem(new EntitySource_TileBreak(x, y, "Aequus: Silk Touch"), new Rectangle(x * 16, y * 16, 16, 16), itemID);
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
-                    }
-
                     bool gen = WorldGen.gen;
                     WorldGen.gen = true;
                     try
@@ -168,6 +158,10 @@ namespace Aequus.Common.ModPlayers
             {
                 return value;
             }
+            if (AequusTile.TileIDToItemID.TryGetValue(new TileKey(tile.TileType, 0), out int defaultValue) && ContentSamples.ItemsByType[defaultValue].consumable)
+            {
+                return defaultValue;
+            }
             return 0;
         }
 
@@ -189,7 +183,7 @@ namespace Aequus.Common.ModPlayers
                             if (MineAxeTile(i, j, sItem, out int stumpX, out int stumpY))
                             {
                                 // skips to the next lane
-                                i = stumpX + 2; 
+                                i = stumpX + 2;
                                 j = rectangle.Y;
                             }
                         }

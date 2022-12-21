@@ -76,7 +76,20 @@ namespace Aequus
         public static ITypeUnboxer<int> UnboxInt { get; private set; }
         public static ITypeUnboxer<float> UnboxFloat { get; private set; }
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
-        
+
+        public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        public static FileStream CreateDebugFile(string name)
+        {
+            string path = DebugFilePath;
+            Directory.CreateDirectory(path);
+            return File.Create($"{path}{Path.DirectorySeparatorChar}{name}");
+        }
+        public static void OpenDebugFolder() 
+        {
+            Utils.OpenFolder(DebugFilePath);
+        }
+
         public static Vector2 rotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
         {
             float scaleFactor = currentVelocity.Length();

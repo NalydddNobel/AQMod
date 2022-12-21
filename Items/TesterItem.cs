@@ -5,6 +5,7 @@ using Aequus.Content.StatSheet;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
+using Aequus.Tiles;
 using Hjson;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json.Linq;
@@ -13,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
@@ -45,6 +47,13 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
+            var f = AequusHelpers.CreateDebugFile("SilkTouchBlocks.txt");
+            f.WriteText("[Silk Touch Blocks Database]");
+            foreach (var i in AequusTile.TileIDToItemID)
+            {
+                f.WriteText($"\n[Tile: {i.Key} | {TileID.Search.GetName(i.Key.TileType)}{(i.Key.TileStyle > 0 ? $"/{i.Key.TileStyle}" : "")}, Item: {i.Value} | {Lang.GetItemName(i.Value)}");
+            }
+            AequusHelpers.OpenDebugFolder();
             return true;
         }
 

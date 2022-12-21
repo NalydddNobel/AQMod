@@ -15,6 +15,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 
 namespace Aequus.Tiles
 {
@@ -117,23 +118,32 @@ namespace Aequus.Tiles
             {
                 if (i.Value.createTile > -1)
                 {
-                    var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle);
+                    int randomStyleVariation = 1;
+                    var tileData = TileObjectData.GetTileData(i.Value.createTile, i.Value.placeStyle);
+                    if (tileData != null)
+                    {
+                        randomStyleVariation = tileData.RandomStyleRange;
+                    }
                     if (ItemID.Sets.flowerPacketInfo[i.Key] != null)
                     {
                         AddFlowerPacket(i.Key, ItemID.Sets.flowerPacketInfo[i.Key]);
                         continue;
                     }
-                    if (TileIDToItemID.ContainsKey(tileID))
+                    for (int k = 0; k < randomStyleVariation; k++)
                     {
-                        if (!i.Value.consumable || i.Key == TileIDToItemID[tileID])
+                        var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle + k);
+                        if (TileIDToItemID.ContainsKey(tileID))
                         {
+                            if (!i.Value.consumable || i.Key == TileIDToItemID[tileID])
+                            {
+                                continue;
+                            }
+
+                            aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
                             continue;
                         }
-
-                        aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
-                        continue;
+                        TileIDToItemID[tileID] = i.Key;
                     }
-                    TileIDToItemID[tileID] = i.Key;
                 }
                 else if (i.Value.createWall > -1)
                 {

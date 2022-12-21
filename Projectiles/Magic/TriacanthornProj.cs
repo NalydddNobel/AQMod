@@ -90,10 +90,10 @@ namespace Aequus.Projectiles.Magic
                 if (Projectile.alpha < 200)
                 {
                     var v = Vector2.Normalize(Projectile.velocity);
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity,
-                        Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.8f, (int)(Projectile.ai[1] + 1f) % 2);
                     if (Main.myPlayer == Projectile.owner)
                     {
+                        Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity,
+                            Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.8f, (int)(Projectile.ai[1] + 1f) % 2);
                         int index = -(int)(Projectile.ai[0] / 0.8f);
                         if (index % 8 == 0)
                         {
