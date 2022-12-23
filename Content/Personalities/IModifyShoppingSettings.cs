@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.GameContent;
 
-namespace Aequus.Content.NPCHappiness
+namespace Aequus.Content.Personalities
 {
     public interface IModifyShoppingSettings
     {

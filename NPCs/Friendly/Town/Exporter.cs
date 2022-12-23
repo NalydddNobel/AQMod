@@ -1,12 +1,11 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.Utilities;
-using Aequus.Content;
-using Aequus.Content.NPCHappiness;
+using Aequus.Common;
+using Aequus.Content.ExporterQuests;
+using Aequus.Content.Personalities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
@@ -91,7 +90,7 @@ namespace Aequus.NPCs.Friendly.Town
                     }
                     return s;
                 });
-            ExporterQuests.NPCTypesNoSpawns.Add(Type);
+            ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
         public override void SetDefaults()
@@ -225,9 +224,9 @@ namespace Aequus.NPCs.Friendly.Town
         public override string GetChat()
         {
             var player = Main.LocalPlayer;
-            var chat = new SelectableChat("Mods.Aequus.Chat.Exporter.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Exporter.");
 
-            string gender = player.Gender();
+            string gender = player.GenderString();
             chat.Add("Basic.0");
             chat.Add("Basic.1");
             chat.Add("Basic.2");
@@ -330,107 +329,56 @@ namespace Aequus.NPCs.Friendly.Town
             }
             else
             {
-                for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
-                {
-                    if (QuestItem(Main.LocalPlayer, i))
-                    {
-                        OnQuestCompleted(Main.LocalPlayer, i);
-                        return;
-                    }
-                }
-                OnQuestFailed(Main.LocalPlayer);
+                CheckQuest();
             }
         }
-        public bool QuestItem(Player player, int i)
+        public static void CheckQuest()
         {
-            return !player.inventory[i].IsAir && player.inventory[i].createTile >= TileID.Dirt && ExporterQuests.QuestItems.Contains(player.inventory[i].type);
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
+            {
+                if (GetQuestItem(Main.LocalPlayer.inventory[i], out var info))
+                {
+                    info.SpawnLoot(Main.LocalPlayer, i);
+                    info.OnQuestCompleted(Main.LocalPlayer, i);
+                    OnQuestCompleted(Main.LocalPlayer, i);
+                    return;
+                }
+            }
+            OnQuestFailed(Main.LocalPlayer);
         }
-        public void OnQuestCompleted(Player player, int i)
+        public static bool GetQuestItem(Item item, out IThieveryItemInfo info)
         {
+            info = null;
+            return !item.IsAir && ExporterQuestSystem.QuestItems.TryGetValue(item.type, out info);
+        }
+        public static void OnQuestCompleted(Player player, int i)
+        {
+            ExporterQuestSystem.QuestsCompleted++;
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                PacketSystem.Send(PacketType.ExporterQuestsCompleted);
+            }
+
             player.inventory[i].stack--;
             if (player.inventory[i].stack <= 0)
             {
                 player.inventory[i].TurnToAir();
             }
-
-            InnerOnQuestCompleted_SpawnLoot(player, i);
-
             SoundEngine.PlaySound(SoundID.Grab);
             int type = Main.rand.Next(6);
             if (type == 5)
             {
-                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.Gender()}");
+                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }
             Main.npcChatText = AequusText.GetTextWith("Chat.Exporter.ThieveryComplete." + type, new { ItemName = player.inventory[i].Name });
         }
-        public void InnerOnQuestCompleted_SpawnLoot(Player player, int i)
-        {
-            var source = player.GetSource_GiftOrReward("Robster");
-
-            if (Main.rand.NextBool(4))
-            {
-                player.QuickSpawnItem(source, ModContent.ItemType<GoldenRoulette>(), 1);
-            }
-            else
-            {
-                player.QuickSpawnItem(source, ModContent.ItemType<Roulette>(), 1);
-            }
-
-            int amtRolled = Math.Max(ExporterQuests.QuestsCompleted / 15, 1);
-            for (int k = 0; k < amtRolled; k++)
-            {
-                int roulette = SpawnLoot_ChooseRoulette(player, i);
-                if (roulette != 0)
-                {
-                    player.QuickSpawnItem(source, roulette, 1);
-                }
-            }
-
-            int extraMoney = Item.silver * 3 * ExporterQuests.QuestsCompleted;
-            AequusHelpers.DropMoney(source, player.getRect(), Main.rand.Next(Item.silver * 50 + extraMoney / 2, Item.gold + extraMoney));
-
-            ExporterQuests.QuestsCompleted++;
-
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                PacketSystem.Send(PacketType.ExporterQuestsCompleted);
-            }
-        }
-        public int SpawnLoot_ChooseRoulette(Player player, int i)
-        {
-            var choices = new List<int>();
-            if (Main.rand.NextBool(3))
-            {
-                choices.Add(ModContent.ItemType<Roulette>());
-                choices.Add(ModContent.ItemType<GoldenRoulette>());
-            }
-            if (ExporterQuests.QuestsCompleted > 2)
-            {
-                choices.Add(ModContent.ItemType<SnowRoulette>());
-            }
-            if (ExporterQuests.QuestsCompleted > 4)
-            {
-                choices.Add(ModContent.ItemType<DesertRoulette>());
-                choices.Add(ModContent.ItemType<OceanSlotMachine>());
-            }
-            if (ExporterQuests.QuestsCompleted > 8)
-            {
-                choices.Add(ModContent.ItemType<JungleSlotMachine>());
-                choices.Add(ModContent.ItemType<SkyRoulette>());
-            }
-            if (ExporterQuests.QuestsCompleted > 14 && AequusWorld.downedEventDemon)
-            {
-                choices.Add(ModContent.ItemType<ShadowRoulette>());
-            }
-            return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;
-        }
-        public void OnQuestFailed(Player player)
+        public static void OnQuestFailed(Player player)
         {
             int type = Main.rand.Next(3);
             if (type == 2)
             {
-                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.Gender()}");
+                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }
             Main.npcChatText = AequusText.GetTextWith($"Chat.Exporter.ThieveryFailed.{type}", new { WorldName = Main.worldName, });
@@ -471,7 +419,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            string gender = player.Gender();
+            string gender = player.GenderString();
             AequusHelpers.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", AequusText.GetText($"TownNPCMood.Exporter.Content_{gender}"));
             AequusHelpers.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", AequusText.GetText($"TownNPCMood.Exporter.NoHome_{gender}"));
             AequusHelpers.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", AequusText.GetText($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));

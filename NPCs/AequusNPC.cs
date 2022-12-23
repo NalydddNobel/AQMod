@@ -46,6 +46,7 @@ namespace Aequus.NPCs
         public bool disabledContactDamage;
 
         public int oldLife;
+        public float statAttackDamage;
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
@@ -245,6 +246,7 @@ namespace Aequus.NPCs
             {
                 heatDamage = true;
             }
+            statAttackDamage = 1f;
             noAITest = false;
         }
 
@@ -270,6 +272,7 @@ namespace Aequus.NPCs
         public override void ResetEffects(NPC npc)
         {
             disabledContactDamage = false;
+            statAttackDamage = 1f;
             if (nightfallStacks > 0 && !npc.HasBuff<NightfallDebuff>())
             {
                 nightfallStacks = 0;
@@ -422,8 +425,15 @@ namespace Aequus.NPCs
             if (npc.HasBuff<BoneRingWeakness>())
             {
                 byte a = drawColor.A;
-                drawColor = (drawColor * 0.9f).UseA(a);
-                if (npc.life >= 0 && Main.rand.NextBool(20))
+                drawColor = (drawColor * 0.8f).UseA(a);
+                if (Main.GameUpdateCount % 10 == 0)
+                {
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Slush, Alpha: 160, Scale: Main.rand.NextFloat(0.6f, 1f));
+                    d.velocity = npc.velocity.SafeNormalize(Vector2.Zero);
+                    d.noGravity = true;
+                    d.fadeIn = d.scale + 0.5f;
+                }
+                if (npc.life >= 0 && Main.GameUpdateCount % 30 == 0)
                 {
                     npc.HitEffect(0, 10);
                 }
@@ -444,16 +454,18 @@ namespace Aequus.NPCs
                     }
                 }
             }
-            if (npc.life >= 0 && npc.HasBuff<BattleAxeBleeding>())
+            if (npc.HasBuff<BattleAxeBleeding>())
             {
-                if (Main.rand.NextBool(3))
+                if (Main.GameUpdateCount % 10 == 0)
                 {
-                    if (Main.rand.NextBool(5))
-                        npc.HitEffect(0, 4);
                     bool foodParticle = Main.rand.NextBool();
                     var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, foodParticle ? DustID.Blood : DustID.FoodPiece, newColor: foodParticle ? new Color(200, 20, 30, 100) : default);
                     d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(1f, 2f);
                     d.velocity += npc.velocity * 0.5f;
+                }
+                if (npc.life >= 0 && Main.GameUpdateCount % 50 == 0)
+                {
+                    npc.HitEffect(0, 10);
                 }
             }
         }

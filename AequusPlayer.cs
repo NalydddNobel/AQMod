@@ -6,7 +6,6 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.Players;
-using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
@@ -1420,10 +1419,7 @@ namespace Aequus
 
         public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
         {
-            if (npc.HasBuff<BoneRingWeakness>())
-            {
-                damage = (int)(damage * WeaknessDamageMultiplier);
-            }
+            damage = (int)(damage * npc.Aequus().statAttackDamage);
 
             if (ghostHealthDR > 0f)
             {
@@ -1473,10 +1469,7 @@ namespace Aequus
             var aequus = proj.Aequus();
             if (aequus.HasNPCOwner)
             {
-                if (Main.npc[aequus.sourceNPC].HasBuff<BoneRingWeakness>())
-                {
-                    damage = (int)(damage * WeaknessDamageMultiplier);
-                }
+                damage = (int)(damage * Main.npc[aequus.sourceNPC].Aequus().statAttackDamage);
             }
             if (proj.Aequus().heatDamage && Player.HasBuff<FrostBuff>())
             {
@@ -1673,9 +1666,24 @@ namespace Aequus
             {
                 target.AddBuff(BuffID.OnFire3, 360 * accBoneBurningRing);
             }
-            if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(4 / accBoneRing, 1)))
+            if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(6 / accBoneRing, 1)))
             {
-                target.AddBuff(ModContent.BuffType<BoneRingWeakness>(), 360 * accBoneRing);
+                AequusBuff.ApplyBuff<BoneRingWeakness>(target, 300 * accBoneRing, out bool canPlaySound);
+                if (canPlaySound)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        PacketSystem.SyncSound(SoundPacket.InflictWeakness, target.Center);
+                    }
+                    SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, target.Center);
+                }
+                for (int i = 0; i < 12; i++)
+                {
+                    var v = Main.rand.NextVector2Unit();
+                    var d = Dust.NewDustPerfect(target.Center + v * new Vector2(Main.rand.NextFloat(target.width / 2f + 16f), Main.rand.NextFloat(target.height / 2f + 16f)), DustID.AncientLight, v * 8f);
+                    d.noGravity = true;
+                    d.noLightEmittence = true;
+                }
             }
         }
 

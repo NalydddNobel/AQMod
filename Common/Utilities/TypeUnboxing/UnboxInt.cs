@@ -1,18 +1,18 @@
-﻿namespace Aequus.Common.Utilities
+﻿namespace Aequus.Common.Utilities.TypeUnboxing
 {
-    public struct UnboxFloat : ITypeUnboxer<float>
+    public struct UnboxInt : ITypeUnboxer<int>
     {
-        public bool TryUnbox(object obj, out float value)
+        public bool TryUnbox(object obj, out int value)
         {
-            value = default(float);
-            if (obj is float)
+            value = default(int);
+            if (obj is int)
             {
-                value = (float)obj;
+                value = (int)obj;
                 return true;
             }
             if (obj is uint)
             {
-                value = (uint)obj;
+                value = (int)(uint)obj;
                 return true;
             }
             if (obj is byte)
@@ -35,14 +35,14 @@
                 value = (short)obj;
                 return true;
             }
-            if (obj is int)
+            if (obj is float)
             {
-                value = (int)obj;
+                value = (int)(float)obj;
                 return true;
             }
             if (obj is double)
             {
-                value = (float)(double)obj;
+                value = (int)(double)obj;
                 return true;
             }
             return false;

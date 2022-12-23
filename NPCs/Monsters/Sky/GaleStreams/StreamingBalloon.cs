@@ -1,5 +1,5 @@
 ﻿using Aequus.Biomes;
-using Aequus.Content;
+using Aequus.Content.WorldGeneration.Seeds;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;

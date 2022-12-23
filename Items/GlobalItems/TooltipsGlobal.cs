@@ -1,8 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
-using Aequus.Content;
+using Aequus.Content.ExporterQuests;
 using Aequus.Content.ItemRarities;
-using Aequus.Items.Fish.Quest;
 using Aequus.Items.Prefixes;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
@@ -60,17 +59,6 @@ namespace Aequus.Items.GlobalItems
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
 
-                if (item.type == ItemID.SoulofMight)
-                {
-                    foreach (var tt in tooltips)
-                    {
-                        if (tt.Name == "Tooltip0")
-                        {
-                            tt.Text = AequusText.GetText("ItemTooltip.Terraria_SoulofMight");
-                        }
-                    }
-                }
-
                 if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
                     tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
@@ -94,7 +82,7 @@ namespace Aequus.Items.GlobalItems
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
                 }
 
-                if (ExporterQuests.QuestItems.Contains(item.type))
+                if (ExporterQuestSystem.QuestItems.ContainsKey(item.type))
                 {
                     if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
                         tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
@@ -166,7 +154,7 @@ namespace Aequus.Items.GlobalItems
             {
             }
         }
-        public void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
+        public static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
         {
             var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
 
@@ -195,7 +183,7 @@ namespace Aequus.Items.GlobalItems
                     text += $" ({drop.stackMin} - {drop.stackMax})";
                 }
                 text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
-                tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId), text));
+                tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId), text));
                 if (drop.conditions != null && drop.conditions.Count > 0)
                 {
                     foreach (var cond in drop.conditions)
@@ -210,7 +198,7 @@ namespace Aequus.Items.GlobalItems
                         if (!string.IsNullOrEmpty(extraDesc))
                             condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
 
-                        tooltips.Add(new TooltipLine(Mod, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
+                        tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
                     }
                 }
             }

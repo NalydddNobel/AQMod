@@ -20,10 +20,9 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                var manager = ModContent.GetInstance<FlawlessSystem>();
-                for (int i = 0; i < manager.DamagedPlayers.Count; i++)
+                for (int i = 0; i < FlawlessFightSystem.DamagedPlayers.Count; i++)
                 {
-                    damagedPlayers[manager.DamagedPlayers[i]] = true;
+                    damagedPlayers[FlawlessFightSystem.DamagedPlayers[i]] = true;
                 }
             }
         }

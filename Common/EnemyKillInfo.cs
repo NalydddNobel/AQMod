@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Debuffs;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 

@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Networking;
-using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.Misc;

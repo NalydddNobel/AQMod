@@ -1,7 +1,8 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
-using Aequus.Content.NPCHappiness;
+using Aequus.Content.Personalities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
@@ -201,7 +202,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
 
             var player = Main.LocalPlayer;
-            var chat = new SelectableChat("Mods.Aequus.Chat.Physicist.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Physicist.");
 
             if (GlimmerBiome.EventActive && Main.rand.NextBool())
             {

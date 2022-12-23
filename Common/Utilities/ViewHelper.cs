@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Aequus.Common.Utilities
 {
-    public static class OrthographicView
+    public static class ViewHelper
     {
         public const float Z_VIEW = -20f;
 

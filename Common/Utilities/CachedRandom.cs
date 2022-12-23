@@ -3,19 +3,19 @@ using Terraria.Utilities;
 
 namespace Aequus.Common.Utilities
 {
-    public class MiniRandom
+    public class CachedRandom
     {
-        private int seedCache;
-        private byte[] samples;
-        private int sampleIndex;
+        public int seedCache;
+        public byte[] samples;
+        public int sampleIndex;
 
-        public MiniRandom(int seed, int capacity = byte.MaxValue + 1)
+        public CachedRandom(int seed, int capacity = byte.MaxValue + 1)
         {
             seedCache = seed;
             samples = new byte[byte.MaxValue + 1];
             new UnifiedRandom(seed).NextBytes(samples);
         }
-        public MiniRandom(string seed, int capacity = byte.MaxValue + 1) : this(seed.GetHashCode(), capacity)
+        public CachedRandom(string seed, int capacity = byte.MaxValue + 1) : this(seed.GetHashCode(), capacity)
         {
         }
 

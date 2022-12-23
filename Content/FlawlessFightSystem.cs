@@ -4,13 +4,19 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content
 {
-    public class FlawlessSystem : ModSystem
+    public class FlawlessFightSystem : ModSystem
     {
-        public readonly List<byte> DamagedPlayers;
+        public static List<byte> DamagedPlayers { get; private set; }
 
-        public FlawlessSystem()
+        public override void Load()
         {
             DamagedPlayers = new List<byte>();
+        }
+
+        public override void Unload()
+        {
+            DamagedPlayers?.Clear();
+            DamagedPlayers = null;
         }
 
         public override void PostUpdatePlayers()

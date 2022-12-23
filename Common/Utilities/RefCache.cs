@@ -2,23 +2,15 @@
 
 namespace Aequus.Common.Utilities
 {
-    public class ValueCache<T>
+    public class RefCache<T>
     {
-        private sealed class InvalidCacheException : Exception
-        {
-            public InvalidCacheException(string text) : base(text)
-            {
-            }
-        }
-
-
         private readonly RefFunc<T> _ref;
         private T _myValue;
         private T _origValue;
         private bool _caching;
         public bool IsCaching => _caching;
 
-        public ValueCache(RefFunc<T> reference)
+        public RefCache(RefFunc<T> reference)
         {
             _ref = reference;
             _myValue = default(T);
@@ -31,7 +23,7 @@ namespace Aequus.Common.Utilities
             if (_caching)
             {
                 EndCaching();
-                throw new InvalidCacheException("Trying to set cached data while there is already data being cached");
+                throw new Exception("Trying to set cached data while there is already data being cached");
             }
             _myValue = value;
             _origValue = _ref.Invoke();
@@ -43,7 +35,7 @@ namespace Aequus.Common.Utilities
         {
             if (!_caching)
             {
-                throw new InvalidCacheException("Cannot repair reference data when there is no cache");
+                throw new Exception("Cannot repair reference data when there is no cache");
             }
             _ref.Invoke() = _origValue;
         }
@@ -52,7 +44,7 @@ namespace Aequus.Common.Utilities
         {
             if (!_caching)
             {
-                throw new InvalidCacheException("Cannot disrepair reference data when there is no cache");
+                throw new Exception("Cannot disrepair reference data when there is no cache");
             }
             _ref.Invoke() = _myValue;
         }
@@ -61,7 +53,7 @@ namespace Aequus.Common.Utilities
         {
             if (!_caching)
             {
-                throw new InvalidCacheException("Cannot clear cached data when there is no cache");
+                throw new Exception("Cannot clear cached data when there is no cache");
             }
             _ref.Invoke() = _origValue;
             _myValue = default(T);

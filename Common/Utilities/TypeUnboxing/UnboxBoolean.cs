@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Utilities
+﻿namespace Aequus.Common.Utilities.TypeUnboxing
 {
     public struct UnboxBoolean : ITypeUnboxer<bool>
     {

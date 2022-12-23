@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
@@ -12,11 +11,19 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Necromancy
 {
-    public class NecromancyDatabase : LoadableType, IAddRecipes
+    public class NecromancyDatabase : ModType, IAddRecipes
     {
         public static List<int> NecromancyDebuffs { get; private set; }
         public static Dictionary<int, GhostInfo> NPCs { get; private set; }
         public static List<string> AutogeneratorIgnoreMods { get; private set; }
+
+        protected sealed override void Register()
+        {
+        }
+        public sealed override void SetupContent()
+        {
+            SetStaticDefaults();
+        }
 
         public override void Load()
         {
@@ -145,7 +152,7 @@ namespace Aequus.Content.Necromancy
                     type = -1;
             }
 
-            switch (type) 
+            switch (type)
             {
                 case 1:
                     return GhostInfo.One.WithAggro(aggressor);

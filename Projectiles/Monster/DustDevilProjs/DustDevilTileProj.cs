@@ -224,8 +224,8 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             var t = TextureAssets.Tile[tileTexture].Value;
             var frame = new Rectangle(162, 54, 16, 16);
             var origin = frame.Size() / 2f;
-            var drawCoords = OrthographicView.GetViewPoint(Projectile.position + off, Z * 0.05f);
-            var drawScale = OrthographicView.GetViewScale(Projectile.scale, Z * 0.05f);
+            var drawCoords = ViewHelper.GetViewPoint(Projectile.position + off, Z * 0.05f);
+            var drawScale = ViewHelper.GetViewScale(Projectile.scale, Z * 0.05f);
 
             Main.spriteBatch.Draw(t, drawCoords - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords, lightColor) * Projectile.Opacity, Projectile.rotation, origin, drawScale * 1.1f, SpriteEffects.None, 0f);
             return false;

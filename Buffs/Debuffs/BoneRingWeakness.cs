@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -7,6 +8,8 @@ namespace Aequus.Buffs.Debuffs
     public class BoneRingWeakness : ModBuff
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Weak;
+
+        public static SoundStyle InflictDebuffSound => Aequus.GetSound("inflictweakness");
 
         public override void SetStaticDefaults()
         {
@@ -26,6 +29,7 @@ namespace Aequus.Buffs.Debuffs
         public override void Update(NPC npc, ref int buffIndex)
         {
             npc.StatSpeed() *= 0.75f;
+            npc.Aequus().statAttackDamage *= 0.9f;
         }
     }
 }

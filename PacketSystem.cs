@@ -3,10 +3,10 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
-using Aequus.Content;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.DronePylons;
+using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.Camera;
@@ -522,7 +522,7 @@ namespace Aequus
                     break;
 
                 case PacketType.ExporterQuestsCompleted:
-                    ExporterQuests.QuestsCompleted = reader.ReadUInt16();
+                    ExporterQuestSystem.QuestsCompleted = reader.ReadUInt16();
                     break;
 
                 case PacketType.GlimmerStatus:
@@ -566,6 +566,10 @@ namespace Aequus
 
                             case SoundPacket.InflictNightfall:
                                 SoundEngine.PlaySound(NightfallDebuff.InflictDebuffSound, position);
+                                break;
+
+                            case SoundPacket.InflictWeakness:
+                                SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, position);
                                 break;
                         }
                     }

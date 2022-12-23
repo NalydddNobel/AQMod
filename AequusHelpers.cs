@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
@@ -1848,7 +1849,7 @@ namespace Aequus
             NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
-        public static string Gender(this Player player)
+        public static string GenderString(this Player player)
         {
             return player.Male ? "Male" : "Female";
         }

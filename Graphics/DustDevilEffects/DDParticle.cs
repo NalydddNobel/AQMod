@@ -96,8 +96,8 @@ namespace Aequus.Graphics.DustDevilEffects
             float zMult = 0.01f;
             if (Identifier % 50 == 0)
                 zMult = 0.1f;
-            var drawPosition = OrthographicView.GetViewPoint(Dimension2D, Position.Z * zMult, new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f)) - Main.screenPosition;
-            var drawScale = OrthographicView.GetViewScale(Scale, Position.Z * zMult);
+            var drawPosition = ViewHelper.GetViewPoint(Dimension2D, Position.Z * zMult, new Vector2(Main.screenPosition.X + Main.screenWidth / 2f, Main.screenPosition.Y + Main.screenHeight / 2f)) - Main.screenPosition;
+            var drawScale = ViewHelper.GetViewScale(Scale, Position.Z * zMult);
 
             float opacity = 1f;
             if (timeAlive < 80)

@@ -40,6 +40,7 @@
         InflictBurning,
         InflictBurning2,
         InflictNightfall,
+        InflictWeakness,
         Count
     }
 }

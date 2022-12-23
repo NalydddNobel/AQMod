@@ -1,7 +1,8 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
-using Aequus.Content.NPCHappiness;
+using Aequus.Content.Personalities;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable;
@@ -269,7 +270,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override string GetChat()
         {
             var player = Main.LocalPlayer;
-            var chat = new SelectableChat("Mods.Aequus.Chat.Carpenter.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
 
             if (GlimmerBiome.EventActive && Main.rand.NextBool())
             {

@@ -103,12 +103,12 @@ namespace Aequus.Items.Accessories
                 for (int i = 0; i < arr.Length; i++)
                 {
                     var v = arr[i];
-                    float layerValue = OrthographicView.GetViewScale(1f, v.Z * DimensionZMultiplier);
+                    float layerValue = ViewHelper.GetViewScale(1f, v.Z * DimensionZMultiplier);
                     if (rule(layerValue))
                     {
                         var center = render.Position + new Vector2(v.X, v.Y);
-                        var dd = new DrawData(texture, OrthographicView.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)).UseA(200), 0f, orig,
-                            OrthographicView.GetViewScale(render.Scale, v.Z * DimensionZMultiplier), SpriteEffects.None, 0);
+                        var dd = new DrawData(texture, ViewHelper.GetViewPoint(center, v.Z * DimensionZMultiplier) - Main.screenPosition, frame, Lighting.GetColor((int)(center.X / 16f), (int)(center.Y / 16f)).UseA(200), 0f, orig,
+                            ViewHelper.GetViewScale(render.Scale, v.Z * DimensionZMultiplier), SpriteEffects.None, 0);
                         if (dye != 0)
                         {
                             GameShaders.Armor.Apply(dye, render.playerRef, dd);

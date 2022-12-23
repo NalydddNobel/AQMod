@@ -602,9 +602,9 @@ namespace Aequus.Tiles
             return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
         }
 
-        public static bool CheckForType(Rectangle rect, ArrayInterpreter<int> type)
+        public static bool CheckForType(Rectangle rect, params int[] type)
         {
-            return !CheckTiles(rect, (i, j, tile) => !tile.HasTile || !type.Arr.ContainsAny(tile.TileType));
+            return !CheckTiles(rect, (i, j, tile) => !tile.HasTile || !type.ContainsAny(tile.TileType));
         }
         public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
         {

@@ -2,7 +2,7 @@
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.NPCHappiness
+namespace Aequus.Content.Personalities
 {
     public class HappinessManager : ILoadable
     {

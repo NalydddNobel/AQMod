@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,6 +13,8 @@ namespace Aequus.Items.Misc
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 25;
+            ItemID.Sets.AnimatesAsSoul[Type] = true;
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 5));
         }
 
         public override void SetDefaults()

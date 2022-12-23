@@ -118,7 +118,7 @@ namespace Aequus.Projectiles.Misc.Pets
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Projectile.Center;
 
-            var drawPosition = OrthographicView.GetViewPoint(new Vector2(center.X + orb.X, center.Y + orb.Y), orb.Z * 0.0314f) - Main.screenPosition;
+            var drawPosition = ViewHelper.GetViewPoint(new Vector2(center.X + orb.X, center.Y + orb.Y), orb.Z * 0.0314f) - Main.screenPosition;
             int frameNumber = 1;
             if (scale <= 0.925f)
                 frameNumber = 2;
@@ -139,7 +139,7 @@ namespace Aequus.Projectiles.Misc.Pets
             for (int i = 0; i < 5; i++)
             {
                 orbs[i] = Vector3.Transform(new Vector3(frame.Width, 0f, 0f), Matrix.CreateFromYawPitchRoll(innerRingPitch, innerRingRoll, innerRingRotation + rotMult * i));
-                orbScales[i] = OrthographicView.GetViewScale(Projectile.scale, orbs[i].Z * 0.157f);
+                orbScales[i] = ViewHelper.GetViewScale(Projectile.scale, orbs[i].Z * 0.157f);
                 if (orbs[i].Z > 0f)
                 {
                     RenderOrb(orbs[i], orbScales[i], frame);

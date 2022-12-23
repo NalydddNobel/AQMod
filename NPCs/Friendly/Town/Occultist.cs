@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.Utilities;
-using Aequus.Content;
-using Aequus.Content.NPCHappiness;
+using Aequus.Common;
+using Aequus.Content.ExporterQuests;
+using Aequus.Content.Personalities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
@@ -84,7 +84,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
                 .UseColor(Color.DarkRed * 1.5f);
-            ExporterQuests.NPCTypesNoSpawns.Add(Type);
+            ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
         public override void SetDefaults()
@@ -241,7 +241,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override string GetChat()
         {
             var player = Main.LocalPlayer;
-            var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.");
 
             if (Main.hardMode)
             {
@@ -464,7 +464,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public static string RollChat(string dontRoll)
         {
-            var chat = new SelectableChat("Mods.Aequus.Chat.Occultist.Hostile.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.Hostile.");
 
             for (int i = 0; i <= 4; i++)
             {
@@ -502,7 +502,7 @@ namespace Aequus.NPCs.Friendly.Town
             return chat.Get();
         }
 
-        public static void AddNonDefaultChats(SelectableChat chat)
+        public static void AddNonDefaultChats(SelectableChatHelper chat)
         {
             CheckItem(ItemID.LightsBane, "LightsBane", chat);
             CheckItem(ItemID.DemonBow, "DemonBow", chat);
@@ -520,7 +520,7 @@ namespace Aequus.NPCs.Friendly.Town
                 chat.Add("Bunny");
             }
         }
-        public static void CheckItem(int itemType, string text, SelectableChat chat)
+        public static void CheckItem(int itemType, string text, SelectableChatHelper chat)
         {
             if (Main.LocalPlayer.HasItem(itemType))
             {

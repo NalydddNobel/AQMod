@@ -1,4 +1,4 @@
-﻿using Aequus.Content;
+﻿using Aequus.Content.ExporterQuests;
 using Aequus.Items.Placeable.Furniture.Jeweled;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,7 +29,7 @@ namespace Aequus.Tiles.Furniture.Jeweled
             HitSound = SoundID.Dig;
             DustType = DustID.Torch;
 
-            ExporterQuests.TilePlacements.Add(Type, new ExporterQuests.SolidTopPlacement());
+            ExporterQuestSystem.TilePlacements.Add(Type, new PlacementSolidTop());
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

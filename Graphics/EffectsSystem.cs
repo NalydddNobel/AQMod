@@ -63,7 +63,7 @@ namespace Aequus.Graphics
 
         public static StaticMiscShaderInfo VerticalGradient { get; private set; }
 
-        public static MiniRandom EffectRand { get; private set; }
+        public static CachedRandom EffectRand { get; private set; }
 
         public static ParticleRenderer ParticlesBehindAllNPCs { get; private set; }
         public static ParticleRenderer ParticlesBehindProjs { get; private set; }
@@ -97,7 +97,7 @@ namespace Aequus.Graphics
             ProjsBehindProjs = new LegacyDrawList();
             ProjsBehindTiles = new LegacyDrawList();
             Shake = new ScreenShake();
-            EffectRand = new MiniRandom("Split".GetHashCode(), capacity: 256 * 4);
+            EffectRand = new CachedRandom("Split".GetHashCode(), capacity: 256 * 4);
             ParticlesBehindAllNPCs = new ParticleRenderer();
             ParticlesBehindProjs = new ParticleRenderer();
             ParticlesBehindPlayers = new ParticleRenderer();

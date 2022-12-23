@@ -7,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content
+namespace Aequus.Content.WorldGeneration.Seeds
 {
     public class ChristmasSeedSystem : ModSystem
     {
@@ -347,7 +347,7 @@ namespace Aequus.Content
                 {
                     t.WallType = (ushort)wallID;
                 }
-                else if ((y + WorldGen.genRand.Next(15)) > (int)WorldGen.worldSurface)
+                else if (y + WorldGen.genRand.Next(15) > (int)WorldGen.worldSurface)
                 {
                     t.WallType = WallID.IceUnsafe;
                 }
@@ -430,7 +430,7 @@ namespace Aequus.Content
             int wall = Main.tile[x, y].WallType;
             byte paintWall = Main.tile[x, y].WallColor;
             ChristmasSeedSystem.CheckIce(x, y);
-            if (tileID != Main.tile[x, y].TileType || wall != Main.tile[x, y].WallType || paintWall != Main.tile[x,y].WallColor || paint != Main.tile[x, y].TileColor)
+            if (tileID != Main.tile[x, y].TileType || wall != Main.tile[x, y].WallType || paintWall != Main.tile[x, y].WallColor || paint != Main.tile[x, y].TileColor)
             {
                 WorldGen.TileFrame(x, y);
                 if (Main.netMode != NetmodeID.SinglePlayer)

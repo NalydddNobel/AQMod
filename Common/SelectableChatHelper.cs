@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 
-namespace Aequus.Common.Utilities
+namespace Aequus.Common
 {
-    public struct SelectableChat
+    public struct SelectableChatHelper
     {
         private readonly string AddKey;
         private readonly List<(string, Func<object>)> Text;
 
-        public SelectableChat(string add = "Mods.Aequus.")
+        public SelectableChatHelper(string add = "Mods.Aequus.")
         {
             AddKey = add;
             Text = new List<(string, Func<object>)>();
         }
 
-        public SelectableChat Add(string key, Func<object> getObj)
+        public SelectableChatHelper Add(string key, Func<object> getObj)
         {
             Text.Add((key, getObj));
             return this;
         }
 
-        public SelectableChat Add(string key, object obj)
+        public SelectableChatHelper Add(string key, object obj)
         {
             return Add(key, () => obj);
         }
 
-        public SelectableChat Add(string key)
+        public SelectableChatHelper Add(string key)
         {
             return Add(key, null);
         }

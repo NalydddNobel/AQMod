@@ -1,5 +1,5 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common.Utilities;
+using Aequus.Common;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
@@ -382,7 +382,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override string GetChat()
         {
-            var chat = new SelectableChat("Mods.Aequus.Chat.SkyMerchant.");
+            var chat = new SelectableChatHelper("Mods.Aequus.Chat.SkyMerchant.");
 
             chat.Add("Basic.0");
             chat.Add("Basic.1");
