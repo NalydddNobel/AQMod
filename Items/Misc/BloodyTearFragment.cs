@@ -49,6 +49,16 @@ namespace Aequus.Items.Misc
                 .Register();
             Recipe.Create(ItemID.BloodHamaxe)
                 .AddIngredient(Type, 12)
+                .AddIngredient(ItemID.CobaltBar, 8)
+                .AddTile(TileID.Anvils)
+                .Register();
+            Recipe.Create(ItemID.BloodHamaxe)
+                .AddIngredient(Type, 12)
+                .AddIngredient(ItemID.PalladiumBar, 8)
+                .AddTile(TileID.Anvils)
+                .Register();
+            Recipe.Create(ItemID.DripplerFlail)
+                .AddIngredient(Type, 12)
                 .AddIngredient(ItemID.SoulofLight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

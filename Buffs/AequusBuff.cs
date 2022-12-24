@@ -213,7 +213,7 @@ namespace Aequus.Buffs
             return !preventRightClick.Contains(type);
         }
 
-        public static bool AddBuffSpecial(NPC target, int type, int time, out bool canPlaySound)
+        public static bool ApplyBuff(NPC target, int type, int time, out bool canPlaySound)
         {
             canPlaySound = false;
             if (target.life <= 0)
@@ -232,7 +232,7 @@ namespace Aequus.Buffs
 
         public static bool ApplyBuff<T>(NPC target, int time, out bool canPlaySound) where T : ModBuff
         {
-            return AddBuffSpecial(target, ModContent.BuffType<T>(), time, out canPlaySound);
+            return ApplyBuff(target, ModContent.BuffType<T>(), time, out canPlaySound);
         }
 
         public static bool AddStaticImmunity(int npc, params int[] buffList)

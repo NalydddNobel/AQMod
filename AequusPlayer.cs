@@ -1677,12 +1677,15 @@ namespace Aequus
                     }
                     SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, target.Center);
                 }
-                for (int i = 0; i < 12; i++)
+                if (canPlaySound || target.HasBuff<BoneRingWeakness>())
                 {
-                    var v = Main.rand.NextVector2Unit();
-                    var d = Dust.NewDustPerfect(target.Center + v * new Vector2(Main.rand.NextFloat(target.width / 2f + 16f), Main.rand.NextFloat(target.height / 2f + 16f)), DustID.AncientLight, v * 8f);
-                    d.noGravity = true;
-                    d.noLightEmittence = true;
+                    for (int i = 0; i < 12; i++)
+                    {
+                        var v = Main.rand.NextVector2Unit();
+                        var d = Dust.NewDustPerfect(target.Center + v * new Vector2(Main.rand.NextFloat(target.width / 2f + 16f), Main.rand.NextFloat(target.height / 2f + 16f)), DustID.AncientLight, v * 8f);
+                        d.noGravity = true;
+                        d.noLightEmittence = true;
+                    }
                 }
             }
         }
