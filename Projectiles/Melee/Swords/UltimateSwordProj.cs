@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -130,7 +131,25 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
-            target.AddBuff(ModContent.BuffType<AethersWrath>(), 1200);
+            AequusBuff.ApplyBuff<AethersWrath>(target, 360, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictAetherFire, target.Center);
+                }
+                SoundEngine.PlaySound(AethersWrath.InflictDebuffSound, target.Center);
+            }
+            if (canPlaySound || target.HasBuff<AethersWrath>())
+            {
+                for (int i = 0; i < 12; i++)
+                {
+                    var v = Main.rand.NextVector2Unit();
+                    var d = Dust.NewDustPerfect(target.Center + v * new Vector2(Main.rand.NextFloat(target.width / 2f + 16f), Main.rand.NextFloat(target.height / 2f + 16f)), DustID.AncientLight, v * 8f);
+                    d.noGravity = true;
+                    d.noLightEmittence = true;
+                }
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

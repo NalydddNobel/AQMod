@@ -571,6 +571,10 @@ namespace Aequus
                             case SoundPacket.InflictWeakness:
                                 SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, position);
                                 break;
+
+                            case SoundPacket.InflictAetherFire:
+                                SoundEngine.PlaySound(AethersWrath.InflictDebuffSound, position);
+                                break;
                         }
                     }
                     break;

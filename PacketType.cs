@@ -41,6 +41,7 @@
         InflictBurning2,
         InflictNightfall,
         InflictWeakness,
+        InflictAetherFire,
         Count
     }
 }

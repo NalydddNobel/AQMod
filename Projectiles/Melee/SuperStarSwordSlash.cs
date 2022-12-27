@@ -45,6 +45,20 @@ namespace Aequus.Projectiles.Melee
 
         public override void AI()
         {
+            var r = Utils.CenteredRectangle(Projectile.Center, new Vector2(Projectile.width / 4f, Projectile.height / 4f));
+            if (Collision.SolidCollision(r.TopLeft(), r.Width, r.Height))
+            {
+                Projectile.velocity *= 0.95f;
+                Projectile.damage -= 1;
+                if (Projectile.timeLeft > 32)
+                    Projectile.timeLeft--;
+                if (Projectile.damage < 0)
+                {
+                    if (Projectile.velocity.Length() > 2f)
+                        Projectile.velocity *= 0.9f;
+                    Projectile.damage = 0;
+                }
+            }
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             if (Projectile.timeLeft < 32)
             {

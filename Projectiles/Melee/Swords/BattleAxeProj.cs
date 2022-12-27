@@ -18,7 +18,6 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 90;
             Projectile.height = 90;
-            Projectile.ownerHitCheck = true;
             hitboxOutwards = 50;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }

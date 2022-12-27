@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,6 +7,8 @@ namespace Aequus.Buffs.Debuffs
 {
     public class AethersWrath : ModBuff
     {
+        public static SoundStyle InflictDebuffSound => Aequus.GetSound("inflictaetherfire", volume: 1f, pitch: 0.2f, variance: 0.3f);
+
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;

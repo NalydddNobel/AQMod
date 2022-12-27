@@ -378,12 +378,12 @@ namespace Aequus.NPCs
                     var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
                     EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
-                    if (Main.rand.NextBool(12))
+                    if (i == 0 && Main.GameUpdateCount % 12 == 0)
                     {
-                        var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-3f, 3f), -Main.rand.NextFloat(4f, 7f));
-                        float scale = Main.rand.NextFloat(1f, 2f);
+                        var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-6f, 6f), -Main.rand.NextFloat(4f, 7f));
+                        float scale = Main.rand.NextFloat(1.2f, 2.2f);
                         float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        EffectsSystem.ParticlesBehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale, rotation));
+                        EffectsSystem.ParticlesBehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale * 1.2f, rotation));
                     }
                 }
             }
@@ -547,7 +547,7 @@ namespace Aequus.NPCs
                 if (dot >= 0)
                 {
                     npc.AddRegen(-dot * 8);
-                    twoSecondsDamageNumbers = Math.Max(twoSecondsDamageNumbers, dot / 5);
+                    twoSecondsDamageNumbers = Math.Max(twoSecondsDamageNumbers, (int)(dot * dotMultiplier));
                 }
             }
         }

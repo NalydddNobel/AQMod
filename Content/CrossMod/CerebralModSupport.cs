@@ -21,13 +21,21 @@ namespace Aequus.Content.CrossMod
             return ModLoader.HasMod("CerebralMod");
         }
 
-        public override void AddRecipes()
+        public override void Load()
         {
+            CerebralMod = null;
             if (!ModLoader.TryGetMod("CerebralMod", out var cerebralMod))
             {
-                return;   
+                CerebralMod = cerebralMod;
             }
-            CerebralMod = cerebralMod;
+        }
+
+        public override void AddRecipes()
+        {
+            if (CerebralMod == null)
+            {
+                return;
+            }
 
             if (CerebralMod.TryFind<ModItem>("GoldenChestCrafter", out var goldenChestCrafter))
             {

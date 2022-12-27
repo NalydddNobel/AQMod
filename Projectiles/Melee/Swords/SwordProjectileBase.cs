@@ -52,6 +52,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.localNPCHitCooldown = 50;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.ignoreWater = true;
+            Projectile.ownerHitCheck = true;
             amountAllowedToHit = 2;
         }
 
