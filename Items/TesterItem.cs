@@ -22,11 +22,13 @@ namespace Aequus.Items
 {
     internal class TesterItem : ModItem
     {
+        public const bool LoadMe = true;
+
         public override string Texture => AequusHelpers.GetPath<Gamestar>();
 
         public override bool IsLoadingEnabled(Mod mod)
         {
-            return true;
+            return LoadMe;
         }
 
         public override void SetStaticDefaults()
@@ -46,7 +48,7 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            Projectile.NewProjectile(null, player.Center + new Vector2(-400f, 0f), Vector2.Zero, ModContent.ProjectileType<IconProj>(), 0, 0, Main.myPlayer);
+            Projectile.NewProjectile(null, player.Center + new Vector2(-400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation_NewYears>(), 0, 0, Main.myPlayer);
             return true;
         }
 
@@ -179,9 +181,14 @@ namespace Aequus.Items
         }
     }
 
-    internal class IconProj : ModProjectile
+    internal class ModIconAnimation_NewYears : ModProjectile
     {
         public override string Texture => $"{Aequus.AssetsPath}Shatter";
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return TesterItem.LoadMe;
+        }
 
         public override void SetDefaults()
         {
@@ -207,7 +214,7 @@ namespace Aequus.Items
         public override bool PreDraw(ref Color lightColor)
         {
             var p = Projectile.Center - Main.screenPosition;
-            float t = Projectile.ai[1]; 
+            float t = Projectile.ai[1];
             float scale = 2f;
             AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
             if (t > 300f)

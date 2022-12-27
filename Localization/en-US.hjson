@@ -623,7 +623,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			Stormcloak: Push enemies away after taking damage
+			Stormcloak: Push enemies and projectiles away after taking damage
 			PotionCanteen: Allows infinite use of a potion when equipped
 			ShadowVeer: Ghost minions will do shadow dashes at targeted enemies
 			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit

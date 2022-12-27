@@ -1491,17 +1491,17 @@ namespace Aequus
                         for (int i = 0; i <= 1; i++)
                         {
                             var spawnLoc = new Vector2(Player.position.X + Main.rand.Next(-100, 100), Player.position.Y + Main.rand.Next(-100, 100));
-                            Projectile.NewProjectile(Player.GetSource_OnHurt(entity), spawnLoc, Player.DirectionTo(spawnLoc) * 0.1f,
+                            Projectile.NewProjectile(Player.GetSource_Accessory(accDustDevilExpert), spawnLoc, Player.DirectionTo(spawnLoc) * 0.1f,
                                 ModContent.ProjectileType<StormcloakExplosionProj>(), 120, 0f, Player.whoAmI, ai0: i);
                         }
                     }
                 }
                 if (Player.ownedProjectileCounts[ModContent.ProjectileType<StormcloakProj>()] <= 0)
                 {
-                    Projectile.NewProjectile(Player.GetSource_OnHurt(entity), Player.Center, Vector2.Zero,
-                        ModContent.ProjectileType<StormcloakProj>(), 0, 20f, Player.whoAmI);
+                    Projectile.NewProjectile(Player.GetSource_Accessory(accDustDevilExpert), Player.Center, Vector2.Zero,
+                        ModContent.ProjectileType<StormcloakProj>(), 0, 20f * accDustDevilExpert.Aequus().accStacks, Player.whoAmI);
                 }
-                Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 240);
+                Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 110);
             }
         }
 

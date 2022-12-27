@@ -24,7 +24,7 @@ namespace Aequus.Items.Tools
         {
             Item.width = 20;
             Item.height = 20;
-            Item.knockBack = 2f;
+            Item.knockBack = 10f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = 9;
             Item.useAnimation = 9;

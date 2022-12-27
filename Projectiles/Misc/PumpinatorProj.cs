@@ -97,6 +97,18 @@ namespace Aequus.Projectiles.Misc
             }
             Projectile.scale += 0.01f;
         }
+        public Vector2 updatePush(Vector2 location, Vector2 velocity, float kbResist)
+        {
+            var wantedVelocity = GetWindVelocity(location);
+            float speed = Math.Min(velocity.Length(), wantedVelocity.Length());
+            var v = Vector2.Lerp(velocity, wantedVelocity, Projectile.knockBack * 0.01f * kbResist);
+            if (v.Length() < speed)
+            {
+                v.Normalize();
+                v *= speed;
+            }
+            return v;
+        }
         public virtual void PushEntites()
         {
             var myRect = Projectile.getRect();
@@ -107,7 +119,7 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Colliding(myRect, npc.getRect()) &&
                     PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
                 {
-                    npc.velocity = Vector2.Lerp(npc.velocity, GetWindVelocity(npc.Center), Projectile.knockBack * 0.01f * npc.knockBackResist);
+                    npc.velocity = updatePush(npc.Center, npc.velocity, npc.knockBackResist);
                     npc.netUpdate = true;
                     OnPushNPC(npc);
                 }
@@ -119,7 +131,7 @@ namespace Aequus.Projectiles.Misc
                 {
                     if ((OnlyPushHostileProjectiles && !proj.hostile) || !PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
                         continue;
-                    proj.velocity = Vector2.Lerp(proj.velocity, GetWindVelocity(proj.Center), Projectile.knockBack * 0.01f);
+                    proj.velocity = updatePush(proj.Center, proj.velocity, 1f);
                     proj.netUpdate = true;
                     OnPushProj(proj);
                 }
@@ -132,7 +144,7 @@ namespace Aequus.Projectiles.Misc
                     if (item.active &&
                         Projectile.Colliding(myRect, item.getRect()))
                     {
-                        item.velocity = Vector2.Lerp(item.velocity, GetWindVelocity(item.Center), Projectile.knockBack * 0.015f);
+                        item.velocity = updatePush(item.Center, item.velocity, 2f);
                         OnPushItem(item);
                     }
                 }
@@ -150,7 +162,7 @@ namespace Aequus.Projectiles.Misc
                         }
                         if (Projectile.Colliding(myRect, player.getRect()))
                         {
-                            player.velocity = Vector2.Lerp(player.velocity, GetWindVelocity(player.Center), Projectile.knockBack * 0.01f);
+                            player.velocity = updatePush(player.Center, player.velocity, 0.5f);
                             OnPushPlayer(player);
                         }
                     }
@@ -169,7 +181,7 @@ namespace Aequus.Projectiles.Misc
                         if (Main.dust[i].active && Main.dust[i].scale <= 3f && myRect.Contains(Main.dust[i].position.ToPoint()))
                         {
                             Main.dust[i].scale = Math.Max(Main.dust[i].scale, 0.2f);
-                            Main.dust[i].velocity = Vector2.Lerp(Main.dust[i].velocity, GetWindVelocity(Main.dust[i].position) * 0.5f, Projectile.knockBack * 0.04f);
+                            Main.dust[i].velocity = updatePush(Main.dust[i].position, Main.dust[i].velocity, 2f);
                             if (dustStopWatch.ElapsedMilliseconds >= 1)
                             {
                                 break;
@@ -189,7 +201,7 @@ namespace Aequus.Projectiles.Misc
                         if (Main.gore[i].active && Main.gore[i].scale <= 3f && myRect.Contains(Main.gore[i].position.ToPoint()))
                         {
                             Main.gore[i].timeLeft = Math.Max(Main.gore[i].timeLeft, 60);
-                            Main.gore[i].velocity = Vector2.Lerp(Main.gore[i].velocity, GetWindVelocity(Main.gore[i].position), Projectile.knockBack * 0.1f);
+                            Main.gore[i].velocity = updatePush(Main.gore[i].position, Main.gore[i].velocity, 1f);
                         }
                     }
                 }
@@ -199,7 +211,7 @@ namespace Aequus.Projectiles.Misc
                     {
                         if (Main.rain[i].active && myRect.Contains(Main.rain[i].position.ToPoint()))
                         {
-                            Main.rain[i].velocity = Vector2.Lerp(Main.rain[i].velocity, GetWindVelocity(Main.rain[i].position), Projectile.knockBack * 0.1f);
+                            Main.rain[i].velocity = updatePush(Main.rain[i].position, Main.rain[i].velocity, 1f);
                         }
                     }
                 }
@@ -210,7 +222,7 @@ namespace Aequus.Projectiles.Misc
                         if (Main.combatText[i].active && myRect.Contains(Main.combatText[i].position.ToPoint()))
                         {
                             Main.combatText[i].lifeTime = Math.Max(Main.combatText[i].lifeTime, 90);
-                            Main.combatText[i].velocity = Vector2.Lerp(Main.combatText[i].velocity, GetWindVelocity(Main.combatText[i].position), Projectile.knockBack * 0.1f);
+                            Main.combatText[i].velocity = updatePush(Main.combatText[i].position, Main.combatText[i].velocity, 1f);
                         }
                     }
                     for (int i = 0; i < Main.maxItemText; i++)
@@ -218,7 +230,7 @@ namespace Aequus.Projectiles.Misc
                         if (Main.popupText[i].active && myRect.Contains(Main.popupText[i].position.ToPoint()))
                         {
                             Main.popupText[i].lifeTime = Math.Max(Main.popupText[i].lifeTime, 90);
-                            Main.popupText[i].velocity = Vector2.Lerp(Main.popupText[i].velocity, GetWindVelocity(Main.popupText[i].position), Projectile.knockBack * 0.1f);
+                            Main.popupText[i].velocity = updatePush(Main.popupText[i].position, Main.popupText[i].velocity, 1f);
                         }
                     }
                 }

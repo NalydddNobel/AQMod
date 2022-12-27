@@ -1,10 +1,13 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
+using Aequus.Items.Accessories;
 using Aequus.Particles;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Friendly
 {
@@ -17,19 +20,38 @@ namespace Aequus.Projectiles.Misc.Friendly
         public override bool PushUIObjects => false;
         public override bool PushItems => false;
 
+        public bool die;
+
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 800;
-            Projectile.height = 800;
+            Projectile.width = 600;
+            Projectile.height = 600;
             Projectile.hide = true;
             Projectile.timeLeft = 120;
+            die = false;
         }
 
         public override Vector2 GetWindVelocity(Vector2 entityLocation)
         {
             var v = Projectile.DirectionTo(entityLocation).UnNaN() * 12f;
-            return Vector2.Lerp(v, new Vector2(Math.Sign(v.X) * v.Length(), 0f), 0.5f);
+            return Vector2.Lerp(v, new Vector2(Math.Sign(v.X) * v.Length(), 0f), 0.2f);
+        }
+
+        public override void AI()
+        {
+            if (!die && Main.player[Projectile.owner].immuneTime > 10)
+            {
+                Projectile.timeLeft = Math.Max(Projectile.timeLeft, 240);
+            }
+            else
+            {
+                die = true;
+            }
+            Projectile.Center = Main.player[Projectile.owner].Center;
+            if (Main.GameUpdateCount % 4 == 0)
+                Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(30f), ModContent.DustType<MonoDust>(), newColor: new Color(128, 128, 128, 0));
+            base.AI();
         }
 
         public void PushEffects(Entity entity, Vector2 position, int width, int height)
@@ -68,6 +90,15 @@ namespace Aequus.Projectiles.Misc.Friendly
         public override void OnPushProj(Projectile proj)
         {
             PushEffects(proj, proj.position, proj.width, proj.height);
+            proj.damage = 50;
+            proj.ArmorPenetration = 10;
+            proj.friendly = true;
+            proj.penetrate = 1;
+            proj.owner = Projectile.owner;
+            if ((proj.velocity.SafeNormalize(Vector2.Zero) - GetWindVelocity(proj.Center).SafeNormalize(Vector2.One)).Length() < 0.1f)
+            {
+                proj.hostile = false;
+            }
         }
 
         public override void OnPushItem(Item item)
