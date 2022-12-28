@@ -24,7 +24,7 @@ namespace Aequus.Items.Boss.Summons
 
         public override bool CanUseItem(Player player)
         {
-            return player.ZoneBeach/* || player.Biomes().zoneCrabCrevice*/ && !NPC.AnyNPCs(ModContent.NPCType<Crabson>());
+            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<Crabson>());
         }
 
         public override bool? UseItem(Player player)

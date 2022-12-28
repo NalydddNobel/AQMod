@@ -30,6 +30,7 @@ namespace Aequus.Projectiles.Melee
             Projectile.manualDirectionChange = true;
             Projectile.penetrate = 2;
             Projectile.timeLeft = 1200;
+            Projectile.aiStyle = -1;
         }
 
         public override void AI()

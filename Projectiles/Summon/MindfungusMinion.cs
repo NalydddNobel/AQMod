@@ -188,7 +188,7 @@ namespace Aequus.Projectiles.Summon
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(ModContent.BuffType<MindfungusDebuff>(), Projectile.localNPCHitCooldown + 10);
-            if (NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(1.1f))
+            if (target.lifeMax < 500 && target.defense < 50 && NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(1.1f))
             {
                 target.GetGlobalNPC<NecromancyNPC>().zombieOwner = Projectile.owner;
             }

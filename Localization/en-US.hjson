@@ -173,7 +173,7 @@ Mods: {
 			FishyFins: Fishy Fins
 
 		# Melee Weapons
-			PhaseDisc: Phase Disc
+			PhaseDisc: Phasebrink
 			CrystalDagger: Crystal Dagger
 			Cauterizer: Cauterizer
 			HellsBoon: Hell's Boon
@@ -777,7 +777,8 @@ Mods: {
 			# Melee Weapons
 			PhaseDisc: 
 				'''
-				Penetrates more enemies the closer the moon is to full
+				Left Click to throw a fiery disc
+				<right> to throw a frost disc
 				Can pick up items
 				'''
 			CrystalDagger: Quickly jabs enemies
@@ -1408,7 +1409,7 @@ Mods: {
 
 			HypnoticPearl:
 				'''
-				Summons Crabson at the ocean
+				Summons Crabson at the ocean or crab crevice
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
 			SupernovaFruit:
