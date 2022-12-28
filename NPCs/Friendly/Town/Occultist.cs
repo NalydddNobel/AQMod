@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
+using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
@@ -14,6 +15,7 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Items.Weapons.Summon.Necro.Candles;
 using Aequus.Items.Weapons.Summon.Necro.Scepters;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
@@ -29,6 +31,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
+using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -448,6 +451,12 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool PreAI()
         {
+            if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 70 == 0)
+            {
+                EffectsSystem.ParticlesBehindAllNPCs.Add(new OccultistParticle(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + 16f),
+                    Main.rand.NextVector2Unit(-MathHelper.Pi + MathHelper.PiOver4 / 2f, MathHelper.Pi - MathHelper.PiOver4) * Main.rand.NextFloat(0.6f, 1.2f)));
+            }
+
             int dir = Math.Sign(((int)NPC.ai[0] + 1) * 16 + 8 - NPC.Center.X);
             if (NPC.direction != dir)
             {
@@ -600,6 +609,88 @@ namespace Aequus.NPCs.Friendly.Town
                     NPC.NewNPC(new EntitySource_SpawnNPC(), spawnX, spawnY, ModContent.NPCType<OccultistHostile>(), ai0: x, ai1: y);
                 }
             }
+        }
+
+        public override void AI()
+        {
+            base.AI();
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            return base.PreDraw(spriteBatch, screenPos, drawColor);
+        }
+    }
+
+    public class OccultistParticle : MonoParticle
+    {
+        public float t;
+        public float opacity;
+        public float scale;
+
+        public OccultistParticle(Vector2 position, Vector2 velocity) : base(position, velocity, default(Color), Main.rand.NextFloat(0.8f, 0.9f), Main.rand.NextFloat(-MathHelper.PiOver4 / 4f, MathHelper.PiOver4 / 4f))
+        {
+            var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
+            SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 8);
+            t = Main.rand.Next(100);
+            opacity = 0f;
+            this.scale = Scale;
+            Scale *= 0.5f;
+        }
+
+        public override void Update(ref ParticleRendererSettings settings)
+        {
+            if (t > 240f)
+            {
+                opacity -= 0.001f + opacity * 0.03f;
+            }
+            else
+            {
+                if (opacity < 1f)
+                {
+                    opacity += 0.02f;
+                    if (opacity > 1f)
+                        opacity = 1f;
+                }
+                if (Scale < scale)
+                {
+                    Scale += 0.015f;
+                    if (Scale > scale)
+                        Scale = scale;
+                }
+                Rotation += (1f - opacity) * 0.033f * Main.rand.NextFloat(-1f, 1f);
+            }
+            Velocity *= 0.987f;
+            Velocity = Velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+            if (Scale <= 0.1f || opacity <= 0f)
+            {
+                ShouldBeRemovedFromRenderer = true;
+                return;
+            }
+            Position += Velocity;
+            Lighting.AddLight(Position, new Vector3(0.6f, 0.1f, 0.05f));
+            if (t % 15 == 0 && opacity > 0.5f)
+            {
+                var d = Dust.NewDustDirect(Position - new Vector2(14f, 14f + 20f), 28, 28, ModContent.DustType<MonoSparkleDust>(), newColor: Color.OrangeRed.UseA(0));
+                d.fadeIn = d.scale + 0.15f;
+                d.velocity *= 0.1f;
+                d.velocity += Velocity;
+                d.noLightEmittence = true;
+            }
+            t++;
+        }
+
+        public override Color GetParticleColor(ref ParticleRendererSettings settings)
+        {
+            return Color.White * opacity;
+        }
+
+        public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(texture, Position - Main.screenPosition,
+                frame.Frame(frameX: 2, frameY: 0), Color.OrangeRed.UseA(0) * opacity * AequusHelpers.Wave(t * 0.1f, 0.5f, 1.1f), Rotation, origin, Scale, SpriteEffects.None, 0f);
+
+            base.Draw(ref settings, spritebatch);
         }
     }
 }

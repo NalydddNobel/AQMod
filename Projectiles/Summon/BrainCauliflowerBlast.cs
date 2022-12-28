@@ -127,7 +127,7 @@ namespace Aequus.Projectiles.Summon
         {
             int chance = 2 + (int)Projectile.ai[1] * 3;
             var aequus = Main.player[Projectile.owner].Aequus();
-            if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 1000 && target.defense < 50 &&
+            if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 700 && target.defense < 50 &&
                 NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(2.1f))
             {
                 var zombie = target.GetGlobalNPC<NecromancyNPC>();

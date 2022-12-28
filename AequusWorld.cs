@@ -208,6 +208,8 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            xmasWorld = false;
+            xmasHats = false;
             usedWhiteFlag = false;
             TileCountsMultiplier = 0;
             shadowOrbsBrokenTotal = 0;

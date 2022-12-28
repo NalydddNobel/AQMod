@@ -24,7 +24,7 @@ namespace Aequus.Particles.Dusts
             }
             dust.position += dust.velocity;
             dust.rotation += dust.velocity.X * 0.5f;
-            if (!dust.noLight)
+            if (!dust.noLightEmittence)
             {
                 Lighting.AddLight(dust.position, dust.color.ToVector3() * (dust.scale > 1f ? 1f : dust.scale));
             }
