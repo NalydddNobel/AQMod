@@ -13,7 +13,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Necro.Scepters;
+using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;

@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro
+namespace Aequus.Items.Weapons.Summon
 {
     public abstract class SoulCandleBase : ModItem
     {

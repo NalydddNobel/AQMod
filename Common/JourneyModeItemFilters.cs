@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Summon.Necro;
+using Aequus.Items.Weapons.Summon;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ModLoader;

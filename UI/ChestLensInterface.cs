@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon.Necro;
+﻿using Aequus.Items.Weapons.Summon;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

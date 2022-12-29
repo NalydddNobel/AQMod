@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Summon.Necro.Candles
+namespace Aequus.Items.Weapons.Summon.Candles
 {
-    public class CorruptionCandle : SoulCandleBase
+    public class OccultistCandle : SoulCandleBase
     {
         public override void SetStaticDefaults()
         {
@@ -14,9 +14,9 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle<LightEaterProj>(14);
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(gold: 1);
+            DefaultToCandle<PurgatoryProj>(40);
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.buyPrice(gold: 10);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }
@@ -26,7 +26,7 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             player.itemLocation.X += -4f * player.direction;
             player.itemLocation.Y += 8f;
 
-            Lighting.AddLight(player.itemLocation, Color.Violet.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
+            Lighting.AddLight(player.itemLocation, TorchID.Torch);
         }
     }
 }

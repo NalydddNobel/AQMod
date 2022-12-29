@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro.Candles
+namespace Aequus.Items.Weapons.Summon.Candles
 {
     public class DragonsBreath : SoulCandleBase
     {

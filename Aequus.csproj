@@ -22,4 +22,7 @@
       <HintPath>..\..\ModReader\ShopQuotesMod\ShopQuotesMod.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Items\Weapons\Summon\Sentry\" />
+  </ItemGroup>
 </Project>

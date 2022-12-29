@@ -1,12 +1,12 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Summon.Necro.Candles
+namespace Aequus.Items.Weapons.Summon.Candles
 {
-    public class BloodMoonCandle : SoulCandleBase
+    public class PixieCandle : SoulCandleBase
     {
         public override void SetStaticDefaults()
         {
@@ -15,8 +15,8 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
 
         public override void SetDefaults()
         {
-            DefaultToCandle<BloodMoonCandleProj>(20);
-            Item.rare = ItemRarityID.Blue;
+            DefaultToCandle<FallenAngelProj>(120);
+            Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
@@ -27,19 +27,21 @@ namespace Aequus.Items.Weapons.Summon.Necro.Candles
             player.itemLocation.X += -4f * player.direction;
             player.itemLocation.Y += 8f;
 
-            Lighting.AddLight(player.itemLocation, Color.Red.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
+            Lighting.AddLight(player.itemLocation, TorchID.Torch);
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Candle)
-                .AddIngredient<BloodyTearFragment>(6)
+                .AddIngredient(ItemID.PixieDust, 50)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.DemonAltar)
                 .Register();
             CreateRecipe()
                 .AddIngredient(ItemID.PlatinumCandle)
-                .AddIngredient<BloodyTearFragment>(6)
+                .AddIngredient(ItemID.PixieDust, 50)
+                .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }

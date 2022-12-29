@@ -49,11 +49,6 @@ namespace Aequus.Items.Tools
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int pickPower = 35;
-            var pick = Main.LocalPlayer.GetBestPickaxe();
-            if (pick != null)
-                pickPower = pick.pick;
-            tooltips.Insert(tooltips.GetIndex("PickPower"), new TooltipLine(Mod, "PickPower", pickPower + Lang.tip[26].Value));
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

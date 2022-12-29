@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Necro.Scepters
+namespace Aequus.Items.Weapons.Summon.Scepters
 {
     [GlowMask]
     public class FriendshipMagick : ScepterBase

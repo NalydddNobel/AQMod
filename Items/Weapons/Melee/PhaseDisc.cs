@@ -21,8 +21,8 @@ namespace Aequus.Items.Weapons.Melee
             Item.width = 40;
             Item.height = 40;
             Item.SetWeaponValues(28, 3f, 0);
-            Item.useTime = 14;
-            Item.useAnimation = 14;
+            Item.useTime = 19;
+            Item.useAnimation = 19;
             Item.rare = ItemRarityID.LightPurple;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
@@ -31,7 +31,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.noMelee = true;
             Item.noUseGraphic = true;
             Item.shoot = ModContent.ProjectileType<PhaseDiscProj>();
-            Item.shootSpeed = 6.5f;
+            Item.shootSpeed = 6f;
             Item.autoReuse = true;
         }
 

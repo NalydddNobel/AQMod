@@ -4,7 +4,7 @@ using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Summon.Necro.Candles;
+using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.PhysicistBlocks;

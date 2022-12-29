@@ -2,7 +2,7 @@
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc;
-using Aequus.Items.Weapons.Summon.Necro.Scepters;
+using Aequus.Items.Weapons.Summon.Scepters;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
