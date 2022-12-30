@@ -64,7 +64,6 @@ namespace Aequus.Tiles
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
             PylonColors = new Dictionary<Point, Func<Color>>();
-
             LoadHooks();
         }
 

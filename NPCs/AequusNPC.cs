@@ -422,6 +422,16 @@ namespace Aequus.NPCs
 
         public override void DrawEffects(NPC npc, ref Color drawColor)
         {
+            if (npc.HasBuff<SnowgraveDebuff>())
+            {
+                if (Main.GameUpdateCount % 9 == 0)
+                {
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.IceRod, Scale: Main.rand.NextFloat(0.6f, 1f));
+                    d.velocity = npc.velocity * 0.5f;
+                    d.noGravity = true;
+                    d.fadeIn = d.scale + 0.5f;
+                }
+            }
             if (npc.HasBuff<BoneRingWeakness>())
             {
                 byte a = drawColor.A;

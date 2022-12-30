@@ -54,7 +54,7 @@ namespace Aequus.Items.Weapons.Melee
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.LightDisc, 5)
+                .AddIngredient<Vrang>()
                 .AddIngredient<Valari>()
                 .AddIngredient<AtmosphericEnergy>()
                 .AddTile(TileID.MythrilAnvil)

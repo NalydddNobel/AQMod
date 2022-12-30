@@ -2,6 +2,7 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Common.ModPlayers;
 using Aequus.NPCs.Friendly.Critter;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
@@ -40,10 +41,18 @@ namespace Aequus.NPCs.GlobalNPCs
                 maxSpawns = 0;
                 return;
             }
-            if (player.ZoneSkyHeight && GaleStreamsBiome.TimeForMeteorSpawns())
+            if (player.ZoneSkyHeight)
             {
-                spawnRate /= 2;
-                maxSpawns *= 2;
+                if (GaleStreamsBiome.TimeForMeteorSpawns())
+                {
+                    spawnRate /= 2;
+                    maxSpawns *= 2;
+                }
+                if (IsClose<SkyMerchant>(player))
+                {
+                    spawnRate *= 3;
+                    maxSpawns /= 3;
+                }
             }
             if (player.GetModPlayer<AequusPlayer>().ZoneGaleStreams)
             {
@@ -109,8 +118,11 @@ namespace Aequus.NPCs.GlobalNPCs
             AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
             if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
             {
-                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
-                pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
+                //pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
+                if (!AequusWorld.downedSpaceSquid)
+                {
+                    pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
+                }
             }
             if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                 pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
@@ -162,6 +174,21 @@ namespace Aequus.NPCs.GlobalNPCs
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
             {
                 GaleStreamsEnemies(pool, spawnInfo);
+            }
+            if (spawnInfo.Player.ZoneSkyHeight)
+            {
+                if (AequusWorld.downedSpaceSquid && !IsClose<SpaceSquidFriendly>(spawnInfo.Player))
+                {
+                    if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1].IsFullySolid())
+                    {
+                        pool.Add(ModContent.NPCType<SpaceSquidFriendly>(), 0.1f);
+                        AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1, DustID.CursedTorch);
+                    }
+                    else
+                    {
+                        AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1);
+                    }
+                }
             }
             if (!Main.dayTime && surface)
             {

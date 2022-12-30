@@ -48,7 +48,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             }
             Projectile.ai[0] = Math.Max(minimumLength, Projectile.ai[0]);
             float maxLength = Projectile.ai[0] + 96f;
-            if ((Main.player[Main.myPlayer].Center - center).Length() < 1000f)
+            if ((Main.player[Main.myPlayer].Center - new Vector2(center.X, center.Y + Projectile.ai[0])).Length() < 1000f)
             {
                 if ((int)Projectile.localAI[0] == 0)
                 {

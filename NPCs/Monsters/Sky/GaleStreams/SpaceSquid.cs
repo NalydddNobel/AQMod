@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Biomes;
+using Aequus.Buffs.Debuffs;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc;
@@ -62,13 +63,12 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             {
                 SpecificallyImmuneTo = new int[]
                 {
-                    BuffID.OnFire,
-                    BuffID.CursedInferno,
-                    BuffID.Ichor,
-                    BuffID.ShadowFlame,
                     BuffID.Bleeding,
                     BuffID.Frostburn,
                     BuffID.Frostburn2,
+                    BuffID.Chilled,
+                    BuffID.Frozen,
+                    ModContent.BuffType<SnowgraveDebuff>(),
                 }
             });
 
@@ -920,6 +920,62 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public Vector2 GetEyePos(Vector2 position)
         {
             return position + new Vector2(NPC.direction == 1 ? NPC.width - 4f : 4f, NPC.height / 2f - 2f);
+        }
+    }
+
+    public class SpaceSquidFriendly : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, };
+            NPCID.Sets.ActsLikeTownNPC[Type] = true;
+        }
+
+        public override void SetDefaults()
+        {
+            NPC.width = 64;
+            NPC.height = 48;
+            NPC.friendly = true;
+            NPC.lifeMax = 2500;
+            NPC.defense = 10;
+            NPC.damage = 15;
+            NPC.dontTakeDamage = true;
+            NPC.dontTakeDamageFromHostiles = true;
+            NPC.aiStyle = -1;
+            NPC.knockBackResist = 0f;
+            NPC.behindTiles = true;
+        }
+
+        public override bool CanChat() => true;
+
+        public override void AI()
+        {
+        }
+
+        public override string GetChat()
+        {
+            return $"HELLO {Main.LocalPlayer.name}. EXCUSE TONE OF VOICE - AS USING [[⏁⍀⏃⋏⌇⌰⏃⏁⍜⍀]] TO TRANSLATE VOICE INTO TERRARIAN VOICE.";
+        }
+
+        public override void SetChatButtons(ref string button, ref string button2)
+        {
+            button = "Option 1";
+            button2 = "Rematch";
+        }
+
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        {
+            if (!firstButton)
+            {
+                NPC.KillEffects();
+                NPC.active = false;
+                NPC.NewNPCDirect(NPC.GetSource_NaturalSpawn(), NPC.Center, ModContent.NPCType<SpaceSquid>());
+            }
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            return true;
         }
     }
 }

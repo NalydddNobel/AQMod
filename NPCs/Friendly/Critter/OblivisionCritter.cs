@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Consumables.Critters;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -20,7 +19,6 @@ namespace Aequus.NPCs.Friendly.Critter
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 10;
-            Main.npcCatchable[Type] = true;
             NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 14;

@@ -72,12 +72,8 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 SpecificallyImmuneTo = new int[]
                 {
                     BuffID.OnFire,
-                    BuffID.CursedInferno,
-                    BuffID.Ichor,
-                    BuffID.ShadowFlame,
+                    BuffID.OnFire3,
                     BuffID.Bleeding,
-                    BuffID.Frostburn,
-                    BuffID.Frostburn2,
                 }
             });
 
