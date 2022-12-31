@@ -41,7 +41,7 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient<Slingshot>()
                 .AddIngredient(ItemID.HallowedBar, 12)
                 .AddIngredient(ItemID.SoulofSight, 20)
-                .AddIngredient<AtmosphericEnergy>()
+                .AddIngredient<CosmicEnergy>()
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

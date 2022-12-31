@@ -8,6 +8,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod.ModCalls
 {
+    /// <summary>
+    /// Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+    /// </summary>
     public class ModCallManager
     {
         public const string Success = "Success";
@@ -46,17 +49,20 @@ namespace Aequus.Content.CrossMod.ModCalls
                     case "PylonColor":
                         {
                             var key = new Point(AequusHelpers.UnboxInt.Unbox(args[2]), args.Length > 4 ? AequusHelpers.UnboxInt.Unbox(args[3]) : 0);
-                            int index = args.Length > 4 ? 4 : 3;
-                            if (args[index] is Color color)
+                            if (args.Length >= 3)
                             {
-                                AequusTile.PylonColors[key] = () => color;
+                                int index = args.Length > 4 ? 4 : 3;
+                                if (args[index] is Color color)
+                                {
+                                    AequusTile.PylonColors[key] = () => color;
+                                }
+                                else if (args[index] is Func<Color> getColor)
+                                {
+                                    AequusTile.PylonColors[key] = getColor;
+                                }
                             }
-                            else if (args[index] is Func<Color> getColor)
-                            {
-                                AequusTile.PylonColors[key] = getColor;
-                            }
+                            return AequusTile.PylonColors[key];
                         }
-                        return null;
 
                     case "NecromancyDatabase":
                         return NecromancyDatabase.CallAddNecromancyData(mod, args);

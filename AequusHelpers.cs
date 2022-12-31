@@ -829,6 +829,27 @@ namespace Aequus
             return Main.masterMode ? npc.damage / 3 : Main.expertMode ? npc.damage / 2 : npc.damage;
         }
 
+        public static void DrawLineList(List<Vector2> list)
+        {
+            Texture2D texture = TextureAssets.FishingLine.Value;
+            Rectangle frame = texture.Frame();
+            Vector2 origin = new Vector2(frame.Width / 2, 2);
+
+            Vector2 pos = list[0];
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                Vector2 element = list[i];
+                Vector2 diff = list[i + 1] - element;
+
+                float rotation = diff.ToRotation() - MathHelper.PiOver2;
+                Color color = Lighting.GetColor(element.ToTileCoordinates(), Color.White);
+                Vector2 scale = new Vector2(1, (diff.Length() + 2) / frame.Height);
+
+                Main.EntitySpriteDraw(texture, pos - Main.screenPosition, frame, color, rotation, origin, scale, SpriteEffects.None, 0);
+
+                pos += diff;
+            }
+        }
         public static void DrawLine(Vector2 start, float rotation, float length, float width, Color color)
         {
             Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);

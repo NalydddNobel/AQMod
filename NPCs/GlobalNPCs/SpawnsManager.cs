@@ -118,8 +118,8 @@ namespace Aequus.NPCs.GlobalNPCs
             AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
             if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
             {
-                //pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
-                if (!AequusWorld.downedSpaceSquid)
+                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
+                //if (!AequusWorld.downedSpaceSquid)
                 {
                     pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
                 }
@@ -175,21 +175,21 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 GaleStreamsEnemies(pool, spawnInfo);
             }
-            if (spawnInfo.Player.ZoneSkyHeight)
-            {
-                if (AequusWorld.downedSpaceSquid && !IsClose<SpaceSquidFriendly>(spawnInfo.Player))
-                {
-                    if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1].IsFullySolid())
-                    {
-                        pool.Add(ModContent.NPCType<SpaceSquidFriendly>(), 0.1f);
-                        AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1, DustID.CursedTorch);
-                    }
-                    else
-                    {
-                        AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1);
-                    }
-                }
-            }
+            //if (spawnInfo.Player.ZoneSkyHeight)
+            //{
+            //    if (AequusWorld.downedSpaceSquid && !IsClose<SpaceSquidFriendly>(spawnInfo.Player))
+            //    {
+            //        if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1].IsFullySolid())
+            //        {
+            //            pool.Add(ModContent.NPCType<SpaceSquidFriendly>(), 0.1f);
+            //            AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1, DustID.CursedTorch);
+            //        }
+            //        else
+            //        {
+            //            AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1);
+            //        }
+            //    }
+            //}
             if (!Main.dayTime && surface)
             {
                 if (GlimmerBiome.EventActive)
@@ -259,7 +259,7 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (Main.player[i].active)
+                if (Main.player[i].active && Vector2.Distance(mySpot, Main.player[i].Center) < 2000f)
                 {
                     Main.player[i].GetModPlayer<ZenPlayer>().forceZen = true;
                 }

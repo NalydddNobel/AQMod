@@ -215,11 +215,6 @@ namespace Aequus.Content.Necromancy
         /// <para>Parameter 1: NPC Type (short)</para>
         /// <para>Parameter 2: Tier (float), <see cref="ZombieScepter"/> is tier 1, <see cref="Insurgency"/> is tier 4</para>
         /// <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-        /// <para>Parameter 4+ (Optional): Two paired arguments. One string and one value</para>
-        /// <para>A successful mod call would look like:</para>
-        /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f);</code> OR
-        /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f);</code> OR
-        /// <code>aequus.Call("NecroStats", ModContent.NPCType{...}(), 1f, 800f, "PrioritizePlayerMultiplier", 4f);</code>
         /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="IAddRecipes.AddRecipes(Aequus)"/></para>
         /// </summary>
         /// <param name="callingMod"></param>
@@ -237,10 +232,27 @@ namespace Aequus.Content.Necromancy
                 {
                     AequusHelpers.UnboxFloat.TryUnbox(args[4], out viewDistance);
                 }
+                var stats = new GhostInfo(tier, viewDistance);
+                if (args.Length > 5 && args[5] != null)
+                {
+                    AequusHelpers.UnboxInt.TryUnbox(args[5], out stats.despawnPriority);
+                }
+                if (args.Length > 6 && args[6] != null)
+                {
+                    AequusHelpers.UnboxBoolean.TryUnbox(args[6], out stats.DontModifyVelocity);
+                }
+                if (args.Length > 7 && args[7] != null)
+                {
+                    AequusHelpers.UnboxInt.TryUnbox(args[7], out int slotsUsed);
+                    stats.slotsUsed = slotsUsed;
+                }
+                if (args.Length > 8 && args[8] != null)
+                {
+                    AequusHelpers.UnboxFloat.TryUnbox(args[8], out float timeLeftMultiplier);
+                    stats.TimeLeftMultiplier = timeLeftMultiplier;
+                }
                 if (Aequus.LogMore)
                     Aequus.Instance.Logger.Info("Adding necromancy data for: " + Lang.GetNPCName(npc) + " -- Tier: " + tier + ", SightRange: " + viewDistance + " --");
-                var stats = new GhostInfo(tier, viewDistance);
-                stats = (GhostInfo)ICrapModCallHandler.HandleArgs(stats, args.Length >= 5 ? 5 : 4, args);
                 NPCs.Set(npc, stats);
             }
             catch (Exception ex)

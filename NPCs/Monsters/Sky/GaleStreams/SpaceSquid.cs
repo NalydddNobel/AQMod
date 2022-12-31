@@ -925,6 +925,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
     public class SpaceSquidFriendly : ModNPC
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return false;
+        }
+
         public override void SetStaticDefaults()
         {
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, };

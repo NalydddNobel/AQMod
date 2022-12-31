@@ -596,10 +596,10 @@ namespace Aequus.Content.WorldGeneration
             {
                 reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
             }
-            //else if (AQMod.thoriumMod.IsActive)
-            //{
-            //    reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
-            //}
+            else if (ThoriumModSupport.ThoriumMod != null)
+            {
+                reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
+            }
 
             for (int i = 0; i < 5000; i++)
             {

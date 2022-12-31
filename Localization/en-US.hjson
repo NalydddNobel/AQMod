@@ -142,7 +142,7 @@ Mods: {
 				AltName: "{PotionName} Canteen"
 			}
 
-		# Summoner
+		# Summoner Accessories
 			WarHorn: War Horn
 			MechsSentry: Sentinel 6510
 			SantankSentry: Sentry 6502
@@ -151,10 +151,10 @@ Mods: {
 			SentrySquid: Sentry Squid
 			IcebergKraken: Iceberg Kraken
 
-		# Healing
+		# Healing Accessories
 			Mendshroom: Mendshroom
 
-		# Fishing
+		# Fishing Accessories
 			NeonGenesis: Neon Genesis
 			Ramishroom: Ramishroom
 			DevilsTongue: Devil's Tongue
@@ -198,6 +198,7 @@ Mods: {
 			Slingshot: Slingshot
 
 		# Magic Weapons
+			WindFan: Wind Fan
 			Nightfall: Nightfall
 			Umystick: Umystick
 			Narrizuul: Narrizuul
@@ -220,10 +221,8 @@ Mods: {
 			DisturbanceStaff: Disturbance Staff
 			HailstormStaff: Hailstorm Staff
 
-			# Soul Tapers
+		# Necromancy Candles
 			Malediction: Malediction
-
-			# Soul Candles
 			DragonsBreath: Dragon's Last Breath
 			CrimsonCandle: Flesh Lighter
 			CorruptionCandle: Light Eater
@@ -232,14 +231,17 @@ Mods: {
 			DungeonCandle: Wretchedness
 			OccultistCandle: Purgatory
 
-			# Necromancy Staffs
+		# Necromancy Staffs
 			FriendshipMagick: Friendship Magick
 			Insurgency: Insurgency
 			Osiris: Osiris
 			Revenant: Revenant
 			ZombieScepter: Zombie Scepter
 
-			# Armor #
+		# Whips
+			TornadoWhip: Tornado Whip
+
+		# Armor
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
 
@@ -252,13 +254,13 @@ Mods: {
 			DartTrapHat: Dart Trap Hat
 			SuperDartTrapHat: Super Dart Trap Hat
 
-			# Tools #
+		# Tools
 			BattleAxe: Battle Axe
 			SilkHammer: Silk Hammer
 			SilkPickaxe: Silk Pickaxe
 			Crabax: Crabax
 
-			# Baits # 
+		# Baits
 			Heliosis: Heliosis
 			CrateBait: Crate Bait
 			RegrowingBait: Regenerative Bait
@@ -856,6 +858,12 @@ Mods: {
 				Uses birds as ammo
 				'''
 
+		# Magic Weapons
+			WindFan: 
+				'''
+				Casts a controllable windstorm which pulls enemies and projectiles
+				Enemies will take damage after any collision
+				'''
 			Nightfall: 
 				'''
 				Increases the gravity of your enemies to deadly levels
@@ -910,6 +918,7 @@ Mods: {
 				Ignores 10 points of enemy Defense
 				'''
 
+		# Minion Staffs
 			PiranhaPot: Summons a vile plant to fight for you
 			BrainwaveStaff: Summons a brain cauliflower to control enemies for you
 			MindfungusStaff:
@@ -931,9 +940,8 @@ Mods: {
 				Uses half a minion slot
 				'''
 
-			# Soul Tapers
+		# Necromancy Candles
 			Malediction: Double tap {0} to apply Skeletron's arms to a ghost minion
-
 			DragonsBreath: Summon a Phantasmal Dragon to fight for you
 			CrimsonCandle: Summons a Blood Crawler to fight for you
 			CorruptionCandle: Summons an Eater of Souls to fight for you
@@ -942,6 +950,7 @@ Mods: {
 			DungeonCandle: Summons a Cursed Skull to fight for you
 			OccultistCandle: Summons a Demon to fight for you
 
+		# Necromancy Scepters
 			FriendshipMagick: Become friends with strong enemies!
 			Insurgency: 
 				'''
@@ -965,6 +974,14 @@ Mods: {
 				'''
 				Drains the soul of weak enemies
 				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+				'''
+
+		# Whips
+			TornadoWhip: 
+				'''
+				Your summons will focus struck enemies
+				Strike enemies to summon a friendly nimbuses
+				Powerful suction winds are emitted from enemies hit by summons
 				'''
 
 			GravetenderHood: 10% increased summon damage
