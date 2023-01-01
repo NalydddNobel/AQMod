@@ -13,6 +13,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
@@ -521,15 +522,6 @@ namespace Aequus.Items
             }
         }
 
-        public override float UseSpeedMultiplier(Item item, Player player)
-        {
-            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && SummonStaff.Contains(item.type))
-            {
-                return 2f;
-            }
-            return 1f;
-        }
-
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
         {
             switch (item.type)
@@ -562,10 +554,6 @@ namespace Aequus.Items
                     itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
                     break;
 
-                case ItemID.CorruptFishingCrate:
-                case ItemID.CorruptFishingCrateHard:
-                case ItemID.CrimsonFishingCrate:
-                case ItemID.CrimsonFishingCrateHard:
                 case ItemID.DungeonFishingCrate:
                 case ItemID.DungeonFishingCrateHard:
                 case ItemID.HallowedFishingCrate:
@@ -578,6 +566,18 @@ namespace Aequus.Items
                 case ItemID.OasisCrateHard:
                 case ItemID.OceanCrate:
                 case ItemID.OceanCrateHard:
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
+                    break;
+
+                case ItemID.CorruptFishingCrate:
+                case ItemID.CorruptFishingCrateHard:
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CorruptionCandle>(), 3));
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
+                    break;
+
+                case ItemID.CrimsonFishingCrate:
+                case ItemID.CrimsonFishingCrateHard:
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrimsonCandle>(), 3));
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                     break;
 

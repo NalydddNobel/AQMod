@@ -270,7 +270,7 @@ Mods: {
 			IchorPopper: Ichor Popper
 			MysticPopper: Mystic Popper
 
-			# Foods & Potions # 
+		# Foods & Potions
 			TubOfCookieDough: Tub of Cookie Dough
 			AstralCookie: Astral Cookie
 			HolographicMeatloaf: Holographic Meatloaf
@@ -286,7 +286,7 @@ Mods: {
 
 			PotionOfResurrection: Potion of Resurrection
 
-			# Critter Items #
+		# Critter Items
 			Snobster: Snobster
 			DwarfStarite: Dwarf Starite
 
@@ -324,10 +324,10 @@ Mods: {
 			LeechHook: Super Long Leech
 			Meathook: Meathook
 
-			# Mounts #
+		# Mounts
 			BalloonKit: Zilla's Balloon Kit
 
-			# Crates #
+		# Crates
 			CrabCreviceCrate: Carapic Crate
 			CrabCreviceCrateHard: Encrusted Crate
 
@@ -340,7 +340,7 @@ Mods: {
 			GoldenRoulette: Golden Slot Machine
 			Roulette: Slot Machine
 
-			# Boss Masks # 
+		# Vanity
 			RedSpriteMask: Red Sprite Mask
 			SpaceSquidMask: Space Squid Mask
 			BreadOfCthulhuMask: Bread of Cthulhu Mask
@@ -423,13 +423,15 @@ Mods: {
 			AncientScorchingDye: Ancient Scorching Dye
 			AncientFrostbiteDye: Ancient Frostbite Dye
 
-			# Summons #
+		# Summons
+			UnholyCoreSmall: Unholy Tearstone
+			UnholyCore: Unholy Core
 			HypnoticPearl: Hypnotic Pearl
 			SupernovaFruit: Supernova Fruit
 			TornadoInABottle: Tornado in a Bottle
 			GalacticStarfruit: Galactic Starfruit
 
-			# Misc (and Legacy) #
+		# Misc (and Legacy)
 
 			XmasEnergy: Frolic Energy
 			HalloweenEnergy: Horrific Energy
@@ -489,8 +491,6 @@ Mods: {
 
 			Driftwood: Driftwood
 			PlasticBottle: Plastic Bottle
-
-			UnholyCore: Unholy Core
 
 			HoloLens: Holo Lens
 			HyperJet: Hyper Jet
@@ -1095,7 +1095,7 @@ Mods: {
 			FertilePowder: Causes all nearby tiles to instantly grow
 			WhitePhial: Permanently increase buff duration by 25% 
 			TinkerersGuidebook:	Permanently improve the Goblin Tinkerer's reforge service
-			Moro: Permanently makes minion staffs consume no mana and faster
+			Moro: Permanently makes minion and sentry staffs consume no mana
 
 			OmniPaint: Hold a paint item to bring up a menu of selectable paints
 			AdvancedRuler:
@@ -1139,12 +1139,6 @@ Mods: {
 				Applies honey effects while in use
 				'''
 			Nimrod: Casts a fishing cloud which creates 3 lightning bobbers to catch fish
-
-			UnholyCore: 
-				'''
-				Can be used at the Gore Nest
-				Decreases the length of the Demon Siege event
-				'''
 
 			HoloLens: Allows you to view the contents of locked and unlocked chests without opening them
 			HyperJet: Decreased respawn time when it becomes safe
@@ -1424,6 +1418,12 @@ Mods: {
 		# Furniture Misc
 			FishSign: Shows the stats of a nearby fishing pool
 
+			UnholyCoreSmall: Can be used at the Gore Nest
+			UnholyCore:
+				'''
+				Can be used at the Gore Nest
+				Decreases the length of the Demon Siege event
+				'''
 			HypnoticPearl:
 				'''
 				Summons Crabson at the ocean or crab crevice

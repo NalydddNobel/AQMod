@@ -47,7 +47,10 @@ namespace Aequus.Items.Boss.Summons
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddIngredient(ItemID.DemoniteBar, 1)
                 .AddTile(TileID.DemonAltar)
-                .Register();
+                .TryRegisterAfter(ItemID.DeerThing)
+                .Clone()
+                .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
+                .TryRegisterAfter(ItemID.DeerThing);
         }
     }
 }

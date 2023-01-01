@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Boss.Summons
 {
-    public class UnholyCore : ModItem
+    public class UnholyCoreSmall : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,7 +19,7 @@ namespace Aequus.Items.Boss.Summons
             Item.height = 20;
             Item.consumable = true;
             Item.maxStack = 9999;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
         }
     }

@@ -27,12 +27,9 @@ namespace Aequus.Items.Weapons.Summon.Scepters
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterAfter(ItemID.RainbowRod);
-            CreateRecipe()
-                .AddIngredient(ItemID.CrimtaneBar, 4)
-                .AddIngredient(ItemID.LifeCrystal)
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .TryRegisterAfter(ItemID.RainbowRod)
+                .Clone()
+                .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
                 .TryRegisterAfter(ItemID.RainbowRod);
         }
     }

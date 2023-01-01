@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Items.Boss.Summons;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -34,6 +35,12 @@ namespace Aequus.NPCs.Friendly.Critter
                 .AddMainSpawn(BestiaryBuilder.Underworld);
         }
 
+        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        {
+            this.CreateLoot(npcLoot)
+                .Add<UnholyCoreSmall>(chance: 3, stack: 1);
+        }
+
         public override void SetDefaults()
         {
             NPC.width = 24;
@@ -41,7 +48,7 @@ namespace Aequus.NPCs.Friendly.Critter
             NPC.aiStyle = -1;
             NPC.damage = 0;
             NPC.defense = 0;
-            NPC.lifeMax = 5;
+            NPC.lifeMax = 100;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath6;
             NPC.npcSlots = 0.5f;
@@ -309,7 +316,15 @@ namespace Aequus.NPCs.Friendly.Critter
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return spawnInfo.Player.Aequus().ZoneGoreNest ? 0.25f : 0f;
+            if (spawnInfo.Player.Aequus().ZoneGoreNest)
+            {
+                if (AequusWorld.downedEventDemon)
+                {
+                    return 0.25f;
+                }
+                return 1f;
+            }
+            return 0f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

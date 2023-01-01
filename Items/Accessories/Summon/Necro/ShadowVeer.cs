@@ -31,11 +31,9 @@ namespace Aequus.Items.Accessories.Summon.Necro
                 .AddIngredient(ItemID.Cobweb, 100)
                 .AddIngredient(ItemID.DemoniteBar, 10)
                 .AddTile(TileID.DemonAltar)
-                .TryRegisterBefore(ItemID.MasterNinjaGear);
-            CreateRecipe()
-                .AddIngredient(ItemID.Cobweb, 100)
-                .AddIngredient(ItemID.CrimtaneBar, 10)
-                .AddTile(TileID.DemonAltar)
+                .TryRegisterBefore(ItemID.MasterNinjaGear)
+                .Clone()
+                .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
                 .TryRegisterBefore(ItemID.MasterNinjaGear);
         }
     }

@@ -57,12 +57,12 @@ namespace Aequus.Biomes.DemonSiege
         }
         public int DetermineLength()
         {
-            int time = 7200;
+            int time = 5400;
             foreach (var i in Items)
             {
                 if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var value))
                 {
-                    int newTime = 7200 * (int)(value.Progression + 1);
+                    int newTime = 5400 * (int)(value.Progression + 1);
                     if (!unholyCoreUsed)
                     {
                         newTime = (int)(newTime * 1.33f);
