@@ -25,28 +25,25 @@ namespace Aequus.Content.CarpenterBounties.Steps
                 {
                     foreach (var p in h)
                     {
-                        if (info[p].HasTile)
+                        if (info[p].HasTile && !info[p].IsSolid)
                         {
-                            if (!info[p].IsSolid)
+                            int style = AequusHelpers.GetTileStyle(info[p].TileType, info[p].TileFrameX, info[p].TileFrameY);
+                            if (tileStyleData.TryGetValue(info[p].TileType, out List<int> compareStyle))
                             {
-                                int style = AequusHelpers.GetTileStyle(info[p].TileType, info[p].TileFrameX, info[p].TileFrameY);
-                                if (tileStyleData.TryGetValue(info[p].TileType, out List<int> compareStyle))
+                                if (compareStyle.Contains(style))
                                 {
-                                    if (compareStyle.Contains(style))
-                                    {
-                                        repeatPoints.Add(p);
-                                        continue;
-                                    }
-                                    compareStyle.Add(style);
+                                    repeatPoints.Add(p);
+                                    continue;
                                 }
-                                else
-                                {
-                                    tileStyleData.Add(info[p].TileType, new List<int>() { style });
-                                }
-
-                                interestPoints.Add(p);
-                                decorAmt++;
+                                compareStyle.Add(style);
                             }
+                            else
+                            {
+                                tileStyleData.Add(info[p].TileType, new List<int>() { style });
+                            }
+
+                            interestPoints.Add(p);
+                            decorAmt++;
                         }
                     }
                 }

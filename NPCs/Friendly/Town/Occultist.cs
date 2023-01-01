@@ -451,10 +451,18 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool PreAI()
         {
-            if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 70 == 0)
+            if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 180 == 0)
             {
-                EffectsSystem.ParticlesBehindAllNPCs.Add(new OccultistParticle(new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + 16f),
-                    Main.rand.NextVector2Unit(-MathHelper.Pi + MathHelper.PiOver4 / 2f, MathHelper.Pi - MathHelper.PiOver4) * Main.rand.NextFloat(0.6f, 1.2f)));
+                for (int i = 0; i < 50; i++)
+                {
+                    var p = NPC.Center + new Vector2(NPC.direction * -50, -30f)+ Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
+                    if (Collision.SolidCollision(new Vector2(p.X - 8f, p.Y - 8f), 16, 16))
+                    {
+                        continue;
+                    }
+                    EffectsSystem.ParticlesBehindProjs.Add(new OccultistParticle(p, Vector2.UnitY * -0.1f));
+                    break;
+                }
             }
 
             int dir = Math.Sign(((int)NPC.ai[0] + 1) * 16 + 8 - NPC.Center.X);
@@ -618,7 +626,14 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            return base.PreDraw(spriteBatch, screenPos, drawColor);
+            var texture = ModContent.Request<Texture2D>($"{this.GetPath()}_Sit", AssetRequestMode.ImmediateLoad).Value;
+            var glow = ModContent.Request<Texture2D>($"{this.GetPath()}_Sit_Glow", AssetRequestMode.ImmediateLoad).Value;
+            var frame = texture.Frame(verticalFrames: 5, frameY: (int)Main.GameUpdateCount / 5 % 4 + 1);
+            var origin = frame.Size() / 2f;
+            var drawCoords = NPC.Center - screenPos + new Vector2(0f, -6f);
+            spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            spriteBatch.Draw(glow, drawCoords, frame, Color.White, NPC.rotation, origin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+            return false;
         }
     }
 
@@ -628,27 +643,26 @@ namespace Aequus.NPCs.Friendly.Town
         public float opacity;
         public float scale;
 
-        public OccultistParticle(Vector2 position, Vector2 velocity) : base(position, velocity, default(Color), Main.rand.NextFloat(0.8f, 0.9f), Main.rand.NextFloat(-MathHelper.PiOver4 / 4f, MathHelper.PiOver4 / 4f))
+        public OccultistParticle(Vector2 position, Vector2 velocity) : base(position, velocity, default(Color), 1f, 0f)
         {
             var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
-            SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 8);
+            SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
             t = Main.rand.Next(100);
             opacity = 0f;
-            this.scale = Scale;
-            Scale *= 0.5f;
+            scale = Scale;
         }
 
         public override void Update(ref ParticleRendererSettings settings)
         {
-            if (t > 240f)
+            if (t > 400f)
             {
-                opacity -= 0.001f + opacity * 0.03f;
+                opacity -= 0.001f + opacity * 0.09f;
             }
             else
             {
                 if (opacity < 1f)
                 {
-                    opacity += 0.02f;
+                    opacity += 0.09f;
                     if (opacity > 1f)
                         opacity = 1f;
                 }
@@ -658,25 +672,16 @@ namespace Aequus.NPCs.Friendly.Town
                     if (Scale > scale)
                         Scale = scale;
                 }
-                Rotation += (1f - opacity) * 0.033f * Main.rand.NextFloat(-1f, 1f);
             }
-            Velocity *= 0.987f;
-            Velocity = Velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+            Velocity *= 0.9f;
             if (Scale <= 0.1f || opacity <= 0f)
             {
                 ShouldBeRemovedFromRenderer = true;
                 return;
             }
             Position += Velocity;
+            Position.Y += AequusHelpers.Wave(t * -0.02f, -0.1f, 0.1f);
             Lighting.AddLight(Position, new Vector3(0.6f, 0.1f, 0.05f));
-            if (t % 15 == 0 && opacity > 0.5f)
-            {
-                var d = Dust.NewDustDirect(Position - new Vector2(14f, 14f + 20f), 28, 28, ModContent.DustType<MonoSparkleDust>(), newColor: Color.OrangeRed.UseA(0));
-                d.fadeIn = d.scale + 0.15f;
-                d.velocity *= 0.1f;
-                d.velocity += Velocity;
-                d.noLightEmittence = true;
-            }
             t++;
         }
 

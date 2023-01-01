@@ -105,6 +105,7 @@ namespace Aequus.Projectiles.Melee
                 }
                 else
                 {
+                    Projectile.tileCollide = true;
                     Projectile.localAI[1] += 0.01f;
                     if (Projectile.localAI[1] > 1f)
                     {

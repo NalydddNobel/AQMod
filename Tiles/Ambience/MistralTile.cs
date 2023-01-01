@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Graphics.Tiles;
+using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Nature;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles.Ambience
 {
-    public class MistralTile : HerbTileBase
+    public class MistralTile : HerbTileBase, ISpecialTileRenderer
     {
         protected override int[] GrowableTiles => new int[]
         {
@@ -58,17 +59,36 @@ namespace Aequus.Tiles.Ambience
             num = 6;
         }
 
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
+        {
+        }
+
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
+            if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
+            {
+                SpecialTileRenderer.Add(i, j, TileRenderLayer.PreDrawVines);
+            }
             var texture = TextureAssets.Tile[Type].Value;
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
-            var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, FrameWidth, FrameHeight);
+            var frame = new Rectangle(Main.tile[i, j].TileFrameX, 0, FrameWidth, FrameHeight);
             var offset = (AequusHelpers.TileDrawOffset - Main.screenPosition).Floor();
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-            spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            Main.spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;
         }
 
+        public void Render(int i, int j, TileRenderLayer layer)
+        {
+            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
+            if (Aequus.GameWorldActive)
+                Main.tile[i, j].TileFrameY = (short)((Main.tile[i, j].TileFrameY + (int)(Main.windSpeedCurrent * 10f)) % FrameHeight);
+            if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
+            {
+                var pinwheel = ModContent.Request<Texture2D>($"{this.GetPath()}_Pinwheel").Value;
+                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j), Main.tile[i, j].TileFrameY / (float)FrameHeight * MathHelper.TwoPi, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
+            }
+        }
     }
 }

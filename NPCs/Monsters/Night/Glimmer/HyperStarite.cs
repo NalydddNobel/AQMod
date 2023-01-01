@@ -92,6 +92,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             oldArmsLength = new float[NPCID.Sets.TrailCacheLength[Type]];
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.9f * numPlayers);
+            NPC.damage = (int)(NPC.damage * 0.66f);
+        }
+
         public override void HitEffect(int hitDirection, double damage)
         {
             float x = NPC.velocity.X.Abs() * hitDirection;

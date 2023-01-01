@@ -37,7 +37,10 @@ namespace Aequus.Items.Boss.Summons
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(SoundID.Roar, player.position);
-            GlimmerSystem.BeginEvent();
+            if (Main.myPlayer == player.whoAmI)
+            {
+                GlimmerSystem.BeginEvent();
+            }
             return GlimmerBiome.EventActive;
         }
 

@@ -18,7 +18,6 @@ namespace Aequus.Biomes
         public const float UltraStariteSpawn = 0.2f;
 
         public static Color CosmicEnergyColor = new Color(200, 10, 255, 0);
-        public static Color TextColor = new Color(238, 17, 68, 255);
         public static ConfiguredMusicData music { get; private set; }
 
         public static Point TileLocation { get; set; }

@@ -76,7 +76,7 @@ namespace Aequus.Biomes.Glimmer
                 {
                     if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        AequusText.Broadcast("Announcement.GlimmerEnd", GlimmerBiome.TextColor);
+                        AequusText.Broadcast("Announcement.GlimmerEnd", AequusText.BossSummonMessage);
                     }
                     return;
                 }
@@ -122,7 +122,7 @@ namespace Aequus.Biomes.Glimmer
         {
             GlimmerBiome.TileLocation = CheckGround(where);
 
-            AequusText.Broadcast("Announcement.GlimmerStart", GlimmerBiome.TextColor);
+            AequusText.Broadcast("Announcement.GlimmerStart", AequusText.BossSummonMessage);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 SendGlimmerStatus();

@@ -101,7 +101,7 @@ namespace Aequus.Projectiles.Misc
                     if (Main.rand.NextBool(4) || Main.tile[i, j].IsFullySolid() || (Main.tile[i, j].HasTile && TileID.Sets.TreeSapling[Main.tile[i, j].TileType]))
                     {
                         for (int k = 0; k < 100; k++)
-                            AequusWorld.RandomUpdateTile(k, j, checkNPCSpawns: false);
+                            AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
                     }
                 }
             }

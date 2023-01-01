@@ -6,6 +6,8 @@ using Aequus.Graphics;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
 using Aequus.Tiles;
+using Aequus.Tiles.Ambience;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -48,8 +50,39 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            Projectile.NewProjectile(null, player.Center + new Vector2(-400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation_NewYears>(), 0, 0, Main.myPlayer);
+            PlacePollenExamples(x, y);
             return true;
+        }
+
+        public static void PlacePollenExamples(int x, int y)
+        {
+            WorldGen.PlaceTile(x, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
+            WorldGen.PlaceTile(x, y - 1, ModContent.TileType<MorayTile>(), forced: true);
+            WorldGen.PlaceTile(x + 2, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
+            WorldGen.PlaceTile(x + 2, y - 1, ModContent.TileType<MorayTile>(), forced: true, style: 1);
+            WorldGen.PlaceTile(x + 4, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
+            WorldGen.PlaceTile(x + 4, y - 1, ModContent.TileType<MorayTile>(), forced: true, style: 2);
+
+            WorldGen.PlaceTile(x, y + 3, TileID.Ash, forced: true);
+            WorldGen.PlaceTile(x, y + 2, ModContent.TileType<ManacleTile>(), forced: true);
+            WorldGen.PlaceTile(x + 2, y + 3, TileID.Ash, forced: true);
+            WorldGen.PlaceTile(x + 2, y + 2, ModContent.TileType<ManacleTile>(), forced: true, style: 1);
+            WorldGen.PlaceTile(x + 4, y + 3, TileID.Ash, forced: true);
+            WorldGen.PlaceTile(x + 4, y + 2, ModContent.TileType<ManacleTile>(), forced: true, style: 2);
+
+            WorldGen.PlaceTile(x, y + 6, TileID.Meteorite, forced: true);
+            WorldGen.PlaceTile(x, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true);
+            WorldGen.PlaceTile(x + 2, y + 6, TileID.Meteorite, forced: true);
+            WorldGen.PlaceTile(x + 2, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true, style: 1);
+            WorldGen.PlaceTile(x + 4, y + 6, TileID.Meteorite, forced: true);
+            WorldGen.PlaceTile(x + 4, y + 5, ModContent.TileType<MoonflowerTile>(), forced: true, style: 2);
+
+            WorldGen.PlaceTile(x, y + 9, TileID.Cloud, forced: true);
+            WorldGen.PlaceTile(x, y + 8, ModContent.TileType<MistralTile>(), forced: true);
+            WorldGen.PlaceTile(x + 2, y + 9, TileID.RainCloud, forced: true);
+            WorldGen.PlaceTile(x + 2, y + 8, ModContent.TileType<MistralTile>(), forced: true, style: 1);
+            WorldGen.PlaceTile(x + 4, y + 9, TileID.SnowCloud, forced: true);
+            WorldGen.PlaceTile(x + 4, y + 8, ModContent.TileType<MistralTile>(), forced: true, style: 2);
         }
 
         public static void CreateSilkTouchFile()
