@@ -105,6 +105,11 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            NPC.damage = (int)(NPC.damage * 0.75f);
+        }
+
         private bool playerCheck()
         {
             NPC.TargetClosest(faceTarget: false);

@@ -1578,6 +1578,8 @@ Mods: {
 			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace (Cooldown)
 
+			CrystalDaggerBuff: Dagger Stance
+			UltimateSwordBuff: Sword Stance
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
 
@@ -1658,6 +1660,8 @@ Mods: {
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
+			CrystalDaggerBuff: Holding the Crystal Dagger grants increased movement speed
+			UltimateSwordBuff: Holding the Ultimate Sword grants increased defense and knockback immunity
 			RitualBuff: You are performing a ritual... don't get distracted!
 			NecromancyOwnerBuff: You are controlling the dead
 

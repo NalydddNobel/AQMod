@@ -239,7 +239,7 @@ namespace Aequus.Items.Weapons.Ranged
             }
         }
 
-        public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+        public void OnCreateProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
         {
             projectile.extraUpdates++;
             projectile.extraUpdates *= 6;

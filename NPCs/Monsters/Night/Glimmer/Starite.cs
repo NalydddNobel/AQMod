@@ -79,6 +79,11 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             this.SetBiome<GlimmerBiome>();
         }
 
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        {
+            NPC.damage = (int)(NPC.damage * 0.75f);
+        }
+
         public override bool? CanBeHitByItem(Player player, Item item)
         {
             return fallenStar ? null : false;

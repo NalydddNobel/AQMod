@@ -46,7 +46,12 @@ namespace Aequus.Items
 
         public interface IOnSpawnProjectile
         {
-            void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source);
+            public void OnCreateProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+            {
+            }
+            public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+            {
+            }
         }
 
         public interface ICustomCanPlace

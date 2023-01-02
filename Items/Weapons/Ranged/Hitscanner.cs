@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged
 {
-    public class Hitscanner : ModItem
+    public class Hitscanner : ModItem, ItemHooks.IOnSpawnProjectile
     {
         public override void SetStaticDefaults()
         {
@@ -43,17 +44,10 @@ namespace Aequus.Items.Weapons.Ranged
         {
             for (int i = 0; i < 10; i++)
             {
-                int p = Projectile.NewProjectile(source, position, velocity.RotatedBy(Main.rand.NextFloat(-0.15f, 0.15f)), type, damage, knockback, player.whoAmI);
-                Main.projectile[p].extraUpdates++;
+                Projectile.NewProjectile(source, position, velocity.RotatedBy(Main.rand.NextFloat(-0.15f, 0.15f)), type, damage, knockback, player.whoAmI);
                 if (type == ProjectileID.ChlorophyteBullet)
                 {
-                    Main.projectile[p].extraUpdates *= 15;
-                    Main.projectile[p].damage *= 2;
                     i++;
-                }
-                else
-                {
-                    Main.projectile[p].extraUpdates *= 50;
                 }
             }
             return false;
@@ -74,6 +68,20 @@ namespace Aequus.Items.Weapons.Ranged
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.OnyxBlaster);
+        }
+
+        public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
+        {
+            projectile.extraUpdates++;
+            if (projectile.type == ProjectileID.ChlorophyteBullet)
+            {
+                projectile.extraUpdates *= 5;
+                projectile.damage *= 2;
+            }
+            else
+            {
+                projectile.extraUpdates *= 20;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee;
+﻿using Aequus.Buffs;
+using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -46,6 +47,11 @@ namespace Aequus.Items.Weapons.Melee
         public override bool CanUseItem(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] < 1;
+        }
+
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<CrystalDaggerBuff>(), 1, quiet: true);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

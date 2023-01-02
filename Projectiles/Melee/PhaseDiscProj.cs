@@ -215,6 +215,8 @@ namespace Aequus.Projectiles.Melee
                         Main.projectile[i].velocity += velocity;
                         Projectile.velocity *= 0.5f;
                         Main.projectile[i].velocity *= 0.5f;
+                        Projectile.knockBack *= 0.33f;
+                        Main.projectile[i].knockBack *= 0.33f;
                         return;
                     }
                 }

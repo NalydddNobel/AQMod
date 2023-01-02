@@ -7,7 +7,7 @@ namespace Aequus.NPCs.AIs
 {
     public abstract class LegacyAIMimic : ModNPC
     {
-        protected virtual int GetJumpTimer() => NPC.ai[1] == 0f ? 12 : 20;
+        protected virtual int JumpTimer => NPC.ai[1] == 0f ? 12 : 20;
 
         protected virtual void Jump()
         {
@@ -21,6 +21,18 @@ namespace Aequus.NPCs.AIs
             {
                 NPC.velocity.X = NPC.direction * 3.5f;
                 NPC.velocity.Y = -4f;
+            }
+        }
+
+        public virtual void OrientJumpingDirection()
+        {
+            if (NPC.direction == 1 && NPC.velocity.X < 1f)
+            {
+                NPC.velocity.X += 0.1f;
+            }
+            else if (NPC.direction == -1 && NPC.velocity.X > -1f)
+            {
+                NPC.velocity.X -= 0.1f;
             }
         }
 
@@ -68,13 +80,9 @@ namespace Aequus.NPCs.AIs
                 Jump();
                 NPC.netUpdate = true;
             }
-            else if (NPC.direction == 1 && NPC.velocity.X < 1f)
+            else
             {
-                NPC.velocity.X += 0.1f;
-            }
-            else if (NPC.direction == -1 && NPC.velocity.X > -1f)
-            {
-                NPC.velocity.X -= 0.1f;
+                OrientJumpingDirection();
             }
         }
 

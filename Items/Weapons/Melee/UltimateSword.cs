@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee.Swords;
+﻿using Aequus.Buffs;
+using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -27,6 +28,11 @@ namespace Aequus.Items.Weapons.Melee
         public override bool MeleePrefix()
         {
             return true;
+        }
+
+        public override void HoldItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<UltimateSwordBuff>(), 1, quiet: true);
         }
     }
 }

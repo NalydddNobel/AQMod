@@ -483,7 +483,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.Hostile.");
 
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 chat.Add(i.ToString());
             }

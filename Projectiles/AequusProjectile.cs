@@ -1,8 +1,10 @@
 ﻿using Aequus.Buffs;
 using Aequus.Content;
+using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Particles;
 using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
@@ -231,7 +233,7 @@ namespace Aequus.Projectiles
                     sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
                     if (itemUse_WithAmmo.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
                     {
-                        onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                        onSpawnHook.OnCreateProjectile(projectile, this, source);
                     }
                 }
             }
@@ -241,7 +243,7 @@ namespace Aequus.Projectiles
                     sourceItemUsed = itemUse.Item.netID;
                 if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
                 {
-                    onSpawnHook.OnSpawnProjectile(projectile, this, source);
+                    onSpawnHook.OnCreateProjectile(projectile, this, source);
                 }
             }
             else if (source is EntitySource_Parent parent)
@@ -290,6 +292,10 @@ namespace Aequus.Projectiles
                     sourceProjType = Main.projectile[sourceProj].type;
                     InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
                 }
+            }
+            if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2)
+            {
+                onSpawnHook2.IndirectInheritence(projectile, this, source);
             }
         }
 
@@ -398,6 +404,30 @@ namespace Aequus.Projectiles
                     Main.projectile[p].rotation = projectile.rotation;
                     Main.projectile[p].netUpdate = true;
                     Main.projectile[p].ModProjectile<RaygunTrailProj>().color = Raygun.GetColor(projectile).UseA(0);
+                }
+                if (projectile.type == ProjectileID.ChlorophyteBullet)
+                {
+                    projectile.alpha = 255;
+                }
+            }
+            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>() 
+                && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
+            {
+                ScreenCulling.SetPadding(109);
+                if (ScreenCulling.OnScreenWorld(projectile.position))
+                {
+                    var diff = projectile.oldVelocity;
+                    int amt = (int)Math.Max(Math.Ceiling(diff.Length() / 4), 1);
+                    var v = Vector2.Normalize(diff);
+                    for (int i = 0; i < amt; i++)
+                    {
+                        var spawnLoc = projectile.Center + v * i * 4f;
+                        if (Main.rand.NextBool(100))
+                        {
+                            Dust.NewDustPerfect(spawnLoc, DustID.Smoke, v, Scale: Main.rand.NextFloat(0.8f, 1.5f));
+                        }
+                        EffectsSystem.ParticlesBehindProjs.Add(new MonoParticle(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi)));
+                    }
                 }
                 if (projectile.type == ProjectileID.ChlorophyteBullet)
                 {

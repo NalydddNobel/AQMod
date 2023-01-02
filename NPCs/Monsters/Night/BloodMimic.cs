@@ -21,6 +21,8 @@ namespace Aequus.NPCs.Monsters.Night
 
         public bool spawnedGroup;
 
+        protected override int JumpTimer => NPC.ai[1] == 0f ? 5 : 10;
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 6;
@@ -71,8 +73,6 @@ namespace Aequus.NPCs.Monsters.Night
                 .Add<PotionOfResurrection>(chance: 5, stack: 1);
         }
 
-        protected override int GetJumpTimer() => NPC.ai[1] == 0f ? 5 : 10;
-
         public override void HitEffect(int hitDirection, double damage)
         {
             if (Main.netMode == NetmodeID.Server)
@@ -96,6 +96,18 @@ namespace Aequus.NPCs.Monsters.Night
             }
         }
 
+        public override void OrientJumpingDirection()
+        {
+            if (NPC.direction == 1 && NPC.velocity.X < 5f)
+            {
+                NPC.velocity.X += 0.3f;
+            }
+            else if (NPC.direction == -1 && NPC.velocity.X > -5f)
+            {
+                NPC.velocity.X -= 0.3f;
+            }
+        }
+
         protected override void Jump()
         {
             if (!Main.bloodMoon)
@@ -103,7 +115,13 @@ namespace Aequus.NPCs.Monsters.Night
                 NPC.direction = -NPC.direction;
                 NPC.spriteDirection = -NPC.spriteDirection;
             }
-            if (NPC.ai[1] == 2f)
+            var tileCoords = NPC.Center.ToTileCoordinates();
+            if (WorldGen.InWorld(tileCoords.X + NPC.direction, tileCoords.Y, 10) && Main.tile[tileCoords.X + NPC.direction, tileCoords.Y].IsFullySolid())
+            {
+                NPC.velocity.X = NPC.direction * 5f;
+                NPC.velocity.Y = -6f;
+            }
+            else if (NPC.ai[1] == 2f)
             {
                 NPC.velocity.X = NPC.direction * 5f;
                 NPC.velocity.Y = -4f;

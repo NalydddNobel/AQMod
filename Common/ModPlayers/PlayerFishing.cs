@@ -10,7 +10,6 @@ using Aequus.Items.Misc;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
@@ -175,7 +174,7 @@ namespace Aequus.Common.ModPlayers
                 goto PostProbeFish;
             }
 
-            if (IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(5)))
+            if ((IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(5))) && Main.rand.NextBool())
             {
                 var chooseableFish = new List<int>();
                 if (attempt.heightLevel < HeightLevel_Underworld)
