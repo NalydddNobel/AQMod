@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Projectiles.Summon.Necro;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -16,13 +17,14 @@ namespace Aequus.Buffs.Necro
         public override void Update(NPC npc, ref int buffIndex)
         {
             int damageOverTime = 100;
-            if (npc.life < 200)
+            int killMeLife = Math.Min(npc.lifeMax / 10, 150);
+            if (npc.life < killMeLife)
             {
                 damageOverTime = 800;
             }
-            else if (npc.life < 500)
+            else if (npc.life < killMeLife * 2)
             {
-                damageOverTime = 400;
+                damageOverTime = 48;
             }
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.ghostDebuffDOT = damageOverTime;

@@ -96,12 +96,19 @@ namespace Aequus.NPCs.GlobalNPCs
                     pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiome.SuperStariteSpawn);
                 }
                 int hyperStariteCount = tiles < GlimmerBiome.UltraStariteTile ? 2 : 1;
-                if (tiles < GlimmerBiome.HyperStariteTile && NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
+                if (tiles < GlimmerBiome.HyperStariteTile)
                 {
-                    pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
+                    pool[ModContent.NPCType<Starite>()] *= 0.5f;
+                    pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
+                    if (NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
+                    {
+                        pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
+                    }
                 }
                 if (tiles < GlimmerBiome.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
                 {
+                    pool[ModContent.NPCType<Starite>()] *= 0.5f;
+                    pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
                     pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
                 }
             }

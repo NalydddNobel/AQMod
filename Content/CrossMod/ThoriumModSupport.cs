@@ -9,15 +9,15 @@ namespace Aequus.Content.CrossMod
 
         void ILoadable.Load(Mod mod)
         {
-        }
-
-        void IAddRecipes.AddRecipes(Aequus aequus)
-        {
             ThoriumMod = null;
             if (ModLoader.TryGetMod("ThoriumMod", out var thoriumMod))
             {
                 ThoriumMod = thoriumMod;
             }
+        }
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
         }
 
         void ILoadable.Unload()

@@ -236,6 +236,21 @@ namespace Aequus
             return true;
         }
 
+        public static bool IsPet(this Item item)
+        {
+            return item.buffType > 0 && (Main.vanityPet[item.buffType] || Main.lightPet[item.buffType]);
+        }
+
+        public static bool IsLightPet(this Item item)
+        {
+            return item.buffType > 0 && Main.lightPet[item.buffType];
+        }
+
+        public static bool IsRegularPet(this Item item)
+        {
+            return item.buffType > 0 && Main.vanityPet[item.buffType];
+        }
+
         public static bool IsATool(this Item item)
         {
             return item.pick > 0 || item.axe > 0 || item.hammer > 0;

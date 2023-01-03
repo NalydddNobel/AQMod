@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Content.CrossMod;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
 using Aequus.Graphics;
@@ -126,6 +127,11 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.ThreeQuartersAtLeft:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.Handgun);
+                        if (ThoriumModSupport.ThoriumMod != null)
+                        {
+                            if (ThoriumModSupport.ThoriumMod.TryFind("StreamSting", out ModItem modItem))
+                                inv[nextSlot++].SetDefaults(modItem.Type);
+                        }
                     }
                     break;
                 case MoonPhase.HalfAtLeft:
@@ -137,11 +143,21 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.QuarterAtLeft:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.CobaltShield);
+                        if (ThoriumModSupport.ThoriumMod != null)
+                        {
+                            if (ThoriumModSupport.ThoriumMod.TryFind("StrongestLink", out ModItem modItem))
+                                inv[nextSlot++].SetDefaults(modItem.Type);
+                        }
                     }
                     break;
                 case MoonPhase.Empty:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.BlueMoon);
+                        if (ThoriumModSupport.ThoriumMod != null)
+                        {
+                            if (ThoriumModSupport.ThoriumMod.TryFind("HighTide", out ModItem modItem))
+                                inv[nextSlot++].SetDefaults(modItem.Type);
+                        }
                     }
                     break;
                 case MoonPhase.QuarterAtRight:
@@ -153,11 +169,21 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.HalfAtRight:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.Valor);
+                        if (ThoriumModSupport.ThoriumMod != null)
+                        {
+                            if (ThoriumModSupport.ThoriumMod.TryFind("BoneReaper", out ModItem modItem))
+                                inv[nextSlot++].SetDefaults(modItem.Type);
+                        }
                     }
                     break;
                 case MoonPhase.ThreeQuartersAtRight:
                     {
                         inv[nextSlot++].SetDefaults<Valari>();
+                        if (ThoriumModSupport.ThoriumMod != null)
+                        {
+                            if (ThoriumModSupport.ThoriumMod.TryFind("NaiadShiv", out ModItem modItem))
+                                inv[nextSlot++].SetDefaults(modItem.Type);
+                        }
                     }
                     break;
             }

@@ -1093,7 +1093,7 @@ Mods: {
 				'''
 			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
 			FertilePowder: Causes all nearby tiles to instantly grow
-			WhitePhial: Permanently increase buff duration by 25% 
+			WhitePhial: Permanently increases the duration of positive buffs by 25% 
 			TinkerersGuidebook:	Permanently improve the Goblin Tinkerer's reforge service
 			Moro: Permanently makes minion and sentry staffs consume no mana
 

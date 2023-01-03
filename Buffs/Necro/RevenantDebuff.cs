@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
+using System;
 using Terraria;
 
 namespace Aequus.Buffs.Necro
@@ -14,11 +15,12 @@ namespace Aequus.Buffs.Necro
         public override void Update(NPC npc, ref int buffIndex)
         {
             int damageOverTime = 24;
-            if (npc.life < 50)
+            int killMeLife = Math.Min(npc.lifeMax / 10, 50);
+            if (npc.life < killMeLife)
             {
                 damageOverTime = 400;
             }
-            else if (npc.life < 100)
+            else if (npc.life < killMeLife * 2)
             {
                 damageOverTime = 48;
             }

@@ -894,6 +894,11 @@ namespace Aequus
 
         public override void PostUpdateBuffs()
         {
+            int stariteBottleBuff = Player.FindBuffIndex(ModContent.BuffType<StariteBottleBuff>());
+            if (stariteBottleBuff != -1)
+            {
+                StariteBottleBuff.UpdateEffects(Player, stariteBottleBuff);
+            }
             for (int i = 0; i < boundedPotionIDs.Count; i++)
             {
                 if (!Player.HasBuff(boundedPotionIDs[i]))
@@ -1996,7 +2001,7 @@ namespace Aequus
 
         public void DetermineBuffTimeToAdd(int type, ref int amt)
         {
-            if (amt < 30)
+            if (amt < 3600)
                 return;
             if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
             {
