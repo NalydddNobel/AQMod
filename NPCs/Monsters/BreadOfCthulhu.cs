@@ -36,6 +36,7 @@ namespace Aequus.NPCs.Monsters
             NPC.rarity = 1;
             NPC.alpha = 250;
             NPC.SetLiquidSpeeds(water: 1f);
+            NPC.npcSlots = 4f;
 
             Banner = Type;
             BannerItem = ModContent.ItemType<BreadOfCthulhuBanner>();

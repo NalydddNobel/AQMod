@@ -52,7 +52,7 @@ namespace Aequus.NPCs.Monsters.Sky
             NPC.noGravity = true;
             NPC.knockBackResist = 0.3f;
             NPC.value = Item.buyPrice(silver: 2);
-            NPC.npcSlots = 0.25f;
+            NPC.npcSlots = 1f;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

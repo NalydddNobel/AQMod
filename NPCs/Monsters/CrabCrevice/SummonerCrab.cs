@@ -43,6 +43,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             AIType = NPCID.CorruptBunny;
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<HijivarchCrabBanner>();
+            NPC.npcSlots = 4f;
 
             this.SetBiome<CrabCreviceBiome>();
         }

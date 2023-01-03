@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
         {
             DefaultToCandle<FallenAngelProj>(120);
             Item.rare = ItemRarityID.LightRed;
-            Item.value = Item.sellPrice(gold: 1);
+            Item.value = Item.sellPrice(gold: 2);
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }

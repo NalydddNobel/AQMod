@@ -41,6 +41,7 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.value = Item.buyPrice(silver: 50);
             NPC.knockBackResist = 0.4f;
             NPC.rarity = 1;
+            NPC.npcSlots = 0.6f;
             Banner = Type;
             BannerItem = ModContent.ItemType<BloodMimicBanner>();
 

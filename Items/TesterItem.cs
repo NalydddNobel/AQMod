@@ -3,6 +3,7 @@ using Aequus.Biomes.Glimmer;
 using Aequus.Content.Necromancy;
 using Aequus.Content.StatSheet;
 using Aequus.Graphics;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
 using Aequus.Tiles;
@@ -50,7 +51,7 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            PlacePollenExamples(x, y);
+            Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation_NewYears>(), 0, 0f, player.whoAmI);
             return true;
         }
 
@@ -233,7 +234,7 @@ namespace Aequus.Items
         public override void AI()
         {
             Projectile.ai[1]++;
-            if (Projectile.ai[1] > 11200f)
+            if (Projectile.ai[1] > 1120f)
             {
                 Projectile.Kill();
             }
@@ -244,12 +245,8 @@ namespace Aequus.Items
             //overWiresUI.Add(index);
         }
 
-        public override bool PreDraw(ref Color lightColor)
+        public void Draw2(Vector2 p, float t, float scale)
         {
-            var p = Projectile.Center - Main.screenPosition;
-            float t = Projectile.ai[1];
-            float scale = 2f;
-            AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
             if (t > 300f)
             {
                 var carpenter = TextureAssets.Npc[ModContent.NPCType<NPCs.Friendly.Town.Carpenter>()].Value;
@@ -263,7 +260,7 @@ namespace Aequus.Items
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * 20f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale));
                 text = "New Years!";
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * -30f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale) * 0.9f);
-                return false;
+                return;
             }
             var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
             Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
@@ -325,6 +322,49 @@ namespace Aequus.Items
                     }
                 }
             }
+        }
+        public void Draw3(Vector2 p, float t, float scale)
+        {
+            var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
+            Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
+            if (t > 30f && t < 190)
+            {
+                DrawEnergy(ModContent.ItemType<OrganicEnergy>(), 0f, scale, t, p);
+                DrawEnergy(ModContent.ItemType<AquaticEnergy>(), MathHelper.TwoPi / 5f, scale, t, p);
+                DrawEnergy(ModContent.ItemType<CosmicEnergy>(), MathHelper.TwoPi / 5f * 2f, scale, t, p);
+                DrawEnergy(ModContent.ItemType<DemonicEnergy>(), MathHelper.TwoPi / 5f * 3f, scale, t, p);
+                DrawEnergy(ModContent.ItemType<AtmosphericEnergy>(), MathHelper.TwoPi / 5f * 4f, scale, t, p);
+            }
+            if (t > 160f && t < 200f)
+            {
+                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+
+                float scale2 = (t - 160f) / 20f;
+                float scale3 = AequusHelpers.Wave(t * 0.2f, 0.7f, 1f);
+                Main.spriteBatch.Draw(TextureCache.Bloom[2].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(TextureCache.Bloom[1].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), 0f,
+                    TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * scale2) * scale3, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), MathHelper.PiOver2, 
+                    TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * 2f * scale2) * scale2 * scale3, SpriteEffects.None, 0f);
+            }
+        }
+        public void DrawEnergy(int item, float rotation, float scale, float t, Vector2 p)
+        {
+            Main.instance.LoadItem(item);
+            var itemTexture = TextureAssets.Item[item].Value;
+            float outwards = (float)Math.Sin((t - 30f) * 0.01f + MathHelper.PiOver2) * 60f * scale;
+            Main.spriteBatch.Draw(itemTexture, p + (rotation - MathHelper.PiOver2 + outwards * 0.4f / 60f / scale).ToRotationVector2() * outwards, null, Color.White, 0f, itemTexture.Size() / 2f, scale * 0.75f, SpriteEffects.None, 0f);
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            var p = Projectile.Center - Main.screenPosition;
+            float t = Projectile.ai[1];
+            float scale = 2f;
+            AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
+            //Draw2(p, t, scale);
+            Draw3(p, t, scale);
             return false;
         }
 

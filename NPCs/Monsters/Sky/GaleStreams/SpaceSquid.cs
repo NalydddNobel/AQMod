@@ -99,6 +99,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
+            NPC.damage = (int)(NPC.damage * 0.8);
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -949,6 +950,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.aiStyle = -1;
             NPC.knockBackResist = 0f;
             NPC.behindTiles = true;
+            NPC.npcSlots = 5f;
         }
 
         public override bool CanChat() => true;

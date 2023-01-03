@@ -24,7 +24,7 @@ namespace Aequus.NPCs.GlobalNPCs
     {
         public static bool CanSpawnGlimmerEnemies(Player player)
         {
-            return player.Aequus().ZoneGlimmer && (player.townNPCs < 2f || GlimmerSystem.CalcTiles(player) < 60);
+            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 60;
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
@@ -32,11 +32,12 @@ namespace Aequus.NPCs.GlobalNPCs
             if (player.GetModPlayer<AequusPlayer>().ZoneDemonSiege)
             {
                 spawnRate = Math.Min(spawnRate, 100);
-                maxSpawns = Math.Max(maxSpawns, 8);
+                maxSpawns = Math.Max(maxSpawns, 7);
                 return;
             }
             if (player.Zen())
             {
+                player.Zen(active: false);
                 spawnRate *= 10000;
                 maxSpawns = 0;
                 return;
@@ -58,15 +59,9 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 spawnRate /= 2;
             }
-            if (IsClose<RedSprite>(player) || IsClose<SpaceSquid>(player))
-            {
-                spawnRate *= 3;
-                maxSpawns = Math.Min(maxSpawns, 2);
-            }
             if (CanSpawnGlimmerEnemies(player))
             {
                 spawnRate /= 2;
-                maxSpawns = (int)(maxSpawns * 1.25f);
             }
             else if (player.Aequus().ZonePeacefulGlimmer)
             {

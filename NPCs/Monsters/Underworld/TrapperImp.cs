@@ -53,6 +53,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.noGravity = true;
             NPC.knockBackResist = 0.1f;
             NPC.SetLiquidSpeeds(lava: 1f);
+            NPC.npcSlots = 3f;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<TrapperImpBanner>();

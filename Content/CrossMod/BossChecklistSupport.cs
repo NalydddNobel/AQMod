@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Healing;
+using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss.Bags;
 using Aequus.Items.Boss.Summons;
@@ -12,6 +13,7 @@ using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets;
 using Aequus.Items.Pets.Light;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
@@ -129,6 +131,27 @@ namespace Aequus.Content.CrossMod
                     new List<int>() { ModContent.ItemType<TornadoInABottle>(), });
 
                 const float GaleStreams = 8.1f;
+
+                AddBossEntry(
+                    "Miniboss",
+                    "UltraStarite",
+                    new List<int>() { ModContent.NPCType<UltraStarite>() },
+                    6.1f, // Fought in Gale Streams
+                    () => AequusWorld.downedUltraStarite,
+                    null,
+                    new List<int>()
+                    {
+                        ModContent.ItemType<SuperStarSword>(),
+                        ModContent.ItemType<Nightfall>(),
+                        ModContent.ItemType<StariteStaff>(),
+                        ModContent.ItemType<HyperCrystal>(),
+                        ModContent.ItemType<CosmicMonolith>(),
+                        ModContent.ItemType<ManaCursor>(),
+                        ItemID.Nazar,
+                        ModContent.ItemType<AstralCookie>(),
+                        ModContent.ItemType<NeutronYogurt>(),
+                    },
+                    null);
 
                 AddBossEntry(
                     "Miniboss",

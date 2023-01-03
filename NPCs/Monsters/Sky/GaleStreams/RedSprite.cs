@@ -1,10 +1,8 @@
 ﻿using Aequus;
 using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Consumables;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets.Light;
@@ -96,6 +94,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.noGravity = true;
             NPC.value = Item.buyPrice(gold: 2);
             NPC.noTileCollide = true;
+            NPC.npcSlots = 5f;
 
             _brightness = 0.2f;
 
@@ -105,6 +104,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
+            NPC.damage = (int)(NPC.damage * 0.8);
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)

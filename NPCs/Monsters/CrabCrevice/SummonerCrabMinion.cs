@@ -31,6 +31,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(copper: 50);
             NPC.knockBackResist = 0.33f;
+            NPC.npcSlots = 0.6f;
 
             this.SetBiome<CrabCreviceBiome>();
         }
