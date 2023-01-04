@@ -21,6 +21,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 
 namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
@@ -494,6 +495,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void OnKill()
         {
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedUltraStarite, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
         }
 
         public override int SpawnNPC(int tileX, int tileY)

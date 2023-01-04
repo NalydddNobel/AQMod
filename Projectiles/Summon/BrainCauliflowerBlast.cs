@@ -136,10 +136,34 @@ namespace Aequus.Projectiles.Summon
                 zombie.zombieDebuffTier = 2.1f;
                 zombie.zombieOwner = Projectile.owner;
                 zombie.ghostDamage = Math.Max(zombie.ghostDamage, 40);
-                target.StrikeNPC(2000, 1f, Projectile.direction);
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    ButcherNPC(target, Projectile.owner);
+                }
+                else
+                {
+                    var p = Aequus.GetPacket(PacketType.BrainCauliflowerNecromancyKill);
+                    p.Write(target.whoAmI);
+                    p.Write(Projectile.owner);
+                    p.Send();
+                }
                 Projectile.ai[1]++;
             }
             Projectile.damage = (int)(Projectile.damage * 0.8f);
+        }
+
+        public static void ButcherNPC(NPC target, int owner)
+        {
+            var zombie = target.GetGlobalNPC<NecromancyNPC>();
+            zombie.conversionChance = 1;
+            zombie.renderLayer = ColorTargetID.BloodRed;
+            zombie.zombieDebuffTier = 2.1f;
+            zombie.zombieOwner = owner;
+            zombie.ghostDamage = Math.Max(zombie.ghostDamage, 40);
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                Main.player[owner].ApplyDamageToNPC(target, 2000, 1f, 0, true);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

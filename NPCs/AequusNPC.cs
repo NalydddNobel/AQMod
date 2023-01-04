@@ -17,6 +17,7 @@ using Aequus.Items.Placeable;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -55,6 +56,7 @@ namespace Aequus.NPCs
         public float nightfallSpeed;
         public bool noAITest;
         public bool childNPC;
+        public bool tempHide;
 
         public override void Load()
         {
@@ -248,6 +250,7 @@ namespace Aequus.NPCs
             }
             statAttackDamage = 1f;
             noAITest = false;
+            tempHide = false;
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -278,6 +281,16 @@ namespace Aequus.NPCs
                 nightfallStacks = 0;
                 nightfallSpeed = 0f;
             }
+        }
+
+        public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (tempHide)
+            {
+                tempHide = false;
+                return false;
+            }
+            return true;
         }
 
         public override bool PreAI(NPC npc)

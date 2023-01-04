@@ -13,6 +13,7 @@ using Aequus.Items.Tools.Camera;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Misc;
+using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Gravity;
@@ -247,6 +248,15 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.BrainCauliflowerNecromancyKill:
+                    {
+                        int npc = reader.ReadInt32();
+                        int player = reader.ReadInt32();
+                        if (Main.npc[npc].active)
+                            BrainCauliflowerBlast.ButcherNPC(Main.npc[npc], player);
+                    }
+                    break;
+
                 case PacketType.RegisterPhotoClip:
                     //CarpenterSystem.RecieveClip(reader);
                     break;
@@ -465,7 +475,16 @@ namespace Aequus
 
                 case PacketType.ApplyNameTagToNPC:
                     {
-                        NameTag.ApplyNametagToNPC(reader.ReadInt32(), reader.ReadString());
+                        int i = reader.ReadInt32();
+                        var nameTag = reader.ReadString();
+                        NameTag.ApplyNametagToNPC(i, nameTag);
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            var p = Aequus.GetPacket(PacketType.ApplyNameTagToNPC);
+                            p.Write(i);
+                            p.Write(nameTag);
+                            p.Send();
+                        }
                     }
                     break;
 
@@ -517,7 +536,8 @@ namespace Aequus
                     break;
 
                 case PacketType.SpawnOmegaStarite:
-                    NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
+                    if (!NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()))
+                        NPC.SpawnBoss(reader.ReadInt32(), reader.ReadInt32() - 1600, ModContent.NPCType<OmegaStarite>(), reader.ReadInt32());
                     AequusWorld.downedEventCosmic = true;
                     break;
 

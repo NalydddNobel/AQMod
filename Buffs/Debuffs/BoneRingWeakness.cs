@@ -24,6 +24,7 @@ namespace Aequus.Buffs.Debuffs
                     AequusBuff.AddStaticImmunity(n.Key, false, Type);
                 }
             }
+            AequusBuff.PlayerStatusBuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex)

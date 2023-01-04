@@ -244,7 +244,7 @@ namespace Aequus.NPCs.Boss
             NPC.width = 120;
             NPC.height = 120;
             NPC.lifeMax = 12000;
-            NPC.damage = 25;
+            NPC.damage = 45;
             NPC.defense = 18;
             NPC.DeathSound = SoundID.NPCDeath55;
             NPC.aiStyle = -1;
@@ -607,7 +607,6 @@ namespace Aequus.NPCs.Boss
                                             EffectsSystem.Shake.Set(12f);
                                         }
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
-                                        Main.projectile[p].scale = Main.getGoodWorld ? 1f : 0.75f;
                                         if (Main.getGoodWorld)
                                         {
                                             p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);

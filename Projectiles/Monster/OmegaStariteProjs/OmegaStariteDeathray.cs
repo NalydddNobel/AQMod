@@ -30,6 +30,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
             Projectile.timeLeft *= 5;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 4;
+            Projectile.scale = Main.getGoodWorld ? 1f : 0.75f;
         }
 
         private const float size = NPCs.Boss.OmegaStarite.DIAMETER * 4f;
@@ -60,7 +61,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
 
         public override bool? CanHitNPC(NPC target)
         {
-            return !target.friendly && target.life > 5 ? false : null;
+            return target.friendly || target.life < 5 || target.townNPC || target.isLikeATownNPC ? false : null;
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)

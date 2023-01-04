@@ -24,7 +24,7 @@ namespace Aequus.NPCs.GlobalNPCs
     {
         public static bool CanSpawnGlimmerEnemies(Player player)
         {
-            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 60;
+            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 100;
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
@@ -105,6 +105,14 @@ namespace Aequus.NPCs.GlobalNPCs
                     pool[ModContent.NPCType<Starite>()] *= 0.5f;
                     pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
                     pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
+                    if (AequusWorld.downedUltraStarite)
+                    {
+                        pool[ModContent.NPCType<UltraStarite>()] *= 0.4f;
+                    }
+                    else
+                    {
+                        pool[ModContent.NPCType<UltraStarite>()] *= 2f;
+                    }
                 }
             }
         }
@@ -120,11 +128,8 @@ namespace Aequus.NPCs.GlobalNPCs
             AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
             if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
             {
-                pool.Add(ModContent.NPCType<RedSprite>(), 0.06f * SpawnCondition.Sky.Chance);
-                //if (!AequusWorld.downedSpaceSquid)
-                {
-                    pool.Add(ModContent.NPCType<SpaceSquid>(), 0.06f * SpawnCondition.Sky.Chance);
-                }
+                pool.Add(ModContent.NPCType<RedSprite>(), (!AequusWorld.downedRedSprite ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
+                pool.Add(ModContent.NPCType<SpaceSquid>(), (!AequusWorld.downedSpaceSquid ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
             }
             if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
                 pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);

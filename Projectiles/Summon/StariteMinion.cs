@@ -247,7 +247,7 @@ namespace Aequus.Projectiles.Summon
             Rectangle frame = new Rectangle(0, 0, texture.Width, texture.Height);
             Vector2 offset = new Vector2(Projectile.width / 2, Projectile.height / 2);
             var effects = Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            var color = new Color(10, 10, 150, 40);
+            var color = new Color(35, 80, 150, 40);
             var origin = frame.Size() / 2f;
             for (int i = 0; i < ProjectileID.Sets.TrailCacheLength[Projectile.type]; i++)
             {

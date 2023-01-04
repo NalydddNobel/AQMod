@@ -43,13 +43,14 @@ namespace Aequus.Tiles.Ambience
 
         public override bool Drop(int i, int j)
         {
+            bool regrowth = Main.player[Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16)].HeldItemFixed().type == ItemID.StaffofRegrowth;
             if (Main.tile[i, j].TileFrameX >= FrameShiftX)
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MorayPollen>(), Main.rand.Next(3) + 1);
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MorayPollen>(), regrowth ? Main.rand.Next(1, 3) : 1);
             }
-            if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
+            if (CanBeHarvestedWithStaffOfRegrowth(i, j))
             {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoraySeeds>(), Main.rand.Next(3) + 1);
+                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoraySeeds>(), regrowth ? Main.rand.Next(1, 6) : Main.rand.Next(1, 4));
             }
             return false;
         }

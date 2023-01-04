@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Misc.Pets
 
         public override bool PreDraw(ref Color lightColor)
         {
-            if (Aequus.GameWorldActive && Projectile.localAI[0] > 7f)
+            if (Aequus.GameWorldActive && Projectile.localAI[0] > 2f)
             {
                 Projectile.localAI[0] = 0f;
                 ScanRareTiles();
@@ -106,13 +106,13 @@ namespace Aequus.Projectiles.Misc.Pets
                         Projectile.localAI[1] = Main.npc[i].rarity * 200f;
                         for (int k = 0; k <= Main.npc[i].width; k += 4)
                         {
-                            SearchDust(new Vector2(Main.npc[i].position.X + k, Main.npc[i].position.Y));
-                            SearchDust(new Vector2(Main.npc[i].position.X + k, Main.npc[i].position.Y + Main.npc[i].height));
+                            SearchDust(new Vector2(Main.npc[i].position.X + k, Main.npc[i].position.Y), 0, -1);
+                            SearchDust(new Vector2(Main.npc[i].position.X + k, Main.npc[i].position.Y + Main.npc[i].height), 0, 1);
                         }
                         for (int k = 0; k <= Main.npc[i].height; k += 4)
                         {
-                            SearchDust(new Vector2(Main.npc[i].position.X, Main.npc[i].position.Y + k));
-                            SearchDust(new Vector2(Main.npc[i].position.X + Main.npc[i].width, Main.npc[i].position.Y + k));
+                            SearchDust(new Vector2(Main.npc[i].position.X, Main.npc[i].position.Y + k), -1, 0);
+                            SearchDust(new Vector2(Main.npc[i].position.X + Main.npc[i].width, Main.npc[i].position.Y + k), 1, 0);
                         }
                     }
                 }
@@ -121,54 +121,73 @@ namespace Aequus.Projectiles.Misc.Pets
 
         public void ScanRareTiles()
         {
-            var r = AequusHelpers.TileRectangle(Projectile.Center, 16, 16).Fluffize(10);
+            int sizeHalf = 16;
+            var r = AequusHelpers.TileRectangle(Projectile.Center, sizeHalf, sizeHalf).Fluffize(10);
             for (int i = r.X; i < r.X + r.Width; i++)
             {
                 for (int j = r.Y; j < r.Y + r.Height; j++)
                 {
                     var tile = Main.tile[i, j];
-                    if (tile.HasTile && Main.tileOreFinderPriority[tile.TileType] > 0)
+                    if (tile.HasTile)
                     {
-                        Projectile.localAI[1] = Math.Min(Main.tileOreFinderPriority[tile.TileType], 800f);
+                        if (Main.tileOreFinderPriority[tile.TileType] > 0)
+                        {
+                            Projectile.localAI[1] = Math.Min(Main.tileOreFinderPriority[tile.TileType], 800f);
+                        }
+                        else if (Main.IsTileSpelunkable(i, j))
+                        {
+                            Projectile.localAI[1] = 550f;
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                        var clr = Color.Lerp(Color.White, Color.Yellow, Projectile.localAI[1] / 800f).ToVector3();
+                        clr *= 1f - Vector2.Distance(Projectile.Center, new Vector2(i * 16f + 8f, j * 16f + 8f)) / (sizeHalf * 16f);
+
+                        Lighting.AddLight(i, j, clr.X, clr.Y, clr.Z);
                         if (!MatchesMe(tile, Main.tile[i, j - 1]))
                         {
                             for (int k = 0; k <= 4; k++)
                             {
-                                SearchDust(new Vector2(i * 16f + k * 4f, j * 16f));
+                                SearchDust(new Vector2(i * 16f + k * 4f, j * 16f), 0, -1);
                             }
                         }
                         if (!MatchesMe(tile, Main.tile[i, j + 1]))
                         {
                             for (int k = 0; k <= 4; k++)
                             {
-                                SearchDust(new Vector2(i * 16f + k * 4f, j * 16f + 16f));
+                                SearchDust(new Vector2(i * 16f + k * 4f, j * 16f + 16f), 0, 1);
                             }
                         }
                         if (!MatchesMe(tile, Main.tile[i + 1, j]))
                         {
                             for (int k = 0; k <= 4; k++)
                             {
-                                SearchDust(new Vector2(i * 16f + 16f, j * 16f + k * 4f));
+                                SearchDust(new Vector2(i * 16f + 16f, j * 16f + k * 4f), 1, 0);
                             }
                         }
                         if (!MatchesMe(tile, Main.tile[i - 1, j]))
                         {
                             for (int k = 0; k <= 4; k++)
                             {
-                                SearchDust(new Vector2(i * 16f, j * 16f + k * 4f));
+                                SearchDust(new Vector2(i * 16f, j * 16f + k * 4f), -1, 0);
                             }
                         }
                     }
                 }
             }
         }
-        public void SearchDust(Vector2 where)
+        public void SearchDust(Vector2 where, int x, int y)
         {
-            if (!Main.rand.NextBool(8))
+            if (!Main.rand.NextBool(3 + (int)Vector2.Distance(Projectile.Center, where)))
                 return;
-            var d = Dust.NewDustPerfect(where, DustID.AncientLight, Vector2.Zero, newColor: Color.Lerp(Color.White, Color.Yellow, Projectile.localAI[1]/ 800f));
+            var v = new Vector2(x, y) * Main.rand.Next(8, 16);
+            var d = Dust.NewDustPerfect(where, DustID.MinecartSpark, -v * 0.025f, newColor: Color.Lerp(Color.White, Color.Yellow, Projectile.localAI[1] / 800f).UseA(100));
+            d.frame.Y = 59;
             d.noGravity = true;
             d.fadeIn = d.scale + 0.33f;
+            d.noLight = true;
             d.noLightEmittence = true;
         }
         public bool MatchesMe(Tile tile, Tile tile2)

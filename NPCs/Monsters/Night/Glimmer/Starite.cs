@@ -327,22 +327,25 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 return;
             }
 
-            if (NPC.velocity == Vector2.Zero && Main.netMode != NetmodeID.MultiplayerClient)
+            if (NPC.velocity == Vector2.Zero)
             {
-                NPC.TargetClosest(faceTarget: false);
-                float y;
-                if (NPC.HasValidTarget)
-                {
-                    y = Main.player[NPC.target].position.Y;
-                }
-                else
-                {
-                    y = NPC.position.Y;
-                }
-                NPC.position.Y = y - 1000f;
-                NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 15f;
                 NPC.oldVelocity = NPC.velocity;
-                NPC.netUpdate = true;
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    NPC.TargetClosest(faceTarget: false);
+                    float y;
+                    if (NPC.HasValidTarget)
+                    {
+                        y = Main.player[NPC.target].position.Y;
+                    }
+                    else
+                    {
+                        y = NPC.position.Y;
+                    }
+                    NPC.position.Y = y - 1000f;
+                    NPC.velocity = (Main.rand.NextFloat(MathHelper.PiOver4) + MathHelper.PiOver4 * 1.5f).ToRotationVector2() * 15f;
+                    NPC.netUpdate = true;
+                }
             }
 
             if (NPC.noTileCollide)

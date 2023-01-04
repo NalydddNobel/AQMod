@@ -15,7 +15,6 @@ namespace Aequus.Buffs.Debuffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-
             foreach (var n in ContentSamples.NpcsByNetId)
             {
                 if (n.Value.boss || n.Value.defense >= 100)
@@ -23,6 +22,7 @@ namespace Aequus.Buffs.Debuffs
                     AequusBuff.AddStaticImmunity(n.Key, false, Type);
                 }
             }
+            AequusBuff.PlayerDoTBuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex)

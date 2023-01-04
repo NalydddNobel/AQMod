@@ -24,6 +24,10 @@ namespace Aequus.Tiles.Ambience
         {
             return true;
         }
+        public virtual bool CanBeHarvestedWithStaffOfRegrowth(int i, int j)
+        {
+            return Main.tile[i, j].TileFrameX >= FrameShiftX * 2;
+        }
 
         public override void SetStaticDefaults()
         {
@@ -56,6 +60,11 @@ namespace Aequus.Tiles.Ambience
         {
             if (i % 2 == 1)
                 spriteEffects = SpriteEffects.FlipHorizontally;
+        }
+
+        public override bool CanPlace(int i, int j)
+        {
+            return !Main.tile[i, j].HasTile || !Main.tileAlch[Main.tile[i, j].TileType] || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
         }
 
         public override void RandomUpdate(int i, int j)
@@ -96,6 +105,35 @@ namespace Aequus.Tiles.Ambience
                 if (Main.netMode != NetmodeID.SinglePlayer)
                     NetMessage.SendTileSquare(-1, i, j, 1);
             }
+        }
+    }
+    public class StaffOfRegrowthHerbsHelper : ILoadable
+    {
+        public void Load(Mod mod)
+        {
+            On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
+        }
+
+        private static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player player, bool canPlace)
+        {
+            if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile 
+                && Main.tile[Player.tileTargetX, Player.tileTargetY].TileType >= Main.maxTileSets && TileLoader.GetTile(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType) is HerbTileBase herbTile)
+            {
+                if (herbTile.CanBeHarvestedWithStaffOfRegrowth(Player.tileTargetX, Player.tileTargetY))
+                {
+                    WorldGen.KillTile(Player.tileTargetX, Player.tileTargetY);
+                    if (!Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile && Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, Player.tileTargetX, Player.tileTargetY);
+                    }
+                }
+                canPlace = true;
+            }
+            return orig(player, canPlace);
+        }
+
+        public void Unload()
+        {
         }
     }
 }

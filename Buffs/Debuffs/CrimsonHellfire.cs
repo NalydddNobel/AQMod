@@ -18,6 +18,7 @@ namespace Aequus.Buffs.Debuffs
             Main.buffNoSave[Type] = true;
             AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
             AequusBuff.IsFire.Add(Type);
+            AequusBuff.PlayerDoTBuff.Add(Type);
         }
 
 

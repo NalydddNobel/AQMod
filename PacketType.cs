@@ -31,6 +31,7 @@
         SpawnPixelCameraClip,
         PlacePixelPainting,
         RegisterPhotoClip,
+        BrainCauliflowerNecromancyKill,
         Count
     }
 

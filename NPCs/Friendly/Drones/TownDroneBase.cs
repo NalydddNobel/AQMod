@@ -107,7 +107,7 @@ namespace Aequus.NPCs.Friendly.Drones
                 if (pylonSpot == Point.Zero)
                 {
                     NPC.localAI[0] = 0f;
-                    NPC.Kill();
+                    NPC.KillEffects();
                     NPC.netUpdate = true;
                     return;
                 }

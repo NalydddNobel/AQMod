@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Monster
     public class UltraStariteDeathray : EnemyAttachedProjBase
     {
         public const float DEATHRAY_SIZE = 60f;
-        public const float DEATHRAY_LENGTH = 2000f;
+        public const float DEATHRAY_LENGTH = 1000f;
         public const int DEATHRAY_KILL_TIME = 25;
 
         public override string Texture => Aequus.BlankTexture;

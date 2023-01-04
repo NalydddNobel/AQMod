@@ -45,6 +45,7 @@ namespace Aequus.Buffs.Debuffs
                     AequusBuff.AddStaticImmunity(n.Key, false, Type);
                 }
             }
+            AequusBuff.PlayerDoTBuff.Add(Type);
         }
     }
 }

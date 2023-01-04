@@ -16,6 +16,7 @@ namespace Aequus.Buffs.Debuffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
+            AequusBuff.PlayerStatusBuff.Add(Type);
         }
 
         public override bool ReApply(NPC npc, int time, int buffIndex)

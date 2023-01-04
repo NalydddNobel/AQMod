@@ -20,6 +20,9 @@ namespace Aequus.Buffs
         public static HashSet<int> DontChangeDuration { get; private set; }
         public static HashSet<int> IsActuallyABuff { get; private set; }
 
+        public static HashSet<int> PlayerDoTBuff { get; private set; }
+        public static HashSet<int> PlayerStatusBuff { get; private set; }
+
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
 
         public static Dictionary<int, List<int>> PotionConflicts;
@@ -28,6 +31,8 @@ namespace Aequus.Buffs
 
         public override void Load()
         {
+            PlayerDoTBuff = new HashSet<int>();
+            PlayerStatusBuff = new HashSet<int>();
             ConcoctibleBuffIDsBlacklist = new HashSet<int>()
             {
                 BuffID.Tipsy,

@@ -466,7 +466,7 @@ namespace Aequus.Tiles
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(2000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(3000))
                     {
                         TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
                     }
@@ -474,27 +474,30 @@ namespace Aequus.Tiles
 
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
-                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
-                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
-                    TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(250))
+                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(500))
                 {
                     TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
                         ModContent.TileType<MorayTile>());
                 }
-                if (WorldGen.genRand.NextBool(1200))
+                if (WorldGen.genRand.NextBool(1800))
                 {
                     GrowPearl(i, j);
                 }

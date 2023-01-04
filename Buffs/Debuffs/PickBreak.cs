@@ -8,6 +8,7 @@ namespace Aequus.Buffs.Debuffs
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
+            AequusBuff.PlayerStatusBuff.Add(Type);
         }
 
         public override void Update(Player player, ref int buffIndex)

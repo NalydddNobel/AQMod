@@ -188,18 +188,6 @@ namespace Aequus.Content.Necromancy
             NecromancyNPC.Zombie.Reset();
         }
 
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-        }
-
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
-        {
-            if (isZombie)
-            {
-                target.AddBuff(ModContent.BuffType<SoulStolen>(), 300);
-            }
-        }
-
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter writer)
         {
             bitWriter.WriteBit(isZombie);

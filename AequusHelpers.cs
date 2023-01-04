@@ -1482,6 +1482,16 @@ namespace Aequus
             }
         }
 
+        public static bool TryGetFieldOf<T>(this Type type, string name, BindingFlags flags, object obj, out T value)
+        {
+            value = default(T);
+            var f = type.GetField(name, flags);
+            if (f == null || f.FieldType != typeof(T))
+                return false;
+            value = (T)f.GetValue(obj);
+            return true;
+        }
+
         public static MiscShaderData UseImage1(this MiscShaderData misc, Asset<Texture2D> texture)
         {
             typeof(MiscShaderData).GetField("_uImage1", LetMeIn).SetValue(misc, texture);

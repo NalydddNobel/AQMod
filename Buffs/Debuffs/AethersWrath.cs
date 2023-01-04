@@ -32,6 +32,7 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.AddStaticImmunity(NPCID.QueenSlimeMinionPink, Type);
             AequusBuff.AddStaticImmunity(NPCID.QueenSlimeMinionPurple, Type);
             AequusBuff.IsFire.Add(Type);
+            AequusBuff.PlayerDoTBuff.Add(Type);
         }
     }
 }

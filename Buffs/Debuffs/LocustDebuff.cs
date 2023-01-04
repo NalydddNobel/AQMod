@@ -11,6 +11,7 @@ namespace Aequus.Buffs.Debuffs
         {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
+            AequusBuff.PlayerDoTBuff.Add(Type);
         }
 
         public static void AddStack(NPC npc, int debuffTime, int stacksAmt = 1)
