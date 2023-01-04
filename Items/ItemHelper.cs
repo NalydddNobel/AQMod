@@ -81,6 +81,11 @@ namespace Aequus.Items
             return -1;
         }
 
+        public static void AddTooltip(this List<TooltipLine> tooltips, TooltipLine line)
+        {
+            tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), line);
+        }
+
         public static int GetIndex(this List<TooltipLine> tooltips, string lineName)
         {
             int myIndex = FindLineIndex(lineName);

@@ -30,6 +30,11 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
             cursorDyeID = CursorDyeSystem.ItemIDToCursorID(Type);
         }
 
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.Aequus().CursorDye = cursorDyeID;
+        }
+
         public override void UpdateVanity(Player player)
         {
             player.Aequus().CursorDye = cursorDyeID;

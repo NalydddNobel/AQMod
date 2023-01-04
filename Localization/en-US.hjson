@@ -160,6 +160,7 @@ Mods: {
 			DevilsTongue: Devil's Tongue
 
 		# Vanity
+			InspirationCursor: Inspiration Cursor
 			EyeGlint: Glint-In-Your-Eye
 			XmasCursor: Santa-NK1's Cursor
 			PumpkingCloak: Pumpking's Cloak
@@ -765,10 +766,12 @@ Mods: {
 			}
 
 			# Vanity
+			InspirationCursor: Causes your mouse cursor to darken the lower your inspiration
 			EyeGlint: Makes your eyes appear fully bright
 			XmasCursor: Transforms your mouse cursor
 			PumpkingCloak: Removes your body and legs from this realm
 			PumpkingCursor: Transforms your mouse cursor
+			DyableCursor: Applies the equipped dye to your cursor
 			HealthCursor: Causes your mouse cursor to darken the lower your life
 			ManaCursor: Causes your mouse cursor to brighten the lower your mana
 			SwordCursor: Transforms your mouse cursor
@@ -2655,6 +2658,8 @@ Mods: {
 		Lava: Lava
 		Honey: Honey
 		Shimmer: Shimmer
+
+		NeedsMod: "Requires [{0}] to be enabled"
 
 		KeyUnbound: Unbound Key
 		Finished: Finished
