@@ -99,6 +99,7 @@ Mods: {
 
 		ItemName: {
 		# Accessories
+			LavaproofMitten: Lavaproof Mitten
 			Stormcloak: Storm Cloak
 			ShadowVeer: Shadow Veer
 			SouljointCuffs: Souljoint Cuffs
@@ -626,6 +627,7 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			LavaproofMitten: Allows placement in lava
 			Stormcloak: Push enemies and projectiles away after taking damage
 			PotionCanteen: Allows infinite use of a potion when equipped
 			ShadowVeer: Ghost minions will do shadow dashes at targeted enemies
@@ -765,7 +767,7 @@ Mods: {
 				Stormcloak: Taking damage inflicts Hellfire and Frostbite to nearby enemies
 			}
 
-			# Vanity
+		# Vanity
 			InspirationCursor: Causes your mouse cursor to darken the lower your inspiration
 			EyeGlint: Makes your eyes appear fully bright
 			XmasCursor: Transforms your mouse cursor
@@ -779,7 +781,7 @@ Mods: {
 			Headless: Decapitates you
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
-			# Melee Weapons
+		# Melee Weapons
 			PhaseDisc: 
 				'''
 				Left Click to throw a fiery disc

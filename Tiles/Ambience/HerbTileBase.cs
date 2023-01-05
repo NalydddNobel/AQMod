@@ -64,7 +64,7 @@ namespace Aequus.Tiles.Ambience
 
         public override bool CanPlace(int i, int j)
         {
-            return !Main.tile[i, j].HasTile || !Main.tileAlch[Main.tile[i, j].TileType] || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
+            return !Main.tile[i, j].HasTile || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
         }
 
         public override void RandomUpdate(int i, int j)

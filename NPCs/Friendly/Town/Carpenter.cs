@@ -3,6 +3,7 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.CarpenterBounties;
 using Aequus.Content.Personalities;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Coatings;
 using Aequus.Items.Placeable;
@@ -146,6 +147,10 @@ namespace Aequus.NPCs.Friendly.Town
                 {
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
                 }
+            }
+            if (AequusWorld.downedEventDemon)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LavaproofMitten>());
             }
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();

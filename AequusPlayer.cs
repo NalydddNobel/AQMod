@@ -114,6 +114,8 @@ namespace Aequus
 
         public float darkness;
 
+        public bool accLavaPlace;
+
         public int accHyperJet;
         public bool accShowQuestFish;
         public bool accPriceMonocle;
@@ -613,6 +615,7 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            accLavaPlace = false;
             instaShieldTimeMax = 0;
             instaShieldCooldown = 0;
             accDustDevilExpert = null;
@@ -2146,6 +2149,7 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
             On.Terraria.Player.KeyDoubleTap += Player_KeyDoubleTap;
             On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
             On.Terraria.Player.TryPainting += Player_TryPainting;
@@ -2159,6 +2163,13 @@ namespace Aequus
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+        }
+
+        private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(On.Terraria.Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)
+        {
+            if (player.Aequus().accLavaPlace)
+                return false;
+            return orig(player);
         }
 
         private static void Player_KeyDoubleTap(On.Terraria.Player.orig_KeyDoubleTap orig, Player player, int keyDir)
