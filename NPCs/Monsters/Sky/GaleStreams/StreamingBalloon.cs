@@ -291,7 +291,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 npc.position.Y = NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2;
                 npc.position -= NPC.velocity;
                 npc.ai[0] = 0f;
-                npc.hide = true;
+                npc.Aequus().tempHide = true;
                 npc.noTileCollide = true;
                 npc.knockBackResist = 0f;
             }

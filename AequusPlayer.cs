@@ -400,19 +400,20 @@ namespace Aequus
             var aequus = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                false,
+                aequus.itemSwitch <= 0 && itemSwitch > 0,
                 Math.Abs(timeSinceLastHit - aequus.timeSinceLastHit) > 60,
                 gravetenderGhost != aequus.gravetenderGhost,
                 omniPaint != aequus.omniPaint,
-                (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 
-                || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
+                (aequus.itemCombo - itemCombo).Abs() > 20,
                 aequus.instaShieldTime != instaShieldTime,
                 !boundedPotionIDs.IsTheSameAs(aequus.boundedPotionIDs),
-                boundBowAmmo != aequus.boundBowAmmo || boundBowAmmoTimer != aequus.boundBowAmmoTimer);
+                boundBowAmmo != aequus.boundBowAmmo || (aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0));
 
             var bb2 = new BitsByte(
-                summonHelmetTimer != aequus.summonHelmetTimer,
-                sceneInvulnerability > 0);
+                (aequus.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
+                aequus.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
+                aequus.itemCooldown <= 0 && itemCooldown > 0,
+                (aequus.itemUsage - itemUsage).Abs() > 20);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -421,7 +422,14 @@ namespace Aequus
                 p.Write(bb);
                 p.Write(bb2);
                 p.Write(darkness);
-                p.Write(timeSinceLastHit);
+                if (bb[0])
+                {
+                    p.Write(itemSwitch);
+                }
+                if (bb[1])
+                {
+                    p.Write(timeSinceLastHit);
+                }
                 if (bb[2])
                 {
                     p.Write(gravetenderGhost);
@@ -433,10 +441,6 @@ namespace Aequus
                 if (bb[4])
                 {
                     p.Write(itemCombo);
-                    p.Write(itemSwitch);
-                    p.Write(itemUsage);
-                    p.Write(itemCooldown);
-                    p.Write(itemCooldownMax);
                 }
                 if (bb[5])
                 {
@@ -463,6 +467,15 @@ namespace Aequus
                 {
                     p.Write(sceneInvulnerability);
                 }
+                if (bb2[2])
+                {
+                    p.Write(itemCooldown);
+                    p.Write(itemCooldownMax);
+                }
+                if (bb2[3])
+                {
+                    p.Write(itemUsage);
+                }
                 p.Send();
             }
         }
@@ -471,9 +484,10 @@ namespace Aequus
         {
             var bb = (BitsByte)reader.ReadByte();
             var bb2 = (BitsByte)reader.ReadByte();
-            if (bb[0])
+            darkness = reader.ReadSingle();
+            if (bb[1])
             {
-                darkness = reader.ReadSingle();
+                itemSwitch = reader.ReadUInt16();
             }
             if (bb[1])
             {
@@ -490,10 +504,6 @@ namespace Aequus
             if (bb[4])
             {
                 itemCombo = reader.ReadUInt16();
-                itemSwitch = reader.ReadUInt16();
-                itemUsage = reader.ReadUInt16();
-                itemCooldown = reader.ReadUInt16();
-                itemCooldownMax = reader.ReadUInt16();
             }
             if (bb[5])
             {
@@ -520,6 +530,15 @@ namespace Aequus
             if (bb2[1])
             {
                 sceneInvulnerability = reader.ReadInt32();
+            }
+            if (bb2[2])
+            {
+                itemCooldown = reader.ReadUInt16();
+                itemCooldownMax = reader.ReadUInt16();
+            }
+            if (bb2[3])
+            {
+                itemUsage = reader.ReadUInt16();
             }
         }
 

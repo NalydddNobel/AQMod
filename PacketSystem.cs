@@ -545,6 +545,10 @@ namespace Aequus
                         int y = reader.ReadInt32();
 
                         DroneWorld.RecievePacket(reader, new Point(x, y));
+                        if (Main.netMode == NetmodeID.Server && DroneWorld.TryGetDroneData(x, y, out var drone))
+                        {
+                            drone.Sync();
+                        }
                     }
                     break;
 
