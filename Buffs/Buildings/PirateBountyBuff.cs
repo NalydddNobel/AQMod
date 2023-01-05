@@ -12,7 +12,7 @@ namespace Aequus.Buffs.Buildings
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense += 8;
+            player.fishingSkill += 15;
         }
 
         public override bool RightClick(int buffIndex)
