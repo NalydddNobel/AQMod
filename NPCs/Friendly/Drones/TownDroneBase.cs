@@ -107,7 +107,8 @@ namespace Aequus.NPCs.Friendly.Drones
                 if (pylonSpot == Point.Zero)
                 {
                     NPC.localAI[0] = 0f;
-                    NPC.KillEffects();
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        NPC.KillEffects();
                     NPC.netUpdate = true;
                     return;
                 }
@@ -126,13 +127,15 @@ namespace Aequus.NPCs.Friendly.Drones
             if (pylonSpot == Point.Zero || !DroneWorld.ValidSpot(pylonSpot.X, pylonSpot.Y))
             {
                 NPC.localAI[0] = 0f;
-                NPC.Kill();
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.Kill();
                 return;
             }
             if (!DroneWorld.Drones.TryGetValue(pylonSpot, out var drone))
             {
                 NPC.localAI[0] = 1f;
-                NPC.Kill();
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                    NPC.Kill();
                 return;
             }
             if (!drone.isActive)

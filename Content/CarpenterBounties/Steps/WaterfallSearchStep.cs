@@ -77,7 +77,7 @@ namespace Aequus.Content.CarpenterBounties.Steps
                 var addPoints = new List<Point>();
                 var checkedPoints = new List<Point>() { checkPoint };
                 var offsets = new Point[] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1), };
-                for (int k = 0; k < 1000; k++)
+                for (int k = 0; k < 500; k++)
                 {
                     checkedPoints.AddRange(addPoints);
                     addPoints.Clear();

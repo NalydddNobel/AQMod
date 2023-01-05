@@ -18,6 +18,7 @@ namespace Aequus.Content.CarpenterBounties
         public int ItemStack;
         public List<int> MiscUnlocks;
         private Func<bool> bountyAvailable;
+        public int BuildingBuff;
 
         public virtual string LanguageKey => $"Mods.{Mod.Name}.CarpenterBounty.{Name}";
 
@@ -44,6 +45,12 @@ namespace Aequus.Content.CarpenterBounties
         public CarpenterBounty SetReward<T>(int stack = 1) where T : ModItem
         {
             return SetReward(ModContent.ItemType<T>(), stack);
+        }
+
+        public CarpenterBounty SetBuff<T>() where T : ModBuff
+        {
+            BuildingBuff = ModContent.BuffType<T>();
+            return this;
         }
 
         public CarpenterBounty AddMiscUnlock(int itemID)

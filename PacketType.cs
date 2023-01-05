@@ -32,6 +32,8 @@
         PlacePixelPainting,
         RegisterPhotoClip,
         BrainCauliflowerNecromancyKill,
+        AddBuilding,
+        RemoveBuilding,
         Count
     }
 

@@ -57,6 +57,8 @@ namespace Aequus
                 PacketType.SpawnPixelCameraClip,
                 PacketType.PlacePixelPainting,
                 PacketType.RegisterPhotoClip,
+                PacketType.AddBuilding,
+                PacketType.RemoveBuilding,
             };
             TileCoatingSync = new List<Rectangle>();
         }
@@ -248,6 +250,23 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.RemoveBuilding:
+                    {
+                        int bountyID = reader.ReadInt32();
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+                        CarpenterSystem.RemoveBuildingBuffLocation(bountyID, x, y, quiet: Main.netMode == NetmodeID.MultiplayerClient);
+                    }
+                    break;
+
+                case PacketType.AddBuilding:
+                    {
+                        int bountyID = reader.ReadInt32();
+                        var rectangle = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                        CarpenterSystem.AddBuildingBuffLocation(bountyID, rectangle, quiet: Main.netMode == NetmodeID.MultiplayerClient);
+                    }
+                    break;
+
                 case PacketType.BrainCauliflowerNecromancyKill:
                     {
                         int npc = reader.ReadInt32();

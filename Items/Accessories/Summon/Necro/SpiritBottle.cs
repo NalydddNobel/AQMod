@@ -6,6 +6,11 @@ namespace Aequus.Items.Accessories.Summon.Necro
 {
     public class SpiritBottle : ModItem
     {
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.PygmyNecklace);

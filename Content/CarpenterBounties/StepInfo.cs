@@ -25,6 +25,16 @@ namespace Aequus.Content.CarpenterBounties
             interests = new List<StepInterest>();
         }
 
+        public StepInfo(TileMapCache map, Rectangle sampleRectangle) : this()
+        {
+            Map = map;
+            SamplingArea = sampleRectangle;
+        }
+
+        public StepInfo(Rectangle sampleRectangle) : this(new TileMapCache(sampleRectangle), sampleRectangle)
+        {
+        }
+
         public StepInfo(ShutterstockerClip clip) : this()
         {
             Map = clip.tileMap;

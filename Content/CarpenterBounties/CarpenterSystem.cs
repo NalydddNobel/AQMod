@@ -1,4 +1,5 @@
-﻿using Aequus.Content.CarpenterBounties.Steps;
+﻿using Aequus.Buffs.Buildings;
+using Aequus.Content.CarpenterBounties.Steps;
 using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
@@ -11,6 +12,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.CarpenterBounties
 {
@@ -21,17 +23,21 @@ namespace Aequus.Content.CarpenterBounties
 
         public static Dictionary<int, bool> CraftableTileLookup { get; private set; }
 
+        public static Dictionary<int, List<Rectangle>> BuildingBuffLocations { get; private set; }
+
         public static int BountyCount => BountiesByID.Count;
 
         public override void Load()
         {
             CraftableTileLookup = new Dictionary<int, bool>();
+            BuildingBuffLocations = new Dictionary<int, List<Rectangle>>();
         }
 
         public override void SetupContent()
         {
             new CarpenterBounty("FountainBounty")
                 .SetReward<AdvancedRuler>()
+                .SetBuff<FountainBountyBuff>()
                 .AddStep(new WaterfallSearchStep(liquidWanted: LiquidID.Water)
                     .AfterSuccess((i, s) =>
                         i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = i.GetInterest<WaterfallSearchStep.WaterfallInterest>().resultRectangle))
@@ -49,6 +55,7 @@ namespace Aequus.Content.CarpenterBounties
 
             new CarpenterBounty("PirateShipBounty")
                 .SetReward<WhiteFlag>()
+                .SetBuff<PirateBountyBuff>()
                 .AddStep(new FindHousesStep(minHouses: 2)
                     .AfterSuccess((i, s) =>
                     {
@@ -62,6 +69,7 @@ namespace Aequus.Content.CarpenterBounties
 
             new CarpenterBounty("BiomePaletteBounty")
                 .SetReward<OmniPaint>()
+                .SetBuff<PaletteBountyBuff>()
                 .AddStep(new FindHousesStep(minHouses: 1)
                     .AfterSuccess((i, s) =>
                     {
@@ -75,6 +83,7 @@ namespace Aequus.Content.CarpenterBounties
 
             new CarpenterBounty("PondBridgeBounty")
                 .SetReward<FishSign>()
+                .SetBuff<BridgeBountyBuff>()
                 .AddStep(new FindBridgeStep(waterTilesNeeded: 50, waterHeightNeeded: 4, liquidIDWanted: LiquidID.Water, bridgeLengthWanted: 12)
                     .AfterSuccess((i, s) =>
                     {
@@ -111,6 +120,37 @@ namespace Aequus.Content.CarpenterBounties
                 .AddStep(new ActuatorDoorStep())
                 .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0.5f))
                 .Register();
+        }
+
+        public override void OnWorldLoad()
+        {
+            BuildingBuffLocations?.Clear();
+        }
+
+        public override void OnWorldUnload()
+        {
+            BuildingBuffLocations?.Clear();
+        }
+
+        public override void SaveWorldData(TagCompound tag)
+        {
+            foreach (var pair in BuildingBuffLocations)
+            {
+                if (BuildingBuffLocations.Count > 0)
+                    tag[$"Buildings_{BountiesByID[pair.Key].Name}"] = pair.Value;
+                continue;
+            }
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            foreach (var b in BountiesByID)
+            {
+                if (tag.TryGet<List<Rectangle>>($"Buildings_{b.Name}", out var value))
+                {
+                    BuildingBuffLocations[b.Type] = value;
+                }
+            }
         }
 
         public static List<Point> TurnRectangleIntoUnoptimizedPointMess(Rectangle rectangle)
@@ -150,6 +190,54 @@ namespace Aequus.Content.CarpenterBounties
             BountiesByID?.Clear();
             BountiesByName?.Clear();
             CraftableTileLookup?.Clear();
+        }
+
+        public static void AddBuildingBuffLocation(int bountyID, Rectangle rectangle, bool quiet = false)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
+            {
+                var p = Aequus.GetPacket(PacketType.AddBuilding);
+                p.Write(bountyID);
+                p.Write(rectangle.X);
+                p.Write(rectangle.Y);
+                p.Write(rectangle.Width);
+                p.Write(rectangle.Height);
+                p.Send();
+            }
+            if (!BuildingBuffLocations.ContainsKey(bountyID))
+            {
+                BuildingBuffLocations[bountyID] = new List<Rectangle>() { rectangle };
+                return;
+            }
+            BuildingBuffLocations[bountyID].Add(rectangle);
+        }
+
+        public static void RemoveBuildingBuffLocation(int bountyID, int x, int y, bool quiet = false)
+        {
+            if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
+            {
+                var p = Aequus.GetPacket(PacketType.RemoveBuilding);
+                p.Write(bountyID);
+                p.Write(x);
+                p.Write(y);
+                p.Send();
+            }
+            if (!BuildingBuffLocations.ContainsKey(bountyID))
+            {
+                return;
+            }
+            var l = BuildingBuffLocations[bountyID];
+            lock (l)
+            {
+                for (int i = 0; i < l.Count; i++)
+                {
+                    if (l[i].Contains(x, y))
+                    {
+                        l.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
         }
 
         public static int RegisterBounty(CarpenterBounty bounty)

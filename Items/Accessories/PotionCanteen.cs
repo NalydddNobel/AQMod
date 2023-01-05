@@ -20,6 +20,11 @@ namespace Aequus.Items.Accessories
 
         public bool HasBuff => buffID > 0;
 
+        public override void SetStaticDefaults()
+        {
+            SacrificeTotal = 1;
+        }
+
         public void SetPotionDefaults()
         {
             Item.buffType = buffID;

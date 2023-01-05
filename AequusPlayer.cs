@@ -391,6 +391,8 @@ namespace Aequus
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
             clone.sceneInvulnerability = sceneInvulnerability;
+            clone.boundBowAmmo = boundBowAmmo;
+            clone.boundBowAmmoTimer = boundBowAmmoTimer;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -398,13 +400,14 @@ namespace Aequus
             var aequus = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                darkness != aequus.darkness,
-                timeSinceLastHit != aequus.timeSinceLastHit,
+                false,
+                Math.Abs(timeSinceLastHit - aequus.timeSinceLastHit) > 60,
                 gravetenderGhost != aequus.gravetenderGhost,
                 omniPaint != aequus.omniPaint,
-                (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
+                (aequus.itemCombo - itemCombo).Abs() > 3 || (aequus.itemSwitch - itemSwitch).Abs() > 3 || (aequus.itemUsage - itemUsage).Abs() > 3 
+                || (aequus.itemCooldown - itemCooldown).Abs() > 3 || aequus.itemCooldownMax != itemCooldownMax,
                 aequus.instaShieldTime != instaShieldTime,
-                boundedPotionIDs.IsTheSameAs(aequus.boundedPotionIDs),
+                !boundedPotionIDs.IsTheSameAs(aequus.boundedPotionIDs),
                 boundBowAmmo != aequus.boundBowAmmo || boundBowAmmoTimer != aequus.boundBowAmmoTimer);
 
             var bb2 = new BitsByte(
@@ -417,14 +420,8 @@ namespace Aequus
                 p.Write((byte)Player.whoAmI);
                 p.Write(bb);
                 p.Write(bb2);
-                if (bb[0])
-                {
-                    p.Write(darkness);
-                }
-                if (bb[1])
-                {
-                    p.Write(timeSinceLastHit);
-                }
+                p.Write(darkness);
+                p.Write(timeSinceLastHit);
                 if (bb[2])
                 {
                     p.Write(gravetenderGhost);
@@ -554,7 +551,7 @@ namespace Aequus
             instaShieldAlpha = 0f;
             gravityTile = 0;
             boundBowAmmo = BoundBowMaxAmmo;
-            boundBowAmmoTimer = 60;
+            boundBowAmmoTimer = BoundBowRegenerationDelay;
             CursorDye = -1;
             ghostTombstones = false;
             moroSummonerFruit = false;

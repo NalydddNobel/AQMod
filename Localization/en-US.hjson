@@ -1560,6 +1560,11 @@ Mods: {
 			BaguetteBuff: Baguette
 			SpicyEelBuff: Spicy Eel
 
+			BridgeBountyBuff: "Building: Bridge"
+			FountainBountyBuff: "Building: Fountain"
+			PaletteBountyBuff: "Building: Palette"
+			PirateBountyBuff: "Building: Ship"
+
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
 			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
 			EmpoweredArchery: "{$BuffName.Archery}"
