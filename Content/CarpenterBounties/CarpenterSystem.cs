@@ -8,6 +8,7 @@ using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
@@ -27,10 +28,13 @@ namespace Aequus.Content.CarpenterBounties
 
         public static int BountyCount => BountiesByID.Count;
 
+        public static List<string> CompletedBounties;
+
         public override void Load()
         {
             CraftableTileLookup = new Dictionary<int, bool>();
             BuildingBuffLocations = new Dictionary<int, List<Rectangle>>();
+            CompletedBounties = new List<string>();
         }
 
         public override void SetupContent()
@@ -125,11 +129,13 @@ namespace Aequus.Content.CarpenterBounties
         public override void OnWorldLoad()
         {
             BuildingBuffLocations?.Clear();
+            CompletedBounties?.Clear();
         }
 
         public override void OnWorldUnload()
         {
             BuildingBuffLocations?.Clear();
+            CompletedBounties?.Clear();
         }
 
         public override void SaveWorldData(TagCompound tag)
@@ -137,7 +143,19 @@ namespace Aequus.Content.CarpenterBounties
             foreach (var pair in BuildingBuffLocations)
             {
                 if (BuildingBuffLocations.Count > 0)
-                    tag[$"Buildings_{BountiesByID[pair.Key].Name}"] = pair.Value;
+                {
+                    var b = BountiesByID[pair.Key];
+                    for (int i = 0; i < pair.Value.Count; i++)
+                    {
+                        if (!b.CheckConditions(new StepInfo(pair.Value[i])).success)
+                        {
+                            pair.Value.RemoveAt(i);
+                            i--;
+                        }
+                    }
+                    if (pair.Value.Count > 0)
+                        tag[$"Buildings_{b.Name}"] = pair.Value;
+                }
                 continue;
             }
         }
@@ -148,7 +166,8 @@ namespace Aequus.Content.CarpenterBounties
             {
                 if (tag.TryGet<List<Rectangle>>($"Buildings_{b.Name}", out var value))
                 {
-                    BuildingBuffLocations[b.Type] = value;
+                    for (int i = 0; i < value.Count; i++)
+                        AddBuildingBuffLocation(b.Type, value[i], quiet: true);
                 }
             }
         }
@@ -192,6 +211,29 @@ namespace Aequus.Content.CarpenterBounties
             CraftableTileLookup?.Clear();
         }
 
+        public static void ScanForBuilderBuffs(Rectangle r)
+        {
+            var map = new TileMapCache(r);
+            
+            foreach (var b in BountiesByID)
+            {
+                if (b.BuildingBuff <= 0)
+                {
+                    return;
+                }
+                var result = b.CheckConditions(new StepInfo(map, r));
+                //Main.NewText($"{b.Name}:{result.success}");
+                if (result.success)
+                {
+                    AddBuildingBuffLocation(b.Type, r);
+                }
+                else
+                {
+                    RemoveBuildingBuffLocation(b.Type, r.X, r.Y);
+                }
+            }
+        }
+
         public static void AddBuildingBuffLocation(int bountyID, Rectangle rectangle, bool quiet = false)
         {
             if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
@@ -209,7 +251,31 @@ namespace Aequus.Content.CarpenterBounties
                 BuildingBuffLocations[bountyID] = new List<Rectangle>() { rectangle };
                 return;
             }
-            BuildingBuffLocations[bountyID].Add(rectangle);
+            var l = BuildingBuffLocations[bountyID];
+            bool addRectangle = true;
+            for (int i = 0; i < l.Count; i++)
+            {
+                if (l[i].Intersects(rectangle))
+                {
+                    var r = l[i];
+                    r.X = Math.Min(rectangle.X, r.X);
+                    r.Y = Math.Min(rectangle.Y, r.Y);
+                    int maxX = Math.Max(rectangle.X + rectangle.Width, l[i].X + l[i].Width);
+                    int maxY = Math.Max(rectangle.Y + rectangle.Height, l[i].Y + l[i].Height);
+                    r.Width = maxX - r.X;
+                    r.Height = maxY - r.Y;
+                    l[i] = r;
+                    rectangle = r;
+                    if (!addRectangle)
+                    {
+                        l.RemoveAt(i);
+                        i--;
+                    }
+                    addRectangle = false;
+                }
+            }
+            if (addRectangle)
+                BuildingBuffLocations[bountyID].Add(rectangle);
         }
 
         public static void RemoveBuildingBuffLocation(int bountyID, int x, int y, bool quiet = false)
@@ -409,6 +475,142 @@ namespace Aequus.Content.CarpenterBounties
                 }
             }
             return decorAmt;
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            SendCompletedBounties();
+            int count = 0;
+            foreach (var b in BuildingBuffLocations.Values)
+            {
+                if (b.Count > 0)
+                    count++;
+            }
+            writer.Write(count);
+            foreach (var pair in BuildingBuffLocations)
+            {
+                var b = pair.Value;
+                if (b.Count < 0)
+                {
+                    continue;
+                }
+                var l = b;
+                writer.Write(pair.Key);
+                writer.Write(l.Count);
+                for (int j = 0; j < l.Count; j++)
+                {
+                    writer.Write(l[j].X);
+                    writer.Write(l[j].Y);
+                    writer.Write(l[j].Width);
+                    writer.Write(l[j].Height);
+                }
+            }
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            int buildingBuffLocationsCount = reader.ReadInt32();
+            BuildingBuffLocations?.Clear();
+            for (int i = 0; i < buildingBuffLocationsCount; i++)
+            {
+                int type = reader.ReadInt32();
+                int listCount = reader.ReadInt32();
+                for (int j = 0; j < listCount; j++)
+                {
+                    var r = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                    AddBuildingBuffLocation(type, r, quiet: true);
+                }
+            }
+        }
+
+        public static void SendCompletedBounties()
+        {
+            var p = Aequus.GetPacket(PacketType.CarpenterBountiesCompleted);
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                p.Send();
+                return;
+            }
+            TrimCompletedBounties();
+
+            var l = new List<int>();
+            for (int i = 0; i < CompletedBounties.Count; i++)
+            {
+                if (BountiesByName.ContainsKey(CompletedBounties[i]))
+                    l.Add(BountiesByName[CompletedBounties[i]].Type);
+            }
+
+            p.Write(l.Count);
+            for (int i = 0; i < CompletedBounties.Count; i++)
+            {
+                p.Write(l[i]);
+            }
+            p.Send();
+        }
+
+        public static void ReceiveCompletedBounties(BinaryReader reader)
+        {
+            if (Main.netMode == NetmodeID.Server)
+            {
+                SendCompletedBounties();
+                return;
+            }
+            CompletedBounties?.Clear();
+            int amt = reader.ReadInt32();
+            var bounties = new List<int>();
+            for (int i = 0; i < amt; i++)
+            {
+                var b = BountiesByID[reader.ReadInt32()];
+                CompletedBounties.Add(b.FullName);
+            }
+        }
+
+        public static void ResetBounties()
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                Aequus.GetPacket(PacketType.ResetCarpenterBounties).Send();
+                return;
+            }
+            CompletedBounties?.Clear();
+            if (Main.netMode == NetmodeID.Server)
+            {
+                SendCompletedBounties();
+            }
+            else
+            {
+                TrimCompletedBounties();
+            }
+        }
+
+        public static void CompleteCarpenterBounty(CarpenterBounty b)
+        {
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                var p = Aequus.GetPacket(PacketType.CompleteCarpenterBounty);
+                p.Write(b.Type);
+                p.Send();
+                return;
+            }
+            CompletedBounties.Add(b.FullName);
+            TrimCompletedBounties();
+            if (Main.netMode == NetmodeID.Server)
+                SendCompletedBounties();
+        }
+
+        public static void TrimCompletedBounties()
+        {
+            for (int i = 0; i < CompletedBounties.Count - 1; i++)
+            {
+                for (int j = i + 1; j < CompletedBounties.Count; j++)
+                {
+                    if (CompletedBounties[i] == CompletedBounties[j])
+                    {
+                        CompletedBounties.RemoveAt(j);
+                        j--;
+                    }
+                }
+            }
         }
     }
 }

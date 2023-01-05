@@ -25,6 +25,7 @@ namespace Aequus.Items.Tools.Camera
         public string reviewNotesLanguageKey;
 
         public override bool HasTooltipTexture => base.HasTooltipTexture && !TooltipTexture.Value.IsContentLost;
+        public override int OldItemID => ModContent.ItemType<ShutterstockerClipAmmo>();
 
         public override void SetDefaults()
         {

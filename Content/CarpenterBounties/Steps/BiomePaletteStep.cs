@@ -141,72 +141,78 @@ namespace Aequus.Content.CarpenterBounties.Steps
 
         public Color ColorLookup(ushort tileID, Rectangle frame, Dictionary<ushort, Dictionary<Rectangle, Color>> colorLookups)
         {
+            var dominantColor = Color.White;
             if (colorLookups.TryGetValue(tileID, out var lookupInner))
             {
                 if (lookupInner.TryGetValue(frame, out var lookupColor))
                 {
-                    return lookupColor;
+                    dominantColor = lookupColor;
+                    return dominantColor;
                 }
             }
-
-            Main.instance.LoadTiles(tileID);
-            var texture = TextureAssets.Tile[tileID];
-            if (texture == null || texture.Value == null || !texture.IsLoaded || texture.IsDisposed)
-                return Color.White;
-
-            var colorDictionary = new Dictionary<Color, int>();
-
-            var colors = AequusHelpers.Get2DColorArr(texture.Value);
-            for (int i = frame.X; i < frame.X + frame.Width; i++)
+            try
             {
-                for (int j = frame.Y; j < frame.Y + frame.Width; j++)
-                {
-                    try
-                    {
-                        var clr = colors[i, j];
-                        if (colorDictionary.ContainsKey(clr))
-                        {
-                            colorDictionary[clr]++;
-                        }
-                        else
-                        {
-                            colorDictionary.Add(clr, 1);
-                        }
-                    }
-                    catch
-                    {
-                    }
-                }
-            }
+                Main.instance.LoadTiles(tileID);
+                var texture = TextureAssets.Tile[tileID];
+                if (texture == null || texture.Value == null || !texture.IsLoaded || texture.IsDisposed)
+                    return dominantColor;
 
-            if (colorDictionary.Count == 0)
-                return Color.White;
+                var colorDictionary = new Dictionary<Color, int>();
 
-            foreach (var pair in colorDictionary)
-            {
-                var hsl = Main.rgbToHsl(pair.Key);
-                foreach (var pair2 in colorDictionary)
+                var colors = AequusHelpers.Get2DColorArr(texture.Value);
+                for (int i = frame.X; i < frame.X + frame.Width; i++)
                 {
-                    if (pair2.Key != pair.Key)
+                    for (int j = frame.Y; j < frame.Y + frame.Width; j++)
                     {
-                        var hsl2 = Main.rgbToHsl(pair2.Key);
-                        if ((hsl.X - hsl2.X).Abs() < 0.1f && (hsl.Y - hsl2.Y).Abs() < 0.1f)
+                        try
                         {
-                            colorDictionary[pair2.Key] += colorDictionary[pair.Key];
+                            var clr = colors[i, j];
+                            if (colorDictionary.ContainsKey(clr))
+                            {
+                                colorDictionary[clr]++;
+                            }
+                            else
+                            {
+                                colorDictionary.Add(clr, 1);
+                            }
+                        }
+                        catch
+                        {
                         }
                     }
                 }
-            }
 
-            var dominantColor = Color.White;
-            int dominantColorAmt = 0;
-            foreach (var pair in colorDictionary)
-            {
-                if (pair.Value > dominantColorAmt)
+                if (colorDictionary.Count == 0)
+                    return dominantColor;
+
+                foreach (var pair in colorDictionary)
                 {
-                    dominantColorAmt = pair.Value;
-                    dominantColor = pair.Key;
+                    var hsl = Main.rgbToHsl(pair.Key);
+                    foreach (var pair2 in colorDictionary)
+                    {
+                        if (pair2.Key != pair.Key)
+                        {
+                            var hsl2 = Main.rgbToHsl(pair2.Key);
+                            if ((hsl.X - hsl2.X).Abs() < 0.1f && (hsl.Y - hsl2.Y).Abs() < 0.1f)
+                            {
+                                colorDictionary[pair2.Key] += colorDictionary[pair.Key];
+                            }
+                        }
+                    }
                 }
+
+                int dominantColorAmt = 0;
+                foreach (var pair in colorDictionary)
+                {
+                    if (pair.Value > dominantColorAmt)
+                    {
+                        dominantColorAmt = pair.Value;
+                        dominantColor = pair.Key;
+                    }
+                }
+            }
+            catch
+            {
             }
             return dominantColor;
         }

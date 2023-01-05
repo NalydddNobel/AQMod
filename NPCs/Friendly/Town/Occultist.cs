@@ -246,7 +246,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             return new List<string>()
             {
-                "Abaddon",
+                "Abadeer",
                 "Cally",
                 "Brimmy",
                 "Beelzebub",
@@ -255,9 +255,8 @@ namespace Aequus.NPCs.Friendly.Town
                 "Revengeance",
                 "Archvince",
                 "Vincera",
-                "Baron",
                 "Spectre",
-                "Heretic",
+                "Kurskan",
                 "Maykr",
             };
         }

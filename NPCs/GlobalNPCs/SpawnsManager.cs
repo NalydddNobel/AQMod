@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
+using Aequus.Buffs.Buildings;
 using Aequus.Common.ModPlayers;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
@@ -41,6 +42,11 @@ namespace Aequus.NPCs.GlobalNPCs
                 spawnRate *= 10000;
                 maxSpawns = 0;
                 return;
+            }
+            if (player.HasBuff<PaletteBountyBuff>())
+            {
+                spawnRate *= 2;
+                maxSpawns /= 2;
             }
             if (player.ZoneSkyHeight)
             {

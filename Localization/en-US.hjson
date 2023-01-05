@@ -1640,6 +1640,11 @@ Mods: {
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 			
+			BridgeBountyBuff: Increase fishing power by 15
+			FountainBountyBuff: Villagers have increased happiness
+			PaletteBountyBuff: Reduced spawnrate
+			PirateBountyBuff: Increase defense by 8
+
 			EmpoweredNecromancy: Increases your max number of ghosts by 2
 			EmpoweredSentry: Increases your max number of sentries by 2
 			EmpoweredArchery: 20% increased arrow damage and 20% increased arrow speed

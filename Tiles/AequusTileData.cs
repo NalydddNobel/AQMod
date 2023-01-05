@@ -88,6 +88,20 @@ namespace Aequus.Tiles
             }
         }
 
+        public static bool ShouldSendSquare(Rectangle rectangle)
+        {
+            for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++)
+            {
+                for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++)
+                {
+                    if (Main.tile[i, j].Get<AequusTileData>().bitpack != 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public static void SendSquare(BinaryWriter writer, Rectangle syncTangle)
         {
             writer.Write(syncTangle.X);
@@ -99,7 +113,8 @@ namespace Aequus.Tiles
             {
                 for (int j = syncTangle.Y; j < syncTangle.Y + syncTangle.Height; j++)
                 {
-                    writer.Write(Main.tile[i, j].Get<AequusTileData>().bitpack);
+                    var b = Main.tile[i, j].Get<AequusTileData>().bitpack;
+                    writer.Write(b);
                 }
             }
         }

@@ -24,6 +24,7 @@ namespace Aequus.Items.Tools.Camera
         public MapTile[] MapTiles { get => mapCache.mapTiles; set => mapCache.mapTiles = value; }
 
         public override float BaseTooltipTextureScale => 4f;
+        public override int OldItemID => ModContent.ItemType<PixelCameraClipAmmo>();
 
         public override ModItem Clone(Item newEntity)
         {

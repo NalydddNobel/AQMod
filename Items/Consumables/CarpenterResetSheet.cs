@@ -26,10 +26,9 @@ namespace Aequus.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            var bountyPlayer = player.GetModPlayer<CarpenterBountyPlayer>();
-            bool hasBounty = bountyPlayer.CompletedBounties.Count > 0;
-            bountyPlayer.CompletedBounties.Clear();
-            return hasBounty;
+            if (Main.myPlayer == player.whoAmI)
+                CarpenterSystem.ResetBounties();
+            return true;
         }
     }
 }

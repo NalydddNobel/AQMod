@@ -10,6 +10,11 @@ namespace Aequus.Buffs.Buildings
             Main.buffNoTimeDisplay[Type] = true;
         }
 
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.statDefense += 8;
+        }
+
         public override bool RightClick(int buffIndex)
         {
             return false;

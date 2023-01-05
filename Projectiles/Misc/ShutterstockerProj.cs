@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Content.CarpenterBounties;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.Tools.Camera;
 using Aequus.UI;
@@ -97,6 +98,7 @@ namespace Aequus.Projectiles.Misc
 
         public virtual void SpawnClipItem(Rectangle tilesCaptured)
         {
+            CarpenterSystem.ScanForBuilderBuffs(tilesCaptured);
             Item item;
             if (Main.netMode != NetmodeID.SinglePlayer)
             {

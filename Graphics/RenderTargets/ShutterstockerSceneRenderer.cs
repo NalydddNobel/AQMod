@@ -71,7 +71,7 @@ namespace Aequus.Graphics.RenderTargets
                 {
                     foreach (var p in RenderRequests[0].reviewNotesPoints)
                     {
-                        spriteBatch.Draw(TextureAssets.Extra[ExtrasID.LaserRuler].Value, new Vector2((p.X - TilePadding / 2) * 16f, (p.Y - TilePadding / 2) * 16f), new Rectangle(0, 0, 16, 16), Color.Red * 0.33f);
+                        spriteBatch.Draw(TextureAssets.Extra[ExtrasID.LaserRuler].Value, new Vector2((p.X - TilePadding / 2) * 16f, (p.Y - TilePadding / 2) * 16f), new Rectangle(0, 0, 16, 16), Color.Red * 0.8f);
                     }
                 }
 

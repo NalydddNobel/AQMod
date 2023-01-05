@@ -1,4 +1,5 @@
-﻿using Aequus.Biomes;
+﻿using Ionic.Zlib;
+using Aequus.Biomes;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
@@ -38,7 +39,7 @@ namespace Aequus
 
         public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
-        public static List<Rectangle> TileCoatingSync { get; private set; }
+        public static Point[] playerTilePosCache;
 
         public override void Load()
         {
@@ -60,60 +61,29 @@ namespace Aequus
                 PacketType.AddBuilding,
                 PacketType.RemoveBuilding,
             };
-            TileCoatingSync = new List<Rectangle>();
+            playerTilePosCache = new Point[Main.maxPlayers];
+        }
+
+        public void ClearWorld()
+        {
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                playerTilePosCache[i] = Point.Zero;
+            }
         }
 
         public override void OnWorldLoad()
         {
-            TileCoatingSync.Clear();
+            ClearWorld();
         }
 
         public override void OnWorldUnload()
         {
-            TileCoatingSync.Clear();
+            ClearWorld();
         }
 
         public override void PostUpdateEverything()
         {
-            if (TileCoatingSync.Count > 0)
-            {
-                if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    TileCoatingSync.Clear();
-                    return;
-                }
-
-                try
-                {
-                    //Send((p) =>
-                    //{
-                    //    AequusTileData.SendSquare(p, TileCoatingSync[0]);
-                    //}, PacketType.AequusTileSquare);
-                }
-                catch
-                {
-                    // split into 4 rectangles
-                    var r = TileCoatingSync[0];
-                    int halfW1 = r.Width / 2;
-                    int halfW2 = r.Width - halfW1;
-                    int halfH1 = r.Height / 2;
-                    int halfH2 = r.Height - halfH1;
-                    TileCoatingSync.Add(new Rectangle(r.X, r.Y, halfW1, halfH1));
-                    TileCoatingSync.Add(new Rectangle(r.X + halfW1, r.Y, halfW2, halfH1));
-                    TileCoatingSync.Add(new Rectangle(r.X, r.Y + halfH1, halfW1, halfH2));
-                    TileCoatingSync.Add(new Rectangle(r.X + halfW1, r.Y + halfH1, halfW2, halfH2));
-                }
-                TileCoatingSync.RemoveAt(0);
-            }
-        }
-
-        public override bool HijackSendData(int whoAmI, int msgType, int remoteClient, int ignoreClient, NetworkText text, int number, float number2, float number3, float number4, int number5, int number6, int number7)
-        {
-            if (msgType == MessageID.TileSquare)
-            {
-                TileCoatingSync.Add(new Rectangle(number, (int)number2, (int)number3, (int)number4));
-            }
-            return false;
         }
 
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
@@ -521,9 +491,19 @@ namespace Aequus
                     }
                     break;
 
+                case PacketType.CompleteCarpenterBounty:
+                    {
+                        CarpenterSystem.CompleteCarpenterBounty(CarpenterSystem.BountiesByID[reader.ReadInt32()]);
+                    }
+                    break;
+                case PacketType.ResetCarpenterBounties:
+                    {
+                        CarpenterSystem.ResetBounties();
+                    }
+                    break;
                 case PacketType.CarpenterBountiesCompleted:
                     {
-                        Main.player[reader.ReadInt32()].GetModPlayer<CarpenterBountyPlayer>().RecieveClientChanges(reader);
+                        CarpenterSystem.ReceiveCompletedBounties(reader);
                     }
                     break;
 

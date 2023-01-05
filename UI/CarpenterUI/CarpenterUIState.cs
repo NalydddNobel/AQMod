@@ -124,7 +124,7 @@ namespace Aequus.UI.CarpenterUI
                         Main.playerInventory = true;
                         if (resultInfo.success)
                         {
-                            Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Add(selected.bounty.FullName);
+                            CarpenterSystem.CompleteCarpenterBounty(selected.bounty);
                             selected.bounty.OnCompleteBounty(Main.LocalPlayer, Main.npc[Main.LocalPlayer.talkNPC]);
                             Main.npcChatText = Language.GetTextValue($"{selected.bounty.LanguageKey}.Success");
                             clip.reviewNotesLanguageKey = null;
@@ -212,7 +212,7 @@ namespace Aequus.UI.CarpenterUI
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)
             {
-                if (!bounty.IsBountyAvailable() || bountyPlayer.CompletedBounties.Contains(bounty.FullName))
+                if (!bounty.IsBountyAvailable() || CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
                     continue;
 
                 var uiElement = new CarpenterUIElement(this, bounty);

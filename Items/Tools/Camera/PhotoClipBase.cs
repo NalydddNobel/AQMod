@@ -19,6 +19,7 @@ namespace Aequus.Items.Tools.Camera
         public Ref<T> TooltipTexture;
         public long timeCreatedSerialized;
 
+        public abstract int OldItemID { get; }
         public virtual float BaseTooltipTextureScale => 1f;
         public float TooltipTextureScale
         {
@@ -67,6 +68,19 @@ namespace Aequus.Items.Tools.Camera
             }
             clone.TooltipTexture = TooltipTexture;
             return clone;
+        }
+
+        public override void Update(ref float gravity, ref float maxFallSpeed)
+        {
+            if (Item.wet && Main.netMode != NetmodeID.MultiplayerClient && OldItemID > 0)
+            {
+                Item.active = false;
+                var item2 = Item.NewItem(Item.GetSource_FromThis(), Item.Center, OldItemID, noGrabDelay: true);
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.SyncItem, number: Item.whoAmI);
+                }
+            }
         }
 
         public abstract void OnMissingTooltipTexture();

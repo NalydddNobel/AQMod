@@ -171,20 +171,16 @@ namespace Aequus.NPCs.Friendly.Town
         {
             return new List<string>()
             {
-                "Deahdeah",
                 "Lina",
-                "Peach",
                 "Lumia",
                 "Astra",
                 "Stoffien",
-                "Constructa",
                 "Eridani",
                 "Asphodene",
                 "Termina",
                 "Kristal",
                 "Arti",
                 "Ficeher",
-                "Loada",
                 "Gina",
             };
         }

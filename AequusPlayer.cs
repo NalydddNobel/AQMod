@@ -71,6 +71,8 @@ namespace Aequus
 
         public int projectileIdentity = -1;
 
+        public float villagerHappiness;
+
         public int cursorDye;
         public int cursorDyeOverride;
 
@@ -694,6 +696,7 @@ namespace Aequus
 
         public void ResetStats()
         {
+            villagerHappiness = 0f;
             if (boundedPotionIDs == null)
             {
                 boundedPotionIDs = new List<int>();

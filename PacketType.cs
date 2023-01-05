@@ -34,6 +34,8 @@
         BrainCauliflowerNecromancyKill,
         AddBuilding,
         RemoveBuilding,
+        CompleteCarpenterBounty,
+        ResetCarpenterBounties,
         Count
     }
 

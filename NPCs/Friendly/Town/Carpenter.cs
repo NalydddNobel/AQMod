@@ -121,6 +121,18 @@ namespace Aequus.NPCs.Friendly.Town
                 .Add<BlockGlove>(chance: 6, stack: 1);
         }
 
+        public void AddResetSheet(Chest shop, ref int nextSlot)
+        {
+            foreach (var bounty in CarpenterSystem.BountiesByID)
+            {
+                if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
+                {
+                    return;
+                }
+            }
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
+        }
+
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
@@ -139,7 +151,7 @@ namespace Aequus.NPCs.Friendly.Town
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)
             {
-                if (bountyPlayer.CompletedBounties.Contains(bounty.FullName))
+                if (CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
                 {
                     var items = bounty.ProvideBountyRewardItems();
                     foreach (var item in items)
@@ -153,8 +165,7 @@ namespace Aequus.NPCs.Friendly.Town
                     shop.item[nextSlot++] = bounty.ProvidePortableBounty().Item;
                 }
             }
-            if (Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().CompletedBounties.Count > 0)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
+            AddResetSheet(shop, ref nextSlot);
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom)
@@ -256,9 +267,8 @@ namespace Aequus.NPCs.Friendly.Town
                 "Utopis",
                 "Mine",
                 "Villis",
-                "Dange",
                 "Cryst",
-                "Carmelita",
+                "Pilk",
             };
         }
 
@@ -338,7 +348,7 @@ namespace Aequus.NPCs.Friendly.Town
                 var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
                 foreach (var bounty in CarpenterSystem.BountiesByID)
                 {
-                    if (bounty.IsBountyAvailable() && !bountyPlayer.CompletedBounties.Contains(bounty.FullName))
+                    if (bounty.IsBountyAvailable() && !CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
                     {
                         Main.playerInventory = false;
                         Main.npcChatText = "";
