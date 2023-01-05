@@ -140,6 +140,7 @@ namespace Aequus.Content.CarpenterBounties
 
         public override void SaveWorldData(TagCompound tag)
         {
+            tag["CompletedBounties"] = CompletedBounties;
             foreach (var pair in BuildingBuffLocations)
             {
                 if (BuildingBuffLocations.Count > 0)
@@ -162,6 +163,11 @@ namespace Aequus.Content.CarpenterBounties
 
         public override void LoadWorldData(TagCompound tag)
         {
+            CompletedBounties = tag.Get<List<string>>("CompletedBounties");
+            if (CompletedBounties == null)
+            {
+                CompletedBounties = new List<string>();
+            }
             foreach (var b in BountiesByID)
             {
                 if (tag.TryGet<List<Rectangle>>($"Buildings_{b.Name}", out var value))
