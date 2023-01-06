@@ -693,11 +693,24 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            float val = 0f;
             if (spawnInfo.Player.ZoneSkyHeight && !NPC.AnyNPCs(Type))
             {
-                return 0.05f;
+                val += 0.05f;
+                if (spawnInfo.Player.townNPCs >= 2f)
+                {
+                    val += 0.2f;
+                }
+                if (GaleStreamsBiome.TimeForMeteorSpawns())
+                {
+                    val *= 2f;
+                }
+                if (spawnInfo.Player.HeldItemFixed()?.ModItem is Pumpinator)
+                {
+                    val *= 3f;
+                }
             }
-            return 0f;
+            return val;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

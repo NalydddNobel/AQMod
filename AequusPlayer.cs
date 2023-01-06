@@ -78,6 +78,11 @@ namespace Aequus
 
         public int CursorDye { get => cursorDyeOverride > 0 ? cursorDyeOverride : cursorDye; set => cursorDye = value; }
 
+        public int BuildingBuffRange;
+
+        [SaveData("PermaBuildBuffRange")]
+        [SaveDataAttribute.IsListedBoolean]
+        public bool usedPermaBuildBuffRange;
         /// <summary>
         /// Enabled by <see cref="VictorsReward"/>
         /// </summary>
@@ -699,6 +704,7 @@ namespace Aequus
 
         public void ResetStats()
         {
+            BuildingBuffRange = usedPermaBuildBuffRange ? 75 : 50;
             villagerHappiness = 0f;
             if (boundedPotionIDs == null)
             {

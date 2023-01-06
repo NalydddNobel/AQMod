@@ -23,6 +23,9 @@ namespace Aequus.Content.CarpenterBounties.Steps
 
             public override void CompileInterestingPoints(StepInfo info)
             {
+                if (Main.netMode == NetmodeID.Server)
+                    return;
+
                 var s = GameShaders.Hair.GetShaderFromItemId(ItemID.BiomeHairDye) as LegacyHairShaderData;
                 var oldSceneMetrics = Main.SceneMetrics;
 
@@ -89,6 +92,9 @@ namespace Aequus.Content.CarpenterBounties.Steps
 
         public bool CheckHousing(TileMapCache map, List<Point> walls, Vector3 hslCompare, HashSet<byte> allowedPaints, Dictionary<ushort, Dictionary<Rectangle, Color>> colorLookups)
         {
+            if (Main.netMode == NetmodeID.Server)
+                return true;
+
             float credit = 0f;
             int tilesGivingCredit = 0;
             float wallCredit = 0f;
@@ -142,6 +148,9 @@ namespace Aequus.Content.CarpenterBounties.Steps
         public Color ColorLookup(ushort tileID, Rectangle frame, Dictionary<ushort, Dictionary<Rectangle, Color>> colorLookups)
         {
             var dominantColor = Color.White;
+            if (Main.netMode == NetmodeID.Server)
+                return dominantColor;
+
             if (colorLookups.TryGetValue(tileID, out var lookupInner))
             {
                 if (lookupInner.TryGetValue(frame, out var lookupColor))

@@ -1,4 +1,6 @@
 ﻿using Aequus.UI;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -49,6 +51,25 @@ namespace Aequus.Items.Tools
                     player.builderAccStatus[Player.BuilderAccToggleIDs.RulerGrid] = 1;
                 }
                 AdvancedRulerInterface.Instance.Enabled = true;
+            }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (var t in tooltips)
+            {
+                if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
+                {
+                    t.Text = AequusHelpers.FormatWith(t.Text, new
+                    {
+                        LEFTMOUSE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.LeftMouseButton"), Color.Yellow, alphaPulse: true)}]",
+                        RIGHTMOUSE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.RightMouseButton"), Color.Orange.SaturationSet(0.5f) * 2f, alphaPulse: true)}]",
+                        CTRL = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.ControlButton"), Color.Violet, alphaPulse: true)}]",
+                        SHIFT = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.ShiftButton"), Color.Red, alphaPulse: true)}]",
+                        LINE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.Line"), Color.Lime, alphaPulse: true)}]",
+                        GRID = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.Grid"), Color.Turquoise, alphaPulse: true)}]",
+                    });
+                }
             }
         }
     }

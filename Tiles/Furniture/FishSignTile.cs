@@ -81,7 +81,8 @@ namespace Aequus.Tiles.Furniture
         public override void PlaceInWorld(int i, int j, Item item)
         {
             var player = Main.LocalPlayer;
-            var sign = Main.sign[Sign.ReadSign(i, j, true)];
+            int signID = Sign.ReadSign(i, j, true);
+            var sign = Main.sign[signID];
             string text = WriteWater(player, i, j);
             if (string.IsNullOrEmpty(text))
             {
@@ -100,6 +101,10 @@ namespace Aequus.Tiles.Furniture
             if (!string.IsNullOrEmpty(text))
             {
                 sign.text += "\n" + text;
+            }
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                NetMessage.SendData(MessageID.ReadSign, number: signID);
             }
         }
 

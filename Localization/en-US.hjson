@@ -472,6 +472,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			GalaxyCommission: Galaxy's Commission
 			GiftingSpirit: Ice Queen's Spirit
 			ShimmerFish: Shimmer Fish
 			VictorsReward: Victor's Reward
@@ -1089,6 +1090,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			GalaxyCommission: Permanently increases the range of build buffs
 			GiftingSpirit: Toggles whether or not villagers will wear Christmas hats
 			ShimmerFish: Starts a new Angler Quest
 			VictorsReward: 
@@ -1097,21 +1099,32 @@ Mods: {
 				'Granted to the ones who go the extra mile!'
 				'''
 			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
-			FertilePowder: Causes all nearby tiles to instantly grow
+			FertilePowder: Promotes nearby tiles to grow
 			WhitePhial: Permanently increases the duration of positive buffs by 25% 
-			TinkerersGuidebook:	Permanently improve the Goblin Tinkerer's reforge service
-			Moro: Permanently makes minion and sentry staffs consume no mana
+			TinkerersGuidebook:	Permanently have better odds at rolling positive prefixes from reforge services
+			Moro: Permanently removes the mana cost of minion and sentry staffs
 
 			OmniPaint: Hold a paint item to bring up a menu of selectable paints
-			AdvancedRuler:
-				'''
-				When held:
-				* Press left click to place a ruler node
-				* Placing a ruler node on another ruler node will remove the ruler node at that spot
-				* Hold left click and press right click to place a ruler node at your current position
-				* Hold shift and press left click remove the last placed ruler node
-				* Hold ctrl and press left click to swap between Line and Grid ruler modes
-				'''
+			
+			AdvancedRuler: {
+				"$parentVal": 
+					'''
+					'Instructions'
+					* Press {LEFTMOUSE} to place a ruler node
+					* Hold {LEFTMOUSE} and press {RIGHTMOUSE} to place a ruler node at your current position
+					* Hold {SHIFT} and press {LEFTMOUSE} remove the last placed ruler node
+					* Hold {CTRL} and {LEFTMOUSE} to swap between {LINE} and {GRID} ruler modes
+					'Notes'
+					* Placing a ruler node on another ruler node will remove the ruler node at that spot
+					'''
+				ControlButton: "CTRL"
+				ShiftButton: "SHIFT"
+				LeftMouseButton: "LEFT MOUSE"
+				RightMouseButton: "RIGHT MOUSE"
+				Line: "LINE"
+				Grid: "GRID"
+			}
+				
 			CarpenterResetSheet: Resets your bounty progress for the Carpenter
 			AdventuringMap: 
 			{

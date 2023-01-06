@@ -56,7 +56,7 @@ namespace Aequus.Items.Armor.Passive
         {
             CreateRecipe()
                 .AddIngredient(ItemID.WizardHat)
-                .AddIngredient<CosmicEnergy>()
+                .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register();

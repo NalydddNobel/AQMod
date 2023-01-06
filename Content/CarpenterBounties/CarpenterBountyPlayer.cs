@@ -73,7 +73,8 @@ namespace Aequus.Content.CarpenterBounties
             }
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            var screenRectangle = new Rectangle((int)Player.Center.X / 16 - 20, (int)Player.Center.Y / 16 - 20, 40, 40);
+            int val = Player.Aequus().BuildingBuffRange;
+            var screenRectangle = new Rectangle((int)Player.Center.X / 16 - val, (int)Player.Center.Y / 16 - val, val * 2, val * 2);
 
             foreach (var pair in CarpenterSystem.BuildingBuffLocations)
             {

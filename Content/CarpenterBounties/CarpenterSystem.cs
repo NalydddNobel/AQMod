@@ -97,15 +97,7 @@ namespace Aequus.Content.CarpenterBounties
                         i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = bridge.bridgeLocation;
                     }))
                 .AddStep(new FurnitureCountStep(minFurniture: 8))
-                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var crafted = i.GetInterest<CraftableTilesStep.Interest>();
-                        var symmetric = i.GetInterest<SymmetricHorizontalStep.Interest>();
-                        symmetric.givenRectangle = crafted.resultRectangle;
-                        symmetric.givenPoints = crafted.craftableTiles;
-                    }))
-                .AddStep(new SymmetricHorizontalStep())
+                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f))
                 .Register();
 
             new CarpenterBounty("ActuatorDoorBounty")
@@ -141,23 +133,14 @@ namespace Aequus.Content.CarpenterBounties
         public override void SaveWorldData(TagCompound tag)
         {
             tag["CompletedBounties"] = CompletedBounties;
+            CheckBuildingBuffsInWorld();
             foreach (var pair in BuildingBuffLocations)
             {
                 if (BuildingBuffLocations.Count > 0)
                 {
-                    var b = BountiesByID[pair.Key];
-                    for (int i = 0; i < pair.Value.Count; i++)
-                    {
-                        if (!b.CheckConditions(new StepInfo(pair.Value[i])).success)
-                        {
-                            pair.Value.RemoveAt(i);
-                            i--;
-                        }
-                    }
                     if (pair.Value.Count > 0)
-                        tag[$"Buildings_{b.Name}"] = pair.Value;
+                        tag[$"Buildings_{BountiesByID[pair.Key].Name}"] = pair.Value;
                 }
-                continue;
             }
         }
 
@@ -215,6 +198,33 @@ namespace Aequus.Content.CarpenterBounties
             BountiesByID?.Clear();
             BountiesByName?.Clear();
             CraftableTileLookup?.Clear();
+        }
+
+        public static void CheckBuildingBuffsInWorld()
+        {
+            foreach (var pair in BuildingBuffLocations)
+            {
+                if (BuildingBuffLocations.Count > 0)
+                {
+                    var b = BountiesByID[pair.Key];
+                    for (int i = 0; i < pair.Value.Count; i++)
+                    {
+                        try
+                        {
+                            if (!b.CheckConditions(new StepInfo(pair.Value[i])).success)
+                            {
+                                pair.Value.RemoveAt(i);
+                                i--;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Aequus.Instance.Logger.Error($"Error from {b.FullName} when evaluating.");
+                            Aequus.Instance.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                        }
+                    }
+                }
+            }
         }
 
         public static void ScanForBuilderBuffs(Rectangle r)
