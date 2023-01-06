@@ -34,7 +34,7 @@ namespace Aequus.Items.Consumables
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<ShutterstockerClip>()
+                .AddIngredient<ShutterstockerClipAmmo>()
                 .AddIngredient<CosmicEnergy>()
                 .AddTile(TileID.Anvils)
                 .AddCondition(Recipe.Condition.InGraveyardBiome)

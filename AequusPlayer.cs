@@ -855,48 +855,54 @@ namespace Aequus
 
         public override void ResetEffects()
         {
-            PlayerContext = Player.whoAmI;
-
-            UpdateInstantShield();
-            ResetDyables();
-            ResetArmor();
-            ResetStats();
-            cursorDye = -1;
-            cursorDyeOverride = 0;
-
-            selectGhostNPC = -1;
-
-            if (sceneInvulnerability > 0)
-                sceneInvulnerability--;
-
-            if (gravityTile != 0)
+            try
             {
-                Player.gravControl = false;
-                Player.gravControl2 = false;
+                PlayerContext = Player.whoAmI;
+
+                UpdateInstantShield();
+                ResetDyables();
+                ResetArmor();
+                ResetStats();
+                cursorDye = -1;
+                cursorDyeOverride = 0;
+
+                selectGhostNPC = -1;
+
+                if (sceneInvulnerability > 0)
+                    sceneInvulnerability--;
+
+                if (gravityTile != 0)
+                {
+                    Player.gravControl = false;
+                    Player.gravControl2 = false;
+                }
+
+                if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
+                    leechHookNPC = -1;
+
+                if (Player.velocity.Length() < 1f)
+                {
+                    idleTime++;
+                }
+                else
+                {
+                    idleTime = 0;
+                }
+
+                UpdateItemFields();
+                if (netInteractionCooldown > 0)
+                {
+                    netInteractionCooldown--;
+                }
+
+                forceDayState = 0;
+                Team = Player.team;
+                hurtAttempted = false;
+                hurtSucceeded = false;
             }
-
-            if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
-                leechHookNPC = -1;
-
-            if (Player.velocity.Length() < 1f)
+            catch
             {
-                idleTime++;
             }
-            else
-            {
-                idleTime = 0;
-            }
-
-            UpdateItemFields();
-            if (netInteractionCooldown > 0)
-            {
-                netInteractionCooldown--;
-            }
-
-            forceDayState = 0;
-            Team = Player.team;
-            hurtAttempted = false;
-            hurtSucceeded = false;
         }
 
         public override void PreUpdate()

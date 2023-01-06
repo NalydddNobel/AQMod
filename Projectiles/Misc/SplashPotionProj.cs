@@ -3,6 +3,7 @@ using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -90,6 +91,11 @@ namespace Aequus.Projectiles.Misc
                                     var d = Dust.NewDustPerfect(new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f + Main.rand.NextFloat(-2f, 2f)), ModContent.DustType<MonoSparkleDust>(), Vector2.Zero, newColor: color.UseA(Main.rand.Next(200)) * Math.Min(x / 4f, 1f), Scale: Main.rand.NextFloat(0.75f, 1.5f));
                                     d.velocity.X = Math.Sign(d.position.X - Projectile.Center.X) * Main.rand.NextFloat(3f) * x / 3f;
                                     d.velocity.Y -= (16f / Math.Max(x, 1f) / 2f) * Main.rand.NextFloat(1f);
+                                    if (d.velocity.Length() > 4f)
+                                    {
+                                        d.velocity.Normalize();
+                                        d.velocity *= 4f;
+                                    }
                                     d.fadeIn = d.scale + 0.4f;
                                 }
                             }
@@ -141,21 +147,23 @@ namespace Aequus.Projectiles.Misc
             if (BuffTime == 0)
                 BuffTime = 3600;
 
-            var rect = Projectile.getRect();
-            if (Projectile.timeLeft < 550)
+            var entityCollideRect = Projectile.getRect();
+            entityCollideRect.Inflate(16, 16);
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
-                for (int i = 0; i < Main.maxPlayers; i++)
+                if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Projectile.Colliding(entityCollideRect, Main.player[i].getRect()))
                 {
-                    if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Projectile.Colliding(rect, Main.player[i].getRect()))
+                    if (i == Projectile.owner && Projectile.timeLeft > 580)
                     {
-                        EnterSplashState();
-                        return;
+                        continue;
                     }
+                    EnterSplashState();
+                    return;
                 }
             }
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && Projectile.Colliding(rect, Main.npc[i].getRect()))
+                if (Main.npc[i].active && Projectile.Colliding(entityCollideRect, Main.npc[i].getRect()))
                 {
                     EnterSplashState();
                     return;
@@ -182,6 +190,16 @@ namespace Aequus.Projectiles.Misc
 
         public override void Kill(int timeLeft)
         {
+        }
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(Projectile.timeLeft);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            Projectile.timeLeft = reader.ReadInt32();
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)

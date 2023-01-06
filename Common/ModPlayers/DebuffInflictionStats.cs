@@ -18,7 +18,7 @@ namespace Aequus.Common.Players
         public void ResetEffects(Player player)
         {
             OverallTimeMultiplier = 1f;
-            PerBuffTimeMultiplier.Clear();
+            PerBuffTimeMultiplier?.Clear();
         }
 
         public float ApplyBuffMultipler(Player player, int type)
