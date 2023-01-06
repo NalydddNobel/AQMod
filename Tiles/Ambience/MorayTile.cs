@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc.Pollen;
 using Aequus.Items.Placeable.Nature;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;

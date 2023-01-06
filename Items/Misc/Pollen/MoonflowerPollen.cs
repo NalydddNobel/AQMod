@@ -1,11 +1,12 @@
-﻿using Aequus.Items.Prefixes.Potions;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Items.Prefixes.Potions;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Pollen
 {
     public class MoonflowerPollen : ModItem
     {
@@ -51,6 +52,7 @@ namespace Aequus.Items.Misc
                         .AddIngredient(Type)
                         .TryRegisterAfter(i);
                     r.createItem.Prefix(prefix.Type);
+                    MagicStorage.AddBlacklistedItemData(i, prefix.Type);
                 }
             }
         }

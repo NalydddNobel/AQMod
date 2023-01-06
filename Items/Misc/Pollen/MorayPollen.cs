@@ -1,12 +1,12 @@
-﻿using Aequus.Items.Prefixes.Potions;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Items.Prefixes.Potions;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Pollen
 {
-    public class ManaclePollen : ModItem
+    public class MorayPollen : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -19,14 +19,9 @@ namespace Aequus.Items.Misc
             Item.rare = ItemRarityID.Green;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return new Color(255, 255, 255, 200);
-        }
-
         public override void AddRecipes()
         {
-            var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<BoundedPrefix>());
+            var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<SplashPrefix>());
             for (int i = 0; i < ItemLoader.ItemCount; i++)
             {
                 if (prefix.CanRoll(ContentSamples.ItemsByType[i]))
@@ -36,6 +31,7 @@ namespace Aequus.Items.Misc
                         .AddIngredient(Type)
                         .TryRegisterAfter(i);
                     r.createItem.Prefix(prefix.Type);
+                    MagicStorage.AddBlacklistedItemData(i, prefix.Type);
                 }
             }
         }

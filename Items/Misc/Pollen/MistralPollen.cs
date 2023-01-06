@@ -1,10 +1,10 @@
-﻿using Aequus.Buffs.Misc.Empowered;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Items.Prefixes.Potions;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
+namespace Aequus.Items.Misc.Pollen
 {
     public class MistralPollen : ModItem
     {
@@ -31,6 +31,7 @@ namespace Aequus.Items.Misc
                         .AddIngredient(Type)
                         .TryRegisterAfter(pair.Key);
                     r.createItem.Prefix(prefix.Type);
+                    MagicStorage.AddBlacklistedItemData(pair.Key, prefix.Type);
                 }
             }
         }
