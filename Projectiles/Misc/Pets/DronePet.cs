@@ -38,6 +38,12 @@ namespace Aequus.Projectiles.Misc.Pets
             var center = Projectile.Center;
             float distance = (center - gotoPos).Length();
 
+            if (Projectile.Distance(Main.player[Projectile.owner].Center) > 2000f)
+            {
+                Projectile.Center = Main.player[Projectile.owner].Center;
+                Projectile.velocity *= 0.1f;
+            }
+
             Projectile.localAI[0]++;
             float snapLength = 0.1f;
             if ((int)Projectile.ai[0] == 1)

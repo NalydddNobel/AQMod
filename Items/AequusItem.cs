@@ -10,6 +10,7 @@ using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Pets.Light;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
@@ -551,6 +552,7 @@ namespace Aequus.Items
                 case ItemID.IronCrate:
                 case ItemID.IronCrateHard:
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MiningPetSpawner>(), 6));
                     itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
                     break;
 

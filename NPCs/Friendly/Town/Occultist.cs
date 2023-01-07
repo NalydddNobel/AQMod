@@ -127,9 +127,9 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.ThreeQuartersAtLeft:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.Handgun);
-                        if (ThoriumModSupport.ThoriumMod != null)
+                        if (ThoriumMod.Instance != null)
                         {
-                            if (ThoriumModSupport.ThoriumMod.TryFind("StreamSting", out ModItem modItem))
+                            if (ThoriumMod.Instance.TryFind("StreamSting", out ModItem modItem))
                                 inv[nextSlot++].SetDefaults(modItem.Type);
                         }
                     }
@@ -143,9 +143,9 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.QuarterAtLeft:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.CobaltShield);
-                        if (ThoriumModSupport.ThoriumMod != null)
+                        if (ThoriumMod.Instance != null)
                         {
-                            if (ThoriumModSupport.ThoriumMod.TryFind("StrongestLink", out ModItem modItem))
+                            if (ThoriumMod.Instance.TryFind("StrongestLink", out ModItem modItem))
                                 inv[nextSlot++].SetDefaults(modItem.Type);
                         }
                     }
@@ -153,9 +153,9 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.Empty:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.BlueMoon);
-                        if (ThoriumModSupport.ThoriumMod != null)
+                        if (ThoriumMod.Instance != null)
                         {
-                            if (ThoriumModSupport.ThoriumMod.TryFind("HighTide", out ModItem modItem))
+                            if (ThoriumMod.Instance.TryFind("HighTide", out ModItem modItem))
                                 inv[nextSlot++].SetDefaults(modItem.Type);
                         }
                     }
@@ -169,9 +169,9 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.HalfAtRight:
                     {
                         inv[nextSlot++].SetDefaults(ItemID.Valor);
-                        if (ThoriumModSupport.ThoriumMod != null)
+                        if (ThoriumMod.Instance != null)
                         {
-                            if (ThoriumModSupport.ThoriumMod.TryFind("BoneReaper", out ModItem modItem))
+                            if (ThoriumMod.Instance.TryFind("BoneReaper", out ModItem modItem))
                                 inv[nextSlot++].SetDefaults(modItem.Type);
                         }
                     }
@@ -179,9 +179,9 @@ namespace Aequus.NPCs.Friendly.Town
                 case MoonPhase.ThreeQuartersAtRight:
                     {
                         inv[nextSlot++].SetDefaults<Valari>();
-                        if (ThoriumModSupport.ThoriumMod != null)
+                        if (ThoriumMod.Instance != null)
                         {
-                            if (ThoriumModSupport.ThoriumMod.TryFind("NaiadShiv", out ModItem modItem))
+                            if (ThoriumMod.Instance.TryFind("NaiadShiv", out ModItem modItem))
                                 inv[nextSlot++].SetDefaults(modItem.Type);
                         }
                     }
@@ -442,7 +442,7 @@ namespace Aequus.NPCs.Friendly.Town
             AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
             AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|",
-                $"TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
+                $"Mods.Aequus.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
         }
     }
 

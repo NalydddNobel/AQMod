@@ -26,7 +26,7 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.height = 42;
             Projectile.friendly = true;
             Projectile.aiStyle = ProjAIStyleID.Pet;
-            AIType = ProjectileID.Penguin;
+            AIType = ProjectileID.BlackCat;
             Projectile.scale = 0.5f;
         }
 
@@ -73,9 +73,9 @@ namespace Aequus.Projectiles.Misc.Pets
         }
         public void TryCopyingMrPlagueRaceAttributes(Player parent)
         {
-            if (MrPlagueRacesSupport.TryGetMrPlagueRacePlayer(dummyPlayer, out var racePlayer) && MrPlagueRacesSupport.TryGetMrPlagueRacePlayer(parent, out var parentRacePlayer))
+            if (MrPlagueRaces.TryGetMrPlagueRacePlayer(dummyPlayer, out var racePlayer) && MrPlagueRaces.TryGetMrPlagueRacePlayer(parent, out var parentRacePlayer))
             {
-                foreach (var f in MrPlagueRacesSupport.RacePlayerFieldInfo)
+                foreach (var f in MrPlagueRaces.RacePlayerFieldInfo)
                 {
                     f.SetValue(racePlayer, f.GetValue(parentRacePlayer));
                 }
@@ -92,7 +92,7 @@ namespace Aequus.Projectiles.Misc.Pets
 
             AequusHelpers.UpdateProjActive<FamiliarBuff>(Projectile);
             CopyPlayerAttributes(parent);
-            if (MrPlagueRacesSupport.MrPlagueRaces != null)
+            if (MrPlagueRaces.Instance != null && MrPlagueRaces.RacePlayerFieldInfo != null && MrPlagueRaces.MrPlagueRacesPlayer != null)
             {
                 TryCopyingMrPlagueRaceAttributes(parent);
             }

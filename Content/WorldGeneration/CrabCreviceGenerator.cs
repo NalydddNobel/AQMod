@@ -592,11 +592,11 @@ namespace Aequus.Content.WorldGeneration
             Reset();
 
             int reccomendedDir = 0;
-            if (CalamityModSupport.CalamityMod != null)
+            if (CalamityMod.Instance != null)
             {
                 reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
             }
-            else if (ThoriumModSupport.ThoriumMod != null)
+            else if (ThoriumMod.Instance != null)
             {
                 reccomendedDir = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
             }

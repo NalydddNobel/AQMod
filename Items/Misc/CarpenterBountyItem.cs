@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CarpenterBounties;
+﻿using Aequus.Content.Carpentery;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

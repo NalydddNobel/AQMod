@@ -1,19 +1,18 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
-using Aequus.Common.Utilities;
-using Aequus.Content.CarpenterBounties;
+using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Bounties;
+using Aequus.Content.Carpentery.Bounties.BountyUI;
 using Aequus.Content.Personalities;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Coatings;
-using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
-using Aequus.UI.CarpenterUI;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
 using System;
@@ -357,7 +356,7 @@ namespace Aequus.NPCs.Friendly.Town
                     {
                         Main.playerInventory = false;
                         Main.npcChatText = "";
-                        Aequus.UserInterface.SetState(new CarpenterUIState());
+                        Aequus.UserInterface.SetState(new BountyUIState());
                         return;
                     }
                 }
@@ -376,7 +375,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 thunderDelay = 60;
                 NPC.velocity.Y = -4f;
-                var d= Dust.NewDustPerfect(NPC.Top, ModContent.DustType<CarpenterSurpriseDust>(), Scale: 0.25f);
+                var d = Dust.NewDustPerfect(NPC.Top, ModContent.DustType<CarpenterSurpriseDust>(), Scale: 0.25f);
                 d.velocity.X *= 0f;
                 d.velocity.Y = -3f;
                 d.position.Y -= 8f;

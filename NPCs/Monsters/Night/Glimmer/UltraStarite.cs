@@ -27,6 +27,8 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
     public class UltraStarite : ModNPC
     {
+        public const float BossProgression = 6.1f;
+
         public const int STATE_DEATHRAY_TRANSITION_END = 5;
         public const int STATE_CHASE = 4;
         public const int STATE_DEATHRAY = 3;

@@ -45,7 +45,7 @@ namespace Aequus.Biomes.DemonSiege
         {
             foreach (var s in RegisteredSacrifices.Values)
             {
-                if (s.Hide)
+                if (s.Hide || s.OriginalItem == s.NewItem)
                     continue;
 
                 Recipe.Create(s.NewItem)

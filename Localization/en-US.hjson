@@ -316,6 +316,7 @@ Mods: {
 			Nimrod: Nimrod
 
 		# Pets
+			MiningPetSpawner: Broken Mining Helmet
 			PersonalDronePack: Personal Drone Pack
 			LightningRod: Lightning Rod
 			ToySpaceGun: Toy Space Gun
@@ -502,6 +503,8 @@ Mods: {
 
 			ImpenetrableCoating: Impenetrable Coating
 
+			PeonyPhotobook: Peony Photobook
+			Photobook: Photobook
 			MercerTonic: Mercer Tonic
 			PixelCamera: Pixelgrammer
 			PixelCameraClip: Pixelgrammer Clip
@@ -1163,6 +1166,8 @@ Mods: {
 			AnglerBroadcaster: Shows you the current quest fish
 			RichMansMonocle: View item prices outside of shops
 
+			PeonyPhotobook: Allows for storage of 32 Shutterstocker photos
+			Photobook: Allows for storage of 20 Shutterstocker photos
 			PixelCamera: 
 				'''
 				Takes a snap of tiles and prints their map colors onto clips
@@ -1344,6 +1349,7 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			MiningPetSpawner: Summons an Undead Miner to mine with you
 			FamiliarPickaxe: Summons a mini version of yourself
 			PersonalDronePack: 
 				'''
@@ -1617,6 +1623,7 @@ Mods: {
 			RedSpriteMinionBuff: Mysterious Sprite
 			SnowflakeBuff: Snowflake
 
+			MiningPetBuff: Undead Miner
 			DroneBuff: Scanner Drone
 			FamiliarBuff: Familiar
 			OmegaStariteBuff: Omega Starite Mini
@@ -1702,12 +1709,13 @@ Mods: {
 			RedSpriteMinionBuff: The red sprite will fight for you
 			SnowflakeBuff: The snowflake will fight for you
 
+			MiningPetBuff: The Undead Miner will mine with you
 			DroneBuff: The Drone will scan for rare objects
 			FamiliarBuff: Despite everything, it's still you
 			OmegaStariteBuff: The smallest solar system imaginable
-			TorraBuff: "'GLAZE???!?'"
-			RedSpriteBuff: "'May get into hissy fits!'"
-			SpaceSquidBuff: "'It's just so cute'"
+			TorraBuff: "Don't say hi..."
+			RedSpriteBuff: "May get into hissy fits!"
+			SpaceSquidBuff: "It's just so cute!"
 
 			HotAirBalloonBuff: Up, up, and away!!!
 

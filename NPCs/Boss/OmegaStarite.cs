@@ -39,6 +39,8 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
     {
+        public const float BossProgression = 6.99f;
+
         public const int ACTION_LASER_ORBITAL_2 = 8;
         public const int ACTION_LASER_ORBITAL_1 = 7;
         public const int ACTION_STARS = 6;

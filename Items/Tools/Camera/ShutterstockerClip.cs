@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Photobook;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -119,7 +120,7 @@ namespace Aequus.Items.Tools.Camera
             if (TooltipTexture == null)
                 TooltipTexture = new Ref<RenderTarget2D>();
 
-            ShutterstockerSceneRenderer.RenderRequests.Add(this);
+            PhotoRenderer.RenderRequests.Add(PhotoData.FromLegacyClip(this));
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {

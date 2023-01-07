@@ -29,6 +29,8 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class Crabson : AequusBoss
     {
+        public const float BossProgression = 2.66f;
+
         public const int ACTION_CLAWSHOTS = 2;
         public const int PHASE_GROUNDBUBBLES = 3;
         public const int ACTION_CLAWSLAMS = 4;

@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CarpenterBounties;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Photobook;
 using Aequus.Items;
 using Aequus.Items.Tools.Camera;
 using Aequus.UI;
@@ -20,11 +20,11 @@ namespace Aequus.Projectiles.Misc
     {
         public Vector2 mouseWorld;
 
-        public virtual float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 36f); }
+        public virtual float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 60f); }
         public virtual int PhotoSizeX => (int)Projectile.ai[0];
         public virtual int PhotoSizeY => (int)Projectile.ai[0];
-        public virtual int ClipPaddingX => ShutterstockerSceneRenderer.TilePadding;
-        public virtual int ClipPaddingY => ShutterstockerSceneRenderer.TilePadding;
+        public virtual int ClipPaddingX => PhotoRenderer.TilePadding;
+        public virtual int ClipPaddingY => PhotoRenderer.TilePadding;
 
         public override void SetDefaults()
         {
@@ -99,34 +99,56 @@ namespace Aequus.Projectiles.Misc
         public virtual void SpawnClipItem(Rectangle tilesCaptured)
         {
             CarpenterSystem.ScanForBuilderBuffs(tilesCaptured);
-            Item item;
-            if (Main.netMode != NetmodeID.SinglePlayer)
+
+            var photoPlayer = Main.player[Projectile.owner].GetModPlayer<PhotobookPlayer>();
+            if (!photoPlayer.hasPhotobook)
+                return;
+            for (int i = 0; i < photoPlayer.Photos.Length; i++)
             {
-                item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
-            }
-            else
-            {
-                int i = Item.NewItem(Main.player[Projectile.owner].GetSource_ItemUse_WithPotentialAmmo(Main.player[Projectile.owner].HeldItem, Main.player[Projectile.owner].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[Projectile.owner].getRect(),
-                    ModContent.ItemType<ShutterstockerClip>());
-                if (i == -1)
+                if (photoPlayer.photos[i].tileMap == null)
                 {
+                    photoPlayer.photos[i] = PhotoData.TakeASnap(tilesCaptured);
+                    photoPlayer.photos[i].LoadTexture();
+                    int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Lerp(Color.White, Color.Lime * 2f, 0.2f), 1);
+                    Main.combatText[text].text = $"Saved in slot {i + 1}!";
+                    Main.combatText[text].position.X -= FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
+                    Main.combatText[text].position.Y -= 64f;
+                    Main.combatText[text].velocity *= 0.25f;
+                    Main.combatText[text].velocity.Y = -Main.combatText[text].velocity.Y;
+                    Main.combatText[text].lifeTime *= 2;
+                    Main.combatText[text].scale *= 0.1f;
                     return;
                 }
-                item = Main.item[i];
             }
 
-            item.ModItem<ShutterstockerClip>().SetClip(tilesCaptured);
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                ShutterstockerSceneRenderer.RenderRequests.Add(item.ModItem<ShutterstockerClip>());
-            }
-            else
-            {
-                var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
-                p.Write(Projectile.owner);
-                item.ModItem<ShutterstockerClip>().NetSend(p);
-                p.Send();
-            }
+            //Item item;
+            //if (Main.netMode != NetmodeID.SinglePlayer)
+            //{
+            //    item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
+            //}
+            //else
+            //{
+            //    int i = Item.NewItem(Main.player[Projectile.owner].GetSource_ItemUse_WithPotentialAmmo(Main.player[Projectile.owner].HeldItem, Main.player[Projectile.owner].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[Projectile.owner].getRect(),
+            //        ModContent.ItemType<ShutterstockerClip>());
+            //    if (i == -1)
+            //    {
+            //        return;
+            //    }
+            //    item = Main.item[i];
+            //}
+
+            //item.ModItem<ShutterstockerClip>().SetClip(tilesCaptured);
+            //if (Main.netMode == NetmodeID.SinglePlayer)
+            //{
+            //    PhotoRenderer.RenderRequests.Add(PhotoData.FromLegacyClip(item.ModItem<ShutterstockerClip>()));
+            //}
+            //else
+            //{
+            //    var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
+            //    p.Write(Projectile.owner);
+            //    item.ModItem<ShutterstockerClip>().NetSend(p);
+            //    p.Send();
+            //}
         }
         public virtual void SnapPhoto()
         {

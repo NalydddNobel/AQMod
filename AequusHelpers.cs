@@ -3,8 +3,8 @@ using Aequus.Common;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
+using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics.RenderTargets;
 using Aequus.Items;
 using Aequus.Items.GlobalItems;
 using Aequus.NPCs;
@@ -79,6 +79,15 @@ namespace Aequus
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        public static T GetOrDefault<T>(this TagCompound tag, string key, T defaultValue)
+        {
+            if (tag.TryGet<T>(key, out var val))
+            {
+                return val;
+            }
+            return defaultValue;
+        }
 
         public static FileStream CreateDebugFile(string name)
         {
@@ -374,8 +383,8 @@ namespace Aequus
 
         public static bool InSceneRenderedMap(this TileMapCache map, int x, int y)
         {
-            return x >= (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && x <= (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2)
-                && y >= (ShutterstockerSceneRenderer.TilePaddingForChecking / 2) && y <= (map.Width - ShutterstockerSceneRenderer.TilePaddingForChecking / 2);
+            return x >= (PhotoRenderer.TilePaddingForChecking / 2) && x <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2)
+                && y >= (PhotoRenderer.TilePaddingForChecking / 2) && y <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2);
         }
 
         public static List<string> GetStringListOfBiomes(this Player player)

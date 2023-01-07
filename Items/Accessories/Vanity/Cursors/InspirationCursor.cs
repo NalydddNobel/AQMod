@@ -16,12 +16,12 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
         }
         public float GetInspirationPercent(Player player)
         {
-            if (ThoriumModSupport.ThoriumMod != null)
+            if (ThoriumMod.Instance != null)
             {
                 try
                 {
-                    int inspiration = (int)ThoriumModSupport.ThoriumMod.Call("GetBardInspiration", player);
-                    int inspirationMax = (int)ThoriumModSupport.ThoriumMod.Call("GetBardInspirationMax", player);
+                    int inspiration = (int)ThoriumMod.Instance.Call("GetBardInspiration", player);
+                    int inspirationMax = (int)ThoriumMod.Instance.Call("GetBardInspirationMax", player);
                     return inspiration / (float)inspirationMax;
                 }
                 catch
@@ -33,7 +33,7 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (ThoriumModSupport.ThoriumMod == null)
+            if (ThoriumMod.Instance == null)
             {
                 tooltips.AddTooltip(new TooltipLine(Mod, "NeedsThorium", AequusText.GetText("NeedsMod", "Thorium Mod")) { OverrideColor = Color.Lerp(Color.White, Color.Turquoise * 1.5f, 0.5f), });
             }
@@ -41,10 +41,10 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
 
         public override void AddRecipes()
         {
-            if (ThoriumModSupport.ThoriumMod != null)
+            if (ThoriumMod.Instance != null)
             {
                 int item = ItemID.DrumStick;
-                if (ThoriumModSupport.ThoriumMod.TryFind<ModItem>("InspirationFragment", out var inspirationFragment))
+                if (ThoriumMod.Instance.TryFind<ModItem>("InspirationFragment", out var inspirationFragment))
                 {
                     item = inspirationFragment.Type;
                 }

@@ -396,6 +396,11 @@
             Applied by <see cref="T:Aequus.Items.Pets.FamiliarPickaxe"/>
             </summary>
         </member>
+        <member name="T:Aequus.Buffs.Pets.MiningPetBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Items.Pets.Light.MiningPetSpawner"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Pets.Light.DragonBall"/>

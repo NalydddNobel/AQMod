@@ -217,7 +217,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (NPC.ai[1] > 0f)
             {
                 int alreadyChosenTarget = (int)NPC.ai[1] - 1;
-                if (Main.npc[alreadyChosenTarget].active && (Main.npc[alreadyChosenTarget].townNPC || Main.npc[alreadyChosenTarget].friendly || NPCID.Sets.CountsAsCritter[Main.npc[alreadyChosenTarget].type]) && Main.npc[alreadyChosenTarget].life < Main.npc[alreadyChosenTarget].lifeMax)
+                if (Main.npc[alreadyChosenTarget].active && (Main.npc[alreadyChosenTarget].townNPC || Main.npc[alreadyChosenTarget].isLikeATownNPC || Main.npc[alreadyChosenTarget].friendly || NPCID.Sets.CountsAsCritter[Main.npc[alreadyChosenTarget].type]) && Main.npc[alreadyChosenTarget].life < Main.npc[alreadyChosenTarget].lifeMax)
                 {
                     return Main.npc[alreadyChosenTarget];
                 }
@@ -225,7 +225,7 @@ namespace Aequus.NPCs.Friendly.Drones
             float distance = 2400f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                if (Main.npc[i].active && (Main.npc[i].townNPC || Main.npc[i].isLikeATownNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
                 {
                     float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance)
@@ -242,7 +242,24 @@ namespace Aequus.NPCs.Friendly.Drones
             distance = 3200f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly || Main.npc[i].townNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                if (Main.npc[i].active && (Main.npc[i].townNPC || Main.npc[i].isLikeATownNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                {
+                    float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
+                    if (d < distance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, NPC.position, NPC.width, NPC.height))
+                    {
+                        target = i;
+                        distance = d;
+                    }
+                }
+            }
+            if (target != -1)
+            {
+                return Main.npc[target];
+            }
+            distance = 2400f;
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
                 {
                     float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, NPC.position, NPC.width, NPC.height))

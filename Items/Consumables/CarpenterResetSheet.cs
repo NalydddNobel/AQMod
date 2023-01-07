@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CarpenterBounties;
+﻿using Aequus.Content.Carpentery;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

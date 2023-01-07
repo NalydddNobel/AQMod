@@ -2,6 +2,7 @@
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Pets;
+using Aequus.Items.Pets.Light;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
@@ -229,8 +230,16 @@ namespace Aequus.Content.WorldGeneration
             {
                 if (!c.item[i].IsAir && (c.item[i].type == ItemID.Torch || c.item[i].type == ItemID.Glowstick))
                 {
-                    c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
-                    placedItems?.Add(ModContent.ItemType<GlowCore>());
+                    if ((WorldGen.genRand.NextBool() && placedItems.Contains(ModContent.ItemType<MiningPetSpawner>())) || !placedItems.Contains(ModContent.ItemType<GlowCore>()))
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<GlowCore>());
+                        placedItems?.Add(ModContent.ItemType<GlowCore>());
+                    }
+                    else
+                    {
+                        c.item[i].SetDefaults(ModContent.ItemType<MiningPetSpawner>());
+                        placedItems?.Add(ModContent.ItemType<MiningPetSpawner>());
+                    }
                     return true;
                 }
             }

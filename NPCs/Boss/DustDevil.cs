@@ -21,6 +21,8 @@ namespace Aequus.NPCs.Boss
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {
+        public const float BossProgression = 8.5f;
+
         public const int ACTION_ICE = 5;
         public const int ACTION_FIREBALLS = 4;
         public const int ACTION_SUCTIONENEMIES = 3;

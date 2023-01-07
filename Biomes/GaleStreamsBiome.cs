@@ -7,6 +7,8 @@ namespace Aequus.Biomes
 {
     public class GaleStreamsBiome : ModBiome
     {
+        public const float EventProgression = 8.1f;
+
         public static bool EventActive => Aequus.HardmodeTier && Main.WindyEnoughForKiteDrops;
         public static bool SupressWindUpdates { get; set; }
         public static byte updateTimer;

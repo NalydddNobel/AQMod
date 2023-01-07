@@ -5,7 +5,7 @@ using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Content.AnalysisQuests;
-using Aequus.Content.CarpenterBounties;
+using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;

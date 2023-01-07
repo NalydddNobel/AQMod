@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
-    public class MagicStorage : ModSupportTemplate<MagicStorage>
+    internal class MagicStorage : ModSupport<MagicStorage>
     {
         private static object BlockItemsHook;
         private static List<object> BlacklistedItemData;
@@ -17,27 +17,31 @@ namespace Aequus.Content.CrossMod
 
         public override void SafeLoad(Mod mod)
         {
-            var craftingGUI = mod.Code.GetType("MagicStorage.CraftingGUI");
-            if (craftingGUI != null)
+            try
             {
-                var setSelectedRecipe = craftingGUI.GetMethod("SetSelectedRecipe", BindingFlags.NonPublic | BindingFlags.Static);
-                if (setSelectedRecipe == null)
+                var craftingGUI = mod.Code.GetType("MagicStorage.CraftingGUI");
+                if (craftingGUI != null)
                 {
-                    return;
+                    var setSelectedRecipe = craftingGUI.GetMethod("SetSelectedRecipe", BindingFlags.NonPublic | BindingFlags.Static);
+                    if (setSelectedRecipe == null)
+                    {
+                        return;
+                    }
+                    var blockStorageItemsField = craftingGUI.GetField("blockStorageItems", BindingFlags.NonPublic | BindingFlags.Static);
+                    if (blockStorageItemsField == null)
+                    {
+                        return;
+                    }
+                    var setSelectedRecipeHook = GetType().GetMethod(nameof(SetSelectedRecipe), BindingFlags.Public | BindingFlags.Static);
+                    new Hook(setSelectedRecipe, setSelectedRecipeHook);
+                    blockStorageItemList = (IList)blockStorageItemsField.GetValue(null);
                 }
-                var blockStorageItemsField = craftingGUI.GetField("blockStorageItems", BindingFlags.NonPublic | BindingFlags.Static);
-                if (blockStorageItemsField == null)
-                {
-                    return;
-                }
-                var setSelectedRecipeHook = GetType().GetMethod(nameof(SetSelectedRecipe), BindingFlags.Public | BindingFlags.Static);
-                new Hook(setSelectedRecipe, setSelectedRecipeHook);
-                blockStorageItemList = (IList)blockStorageItemsField.GetValue(null);
+                ItemDataType = mod.Code.GetType("MagicStorage.ItemData");
             }
-            ItemDataType = mod.Code.GetType("MagicStorage.ItemData");
-            Mod.Logger.Debug($"craftingGUI is {(craftingGUI == null ? "null" : craftingGUI.FullName)}");
-            Mod.Logger.Debug($"ItemDataType is {(ItemDataType == null ? "null" : ItemDataType.FullName)}");
-            Mod.Logger.Debug($"blockStorageItemList is {(blockStorageItemList == null ? "null" : blockStorageItemList.GetType().FullName)}");
+            catch (Exception ex)
+            {
+                Mod.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
+            }
         }
 
         public static void SetSelectedRecipe(Action<Recipe> orig, Recipe recipe)
@@ -83,6 +87,11 @@ namespace Aequus.Content.CrossMod
 
         public override void SafeUnload()
         {
+            BlockItemsHook = null;
+            BlacklistedItemData?.Clear();
+            BlacklistedItemData = null;
+            ItemDataType = null;
+            blockStorageItemList = null;
         }
     }
 }

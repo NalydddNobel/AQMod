@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common;
-using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
@@ -349,7 +348,7 @@ namespace Aequus.Tiles
                     Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * 18);
                     Main.tile[i + k, j + l].TileFrameY = (short)(l * 18);
                     if (Main.netMode != NetmodeID.SinglePlayer)
-                        NetMessage.SendTileSquare(-1, i + - 1, j + l - 1, 3, 3);
+                        NetMessage.SendTileSquare(-1, i + -1, j + l - 1, 3, 3);
                 }
             }
 
