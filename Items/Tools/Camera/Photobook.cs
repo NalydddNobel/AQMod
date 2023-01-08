@@ -30,7 +30,7 @@ namespace Aequus.Items.Tools.Camera
                 Main.npcChatText = "";
                 Main.editChest = false;
                 Main.editSign = false;
-                Aequus.UserInterface.SetState(new PhotobookUIState());
+                Aequus.UserInterface.SetState(new PhotobookUIState() { scale = 1.5f, });
             }
             return true;
         }

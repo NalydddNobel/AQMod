@@ -464,11 +464,11 @@ namespace Aequus.Items
             {
                 if (prefixPotionsBounded && !Main.persistentBuff[item.buffType])
                 {
-                    player.Aequus().boundedPotionIDs.Add(item.buffType);
+                    player.Aequus().BoundedPotionIDs.Add(item.buffType);
                 }
                 else
                 {
-                    player.Aequus().boundedPotionIDs.Remove(item.buffType);
+                    player.Aequus().BoundedPotionIDs.Remove(item.buffType);
                 }
             }
             return null;

@@ -1,4 +1,5 @@
-﻿using Aequus.UI.EventProgressBars;
+﻿using Aequus.Content.Carpentery.Paint;
+using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -140,6 +141,16 @@ namespace Aequus.UI
         {
             ValidOnlineLinkedSlotContext?.Clear();
             ValidOnlineLinkedSlotContext = null;
+        }
+
+        public override void OnWorldLoad()
+        {
+            Aequus.UserInterface?.SetState(null);
+        }
+
+        public override void OnWorldUnload()
+        {
+            Aequus.UserInterface?.SetState(null);
         }
 
         public override void UpdateUI(GameTime gameTime)

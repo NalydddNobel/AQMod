@@ -12,14 +12,27 @@ namespace Aequus.Content.Carpentery.Photobook
     {
         public int photo;
         public UIElement Text;
+        public PhotobookUIState parent;
+        public PhotobookUIImageViewOverlay view;
 
-        public PhotobookUIElement(int photo)
+        public PhotobookUIElement(PhotobookUIState parentState, int photo)
         {
             this.photo = photo;
+            parent = parentState;
         }
 
         public override void OnInitialize()
         {
+            OnClick += PhotobookUIElement_OnClick;
+        }
+
+        private void PhotobookUIElement_OnClick(UIMouseEvent evt, UIElement listeningElement)
+        {
+            if (!Main.LocalPlayer.GetModPlayer<PhotobookPlayer>().photos[photo].HasData)
+                return;
+            view = new PhotobookUIImageViewOverlay(photo, parent, this);
+            parent.view = view;
+            parent.Append(view);
         }
 
         public void InitEmptyPhoto()
@@ -61,11 +74,6 @@ namespace Aequus.Content.Carpentery.Photobook
                 deleteButton.Top.Set(8f, 0f);
                 deleteButton.OnClick += DeleteButton_OnClick;
                 Append(deleteButton);
-                var seeFullButton = new UIImageButton(ModContent.Request<Texture2D>($"{Aequus.VanillaTexture}UI/Minimap/Default/MinimapButton_Reset"));
-                seeFullButton.Left.Set(-25f, 1f);
-                seeFullButton.Top.Set(34f, 0f);
-                seeFullButton.OnClick += DeleteButton_OnClick;
-                Append(seeFullButton);
             }
 
             var uiText = new UIText($"{photo + 1}.");

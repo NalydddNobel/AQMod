@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Bounties;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,6 +29,8 @@ namespace Aequus.Items.Consumables
         {
             if (Main.myPlayer == player.whoAmI)
                 CarpenterSystem.ResetBounties();
+            player.GetModPlayer<CarpenterBountyPlayer>().collectedBounties?.Clear();
+            player.GetModPlayer<CarpenterBountyPlayer>().SelectedBounty = -1;
             return true;
         }
     }

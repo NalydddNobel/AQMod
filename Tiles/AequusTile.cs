@@ -419,7 +419,7 @@ namespace Aequus.Tiles
         {
             for (int y = j - 1; y > 20; y--)
             {
-                if (!Main.tile[i, y].HasTile && Main.tile[i, y + 1].HasTile)
+                if (WorldGen.InWorld(i, y, 30) && !Main.tile[i, y].HasTile && Main.tile[i, y + 1].HasTile)
                 {
                     for (int k = 0; k < validTile.Length; k++)
                     {

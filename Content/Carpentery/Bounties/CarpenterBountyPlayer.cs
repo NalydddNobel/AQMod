@@ -12,18 +12,25 @@ namespace Aequus.Content.Carpentery.Bounties
     public class CarpenterBountyPlayer : ModPlayer
     {
         public int SelectedBounty;
-        public List<string> completedBountiesOld { get; private set; }
+        public List<string> collectedBounties { get; private set; }
 
         public override void Initialize()
         {
-            completedBountiesOld = new List<string>();
+            collectedBounties = new List<string>();
+            collectedBounties = new List<string>();
             SelectedBounty = -1;
         }
 
         public override void SaveData(TagCompound tag)
         {
             if (SelectedBounty > 0)
+            {
                 tag["SelectedBounty"] = CarpenterSystem.BountiesByID[SelectedBounty].FullName;
+            }
+            if (collectedBounties.Count > 0)
+            {
+                tag["CollectedBounties"] = collectedBounties;
+            }
         }
 
         public override void LoadData(TagCompound tag)
@@ -33,17 +40,17 @@ namespace Aequus.Content.Carpentery.Bounties
             {
                 SelectedBounty = bounty.Type;
             }
-            completedBountiesOld = tag.Get<List<string>>("CompletedBounties");
-            if (completedBountiesOld == null)
+            collectedBounties = tag.Get<List<string>>("CompletedBounties");
+            if (collectedBounties == null)
             {
-                completedBountiesOld = new List<string>();
+                collectedBounties = new List<string>();
             }
         }
 
         public override ModPlayer Clone(Player newEntity)
         {
             var clone = (CarpenterBountyPlayer)base.Clone(newEntity);
-            clone.completedBountiesOld = new List<string>(completedBountiesOld);
+            clone.collectedBounties = new List<string>(collectedBounties);
             clone.SelectedBounty = SelectedBounty;
             return clone;
         }
@@ -51,23 +58,12 @@ namespace Aequus.Content.Carpentery.Bounties
         public override void clientClone(ModPlayer clientClone)
         {
             var clone = (CarpenterBountyPlayer)clientClone;
-            clone.completedBountiesOld = new List<string>(completedBountiesOld);
+            clone.collectedBounties = new List<string>(collectedBounties);
             clone.SelectedBounty = SelectedBounty;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            if (completedBountiesOld.Count > 0)
-            {
-                for (int i = 0; i < completedBountiesOld.Count; i++)
-                {
-                    if (CarpenterSystem.BountiesByName.TryGetValue(completedBountiesOld[i], out var b))
-                    {
-                        CarpenterSystem.CompleteCarpenterBounty(b);
-                    }
-                }
-                completedBountiesOld.Clear();
-            }
         }
 
         public override void PostUpdate()
@@ -80,13 +76,6 @@ namespace Aequus.Content.Carpentery.Bounties
 
         public void CheckBuffBuildings()
         {
-            if (Main.netMode == NetmodeID.SinglePlayer && completedBountiesOld.Count > 0)
-            {
-                CarpenterSystem.CompletedBounties.AddRange(completedBountiesOld);
-                for (int i = 0; i < completedBountiesOld.Count; i++)
-                    Main.NewText(completedBountiesOld[i]);
-                completedBountiesOld?.Clear();
-            }
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             int val = Player.Aequus().BuildingBuffRange;
@@ -110,6 +99,11 @@ namespace Aequus.Content.Carpentery.Bounties
                 }
             }
             stopwatch.Stop();
+        }
+
+        public bool HasUnclaimedBounty()
+        {
+            return CarpenterSystem.CompletedBounties.ContainsAny((t) => !collectedBounties.Contains(t));
         }
     }
 }

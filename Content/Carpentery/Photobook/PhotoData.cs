@@ -10,6 +10,8 @@ namespace Aequus.Content.Carpentery.Photobook
 {
     public struct PhotoData : TagSerializable
     {
+        public bool HasData => tileMap != null;
+
         public float fracX;
         public float fracY;
         public ushort paddingX;

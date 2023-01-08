@@ -193,7 +193,7 @@ namespace Aequus.Buffs
 
         public override void PostDraw(SpriteBatch spriteBatch, int type, int buffIndex, BuffDrawParams drawParams)
         {
-            if (Main.LocalPlayer.Aequus().boundedPotionIDs.Contains(type))
+            if (Main.LocalPlayer.Aequus().BoundedPotionIDs.Contains(type))
             {
                 var buffSB = new SpriteBatchCache(Main.spriteBatch);
 

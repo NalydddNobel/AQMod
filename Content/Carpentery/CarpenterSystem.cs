@@ -5,6 +5,7 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Camera;
 using Aequus.Items.Tools.Misc;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -620,6 +621,7 @@ namespace Aequus.Content.Carpentery
 
         public static void CompleteCarpenterBounty(CarpenterBounty b)
         {
+            Carpenter.showExclamation = 0;
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 var p = Aequus.GetPacket(PacketType.CompleteCarpenterBounty);

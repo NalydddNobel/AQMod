@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Carpentery.Bounties;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -8,9 +7,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.Content.Carpentery.Bounties.BountyUI
+namespace Aequus.Content.Carpentery.Bounties
 {
-    public class BountySidebarElement : UIElement
+    public class BountyUISidebarElement : UIElement
     {
         public static Color UIPanelColor = new Color(122, 168, 226);
 
@@ -18,7 +17,7 @@ namespace Aequus.Content.Carpentery.Bounties.BountyUI
         public readonly CarpenterBounty bounty;
         public UIPanel uiPanel;
 
-        public BountySidebarElement(BountyUIState parent, CarpenterBounty bounty)
+        public BountyUISidebarElement(BountyUIState parent, CarpenterBounty bounty)
         {
             parentState = parent;
             this.bounty = bounty;
@@ -48,17 +47,32 @@ namespace Aequus.Content.Carpentery.Bounties.BountyUI
                 uiPanel.BackgroundColor *= 0.6f;
                 uiPanel.BackgroundColor = uiPanel.BackgroundColor.UseA(a);
             }
-            var npcHead = TextureAssets.NpcHead[head];
-            var uiImage = new UIImage(npcHead);
-            uiImage.VAlign = 0.5f;
-            uiImage.Width.Set(npcHead.Value.Width, 0f);
-            uiImage.Height.Set(npcHead.Value.Height, 0f);
-            uiImage.Left.Set(24 - npcHead.Value.Width / 2, 0f);
-            Append(uiImage);
-
+            bool completed = CarpenterSystem.CompletedBounties.Contains(bounty.FullName);
+            if (completed)
+            {
+                var checkMark = new UIText("✓");
+                checkMark.VAlign = 0.5f;
+                checkMark.Left.Set(20, 0f);
+                checkMark.TextColor = Color.Lime;
+                Append(checkMark);
+            }
+            else
+            {
+                var npcHead = TextureAssets.NpcHead[head];
+                var uiImage = new UIImage(npcHead);
+                uiImage.VAlign = 0.5f;
+                uiImage.Width.Set(npcHead.Value.Width, 0f);
+                uiImage.Height.Set(npcHead.Value.Height, 0f);
+                uiImage.Left.Set(24 - npcHead.Value.Width / 2, 0f);
+                Append(uiImage);
+            }
             var uiText = new UIText(name);
             uiText.VAlign = 0.5f;
             uiText.Left.Set(48, 0f);
+            if (completed)
+            {
+                uiText.TextColor = Color.Lime;
+            }
             Append(uiText);
         }
 

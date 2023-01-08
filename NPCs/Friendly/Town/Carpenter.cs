@@ -2,7 +2,6 @@
 using Aequus.Common;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Carpentery.Bounties;
-using Aequus.Content.Carpentery.Bounties.BountyUI;
 using Aequus.Content.Personalities;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
@@ -14,6 +13,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
@@ -34,6 +34,8 @@ namespace Aequus.NPCs.Friendly.Town
     [AutoloadHead()]
     public class Carpenter : ModNPC, IModifyShoppingSettings
     {
+        public static int showExclamation;
+
         private int thunderDelay;
 
         public override void SetStaticDefaults()
@@ -137,6 +139,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Photobook>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkPickaxe>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkHammer>());
             if (NPC.AnyNPCs(NPCID.Painter))
@@ -283,6 +286,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override string GetChat()
         {
+            showExclamation = 0;
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
 
@@ -343,6 +347,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
         {
+            showExclamation = 0;
             if (firstButton)
             {
                 shop = true;
@@ -352,20 +357,34 @@ namespace Aequus.NPCs.Friendly.Town
                 var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
                 foreach (var bounty in CarpenterSystem.BountiesByID)
                 {
-                    if (bounty.IsBountyAvailable() && !CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
+                    if (CarpenterSystem.CompletedBounties.Contains(bounty.FullName) && !bountyPlayer.collectedBounties.Contains(bounty.FullName))
                     {
-                        Main.playerInventory = false;
-                        Main.npcChatText = "";
-                        Aequus.UserInterface.SetState(new BountyUIState());
+                        bountyPlayer.collectedBounties.Add(bounty.FullName);
+                        bounty.OnCompleteBounty(Main.LocalPlayer, NPC);
+                        Main.npcChatText = $"Congrats on completing {bounty.DisplayName}!";
                         return;
                     }
                 }
-                Main.npcChatText = AequusText.TryGetText("Chat.Carpenter.NoBounty");
+                Main.playerInventory = false;
+                Main.npcChatText = "";
+                Aequus.UserInterface.SetState(new BountyUIState());
             }
         }
 
         public override void AI()
         {
+            if (showExclamation == 0 && Main.netMode != NetmodeID.Server)
+            {
+                if (Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().HasUnclaimedBounty())
+                {
+                    showExclamation = 1;
+                }
+                else
+                {
+                    showExclamation = -1;
+                }
+            }
+
             if (thunderDelay > 0)
             {
                 thunderDelay--;
@@ -386,6 +405,16 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override bool CanGoToStatue(bool toKingStatue)
         {
+            return true;
+        }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (thunderDelay <= 0 && showExclamation > 0 && !NPC.IsABestiaryIconDummy)
+            {
+                spriteBatch.Draw(TextureCache.TownNPCExclamation.Value, NPC.Top + new Vector2(0f, -26f) - screenPos, null,
+                    new Color(150, 150, 255, 222), 0f, TextureCache.TownNPCExclamation.Value.Size() / 2f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
+            }
             return true;
         }
 
@@ -416,7 +445,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", AequusText.GetText($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY >= Main.worldSurface ? "Forest" : "Underground")}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", AequusText.GetText($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY < Main.worldSurface ? "Forest" : "Underground")}"));
         }
     }
 }

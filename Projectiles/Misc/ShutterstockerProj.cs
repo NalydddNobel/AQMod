@@ -1,7 +1,10 @@
 ﻿using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Bounties.Steps;
 using Aequus.Content.Carpentery.Photobook;
 using Aequus.Items;
 using Aequus.Items.Tools.Camera;
+using Aequus.NPCs.Friendly.Town;
+using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -98,7 +101,21 @@ namespace Aequus.Projectiles.Misc
 
         public virtual void SpawnClipItem(Rectangle tilesCaptured)
         {
-            CarpenterSystem.ScanForBuilderBuffs(tilesCaptured);
+            foreach (var b in CarpenterSystem.BountiesByID)
+            {
+                if (!CarpenterSystem.CompletedBounties.Contains(b.FullName) && b.CheckConditions(new StepInfo(tilesCaptured)).success)
+                {
+                    if (b.BuildingBuff > 0)
+                    {
+                        CarpenterSystem.AddBuildingBuffLocation(b.Type, tilesCaptured);
+                    }
+                    SoundEngine.PlaySound(SoundID.Item129);
+                    int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Green, 1, dramatic: true);
+                    Main.combatText[text].text = $"Bounty '{b.DisplayName}' Completed!";
+                    Main.combatText[text].position.X -= FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
+                    CarpenterSystem.CompleteCarpenterBounty(b);
+                }
+            }
 
             var photoPlayer = Main.player[Projectile.owner].GetModPlayer<PhotobookPlayer>();
             if (!photoPlayer.hasPhotobook)
@@ -111,8 +128,8 @@ namespace Aequus.Projectiles.Misc
                     photoPlayer.photos[i].LoadTexture();
                     int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Lerp(Color.White, Color.Lime * 2f, 0.2f), 1);
                     Main.combatText[text].text = $"Saved in slot {i + 1}!";
-                    Main.combatText[text].position.X -= FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
-                    Main.combatText[text].position.Y -= 64f;
+                    Main.combatText[text].position.X = Main.player[Projectile.owner].Center.X - FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
+                    Main.combatText[text].position.Y -= 54f;
                     Main.combatText[text].velocity *= 0.25f;
                     Main.combatText[text].velocity.Y = -Main.combatText[text].velocity.Y;
                     Main.combatText[text].lifeTime *= 2;

@@ -87,6 +87,15 @@ namespace Aequus
             {
                 t.OnModLoad(this);
             }
+
+            On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
+        }
+
+        private void WorldGen_TileFrame(On.Terraria.WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak)
+        {
+            //if (!Main.gameMenu)
+            //Logger.Info($"X:{i} Y:{j} | TileType:{Main.tile[i, j].TileType} ({AequusText.GetInternalNameOrUnknown(Main.tile[i, j].TileType, TileID.Search)}) | {resetFrame}, {noBreak}");
+            orig(i, j, resetFrame, noBreak);
         }
 
         public override void Unload()

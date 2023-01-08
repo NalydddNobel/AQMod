@@ -14,6 +14,8 @@ namespace Aequus.Tiles.Ambience
 {
     public class MistralTile : HerbTileBase, ISpecialTileRenderer
     {
+        public virtual int TurnFrames => 155;
+
         protected override int[] GrowableTiles => new int[]
         {
             TileID.Grass,
@@ -80,15 +82,19 @@ namespace Aequus.Tiles.Ambience
             return false;
         }
 
+        public override void AnimateTile(ref int frame, ref int frameCounter)
+        {
+            frame = (frame + (int)(Main.windSpeedCurrent * 100)) % (int)(MathHelper.TwoPi * TurnFrames);
+        }
+
         public void Render(int i, int j, TileRenderLayer layer)
         {
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-            if (Aequus.GameWorldActive)
-                Main.tile[i, j].TileFrameY = (short)((Main.tile[i, j].TileFrameY + (int)(Main.windSpeedCurrent * 10f)) % FrameHeight);
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
             {
                 var pinwheel = ModContent.Request<Texture2D>($"{this.GetPath()}_Pinwheel").Value;
-                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j), Main.tile[i, j].TileFrameY / (float)FrameHeight * MathHelper.TwoPi, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j), 
+                    Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Carpentery.Photobook
 {
@@ -44,6 +46,42 @@ namespace Aequus.Content.Carpentery.Photobook
         public void UpgradePhotos(int newMax)
         {
             maxPhotos = Math.Max(maxPhotos, newMax);
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            if (this.photos == null)
+                return;
+
+            var photos = new List<TagCompound>();
+            for (int i = 0; i < this.photos.Length; i++)
+            {
+                if (this.photos[i].HasData)
+                {
+                    photos.Add(this.photos[i].SerializeData()); 
+                }
+            }
+            if (photos.Count < 0)
+                return;
+
+            tag["Photos"] = photos;
+            return;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.TryGet<List<TagCompound>>("Photos", out var photoSaveData))
+            {
+                if (photos.Length < photoSaveData.Count)
+                {
+                    Array.Resize(ref photos, photoSaveData.Count);
+                }
+                for (int i = 0; i < photoSaveData.Count; i++)
+                {
+                    photos[i] = PhotoData.DeserializeData(photoSaveData[i]);
+                }
+            }
+            return;
         }
     }
 }

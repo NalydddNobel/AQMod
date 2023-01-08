@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Utilities;
+using Aequus.Content.Carpentery.Paint;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Projectiles;

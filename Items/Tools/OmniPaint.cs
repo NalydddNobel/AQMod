@@ -1,4 +1,4 @@
-﻿using Aequus.UI;
+﻿using Aequus.Content.Carpentery.Paint;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,7 +27,7 @@ namespace Aequus.Items.Tools
             {
                 OmniPaintUI.Instance.Enabled = true;
             }
-            Item.paint = player.Aequus().omniPaint;
+            Item.paint = player.GetModPlayer<OmniPaintPlayer>().selectedPaint;
         }
 
         public override bool ConsumeItem(Player player)

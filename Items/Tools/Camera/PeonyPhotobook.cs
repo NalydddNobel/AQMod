@@ -24,5 +24,14 @@ namespace Aequus.Items.Tools.Camera
             base.UpdateBank(player, aequus, slot, bank);
             player.GetModPlayer<PhotobookPlayer>().UpgradePhotos(32);
         }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Photobook>()
+                .AddIngredient(ItemID.JungleSpores, 12)
+                .AddTile(TileID.WorkBenches)
+                .Register();
+        }
     }
 }

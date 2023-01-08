@@ -1,20 +1,19 @@
-﻿using Aequus.Content.Carpentery.Bounties;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Aequus.Content.Carpentery.Bounties.BountyUI
+namespace Aequus.Content.Carpentery.Bounties
 {
-    public class BountyDetailsPanelManager : UIElement
+    public class BountyUIDetailsPanelManager : UIElement
     {
         public readonly BountyUIState parentState;
         public readonly UIPanel uiPanel;
 
         public CarpenterBounty bounty;
 
-        public BountyDetailsPanelManager(BountyUIState parent, UIPanel panel)
+        public BountyUIDetailsPanelManager(BountyUIState parent, UIPanel panel)
         {
             parentState = parent;
             uiPanel = panel;
@@ -36,11 +35,11 @@ namespace Aequus.Content.Carpentery.Bounties.BountyUI
             descriptionPanel.Height.Set(100f, 0.1f);
             uiPanel.Append(descriptionPanel);
             uiText = new UIText(bounty.Description, 1f);
-            uiText.Width.Set(0f, 1f);
-            uiText.Height.Set(0f, 1f);
-            uiText.TextOriginX = 0f;
-            uiText.IsWrapped = true;
+            uiText.Width = descriptionPanel.Width;
+            uiText.Height = descriptionPanel.Height;
+            uiText.TextOriginX = 0.01f;
             descriptionPanel.Append(uiText);
+            uiText.IsWrapped = true;
 
             var npcHead = TextureAssets.NpcHead[NPC.TypeToDefaultHeadIndex(bounty.GetBountyNPCID())];
             var uiImage = new UIImage(npcHead);

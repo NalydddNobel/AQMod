@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Carpentery.Bounties;
-using Aequus.NPCs.Friendly.Town;
+﻿using Aequus.NPCs.Friendly.Town;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,11 +9,11 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.Content.Carpentery.Bounties.BountyUI
+namespace Aequus.Content.Carpentery.Bounties
 {
     public class BountyUIState : AequusUIState
     {
-        public BountyDetailsPanelManager detailsManager;
+        public BountyUIDetailsPanelManager detailsManager;
 
         public override void OnInitialize()
         {
@@ -46,7 +45,7 @@ namespace Aequus.Content.Carpentery.Bounties.BountyUI
             uiPanel.Width.Set(-220 - 30, 1f);
             uiPanel.Height.Set(-20, 1f);
             Append(uiPanel);
-            detailsManager = new BountyDetailsPanelManager(this, uiPanel);
+            detailsManager = new BountyUIDetailsPanelManager(this, uiPanel);
             Append(detailsManager);
         }
 
@@ -69,10 +68,7 @@ namespace Aequus.Content.Carpentery.Bounties.BountyUI
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID)
             {
-                if (!bounty.IsBountyAvailable() || CarpenterSystem.CompletedBounties.Contains(bounty.FullName))
-                    continue;
-
-                var uiElement = new BountySidebarElement(this, bounty);
+                var uiElement = new BountyUISidebarElement(this, bounty);
                 uiList.Add(uiElement);
             }
         }

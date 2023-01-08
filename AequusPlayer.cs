@@ -141,7 +141,6 @@ namespace Aequus
 
         public int accArmFloaties;
 
-        public byte omniPaint;
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
@@ -356,7 +355,20 @@ namespace Aequus
 
         public int sceneInvulnerability;
 
-        public List<int> boundedPotionIDs;
+        private List<int> boundedPotionIDs;
+        public List<int> BoundedPotionIDs
+        {
+            get
+            {
+                if (boundedPotionIDs == null)
+                    boundedPotionIDs = new List<int>();
+                return boundedPotionIDs;
+            }
+            set
+            {
+                boundedPotionIDs = value;
+            }
+        }
 
         public bool ExpertBoost => hasExpertBoost || accExpertBoost;
         public bool MaxLife => Player.statLife >= Player.statLifeMax2;
@@ -396,7 +408,7 @@ namespace Aequus
             clone.timeSinceLastHit = timeSinceLastHit;
             clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
-            clone.boundedPotionIDs = new List<int>(boundedPotionIDs);
+            clone.BoundedPotionIDs = new List<int>(BoundedPotionIDs);
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
             clone.sceneInvulnerability = sceneInvulnerability;
@@ -412,10 +424,10 @@ namespace Aequus
                 aequus.itemSwitch <= 0 && itemSwitch > 0,
                 Math.Abs(timeSinceLastHit - aequus.timeSinceLastHit) > 60,
                 gravetenderGhost != aequus.gravetenderGhost,
-                omniPaint != aequus.omniPaint,
+                false,
                 (aequus.itemCombo - itemCombo).Abs() > 20,
                 aequus.instaShieldTime != instaShieldTime,
-                !boundedPotionIDs.IsTheSameAs(aequus.boundedPotionIDs),
+                !BoundedPotionIDs.IsTheSameAs(aequus.BoundedPotionIDs),
                 boundBowAmmo != aequus.boundBowAmmo || (aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0));
 
             var bb2 = new BitsByte(
@@ -443,10 +455,6 @@ namespace Aequus
                 {
                     p.Write(gravetenderGhost);
                 }
-                if (bb[3])
-                {
-                    p.Write(omniPaint);
-                }
                 if (bb[4])
                 {
                     p.Write(itemCombo);
@@ -457,10 +465,10 @@ namespace Aequus
                 }
                 if (bb[6])
                 {
-                    p.Write(boundedPotionIDs.Count);
-                    for (int i = 0; i < boundedPotionIDs.Count; i++)
+                    p.Write(BoundedPotionIDs.Count);
+                    for (int i = 0; i < BoundedPotionIDs.Count; i++)
                     {
-                        p.Write(boundedPotionIDs[i]);
+                        p.Write(BoundedPotionIDs[i]);
                     }
                 }
                 if (bb[7])
@@ -506,10 +514,6 @@ namespace Aequus
             {
                 gravetenderGhost = reader.ReadInt32();
             }
-            if (bb[3])
-            {
-                omniPaint = reader.ReadByte();
-            }
             if (bb[4])
             {
                 itemCombo = reader.ReadUInt16();
@@ -520,11 +524,11 @@ namespace Aequus
             }
             if (bb[6])
             {
-                boundedPotionIDs.Clear();
+                BoundedPotionIDs.Clear();
                 int count = reader.ReadInt32();
                 for (int i = 0; i < Main.maxBuffTypes; i++)
                 {
-                    boundedPotionIDs.Add(reader.ReadInt32());
+                    BoundedPotionIDs.Add(reader.ReadInt32());
                 }
             }
             if (bb[7])
@@ -569,8 +573,7 @@ namespace Aequus
 
         public override void Initialize()
         {
-            omniPaint = 1;
-            boundedPotionIDs = new List<int>();
+            BoundedPotionIDs = new List<int>();
             accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
@@ -604,7 +607,7 @@ namespace Aequus
             timeSinceLastHit = 0;
             hasExpertBoost = false;
             accExpertBoost = false;
-            foreach (var buff in boundedPotionIDs)
+            foreach (var buff in BoundedPotionIDs)
             {
                 Main.persistentBuff[buff] = true;
             }
@@ -706,13 +709,13 @@ namespace Aequus
         {
             BuildingBuffRange = usedPermaBuildBuffRange ? 75 : 50;
             villagerHappiness = 0f;
-            if (boundedPotionIDs == null)
+            if (BoundedPotionIDs == null)
             {
-                boundedPotionIDs = new List<int>();
+                BoundedPotionIDs = new List<int>();
             }
-            else if (boundedPotionIDs.Count > 0)
+            else if (BoundedPotionIDs.Count > 0)
             {
-                foreach (var buff in boundedPotionIDs)
+                foreach (var buff in BoundedPotionIDs)
                 {
                     Main.persistentBuff[buff] = false;
                 }
@@ -933,11 +936,11 @@ namespace Aequus
             {
                 StariteBottleBuff.UpdateEffects(Player, stariteBottleBuff);
             }
-            for (int i = 0; i < boundedPotionIDs.Count; i++)
+            for (int i = 0; i < BoundedPotionIDs.Count; i++)
             {
-                if (!Player.HasBuff(boundedPotionIDs[i]))
+                if (!Player.HasBuff(BoundedPotionIDs[i]))
                 {
-                    boundedPotionIDs.RemoveAt(i);
+                    BoundedPotionIDs.RemoveAt(i);
                     i--;
                 }
             }

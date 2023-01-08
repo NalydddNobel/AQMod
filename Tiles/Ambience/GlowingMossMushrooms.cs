@@ -164,6 +164,11 @@ namespace Aequus.Tiles.Ambience
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                             NetMessage.SendTileSquare(-1, x, y);
+                        reps += 4;
+                        maxDist = 10;
+                        i = x;
+                        j = y;
+                        goto Reset;
                     }
                 }
             }

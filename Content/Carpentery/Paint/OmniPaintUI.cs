@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Aequus.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.UI
+namespace Aequus.Content.Carpentery.Paint
 {
     public class OmniPaintUI : ILoadable
     {
@@ -47,7 +49,7 @@ namespace Aequus.UI
                 return;
 
             float scale = 1.25f;
-            var texture = ModContent.Request<Texture2D>("Aequus/UI/OmniPaintUI", AssetRequestMode.ImmediateLoad).Value;
+            var texture = ModContent.Request<Texture2D>(this.GetPath(), AssetRequestMode.ImmediateLoad).Value;
             var frame = texture.Frame(horizontalFrames: 4, verticalFrames: 2, 0, 0, -2, -2);
             var originPoint = new Vector2(480f, 24f);
             var bg = new Rectangle((int)originPoint.X - 6, (int)originPoint.Y - 6, (frame.Width + 2) * 8 + 16, (frame.Height - 2) * 5 + 16).MultiplyWH(scale);
@@ -74,14 +76,14 @@ namespace Aequus.UI
                         if (Main.mouseLeft && Main.mouseLeftRelease)
                         {
                             SoundEngine.PlaySound(SoundID.MenuTick);
-                            Main.LocalPlayer.Aequus().omniPaint = paint;
+                            Main.LocalPlayer.GetModPlayer<OmniPaintPlayer>().selectedPaint = paint;
                         }
                     }
 
                     DrawPaintBucket(spriteBatch, texture, position, frame.Frame(frameX, 0, -2, 0), scale, paint);
                 }
             }
-            DrawPaintBucket(spriteBatch, texture, new Vector2(originPoint.X + 2, bg.Y + bg.Height / 5 * 4 - 4 + 2f), frame, scale, Main.LocalPlayer.Aequus().omniPaint);
+            DrawPaintBucket(spriteBatch, texture, new Vector2(originPoint.X + 2, bg.Y + bg.Height / 5 * 4 - 4 + 2f), frame, scale, Main.LocalPlayer.GetModPlayer<OmniPaintPlayer>().selectedPaint);
 
             Utils.DrawSplicedPanel(spriteBatch, TextureAssets.InventoryBack18.Value, bg.X + bg.Width - 44, bg.Y + bg.Height / 5 * 4 - 4 - 20, 42, 44, 10, 10, 10, 10, (AequusUI.InventoryBackColor * 0.75f).UseA(255));
 

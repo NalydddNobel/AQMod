@@ -77,19 +77,6 @@ namespace Aequus.Tiles.Ambience
                 return;
             }
             bool blooming = IsBlooming(i, j);
-            switch (Main.tile[i, j].TileFrameY)
-            {
-                case 0:
-                    {
-                    }
-                    break;
-
-                case 32:
-                    {
-                        blooming = Main.windSpeedCurrent.Abs() > 0.3f;
-                    }
-                    break;
-            }
             if (blooming)
             {
                 if (Main.tile[i, j].TileFrameX < 56)

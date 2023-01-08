@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Items;
 using Microsoft.Xna.Framework;
+using ReLogic.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -427,6 +428,13 @@ namespace Aequus
                 value = GetText("KeyUnbound");
             }
             return value;
+        }
+
+        public static string GetInternalNameOrUnknown(int id, IdDictionary search)
+        {
+            if (search.TryGetName(id, out string name))
+                return name;
+            return "Unknown";
         }
     }
 }

@@ -87,7 +87,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .UseColor(Color.DarkRed * 1.5f);
+                .UseColor(Color.Lerp(Color.White, Color.DarkRed, 0.5f));
             ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
