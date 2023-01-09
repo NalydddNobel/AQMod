@@ -26,7 +26,7 @@ namespace Aequus.Content.Carpentery.Photobook
         public override void OnInitialize()
         {
             float imageScale = scale;
-            var book = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}UI/Photobook", AssetRequestMode.ImmediateLoad);
+            var book = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/Photobook", AssetRequestMode.ImmediateLoad);
             HAlign = 0.5f;
             VAlign = 0.5f;
             Width.Set(book.Value.Width * imageScale, 0f);
@@ -76,7 +76,7 @@ namespace Aequus.Content.Carpentery.Photobook
                 page = 0;
                 return;
             }
-            SoundEngine.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(Aequus.GetSound("photobookturn"));
             SetupButton(buttonRight, false);
             SetupButton(buttonLeft, true);
             LoadCurrentPage();
@@ -90,7 +90,7 @@ namespace Aequus.Content.Carpentery.Photobook
                 page = PhotobookPlayer.MyMaxPhotos - PageMove;
                 return;
             }
-            SoundEngine.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(Aequus.GetSound("photobookturn"));
             SetupButton(buttonRight, false);
             SetupButton(buttonLeft, true);
             LoadCurrentPage();
@@ -99,7 +99,7 @@ namespace Aequus.Content.Carpentery.Photobook
         public void SetupButton(UIElement element, bool left)
         {
             element.RemoveAllChildren();
-            var image = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}UI/PhotobookButton{(left ? "Left" : "Right")}", AssetRequestMode.ImmediateLoad);
+            var image = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/PhotobookButton{(left ? "Left" : "Right")}", AssetRequestMode.ImmediateLoad);
             element.Width.Set(image.Value.Width, 0f);
             element.Height.Set(image.Value.Height, 0f);
             if (left && page <= 0)
@@ -137,7 +137,7 @@ namespace Aequus.Content.Carpentery.Photobook
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
-            var book = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}UI/Photobook", AssetRequestMode.ImmediateLoad);
+            var book = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/Photobook", AssetRequestMode.ImmediateLoad);
             Main.spriteBatch.Draw(book.Value, GetDimensions().Center(), null, Color.White, 0f, book.Value.Size() / 2f, scale, SpriteEffects.None, 0f);
             base.DrawSelf(spriteBatch);
         }

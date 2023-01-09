@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables.Drones;
+﻿using Aequus.Items.Misc.Drones;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

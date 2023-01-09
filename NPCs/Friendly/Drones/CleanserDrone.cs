@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.DronePylons;
-using Aequus.Items.Consumables.Drones;
+using Aequus.Items.Misc.Drones;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

@@ -1,8 +1,8 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Networking;
 using Aequus.Content.WorldGeneration;
-using Aequus.Items.Consumables;
-using Aequus.Items.Tools.Misc;
+using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.Night.Glimmer;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.DronePylons;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Consumables.Drones;
+using Aequus.Items.Misc.Drones;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

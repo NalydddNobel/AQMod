@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Accessories.Debuff;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

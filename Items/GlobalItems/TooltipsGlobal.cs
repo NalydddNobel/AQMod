@@ -1,8 +1,8 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Content.ExporterQuests;
+using Aequus.Content.ItemPrefixes;
 using Aequus.Content.ItemRarities;
-using Aequus.Items.Prefixes;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using System;

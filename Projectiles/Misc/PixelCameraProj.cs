@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Tools.Camera;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

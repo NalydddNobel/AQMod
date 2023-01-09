@@ -78,17 +78,17 @@
         </member>
         <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.VictorsReward"/>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.whitePhial">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.WhitePhial"/>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.WhitePhial"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Moro"/>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.Moro"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
@@ -287,7 +287,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.usedWhiteFlag">
             <summary>
-            Whether or not the <see cref="T:Aequus.Items.Tools.Misc.WhiteFlag"/> item was used.
+            Whether or not the <see cref="T:Aequus.Items.Misc.Carpentry.Rewards.WhiteFlag"/> item was used.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedEventCosmic">
@@ -353,7 +353,7 @@
         <member name="F:Aequus.AequusWorld.tinkererRerolls">
             <summary>
             How many times the tinkerer should re-roll items for a potential higher value prefix. 
-            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Consumables.TinkerersGuidebook"/> has been consumed.
+            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Consumables.Permanent.TinkerersGuidebook"/> has been consumed.
             </summary>
         </member>
         <member name="M:Aequus.AequusWorld.OreTiers">

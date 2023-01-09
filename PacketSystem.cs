@@ -10,7 +10,6 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables;
-using Aequus.Items.Tools.Camera;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Misc;
@@ -30,6 +29,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.Items.Misc.Carpentry;
+using Aequus.Projectiles.Magic;
 
 namespace Aequus
 {
@@ -220,6 +222,15 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.WabbajackNecromancyKill:
+                    {
+                        int npc = reader.ReadInt32();
+                        int player = reader.ReadInt32();
+                        if (Main.npc[npc].active)
+                            WabbajackProj.ButcherNPC(Main.npc[npc], player);
+                    }
+                    break;
+
                 case PacketType.RemoveBuilding:
                     {
                         int bountyID = reader.ReadInt32();
@@ -277,7 +288,7 @@ namespace Aequus
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
                             long timeCreated = reader.ReadInt64();
-                            var map = MapTileCache.NetReceive(reader);
+                            var map = PixelPaintingData.NetReceive(reader);
                             if (WorldGen.InWorld(x, y) && !TileEntity.ByPosition.ContainsKey(new Point16(x, y)))
                             {
                                 TileEntity.PlaceEntityNet(x, y, ModContent.TileEntityType<TEPixelPainting>());

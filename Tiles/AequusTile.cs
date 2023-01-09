@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;

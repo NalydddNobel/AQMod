@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -5,13 +5,15 @@ using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Minion;
@@ -192,11 +194,6 @@ namespace Aequus.NPCs.Friendly.Town
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
-            if (NPC.downedBoss3)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
-                AddDungeonItems(Main.GetMoonPhase(), shop.item, ref nextSlot);
-            }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfTheGrounded>());
@@ -205,9 +202,28 @@ namespace Aequus.NPCs.Friendly.Town
             if (!Main.dayTime)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SpiritBottle>());
+                if (Main.bloodMoon)
+                {
+                    if (Main.hardMode)
+                    {
+                        shop.item[nextSlot++].SetDefaults<Wabbajack>();
+                    }
+                    shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
+                }
+                else
+                {
+                    shop.item[nextSlot].SetDefaults<SoulGem>();
+                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 50);
+                }
+            }
+            if (NPC.downedBoss3)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
+                AddDungeonItems(Main.GetMoonPhase(), shop.item, ref nextSlot);
             }
             if (Main.hardMode)
             {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
                 if (!Main.dayTime)
                 {
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
@@ -216,24 +232,11 @@ namespace Aequus.NPCs.Friendly.Town
                 {
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PotionCanteen>());
                 }
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
             }
             if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
-            }
-            if (!Main.dayTime)
-            {
-                if (Main.bloodMoon)
-                {
-                    shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
-                }
-                else
-                {
-                    shop.item[nextSlot].SetDefaults<SoulGem>();
-                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 50);
-                }
             }
         }
 

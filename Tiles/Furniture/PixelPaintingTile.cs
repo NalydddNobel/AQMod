@@ -1,6 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Graphics.RenderTargets;
-using Aequus.Items.Tools.Camera;
+﻿using Aequus.Content.Carpentery;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -90,10 +89,9 @@ namespace Aequus.Tiles.Furniture
                 }
                 if (painting.texture.Value == null)
                 {
-                    painting.mapCache.UpdateColorLookup();
                     if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
                     {
-                        ColorImageRenderer.RenderRequests.Add(new ColorImageRenderer.RequestInfo()
+                        PixelCameraRenderer.RenderRequests.Add(new PixelCameraRenderer.RequestInfo()
                         { width = painting.mapCache.width, height = painting.mapCache.height, arr = painting.mapCache.colorLookup, target = painting.texture, });
                     }
                 }
@@ -137,7 +135,7 @@ namespace Aequus.Tiles.Furniture
 
     public class TEPixelPainting : ModTileEntity
     {
-        public MapTileCache mapCache;
+        public PixelPaintingData mapCache;
         public long timeCreated;
         public Ref<RenderTarget2D> texture;
         private int netSpam = -1;
@@ -186,42 +184,22 @@ namespace Aequus.Tiles.Furniture
         public override void SaveData(TagCompound tag)
         {
             tag["TimeCreated"] = timeCreated;
-            if (mapCache.mapTiles == null)
-                return;
-            tag["Width"] = mapCache.width;
-            tag["Height"] = mapCache.height;
-            tag["MapTileIDs"] = Array.ConvertAll(mapCache.mapTiles, (t) => t.Type);
-            tag["MapTileColor"] = Array.ConvertAll(mapCache.mapTiles, (t) => t.Color);
+            mapCache.Save(tag);
         }
 
         public override void LoadData(TagCompound tag)
         {
             timeCreated = tag.Get<long>("TimeCreated");
-            if (!tag.ContainsKey("MapTileIDs"))
-                return;
-            mapCache.width = tag.Get<int>("Width");
-            mapCache.height = tag.Get<int>("Height");
-            var mapTileIDs = tag.Get<ushort[]>("MapTileIDs");
-            var mapTilePaints = tag.Get<byte[]>("MapTileColor");
-
-            mapCache.colorLookup = new Color[mapCache.width * mapCache.height];
-            mapCache.mapTiles = new MapTile[mapCache.width * mapCache.height];
-            mapCache.UpdateColorLookup();
-            if (mapTileIDs.Length != mapTilePaints.Length || mapTileIDs.Length != mapCache.colorLookup.Length || mapTilePaints.Length != mapCache.colorLookup.Length)
-                return;
-
-            for (int i = 0; i < mapCache.mapTiles.Length; i++)
-            {
-                mapCache.mapTiles[i] = MapTile.Create(mapTileIDs[i], byte.MaxValue, mapTilePaints[i]);
-            }
+            mapCache = PixelPaintingData.Load(tag);
         }
+
         public override void NetSend(BinaryWriter writer)
         {
             base.NetSend(writer);
             writer.Write(timeCreated);
-            writer.Write(netSpam > 0);
             if (netSpam > 0)
             {
+                writer.Write(true);
                 return;
             }
             netSpam += 30;
@@ -229,6 +207,7 @@ namespace Aequus.Tiles.Furniture
             {
                 return;
             }
+            writer.Write(false);
             mapCache.NetSend(writer);
         }
 
@@ -238,7 +217,7 @@ namespace Aequus.Tiles.Furniture
             timeCreated = reader.ReadInt64();
             if (reader.ReadBoolean())
                 return;
-            mapCache = MapTileCache.NetReceive(reader);
+            mapCache = PixelPaintingData.NetReceive(reader);
         }
 
         public override void OnNetPlace()

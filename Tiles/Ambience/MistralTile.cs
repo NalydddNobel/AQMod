@@ -82,6 +82,11 @@ namespace Aequus.Tiles.Ambience
             return false;
         }
 
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            return false;
+        }
+
         public override void AnimateTile(ref int frame, ref int frameCounter)
         {
             frame = (frame + (int)(Main.windSpeedCurrent * 100)) % (int)(MathHelper.TwoPi * TurnFrames);

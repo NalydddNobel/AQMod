@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

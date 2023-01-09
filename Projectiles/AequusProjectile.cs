@@ -3,6 +3,7 @@ using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Projectiles.GlobalProjs;

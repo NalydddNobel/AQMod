@@ -14,12 +14,13 @@ using Aequus.Graphics.PlayerLayers;
 using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
-using Aequus.Items.Consumables;
-using Aequus.Items.Misc;
+using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Misc.Materials;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Friendly.Town;
@@ -948,6 +949,12 @@ namespace Aequus
 
         public override void PostUpdateEquips()
         {
+            if (Player.HasBuff<TonicSpawnratesDebuff>())
+            {
+                Player.ClearBuff(ModContent.BuffType<TonicSpawnratesBuff>());
+                Player.buffImmune[ModContent.BuffType<TonicSpawnratesBuff>()] = true;
+            }
+
             CheckGravityBlocks();
 
             if (selectGhostNPC == -2)

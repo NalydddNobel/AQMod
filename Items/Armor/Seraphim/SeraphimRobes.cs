@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics.PlayerLayers;
 using Aequus.Items.Armor.Gravetender;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

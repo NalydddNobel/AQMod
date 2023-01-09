@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics;
-using Aequus.Items.Misc;
+using Aequus.Items.Misc.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -53,15 +53,15 @@ namespace Aequus.Items
         /// <summary>
         /// 4 gold 50 silver
         /// </summary>
-        public static int OmegaStariteValue => Item.sellPrice(gold: 4, silver: 50);
+        public static int OmegaStariteValue => Item.sellPrice(gold: 3);
         /// <summary>
         /// 4 gold
         /// </summary>
-        public static int GaleStreamsValue => Item.sellPrice(gold: 4);
+        public static int GaleStreamsValue => Item.sellPrice(gold: 3);
         /// <summary>
         /// 5 gold
         /// </summary>
-        public static int DustDevilValue => Item.sellPrice(gold: 5);
+        public static int DustDevilValue => Item.sellPrice(gold: 4);
 
         /// <summary>
         /// 2 silver

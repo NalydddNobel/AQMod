@@ -14,7 +14,7 @@ namespace Aequus.Buffs.Misc
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            if (player.buffTime[buffIndex] <= 2)
+            if (player.buffTime[buffIndex] <= 2 && !player.buffImmune[ModContent.BuffType<TonicSpawnratesDebuff>()])
             {
                 player.buffType[buffIndex] = ModContent.BuffType<TonicSpawnratesDebuff>();
                 player.buffTime[buffIndex] = 1200;

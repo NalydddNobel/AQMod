@@ -130,12 +130,6 @@ namespace Aequus.Projectiles.Summon
             if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 700 && target.defense < 50 &&
                 NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(2.1f))
             {
-                var zombie = target.GetGlobalNPC<NecromancyNPC>();
-                zombie.conversionChance = 1;
-                zombie.renderLayer = ColorTargetID.BloodRed;
-                zombie.zombieDebuffTier = 2.1f;
-                zombie.zombieOwner = Projectile.owner;
-                zombie.ghostDamage = Math.Max(zombie.ghostDamage, 40);
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     ButcherNPC(target, Projectile.owner);

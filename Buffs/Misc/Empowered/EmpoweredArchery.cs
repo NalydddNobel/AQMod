@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Prefixes.Potions;
+﻿using Aequus.Content.ItemPrefixes.Potions;
 using Terraria;
 using Terraria.ID;
 

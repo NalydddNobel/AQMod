@@ -14,9 +14,11 @@ namespace Aequus.Content.Carpentery.Bounties
     public class BountyUIState : AequusUIState
     {
         public BountyUIDetailsPanelManager detailsManager;
+        public List<BountyUISidebarElementSelectionOverlay> selectionOverlays;
 
         public override void OnInitialize()
         {
+            selectionOverlays = new List<BountyUISidebarElementSelectionOverlay>();
             OverrideSamplerState = SamplerState.LinearClamp;
 
             MinWidth.Set(500, 0f);

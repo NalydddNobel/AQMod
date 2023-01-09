@@ -39,7 +39,8 @@ namespace Aequus.Content.Carpentery.Bounties
 
             int head = NPC.TypeToDefaultHeadIndex(bounty.GetBountyNPCID());
             string name = bounty.DisplayName;
-            if (!bounty.IsNPCPresent())
+            bool completed = CarpenterSystem.CompletedBounties.Contains(bounty.FullName);
+            if (!bounty.IsNPCPresent() && !completed)
             {
                 head = 0;
                 name = "Not Unlocked!";
@@ -47,7 +48,6 @@ namespace Aequus.Content.Carpentery.Bounties
                 uiPanel.BackgroundColor *= 0.6f;
                 uiPanel.BackgroundColor = uiPanel.BackgroundColor.UseA(a);
             }
-            bool completed = CarpenterSystem.CompletedBounties.Contains(bounty.FullName);
             if (completed)
             {
                 var checkMark = new UIText("✓");
@@ -74,6 +74,12 @@ namespace Aequus.Content.Carpentery.Bounties
                 uiText.TextColor = Color.Lime;
             }
             Append(uiText);
+
+            var overlay = new BountyUISidebarElementSelectionOverlay(bounty);
+            overlay.Width.Set(0f, 1f);
+            overlay.Height.Set(0f, 1f);
+            Append(overlay);
+            parentState.selectionOverlays.Add(overlay);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -101,6 +107,10 @@ namespace Aequus.Content.Carpentery.Bounties
             {
                 carpenter.SelectedBounty = bounty.Type;
                 SoundEngine.PlaySound(SoundID.MenuOpen);
+            }
+            foreach (var overlay in parentState.selectionOverlays)
+            {
+                overlay.UpdateSelection();
             }
         }
 

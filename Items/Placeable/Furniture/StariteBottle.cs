@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables.Critters;
+﻿using Aequus.Items.Misc.Critters;
 using Aequus.Tiles.Furniture;
 using Terraria;
 using Terraria.ID;

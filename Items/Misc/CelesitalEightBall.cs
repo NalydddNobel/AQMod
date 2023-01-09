@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.GlobalItems;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -22,6 +23,7 @@ namespace Aequus.Items.Misc
 
         public override void SetStaticDefaults()
         {
+            CooldownsItem.HasWeaponCooldown.Add(Type);
             SacrificeTotal = 1;
         }
 
@@ -38,15 +40,11 @@ namespace Aequus.Items.Misc
 
         public override bool? UseItem(Player player)
         {
-            //AequusWorld.GoreNests.GenerateChests(player.Center.ToTileCoordinates().X, player.Center.ToTileCoordinates().Y);
             if (Main.myPlayer == player.whoAmI)
             {
                 text = "Mods.Aequus.EightballAnswer." + Main.rand.Next(20);
                 string textValue = Language.GetTextValue(text);
                 int t = CombatText.NewText(player.getRect(), new Color(Main.mouseColor.R, Main.mouseColor.G, Main.mouseColor.B, 255), 0, true);
-                if (player.hasRainbowCursor)
-                {
-                }
                 Main.combatText[t].text = textValue;
                 Main.combatText[t].position.X = player.Center.X - FontAssets.CombatText[1].Value.MeasureString(textValue).X / 2f;
             }

@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Misc;
-using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Materials;
 using Aequus.NPCs.Boss;
 using Terraria;
 using Terraria.Audio;

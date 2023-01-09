@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles.Furniture;

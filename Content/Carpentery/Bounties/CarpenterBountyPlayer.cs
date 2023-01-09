@@ -40,7 +40,7 @@ namespace Aequus.Content.Carpentery.Bounties
             {
                 SelectedBounty = bounty.Type;
             }
-            collectedBounties = tag.Get<List<string>>("CompletedBounties");
+            collectedBounties = tag.Get<List<string>>("CollectedBounties");
             if (collectedBounties == null)
             {
                 collectedBounties = new List<string>();

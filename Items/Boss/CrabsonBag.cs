@@ -1,0 +1,24 @@
+﻿using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Misc.Energies;
+using Aequus.Items.Tools;
+using Aequus.NPCs.Boss;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Aequus.Items.Boss
+{
+    public class CrabsonBag : TreasureBagBase
+    {
+        protected override int InternalRarity => ItemRarityID.Blue;
+        protected override bool PreHardmode => true;
+
+        public override void ModifyItemLoot(ItemLoot itemLoot)
+        {
+            this.CreateLoot(itemLoot)
+                .Add<Crabax>(chance: 1, stack: 1)
+                .Add<CrabsonMask>(chance: 7, stack: 1)
+                .Add<AquaticEnergy>(chance: 1, stack: 3)
+                .Coins<Crabson>();
+        }
+    }
+}

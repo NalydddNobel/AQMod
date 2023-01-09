@@ -1,10 +1,8 @@
 ﻿using Aequus.Buffs.Buildings;
 using Aequus.Content.Carpentery.Bounties;
 using Aequus.Content.Carpentery.Bounties.Steps;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Items.Placeable;
-using Aequus.Items.Tools;
-using Aequus.Items.Tools.Camera;
-using Aequus.Items.Tools.Misc;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;

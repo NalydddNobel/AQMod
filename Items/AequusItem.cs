@@ -5,7 +5,9 @@ using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Misc;
@@ -55,6 +57,7 @@ namespace Aequus.Items
         public static Dictionary<int, string> RarityNames { get; private set; }
 
         private static Dictionary<int, int> ItemToBannerCache;
+
 
         public static int ReversedGravityCheck;
         public static int SuctionChestCheck;

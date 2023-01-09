@@ -114,11 +114,6 @@ namespace Aequus.Items.Accessories
                             GameShaders.Armor.Apply(dye, render.playerRef, dd);
                         }
                         dd.Draw(Main.spriteBatch);
-                        if (dye != 0)
-                        {
-                            Main.spriteBatch.End();
-                            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
-                        }
                     }
                 }
                 Main.spriteBatch.End();

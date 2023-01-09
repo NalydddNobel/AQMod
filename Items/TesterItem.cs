@@ -51,7 +51,7 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation_NewYears>(), 0, 0f, player.whoAmI);
+            Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
             return true;
         }
 
@@ -213,167 +213,167 @@ namespace Aequus.Items
                 clr = clr.HueAdd(Main.rand.NextFloat(0.1f));
             }
         }
-    }
 
-    internal class ModIconAnimation_NewYears : ModProjectile
-    {
-        public override string Texture => $"{Aequus.AssetsPath}Shatter";
-
-        public override bool IsLoadingEnabled(Mod mod)
+        private class ModIconAnimation : ModProjectile
         {
-            return TesterItem.LoadMe;
-        }
+            public override string Texture => $"{Aequus.AssetsPath}Shatter";
 
-        public override void SetDefaults()
-        {
-            Projectile.tileCollide = false;
-            Projectile.width = 2;
-            Projectile.height = 2;
-        }
-
-        public override void AI()
-        {
-            Projectile.ai[1]++;
-            if (Projectile.ai[1] > 1120f)
+            public override bool IsLoadingEnabled(Mod mod)
             {
-                Projectile.Kill();
+                return TesterItem.LoadMe;
             }
-        }
 
-        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
-        {
-            //overWiresUI.Add(index);
-        }
-
-        public void Draw2(Vector2 p, float t, float scale)
-        {
-            if (t > 300f)
+            public override void SetDefaults()
             {
-                var carpenter = TextureAssets.Npc[ModContent.NPCType<NPCs.Friendly.Town.Carpenter>()].Value;
-                var carpenterFrame = carpenter.Frame(verticalFrames: 25, frameY: (int)(Main.GameUpdateCount / 4 % 13) + 2);
-                Main.spriteBatch.Draw(TextureCache.Bloom[2].Value, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, TextureCache.Bloom[2].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
-
-                Main.spriteBatch.Draw(carpenter, p, carpenterFrame, Color.White, 0f, carpenterFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
-                string text = "Happy";
-                var textColor = Color.Lerp(Color.White, Color.Cyan, 0.33f);
-                var font = FontAssets.MouseText.Value;
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * 20f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale));
-                text = "New Years!";
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * -30f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale) * 0.9f);
-                return;
+                Projectile.tileCollide = false;
+                Projectile.width = 2;
+                Projectile.height = 2;
             }
-            var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
-            Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
 
-            var crack = TextureAssets.Projectile[Type].Value;
-            float crackScale = scale / 3f;
-            if ((int)t == 90)
+            public override void AI()
             {
-                EffectsSystem.Shake.Set(20f, 0.93f);
-                var clrs = crack.Get1DColorArr();
-                for (int i = 0; i < clrs.Length; i++)
+                Projectile.ai[1]++;
+                if (Projectile.ai[1] > 1120f)
                 {
-                    if (clrs[i].A > 128 && Main.rand.NextBool(50))
+                    Projectile.Kill();
+                }
+            }
+
+            public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+            {
+                //overWiresUI.Add(index);
+            }
+
+            public void Draw2(Vector2 p, float t, float scale)
+            {
+                if (t > 300f)
+                {
+                    var carpenter = TextureAssets.Npc[ModContent.NPCType<NPCs.Friendly.Town.Carpenter>()].Value;
+                    var carpenterFrame = carpenter.Frame(verticalFrames: 25, frameY: (int)(Main.GameUpdateCount / 4 % 13) + 2);
+                    Main.spriteBatch.Draw(TextureCache.Bloom[2].Value, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, TextureCache.Bloom[2].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
+
+                    Main.spriteBatch.Draw(carpenter, p, carpenterFrame, Color.White, 0f, carpenterFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
+                    string text = "Happy";
+                    var textColor = Color.Lerp(Color.White, Color.Cyan, 0.33f);
+                    var font = FontAssets.MouseText.Value;
+                    ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * 20f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale));
+                    text = "New Years!";
+                    ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, p - new Vector2(0f, scale * -30f), textColor, 0f, font.MeasureString(text) / 2f, new Vector2(scale) * 0.9f);
+                    return;
+                }
+                var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
+                Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
+
+                var crack = TextureAssets.Projectile[Type].Value;
+                float crackScale = scale / 3f;
+                if ((int)t == 90)
+                {
+                    EffectsSystem.Shake.Set(20f, 0.93f);
+                    var clrs = crack.Get1DColorArr();
+                    for (int i = 0; i < clrs.Length; i++)
                     {
-                        int j = i / crack.Width;
-                        var d = Dust.NewDustPerfect(Projectile.Center + new Vector2((crack.Width / -2f + (i % crack.Width)) * crackScale, (crack.Height / -2f + j) * crackScale), DustID.AncientLight, Scale: crackScale * 6f);
-                        d.velocity *= 8f;
-                        d.noGravity = true;
+                        if (clrs[i].A > 128 && Main.rand.NextBool(50))
+                        {
+                            int j = i / crack.Width;
+                            var d = Dust.NewDustPerfect(Projectile.Center + new Vector2((crack.Width / -2f + (i % crack.Width)) * crackScale, (crack.Height / -2f + j) * crackScale), DustID.AncientLight, Scale: crackScale * 6f);
+                            d.velocity *= 8f;
+                            d.noGravity = true;
+                        }
+                    }
+                }
+                if (t > 90f)
+                {
+                    Main.spriteBatch.Draw(crack, p, null, Color.White.UseA(0), 0f, crack.Size() / 2f, crackScale, SpriteEffects.None, 0f);
+                }
+                var ray = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}LightRay").Value;
+                if (t > 120f)
+                {
+                    float rayT = (t - 120f) / 140f;
+                    var clr = new Color(200, 200, 255, 0);
+                    drawRay(ray, p, 0f, clr, scale, rayT);
+                    drawRay(ray, p, 1f, clr, scale, rayT);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 1.1f, clr, scale, rayT * 0.88f);
+                    drawRay(ray, p, -3.11f, clr, scale, rayT * 0.8f);
+                    drawRay(ray, p, 2.11f, clr, scale, rayT * 0.6f);
+                    drawRay(ray, p, 1.34f, clr, scale, rayT * 0.9f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly, clr, scale, rayT * 0.9f - 0.33f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.9f, clr, scale, rayT * 0.9f - 0.33f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.7f, clr, scale, rayT * 0.9f - 0.13f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.88f, clr, scale, rayT * 1.3f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.87f, clr, scale, rayT * 1.3f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.86f, clr, scale, rayT * 1.2f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.85f, clr, scale, rayT * 1.1f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.84f, clr, scale, rayT * 1.11f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.83f, clr, scale, rayT * 1.21f - 0.3f);
+                    drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.82f, clr, scale, rayT * 1.6f - 0.3f);
+                    Main.spriteBatch.Draw(TextureCache.Bloom[1].Value, p, null, Color.White.UseA(0), 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * (float)Math.Pow(rayT, 8), SpriteEffects.None, 0f);
+                }
+                if (t == 300f)
+                {
+                    var clrs = crack.Get1DColorArr();
+                    for (int i = 0; i < clrs.Length; i++)
+                    {
+                        if (clrs[i].A > 128 && Main.rand.NextBool(10))
+                        {
+                            int j = i / crack.Width;
+                            var d = Dust.NewDustPerfect(Projectile.Center + new Vector2((crack.Width / -2f + (i % crack.Width)) * crackScale, (crack.Height / -2f + j) * crackScale), DustID.AncientLight, Scale: crackScale * 3f);
+                            d.velocity *= 8f;
+                        }
                     }
                 }
             }
-            if (t > 90f)
+            public void Draw3(Vector2 p, float t, float scale)
             {
-                Main.spriteBatch.Draw(crack, p, null, Color.White.UseA(0), 0f, crack.Size() / 2f, crackScale, SpriteEffects.None, 0f);
-            }
-            var ray = ModContent.Request<Texture2D>($"{Aequus.AssetsPath}LightRay").Value;
-            if (t > 120f)
-            {
-                float rayT = (t - 120f) / 140f;
-                var clr = new Color(200, 200, 255, 0);
-                drawRay(ray, p, 0f, clr, scale, rayT);
-                drawRay(ray, p, 1f, clr, scale, rayT);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 1.1f, clr, scale, rayT * 0.88f);
-                drawRay(ray, p, -3.11f, clr, scale, rayT * 0.8f);
-                drawRay(ray, p, 2.11f, clr, scale, rayT * 0.6f);
-                drawRay(ray, p, 1.34f, clr, scale, rayT * 0.9f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly, clr, scale, rayT * 0.9f - 0.33f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.9f, clr, scale, rayT * 0.9f - 0.33f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.7f, clr, scale, rayT * 0.9f - 0.13f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.88f, clr, scale, rayT * 1.3f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.87f, clr, scale, rayT * 1.3f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.86f, clr, scale, rayT * 1.2f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.85f, clr, scale, rayT * 1.1f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.84f, clr, scale, rayT * 1.11f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.83f, clr, scale, rayT * 1.21f - 0.3f);
-                drawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.82f, clr, scale, rayT * 1.6f - 0.3f);
-                Main.spriteBatch.Draw(TextureCache.Bloom[1].Value, p, null, Color.White.UseA(0), 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * (float)Math.Pow(rayT, 8), SpriteEffects.None, 0f);
-            }
-            if (t == 300f)
-            {
-                var clrs = crack.Get1DColorArr();
-                for (int i = 0; i < clrs.Length; i++)
+                var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
+                Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
+                if (t > 30f && t < 190)
                 {
-                    if (clrs[i].A > 128 && Main.rand.NextBool(10))
-                    {
-                        int j = i / crack.Width;
-                        var d = Dust.NewDustPerfect(Projectile.Center + new Vector2((crack.Width / -2f + (i % crack.Width)) * crackScale, (crack.Height / -2f + j) * crackScale), DustID.AncientLight, Scale: crackScale * 3f);
-                        d.velocity *= 8f;
-                    }
+                    DrawEnergy(ModContent.ItemType<OrganicEnergy>(), 0f, scale, t, p);
+                    DrawEnergy(ModContent.ItemType<AquaticEnergy>(), MathHelper.TwoPi / 5f, scale, t, p);
+                    DrawEnergy(ModContent.ItemType<CosmicEnergy>(), MathHelper.TwoPi / 5f * 2f, scale, t, p);
+                    DrawEnergy(ModContent.ItemType<DemonicEnergy>(), MathHelper.TwoPi / 5f * 3f, scale, t, p);
+                    DrawEnergy(ModContent.ItemType<AtmosphericEnergy>(), MathHelper.TwoPi / 5f * 4f, scale, t, p);
+                }
+                if (t > 160f && t < 200f)
+                {
+                    Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
+
+                    float scale2 = (t - 160f) / 20f;
+                    float scale3 = AequusHelpers.Wave(t * 0.2f, 0.7f, 1f);
+                    Main.spriteBatch.Draw(TextureCache.Bloom[2].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(TextureCache.Bloom[1].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), 0f,
+                        TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * scale2) * scale3, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), MathHelper.PiOver2,
+                        TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * 2f * scale2) * scale2 * scale3, SpriteEffects.None, 0f);
                 }
             }
-        }
-        public void Draw3(Vector2 p, float t, float scale)
-        {
-            var icon = ModContent.Request<Texture2D>("Aequus/icon").Value;
-            Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
-            if (t > 30f && t < 190)
+            public void DrawEnergy(int item, float rotation, float scale, float t, Vector2 p)
             {
-                DrawEnergy(ModContent.ItemType<OrganicEnergy>(), 0f, scale, t, p);
-                DrawEnergy(ModContent.ItemType<AquaticEnergy>(), MathHelper.TwoPi / 5f, scale, t, p);
-                DrawEnergy(ModContent.ItemType<CosmicEnergy>(), MathHelper.TwoPi / 5f * 2f, scale, t, p);
-                DrawEnergy(ModContent.ItemType<DemonicEnergy>(), MathHelper.TwoPi / 5f * 3f, scale, t, p);
-                DrawEnergy(ModContent.ItemType<AtmosphericEnergy>(), MathHelper.TwoPi / 5f * 4f, scale, t, p);
+                Main.instance.LoadItem(item);
+                var itemTexture = TextureAssets.Item[item].Value;
+                float outwards = (float)Math.Sin((t - 30f) * 0.01f + MathHelper.PiOver2) * 60f * scale;
+                Main.spriteBatch.Draw(itemTexture, p + (rotation - MathHelper.PiOver2 + outwards * 0.4f / 60f / scale).ToRotationVector2() * outwards, null, Color.White, 0f, itemTexture.Size() / 2f, scale * 0.75f, SpriteEffects.None, 0f);
             }
-            if (t > 160f && t < 200f)
+
+            public override bool PreDraw(ref Color lightColor)
             {
-                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
-
-                float scale2 = (t - 160f) / 20f;
-                float scale3 = AequusHelpers.Wave(t * 0.2f, 0.7f, 1f);
-                Main.spriteBatch.Draw(TextureCache.Bloom[2].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(TextureCache.Bloom[1].Value, p, null, Color.White, 0f, TextureCache.Bloom[1].Value.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), 0f,
-                    TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * scale2) * scale3, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), MathHelper.PiOver2, 
-                    TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * 2f * scale2) * scale2 * scale3, SpriteEffects.None, 0f);
+                var p = Projectile.Center - Main.screenPosition;
+                float t = Projectile.ai[1];
+                float scale = 2f;
+                AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
+                //Draw2(p, t, scale);
+                Draw3(p, t, scale);
+                return false;
             }
-        }
-        public void DrawEnergy(int item, float rotation, float scale, float t, Vector2 p)
-        {
-            Main.instance.LoadItem(item);
-            var itemTexture = TextureAssets.Item[item].Value;
-            float outwards = (float)Math.Sin((t - 30f) * 0.01f + MathHelper.PiOver2) * 60f * scale;
-            Main.spriteBatch.Draw(itemTexture, p + (rotation - MathHelper.PiOver2 + outwards * 0.4f / 60f / scale).ToRotationVector2() * outwards, null, Color.White, 0f, itemTexture.Size() / 2f, scale * 0.75f, SpriteEffects.None, 0f);
-        }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
-            var p = Projectile.Center - Main.screenPosition;
-            float t = Projectile.ai[1];
-            float scale = 2f;
-            AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
-            //Draw2(p, t, scale);
-            Draw3(p, t, scale);
-            return false;
-        }
-
-        public void drawRay(Texture2D ray, Vector2 p, float rotation, Color clr, float scale, float rayT)
-        {
-            if (rayT < 0f)
-                return;
-            rayT = (float)Math.Pow(rayT, 3);
-            Main.spriteBatch.Draw(ray, p, null, clr, rotation, ray.Size() / 2f, new Vector2(scale * rayT, scale * rayT * 1.5f), SpriteEffects.None, 0f);
+            public void drawRay(Texture2D ray, Vector2 p, float rotation, Color clr, float scale, float rayT)
+            {
+                if (rayT < 0f)
+                    return;
+                rayT = (float)Math.Pow(rayT, 3);
+                Main.spriteBatch.Draw(ray, p, null, clr, rotation, ray.Size() / 2f, new Vector2(scale * rayT, scale * rayT * 1.5f), SpriteEffects.None, 0f);
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Items.Boss.Bags;
+using Aequus.Items.Boss;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

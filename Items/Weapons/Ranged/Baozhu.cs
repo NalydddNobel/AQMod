@@ -1,5 +1,7 @@
 ﻿using Aequus.Items.Recipes;
 using Aequus.Projectiles.Ranged;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +13,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 5));
         }
 
         public override void SetDefaults()

@@ -36,6 +36,7 @@
         RemoveBuilding,
         CompleteCarpenterBounty,
         ResetCarpenterBounties,
+        WabbajackNecromancyKill,
         Count
     }
 

@@ -1144,6 +1144,16 @@ namespace Aequus
             {
                 return false;
             }
+            if (source is EntitySource_DropAsItem dropAsItem)
+            {
+                entity = dropAsItem.Entity;
+                return true;
+            }
+            if (source is EntitySource_Buff buff)
+            {
+                entity = buff.Entity;
+                return true;
+            }
             if (source is EntitySource_OnHit onHit)
             {
                 entity = onHit.EntityStruck;
@@ -2406,6 +2416,19 @@ namespace Aequus
             return value < 0f ? -value : value;
         }
 
+        public static string GetNoNamePath(this object obj)
+        {
+            return GetNoNamePath(obj.GetType());
+        }
+        public static string GetNoNamePath<T>()
+        {
+            return GetNoNamePath(typeof(T));
+        }
+        public static string GetNoNamePath(Type t)
+        {
+            return t.Namespace.Replace('.', '/');
+        }
+
         public static string GetPath(this object obj)
         {
             return GetPath(obj.GetType());
@@ -2416,7 +2439,7 @@ namespace Aequus
         }
         public static string GetPath(Type t)
         {
-            return t.Namespace.Replace('.', '/') + "/" + t.Name;
+            return $"{GetNoNamePath(t)}/{t.Name}";
         }
 
         public static void debugTextDraw(string text, Vector2 where)

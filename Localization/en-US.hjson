@@ -200,6 +200,7 @@ Mods: {
 			Slingshot: Slingshot
 
 		# Magic Weapons
+			Wabbajack: Wabbajack
 			WindFan: Wind Fan
 			Nightfall: Nightfall
 			Umystick: Umystick
@@ -868,6 +869,7 @@ Mods: {
 				'''
 
 		# Magic Weapons
+			Wabbajack: Casts a random effect when hitting an enemy
 			WindFan: 
 				'''
 				Casts a controllable windstorm which pulls enemies and projectiles

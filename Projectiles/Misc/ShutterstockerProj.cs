@@ -1,10 +1,6 @@
 ﻿using Aequus.Content.Carpentery;
 using Aequus.Content.Carpentery.Bounties.Steps;
 using Aequus.Content.Carpentery.Photobook;
-using Aequus.Items;
-using Aequus.Items.Tools.Camera;
-using Aequus.NPCs.Friendly.Town;
-using Aequus.Tiles;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

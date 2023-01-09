@@ -1,5 +1,6 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Pets;
 using Aequus.Items.Pets.Light;

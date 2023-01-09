@@ -8,11 +8,11 @@ using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
-using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc;
+using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
+using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -57,6 +57,7 @@ namespace Aequus.NPCs
         public bool noAITest;
         public bool childNPC;
         public bool tempHide;
+        public byte tempDontTakeDamage;
 
         public override void Load()
         {
@@ -272,6 +273,16 @@ namespace Aequus.NPCs
             return disabledContactDamage ? false : null;
         }
 
+        public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
+        {
+            return tempDontTakeDamage > 0 ? false : null;
+        }
+
+        public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
+        {
+            return tempDontTakeDamage > 0 ? false : null;
+        }
+
         public override void ResetEffects(NPC npc)
         {
             disabledContactDamage = false;
@@ -281,6 +292,8 @@ namespace Aequus.NPCs
                 nightfallStacks = 0;
                 nightfallSpeed = 0f;
             }
+            if (tempDontTakeDamage > 0)
+                tempDontTakeDamage--;
         }
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -657,7 +670,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -679,6 +692,10 @@ namespace Aequus.NPCs
             {
                 binaryWriter.Write(nightfallStacks);
                 binaryWriter.Write(nightfallSpeed);
+            }
+            if (bb[6])
+            {
+                binaryWriter.Write(tempDontTakeDamage);
             }
         }
 
@@ -707,6 +724,10 @@ namespace Aequus.NPCs
                 nightfallSpeed = binaryReader.ReadSingle();
             }
             childNPC = bb[5];
+            if (bb[6])
+            {
+                tempDontTakeDamage = binaryReader.ReadByte();
+            }
         }
 
         #region Hooks

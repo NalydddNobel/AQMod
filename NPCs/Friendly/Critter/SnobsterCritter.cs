@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables.Critters;
+﻿using Aequus.Items.Misc.Critters;
 using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.GameContent.Bestiary;

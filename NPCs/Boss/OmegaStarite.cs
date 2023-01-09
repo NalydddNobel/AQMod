@@ -6,7 +6,7 @@ using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Boss.Bags;
+using Aequus.Items.Boss;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Fish.Quest;
 using Aequus.Items.Misc.Energies;
