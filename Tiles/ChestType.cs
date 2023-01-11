@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 
 namespace Aequus.Tiles
 {
@@ -76,6 +77,23 @@ namespace Aequus.Tiles
         public const int Balloon = 15;
         public const int Ashwood = 16;
         public const int Containers2Count = 14;
+
+        public static bool IsGenericUndergroundChest(Chest chest)
+        {
+            if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
+            {
+                int style = GetStyle(chest);
+                return style == Gold || style == Frozen || style == Marble 
+                    || style == Granite || style == Mushroom || style == Ivy 
+                    || style == Webbed || style == RichMahogany;
+            }
+            if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2)
+            {
+                int style = GetStyle(chest);
+                return style == Sandstone;
+            }
+            return false;
+        }
 
         public static int GetStyle(int frameX)
         {

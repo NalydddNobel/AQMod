@@ -70,13 +70,13 @@ namespace Aequus.Projectiles.Magic
 
             Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, Color.Red * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 180, 170, 160) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            bool weakEnoughForInstantKill = target.lifeMax < 700 && target.defense < 50 && target.realLife == -1;
+            bool weakEnoughForInstantKill = target.lifeMax < 1200 && target.defense < 50 && target.realLife == -1;
             var rand = new WeightedRandom<int>(Main.rand);
             rand.Add(0, 2f);
             rand.Add(1, 1.5f);
@@ -88,7 +88,7 @@ namespace Aequus.Projectiles.Magic
             {
                 case 1:
                     {
-                        if (!target.immortal)
+                        if (!target.immortal && (target.realLife == -1 || target.realLife == target.whoAmI))
                             target.AddBuff(ModContent.BuffType<WabbajackTeleport>(), 30);
                     }
                     break;
@@ -172,8 +172,10 @@ namespace Aequus.Projectiles.Magic
         {
             Projectile.width = 32;
             Projectile.height = 32;
+            Projectile.hostile = true;
             Projectile.tileCollide = false;
             Projectile.aiStyle = -1;
+            Projectile.timeLeft = 60;
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -187,6 +189,11 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
+            if (Projectile.localAI[0] > 0f)
+            {
+                return;
+            }
+            Projectile.localAI[0]++;
             for (int i = 0; i < Projectile.ai[0] * 1.5f; i++)
             {
                 int d = Dust.NewDust(Projectile.position, (int)Projectile.ai[0], Projectile.height, ModContent.DustType<MonoDust>());
@@ -195,7 +202,6 @@ namespace Aequus.Projectiles.Magic
                 Main.dust[d].color = Color.Red.UseA(100) * Main.rand.NextFloat(0.8f, 2f);
             }
             SoundEngine.PlaySound(SoundID.Item4, Projectile.Center);
-            Projectile.Kill();
         }
     }
 }

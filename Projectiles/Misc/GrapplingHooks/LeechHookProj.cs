@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             Projectile.tileCollide = false;
             Projectile.timeLeft *= 10;
             Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 5;
+            Projectile.idStaticNPCHitCooldown = 20;
             connectedNPC = -1;
         }
 
@@ -38,6 +38,14 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
 
         public override bool PreAI()
         {
+            if (Projectile.originalDamage <= 0)
+            {
+                Projectile.originalDamage = Projectile.damage;
+            }
+            if (Projectile.damage < Projectile.originalDamage)
+            {
+                Projectile.damage = Projectile.originalDamage;
+            }
             if (Projectile.position.HasNaNs())
             {
                 Projectile.Kill();
@@ -50,6 +58,10 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             if (connectedNPC != -1)
             {
                 Projectile.ai[0] = 2f;
+                if (Main.myPlayer == Projectile.owner && Main.GameUpdateCount % 20 == 0)
+                {
+                    Main.player[Projectile.owner].Heal(2);
+                }
                 for (int i = 0; i < Main.maxProjectiles; i++)
                 {
                     if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner)
@@ -67,23 +79,12 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                 Projectile.rotation = (Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + MathHelper.PiOver2;
                 return false;
             }
-            else
-            {
-                int target = Projectile.FindTargetWithLineOfSight(150f);
-                if (target != -1)
-                {
-                    if (Main.player[Projectile.owner].Distance(Main.npc[target].Center) > Main.player[Projectile.owner].Distance(Projectile.Center))
-                    {
-                        Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, Main.player[Projectile.owner].DirectionTo(Main.npc[target].Center) * Projectile.velocity.Length(), 0.4f)) * Projectile.velocity.Length();
-                    }
-                }
-            }
             return true;
         }
 
         public override float GrappleRange()
         {
-            return 320f;
+            return 272f;
         }
 
         public override void GrappleRetreatSpeed(Player player, ref float speed)

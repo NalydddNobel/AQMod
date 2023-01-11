@@ -1061,6 +1061,14 @@ namespace Aequus
             }
         }
 
+        public override void PostUpdateMiscEffects()
+        {
+            if (GameplayConfig.Instance.DamageReductionCap < 1f)
+            {
+                Player.endurance = Math.Min(Player.endurance, GameplayConfig.Instance.DamageReductionCap);
+            }
+        }
+
         public override bool PreItemCheck()
         {
             if (AequusSystem.Main_dayTime.IsCaching)
@@ -1635,7 +1643,7 @@ namespace Aequus
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (!target.immortal)
+            if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
                 CheckLeechHook(target, damage);
             OnHitEffects(target, damage, knockback, crit);
         }

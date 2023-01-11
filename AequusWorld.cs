@@ -153,6 +153,23 @@ namespace Aequus
         [NetBool]
         public static bool xmasHats;
 
+        [SaveData("ChestCobalt")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool chestCobaltTier;
+        [SaveData("ChestMythril")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool chestMythrilTier;
+        [SaveData("ChestAdamantite")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool chestAdamantiteTier;
+        [SaveData("HardmodeChests")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool hardmodeChests;
+
         public static StructureLookups Structures { get; internal set; }
 
         public override void Load()
@@ -208,6 +225,10 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            hardmodeChests = false;
+            chestCobaltTier = false;
+            chestMythrilTier = false;
+            chestAdamantiteTier = false;
             xmasWorld = false;
             xmasHats = false;
             usedWhiteFlag = false;

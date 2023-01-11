@@ -21,7 +21,7 @@ namespace Aequus.Buffs.Necro
             var zombie = npc.GetGlobalNPC<NecromancyNPC>();
             zombie.DebuffTier(3);
             zombie.ConversionChance(4);
-            zombie.ghostDamage = Math.Max(zombie.ghostDamage, 20);
+            zombie.ghostDamage = Math.Max(zombie.ghostDamage, 60);
             zombie.RenderLayer(ColorTargetID.BloodRed);
         }
     }

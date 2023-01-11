@@ -526,6 +526,19 @@ namespace Aequus
             return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
         }
 
+        public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = 0)
+        {
+            var emptySlot = chest.FindEmptySlot();
+            if (emptySlot != null)
+            {
+                emptySlot.SetDefaults(item);
+                emptySlot.stack = stack;
+                if (prefix > 0)
+                    emptySlot.Prefix(prefix);
+            }
+            return emptySlot;
+        }
+
         public static bool IsSynced(this Chest chest)
         {
             if (chest.item == null)

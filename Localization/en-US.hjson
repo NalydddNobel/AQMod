@@ -17,6 +17,7 @@ Mods: {
 		}
 
 		Announcement: {
+			HardmodeChests: The chests of the caverns are blessed with new treasures...
 			DemonSiegeFailEat: The Gore Nest consumes your {0}...
 			DemonSiegeFail: The Gore Nest regurgitates your {0}...
 			YinYang: The ancient spirits of light and dark grow impatient...
@@ -869,7 +870,11 @@ Mods: {
 				'''
 
 		# Magic Weapons
-			Wabbajack: Casts a random effect when hitting an enemy
+			Wabbajack: 
+				'''
+				Casts a random effect when hitting an enemy
+				'The word 'Fixed' is such a subjective term, I think 'treated' is far more appropriate'
+				'''
 			WindFan: 
 				'''
 				Casts a controllable windstorm which pulls enemies and projectiles
@@ -1149,7 +1154,12 @@ Mods: {
 				'Just too cute'
 				'''
 
-			LeechHook: Latches onto enemies, hit the host restore life
+			LeechHook: 
+				'''
+				Ignores 5 points of enemy Defense
+				Latches onto enemies, healing you
+				Damage the victim to restore extra life
+				'''
 			Meathook: Allows you to grapple to enemies
 
 			BalloonKit: Allows you to ride a hot air balloon
@@ -1919,11 +1929,13 @@ Mods: {
 		}
 
 		Containers: {
+			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
 		}
 
 		MapObject: {
+			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
 			HypnoticPearl: Hypnotic Pearl
@@ -2131,6 +2143,9 @@ Mods: {
 			Gameplay: {
 				General: {
 					Header: "[c/ddddff:General]"
+
+					DamageReductionCap: "{Item} Damage Reduction Cap"
+					DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 100% to disable this feature.
 
 					EarlyGravityGlobe: "{Item} Early Gravity Globe"
 					EarlyGravityGlobeTooltip: Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.

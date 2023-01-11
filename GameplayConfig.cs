@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Accessories;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
@@ -13,6 +14,14 @@ namespace Aequus
         public static GameplayConfig Instance;
 
         [Header(Key + "Gameplay.General.Header")]
+
+        [MemberBGColor]
+        [Name("Gameplay.General.DamageReductionCap")]
+        [Desc("Gameplay.General.DamageReductionCap")]
+        [DefaultValue(0.6f)]
+        [Range(0.6f, 1f)]
+        [ReloadRequired]
+        public float DamageReductionCap { get; set; }
 
         [MemberBGColor]
         [Name("Gameplay.General.EarlyGravityGlobe")]
@@ -41,6 +50,10 @@ namespace Aequus
 
         public override void AddCustomTranslations()
         {
+            Text("General.DamageReductionCap", new
+            {
+                Item = AequusText.ItemCommand<CrownOfBlood>(),
+            });
             Text("General.EarlyGravityGlobe", new
             {
                 Item = AequusText.ItemCommand(ItemID.GravityGlobe),

@@ -118,6 +118,9 @@ namespace Aequus.Projectiles.Misc.Pets
                 {
                     Projectile.Center = Main.player[Projectile.owner].Center;
                     Projectile.velocity *= 0.1f;
+                    tileX = 0;
+                    tileY = 0;
+                    return false;
                 }
                 Projectile.shouldFallThrough = false;
                 Projectile.rotation = 0f;
@@ -192,7 +195,7 @@ namespace Aequus.Projectiles.Misc.Pets
             {
                 float rotation = (MathHelper.Pi + 0.1f) / SwingTime * swingPick - MathHelper.PiOver2;
                 var pick = Main.player[Projectile.owner].GetBestPickaxe();
-                int pickaxeItemID = pick != null ? pick.type : ItemID.CopperPickaxe;
+                int pickaxeItemID = pick == null ? ItemID.CopperPickaxe : pick.type;
                 Main.instance.LoadItem(pickaxeItemID);
                 AequusHelpers.GetItemDrawData(pickaxeItemID, out var itemFrame);
                 var pickaxeDrawCoords = GetPickaxeHandPosition();
@@ -206,7 +209,7 @@ namespace Aequus.Projectiles.Misc.Pets
                 }
                 Main.EntitySpriteDraw(TextureAssets.Item[pickaxeItemID].Value, pickaxeDrawCoords - Main.screenPosition, itemFrame, AequusHelpers.GetColor(pickaxeDrawCoords),
                      rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
-                if (pick.glowMask > 0)
+                if (pick?.glowMask > 0)
                 {
                     Main.EntitySpriteDraw(TextureAssets.GlowMask[pick.glowMask].Value, pickaxeDrawCoords - Main.screenPosition, itemFrame, new Color(250, 250, 250, 0),
                          rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
