@@ -98,11 +98,11 @@ namespace Aequus.Content.Carpentery.Bounties.Steps
             };
         }
 
-        public override string GetStepKey(CarpenterBounty bounty)
+        public override string GetStepText(CarpenterBounty bounty)
         {
             if (RatioThreshold > 0f)
                 return Language.GetTextValue("Mods.Aequus.CarpenterBounty.Rule.CraftableTilesStep_2", $"{Math.Floor((1f - RatioThreshold) * 100f)}%");
-            return base.GetStepKey(bounty);
+            return base.GetStepText(bounty);
         }
     }
 }

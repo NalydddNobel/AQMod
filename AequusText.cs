@@ -269,13 +269,17 @@ namespace Aequus
             return Language.GetTextValue("LegacyTooltip.22");
         }
         
-        public static string ColorCommand(string text, Color color, bool alphaPulse = false)
+        public static string ColorCommandStart(Color color, bool alphaPulse = false)
         {
             if (alphaPulse)
             {
                 color = Colors.AlphaDarken(color);
             }
-            return "[c/" + color.Hex3() + ":" + text + "]";
+            return $"[c/{color.Hex3()}:";
+        }
+        public static string ColorCommand(string text, Color color, bool alphaPulse = false)
+        {
+            return $"{ColorCommandStart(color, alphaPulse)}{text}]";
         }
 
         public static string ItemCommand(int itemID)

@@ -43,11 +43,9 @@ namespace Aequus.NPCs.GlobalNPCs
                 maxSpawns = 0;
                 return;
             }
-            if (player.HasBuff<PaletteBountyBuff>())
-            {
-                spawnRate *= 2;
-                maxSpawns /= 2;
-            }
+            var aequus = player.Aequus();
+            spawnRate = (int)(spawnRate * aequus.spawnrateMultiplier);
+            maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
             if (player.ZoneSkyHeight)
             {
                 if (GaleStreamsBiome.TimeForMeteorSpawns())
@@ -61,7 +59,7 @@ namespace Aequus.NPCs.GlobalNPCs
                     maxSpawns /= 3;
                 }
             }
-            if (player.GetModPlayer<AequusPlayer>().ZoneGaleStreams)
+            if (aequus.ZoneGaleStreams)
             {
                 spawnRate /= 2;
             }
@@ -69,12 +67,12 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 spawnRate /= 2;
             }
-            else if (player.Aequus().ZonePeacefulGlimmer)
+            else if (aequus.ZonePeacefulGlimmer)
             {
                 spawnRate /= 2;
                 maxSpawns /= 2;
             }
-            if (player.Aequus().ZoneCrabCrevice)
+            if (aequus.ZoneCrabCrevice)
             {
                 spawnRate /= 2;
                 maxSpawns = (int)(maxSpawns * 1.25f);

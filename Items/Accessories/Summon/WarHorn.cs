@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,6 +23,11 @@ namespace Aequus.Items.Accessories.Summon
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accWarHorn++;
+        }
+
+        public static void EmitSound(Vector2 loc)
+        {
+            SoundEngine.PlaySound(Aequus.GetSound("Item/warhorn").WithVolume(0.3f), loc);
         }
     }
 }

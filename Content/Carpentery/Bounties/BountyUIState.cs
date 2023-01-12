@@ -23,7 +23,7 @@ namespace Aequus.Content.Carpentery.Bounties
 
             MinWidth.Set(500, 0f);
             MinHeight.Set(500, 0f);
-            Width.Set(250, 0.275f);
+            Width.Set(400, 0.4f);
             Height.Set(0, 0.75f);
             Top.Set(100, 0f);
             HAlign = 0.5f;
@@ -43,8 +43,8 @@ namespace Aequus.Content.Carpentery.Bounties
             var uiPanel = new UIPanel();
             uiPanel.BackgroundColor = new Color(34, 64, 126) * 0.75f;
             uiPanel.Top.Set(10, 0f);
-            uiPanel.Left.Set(20 + 220, 0f);
-            uiPanel.Width.Set(-220 - 30, 1f);
+            uiPanel.Left.Set(20 + 300, 0f);
+            uiPanel.Width.Set(-300 - 30, 1f);
             uiPanel.Height.Set(-20, 1f);
             Append(uiPanel);
             detailsManager = new BountyUIDetailsPanelManager(this, uiPanel);
@@ -58,7 +58,7 @@ namespace Aequus.Content.Carpentery.Bounties
             uiPanel.BorderColor = uiPanel.BackgroundColor * 0.5f;
             uiPanel.Top.Set(10, 0f);
             uiPanel.Left.Set(10, 0f);
-            uiPanel.Width.Set(220, 0f);
+            uiPanel.Width.Set(300, 0f);
             uiPanel.Height.Set(-20, 1f);
             Append(uiPanel);
 
@@ -68,7 +68,9 @@ namespace Aequus.Content.Carpentery.Bounties
             uiPanel.Append(uiList);
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
-            foreach (var bounty in CarpenterSystem.BountiesByID)
+            var sortedList = new List<CarpenterBounty>(CarpenterSystem.BountiesByID);
+            sortedList.Sort((b,b2) => b.Progression.CompareTo(b2.Progression));
+            foreach (var bounty in sortedList)
             {
                 var uiElement = new BountyUISidebarElement(this, bounty);
                 uiList.Add(uiElement);

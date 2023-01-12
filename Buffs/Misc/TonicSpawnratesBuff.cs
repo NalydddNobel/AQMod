@@ -20,6 +20,11 @@ namespace Aequus.Buffs.Misc
                 player.buffTime[buffIndex] = 1200;
             }
         }
+
+        public override bool RightClick(int buffIndex)
+        {
+            return false;
+        }
     }
     public class TonicSpawnratesDebuff : ModBuff
     {

@@ -41,7 +41,7 @@ namespace Aequus.Items.Misc
                     var textValue = "";
                     foreach (var s in bounty.steps)
                     {
-                        var key = s.GetStepKey(bounty);
+                        var key = s.GetStepText(bounty);
                         if (!string.IsNullOrEmpty(key))
                         {
                             if (!string.IsNullOrEmpty(textValue))

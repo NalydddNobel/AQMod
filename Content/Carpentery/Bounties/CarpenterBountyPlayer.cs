@@ -1,9 +1,8 @@
-﻿using Aequus.Items.Accessories.Utility;
+﻿using Aequus.Content.Carpentery.Bounties.Steps;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -11,6 +10,8 @@ namespace Aequus.Content.Carpentery.Bounties
 {
     public class CarpenterBountyPlayer : ModPlayer
     {
+        public static List<StepResult> LastPhotoTakenResults;
+
         public int SelectedBounty;
         public List<string> collectedBounties { get; private set; }
 

@@ -28,8 +28,8 @@ namespace Aequus.Content.Carpentery.Bounties
             var carpenter = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             if (carpenter.SelectedBounty == bounty.Type)
             {
-                var uiImage = new UIImage(ModContent.Request<Texture2D>($"{AequusHelpers.GetNoNamePath<PhotobookUIState>()}/PhotobookButtonRight", AssetRequestMode.ImmediateLoad));
-                uiImage.Left.Set(-14f, 0f);
+                var uiImage = new UIImage(ModContent.Request<Texture2D>($"{AequusHelpers.GetNoNamePath<BountyUIState>()}/BountyUIArrow", AssetRequestMode.ImmediateLoad));
+                uiImage.Left.Set(8f, 0f);
                 uiImage.VAlign = 0.5f;
                 Append(uiImage);
             }

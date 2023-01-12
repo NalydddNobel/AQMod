@@ -31,7 +31,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.friendly = true;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            Projectile.DamageType = DamageClass.Melee;
+            Projectile.DamageType = DamageClass.Summon;
             Projectile.extraUpdates = 5;
             Projectile.penetrate = -1;
             Projectile.usesLocalNPCImmunity = true;

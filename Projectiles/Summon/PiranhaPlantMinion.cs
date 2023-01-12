@@ -102,10 +102,7 @@ namespace Aequus.Projectiles.Summon
                 }
                 else
                 {
-                    var oldTargetPosition = Main.npc[target].position;
-                    Main.npc[target].Center = Main.player[Projectile.owner].Center;
-                    GotoLocation(Main.npc[target].Center, target, offsetTileSize); // Go to the player instead!
-                    Main.npc[target].position = oldTargetPosition;
+                    GotoLocation(Main.player[Projectile.owner].Center, -1, offsetTileSize); // Go to the player instead!
                     if ((int)Projectile.ai[0] > -1)
                     {
                         DetermineVelocity(target);

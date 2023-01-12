@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Placeable;
+﻿using Aequus.Items.Placeable.Furniture;
+using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,7 +12,7 @@ namespace Aequus.Tiles.Furniture.HardmodeChests
             base.SetStaticDefaults();
             DustType = DustID.Ash;
             ChestDrop = ModContent.ItemType<AdamantiteChest>();
-            AddMapEntry(ColorHelper.FurnitureColor, CreateMapEntryName());
+            AddMapEntry(new Color(160, 25, 50), CreateMapEntryName());
         }
     }
 }

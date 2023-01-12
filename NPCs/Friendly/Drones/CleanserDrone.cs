@@ -63,6 +63,12 @@ namespace Aequus.NPCs.Friendly.Drones
                 case 0:
                 case 3:
                     {
+                        if (NPC.ai[3] < 5f)
+                        {
+                            NPC.ai[3] += 5f;
+                            NPC.ai[3] += Main.rand.NextFloat(100f);
+                            NPC.netUpdate = true;
+                        }
                         NPC.ai[3] += 1 / 60f;
                         if (NPC.velocity.X.Abs() < 0.1f)
                         {
@@ -104,7 +110,7 @@ namespace Aequus.NPCs.Friendly.Drones
                                 if (Main.tile[loc.X, loc.Y - 1].IsFullySolid() && NPC.collideY)
                                 {
                                     NPC.velocity.X -= NPC.direction * 3f;
-                                    NPC.ai[3] += 10f;
+                                    NPC.ai[3] += 1f;
                                 }
                             }
                             else
@@ -173,11 +179,11 @@ namespace Aequus.NPCs.Friendly.Drones
 
                         if (NPC.ai[1] > 60f && slot != null)
                         {
-                            var convertibleTile = FindConvertibleTile(slot);
+                            int solution = slot.GetSolutionProjectileID();
+                            var convertibleTile = FindConvertibleTile(slot, solution);
                             if (convertibleTile == Point.Zero)
                                 return;
 
-                            int solution = slot.GetSolutionProjectileID(convertibleTile);
                             if (solution > 0f)
                             {
                                 NPC.ai[0] = 1f;
@@ -215,7 +221,9 @@ namespace Aequus.NPCs.Friendly.Drones
                             NPC.ai[0] = 0f;
                             NPC.ai[1] = 0f;
                             NPC.ai[2] = 0f;
+                            NPC.ai[3] = Main.rand.NextFloat(100f);
                             NPC.localAI[2] = 0f;
+                            NPC.netUpdate = true;
                         }
                         if ((int)(NPC.localAI[2] - 5f) % 20 == 0)
                         {
@@ -240,10 +248,9 @@ namespace Aequus.NPCs.Friendly.Drones
             }
         }
 
-        public Point FindConvertibleTile(CleanserDroneSlot slot)
+        public Point FindConvertibleTile(CleanserDroneSlot slot, int solution)
         {
-            var tilePos = NPC.Center.ToTileCoordinates();
-            return slot.FindConvertibleTile(tilePos);
+            return slot.FindConvertibleTile(NPC.Center.ToTileCoordinates(), solution);
         }
 
         public override void FindFrame(int frameHeight)

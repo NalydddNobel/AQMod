@@ -246,6 +246,10 @@ Mods: {
 			TornadoWhip: Tornado Whip
 
 		# Armor
+			AetherialSlacks: Aetherial Slacks
+			AetherialRobes: Aetherial Robes
+			AetherialCrown: Aetherial Crown
+
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
 
@@ -527,6 +531,14 @@ Mods: {
 			MoonflowerSeeds: Moonflower Seeds
 
 			FamiliarPickaxe: Familiar Pickaxe
+
+			HardSandstoneChest: Forbidden Chest
+			HardMushroomChest: Shroomite Chest
+			HardMarbleChest: Bronze Chest
+			HardJungleChest: Turtle Chest
+			HardGraniteChest: Hardmode Granite Chest
+			HardFrozenChest: Hardmode Frozen Chest
+			AdamantiteChest: Adamantite Chest
 
 			GravityChest: Gravity Chest
 
@@ -873,7 +885,7 @@ Mods: {
 			Wabbajack: 
 				'''
 				Casts a random effect when hitting an enemy
-				'The word 'Fixed' is such a subjective term, I think 'treated' is far more appropriate'
+				'The word 'Fixed' is such a subjective term, 'Treated' is far more appropriate'
 				'''
 			WindFan: 
 				'''
@@ -998,6 +1010,20 @@ Mods: {
 				Your summons will focus struck enemies
 				Strike enemies to summon a friendly nimbuses
 				Powerful suction winds are emitted from enemies hit by summons
+				'''
+
+		# Armor Sets
+			AetherialSlacks: Aetherial Slacks
+			AetherialRobes: Aetherial Robes
+			AetherialCrown: 
+				'''
+				10% increased melee weapon size
+				50% increased ranged projectile velocity
+				Increases maximum mana by 20 and reduces mana usage by 10%
+				Increases your max number of all summon slots by 1
+				Grants minor life regeneration
+				((Inherits all stats and abilities of a set's helmet excluding defense))
+				((Right click to change helmet set type on multi-helmet sets))
 				'''
 
 			GravetenderHood: 10% increased summon damage
@@ -1593,6 +1619,7 @@ Mods: {
 			BaguetteBuff: Baguette
 			SpicyEelBuff: Spicy Eel
 
+			SecretEntranceBuff: "Building: Secret Entrance"
 			BridgeBountyBuff: "Building: Bridge"
 			FountainBountyBuff: "Building: Fountain"
 			PaletteBountyBuff: "Building: Palette"
@@ -1674,10 +1701,11 @@ Mods: {
 			SentryBuff: Increases your max number of sentries by 1 
 			FrostBuff: Reduces damage from heat sources
 			
-			BridgeBountyBuff: Increase fishing power by 5
-			FountainBountyBuff: Villagers have increased happiness
-			PaletteBountyBuff: Reduced spawnrate
-			PirateBountyBuff: Increase fishing power by 15
+			SecretEntranceBuff: "Reduced spawnrate, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}\n'Not so secret now, isn't it?'"
+			BridgeBountyBuff: "Increase fishing power by 5, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			FountainBountyBuff: "{$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			PaletteBountyBuff: "Reduced spawnrate, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			PirateBountyBuff: "Increase fishing power by 15, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
 
 			EmpoweredNecromancy: Increases your max number of ghosts by 2
 			EmpoweredSentry: Increases your max number of sentries by 2
@@ -1743,6 +1771,10 @@ Mods: {
 			BitCrushed: You are compressed!
 			BlueFire: The immense heat burns off your skin!
 			PickBreak: Your mining power is halved
+
+			Common: {
+				VillagerHappiness: Villagers have increased happiness
+			}
 		}
 
 		ProjectileName: {
@@ -1929,12 +1961,24 @@ Mods: {
 		}
 
 		Containers: {
+			HardSandstoneChestTile: Forbidden Chest
+			HardMushroomChestTile: Shroomite Chest
+			HardMarbleChestTile: Bronze Chest
+			HardJungleChestTile: Turtle Chest
+			HardGraniteChestTile: Hardmode Granite Chest
+			HardFrozenChestTile: Hardmode Frozen Chest
 			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
 		}
 
 		MapObject: {
+			HardSandstoneChestTile: Forbidden Chest
+			HardMushroomChestTile: Shroomite Chest
+			HardMarbleChestTile: Bronze Chest
+			HardJungleChestTile: Turtle Chest
+			HardGraniteChestTile: Hardmode Granite Chest
+			HardFrozenChestTile: Hardmode Frozen Chest
 			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest

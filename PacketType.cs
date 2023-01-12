@@ -48,6 +48,7 @@
         InflictNightfall,
         InflictWeakness,
         InflictAetherFire,
+        WarHorn,
         Count
     }
 }

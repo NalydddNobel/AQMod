@@ -19,6 +19,11 @@ namespace Aequus.Items
         {
         }
 
+        public interface IHoverSlot
+        {
+            bool HoverSlot(Item[] inventory, int context, int slot);
+        }
+
         public interface IHookPickupText
         {
             void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText);

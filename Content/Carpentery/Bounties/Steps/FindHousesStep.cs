@@ -64,9 +64,9 @@ namespace Aequus.Content.Carpentery.Bounties.Steps
             };
         }
 
-        public override string GetStepKey(CarpenterBounty bounty)
+        public override string GetStepText(CarpenterBounty bounty)
         {
-            return GetStepKey(bounty, MinimumHouses);
+            return GetStepText(bounty, MinimumHouses);
         }
     }
 }

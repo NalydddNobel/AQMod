@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Buffs;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -119,6 +120,10 @@ namespace Aequus.Projectiles.Misc
                     Projectile.Colliding(myRect, npc.getRect()) &&
                     PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
                 {
+                    if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter())
+                    {
+                        npc.ClearBuffs(AequusBuff.IsFire);
+                    }
                     npc.velocity = updatePush(npc.Center, npc.velocity, npc.knockBackResist);
                     npc.netUpdate = true;
                     OnPushNPC(npc);
@@ -156,12 +161,20 @@ namespace Aequus.Projectiles.Misc
                     var player = Main.player[i];
                     if (i != Projectile.owner && player.active && !player.noKnockback)
                     {
-                        if (OnlyPushHostilePlayers && (!player.hostile || player.team == 0 || player.team == Main.player[Projectile.owner].team))
+                        bool friendly = player.IsFriendly(Main.player[Projectile.owner]);
+                        if (OnlyPushHostilePlayers && friendly)
                         {
                             continue;
                         }
                         if (Projectile.Colliding(myRect, player.getRect()))
                         {
+                            if (friendly)
+                            {
+                                foreach (var debuff in AequusBuff.IsFire)
+                                {
+                                    player.ClearBuff(debuff);
+                                }
+                            }
                             player.velocity = updatePush(player.Center, player.velocity, 0.5f);
                             OnPushPlayer(player);
                         }

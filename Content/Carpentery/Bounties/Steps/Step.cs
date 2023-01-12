@@ -47,12 +47,12 @@ namespace Aequus.Content.Carpentery.Bounties.Steps
 
         protected abstract StepResult ProvideResult(StepInfo info);
 
-        public virtual string GetStepKey(CarpenterBounty bounty)
+        public virtual string GetStepText(CarpenterBounty bounty)
         {
             string key = $"Mods.Aequus.CarpenterBounty.Rule.{GetType().Name}";
             return Language.GetTextValue(key) != key ? key : null;
         }
-        protected string GetStepKey(CarpenterBounty bounty, params object[] args)
+        protected string GetStepText(CarpenterBounty bounty, params object[] args)
         {
             string key = $"Mods.Aequus.CarpenterBounty.Rule.{GetType().Name}";
             var text = Language.GetTextValue(key, args);

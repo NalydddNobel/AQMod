@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -46,6 +48,11 @@ namespace Aequus.Items.Accessories.Debuff
             var aequus = player.Aequus();
             aequus.accBlackPhial++;
             aequus.DebuffsInfliction.OverallTimeMultiplier += 0.5f;
+        }
+
+        public static void EmitSound(Vector2 loc)
+        {
+            SoundEngine.PlaySound(Aequus.GetSound("concoction1").WithVolume(0.7f), loc);
         }
     }
 }

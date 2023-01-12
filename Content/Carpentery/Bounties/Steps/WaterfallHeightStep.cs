@@ -25,9 +25,9 @@
             };
         }
 
-        public override string GetStepKey(CarpenterBounty bounty)
+        public override string GetStepText(CarpenterBounty bounty)
         {
-            return GetStepKey(bounty, MinimumHeight);
+            return GetStepText(bounty, MinimumHeight);
         }
     }
 }

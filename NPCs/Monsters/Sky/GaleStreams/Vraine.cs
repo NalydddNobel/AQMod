@@ -353,6 +353,10 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
 
                 var vraine = (Vraine)leader.ModNPC;
+                if (vraine == null)
+                {
+                    return;
+                }
                 NPC.ai[1] = leader.ai[1];
                 NPC.ai[3] = leader.ai[3];
                 transitionMax = vraine.transitionMax;

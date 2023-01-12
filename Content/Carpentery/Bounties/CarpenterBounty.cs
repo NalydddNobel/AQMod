@@ -23,6 +23,7 @@ namespace Aequus.Content.Carpentery.Bounties
         private Func<bool> bountyAvailable;
         public int BuildingBuff;
         public int BountyNPC;
+        public float Progression;
 
         public virtual string LanguageKey => $"Mods.{Mod.Name}.CarpenterBounty.{Name}";
         public string DisplayName => Language.GetTextValue($"{LanguageKey}");
@@ -67,6 +68,12 @@ namespace Aequus.Content.Carpentery.Bounties
         public CarpenterBounty SetNPC<T>() where T : ModNPC
         {
             return SetNPC(ModContent.NPCType<T>());
+        }
+
+        public CarpenterBounty SetProgression(float progression)
+        {
+            Progression = progression;
+            return this;
         }
 
         public CarpenterBounty AddMiscUnlock(int itemID)
@@ -140,16 +147,14 @@ namespace Aequus.Content.Carpentery.Bounties
 
         public StepResult CheckConditions(StepInfo info)
         {
-            var result = new StepResult();
+            var result = new StepResult("");
             foreach (var step in steps)
             {
                 step.Initialize(info);
             }
             foreach (var step in steps)
             {
-                result = step.GetResult(this, info);
-                if (!result.success)
-                    break;
+                result.perStepResults.Add(step.GetResult(this, info));
             }
             return result;
         }
@@ -186,6 +191,19 @@ namespace Aequus.Content.Carpentery.Bounties
                 resultRectangle.Height = Math.Max(w.Y - resultRectangle.Y, resultRectangle.Height);
             }
             return resultRectangle;
+        }
+
+        public List<string> StepsToString()
+        {
+            var l = new List<string>();
+            foreach (var s in steps)
+            {
+                var text = s.GetStepText(this);
+                if (string.IsNullOrEmpty(text))
+                    continue;
+                l.Add(Language.GetTextValue(text));
+            }
+            return l;
         }
     }
 }

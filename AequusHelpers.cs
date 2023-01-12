@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
@@ -31,6 +32,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
@@ -79,6 +81,13 @@ namespace Aequus
         public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
 
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        public static void FixUIText(this UIText text)
+        {
+            text.MinWidth.Set(0f, 1f);
+            text.MinHeight.Set(0f, 1f);
+            text.Recalculate();
+        }
 
         public static T GetOrDefault<T>(this TagCompound tag, string key, T defaultValue)
         {
@@ -337,6 +346,66 @@ namespace Aequus
             return result;
         }
 
+        public static void CleanupAndSyncBuffs(this NPC npc)
+        {
+            for (int i = 0; i < NPC.maxBuffs; i++)
+            {
+                if (npc.buffTime[i] == 0 || npc.buffType[i] == 0)
+                {
+                    for (int j = i + 1; j < NPC.maxBuffs; j++)
+                    {
+                        npc.buffTime[j - 1] = npc.buffTime[j];
+                        npc.buffType[j - 1] = npc.buffType[j];
+                        npc.buffTime[j] = 0;
+                        npc.buffType[j] = 0;
+                    }
+                }
+            }
+            if (Main.netMode == NetmodeID.Server)
+            {
+                NetMessage.SendData(MessageID.SendNPCBuffs, -1, -1, null, npc.whoAmI);
+            }
+        }
+        public static void ClearAllBuffs(this NPC npc)
+        {
+            bool needsSync = false;
+            for (int i = 0; i < NPC.maxBuffs; i++)
+            {
+                if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && (Main.debuff[npc.buffType[i]] || AequusBuff.IsFire.Contains(npc.buffType[i])))
+                {
+                    npc.buffTime[i] = 0;
+                    npc.buffType[i] = 0;
+                    needsSync = true;
+                }
+            }
+            if (needsSync)
+                CleanupAndSyncBuffs(npc);
+        }
+        public static void ClearBuffs(this NPC npc, IEnumerable<int> type)
+        {
+            bool needsSync = false;
+            foreach (var buffType in type)
+            {
+                int index = npc.FindBuffIndex(buffType);
+                if (index != -1)
+                {
+                    npc.buffTime[index] = 0;
+                    npc.buffType[index] = 0;
+                    needsSync = true;
+                }
+            }
+            if (needsSync)
+                CleanupAndSyncBuffs(npc);
+        }
+        public static void ClearBuff(this NPC npc, int type)
+        {
+            int index = npc.FindBuffIndex(type);
+            if (index != -1)
+            {
+                npc.DelBuff(type);
+            }
+        }
+
         public static void Kill(this NPC npc, bool quiet = false)
         {
             npc.life = 1;
@@ -385,6 +454,11 @@ namespace Aequus
         {
             return x >= (PhotoRenderer.TilePaddingForChecking / 2) && x <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2)
                 && y >= (PhotoRenderer.TilePaddingForChecking / 2) && y <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2);
+        }
+
+        public static bool IsFriendly(this Player targetPlayer, Player me)
+        {
+            return !targetPlayer.hostile || targetPlayer.team <= 0 || targetPlayer.team == me.team;
         }
 
         public static List<string> GetStringListOfBiomes(this Player player)

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable;
+﻿using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

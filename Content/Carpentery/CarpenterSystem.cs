@@ -39,88 +39,7 @@ namespace Aequus.Content.Carpentery
 
         public override void SetupContent()
         {
-            new CarpenterBounty("FountainBounty")
-                .SetReward<AdvancedRuler>()
-                .SetBuff<FountainBountyBuff>()
-                .SetNPC(NPCID.Guide)
-                .AddStep(new WaterfallSearchStep(liquidWanted: LiquidID.Water)
-                    .AfterSuccess((i, s) =>
-                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = i.GetInterest<WaterfallSearchStep.WaterfallInterest>().resultRectangle))
-                .AddStep(new WaterfallHeightStep(minHeight: 7))
-                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var crafted = i.GetInterest<CraftableTilesStep.Interest>();
-                        var symmetric = i.GetInterest<SymmetricHorizontalStep.Interest>();
-                        symmetric.givenRectangle = crafted.resultRectangle;
-                        symmetric.givenPoints = crafted.craftableTiles;
-                    }))
-                .AddStep(new SymmetricHorizontalStep())
-                .Register();
-
-            new CarpenterBounty("PirateShipBounty")
-                .SetReward<WhiteFlag>()
-                .SetBuff<PirateBountyBuff>()
-                .SetNPC(NPCID.Pirate)
-                .AddStep(new FindHousesStep(minHouses: 2)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var houses = i.GetInterest<FindHousesStep.Interest>();
-                        i.GetInterest<WaterLineStep.Interest>().givenHouses = houses.housingWalls;
-                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = houses.housingWalls;
-                    }))
-                .AddStep(new WaterLineStep(minWaterLine: 5))
-                .AddStep(new FurnitureCountStep(minFurniture: 15))
-                .Register();
-
-            new CarpenterBounty("BiomePaletteBounty")
-                .SetReward<OmniPaint>()
-                .SetBuff<PaletteBountyBuff>()
-                .SetNPC(NPCID.DyeTrader)
-                .AddStep(new FindHousesStep(minHouses: 1)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var houses = i.GetInterest<FindHousesStep.Interest>();
-                        i.GetInterest<BiomePaletteStep.Interest>().givenHouses = houses.housingWalls;
-                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = houses.housingWalls;
-                    }))
-                .AddStep(new FurnitureCountStep(minFurniture: 5))
-                .AddStep(new BiomePaletteStep(minCredit: 0.5f))
-                .Register();
-
-            new CarpenterBounty("PondBridgeBounty")
-                .SetReward<FishSign>()
-                .SetBuff<BridgeBountyBuff>()
-                .SetNPC(NPCID.Merchant)
-                .AddStep(new FindBridgeStep(waterTilesNeeded: 50, waterHeightNeeded: 4, liquidIDWanted: LiquidID.Water, bridgeLengthWanted: 12)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var bridge = i.GetInterest<FindBridgeStep.Interest>();
-                        var dict = new Dictionary<Point, List<Point>>() { [new Point(bridge.bridgeLocation.X, bridge.bridgeLocation.Y)] = TurnRectangleIntoUnoptimizedPointMess(bridge.bridgeLocation) };
-                        i.GetInterest<FurnitureCountStep.Interest>().givenHouses = dict;
-                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = bridge.bridgeLocation;
-                    }))
-                .AddStep(new FurnitureCountStep(minFurniture: 8))
-                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0f))
-                .Register();
-
-            new CarpenterBounty("ActuatorDoorBounty")
-                .SetReward<PixelCamera>()
-                .AddMiscUnlock<PixelCameraClipAmmo>()
-                .SetNPC(NPCID.Mechanic)
-                .AddStep(new FindHousesStep(minHouses: 1)
-                    .AfterSuccess((i, s) =>
-                    {
-                        var houses = i.GetInterest<FindHousesStep.Interest>();
-                        i.GetInterest<ActuatorDoorStep.Interest>().givenHouses = houses.housingWalls;
-                        var mess = houses.housingWalls.Count > 0 ? houses.housingWalls.Values.First() : new List<Point>() { new Point(0, 0), };
-                        var r = TurnPointMessIntoRectangleBounds(mess); 
-                        r.Inflate(1, 1);
-                        i.GetInterest<CraftableTilesStep.Interest>().givenRectangle = r;
-                    }))
-                .AddStep(new ActuatorDoorStep())
-                .AddStep(new CraftableTilesStep(minTiles: 12, ratioTiles: 0.5f))
-                .Register();
+            BountiesLoader.SetupBounties();
         }
 
         public override void OnWorldLoad()
@@ -216,7 +135,7 @@ namespace Aequus.Content.Carpentery
                     {
                         try
                         {
-                            if (!b.CheckConditions(new StepInfo(pair.Value[i])).success)
+                            if (!b.CheckConditions(new StepInfo(pair.Value[i])).Success())
                             {
                                 pair.Value.RemoveAt(i);
                                 i--;
@@ -244,7 +163,7 @@ namespace Aequus.Content.Carpentery
                 }
                 var result = b.CheckConditions(new StepInfo(map, r));
                 //Main.NewText($"{b.Name}:{result.success}");
-                if (result.success)
+                if (result.Success())
                 {
                     AddBuildingBuffLocation(b.Type, r);
                 }

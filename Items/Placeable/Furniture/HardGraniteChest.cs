@@ -2,9 +2,9 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable
+namespace Aequus.Items.Placeable.Furniture
 {
-    public class AdamantiteChest : ModItem
+    public class HardGraniteChest : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<AdamantiteChestTile>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<HardGraniteChestTile>());
             Item.value = Item.sellPrice(silver: 10);
         }
     }

@@ -86,8 +86,10 @@ namespace Aequus.NPCs.Friendly.Drones
                         if (target.life + healAmt > target.lifeMax)
                         {
                             healAmt = target.lifeMax - target.life;
+                            target.Aequus().tempDontTakeDamage = Math.Max((byte)120, target.Aequus().tempDontTakeDamage);
                         }
                         target.life += healAmt;
+                        target.ClearAllBuffs();
                         if (Main.netMode != NetmodeID.Server)
                         {
                             int c = CombatText.NewText(new Rectangle((int)target.position.X, (int)target.position.Y, target.width, target.height), CombatText.HealLife, healAmt, dot: true);
@@ -150,7 +152,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (target != null && targetDistance >= minDistance)
             {
                 var normal = Vector2.Normalize(target.Center - NPC.Center + new Vector2(0f, -20f));
-                NPC.velocity = Vector2.Lerp(NPC.velocity, normal * 8f, 0.025f);
+                NPC.velocity = Vector2.Lerp(NPC.velocity, normal * (8f + NPC.damage / 90f), 0.025f);
             }
             else if (target != null)
             {
@@ -211,13 +213,22 @@ namespace Aequus.NPCs.Friendly.Drones
             NPC.CollideWithOthers(0.1f);
         }
 
+        private bool CanBeTargetted(NPC npc, bool countCritter = false)
+        {
+            if (!npc.active || npc.HasBuff(BuffID.Stinky) || npc.life >= npc.lifeMax || npc.immortal || npc.dontTakeDamage)
+                return false;
+            if (npc.townNPC || npc.isLikeATownNPC)
+                return true;
+            return countCritter && (npc.friendly || NPCID.Sets.CountsAsCritter[npc.type]);
+        }
+
         public NPC FindTarget()
         {
             int target = -1;
             if (NPC.ai[1] > 0f)
             {
                 int alreadyChosenTarget = (int)NPC.ai[1] - 1;
-                if (Main.npc[alreadyChosenTarget].active && (Main.npc[alreadyChosenTarget].townNPC || Main.npc[alreadyChosenTarget].isLikeATownNPC || Main.npc[alreadyChosenTarget].friendly || NPCID.Sets.CountsAsCritter[Main.npc[alreadyChosenTarget].type]) && Main.npc[alreadyChosenTarget].life < Main.npc[alreadyChosenTarget].lifeMax)
+                if (CanBeTargetted(Main.npc[alreadyChosenTarget], countCritter: true))
                 {
                     return Main.npc[alreadyChosenTarget];
                 }
@@ -225,7 +236,7 @@ namespace Aequus.NPCs.Friendly.Drones
             float distance = 2400f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (Main.npc[i].townNPC || Main.npc[i].isLikeATownNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                if (CanBeTargetted(Main.npc[i], countCritter: false))
                 {
                     float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance)
@@ -242,7 +253,7 @@ namespace Aequus.NPCs.Friendly.Drones
             distance = 3200f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (Main.npc[i].townNPC || Main.npc[i].isLikeATownNPC) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                if (CanBeTargetted(Main.npc[i], countCritter: false))
                 {
                     float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, NPC.position, NPC.width, NPC.height))
@@ -259,7 +270,7 @@ namespace Aequus.NPCs.Friendly.Drones
             distance = 2400f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                if (Main.npc[i].active && (NPCID.Sets.CountsAsCritter[Main.npc[i].type] || Main.npc[i].friendly) && Main.npc[i].life < Main.npc[i].lifeMax && !Main.npc[i].dontTakeDamage)
+                if (CanBeTargetted(Main.npc[i], countCritter: true))
                 {
                     float d = NPC.Distance(Main.npc[i].Center) + Main.npc[i].life * 2;
                     if (d < distance && Collision.CanHitLine(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, NPC.position, NPC.width, NPC.height))
@@ -317,7 +328,7 @@ namespace Aequus.NPCs.Friendly.Drones
 
         public void DrawHealingPrim()
         {
-            var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, 
+            var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
                 (p) => new Vector2(6f), (p) => Color.Lerp(GetPylonColor(), CombatText.HealLife, p).UseA(60) * (float)Math.Pow(healingAuraOpacity, 2f),
                 drawOffset: Vector2.Zero);
 

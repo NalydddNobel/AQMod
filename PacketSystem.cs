@@ -32,6 +32,7 @@ using Terraria.ModLoader.IO;
 using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Items.Misc.Carpentry;
 using Aequus.Projectiles.Magic;
+using Aequus.Items.Accessories.Summon;
 
 namespace Aequus
 {
@@ -586,6 +587,10 @@ namespace Aequus
                         }
                         switch (soundID)
                         {
+                            case SoundPacket.WarHorn:
+                                WarHorn.EmitSound(position);
+                                break;
+
                             case SoundPacket.InflictBleeding:
                                 SoundEngine.PlaySound(BattleAxeBleeding.InflictDebuffSound, position);
                                 break;

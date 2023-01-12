@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Carpentery;
+using Aequus.Content.Carpentery.Bounties;
 using Aequus.Content.Carpentery.Bounties.Steps;
 using Aequus.Content.Carpentery.Photobook;
 using Aequus.UI;
@@ -97,10 +98,18 @@ namespace Aequus.Projectiles.Misc
 
         public virtual void SpawnClipItem(Rectangle tilesCaptured)
         {
+            var carpenter = Main.player[Projectile.owner].GetModPlayer<CarpenterBountyPlayer>();
             foreach (var b in CarpenterSystem.BountiesByID)
             {
-                if (!CarpenterSystem.CompletedBounties.Contains(b.FullName) && b.CheckConditions(new StepInfo(tilesCaptured)).success)
+                if (!CarpenterSystem.CompletedBounties.Contains(b.FullName))
                 {
+                    var result = b.CheckConditions(new StepInfo(tilesCaptured));
+                    if (b.Type == carpenter.SelectedBounty)
+                    {
+                        CarpenterBountyPlayer.LastPhotoTakenResults = result.perStepResults;
+                    }
+                    if (!result.Success())
+                        continue;
                     if (b.BuildingBuff > 0)
                     {
                         CarpenterSystem.AddBuildingBuffLocation(b.Type, tilesCaptured);
@@ -108,7 +117,7 @@ namespace Aequus.Projectiles.Misc
                     SoundEngine.PlaySound(SoundID.Item129);
                     int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Green, 1, dramatic: true);
                     Main.combatText[text].text = $"Bounty '{b.DisplayName}' Completed!";
-                    Main.combatText[text].position.X -= FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
+                    Main.combatText[text].position = Main.player[Projectile.owner].Top + new Vector2(FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / -2f, -10f);
                     CarpenterSystem.CompleteCarpenterBounty(b);
                 }
             }
@@ -124,8 +133,7 @@ namespace Aequus.Projectiles.Misc
                     photoPlayer.photos[i].LoadTexture();
                     int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Lerp(Color.White, Color.Lime * 2f, 0.2f), 1);
                     Main.combatText[text].text = $"Saved in slot {i + 1}!";
-                    Main.combatText[text].position.X = Main.player[Projectile.owner].Center.X - FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / 2f;
-                    Main.combatText[text].position.Y -= 54f;
+                    Main.combatText[text].position = Main.player[Projectile.owner].Top + new Vector2(FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / -2f, -60f);
                     Main.combatText[text].velocity *= 0.25f;
                     Main.combatText[text].velocity.Y = -Main.combatText[text].velocity.Y;
                     Main.combatText[text].lifeTime *= 2;

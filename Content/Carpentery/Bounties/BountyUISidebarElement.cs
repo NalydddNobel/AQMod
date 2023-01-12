@@ -52,7 +52,7 @@ namespace Aequus.Content.Carpentery.Bounties
             {
                 var checkMark = new UIText("✓");
                 checkMark.VAlign = 0.5f;
-                checkMark.Left.Set(20, 0f);
+                checkMark.Left.Set(54, 0f);
                 checkMark.TextColor = Color.Lime;
                 Append(checkMark);
             }
@@ -63,12 +63,12 @@ namespace Aequus.Content.Carpentery.Bounties
                 uiImage.VAlign = 0.5f;
                 uiImage.Width.Set(npcHead.Value.Width, 0f);
                 uiImage.Height.Set(npcHead.Value.Height, 0f);
-                uiImage.Left.Set(24 - npcHead.Value.Width / 2, 0f);
+                uiImage.Left.Set(60 - npcHead.Value.Width / 2, 0f);
                 Append(uiImage);
             }
             var uiText = new UIText(name);
             uiText.VAlign = 0.5f;
-            uiText.Left.Set(48, 0f);
+            uiText.Left.Set(80, 0f);
             if (completed)
             {
                 uiText.TextColor = Color.Lime;
@@ -108,6 +108,7 @@ namespace Aequus.Content.Carpentery.Bounties
                 carpenter.SelectedBounty = bounty.Type;
                 SoundEngine.PlaySound(SoundID.MenuOpen);
             }
+            CarpenterBountyPlayer.LastPhotoTakenResults = null;
             foreach (var overlay in parentState.selectionOverlays)
             {
                 overlay.UpdateSelection();

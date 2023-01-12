@@ -13,6 +13,7 @@ namespace Aequus.Buffs.Buildings
         public override void Update(Player player, ref int buffIndex)
         {
             player.fishingSkill += 15;
+            player.Aequus().villagerHappiness += 0.1f;
         }
 
         public override bool RightClick(int buffIndex)

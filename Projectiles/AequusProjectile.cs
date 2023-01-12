@@ -3,6 +3,7 @@ using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
@@ -445,6 +446,14 @@ namespace Aequus.Projectiles
             {
                 if (frenzyTime > 0)
                 {
+                    if (Main.rand.NextBool(2 * (projectile.extraUpdates + 1 + extraUpdatesTemporary)))
+                    {
+                        var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
+                            DustID.RedTorch, projectile.velocity.X, projectile.velocity.Y, Scale: Main.rand.NextFloat(0.8f, 1.5f));
+                        d.noGravity = true;
+                        d.fadeIn = d.scale + 0.2f;
+                        d.noLightEmittence = true;
+                    }
                     frenzyTime--;
                     if (frenzyTime == 0)
                         extraUpdatesTemporary--;
@@ -522,7 +531,27 @@ namespace Aequus.Projectiles
                     {
                         aequus.extraUpdatesTemporary++;
                     }
+                    if (aequus.frenzyTime <= 30)
+                    {
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            PacketSystem.SyncSound(SoundPacket.WarHorn, projectile.Center);
+                        }
+                        else
+                        {
+                            WarHorn.EmitSound(projectile.Center);
+                        }
+                    }
                     aequus.frenzyTime = (ushort)(240 * Main.player[projectile.owner].Aequus().accWarHorn);
+                    for (int i = 0; i < 20; i++)
+                    {
+                        var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
+                            DustID.RedTorch, Scale: Main.rand.NextFloat(0.8f, 1.5f));
+                        d.noGravity = true;
+                        d.velocity *= 5f;
+                        d.fadeIn = d.scale + 0.2f;
+                        d.noLightEmittence = true;
+                    }
                     Main.projectile[proj].netUpdate = true;
                 }
             }

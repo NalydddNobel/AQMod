@@ -210,11 +210,44 @@ namespace Aequus.Content.WorldGeneration
                             InnerChangeChestToHardmodeVariant<AdamantiteChestTile>(chest.x, chest.y);
                         }
                         break;
+                    case ChestType.Frozen:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardFrozenChestTile>(chest.x, chest.y);
+                        }
+                        break;
+                    case ChestType.Granite:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardGraniteChestTile>(chest.x, chest.y);
+                        }
+                        break;
+                    case ChestType.RichMahogany:
+                    case ChestType.Ivy:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardJungleChestTile>(chest.x, chest.y);
+                        }
+                        break;
+                    case ChestType.Marble:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardMarbleChestTile>(chest.x, chest.y);
+                        }
+                        break;
+                    case ChestType.Mushroom:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardMushroomChestTile>(chest.x, chest.y);
+                        }
+                        break;
                 }
             }
             else if (chestTile == TileID.Containers2)
             {
-
+                switch (chestType)
+                {
+                    case ChestType.Sandstone:
+                        {
+                            InnerChangeChestToHardmodeVariant<HardSandstoneChestTile>(chest.x, chest.y);
+                        }
+                        break;
+                }
             }
         }
         public static void InnerChangeChestToHardmodeVariant<T>(int x, int y) where T : ModTile

@@ -34,21 +34,57 @@ namespace Aequus.Content.Carpentery.Bounties
             descriptionPanel.Width.Set(0f, 1f);
             descriptionPanel.Height.Set(100f, 0.1f);
             uiPanel.Append(descriptionPanel);
-            uiText = new UIText(bounty.Description, 1f);
-            uiText.Width = descriptionPanel.Width;
-            uiText.Height = descriptionPanel.Height;
-            uiText.TextOriginX = 0.01f;
+            uiText = new UIText($"{bounty.Description}", 1f)
+            {
+                HAlign = 0f,
+                VAlign = 0f,
+                TextOriginX = 0f,
+                Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                IgnoresMouseInteraction = true,
+                IsWrapped = true,
+            };
             descriptionPanel.Append(uiText);
-            uiText.IsWrapped = true;
+            uiText.FixUIText();
 
             var npcHead = TextureAssets.NpcHead[NPC.TypeToDefaultHeadIndex(bounty.GetBountyNPCID())];
-            var uiImage = new UIImage(npcHead);
-            uiImage.ImageScale = 1.2f;
+            var uiImage = new UIImage(npcHead)
+            {
+                ImageScale = 1.05f
+            };
             uiImage.Width.Set(npcHead.Value.Width, 0f);
             uiImage.Height.Set(npcHead.Value.Height, 0f);
             uiImage.Left.Set(32 - npcHead.Value.Width / 2, 0f);
             uiImage.Top.Set(20 - npcHead.Value.Height / 2, 0f);
             uiPanel.Append(uiImage);
+
+            var stepsPanel = new UIPanel();
+            stepsPanel.BackgroundColor = new Color(91, 124, 193) * 0.9f;
+            stepsPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
+            stepsPanel.Top.Set(42f + 100f + 8f, descriptionPanel.Height.Percent);
+            stepsPanel.Width.Set(70f, 0.2f);
+            stepsPanel.Height.Set(100f, 0.3f);
+            uiPanel.Append(stepsPanel);
+
+            var text = "";
+            foreach (var t in bounty.StepsToString())
+            {
+                if (!string.IsNullOrEmpty(text))
+                    text += "\n";
+                text += $"- {t}";
+            }
+            uiText = new UIText(text, 0.8f)
+            {
+                HAlign = 0f,
+                VAlign = 0f,
+                TextOriginX = 0f,
+                Width = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                Height = StyleDimension.FromPixelsAndPercent(0f, 1f),
+                IgnoresMouseInteraction = true,
+                IsWrapped = true,
+            };
+            stepsPanel.Append(uiText);
+            uiText.FixUIText();
         }
 
         public void Clear()

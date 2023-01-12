@@ -72,6 +72,9 @@ namespace Aequus
 
         public int projectileIdentity = -1;
 
+        public float maxSpawnsDivider;
+        public float spawnrateMultiplier;
+
         public float villagerHappiness;
 
         public int cursorDye;
@@ -113,6 +116,9 @@ namespace Aequus
         public bool ghostTombstones;
 
         //public ShatteringVenus.ItemInfo shatteringVenus;
+
+        public float statMeleeScale;
+        public float statRangedVelocityMultiplier;
 
         public float pickTileDamage;
 
@@ -569,11 +575,18 @@ namespace Aequus
 
         public override bool HoverSlot(Item[] inventory, int context, int slot)
         {
-            return Aequus.UserInterface?.CurrentState is AequusUIState aequusUI ? aequusUI.HoverSlot(inventory, context, slot) : false;
+            bool val = false;
+            if (inventory[slot].ModItem is ItemHooks.IHoverSlot hoverSlot)
+            {
+                val = hoverSlot.HoverSlot(inventory, context, slot);
+            }
+            return Aequus.UserInterface?.CurrentState is AequusUIState aequusUI ? aequusUI.HoverSlot(inventory, context, slot) : val;
         }
 
         public override void Initialize()
         {
+            maxSpawnsDivider = 1f;
+            spawnrateMultiplier = 1f;
             BoundedPotionIDs = new List<int>();
             accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
@@ -708,6 +721,8 @@ namespace Aequus
 
         public void ResetStats()
         {
+            maxSpawnsDivider = 1f;
+            spawnrateMultiplier = 1f;
             BuildingBuffRange = usedPermaBuildBuffRange ? 75 : 50;
             villagerHappiness = 0f;
             if (BoundedPotionIDs == null)
@@ -721,6 +736,8 @@ namespace Aequus
                     Main.persistentBuff[buff] = false;
                 }
             }
+            statMeleeScale = 0f;
+            statRangedVelocityMultiplier = 0f;
             debuffs.ResetEffects(Player);
             buffDuration = 1f;
             debuffDuration = 1f;
@@ -1716,6 +1733,23 @@ namespace Aequus
                     {
                         cdBlackPhial += 30 / accBlackPhial;
                         target.AddBuff(buff, 150);
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            PacketSystem.SyncSound(SoundPacket.WarHorn, target.Center);
+                        }
+                        else
+                        {
+                            BlackPhial.EmitSound(target.Center);
+                        }
+                        var size = target.Size;
+                        int amt = (int)(size.Length() / 4f);
+                        for (int i = 0; i < amt; i++)
+                        {
+                            var v = Main.rand.NextVector2CircularEdge(size.X, size.Y) * 0.5f;
+                            var d = Dust.NewDustPerfect(target.Center + v, DustID.BatScepter, Vector2.Normalize(-v) * Main.rand.NextFloat(4f) + target.velocity, Scale: Main.rand.NextFloat(1f, 1.6f));
+                            d.fadeIn = d.scale + 0.5f;
+                            d.noGravity = true;
+                        }
                     }
                 }
             }
@@ -1749,6 +1783,10 @@ namespace Aequus
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
+            if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Ranged))
+            {
+                velocity *= (1f + Math.Max(statRangedVelocityMultiplier, 0.5f));
+            }
         }
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
@@ -1763,6 +1801,14 @@ namespace Aequus
                 }
             }
             return true;
+        }
+
+        public override void ModifyItemScale(Item item, ref float scale)
+        {
+            if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Melee))
+            {
+                scale *= (1f + Math.Max(statMeleeScale, 0.5f));
+            }
         }
 
         public override void SaveData(TagCompound tag)

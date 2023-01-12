@@ -44,18 +44,19 @@ namespace Aequus.Content.DronePylons
                 return;
             }
 
+            int solution = GetSolutionProjectileID();
             for (int i = 0; i < 20; i++)
             {
-                var p = FindConvertibleTile(Location);
+                int randX = Main.rand.Next(-50, 50);
+                int randY = Main.rand.Next(-50, 50);
+                var p = FindConvertibleTile(new Point(Location.X + randX, Location.Y + randY), solution);
 
                 if (p == Point.Zero)
                     return;
 
-                int solution = GetSolutionProjectileID(p);
-
                 if (solution > 0)
                 {
-                    var spawnPosition = WorldLocation;
+                    var spawnPosition = WorldLocation + new Vector2(randX * 16f, randY * 16f);
                     var proj = Projectile.NewProjectileDirect(null, spawnPosition, Vector2.Normalize(p.ToWorldCoordinates() + new Vector2(8f) - spawnPosition) * 7.5f, solution, 0, 0, Main.myPlayer);
                     proj.timeLeft *= 2;
                     proj.extraUpdates = 30;
@@ -64,9 +65,8 @@ namespace Aequus.Content.DronePylons
             }
         }
 
-        public int GetSolutionProjectileID(Point tilePos)
+        public int GetSolutionProjectileID()
         {
-            var tile = Main.tile[tilePos];
             var pylonStand = Location + new Point(1, 4);
             if (TileID.Sets.Hallow[Main.tile[pylonStand].TileType])
             {
@@ -91,44 +91,36 @@ namespace Aequus.Content.DronePylons
             return ProjectileID.PureSpray;
         }
 
-        public bool ShouldCleanse(Point tilePos)
+        public bool CheckSolution(Point tilePos, int solutionProj)
         {
             var tile = Main.tile[tilePos];
             var pylonStand = Location + new Point(1, 4);
-            //AequusHelpers.dustDebug(pylonStand);
-            if (Main.tile[pylonStand].TileType == TileID.MushroomGrass)
+            if (solutionProj == ProjectileID.MushroomSpray && tile.TileType == TileID.JungleGrass)
             {
-                return tile.TileType == TileID.JungleGrass;
+                return true;
             }
-            if (TileID.Sets.Corrupt[Main.tile[pylonStand].TileType] || TileID.Sets.Crimson[Main.tile[pylonStand].TileType])
+            if (solutionProj == ProjectileID.CorruptSpray || solutionProj == ProjectileID.CrimsonSpray)
             {
                 return TileID.Sets.Hallow[tile.TileType] || tile.IsConvertibleProbably();
             }
-            if (SpecialSolutions.TryGetValue(new Point(Main.tile[Location].TileType, Main.tile[Location].TileFrameX / 54), out int id))
+            if (solutionProj == ProjectileID.PureSpray && TileID.Sets.Hallow[tile.TileType])
             {
-                if (id == ProjectileID.PureSpray && TileID.Sets.Hallow[tile.TileType])
-                {
-                    return true;
-                }
-                if (id == ProjectileID.HallowSpray && !TileID.Sets.Hallow[tile.TileType] && tile.IsConvertibleProbably())
-                {
-                    return true;
-                }
-                if (id == ProjectileID.MushroomSpray && tile.TileType == TileID.JungleGrass)
-                {
-                    return true;
-                }
+                return true;
+            }
+            if (solutionProj == ProjectileID.HallowSpray && !TileID.Sets.Hallow[tile.TileType] && tile.IsConvertibleProbably())
+            {
+                return true;
             }
             return TileID.Sets.Corrupt[tile.TileType] || TileID.Sets.Crimson[tile.TileType];
         }
 
-        public Point FindConvertibleTile(Point tilePos)
+        public Point FindConvertibleTile(Point tilePos, int solution)
         {
             for (int i = 0; i < 5000; i++)
             {
                 int x = tilePos.X + Main.rand.Next(-50, 50);
                 int y = tilePos.Y + Main.rand.Next(-50, 50);
-                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile && ShouldCleanse(new Point(x, y)))
+                if (WorldGen.InWorld(x, y) && Main.tile[x, y].HasTile && CheckSolution(new Point(x, y), solution))
                 {
                     return new Point(x, y);
                 }
