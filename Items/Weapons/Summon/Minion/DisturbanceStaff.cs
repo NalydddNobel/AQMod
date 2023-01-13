@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Recipes;
+using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -46,7 +46,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteRecipe(this, ItemID.ImpStaff);
+            Fluorescence.UpgradeItemRecipe(this, ItemID.ImpStaff);
         }
     }
 }

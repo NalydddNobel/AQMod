@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -243,6 +246,30 @@ namespace Aequus.Tiles.Furniture
             {
                 player.cursorItemIconEnabled = false;
                 player.cursorItemIconID = 0;
+            }
+        }
+
+        public void DrawBasicGlowmask(int i, int j, SpriteBatch spriteBatch)
+        {
+            try
+            {
+                var tile = Main.tile[i, j];
+                int left = i;
+                int top = j;
+                if (tile.TileFrameX % 36 != 0)
+                {
+                    left--;
+                }
+                if (tile.TileFrameY != 0)
+                {
+                    top--;
+                }
+                int chest = Chest.FindChest(left, top);
+                spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + AequusHelpers.TileDrawOffset,
+                    new Rectangle(tile.TileFrameX, 38 * (chest == -1 ? 0 : Main.chest[chest].frame) + tile.TileFrameY, 16, 16), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            }
+            catch
+            {
             }
         }
     }

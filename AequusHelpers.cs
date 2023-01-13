@@ -2,7 +2,6 @@
 using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
-using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;
@@ -82,6 +81,15 @@ namespace Aequus
 
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static void ResetVanillaNPCTexture(int npcID)
+        {
+            TextureAssets.Npc[npcID] = GetVanillaNPCTexture(npcID);
+        }
+        public static Asset<Texture2D> GetVanillaNPCTexture(int npcID)
+        {
+            return ModContent.Request<Texture2D>($"Terraria/Images/NPC_{npcID}");
+        }
+
         public static void FixUIText(this UIText text)
         {
             text.MinWidth.Set(0f, 1f);
@@ -104,7 +112,7 @@ namespace Aequus
             Directory.CreateDirectory(path);
             return File.Create($"{path}{Path.DirectorySeparatorChar}{name}");
         }
-        public static void OpenDebugFolder() 
+        public static void OpenDebugFolder()
         {
             Utils.OpenFolder(DebugFilePath);
         }
@@ -600,6 +608,59 @@ namespace Aequus
             return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
         }
 
+        public static void SquishAndStackItem(this Chest chest, int i)
+        {
+            for (int j = Chest.maxItems - 1; j > i; j--)
+            {
+                if (chest.item[j] != null && chest.item[i].type == chest.item[j].type && ItemLoader.CanStack(chest.item[i], chest.item[j]))
+                {
+                    int diff = Math.Min(chest.item[i].stack + chest.item[j].stack, chest.item[i].maxStack) - chest.item[i].stack;
+                    chest.item[i].stack += diff;
+                    chest.item[j].stack -= diff;
+                    if (chest.item[j].stack <= 0)
+                    {
+                        chest.item[j].TurnToAir();
+                    }
+                    if (chest.item[i].stack >= chest.item[i].maxStack)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        public static void SquishAndStackContents(this Chest chest)
+        {
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (chest.item[i] != null && chest.item[i].stack < chest.item[i].maxStack)
+                {
+                    SquishAndStackItem(chest, i);
+                }
+            }
+            var l = new List<Item>();
+            for (int i = 0; i < Chest.maxItems; i++)
+            {
+                if (chest.item[i] != null && !chest.item[i].IsAir)
+                {
+                    l.Add(chest.item[i]);
+                }
+            }
+            for (int i = 0; i < l.Count; i++)
+            {
+                chest.item[i] = l[i].Clone();
+            }
+            for (int i = l.Count; i < Chest.maxItems; i++)
+            {
+                if (chest.item[i] == null)
+                {
+                    chest.item[i] = new Item();
+                }
+                else
+                {
+                    chest.item[i].TurnToAir();
+                }
+            }
+        }
         public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = 0)
         {
             var emptySlot = chest.FindEmptySlot();
@@ -1970,7 +2031,7 @@ namespace Aequus
         {
             return item.GetGlobalItem<AequusItem>();
         }
-        public static Vector2 GetSpeedStats(this NPC npc) 
+        public static Vector2 GetSpeedStats(this NPC npc)
         {
             var velocityBoost = new Vector2(npc.StatSpeed());
             if (!npc.noGravity)
@@ -2164,6 +2225,10 @@ namespace Aequus
             return center + n * new Vector2(x, y);
         }
 
+        public static bool NoDungeonOrTempleWall(this Tile tile)
+        {
+            return Main.wallDungeon[tile.WallType] && tile.WallType != WallID.LihzahrdBrickUnsafe;
+        }
         public static bool IsConvertibleProbably(this Tile tile)
         {
             return TileID.Sets.Conversion.Grass[tile.TileType]

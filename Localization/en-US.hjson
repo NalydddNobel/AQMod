@@ -100,6 +100,8 @@ Mods: {
 
 		ItemName: {
 		# Accessories
+			FishyFins: Fishy Fins
+			BlackPlague: Black Plague
 			LavaproofMitten: Lavaproof Mitten
 			Stormcloak: Storm Cloak
 			ShadowVeer: Shadow Veer
@@ -173,7 +175,6 @@ Mods: {
 			SwordCursor: Sword Cursor
 			DemonCursor: Demon Cursor
 			Headless: Headless
-			FishyFins: Fishy Fins
 
 		# Melee Weapons
 			PhaseDisc: Phasebrink
@@ -534,10 +535,10 @@ Mods: {
 
 			HardSandstoneChest: Forbidden Chest
 			HardMushroomChest: Shroomite Chest
-			HardMarbleChest: Bronze Chest
-			HardJungleChest: Turtle Chest
-			HardGraniteChest: Hardmode Granite Chest
-			HardFrozenChest: Hardmode Frozen Chest
+			HardMarbleChest: Marble Trove
+			HardJungleChest: Tortoise Case
+			HardGraniteChest: Living Granite Chest
+			HardFrozenChest: Frost Chest
 			AdamantiteChest: Adamantite Chest
 
 			GravityChest: Gravity Chest
@@ -645,6 +646,17 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FishyFins: 
+				'''
+				Grants 20 seconds of water breathing while outside of water
+				{$Mods.Aequus.nalyd}
+				'''
+			BlackPlague: 
+				'''
+				Attacks may inflict weakness, fire damage, and other debuffs on enemies
+				Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
+				50% increased duration on debuffs applied to enemies
+				'''
 			LavaproofMitten: Allows placement in lava
 			Stormcloak: Push enemies and projectiles away after taking damage
 			PotionCanteen: Allows infinite use of a potion when equipped
@@ -797,7 +809,6 @@ Mods: {
 			SwordCursor: Transforms your mouse cursor
 			DemonCursor: Transforms your mouse cursor
 			Headless: Decapitates you
-			FishyFins: "{$Mods.Aequus.nalyd}"
 
 		# Melee Weapons
 			PhaseDisc: 
@@ -1465,7 +1476,7 @@ Mods: {
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			BongBongPainting: "{$Mods.Aequus.PaintingSignature.Water}"
-			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
+			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.ForHummer}"
 			CatalystPainting:
 				'''
 				The great might of an interstellar nebula!
@@ -1963,10 +1974,10 @@ Mods: {
 		Containers: {
 			HardSandstoneChestTile: Forbidden Chest
 			HardMushroomChestTile: Shroomite Chest
-			HardMarbleChestTile: Bronze Chest
-			HardJungleChestTile: Turtle Chest
-			HardGraniteChestTile: Hardmode Granite Chest
-			HardFrozenChestTile: Hardmode Frozen Chest
+			HardMarbleChestTile: Marble Trove
+			HardJungleChestTile: Tortoise Case
+			HardGraniteChestTile: Living Granite Chest
+			HardFrozenChestTile: Frost Chest
 			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
@@ -1975,10 +1986,10 @@ Mods: {
 		MapObject: {
 			HardSandstoneChestTile: Forbidden Chest
 			HardMushroomChestTile: Shroomite Chest
-			HardMarbleChestTile: Bronze Chest
-			HardJungleChestTile: Turtle Chest
-			HardGraniteChestTile: Hardmode Granite Chest
-			HardFrozenChestTile: Hardmode Frozen Chest
+			HardMarbleChestTile: Marble Trove
+			HardJungleChestTile: Tortoise Case
+			HardGraniteChestTile: Living Granite Chest
+			HardFrozenChestTile: Frost Chest
 			AdamantiteChestTile: Adamantite Chest
 			GravityChestTile: Gravity Chest
 			OblivionChestTile: Oblivion Chest
@@ -2098,7 +2109,7 @@ Mods: {
 
 		PaintingSignature: {
 			Water: "'W. Ter'"
-			SplitModFrFrWtf: "'Dr. Uncool'"
+			ForHummer: "'For: Dr. Cool'"
 			NalydT: "'N.T.'"
 			niker: "'N.'"
 		}
@@ -2117,7 +2128,6 @@ Mods: {
 			DoesntMinionTarget: Does not obey minion targetting
 			NotConsumable: Does not get consumed
 			TorchCanBePlacedInLiquids: Can be placed in liquids
-			IchorDartShotgunTag: Ichor Darts spawn pre-split
 			EnableThing: Enable {0}?
 			DisableThing: Disable {0}?
 			UnassignedKey0: Unassigned Key

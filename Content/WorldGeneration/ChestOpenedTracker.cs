@@ -73,6 +73,8 @@ namespace Aequus.Content.WorldGeneration
         }
         private void UpdatePlayerNearChests()
         {
+            if (Main.CurrentFrameFlags.ActivePlayersCount <= 0)
+                return;
             CheckingPlayer %= Main.CurrentFrameFlags.ActivePlayersCount;
             for (int i = 0; i < UnopenedChests.Count; i++)
             {

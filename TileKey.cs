@@ -1,4 +1,6 @@
-﻿namespace Aequus
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Aequus
 {
     public struct TileKey
     {
@@ -22,6 +24,15 @@
         public override int GetHashCode()
         {
             return new { TileType, TileStyle }.GetHashCode();
+        }
+
+        public override bool Equals([NotNullWhen(true)] object obj)
+        {
+            if (obj is TileKey tileKey)
+            {
+                return TileType == tileKey.TileType && TileStyle == tileKey.TileStyle;
+            }
+            return base.Equals(obj);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Recipes;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ID;

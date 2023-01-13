@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories
+namespace Aequus.Items.Accessories.Debuff
 {
     public class LittleInferno : ModItem
     {
@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories
             Item.width = 20;
             Item.height = 20;
             Item.accessory = true;
-            Item.rare = ItemDefaults.RarityDustDevil;
+            Item.rare = -1;
             Item.value = ItemDefaults.DustDevilValue;
         }
 
@@ -64,7 +64,7 @@ namespace Aequus.Items.Accessories
                     if (dealDamage || !target.HasBuff(fireDebuff))
                     {
                         int oldDef = target.defense;
-                        target.defense -= 20 + (10 * (stack - 1));
+                        target.defense -= 20 + 10 * (stack - 1);
                         player.ApplyDamageToNPC(target, damageDealt, 0f, 0, crit: false);
                         target.justHit = true;
                         target.defense = oldDef;

@@ -22,13 +22,28 @@ namespace Aequus.Items.Misc.Materials
             Item.width = 12;
             Item.height = 12;
             Item.maxStack = 9999;
-            Item.rare = ItemDefaults.RarityGaleStreams - 2;
+            Item.rare = ItemDefaults.RarityGaleStreams - 1;
             Item.value = Item.sellPrice(silver: 15);
         }
 
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;
+        }
+
+        public static Recipe UpgradeItemRecipe(ModItem modItem, int original, int itemAmt = 1, bool sort = true)
+        {
+            return modItem.CreateRecipe()
+                .AddIngredient(original)
+                .AddIngredient<Fluorescence>(12)
+                .AddTile(TileID.Anvils)
+                .UnsafeSortRegister((r) =>
+                {
+                    if (sort)
+                    {
+                        r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
+                    }
+                });
         }
     }
 }

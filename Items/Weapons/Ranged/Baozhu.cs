@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Ranged;
 using Terraria;
 using Terraria.DataStructures;
@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteRecipe(this, ItemID.MolotovCocktail, 50);
+            Fluorescence.UpgradeItemRecipe(this, ItemID.MolotovCocktail, 50);
         }
     }
 }

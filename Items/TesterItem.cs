@@ -52,8 +52,16 @@ namespace Aequus.Items
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
             AequusWorld.hardmodeChests = false;
-            //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
+            if (Chest.FindChestByGuessing(x, y) != -1)
+            {
+                Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
+            }
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            //CreateRecipe().AddIngredient<UltimateEnergy>().Register();
         }
 
         public static void PlacePollenExamples(int x, int y)

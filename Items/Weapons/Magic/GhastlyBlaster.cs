@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Recipes;
-using Aequus.Projectiles.Magic;
+﻿using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

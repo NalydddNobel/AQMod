@@ -77,6 +77,13 @@ namespace Aequus.Buffs
             preventRightClick = new List<int>();
         }
 
+        public static bool isDebuff(int type)
+        {
+            if (Main.debuff[type])
+                return true;
+            return IsFire.Contains(type);
+        }
+
         private static void addPotionConflict(int buffID, int conflictor)
         {
             if (!PotionConflicts.ContainsKey(buffID))
@@ -156,7 +163,17 @@ namespace Aequus.Buffs
                 var player = AequusPlayer.CurrentPlayerContext();
                 if (player != null)
                 {
-                    time = (int)(time * player.Aequus().DebuffsInfliction.ApplyBuffMultipler(player, type));
+                    time = (int)(time * player.Aequus().DebuffsInfliction.GetBuffMultipler(player, type));
+                    if (player.Aequus().accResetEnemyDebuffs && !npc.HasBuff(type))
+                    {
+                        for (int i = 0; i < NPC.maxBuffs; i++)
+                        {
+                            if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && isDebuff(npc.buffType[i]))
+                            {
+                                npc.buffTime[i] = Math.Max(npc.buffTime[i], 180);
+                            }
+                        }
+                    }
                 }
             }
 

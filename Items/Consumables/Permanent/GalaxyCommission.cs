@@ -27,7 +27,11 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override bool? UseItem(Player player)
         {
-            player.Aequus().usedPermaBuildBuffRange = true;
+            if (!player.Aequus().usedPermaBuildBuffRange)
+            {
+                player.Aequus().usedPermaBuildBuffRange = true;
+                return true;
+            }
             return false;
         }
 

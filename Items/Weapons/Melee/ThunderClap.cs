@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteRecipe(this, ItemID.SlapHand);
+            Fluorescence.UpgradeItemRecipe(this, ItemID.SlapHand);
         }
     }
 }

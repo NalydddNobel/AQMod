@@ -9,6 +9,7 @@ namespace Aequus.Tiles.Furniture.HardmodeChests
     {
         public override void SetStaticDefaults()
         {
+            ChestType.IsGenericUndergroundChest.Add(new TileKey(Type));
             base.SetStaticDefaults();
             DustType = DustID.Ash;
             ChestDrop = ModContent.ItemType<AdamantiteChest>();

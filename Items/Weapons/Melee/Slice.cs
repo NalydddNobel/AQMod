@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<CrystalDagger>());
+            FrozenTear.UpgradeItemRecipe(this, ModContent.ItemType<CrystalDagger>());
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

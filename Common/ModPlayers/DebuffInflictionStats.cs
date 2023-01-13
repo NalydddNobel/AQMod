@@ -21,7 +21,7 @@ namespace Aequus.Common.Players
             PerBuffTimeMultiplier?.Clear();
         }
 
-        public float ApplyBuffMultipler(Player player, int type)
+        public float GetBuffMultipler(Player player, int type)
         {
             float result = OverallTimeMultiplier;
             if (PerBuffTimeMultiplier.TryGetValue(type, out var val))

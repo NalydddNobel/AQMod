@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -52,7 +52,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ItemID.WaterBolt);
+            FrozenTear.UpgradeItemRecipe(this, ItemID.WaterBolt);
         }
     }
 }

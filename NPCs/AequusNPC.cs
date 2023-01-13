@@ -25,6 +25,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -77,7 +78,24 @@ namespace Aequus.NPCs
             NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
 
+            if (!Main.dedServ)
+            {
+                NPCID.Sets.TrailingMode[NPCID.Mimic] = 7;
+            }
+
             AddHooks();
+        }
+
+        public override void Unload()
+        {
+            if (!Main.dedServ)
+            {
+                NPCID.Sets.TrailingMode[NPCID.Mimic] = -1;
+            }
+            HeatDamage?.Clear();
+            NPC_waterMovementSpeed = null;
+            NPC_lavaMovementSpeed = null;
+            NPC_honeyMovementSpeed = null;
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -301,6 +319,27 @@ namespace Aequus.NPCs
             if (tempHide)
             {
                 tempHide = false;
+                return false;
+            }
+            if (npc.type == NPCID.Mimic && npc.frame.Y >= npc.frame.Height * 6 && npc.frame.Y < npc.frame.Height * 12)
+            {
+                var texture = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/Vanilla/AdamantiteMimic");
+                var frame = texture.Value.Frame(verticalFrames: 6, frameY: npc.frame.Y / npc.frame.Height % 6);
+                int trailLength = Math.Min(NPCID.Sets.TrailCacheLength[npc.type], 6);
+                var offset = npc.Size / 2f + new Vector2(0f, -7f);
+                var origin = frame.Size() / 2f;
+                var spriteDirection = (-npc.spriteDirection).ToSpriteEffect();
+                for (int i = 0; i < trailLength; i++)
+                {
+                    if (i < trailLength - 1 && (npc.oldPos[i] - npc.oldPos[i + 1]).Length() < 1f)
+                    {
+                        continue;
+                    }
+                    spriteBatch.Draw(texture.Value, (npc.oldPos[i] - screenPos + offset).Floor(), frame,
+                        AequusHelpers.GetColor(npc.oldPos[i] + offset) * AequusHelpers.CalcProgress(trailLength, i) * 0.4f, npc.rotation, origin, npc.scale, spriteDirection, 0f);
+                }
+                spriteBatch.Draw(texture.Value, (npc.position - screenPos+ offset).Floor(), frame, 
+                    drawColor, npc.rotation, origin, npc.scale, spriteDirection, 0f);
                 return false;
             }
             return true;

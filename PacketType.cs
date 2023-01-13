@@ -49,6 +49,7 @@
         InflictWeakness,
         InflictAetherFire,
         WarHorn,
+        BlackPhial,
         Count
     }
 }

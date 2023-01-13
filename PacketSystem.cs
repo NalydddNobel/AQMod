@@ -33,6 +33,7 @@ using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Items.Misc.Carpentry;
 using Aequus.Projectiles.Magic;
 using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Debuff;
 
 namespace Aequus
 {
@@ -587,6 +588,10 @@ namespace Aequus
                         }
                         switch (soundID)
                         {
+                            case SoundPacket.BlackPhial:
+                                BlackPhial.EmitSound(position);
+                                break;
+
                             case SoundPacket.WarHorn:
                                 WarHorn.EmitSound(position);
                                 break;

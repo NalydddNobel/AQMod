@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Fish.Quest;
 using Aequus.Items.Misc.Energies;
-using Aequus.Items.Recipes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

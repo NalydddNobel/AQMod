@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -51,7 +51,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ItemID.SnowballCannon);
+            FrozenTear.UpgradeItemRecipe(this, ItemID.SnowballCannon);
         }
     }
 }

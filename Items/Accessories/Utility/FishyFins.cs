@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Vanity
+namespace Aequus.Items.Accessories.Utility
 {
     public class FishyFins : ModItem, ItemHooks.IUpdateItemDye
     {
@@ -18,7 +18,14 @@ namespace Aequus.Items.Accessories.Vanity
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
             Item.canBePlacedInVanityRegardlessOfConditions = true;
-            Item.vanity = true;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            if (!player.wet)
+            {
+                player.AddBuff(BuffID.Gills, 1200);
+            }
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Recipes
+namespace Aequus.Items
 {
     public class AequusRecipes : ModSystem
     {
@@ -104,35 +104,6 @@ namespace Aequus.Items.Recipes
         public static Recipe CreateRecipe(int result, int stack = 1)
         {
             return Recipe.Create(result, stack);
-        }
-
-        public static Recipe SpaceSquidRecipe(ModItem modItem, int original, bool sort = true)
-        {
-            return modItem.CreateRecipe()
-                .AddIngredient(original)
-                .AddIngredient(ModContent.ItemType<FrozenTear>(), 12)
-                .AddTile(TileID.Anvils)
-                .UnsafeSortRegister((r) =>
-                    {
-                        if (sort)
-                        {
-                            r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
-                        }
-                    });
-        }
-        public static void RedSpriteRecipe(ModItem modItem, int original, int amt = 1, bool sort = true)
-        {
-            modItem.CreateRecipe()
-                .AddIngredient(original, amt)
-                .AddIngredient(ModContent.ItemType<Fluorescence>(), 12)
-                .AddTile(TileID.Anvils)
-                .UnsafeSortRegister((r) =>
-                    {
-                        if (sort)
-                        {
-                            r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
-                        }
-                    });
         }
     }
 }

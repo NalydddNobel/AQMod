@@ -2,7 +2,7 @@
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;

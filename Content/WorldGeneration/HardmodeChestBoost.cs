@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.HardmodeChests;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -10,6 +11,9 @@ namespace Aequus.Content.WorldGeneration
 {
     public class HardmodeChestBoost : ModSystem
     {
+        public static List<int> MimicLoot { get; private set; }
+        public static List<int> FrostMimicLoot { get; private set; }
+
         public struct OreTierData
         {
             public int Tile;
@@ -28,6 +32,21 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Load()
         {
+            MimicLoot = new List<int>()
+            {
+                ItemID.DualHook,
+                ItemID.MagicDagger,
+                ItemID.TitanGlove,
+                ItemID.PhilosophersStone,
+                ItemID.CrossNecklace,
+                ItemID.StarCloak,
+            };
+            FrostMimicLoot = new List<int>()
+            {
+                ItemID.Frostbrand,
+                ItemID.IceBow,
+                ItemID.FlowerofFrost,
+            };
             TileIDToOreTier = new Dictionary<int, OreTierData>()
             {
                 [TileID.Cobalt] = new OreTierData(TileID.Cobalt, ItemID.CobaltOre, ItemID.CobaltBar),
@@ -37,6 +56,16 @@ namespace Aequus.Content.WorldGeneration
                 [TileID.Orichalcum] = new OreTierData(TileID.Orichalcum, ItemID.OrichalcumOre, ItemID.OrichalcumBar),
                 [TileID.Titanium] = new OreTierData(TileID.Titanium, ItemID.TitaniumOre, ItemID.TitaniumBar),
             };
+        }
+
+        public override void Unload()
+        {
+            MimicLoot?.Clear();
+            MimicLoot = null;
+            FrostMimicLoot?.Clear();
+            FrostMimicLoot = null;
+            TileIDToOreTier?.Clear();
+            TileIDToOreTier = null;
         }
 
         private static OreTierData GetFromTileOrDefault(int tileID, int defaultTileID)
@@ -51,7 +80,7 @@ namespace Aequus.Content.WorldGeneration
             for (int i = 0; i < ChestOpenedTracker.UnopenedChests.Count; i++)
             {
                 int chestID = Chest.FindChest(ChestOpenedTracker.UnopenedChests[i].X, ChestOpenedTracker.UnopenedChests[i].Y);
-                if (chestID > -1 && ChestOpenedTracker.IsRealChest(chestID) && ChestType.IsGenericUndergroundChest(Main.chest[chestID]))
+                if (chestID > -1 && ChestOpenedTracker.IsRealChest(chestID) && ChestType.isGenericUndergroundChest(Main.chest[chestID]))
                 {
                     for (int k = 0; k < Chest.maxItems; k++)
                     {
@@ -73,113 +102,158 @@ namespace Aequus.Content.WorldGeneration
             return WorldGen.crimson;
         }
 
-        public static void Hardmodify(Chest chest)
+        public static void HardmodifyAnItem(Chest chest, int i)
         {
-            int chestType = ChestType.GetStyle(chest);
-            int chestTile = Main.tile[chest.x, chest.y].TileType;
+            var item = chest.item[i];
+            if (item.type == ItemID.FlamingArrow || item.type == ItemID.WoodenArrow)
+            {
+                if (Crimson())
+                {
+                    item.SetDefaults(ItemID.IchorArrow);
+                    item.stack = WorldGen.genRand.Next(50, 100);
+                }
+                else
+                {
+                    item.SetDefaults(ItemID.CursedArrow);
+                    item.stack = WorldGen.genRand.Next(50, 100);
+                }
+            }
+            else if (item.type == ItemID.ThrowingKnife || item.type == ItemID.Shuriken || item.type == ItemID.Flare)
+            {
+                if (Crimson())
+                {
+                    item.SetDefaults(ItemID.IchorBullet);
+                    item.stack = WorldGen.genRand.Next(50, 100);
+                }
+                else
+                {
+                    item.SetDefaults(ItemID.CursedBullet);
+                    item.stack = WorldGen.genRand.Next(50, 100);
+                }
+            }
+            else if (item.type == ItemID.RecallPotion)
+            {
+                item.SetDefaults(ItemID.TeleportationPotion);
+            }
+            else if (item.type == ItemID.Glowstick)
+            {
+                int stack = item.stack;
+                item.SetDefaults(ItemID.SpelunkerGlowstick);
+                item.stack = stack;
+            }
+            else if (item.type == ItemID.LesserHealingPotion)
+            {
+                int stack = item.stack;
+                item.SetDefaults(ItemID.HealingPotion);
+                item.stack = stack;
+            }
+            else if (item.type == ItemID.HealingPotion)
+            {
+                int stack = item.stack;
+                item.SetDefaults(ItemID.GreaterHealingPotion);
+                item.stack = stack;
+            }
+            else if (item.type == ItemID.SuspiciousLookingEye || item.type == ItemID.SlimeCrown)
+            {
+                item.SetDefaults(Main.rand.NextFromList(ItemID.MechanicalEye, ItemID.MechanicalSkull, ItemID.MechanicalWorm));
+            }
+        }
+        public static void TryHardmodifyAPotion(Chest chest, int i)
+        {
+            var item = chest.item[i];
+            switch (WorldGen.genRand.Next(3))
+            {
+                case 0:
+                    if (ModContent.GetInstance<BoundedPrefix>().CanRoll(item))
+                    {
+                        int stack = item.stack;
+                        item.SetDefaults(item.type);
+                        item.stack = stack;
+                        item.Prefix(ModContent.PrefixType<BoundedPrefix>());
+                    }
+                    break;
+
+                case 1:
+                    if (ModContent.GetInstance<DoubledTimePrefix>().CanRoll(item))
+                    {
+                        int stack = item.stack;
+                        item.SetDefaults(item.type);
+                        item.stack = stack;
+                        item.Prefix(ModContent.PrefixType<DoubledTimePrefix>());
+                    }
+                    break;
+
+                case 2:
+                    if (ModContent.GetInstance<EmpoweredPrefix>().CanRoll(item))
+                    {
+                        int stack = item.stack;
+                        item.SetDefaults(item.type);
+                        item.stack = stack;
+                        item.Prefix(ModContent.PrefixType<EmpoweredPrefix>());
+                    }
+                    break;
+            }
+        }
+        public static void HardmodifyPreHardmodeLoot(Chest chest)
+        {
             for (int i = 0; i < Chest.maxItems; i++)
             {
                 var item = chest.item[i];
-                if (item.type == ItemID.FlamingArrow || item.type == ItemID.WoodenArrow)
-                {
-                    if (Crimson())
-                    {
-                        item.SetDefaults(ItemID.IchorArrow);
-                        item.stack = WorldGen.genRand.Next(50, 100);
-                    }
-                    else
-                    {
-                        item.SetDefaults(ItemID.CursedArrow);
-                        item.stack = WorldGen.genRand.Next(50, 100);
-                    }
-                }
-                else if (item.type == ItemID.ThrowingKnife || item.type == ItemID.Shuriken)
-                {
-                    if (Crimson())
-                    {
-                        item.SetDefaults(ItemID.IchorBullet);
-                        item.stack = WorldGen.genRand.Next(50, 100);
-                    }
-                    else
-                    {
-                        item.SetDefaults(ItemID.CursedBullet);
-                        item.stack = WorldGen.genRand.Next(50, 100);
-                    }
-                }
-                else if (item.type == ItemID.RecallPotion)
-                {
-                    item.SetDefaults(ItemID.TeleportationPotion);
-                }
-                else if (item.type == ItemID.Glowstick)
-                {
-                    int stack = item.stack;
-                    item.SetDefaults(ItemID.SpelunkerGlowstick);
-                    item.stack = stack;
-                }
-                else if (item.type == ItemID.LesserHealingPotion)
-                {
-                    int stack = item.stack;
-                    item.SetDefaults(ItemID.HealingPotion);
-                    item.stack = stack;
-                }
-                else if (item.type == ItemID.HealingPotion)
-                {
-                    int stack = item.stack;
-                    item.SetDefaults(ItemID.GreaterHealingPotion);
-                    item.stack = stack;
-                }
-                switch (WorldGen.genRand.Next(3))
-                {
-                    case 0:
-                        if (ModContent.GetInstance<BoundedPrefix>().CanRoll(item))
-                        {
-                            int stack = item.stack;
-                            item.SetDefaults(item.type);
-                            item.stack = stack;
-                            item.Prefix(ModContent.PrefixType<BoundedPrefix>());
-                        }
-                        break;
-
-                    case 1:
-                        if (ModContent.GetInstance<DoubledTimePrefix>().CanRoll(item))
-                        {
-                            int stack = item.stack;
-                            item.SetDefaults(item.type);
-                            item.stack = stack;
-                            item.Prefix(ModContent.PrefixType<DoubledTimePrefix>());
-                        }
-                        break;
-
-                    case 2:
-                        if (ModContent.GetInstance<EmpoweredPrefix>().CanRoll(item))
-                        {
-                            int stack = item.stack;
-                            item.SetDefaults(item.type);
-                            item.stack = stack;
-                            item.Prefix(ModContent.PrefixType<EmpoweredPrefix>());
-                        }
-                        break;
-                }
+                HardmodifyAnItem(chest, i);
+                TryHardmodifyAPotion(chest, i);
             }
-
+        }
+        public static void AddGenericHardmodeChestMiscLoot(Chest chest)
+        {
             switch (WorldGen.genRand.Next(5))
             {
                 case 0:
-                    chest.AddItem(ItemID.SoulofLight, WorldGen.genRand.Next(1, 5));
+                    chest.AddItem(ItemID.SoulofLight, WorldGen.genRand.Next(3, 12));
                     break;
                 case 1:
-                    chest.AddItem(ItemID.SoulofNight, WorldGen.genRand.Next(1, 5));
+                    chest.AddItem(ItemID.SoulofNight, WorldGen.genRand.Next(3, 12));
                     break;
                 case 2:
-                    chest.AddItem(Crimson() ? ItemID.Ichor : ItemID.CursedFlame, WorldGen.genRand.Next(1, 10));
+                    chest.AddItem(Crimson() ? ItemID.Ichor : ItemID.CursedFlame, WorldGen.genRand.Next(5, 20));
                     break;
                 case 3:
-                    chest.AddItem(ItemID.PixieDust, WorldGen.genRand.Next(1, 16));
+                    chest.AddItem(ItemID.PixieDust, WorldGen.genRand.Next(16, 30));
                     break;
             }
-            if (chestTile == TileID.Containers)
+        }
+        public static void AddSpecificHardmodeChestMainLoot(Chest chest, int tileID, int chestStyle)
+        {
+            if (tileID == TileID.Containers)
             {
-                switch (chestType)
+                switch (chestStyle)
+                {
+                    case ChestType.Gold:
+                    case ChestType.Marble:
+                    case ChestType.Granite:
+                    case ChestType.Mushroom:
+                    case ChestType.RichMahogany:
+                        if (WorldGen.genRand.NextBool(MimicLoot.Count))
+                        {
+                            break;
+                        }
+                        chest.item[0].SetDefaults(WorldGen.genRand.Next(MimicLoot));
+                        break;
+
+                    case ChestType.Frozen:
+                        if (WorldGen.genRand.NextBool(FrostMimicLoot.Count))
+                        {
+                            break;
+                        }
+                        chest.item[0].SetDefaults(WorldGen.genRand.Next(FrostMimicLoot));
+                        break;
+                }
+            }
+        }
+        public static void AddSpecificHardmodeChestMiscLoot(Chest chest, int tileID, int chestStyle)
+        {
+            if (tileID == TileID.Containers)
+            {
+                switch (chestStyle)
                 {
                     case ChestType.Frozen:
                         if (WorldGen.genRand.NextBool(3))
@@ -187,17 +261,40 @@ namespace Aequus.Content.WorldGeneration
                             chest.AddItem(ItemID.FrostCore);
                         }
                         break;
+
+                    case ChestType.RichMahogany:
+                    case ChestType.Ivy:
+                        if (WorldGen.genRand.NextBool(3))
+                        {
+                            chest.AddItem(ItemID.TurtleShell);
+                        }
+                        break;
                 }
             }
-            else if (chestTile == TileID.Containers2 && chestType == ChestType.Sandstone)
+            else if (tileID == TileID.Containers2 && chestStyle == ChestType.Sandstone)
             {
                 if (WorldGen.genRand.NextBool(3))
                 {
                     chest.AddItem(ItemID.AncientBattleArmorMaterial);
                 }
             }
+        }
+        public static void Hardmodify(Chest chest)
+        {
+            int chestType = ChestType.GetStyle(chest);
+            int chestTile = Main.tile[chest.x, chest.y].TileType;
+
+            HardmodifyPreHardmodeLoot(chest);
+            AddSpecificHardmodeChestMainLoot(chest, chestTile, chestType);
+            AddSpecificHardmodeChestMiscLoot(chest, chestTile, chestType);
+            for (int i = 0; i < 2; i++)
+            {
+                if (WorldGen.genRand.NextBool())
+                    AddGenericHardmodeChestMiscLoot(chest);
+            }
 
             ChangeChestToHardmodeVariant(chest, chestType, chestTile);
+            chest.SquishAndStackContents();
         }
         public static void ChangeChestToHardmodeVariant(Chest chest, int chestType, int chestTile)
         {
@@ -236,6 +333,11 @@ namespace Aequus.Content.WorldGeneration
                             InnerChangeChestToHardmodeVariant<HardMushroomChestTile>(chest.x, chest.y);
                         }
                         break;
+                    case ChestType.Webbed:
+                        {
+                            InnerChangeChestToHardmodeVariant(chest.x, chest.y, TileID.Containers2, ChestType.Spider);
+                        }
+                        break;
                 }
             }
             else if (chestTile == TileID.Containers2)
@@ -270,6 +372,25 @@ namespace Aequus.Content.WorldGeneration
                 NetMessage.SendTileSquare(-1, x, y, 2, 2);
             }
         }
+        public static void InnerChangeChestToHardmodeVariant(int x, int y, ushort tileType, int style)
+        {
+            x -= Main.tile[x, y].TileFrameX % 36 / 18;
+            y -= Main.tile[x, y].TileFrameY % 36 / 18;
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                {
+                    Main.tile[x + i, y + j].Active(value: true);
+                    Main.tile[x + i, y + j].TileType = tileType;
+                    Main.tile[x + i, y + j].TileFrameX = (short)((i + style * 2) * 18);
+                    Main.tile[x + i, y + j].TileFrameY = (short)(j * 18);
+                }
+            }
+            if (Main.netMode != NetmodeID.SinglePlayer)
+            {
+                NetMessage.SendTileSquare(-1, x, y, 2, 2);
+            }
+        }
 
         public override void PostUpdateWorld()
         {
@@ -280,10 +401,31 @@ namespace Aequus.Content.WorldGeneration
 
             if (!AequusWorld.hardmodeChests && WorldGen.SavedOreTiers.Cobalt > 0)
             {
+                for (int k = 0; k < Main.maxTilesX + Main.maxTilesY; k++)
+                {
+                    int x = WorldGen.genRand.Next(100, Main.maxTilesX);
+                    int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.UnderworldLayer - 50);
+                    if (!Main.tile[x, y].NoDungeonOrTempleWall() && WorldGen.AddBuriedChest(new Point(x, y), notNearOtherChests: true))
+                    {
+                        for (int l = y - 8; l < Main.maxTilesY - 10; l++)
+                        {
+                            int guess = Chest.FindChestByGuessing(x, l);
+                            if (guess == -1)
+                                guess = Chest.FindChestByGuessing(x - 1, l);
+                            if (guess != -1)
+                            {
+                                k += 100;
+                                ChestOpenedTracker.UnopenedChests.Add(new Point(Main.chest[guess].x, Main.chest[guess].y));
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 for (int i = 0; i < ChestOpenedTracker.UnopenedChests.Count; i++)
                 {
                     int chestID = Chest.FindChest(ChestOpenedTracker.UnopenedChests[i].X, ChestOpenedTracker.UnopenedChests[i].Y);
-                    if (chestID > -1 && ChestOpenedTracker.IsRealChest(chestID) && ChestType.IsGenericUndergroundChest(Main.chest[chestID]))
+                    if (chestID > -1 && ChestOpenedTracker.IsRealChest(chestID) && ChestType.isGenericUndergroundChest(Main.chest[chestID]))
                     {
                         Hardmodify(Main.chest[chestID]);
                     }

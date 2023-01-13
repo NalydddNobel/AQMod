@@ -4,7 +4,6 @@ using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;

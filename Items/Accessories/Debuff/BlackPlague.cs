@@ -1,11 +1,12 @@
-﻿using Terraria;
+﻿using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Debuff
 {
     [AutoloadEquip(EquipType.HandsOn)]
-    public class PhoenixRing : ModItem
+    public class BlackPlague : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -15,8 +16,8 @@ namespace Aequus.Items.Accessories.Debuff
         public override void SetDefaults()
         {
             Item.DefaultToAccessory(20, 14);
-            Item.rare = ItemRarityID.LightRed;
-            Item.value = Item.sellPrice(gold: 3);
+            Item.rare = ItemRarityID.Lime;
+            Item.value = Item.sellPrice(gold: 5);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -24,16 +25,19 @@ namespace Aequus.Items.Accessories.Debuff
             var aequus = player.Aequus();
             aequus.accBoneRing++;
             aequus.accBoneBurningRing++;
+            aequus.accBlackPhial++;
+            aequus.DebuffsInfliction.OverallTimeMultiplier += 0.5f;
+            aequus.accResetEnemyDebuffs = true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BoneRing>()
-                .AddIngredient(ItemID.MagmaStone)
-                .AddIngredient(ItemID.Bone, 30)
+                .AddIngredient<PhoenixRing>()
+                .AddIngredient<BlackPhial>()
+                .AddIngredient<OrganicEnergy>()
                 .AddTile(TileID.TinkerersWorkbench)
-                .TryRegisterBefore(ItemID.NecroHelmet);
+                .TryRegisterBefore(ItemID.PapyrusScarab);
         }
     }
 }

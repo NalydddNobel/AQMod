@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,8 +31,8 @@ namespace Aequus.Items.Accessories.Summon.Sentry
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
-                .SortAfterFirstRecipesOf(ItemID.PygmyNecklace);
+            FrozenTear.UpgradeItemRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
+                .SortBeforeFirstRecipesOf(ItemID.PapyrusScarab);
         }
 
         void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

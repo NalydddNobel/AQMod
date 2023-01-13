@@ -360,7 +360,7 @@ namespace Aequus.Tiles
             {
                 for (int l = -10; l <= 10; l++)
                 {
-                    if (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>())
+                    if (WorldGen.InWorld(i + k, j + l) && (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>()))
                     {
                         return;
                     }

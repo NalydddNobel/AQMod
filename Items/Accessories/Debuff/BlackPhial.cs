@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -48,6 +49,55 @@ namespace Aequus.Items.Accessories.Debuff
             var aequus = player.Aequus();
             aequus.accBlackPhial++;
             aequus.DebuffsInfliction.OverallTimeMultiplier += 0.5f;
+        }
+
+        public static void OnHitEffects(AequusPlayer aequus, NPC target, int damage, float knockback, bool crit)
+        {
+            int buffCount = 0;
+            for (int i = 0; i < NPC.maxBuffs; i++)
+            {
+                if (target.buffType[i] > 0 && Main.debuff[target.buffType[i]])
+                {
+                    buffCount++;
+                }
+            }
+            if (Main.rand.NextBool(Math.Max(4 / aequus.accBlackPhial + aequus.cdBlackPhial / 5 + buffCount * 2, 1)))
+            {
+                var buffsToInflict = new List<int>(DebuffsAfflicted);
+                for (int i = 0; i < NPC.maxBuffs; i++)
+                {
+                    if (target.buffTime[i] > 0 && target.buffType[i] > 0 && buffsToInflict.Contains(target.buffType[i]))
+                    {
+                        buffsToInflict.Remove(target.buffType[i]);
+                    }
+                }
+                if (buffsToInflict.Count <= 0)
+                    return;
+
+                int buff = Main.rand.Next(buffsToInflict);
+                if (!target.buffImmune[buff])
+                {
+                    aequus.cdBlackPhial += 30 / aequus.accBlackPhial;
+                    target.AddBuff(buff, 150);
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        PacketSystem.SyncSound(SoundPacket.BlackPhial, target.Center);
+                    }
+                    else
+                    {
+                        EmitSound(target.Center);
+                    }
+                    var size = target.Size;
+                    int amt = (int)(size.Length() / 4f);
+                    for (int i = 0; i < amt; i++)
+                    {
+                        var v = Main.rand.NextVector2CircularEdge(size.X, size.Y) * 0.5f;
+                        var d = Dust.NewDustPerfect(target.Center + v, DustID.BatScepter, Vector2.Normalize(-v) * Main.rand.NextFloat(4f) + target.velocity, Scale: Main.rand.NextFloat(1f, 1.6f));
+                        d.fadeIn = d.scale + 0.5f;
+                        d.noGravity = true;
+                    }
+                }
+            }
         }
 
         public static void EmitSound(Vector2 loc)

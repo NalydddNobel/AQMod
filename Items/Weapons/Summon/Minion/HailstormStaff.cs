@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Recipes;
+using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
 
         public override void AddRecipes()
         {
-            AequusRecipes.SpaceSquidRecipe(this, ItemID.FlinxStaff);
+            FrozenTear.UpgradeItemRecipe(this, ItemID.FlinxStaff);
         }
     }
 }

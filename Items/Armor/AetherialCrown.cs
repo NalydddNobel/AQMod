@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace Aequus.Items.Armor
@@ -206,6 +207,30 @@ namespace Aequus.Items.Armor
                 .AddIngredient(ItemID.FragmentStardust, 10)
                 .AddTile(TileID.LunarCraftingStation)
                 .TryRegisterAfter(ItemID.CelestialSigil);
+        }
+
+        public override void NetSend(BinaryWriter writer)
+        {
+            writer.Write((byte)armorSetChecks);
+        }
+
+        public override void NetReceive(BinaryReader reader)
+        {
+            armorSetChecks = reader.ReadByte();
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            if (armorSetChecks > 0)
+                tag["ArmorSetChecks"] = armorSetChecks;
+        }
+
+        public override void LoadData(TagCompound tag)
+        {
+            if (tag.TryGet("ArmorSetChecks", out int armorSetChecks))
+            {
+                this.armorSetChecks = armorSetChecks;
+            }
         }
 
         public bool HoverSlot(Item[] inventory, int context, int slot)

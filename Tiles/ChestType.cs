@@ -1,10 +1,14 @@
-﻿using Terraria;
+﻿using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Tiles
 {
-    public struct ChestType
+    public class ChestType : ModSystem
     {
+        public static HashSet<TileKey> IsGenericUndergroundChest { get; private set; }
+
         public const int Wood = 0;
         public const int Gold = 1;
         public const int LockedGold = 2;
@@ -78,21 +82,34 @@ namespace Aequus.Tiles
         public const int Ashwood = 16;
         public const int Containers2Count = 14;
 
-        public static bool IsGenericUndergroundChest(Chest chest)
+        public override void Load()
         {
-            if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
+            IsGenericUndergroundChest = new HashSet<TileKey>()
             {
-                int style = GetStyle(chest);
-                return style == Gold || style == Frozen || style == Marble 
-                    || style == Granite || style == Mushroom || style == Ivy 
-                    || style == Webbed || style == RichMahogany;
-            }
-            if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2)
-            {
-                int style = GetStyle(chest);
-                return style == Sandstone;
-            }
-            return false;
+                new TileKey(TileID.Containers, Gold),
+                new TileKey(TileID.Containers, Frozen),
+                new TileKey(TileID.Containers, Marble),
+                new TileKey(TileID.Containers, Granite),
+                new TileKey(TileID.Containers, Mushroom),
+                new TileKey(TileID.Containers, Ivy),
+                new TileKey(TileID.Containers, Webbed),
+                new TileKey(TileID.Containers, RichMahogany),
+                new TileKey(TileID.Containers, Webbed),
+                new TileKey(TileID.Containers, Ocean),
+                new TileKey(TileID.Containers2, Sandstone),
+                new TileKey(TileID.Containers2, Spider),
+            };
+        }
+
+        public override void Unload()
+        {
+            IsGenericUndergroundChest?.Clear();
+            IsGenericUndergroundChest = null;
+        }
+
+        public static bool isGenericUndergroundChest(Chest chest)
+        {
+            return IsGenericUndergroundChest.Contains(new TileKey(Main.tile[chest.x, chest.y].TileType, GetStyle(chest)));
         }
 
         public static int GetStyle(int frameX)

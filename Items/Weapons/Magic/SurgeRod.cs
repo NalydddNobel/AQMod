@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Recipes;
+﻿using Aequus.Items.Misc.Materials;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System;
@@ -39,7 +39,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            AequusRecipes.RedSpriteRecipe(this, ItemID.NimbusRod);
+            Fluorescence.UpgradeItemRecipe(this, ItemID.NimbusRod);
         }
     }
 }
