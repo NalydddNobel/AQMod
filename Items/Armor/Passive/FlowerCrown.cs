@@ -21,25 +21,11 @@ namespace Aequus.Items.Armor.Passive
         {
             Item.width = 16;
             Item.height = 16;
+            Item.damage = 5;
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 10;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 10);
-        }
-
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Mod == "Terraria")
-                {
-                    if (tooltips[i].Name == "Knockback")
-                    {
-                        tooltips.RemoveAt(i);
-                        break;
-                    }
-                }
-            }
         }
 
         public override void UpdateEquip(Player player)
@@ -51,9 +37,7 @@ namespace Aequus.Items.Armor.Passive
                 if (NewPetal(player, aequus))
                 {
                     aequus.summonHelmetTimer = 150;
-                    Item.damage = 5;
                     int damage = player.GetWeaponDamage(Item);
-                    Item.damage = 0;
                     var spawnPosition = player.gravDir == -1
                            ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height - 10)
                            : player.position + new Vector2(player.width / 2f + 8f * player.direction, 10f);
@@ -74,6 +58,12 @@ namespace Aequus.Items.Armor.Passive
         {
             return aequus.summonHelmetTimer < 0 ||
                 Main.rand.NextBool((int)MathHelper.Clamp(aequus.summonHelmetTimer - (int)player.velocity.Length(), 30, 120));
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveKnockback();
+            tooltips.RemoveCritChance();
         }
 
         public override void AddRecipes()

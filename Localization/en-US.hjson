@@ -480,6 +480,7 @@ Mods: {
 			CrabsonBag: Treasure Bag (Crabson)
 			OmegaStariteBag: Treasure Bag (Omega Starite)
 
+			CosmicChest: Cosmic Chest
 			GalaxyCommission: Galaxy's Commission
 			GiftingSpirit: Ice Queen's Spirit
 			ShimmerFish: Shimmer Fish
@@ -1137,6 +1138,7 @@ Mods: {
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 			
+			CosmicChest: Permanently increases item droprates from enemies
 			GalaxyCommission: Permanently increases the range of build buffs
 			GiftingSpirit: Toggles whether or not villagers will wear Christmas hats
 			ShimmerFish: Starts a new Angler Quest
@@ -1275,6 +1277,11 @@ Mods: {
 			IchorPopper: Increases bait power by 35% when in the crimson
 			MysticPopper: Increases bait power by 25% when in the hallow
 
+			ManathirstPotion: 
+				'''
+				{$Mods.Aequus.BuffDescription.ManathirstBuff}
+				All mana healing is applied over time
+				'''
 			DeathsEmbrace: 
 				'''
 				15% increased damage and critical strike chance
@@ -1283,7 +1290,11 @@ Mods: {
 				{{Once the buff wears off, you instantly die...}}
 				'''
 			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
-			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
+			BloodthirstPotion: 
+				'''
+				{$Mods.Aequus.BuffDescription.BloodthirstBuff}
+				All life healing is applied over time
+				'''
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
@@ -1617,6 +1628,7 @@ Mods: {
 		}
 
 		BuffName: {
+			ManathirstBuff: Manathirst
 			DeathsEmbraceBuff: Death's Embrace
 			TonicSpawnratesDebuff: Tonic Cooldown
 			TonicSpawnratesBuff: Tonic
@@ -1698,6 +1710,7 @@ Mods: {
 		}
 
 		BuffDescription: {
+			ManathirstBuff: Enemies always drop mana stars
 			DeathsEmbraceBuff: Why are you reading this... you're going to die
 			TonicSpawnratesDebuff: You can not use the Mercer Tonic
 			TonicSpawnratesBuff: Enemies are attracted to your smell
@@ -2137,6 +2150,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyFruit: Any Fruit
 			AnyQuestFish: Any Quest Fish
 			AnyMosshroom: Any Moss Mushroom
 			AnyEctoplasm: Any Ectoplasm

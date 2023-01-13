@@ -1,6 +1,6 @@
-﻿using Aequus.Items.Misc.Energies;
-using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,6 +22,7 @@ namespace Aequus.Items.Armor.Passive
             int head = Item.headSlot;
             Item.CloneDefaults(ItemID.WizardHat);
             Item.headSlot = head;
+            Item.damage = 20;
             Item.DamageType = DamageClass.Summon;
         }
 
@@ -39,9 +40,7 @@ namespace Aequus.Items.Armor.Passive
                 {
                     if (aequus.summonHelmetTimer != -1)
                     {
-                        Item.damage = 20;
                         int damage = player.GetWeaponDamage(Item);
-                        Item.damage = 0;
                         int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), player.Center + new Vector2(0f, Main.rand.NextFloat(-player.height / 2f, player.height / 2f)), Vector2.Zero,
                             ModContent.ProjectileType<MoonlunaHatProj>(), damage, 0f, player.whoAmI);
                         Main.projectile[p].ArmorPenetration = Item.ArmorPenetration;
@@ -50,6 +49,12 @@ namespace Aequus.Items.Armor.Passive
                 }
                 player.GetDamage(DamageClass.Summon) += 0.10f;
             }
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveKnockback();
+            tooltips.RemoveCritChance();
         }
 
         public override void AddRecipes()

@@ -72,6 +72,12 @@ namespace Aequus
 
         public int projectileIdentity = -1;
 
+        public int prevLife;
+        public int prevMana;
+
+        public int manathirst;
+        public int bloodthirst;
+
         public float maxSpawnsDivider;
         public float spawnrateMultiplier;
 
@@ -84,6 +90,9 @@ namespace Aequus
 
         public int BuildingBuffRange;
 
+        [SaveData("PermaLootLuck")]
+        [SaveDataAttribute.IsListedBoolean]
+        public bool usedPermaLootLuck;
         [SaveData("PermaBuildBuffRange")]
         [SaveDataAttribute.IsListedBoolean]
         public bool usedPermaBuildBuffRange;
@@ -423,6 +432,8 @@ namespace Aequus
             clone.sceneInvulnerability = sceneInvulnerability;
             clone.boundBowAmmo = boundBowAmmo;
             clone.boundBowAmmoTimer = boundBowAmmoTimer;
+            clone.bloodthirst = bloodthirst;
+            clone.manathirst = manathirst;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
@@ -443,7 +454,9 @@ namespace Aequus
                 (aequus.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
                 aequus.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
                 aequus.itemCooldown <= 0 && itemCooldown > 0,
-                (aequus.itemUsage - itemUsage).Abs() > 20);
+                (aequus.itemUsage - itemUsage).Abs() > 20,
+                aequus.bloodthirst != bloodthirst,
+                aequus.manathirst != manathirst);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -501,6 +514,14 @@ namespace Aequus
                 if (bb2[3])
                 {
                     p.Write(itemUsage);
+                }
+                if (bb2[4])
+                {
+                    p.Write((ushort)bloodthirst);
+                }
+                if (bb2[5])
+                {
+                    p.Write((ushort)manathirst);
                 }
                 p.Send();
             }
@@ -561,6 +582,14 @@ namespace Aequus
             if (bb2[3])
             {
                 itemUsage = reader.ReadUInt16();
+            }
+            if (bb2[4])
+            {
+                bloodthirst = reader.ReadUInt16();
+            }
+            if (bb2[5])
+            {
+                manathirst = reader.ReadUInt16();
             }
         }
 
@@ -697,7 +726,6 @@ namespace Aequus
             accBlackPhial = 0;
             accBoneBurningRing = 0;
             accBoneRing = 0;
-            dropRerolls = 0f;
             accDevilsTongue = false;
             accGrandReward = false;
             accFoolsGoldRing = 0;
@@ -744,7 +772,8 @@ namespace Aequus
             debuffs.ResetEffects(Player);
             buffDuration = 1f;
             debuffDuration = 1f;
-            luckRerolls = 0;
+            dropRerolls = usedPermaLootLuck ? 0.05f : 0f;
+            luckRerolls = 0f;
             antiGravityItemRadius = 0f;
             soulLimit = 0;
             pickTileDamage = 1f;
@@ -1110,8 +1139,58 @@ namespace Aequus
             CountSentries();
         }
 
+        public void CheckThirsts()
+        {
+            if (Player.HasBuff<BloodthirstBuff>())
+            {
+                if (prevLife < Player.statLife)
+                {
+                    bloodthirst += Player.statLife - prevLife;
+                    Player.statLife = prevLife;
+                }
+            }
+            if (Player.HasBuff<ManathirstBuff>())
+            {
+                if (prevMana < Player.statMana)
+                {
+                    manathirst += Player.statMana - prevMana;
+                    Player.statMana = prevMana;
+                }
+            }
+        }
+
         public override void PostUpdate()
         {
+            CheckThirsts();
+            if (Player.HasBuff<BloodthirstBuff>())
+            {
+                if (bloodthirst > 0 && Main.GameUpdateCount % 2 == 0)
+                {
+                    //CombatText.NewText(Player.getRect(), CombatText.HealLife, 1, dot: true);
+                    Player.statLife = Math.Min(Player.statLife + 1, Player.statLifeMax2);
+                    bloodthirst--;
+                }
+            }
+            else if (bloodthirst > 0)
+            {
+                bloodthirst = 0;
+            }
+            if (Player.HasBuff<ManathirstBuff>())
+            {
+                if (manathirst > 0)
+                {
+                    //CombatText.NewText(Player.getRect(), CombatText.HealMana, 1, dot: true);
+                    Player.statMana = Math.Min(Player.statMana + 1, Player.statManaMax2);
+                    manathirst--;
+                }
+            }
+            else if (manathirst > 0)
+            {
+                manathirst = 0;
+            }
+            prevLife = Player.statLife;
+            prevMana = Player.statMana;
+
             if (Main.netMode != NetmodeID.Server && !Player.outOfRange)
                 DoDebuffEffects();
 
@@ -1777,7 +1856,7 @@ namespace Aequus
         {
             if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Melee))
             {
-                scale *= (1f + Math.Max(statMeleeScale, 0.5f));
+                scale += Math.Max(statMeleeScale, 0.5f);
             }
         }
 
@@ -2419,11 +2498,7 @@ namespace Aequus
                         return rolledAmt;
                     }
                 }
-                int roll = Player.RollLuck(range);
-                if (roll < rolledAmt)
-                {
-                    rolledAmt = roll;
-                }
+                rolledAmt = Math.Min(rolledAmt, Player.RollLuck(range));
                 if (rolledAmt <= 0)
                 {
                     return 0;

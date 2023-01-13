@@ -1,12 +1,12 @@
-﻿using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Materials;
+﻿using Aequus.Items.Accessories;
+using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.Permanent
 {
-    public class Moro : ModItem
+    public class CosmicChest : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -21,28 +21,27 @@ namespace Aequus.Items.Consumables.Permanent
             Item.consumable = true;
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
-            Item.value = Item.sellPrice(gold: 2);
             Item.maxStack = 9999;
+            Item.value = Item.sellPrice(gold: 2);
         }
 
         public override bool? UseItem(Player player)
         {
-            if (!player.Aequus().moroSummonerFruit)
+            if (!player.Aequus().usedPermaLootLuck)
             {
-                player.Aequus().moroSummonerFruit = true;
+                player.Aequus().usedPermaLootLuck = true;
                 return true;
             }
-
             return false;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnyFruit, 3)
-                .AddIngredient<Fluorescence>(10)
-                .AddIngredient<AtmosphericEnergy>()
+                .AddIngredient<GrandReward>()
+                .AddIngredient<CosmicEnergy>()
                 .AddTile(TileID.Anvils)
+                .AddCondition(Recipe.Condition.InGraveyardBiome)
                 .Register();
         }
     }

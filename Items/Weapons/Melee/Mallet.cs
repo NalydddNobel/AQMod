@@ -71,7 +71,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             Item.width = 30;
             Item.height = 30;
-            Item.damage = 17;
+            Item.damage = 16;
             Item.useTime = 8;
             Item.useAnimation = 8;
             Item.useStyle = ItemUseStyleID.Shoot;

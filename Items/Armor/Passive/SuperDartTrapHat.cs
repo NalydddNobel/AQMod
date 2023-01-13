@@ -18,6 +18,7 @@ namespace Aequus.Items.Armor.Passive
             Item.width = 12;
             Item.height = 12;
             Item.defense = 10;
+            Item.damage = Damage;
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 15;
             Item.knockBack = 5f;

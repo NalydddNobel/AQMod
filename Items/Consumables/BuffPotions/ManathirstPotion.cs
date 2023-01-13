@@ -7,28 +7,28 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.BuffPotions
 {
-    public class BloodthirstPotion : ModItem
+    public class ManathirstPotion : ModItem
     {
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(234, 0, 83, 0), new Color(162, 0, 80, 0), };
+            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(83, 0, 234, 0), new Color(80, 0, 162, 0), };
             SacrificeTotal = 20;
         }
 
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.HeartreachPotion);
-            Item.buffType = ModContent.BuffType<BloodthirstBuff>();
+            Item.CloneDefaults(ItemID.ManaRegenerationPotion);
+            Item.buffType = ModContent.BuffType<ManathirstBuff>();
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<Leecheel>()
+                .AddIngredient<Depthscale>()
                 .AddIngredient(ItemID.Deathweed)
                 .AddTile(TileID.Bottles)
-                .TryRegisterBefore(ItemID.HeartreachPotion);
+                .TryRegisterBefore(ItemID.ManaRegenerationPotion);
         }
     }
 }

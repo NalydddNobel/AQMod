@@ -116,6 +116,14 @@ namespace Aequus
             ResetCaches();
         }
 
+        public override void PostUpdateItems()
+        {
+            if  (Main.netMode != NetmodeID.Server)
+            {
+                Main.LocalPlayer.Aequus().CheckThirsts(); // To fix the UI bugging out a lot
+            }
+        }
+
         public override void PostUpdateTime()
         {
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;

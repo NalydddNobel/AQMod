@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.CursorDyes;
-using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

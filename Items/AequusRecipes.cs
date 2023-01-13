@@ -12,6 +12,7 @@ namespace Aequus.Items
         public static RecipeGroup AnyEctoplasm { get; private set; }
         public static RecipeGroup AnyMosshrooms { get; private set; }
         public static RecipeGroup AnyQuestFish { get; private set; }
+        public static RecipeGroup AnyFruit { get; private set; }
 
         public override void AddRecipeGroups()
         {
@@ -20,6 +21,7 @@ namespace Aequus.Items
             AnyMosshrooms = NewGroup("AnyMosshroom",
                 ModContent.ItemType<ArgonMushroom>(), ModContent.ItemType<KryptonMushroom>(), ModContent.ItemType<XenonMushroom>());
             AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
+            AnyFruit = NewGroup("AnyFruit", AequusItem.FruitIDs.ToArray());
         }
 
         private static RecipeGroup NewGroup(string name, params int[] items)

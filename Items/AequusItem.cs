@@ -126,7 +126,22 @@ namespace Aequus.Items
                 [ItemRarityID.Red] = "Mods.Aequus.ItemRarity.10",
                 [ItemRarityID.Purple] = "Mods.Aequus.ItemRarity.11",
             };
+            On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+        }
 
+        private static void NPCLoot_DropHeals(On.Terraria.NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
+        {
+            if (closestPlayer.HasBuff<ManathirstBuff>())
+            {
+                Item.NewItem(self.GetSource_Loot(), self.getRect(), ItemID.Star);
+                return;
+            }
+            if (closestPlayer.HasBuff<BloodthirstBuff>())
+            {
+                Item.NewItem(self.GetSource_Loot(), self.getRect(), ItemID.Heart);
+                return;
+            }
+            orig(self, closestPlayer);
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)

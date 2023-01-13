@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics.PlayerLayers;
 using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +27,7 @@ namespace Aequus.Items.Armor.Passive
         {
             Item.width = 16;
             Item.height = 16;
+            Item.damage = Damage;
             Item.defense = 1;
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 10;
@@ -46,9 +48,7 @@ namespace Aequus.Items.Armor.Passive
                 {
                     if (aequus.summonHelmetTimer != -1)
                     {
-                        Item.damage = Damage;
                         int damage = player.GetWeaponDamage(Item);
-                        Item.damage = 0;
                         var spawnPosition = player.gravDir == -1
                             ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
                             : player.position + new Vector2(player.width / 2f + 8f * player.direction, 0f);
@@ -58,10 +58,6 @@ namespace Aequus.Items.Armor.Passive
                     aequus.summonHelmetTimer = TimeBetweenShots;
                 }
             }
-        }
-
-        public override void UpdateVanity(Player player)
-        {
         }
 
         public override void AddRecipes()
@@ -78,6 +74,12 @@ namespace Aequus.Items.Armor.Passive
                 .AddRecipeGroup("PresurePlate")
                 .AddTile(TileID.Anvils)
                 .TryRegisterBefore(ItemID.CopperBar);
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.RemoveKnockback();
+            tooltips.RemoveCritChance();
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

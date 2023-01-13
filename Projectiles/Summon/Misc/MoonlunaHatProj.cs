@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Summon.Misc
     {
         public TrailRenderer prim;
 
-        public virtual int Max => 7;
+        public virtual int Max => 10;
 
         public override void SetDefaults()
         {
@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Summon;
-            Projectile.timeLeft = 300;
+            Projectile.timeLeft = 360;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 60;
         }
@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Summon.Misc
             int count = Main.player[Projectile.owner].ownedProjectileCounts[Type];
             if (Projectile.timeLeft < 30)
             {
-                int amt = Math.Max(count - 5, 1);
+                int amt = Math.Max(count - Max, 1);
                 Projectile.timeLeft -= amt - 1;
                 Projectile.alpha += 25 * amt;
                 if (Projectile.alpha > 255)
