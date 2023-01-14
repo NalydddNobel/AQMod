@@ -1,0 +1,21 @@
+﻿{
+  "ClassOrderedPillarFragments": [
+    "FragmentSolar",
+    "FragmentVortex",
+    "FragmentNebula",
+    "FragmentStardust",
+    "ThoriumMod;WhiteDwarfFragment",
+    "ThoriumMod;ShootingStarFragment",
+    "ThoriumMod;CelestialFragment"
+  ],
+
+  "RainbowOrderPillarFragments": [
+    "ThoriumMod;ShootingStarFragment",
+    "FragmentSolar",
+    "ThoriumMod;CelestialFragment",
+    "ThoriumMod;WhiteDwarfFragment",
+    "FragmentVortex",
+    "FragmentStardust",
+    "FragmentNebula"
+  ]
+}

@@ -2,14 +2,29 @@
 
 namespace Aequus.Content.CrossMod
 {
-    internal class ModSupport<T> : ModSystem where T : ModSupport<T>
+    internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod>
     {
         public static Mod Instance { get; private set; }
-        public static string ModName => typeof(T).Name;
+        public static string ModName => typeof(TMod).Name;
 
         public static bool IsLoadingEnabled()
         {
             return ModLoader.HasMod(ModName);
+        }
+
+        public static bool TryFind<T>(string name, out T value) where T : IModType
+        {
+            if (Instance == null)
+            {
+                value = default(T);
+                return false;
+            }
+            return Instance.TryFind(name, out value);
+        }
+
+        public static object Call(params object[] args)
+        {
+            return Instance?.Call(args);
         }
 
         public override bool IsLoadingEnabled(Mod mod)

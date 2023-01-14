@@ -126,6 +126,8 @@ namespace Aequus
 
         //public ShatteringVenus.ItemInfo shatteringVenus;
 
+        public bool ammoAndThrowingCost33;
+
         public bool accResetEnemyDebuffs;
 
         public float statMeleeScale;
@@ -668,6 +670,8 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            ammoAndThrowingCost33 = false;
+            accResetEnemyDebuffs = false;
             accLavaPlace = false;
             instaShieldTimeMax = 0;
             instaShieldCooldown = 0;
@@ -1487,6 +1491,14 @@ namespace Aequus
             }
             if (Player.HasBuff<BlueFire>())
                 Player.AddLifeRegen(-6);
+        }
+
+        public override bool CanConsumeAmmo(Item weapon, Item ammo)
+        {
+            Main.NewText(ammoAndThrowingCost33);
+            if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
+                return false;
+            return true;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)

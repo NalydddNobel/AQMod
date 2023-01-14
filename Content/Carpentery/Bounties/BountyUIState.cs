@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -23,7 +24,7 @@ namespace Aequus.Content.Carpentery.Bounties
 
             MinWidth.Set(500, 0f);
             MinHeight.Set(500, 0f);
-            Width.Set(400, 0.4f);
+            Width.Set(400, 0.3f);
             Height.Set(0, 0.75f);
             Top.Set(100, 0f);
             HAlign = 0.5f;
@@ -43,8 +44,8 @@ namespace Aequus.Content.Carpentery.Bounties
             var uiPanel = new UIPanel();
             uiPanel.BackgroundColor = new Color(34, 64, 126) * 0.75f;
             uiPanel.Top.Set(10, 0f);
-            uiPanel.Left.Set(20 + 300, 0f);
-            uiPanel.Width.Set(-300 - 30, 1f);
+            uiPanel.Left.Set(20 + 290, 0f);
+            uiPanel.Width.Set(-290 - 30, 1f);
             uiPanel.Height.Set(-20, 1f);
             Append(uiPanel);
             detailsManager = new BountyUIDetailsPanelManager(this, uiPanel);
@@ -53,13 +54,19 @@ namespace Aequus.Content.Carpentery.Bounties
 
         public void SetupBountySidebar()
         {
+            var uiText = new UIText("- BOUNTIES -", textScale: 0.8f, large: true);
+            uiText.Top.Set(24f, 0f);
+            uiText.Left.Set(150f - (FontAssets.DeathText.Value.MeasureString(uiText.Text) / 2f * 0.8f).X, 0f);
+            uiText.TextOriginX = 0.5f;
+            uiText.TextOriginY = 0f;
+            Append(uiText);
             var uiPanel = new UIPanel();
             uiPanel.BackgroundColor = new Color(91, 124, 193) * 0.9f;
-            uiPanel.BorderColor = uiPanel.BackgroundColor * 0.5f;
-            uiPanel.Top.Set(10, 0f);
+            uiPanel.BorderColor = uiPanel.BackgroundColor * 1.3f;
+            uiPanel.Top.Set(60, 0f);
             uiPanel.Left.Set(10, 0f);
-            uiPanel.Width.Set(300, 0f);
-            uiPanel.Height.Set(-20, 1f);
+            uiPanel.Width.Set(280f, 0f);
+            uiPanel.Height.Set(-70, 1f);
             Append(uiPanel);
 
             var uiList = new UIList();

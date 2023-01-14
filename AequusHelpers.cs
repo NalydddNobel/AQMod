@@ -354,6 +354,14 @@ namespace Aequus
             return result;
         }
 
+        public static void OpenShop(int npcType)
+        {
+            Main.playerInventory = true;
+            Main.npcChatText = "";
+            Main.SetNPCShopIndex(99);
+            Main.instance.shop[Main.npcShop].SetupShop(npcType);
+        }
+
         public static void CleanupAndSyncBuffs(this NPC npc)
         {
             for (int i = 0; i < NPC.maxBuffs; i++)

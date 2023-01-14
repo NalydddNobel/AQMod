@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Items.Misc.Energies;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -120,15 +121,26 @@ namespace Aequus.Items.Armor
             iterating = true;
             try
             {
+                player.lifeRegen += 2;
+                player.Aequus().ammoAndThrowingCost33 = true;
+                player.manaCost *= 0.9f;
+                player.statManaMax2 += 20;
+                player.maxMinions += 1;
+                player.maxTurrets += 1;
+                player.Aequus().ghostSlotsMax += 1;
+                try
+                {
+                    if (ThoriumMod.Instance != null)
+                    {
+                        ThoriumMod.Call("BonusBardInspirationMax", player, 1);
+                        ThoriumMod.Call("BonusHealerHealBonus", player, 1);
+                    }
+                }
+                catch
+                {
+                }
                 if (pretendToBeItem > 0)
                 {
-                    player.lifeRegen += 2;
-                    player.Aequus().statRangedVelocityMultiplier += 0.5f;
-                    player.manaCost *= 0.9f;
-                    player.statManaMax2 += 20;
-                    player.slotsMinions += 1;
-                    player.maxTurrets += 1;
-                    player.Aequus().ghostSlotsMax += 1;
                     try
                     {
                         SetToFakeHelmet(player);
@@ -136,7 +148,6 @@ namespace Aequus.Items.Armor
                     }
                     catch
                     {
-
                     }
                     player.armor[0] = Item;
                 }
@@ -156,6 +167,22 @@ namespace Aequus.Items.Armor
                 {
                     t.Text = t.Text.Replace("((", clrString);
                     t.Text = t.Text.Replace("))", "]");
+                }
+            }
+            for (int i = 0; i < tooltips.Count; i++)
+            {
+                var s = tooltips[i].Text.Split(';');
+                if (s.Length > 1)
+                {
+                    if (!ModLoader.HasMod(s[0]))
+                    {
+                        tooltips.RemoveAt(i);
+                        i--;
+                    }
+                    else
+                    {
+                        tooltips[i].Text = s[1];
+                    }
                 }
             }
             if (pretendToBeItem <= 0 || _itemCache == null)
@@ -198,14 +225,19 @@ namespace Aequus.Items.Armor
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.LunarBar, 12)
-                .AddIngredient<UltimateEnergy>(3)
-                .AddIngredient(ItemID.FragmentSolar, 10)
-                .AddIngredient(ItemID.FragmentVortex, 10)
-                .AddIngredient(ItemID.FragmentNebula, 10)
-                .AddIngredient(ItemID.FragmentStardust, 10)
-                .AddTile(TileID.LunarCraftingStation)
+            var r = CreateRecipe()
+                .AddIngredient(ItemID.LunarBar, 8)
+                .AddIngredient<UltimateEnergy>(3);
+
+            var fragments = AequusItem.GetPreferredAllFragmentList();
+            int stack = 6;
+
+            for (int i = 0; i < fragments.Count; i++)
+            {
+                r.AddIngredient(fragments[i], stack);
+            }
+
+            r.AddTile(TileID.LunarCraftingStation)
                 .TryRegisterAfter(ItemID.CelestialSigil);
         }
 

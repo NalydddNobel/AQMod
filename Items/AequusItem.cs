@@ -3,6 +3,7 @@ using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
@@ -41,13 +42,15 @@ using Terraria.UI;
 
 namespace Aequus.Items
 {
-    public class AequusItem : GlobalItem, IAddRecipes
+    public class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         public delegate bool CustomCoatingFunction(int x, int y, Player player);
 
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 
+        public static List<int> ClassOrderedPillarFragments { get; private set; }
+        public static List<int> RainbowOrderPillarFragments { get; private set; }
         public static List<int> FruitIDs { get; private set; }
         public static List<int> LegendaryFishIDs { get; private set; }
 
@@ -142,6 +145,13 @@ namespace Aequus.Items
                 return;
             }
             orig(self, closestPlayer);
+        }
+
+        public void PostSetupContent(Aequus aequus)
+        {
+            var val = Aequus.GetContentArrayFile("MiscItemSets");
+            ClassOrderedPillarFragments = Aequus.ReadContentArrayNameListToIntList(val, "ClassOrderedPillarFragments", ItemID.Search);
+            RainbowOrderPillarFragments = Aequus.ReadContentArrayNameListToIntList(val, "RainbowOrderPillarFragments", ItemID.Search);
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)
@@ -691,6 +701,14 @@ namespace Aequus.Items
                 }
             }
             return tag.Get<int>($"{key}ID");
+        }
+
+        public static List<int> GetPreferredAllFragmentList()
+        {
+            if (ThoriumMod.Instance != null)
+                return RainbowOrderPillarFragments;
+
+            return ClassOrderedPillarFragments;
         }
     }
 }

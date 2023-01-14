@@ -1027,13 +1027,17 @@ Mods: {
 		# Armor Sets
 			AetherialSlacks: Aetherial Slacks
 			AetherialRobes: Aetherial Robes
+
+			# NOTE: Do not translate the left side of lines which have ";" in them, as that is a mod identifier
 			AetherialCrown: 
 				'''
 				10% increased melee weapon size
-				50% increased ranged projectile velocity
+				33% chance not to consume ammo and thrown items
 				Increases maximum mana by 20 and reduces mana usage by 10%
 				Increases your max number of all summon slots by 1
 				Grants minor life regeneration
+				ThoriumMod;Increases maximum inspiration by 1
+				ThoriumMod;Healing spells will heal an additional 1 life
 				((Inherits all stats and abilities of a set's helmet excluding defense))
 				((Right click to change helmet set type on multi-helmet sets))
 				'''
@@ -2495,7 +2499,7 @@ Mods: {
 					BountyButton: Bounties
 					SubmitPhoto: Submit Photo
 					Blueprint: Blueprint
-					BlueprintFakeCopyright: Ⓒ 2022 Carpenter Ant, Zinc. All rights reserved
+					BlueprintFakeCopyright: Ⓒ 2023 Carpenter Ant, Zinc. All rights reserved
 					Reward: "Reward"
 					PurchaseBounty: Purchase a copy of this bounty for: {Coins}
 				}
