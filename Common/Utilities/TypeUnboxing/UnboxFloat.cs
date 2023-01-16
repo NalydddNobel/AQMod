@@ -1,8 +1,8 @@
 ﻿namespace Aequus.Common.Utilities.TypeUnboxing
 {
-    public struct UnboxFloat : ITypeUnboxer<float>
+    public class UnboxFloat : TypeUnboxer<float>
     {
-        public bool TryUnbox(object obj, out float value)
+        public override bool TryUnbox(object obj, out float value)
         {
             value = default(float);
             if (obj is float)

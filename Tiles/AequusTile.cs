@@ -55,6 +55,7 @@ namespace Aequus.Tiles
         public static Dictionary<int, int> WallIDToItemID { get; private set; }
 
         internal static bool[] All;
+        public static bool[] IsNotProtected { get; private set; }
 
         public override void Load()
         {
@@ -98,6 +99,14 @@ namespace Aequus.Tiles
             {
                 All[i] = true;
             }
+            IsNotProtected = new bool[TileLoader.TileCount];
+            for (int i = 0; i < All.Length; i++)
+            {
+                IsNotProtected[i] = !Main.tileDungeon[i];
+            }
+            IsNotProtected[TileID.LihzahrdBrick] = false;
+            IsNotProtected[TileID.LihzahrdAltar] = false;
+            IsNotProtected[TileID.ShadowOrbs] = false;
         }
 
         public void AddRecipes(Aequus aequus)

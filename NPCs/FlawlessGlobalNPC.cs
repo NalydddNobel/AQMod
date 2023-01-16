@@ -20,9 +20,9 @@ namespace Aequus.NPCs
         {
             if (!preventNoHitCheck)
             {
-                for (int i = 0; i < FlawlessFightSystem.DamagedPlayers.Count; i++)
+                foreach (byte p in FlawlessFightSystem.DamagedPlayers)
                 {
-                    damagedPlayers[FlawlessFightSystem.DamagedPlayers[i]] = true;
+                    damagedPlayers[p] = true;
                 }
             }
         }

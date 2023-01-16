@@ -1,9 +1,13 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Necromancy;
+using Aequus.NPCs;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod.ModCalls
@@ -11,40 +15,213 @@ namespace Aequus.Content.CrossMod.ModCalls
     /// <summary>
     /// Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
     /// </summary>
-    public class ModCallManager
+    public class ModCallManager : ILoadable
     {
         public const string Success = "Success";
         public const string Failure = "Failure";
 
+        private static object[] argument;
+        private static int nextArg;
+        private static string type;
+        private static Mod mod;
+
         public static object HandleModCall(object[] args)
         {
+            argument = args;
+            nextArg = 0;
+            type = "Unknown";
+            mod = null;
             try
             {
-                string type = args[0] as string;
-                var mod = args[1] as Mod;
-
+                type = Get<string>();
+                mod = Get<Mod>();
                 switch (type)
                 {
                     case "downedCrabson":
-                        return HandleGetterSetterCall(ref AequusWorld.downedCrabson, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedCrabson);
                     case "downedOmegaStarite":
-                        return HandleGetterSetterCall(ref AequusWorld.downedOmegaStarite, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedOmegaStarite);
                     case "downedDustDevil":
-                        return HandleGetterSetterCall(ref AequusWorld.downedDustDevil, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedDustDevil);
                     case "downedHyperStarite":
-                        return HandleGetterSetterCall(ref AequusWorld.downedHyperStarite, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedHyperStarite);
                     case "downedUltraStarite":
-                        return HandleGetterSetterCall(ref AequusWorld.downedUltraStarite, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedUltraStarite);
                     case "downedRedSprite":
-                        return HandleGetterSetterCall(ref AequusWorld.downedRedSprite, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedRedSprite);
                     case "downedSpaceSquid":
-                        return HandleGetterSetterCall(ref AequusWorld.downedSpaceSquid, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedSpaceSquid);
                     case "downedEventDemon":
-                        return HandleGetterSetterCall(ref AequusWorld.downedEventDemon, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedEventDemon);
                     case "downedEventCosmic":
-                        return HandleGetterSetterCall(ref AequusWorld.downedEventCosmic, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedEventCosmic);
                     case "downedEventAtmosphere":
-                        return HandleGetterSetterCall(ref AequusWorld.downedEventAtmosphere, args, AequusHelpers.UnboxBoolean, 2);
+                        return GetterSetter(ref AequusWorld.downedEventAtmosphere);
+                    case "chestAdamantiteTier":
+                        return GetterSetter(ref AequusWorld.chestAdamantiteTier);
+                    case "chestMythrilTier":
+                        return GetterSetter(ref AequusWorld.chestMythrilTier);
+                    case "chestCobaltTier":
+                        return GetterSetter(ref AequusWorld.chestCobaltTier);
+                    case "hardmodeChests":
+                        return GetterSetter(ref AequusWorld.hardmodeChests);
+                    case "downedUpriser":
+                        return GetterSetter(ref AequusWorld.downedUpriser);
+                    case "shadowOrbsBrokenTotal":
+                        return GetterSetter(ref AequusWorld.shadowOrbsBrokenTotal);
+                    case "tinkererRerolls":
+                        return GetterSetter(ref AequusWorld.tinkererRerolls);
+                    case "usedWhiteFlag":
+                        return GetterSetter(ref AequusWorld.usedWhiteFlag);
+                    case "xmasHats":
+                        return GetterSetter(ref AequusWorld.xmasHats);
+                    case "xmasWorld":
+                        return GetterSetter(ref AequusWorld.xmasWorld);
+
+                    // Args: int/NPC - NPC, int/Player - Player | Returns: whether or not the player has been hit
+                    case "Flawless":
+                        {
+                            var npc = GetNPC();
+                            var player = GetPlayer();
+                            return npc.GetGlobalNPC<FlawlessGlobalNPC>().damagedPlayers[player.whoAmI];
+                        }
+
+                    // Args: int/NPC - NPC | Returns: value of FlawlessGlobalNPC.preventNoHitCheck on the provided NPC
+                    case "FlawlessCheck":
+                        {
+                            var npc = GetNPC();
+                            return GetterSetter(ref npc.GetGlobalNPC<FlawlessGlobalNPC>().preventNoHitCheck);
+                        }
+
+                    // Args: int/NPC - NPC | Returns: bool[] of size Main.maxPlayers
+                    case "FlawlessStat":
+                        return GetNPC().GetGlobalNPC<FlawlessGlobalNPC>().damagedPlayers;
+
+                    // Args: int - Buff ID (Optional: Color - Color) | Returns: Color of the provided buff ID
+                    case "PotionBuffColor":
+                        {
+                            int buff = Get<int>();
+                            if (TryGet<Color>(out var color))
+                            {
+                                PotionColorsDatabase.BuffToColor[buff] = color;
+                            }
+                            if (!PotionColorsDatabase.BuffToColor.TryGetValue(buff, out var buffColor))
+                            {
+                                return Color.Transparent;
+                            }
+                            return buffColor;
+                        }
+
+                    // Args: int - Item (Optional: Color - Color) | Returns: Color of the provided item ID
+                    case "PotionItemColor":
+                        {
+                            int item = Get<int>();
+                            if (TryGet<Color>(out var color))
+                            {
+                                PotionColorsDatabase.ItemToBuffColor[item] = color;
+                            }
+                            if (!PotionColorsDatabase.ItemToBuffColor.TryGetValue(item, out var buffColor))
+                            {
+                                return Color.Transparent;
+                            }
+                            return buffColor;
+                        }
+
+                    // Args: int - Projectile (Optional: bool - shouldBePushable) | Returns: If the provided Projectile ID can be pushed
+                    case "PushableProjectile":
+                        {
+                            int proj = Get<int>();
+                            if (TryGet<bool>(out var shouldBePushable))
+                            {
+                                if (shouldBePushable)
+                                {
+                                    PushableEntitiesDatabase.ProjectileIDs.Add(proj);
+                                }
+                                else
+                                {
+                                    PushableEntitiesDatabase.ProjectileIDs.Remove(proj);
+                                }
+                            }
+                            return PushableEntitiesDatabase.ProjectileIDs.Contains(proj);
+                        }
+
+                    // Args: int - NPC (Optional: bool - shouldBePushable) | Returns: If the provided NPC ID can be pushed
+                    case "PushableNPC":
+                        {
+                            int npc = Get<int>();
+                            if (TryGet<bool>(out var shouldBePushable))
+                            {
+                                if (shouldBePushable)
+                                {
+                                    PushableEntitiesDatabase.NPCIDs.Add(npc);
+                                }
+                                else
+                                {
+                                    PushableEntitiesDatabase.NPCIDs.Remove(npc);
+                                }
+                            }
+                            return PushableEntitiesDatabase.NPCIDs.Contains(npc);
+                        }
+
+                    case "SentryAccessory":
+                        {
+                            int item = Get<int>();
+                            if (TryGet<Action<Projectile, Item, Player>>(out var simpleFunc))
+                            {
+                                SentryAccessoriesDatabase.OnAI.Add(item, (info) =>
+                                    {
+                                        simpleFunc(info.Projectile, info.Accessory, info.Player);
+                                    });
+                                return Success;
+                            }
+                            if (TryGet<Action<Projectile, GlobalProjectile, Item, Player>>(out var simpleFunc2))
+                            {
+                                SentryAccessoriesDatabase.OnAI.Add(item, (info) =>
+                                    {
+                                        simpleFunc2(info.Projectile, info.SentryAccessories, info.Accessory, info.Player);
+                                    });
+                                return Success;
+                            }
+                        }
+                        return Failure;
+
+                    case "SentryAccessoryOnShoot":
+                        {
+                            int item = Get<int>();
+                            if (TryGet<Action<Projectile, Item, Player>>(out var simpleFunc))
+                            {
+                                SentryAccessoriesDatabase.OnShoot.Add(item, (info) =>
+                                {
+                                    simpleFunc(info.Projectile, info.Accessory, info.Player);
+                                });
+                                return Success;
+                            }
+                            if (TryGet<Action<IEntitySource, Projectile, Item, Player>>(out var simpleFunc2))
+                            {
+                                SentryAccessoriesDatabase.OnShoot.Add(item, (info) =>
+                                {
+                                    simpleFunc2(info.Source, info.Projectile, info.Accessory, info.Player);
+                                });
+                                return Success;
+                            }
+                            if (TryGet<Action<Projectile, Projectile, Item, Player>>(out var simpleFunc3))
+                            {
+                                SentryAccessoriesDatabase.OnShoot.Add(item, (info) =>
+                                {
+                                    simpleFunc3(info.Projectile, info.ParentProjectile, info.Accessory, info.Player);
+                                });
+                                return Success;
+                            }
+                            if (TryGet<Action<IEntitySource, Projectile, Projectile, Item, Player>>(out var simpleFunc4))
+                            {
+                                SentryAccessoriesDatabase.OnShoot.Add(item, (info) =>
+                                {
+                                    simpleFunc4(info.Source, info.Projectile, info.ParentProjectile, info.Accessory, info.Player);
+                                });
+                                return Success;
+                            }
+                        }
+                        return Failure;
 
                     case "PylonColor":
                         {
@@ -81,23 +258,112 @@ namespace Aequus.Content.CrossMod.ModCalls
             return null;
         }
 
-        private static T HandleGetterSetterCall<T>(ref T value, object[] args, ITypeUnboxer<T> unboxer, int index = 2)
+        internal static void TestModCalls()
         {
-            var currentValue = value;
+            var mod = Aequus.Instance;
+            //mod.Call("SentryAccessory", mod, ItemID.CobaltShield, (Projectile proj, GlobalProjectile sentryAcc, Item item, Player player) =>
+            //{
+            //    Main.NewText("tester!?");
+            //});
+            //mod.Call("SentryAccessory", mod, ItemID.ObsidianShield, (Projectile proj, Item item, Player player) =>
+            //{
+            //    Main.NewText("tester 22!?");
+            //});
+            //mod.Call("SentryAccessoryOnShoot", mod, ItemID.AnkhShield, (Projectile proj, Item item, Player player) =>
+            //{
+            //    Main.NewText("tester 333!?");
+            //});
+            //mod.Call("SentryAccessoryOnShoot", mod, ItemID.AnkhCharm, (IEntitySource source, Projectile proj, Projectile parentProj, Item item, Player player) =>
+            //{
+            //    Main.NewText("tester 4444!?");
+            //});
+            //mod.Call("SentryAccessoryOnShoot", mod, ItemID.LavaCharm, (IEntitySource source, Projectile proj, Item item, Player player) =>
+            //{
+            //    Main.NewText($"{source.GetType().FullName}");
+            //});
+        }
 
-            if (args.Length > index)
+        private static T GetterSetter<T>(ref T value)
+        {
+            if (TryGet<T>(out var value2))
             {
-                if (unboxer.TryUnbox(args[index], out var value2))
-                {
-                    value = value2;
-                }
+                value = value2;
             }
             return value;
         }
 
-        private static void UnboxFail<T>(object obj)
+        private static NPC GetNPC()
         {
-            Aequus.Instance.Logger.Error($"Value of {(obj == null ? "null" : obj.GetType().FullName)} did not unbox into {typeof(T).FullName}.");
+            if (TryGet(out int whoAmI))
+            {
+                return Main.npc[whoAmI];
+            }
+            return Get<NPC>();
+        }
+
+        private static Player GetPlayer()
+        {
+            if (TryGet(out int whoAmI))
+            {
+                return Main.player[whoAmI];
+            }
+            return Get<Player>();
+        }
+
+        private static bool TryGet<T>(out T value)
+        {
+            value = default(T);
+            if (nextArg >= argument.Length)
+            {
+                return false;
+            }
+            if (TypeUnboxer<T>.Instance != null && TypeUnboxer<T>.Instance.TryUnbox(argument[nextArg], out var result))
+            {
+                nextArg++;
+                value = result;
+                return true;
+            }
+            if (argument[nextArg] is T result2)
+            {
+                nextArg++;
+                value = result2;
+                return true;
+            }
+            return false;
+        }
+
+        private static T Get<T>()
+        {
+            try
+            {
+                if (TypeUnboxer<T>.Instance != null && TypeUnboxer<T>.Instance.TryUnbox(argument[nextArg], out var result))
+                {
+                    nextArg++;
+                    return result;
+                }
+                var result2 = (T)argument[nextArg];
+                nextArg++;
+                return result2;
+            }
+            catch (Exception ex)
+            {
+                string nextArgTextValue = nextArg >= argument.Length ? "Outside of Index, Cannot retrieve value." : argument[nextArg].ToString();
+                string callerName = mod != null ? mod.Name : "Unknown";
+                Aequus.Instance.Logger.Error($"Could not get 'arg{nextArg}' ({nextArgTextValue}) as '{typeof(T).FullName}'.\nCaller: {callerName}, Type: {type}\n{ex.Message}\n{ex.StackTrace}");
+            }
+            return default(T);
+        }
+
+        public void Load(Mod mod)
+        {
+        }
+
+        public void Unload()
+        {
+            nextArg = 0;
+            argument = null;
+            mod = null;
+            type = null;
         }
     }
 }

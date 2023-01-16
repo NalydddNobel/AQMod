@@ -659,7 +659,7 @@ Mods: {
 				50% increased duration on debuffs applied to enemies
 				'''
 			LavaproofMitten: Allows placement in lava
-			Stormcloak: Push enemies and projectiles away after taking damage
+			Stormcloak: Redirects hostile projectiles towards nearby enemies
 			PotionCanteen: Allows infinite use of a potion when equipped
 			ShadowVeer: Ghost minions will do shadow dashes at targeted enemies
 			SouljointCuffs: Ghost minions become attached to an enemy after dealing a melee hit
@@ -795,7 +795,7 @@ Mods: {
 				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
 				SporeSac: Spores are replaced with explosive nanites
 				CelesteTorus: Grants an extra ring of orbs
-				Stormcloak: Taking damage inflicts Hellfire and Frostbite to nearby enemies
+				Stormcloak: More projectiles can be carried and they explode when hitting an enemy
 			}
 
 		# Vanity

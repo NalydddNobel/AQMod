@@ -1,8 +1,8 @@
 ﻿namespace Aequus.Common.Utilities.TypeUnboxing
 {
-    public struct UnboxInt : ITypeUnboxer<int>
+    public class UnboxInt : TypeUnboxer<int>
     {
-        public bool TryUnbox(object obj, out int value)
+        public override bool TryUnbox(object obj, out int value)
         {
             value = default(int);
             if (obj is int)

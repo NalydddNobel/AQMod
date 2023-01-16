@@ -42,6 +42,7 @@ namespace Aequus.Projectiles
 
         public int transform;
         public int timeAlive;
+        public byte enemyRebound;
 
         /// <summary>
         /// The item source used to spawn this projectile. Defaults to 0 (<see cref="ItemID.None"/>)
@@ -198,6 +199,7 @@ namespace Aequus.Projectiles
             frenzyTime = 0;
             extraUpdatesTemporary = 0;
             timeAlive = 0;
+            enemyRebound = 0;
         }
 
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
@@ -367,6 +369,14 @@ namespace Aequus.Projectiles
 
         public override bool PreAI(Projectile projectile)
         {
+            if ((enemyRebound == 1 || enemyRebound == 2) && Main.rand.NextBool(1 + projectile.extraUpdates))
+            {
+                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.Torch : DustID.IceTorch, Scale: Main.rand.NextFloat(1f, 2.8f));
+                d.velocity *= 0.5f;
+                d.velocity += -projectile.velocity * 0.33f;
+                d.noGravity = true;
+            }
+
             if (transform > 0)
             {
                 if (Main.myPlayer == projectile.owner)
@@ -521,6 +531,11 @@ namespace Aequus.Projectiles
 
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
+            if (enemyRebound == 1 || enemyRebound == 2)
+            {
+                target.AddBuff(BuffID.OnFire3, 600);
+                target.AddBuff(BuffID.Frostburn2, 600);
+            }
             if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0)
             {
                 int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
@@ -580,6 +595,11 @@ namespace Aequus.Projectiles
             if (sourceItemUsed == ModContent.ItemType<Raygun>())
             {
                 Raygun.SpawnExplosion(projectile.GetSource_Death(), projectile);
+            }
+            if (enemyRebound == 2)
+            {
+                Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.DirectionTo(Main.player[projectile.owner].Center) * -0.1f,
+                            ModContent.ProjectileType<StormcloakExplosionProj>(), 120, 0f, projectile.owner, ai0: Main.rand.Next(2));
             }
         }
 
@@ -646,6 +666,7 @@ namespace Aequus.Projectiles
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(timeAlive);
+            binaryWriter.Write(enemyRebound);
             bitWriter.WriteBit(transform > 0);
             if (transform > 0)
             {
@@ -691,6 +712,7 @@ namespace Aequus.Projectiles
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
             timeAlive = binaryReader.ReadInt32();
+            enemyRebound = binaryReader.ReadByte();
             if (bitReader.ReadBit())
             {
                 transform = binaryReader.ReadInt32();

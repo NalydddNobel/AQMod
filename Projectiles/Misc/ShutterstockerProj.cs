@@ -79,7 +79,7 @@ namespace Aequus.Projectiles.Misc
             }
             else
             {
-                Projectile.velocity = Vector2.Normalize(diff) * Math.Max(distance / 4f, 1f);
+                Projectile.velocity = Vector2.Normalize(diff) * Math.Max(distance / 2f, 1f);
             }
 
             if (!player.channel || !player.controlUseItem)
@@ -186,6 +186,7 @@ namespace Aequus.Projectiles.Misc
                 SpawnClipItem(new Rectangle(coords.X - sizeX / 2, coords.Y - sizeY / 2, sizeX, sizeY));
             }
 
+            Main.player[Projectile.owner].Aequus().SetCooldown(300, ignoreStats: false, Main.player[Projectile.owner].HeldItemFixed());
             if (Main.netMode != NetmodeID.Server)
             {
                 ScreenCulling.SetPadding(20);

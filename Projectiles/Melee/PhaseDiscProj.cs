@@ -197,7 +197,7 @@ namespace Aequus.Projectiles.Melee
                 if (Main.projectile[i].active && i != Projectile.whoAmI && Main.projectile[i].type == Type && Projectile.owner == Main.projectile[i].owner
                     && (int)Main.projectile[i].ai[1] < 2 && Projectile.Colliding(hitbox, Main.projectile[i].getRect()))
                 {
-                    Projectile.velocity += Main.projectile[i].DirectionTo(Projectile.Center).UnNaN() * 0.05f;
+                    //Projectile.velocity += Main.projectile[i].DirectionTo(Projectile.Center).UnNaN() * 0.05f;
                     if ((int)Main.projectile[i].ai[1] != (int)Projectile.ai[1] && Projectile.Distance(Main.player[Projectile.owner].Center) > Main.projectile[i].Distance(Main.player[Projectile.owner].Center))
                     {
                         int amt = 20;

@@ -34,10 +34,6 @@ namespace Aequus.Content
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
-        }
-
-        void IAddRecipes.AddRecipes(Aequus aequus)
-        {
             if (Aequus.LogMore)
             {
                 Aequus.Instance.Logger.Info("Loading potion colors...");
@@ -61,7 +57,7 @@ namespace Aequus.Content
                 {
                     if (Aequus.LogMore)
                     {
-                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
+                        Aequus.Instance.Logger.Info($"Loading custom potion color entries for {modDict.Key}...");
                     }
                     foreach (var potionColor in modDict.Value)
                     {
@@ -72,6 +68,10 @@ namespace Aequus.Content
                     }
                 }
             }
+        }
+
+        void IAddRecipes.AddRecipes(Aequus aequus)
+        {
             foreach (var i in ContentSamples.ItemsByType)
             {
                 if (i.Value.buffType > 0)
@@ -90,6 +90,10 @@ namespace Aequus.Content
 
         void ILoadable.Unload()
         {
+            ItemColorForBuffsBlacklist?.Clear();
+            ItemColorForBuffsBlacklist = null;
+            BuffToColor?.Clear();
+            BuffToColor = null;
             ItemToBuffColor?.Clear();
             ItemToBuffColor = null;
         }

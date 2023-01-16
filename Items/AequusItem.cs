@@ -463,6 +463,23 @@ namespace Aequus.Items
             }
         }
 
+        public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
+        {
+            var wingStats = player.Aequus().wingStats;
+            speed = wingStats.horizontalSpeed.ApplyTo(speed);
+            acceleration = wingStats.horizontalAcceleration.ApplyTo(acceleration);
+        }
+
+        public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+        {
+            var wingStats = player.Aequus().wingStats;
+            ascentWhenFalling = wingStats.verticalAscentWhenFalling.ApplyTo(ascentWhenFalling);
+            ascentWhenRising = wingStats.verticalAscentWhenRising.ApplyTo(ascentWhenRising);
+            maxCanAscendMultiplier = wingStats.verticalMaxCanAscendMultiplier.ApplyTo(maxCanAscendMultiplier);
+            maxAscentMultiplier = wingStats.verticalMaxAscentMultiplier.ApplyTo(maxAscentMultiplier);
+            constantAscend = wingStats.verticalMaxAscentMultiplier.ApplyTo(constantAscend);
+        }
+
         public override bool? UseItem(Item item, Player player)
         {
             var aequus = player.Aequus();
@@ -500,6 +517,15 @@ namespace Aequus.Items
                 }
             }
             return null;
+        }
+
+        public override bool ConsumeItem(Item item, Player player)
+        {
+            if (item.damage > 0 && item.CountsAsClass(DamageClass.Throwing) && player.Aequus().ammoAndThrowingCost33 && Main.rand.NextBool(3))
+            {
+                return false;
+            }
+            return true;
         }
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

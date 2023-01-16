@@ -244,7 +244,7 @@ namespace Aequus.Items.Accessories
                 if (Main.myPlayer == player.whoAmI)
                 {
                     var v = player.DirectionTo(Main.npc[i].Center);
-                    Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center + v * 20f, v * 20f + Main.npc[i].velocity / 2f, ModContent.ProjectileType<WormScarfLaser>(), 60, 0f, player.whoAmI);
+                    Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center + v * 20f, v * 20f + Main.npc[i].velocity / 2f, ModContent.ProjectileType<WormScarfLaser>(), 30, 0f, player.whoAmI);
                 }
             }
         }

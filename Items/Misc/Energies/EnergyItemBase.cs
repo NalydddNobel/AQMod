@@ -59,15 +59,17 @@ namespace Aequus.Items.Misc.Energies
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            var coloring = new Color(255, 255, 255, 200) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, 0.8f, 1f);
+            var color = itemColor.A > 0 ? itemColor : Main.inventoryBack;
+            var auraColor = color * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly, 0.8f, 1f);
 
             SpriteBatchCache cache = null;
             if (Aequus.HQ)
             {
+                //Main.NewText($"{Item.Name}: {UI.AequusUI.CurrentItemSlot.Context} | {drawColor} | {itemColor} | {Main.inventoryBack}");
                 cache = new SpriteBatchCache(spriteBatch);
                 Main.spriteBatch.End();
                 Begin.UI.BeginWMatrix(spriteBatch, Begin.Shader, useScissorRectangle: true, cache.transformMatrix);
-                var drawData = new DrawData(Aura.Value, position, null, coloring, 0f, origin, scale, SpriteEffects.None, 0);
+                var drawData = new DrawData(Aura.Value, position, null, auraColor, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);
@@ -76,13 +78,13 @@ namespace Aequus.Items.Misc.Energies
                 cache.Begin(spriteBatch);
             }
 
-            spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, color, 0f, origin, scale, SpriteEffects.None, 0f);
 
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
                 Begin.UI.BeginWMatrix(spriteBatch, Begin.Shader, useScissorRectangle: true, cache.transformMatrix);
-                var drawData = new DrawData(Aura.Value, position, null, coloring.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
+                var drawData = new DrawData(Aura.Value, position, null, auraColor.UseA(0) * 0.33f, 0f, origin, scale, SpriteEffects.None, 0);
                 Shader.ShaderData.Apply(drawData);
 
                 drawData.Draw(spriteBatch);

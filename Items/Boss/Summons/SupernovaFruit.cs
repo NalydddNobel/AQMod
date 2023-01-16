@@ -58,7 +58,7 @@ namespace Aequus.Items.Boss.Summons
 
             Main.spriteBatch.End();
             Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
-            var drawData = new DrawData(texture, position, null, Color.White, 0f, origin, scale, SpriteEffects.None, 0);
+            var drawData = new DrawData(texture, position, null, itemColor.A > 0 ? itemColor : Main.inventoryBack, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<EnchantedDye>());
             effect.Apply(null, drawData);
             drawData.Draw(spriteBatch);

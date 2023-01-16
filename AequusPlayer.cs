@@ -5,6 +5,7 @@ using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Players;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
@@ -71,6 +72,8 @@ namespace Aequus
         private static MethodInfo Player_ItemCheck_Shoot;
 
         public int projectileIdentity = -1;
+
+        public PlayerWingModifiers wingStats;
 
         public int prevLife;
         public int prevMana;
@@ -228,6 +231,7 @@ namespace Aequus
         /// </summary>
         public int increasedRegen;
 
+        public int accDustDevilExpertThrowTimer;
         public Item accDustDevilExpert;
 
         public Item accGhostSupport;
@@ -756,6 +760,7 @@ namespace Aequus
 
         public void ResetStats()
         {
+            wingStats.ResetEffects();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             BuildingBuffRange = usedPermaBuildBuffRange ? 75 : 50;
@@ -1056,6 +1061,107 @@ namespace Aequus
             if (accBloodCrownSlot != -1)
             {
                 HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
+            }
+
+            if (accDustDevilExpert != null)
+            {
+                bool onCooldown = Player.HasBuff<StormcloakCooldown>();
+                var l = Stormcloak.GetBlowableProjectiles(Player, accDustDevilExpert, onlyMine: onCooldown);
+                Vector2 widthMethod(float p) => new Vector2(7f) * (float)Math.Sin(p * MathHelper.Pi);
+                Color colorMethod(float p) => Color.White.UseA(150) * 0.45f * (float)Math.Sin(p * MathHelper.Pi);
+                for (int i = 0; i < l.Count + (onCooldown ? 0 : 1); i++)
+                {
+                    var v = Main.rand.NextVector2Unit();
+                    Dust.NewDustPerfect(Player.Center + v * Main.rand.NextFloat(30f, 100f), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
+                    if (Main.rand.NextBool(3))
+                    {
+                        var prim = new TrailRenderer(TextureCache.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        float rotation = Player.direction * 0.45f;
+                        var particle = new StormcloakTrailParticle(prim, Player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * 10f,
+                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
+                        particle.StretchTrail(v.RotatedBy(MathHelper.PiOver2 * -Player.direction) * 2f);
+                        particle.rotationValue = rotation / 4f;
+                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
+                        particle.prim.GetColor = (p) => colorMethod(p) * particle.Rotation * Math.Min(particle.Scale, 1.5f);
+                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
+                    }
+                }
+
+                if (l.Count > 0)
+                {
+                    if (accDustDevilExpertThrowTimer == 1)
+                    {
+                        SoundEngine.PlaySound(SoundID.DD2_BetsySummon.WithPitchOffset(-0.44f).WithVolumeScale(2f), Player.Center);
+                    }
+                    if (!onCooldown)
+                        accDustDevilExpertThrowTimer++;
+                    foreach (var proj in l)
+                    {
+                        proj.position += Player.velocity * 0.95f;
+                        var v = proj.DirectionTo(Player.Center);
+                        float size = Math.Max(proj.Size.Length(), Player.Size.Length()) + proj.velocity.Length();
+                        if (proj.Distance(Player.Center) < size)
+                        {
+                            proj.Center = Player.Center - v * size;
+                        }
+                        int i = proj.FindTargetWithLineOfSight();
+                        float tornadoValue = 0.8f;
+                        if (onCooldown && i != -1)
+                        {
+                            var toEnemy = proj.DirectionTo(Main.npc[i].Center);
+                            proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, toEnemy, 0.8f)) * proj.velocity.Length();
+                            if ((proj.velocity - toEnemy * proj.velocity.Length()).Length() < 16f)
+                            {
+                                tornadoValue = 0.2f;
+                            }
+                        }
+                        proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, v.RotatedBy((MathHelper.PiOver2 - 0.1f) * -Player.direction) + v,
+                            Math.Clamp(1f - proj.Distance(Player.Center) / 500f, 0f, tornadoValue))) * Math.Clamp(proj.velocity.Length() + 0.07f, 0.5f, 32f);
+                        proj.extraUpdates = 0;
+                        proj.Aequus().enemyRebound = (byte)(ExpertBoost ? 2 : 1);
+                        proj.Aequus().sourceItemUsed = accDustDevilExpert.type;
+                        proj.ArmorPenetration = 10;
+                        proj.timeLeft = Math.Max(proj.timeLeft, 180);
+                        proj.friendly = true;
+                        proj.penetrate = 1;
+                        proj.owner = Player.whoAmI;
+                        proj.netUpdate = true;
+                        proj.hostile = false;
+                        if (onCooldown)
+                        {
+                            var d = Dust.NewDustDirect(proj.position - new Vector2(32f, 32f), proj.width + 64, proj.height + 64, ModContent.DustType<MonoDust>(), newColor: new Color(128, 128, 128, 0));
+                            d.velocity += v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f);
+                        }
+                    }
+                    if (accDustDevilExpertThrowTimer > 120)
+                    {
+                        for (int k = 0; k < l.Count; k++)
+                        {
+                            int i = l[k].FindTargetWithLineOfSight();
+                            if (i != -1)
+                            {
+                                l[k].originalDamage = l[k].damage = Player.GetWeaponDamage(accDustDevilExpert);
+                                l.RemoveAt(k);
+                                k--;
+                            }
+                        }
+                        SoundEngine.PlaySound(SoundID.DD2_BetsysWrathShot.WithPitchOffset(-0.2f).WithVolumeScale(2f), Player.Center);
+                        accDustDevilExpertThrowTimer = 0;
+                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
+                    }
+                }
+                else
+                {
+                    if (accDustDevilExpertThrowTimer > 0)
+                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
+                    accDustDevilExpertThrowTimer = 0;
+                }
+            }
+            else
+            {
+                if (accDustDevilExpertThrowTimer > 0)
+                    Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
+                accDustDevilExpertThrowTimer = 0;
             }
 
             if (accDarknessCrownDamage > 0f && InDarkness)
@@ -1495,7 +1601,6 @@ namespace Aequus
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
         {
-            Main.NewText(ammoAndThrowingCost33);
             if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
                 return false;
             return true;
@@ -1649,30 +1754,7 @@ namespace Aequus
         {
             if (!hurtSucceeded)
                 return;
-
-            if (accDustDevilExpert != null && !Player.HasBuff<StormcloakCooldown>())
-            {
-                if (accExpertBoost && Player.ownedProjectileCounts[ModContent.ProjectileType<StormcloakExplosionProj>()] <= 0)
-                {
-                    for (int k = 0; k < 5; k++)
-                    {
-                        for (int i = 0; i <= 1; i++)
-                        {
-                            var spawnLoc = new Vector2(Player.position.X + Main.rand.Next(-100, 100), Player.position.Y + Main.rand.Next(-100, 100));
-                            Projectile.NewProjectile(Player.GetSource_Accessory(accDustDevilExpert), spawnLoc, Player.DirectionTo(spawnLoc) * 0.1f,
-                                ModContent.ProjectileType<StormcloakExplosionProj>(), 120, 0f, Player.whoAmI, ai0: i);
-                        }
-                    }
-                }
-                if (Player.ownedProjectileCounts[ModContent.ProjectileType<StormcloakProj>()] <= 0)
-                {
-                    Projectile.NewProjectile(Player.GetSource_Accessory(accDustDevilExpert), Player.Center, Vector2.Zero,
-                        ModContent.ProjectileType<StormcloakProj>(), 0, 20f * accDustDevilExpert.Aequus().accStacks, Player.whoAmI);
-                }
-                Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 110);
-            }
         }
-
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
         {

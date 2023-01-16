@@ -32,10 +32,15 @@ namespace Aequus.Items.Misc
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Yellow;
-            Item.useAnimation = 120;
-            Item.useTime = 120;
+            Item.useAnimation = 32;
+            Item.useTime = 32;
             Item.useStyle = ItemUseStyleID.HoldUp;
             text = "";
+        }
+
+        public override bool CanUseItem(Player player)
+        {
+            return !player.Aequus().HasCooldown;
         }
 
         public override bool? UseItem(Player player)
@@ -48,6 +53,7 @@ namespace Aequus.Items.Misc
                 Main.combatText[t].text = textValue;
                 Main.combatText[t].position.X = player.Center.X - FontAssets.CombatText[1].Value.MeasureString(textValue).X / 2f;
             }
+            player.Aequus().SetCooldown(120, ignoreStats: true, Item);
             return true;
         }
 

@@ -1,6 +1,4 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Items.Weapons.Summon.Scepters;
-using Aequus.Projectiles.Magic;
+﻿using Aequus.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +11,6 @@ namespace Aequus.Items.Weapons.Magic
         {
             Item.staff[Type] = true;
             SacrificeTotal = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<Revenant>(), Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()

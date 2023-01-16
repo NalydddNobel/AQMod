@@ -17,7 +17,7 @@ namespace Aequus.Content.WorldGeneration
             {
                 var r = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
-                if (WorldGen.structures?.CanPlace(r, AequusTile.All) == true)
+                if (WorldGen.structures?.CanPlace(r, AequusTile.IsNotProtected) == true)
                     continue;
                 WorldGen.structures.AddStructure(r);
                 GrowGrass(r);

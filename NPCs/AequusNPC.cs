@@ -212,7 +212,7 @@ namespace Aequus.NPCs
 
                 case NPCID.BloodEelHead:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 3, maximumDropped: 6));
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 10));
                     break;
                 case NPCID.GoblinShark:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 3, maximumDropped: 6));
@@ -237,7 +237,7 @@ namespace Aequus.NPCs
                 case NPCID.DiggerHead:
                 case NPCID.DuneSplicerHead:
                 case NPCID.SeekerHead:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 25));
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 10));
                     break;
 
                 case NPCID.MoonLordCore:

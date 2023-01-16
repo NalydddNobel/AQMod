@@ -75,9 +75,9 @@ namespace Aequus
         public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
 
         public static Regex SubstitutionRegex { get; private set; }
-        public static ITypeUnboxer<int> UnboxInt { get; private set; }
-        public static ITypeUnboxer<float> UnboxFloat { get; private set; }
-        public static ITypeUnboxer<bool> UnboxBoolean { get; private set; }
+        public static TypeUnboxer<int> UnboxInt { get; private set; }
+        public static TypeUnboxer<float> UnboxFloat { get; private set; }
+        public static TypeUnboxer<bool> UnboxBoolean { get; private set; }
 
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 

@@ -44,7 +44,7 @@ namespace Aequus.Items.GlobalItems
                 if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
                 {
                     float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
-                    DrawCooldownBack(spriteBatch, position, frame, scale, new Color(255, 255, 255, 120) * (0.75f + progress * 0.25f), progress);
+                    DrawCooldownBack(spriteBatch, position, frame, scale, Main.inventoryBack * (0.75f + progress * 0.25f), progress);
                 }
             }
             return true;
