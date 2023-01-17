@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -51,12 +52,13 @@ namespace Aequus.Items.Accessories.Debuff
             aequus.DebuffsInfliction.OverallTimeMultiplier += 0.5f;
         }
 
-        public static void OnHitEffects(AequusPlayer aequus, NPC target, int damage, float knockback, bool crit)
+        public static void OnHitEffects(AequusPlayer aequus, Entity target, int damage, float knockback, bool crit)
         {
             int buffCount = 0;
-            for (int i = 0; i < NPC.maxBuffs; i++)
+            var entity = new EntityCommons(target);
+            for (int i = 0; i < entity.maxBuffs; i++)
             {
-                if (target.buffType[i] > 0 && Main.debuff[target.buffType[i]])
+                if (entity.buffType[i] > 0 && Main.debuff[entity.buffType[i]])
                 {
                     buffCount++;
                 }
@@ -66,19 +68,19 @@ namespace Aequus.Items.Accessories.Debuff
                 var buffsToInflict = new List<int>(DebuffsAfflicted);
                 for (int i = 0; i < NPC.maxBuffs; i++)
                 {
-                    if (target.buffTime[i] > 0 && target.buffType[i] > 0 && buffsToInflict.Contains(target.buffType[i]))
+                    if (entity.buffTime[i] > 0 && entity.buffType[i] > 0 && buffsToInflict.Contains(entity.buffType[i]))
                     {
-                        buffsToInflict.Remove(target.buffType[i]);
+                        buffsToInflict.Remove(entity.buffType[i]);
                     }
                 }
                 if (buffsToInflict.Count <= 0)
                     return;
 
                 int buff = Main.rand.Next(buffsToInflict);
-                if (!target.buffImmune[buff])
+                if (!entity.ImmuneToBuff(buff))
                 {
                     aequus.cdBlackPhial += 30 / aequus.accBlackPhial;
-                    target.AddBuff(buff, 150);
+                    entity.AddBuff(buff, 150);
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         PacketSystem.SyncSound(SoundPacket.BlackPhial, target.Center);

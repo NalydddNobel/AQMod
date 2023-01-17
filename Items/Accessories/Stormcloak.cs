@@ -46,7 +46,7 @@ namespace Aequus.Items.Accessories
             var rect = Utils.CenteredRectangle(player.Center, new Vector2(onlyMine ? 640f : 320f));
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].Colliding(Main.projectile[i].getRect(), rect) && PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type))
+                if (Main.projectile[i].active && Main.projectile[i].Colliding(Main.projectile[i].getRect(), rect) && PushableEntities.ProjectileIDs.Contains(Main.projectile[i].type))
                 {
                     if (((Main.projectile[i].hostile || (Main.player[Main.projectile[i].owner].hostile && Main.player[Main.projectile[i].owner].team != player.team)) && !onlyMine) ||
                         Main.projectile[i].Aequus().sourceItemUsed == item.type)

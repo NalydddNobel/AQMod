@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,6 +15,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void SetStaticDefaults()
         {
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

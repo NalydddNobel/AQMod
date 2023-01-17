@@ -135,14 +135,14 @@ namespace Aequus.Content.CrossMod.ModCalls
                             {
                                 if (shouldBePushable)
                                 {
-                                    PushableEntitiesDatabase.ProjectileIDs.Add(proj);
+                                    PushableEntities.ProjectileIDs.Add(proj);
                                 }
                                 else
                                 {
-                                    PushableEntitiesDatabase.ProjectileIDs.Remove(proj);
+                                    PushableEntities.ProjectileIDs.Remove(proj);
                                 }
                             }
-                            return PushableEntitiesDatabase.ProjectileIDs.Contains(proj);
+                            return PushableEntities.ProjectileIDs.Contains(proj);
                         }
 
                     // Args: int - NPC (Optional: bool - shouldBePushable) | Returns: If the provided NPC ID can be pushed
@@ -153,14 +153,14 @@ namespace Aequus.Content.CrossMod.ModCalls
                             {
                                 if (shouldBePushable)
                                 {
-                                    PushableEntitiesDatabase.NPCIDs.Add(npc);
+                                    PushableEntities.NPCIDs.Add(npc);
                                 }
                                 else
                                 {
-                                    PushableEntitiesDatabase.NPCIDs.Remove(npc);
+                                    PushableEntities.NPCIDs.Remove(npc);
                                 }
                             }
-                            return PushableEntitiesDatabase.NPCIDs.Contains(npc);
+                            return PushableEntities.NPCIDs.Contains(npc);
                         }
 
                     case "SentryAccessory":

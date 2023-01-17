@@ -46,8 +46,6 @@ namespace Aequus
         [ReloadRequired]
         public bool VoidBagRecipe { get; set; }
 
-        //[Header(Key + "Gameplay.Drops.Header")]
-
         public override void AddCustomTranslations()
         {
             Text("General.DamageReductionCap", new

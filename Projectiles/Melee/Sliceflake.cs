@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
@@ -13,6 +14,7 @@ namespace Aequus.Projectiles.Melee
         {
             ProjectileID.Sets.TrailingMode[Type] = 2;
             ProjectileID.Sets.TrailCacheLength[Type] = 6;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -93,6 +95,14 @@ namespace Aequus.Projectiles.Melee
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             Projectile.damage = (int)(Projectile.damage * 0.8f);
+            target.AddBuff(BuffID.Frostburn2, 480);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Frostburn2, 480);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
             target.AddBuff(BuffID.Frostburn2, 480);
         }
 

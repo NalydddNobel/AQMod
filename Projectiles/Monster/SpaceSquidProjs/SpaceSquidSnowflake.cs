@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -12,6 +13,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 2;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

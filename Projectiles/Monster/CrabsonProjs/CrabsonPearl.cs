@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -24,6 +25,11 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
         {
             if (!Main.dedServ)
                 WhiteTexture = ModContent.Request<Texture2D>(this.GetPath() + "_White");
+        }
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

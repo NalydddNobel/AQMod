@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +19,7 @@ namespace Aequus.Projectiles.Monster
             ProjectileID.Sets.TrailCacheLength[Type] = 20;
             ProjectileID.Sets.TrailingMode[Type] = 2;
             Main.projFrames[Type] = 2;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

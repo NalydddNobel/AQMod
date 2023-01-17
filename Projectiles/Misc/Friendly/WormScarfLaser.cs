@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -9,6 +10,11 @@ namespace Aequus.Projectiles.Misc.Friendly
     public class WormScarfLaser : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.PurpleLaser;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

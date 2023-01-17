@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
-using ReLogic.Reflection;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -107,22 +107,7 @@ namespace Aequus
             PacketSystem.HandlePacket(reader);
         }
 
-        public static List<int> ReadContentArrayNameListToIntList(Dictionary<string, List<string>> contentArray, string name, IdDictionary dictionary)
-        {
-            var resultList = new List<int>();
-            if (!contentArray.TryGetValue(name, out var list))
-                return resultList;
-
-            foreach (var s in list)
-            {
-                string itemName = s.Replace(';', '/');
-                if (dictionary.TryGetId(itemName, out int id))
-                {
-                    resultList.Add(id);
-                }
-            }
-            return resultList;
-        }
+        [Obsolete("Use Common.ContentArrayFile instead.")]
         public static Dictionary<string, List<string>> GetContentArrayFile(string name)
         {
             using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
@@ -133,6 +118,7 @@ namespace Aequus
                 }
             }
         }
+
         public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name)
         {
             using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
@@ -167,7 +153,7 @@ namespace Aequus
         {
             for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
             {
-                if (Main.anglerQuestItemNetIDs[i]== itemType)
+                if (Main.anglerQuestItemNetIDs[i] == itemType)
                 {
                     Main.anglerQuest = i;
                     return true;

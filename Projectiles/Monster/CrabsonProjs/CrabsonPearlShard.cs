@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,6 +12,11 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 {
     public class CrabsonPearlShard : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 4;

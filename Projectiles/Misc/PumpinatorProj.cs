@@ -15,6 +15,7 @@ namespace Aequus.Projectiles.Misc
     public class PumpinatorProj : ModProjectile
     {
         public virtual bool PushPlayers => true;
+        public virtual bool PushMyProjectiles => true;
         public virtual bool OnlyPushHostileProjectiles => false;
         public virtual bool OnlyPushHostilePlayers => false;
         public virtual bool PushItems => true;
@@ -118,7 +119,7 @@ namespace Aequus.Projectiles.Misc
                 var npc = Main.npc[i];
                 if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
                     Projectile.Colliding(myRect, npc.getRect()) &&
-                    PushableEntitiesDatabase.NPCIDs.Contains(Main.npc[i].type))
+                    PushableEntities.NPCIDs.Contains(Main.npc[i].type))
                 {
                     if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter())
                     {
@@ -134,7 +135,17 @@ namespace Aequus.Projectiles.Misc
                 var proj = Main.projectile[i];
                 if (i != Projectile.whoAmI && proj.active)
                 {
-                    if ((OnlyPushHostileProjectiles && !proj.hostile) || !PushableEntitiesDatabase.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
+                    bool canPush = false;
+                    if (PushMyProjectiles)
+                    {
+                        if (proj.owner != Main.myPlayer || !proj.Aequus().HasNPCOwner)
+                            continue;
+
+                        canPush = true;
+                    }
+                    if (!canPush && OnlyPushHostileProjectiles && !proj.hostile)
+                        continue;
+                    if (!PushableEntities.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect()))
                         continue;
                     proj.velocity = updatePush(proj.Center, proj.velocity, 1f);
                     proj.netUpdate = true;

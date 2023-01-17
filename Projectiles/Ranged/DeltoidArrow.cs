@@ -1,4 +1,6 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles;
@@ -20,6 +22,7 @@ namespace Aequus.Projectiles.Ranged
         public override void SetStaticDefaults()
         {
             this.SetTrail(10);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -66,13 +69,28 @@ namespace Aequus.Projectiles.Ranged
             {
                 CrimsonHellfire.AddBuff(target, 120);
             }
-            if (Main.netMode != NetmodeID.Server)
-            {
-                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-            }
             if (Main.myPlayer == Projectile.owner)
             {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(3))
+            {
+                AequusBuff.ApplyBuff<CrimsonHellfire>(target, 120, out bool canPlaySound);
+                if (canPlaySound)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                    {
+                        PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
+                    }
+                    SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                }
+            }
+            if (Main.myPlayer == Projectile.owner)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0);
             }
         }
 
@@ -141,6 +159,7 @@ namespace Aequus.Projectiles.Ranged
         {
             if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server)
             {
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
                 for (int i = 0; i < 5; i++)
                 {
                     var v = Main.rand.NextVector2Unit();

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.IO;
@@ -25,6 +26,11 @@ namespace Aequus.Projectiles.Melee
                 HotTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Hot");
                 ColdTexture = ModContent.Request<Texture2D>(this.GetPath() + "_Cold");
             }
+        }
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
         }
 
         public override void Unload()

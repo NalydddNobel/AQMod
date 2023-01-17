@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,6 +9,11 @@ namespace Aequus.Projectiles.Magic
     public class LiquidGunWaterBullet : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

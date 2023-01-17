@@ -1,9 +1,11 @@
 ﻿using Aequus.Biomes.DemonSiege;
+using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -45,6 +47,18 @@ namespace Aequus.Items.Weapons.Melee
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
             CorruptionHellfire.AddBuff(target, 240);
+        }
+        public override void OnHitPvp(Player player, Player target, int damage, bool crit)
+        {
+            AequusBuff.ApplyBuff<CorruptionHellfire>(player, 240, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            }
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

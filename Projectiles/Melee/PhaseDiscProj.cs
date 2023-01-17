@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles.Melee
             Main.projFrames[Type] = 2;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 12;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -240,6 +242,17 @@ namespace Aequus.Projectiles.Melee
             {
                 Projectile.damage = (int)(Projectile.damage * 0.95f);
             }
+            if (Projectile.ai[1] > 0f)
+            {
+                target.AddBuff(BuffID.Frostburn2, 120);
+            }
+            if (!IsIce)
+            {
+                target.AddBuff(BuffID.OnFire3, 120);
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
             if (Projectile.ai[1] > 0f)
             {
                 target.AddBuff(BuffID.Frostburn2, 120);

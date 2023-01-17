@@ -1,4 +1,6 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,6 +20,7 @@ namespace Aequus.Projectiles.Magic
         {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
             this.SetTrail(16);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -104,33 +107,73 @@ namespace Aequus.Projectiles.Magic
             }
         }
 
+        public void AddBuffToPlayer(Player player)
+        {
+            AequusBuff.ApplyBuff<CrimsonHellfire>(player, 300, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, player.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            }
+        }
+        public void OnHit(Entity target)
+        {
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                if (i == target.whoAmI)
+                {
+                    continue;
+                }
+                if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].Distance(target.Center) < 180f)
+                {
+                    CrimsonHellfire.AddBuff(Main.npc[i], 300);
+                }
+            }
+            if (Main.player[Projectile.owner].hostile)
+            {
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && !Main.player[i].dead && !Main.player[i].ghost && Main.player[i].hostile && Main.player[i].team != Main.player[Projectile.owner].team
+                        && Main.player[i].Distance(target.Center) < 180f)
+                    {
+                        AddBuffToPlayer(Main.player[i]);
+                    }
+                }
+            }
+            for (int i = 0; i < 75; i++)
+            {
+                var d = Dust.NewDustDirect(target.position, target.width, target.height, DustID.Torch, Scale: Main.rand.NextFloat(1f, 4f) * Projectile.Opacity);
+                d.velocity *= 0.5f;
+                d.velocity = Vector2.Normalize(target.Center - d.position) * Main.rand.NextFloat() * 16f;
+                d.noGravity = true;
+            }
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             if (crit)
             {
                 CrimsonHellfire.AddBuff(target, 300);
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (i == target.whoAmI)
-                    {
-                        continue;
-                    }
-                    if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].Distance(target.Center) < 180f)
-                    {
-                        CrimsonHellfire.AddBuff(Main.npc[i], 300);
-                    }
-                }
-                for (int i = 0; i < 75; i++)
-                {
-                    var d = Dust.NewDustDirect(target.position, target.width, target.height, DustID.Torch, Scale: Main.rand.NextFloat(1f, 4f) * Projectile.Opacity);
-                    d.velocity *= 0.5f;
-                    d.velocity = Vector2.Normalize(target.Center - d.position) * Main.rand.NextFloat() * 16f;
-                    d.noGravity = true;
-                }
+                OnHit(target);
             }
-            else
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (crit)
             {
-                Main.rand.NextBool(4);
+                AddBuffToPlayer(target);
+                OnHit(target);
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            if (crit)
+            {
+                AddBuffToPlayer(target);
+                OnHit(target);
             }
         }
 

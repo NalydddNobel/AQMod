@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,11 @@ namespace Aequus.Projectiles.Summon
 {
     public class PiranhaPlantFireball : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 24;
@@ -35,6 +41,10 @@ namespace Aequus.Projectiles.Summon
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 240);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.OnFire3, 240);
         }

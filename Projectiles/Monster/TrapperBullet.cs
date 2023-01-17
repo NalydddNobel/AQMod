@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -10,6 +11,11 @@ namespace Aequus.Projectiles.Monster
 {
     public class TrapperBullet : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 18;

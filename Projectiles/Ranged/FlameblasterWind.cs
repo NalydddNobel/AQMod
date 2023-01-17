@@ -10,6 +10,7 @@ namespace Aequus.Projectiles.Ranged
         public override bool PushUIObjects => false;
         public override bool PushItems => false;
         public override bool OnlyPushHostileProjectiles => true;
+        public override bool PushMyProjectiles => true;
 
         public override void SetDefaults()
         {

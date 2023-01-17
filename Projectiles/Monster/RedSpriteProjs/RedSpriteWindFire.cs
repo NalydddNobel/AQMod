@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,6 +14,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
         public override void SetStaticDefaults()
         {
             this.SetTrail(12);
+            PushableEntities.AddProj(Type);
             AequusProjectile.HeatDamage.Add(Type);
         }
 

@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content;
+using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles.Summon.Necro
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.MinionShot[Type] = true;
+            PushableEntities.AddProj(Type);
         }
 
         public int NPCIndex => (int)Projectile.ai[0];

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -20,6 +21,7 @@ namespace Aequus.Projectiles.Summon.Necro
         public override void SetStaticDefaults()
         {
             this.SetTrail(10);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

@@ -33,6 +33,16 @@ namespace Aequus.Projectiles.Summon.Misc
             target.AddBuff(BuffID.Poisoned, 480);
         }
 
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Poisoned, 480);
+        }
+
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.Poisoned, 480);
+        }
+
         public override void Kill(int timeLeft)
         {
             for (int i = 0; i < 10; i++)

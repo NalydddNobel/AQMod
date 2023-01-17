@@ -31,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -149,9 +150,10 @@ namespace Aequus.Items
 
         public void PostSetupContent(Aequus aequus)
         {
-            var val = Aequus.GetContentArrayFile("MiscItemSets");
-            ClassOrderedPillarFragments = Aequus.ReadContentArrayNameListToIntList(val, "ClassOrderedPillarFragments", ItemID.Search);
-            RainbowOrderPillarFragments = Aequus.ReadContentArrayNameListToIntList(val, "RainbowOrderPillarFragments", ItemID.Search);
+            var contentArray = new ContentArrayFile("ItemSets", ItemID.Search);
+           
+            ClassOrderedPillarFragments = contentArray.ReadIntList("ClassOrderedPillarFragments");
+            RainbowOrderPillarFragments = contentArray.ReadIntList("RainbowOrderPillarFragments");
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs.Wabbajack;
+using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
@@ -21,6 +22,7 @@ namespace Aequus.Projectiles.Magic
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

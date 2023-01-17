@@ -117,8 +117,11 @@ namespace Aequus.Items.Accessories
             var color = PotionColorsDatabase.GetColorFromItemID(itemIDLookup);
             var mask = ModContent.Request<Texture2D>($"{Texture}_Mask").Value;
             var maskFrame = mask.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
+            float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
             maskFrame.Width -= 8;
-            spriteBatch.Draw(mask, position, maskFrame, (color * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f)).UseA(100), 0f, origin, scale, SpriteEffects.None, 0f);
+            maskFrame.Height -= 2;
+            spriteBatch.Draw(mask, position, maskFrame, (color * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f)) * a, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(mask, position, maskFrame, color.UseA(0) * a, 0f, origin, scale, SpriteEffects.None, 0f);
             return true;
         }
 
@@ -134,7 +137,9 @@ namespace Aequus.Items.Accessories
                 var mask = ModContent.Request<Texture2D>($"{Texture}_Mask").Value;
                 var maskFrame = mask.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
                 maskFrame.Width -= 8;
+                spriteBatch.Draw(mask, position + new Vector2(0f, 2f) * scale, maskFrame, Color.Black, rotation, origin, scale, SpriteEffects.None, 0f);
                 spriteBatch.Draw(mask, position, maskFrame, (color * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f)).UseA(100), rotation, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(mask, position, maskFrame, color.UseA(0), rotation, origin, scale, SpriteEffects.None, 0f);
             }
             spriteBatch.Draw(texture, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
             return false;

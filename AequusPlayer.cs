@@ -1147,13 +1147,13 @@ namespace Aequus
                         }
                         SoundEngine.PlaySound(SoundID.DD2_BetsysWrathShot.WithPitchOffset(-0.2f).WithVolumeScale(2f), Player.Center);
                         accDustDevilExpertThrowTimer = 0;
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
+                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
                     }
                 }
                 else
                 {
                     if (accDustDevilExpertThrowTimer > 0)
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
+                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
                     accDustDevilExpertThrowTimer = 0;
                 }
             }
@@ -1827,59 +1827,23 @@ namespace Aequus
             CheckSeraphimSet(target, proj, ref damage);
         }
 
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        public void HitEffects(Entity target, int damage, float kb, bool crit)
         {
-            if (!target.immortal)
-                CheckLeechHook(target, damage);
-            OnHitEffects(target, damage, knockback, crit);
-        }
-
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-        {
-            if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
-                CheckLeechHook(target, damage);
-            OnHitEffects(target, damage, knockback, crit);
-        }
-        public void CheckLeechHook(NPC target, int damage)
-        {
-            if (leechHookNPC == target.whoAmI)
-            {
-                int lifeHealed = Math.Min(Math.Max(damage / 5, 1), Math.Clamp((int)Player.lifeSteal, 1, 10));
-                int lifeSteal = CalcHealing(Player, lifeHealed);
-                Player.Heal(lifeHealed);
-                if (lifeSteal > 0)
-                {
-                    Player.lifeSteal -= lifeSteal;
-                }
-            }
-        }
-        public void OnHitEffects(NPC target, int damage, float knockback, bool crit)
-        {
+            var entity = new EntityCommons(target);
             int deathsEmbrace = Player.FindBuffIndex(ModContent.BuffType<DeathsEmbraceBuff>());
             if (deathsEmbrace != -1)
             {
                 Player.buffTime[deathsEmbrace] = Math.Max(Player.buffTime[deathsEmbrace], 300);
             }
 
-            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
-            {
-                int amt = accDavyJonesAnchor.Aequus().accStacks;
-                if (Player.RollLuck(Math.Max((8 - damage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0)
-                {
-                    Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
-                        ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
-                }
-            }
-
             if (accLittleInferno > 0)
             {
-                target.AddBuff(BuffID.OnFire, 240 * accLittleInferno);
+                entity.AddBuff(BuffID.OnFire, 240 * accLittleInferno);
                 if (crit)
                 {
-                    target.AddBuff(BuffID.OnFire3, 180 * accLittleInferno);
+                    entity.AddBuff(BuffID.OnFire3, 180 * accLittleInferno);
                 }
             }
-
             if (accMothmanMask != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
                 AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.Aequus().accStacks, out bool canPlaySound);
@@ -1894,11 +1858,11 @@ namespace Aequus
             }
             if (accBlackPhial > 0)
             {
-                BlackPhial.OnHitEffects(this, target, damage, knockback, crit);
+                BlackPhial.OnHitEffects(this, target, damage, kb, crit);
             }
             if (accBoneBurningRing > 0)
             {
-                target.AddBuff(BuffID.OnFire3, 360 * accBoneBurningRing);
+                entity.AddBuff(BuffID.OnFire3, 360 * accBoneBurningRing);
             }
             if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(6 / accBoneRing, 1)))
             {
@@ -1911,7 +1875,7 @@ namespace Aequus
                     }
                     SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, target.Center);
                 }
-                if (canPlaySound || target.HasBuff<BoneRingWeakness>())
+                if (canPlaySound || entity.HasBuff<BoneRingWeakness>())
                 {
                     for (int i = 0; i < 12; i++)
                     {
@@ -1922,6 +1886,60 @@ namespace Aequus
                     }
                 }
             }
+
+            if (target is NPC npc)
+            {
+                NPCHitEffects(npc, damage, kb, crit);
+            }
+        }
+        public void NPCHitEffects(NPC target, int damage, float knockback, bool crit)
+        {
+            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
+            {
+                int amt = accDavyJonesAnchor.Aequus().accStacks;
+                if (Player.RollLuck(Math.Max((8 - damage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0)
+                {
+                    Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
+                        ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
+                }
+            }
+        }
+
+        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+        {
+            if (!target.immortal)
+                CheckLeechHook(target, damage);
+            HitEffects(target, damage, knockback, crit);
+        }
+
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
+        {
+            if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
+                CheckLeechHook(target, damage);
+            HitEffects(target, damage, knockback, crit);
+        }
+        public void CheckLeechHook(NPC target, int damage)
+        {
+            if (leechHookNPC == target.whoAmI)
+            {
+                int lifeHealed = Math.Min(Math.Max(damage / 5, 1), Math.Clamp((int)Player.lifeSteal, 1, 10));
+                int lifeSteal = CalcHealing(Player, lifeHealed);
+                Player.Heal(lifeHealed);
+                if (lifeSteal > 0)
+                {
+                    Player.lifeSteal -= lifeSteal;
+                }
+            }
+        }
+
+        public override void OnHitPvp(Item item, Player target, int damage, bool crit)
+        {
+            HitEffects(target, damage, 1f, crit);
+        }
+
+        public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
+        {
+            HitEffects(target, damage, 1f, crit);
         }
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

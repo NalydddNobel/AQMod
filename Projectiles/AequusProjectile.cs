@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common;
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -529,13 +530,36 @@ namespace Aequus.Projectiles
             }
         }
 
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public void OnHit(Projectile projectile, Entity ent, int damage, float kb, bool crit)
         {
+            var entity = new EntityCommons(ent);
             if (enemyRebound == 1 || enemyRebound == 2)
             {
-                target.AddBuff(BuffID.OnFire3, 600);
-                target.AddBuff(BuffID.Frostburn2, 600);
+                entity.AddBuff(BuffID.OnFire3, 600);
+                entity.AddBuff(BuffID.Frostburn2, 600);
             }
+            if (sourceItemUsed != 0 && projectile.friendly && projectile.HasOwner())
+            {
+                if (sourceItemUsed == Main.player[projectile.owner].HeldItemFixed().type)
+                {
+                    Main.player[projectile.owner].Aequus().itemHits++;
+                }
+            }
+            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
+            {
+                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid > 0 && Main.rand.NextBool(Math.Max(3 / Main.player[projectile.owner].Aequus().accFrostburnTurretSquid, 1)))
+                {
+                    entity.AddBuff(BuffID.Frostburn2, 240 * Main.player[projectile.owner].Aequus().accFrostburnTurretSquid);
+                }
+            }
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                Raygun.SpawnExplosion(projectile.GetSource_OnHit(ent), projectile);
+            }
+        }
+        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        {
+            OnHit(projectile, target, damage, knockback, crit);
             if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0)
             {
                 int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
@@ -570,24 +594,14 @@ namespace Aequus.Projectiles
                     Main.projectile[proj].netUpdate = true;
                 }
             }
-            if (sourceItemUsed != 0 && projectile.friendly && projectile.HasOwner())
-            {
-                if (sourceItemUsed == Main.player[projectile.owner].HeldItemFixed().type)
-                {
-                    Main.player[projectile.owner].Aequus().itemHits++;
-                }
-            }
-            if (projectile.sentry || ProjectileID.Sets.SentryShot[projectile.type])
-            {
-                if (Main.player[projectile.owner].Aequus().accFrostburnTurretSquid > 0 && Main.rand.NextBool(Math.Max(3 / Main.player[projectile.owner].Aequus().accFrostburnTurretSquid, 1)))
-                {
-                    target.AddBuff(BuffID.Frostburn2, 240 * Main.player[projectile.owner].Aequus().accFrostburnTurretSquid);
-                }
-            }
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
-            {
-                Raygun.SpawnExplosion(projectile.GetSource_OnHit(target), projectile);
-            }
+        }
+        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        {
+            OnHit(projectile, target, damage, 1f, crit);
+        }
+        public override void OnHitPvp(Projectile projectile, Player target, int damage, bool crit)
+        {
+            OnHit(projectile, target, damage, 1f, crit);
         }
 
         public override void Kill(Projectile projectile, int timeLeft)

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -11,6 +12,11 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
     public class DustDevilFrostball : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.RainbowCrystalExplosion;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

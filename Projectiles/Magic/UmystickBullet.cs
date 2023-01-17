@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Content;
+using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +24,7 @@ namespace Aequus.Projectiles.Magic
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

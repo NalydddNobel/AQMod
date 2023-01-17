@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Content;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
         {
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

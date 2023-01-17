@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content;
+using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
@@ -21,6 +22,7 @@ namespace Aequus.Projectiles.Summon
         public override void SetStaticDefaults()
         {
             this.SetTrail(30);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

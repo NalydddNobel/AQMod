@@ -182,7 +182,8 @@ namespace Aequus.Buffs
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
-            var l = new List<int>();
+            var contentFile = new ContentArrayFile("BuffSets", BuffID.Search);
+            contentFile.AddToHashSet("ConcoctionBlacklist", ConcoctibleBuffIDsBlacklist);
             for (int i = 0; i < BuffLoader.BuffCount; i++)
             {
                 if (BuffID.Sets.IsFedState[i])
@@ -235,24 +236,25 @@ namespace Aequus.Buffs
             return !preventRightClick.Contains(type);
         }
 
-        public static bool ApplyBuff(NPC target, int type, int time, out bool canPlaySound)
+        public static bool ApplyBuff(Entity target, int type, int time, out bool canPlaySound)
         {
+            var entity = new EntityCommons(target);
             canPlaySound = false;
-            if (target.life <= 0)
+            if (entity.life <= 0)
             {
                 return false;
             }
 
-            bool hasBuffOld = target.HasBuff(type);
+            bool hasBuffOld = entity.HasBuff(type);
 
-            target.AddBuff(type, time);
+            entity.AddBuff(type, time);
 
-            bool hasBuff = target.HasBuff(type);
+            bool hasBuff = entity.HasBuff(type);
             canPlaySound = !hasBuffOld && hasBuff;
             return hasBuff;
         }
 
-        public static bool ApplyBuff<T>(NPC target, int time, out bool canPlaySound) where T : ModBuff
+        public static bool ApplyBuff<T>(Entity target, int time, out bool canPlaySound) where T : ModBuff
         {
             return ApplyBuff(target, ModContent.BuffType<T>(), time, out canPlaySound);
         }

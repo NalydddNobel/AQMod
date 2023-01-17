@@ -1,4 +1,6 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Content;
+using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +17,7 @@ namespace Aequus.Projectiles.Magic
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 2;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -72,11 +75,11 @@ namespace Aequus.Projectiles.Magic
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public void OnHit(Entity target)
         {
-            target.AddBuff(BuffID.OnFire3, 360);
+            new EntityCommons(target).AddBuff(BuffID.OnFire3, 360);
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f,
-                ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner, target.whoAmI + 1);
+                ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner, target is NPC npc ? npc.whoAmI + 1f : 0f);
             Projectile.localAI[0] = 5f;
             Projectile.damage = 0;
             Projectile.originalDamage = (int)(Projectile.originalDamage * 0.9f);
@@ -84,6 +87,18 @@ namespace Aequus.Projectiles.Magic
             {
                 Projectile.Kill();
             }
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            OnHit(target);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            OnHit(target);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            OnHit(target);
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,11 @@ namespace Aequus.Projectiles.Monster
 {
     public class SoldierCrabProj : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 8;

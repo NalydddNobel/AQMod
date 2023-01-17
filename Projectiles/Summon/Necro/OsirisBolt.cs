@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -20,6 +21,7 @@ namespace Aequus.Projectiles.Summon.Necro
         public override void SetStaticDefaults()
         {
             this.SetTrail(10);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -78,21 +80,23 @@ namespace Aequus.Projectiles.Summon.Necro
             NecromancyDebuff.ReduceDamageForDebuffApplication<OsirisDebuff>(Tier, target, ref damage);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public void SpawnLocusts(Entity target)
         {
-            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-
-            NecromancyDebuff.ApplyDebuff<OsirisDebuff>(target, 600, Projectile.owner);
-
             var source = Projectile.GetSource_OnHit(target, "Aequus:Osiris");
-
             int distance = (int)(target.Size.Length() / 2f);
-
             for (int i = 0; i < 3; i++)
             {
                 var normal = Main.rand.NextVector2Unit();
                 var p = Projectile.NewProjectile(source, target.Center + normal * distance, normal * 3f, LocustType(Main.player[Projectile.owner]), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, 0f, target.whoAmI);
             }
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
+
+            NecromancyDebuff.ApplyDebuff<OsirisDebuff>(target, 600, Projectile.owner);
+            SpawnLocusts(target);
         }
         public int LocustType(Player player)
         {
@@ -101,6 +105,14 @@ namespace Aequus.Projectiles.Summon.Necro
                 return ModContent.ProjectileType<LocustLarge>();
             }
             return ModContent.ProjectileType<LocustSmall>();
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            SpawnLocusts(target);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            SpawnLocusts(target);
         }
 
         public override bool PreDraw(ref Color lightColor)

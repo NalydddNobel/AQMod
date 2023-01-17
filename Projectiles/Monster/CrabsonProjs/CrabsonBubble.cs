@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
         {
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

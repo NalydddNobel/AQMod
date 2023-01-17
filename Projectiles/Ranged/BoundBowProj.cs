@@ -9,6 +9,10 @@ namespace Aequus.Projectiles.Ranged
 {
     public class BoundBowProj : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 24;

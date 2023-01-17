@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content;
+using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -17,6 +18,11 @@ namespace Aequus.Projectiles.Summon.Necro
     public class FriendshipMagickProj : ModProjectile
     {
         public virtual float Tier => 2.33f;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

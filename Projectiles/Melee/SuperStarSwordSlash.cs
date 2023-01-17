@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
@@ -19,6 +20,7 @@ namespace Aequus.Projectiles.Melee
         public override void SetStaticDefaults()
         {
             this.SetTrail(18);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -99,9 +101,8 @@ namespace Aequus.Projectiles.Melee
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public void OnHit(Entity target)
         {
-            Projectile.damage = (int)(Projectile.damage * 0.8f);
             if (Main.rand.NextBool(12))
             {
                 AequusBuff.ApplyBuff<BlueFire>(target, 120, out bool canPlaySound);
@@ -114,6 +115,19 @@ namespace Aequus.Projectiles.Melee
                     SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
                 }
             }
+        }
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
+            OnHit(target);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            OnHit(target);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            OnHit(target);
         }
 
         public override bool PreDraw(ref Color lightColor)

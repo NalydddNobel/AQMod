@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Monsters.Sky.GaleStreams;
+﻿using Aequus.Content;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -12,6 +13,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
         public override void SetStaticDefaults()
         {
             AequusProjectile.HeatDamage.Add(Type);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content
 {
-    public class PushableEntitiesDatabase : IAddRecipes
+    public class PushableEntities : IAddRecipes
     {
         public static HashSet<int> NPCIDs { get; private set; }
         public static HashSet<int> ProjectileIDs { get; private set; }
@@ -16,6 +16,11 @@ namespace Aequus.Content
         {
             NPCIDs = new HashSet<int>();
             ProjectileIDs = new HashSet<int>();
+        }
+
+        public static void AddProj(int type)
+        {
+            ProjectileIDs.Add(type);
         }
 
         void IAddRecipes.AddRecipes(Aequus aequus)

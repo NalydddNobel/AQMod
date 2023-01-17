@@ -28,7 +28,7 @@ namespace Aequus.NPCs.Monsters.Sky
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 5;
-            PushableEntitiesDatabase.NPCIDs.Add(Type);
+            PushableEntities.NPCIDs.Add(Type);
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
                 Position = new Vector2(0f, 8f),

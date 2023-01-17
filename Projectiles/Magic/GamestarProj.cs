@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Aequus.Graphics.RenderTargets;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
@@ -16,6 +17,7 @@ namespace Aequus.Projectiles.Magic
         public override void SetStaticDefaults()
         {
             this.SetTrail(10);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -93,6 +95,22 @@ namespace Aequus.Projectiles.Magic
             return false;
         }
 
+        public void SpawnParticles(Entity target)
+        {
+            ScreenCulling.SetPadding(200);
+            if (!ScreenCulling.OnScreenWorld(Utils.CenteredRectangle(Projectile.Center, new Vector2(100f))))
+            {
+                return;
+            }
+
+            int amt = Math.Max((target.width + target.height) / 30, 5);
+            for (int i = 0; i < amt; i++)
+            {
+                GamestarRenderer.Particles.Add(new GamestarParticle(target.Center + new Vector2(Main.rand.NextFloat(-target.width, target.width), Main.rand.NextFloat(-target.height, target.height)),
+                    Main.rand.NextVector2Unit(), Color.White, 20));
+            }
+        }
+
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             target.AddBuff(ModContent.BuffType<BitCrushedDebuff>(), 240);
@@ -103,18 +121,7 @@ namespace Aequus.Projectiles.Magic
             }
             if (Main.netMode != NetmodeID.Server)
             {
-                ScreenCulling.SetPadding(200);
-                if (!ScreenCulling.OnScreenWorld(Utils.CenteredRectangle(Projectile.Center, new Vector2(100f))))
-                {
-                    return;
-                }
-
-                int amt = Math.Max((target.width + target.height) / 30, 5);
-                for (int i = 0; i < amt; i++)
-                {
-                    GamestarRenderer.Particles.Add(new GamestarParticle(target.Center + new Vector2(Main.rand.NextFloat(-target.width, target.width), Main.rand.NextFloat(-target.height, target.height)),
-                        Main.rand.NextVector2Unit(), Color.White, 20));
-                }
+                SpawnParticles(target);
             }
             for (int i = (int)Projectile.ai[0]; i < Main.maxNPCs; i++)
             {
@@ -132,6 +139,20 @@ namespace Aequus.Projectiles.Magic
                     Projectile.ai[0] = 0f;
                     break;
                 }
+            }
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SpawnParticles(target);
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            if (Main.netMode != NetmodeID.Server)
+            {
+                SpawnParticles(target);
             }
         }
     }

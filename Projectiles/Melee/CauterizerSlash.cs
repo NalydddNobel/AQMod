@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -14,6 +15,7 @@ namespace Aequus.Projectiles.Melee
         public override void SetStaticDefaults()
         {
             this.SetTrail(35);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -14,6 +15,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

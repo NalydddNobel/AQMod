@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Melee;
+﻿using Aequus.Content;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,6 +19,7 @@ namespace Aequus.Projectiles.Melee
         {
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

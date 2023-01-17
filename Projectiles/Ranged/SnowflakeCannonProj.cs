@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Ranged
 
             this.SetTrail(12);
 
-            PushableEntitiesDatabase.ProjectileIDs.Add(Type);
+            PushableEntities.ProjectileIDs.Add(Type);
         }
 
         public override void SetDefaults()
@@ -96,6 +96,17 @@ namespace Aequus.Projectiles.Ranged
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
+            Projectile.velocity = -Projectile.velocity;
+            Projectile.localAI[0] = 1f;
+            for (int i = 0; i < 5; i++)
+            {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(15, 120 + Main.rand.Next(40), 222, 0));
+                d.velocity = (d.position - Projectile.Center) / 2f;
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
         {
             target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
             Projectile.velocity = -Projectile.velocity;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -13,6 +14,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             Main.projFrames[Type] = 2;
             ProjectileID.Sets.MinionShot[Type] = true;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

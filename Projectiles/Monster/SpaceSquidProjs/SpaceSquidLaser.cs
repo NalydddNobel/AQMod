@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Content;
+using Aequus.Graphics.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,6 +17,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
         {
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

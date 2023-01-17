@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Content;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -25,6 +26,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             Main.projFrames[Type] = 2;
             this.SetTrail(15);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -210,16 +212,29 @@ namespace Aequus.Projectiles.Summon.Necro
             NecromancyDebuff.ReduceDamageForDebuffApplication<InsurgentDebuff>(Tier, target, ref damage);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public void OnHit(Entity target)
         {
-            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-
-            NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
             Projectile.damage = 0;
             Projectile.ai[0] = 1f;
             Projectile.ai[1] = target.whoAmI;
             Projectile.alpha = 0;
             Projectile.netUpdate = true;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
+
+            NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
+            OnHit(target);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            OnHit(target);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            OnHit(target);
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)

@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -15,6 +16,7 @@ namespace Aequus.Projectiles.Ranged
         {
             ProjectileID.Sets.TrailingMode[Type] = 2;
             ProjectileID.Sets.TrailCacheLength[Type] = 7;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()
@@ -105,6 +107,18 @@ namespace Aequus.Projectiles.Ranged
         }
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            if (Projectile.timeLeft > 3)
+                Projectile.timeLeft = 3;
+            target.AddBuff(BuffID.OnFire3, 480);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Projectile.timeLeft > 3)
+                Projectile.timeLeft = 3;
+            target.AddBuff(BuffID.OnFire3, 480);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
         {
             if (Projectile.timeLeft > 3)
                 Projectile.timeLeft = 3;

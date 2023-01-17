@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -9,6 +10,11 @@ namespace Aequus.Projectiles.Monster
 {
     public class MagmabubbleBullet : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 6;

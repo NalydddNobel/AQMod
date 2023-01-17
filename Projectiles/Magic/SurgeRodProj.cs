@@ -397,6 +397,14 @@ namespace Aequus.Projectiles.Magic
         {
             target.AddBuff(BuffID.OnFire3, 480);
         }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 480);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 480);
+        }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {

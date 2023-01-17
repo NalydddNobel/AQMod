@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
@@ -10,6 +11,11 @@ namespace Aequus.Projectiles.Ranged
 {
     public class FlameblasterProj : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 42;
@@ -111,6 +117,14 @@ namespace Aequus.Projectiles.Ranged
         {
             target.AddBuff(BuffID.OnFire3, 600);
             Projectile.damage = (int)(Projectile.damage * 0.75f);
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 600);
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            target.AddBuff(BuffID.OnFire3, 600);
         }
 
         public override bool PreDraw(ref Color lightColor)

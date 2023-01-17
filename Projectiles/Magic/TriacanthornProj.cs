@@ -1,4 +1,6 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs;
+using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -123,6 +125,30 @@ namespace Aequus.Projectiles.Magic
         {
             CorruptionHellfire.AddBuff(target, 120);
         }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            }
+        }
+        public override void OnHitPvp(Player target, int damage, bool crit)
+        {
+            AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
+            if (canPlaySound)
+            {
+                if (Main.netMode != NetmodeID.SinglePlayer)
+                {
+                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
+                }
+                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+            }
+        }
 
         public override bool PreDraw(ref Color lightColor)
         {
@@ -152,6 +178,7 @@ namespace Aequus.Projectiles.Magic
         public override void SetStaticDefaults()
         {
             this.SetTrail(15);
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

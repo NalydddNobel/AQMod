@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,6 +19,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
+            PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults()

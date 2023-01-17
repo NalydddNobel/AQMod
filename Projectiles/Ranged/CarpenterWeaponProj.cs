@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Content;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
@@ -10,6 +11,11 @@ namespace Aequus.Projectiles.Ranged
     public class CarpenterWeaponProj : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.DirtBall;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

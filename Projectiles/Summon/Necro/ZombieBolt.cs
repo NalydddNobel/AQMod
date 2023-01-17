@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles;
@@ -20,6 +21,11 @@ namespace Aequus.Projectiles.Summon.Necro
         protected Color primColor;
 
         public virtual float Tier => 1f;
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

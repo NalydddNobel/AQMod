@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,6 +14,11 @@ namespace Aequus.Projectiles.Misc
     public class MendshroomProj : ModProjectile
     {
         public override string Texture => $"{Aequus.VanillaTexture}Projectile_{ProjectileID.SporeTrap}";
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {

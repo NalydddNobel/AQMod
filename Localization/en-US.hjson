@@ -2181,64 +2181,6 @@ Mods: {
 			GhostlyGrave: "Aequus: Hate tombstones? But still like griefing your friends? Try the Ghostly Grave!"
 		}
 
-		Configuration: {
-			Client: {
-				Visuals: {
-					Header: "[c/ddddff:Visuals]"
-
-					ScreenshakeIntensity: "{Baguette} Screenshake Intensity"
-					ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
-					FlashIntensity: "{NoonPotion} Flash Intensity"
-					FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
-					HighQuality: "{Fluorescence} High Quality"
-					HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
-					HighQualityShaders: "{FrozenTear} HiDef Shaders"
-					HighQualityShadersTooltip: Disable and reload your mods to use regular shaders, may help with performance.
-					FlashShaderRepetitions: "{SupernovaFruit} HiDef Flash Shader - Repetitions"
-					FlashShaderRepetitionsTooltip: 
-						'''
-						How many repetitions this shader will perform, lower values may help with performance.
-						Only works when HiDef shaders are enabled.
-						'''
-					NecromancyOutlines: "{Insurgency} Ghost Minion Outlines"
-					NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
-				}
-
-				General: {
-					Header: "[c/ddddff:General]"
-
-					InfoDebugLogs: "{RadioThing} Info and Debug Logs"
-					InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
-				}
-			}
-
-			Gameplay: {
-				General: {
-					Header: "[c/ddddff:General]"
-
-					DamageReductionCap: "{Item} Damage Reduction Cap"
-					DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 100% to disable this feature.
-
-					EarlyGravityGlobe: "{Item} Early Gravity Globe"
-					EarlyGravityGlobeTooltip: Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
-
-					EarlyPortalGun: "{Item} Early Portal Gun"
-					EarlyPortalGunTooltip: Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
-				}
-
-				Recipes: {
-					Header: "[c/ddddff:Recipe Changes]"
-
-					VoidBag: "{Item1}/{Item2} Void Bag Recipe"
-					VoidBagTooltip: Changes the Void Bag/Vault's recipes to use Demonic Energy.
-				}
-
-				Drops: {
-					Header: "[c/ddddff:Drops]"
-				}
-			}
-		}
-
 		ShopQuote: {
 			Clothier: {
 				FamiliarPickaxe: Hey? You wouldn't happen to find this little pickaxe familiar looking right?

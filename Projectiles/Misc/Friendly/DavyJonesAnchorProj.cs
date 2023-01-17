@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
@@ -12,6 +13,11 @@ namespace Aequus.Projectiles.Misc.Friendly
     public class DavyJonesAnchorProj : ModProjectile
     {
         public int AttatchedNPC { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
+
+        public override void SetStaticDefaults()
+        {
+            PushableEntities.AddProj(Type);
+        }
 
         public override void SetDefaults()
         {
