@@ -14,6 +14,7 @@ namespace Aequus.Projectiles.Ranged
         public override void SetStaticDefaults()
         {
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

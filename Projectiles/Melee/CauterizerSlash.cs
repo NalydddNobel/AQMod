@@ -16,6 +16,7 @@ namespace Aequus.Projectiles.Melee
         {
             this.SetTrail(35);
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

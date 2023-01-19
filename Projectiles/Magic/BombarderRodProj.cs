@@ -21,6 +21,7 @@ namespace Aequus.Projectiles.Magic
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
             this.SetTrail(16);
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

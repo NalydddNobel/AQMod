@@ -51,6 +51,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                 SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
             });
 
+            AequusNPC.HeatDamage.Add(Type);
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
         }
 

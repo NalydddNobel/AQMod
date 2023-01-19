@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public class SnowRoulette : SlotMachineItemBase
+    public class SnowRoulette : SlotMachineBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

@@ -82,12 +82,6 @@ namespace Aequus.Items.GlobalItems
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
                 }
 
-                if (ExporterQuestSystem.QuestItems.ContainsKey(item.type))
-                {
-                    if (NPC.AnyNPCs(ModContent.NPCType<Exporter>()))
-                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "ExporterHint", AequusText.GetText("ItemTooltip.Misc.ExporterHint")) { OverrideColor = HintColor, });
-                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
-                }
                 if (AequusItem.LegendaryFishIDs.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))

@@ -369,6 +369,11 @@ namespace Aequus.Projectiles.Magic
     {
         public override string Texture => Aequus.BlankTexture;
 
+        public override void SetStaticDefaults()
+        {
+            AequusProjectile.HeatDamage.Add(Type);
+        }
+
         public override void SetDefaults()
         {
             Projectile.width = 12;

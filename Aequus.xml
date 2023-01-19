@@ -386,6 +386,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
+            <summary>
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen"/> is equipped.
+            </summary>
+        </member>
         <member name="T:Aequus.Buffs.Pets.DroneBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Pets.Light.PersonalDronePack"/>
@@ -683,7 +688,7 @@
             <param name="fisher"></param>
             <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
-        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineItemBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
             </summary>

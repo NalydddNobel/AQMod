@@ -25,6 +25,7 @@ namespace Aequus.Projectiles.Ranged
             Main.projFrames[Type] = 2;
             this.SetTrail(10);
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

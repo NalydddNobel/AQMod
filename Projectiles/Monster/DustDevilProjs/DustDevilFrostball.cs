@@ -27,6 +27,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             Projectile.aiStyle = -1;
             Projectile.alpha = 255;
             Projectile.timeLeft = 300;
+            Projectile.coldDamage = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

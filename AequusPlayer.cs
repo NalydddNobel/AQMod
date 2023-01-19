@@ -2262,7 +2262,7 @@ namespace Aequus
         {
             if (amt < 3600)
                 return;
-            if (Main.debuff[type] && !AequusBuff.IsActuallyABuff.Contains(type))
+            if (Main.debuff[type] && !AequusBuff.ForcedPositiveBuff.Contains(type))
             {
                 if (debuffDuration != 1f)
                     amt = (int)(amt * debuffDuration);

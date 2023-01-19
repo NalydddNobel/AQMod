@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public class OceanSlotMachine : SlotMachineItemBase
+    public class OceanSlotMachine : SlotMachineBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

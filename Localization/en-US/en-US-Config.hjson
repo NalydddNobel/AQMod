@@ -1,7 +1,7 @@
 Mods.Aequus.Configuration: {
 	Client: {
 		Visuals: {
-			Header: "[c/ddddff:Visuals]"
+			Header: "[c/ccddff:Visuals]"
 
 			ScreenshakeIntensity: "{Baguette} Screenshake Intensity"
 			ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
@@ -27,7 +27,7 @@ Mods.Aequus.Configuration: {
 		}
 
 		General: {
-			Header: "[c/ddddff:General]"
+			Header: "[c/ccddff:General]"
 
 			InfoDebugLogs: "{RadioThing} Info and Debug Logs"
 			InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
@@ -36,10 +36,10 @@ Mods.Aequus.Configuration: {
 
 	Gameplay: {
 		General: {
-			Header: "[c/ddddff:General]"
+			Header: "[c/ccddff:General]"
 
 			DamageReductionCap: "{Item} Damage Reduction Cap"
-			DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 100% to disable this feature.
+			DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 1 to disable this feature.
 
 			EarlyGravityGlobe: "{Item} Early Gravity Globe"
 			EarlyGravityGlobeTooltip: Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
@@ -49,7 +49,7 @@ Mods.Aequus.Configuration: {
 		}
 
 		Recipes: {
-			Header: "[c/ddddff:Recipe Changes]"
+			Header: "[c/ccddff:Recipe Changes]"
 
 			VoidBag: "{Item1}/{Item2} Void Bag Recipe"
 			VoidBagTooltip: Changes the Void Bag/Vault's recipes to use Demonic Energy.

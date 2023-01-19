@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Graphics;
+using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -167,7 +168,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                         if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             float projectileSpeed = 10f;
-                            int projectileType = ModContent.ProjectileType<Projectiles.Monster.TrapperBullet>();
+                            int projectileType = ModContent.ProjectileType<TrapperBullet>();
                             int damage = 20;
                             if (Main.expertMode)
                                 damage = 15;

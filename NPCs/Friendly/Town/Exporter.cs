@@ -8,6 +8,7 @@ using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.Jeweled;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
@@ -172,6 +173,28 @@ namespace Aequus.NPCs.Friendly.Town
             if (NPC.downedBoss3)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
+            }
+
+            if (NPC.downedGoblins)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.GoblinBattleStandard);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+            }
+            if (NPC.downedPirates)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.PirateMap);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+                shop.item[nextSlot++].SetDefaults<JeweledChalice>();
+                shop.item[nextSlot++].SetDefaults<JeweledCandelabra>();
+            }
+            if (NPC.downedMartians)
+            {
+                //shop.item[nextSlot++].SetDefaults(ItemID.SnowGlobe);
+            }
+            if (NPC.downedFrost)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.SnowGlobe);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());

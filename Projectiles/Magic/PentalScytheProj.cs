@@ -18,6 +18,7 @@ namespace Aequus.Projectiles.Magic
         {
             Main.projFrames[Type] = 2;
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

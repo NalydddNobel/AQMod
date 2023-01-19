@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.ExporterQuests;
 using Aequus.Tiles.Furniture.Jeweled;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -18,8 +19,8 @@ namespace Aequus.Items.Placeable.Furniture.Jeweled
             Item.DefaultToPlaceableTile(ModContent.TileType<JeweledChaliceTile>());
             Item.width = 16;
             Item.height = 24;
-            Item.rare = ItemRarityID.Quest;
-            Item.questItem = true;
+            Item.rare = ItemRarityID.White;
+            Item.value = Item.buyPrice(gold: 1);
             Item.maxStack = 9999;
         }
     }

@@ -663,10 +663,11 @@ namespace Aequus.Items
             {
                 return banner;
             }
-            for (int i = 0; i < Main.maxNPCs; i++)
+            for (int i = 0; i < NPCLoader.NPCCount; i++)
             {
                 int bannerID = Item.NPCtoBanner(i);
-                if (Item.BannerToItem(bannerID) == itemID)
+                int calcedBanner = Item.BannerToItem(bannerID);
+                if (calcedBanner == itemID)
                 {
                     ItemToBannerCache.Add(itemID, bannerID);
                     return bannerID;

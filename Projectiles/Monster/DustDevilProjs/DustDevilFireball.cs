@@ -16,6 +16,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
         {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

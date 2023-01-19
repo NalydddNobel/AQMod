@@ -27,6 +27,11 @@ namespace Aequus.Projectiles.Melee
             }
         }
 
+        public override void SetStaticDefaults()
+        {
+            AequusProjectile.HeatDamage.Add(Type);
+        }
+
         public override void Unload()
         {
             ChainTexture = null;

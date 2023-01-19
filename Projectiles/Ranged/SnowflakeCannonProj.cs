@@ -39,6 +39,7 @@ namespace Aequus.Projectiles.Ranged
             Projectile.penetrate = 3;
             Projectile.timeLeft = 600;
             Projectile.scale = 1.5f;
+            Projectile.coldDamage = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

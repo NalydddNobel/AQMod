@@ -29,6 +29,10 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
+            if (Projectile.ai[1] == DustID.Torch)
+            {
+                Projectile.Aequus().heatDamage = true;
+            }
             Projectile.velocity.Y += 0.01f;
             Projectile.rotation = Projectile.velocity.ToRotation();
             if (Projectile.alpha > 0)

@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public abstract class SlotMachineItemBase : ModItem
+    public abstract class SlotMachineBase : ModItem
     {
         protected virtual List<int> GetLootTable()
         {
@@ -70,6 +70,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             Item.createTile = -1;
             Item.placeStyle = 0;
             Item.maxStack = 9999;
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override bool CanRightClick()
@@ -84,6 +85,8 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            if (Item.buy)
+                return;
             for (int i = 0; i < 3; i++)
             {
                 tooltips.Add(new TooltipLine(Mod, "None" + i, AequusHelpers.AirString));
@@ -101,6 +104,8 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
 
         public override void PostDrawTooltip(ReadOnlyCollection<DrawableTooltipLine> lines)
         {
+            if (Item.buy)
+                return;
             float longest = 30f;
             foreach (var l in lines)
             {

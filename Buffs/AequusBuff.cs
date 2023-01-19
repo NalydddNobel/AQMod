@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
 using Aequus.Graphics;
+using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,47 +19,29 @@ namespace Aequus.Buffs
         public static HashSet<int> ConcoctibleBuffIDsBlacklist { get; private set; }
         public static HashSet<int> IsFire { get; private set; }
         public static HashSet<int> DontChangeDuration { get; private set; }
-        public static HashSet<int> IsActuallyABuff { get; private set; }
+        public static HashSet<int> ForcedPositiveBuff { get; private set; }
 
         public static HashSet<int> PlayerDoTBuff { get; private set; }
         public static HashSet<int> PlayerStatusBuff { get; private set; }
 
         public static List<int> DemonSiegeEnemyImmunity { get; private set; }
 
-        public static Dictionary<int, List<int>> PotionConflicts;
+        public static Dictionary<int, List<int>> PotionConflicts { get; private set; }
 
+        /// <summary>
+        /// Used to prevent right click effects when the <see cref="PotionCanteen"/> is equipped.
+        /// </summary>
         public static List<int> preventRightClick;
 
         public override void Load()
         {
             PlayerDoTBuff = new HashSet<int>();
             PlayerStatusBuff = new HashSet<int>();
-            ConcoctibleBuffIDsBlacklist = new HashSet<int>()
-            {
-                BuffID.Tipsy,
-                BuffID.Honey,
-                BuffID.Lucky,
-            };
-            DontChangeDuration = new HashSet<int>()
-            {
-                BuffID.Lucky,
-            };
-            IsActuallyABuff = new HashSet<int>()
-            {
-                BuffID.Tipsy,
-                BuffID.HeartLamp,
-                BuffID.Campfire,
-                BuffID.CatBast,
-            };
-            IsFire = new HashSet<int>()
-            {
-                BuffID.OnFire,
-                BuffID.OnFire3,
-                BuffID.Frostburn,
-                BuffID.Frostburn2,
-                BuffID.ShadowFlame,
-                BuffID.CursedInferno,
-            };
+            ConcoctibleBuffIDsBlacklist = new HashSet<int>();
+            DontChangeDuration = new HashSet<int>();
+            ForcedPositiveBuff = new HashSet<int>();
+            IsFire = new HashSet<int>();
+            PotionConflicts = new Dictionary<int, List<int>>();
             DemonSiegeEnemyImmunity = new List<int>()
             {
                 BuffID.OnFire,
@@ -68,7 +51,6 @@ namespace Aequus.Buffs
                 BuffID.Ichor,
                 BuffID.Oiled,
             };
-            PotionConflicts = new Dictionary<int, List<int>>();
             On.Terraria.NPC.AddBuff += NPC_AddBuff;
             On.Terraria.Player.AddBuff += Player_AddBuff; ;
             On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
@@ -184,6 +166,9 @@ namespace Aequus.Buffs
         {
             var contentFile = new ContentArrayFile("BuffSets", BuffID.Search);
             contentFile.AddToHashSet("ConcoctionBlacklist", ConcoctibleBuffIDsBlacklist);
+            contentFile.AddToHashSet("DontChangeDuration", DontChangeDuration);
+            contentFile.AddToHashSet("ForcedPositiveBuff", ForcedPositiveBuff);
+            contentFile.AddToHashSet("IsFire", IsFire);
             for (int i = 0; i < BuffLoader.BuffCount; i++)
             {
                 if (BuffID.Sets.IsFedState[i])
@@ -199,8 +184,8 @@ namespace Aequus.Buffs
             PotionConflicts = null;
             ConcoctibleBuffIDsBlacklist?.Clear();
             ConcoctibleBuffIDsBlacklist = null;
-            IsActuallyABuff?.Clear();
-            IsActuallyABuff = null;
+            ForcedPositiveBuff?.Clear();
+            ForcedPositiveBuff = null;
             DontChangeDuration?.Clear();
             DontChangeDuration = null;
             IsFire?.Clear();

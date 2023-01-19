@@ -27,7 +27,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Projectiles
 {
-    public class AequusProjectile : GlobalProjectile
+    public class AequusProjectile : GlobalProjectile, IPostSetupContent
     {
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> BlacklistSpecialEffects { get; private set; }
@@ -92,49 +92,7 @@ namespace Aequus.Projectiles
 
         public override void Load()
         {
-            HeatDamage = new HashSet<int>()
-            {
-                ProjectileID.FireWhipProj,
-                ProjectileID.FireWhip,
-                ProjectileID.DaybreakExplosion,
-                ProjectileID.Daybreak,
-                ProjectileID.SolarWhipSwordExplosion,
-                ProjectileID.SolarWhipSword,
-                ProjectileID.DD2BetsyFlameBreath,
-                ProjectileID.DD2BetsyFireball,
-                ProjectileID.Fireball,
-                ProjectileID.FlamethrowerTrap,
-                ProjectileID.FlamesTrap,
-                ProjectileID.DD2FlameBurstTowerT3Shot,
-                ProjectileID.DD2FlameBurstTowerT2Shot,
-                ProjectileID.DD2FlameBurstTowerT1Shot,
-                ProjectileID.DD2PhoenixBowShot,
-                ProjectileID.InfernoHostileBolt,
-                ProjectileID.InfernoHostileBlast,
-                ProjectileID.InfernoFriendlyBolt,
-                ProjectileID.InfernoFriendlyBlast,
-                ProjectileID.HelFire,
-                ProjectileID.Cascade,
-                ProjectileID.Flames,
-                ProjectileID.FlamethrowerTrap,
-                ProjectileID.Sunfury,
-                ProjectileID.FlamingMace,
-                ProjectileID.Flamelash,
-                ProjectileID.Flamarang,
-                ProjectileID.BallofFire,
-                ProjectileID.BlueFlare,
-                ProjectileID.Flare,
-                ProjectileID.FlamingArrow,
-                ProjectileID.MolotovFire,
-                ProjectileID.MolotovFire2,
-                ProjectileID.MolotovFire3,
-                ProjectileID.CultistBossFireBall,
-                ProjectileID.CultistBossFireBallClone,
-                ProjectileID.EyeFire,
-                ProjectileID.GreekFire1,
-                ProjectileID.GreekFire2,
-                ProjectileID.GreekFire3,
-            };
+            HeatDamage = new HashSet<int>();
             BlacklistSpecialEffects = new HashSet<int>()
             {
                 ProjectileID.MolotovFire,
@@ -183,6 +141,12 @@ namespace Aequus.Projectiles
             }
             pIdentity = self.identity;
             pWhoAmI = -1;
+        }
+
+        public void PostSetupContent(Aequus aequus)
+        {
+            var contentFile = new ContentArrayFile("HeatDamage", ProjectileID.Search);
+            contentFile.AddToHashSet("Projectiles", HeatDamage);
         }
 
         public override void Unload()

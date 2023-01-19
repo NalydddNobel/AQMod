@@ -130,6 +130,21 @@ namespace Aequus.Projectiles.Melee
 
         public override void AI()
         {
+            if (temperature < 0)
+            {
+                Projectile.coldDamage = true;
+                Projectile.Aequus().heatDamage = false;
+            }
+            else if (temperature > 0)
+            {
+                Projectile.coldDamage = false;
+                Projectile.Aequus().heatDamage = true;
+            }
+            else
+            {
+                Projectile.coldDamage = false;
+                Projectile.Aequus().heatDamage = false;
+            }
             if ((int)Projectile.ai[0] == -1)
             {
                 Projectile.alpha = 0;

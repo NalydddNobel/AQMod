@@ -23,6 +23,7 @@ namespace Aequus.Projectiles.Summon
         {
             this.SetTrail(30);
             PushableEntities.AddProj(Type);
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

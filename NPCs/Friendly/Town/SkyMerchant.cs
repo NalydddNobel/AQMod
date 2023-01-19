@@ -4,6 +4,7 @@ using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables;
+using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
@@ -160,12 +161,46 @@ namespace Aequus.NPCs.Friendly.Town
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
+            if (Main.raining)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
+            }
             if (NPC.downedBoss1)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FlashwayNecklace>());
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<NameTag>());
+
+            if (!Main.dayTime)
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoldenRoulette>());
+                switch (Main.GetMoonPhase())
+                {
+                    case MoonPhase.QuarterAtRight:
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<JungleSlotMachine>());
+                        break;
+                    case MoonPhase.ThreeQuartersAtRight:
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OceanSlotMachine>());
+                        break;
+                    case MoonPhase.Full:
+                        if (NPC.downedBoss3 || AequusWorld.downedEventDemon)
+                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShadowRoulette>());
+                        break;
+                    case MoonPhase.ThreeQuartersAtLeft:
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyRoulette>());
+                        break;
+                    case MoonPhase.QuarterAtLeft:
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DesertRoulette>());
+                        break;
+                    case MoonPhase.Empty:
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SnowRoulette>());
+                        break;
+                }
+            }
+            else
+            {
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Roulette>());
+            }
 
             if (merchant != null)
             {

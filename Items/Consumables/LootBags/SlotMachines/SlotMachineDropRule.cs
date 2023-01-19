@@ -8,7 +8,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
     public class SlotMachineDropRule : CommonDrop
     {
-        public SlotMachineItemBase roulette;
+        public SlotMachineBase roulette;
         public int rouletteChoice;
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
         /// <param name="amountDroppedMinimum"></param>
         /// <param name="amountDroppedMaximum"></param>
         /// <param name="chanceNumerator"></param>
-        public SlotMachineDropRule(SlotMachineItemBase roulette, int itemID, int rouletteChoice = 0, int dropChance = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) : base(itemID, dropChance, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
+        public SlotMachineDropRule(SlotMachineBase roulette, int itemID, int rouletteChoice = 0, int dropChance = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) : base(itemID, dropChance, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
         {
             if (rouletteChoice <= 0)
                 rouletteChoice = itemID;
@@ -41,7 +41,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
         /// <param name="amountDroppedMaximum"></param>
         /// <param name="chanceNumerator"></param>
         public SlotMachineDropRule(int rouletteItemID, int itemID, int rouletteChoice = 0, int dropChance = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1)
-            : this(ItemLoader.GetItem(rouletteItemID) as SlotMachineItemBase, itemID, rouletteChoice, dropChance, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
+            : this(ItemLoader.GetItem(rouletteItemID) as SlotMachineBase, itemID, rouletteChoice, dropChance, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
         {
         }
 

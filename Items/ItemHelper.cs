@@ -112,7 +112,7 @@ namespace Aequus.Items
 
         public static TooltipLine Find(this List<TooltipLine> tooltips, string name)
         {
-            return tooltips.Find((t) => t.Mod == "Terraria" && t.Name.Equals(name));
+            return tooltips.Find((t) => t != null && t.Mod != null && t.Name != null && t.Mod == "Terraria" && t.Name.Equals(name));
         }
 
         public static TooltipLine ItemName(this List<TooltipLine> tooltips)

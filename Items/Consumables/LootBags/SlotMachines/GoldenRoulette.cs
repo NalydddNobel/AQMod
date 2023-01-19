@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public class GoldenRoulette : SlotMachineItemBase
+    public class GoldenRoulette : SlotMachineBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {

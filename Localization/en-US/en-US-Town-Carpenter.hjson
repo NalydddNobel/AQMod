@@ -47,21 +47,6 @@ Mods.Aequus: {
 			Success: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
 		}
 
-		WeirdRoofBounty: {
-			"$parentVal": Artist's Imagination
-			Description: Build a house with an irregular roof
-		}
-
-		TriangleRoofBounty: {
-			"$parentVal": Pointed Edge
-			Description: Build a house with a triangle roof
-		}
-
-		ThickHouseBounty: {
-			"$parentVal": Sturdy Abode
-			Description: Build a house with thick walls
-		}
-
 		ActuatorDoorBounty: {
 			"$parentVal": Secret Entrance
 			Description: Build a room locked behind an Actuator door

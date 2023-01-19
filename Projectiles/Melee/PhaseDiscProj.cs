@@ -45,6 +45,21 @@ namespace Aequus.Projectiles.Melee
 
         public override void AI()
         {
+            if (Projectile.ai[1] > 0f && !IsIce)
+            {
+                Projectile.Aequus().heatDamage = false;
+                Projectile.coldDamage = false;
+            }
+            else if (Projectile.ai[1] > 0f)
+            {
+                Projectile.Aequus().heatDamage = false;
+                Projectile.coldDamage = true;
+            }
+            else if (!IsIce)
+            {
+                Projectile.Aequus().heatDamage = true;
+                Projectile.coldDamage = false;
+            }
             var hitbox = Projectile.getRect();
             hitbox.Inflate(16, 16);
             for (int i = 0; i < Main.maxItems; i++)

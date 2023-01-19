@@ -33,7 +33,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs
 {
-    public class AequusNPC : GlobalNPC
+    public class AequusNPC : GlobalNPC, IPostSetupContent
     {
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
@@ -62,21 +62,10 @@ namespace Aequus.NPCs
 
         public override void Load()
         {
-            HeatDamage = new HashSet<int>()
-            {
-                NPCID.Lavabat,
-                NPCID.LavaSlime,
-                NPCID.FireImp,
-                NPCID.MeteorHead,
-                NPCID.HellArmoredBones,
-                NPCID.HellArmoredBonesMace,
-                NPCID.HellArmoredBonesSpikeShield,
-                NPCID.HellArmoredBonesSword,
-                NPCID.BlazingWheel,
-            };
             NPC_waterMovementSpeed = typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
+            HeatDamage = new HashSet<int>();
 
             if (!Main.dedServ)
             {
@@ -84,6 +73,12 @@ namespace Aequus.NPCs
             }
 
             AddHooks();
+        }
+
+        public void PostSetupContent(Aequus mod)
+        {
+            var contentFile = new ContentArrayFile("HeatDamage", NPCID.Search);
+            contentFile.AddToHashSet("NPCs", HeatDamage);
         }
 
         public override void Unload()

@@ -1,5 +1,28 @@
 ﻿{
   "ConcoctionBlacklist": [
+    "Tipsy",
+    "Honey",
+    "Lucky",
     "Polarities;TolerancePotionCooldownBuff"
+  ],
+
+  "DontChangeDuration": [
+    "Lucky"
+  ],
+
+  "ForcedPositiveBuff": [
+    "Tipsy",
+    "HeartLamp",
+    "Campfire",
+    "CatBast"
+  ],
+
+  "IsFire": [
+    "OnFire",
+    "OnFire3",
+    "Frostburn",
+    "Frostburn2",
+    "ShadowFlame",
+    "CursedInferno"
   ]
 }

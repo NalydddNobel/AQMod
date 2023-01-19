@@ -20,6 +20,7 @@ namespace Aequus.Projectiles.Magic
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             Main.projFrames[Type] = 3;
+            AequusProjectile.HeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
