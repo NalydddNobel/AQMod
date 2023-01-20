@@ -103,6 +103,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                             int buff = Get<int>();
                             if (TryGet<Color>(out var color))
                             {
+                                if (Aequus.LogMore)
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting Potion Color for Buff {Lang.GetBuffName(buff)} ({buff}) to {color}");
                                 PotionColorsDatabase.BuffToColor[buff] = color;
                             }
                             if (!PotionColorsDatabase.BuffToColor.TryGetValue(buff, out var buffColor))
@@ -118,6 +120,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                             int item = Get<int>();
                             if (TryGet<Color>(out var color))
                             {
+                                if (Aequus.LogMore)
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting Potion Color for Item {Lang.GetItemNameValue(item)} ({item}) to {color}");
                                 PotionColorsDatabase.ItemToBuffColor[item] = color;
                             }
                             if (!PotionColorsDatabase.ItemToBuffColor.TryGetValue(item, out var buffColor))
@@ -133,6 +137,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                             int proj = Get<int>();
                             if (TryGet<bool>(out var shouldBePushable))
                             {
+                                if (Aequus.LogMore)
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting Pushable state for for Projectile {Lang.GetProjectileName(proj)} ({proj}) to {shouldBePushable}");
                                 if (shouldBePushable)
                                 {
                                     PushableEntities.ProjectileIDs.Add(proj);
@@ -151,6 +157,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                             int npc = Get<int>();
                             if (TryGet<bool>(out var shouldBePushable))
                             {
+                                if (Aequus.LogMore)
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting Pushable state for for NPC {Lang.GetNPCNameValue(npc)} ({npc}) to {shouldBePushable}");
                                 if (shouldBePushable)
                                 {
                                     PushableEntities.NPCIDs.Add(npc);
@@ -166,6 +174,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                     case "SentryAccessory":
                         {
                             int item = Get<int>();
+                            if (Aequus.LogMore)
+                                Aequus.Instance.Logger.Info($"{mod.Name}: Setting Sentry On-AI function for {Lang.GetItemNameValue(item)}");
                             if (TryGet<Action<Projectile, Item, Player>>(out var simpleFunc))
                             {
                                 SentryAccessoriesDatabase.OnAI.Add(item, (info) =>
@@ -188,6 +198,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                     case "SentryAccessoryOnShoot":
                         {
                             int item = Get<int>();
+                            if (Aequus.LogMore)
+                                Aequus.Instance.Logger.Info($"{mod.Name}: Setting Sentry On-Shoot function for {Lang.GetItemNameValue(item)}");
                             if (TryGet<Action<Projectile, Item, Player>>(out var simpleFunc))
                             {
                                 SentryAccessoriesDatabase.OnShoot.Add(item, (info) =>
@@ -229,6 +241,8 @@ namespace Aequus.Content.CrossMod.ModCalls
                             if (args.Length >= 3)
                             {
                                 int index = args.Length > 4 ? 4 : 3;
+                                if (Aequus.LogMore)
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting pylon color data for {AequusText.GetInternalNameOrUnknown(key.X, TileID.Search)} ({key.X}): Style={key.Y}");
                                 if (args[index] is Color color)
                                 {
                                     AequusTile.PylonColors[key] = () => color;

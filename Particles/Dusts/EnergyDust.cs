@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -17,25 +18,23 @@ namespace Aequus.Particles.Dusts
 
         public override bool Update(Dust dust)
         {
-            dust.velocity.X *= 0.9f;
+            dust.velocity *= 0.92f;
             float velo = dust.velocity.Length();
             if (!dust.noGravity)
             {
                 dust.rotation += velo * 0.0314f;
                 dust.velocity.Y *= 0.96f;
             }
-            dust.scale -= 0.005f - velo / 1000f;
+            dust.scale -= 0.01f - velo / 1000f + Math.Max(1f - dust.scale, 0f) * 0.1f;
             dust.alpha += (int)velo * 4;
+            dust.rotation += 0.02f + Math.Max(1f - dust.scale, 0f);
             if (dust.alpha >= 255)
                 dust.active = false;
             if (dust.scale <= 0.1f)
                 dust.active = false;
             if (!dust.noLight)
                 Lighting.AddLight(dust.position, dust.color.ToVector3() * 0.5f);
-            float actualY = dust.velocity.Y;
-            if (dust.alpha < 80)
-                actualY *= dust.alpha / 80f;
-            dust.position += new Vector2(dust.velocity.X, actualY);
+            dust.position += dust.velocity;
             return false;
         }
     }

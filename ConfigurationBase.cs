@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using System;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
@@ -35,13 +36,17 @@ namespace Aequus
             {
             }
         }
+        protected void Text(string key)
+        {
+            AequusText.AutoAddItemCommands($"Configuration.{ConfigKey}.{key}", "Label");
+        }
         protected void Text(string key, object obj)
         {
-            AequusText.NewFromDict("Configuration." + ConfigKey + "." + key, "Label", obj);
+            AequusText.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", obj);
         }
         protected void Text(string key, Func<string> adjust)
         {
-            AequusText.NewFromDict("Configuration." + ConfigKey + "." + key, "Label", adjust);
+            AequusText.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", adjust);
         }
 
         public void PostSetupContent(Aequus aequus)

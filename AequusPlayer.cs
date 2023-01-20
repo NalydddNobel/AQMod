@@ -129,11 +129,17 @@ namespace Aequus
 
         //public ShatteringVenus.ItemInfo shatteringVenus;
 
+        public int debuffDamage;
+
+        public int debuffLifeStealDamage;
+        public int debuffLifeSteal;
+
         public bool ammoAndThrowingCost33;
 
         public bool accResetEnemyDebuffs;
 
         public float statMeleeScale;
+
         public float statRangedVelocityMultiplier;
 
         public float pickTileDamage;
@@ -674,6 +680,8 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            debuffDamage = 0;
+            debuffLifeSteal = 0;
             ammoAndThrowingCost33 = false;
             accResetEnemyDebuffs = false;
             accLavaPlace = false;
@@ -1162,6 +1170,32 @@ namespace Aequus
                 if (accDustDevilExpertThrowTimer > 0)
                     Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
                 accDustDevilExpertThrowTimer = 0;
+            }
+
+            debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
+            if (debuffLifeSteal > 0)
+            {
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active&& !Main.npc[i].immortal && !Main.npc[i].dontTakeDamage && Player.Distance(Main.npc[i].Center) < 1000f)
+                    {
+                        if (Main.npc[i].lifeRegen < 0)
+                            debuffLifeStealDamage -= Main.npc[i].lifeRegen;
+                    }
+                }
+                if (Main.myPlayer == Player.whoAmI)
+                {
+                    if (debuffLifeStealDamage >= debuffLifeSteal)
+                    {
+                        int amt = (int)Math.Min(debuffLifeStealDamage / debuffLifeSteal, Player.lifeSteal);
+                        if (amt > 0)
+                        {
+                            Player.Heal(amt);
+                            Player.lifeSteal += amt;
+                        }
+                    }
+                }
+                debuffLifeStealDamage %= debuffLifeSteal;
             }
 
             if (accDarknessCrownDamage > 0f && InDarkness)

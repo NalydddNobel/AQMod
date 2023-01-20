@@ -31,7 +31,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -61,7 +60,6 @@ namespace Aequus.Items
         public static Dictionary<int, string> RarityNames { get; private set; }
 
         private static Dictionary<int, int> ItemToBannerCache;
-
 
         public static int ReversedGravityCheck;
         public static int SuctionChestCheck;
@@ -151,7 +149,7 @@ namespace Aequus.Items
         public void PostSetupContent(Aequus aequus)
         {
             var contentArray = new ContentArrayFile("ItemSets", ItemID.Search);
-           
+
             ClassOrderedPillarFragments = contentArray.ReadIntList("ClassOrderedPillarFragments");
             RainbowOrderPillarFragments = contentArray.ReadIntList("RainbowOrderPillarFragments");
         }

@@ -20,7 +20,6 @@ namespace Aequus
         [Desc("Gameplay.General.DamageReductionCap")]
         [DefaultValue(0.6f)]
         [Range(0.6f, 1f)]
-        [ReloadRequired]
         public float DamageReductionCap { get; set; }
 
         [MemberBGColor]
@@ -37,6 +36,20 @@ namespace Aequus
         [ReloadRequired]
         public bool EarlyPortalGun { get; set; }
 
+        [MemberBGColor]
+        [Name("Gameplay.General.HardmodeChests")]
+        [Desc("Gameplay.General.HardmodeChests")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool HardmodeChests { get; set; }
+
+        [MemberBGColor]
+        [Name("Gameplay.General.EarlyMimics")]
+        [Desc("Gameplay.General.EarlyMimics")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyMimics { get; set; }
+
         [Header(Key + "Gameplay.Recipes.Header")]
 
         [MemberBGColor]
@@ -48,6 +61,8 @@ namespace Aequus
 
         public override void AddCustomTranslations()
         {
+            Text("General.HardmodeChests");
+            Text("General.EarlyMimics");
             Text("General.DamageReductionCap", new
             {
                 Item = AequusText.ItemCommand<CrownOfBlood>(),

@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace Aequus.Content.Necromancy
 {
-    public struct GhostInfo : ICrapModCallHandler
+    public struct GhostInfo : ILegacyCallHandler
     {
         /// <summary>
         /// For enemies which cannot be turned into player zombies
@@ -114,7 +114,7 @@ namespace Aequus.Content.Necromancy
             return (PowerNeeded > 0f && PowerNeeded <= power) || power >= 100f;
         }
 
-        public ICrapModCallHandler HandleArg(string name, object value)
+        public ILegacyCallHandler HandleArg(string name, object value)
         {
             if (name == "PrioritizePlayerMultiplier")
             {
@@ -189,10 +189,10 @@ namespace Aequus.Content.Necromancy
             }
             else
             {
-                ICrapModCallHandler.DoesntExistReport(name, this);
+                ILegacyCallHandler.DoesntExistReport(name, this);
                 return this;
             }
-            ICrapModCallHandler.SuccessReport(name, value, this);
+            ILegacyCallHandler.SuccessReport(name, value, this);
             return this;
         }
 

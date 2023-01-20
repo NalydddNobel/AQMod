@@ -394,7 +394,7 @@ namespace Aequus.Content.WorldGeneration
 
         public override void PostUpdateWorld()
         {
-            if (!Main.hardMode || WorldGen.IsGeneratingHardMode || Main.netMode == NetmodeID.MultiplayerClient)
+            if (!Main.hardMode || WorldGen.IsGeneratingHardMode || Main.netMode == NetmodeID.MultiplayerClient || !GameplayConfig.Instance.HardmodeChests)
             {
                 return;
             }

@@ -84,6 +84,10 @@ namespace Aequus.Items
         /// </summary>
         public static int DungeonValue => Item.sellPrice(gold: 1, silver: 75);
         /// <summary>
+        /// 3 gold
+        /// </summary>
+        public static int EarlyHardmode => Item.sellPrice(gold: 3);
+        /// <summary>
         /// 6 gold 50 silver
         /// </summary>
         public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);

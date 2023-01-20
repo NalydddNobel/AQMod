@@ -7,6 +7,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
@@ -14,6 +15,8 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable;
+using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
@@ -47,6 +50,7 @@ namespace Aequus.NPCs
         public bool noHitEffect;
         public bool disabledContactDamage;
 
+        public byte debuffDamage;
         public int oldLife;
         public float statAttackDamage;
         public byte mindfungusStacks;
@@ -67,11 +71,6 @@ namespace Aequus.NPCs
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             HeatDamage = new HashSet<int>();
 
-            if (!Main.dedServ)
-            {
-                NPCID.Sets.TrailingMode[NPCID.Mimic] = 7;
-            }
-
             AddHooks();
         }
 
@@ -83,10 +82,6 @@ namespace Aequus.NPCs
 
         public override void Unload()
         {
-            if (!Main.dedServ)
-            {
-                NPCID.Sets.TrailingMode[NPCID.Mimic] = -1;
-            }
             HeatDamage?.Clear();
             NPC_waterMovementSpeed = null;
             NPC_lavaMovementSpeed = null;
@@ -316,27 +311,6 @@ namespace Aequus.NPCs
                 tempHide = false;
                 return false;
             }
-            if (npc.type == NPCID.Mimic && npc.frame.Y >= npc.frame.Height * 6 && npc.frame.Y < npc.frame.Height * 12)
-            {
-                var texture = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/Vanilla/AdamantiteMimic");
-                var frame = texture.Value.Frame(verticalFrames: 6, frameY: npc.frame.Y / npc.frame.Height % 6);
-                int trailLength = Math.Min(NPCID.Sets.TrailCacheLength[npc.type], 6);
-                var offset = npc.Size / 2f + new Vector2(0f, -7f);
-                var origin = frame.Size() / 2f;
-                var spriteDirection = (-npc.spriteDirection).ToSpriteEffect();
-                for (int i = 0; i < trailLength; i++)
-                {
-                    if (i < trailLength - 1 && (npc.oldPos[i] - npc.oldPos[i + 1]).Length() < 1f)
-                    {
-                        continue;
-                    }
-                    spriteBatch.Draw(texture.Value, (npc.oldPos[i] - screenPos + offset).Floor(), frame,
-                        AequusHelpers.GetColor(npc.oldPos[i] + offset) * AequusHelpers.CalcProgress(trailLength, i) * 0.4f, npc.rotation, origin, npc.scale, spriteDirection, 0f);
-                }
-                spriteBatch.Draw(texture.Value, (npc.position - screenPos+ offset).Floor(), frame, 
-                    drawColor, npc.rotation, origin, npc.scale, spriteDirection, 0f);
-                return false;
-            }
             return true;
         }
 
@@ -473,6 +447,10 @@ namespace Aequus.NPCs
         {
             oldLife = npc.life;
 
+            if (npc.lifeRegen + debuffDamage >= 0)
+            {
+                debuffDamage = 0;
+            }
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
@@ -602,6 +580,14 @@ namespace Aequus.NPCs
                 npc.lifeRegen -= 50;
                 damage = Math.Max(damage, 10);
             }
+
+            if (debuffDamage > 0)
+            {
+                npc.lifeRegen -= debuffDamage;
+                if (damage < 1)
+                    damage = 1;
+                damage += debuffDamage / 4;
+            }
         }
         public void UpdateDebuffStack(NPC npc, bool has, ref byte stacks, ref int twoSecondsDamageNumbers, byte cap = 20, float dotMultiplier = 1f)
         {
@@ -704,7 +690,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -730,6 +716,10 @@ namespace Aequus.NPCs
             if (bb[6])
             {
                 binaryWriter.Write(tempDontTakeDamage);
+            }
+            if (bb[7])
+            {
+                binaryWriter.Write(debuffDamage);
             }
         }
 
@@ -761,6 +751,10 @@ namespace Aequus.NPCs
             if (bb[6])
             {
                 tempDontTakeDamage = binaryReader.ReadByte();
+            }
+            if (bb[7])
+            {
+                debuffDamage = binaryReader.ReadByte();
             }
         }
 

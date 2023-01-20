@@ -64,6 +64,12 @@ namespace Aequus
         [DefaultValue(true)]
         public bool NecromancyOutlines { get; set; }
 
+        [MemberBGColor]
+        [Name("Client.Visuals.AdamantiteChestMimic")]
+        [Desc("Client.Visuals.AdamantiteChestMimic")]
+        [DefaultValue(true)]
+        public bool AdamantiteChestMimic { get; set; }
+
         [Header(Key + "Client.General.Header")]
 
         [MemberBGColor]
@@ -74,6 +80,7 @@ namespace Aequus
 
         public override void AddCustomTranslations()
         {
+            Text("Visuals.AdamantiteChestMimic");
             Text("Visuals.ScreenshakeIntensity", new
             {
                 Baguette = AequusText.ItemCommand<Baguette>(),

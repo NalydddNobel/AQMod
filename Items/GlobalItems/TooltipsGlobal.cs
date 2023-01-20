@@ -143,6 +143,7 @@ namespace Aequus.Items.GlobalItems
                 //    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")));
                 //}
                 //TestLootBagTooltip(item, tooltips);
+                //DebugEnemyDrops(NPCID.IceMimic, tooltips);
             }
             catch
             {
@@ -150,51 +151,20 @@ namespace Aequus.Items.GlobalItems
         }
         public static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
         {
-            var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
+            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false));
 
-            if (dropTable.Count == 0)
+            for (int i = 0; i < dropTable.Count; i++)
             {
-                return;
+                tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
+        }
+        private static void DebugEnemyDrops(int npcID, List<TooltipLine> tooltips)
+        {
+            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false));
 
-            var drops = new List<DropRateInfo>();
-            foreach (var rule in dropTable)
+            for (int i = 0; i < dropTable.Count; i++)
             {
-                rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
-            }
-            foreach (var drop in drops)
-            {
-                string text = AequusText.ItemCommand(drop.itemId);
-                if (drop.stackMin == drop.stackMax)
-                {
-                    if (drop.stackMin > 1)
-                    {
-                        text += $" ({drop.stackMin})";
-                    }
-                }
-                else
-                {
-                    text += $" ({drop.stackMin} - {drop.stackMax})";
-                }
-                text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
-                tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId), text));
-                if (drop.conditions != null && drop.conditions.Count > 0)
-                {
-                    foreach (var cond in drop.conditions)
-                    {
-                        if (cond == null)
-                        {
-                            continue;
-                        }
-
-                        string extraDesc = cond.GetConditionDescription();
-                        string condText = cond.GetType().FullName;
-                        if (!string.IsNullOrEmpty(extraDesc))
-                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
-
-                        tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
-                    }
-                }
+                tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
         }
         public TooltipLine GetPriceTooltipLine(Player player, Item item)

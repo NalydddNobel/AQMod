@@ -37,6 +37,7 @@
         CompleteCarpenterBounty,
         ResetCarpenterBounties,
         WabbajackNecromancyKill,
+        SendDebuffFlatDamage,
         Count
     }
 

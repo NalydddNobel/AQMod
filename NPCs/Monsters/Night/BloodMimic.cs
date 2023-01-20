@@ -35,7 +35,7 @@ namespace Aequus.NPCs.Monsters.Night
             NPC.aiStyle = -1;
             NPC.damage = 25;
             NPC.defense = 10;
-            NPC.lifeMax = 125;
+            NPC.lifeMax = 100;
             NPC.HitSound = SoundID.NPCHit16;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.value = Item.buyPrice(silver: 50);

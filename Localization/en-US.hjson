@@ -51,6 +51,7 @@ Mods: {
 		}
 		
 		DropCondition: {
+			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}
 			AllMechs: Dropped when all 3 mechanical bosses are defeated
 			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
@@ -100,12 +101,15 @@ Mods: {
 
 		ItemName: {
 		# Accessories
+			FlameCrystal: Flame Escalioid
+			SoulCrystal: Soul Neglectite
+			BloodCrystal: Blood Curcleav
 			FishyFins: Fishy Fins
 			BlackPlague: Black Plague
 			LavaproofMitten: Lavaproof Mitten
 			Stormcloak: Storm Cloak
 			ShadowVeer: Shadow Veer
-			SouljointCuffs: Souljoint Cuffs
+			SouljointCuffs: Soulbound Cuffs
 			NaturesCruelty: Nature's Cruelty
 			SpiritKeg: Keg O' Spirits
 			CartilageRing: Osseous Ring
@@ -177,6 +181,7 @@ Mods: {
 			Headless: Headless
 
 		# Melee Weapons
+			SickBeat: Sick Beat
 			PhaseDisc: Phasebrink
 			CrystalDagger: Crystal Dagger
 			Cauterizer: Cauterizer
@@ -647,6 +652,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FlameCrystal: Burning enemies will spread their debuffs to other enemies
+			SoulCrystal: Increases debuff damage by 10 
+			BloodCrystal: Restore 1 life for each 20 damage dealt by debuffs
 			FishyFins: 
 				'''
 				Grants 20 seconds of water breathing while outside of water
@@ -654,7 +662,7 @@ Mods: {
 				'''
 			BlackPlague: 
 				'''
-				Attacks may inflict weakness, fire damage, and other debuffs on enemies
+				Attacks may weaknen enemies, deal fire damage, and inflict random debuffs
 				Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
 				50% increased duration on debuffs applied to enemies
 				'''
@@ -727,14 +735,14 @@ Mods: {
 				Chance to inflict a random debuff on hit
 				50% increased duration on debuffs applied to enemies
 				'''
-			PhoenixRing: Attacks may inflict weakness and fire damage on enemies
+			PhoenixRing: Attacks may weaken enemies and inflict fire damage
 			CartilageRing: 
 				'''
 				Enemies take extra damage from scepter debuffs
 				Ghost minion projectiles travel at twice the speed
 				Attacks may inflict weakness on enemies
 				'''
-			BoneRing: Attacks may inflict weakness on enemies
+			BoneRing: Attacks may reduce enemy damage by 10% and slow them down
 			PandorasBox: 
 				'''
 				Enemies take extra damage from scepter debuffs
@@ -812,6 +820,11 @@ Mods: {
 			Headless: Decapitates you
 
 		# Melee Weapons
+			SickBeat: 
+				'''
+				Plays damaging music after hitting an enemy
+				'This beat comes straight from {MusicSource}!'
+				'''
 			PhaseDisc: 
 				'''
 				Left Click to throw a fiery disc

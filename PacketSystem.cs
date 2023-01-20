@@ -224,6 +224,15 @@ namespace Aequus
             }
             switch (type)
             {
+                case PacketType.SendDebuffFlatDamage:
+                    {
+                        int npc = reader.ReadInt32();
+                        var amt = reader.ReadByte();
+                        if (Main.npc[npc].active)
+                            Main.npc[npc].Aequus().debuffDamage = Math.Max(Main.npc[npc].Aequus().debuffDamage, amt);
+                    }
+                    break;
+
                 case PacketType.WabbajackNecromancyKill:
                     {
                         int npc = reader.ReadInt32();

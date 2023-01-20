@@ -16,6 +16,7 @@ using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -79,7 +81,113 @@ namespace Aequus
         public static TypeUnboxer<float> UnboxFloat { get; private set; }
         public static TypeUnboxer<bool> UnboxBoolean { get; private set; }
 
+        private static Mod aequus => ModContent.GetInstance<Aequus>();
+
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="loot"></param>
+        /// <param name="condition"></param>
+        /// <param name="ruleCondition"></param>
+        /// <returns></returns>
+        public static bool AddConditionToExistingRule<T>(this NPCLoot loot, Func<T, bool> condition, IItemDropRuleCondition ruleCondition) where T : class, IItemDropRule
+        {
+            if (loot.Find(condition, out var rule))
+            {
+                loot.RemoveWhere((rule) => rule is T wantedRule && condition(wantedRule));
+                loot.Add(new LeadingConditionRule(ruleCondition)).OnSuccess(rule);
+            }
+            return true;
+        }
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="loot"></param>
+        /// <param name="condition"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool Find<T>(this NPCLoot loot, Func<T, bool> condition, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            return Find<T>(loot.Get(includeGlobalDrops: false), condition, out rule);
+        }
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="condition"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool Find<T>(this List<IItemDropRule> list, Func<T, bool> condition, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            rule = list.Find((rule) => rule is T wantedRule && condition(wantedRule));
+            return rule != default(IItemDropRule);
+        }
+        /// <summary>
+        /// Attempts to find the first result of <see cref="IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="Find{T}(List{IItemDropRule}, Func{T, bool}, out IItemDropRule)"/> instead for more consistent results. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool FindFirst<T>(this List<IItemDropRule> list, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            rule = list.Find((rule) => rule is T);
+            return rule != default(IItemDropRule);
+        }
+        public static List<string> GetListOfDrops(List<IItemDropRule> dropTable)
+        {
+            var tooltips = new List<string>();
+            if (dropTable.Count == 0)
+            {
+                return tooltips;
+            }
+
+            foreach (var rule in dropTable)
+            {
+                var drops = new List<DropRateInfo>();
+                rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
+                tooltips.Add(rule.GetType().FullName + ":");
+                foreach (var drop in drops)
+                {
+                    string text = "* " + AequusText.ItemCommand(drop.itemId);
+                    if (drop.stackMin == drop.stackMax)
+                    {
+                        if (drop.stackMin > 1)
+                        {
+                            text += $" ({drop.stackMin})";
+                        }
+                    }
+                    else
+                    {
+                        text += $" ({drop.stackMin} - {drop.stackMax})";
+                    }
+                    text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
+                    tooltips.Add(text);
+                    if (drop.conditions != null && drop.conditions.Count > 0 && Main.keyState.IsKeyDown(Keys.LeftControl))
+                    {
+                        foreach (var cond in drop.conditions)
+                        {
+                            if (cond == null)
+                            {
+                                continue;
+                            }
+
+                            string extraDesc = cond.GetConditionDescription();
+                            string condText = Main.keyState.IsKeyDown(Keys.LeftShift) ? cond.GetType().FullName : cond.GetType().Name;
+                            if (!string.IsNullOrEmpty(extraDesc))
+                                condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
+                            tooltips.Add(condText);
+                        }
+                    }
+                }
+            }
+            return tooltips;
+        }
 
         public static void ResetVanillaNPCTexture(int npcID)
         {
@@ -2166,6 +2274,20 @@ namespace Aequus
         public static bool ContainsAny<T>(this IEnumerable<T> en, T en2)
         {
             return ContainsAny(en, (t) => t.Equals(en2));
+        }
+        public static bool ContainsAny<T>(this IEnumerable<T> en, params T[] en2)
+        {
+            return ContainsAny(en, (t) =>
+            {
+                foreach (var t2 in en2)
+                {
+                    if (t.Equals(t2))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
         public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
         {

@@ -37,6 +37,8 @@ namespace Aequus
 
         [ImgArr(5)]
         public static Asset<Texture2D>[] Bloom { get; private set; }
+        [ImgArr(3)]
+        public static Asset<Texture2D>[] LightRay { get; private set; }
         [ImgPath("Assets/Effects/Prims")]
         [ImgArr(5)]
         public static Asset<Texture2D>[] Trail { get; private set; }

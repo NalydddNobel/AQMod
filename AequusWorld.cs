@@ -225,6 +225,8 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            downedHyperStarite = false;
+            downedUltraStarite = false;
             hardmodeChests = false;
             chestCobaltTier = false;
             chestMythrilTier = false;

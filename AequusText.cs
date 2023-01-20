@@ -24,6 +24,31 @@ namespace Aequus
         public static string Unknown => GetText("Unknown");
         public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
 
+        public static void AutoAddItemCommands(string key, string key2)
+        {
+            NewFromDict(key, key2, (text) =>
+            {
+                string input = text;
+                return AequusHelpers.SubstitutionRegex.Replace(input, (match) =>
+                {
+                    if (match.Groups[1].Length != 0)
+                    {
+                        return "";
+                    }
+
+                    string name = match.Groups[2].ToString();
+                    if (ItemID.Search.TryGetId(name, out int directItem))
+                    {
+                        return ItemCommand(directItem);
+                    }
+                    if (ItemID.Search.TryGetId($"Aequus/{name}", out int item))
+                    {
+                        return ItemCommand(item);
+                    }
+                    return "";
+                });
+            });
+        }
         public static void NewFromDict(string key, string key2, object obj)
         {
             NewFromDict(key, key2, (text) => AequusHelpers.FormatWith(text, obj));

@@ -229,7 +229,10 @@ namespace Aequus.NPCs.GlobalNPCs
                 && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
                 CrabCreviceEnemies(pool, spawnInfo);
+                return;
             }
+
+            MimicEdits.PreHardmodeMimics(pool, spawnInfo);
         }
 
         private static void AdjustSpawns(IDictionary<int, float> pool, float amt)

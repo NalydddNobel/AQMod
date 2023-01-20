@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Ranged
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 5;
             Projectile.extraUpdates = 2;
-            Projectile.timeLeft = 90;
+            Projectile.timeLeft = 60;
             Projectile.alpha = 255;
             Projectile.tileCollide = false;
         }
