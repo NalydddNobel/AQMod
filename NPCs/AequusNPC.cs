@@ -91,6 +91,7 @@ namespace Aequus.NPCs
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
+            globalLoot.Add(ItemDropRule.ByCondition(new Conditions.IsBloodMoonAndNotFromStatue(), ModContent.ItemType<BloodyTearFragment>(), 150));
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
@@ -212,12 +213,6 @@ namespace Aequus.NPCs
                 case NPCID.EyeballFlyingFish:
                 case NPCID.ZombieMerman:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 1, maximumDropped: 3));
-                    break;
-
-                case NPCID.BloodZombie:
-                case NPCID.Drippler:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), 25));
-                    //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
                     break;
 
                 case NPCID.DevourerHead:

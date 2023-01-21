@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public int amountAllowedToHit;
 
-        public virtual bool SwingSwitchDir => AnimProgress > 0.6f && AnimProgress < 0.7f;
+        public virtual bool SwingSwitchDir => AnimProgress > 0.4f && AnimProgress < 0.6f;
 
         public override void SetDefaults()
         {

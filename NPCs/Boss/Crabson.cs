@@ -958,10 +958,10 @@ namespace Aequus.NPCs.Boss
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
+                .AddPerPlayer<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
-                .Add<AquaticEnergy>(stack: 3)
                 .RegisterCondition();
         }
 

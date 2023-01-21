@@ -1175,14 +1175,17 @@ namespace Aequus
             debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
             if (debuffLifeSteal > 0)
             {
+                int damageOverTimeInflictedThisFrame = 0;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     if (Main.npc[i].active&& !Main.npc[i].immortal && !Main.npc[i].dontTakeDamage && Player.Distance(Main.npc[i].Center) < 1000f)
                     {
                         if (Main.npc[i].lifeRegen < 0)
-                            debuffLifeStealDamage -= Main.npc[i].lifeRegen;
+                            damageOverTimeInflictedThisFrame -= Main.npc[i].lifeRegen;
                     }
                 }
+                debuffLifeStealDamage += Math.Min(damageOverTimeInflictedThisFrame, debuffLifeSteal / 10);
+                //Main.NewText(debuffLifeStealDamage);
                 if (Main.myPlayer == Player.whoAmI)
                 {
                     if (debuffLifeStealDamage >= debuffLifeSteal)

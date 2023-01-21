@@ -1763,11 +1763,11 @@ namespace Aequus.NPCs.Boss
                 .Add<SupernovaFruit>(new LegacyFuncConditional(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<OriginPainting>()
+                .AddPerPlayer<CosmicEnergy>(chance: 1, stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
-                .Add<CosmicEnergy>(chance: 1, stack: 3)
                 .RegisterCondition();
         }
 

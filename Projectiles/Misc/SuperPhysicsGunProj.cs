@@ -121,7 +121,12 @@ namespace Aequus.Projectiles.Misc
                     int tileID = (int)Projectile.ai[0];
                     if (tileID < 0)
                     {
-                        if (tileID <= -2000)
+                        if (tileID <= -4000)
+                        {
+                            int itemIndex = -(tileID + 4000);
+                            Main.item[itemIndex].velocity = Projectile.velocity * (1 + Projectile.extraUpdates);
+                        }
+                        else if (tileID <= -2000)
                         {
                             int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                             if (projIdentity == -1)
@@ -161,7 +166,13 @@ namespace Aequus.Projectiles.Misc
                         SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
                         return;
                     }
-                    if (tileID <= -2000)
+                    if (tileID <= -4000)
+                    {
+                        int itemIndex = -(tileID + 4000);
+                        Main.item[itemIndex].Center = Projectile.Center;
+                        Main.item[itemIndex].velocity = Projectile.velocity;
+                    }
+                    else if (tileID <= -2000)
                     {
                         int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                         if (projIdentity == -1)
@@ -213,6 +224,14 @@ namespace Aequus.Projectiles.Misc
                 var checkTileCoords = Main.MouseWorld.ToTileCoordinates();
                 Projectile.netUpdate = true;
                 var myRect = Projectile.getRect();
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && Main.item[i].getRect().Intersects(myRect))
+                    {
+                        Projectile.ai[0] = -4000 - i;
+                        Projectile.ai[1] = 2f;
+                    }
+                }
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     if (Main.npc[i].active && Main.npc[i].getRect().Intersects(myRect))

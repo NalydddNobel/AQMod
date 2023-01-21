@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss;
 using Terraria.ID;
@@ -17,7 +16,6 @@ namespace Aequus.Items.Boss
             this.CreateLoot(itemLoot)
                 .Add<Crabax>(chance: 1, stack: 1)
                 .Add<CrabsonMask>(chance: 7, stack: 1)
-                .Add<AquaticEnergy>(chance: 1, stack: 3)
                 .Coins<Crabson>();
         }
     }

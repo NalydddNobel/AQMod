@@ -86,9 +86,9 @@ namespace Aequus.Projectiles.Melee.Swords
                     for (int i = 0; i < amt; i++)
                     {
                         var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
-                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 0.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
+                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 2.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
                         d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        d.scale *= Projectile.scale * 0.6f;
+                        d.scale *= Projectile.scale * 1f;
                         d.fadeIn = d.scale + 0.1f;
                         d.noGravity = true;
                         if (Projectile.numUpdates == -1)
@@ -119,7 +119,7 @@ namespace Aequus.Projectiles.Melee.Swords
             float scale = base.GetScale(progress);
             if (progress > 0.1f && progress < 0.9f)
             {
-                return scale + 0.5f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
+                return scale + 0.5f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.6f * MathHelper.Pi), 2f);
             }
             return scale;
         }
@@ -156,7 +156,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
 
-            var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 0.5f);
+            var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
@@ -175,37 +175,32 @@ namespace Aequus.Projectiles.Melee.Swords
             var origin = new Vector2(0f, texture.Height);
 
             var bloom = TextureCache.Bloom[1].Value;
-            Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
-            if (Aequus.HQ)
-            {
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * 0.5f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.4f, Projectile.scale * 1.1f), effects, 0);
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.2f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.6f, Projectile.scale * 1.25f), effects, 0);
-                Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, greal * 0.1f * Projectile.Opacity, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale, Projectile.scale * 1.5f), effects, 0);
-            }
+            Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity * 0.5f, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
 
-            var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly);
+            var circular = AequusHelpers.CircularVector(4, Projectile.rotation);
             for (int i = 0; i < circular.Length; i++)
             {
                 Vector2 v = circular[i];
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
-            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(glowmask.Value, handPosition - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(texture, drawCoords, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(glowmask.Value, drawCoords, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
             if (AnimProgress > 0.2f && AnimProgress < 0.8f)
             {
                 float swishProgress = (AnimProgress - 0.2f) / 0.6f;
+                float progress2 = 1f - (float)Math.Pow(1f - swishProgress, 2f);
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = Swish2Texture.Value;
+                var swish = SwishTexture.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = greal.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
-                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.5f;
+                var swishColor = greal.UseA(58) * 0.33f * intensity * intensity * Projectile.Opacity;
+                float r = BaseAngleVector.ToRotation();
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 30f + 20f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2f), effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f + 20f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2.5f, 4f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 120f + 120f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.8f, 1.8f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 140f + 120f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2.5f), effects, 0);
             }
             return false;
         }

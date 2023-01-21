@@ -123,9 +123,7 @@ namespace Aequus.NPCs.Boss
             this.CreateLoot(npcLoot)
                 .AddRelic<DustDevilRelic>()
                 .AddBossBag<DustDevilBag>()
-                .SetCondition(DropRulesBuilder.NotExpertCondition)
-                .Add<AtmosphericEnergy>(stack: 3)
-                .RegisterCondition();
+                .AddPerPlayer<AtmosphericEnergy>(stack: 3);
         }
 
         public override Color? GetAlpha(Color drawColor)

@@ -822,7 +822,7 @@ Mods: {
 		# Melee Weapons
 			SickBeat: 
 				'''
-				Plays damaging music after hitting an enemy
+				Deals extra hits when returning back
 				'This beat comes straight from {MusicSource}!'
 				'''
 			PhaseDisc: 
@@ -875,7 +875,7 @@ Mods: {
 				33% chance to not consume ammo
 				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
 				'''
-			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
+			CrusadersCrossbow: Shoots a bolt which can heal allies
 			Baozhu:
 				'''
 				A large explosion that puts enemies on fire
