@@ -34,12 +34,7 @@ namespace Aequus.Graphics
             {
                 if (Intensity > 0f)
                 {
-                    var oldShake = _shake;
-                    _shake = (Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(Intensity * 0.8f, Intensity)).Floor();
-                    if (oldShake != Vector2.Zero)
-                    {
-                        _shake = Vector2.Lerp(_shake, oldShake, 0.4f);
-                    }
+                    _shake = (new Vector2(Main.rand.NextFloat(-Intensity, Intensity), Main.rand.NextFloat(-Intensity, Intensity)) * 0.5f).Floor();
                     Intensity *= MultiplyPerTick;
                 }
                 else

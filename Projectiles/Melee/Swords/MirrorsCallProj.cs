@@ -190,27 +190,29 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
                 Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha, (handPosition - (handPosition + offsetVector * hitboxOutwards)).ToRotation() + rotationOffset, origin, scale, effects, 0);
-                trailAlpha -= 0.05f;
+                trailAlpha -= 0.07f;
             }
 
             Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            if (AnimProgress > 0.3f && AnimProgress < 0.7f)
+            if (AnimProgress > 0.2f && AnimProgress < 0.8f)
             {
-                float swishProgress = (AnimProgress - 0.3f) / 0.5f;
+                float swishProgress = (AnimProgress - 0.2f) / 0.7f;
                 glowColor = Color.Lerp(glowColor, Color.White.UseA(0), 0.5f) * 1.25f;
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
                 var swish = SwishTexture.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = glowColor.UseA(58) * 0.2f * intensity * intensity * Projectile.Opacity;
+                var swishColor = glowColor.UseA(58) * 0.1f * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * (0.4f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f));
-                float scaling = 1.5f;
+                float scaling = 1f;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
                 Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 80f - 40f * (scaling - 1f) + 130f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
                 Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 100f - 40f * (scaling - 1f) + 110f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2f) * scaling, effects, 0);
+                r += (swishProgress * 2f - 1f) * -swingDirection * 0.7f;
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 10f - 40f * (scaling - 1f)) * scale, null, swishColor * 3f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2.5f) * scaling, effects, 0);
             }
             return false;
         }

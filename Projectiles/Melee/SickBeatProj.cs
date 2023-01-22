@@ -4,8 +4,6 @@ using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -21,7 +19,6 @@ namespace Aequus.Projectiles.Melee
         public float musicVolume;
         public int musicChoice;
         public bool activateMusic;
-        public static Dictionary<string, List<int>> ModToMusicIDs { get; private set; }
 
         public override void SetStaticDefaults()
         {
@@ -32,35 +29,6 @@ namespace Aequus.Projectiles.Melee
 
         public void AddRecipes(Aequus mod)
         {
-            if (!Main.dedServ)
-            {
-                try
-                {
-                    ModToMusicIDs = new Dictionary<string, List<int>>();
-                    var byPath = typeof(MusicLoader).GetField("musicByPath", BindingFlags.NonPublic | BindingFlags.Static)
-                        .GetValue<Dictionary<string, int>>(null);
-                    if (byPath != null)
-                    {
-                        foreach (var music in byPath)
-                        {
-                            mod.Logger.Debug(music.Key);
-                            var modName = music.Key.Split('/')[0];
-                            mod.Logger.Debug(modName);
-                            if (ModToMusicIDs.ContainsKey(modName))
-                            {
-                                ModToMusicIDs[modName].Add(music.Value);
-                            }
-                            else
-                            {
-                                ModToMusicIDs[modName] = new List<int>() { music.Value, };
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-                }
-            }
         }
 
         public override void SetDefaults()

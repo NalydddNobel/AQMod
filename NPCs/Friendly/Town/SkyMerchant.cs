@@ -535,18 +535,25 @@ namespace Aequus.NPCs.Friendly.Town
                 init = true;
                 if (IsActive)
                 {
-                    bool notInTown = true;
-                    for (int i = 0; i < Main.maxNPCs; i++)
+                    if (AequusHelpers.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 60, out var _))
                     {
-                        if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 1200f)
+                        bool notInTown = true;
+                        for (int i = 0; i < Main.maxNPCs; i++)
                         {
-                            SetTownNPCState();
-                            notInTown = false;
-                            break;
+                            if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 1200f)
+                            {
+                                SetTownNPCState();
+                                notInTown = false;
+                                break;
+                            }
                         }
+                        if (notInTown)
+                            SetBalloonState();
                     }
-                    if (notInTown)
+                    else
+                    {
                         SetBalloonState();
+                    }
                 }
             }
             if (!IsActive && offscreen)

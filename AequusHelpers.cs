@@ -569,6 +569,35 @@ namespace Aequus
             npc.AddBuff(buffID, buffDuration);
         }
 
+        public static bool CheckForSolidRoofAbove(Point p, int limit, out Point roof)
+        {
+            int endY = Math.Max(p.Y - limit, 36);
+            roof = p;
+            for (int j = p.Y; j > endY; j--)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    roof.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool CheckForSolidGroundBelow(Point p, int limit, out Point solidGround)
+        {
+            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
+            solidGround = p;
+            for (int j = p.Y; j < endY; j++)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool InSceneRenderedMap(this TileMapCache map, Point p)
         {
             return InSceneRenderedMap(map, p.X, p.Y);
@@ -2388,7 +2417,11 @@ namespace Aequus
                 NetMessage.SendData(MessageID.SyncNPC, Main.myPlayer, -1, null, npc.whoAmI);
         }
 
-        public static int CheckForPlayers(Rectangle rectangle)
+        public static int FindFirstPlayerWithin(NPC npc)
+        {
+            return FindFirstPlayerWithin(Utils.CenteredRectangle(npc.Center, new Vector2(2000f, 1200f)));
+        }
+        public static int FindFirstPlayerWithin(Rectangle rectangle)
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -2454,6 +2487,23 @@ namespace Aequus
             return v;
         }
 
+        public static void ClearAI(this NPC npc, bool localAI = true)
+        {
+            int amt = Math.Min(npc.ai.Length, NPC.maxAI);
+            for (int i = 0; i < amt; i++)
+            {
+                npc.ai[i] = 0;
+            }
+
+            if (!localAI)
+                return;
+
+            amt = Math.Min(npc.localAI.Length, NPC.maxAI);
+            for (int i = 0; i < amt; i++)
+            {
+                npc.localAI[i] = 0;
+            }
+        }
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
             AequusNPC.NPC_waterMovementSpeed.SetValue(npc, water);

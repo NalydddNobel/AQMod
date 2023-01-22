@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation();
             if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == Projectile.owner)
             {
-                int plr = AequusHelpers.CheckForPlayers(new Rectangle((int)Projectile.position.X - 40, (int)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height));
+                int plr = AequusHelpers.FindFirstPlayerWithin(new Rectangle((int)Projectile.position.X - 40, (int)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height));
                 if (plr != -1 && plr != Projectile.owner)
                 {
                     if (Main.player[plr].team == Main.player[Projectile.owner].team)

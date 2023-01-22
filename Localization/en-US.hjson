@@ -2742,6 +2742,7 @@ Mods: {
 		Finished: Finished
 		Unknown: Unknown
 		OmegaStariteEasterEgg: "{0} has been satisfied!"
+		OccultistEasterEgg: "<{Name} the Occultist> It was sad to see you fall like the others... a promised hero who didn't complete their 'Prophecy'. All is fine {PlayerName}, the dark overlords will love to harvest your soul."
 		OblivisionEasterEgg: "<Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence."
 		Complete: Complete
 		Active: Active

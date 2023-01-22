@@ -69,7 +69,7 @@ namespace Aequus.Tiles.Ambience
 
         public override void RandomUpdate(int i, int j)
         {
-            if (Main.tile[i, j].TileFrameX < 28)
+            if (Main.tile[i, j].TileFrameX < 28 && Main.rand.NextBool(100))
             {
                 Main.tile[i, j].TileFrameX += FrameShiftX;
                 if (Main.netMode != NetmodeID.SinglePlayer)
