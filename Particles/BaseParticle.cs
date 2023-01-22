@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
@@ -48,7 +49,7 @@ namespace Aequus.Particles
             float velo = Velocity.Length();
             Rotation += velo * 0.0314f;
             Scale -= 0.05f - velo / 1000f;
-            if (Scale <= 0.1f)
+            if (Scale <= 0.1f || float.IsNaN(Scale))
             {
                 ShouldBeRemovedFromRenderer = true;
                 return;

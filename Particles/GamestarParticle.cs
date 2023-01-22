@@ -11,7 +11,7 @@ namespace Aequus.Particles
     {
         public GamestarParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1, float rotation = 0) : base(position, velocity, color, scale, rotation)
         {
-            SetTexture(ParticleTextures.gamestarParticle);
+            SetTexture(ParticleTextures.gamestarParticle, 1);
         }
 
         public override void Update(ref ParticleRendererSettings settings)

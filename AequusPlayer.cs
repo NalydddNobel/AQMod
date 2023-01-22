@@ -61,6 +61,7 @@ namespace Aequus
         public const float FrostPotionDamageMultiplier = 0.7f;
 
         public static int PlayerContext;
+        public static bool doLuckyDropsEffect;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
@@ -156,6 +157,8 @@ namespace Aequus
 
         public bool eyeGlint;
 
+        public int crown;
+        public int cCrown;
         public int equippedMask;
         public int cMask;
         public int equippedHat;
@@ -870,6 +873,8 @@ namespace Aequus
 
         public void ResetDyables()
         {
+            crown = 0;
+            cCrown = 0;
             equippedMask = 0;
             cMask = 0;
             equippedHat = 0;
@@ -1815,6 +1820,10 @@ namespace Aequus
                     }
                     SoundEngine.PlaySound(SoundID.Coins);
                     Player.BuyItem(bloodDiceMoney);
+                    if (HighSteaksMoneyConsumeEffect.CoinAnimations != null)
+                    {
+                        HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
+                    }
                 }
                 damage = (int)(damage * (1f + bloodDiceDamage / 2f));
             }
@@ -1840,7 +1849,7 @@ namespace Aequus
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if (!target.immortal && crit)
+            if (crit)
             {
                 CheckBloodDice(ref damage);
             }
@@ -1857,7 +1866,7 @@ namespace Aequus
                     crit = true;
                 }
             }
-            if (!target.immortal && crit)
+            if (crit)
             {
                 CheckBloodDice(ref damage);
             }
@@ -2601,13 +2610,21 @@ namespace Aequus
                                 return result;
                             }
                         }
+                        doLuckyDropsEffect = true;
                         AequusHelpers.iterations++;
-                        var result2 = orig(self, rule, info);
-                        if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
+                        try
                         {
-                            AequusHelpers.iterations = 0;
-                            return result2;
+                            var result2 = orig(self, rule, info);
+                            if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
+                            {
+                                AequusHelpers.iterations = 0;
+                                return result2;
+                            }
                         }
+                        catch
+                        {
+                        }
+                        doLuckyDropsEffect = false;
                     }
                     AequusHelpers.iterations = 0;
                 }

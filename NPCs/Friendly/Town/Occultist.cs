@@ -98,7 +98,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .UseColor(Color.Lerp(Color.White, Color.DarkRed, 0.5f));
+                .UseColor(Color.Lerp(Color.White, Color.DarkRed, 0.5f) * 1.5f);
             ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
@@ -282,7 +282,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             if (state > 0)
             {
-                return "AAAAAGGH!!!!!!!!";
+                return Language.GetTextValue("Mods.Aequus.Chat.Occultist.Awaken");
             }
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.");
@@ -381,7 +381,7 @@ namespace Aequus.NPCs.Friendly.Town
                         NPC.ClearAI(localAI: false);
                         state = STATE_Passive;
                         NPC.netUpdate = true;
-                        if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.talkNPC == NPC.whoAmI)
+                        if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.talkNPC == NPC.whoAmI && !string.IsNullOrEmpty(Main.npcChatText))
                         {
                             Main.npcChatCornerItem = 0;
                             NPCLoader.GetChat(NPC, ref Main.npcChatText);
@@ -397,6 +397,14 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (state == STATE_Sleeping)
             {
+                if (!Main.dayTime && Main.rand.NextBool(4000))
+                {
+                    NPC.ClearAI(localAI: false);
+                    NPC.position.Y += 16f;
+                    state = STATE_Passive;
+                    NPC.netUpdate = true;
+                    return false;
+                }
                 if (NPC.ai[0] > 0f)
                 {
                     NPC.ai[0]++;
@@ -445,7 +453,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (AequusHelpers.FindFirstPlayerWithin(NPC) == -1)
             {
-                if (AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(1000))
+                if (AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000))
                 {
                     state = STATE_Sleeping;
                     NPC.ClearAI(localAI: true);

@@ -4,12 +4,15 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Graphics.PlayerLayers
 {
     public class HeadLayers : PlayerDrawLayer
     {
+        public override bool IsHeadLayer => true;
+
         public override Position GetDefaultPosition()
         {
             return new AfterParent(PlayerDrawLayers.Head);
@@ -41,6 +44,13 @@ namespace Aequus.Graphics.PlayerLayers
             if (aequus.equippedEyes >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEyes).Texture + "_Eyes", out var foreHeadTexture))
             {
                 DrawHeadTexture(ref drawInfo, foreHeadTexture.Value, (v) => v != Vector2.Zero ? AequusHelpers.GetColor(v) : Color.White, aequus.cEyes);
+            }
+
+            if (!drawInfo.headOnlyRender && aequus.crown >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>($"{ItemLoader.GetItem(aequus.crown).Texture}_Crown", out var crownTexture))
+            {
+                var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, -20f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, -2f, 2f) + Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.GetAnimationFrame()].Y);
+                drawInfo.DrawDataCache.Add(
+                    new DrawData(crownTexture.Value, (drawLocation - Main.screenPosition).Floor(), null, AequusHelpers.GetColor(drawLocation), 0f, crownTexture.Value.Size() / 2f, 1f, drawInfo.drawPlayer.direction.ToSpriteEffect(), 0) { shader = aequus.cCrown, });
             }
         }
 

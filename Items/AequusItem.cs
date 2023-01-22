@@ -20,6 +20,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.Particles;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
@@ -71,6 +72,7 @@ namespace Aequus.Items
         public bool naturallyDropped;
         public bool unOpenedChestItem;
         public bool prefixPotionsBounded;
+        public bool luckyDrop;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -303,16 +305,48 @@ namespace Aequus.Items
             {
                 naturallyDropped = true;
             }
+            if (AequusPlayer.doLuckyDropsEffect && Main.netMode != NetmodeID.Server && !item.IsACoin)
+            {
+                luckyDrop = true;
+                int amt = Math.Clamp(item.value / Item.gold, 1, 10);
+                for (int i = 0; i < amt; i++)
+                {
+                    float intensity = (float)Math.Pow(0.9f, i + 1);
+                    EffectsSystem.ParticlesAboveDust.Add(new ShinyFlashParticle(AequusHelpers.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f));
+                }
+                for (int i = 0; i < amt * 2; i++)
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.5f;
+                    d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
+                }
+            }
         }
 
         public override void UpdateInventory(Item item, Player player)
         {
             noGravityTime = 0;
             reversedGravity = false;
+            luckyDrop = false;
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
+            if (luckyDrop && Main.netMode != NetmodeID.Server)
+            {
+                if (Main.rand.NextBool(20))
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.35f;
+                    d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
+                    d.velocity += item.velocity * 0.5f;
+                }
+                if (item.velocity.Length() > 2f && Main.GameUpdateCount % 5 == 0)
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.1f;
+                }
+            }
             if (noGravityTime > 0)
             {
                 item.velocity.Y *= 0.95f;
@@ -556,9 +590,10 @@ namespace Aequus.Items
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            var bb = new BitsByte(naturallyDropped, reversedGravity);
+            var bb = new BitsByte(naturallyDropped, reversedGravity, noGravityTime > 0, luckyDrop);
             writer.Write(bb);
-            writer.Write(noGravityTime);
+            if (bb[2])
+                writer.Write(noGravityTime);
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
@@ -566,7 +601,9 @@ namespace Aequus.Items
             var bb = (BitsByte)reader.ReadByte();
             naturallyDropped = bb[0];
             reversedGravity = bb[1];
-            noGravityTime = reader.ReadByte();
+            if (bb[2])
+                noGravityTime = reader.ReadByte();
+            luckyDrop = bb[3];
         }
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)

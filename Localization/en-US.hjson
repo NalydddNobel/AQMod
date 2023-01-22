@@ -447,17 +447,6 @@ Mods: {
 			GalacticStarfruit: Galactic Starfruit
 
 		# Misc (and Legacy)
-
-			XmasEnergy: Frolic Energy
-			HalloweenEnergy: Horrific Energy
-
-			OrganicEnergy: Organic Energy
-			DemonicEnergy: Demonic Energy
-			CosmicEnergy: Cosmic Energy
-			AtmosphericEnergy: Atmospheric Energy
-			AquaticEnergy: Aquatic Energy
-			UltimateEnergy: Ultimate Energy
-
 			ManaclePollen: Manacle Pollen
 			MorayPollen: Moray Pollen
 			MistralPollen: Mistral Pollen
@@ -1643,6 +1632,24 @@ Mods: {
 				SuperbossRarity: Crystal
 			}
 		}
+
+		ItemName.XmasEnergy: Frolic Energy
+		ItemTooltip.XmasEnergy: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
+		ItemName.HalloweenEnergy: Horrific Energy
+		ItemTooltip.HalloweenEnergy: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
+
+		ItemName.OrganicEnergy: Organic Energy
+		ItemTooltip.OrganicEnergy: Ripened by Plantera, a dormant guardian which tapped into the released souls of Might, Sight, and Fright
+		ItemName.DemonicEnergy: Demonic Energy
+		ItemTooltip.DemonicEnergy: Exploited by the Upriser, a dominant necromancer which inflicted a life curse upon the land
+		ItemName.CosmicEnergy: Cosmic Energy
+		ItemTooltip.CosmicEnergy: Polished by Omega Starite, a living solar system which seeks permanent sustainability
+		ItemName.AtmosphericEnergy: Atmospheric Energy
+		ItemTooltip.AtmosphericEnergy: Siphoned by the Dust Devil, a maniac elemental who dreams of having power over all elements
+		ItemName.AquaticEnergy: Aquatic Energy
+		ItemTooltip.AquaticEnergy: Absorbed by Crabson, a trash-dwelling crustacean before it was subject to immense power
+		ItemName.UltimateEnergy: Ultimate Energy
+		ItemTooltip.UltimateEnergy: A harmony of the universal energies, bringing forth the power of the Aether!
 
 		BuffName: {
 			ManathirstBuff: Manathirst

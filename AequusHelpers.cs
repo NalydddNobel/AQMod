@@ -609,6 +609,11 @@ namespace Aequus
                 && y >= (PhotoRenderer.TilePaddingForChecking / 2) && y <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2);
         }
 
+        public static int GetAnimationFrame(this Player player)
+        {
+            return Math.Clamp(player.bodyFrame.Y / player.bodyFrame.Height, 0, Main.OffsetsPlayerHeadgear.Length);
+        }
+
         public static bool IsFriendly(this Player targetPlayer, Player me)
         {
             return !targetPlayer.hostile || targetPlayer.team <= 0 || targetPlayer.team == me.team;
@@ -1875,7 +1880,7 @@ namespace Aequus
 
         public static Vector2 NextFromRect(this UnifiedRandom rand, Rectangle rectangle)
         {
-            return rectangle.Center.ToVector2() + new Vector2(rand.NextFloat(rectangle.Width), rand.NextFloat(rectangle.Height));
+            return rectangle.TopLeft() + new Vector2(rand.NextFloat(rectangle.Width), rand.NextFloat(rectangle.Height));
         }
 
         public static Vector2 NextCircularFromRect(this UnifiedRandom rand, Rectangle rectangle)

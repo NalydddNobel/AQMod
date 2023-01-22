@@ -75,6 +75,7 @@ namespace Aequus.Graphics
         /// Use this instead of <see cref="Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
         /// </summary>
         public static ParticleRenderer ParticlesAbovePlayers { get; private set; }
+        public static ParticleRenderer ParticlesAboveDust { get; private set; }
 
         public static LegacyDrawList ProjsBehindProjs { get; private set; }
         public static LegacyDrawList ProjsBehindTiles { get; private set; }
@@ -102,6 +103,7 @@ namespace Aequus.Graphics
             ParticlesBehindProjs = new ParticleRenderer();
             ParticlesBehindPlayers = new ParticleRenderer();
             ParticlesAbovePlayers = new ParticleRenderer();
+            ParticlesAboveDust = new ParticleRenderer();
             if (Renderers == null)
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
@@ -158,6 +160,7 @@ namespace Aequus.Graphics
                 SnowgraveCorpse.ResetCounts();
 
                 Shake.Update();
+                ParticlesAboveDust.Update();
                 ParticlesBehindAllNPCs.Update();
                 ParticlesBehindProjs.Update();
                 ParticlesBehindPlayers.Update();
@@ -232,6 +235,9 @@ namespace Aequus.Graphics
                     Filters.Scene.Deactivate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
+                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                ParticlesAboveDust.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
             }
             catch
             {
