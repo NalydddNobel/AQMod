@@ -48,6 +48,11 @@ namespace Aequus.Common.Players
             vampirism = (ushort)time;
         }
 
+        public override void Initialize()
+        {
+            vampirism = 0;
+        }
+
         public override void SaveData(TagCompound tag)
         {
             tag["Vampirism"] = (int)vampirism;
@@ -107,6 +112,12 @@ namespace Aequus.Common.Players
                     }
                 }
             }
+        }
+
+        public override void UpdateDead()
+        {
+            if (!IsVampire)
+                vampirism = 0;
         }
 
         public override void UpdateEquips()
@@ -183,11 +194,11 @@ namespace Aequus.Common.Players
 
             if (!Player.moonLeech && Player.lifeSteal > 0f && Main.myPlayer == Player.whoAmI && Main.rand.NextBool(8))
             {
-                int amtHealed = 1;
+                int amtHealed = 2;
 
                 Player.lifeSteal -= amtHealed;
                 Projectile.NewProjectile(Player.GetSource_OnHit(victim, "Aequus:VampireLifesteal"), new Vector2(x, y),
-                    Vector2.Normalize(Player.Center - new Vector2(x, y)) * 10f, ProjectileID.VampireHeal, 0, 0f, Player.whoAmI, Player.whoAmI, 1f);
+                    Vector2.Normalize(Player.Center - new Vector2(x, y)) * 10f, ProjectileID.VampireHeal, 0, 0f, Player.whoAmI, Player.whoAmI, amtHealed);
             }
         }
 

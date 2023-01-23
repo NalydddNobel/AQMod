@@ -9,12 +9,12 @@ namespace Aequus.Content.Carpentery.Bounties
 {
     public class BountyUIDetailsPanelManager : UIElement
     {
-        public readonly BountyUIState parentState;
+        public readonly TestBountyUIState parentState;
         public readonly UIPanel uiPanel;
 
         public CarpenterBounty bounty;
 
-        public BountyUIDetailsPanelManager(BountyUIState parent, UIPanel panel)
+        public BountyUIDetailsPanelManager(TestBountyUIState parent, UIPanel panel)
         {
             parentState = parent;
             uiPanel = panel;

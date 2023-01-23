@@ -26,8 +26,9 @@ namespace Aequus.Content.Carpentery.Bounties
         public float Progression;
 
         public virtual string LanguageKey => $"Mods.{Mod.Name}.CarpenterBounty.{Name}";
-        public string DisplayName => Language.GetTextValue($"{LanguageKey}");
-        public string Description => Language.GetTextValue($"{LanguageKey}.Description");
+        public virtual string DisplayName => Language.GetTextValue($"{LanguageKey}");
+        public virtual string Description => Language.GetTextValue($"{LanguageKey}.Description");
+        public virtual string Icon => $"{Mod.Name}/Content/Carpentery/Bounties/Icons/{Name}";
 
         public CarpenterBounty(Mod mod, string name)
         {

@@ -85,6 +85,11 @@ namespace Aequus
 
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color))
+        {
+            Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color);
+        }
+
         /// <summary>
         /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
         /// </summary>

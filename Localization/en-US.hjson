@@ -480,6 +480,7 @@ Mods: {
 			ShimmerFish: Shimmer Fish
 			VictorsReward: Victor's Reward
 			NameTag: Name Tag
+			ChlorophytePowder: Chlorophyte Box
 			FertilePowder: Fertilizer Box
 			WhitePhial: White Phial
 			TinkerersGuidebook: Tinkerer's Guidebook
@@ -1154,6 +1155,11 @@ Mods: {
 				'Granted to the ones who go the extra mile!'
 				'''
 			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
+			ChlorophytePowder: 
+				'''
+				Greatly promotes nearby tiles to grow
+				33% chance to not be consumed
+				'''
 			FertilePowder: Promotes nearby tiles to grow
 			WhitePhial: Permanently increases the duration of positive buffs by 25% 
 			TinkerersGuidebook:	Permanently have better odds at rolling positive prefixes from reforge services
@@ -1306,7 +1312,12 @@ Mods: {
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
 			PalePufferfish: Cures many debuffs and vampirism
-			VampireSquid: Gives you vampirism
+			VampireSquid: 
+				'''
+				Grants vampirism, transforming you into a vampire after it wears off
+				Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
+				However being in the sun will greatly decrease your stats
+				'''
 			Baguette:
 				'''
 				Supreme improvements to all stats

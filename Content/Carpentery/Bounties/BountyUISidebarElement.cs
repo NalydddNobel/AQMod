@@ -13,11 +13,11 @@ namespace Aequus.Content.Carpentery.Bounties
     {
         public static Color UIPanelColor = new Color(122, 168, 226);
 
-        public readonly BountyUIState parentState;
+        public readonly TestBountyUIState parentState;
         public readonly CarpenterBounty bounty;
         public UIPanel uiPanel;
 
-        public BountyUISidebarElement(BountyUIState parent, CarpenterBounty bounty)
+        public BountyUISidebarElement(TestBountyUIState parent, CarpenterBounty bounty)
         {
             parentState = parent;
             this.bounty = bounty;
