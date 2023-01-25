@@ -29,7 +29,8 @@ namespace Aequus.Items.Tools
             Item.autoReuse = true;
             Item.value = Item.buyPrice(gold: 1);
             Item.shoot = ModContent.ProjectileType<BellowsProj>();
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 1f;
+            Item.noUseGraphic = true;
         }
 
         public override bool? UseItem(Player player)
@@ -47,6 +48,7 @@ namespace Aequus.Items.Tools
                     player.fallStart = (int)player.position.Y / 16;
                 }
             }
+            return true;
             return player.itemAnimation < 45;
         }
         public float GetPushForce(Player player)
