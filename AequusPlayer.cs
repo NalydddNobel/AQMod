@@ -6,7 +6,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
-using Aequus.Common.Players;
+using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
@@ -1638,7 +1638,11 @@ namespace Aequus
                 Player.lifeRegenTime = Math.Min(Player.lifeRegenTime, 0);
             }
             if (Player.HasBuff<BlueFire>())
-                Player.AddLifeRegen(-6);
+                Player.AddLifeRegen(-16);
+            if (Player.HasBuff<CrimsonHellfire>())
+                Player.AddLifeRegen(-16);
+            if (Player.HasBuff<CorruptionHellfire>())
+                Player.AddLifeRegen(-16);
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)

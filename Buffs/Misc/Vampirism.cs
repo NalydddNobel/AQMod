@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Common.ModPlayers;
 using Terraria;
 
 namespace Aequus.Buffs.Misc

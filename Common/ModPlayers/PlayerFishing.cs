@@ -222,7 +222,7 @@ namespace Aequus.Common.ModPlayers
             }
             else if (Main.bloodMoon)
             {
-                if (attempt.uncommon && Main.rand.NextBool())
+                if ((attempt.uncommon || (attempt.common && Player.GetModPlayer<PlayerVampirism>().IsVampire)) && Main.rand.NextBool())
                 {
                     itemDrop = ModContent.ItemType<PalePufferfish>();
                 }

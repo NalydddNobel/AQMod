@@ -567,6 +567,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     BuffID.Lovestruck,
                     BuffID.Wet,
                     BuffID.Slimed,
+                    ModContent.BuffType<BlueFire>(),
                     ModContent.BuffType<CrimsonHellfire>(),
                     ModContent.BuffType<CorruptionHellfire>(),
                 };

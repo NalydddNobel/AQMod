@@ -1137,9 +1137,9 @@ Mods: {
 				Teleport to party members by clicking their head on the fullscreen map
 				'''
 
-			InactivePylonCleanser: Throw near a pylon to reactivate it
-			InactivePylonHealer: Throw near a pylon to reactivate it
-			InactivePylonGunner: Throw near a pylon to reactivate it
+			InactivePylonCleanser: Use near a pylon to activate the drone
+			InactivePylonHealer: Use near a pylon to activate the drone
+			InactivePylonGunner: Use near a pylon to activate the drone
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1824,8 +1824,8 @@ Mods: {
 
 			StariteBottleBuff: Grants 20 mana when cleared
 			BoneRingWeakness: "{$BuffDescription.Weak}"
-			CrimsonHellfire: "{$BuffDescription.OnFire}"
-			CorruptionHellfire: "{$BuffDescription.OnFire}"
+			CrimsonHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
+			CorruptionHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
 			BattleAxeBleeding: "{$BuffDescription.Bleeding}"
 			BitCrushed: You are compressed!
 			BlueFire: The immense heat burns off your skin!
@@ -2004,7 +2004,7 @@ Mods: {
 				'''
 				Increases your max number of ghosts by 2
 				Instantly kill and convert powerful enemies to ghost minions when in need
-				Take reduced damage when you have no ghost minions active
+				30% reduced damage when you have no ghost minions active
 				'''
 			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}

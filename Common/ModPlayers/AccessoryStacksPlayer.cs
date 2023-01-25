@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.Players
+namespace Aequus.Common.ModPlayers
 {
     public class AccessoryStacksPlayer : ModPlayer
     {

@@ -47,8 +47,8 @@ namespace Aequus.Items.Armor.Passive
                     }
                     aequus.summonHelmetTimer = 30;
                 }
-                player.GetDamage(DamageClass.Summon) += 0.10f;
             }
+            player.maxMinions++;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

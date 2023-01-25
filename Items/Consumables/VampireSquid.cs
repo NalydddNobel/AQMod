@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Misc;
-using Aequus.Common.Players;
+using Aequus.Common.ModPlayers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

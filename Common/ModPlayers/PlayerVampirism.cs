@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Misc;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Buffs.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Players
+namespace Aequus.Common.ModPlayers
 {
     public class PlayerVampirism : ModPlayer
     {
@@ -21,7 +22,7 @@ namespace Aequus.Common.Players
 
         public override void ResetEffects()
         {
-            nightEffects = !Main.dayTime && (Player.ZoneOverworldHeight || Player.ZoneSkyHeight);
+            nightEffects = !Main.dayTime;
             daylightBurning = false;
             if (!IsVampire && vampirism > 0)
             {
@@ -179,7 +180,7 @@ namespace Aequus.Common.Players
                     Player.lifeRegen = 0;
                 }
             }
-            if ((Player.onFire || Player.onFire2 || Player.onFrostBurn || Player.onFrostBurn2) && Player.lifeRegen < 0)
+            if ((Player.onFire || Player.onFire2 || Player.onFire3 || Player.onFrostBurn || Player.onFrostBurn2 || Player.HasBuff<BlueFire>()) && Player.lifeRegen < 0)
             {
                 Player.lifeRegen *= 2;
             }
