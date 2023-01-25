@@ -17,6 +17,7 @@ namespace Aequus.Items.Accessories.Utility
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.LifeformAnalyzer);
+            Item.rare = ItemRarityID.Orange;
         }
 
 
