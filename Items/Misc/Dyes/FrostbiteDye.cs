@@ -16,7 +16,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorCustomTexture(Effect, Pass, ModContent.Request<Texture2D>("Aequus/Items/Misc/Dyes/FrostbiteShine"));
+            return new ArmorCustomTexture(Effect, Pass, ModContent.Request<Texture2D>($"{Texture}Effect"));
         }
 
         public override void AddRecipes()

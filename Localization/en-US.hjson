@@ -421,23 +421,6 @@ Mods: {
 			CrabClock: Crab Wall Clock
 			RecyclingMachine: Recycling Machine
 
-			# Dyes #
-			TidalDye: Tidal Dye
-			ScorchingDye: Scorching Dye
-			FrostbiteDye: Frostbite Dye
-			EnchantedDye: Enchanted Dye
-			ScrollDye: Scroll Dye
-			DiscoDye: Disco Dye
-			SimplifiedDye: Simplified Dye
-			OutlineDye: Outline Dye
-			RainbowOutlineDye: Rainbow Outline Dye
-			CensorDye: Censor Dye
-			AncientHellBeamDye: Ancient Hell Beams Dye
-			AncientBreakdownDye: Ancient Breakdown Dye
-			AncientTidalDye: Ancient Tidal Dye
-			AncientScorchingDye: Ancient Scorching Dye
-			AncientFrostbiteDye: Ancient Frostbite Dye
-
 		# Summons
 			UnholyCoreSmall: Unholy Tearstone
 			UnholyCore: Unholy Core
@@ -1644,6 +1627,25 @@ Mods: {
 			}
 		}
 
+	# Dyes
+		ItemName.GustDye: Gust Dye
+		ItemName.TidalDye: Tidal Dye
+		ItemName.ScorchingDye: Scorching Dye
+		ItemName.FrostbiteDye: Frostbite Dye
+		ItemName.EnchantedDye: Enchanted Dye
+		ItemName.ScrollDye: Scroll Dye
+		ItemName.DiscoDye: Disco Dye
+		ItemName.SimplifiedDye: Simplified Dye
+		ItemName.OutlineDye: Outline Dye
+		ItemName.RainbowOutlineDye: Rainbow Outline Dye
+		ItemName.CensorDye: Censor Dye
+		ItemName.AncientHellBeamDye: Ancient Hell Beams Dye
+		ItemName.AncientBreakdownDye: Ancient Breakdown Dye
+		ItemName.AncientTidalDye: Ancient Tidal Dye
+		ItemName.AncientScorchingDye: Ancient Scorching Dye
+		ItemName.AncientFrostbiteDye: Ancient Frostbite Dye
+
+	# Energies
 		ItemName.XmasEnergy: Frolic Energy
 		ItemTooltip.XmasEnergy: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
 		ItemName.HalloweenEnergy: Horrific Energy
