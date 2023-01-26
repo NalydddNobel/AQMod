@@ -7,7 +7,6 @@ using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
@@ -15,7 +14,6 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable;
-using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -28,7 +26,6 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -98,6 +95,12 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
+                case NPCID.DD2Betsy:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<IronLotus>()));
+                    }
+                    break;
+
                 case NPCID.Everscream:
                 case NPCID.SantaNK1:
                 case NPCID.IceQueen:
@@ -396,6 +399,15 @@ namespace Aequus.NPCs
         }
         public void DebuffEffects(NPC npc)
         {
+            if (npc.HasBuff<IronLotusDebuff>())
+            {
+                int amt = (int)(npc.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                {
+                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(180, 90, 40, 60) * 0.5f, new Color(20, 2, 10, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                }
+            }
             if (npc.HasBuff<AethersWrath>())
             {
                 var colors = new Color[] { new Color(80, 180, 255, 10), new Color(255, 255, 255, 10), new Color(100, 255, 100, 10), };
@@ -438,6 +450,7 @@ namespace Aequus.NPCs
                         CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
             }
         }
+
         public override void PostAI(NPC npc)
         {
             oldLife = npc.life;
@@ -445,6 +458,18 @@ namespace Aequus.NPCs
             if (npc.lifeRegen + debuffDamage >= 0)
             {
                 debuffDamage = 0;
+            }
+            int debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusDebuff>());
+            if (debuff != -1)
+            {
+                int plr = Player.FindClosest(npc.position, npc.width, npc.height);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && (Main.npc[i].type == NPCID.TargetDummy || Main.npc[i].CanBeChasedBy(Main.player[plr])) && Main.npc[i].Distance(npc.Center) < 100f)
+                    {
+                        Main.npc[i].AddBuff(ModContent.BuffType<IronLotusDebuff>(), npc.buffTime[debuff]);
+                    }
+                }
             }
             if (Main.netMode == NetmodeID.Server)
             {
@@ -516,6 +541,16 @@ namespace Aequus.NPCs
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             bool applyAequusOiled = false;
+            if (npc.HasBuff<IronLotusDebuff>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 100;
+                applyAequusOiled = true;
+                damage = Math.Max(damage, 5);
+            }
             if (npc.HasBuff<AethersWrath>())
             {
                 if (npc.lifeRegen > 0)

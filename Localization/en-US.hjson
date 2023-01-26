@@ -1627,6 +1627,14 @@ Mods: {
 			}
 		}
 
+	# Melee weapons
+		ItemName.IronLotus: Iron Lotus
+		ItemTooltip.IronLotus:
+			'''
+			Brandish a spear which inflicts spreading flames
+			'Burn those who dare to care for me'
+			'''
+
 	# Dyes
 		ItemName.GustDye: Gust Dye
 		ItemName.TidalDye: Tidal Dye

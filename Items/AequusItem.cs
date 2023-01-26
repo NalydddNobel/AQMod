@@ -618,6 +618,12 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
+                case ItemID.BossBagBetsy:
+                    {
+                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IronLotus>()));
+                    }
+                    break;
+
                 case ItemID.MoonLordBossBag:
                     if (GameplayConfig.Instance.EarlyGravityGlobe)
                         itemLoot.RemoveWhere((itemDrop) => itemDrop is CommonDrop commonDrop && commonDrop.itemId == ItemID.GravityGlobe);
