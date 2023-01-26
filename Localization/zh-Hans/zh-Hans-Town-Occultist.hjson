@@ -1,0 +1,118 @@
+Mods.Aequus: {
+	Chat: {
+		Occultist: {
+			Basic: {
+				0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
+				1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
+				2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
+				3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
+				Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
+			}
+			Night: {
+				0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
+				1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
+			}
+			BloodMoon: { 
+				0: Quiet, please! I'm having an inner council meeting!
+				1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
+				2: I've been thinking up a new curse. Want to be my test subject? Come here...
+				3: Go away! I don't need you right now! I don't need anyone!
+			}
+
+			Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
+
+			Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
+			EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
+			WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
+			Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
+			Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
+			Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
+			Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
+			Glimmer: What? No! Where did my darkness go? Put it back!
+
+			Awaken: AAAAAGGH!!!!!!!!
+
+			Hostile: {
+				0: Can you hear them too? They're calling to us...
+				1: I would give anything to please the dark overlords... my mind, my body... yours as well...
+				2: I've met many 'chosen ones' before... all of them fell sooner or later. You will be no different...
+				3: Choke out the light, and spread the darkness... Simply join us like they have and you will see the truth...
+
+				LightsBane: If you would dare brandish the Light's Bane here, be prepared to meet some of my friends...
+				BloodButcherer: If you would dare brandish the Blood Butcherer here, be prepared to meet some of my friends...
+				DemonBow: The dark projections of a Demon Bow... would make a perfect vessel for our shadows...
+				TendonBow: The succulent stringiness of a Tendon Bow... would make a wonderful feast for us...
+				Vilethorn: Vilethorns... endless pricking pain, drawing blood for sacrifice... wonderful...
+				CrimsonRod: The Crimson Rod, pouring endless torrents of blood from on high... what a beautiful sight...
+				CorruptPot: There are legends of a corrupt pot that infests anything growing inside with evil... if only I could have it...
+				Mindfungus: The mindfungus, infesting both body and soul... how useful that would be for us...
+
+				Corruption: The dark weapons forged from the Corruption... only they hold the evils we seek...
+				Crimson: The dark weapons forged from the Crimson... only they hold the evils we seek...
+
+				Bunny: Hold on, did you hear that? Is there a rabbit around here?
+			}
+
+			ListenButton: Listen
+		}
+	}
+	
+	TownNPCMood: {
+		Occultist: {
+			Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+			NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+			FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+
+			LoveSpace: Plenty of room to practice my spells here... hahaha...
+			DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+			HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+
+			LikeBiome: "The temperatures are a bit more agreeable in the Desert, I think."
+			LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+			DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+			HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+			HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+			HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+
+			LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+			LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+			LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+			LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+			LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
+			DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+			HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+		}
+	}
+
+	ShopQuote: {
+		Occultist: {
+			GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
+			OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
+			Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+			CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
+			CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
+			CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
+			Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
+			ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
+			UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
+			SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
+			BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
+			GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
+			GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
+			InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
+			SoulGem: Behold: the easiest way to catch a soul for your nefarious purposes! You'll need to kill something to fill it, but you're good at that.
+			WhoopieCushion: *Pbbbfht*
+
+			PandorasBox: A cursed vessel containing all manner of misery and evil. Probably was a big deal once, but it's just par for the course these days.
+			Handgun: LOOK OUT, I'VE GOT A GUN! Haha, just kidding, I wouldn't shoot you. That's so mundane. ...Wanna buy it?
+			MagicMissile: I hear this is good at fighting darkness. I don't want it. You take it.
+			Revenant: Hey, do you like ghosts? I like ghosts. This staff can make ghosts for us, then we can both be happy. That's a two-for-one deal.
+			CobaltShield: An enchanted shield that will keep you rooted to the spot... all the better for spells to catch you inside. Hypothetically, of course.
+			BlueMoon: I haven't got the strength for it, but this is one of my favorite weapons in concept. Who needs subtlety when you can just cave skulls in?
+			Muramasa: Some people say this dusty old thing holds some kind of ancient power. NOT to be confused with Murasama, or Masamune, or any of that nonsense.
+			DungeonCandle: I found another candle kicking around somewhere! Great for lighting a romantic dinner, if you're feasting on souls.
+			Valor: How on earth do people do all those fancy tricks with these? I can barely get it to bounce back up into my hand!
+			Valari: This boomerang is enchanted with wind magic that can drag stuff with it, or whatever. I'll be honest, if it's not fire or darkness I do not care at all.
+		}
+	}
+}

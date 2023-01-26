@@ -1,9 +1,9 @@
-﻿Mods.Aequus.Bestiary: {
+Mods.Aequus.Bestiary: {
 	Crabson: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
 	OmegaStarite: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
 	DustDevil: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
-		
-	Vineroot: 被力量之魂强化的愤怒捕手, 会绽放处美丽- 但致命的- 花朵.
+
+	Vineroot: 被力量之魂强化的愤怒捕手, 会绽放出美丽-且致命的-花朵.
 
 	SnobsterCritter: 史莱姆会自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
 	CoconutCrab: 它厚厚的棕色外壳既可以把自身伪装成椰子, 又能保护它免受捕食者的袭击. 它会躲在棕榈树上, 并且会掉落在任何站在错误位置的人的头上.
@@ -38,9 +38,9 @@
 
 	Physicist: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
 	PhysicistPet: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
-	HealerDrone: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
-	GunnerDrone: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
-	CleanserDrone: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
+	HealerDrone: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
+	GunnerDrone: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量作为动力.
+	CleanserDrone: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量作为动力.
 
 	Carpenter: 这只蚂蚁决定放弃在从前家里的虫群思维, 并追随他对建造的热情. 不过他有点势利, 只会搬进有足够装饰的房子.
 	Occultist: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
