@@ -10,9 +10,14 @@ Mods: {
 			CrabCreviceBiome: 蟹伏岩隙
 			GaleStreamsBiome: 紊流风暴
 			DemonSiegeBiome: 恶魔围攻
+			
+			Forest: 森林
+			Snow_Tundra: 苔原
+			GemCave: 宝石洞穴
 		}
 
 		Announcement: {
+			HardmodeChests: 洞穴中的宝箱获赐了新的宝藏...
 			DemonSiegeFailEat: 血巢吞噬了你的{0}...
 			DemonSiegeFail: 血巢反刍出了你的{0}...
 			YinYang: 光与暗的远古魂灵变的不耐烦了...
@@ -46,6 +51,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			ShadowMimic: 仅会掉落自暗影宝箱怪
 			NameTag: 仅会在命名为{NameTag}时掉落
 			AllMechs: 仅会在3个机械Boss全部被击败时掉落
 			NotBeatenDemonSiege:仅在恶魔围攻未完成时掉落
@@ -94,16 +100,14 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			# Accessories #
-			PotionCanteen: {
-				$parentVal: 药水壶
-
-				# In game usage example: 
-				# Regeneration Canteen
-				# Ironskin Canteen
-				# Spelunker Canteen
-				AltName: "{PotionName}壶"
-			}
+		# Accessories
+			FlameCrystal: 祸焰晶
+			SoulCrystal: 蔑魂晶
+			BloodCrystal: 血环晶
+			FishyFins: 可疑鱼鳍
+			BlackPlague: 黑死病
+			LavaproofMitten: 防熔岩手套
+			Stormcloak: 风暴斗篷
 			ShadowVeer: 影行者
 			SouljointCuffs: 魂结镣铐
 			NaturesCruelty: 大自然的残忍
@@ -111,7 +115,7 @@ Mods: {
 			CartilageRing: 骨质戒指
 			SpiritBottle: 魂灵之瓶
 			PrecisionGloves: 精准手套
-			ArmFloaties: 臂式救生装置
+			ArmFloaties: 呼吸救生器
 			DavyJonesAnchor: 深海阎王的锚
 			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
@@ -128,7 +132,7 @@ Mods: {
 			PhoenixRing: 菲尼克斯戒指
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
-			TheReconstruction: 改造
+			TheReconstruction: 变造
 			RabbitsFoot: 兔脚
 			FoolsGoldRing: 愚者之金戒
 			FaultyCoin: 缺陷硬币
@@ -136,7 +140,17 @@ Mods: {
 			GrandReward: 豪华奖励
 			GlowCore: 发光信标
 
-			# Summoner
+			PotionCanteen: {
+				$parentVal: 药水壶
+
+				# In game usage example: 
+				# Regeneration Canteen
+				# Ironskin Canteen
+				# Spelunker Canteen
+				AltName: "{PotionName}壶"
+			}
+
+		# Summoner Accessories
 			WarHorn: 战争号角
 			MechsSentry: 尖兵6510
 			SantankSentry: 哨兵6502
@@ -145,15 +159,18 @@ Mods: {
 			SentrySquid: 哨兵乌贼
 			IcebergKraken: 冰山海妖
 
-			# Healing
+		# Healing Accessories
 			Mendshroom: 愈灵菇
 
-			# Fishing
+		# Fishing Accessories
 			NeonGenesis: 新世纪
 			Ramishroom: 分支菇
 			DevilsTongue: 魔鬼之舌
 
-			# Vanity
+		# Vanity
+			InspirationCursor: 灵感光标
+			EyeGlint: 点亮你的眼
+			XmasCursor: 圣诞老人-NK1的光标
 			PumpkingCloak: 南瓜王斗篷
 			PumpkingCursor: 南瓜王光标
 			DyableCursor: 可染色光标
@@ -162,11 +179,9 @@ Mods: {
 			SwordCursor: 剑刃光标
 			DemonCursor: 恶魔光标
 			Headless: 无头
-			FishyFins: 可疑鱼鳍
 
-			# Weapons #
-
-			# Melee
+		# Melee Weapons
+		    SickBeat: 动感节拍
 			PhaseDisc: 相位盘
 			CrystalDagger: 水晶匕首
 			Cauterizer: 灼烧者
@@ -181,7 +196,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
-			# Ranged Weapons
+		# Ranged Weapons
 			BlockGlove: 物块手套
 			Deltoid: 增量
 			StarPhish: 螺旋海星吹筒
@@ -191,7 +206,9 @@ Mods: {
 			Slingsaber: 弹剑弓
 			Slingshot: 弹弓
 
-			# Magic
+		# Magic Weapons
+			Wabbajack: Wabbajack
+			WindFan: 风扇
 			Nightfall: 黄昏
 			Umystick: 秘伞
 			Narrizuul: 耀宇遗光
@@ -205,7 +222,7 @@ Mods: {
 			BombarderRod: 轰炸者手杖
 			Triacanthorn: 三棘卷须
 
-			# Summon
+		# Summon Weapons
 			BrainwaveStaff: 脑波法杖
 			MindfungusStaff: 心灵真菌法杖
 			StariteStaff: 星源法杖
@@ -214,10 +231,8 @@ Mods: {
 			DisturbanceStaff: 扰乱法杖
 			HailstormStaff: 雹暴法杖
 
-			# Soul Tapers
+		# Necromancy Candles
 			Malediction: 咒灭
-
-			# Soul Candles
 			DragonsBreath: 龙之绝息
 			CrimsonCandle: 灼光者
 			CorruptionCandle: 噬光者
@@ -233,7 +248,14 @@ Mods: {
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
-			# Armor #
+		# Whips
+			TornadoWhip: 龙卷鞭
+
+		# Armor
+			AetherialSlacks: 以太长裤
+			AetherialRobes: 以太长袍
+			AetherialCrown: 以太皇冠
+
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
 
@@ -246,13 +268,13 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
-			# Tools #
+		# Tools
 			BattleAxe: 战斧
 			SilkHammer: 丝绸锤
 			SilkPickaxe: 丝绸镐
 			Crabax: 蟹斧
 
-			# Baits # 
+		# Baits
 			Heliosis: 日射饵
 			CrateBait: 板条箱鱼饵
 			RegrowingBait: 再生鱼饵
@@ -262,7 +284,7 @@ Mods: {
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
-			# Foods & Potions #
+		# Foods & Potions
 			TubOfCookieDough: 一桶饼干面团
 			AstralCookie: 星体饼干
 			HolographicMeatloaf: 全息肉饼
@@ -278,11 +300,11 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			# Critter Items #
+		# Critter Items
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
 
-			# Fish #
+		# Fish
 			CrabDaughter: 蟹蛤之女
 			XenonFish: 氙鱼
 			KryptonFish: 氪鱼
@@ -291,31 +313,36 @@ Mods: {
 			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
+		# Quest Fish
+			BrickFish: 积木鱼
+
+		# Fish
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 
-			# Fishing Rods #
+		# Fishing Rods
 			CrabRod: 螃蟹钓竿
 			Starcatcher: 捕星者
 			Buzzer: 蜂鸣钓竿
 			Nimrod: 猎手
 
-			# Pets #
+		# Pets
+			MiningPetSpawner: 破损的矿工头盔
 			PersonalDronePack: 个人无人机包
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 			SwagLookingEye: 潮流眼球
 			DragonBall: 龙珠
 
-			# Grappling Hooks #
+		# Grappling Hooks
 			LeechHook: 超长水蛭
 			Meathook: 血肉刺钩
 
-			# Mounts #
+		# Mounts
 			BalloonKit: Zilla的气球装备
 
-			# Crates #
+		# Crates
 			CrabCreviceCrate: 甲壳板条箱
 			CrabCreviceCrateHard: 硬壳板条箱
 
@@ -328,12 +355,12 @@ Mods: {
 			GoldenRoulette: 黄金老虎机
 			Roulette: 老虎机
 
-			# Boss Masks #
+		# Vanity
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
 			BreadOfCthulhuMask: 克苏鲁之面包面具
 
-			# Blocks & Walls #
+		# Blocks & Walls
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
 
@@ -342,7 +369,7 @@ Mods: {
 			ForceGravityBlock: 重力块
 			ForceAntiGravityBlock: 反重力块
 
-			# Paintings #
+		# Paintings
 			SkyrimRock3: 推力
 			SkyrimRock2: 平衡
 			SkyrimRock1: 力量
@@ -358,7 +385,7 @@ Mods: {
 			CatalystPainting: 来自另一个宇宙的岩石
 			OriginPainting: 起源
 
-			# Relics & Trophies #
+		# Relics & Trophies
 			RedSpriteTrophy: 红色精灵纪念章
 
 			SpaceSquidRelic: 太空乌贼纪念物
@@ -366,7 +393,7 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
-			# Banners #
+		# Banners
 			BreadOfCthulhuBanner: 克苏鲁之面包旗帜
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
@@ -382,7 +409,9 @@ Mods: {
 			VraineBanner: 镰鸟旗
 			WhiteSlimeBanner: 白色史莱姆旗
 
-			# Gravestones #
+		# Furniture Misc
+			FishSign: 钓鱼池标志
+
 			AshCrossGraveMarker: 余烬十字碑
 			AshGraveMarker: 余烬墓标
 			AshGravestone: 余烬墓碑
@@ -392,40 +421,15 @@ Mods: {
 			CrabClock: 螃蟹挂钟
 			RecyclingMachine: 回收机
 
-			# Dyes #
-			TidalDye: 潮汐染料
-			ScorchingDye: 烧灼染料
-			FrostbiteDye: 霜寒染料
-			EnchantedDye: 附魔染料
-			ScrollDye: 眩惑染料
-			DiscoDye: 迪斯科染料
-			SimplifiedDye: 简化染料
-			OutlineDye: 轮廓描边染料
-			RainbowOutlineDye: 彩虹轮廓描边染料
-			CensorDye: 监察染料
-			AncientHellBeamDye: 远古狱光染料
-			AncientBreakdownDye: 远古故障染料
-			AncientTidalDye: 远古潮汐染料
-			AncientScorchingDye: 远古烧灼染料
-			AncientFrostbiteDye: 远古霜寒染料
-
-			# Summons #
+		# Summons
+			UnholyCoreSmall: 不洁裂石
+			UnholyCore: 不洁核心
 			HypnoticPearl: 催眠珍珠
 			SupernovaFruit: 超新星果
 			TornadoInABottle: 瓶中风暴
 			GalacticStarfruit: 星河杨桃
 
-			# Misc (and Legacy) #
-
-			HalloweenEnergy: 惊惧能量
-
-			OrganicEnergy: 自然能量
-			DemonicEnergy: 恶魔能量
-			CosmicEnergy: 星宇能量
-			AtmosphericEnergy: 天权能量
-			AquaticEnergy: 海蓝能量
-			UltimateEnergy: 终极能量
-
+		# Misc (and Legacy)
 			ManaclePollen: 镣铐花粉
 			MorayPollen: 海鳝花粉
 			MistralPollen: 梦幻花粉
@@ -453,8 +457,13 @@ Mods: {
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteBag: 宝藏袋 (终末之星)
 
+			CosmicChest: 宇宙箱
+			GalaxyCommission: 星系的委托
+			GiftingSpirit: 冰雪女皇的魂灵
+			ShimmerFish: 微光鱼
 			VictorsReward: 胜者的奖励
 			NameTag: 命名标签
+			ChlorophytePowder: 叶绿箱
 			FertilePowder: 肥料箱
 			WhitePhial: 白色药瓶
 			TinkerersGuidebook: 修补匠指南
@@ -462,6 +471,7 @@ Mods: {
 
 			OmniPaint: 全能油漆
 			AdvancedRuler: 高级标尺
+			CarpenterResetSheet: 木匠辞职表
 			CarpenterBountyItem: 木匠赏金
 			AdventuringMap: 冒险地图
 			SkeletonKey: 骷髅钥匙
@@ -471,8 +481,6 @@ Mods: {
 
 			Driftwood: 浮木
 			PlasticBottle: 塑料瓶
-
-			UnholyCore: 不洁核心
 
 			HoloLens: 全息透镜
 			HyperJet: 超级喷气发动机
@@ -1954,7 +1962,6 @@ Mods: {
 			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
 			NotConsumable: 不消耗
 			TorchCanBePlacedInLiquids: 可放置在液体中
-			IchorDartShotgunTag: 使用灵液镖作为弹药时直接发射分裂灵液镖
 			EnableThing: 启用{0}?
 			DisableThing: 禁用{0}?
 			UnassignedKey0: Unassigned Key
@@ -1964,6 +1971,8 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyFruit: 任意水果
+			AnyQuestFish: 任意任务鱼
 			AnyMosshroom: 任意苔藓蘑菇
 			AnyEctoplasm: 任意灵质
 		}
@@ -1987,61 +1996,6 @@ Mods: {
 			Moonflower: 陨石上可能会长出具有神奇特性的外来植物...
 			Pumpinator: 试一试太空中某种漂浮的陨石, 你可能会发现一种稀有的、强大的工具...
 			GhostlyGrave: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!
-		}
-
-		Configuration: {
-			Client: {
-				Visuals: {
-					Header: "[c/ddddff:视觉]"
-
-					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
-					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
-					FlashIntensity: "{NoonPotion} 闪光强度"
-					FlashIntensityTooltip: 数值越低, 闪光强度越低.
-					HighQuality: "{Fluorescence} 高品质"
-					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
-					HighQualityShaders: "{FrozenTear} 高品质着色器"
-					HighQualityShadersTooltip: 禁用并重新加载Mod以使用常规着色器, 可能有助于提高性能.
-					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
-					FlashShaderRepetitionsTooltip: 
-						'''
-						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
-						仅会在高品质着色器启用时生效.
-						'''
-					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
-					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
-				}
-
-			General: {
-					Header: "[c/ddddff:常规]"
-
-					InfoDebugLogs: "{RadioThing} 信息和调试日志"
-					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
-					}
-				}
-
-			Gameplay: {
-				General: {
-					Header: "[c/ddddff:常规]"
-
-					EarlyGravityGlobe: "{Item} 早期重力重力球"
-					EarlyGravityGlobeTooltip: 允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
-
-					EarlyPortalGun: "{Item} 早期传送门枪"
-					EarlyPortalGunTooltip: 允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
-				}
-
-				Recipes: {
-					Header: "[c/ddddff:合成表更改]"
-
-					VoidBag: "{VoidVault}/{VoidBag} 虚空袋合成表"
-					VoidBagTooltip: 更改虚空袋或虚空保险箱的合成表以使用恶魔能量和钱箱/保险箱
-				}
-
-				Drops: {
-					Header: "[c/ddddff:掉落物]"
-				}
-			}
 		}
 
 		ShopQuote: {
