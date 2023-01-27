@@ -1,8 +1,8 @@
 Mods.Aequus: {
 	AnglerQuest: {
 		BrickFish: {
-			Description: The carpenter was in a lot of panic when one of the bricks on their beachside house jumped away, making the entire building fall! Turns out, the brick grew fins and was desperate for water! I don't know where he gets his materials, but that one is clearly possessed. Reel it in and bring it to me, I always wanted to smash someone over the head with a fish!
-			CatchLocation: Caught near villager buildings
+			Description: 当他们位于海边的房子上的一块砖跳走时, 木匠非常惊慌, 整个建筑都倒塌了! 事实证明, 砖块长出了鳍, 并且非常渴望水! 我不知道他是从哪里得到他的材料的, 但那件显然是被人占有的. 把它装起来然后带给我, 我一直想用鱼砸人的头!
+			CatchLocation: 抓捕位置: 镇民建筑附近
 		}
 	}
 }

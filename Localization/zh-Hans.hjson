@@ -314,7 +314,7 @@ Mods: {
 			GoreFish: 肉块鱼
 
 		# Quest Fish
-			BrickFish: 积木鱼
+			BrickFish: 砖块鱼
 
 		# Fish
 			Leecheel: 蛭血鱼
@@ -492,8 +492,8 @@ Mods: {
 			PeonyPhotobook: 牡丹相片书
 			Photobook: 相片书
 			MercerTonic: 商人补药
-			PixelCamera: 像素绘图机
-			PixelCameraClip: 像素绘图机剪片
+			PixelCamera: 像素存图机
+			PixelCameraClip: 像素存图机剪片
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
 			PhysicsGun: 物理枪
@@ -838,7 +838,7 @@ Mods: {
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
 			# Ranged Weapons
-			BlockGlove: 消耗物块作为弹药
+			BlockGlove: 消耗方块作为弹药
 			Hitscanner: 发射一大片会瞬间命中敌人的子弹
 			Flameblaster:
 				'''
@@ -1079,7 +1079,7 @@ Mods: {
 			SilkHammer: 接收墙壁的可重新放置版本
 			SilkPickaxe: 
 				'''
-				接收物块的可重新放置版本
+				接收方块的可重新放置版本
 				'可能会使附近的物块格外脆弱!'
 				'''
 			Crabax:
@@ -1230,7 +1230,7 @@ Mods: {
 			}
 			ShutterstockerClipAmmo: 打印在这上面的照片可在木匠处查看
 
-			PhysicsGun: 可以抓取并扔出物块
+			PhysicsGun: 可以抓取并扔出方块
 			Pumpinator:
 				'''
 				渐进更改风速
@@ -1458,7 +1458,7 @@ Mods: {
 			EmancipationGrill: 
 				'''
 				会抹去与其接触的传送门
-				被物理学枪抓取的物块在接触此物块时会被抹去
+				被物理学枪抓取的方块在接触此方块时会被抹去
 				阻止物理学枪和传送门枪的弹幕穿过
 				'''
 			PhysicsBlock: 无法被物理学枪抓取
