@@ -257,7 +257,7 @@ namespace Aequus.Content.WorldGeneration
                 var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
                 if (!Main.tile[v.X, v.Y].HasTile)
                 {
-                    WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(6));
+                    WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstones>(), style: WorldGen.genRand.Next(6));
                     if (Main.tile[v.X, v.Y].HasTile)
                     {
                         int sign = Sign.ReadSign(v.X, v.Y);

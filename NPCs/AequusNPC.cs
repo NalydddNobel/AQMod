@@ -17,6 +17,7 @@ using Aequus.Items.Placeable;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
+using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -38,6 +39,7 @@ namespace Aequus.NPCs
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
         public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
+        public static float spawnNPCYOffset;
 
         public static HashSet<int> HeatDamage { get; private set; }
 
@@ -262,6 +264,13 @@ namespace Aequus.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
+            if (spawnNPCYOffset != 0f)
+            {
+                npc.position.Y += spawnNPCYOffset;
+                var tileLocation = npc.Center.ToTileCoordinates();
+                int y = AequusHelpers.FindBestFloor(tileLocation.X, tileLocation.Y);
+                npc.position.Y = y * 16f - npc.height;
+            }
             if (AequusHelpers.HereditarySource(source, out var ent))
             {
                 childNPC = true;
@@ -794,6 +803,20 @@ namespace Aequus.NPCs
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
+            On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+        }
+
+        private static void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)
+        {
+            SpawnsManagerSystem.PreCheckCreatureSpawns();
+            try
+            {
+                orig();
+            }
+            catch
+            {
+            }
+            SpawnsManagerSystem.PostCheckCreatureSpawns();
         }
 
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Projectiles.Melee.Swords;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,6 +27,12 @@ namespace Aequus.Items.Tools
             Item.rare = ItemRarityID.Blue;
             Item.autoReuse = true;
             Item.reuseDelay = 4;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return true;
         }
 
         public override bool MeleePrefix()

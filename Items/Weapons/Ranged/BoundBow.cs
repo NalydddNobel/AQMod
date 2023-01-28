@@ -14,6 +14,9 @@ namespace Aequus.Items.Weapons.Ranged
     [GlowMask]
     public class BoundBow : ModItem
     {
+        public const int MaxAmmo = 15;
+        public const int RegenerationDelay = 50;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

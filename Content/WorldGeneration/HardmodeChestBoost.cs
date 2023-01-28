@@ -285,7 +285,8 @@ namespace Aequus.Content.WorldGeneration
             int chestTile = Main.tile[chest.x, chest.y].TileType;
 
             HardmodifyPreHardmodeLoot(chest);
-            AddSpecificHardmodeChestMainLoot(chest, chestTile, chestType);
+            if (!WorldGen.genRand.NextBool(5))
+                AddSpecificHardmodeChestMainLoot(chest, chestTile, chestType);
             AddSpecificHardmodeChestMiscLoot(chest, chestTile, chestType);
             for (int i = 0; i < 2; i++)
             {

@@ -294,6 +294,46 @@
             <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
             <param name="itemReference"></param>
         </member>
+        <member name="M:Aequus.AequusPlayer.ProjectileClone(Terraria.Player)">
+            <summary>
+            Creates a cloned player for a fake projectile-player clone.
+            </summary>
+            <param name="basePlayer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.GetEquips(Terraria.Player,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Gets a list of equipment from the player.
+            </summary>
+            <param name="player"></param>
+            <param name="armor"></param>
+            <param name="accessories"></param>
+            <param name="sentrySlot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="magmaStone"></param>
+        </member>
+        <member name="M:Aequus.AequusPlayer.CurrentPlayerContext">
+            <summary>
+            Gets a player context for applying specific effects.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusPlayer.CalcHealing(Terraria.Player,System.Int32)">
+            <summary>
+            Calculates how much to actually heal.
+            </summary>
+            <param name="player"></param>
+            <param name="healAmt"></param>
+            <returns></returns>
+        </member>
         <member name="P:Aequus.AequusSystem.Main_invasionSize">
             <summary>
             Caches <see cref="F:Terraria.Main.invasionSize"/>

@@ -6,7 +6,6 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ModPlayers;
-using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
@@ -24,6 +23,7 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -55,8 +55,6 @@ namespace Aequus
 {
     public class AequusPlayer : ModPlayer
     {
-        public const int BoundBowMaxAmmo = 15;
-        public const int BoundBowRegenerationDelay = 50;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
@@ -641,8 +639,8 @@ namespace Aequus
             cGlowCore = -1;
             instaShieldAlpha = 0f;
             gravityTile = 0;
-            boundBowAmmo = BoundBowMaxAmmo;
-            boundBowAmmoTimer = BoundBowRegenerationDelay;
+            boundBowAmmo = BoundBow.MaxAmmo;
+            boundBowAmmoTimer = BoundBow.RegenerationDelay;
             CursorDye = -1;
             ghostTombstones = false;
             moroSummonerFruit = false;
@@ -1183,7 +1181,7 @@ namespace Aequus
                 int damageOverTimeInflictedThisFrame = 0;
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    if (Main.npc[i].active&& !Main.npc[i].immortal && !Main.npc[i].dontTakeDamage && Player.Distance(Main.npc[i].Center) < 1000f)
+                    if (Main.npc[i].active && !Main.npc[i].immortal && !Main.npc[i].dontTakeDamage && Player.Distance(Main.npc[i].Center) < 1000f)
                     {
                         if (Main.npc[i].lifeRegen < 0)
                             damageOverTimeInflictedThisFrame -= Main.npc[i].lifeRegen;
@@ -1532,11 +1530,11 @@ namespace Aequus
                     }
                 }
                 boundBowAmmo++;
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
+                boundBowAmmoTimer = BoundBow.RegenerationDelay;
             }
-            if (boundBowAmmo >= BoundBowMaxAmmo)
+            if (boundBowAmmo >= BoundBow.MaxAmmo)
             {
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
+                boundBowAmmoTimer = BoundBow.RegenerationDelay;
             }
         }
 
@@ -2297,15 +2295,24 @@ namespace Aequus
             return count;
         }
 
-        public void TryFillSoulGems(EnemyKillInfo npc)
-        {
-        }
-
         public void OnKillEffect(EnemyKillInfo npc)
         {
             SoulGem.TryFillSoulGems(Player, this, npc);
             AmmoBackpack.Proc(Player, this, npc);
             ArmFloaties.Proc(Player, this, npc);
+        }
+
+        public bool PreCreatureSpawns()
+        {
+            if (Player.InModBiome<FakeUnderworldBiome>())
+            {
+                float y = Player.position.Y;
+                Player.position.Y = Math.Max(Player.position.Y, (Main.UnderworldLayer + 80) * 16);
+                Player.ZoneUnderworldHeight = true;
+                AequusNPC.spawnNPCYOffset = y - Player.position.Y;
+                return true;
+            }
+            return false;
         }
 
         public void DetermineBuffTimeToAdd(int type, ref int amt)
@@ -2398,6 +2405,11 @@ namespace Aequus
             return result;
         }
 
+        /// <summary>
+        /// Creates a cloned player for a fake projectile-player clone.
+        /// </summary>
+        /// <param name="basePlayer"></param>
+        /// <returns></returns>
         public static Player ProjectileClone(Player basePlayer)
         {
             var p = (Player)basePlayer.clientClone();
@@ -2408,6 +2420,14 @@ namespace Aequus
             return p;
         }
 
+        /// <summary>
+        /// Gets a list of equipment from the player.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="armor"></param>
+        /// <param name="accessories"></param>
+        /// <param name="sentrySlot"></param>
+        /// <returns></returns>
         public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true, bool sentrySlot = false)
         {
             var l = new List<Item>();
@@ -2721,9 +2741,16 @@ namespace Aequus
         }
         #endregion
 
-        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player)
+        /// <summary>
+        /// Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="velocity"></param>
+        /// <param name="player"></param>
+        /// <param name="magmaStone"></param>
+        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool magmaStone = true)
         {
-            if (player.magmaStone)
+            if (player.magmaStone && magmaStone)
             {
                 var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
                 d.noGravity = true;
@@ -2844,6 +2871,10 @@ namespace Aequus
             }
         }
 
+        /// <summary>
+        /// Gets a player context for applying specific effects.
+        /// </summary>
+        /// <returns></returns>
         public static Player CurrentPlayerContext()
         {
             if (PlayerContext > -1)
@@ -2857,6 +2888,12 @@ namespace Aequus
             return null;
         }
 
+        /// <summary>
+        /// Calculates how much to actually heal.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="healAmt"></param>
+        /// <returns></returns>
         public static int CalcHealing(Player player, int healAmt)
         {
             if (player.statLife + healAmt > player.statLifeMax2)

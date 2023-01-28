@@ -74,7 +74,7 @@ namespace Aequus
         public static int ColorOnlyShaderIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
         public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderIndex, Main.LocalPlayer);
 
-        public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
+        public static bool debugKey => Main.keyState.IsKeyDown(Keys.LeftShift);
 
         public static Regex SubstitutionRegex { get; private set; }
         public static TypeUnboxer<int> UnboxInt { get; private set; }
@@ -83,7 +83,34 @@ namespace Aequus
 
         private static Mod aequus => ModContent.GetInstance<Aequus>();
 
+        public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        public static int FindBestFloor(int x, int y)
+        {
+            if (WorldGen.InWorld(x, y) && Main.tile[x, y].IsFullySolid())
+            {
+                for (int j = 0; j > -60; j--)
+                {
+                    if (!WorldGen.InWorld(x, y + j, 30))
+                        continue;
+                    if (!Main.tile[x, y + j].IsFullySolid() || Main.tile[x, y + j].SolidTopType())
+                    {
+                        return y + j;
+                    }
+                }
+            }
+            for (int j = 0; j < 60; j++)
+            {
+                if (!WorldGen.InWorld(x, y + j, 30))
+                    continue;
+                if (Main.tile[x, y + j].IsFullySolid())
+                {
+                    return y + j;
+                }
+            }
+            return int.MaxValue;
+        }
 
         public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color))
         {
@@ -219,6 +246,12 @@ namespace Aequus
             return defaultValue;
         }
 
+        public static FileStream CreateSourceFile(string name)
+        {
+            string path = SourceFilePath;
+            Directory.CreateDirectory(path);
+            return File.Create($"{path}{Path.DirectorySeparatorChar}{name}");
+        }
         public static FileStream CreateDebugFile(string name)
         {
             string path = DebugFilePath;
@@ -1768,6 +1801,20 @@ namespace Aequus
             return rect;
         }
 
+        public static void AddList<TKey, TValue>(this Dictionary<TKey, List<TValue>> dictionary, TKey key, TValue value)
+        {
+            if (dictionary.TryGetValue(key, out var list))
+            {
+                if (list == null)
+                {
+                    dictionary[key] = new List<TValue>() { value };
+                    return;
+                }
+                list.Add(value);
+                return;
+            }
+            dictionary[key] = new List<TValue>() { value };
+        }
         public static List<TValue> ToList<TKey, TValue>(this Dictionary<TKey, TValue>.ValueCollection keys)
         {
             var l = new List<TValue>();
@@ -2101,9 +2148,25 @@ namespace Aequus
             }
         }
 
-        public static void WriteText(this Stream stream, string text, Encoding encoding = null)
+        public static void WriteText(this Stream stream, string text, Encoding encoding = null, int tabs = 0)
         {
             encoding ??= Encoding.ASCII;
+            if (tabs > 0)
+            {
+                string tabVal = "";
+                for (int i = 0; i < tabs; i++)
+                    tabVal += "	";
+
+                if (text.EndsWith('\n'))
+                {
+                    text = $"{text[0..^1].Replace("\n", $"\n{tabVal}")}\n";
+                }
+                else
+                {
+                    text = text.Replace("\n", $"\n{tabVal}");
+                }
+                text = $"{tabVal}{text}";
+            }
             var val = encoding.GetBytes(text);
             stream.Write(val, 0, val.Length);
         }

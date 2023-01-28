@@ -20,6 +20,8 @@ namespace Aequus.Projectiles.Melee
             Projectile.height = 280;
             Projectile.localNPCHitCooldown = 50;
             Projectile.usesLocalNPCImmunity = true;
+            Projectile.noEnchantmentVisuals = true;
+            Projectile.ownerHitCheck = false;
             hitboxOutwards = 132;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 5;
@@ -59,6 +61,7 @@ namespace Aequus.Projectiles.Melee
                 }
                 for (int i = 0; i < 15; i++)
                 {
+                    AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(Projectile.width + 24f), AngleVector, Main.player[Projectile.owner], magmaStone: false);
                     var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f))* Main.rand.NextFloat(Projectile.width + 24f), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
                     d.velocity += AngleVector;
                     d.velocity *= 4f;
@@ -93,6 +96,10 @@ namespace Aequus.Projectiles.Melee
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Main.rand.NextFromRect(target.getRect()), AngleVector * 0.1f, ModContent.ProjectileType<IronLotusFlare>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
 
+        protected override void SetArmRotation(Player player, float progress, float swingProgress)
+        {
+        }
+
         public override bool PreDraw(ref Color lightColor)
         {
             var texture = TextureAssets.Projectile[Type].Value;
@@ -124,7 +131,7 @@ namespace Aequus.Projectiles.Melee
                 float intensity = (float)Math.Sin(progress * MathHelper.Pi);
                 var shineColor = new Color(200, 120, 40, 0) * intensity * intensity * Projectile.Opacity;
                 var slash = SwishTexture.Value;
-                var slashLocation = Main.GetPlayerArmPosition(Projectile) + BaseAngleVector * (80f + progress * 150f) - Main.screenPosition;
+                var slashLocation = Main.GetPlayerArmPosition(Projectile) + BaseAngleVector * (80f + progress * 150f * Projectile.scale) - Main.screenPosition;
                 Main.EntitySpriteDraw(slash, slashLocation, null, shineColor, BaseAngleVector.ToRotation() + MathHelper.PiOver2, slash.Size() / 2f, new Vector2(Projectile.scale * 0.8f, Projectile.scale * 2f), effects, 0);
             }
             return false;

@@ -11,14 +11,17 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture
 {
-    public class Tombstones : ModTile
+    [LegacyName("Tombstones")]
+    public class AshTombstones : ModTile
     {
-        public const int AshTombstoneStyle = 0;
-        public const int AshGraveMarkerStyle = 1;
-        public const int AshCrossGraveMarkerStyle = 2;
-        public const int AshHeadstoneStyle = 3;
-        public const int AshGravestoneStyle = 4;
-        public const int AshObeliskStyle = 5;
+        public const int Style_AshTombstone = 0;
+        public const int Style_AshGraveMarker = 1;
+        public const int Style_AshCrossGraveMarker = 2;
+        public const int Style_AshHeadstone = 3;
+        public const int Style_AshGravestone = 4;
+        public const int Style_AshObelisk = 5;
+
+        public static int numAshTombstones;
 
         public override void SetStaticDefaults()
         {
@@ -58,22 +61,22 @@ namespace Aequus.Tiles.Furniture
             var r = new Rectangle(i * 16, j * 16, 32, 32);
             switch (frameX / 36)
             {
-                case AshTombstoneStyle:
+                case Style_AshTombstone:
                     Item.NewItem(source, r, ModContent.ItemType<AshTombstone>());
                     break;
-                case AshGraveMarkerStyle:
+                case Style_AshGraveMarker:
                     Item.NewItem(source, r, ModContent.ItemType<AshGraveMarker>());
                     break;
-                case AshCrossGraveMarkerStyle:
+                case Style_AshCrossGraveMarker:
                     Item.NewItem(source, r, ModContent.ItemType<AshCrossGraveMarker>());
                     break;
-                case AshHeadstoneStyle:
+                case Style_AshHeadstone:
                     Item.NewItem(source, r, ModContent.ItemType<AshHeadstone>());
                     break;
-                case AshGravestoneStyle:
+                case Style_AshGravestone:
                     Item.NewItem(source, r, ModContent.ItemType<AshGravestone>());
                     break;
-                case AshObeliskStyle:
+                case Style_AshObelisk:
                     Item.NewItem(source, r, ModContent.ItemType<AshObelisk>());
                     break;
             }
@@ -87,8 +90,8 @@ namespace Aequus.Tiles.Furniture
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = 0.02f;
-            g = 0.001f;
+            r = 0.04f;
+            g = 0.02f;
             b = 0.001f;
         }
 

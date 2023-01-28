@@ -9,6 +9,7 @@ using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using System;
@@ -305,6 +306,7 @@ namespace Aequus
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
+            AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
             TileCountsMultiplier = 1;
         }
 

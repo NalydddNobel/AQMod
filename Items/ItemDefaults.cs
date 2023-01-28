@@ -2,6 +2,7 @@
 using Aequus.Items.Misc.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -132,6 +133,19 @@ namespace Aequus.Items
             item.useStyle = ItemUseStyleID.HoldUp;
         }
 
+        public static void FixSwing(this Item item, Player player)
+        {
+            //Main.NewText(player.itemTime);
+            //Main.NewText(player.toolTime, Color.Orange);
+            //Main.NewText(player.itemAnimation + "|" + player.itemAnimationMax, Color.Beige);
+            if (item.pick > 0 || item.axe > 0 || item.hammer > 0)
+            {
+                if ((player.toolTime > 0 && player.itemTime == 0) || !player.controlUseItem)
+                    return;
+                player.itemAnimation = Math.Min(player.itemAnimation, player.toolTime);
+            }
+            player.itemAnimation = player.itemAnimationMax;
+        }
         public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : ModProjectile
         {
             item.useTime = swingTime;

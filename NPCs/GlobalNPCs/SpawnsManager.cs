@@ -44,6 +44,10 @@ namespace Aequus.NPCs.GlobalNPCs
                 return;
             }
             var aequus = player.Aequus();
+            if (player.InModBiome<FakeUnderworldBiome>())
+            {
+                spawnRate /= 6;
+            }
             spawnRate = (int)(spawnRate * aequus.spawnrateMultiplier);
             maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
             if (player.ZoneSkyHeight)
@@ -282,6 +286,59 @@ namespace Aequus.NPCs.GlobalNPCs
         public static void ForceZen(NPC npc)
         {
             ForceZen(npc.Center, 2000f);
+        }
+    }
+
+    public class SpawnsManagerSystem : ModSystem
+    {
+        public struct MagicPlayerMover
+        {
+            public Player player;
+            public Vector2 previousLocation;
+        }
+        private static List<MagicPlayerMover> enemySpawnManipulators;
+
+        public static void PreCheckCreatureSpawns()
+        {
+            enemySpawnManipulators.Clear();
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                var location = Main.player[i].position;
+                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Aequus().PreCreatureSpawns())
+                {
+                    enemySpawnManipulators.Add(new MagicPlayerMover() { player = Main.player[i], previousLocation = location, });
+                }
+            }
+        }
+
+        public static void PostCheckCreatureSpawns()
+        {
+            foreach (var plr in enemySpawnManipulators)
+            {
+                plr.player.position = plr.previousLocation;
+            }
+            enemySpawnManipulators.Clear();
+            AequusNPC.spawnNPCYOffset = 0f;
+        }
+
+        public override void Load()
+        {
+            enemySpawnManipulators = new List<MagicPlayerMover>();
+        }
+
+        public override void Unload()
+        {
+            enemySpawnManipulators = null;
+        }
+
+        public override void OnWorldLoad()
+        {
+            enemySpawnManipulators.Clear();
+        }
+
+        public override void OnWorldUnload()
+        {
+            enemySpawnManipulators.Clear();
         }
     }
 }

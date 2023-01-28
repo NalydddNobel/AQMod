@@ -1193,8 +1193,13 @@ Mods: {
 				Ignores 5 points of enemy Defense
 				Latches onto enemies, healing you
 				Damage the victim to restore extra life
+				Can be given item prefix modifiers
 				'''
-			Meathook: Allows you to grapple to enemies
+			Meathook: 
+				'''
+				Allows you to grapple to enemies
+				Can be given item prefix modifiers
+				'''
 
 			BalloonKit: Allows you to ride a hot air balloon
 

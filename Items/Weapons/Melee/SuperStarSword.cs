@@ -24,6 +24,12 @@ namespace Aequus.Items.Weapons.Melee
             Item.value = ItemDefaults.GlimmerValue;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
+        }
+
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;

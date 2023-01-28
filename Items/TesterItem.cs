@@ -25,7 +25,7 @@ namespace Aequus.Items
 {
     internal class TesterItem : ModItem
     {
-        public const bool LoadMe = true;
+        public const bool LoadMe = false;
 
         public override string Texture => AequusHelpers.GetPath<Gamestar>();
 
@@ -383,6 +383,75 @@ namespace Aequus.Items
                 rayT = (float)Math.Pow(rayT, 3);
                 Main.spriteBatch.Draw(ray, p, null, clr, rotation, ray.Size() / 2f, new Vector2(scale * rayT, scale * rayT * 1.5f), SpriteEffects.None, 0f);
             }
+        }
+    }
+
+    internal class AutoLanguageItem : ModItem
+    {
+        public const bool LoadMe = false;
+
+        public override string Texture => AequusHelpers.GetPath<Gamestar>();
+
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return LoadMe && TesterItem.LoadMe;
+        }
+
+        public void WriteTip(FileStream stream, string key, string text, int tabs = 0)
+        {
+            if (text.Contains('\n'))
+            {
+                stream.WriteText($"{key}: \n", tabs: tabs);
+                stream.WriteText($"'''\n{text}\n'''", tabs: tabs + 1);
+            }
+            else
+            {
+                stream.WriteText($"{key}: {text}", tabs: tabs);
+            }
+        }
+
+        public void LanguageTest()
+        {
+            using var file = AequusHelpers.CreateDebugFile("en-US-Items.hjson");
+            var dict = new Dictionary<string, List<ModItem>>();
+            foreach (var item in Aequus.Instance.GetContent<ModItem>())
+            {
+                string nameSpace = item.GetType().Namespace;
+                if (nameSpace.EndsWith(".Items")) // Exclude debug items
+                    continue;
+                var split = nameSpace.Split('.');
+                dict.AddList(string.Join("-", split[2..^0]).Replace('.', '/'), item);
+            }
+            int itemTabs = 2;
+            bool start = false;
+            foreach (var value in dict)
+            {
+                file.WriteText($"{(!start ? "" : "\n")}# {value.Key}\n", tabs: itemTabs - 1);
+                foreach (var modItem in value.Value)
+                {
+                    file.WriteText($"ItemName.{modItem.GetType().Name}: {Lang.GetItemNameValue(modItem.Type)}\n", tabs: itemTabs);
+                    string tipKey = $"Mods.Aequus.ItemTooltip.{modItem.GetType().Name}";
+                    var tooltip = Language.GetTextValue(tipKey);
+                    if (tooltip != tipKey && !string.IsNullOrWhiteSpace(tooltip))
+                    {
+                        WriteTip(file, $"ItemTooltip.{modItem.GetType().Name}", tooltip, tabs: itemTabs);
+                        file.WriteText("\n", tabs: itemTabs);
+                    }
+                }
+                start = true;
+            }
+            AequusHelpers.OpenDebugFolder();
+        }
+
+        public override void AddRecipes()
+        {
+            LanguageTest();
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            //LanguageTest();
+            return true;
         }
     }
 }

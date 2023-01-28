@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Graves
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tombstones>(), Tombstones.AshCrossGraveMarkerStyle);
+            Item.DefaultToPlaceableTile(ModContent.TileType<AshTombstones>(), AshTombstones.Style_AshCrossGraveMarker);
             Item.width = 12;
             Item.height = 12;
             Item.rare = ItemRarityID.Green;

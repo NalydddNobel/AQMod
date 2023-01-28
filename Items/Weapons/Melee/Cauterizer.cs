@@ -33,6 +33,12 @@ namespace Aequus.Items.Weapons.Melee
             return lightColor.MaxRGBA(200);
         }
 
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
+        }
+
         public override bool MeleePrefix()
         {
             return true;
