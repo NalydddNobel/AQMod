@@ -389,7 +389,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 
-            if (NPC.collideX || NPC.collideY || NPC.velocity != NPC.oldVelocity)
+            if (NPC.collideX || NPC.collideY)
             {
                 FallenStarAI_OnTileCollide();
             }

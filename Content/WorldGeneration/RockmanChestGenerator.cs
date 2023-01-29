@@ -84,7 +84,7 @@ namespace Aequus.Content.WorldGeneration
                             }
                         }
                         WorldGen.SquareTileFrame(i, j);
-                        if (t.WallType > WallID.None && t.WallType != WallID.HiveUnsafe && t.WallType != WallID.LihzahrdBrickUnsafe && !Main.wallDungeon[t.WallType])
+                        if (t.WallType != WallID.HiveUnsafe && t.WallType != WallID.LihzahrdBrickUnsafe && !Main.wallDungeon[t.WallType])
                         {
                             t.WallType = WallID.FlowerUnsafe;
                         }

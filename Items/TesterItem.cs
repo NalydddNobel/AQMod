@@ -1,7 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.Necromancy;
-using Aequus.Content.StatSheet;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
@@ -215,12 +214,12 @@ namespace Aequus.Items
 
         private static void WriteStatSheetInfoTest()
         {
-            var clr = Color.Red.HueAdd(Main.rand.NextFloat(1f));
-            foreach (var s in StatSheetManager.RegisteredStats)
-            {
-                Main.NewText($"{Language.GetTextValue(s.DisplayName)}: {s.ProvideStatText()}", Color.Lerp(clr, Color.White, 0.75f));
-                clr = clr.HueAdd(Main.rand.NextFloat(0.1f));
-            }
+            //var clr = Color.Red.HueAdd(Main.rand.NextFloat(1f));
+            //foreach (var s in StatSheetManager.RegisteredStats)
+            //{
+            //    Main.NewText($"{Language.GetTextValue(s.DisplayName)}: {s.ProvideStatText()}", Color.Lerp(clr, Color.White, 0.75f));
+            //    clr = clr.HueAdd(Main.rand.NextFloat(0.1f));
+            //}
         }
 
         private class ModIconAnimation : ModProjectile

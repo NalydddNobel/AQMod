@@ -450,8 +450,32 @@ namespace Aequus.Tiles
         }
         public override void RandomUpdate(int i, int j, int type)
         {
+            if (AequusHelpers.iterations != 0)
+            {
+                return;
+            }
             switch (type)
             {
+                case TileID.Grass:
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(50))
+                    {
+                        if (!Main.tile[i, j + 1].HasTile)
+                        {
+                            WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
+                        }
+                    }
+                    break;
+
+                case TileID.Vines:
+                case TileID.VineFlowers:
+                    if (j > Main.worldSurface)
+                    {
+                        AequusHelpers.iterations++;
+                        AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
+                        AequusHelpers.iterations--;
+                    }
+                    break;
+
                 case TileID.Ash:
                     if (AequusWorld.downedEventDemon && j > Main.UnderworldLayer && WorldGen.genRand.NextBool(1200))
                     {

@@ -315,15 +315,25 @@ namespace Aequus
             NPC.SetEventFlagCleared(ref defeated, -1);
         }
 
+        public static void RandomUpdateTile_Surface(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
+        {
+            WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
+        }
+
+        public static void RandomUpdateTile_Underground(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
+        {
+            WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
+        }
+
         public static void RandomUpdateTile(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
         {
             if (y < Main.worldSurface)
             {
-                WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                RandomUpdateTile_Surface(x, y, checkNPCSpawns, wallDist);
             }
             else
             {
-                WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                RandomUpdateTile_Underground(x, y, checkNPCSpawns, wallDist);
             }
         }
 

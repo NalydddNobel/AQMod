@@ -52,7 +52,7 @@ namespace Aequus.NPCs.Friendly.Critter
             NPC.lifeMax = 5;
             NPC.HitSound = SoundID.NPCHit5;
             NPC.DeathSound = SoundID.NPCDeath55;
-            NPC.npcSlots = 0.5f;
+            NPC.npcSlots = 0.1f;
             NPC.noGravity = true;
             NPC.catchItem = (short)ModContent.ItemType<DwarfStarite>();
 

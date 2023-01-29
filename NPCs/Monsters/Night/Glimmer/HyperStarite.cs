@@ -82,7 +82,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0f;
             NPC.value = Item.buyPrice(silver: 30);
-            NPC.npcSlots = 4f;
+            NPC.npcSlots = 3f;
 
             this.SetBiome<GlimmerBiome>();
 

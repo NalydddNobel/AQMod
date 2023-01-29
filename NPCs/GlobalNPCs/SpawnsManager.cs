@@ -69,7 +69,7 @@ namespace Aequus.NPCs.GlobalNPCs
             }
             if (CanSpawnGlimmerEnemies(player))
             {
-                spawnRate /= 2;
+                spawnRate /= 3;
             }
             else if (aequus.ZonePeacefulGlimmer)
             {
@@ -89,7 +89,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 pool.Clear();
             }
-            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 2f);
+            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), GlimmerBiome.StariteSpawn);
             pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
 
             if (CanSpawnGlimmerEnemies(spawnInfo.Player))

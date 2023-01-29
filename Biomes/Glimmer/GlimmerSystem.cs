@@ -122,7 +122,7 @@ namespace Aequus.Biomes.Glimmer
         {
             GlimmerBiome.TileLocation = CheckGround(where);
 
-            AequusText.Broadcast("Announcement.GlimmerStart", AequusText.BossSummonMessage);
+            AequusText.Broadcast($"Announcement.GlimmerStart{(where.X * 2 > Main.maxTilesX ? "East" : "West")}", AequusText.BossSummonMessage);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 SendGlimmerStatus();

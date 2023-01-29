@@ -2112,10 +2112,6 @@ namespace Aequus
             }
         }
 
-        public static void DrawLegacyAura(Vector2 location, float circumference, float opacity, Color color)
-        {
-        }
-
         /// <summary>
         /// Called right before all player layers have been drawn
         /// </summary>
