@@ -27,6 +27,8 @@ Mods: {
 			OrganicEventFright: 丛林的恐惧蔓延开来...
 			OrganicEventMight: 丛林的根须立于地面之上...
 			GlimmerStart: 一缕柔光出现在了天空中...
+			GlimmerStartWest: 一缕柔光出现在了西边的天空中...
+			GlimmerStartEast: 一缕柔光出现在了东边的天空中...
 			GlimmerEnd: 柔光渐渐消失...
 		}
 
@@ -1059,19 +1061,18 @@ Mods: {
 				'''
 			VenomDartTrapHat:
 				'''
-				增加20%召唤伤害
+				增加10%召唤伤害
 				增加1格最大召唤栏位
-				Ignores 15 points of enemy Defense
+				无视敌人15点的防御力
 				'''
 			DartTrapHat:
 				'''
-				增加10%召唤伤害
 				无视敌人10点的防御力
 				'''
 			SuperDartTrapHat:
 				'''
-				增加50%召唤伤害
-				增加2格最大召唤栏位
+				增加40%召唤伤害
+				增加1格最大召唤栏位
 				无视敌人15点的防御力
 				'''
 
