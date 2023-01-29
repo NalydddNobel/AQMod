@@ -40,7 +40,6 @@ namespace Aequus.Items.Armor.Passive
         {
             var aequus = player.Aequus();
             aequus.wearingSummonHelmet = true;
-            player.GetDamage(DamageClass.Summon) += 0.1f;
             if (Main.myPlayer == player.whoAmI)
             {
                 aequus.summonHelmetTimer--;

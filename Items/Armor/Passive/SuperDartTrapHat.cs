@@ -30,7 +30,7 @@ namespace Aequus.Items.Armor.Passive
         {
             base.UpdateEquip(player);
             player.GetDamage(DamageClass.Summon) += 0.4f;
-            player.maxMinions += 2;
+            player.maxMinions += 1;
         }
 
         public override void AddRecipes()

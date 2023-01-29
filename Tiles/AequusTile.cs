@@ -477,28 +477,28 @@ namespace Aequus.Tiles
                     break;
 
                 case TileID.Ash:
-                    if (AequusWorld.downedEventDemon && j > Main.UnderworldLayer && WorldGen.genRand.NextBool(1200))
+                    if (AequusWorld.downedEventDemon && j > Main.UnderworldLayer && WorldGen.genRand.NextBool(2000))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Ash, TileID.Obsidian, }, ModContent.TileType<ManacleTile>(), 30);
                     }
                     break;
 
                 case TileID.Cloud:
-                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(600))
+                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(1600))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 20);
                     }
                     break;
 
                 case TileID.Meteorite:
-                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
+                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(1600))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
                     }
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(3000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1600))
                     {
                         TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
                     }
@@ -506,30 +506,30 @@ namespace Aequus.Tiles
 
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(500))
+                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600))
                 {
                     TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
                         ModContent.TileType<MorayTile>());
                 }
-                if (WorldGen.genRand.NextBool(1800))
+                if (WorldGen.genRand.NextBool(2500))
                 {
                     GrowPearl(i, j);
                 }

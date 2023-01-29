@@ -1061,19 +1061,18 @@ Mods: {
 				'''
 			VenomDartTrapHat:
 				'''
-				20% increased summon damage
+				10% increased summon damage
 				Increases your max number of minions by 1
 				Ignores 15 points of enemy Defense
 				'''
 			DartTrapHat:
 				'''
-				10% increased summon damage
 				Ignores 10 points of enemy Defense
 				'''
 			SuperDartTrapHat:
 				'''
-				50% increased summon damage
-				Increases your max number of minions by 2
+				40% increased summon damage
+				Increases your max number of minions by 1
 				Ignores 15 points of enemy Defense
 				'''
 

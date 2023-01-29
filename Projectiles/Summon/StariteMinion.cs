@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Summon
                 {
                     if (Projectile.velocity == Vector2.Zero)
                     {
-                        Projectile.velocity = Main.rand.NextVector2Circular(3f, 3f);
+                        Projectile.velocity = Main.rand.NextVector2Circular(7f, 7f);
                     }
                     Projectile.ai[1] = Main.rand.Next(30, 70);
                     Projectile.netUpdate = true;

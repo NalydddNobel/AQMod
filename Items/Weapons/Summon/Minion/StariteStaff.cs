@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
 
         public override void SetDefaults()
         {
-            Item.SetWeaponValues(24, 5f);
+            Item.SetWeaponValues(20, 5f);
             Item.mana = 10;
             Item.DamageType = DamageClass.Summon;
             Item.rare = ItemDefaults.RarityGlimmer;

@@ -90,7 +90,7 @@ namespace Aequus.NPCs
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
-            globalLoot.Add(ItemDropRule.ByCondition(new Conditions.IsBloodMoonAndNotFromStatue(), ModContent.ItemType<BloodyTearFragment>(), 150));
+            globalLoot.Add(ItemDropRule.ByCondition(new Conditions.IsBloodMoonAndNotFromStatue(), ModContent.ItemType<BloodyTearFragment>(), 32));
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)

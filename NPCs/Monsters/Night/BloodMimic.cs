@@ -117,7 +117,13 @@ namespace Aequus.NPCs.Monsters.Night
                 NPC.spriteDirection = -NPC.spriteDirection;
             }
             var tileCoords = NPC.Center.ToTileCoordinates();
+            AequusHelpers.dustDebug(tileCoords);
             if (WorldGen.InWorld(tileCoords.X + NPC.direction, tileCoords.Y, 10) && Main.tile[tileCoords.X + NPC.direction, tileCoords.Y].IsFullySolid())
+            {
+                NPC.velocity.X = NPC.direction * 5f;
+                NPC.velocity.Y = -6f;
+            }
+            else if (WorldGen.InWorld(tileCoords.X, tileCoords.Y + 1, 10) && Main.tile[tileCoords.X, tileCoords.Y + 1].IsFullySolid() && Main.tile[tileCoords.X, tileCoords.Y + 1].IsHalfBlock)
             {
                 NPC.velocity.X = NPC.direction * 5f;
                 NPC.velocity.Y = -6f;

@@ -49,7 +49,6 @@ namespace Aequus.Items.Tools
                 }
             }
             return true;
-            return player.itemAnimation < 45;
         }
         public float GetPushForce(Player player)
         {
@@ -58,7 +57,7 @@ namespace Aequus.Items.Tools
             {
                 force *= 0.33f;
             }
-            force /= Math.Max(player.velocity.Length().UnNaN() / 8f, 1f);
+            force /= Math.Max(player.velocity.Length().UnNaN() / 4f, 1f);
             return force;
         }
 

@@ -221,7 +221,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
                     {
-                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.03f);
+                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.01f);
                     }
                 }
                 else
