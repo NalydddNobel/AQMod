@@ -498,7 +498,7 @@ namespace Aequus.Tiles
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(Main.hardMode ? 5000 : 1600))
                     {
                         TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
                     }

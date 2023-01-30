@@ -7,6 +7,7 @@ using Aequus.Items.Fish;
 using Aequus.Items.Fish.Legendary;
 using Aequus.Items.Fish.Quest;
 using Aequus.Items.Misc;
+using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.FishingRods;
 using Aequus.NPCs.Monsters;
 using Microsoft.Xna.Framework;
@@ -87,6 +88,10 @@ namespace Aequus.Common.ModPlayers
                     {
                         itemDrop = 0;
                         npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
+                    }
+                    else if (Main.rand.NextBool(7))
+                    {
+                        itemDrop = ModContent.ItemType<BreadRoachPainting>();
                     }
                     else if (Main.rand.NextBool())
                     {

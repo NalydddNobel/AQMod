@@ -77,7 +77,6 @@ namespace Aequus.Projectiles.Melee.Swords
                     }
                 }
             }
-
         }
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)

@@ -159,6 +159,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ExLydSpacePainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OmegaStaritePainting>());
             }
         }
 

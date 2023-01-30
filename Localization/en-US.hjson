@@ -372,6 +372,8 @@ Mods: {
 			ForceAntiGravityBlock: Anti-Gravity Block
 
 		# Paintings
+			OmegaStaritePainting: CREATION
+			BreadRoachPainting: Bread and Bugger
 			SkyrimRock3: Push
 			SkyrimRock2: Balance
 			SkyrimRock1: Force
@@ -1485,6 +1487,8 @@ Mods: {
 				Counts as a demon/crimson altar
 				'''
 
+			OmegaStaritePainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BreadRoachPainting: "{$Mods.Aequus.PaintingSignature.torra}"
 			OliverPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			GoreNestPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			ExLydSpacePainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
@@ -1548,11 +1552,6 @@ Mods: {
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
 			Cosmicanon: Prevents the Blood Moon from naturally spawning
-			OmegaStaritePainting:
-				'''
-				'You have no idea what's in store for you!'
-				{$Mods.Aequus.PaintingSignature.niker}
-				'''
 
 			LotusStaff:
 				'''
@@ -2173,9 +2172,10 @@ Mods: {
 
 		PaintingSignature: {
 			Water: "'W. Ter'"
-			ForHummer: "'For: Dr. Cool'"
-			NalydT: "'N.T.'"
-			niker: "'N.'"
+			ForHummer: "'By: Nal. T, For: Dr. Cool'"
+			NalydT: "'Nal. T.'"
+			niker: "'N. Ker'"
+			torra: "'Ter. A.'"
 		}
 
 		CrabSeason: Crab Season

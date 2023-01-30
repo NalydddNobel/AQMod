@@ -48,6 +48,23 @@ namespace Aequus.Projectiles.Melee.Swords
                 playedSound = true;
                 SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);
             }
+            if (AnimProgress > 0.3f && AnimProgress < 0.6f)
+            {
+                int amt = !Aequus.HQ ? 1 : Main.rand.Next(4) + 1;
+                for (int i = 0; i < amt; i++)
+                {
+                    var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Color.Orange.UseA(0));
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    d.scale *= Projectile.scale;
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                    if (Projectile.numUpdates == -1)
+                    {
+                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                    }
+                }
+            }
         }
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
