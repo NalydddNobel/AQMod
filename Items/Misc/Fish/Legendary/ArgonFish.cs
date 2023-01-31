@@ -1,11 +1,11 @@
-﻿using Aequus.Items.Tools.FishingRods;
+﻿using Aequus.Items.Accessories.Fishing;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Fish.Legendary
+namespace Aequus.Items.Misc.Fish.Legendary
 {
-    public class Blobfish : ModItem
+    public class ArgonFish : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,7 +16,8 @@ namespace Aequus.Items.Fish.Legendary
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)
-                .Add<Starcatcher>(chance: 1, stack: 1);
+                .Add<DevilsTongue>(chance: 1, stack: 1)
+                .Add(ItemID.ArgonMoss, chance: 1, stack: (10, 25));
         }
 
         public override void SetDefaults()

@@ -1,11 +1,10 @@
-﻿using Aequus.Items.Accessories.Fishing;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Fish.Legendary
+namespace Aequus.Items.Misc.Fish.Legendary
 {
-    public class KryptonFish : ModItem
+    public class GoreFish : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -16,8 +15,7 @@ namespace Aequus.Items.Fish.Legendary
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)
-                .Add<Ramishroom>(chance: 1, stack: 1)
-                .Add(ItemID.KryptonMoss, chance: 1, stack: (10, 25));
+                .Add(ItemID.LavaFishingHook, chance: 1, stack: 1);
         }
 
         public override void SetDefaults()

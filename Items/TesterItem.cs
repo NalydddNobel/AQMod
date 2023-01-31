@@ -5,6 +5,7 @@ using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
+using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
@@ -19,6 +20,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
+using Terraria.Utilities;
 
 namespace Aequus.Items
 {
@@ -50,11 +52,12 @@ namespace Aequus.Items
         {
             int x = AequusHelpers.tileX;
             int y = AequusHelpers.tileY;
-            AequusWorld.hardmodeChests = false;
-            if (Chest.FindChestByGuessing(x, y) != -1)
-            {
-                Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
-            }
+            //AequusWorld.hardmodeChests = false;
+            //if (Chest.FindChestByGuessing(x, y) != -1)
+            //{
+            //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
+            //}
+            Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
             return true;
         }
 
@@ -356,11 +359,62 @@ namespace Aequus.Items
                         TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * 2f * scale2) * scale2 * scale3, SpriteEffects.None, 0f);
                 }
             }
+            public void Draw4(Vector2 p, float t, float scale)
+            {
+                var icon = ModContent.Request<Texture2D>(t > 210f ? "Aequus/icon2" : "Aequus/icon_bw").Value;
+                Main.spriteBatch.Draw(icon, p, null, Color.White, 0f, icon.Size() / 2f, scale, SpriteEffects.None, 0f);
+                if (t < 210f)
+                {
+                    float r = t / 33f;
+                    float energyTime = Math.Min(t * 2f, 160f + AequusHelpers.Wave(t / 55f, -20f, 0f));
+                    DrawEnergy(ModContent.ItemType<OrganicEnergy>(), r, scale, energyTime, p);
+                    DrawEnergy(ModContent.ItemType<AquaticEnergy>(), r+MathHelper.TwoPi / 5f, scale, energyTime, p);
+                    DrawEnergy(ModContent.ItemType<CosmicEnergy>(), r + MathHelper.TwoPi / 5f * 2f, scale, energyTime, p);
+                    DrawEnergy(ModContent.ItemType<DemonicEnergy>(), r + MathHelper.TwoPi / 5f * 3f, scale, energyTime, p);
+                    DrawEnergy(ModContent.ItemType<AtmosphericEnergy>(), r + MathHelper.TwoPi / 5f * 4f, scale, energyTime, p);
+                }
+                if (t > 190f && t < 230f)
+                {
+                    var clr = (float)Math.Sin(MathHelper.Pi * (t - 190f) / 40f);
+                    AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(100f, 100f) * scale), Color.White * clr * 0.88f);
+                }
+                float dustStart = 160f;
+                float dustEnd = 240f;
+                if (t > dustStart && t < dustEnd + 290f)
+                {
+                    float progress = (t - dustStart) / (dustEnd - dustStart);
+                    var dust = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<MonoDust>()}");
+
+                    var rand = new FastRandom("SPLIT".GetHashCode());
+                    var origin = dust.Value.Frame(verticalFrames: 3).Size() / 2f;
+                    for (int i = 0; i < 1000; i++)
+                    {
+                        if (rand.Next(3) == 0)
+                        {
+                            continue;
+                        }
+                        float y = rand.Next(0, 120);
+                        float x = rand.Next(0, 100);
+                        x += AequusHelpers.Wave(rand.Next(-10, 10) + progress * MathHelper.Pi * (rand.Next(90, 166) / 100f), -10f, 10f);
+                        float prog = rand.Next(100, 250) / 100f; 
+                        if (rand.Next(33) == 0)
+                        {
+                            prog *= rand.Next(33, 60) / 100f;
+                        }
+                        float dustScale = rand.Next(22, 166) / 100f;
+                        var frame = dust.Value.Frame(verticalFrames: 3, frameY: (int)rand.Next(3));
+                        var color = new Color(rand.Next(200, 255), rand.Next(200, 255), rand.Next(200, 255)).HueAdd(rand.Next(700) / 100f);
+                        float rotation = rand.Next((int)(MathHelper.TwoPi * 100f)) / 100f;
+                        rotation += Main.GlobalTimeWrappedHourly * (rand.Next(33, 366) / 100f);
+                        Main.spriteBatch.Draw(dust.Value, p + new Vector2(x * scale - 50f * scale, (y * scale + 50f * scale) * (1f-progress * prog)), frame, color.UseA(rand.Next(100)), rotation, origin, dustScale*scale, SpriteEffects.None, 0f);
+                    }
+                }
+            }
             public void DrawEnergy(int item, float rotation, float scale, float t, Vector2 p)
             {
                 Main.instance.LoadItem(item);
                 var itemTexture = TextureAssets.Item[item].Value;
-                float outwards = (float)Math.Sin((t - 30f) * 0.01f + MathHelper.PiOver2) * 60f * scale;
+                float outwards = (float)Math.Sin((t - 30f) * 0.01f + MathHelper.PiOver2) * 80f * scale;
                 Main.spriteBatch.Draw(itemTexture, p + (rotation - MathHelper.PiOver2 + outwards * 0.4f / 60f / scale).ToRotationVector2() * outwards, null, Color.White, 0f, itemTexture.Size() / 2f, scale * 0.75f, SpriteEffects.None, 0f);
             }
 
@@ -371,7 +425,8 @@ namespace Aequus.Items
                 float scale = 2f;
                 AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
                 //Draw2(p, t, scale);
-                Draw3(p, t, scale);
+                //Draw3(p, t, scale);
+                Draw4(p, t, scale);
                 return false;
             }
 

@@ -8,7 +8,7 @@ using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Fish.Quest;
+using Aequus.Items.Misc.Fish.Quest;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;

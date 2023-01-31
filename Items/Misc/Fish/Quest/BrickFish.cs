@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Fish.Quest
+namespace Aequus.Items.Misc.Fish.Quest
 {
     public class BrickFish : ModItem
     {
