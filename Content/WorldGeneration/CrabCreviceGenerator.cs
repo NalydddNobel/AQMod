@@ -30,7 +30,7 @@ namespace Aequus.Content.WorldGeneration
         {
             nextChestLoot = 0;
             location = new Point();
-            size = Main.maxTilesX / 30;
+            size = Main.maxTilesX / 28;
             if (size > 200)
             {
                 size -= 200;
@@ -41,7 +41,7 @@ namespace Aequus.Content.WorldGeneration
 
         public bool ProperCrabCreviceAnchor(int x, int y)
         {
-            return !Main.tile[x, y].HasTile && Main.tile[x, y].LiquidAmount > 0 && Main.tile[x, y + 1].HasTile && Main.tileSand[Main.tile[x, y + 1].TileType];
+            return !Main.tile[x, y].HasTile && Main.tile[x, y].LiquidAmount > 0 && Main.tile[x, y + 1].HasTile && (Main.tileSand[Main.tile[x, y + 1].TileType] || Main.tile[x, y + 1].TileType == TileID.ShellPile);
         }
 
         private bool CanOverwriteTile(Tile tile)
@@ -70,13 +70,13 @@ namespace Aequus.Content.WorldGeneration
             List<Point> placeTiles = new List<Point>();
             for (int i = 0; i < size * 2; i++)
             {
-                for (int j = 0; j < size * 3; j++) // A bit overkill of an extra check, but whatever
+                for (int j = 0; j < size * 5; j++) // A bit overkill of an extra check, but whatever
                 {
                     int x2 = x + i - size;
                     int y2 = y + j - size;
                     int x3 = x2 - x;
                     int y3 = y2 - y;
-                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= size)
+                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.175f) <= size)
                     {
                         if (CanOverwriteTile(Main.tile[x2, y2]))
                         {
@@ -311,16 +311,16 @@ namespace Aequus.Content.WorldGeneration
             {
                 y = Main.maxTilesY - 10 - size;
             }
-            List<Point> placeTiles = new List<Point>();
+            var placeTiles = new List<Point>();
             for (int i = 0; i < size * 2; i++)
             {
-                for (int j = 0; j < size * 3; j++) // A bit overkill of an extra check, but whatever
+                for (int j = 0; j < size * 6; j++) // A bit overkill of an extra check, but whatever
                 {
                     int x2 = x + i - size;
                     int y2 = y + j - size;
                     int x3 = x2 - x;
                     int y3 = y2 - y;
-                    if (Math.Sqrt(x3 * x3 + y3 * y3 * 0.6f) <= size)
+                    if (Math.Sqrt(x3 * x3 * 0.8f + y3 * y3 * 0.125f) <= size)
                     {
                         if (CanOverwriteTile(Main.tile[x2, y2]))
                         {
@@ -394,7 +394,7 @@ namespace Aequus.Content.WorldGeneration
         public void PlaceChests(int leftX, int sizeX)
         {
             Reset();
-            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 64; i++)
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 128; i++)
             {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
@@ -642,7 +642,7 @@ namespace Aequus.Content.WorldGeneration
             int y = location.Y;
             location = new Point(x, y);
 
-            CreateSandAreaForCrevice(x, y + 40);
+            CreateSandAreaForCrevice(x + reccomendedDir * -20, y + 40);
 
             int finalCaveStart = -50;
             int finalCaveX;
@@ -724,14 +724,14 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
 
-            for (int k = 0; k < size * 100; k++)
+            for (int k = 0; k < size * 128; k++)
             {
                 int caveX = x + (int)WorldGen.genRand.NextFloat(-size * 1.33f, size * 1.33f);
-                int caveY = y + WorldGen.genRand.Next(-10, (int)(size * 1.5f));
+                int caveY = y + WorldGen.genRand.Next(-10, (int)(size * 3f));
                 int minScale = WorldGen.genRand.Next(4, 8);
                 if (WorldGen.InWorld(x, y, 30) && GenerateCreviceCave(caveX, caveY, minScale, minScale + WorldGen.genRand.Next(4, 18), WorldGen.genRand.Next(80, 250)))
                 {
-                    k += 500;
+                    k += 375;
                 }
             }
 

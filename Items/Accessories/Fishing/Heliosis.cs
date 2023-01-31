@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.Fishing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -7,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Consumables.Bait
+namespace Aequus.Items.Accessories.Fishing
 {
     public class Heliosis : ModItem
     {
@@ -23,9 +22,9 @@ namespace Aequus.Items.Consumables.Bait
         {
             Item.width = 20;
             Item.height = 20;
-            Item.bait = 25;
-            Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(gold: 2);
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Pink;
+            Item.value = Item.sellPrice(gold: 3);
             devilsTongue = true;
         }
 
@@ -36,14 +35,11 @@ namespace Aequus.Items.Consumables.Bait
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-        }
-
-        public override void UpdateInventory(Player player)
-        {
             var aequus = player.Aequus();
             aequus.accDevilsTongue = devilsTongue;
             aequus.accRamishroom = Item;
             aequus.accNeonFish = Item;
+            RegrowingBait.CheckRegrowingBait(player, Item);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

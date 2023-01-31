@@ -169,8 +169,6 @@ namespace Aequus
 
         public int leechHookNPC;
 
-        public int accArmFloaties;
-
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
@@ -710,7 +708,6 @@ namespace Aequus
             accPriceMonocle = false;
             accNeonFish = null;
             accPreciseCrits = 0f;
-            accArmFloaties = 0;
             accDavyJonesAnchor = null;
             accWarHorn = 0;
             accLittleInferno = 0;
@@ -2295,7 +2292,6 @@ namespace Aequus
         {
             SoulGem.TryFillSoulGems(Player, this, npc);
             AmmoBackpack.Proc(Player, this, npc);
-            ArmFloaties.Proc(Player, this, npc);
         }
 
         public bool PreCreatureSpawns()

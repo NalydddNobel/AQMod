@@ -406,8 +406,29 @@ namespace Aequus.Content.WorldGeneration
                 {
                     int x = WorldGen.genRand.Next(100, Main.maxTilesX);
                     int y = WorldGen.genRand.Next((int)Main.rockLayer, Main.UnderworldLayer - 50);
-                    if (!Main.tile[x, y].NoDungeonOrTempleWall() && WorldGen.AddBuriedChest(new Point(x, y), notNearOtherChests: true))
+                    if (!Main.wallHouse[Main.tile[x, y].WallType] && !Main.tile[x, y].NoDungeonOrTempleWall() && Main.tile[x, y].WallType != WallID.HiveUnsafe)
                     {
+                        var r = new Rectangle(x - 5, y - 5, 10, 10);
+                        int style = -1;
+                        int chestType = TileID.Containers;
+                        if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MushroomGrass))
+                        {
+                            style = ChestType.Mushroom;
+                        }
+                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.JungleGrass || Main.tile[i, j].TileType == TileID.LihzahrdBrick || Main.tile[i, j].TileType == TileID.Hive)))
+                        {
+                            style = ChestType.Ivy;
+                        }
+                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.GraniteUnsafe))
+                        {
+                            style = ChestType.Granite;
+                        }
+                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.MarbleUnsafe))
+                        {
+                            style = ChestType.Marble;
+                        }
+                        if (!WorldGen.AddBuriedChest(new Point(x, y), notNearOtherChests: true, Style: style))
+                            continue;
                         for (int l = y - 8; l < Main.maxTilesY - 10; l++)
                         {
                             int guess = Chest.FindChestByGuessing(x, l);
@@ -415,7 +436,23 @@ namespace Aequus.Content.WorldGeneration
                                 guess = Chest.FindChestByGuessing(x - 1, l);
                             if (guess != -1)
                             {
-                                k += 100;
+                                k += 80;
+                                if (style != -1 && Main.tile[Main.chest[guess].x, Main.chest[guess].y].TileType == chestType)
+                                {
+                                    var chestStyle = ChestType.GetStyle(Main.chest[guess]);
+                                    if (chestStyle != style)
+                                    {
+                                        for (int i = 0; i < 2; i++)
+                                        {
+                                            for (int j = 0; j < 2; j++)
+                                            {
+                                                var tile = Main.tile[Main.chest[guess].x + i, Main.chest[guess].y + j];
+                                                tile.TileFrameX = (short)(tile.TileFrameX % 36 + style * 36);
+                                                tile.TileFrameY = (short)(tile.TileFrameY % 36 + style * 36);
+                                            }
+                                        }
+                                    }
+                                }
                                 ChestOpenedTracker.UnopenedChests.Add(new Point(Main.chest[guess].x, Main.chest[guess].y));
                                 break;
                             }

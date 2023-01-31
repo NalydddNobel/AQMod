@@ -279,6 +279,7 @@ Mods: {
 		# Baits
 			Heliosis: Heliosis
 			CrateBait: Crate Bait
+			XenonBait: Xenon Bait
 			RegrowingBait: Regenerative Bait
 			LegendberryBait: Legend Berry
 			Omnibait: Omni Bait
@@ -663,7 +664,7 @@ Mods: {
 				'''
 			NeonGenesis: Allows your fishing bobber to fire lasers at enemies
 			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
-			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
+			ArmFloaties: Recieve 10 seconds of gills while outside of water
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
 				'''
@@ -1257,11 +1258,10 @@ Mods: {
 			Heliosis: {
 				$parentVal: 
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
-					Placeable in your ammo slot
 					{DevilsTongueTooltip}
 					<right> to toggle transforming catches into trash
 					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.RegrowingBait}
 					{$Mods.Aequus.ItemTooltip.NeonGenesis}
 					'''
 				DevilsTongueEnabled: Non-rare catches turn into trash is enabled
@@ -1273,7 +1273,7 @@ Mods: {
 				Converts low-tiered crates into biome crates
 				Instantly consumed when catching a biome crate
 				'''
-			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
+			RegrowingBait: Generates bait in your inventory when you run out
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
 			CursedPopper: Increases bait power by 30% when in the corruption

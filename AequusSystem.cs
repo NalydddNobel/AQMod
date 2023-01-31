@@ -97,7 +97,6 @@ namespace Aequus
         {
             AequusTile.UpdateIndestructibles();
             CelesteTorus.RenderPoints?.Clear();
-            ArmFloaties.EquippedCache?.Clear();
             ResetCaches();
             AequusItem.CheckItemGravity();
             AequusItem.CheckItemAbsorber();

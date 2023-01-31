@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Boss.Summons;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -18,6 +19,7 @@ namespace Aequus.Tiles.CrabCrevice
             Main.tileOreFinderPriority[Type] = 110;
             Main.tileSpelunker[Type] = true;
             Main.tileNoFail[Type] = true;
+            Main.tileLighted[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
 
@@ -73,6 +75,22 @@ namespace Aequus.Tiles.CrabCrevice
                     return false;
             }
             return true;
+        }
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 0.12f;
+            g = 0.12f;
+            b = 0.12f;
+            if (Main.tile[i, j].TileFrameX >= 18 * 3)
+            {
+                g += (float)Math.Sin(Main.GameUpdateCount / 30f) * 0.33f;
+                b += (float)Math.Sin(Main.GameUpdateCount / 30f + MathHelper.Pi) * 0.33f;
+                if (g < 0.3f)
+                    g = 0.3f;
+                if (b < 0.3f)
+                    b = 0.3f;
+            }
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)

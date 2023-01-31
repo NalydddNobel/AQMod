@@ -365,17 +365,6 @@ namespace Aequus.Tiles
         }
         public static void GrowPearl(int i, int j)
         {
-            for (int k = -7; k <= 7; k++)
-            {
-                for (int l = -10; l <= 10; l++)
-                {
-                    if (WorldGen.InWorld(i + k, j + l) && (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>()))
-                    {
-                        return;
-                    }
-                }
-            }
-
             var p = new List<Point>();
             if (!Main.tile[i + 1, j].HasTile && WorldGen.genRand.NextBool(4))
             {
@@ -396,6 +385,16 @@ namespace Aequus.Tiles
 
             if (p.Count > 0)
             {
+                for (int k = -17; k <= 17; k++)
+                {
+                    for (int l = -20; l <= 20; l++)
+                    {
+                        if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>())
+                        {
+                            return;
+                        }
+                    }
+                }
                 var chosen = WorldGen.genRand.Next(p);
                 if (ModContent.GetInstance<PearlsTile>().CanPlace(chosen.X, chosen.Y))
                 {
@@ -411,7 +410,7 @@ namespace Aequus.Tiles
                         {
                             frame = 2;
                         }
-                        else if (WorldGen.genRand.NextBool(12))
+                        else if (WorldGen.genRand.NextBool(6))
                         {
                             frame = 3;
                         }
@@ -529,7 +528,7 @@ namespace Aequus.Tiles
                     TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
                         ModContent.TileType<MorayTile>());
                 }
-                if (WorldGen.genRand.NextBool(2500))
+                if (WorldGen.genRand.NextBool(2200))
                 {
                     GrowPearl(i, j);
                 }
@@ -559,32 +558,6 @@ namespace Aequus.Tiles
             if (!fail)
             {
                 Main.tile[i, j].Get<AequusTileData>().OnKillTile();
-                if (ArmFloaties.EquippedCache.Count > 0)
-                {
-                    int closestPlayer = -1;
-                    float distance = 240f;
-                    foreach (var p in ArmFloaties.EquippedCache)
-                    {
-                        if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].ghost
-                            && Main.player[p].breath < Main.player[p].breathMax && Main.player[p].Aequus().accArmFloaties > 0)
-                        {
-                            float d = Main.player[p].Distance(new Vector2(i * 16f + 8f, j * 16f + 8f));
-                            if (d < distance)
-                            {
-                                closestPlayer = p;
-                                distance = d;
-                            }
-                        }
-                    }
-                    if (closestPlayer != -1)
-                    {
-                        Main.player[closestPlayer].breath += Main.player[closestPlayer].breathMax / 15 * Main.player[closestPlayer].Aequus().accArmFloaties;
-                        if (Main.player[closestPlayer].breath > Main.player[closestPlayer].breathMax - 1)
-                        {
-                            Main.player[closestPlayer].breath = Main.player[closestPlayer].breathMax - 1;
-                        }
-                    }
-                }
             }
         }
 
