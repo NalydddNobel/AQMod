@@ -372,6 +372,8 @@ Mods: {
 			ForceAntiGravityBlock: 反重力块
 
 		# Paintings
+			OmegaStaritePainting: 创世
+			BreadRoachPainting: 面包和虫子
 			SkyrimRock3: 推力
 			SkyrimRock2: 平衡
 			SkyrimRock1: 力量
@@ -1485,6 +1487,8 @@ Mods: {
 				视作恶魔/猩红祭坛
 				'''
 
+			OmegaStaritePainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BreadRoachPainting: "{$Mods.Aequus.PaintingSignature.torra}"
 			OliverPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			GoreNestPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			ExLydSpacePainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
@@ -1548,11 +1552,6 @@ Mods: {
 			Transistor: 阻止柔光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
 			Cosmicanon: 阻止血月的自然生成
-			OmegaStaritePainting:
-				'''
-				'你不知道你会得到什么!'
-				{$Mods.Aequus.PaintingSignature.niker}
-				'''
 
 			LotusStaff:
 				'''
@@ -2172,10 +2171,11 @@ Mods: {
 		}
 
 		PaintingSignature: {
-			Water: "'W.特尔'"
-			ForHummer: "'致: Dr.酷'"
-			NalydT: "'N.T.'"
-			niker: "'N.'"
+			Water: "'W. Ter'"
+			ForHummer: "'By: Nal. T, For: Dr. Cool'"
+			NalydT: "'Nal. T.'"
+			niker: "'N. Ker'"
+			torra: "'Ter. A.'"
 		}
 
 		CrabSeason: 蟹季
