@@ -279,6 +279,7 @@ Mods: {
 		# Baits
 			Heliosis: 日射饵
 			CrateBait: 板条箱鱼饵
+			XenonBait: 氙鱼饵
 			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果
 			Omnibait: 全能鱼饵
@@ -663,7 +664,7 @@ Mods: {
 				'''
 			NeonGenesis: 允许你的钓鱼浮标向敌人发射激光
 			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
-			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
+			ArmFloaties: 当未处于水中时使你获得10秒的水下呼吸
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
 				'''
@@ -1257,11 +1258,10 @@ Mods: {
 				Heliosis: {
 				$parentVal: 
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
-					可放置在你的弹药栏中
 					{DevilsTongueTooltip}
 					<右键>可将鱼获转化为垃圾
 					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.RegrowingBait}
 					{$Mods.Aequus.ItemTooltip.NeonGenesis}
 					'''
 				DevilsTongueEnabled: 非罕见捕鱼获转化为垃圾已启用
