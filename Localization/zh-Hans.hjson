@@ -1273,7 +1273,7 @@ Mods: {
 				将低级板条箱转化为生物群落板条箱
 				捕捞到生物群落板条箱时会立即消耗
 				'''
-			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
+			RegrowingBait: 当消耗完后会在你的背包中生成鱼饵
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
 			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
