@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.Buffs.Buildings;
 using Aequus.Common.ModPlayers;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
@@ -23,6 +22,29 @@ namespace Aequus.NPCs.GlobalNPCs
 {
     public class SpawnsManager : GlobalNPC
     {
+        /// <summary>
+        /// Parameters for whether or not certain locations are valid spots for regular entities to spawn.
+        /// </summary>
+        public struct ValidSpawnParameters
+        {
+            /// <summary>
+            /// Set to true to allow spawning during the Pillar event. (<see cref="Player.ZoneTowerSolar"/> / <see cref="Player.ZoneTowerVortex"/> / <see cref="Player.ZoneTowerNebula"/> / <see cref="Player.ZoneTowerStardust"/>)
+            /// </summary>
+            public bool Pillars;
+            /// <summary>
+            /// Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="Main.eclipse"/> / <see cref="Main.pumpkinMoon"/> / <see cref="Main.snowMoon"/>)
+            /// </summary>
+            public bool SunMoonEvents;
+            /// <summary>
+            /// Set to true to allow spawning during invasions (<see cref="Main.invasionType"/> / <see cref="NPCSpawnInfo.Invasion"/>)
+            /// </summary>
+            public bool Invasion;
+            /// <summary>
+            /// Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="Player.ZoneDungeon"/> / <see cref="Player.ZoneLihzhardTemple"/>)
+            /// </summary>
+            public bool DungeonTemple;
+        }
+
         public static bool CanSpawnGlimmerEnemies(Player player)
         {
             return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 100;
@@ -253,24 +275,21 @@ namespace Aequus.NPCs.GlobalNPCs
             return player.isNearNPC(ModContent.NPCType<T>(), 2000f);
         }
 
-        public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
+        public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, ValidSpawnParameters valid = default(ValidSpawnParameters))
         {
-            if (checkPillars && (spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex))
-            {
-                return true;
-            }
             if (spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneSkyHeight)
             {
-                if (checkMoonSunEvents && (Main.eclipse || Main.pumpkinMoon || Main.snowMoon))
+                if (!valid.SunMoonEvents && (Main.eclipse || Main.pumpkinMoon || Main.snowMoon))
                 {
                     return true;
                 }
-                if (checkInvasion && spawnInfo.Invasion)
+                if (!valid.Invasion && spawnInfo.Invasion)
                 {
                     return true;
                 }
             }
-            return false;
+            return (!valid.Pillars && (spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex)) 
+                || (!valid.DungeonTemple && (spawnInfo.Player.ZoneDungeon || spawnInfo.Player.ZoneLihzhardTemple));
         }
 
         public static void ForceZen(Vector2 mySpot, float zenningDistance)

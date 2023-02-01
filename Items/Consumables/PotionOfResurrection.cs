@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Misc.Materials;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -65,6 +66,15 @@ namespace Aequus.Items.Consumables
         public override bool? UseItem(Player player)
         {
             return player.lastDeathPostion != new Vector2(0f, 0f);
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater)
+                .AddIngredient<BloodyTearFragment>()
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }
