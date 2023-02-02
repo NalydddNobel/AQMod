@@ -1,4 +1,5 @@
-﻿using Aequus.Items.GlobalItems;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;

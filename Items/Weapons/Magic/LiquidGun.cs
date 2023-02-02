@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Graphics;
 using Aequus.Projectiles.Magic;
 using Aequus.UI;
 using Microsoft.Xna.Framework;

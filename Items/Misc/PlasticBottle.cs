@@ -18,7 +18,7 @@ namespace Aequus.Items.Misc
                 new RecyclingTable.Info(ItemID.ClayPot, 1, 3),
             });
 
-            PlayerFishing.TrashItemIDs.Add(Type);
+            AequusPlayer.TrashItemIDs.Add(Type);
 
             SacrificeTotal = 1;
         }

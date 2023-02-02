@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;

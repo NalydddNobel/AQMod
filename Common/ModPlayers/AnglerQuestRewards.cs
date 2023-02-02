@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.ModPlayers
 {
-    public class AnglerQuestRewards : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
         {

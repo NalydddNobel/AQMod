@@ -2,11 +2,11 @@
 
 namespace Aequus.Common.ModPlayers
 {
-    public class ZenPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public bool forceZen;
 
-        public override void ResetEffects()
+        public void ResetEffects_Zen()
         {
             forceZen = false;
         }

@@ -2,9 +2,9 @@
 
 namespace Aequus.Common.ModPlayers
 {
-    public class AccessoryStacksPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
-        public override void PostUpdateEquips()
+        public void PostUpdateEquips_AccessoryStackInteractions()
         {
             if (Player.boneGloveItem != null && Player.boneGloveTimer > 1)
             {

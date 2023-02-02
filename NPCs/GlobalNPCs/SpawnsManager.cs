@@ -58,9 +58,9 @@ namespace Aequus.NPCs.GlobalNPCs
                 maxSpawns = Math.Max(maxSpawns, 7);
                 return;
             }
-            if (player.Zen())
+            if (player.Aequus().forceZen)
             {
-                player.Zen(active: false);
+                player.Aequus().forceZen = false;
                 spawnRate *= 10000;
                 maxSpawns = 0;
                 return;
@@ -298,7 +298,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 if (Main.player[i].active && Vector2.Distance(mySpot, Main.player[i].Center) < 2000f)
                 {
-                    Main.player[i].GetModPlayer<ZenPlayer>().forceZen = true;
+                    Main.player[i].GetModPlayer<AequusPlayer>().forceZen = true;
                 }
             }
         }

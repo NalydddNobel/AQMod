@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Misc.Pets
                     int checkTileX = tileCoords.X + i;
                     int checkTileY = tileCoords.Y + j;
                     if (WorldGen.InWorld(checkTileX, checkTileY, 50) && Main.tile[checkTileX, checkTileY].IsFullySolid()
-                        && Main.tileSpelunker[Main.tile[checkTileX, checkTileY].TileType] && MiningPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, checkTileX, checkTileY)
+                        && Main.tileSpelunker[Main.tile[checkTileX, checkTileY].TileType] && AequusPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, checkTileX, checkTileY)
                         && WorldGen.CanKillTile(checkTileX, checkTileY))
                     {
                         var worldCoords = new Vector2(checkTileX * 16f, checkTileY * 16f);
@@ -139,7 +139,7 @@ namespace Aequus.Projectiles.Misc.Pets
                         {
                             Main.player[Projectile.owner].PickTile(tileX, tileY, pick.pick);
                         }
-                        if (!Main.tile[tileX, tileY].IsFullySolid() || !MiningPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, tileX, tileY))
+                        if (!Main.tile[tileX, tileY].IsFullySolid() || !AequusPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, tileX, tileY))
                         {
                             tileX = 0;
                             tileY = 0;

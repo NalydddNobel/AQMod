@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;

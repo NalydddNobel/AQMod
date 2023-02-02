@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes.Glimmer;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.ModPlayers;
 using Aequus.Projectiles.Summon.Misc;
 using Terraria;
 using Terraria.Audio;

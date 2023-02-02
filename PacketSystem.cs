@@ -34,6 +34,7 @@ using Aequus.Items.Misc.Carpentry;
 using Aequus.Projectiles.Magic;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Debuff;
+using Aequus.Common.ModPlayers;
 
 namespace Aequus
 {

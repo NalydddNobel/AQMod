@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Melee;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

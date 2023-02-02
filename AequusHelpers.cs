@@ -761,7 +761,7 @@ namespace Aequus
         }
         public static bool Zen(this Player player, bool? active = null)
         {
-            var zen = player.GetModPlayer<ZenPlayer>();
+            var zen = player.GetModPlayer<AequusPlayer>();
             if (active.HasValue)
                 zen.forceZen = active.Value;
             return zen.forceZen;

@@ -4,8 +4,6 @@ using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
-using Aequus.Common;
-using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
@@ -51,9 +49,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus
+namespace Aequus.Common.ModPlayers
 {
-    public class AequusPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
@@ -209,7 +207,7 @@ namespace Aequus
 
         /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
+        /// <para>Used by <see cref="NoonBuff"/> and set to 1</para>
         /// </summary>
         public byte forceDayState;
 
@@ -416,6 +414,8 @@ namespace Aequus
         public override void Load()
         {
             LoadHooks();
+            Load_MiningEffects();
+            Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
@@ -459,7 +459,7 @@ namespace Aequus
                 (aequus.itemCombo - itemCombo).Abs() > 20,
                 aequus.instaShieldTime != instaShieldTime,
                 !BoundedPotionIDs.IsTheSameAs(aequus.BoundedPotionIDs),
-                boundBowAmmo != aequus.boundBowAmmo || (aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0));
+                boundBowAmmo != aequus.boundBowAmmo || aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0);
 
             var bb2 = new BitsByte(
                 (aequus.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
@@ -627,6 +627,7 @@ namespace Aequus
 
         public override void Initialize()
         {
+            Initialize_Vampire();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             BoundedPotionIDs = new List<int>();
@@ -656,6 +657,7 @@ namespace Aequus
 
         public override void UpdateDead()
         {
+            UpdateDead_Vampire();
             if (accHyperJet > 0)
             {
                 HyperJet.RespawnTime(Player, this);
@@ -933,6 +935,9 @@ namespace Aequus
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_MiningEffects();
+                ResetEffects_Vampire();
+                ResetEffects_Zen();
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
@@ -994,6 +999,7 @@ namespace Aequus
         public override void PreUpdateBuffs()
         {
             timeSinceLastHit++;
+            PreUpdateBuffs_Vampire();
         }
 
         public override void PostUpdateBuffs()
@@ -1013,8 +1019,16 @@ namespace Aequus
             }
         }
 
+        public override void UpdateEquips()
+        {
+            UpdateEquips_Vampire();
+        }
+
         public override void PostUpdateEquips()
         {
+            PostUpdateEquips_AccessoryStackInteractions();
+            PostUpdateEquips_Vampire();
+
             if (Player.HasBuff<TonicSpawnratesDebuff>())
             {
                 Player.ClearBuff(ModContent.BuffType<TonicSpawnratesBuff>());
@@ -1071,108 +1085,7 @@ namespace Aequus
                 HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
             }
 
-            if (accDustDevilExpert != null)
-            {
-                bool onCooldown = Player.HasBuff<StormcloakCooldown>();
-                var l = Stormcloak.GetBlowableProjectiles(Player, accDustDevilExpert, onlyMine: onCooldown);
-                Vector2 widthMethod(float p) => new Vector2(7f) * (float)Math.Sin(p * MathHelper.Pi);
-                Color colorMethod(float p) => Color.White.UseA(150) * 0.45f * (float)Math.Sin(p * MathHelper.Pi);
-                for (int i = 0; i < l.Count + (onCooldown ? 0 : 1); i++)
-                {
-                    var v = Main.rand.NextVector2Unit();
-                    var d = Dust.NewDustPerfect(Player.Center + v * Main.rand.NextFloat(30f, 100f), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
-                    d.noLight = true;
-                    if (Main.rand.NextBool(3))
-                    {
-                        var prim = new TrailRenderer(TextureCache.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        float rotation = Player.direction * 0.45f;
-                        var particle = new StormcloakTrailParticle(prim, Player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * 10f,
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                        particle.StretchTrail(v.RotatedBy(MathHelper.PiOver2 * -Player.direction) * 2f);
-                        particle.rotationValue = rotation / 4f;
-                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                        particle.prim.GetColor = (p) => colorMethod(p) * particle.Rotation * Math.Min(particle.Scale, 1.5f);
-                        particle.dontEmitLight = true;
-                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
-                    }
-                }
-
-                if (l.Count > 0)
-                {
-                    if (accDustDevilExpertThrowTimer == 1)
-                    {
-                        SoundEngine.PlaySound(SoundID.DD2_BetsySummon.WithPitchOffset(-0.44f).WithVolumeScale(2f), Player.Center);
-                    }
-                    if (!onCooldown)
-                        accDustDevilExpertThrowTimer++;
-                    foreach (var proj in l)
-                    {
-                        proj.position += Player.velocity * 0.95f;
-                        var v = proj.DirectionTo(Player.Center);
-                        float size = Math.Max(proj.Size.Length(), Player.Size.Length()) + proj.velocity.Length();
-                        if (proj.Distance(Player.Center) < size)
-                        {
-                            proj.Center = Player.Center - v * size;
-                        }
-                        int i = proj.FindTargetWithLineOfSight();
-                        float tornadoValue = 0.8f;
-                        if (onCooldown && i != -1)
-                        {
-                            var toEnemy = proj.DirectionTo(Main.npc[i].Center);
-                            proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, toEnemy, 0.8f)) * proj.velocity.Length();
-                            if ((proj.velocity - toEnemy * proj.velocity.Length()).Length() < 16f)
-                            {
-                                tornadoValue = 0.2f;
-                            }
-                        }
-                        proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, v.RotatedBy((MathHelper.PiOver2 - 0.1f) * -Player.direction) + v,
-                            Math.Clamp(1f - proj.Distance(Player.Center) / 500f, 0f, tornadoValue))) * Math.Clamp(proj.velocity.Length() + 0.07f, 0.5f, 32f);
-                        proj.extraUpdates = 0;
-                        proj.Aequus().enemyRebound = (byte)(ExpertBoost ? 2 : 1);
-                        proj.Aequus().sourceItemUsed = accDustDevilExpert.type;
-                        proj.ArmorPenetration = 10;
-                        proj.timeLeft = Math.Max(proj.timeLeft, 180);
-                        proj.friendly = true;
-                        proj.penetrate = 1;
-                        proj.owner = Player.whoAmI;
-                        proj.netUpdate = true;
-                        proj.hostile = false;
-                        if (onCooldown)
-                        {
-                            var d = Dust.NewDustDirect(proj.position - new Vector2(32f, 32f), proj.width + 64, proj.height + 64, ModContent.DustType<MonoDust>(), newColor: new Color(128, 128, 128, 0));
-                            d.velocity += v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f);
-                        }
-                    }
-                    if (accDustDevilExpertThrowTimer > 120)
-                    {
-                        for (int k = 0; k < l.Count; k++)
-                        {
-                            int i = l[k].FindTargetWithLineOfSight();
-                            if (i != -1)
-                            {
-                                l[k].originalDamage = l[k].damage = Player.GetWeaponDamage(accDustDevilExpert);
-                                l.RemoveAt(k);
-                                k--;
-                            }
-                        }
-                        SoundEngine.PlaySound(SoundID.DD2_BetsysWrathShot.WithPitchOffset(-0.2f).WithVolumeScale(2f), Player.Center);
-                        accDustDevilExpertThrowTimer = 0;
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
-                    }
-                }
-                else
-                {
-                    if (accDustDevilExpertThrowTimer > 0)
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
-                    accDustDevilExpertThrowTimer = 0;
-                }
-            }
-            else
-            {
-                if (accDustDevilExpertThrowTimer > 0)
-                    Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
-                accDustDevilExpertThrowTimer = 0;
-            }
+            Stormcloak.UpdateAccessory(accDustDevilExpert, Player, this);
 
             debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
             if (debuffLifeSteal > 0)
@@ -1640,6 +1553,7 @@ namespace Aequus
                 Player.AddLifeRegen(-16);
             if (Player.HasBuff<CorruptionHellfire>())
                 Player.AddLifeRegen(-16);
+            UpdateBadLifeRegen_Vampire();
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
@@ -1989,11 +1903,16 @@ namespace Aequus
             HitEffects(target, damage, 1f, crit);
         }
 
+        public override void OnHitAnything(float x, float y, Entity victim)
+        {
+            OnHitAnything_Vampire(x, y, victim);
+        }
+
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Ranged))
             {
-                velocity *= (1f + Math.Max(statRangedVelocityMultiplier, 0.5f));
+                velocity *= 1f + Math.Max(statRangedVelocityMultiplier, 0.5f);
             }
         }
 
@@ -2022,11 +1941,13 @@ namespace Aequus
         public override void SaveData(TagCompound tag)
         {
             SaveDataAttribute.SaveData(tag, this);
+            SaveData_Vampire(tag);
         }
 
         public override void LoadData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
+            LoadData_Vampire(tag);
         }
 
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
@@ -2082,6 +2003,7 @@ namespace Aequus
                 drawInfo.itemColor *= val;
                 drawInfo.legsGlowColor *= val;
             }
+            ModifyDrawInfo_Vampire(ref drawInfo);
         }
 
         public override void HideDrawLayers(PlayerDrawSet drawInfo)
@@ -2498,9 +2420,9 @@ namespace Aequus
 
         private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
         {
-            if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetX)
-                || !((player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX) || !(player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY)
-                || !((player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY)
+            if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX)
+                || !((player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX) || !(player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY)
+                || !((player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY)
                 || Main.tile[Player.tileTargetX, Player.tileTargetY].TileColor > 0 || !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
             {
                 orig(player);

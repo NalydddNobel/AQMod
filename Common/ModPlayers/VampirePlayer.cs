@@ -10,7 +10,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.ModPlayers
 {
-    public class PlayerVampirism : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public ushort vampirism;
 
@@ -20,7 +20,7 @@ namespace Aequus.Common.ModPlayers
         public bool daylightBurning;
         private bool nightEffects;
 
-        public override void ResetEffects()
+        public void ResetEffects_Vampire()
         {
             nightEffects = !Main.dayTime;
             daylightBurning = false;
@@ -49,22 +49,22 @@ namespace Aequus.Common.ModPlayers
             vampirism = (ushort)time;
         }
 
-        public override void Initialize()
+        public void Initialize_Vampire()
         {
             vampirism = 0;
         }
 
-        public override void SaveData(TagCompound tag)
+        public void SaveData_Vampire(TagCompound tag)
         {
             tag["Vampirism"] = (int)vampirism;
         }
 
-        public override void LoadData(TagCompound tag)
+        public void LoadData_Vampire(TagCompound tag)
         {
             vampirism = (ushort)tag.GetInt("Vampirism");
         }
 
-        public override void PreUpdateBuffs()
+        public void PreUpdateBuffs_Vampire()
         {
             if (!IsVampire)
             {
@@ -115,13 +115,13 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        public override void UpdateDead()
+        public void UpdateDead_Vampire()
         {
             if (!IsVampire)
                 vampirism = 0;
         }
 
-        public override void UpdateEquips()
+        public void UpdateEquips_Vampire()
         {
             if (!IsVampire)
             {
@@ -136,7 +136,7 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        public override void PostUpdateEquips()
+        public void PostUpdateEquips_Vampire()
         {
             if (!IsVampire)
             {
@@ -166,7 +166,7 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        public override void UpdateBadLifeRegen()
+        public void UpdateBadLifeRegen_Vampire()
         {
             if (!IsVampire)
             {
@@ -186,7 +186,7 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        public override void OnHitAnything(float x, float y, Entity victim)
+        public void OnHitAnything_Vampire(float x, float y, Entity victim)
         {
             if (!IsVampire || daylightBurning)
             {
@@ -203,7 +203,7 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
+        public void ModifyDrawInfo_Vampire(ref PlayerDrawSet drawInfo)
         {
             if (!IsVampire)
             {

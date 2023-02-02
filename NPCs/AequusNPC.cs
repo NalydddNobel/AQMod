@@ -712,7 +712,7 @@ namespace Aequus.NPCs
                             }
                             Main.npcChatCornerItem = 0;
                             Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFishReward");
-                            Main.LocalPlayer.GetModPlayer<AnglerQuestRewards>().LegendaryFishRewards(npc, inv[i], i);
+                            Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;
                             if (inv[i].stack <= 0)
                             {

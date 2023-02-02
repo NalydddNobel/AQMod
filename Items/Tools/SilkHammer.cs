@@ -29,7 +29,7 @@ namespace Aequus.Items.Tools
 
         public override void HoldItem(Player player)
         {
-            player.GetModPlayer<MiningPlayer>().silkHammer = Item;
+            player.GetModPlayer<AequusPlayer>().silkHammer = Item;
         }
     }
 }

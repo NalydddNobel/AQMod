@@ -20,7 +20,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.ModPlayers
 {
-    public class PlayerFishing : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public Item baitUsed;
 
@@ -33,7 +33,7 @@ namespace Aequus.Common.ModPlayers
         public static List<int> TrashItemIDs { get; private set; }
         public static object Hook_PlayerLoader_CatchFish { get; private set; }
 
-        public override void Load()
+        public void Load_FishingEffects()
         {
             On.Terraria.Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
 
@@ -45,7 +45,7 @@ namespace Aequus.Common.ModPlayers
             };
 
             Aequus.Hook(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
-                typeof(PlayerFishing).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
+                typeof(AequusPlayer).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
         #region Hooks
@@ -155,7 +155,7 @@ namespace Aequus.Common.ModPlayers
 
             if (!Main.anglerQuestFinished && Main.rand.NextBool(10))
             {
-                if (QuestFish(ModContent.ItemType<BrickFish>()) && BrickFish.CheckVillagerBuildings(attempt, Player))
+                if (CanCatchQuestFish(ModContent.ItemType<BrickFish>(), attempt) && BrickFish.CheckVillagerBuildings(attempt, Player))
                 {
                     itemDrop = ModContent.ItemType<BrickFish>();
                 }
@@ -227,7 +227,7 @@ namespace Aequus.Common.ModPlayers
             }
             else if (Main.bloodMoon)
             {
-                if ((attempt.uncommon || (attempt.common && Player.GetModPlayer<PlayerVampirism>().IsVampire)) && Main.rand.NextBool())
+                if ((attempt.uncommon || (attempt.common && Player.GetModPlayer<AequusPlayer>().IsVampire)) && Main.rand.NextBool())
                 {
                     itemDrop = ModContent.ItemType<PalePufferfish>();
                 }
@@ -272,9 +272,9 @@ namespace Aequus.Common.ModPlayers
             }
         }
 
-        private bool QuestFish(int questFish)
+        private bool CanCatchQuestFish(int questFish, FishingAttempt attempt)
         {
-            return Aequus.IsAnglerQuest(questFish) && !Player.HasItem(questFish);
+            return attempt.questFish == questFish && !Player.HasItem(questFish);
         }
 
         public static bool IsBasicFish(int itemDrop)
