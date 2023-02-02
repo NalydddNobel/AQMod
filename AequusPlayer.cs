@@ -1080,7 +1080,8 @@ namespace Aequus
                 for (int i = 0; i < l.Count + (onCooldown ? 0 : 1); i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    Dust.NewDustPerfect(Player.Center + v * Main.rand.NextFloat(30f, 100f), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
+                    var d = Dust.NewDustPerfect(Player.Center + v * Main.rand.NextFloat(30f, 100f), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
+                    d.noLight = true;
                     if (Main.rand.NextBool(3))
                     {
                         var prim = new TrailRenderer(TextureCache.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
@@ -1091,6 +1092,7 @@ namespace Aequus
                         particle.rotationValue = rotation / 4f;
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => colorMethod(p) * particle.Rotation * Math.Min(particle.Scale, 1.5f);
+                        particle.dontEmitLight = true;
                         EffectsSystem.ParticlesAbovePlayers.Add(particle);
                     }
                 }

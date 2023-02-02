@@ -456,7 +456,7 @@ namespace Aequus.Tiles
             switch (type)
             {
                 case TileID.Grass:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(50))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(30))
                     {
                         if (!Main.tile[i, j + 1].HasTile)
                         {

@@ -19,6 +19,8 @@ namespace Aequus.Particles
         public Rectangle frame;
         public Vector2 origin;
 
+        public bool dontEmitLight;
+
         public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
         {
             return Color;
@@ -54,7 +56,8 @@ namespace Aequus.Particles
                 ShouldBeRemovedFromRenderer = true;
                 return;
             }
-            Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
+            if (!dontEmitLight)
+                Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
             Position += Velocity;
         }
 

@@ -964,6 +964,31 @@
             </summary>
             <param name="reader"></param>
         </member>
+        <member name="T:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters">
+            <summary>
+            Parameters for whether or not certain locations are valid spots for regular entities to spawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters.Pillars">
+            <summary>
+            Set to true to allow spawning during the Pillar event. (<see cref="P:Terraria.Player.ZoneTowerSolar"/> / <see cref="P:Terraria.Player.ZoneTowerVortex"/> / <see cref="P:Terraria.Player.ZoneTowerNebula"/> / <see cref="P:Terraria.Player.ZoneTowerStardust"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters.SunMoonEvents">
+            <summary>
+            Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="F:Terraria.Main.eclipse"/> / <see cref="F:Terraria.Main.pumpkinMoon"/> / <see cref="F:Terraria.Main.snowMoon"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters.Invasion">
+            <summary>
+            Set to true to allow spawning during invasions (<see cref="F:Terraria.Main.invasionType"/> / <see cref="F:Terraria.ModLoader.NPCSpawnInfo.Invasion"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters.DungeonTemple">
+            <summary>
+            Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
+            </summary>
+        </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>
             The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)

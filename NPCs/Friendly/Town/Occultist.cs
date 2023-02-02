@@ -397,7 +397,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (state == STATE_Sleeping)
             {
-                if (!Main.dayTime && Main.rand.NextBool(4000))
+                if ((!Main.dayTime && Main.rand.NextBool(400)) || NPC.life < NPC.lifeMax)
                 {
                     NPC.ClearAI(localAI: false);
                     NPC.position.Y += 16f;
@@ -450,7 +450,12 @@ namespace Aequus.NPCs.Friendly.Town
                     d.velocity.X *= 0.5f;
                     d.noGravity = true;
                 }
+                return;
             }
+
+            if (NPC.life < NPC.lifeMax)
+                return;
+
             if (AequusHelpers.FindFirstPlayerWithin(NPC) == -1)
             {
                 if (AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000))

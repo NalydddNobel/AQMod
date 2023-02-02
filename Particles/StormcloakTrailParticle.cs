@@ -24,7 +24,8 @@ namespace Aequus.Particles
                 ShouldBeRemovedFromRenderer = true;
                 return;
             }
-            Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
+            if (!dontEmitLight)
+                Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
             Position += Velocity;
             oldPos[0] = Position;
             AequusHelpers.UpdateCacheList(oldPos);
