@@ -11,6 +11,7 @@ using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
@@ -28,9 +29,11 @@ namespace Aequus.Content.WorldGeneration
         public static GoreNestGenerator GenGoreNest { get; private set; }
         public static RockmanChestGenerator RockmanGenerator { get; private set; }
         public static RadonCaveGenerator RadonCaves { get; private set; }
+        public static CaveVarietyGenerator CaveVariety { get; private set; }
 
         public override void Load()
         {
+            CaveVariety = new CaveVarietyGenerator();
             RadonCaves = new RadonCaveGenerator();
             RockmanGenerator = new RockmanChestGenerator();
             GenCrabCrevice = new CrabCreviceGenerator();
@@ -39,6 +42,8 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Unload()
         {
+            CaveVariety = null;
+            RadonCaves = null;
             RockmanGenerator = null;
             GenCrabCrevice = null;
             GenGoreNest = null;
@@ -47,10 +52,11 @@ namespace Aequus.Content.WorldGeneration
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
-            AddPass("Shinies", "Caves Test", (progress, configuration) =>
+            AddPass("Wavy Caves", "Cave Variety", (progress, configuration) =>
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirderCaves");
-                RadonCaves.GenerateWorld();
+                CaveVariety.TallCaves();
+                CaveVariety.WeirdCaves();
             }, tasks);
             AddPass("Shinies", "Radon Biome", (progress, configuration) =>
             {

@@ -11,12 +11,12 @@
         </member>
         <member name="P:Aequus.Aequus.HQ">
             <summary>
-            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.HighQuality">HighQuality</see>.
+            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.HighQuality">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.LogMore">
             <summary>
-            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.InfoDebugLogs">HighQuality</see>.
+            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.HardmodeTier">

@@ -97,7 +97,7 @@ namespace Aequus
 
         public static LocalizedText GetText(string key)
         {
-            return Language.GetText("Mods.Aequus" + key);
+            return Language.GetText("Mods.Aequus." + key);
         }
 
         public static string GetTextValue(string key)
