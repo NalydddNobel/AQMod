@@ -7,7 +7,7 @@ using Terraria.Graphics.Renderers;
 
 namespace Aequus.Particles
 {
-    public abstract class BaseParticle : IParticle
+    public abstract class BaseParticle : IPooledParticle
     {
         public Vector2 Position;
         public Vector2 Velocity;
@@ -27,6 +27,8 @@ namespace Aequus.Particles
         }
 
         public bool ShouldBeRemovedFromRenderer { get; protected set; }
+
+        public bool IsRestingInPool => ShouldBeRemovedFromRenderer;
 
         public BaseParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
         {
@@ -55,7 +57,7 @@ namespace Aequus.Particles
             Scale -= 0.05f - velo / 1000f;
             if (Scale <= 0.1f || float.IsNaN(Scale))
             {
-                ShouldBeRemovedFromRenderer = true;
+                RestInPool();
                 return;
             }
             if (!dontEmitLight)
@@ -66,6 +68,16 @@ namespace Aequus.Particles
         public virtual void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture, Position - Main.screenPosition, frame, GetParticleColor(ref settings), Rotation, origin, Scale, SpriteEffects.None, 0f);
+        }
+
+        public virtual void RestInPool()
+        {
+            ShouldBeRemovedFromRenderer = true;
+        }
+
+        public virtual void FetchFromPool()
+        {
+            ShouldBeRemovedFromRenderer = false;
         }
     }
 }

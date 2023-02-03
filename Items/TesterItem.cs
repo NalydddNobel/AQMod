@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.Necromancy;
+using Aequus.Content.WorldGeneration;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
@@ -26,7 +27,7 @@ namespace Aequus.Items
 {
     internal class TesterItem : ModItem
     {
-        public const bool LoadMe = false;
+        public const bool LoadMe = true;
 
         public override string Texture => AequusHelpers.GetPath<Gamestar>();
 
@@ -57,7 +58,12 @@ namespace Aequus.Items
             //{
             //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
             //}
-            Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
+            //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
+            if (AequusWorldGenerator.RadonCaves.ValidSpotForCave(x, y))
+            {
+                AequusWorldGenerator.RadonCaves.CreateCave(x, y);
+                //AequusWorldGenerator.RadonCaves.GrowStalactite(x, y, AequusWorldGenerator.RadonCaves.MaxWidth, AequusWorldGenerator.RadonCaves.MaxHeight);
+            }
             return true;
         }
 

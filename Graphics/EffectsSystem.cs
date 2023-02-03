@@ -5,6 +5,7 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss.DustDevil;
+using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -77,6 +78,8 @@ namespace Aequus.Graphics
         public static ParticleRenderer ParticlesAbovePlayers { get; private set; }
         public static ParticleRenderer ParticlesAboveDust { get; private set; }
         public static ParticleRenderer ParticlesAboveLiquids { get; private set; }
+        public static ParticlePool<BloomParticle> BloomPool { get; private set; }
+        public static ParticlePool<FogParticle> FogPool { get; private set; }
 
         public static LegacyDrawList ProjsBehindProjs { get; private set; }
         public static LegacyDrawList ProjsBehindTiles { get; private set; }
@@ -107,6 +110,8 @@ namespace Aequus.Graphics
             ParticlesAbovePlayers = new ParticleRenderer();
             ParticlesAboveDust = new ParticleRenderer();
             ParticlesAboveLiquids = new ParticleRenderer();
+            BloomPool = new ParticlePool<BloomParticle>(30, () => new BloomParticle());
+            FogPool = new ParticlePool<FogParticle>(1, () => new FogParticle());
             if (Renderers == null)
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
@@ -143,15 +148,21 @@ namespace Aequus.Graphics
             {
                 return;
             }
+            InitWorldData();
         }
 
         public void InitWorldData()
         {
+            Shake.Intensity = 0f;
+            ProjsBehindProjs.Clear();
+            ProjsBehindTiles.Clear();
             NPCsBehindAllNPCs.Clear();
-            ParticlesBehindAllNPCs = new ParticleRenderer();
-            ParticlesBehindProjs = new ParticleRenderer();
-            ParticlesBehindPlayers = new ParticleRenderer();
-            ParticlesAbovePlayers = new ParticleRenderer();
+            ParticlesBehindAllNPCs.Particles.Clear();
+            ParticlesBehindProjs.Particles.Clear();
+            ParticlesBehindPlayers.Particles.Clear();
+            ParticlesAbovePlayers.Particles.Clear();
+            ParticlesAboveDust.Particles.Clear();
+            ParticlesAboveLiquids.Particles.Clear();
         }
 
         public override void PreUpdatePlayers()

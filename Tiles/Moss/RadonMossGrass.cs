@@ -10,7 +10,6 @@ namespace Aequus.Tiles.Moss
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
-            Main.tileLighted[Type] = true;
             Main.tileObsidianKill[Type] = true;
             Main.tileNoFail[Type] = true;
             Main.tileCut[Type] = true;
@@ -48,13 +47,6 @@ namespace Aequus.Tiles.Moss
                 return true;
             }
             return false;
-        }
-
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
-            r = 0.1f;
-            g = 0.1f;
-            b = 0.2f;
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)

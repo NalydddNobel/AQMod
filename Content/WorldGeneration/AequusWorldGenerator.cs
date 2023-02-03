@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
@@ -26,9 +27,11 @@ namespace Aequus.Content.WorldGeneration
         public static CrabCreviceGenerator GenCrabCrevice { get; private set; }
         public static GoreNestGenerator GenGoreNest { get; private set; }
         public static RockmanChestGenerator RockmanGenerator { get; private set; }
+        public static RadonCaveGenerator RadonCaves { get; private set; }
 
         public override void Load()
         {
+            RadonCaves = new RadonCaveGenerator();
             RockmanGenerator = new RockmanChestGenerator();
             GenCrabCrevice = new CrabCreviceGenerator();
             GenGoreNest = new GoreNestGenerator();
@@ -44,6 +47,11 @@ namespace Aequus.Content.WorldGeneration
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
+            AddPass("Shinies", "Radon Biome", (progress, configuration) =>
+            {
+                progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
+                RadonCaves.GenerateWorld();
+            }, tasks);
             AddPass("Statues", "Rockman Biome", (progress, configuration) =>
             {
                 RockmanGenerator.GenerateRandomLocation();
@@ -259,6 +267,24 @@ namespace Aequus.Content.WorldGeneration
                 case 3:
                     return ModContent.ItemType<PandorasBox>();
             }
+        }
+        
+        public static bool CanPlaceStructure(int middleX, int middleY, int width, int height, int padding = 0)
+        {
+            return CanPlaceStructure(new Rectangle(middleX - width / 2, middleY - height / 2, width, height), padding);
+        }
+        public static bool CanPlaceStructure(Rectangle rect, int padding = 0)
+        {
+            return WorldGen.structures?.CanPlace(rect) != false;
+        }
+
+        public static bool CanPlaceStructure(int middleX, int middleY, int width, int height, bool[] invalidTiles, int padding = 0)
+        {
+            return CanPlaceStructure(new Rectangle(middleX - width / 2, middleY - height / 2, width, height), padding);
+        }
+        public static bool CanPlaceStructure(Rectangle rect, bool[] invalidTiles, int padding = 0)
+        {
+            return WorldGen.structures?.CanPlace(rect, invalidTiles, padding) != false;
         }
     }
 }

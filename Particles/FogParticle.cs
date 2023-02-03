@@ -20,15 +20,6 @@ namespace Aequus.Particles
         {
         }
 
-        public FogParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f) : base(position, velocity, color, scale, rotation)
-        {
-            dontEmitLight = true;
-            Light = 0.05f;
-            calculatingLight = 0.05f;
-            lightUpdate = 0;
-            SetTexture(fogTexture, 8);
-        }
-
         public void UpdateLighting()
         {
             int size = Math.Max((int)(Scale * 7), 1);
@@ -61,8 +52,31 @@ namespace Aequus.Particles
             lightUpdate++;
             calculatingLight = Math.Max((lighting.R + lighting.G + lighting.B) / 765f, calculatingLight);
         }
+        public void UpdatePosition()
+        {
+            var screenPosition = Position - Main.screenPosition;
+            float padding = 200f;
+            float padding2 = padding - 10f;
+            if (screenPosition.X < -padding)
+            {
+                Position.X += Main.screenWidth + padding2 * 2;
+            }
+            else if (screenPosition.X > Main.screenWidth + padding)
+            {
+                Position.X -= Main.screenWidth + padding2 * 2;
+            }
+            if (screenPosition.Y < -padding)
+            {
+                Position.Y += Main.screenHeight + padding2 * 2;
+            }
+            else if (screenPosition.Y > Main.screenHeight + padding)
+            {
+                Position.Y -= Main.screenHeight + padding2 * 2;
+            }
+        }
         public override void Update(ref ParticleRendererSettings settings)
         {
+            UpdatePosition();
             UpdateLighting();
             Velocity = Velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
             if (Velocity == Vector2.Zero)
@@ -83,7 +97,7 @@ namespace Aequus.Particles
             }
             if (Scale <= 0.001f || float.IsNaN(Scale))
             {
-                ShouldBeRemovedFromRenderer = true;
+                RestInPool();
                 return;
             }
             Position += Velocity;
@@ -105,6 +119,27 @@ namespace Aequus.Particles
         public void Unload()
         {
             fogTexture = null;
+        }
+
+        public void Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        {
+            Position = position;
+            Velocity = velocity;
+            Color = color;
+            Scale = scale;
+            Rotation = rotation;
+            dontEmitLight = true;
+            Light = 0.05f;
+            calculatingLight = 0.05f;
+            lightUpdate = 0;
+            SetTexture(fogTexture, 8);
+        }
+
+        public static FogParticle New(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        {
+            var fog = EffectsSystem.FogPool.RequestParticle();
+            fog.Setup(position, velocity, color, scale, rotation);
+            return fog;
         }
     }
 }

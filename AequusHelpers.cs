@@ -86,6 +86,11 @@ namespace Aequus
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static int QualityFromFPS(int highQ, int lowQ)
+        {
+            return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));
+        }
+
         public static int FindBestFloor(int x, int y)
         {
             if (WorldGen.InWorld(x, y) && Main.tile[x, y].IsFullySolid())
@@ -621,6 +626,26 @@ namespace Aequus
             }
             return false;
         }
+        public static bool CheckForSolidGroundOrLiquidBelow(Point p, int limit, out Point solidGround)
+        {
+            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
+            solidGround = p;
+            for (int j = p.Y; j < endY; j++)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+                else if (Main.tile[p.X, j].LiquidAmount > 0)
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool CheckForSolidGroundBelow(Point p, int limit, out Point solidGround)
         {
             int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
