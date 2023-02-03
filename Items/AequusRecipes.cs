@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Common.Preferences;
+using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable.Moss;
 using Terraria;
@@ -46,7 +47,7 @@ namespace Aequus.Items
 
         private static RecipeGroup NewGroup(string name, params int[] items)
         {
-            var group = new RecipeGroup(() => AequusText.GetText("RecipeGroup." + name), items);
+            var group = new RecipeGroup(() => TextHelper.GetTextValue("RecipeGroup." + name), items);
             RecipeGroup.RegisterGroup("Aequus:" + name, group);
             return group;
         }

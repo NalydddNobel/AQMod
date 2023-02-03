@@ -55,7 +55,7 @@ namespace Aequus.Common.ItemDrops
         public string GetConditionDescription()
         {
             string conditionDesc = Condition?.GetConditionDescription();
-            return conditionDesc != null ? AequusText.GetText("DropCondition.OtherwiseChance", conditionDesc) : null;
+            return conditionDesc != null ? TextHelper.GetTextValue("DropCondition.OtherwiseChance", conditionDesc) : null;
         }
     }
 }

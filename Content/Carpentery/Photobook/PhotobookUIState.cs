@@ -110,9 +110,11 @@ namespace Aequus.Content.Carpentery.Photobook
             {
                 return;
             }
-            var uiImage = new UIImage(image);
-            uiImage.HAlign = 0.5f;
-            uiImage.VAlign = 0.5f;
+            var uiImage = new UIImage(image)
+            {
+                HAlign = 0.5f,
+                VAlign = 0.5f
+            };
             uiImage.Width.Set(image.Value.Width, 0f);
             uiImage.Height.Set(image.Value.Height, 0f);
             element.Append(uiImage);

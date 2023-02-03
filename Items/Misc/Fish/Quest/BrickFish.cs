@@ -31,8 +31,8 @@ namespace Aequus.Items.Misc.Fish.Quest
 
         public override void AnglerQuestChat(ref string description, ref string catchLocation)
         {
-            description = AequusText.GetText("AnglerQuest.BrickFish.Description");
-            catchLocation = AequusText.GetText("AnglerQuest.BrickFish.CatchLocation");
+            description = TextHelper.GetTextValue("AnglerQuest.BrickFish.Description");
+            catchLocation = TextHelper.GetTextValue("AnglerQuest.BrickFish.CatchLocation");
         }
 
         public static bool CheckVillagerBuildings(FishingAttempt attempt, Player player)
@@ -42,7 +42,7 @@ namespace Aequus.Items.Misc.Fish.Quest
             {
                 if (Main.npc[i].friendly && Main.npc[i].townNPC && !Main.npc[i].homeless)
                 {
-                    if (Vector2.Distance(Main.npc[i].Home().ToWorldCoordinates(), comparePoint)< 1000f)
+                    if (Vector2.Distance(Main.npc[i].Home().ToWorldCoordinates(), comparePoint) < 1000f)
                     {
                         return true;
                     }

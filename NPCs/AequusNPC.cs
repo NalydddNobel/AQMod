@@ -2,7 +2,7 @@
 using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -17,7 +17,6 @@ using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
-using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -707,11 +706,11 @@ namespace Aequus.NPCs
                             if (Main.npcChatCornerItem != inv[i].type)
                             {
                                 Main.npcChatCornerItem = inv[i].type;
-                                Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFish");
+                                Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFish");
                                 return false;
                             }
                             Main.npcChatCornerItem = 0;
-                            Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFishReward");
+                            Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFishReward");
                             Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;
                             if (inv[i].stack <= 0)

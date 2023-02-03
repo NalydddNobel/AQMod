@@ -388,7 +388,7 @@ namespace Aequus.Projectiles
                     projectile.alpha = 255;
                 }
             }
-            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>() 
+            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>()
                 && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
             {
                 ScreenCulling.SetPadding(109);
@@ -452,7 +452,7 @@ namespace Aequus.Projectiles
                     if (target != -1)
                     {
                         Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
-                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(), 
+                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(),
                             (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.Aequus().accStacks), 12f, projectile.owner);
                     }
                 }
@@ -605,7 +605,7 @@ namespace Aequus.Projectiles
                 {
                     swishOpacity *= 1f - (swishTimeMax - swishTime) / 8f;
                 }
-                Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, drawCoords, null, color, 0f, TextureCache.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(Textures.Bloom[0].Value, drawCoords, null, color, 0f, Textures.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
                 for (int i = -1; i <= 1; i += 2)
                 {
                     Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - frenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);

@@ -1,7 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Graphics;
-using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Healing;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
@@ -905,20 +903,20 @@ namespace Aequus.NPCs.Boss.Crabson
                     if (WorldGen.InWorld(tileCoords.X + i, tileCoords.Y + j, 25) && Main.tile[tileCoords.X + i, tileCoords.Y + j].IsFullySolid())
                     {
                         var coords = new Vector2((tileCoords.X + i) * 16f, (tileCoords.Y + j) * 16f + 16f) - Main.screenPosition;
-                        var frame = new Rectangle(TextureCache.Bloom[0].Value.Width / 2, 0, 1, TextureCache.Bloom[0].Value.Height / 2);
+                        var frame = new Rectangle(Textures.Bloom[0].Value.Width / 2, 0, 1, Textures.Bloom[0].Value.Height / 2);
                         var origin = new Vector2(0f, frame.Height);
-                        Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords,
+                        Main.spriteBatch.Draw(Textures.Bloom[0].Value, coords,
                             frame, Color.Blue.UseA(0) * 0.6f * opacity, 0f,
                             origin, new Vector2(16f, 1f), SpriteEffects.None, 0f);
                         if (i == min)
                         {
-                            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords,
+                            Main.spriteBatch.Draw(Textures.Bloom[0].Value, coords,
                                 frame, Color.DeepSkyBlue.UseA(0) * 0.6f * opacity, 0f,
                                 origin, new Vector2(2f, 2f), SpriteEffects.None, 0f);
                         }
                         if (i == max)
                         {
-                            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, coords + new Vector2(14f, 0f),
+                            Main.spriteBatch.Draw(Textures.Bloom[0].Value, coords + new Vector2(14f, 0f),
                                 frame, Color.DeepSkyBlue.UseA(0) * 0.6f * opacity, 0f,
                                 origin, new Vector2(2f, 2f), SpriteEffects.None, 0f);
                         }

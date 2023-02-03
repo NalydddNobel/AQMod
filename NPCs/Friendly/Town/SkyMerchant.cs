@@ -119,7 +119,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = AequusText.GetText("Chat.SkyMerchant.RenameChatButton");
+            button2 = TextHelper.GetTextValue("Chat.SkyMerchant.RenameChatButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)

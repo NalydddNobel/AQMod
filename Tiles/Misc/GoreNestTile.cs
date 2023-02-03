@@ -1,9 +1,7 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
-using Aequus.Items.Boss.Summons;
 using Aequus.Items.Placeable.Furniture;
-using Aequus.NPCs.Friendly;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

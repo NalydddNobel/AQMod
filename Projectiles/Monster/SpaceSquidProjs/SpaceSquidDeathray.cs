@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Preferences;
+using Aequus.Graphics.Primitives;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -112,11 +113,11 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
                     drawPos + new Vector2(Main.screenWidth * 2f * Projectile.direction, 0f), };
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p * p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height * (1f - p * p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (smokePrim == null)
             {
-                smokePrim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+                smokePrim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.height), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
@@ -142,7 +143,7 @@ namespace Aequus.Projectiles.Monster.SpaceSquidProjs
             prim.Draw(arr);
             smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
 
-            var spotlight = TextureCache.Bloom[2].Value;
+            var spotlight = Textures.Bloom[2].Value;
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
             return false;

@@ -18,9 +18,9 @@ namespace Aequus.Items.Weapons.Melee
         {
             if (!HasModdedMusicSource)
             {
-                return AequusText.GetText("Terraria");
+                return TextHelper.GetTextValue("Terraria");
             }
-            if (AequusText.TryGetText($"ModName.{musicSource}", out string name))
+            if (TextHelper.TryGetText($"ModName.{musicSource}", out string name))
             {
                 return name;
             }

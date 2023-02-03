@@ -16,7 +16,7 @@ namespace Aequus.Content.WorldGeneration
         public int MaxWidth => (int)(Main.maxTilesX * sizeX);
         public int MaxHeight => (int)(Main.maxTilesY * sizeY);
 
-        private UnifiedRandom rand => WorldGen.genRand;
+        private UnifiedRandom Rand => WorldGen.genRand;
 
         public RadonCaveGenerator()
         {
@@ -31,7 +31,7 @@ namespace Aequus.Content.WorldGeneration
             for (int k = 0; k < 100000 && spawnedCount < amt; k++)
             {
                 int x = WorldGen.genRand.Next(MaxWidth, Main.maxTilesX - MaxWidth);
-                int y = WorldGen.genRand.Next((int)Main.rockLayer - 50, (int)Main.UnderworldLayer);
+                int y = WorldGen.genRand.Next((int)Main.rockLayer - 50, Main.UnderworldLayer);
                 if (ValidSpotForCave(x, y) && CreateCave(x, y))
                 {
                     spawnedCount++;
@@ -61,7 +61,7 @@ namespace Aequus.Content.WorldGeneration
             }
             for (int i = 0; i < w * 100; i++)
             {
-                if (GrowStalactite(rand.Next(x - w, x + w), rand.Next(y - h, y + h), w, h))
+                if (GrowStalactite(Rand.Next(x - w, x + w), Rand.Next(y - h, y + h), w, h))
                 {
                     i += 500;
                 }
@@ -92,7 +92,7 @@ namespace Aequus.Content.WorldGeneration
                     int l = y - j;
                     if (Main.tile[i, j].HasTile)
                     {
-                        if (Math.Sqrt(k * k * xAspect + l * l * yAspect) + rand.Next(10) < distance)
+                        if (Math.Sqrt(k * k * xAspect + l * l * yAspect) + Rand.Next(10) < distance)
                         {
                             if (Main.tile[i, j].TileType == TileID.Dirt)
                             {
@@ -131,14 +131,14 @@ namespace Aequus.Content.WorldGeneration
                 if (Main.tile[x, j].HasTile && Main.tile[x, j].TileType == radon && !Main.tile[x, j + 1].IsFullySolid())
                 {
                     y = j;
-                    return GrowStalactite_ActuallyGenerate(x, y, h);
+                    return GrowStalactite_ActuallyGenerate(x, y);
                 }
             }
             return false;
         }
-        private bool GrowStalactite_ActuallyGenerate(int x, int y, int h)
+        private bool GrowStalactite_ActuallyGenerate(int x, int y)
         {
-            int width = rand.Next(2, 5);
+            int width = Rand.Next(2, 5);
             int height = width * 6;
             if (AequusHelpers.CheckForSolidGroundOrLiquidBelow(new Point(x, y + 1), height, out var solidGround))
             {

@@ -1,5 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
 using Aequus.NPCs.Boss.OmegaStarite;

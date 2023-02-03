@@ -24,8 +24,8 @@ namespace Aequus.Particles
         {
             BloomScale = bloomScale;
             SetTexture(ParticleTextures.monoParticle);
-            bloomTexture = TextureCache.Bloom[0].Value;
-            bloomOrigin = TextureCache.Bloom[0].Size() / 2f;
+            bloomTexture = Textures.Bloom[0].Value;
+            bloomOrigin = Textures.Bloom[0].Size() / 2f;
         }
 
         [Obsolete("Use BloomParticle.New(...) instead")]
@@ -51,8 +51,8 @@ namespace Aequus.Particles
             BloomScale = bloomScale;
             dontEmitLight = false;
             SetTexture(ParticleTextures.monoParticle);
-            bloomTexture = TextureCache.Bloom[0].Value;
-            bloomOrigin = TextureCache.Bloom[0].Size() / 2f;
+            bloomTexture = Textures.Bloom[0].Value;
+            bloomOrigin = Textures.Bloom[0].Size() / 2f;
         }
 
         public static BloomParticle New(Vector2 position, Vector2 velocity, Color color = default(Color), Color bloomColor = default(Color), float scale = 1f, float bloomScale = 1f, float rotation = 0f)

@@ -212,7 +212,7 @@ namespace Aequus.NPCs.Friendly.Drones
                             {
                                 var spawnPosition = NPC.Center - new Vector2(0f, 20f);
                                 var n = Vector2.Normalize(p.ToWorldCoordinates() - spawnPosition).RotatedBy(NPC.localAI[2] / 30f * NPC.direction);
-                                int proj =Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition + n * -90f,
+                                int proj = Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition + n * -90f,
                                      n * 10f, solution, 0, 0, Main.myPlayer);
                             }
                         }

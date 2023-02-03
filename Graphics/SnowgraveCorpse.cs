@@ -203,7 +203,7 @@ namespace Aequus.Graphics
                         spritebatch.Draw(iceTexture, drawCoordinates + v * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.25f, 2f, 8f), null, iceColor * 0.125f, 0f, _iceOrigin, _scale, SpriteEffects.None, 0f);
                     }
 
-                    var bloom = TextureCache.Bloom[0].Value;
+                    var bloom = Textures.Bloom[0].Value;
                     if (_bloomOrigin == Vector2.Zero)
                     {
                         _bloomOrigin = bloom.Size() / 2f;

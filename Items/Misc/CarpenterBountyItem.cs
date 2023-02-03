@@ -33,8 +33,9 @@ namespace Aequus.Items.Misc
         public virtual string BountyName => Language.GetTextValue($"Mods.{bountyMod}.CarpenterBounty.{bountyName}");
         public string BountyFancyName => "~ " + BountyName + " ~";
         public virtual string BountyDescription => Language.GetTextValue($"Mods.{bountyMod}.CarpenterBounty.{bountyName}.Description");
-        public virtual string BountyRequirements { 
-            get 
+        public virtual string BountyRequirements
+        {
+            get
             {
                 if (CarpenterSystem.TryGetBounty(bountyMod, bountyName, out var bounty))
                 {
@@ -66,7 +67,7 @@ namespace Aequus.Items.Misc
                 {
                     if (requirementText != "")
                         requirementText += "\n";
-                    requirementText += AequusText.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f)) + " " + split[i];
+                    requirementText += TextHelper.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f)) + " " + split[i];
                 }
                 return requirementText;
             }
@@ -100,7 +101,7 @@ namespace Aequus.Items.Misc
 
             string requirementText = BountyRequirements;
             var split = requirementText.Split('\n');
-            string arrow = AequusText.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f));
+            string arrow = TextHelper.ColorCommand(">", Color.Lerp(Color.Yellow, Color.White, 0.4f));
             for (int i = 0; i < split.Length; i++)
             {
                 tooltips.Insert(index + 2 + i, new TooltipLine(Mod, "BountyRequirements" + i, $"{arrow} {split[i]}"));
@@ -111,7 +112,7 @@ namespace Aequus.Items.Misc
 
             var ttLine = Item.AequusTooltips().GetPriceTooltipLine(Main.LocalPlayer, Item);
 
-            ttLine.Text = AequusText.GetTextWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = AequusText.ColorCommand(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
+            ttLine.Text = TextHelper.GetTextValueWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = TextHelper.ColorCommand(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
             ttLine.OverrideColor = null;
             tooltips.Insert(tooltips.GetIndex("Price"), ttLine);
         }

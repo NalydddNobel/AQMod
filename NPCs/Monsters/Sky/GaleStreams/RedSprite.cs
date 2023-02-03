@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Biomes;
+using Aequus.Common.Preferences;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
@@ -1202,12 +1203,12 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         {
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                prim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                bloomPrim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }
@@ -1233,9 +1234,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 spriteBatch.End();
                 if (bestiary)
                 {
-                    RasterizerState rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
+                    RasterizerState rasterizer = new RasterizerState
+                    {
+                        CullMode = CullMode.None,
+                        ScissorTestEnable = true
+                    };
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
                 }
                 else

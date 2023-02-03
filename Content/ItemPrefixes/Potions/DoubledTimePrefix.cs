@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Content.ItemPrefixes;
 using Aequus.Items.GlobalItems;
 using System.Collections.Generic;
 using Terraria;

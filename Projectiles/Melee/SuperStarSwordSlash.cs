@@ -134,14 +134,14 @@ namespace Aequus.Projectiles.Melee
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
 
             for (int i = 0; i < trailLength; i++)
             {
                 float progress = AequusHelpers.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(8, 50, 128, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], origin, Projectile.scale * (0.5f + progress * 0.5f) * 0.9f, SpriteEffects.FlipHorizontally, 0);
             }
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(8, 50, 128, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(8, 50, 128, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.FlipHorizontally, 0);
             return false;
         }

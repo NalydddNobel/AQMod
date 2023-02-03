@@ -1,10 +1,8 @@
-﻿using Aequus.Common;
-using System;
-using Terraria.ID;
+﻿using System;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace Aequus
+namespace Aequus.Common.Preferences
 {
     [BackgroundColor(10, 10, 40, 220)]
     public abstract class ConfigurationBase : ModConfig, IPostSetupContent
@@ -38,15 +36,15 @@ namespace Aequus
         }
         protected void Text(string key)
         {
-            AequusText.AutoAddItemCommands($"Configuration.{ConfigKey}.{key}", "Label");
+            TextHelper.AutoAddItemCommands($"Configuration.{ConfigKey}.{key}", "Label");
         }
         protected void Text(string key, object obj)
         {
-            AequusText.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", obj);
+            TextHelper.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", obj);
         }
         protected void Text(string key, Func<string> adjust)
         {
-            AequusText.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", adjust);
+            TextHelper.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", adjust);
         }
 
         public void PostSetupContent(Aequus aequus)

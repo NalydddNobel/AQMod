@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ModPlayers;
-using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -83,7 +82,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 for (int i = 0; i < 5; i++)
                 {
                     var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, 
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity,
                         newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
                     d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     d.scale *= Projectile.scale * 0.6f;
@@ -293,7 +292,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
             var circular = AequusHelpers.CircularVector(8, Projectile.rotation);
             Projectile.GetDrawInfo(out var texture, out var _, out var _, out var origin, out int _);

@@ -126,7 +126,7 @@ namespace Aequus.Projectiles.Misc
                 if (Main.rand.NextBool(2))
                 {
                     var normal = Main.rand.NextVector2Unit();
-                    var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(progress * 4f), ModContent.DustType<MonoSparkleDust>(), 
+                    var d = Dust.NewDustPerfect(Projectile.Center + normal * Main.rand.NextFloat(progress * 4f), ModContent.DustType<MonoSparkleDust>(),
                         normal * Main.rand.NextFloat(progress * 1f), newColor: color.UseA(Main.rand.Next(200)), Scale: Main.rand.NextFloat(0.5f, 1f));
                     d.fadeIn = d.scale + 0.4f;
                 }
@@ -175,7 +175,7 @@ namespace Aequus.Projectiles.Misc
             if (Main.GameUpdateCount % 7 == 0 || Main.rand.NextBool(12))
             {
                 var color = PotionColorsDatabase.GetColorFromItemID(ItemType);
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, newColor: color.UseA(0)*Main.rand.NextFloat(0.66f, 1f), Scale: Main.rand.NextFloat(0.8f, 1.5f));
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoSparkleDust>(), Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, newColor: color.UseA(0) * Main.rand.NextFloat(0.66f, 1f), Scale: Main.rand.NextFloat(0.8f, 1.5f));
                 d.velocity *= 0.1f;
                 d.velocity += Projectile.velocity * 0.1f;
                 d.fadeIn = d.scale + 0.4f;

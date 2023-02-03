@@ -141,7 +141,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            if (Projectile.frame == 0 && Projectile.frameCounter ==0 && Main.netMode != NetmodeID.Server)
+            if (Projectile.frame == 0 && Projectile.frameCounter == 0 && Main.netMode != NetmodeID.Server)
             {
                 Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.1f), Projectile.Center);

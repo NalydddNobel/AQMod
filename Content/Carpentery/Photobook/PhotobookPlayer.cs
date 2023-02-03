@@ -11,8 +11,8 @@ namespace Aequus.Content.Carpentery.Photobook
         public bool hasPhotobook;
         public int maxPhotos;
         public PhotoData[] photos;
-        public PhotoData[] Photos 
-        { 
+        public PhotoData[] Photos
+        {
             get
             {
                 if (photos.Length < maxPhotos)
@@ -21,10 +21,10 @@ namespace Aequus.Content.Carpentery.Photobook
                 }
                 return photos;
             }
-            private set 
+            private set
             {
                 photos = value;
-            } 
+            }
         }
 
         public static int MyMaxPhotos => Main.LocalPlayer.GetModPlayer<PhotobookPlayer>().maxPhotos;
@@ -58,7 +58,7 @@ namespace Aequus.Content.Carpentery.Photobook
             {
                 if (this.photos[i].HasData)
                 {
-                    photos.Add(this.photos[i].SerializeData()); 
+                    photos.Add(this.photos[i].SerializeData());
                 }
             }
             if (photos.Count < 0)

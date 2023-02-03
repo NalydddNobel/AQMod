@@ -14,7 +14,7 @@ namespace Aequus.Content.Carpentery.Photobook
         public PhotobookUIState parent;
         public PhotobookUIElement pictureElement;
         public float vignette;
-        public float timer; 
+        public float timer;
 
         public PhotobookUIImageViewOverlay(int photo, PhotobookUIState parentState, PhotobookUIElement parentElement)
         {
@@ -46,7 +46,7 @@ namespace Aequus.Content.Carpentery.Photobook
         {
             spriteBatch.End();
             Begin.UI.Begin(spriteBatch);
-            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}VignetteSmall").Value, 
+            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}VignetteSmall").Value,
                 new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), Color.White * vignette);
 
             var photoPlayer = Main.LocalPlayer.GetModPlayer<PhotobookPlayer>();

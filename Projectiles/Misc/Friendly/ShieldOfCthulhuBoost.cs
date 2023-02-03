@@ -140,7 +140,7 @@ namespace Aequus.Projectiles.Misc.Friendly
                 }
             }
 
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, effects, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, new Vector2(Projectile.scale, Projectile.scale * 1.25f), effects, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, new Vector2(Projectile.scale, Projectile.scale * 1.25f), effects, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);

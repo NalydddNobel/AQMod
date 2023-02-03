@@ -2,14 +2,15 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Misc.Fish.Quest;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Fish.Quest;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -1015,11 +1016,11 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                                         Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<BrickFish>(), 1);
                                         if (Main.netMode == NetmodeID.SinglePlayer)
                                         {
-                                            Main.NewText(Language.GetTextValue("Mods.Aequus.OmegaStariteEasterEgg", NPC.TypeName), AequusText.BossSummonMessage);
+                                            Main.NewText(Language.GetTextValue("Mods.Aequus.OmegaStariteEasterEgg", NPC.TypeName), TextHelper.BossSummonMessage);
                                         }
                                         else
                                         {
-                                            AequusText.Broadcast("Mods.Aequus.OmegaStariteEasterEgg", AequusText.BossSummonMessage, Lang.GetNPCName(Type).Key);
+                                            TextHelper.Broadcast("Mods.Aequus.OmegaStariteEasterEgg", TextHelper.BossSummonMessage, Lang.GetNPCName(Type).Key);
                                         }
                                     }
                                     Main.item[item].stack--;
@@ -1555,7 +1556,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = TextureCache.Bloom[0].Value;
+            var spotlight = Textures.Bloom[0].Value;
             var spotlightOrig = spotlight.Size() / 2f;
             var spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
@@ -1652,7 +1653,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                     if (prim == null)
                     {
                         float radius = DIAMETER / 2f;
-                        prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }
@@ -1730,7 +1731,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                     i++;
                 }
                 r.SetRand(seed);
-                var bloom = TextureCache.Bloom[2].Value;
+                var bloom = Textures.Bloom[2].Value;
                 var bloomOrigin = bloom.Size() / 2f;
                 raysScaler *= 0.7f;
                 Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * raysScaler * NPC.Opacity, 0f, bloomOrigin, raysScaler, SpriteEffects.None, 0f);

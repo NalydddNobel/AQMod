@@ -28,7 +28,7 @@ namespace Aequus.Common.ModPlayers
                 }
 
                 var item = new Item();
-                switch (Main.rand.Next(3)) 
+                switch (Main.rand.Next(3))
                 {
                     case 0:
                         item.SetDefaults(ModContent.ItemType<Omnibait>());

@@ -33,7 +33,7 @@ namespace Aequus.Graphics
             List.Clear();
         }
     }
-    public class DrawList<T> : List<T> 
+    public class DrawList<T> : List<T>
     {
         public bool renderNow;
         public bool Render => renderNow || EffectsSystem.ForceRenderDrawlists;

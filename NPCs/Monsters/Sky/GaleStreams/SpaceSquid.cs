@@ -890,9 +890,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 spriteBatch.End();
                 if (bestiary)
                 {
-                    RasterizerState rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
+                    RasterizerState rasterizer = new RasterizerState
+                    {
+                        CullMode = CullMode.None,
+                        ScissorTestEnable = true
+                    };
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
                 }
                 else

@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Misc.Empowered
     public class EmpoweredSummoning : EmpoweredBuffBase
     {
         public override int OriginalBuffType => BuffID.Summoning;
-        
+
         public override void SetStaticDefaults()
         {
             EmpoweredPrefix.ItemToEmpoweredBuff.Add(ItemID.SummoningPotion, Type);

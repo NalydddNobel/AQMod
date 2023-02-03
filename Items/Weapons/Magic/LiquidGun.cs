@@ -290,7 +290,7 @@ namespace Aequus.Items.Weapons.Magic
             if (LiquidAmount > 0)
             {
                 string text = Language.GetTextValueWith($"Mods.{Mod.Name}.ItemTooltip.{Name}.AmountLeft",
-                    new { Amount = Math.Max((int)(LiquidAmount / (float)LiquidAmountMax * 100f), 1), Liquid = AequusText.LiquidName(LiquidType) });
+                    new { Amount = Math.Max((int)(LiquidAmount / (float)LiquidAmountMax * 100f), 1), Liquid = TextHelper.LiquidName(LiquidType) });
                 tooltips.Insert(tooltips.GetIndex("Tooltip#"), new TooltipLine(Mod, "LiquidTooltip", text));
             }
         }

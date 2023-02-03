@@ -4,7 +4,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Carpentery.Paint;
 using Aequus.Items;
 using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Utility;
 using Aequus.Projectiles;
 using Aequus.Tiles;
 using Aequus.Tiles.Blocks;
@@ -123,7 +122,7 @@ namespace Aequus
 
         public override void PostUpdateItems()
         {
-            if  (Main.netMode != NetmodeID.Server)
+            if (Main.netMode != NetmodeID.Server)
             {
                 Main.LocalPlayer.Aequus().CheckThirsts(); // To fix the UI bugging out a lot
             }

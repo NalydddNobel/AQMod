@@ -103,13 +103,13 @@ namespace Aequus.Projectiles.Magic
             int trailLength = ProjectileID.Sets.TrailCacheLength[Projectile.type];
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
+                prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(20f - p * 20f),
                     (p) => NarrizuulRainbow(Projectile, Projectile.localAI[1]) * 3 * (0.65f + (float)(Math.Sin(Main.GlobalTimeWrappedHourly + p * 20f) * 0.1f)) * (1f - p),
                     drawOffset: Projectile.Size / 2f);
             }
             prim.Draw(Projectile.oldPos);
-            glow = TextureCache.Bloom[0].Value;
+            glow = Textures.Bloom[0].Value;
             Main.spriteBatch.Draw(glow, Projectile.Center - Main.screenPosition, null, NarrizuulRainbow(Projectile, Projectile.localAI[1]).UseA(0) * 0.5f, Projectile.rotation, glow.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             glow = texture;
             var drawPos = Projectile.Center - Main.screenPosition;

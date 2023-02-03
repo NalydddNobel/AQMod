@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -124,13 +123,13 @@ namespace Aequus.Items
         public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key)
         {
             tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, AequusText.GetText(key)));
+                    new TooltipLine(item.Mod, name, TextHelper.GetTextValue(key)));
         }
 
         public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key, params object[] args)
         {
             tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, AequusText.GetText(key, args)));
+                    new TooltipLine(item.Mod, name, TextHelper.GetTextValue(key, args)));
         }
 
         public static void RemoveKnockback(this List<TooltipLine> tooltips)

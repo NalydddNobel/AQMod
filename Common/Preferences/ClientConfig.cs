@@ -8,7 +8,7 @@ using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
-namespace Aequus
+namespace Aequus.Common.Preferences
 {
     public class ClientConfig : ConfigurationBase
     {
@@ -83,31 +83,31 @@ namespace Aequus
             Text("Visuals.AdamantiteChestMimic");
             Text("Visuals.ScreenshakeIntensity", new
             {
-                Baguette = AequusText.ItemCommand<Baguette>(),
+                Baguette = TextHelper.ItemCommand<Baguette>(),
             });
             Text("Visuals.FlashIntensity", new
             {
-                NoonPotion = AequusText.ItemCommand<NoonPotion>(),
+                NoonPotion = TextHelper.ItemCommand<NoonPotion>(),
             });
             Text("Visuals.HighQuality", new
             {
-                Fluorescence = AequusText.ItemCommand<Fluorescence>(),
+                Fluorescence = TextHelper.ItemCommand<Fluorescence>(),
             });
             Text("Visuals.HighQualityShaders", new
             {
-                FrozenTear = AequusText.ItemCommand<FrozenTear>(),
+                FrozenTear = TextHelper.ItemCommand<FrozenTear>(),
             });
             Text("Visuals.FlashShaderRepetitions", new
             {
-                SupernovaFruit = AequusText.ItemCommand<SupernovaFruit>(),
+                SupernovaFruit = TextHelper.ItemCommand<SupernovaFruit>(),
             });
             Text("Visuals.NecromancyOutlines", new
             {
-                Insurgency = AequusText.ItemCommand<Insurgency>(),
+                Insurgency = TextHelper.ItemCommand<Insurgency>(),
             });
             Text("General.InfoDebugLogs", new
             {
-                RadioThing = AequusText.ItemCommand(ItemID.DontStarveShaderItem),
+                RadioThing = TextHelper.ItemCommand(ItemID.DontStarveShaderItem),
             });
         }
     }

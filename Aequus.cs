@@ -1,4 +1,5 @@
 using Aequus.Common;
+using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Preferences;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Graphics.RenderTargets;
@@ -250,9 +251,11 @@ namespace Aequus.Projectiles.Magic
             });
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass,
-                    (p) => new Vector2(12f) * (1f - p), (p) => new Color(255, 50, 10, 200) * (float)Math.Pow(1f - p, 2f));
-                prim.drawOffset = Projectile.Size / 2f;
+                prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass,
+                    (p) => new Vector2(12f) * (1f - p), (p) => new Color(255, 50, 10, 200) * (float)Math.Pow(1f - p, 2f))
+                {
+                    drawOffset = Projectile.Size / 2f
+                };
             }
             prim.Draw(Projectile.oldPos);
             //for (int i = 0; i < trailLength; i++)
@@ -288,13 +291,13 @@ namespace Aequus.Projectiles.Magic
         {
             if (thunderPrim == null)
             {
-                thunderPrim = new ForceCoordTrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                thunderPrim = new ForceCoordTrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(4f), (p) => new Color(255, 180, 160, 40) * (float)Math.Pow(DrawOpacity, 2f), obeyReversedGravity: false, worldTrail: false)
                 { coord1 = 1f, coord2 = 0f, };
             }
             if (thunderBloomPrim == null)
             {
-                thunderBloomPrim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass,
+                thunderBloomPrim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(22f), (p) => lightningBloomColor * (float)Math.Pow(DrawOpacity, 2f), obeyReversedGravity: false, worldTrail: false)
                 { coord1 = 1f, coord2 = 0f, };
             }

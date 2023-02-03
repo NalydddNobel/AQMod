@@ -67,21 +67,25 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
-        public static Point tile => Main.MouseWorld.ToTileCoordinates();
-        public static int tileX => Main.MouseWorld.ToTileCoordinates().X;
-        public static int tileY => Main.MouseWorld.ToTileCoordinates().Y;
+        public static Point MouseTile => Main.MouseWorld.ToTileCoordinates();
+        public static int MouseTileX => Main.MouseWorld.ToTileCoordinates().X;
+        public static int MouseTileY => Main.MouseWorld.ToTileCoordinates().Y;
 
-        public static int ColorOnlyShaderIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
-        public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderIndex, Main.LocalPlayer);
+        public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
+        public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
 
-        public static bool debugKey => Main.keyState.IsKeyDown(Keys.LeftShift);
+        public static bool DebugKeyPressed => Main.keyState.IsKeyDown(Keys.LeftShift);
 
         public static Regex SubstitutionRegex { get; private set; }
         public static TypeUnboxer<int> UnboxInt { get; private set; }
         public static TypeUnboxer<float> UnboxFloat { get; private set; }
         public static TypeUnboxer<bool> UnboxBoolean { get; private set; }
 
-        private static Mod aequus => ModContent.GetInstance<Aequus>();
+        public static Color ColorGreenSlime => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
+        public static Color ColorBlueSlime => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
+        public static Color ColorFurniture => new Color(191, 142, 111, 255);
+
+        private static Mod Mod => ModContent.GetInstance<Aequus>();
 
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
@@ -191,7 +195,7 @@ namespace Aequus
                 tooltips.Add(rule.GetType().FullName + ":");
                 foreach (var drop in drops)
                 {
-                    string text = "* " + AequusText.ItemCommand(drop.itemId);
+                    string text = "* " + TextHelper.ItemCommand(drop.itemId);
                     if (drop.stackMin == drop.stackMax)
                     {
                         if (drop.stackMin > 1)
@@ -268,7 +272,7 @@ namespace Aequus
             Utils.OpenFolder(DebugFilePath);
         }
 
-        public static Vector2 rotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
+        public static Vector2 RotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
         {
             float scaleFactor = currentVelocity.Length();
             float targetAngle = currentPosition.AngleTo(targetPosition);
@@ -1379,7 +1383,7 @@ namespace Aequus
                             xOffset = num10 + 2;
                             break;
                     }
-                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + (float)xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 }
             }
         }
@@ -1559,7 +1563,7 @@ namespace Aequus
             int i = text.IndexOf(needsToStartWith);
             if (i > -1)
             {
-                string val = text.Substring(i).Split('+')[0];
+                string val = text[i..].Split('+')[0];
                 ReplaceText(ref text, $"{val}+",
                     Language.GetTextValueWith(key, turnStringArgsIntoObject(val.Replace('+', ' ').Split('|'))));
             }
@@ -1930,7 +1934,7 @@ namespace Aequus
             return l;
         }
 
-        public static IEntitySource GetSource_TileBreak(this ModTile modTile, int i, int j, string? context = null)
+        public static IEntitySource GetSource_TileBreak(this ModTile modTile, int i, int j, string context = null)
         {
             return new EntitySource_TileBreak(i, j, context);
         }
@@ -2314,11 +2318,6 @@ namespace Aequus
         public static AequusPlayer Aequus(this Player player)
         {
             return player.GetModPlayer<AequusPlayer>();
-        }
-
-        internal static void spawnNPC<T>(Vector2 where) where T : ModNPC
-        {
-            NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
         public static string GenderString(this Player player)
@@ -2888,11 +2887,15 @@ namespace Aequus
             return $"{GetNoNamePath(t)}/{t.Name}";
         }
 
-        public static void debugTextDraw(string text, Vector2 where)
+        internal static void DebugSpawnNPC<T>(Vector2 where) where T : ModNPC
+        {
+            NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
+        }
+        public static void DebugTextDraw(string text, Vector2 where)
         {
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
         }
-        public static Dust dustDebugDirect(Vector2 where, int dustType = DustID.Torch)
+        public static Dust DebugDustDirect(Vector2 where, int dustType = DustID.Torch)
         {
             var d = Dust.NewDustPerfect(where, dustType);
             d.noGravity = true;
@@ -2900,20 +2903,20 @@ namespace Aequus
             d.velocity = Vector2.Zero;
             return d;
         }
-        public static void dustDebugColor(Vector2 where, Color color)
+        public static void DebugDustColor(Vector2 where, Color color)
         {
-            var d = dustDebugDirect(where, ModContent.DustType<MonoSparkleDust>());
+            var d = DebugDustDirect(where, ModContent.DustType<MonoSparkleDust>());
             d.color = color;
         }
-        public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
+        public static void DebugDust(Vector2 where, int dustType = DustID.Torch)
         {
-            dustDebugDirect(where, dustType);
+            DebugDustDirect(where, dustType);
         }
-        public static void dustDebug(Point where, int dustType = DustID.Torch)
+        public static void DebugDust(Point where, int dustType = DustID.Torch)
         {
-            dustDebug(where.X, where.Y, dustType);
+            DebugDust(where.X, where.Y, dustType);
         }
-        public static void dustDebug(int x, int y, int dustType = DustID.Torch)
+        public static void DebugDust(int x, int y, int dustType = DustID.Torch)
         {
             var rect = new Rectangle(x * 16, y * 16, 16, 16);
             for (int i = 0; i < 4; i++)
@@ -2938,7 +2941,7 @@ namespace Aequus
                 i /= 4;
             }
         }
-        public static void dustDebug(Rectangle rect, int dustType = DustID.Torch)
+        public static void DebugDust(Rectangle rect, int dustType = DustID.Torch)
         {
             int amt = rect.Width / 2;
             for (int i = 0; i < amt; i++)

@@ -1,13 +1,10 @@
 ﻿using Aequus.Graphics;
-using Aequus.Projectiles.Melee;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,8 +12,6 @@ namespace Aequus.Projectiles.Monster
 {
     public class HardwoodProj : ModProjectile
     {
-        private const int goOutTime = 15;
-
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 2;

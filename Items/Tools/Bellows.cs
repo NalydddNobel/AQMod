@@ -66,9 +66,9 @@ namespace Aequus.Items.Tools
             try
             {
                 int index = tooltips.GetIndex("Knockback");
-                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KnockbackLine(Item.knockBack)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", TextHelper.KnockbackLine(Item.knockBack)));
                 index = tooltips.GetIndex("Speed");
-                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimationLine(Item.useAnimation)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", TextHelper.UseAnimationLine(Item.useAnimation)));
             }
             catch
             {

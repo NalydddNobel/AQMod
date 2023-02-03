@@ -62,12 +62,12 @@ namespace Aequus.Items.Misc.Carpentry.Rewards
                 {
                     t.Text = t.Text.FormatWith(new
                     {
-                        LEFTMOUSE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.LeftMouseButton"), Color.Yellow, alphaPulse: true)}]",
-                        RIGHTMOUSE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.RightMouseButton"), Color.Orange.SaturationSet(0.5f) * 2f, alphaPulse: true)}]",
-                        CTRL = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.ControlButton"), Color.Violet, alphaPulse: true)}]",
-                        SHIFT = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.ShiftButton"), Color.Red, alphaPulse: true)}]",
-                        LINE = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.Line"), Color.Lime, alphaPulse: true)}]",
-                        GRID = $"[{AequusText.ColorCommand(AequusText.GetText("ItemTooltip.AdvancedRuler.Grid"), Color.Turquoise, alphaPulse: true)}]",
+                        LEFTMOUSE = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.LeftMouseButton"), Color.Yellow, alphaPulse: true)}]",
+                        RIGHTMOUSE = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.RightMouseButton"), Color.Orange.SaturationSet(0.5f) * 2f, alphaPulse: true)}]",
+                        CTRL = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.ControlButton"), Color.Violet, alphaPulse: true)}]",
+                        SHIFT = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.ShiftButton"), Color.Red, alphaPulse: true)}]",
+                        LINE = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.Line"), Color.Lime, alphaPulse: true)}]",
+                        GRID = $"[{TextHelper.ColorCommand(TextHelper.GetTextValue("ItemTooltip.AdvancedRuler.Grid"), Color.Turquoise, alphaPulse: true)}]",
                     });
                 }
             }

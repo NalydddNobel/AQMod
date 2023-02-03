@@ -4,6 +4,8 @@ using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
+using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
@@ -1423,7 +1425,7 @@ namespace Aequus.Common.ModPlayers
                     }
                     for (int i = 0; i < 3; i++)
                     {
-                        var prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                         var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
                         var particle = new BoundBowTrailParticle(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)),
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
@@ -1432,7 +1434,7 @@ namespace Aequus.Common.ModPlayers
                         EffectsSystem.ParticlesAbovePlayers.Add(particle);
                         if (i < 2)
                         {
-                            prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                            prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                             particle = new BoundBowTrailParticle(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                             particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
@@ -2084,7 +2086,7 @@ namespace Aequus.Common.ModPlayers
                         var dd = ddCache[i];
                         dd.position += c * 2f;
                         dd.color = Color.SkyBlue.UseA(0) * 0.1f;
-                        dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                        dd.shader = AequusHelpers.ShaderColorOnlyIndex;
                         info2.DrawDataCache[i] = dd;
                     }
                     PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
@@ -2117,7 +2119,7 @@ namespace Aequus.Common.ModPlayers
                 {
                     var dd = ddCache[i];
                     dd.color = Color.SkyBlue * 2f * instaShieldAlpha;
-                    dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                    dd.shader = AequusHelpers.ShaderColorOnlyIndex;
                     info2.DrawDataCache[i] = dd;
                 }
                 PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);

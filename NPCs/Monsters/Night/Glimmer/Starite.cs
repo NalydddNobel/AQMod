@@ -506,14 +506,16 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var alpha = Color.White;
             var trailThing = TextureAssets.Extra[ExtrasID.FallingStar].Value;
             var trailFrame = trailThing.Frame();
-            var trailOrigin = new Vector2((float)trailFrame.Width / 2f, 10f);
+            var trailOrigin = new Vector2(trailFrame.Width / 2f, 10f);
             var gfxOff = new Vector2(0f, NPC.gfxOffY);
             var spinningpoint = new Vector2(0f, -10f);
             float visualEffectsTimer = Main.GlobalTimeWrappedHourly;
             var vector36 = NPC.Center + NPC.velocity;
             var trailColor = new Color(30, 80, 160, 0);
-            var trailColorWhite = new Color(200, 255, 255, 255);
-            trailColorWhite.A = 0;
+            var trailColorWhite = new Color(200, 255, 255, 255)
+            {
+                A = 0
+            };
             float num189 = 0f;
             var color45 = trailColor;
             color45.A = 0;

@@ -34,7 +34,7 @@ namespace Aequus.Items.Armor.Seraphim
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AequusText.TryGetText("ArmorSetBonus.Seraphim");
+            player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Seraphim");
             player.Aequus().setSeraphim = Item;
         }
 

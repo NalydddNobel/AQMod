@@ -68,7 +68,7 @@ namespace Aequus.Items.Accessories
                 return;
 
             //Main.NewText(drawInfo.drawPlayer.waist +"|"+ HighSteaks.WaistSlot);
-                if (Main.gameMenu || drawInfo.drawPlayer.waist != HighSteaks.WaistSlot)
+            if (Main.gameMenu || drawInfo.drawPlayer.waist != HighSteaks.WaistSlot)
             {
                 CoinAnimations.Clear();
                 return;

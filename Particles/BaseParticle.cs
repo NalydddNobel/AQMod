@@ -1,7 +1,6 @@
 ﻿using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
@@ -38,7 +37,7 @@ namespace Aequus.Particles
             Scale = scale;
             Rotation = rotation;
         }
-        
+
         protected void SetTexture(TextureInfo textureInfo, int frames = 3)
         {
             if (textureInfo == null)

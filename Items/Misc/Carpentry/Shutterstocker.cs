@@ -64,7 +64,7 @@ namespace Aequus.Items.Misc.Carpentry
                 if (string.IsNullOrEmpty(stepText))
                     continue;
 
-                tooltips.Add(new TooltipLine(Mod, $"BountyTooltip{i}", 
+                tooltips.Add(new TooltipLine(Mod, $"BountyTooltip{i}",
                     $"[X - {Language.GetTextValue(stepText)}"));
             }
         }

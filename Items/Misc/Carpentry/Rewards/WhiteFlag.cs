@@ -29,7 +29,7 @@ namespace Aequus.Items.Misc.Carpentry.Rewards
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Insert(tooltips.GetIndex("JourneyResearch"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
+            tooltips.Insert(tooltips.GetIndex("JourneyResearch"), new TooltipLine(Mod, "Activity", "(" + TextHelper.GetTextValue(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
         }
 
         public override bool? UseItem(Player player)
@@ -37,7 +37,7 @@ namespace Aequus.Items.Misc.Carpentry.Rewards
             AequusWorld.usedWhiteFlag = !AequusWorld.usedWhiteFlag;
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                AequusText.Broadcast($"WhiteFlag.{(AequusWorld.usedWhiteFlag ? "True" : "False")}", TextColor);
+                TextHelper.Broadcast($"WhiteFlag.{(AequusWorld.usedWhiteFlag ? "True" : "False")}", TextColor);
             }
             return true;
         }

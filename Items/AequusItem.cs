@@ -4,6 +4,7 @@ using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.ModPlayers;
+using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
@@ -167,7 +168,7 @@ namespace Aequus.Items
                 {
                     var rare = RarityLoader.GetRarity(i);
                     string key = $"Mods.Aequus.ItemRarity.{rare.Mod.Name}.{rare.Name}";
-                    if (AequusText.ContainsKey(key))
+                    if (TextHelper.ContainsKey(key))
                     {
                         RarityNames.Add(rare.Type, key);
                         if (Aequus.LogMore)

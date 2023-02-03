@@ -175,7 +175,7 @@ namespace Aequus.Projectiles.Melee.Swords
             var glowmask = ModContent.Request<Texture2D>(flip ? AequusHelpers.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var origin = new Vector2(0f, texture.Height);
 
-            var bloom = TextureCache.Bloom[1].Value;
+            var bloom = Textures.Bloom[1].Value;
             Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity * 0.5f, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
 
             var circular = AequusHelpers.CircularVector(4, Projectile.rotation);

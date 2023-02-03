@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
                 {
                     if (Main.rand.NextBool(3))
-                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 4f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(140, 130, 255, 100), Color.Blue.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                        EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 4f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(140, 130, 255, 100), Color.Blue.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
                 }
             }
 
@@ -102,7 +102,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
+                prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
             }
 
             int trailLength = maxLength > 0 ? maxLength : ProjectileID.Sets.TrailCacheLength[Type];

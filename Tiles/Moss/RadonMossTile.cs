@@ -62,7 +62,7 @@ namespace Aequus.Tiles.Moss
         {
             GrowMoss(i, j);
         }
-        
+
         public static void GrowMoss(int i, int j)
         {
             int radonMossGrass = ModContent.TileType<RadonMossGrass>();

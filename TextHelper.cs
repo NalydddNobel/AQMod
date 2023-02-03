@@ -7,21 +7,20 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.Chat;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class AequusText : IOnModLoad
+    public class TextHelper : IOnModLoad
     {
         public static FieldInfo translationsField;
         public static Dictionary<string, ModTranslation> Text;
         public static Color BossSummonMessage => new Color(175, 75, 255, 255);
         public static Color EventMessage => new Color(50, 255, 130, 255);
 
-        public static string Unknown => GetText("Unknown");
+        public static string Unknown => GetTextValue("Unknown");
         public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
 
         public static void AutoAddItemCommands(string key, string key2)
@@ -95,32 +94,23 @@ namespace Aequus
             translationsField = null;
             Text = null;
         }
-        public static ModTranslation GetTranslation(string key)
+
+        public static LocalizedText GetText(string key)
         {
-            return Text["Mods.Aequus." + key];
+            return Language.GetText("Mods.Aequus" + key);
         }
 
-        public static string TryGetText(string key)
+        public static string GetTextValue(string key)
         {
-            key = "Mods.Aequus." + key;
-            if (Text.TryGetValue(key, out var translation))
-            {
-                return translation.GetTranslation(Language.ActiveCulture);
-            }
-            return key;
+            return GetText(key).Value;
         }
 
-        public static string GetText(string key)
+        public static string GetTextValue(string key, params object[] args)
         {
-            return GetTranslation(key).GetTranslation(Language.ActiveCulture);
+            return Language.GetTextValue("Mods.Aequus." + key, args);
         }
 
-        public static string GetText(string key, params object[] args)
-        {
-            return string.Format(GetText(key), args);
-        }
-
-        public static string GetTextWith(string key, object obj)
+        public static string GetTextValueWith(string key, object obj)
         {
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
@@ -293,7 +283,7 @@ namespace Aequus
             }
             return Language.GetTextValue("LegacyTooltip.22");
         }
-        
+
         public static string ColorCommandStart(Color color, bool alphaPulse = false)
         {
             if (alphaPulse)
@@ -367,7 +357,7 @@ namespace Aequus
             {
                 return Language.GetTextValue(AequusHelpers.CapSpaces(RarityLoader.GetRarity(rare).Name)).Replace(" Rarity", "");
             }
-            return GetText("Unknown");
+            return GetTextValue("Unknown");
         }
 
         public static bool ContainsKey(string key)
@@ -383,20 +373,14 @@ namespace Aequus
 
         public static string LiquidName(int liquidType)
         {
-            switch (liquidType)
+            return liquidType switch
             {
-                default:
-                    return Unknown;
-
-                case LiquidID.Water:
-                    return Language.GetTextValue("Mods.Aequus.Water");
-                case LiquidID.Lava:
-                    return Language.GetTextValue("Mods.Aequus.Lava");
-                case LiquidID.Honey:
-                    return Language.GetTextValue("Mods.Aequus.Honey");
-                case 3:
-                    return Language.GetTextValue("Mods.Aequus.Shimmer");
-            }
+                LiquidID.Water => Language.GetTextValue("Mods.Aequus.Water"),
+                LiquidID.Lava => Language.GetTextValue("Mods.Aequus.Lava"),
+                LiquidID.Honey => Language.GetTextValue("Mods.Aequus.Honey"),
+                3 => Language.GetTextValue("Mods.Aequus.Shimmer"),
+                _ => Unknown,
+            };
         }
 
         public static string NPCKeyName(int npcID, Mod myMod = null)
@@ -454,7 +438,7 @@ namespace Aequus
             }
             if (string.IsNullOrEmpty(value))
             {
-                value = GetText("KeyUnbound");
+                value = GetTextValue("KeyUnbound");
             }
             return value;
         }

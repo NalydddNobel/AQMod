@@ -85,7 +85,7 @@ namespace Aequus.Projectiles.Magic
             var target = Projectile.FindTargetWithLineOfSight(240f);
             if (target != -1)
             {
-                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, 
+                Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity,
                     Vector2.Normalize(Main.npc[target].Center - Projectile.Center) * Projectile.velocity.Length(), 0.05f)) * Projectile.velocity.Length();
             }
             else if (Projectile.ai[0] < 25f)
@@ -192,7 +192,7 @@ namespace Aequus.Projectiles.Magic
             var textureFrame = Projectile.Frame();
             var textureOrigin = textureFrame.Size() / 2f;
 
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             var bloomFrame = bloom.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             var bloomOrigin = bloomFrame.Size() / 2f;
 

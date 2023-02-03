@@ -24,7 +24,7 @@ namespace Aequus.Projectiles.Misc
             Projectile.width = 20;
             Projectile.height = 20;
             Projectile.hide = true;
-            Projectile.timeLeft = 60 * (1+Projectile.extraUpdates);
+            Projectile.timeLeft = 60 * (1 + Projectile.extraUpdates);
         }
 
         public override bool? CanCutTiles()

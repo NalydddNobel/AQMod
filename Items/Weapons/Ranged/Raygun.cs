@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Common.Preferences;
+using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;

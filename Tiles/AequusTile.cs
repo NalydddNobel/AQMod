@@ -1,12 +1,12 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common;
-using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
-using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Blocks;
+using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.Moss;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Aequus.Tiles.Moss;
 
 namespace Aequus.Tiles
 {

@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Carpentery.Bounties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 

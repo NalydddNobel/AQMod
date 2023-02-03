@@ -182,7 +182,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
                 }
                 var drawCoords = new Vector2(x, y + (rollY - i - 0.5f) * back.Height) + back.Size() / 2f;
                 var itemOrigin = itemTexture.Size() / 2f;
-                Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, drawCoords, null, Color.Black * opacity * 0.33f, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Main.inventoryScale * 0.45f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Textures.Bloom[0].Value, drawCoords, null, Color.Black * opacity * 0.33f, 0f, Textures.Bloom[0].Value.Size() / 2f, Main.inventoryScale * 0.45f, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.Draw(itemTexture, drawCoords + new Vector2(2f), null, Color.Black * opacity * 0.33f, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);

@@ -42,7 +42,7 @@ namespace Aequus.Content.ItemRarities
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles
-                var particleTexture = TextureCache.Bloom[0].Value;
+                var particleTexture = Textures.Bloom[0].Value;
                 var particleOrigin = particleTexture.Size() / 2f;
                 int amt = (int)rand.Rand(size.X / 3, size.X);
                 for (int i = 0; i < amt; i++)

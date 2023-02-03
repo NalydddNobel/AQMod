@@ -25,7 +25,7 @@ namespace Aequus.Tiles.Furniture.Jeweled
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            AddMapEntry(Color.Gold * 1.25f, AequusText.GetTranslation("ItemName.JeweledCandelabra"));
+            AddMapEntry(Color.Gold * 1.25f, TextHelper.GetText("ItemName.JeweledCandelabra"));
             HitSound = SoundID.Dig;
             DustType = DustID.Torch;
 

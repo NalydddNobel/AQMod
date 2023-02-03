@@ -76,8 +76,10 @@ namespace Aequus.Projectiles.Ranged
             var drawColor = Projectile.GetAlpha(lightColor);
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(6f) * (1f - p), (p) => Projectile.GetAlpha(Color.White).UseA(0) * 0.9f * (float)Math.Pow(1f - p, 2f));
-                prim.drawOffset = Projectile.Size / 2f;
+                prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(6f) * (1f - p), (p) => Projectile.GetAlpha(Color.White).UseA(0) * 0.9f * (float)Math.Pow(1f - p, 2f))
+                {
+                    drawOffset = Projectile.Size / 2f
+                };
             }
             prim.Draw(Projectile.oldPos);
             var frame = Projectile.Frame();

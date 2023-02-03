@@ -93,17 +93,17 @@ namespace Aequus.Projectiles.Magic
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[1].Value, TrailRenderer.DefaultPass,
+                prim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2((float)Math.Pow(1f - p, 2f) * 16f) * Projectile.scale, GetTrailColor,
                     drawOffset: Projectile.Size / 2f);
             }
-            new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass,
+            new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass,
                 (p) => new Vector2((1f - p) * 12f) * Projectile.scale, (p) => GetTrailColor(p) * 4f,
                 drawOffset: Projectile.Size / 2f).Draw(Projectile.oldPos);
             prim.Draw(Projectile.oldPos);
             //Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowClr, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, Color.White, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, center - Main.screenPosition, null, _glowColorCache, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Textures.Bloom[0].Value, center - Main.screenPosition, null, Color.White, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Textures.Bloom[0].Value, center - Main.screenPosition, null, _glowColorCache, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 250, 250, 160), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }

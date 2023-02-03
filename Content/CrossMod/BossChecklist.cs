@@ -183,11 +183,11 @@ namespace Aequus.Content.CrossMod
         }
         private void FixText()
         {
-            AequusText.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = AequusText.ItemCommand<HypnoticPearl>(), });
-            AequusText.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = AequusText.ItemCommand<SupernovaFruit>(), });
-            AequusText.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = AequusText.ItemCommand<TornadoInABottle>(), });
+            TextHelper.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = TextHelper.ItemCommand<HypnoticPearl>(), });
+            TextHelper.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = TextHelper.ItemCommand<SupernovaFruit>(), });
+            TextHelper.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = TextHelper.ItemCommand<TornadoInABottle>(), });
 
-            AequusText.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = AequusText.ItemCommand<GalacticStarfruit>(), });
+            TextHelper.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = TextHelper.ItemCommand<GalacticStarfruit>(), });
             string demonSiegeItemList = "";
             foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
             {
@@ -197,10 +197,10 @@ namespace Aequus.Content.CrossMod
                 if (demonSiegeItemList.Length != 0)
                     demonSiegeItemList += ", ";
 
-                demonSiegeItemList += AequusText.ItemCommand(d.Key);
+                demonSiegeItemList += TextHelper.ItemCommand(d.Key);
             }
-            AequusText.NewFromDict("BossChecklist.DemonSiege", ".1", new { ItemList = demonSiegeItemList, });
-            AequusText.NewFromDict("BossChecklist.GaleStreams", ".1", new { Pumpinator = AequusText.ItemCommand<Pumpinator>(), });
+            TextHelper.NewFromDict("BossChecklist.DemonSiege", ".1", new { ItemList = demonSiegeItemList, });
+            TextHelper.NewFromDict("BossChecklist.GaleStreams", ".1", new { Pumpinator = TextHelper.ItemCommand<Pumpinator>(), });
         }
 
         public override void PostSetupContent()

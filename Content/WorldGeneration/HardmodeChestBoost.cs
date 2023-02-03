@@ -1,4 +1,5 @@
-﻿using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Common.Preferences;
+using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.HardmodeChests;
 using Microsoft.Xna.Framework;
@@ -469,7 +470,7 @@ namespace Aequus.Content.WorldGeneration
                     }
                 }
                 AequusWorld.hardmodeChests = true;
-                AequusText.Broadcast("Announcement.HardmodeChests", AequusText.EventMessage.HueAdd(0.075f));
+                TextHelper.Broadcast("Announcement.HardmodeChests", TextHelper.EventMessage.HueAdd(0.075f));
             }
             else if (!AequusWorld.chestCobaltTier && WorldGen.SavedOreTiers.Cobalt > 0)
             {

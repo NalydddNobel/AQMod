@@ -4,7 +4,6 @@ using Aequus.Items.Tools;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -358,7 +357,7 @@ namespace Aequus.Projectiles.Misc
             var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.03f, 0.03f));
             if ((int)Projectile.ai[1] < 3)
             {
-                var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
+                var prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
                 //mouseWorld = Main.player[Projectile.owner].MountedCenter - new Vector2(0f, 400f);

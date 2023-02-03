@@ -137,7 +137,7 @@ namespace Aequus.Items.Misc.Carpentry
                         index = i;
                 }
                 index = Math.Min(index + 1, tooltips.Count);
-                tooltips.Insert(index, new TooltipLine(Mod, "Reviewed", AequusText.GetText($"ItemTooltip.{Name}.Reviewed")) { OverrideColor = Color.Lerp(Color.BlueViolet, Color.White, 0.5f), });
+                tooltips.Insert(index, new TooltipLine(Mod, "Reviewed", TextHelper.GetTextValue($"ItemTooltip.{Name}.Reviewed")) { OverrideColor = Color.Lerp(Color.BlueViolet, Color.White, 0.5f), });
                 if (reviewNotesLanguageKey != null)
                 {
                     string text = Language.GetTextValue(reviewNotesLanguageKey);

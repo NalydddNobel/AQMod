@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -86,7 +85,7 @@ namespace Aequus.Projectiles.Magic
                 {
                     for (int i = 0; i < 6; i++)
                     {
-                        var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity * 32f, Projectile.width, Projectile.height, 
+                        var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity * 32f, Projectile.width, Projectile.height,
                             DustID.AncientLight, Alpha: 128, Scale: Main.rand.NextFloat(2f));
                         d.velocity += Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f)) * Main.rand.NextFloat(12f);
                         d.velocity += player.velocity;
@@ -114,7 +113,7 @@ namespace Aequus.Projectiles.Magic
                     //{
                     //    Projectile.ai[0] *= 0.9f;
                     //}
-                    Projectile.velocity = AequusHelpers.rotateTowards(Projectile.Center, Projectile.velocity, Main.MouseWorld, 0.03f * val);
+                    Projectile.velocity = AequusHelpers.RotateTowards(Projectile.Center, Projectile.velocity, Main.MouseWorld, 0.03f * val);
                     Projectile.netUpdate = true;
                 }
 
@@ -145,7 +144,7 @@ namespace Aequus.Projectiles.Magic
                 var endPoint = Projectile.Center + dir * Projectile.localAI[0];
                 if (Main.rand.NextBool(Projectile.extraUpdates / 3 + 1))
                 {
-                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height, 
+                    var d = Dust.NewDustDirect(endPoint - Projectile.Size / 2f, Projectile.width, Projectile.height,
                         DustID.AncientLight, -dir.X * 2f, -dir.Y * 2f, 128, Color.White, 0.2f + 1f * (float)Math.Pow(Projectile.Opacity, 2f));
                     d.velocity *= 0.45f;
                     d.scale *= 2.3f;

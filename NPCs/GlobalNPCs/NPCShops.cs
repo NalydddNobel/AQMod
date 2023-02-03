@@ -1,8 +1,6 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Vanity.Cursors;
-using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Pets;
-using Aequus.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

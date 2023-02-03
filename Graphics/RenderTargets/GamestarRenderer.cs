@@ -43,7 +43,7 @@ namespace Aequus.Graphics.RenderTargets
             base.Load(mod);
             Instance = this;
             Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(
-                new Ref<Effect>(ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad).Value), 
+                new Ref<Effect>(ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad).Value),
                 "ModdersToolkitShaderPass"), EffectPriority.Low);
         }
 
@@ -73,7 +73,7 @@ namespace Aequus.Graphics.RenderTargets
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
-            AequusHelpers.ColorOnlyShader.Apply(null);
+            AequusHelpers.ShaderColorOnly.Apply(null);
 
             device.SetRenderTarget(_target);
             device.Clear(Color.Transparent);

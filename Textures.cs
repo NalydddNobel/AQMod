@@ -6,8 +6,9 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class TextureCache : ILoadable
+    public class Textures : ILoadable
     {
+        [AttributeUsage(AttributeTargets.Property)]
         private sealed class ImgPathAttribute : Attribute
         {
             public readonly string Path;
@@ -17,6 +18,7 @@ namespace Aequus
                 Path = path;
             }
         }
+        [AttributeUsage(AttributeTargets.Property)]
         private sealed class ImgArrAttribute : Attribute
         {
             public readonly int Length;
@@ -47,7 +49,7 @@ namespace Aequus
 
         void ILoadable.Load(Mod mod)
         {
-            foreach (var p in typeof(TextureCache).GetProperties(SearchFlags))
+            foreach (var p in typeof(Textures).GetProperties(SearchFlags))
             {
                 if (p.PropertyType == typeof(Asset<Texture2D>[]))
                 {
@@ -88,7 +90,7 @@ namespace Aequus
 
         void ILoadable.Unload()
         {
-            foreach (var p in typeof(TextureCache).GetProperties(SearchFlags))
+            foreach (var p in typeof(Textures).GetProperties(SearchFlags))
             {
                 p.SetValue(null, null);
             }

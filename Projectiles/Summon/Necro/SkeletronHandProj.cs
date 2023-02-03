@@ -2,7 +2,6 @@
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -89,7 +88,7 @@ namespace Aequus.Projectiles.Summon.Necro
                             Projectile.velocity.Y = -6f;
                         }
                     }
-                    if (Projectile.position.X + (float)(Projectile.width / 2) > Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 120f * Projectile.direction)
+                    if (Projectile.position.X + Projectile.width / 2 > Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 120f * Projectile.direction)
                     {
                         if (Projectile.velocity.X > 0f)
                         {
@@ -101,7 +100,7 @@ namespace Aequus.Projectiles.Summon.Necro
                             Projectile.velocity.X = 8f;
                         }
                     }
-                    if (Projectile.position.X + (float)(Projectile.width / 2) < Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 120f * Projectile.direction)
+                    if (Projectile.position.X + Projectile.width / 2 < Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 120f * Projectile.direction)
                     {
                         if (Projectile.velocity.X < 0f)
                         {
@@ -202,7 +201,7 @@ namespace Aequus.Projectiles.Summon.Necro
                             Projectile.velocity.Y = -3f;
                         }
                     }
-                    if (Projectile.position.X + (float)(Projectile.width / 2) > Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 200f * Projectile.direction)
+                    if (Projectile.position.X + Projectile.width / 2 > Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 200f * Projectile.direction)
                     {
                         if (Projectile.velocity.X > 0f)
                         {
@@ -214,7 +213,7 @@ namespace Aequus.Projectiles.Summon.Necro
                             Projectile.velocity.X = 8f;
                         }
                     }
-                    if (Projectile.position.X + (float)(Projectile.width / 2) < Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 200f * Projectile.direction)
+                    if (Projectile.position.X + Projectile.width / 2 < Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 200f * Projectile.direction)
                     {
                         if (Projectile.velocity.X < 0f)
                         {
@@ -278,7 +277,7 @@ namespace Aequus.Projectiles.Summon.Necro
             else if (Projectile.ai[1] == 4f)
             {
                 Vector2 vector124 = new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y + Projectile.height * 0.5f);
-                float num690 = Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 200f * Projectile.direction - vector124.X;
+                float num690 = Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 200f * Projectile.direction - vector124.X;
                 float num691 = Main.npc[NPCIndex].position.Y + 230f - vector124.Y;
                 float num693 = (float)Math.Sqrt(num690 * num690 + num691 * num691);
                 Projectile.rotation = (float)Math.Atan2(num691, num690) + 1.57f;
@@ -305,11 +304,11 @@ namespace Aequus.Projectiles.Summon.Necro
                 {
                     Projectile.velocity.X = 8f;
                 }
-                if (Projectile.position.X + (float)(Projectile.width / 2) < Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - 500f || Projectile.position.X + (float)(Projectile.width / 2) > Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) + 500f)
+                if (Projectile.position.X + Projectile.width / 2 < Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - 500f || Projectile.position.X + Projectile.width / 2 > Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 + 500f)
                 {
                     //TargetClosest();
                     Projectile.ai[1] = 5f;
-                    vector124 = new Vector2(Projectile.position.X + (float)Projectile.width * 0.5f, Projectile.position.Y + (float)Projectile.height * 0.5f);
+                    vector124 = new Vector2(Projectile.position.X + Projectile.width * 0.5f, Projectile.position.Y + Projectile.height * 0.5f);
                     num690 = target.position.X + target.width / 2 - vector124.X;
                     num691 = target.position.Y + target.height / 2 - vector124.Y;
                     num693 = (float)Math.Sqrt(num690 * num690 + num691 * num691);
@@ -319,7 +318,7 @@ namespace Aequus.Projectiles.Summon.Necro
                     Projectile.netUpdate = true;
                 }
             }
-            else if (Projectile.ai[1] == 5f && ((Projectile.velocity.X > 0f && Projectile.position.X + (float)(Projectile.width / 2) > target.position.X + (float)(target.width / 2)) || (Projectile.velocity.X < 0f && Projectile.position.X + (float)(Projectile.width / 2) < target.position.X + (float)(target.width / 2))))
+            else if (Projectile.ai[1] == 5f && ((Projectile.velocity.X > 0f && Projectile.position.X + Projectile.width / 2 > target.position.X + target.width / 2) || (Projectile.velocity.X < 0f && Projectile.position.X + Projectile.width / 2 < target.position.X + target.width / 2)))
             {
                 Projectile.ai[1] = 0f;
             }
@@ -333,10 +332,10 @@ namespace Aequus.Projectiles.Summon.Necro
         public override bool PreDraw(ref Color lightColor)
         {
             var screenPos = Main.screenPosition;
-            var vector5 = new Vector2(Projectile.position.X + (float)Projectile.width * 0.5f - 5f * Projectile.spriteDirection, Projectile.position.Y + 20f);
+            var vector5 = new Vector2(Projectile.position.X + Projectile.width * 0.5f - 5f * Projectile.spriteDirection, Projectile.position.Y + 20f);
             for (int j = 0; j < 2; j++)
             {
-                float num6 = Main.npc[NPCIndex].position.X + (float)(Main.npc[NPCIndex].width / 2) - vector5.X;
+                float num6 = Main.npc[NPCIndex].position.X + Main.npc[NPCIndex].width / 2 - vector5.X;
                 float num7 = Main.npc[NPCIndex].position.Y + (float)(Main.npc[NPCIndex].height / 2 - 60f) - vector5.Y;
                 float num8 = 0f;
                 if (j == 0)
@@ -359,7 +358,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
                 float rotation5 = (float)Math.Atan2(num7, num6) - 1.57f;
                 Color color5 = Lighting.GetColor((int)vector5.X / 16, (int)(vector5.Y / 16f));
-                Main.EntitySpriteDraw(TextureAssets.BoneArm.Value, new Vector2(vector5.X - screenPos.X, vector5.Y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, TextureAssets.BoneArm.Width(), TextureAssets.BoneArm.Height()), color5, rotation5, new Vector2((float)TextureAssets.BoneArm.Width() * 0.5f, (float)TextureAssets.BoneArm.Height() * 0.5f), 1f, (SpriteEffects)0, 0);
+                Main.EntitySpriteDraw(TextureAssets.BoneArm.Value, new Vector2(vector5.X - screenPos.X, vector5.Y - screenPos.Y), (Rectangle?)new Rectangle(0, 0, TextureAssets.BoneArm.Width(), TextureAssets.BoneArm.Height()), color5, rotation5, new Vector2(TextureAssets.BoneArm.Width() * 0.5f, TextureAssets.BoneArm.Height() * 0.5f), 1f, 0, 0);
                 if (j == 0)
                 {
                     vector5.X += num6 * num8 / 2f;

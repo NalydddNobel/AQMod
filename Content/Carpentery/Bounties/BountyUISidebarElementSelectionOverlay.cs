@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Carpentery.Photobook;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.UI.Elements;

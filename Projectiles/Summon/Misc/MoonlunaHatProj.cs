@@ -124,8 +124,8 @@ namespace Aequus.Projectiles.Summon.Misc
             {
                 if (prim == null)
                 {
-                    prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
-                        (p) => new Vector2(8f), (p) => 
+                    prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass,
+                        (p) => new Vector2(8f), (p) =>
                         Color.Lerp(Projectile.GetAlpha(Color.White), Main.projectile[(int)Projectile.ai[0]].GetAlpha(Color.White), p) * 0.75f * (Projectile.Opacity * Main.projectile[(int)Projectile.ai[0]].Opacity), obeyReversedGravity: false, worldTrail: false);
                 }
                 var endCoords = Main.projectile[(int)Projectile.ai[0]].Center;

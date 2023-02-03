@@ -584,9 +584,9 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if ((int)NPC.ai[0] == 14)
             {
-                var bloomFrame = TextureCache.Bloom[0].Value.Frame(verticalFrames: 2);
-                spriteBatch.Draw(TextureCache.Bloom[0].Value, NPC.position + off - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
-                    bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, TextureCache.Bloom[0].Value.Size() / 2f, NPC.scale * 0.5f, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+                var bloomFrame = Textures.Bloom[0].Value.Frame(verticalFrames: 2);
+                spriteBatch.Draw(Textures.Bloom[0].Value, NPC.position + off - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
+                    bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, Textures.Bloom[0].Value.Size() / 2f, NPC.scale * 0.5f, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
                 var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (int)(Main.GlobalTimeWrappedHourly * 9f) % 4);
                 spriteBatch.Draw(TextureAssets.Extra[51].Value, NPC.position + off - screenPos + new Vector2(4f * -NPC.spriteDirection, NPC.height / 2f + 8f).RotatedBy(NPC.rotation),
                     auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
@@ -637,7 +637,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    var p = NPC.Center + new Vector2(NPC.direction * -50, -30f)+ Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
+                    var p = NPC.Center + new Vector2(NPC.direction * -50, -30f) + Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
                     if (Collision.SolidCollision(new Vector2(p.X - 8f, p.Y - 8f), 16, 16))
                     {
                         continue;
@@ -739,7 +739,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = AequusText.GetText("Chat.Occultist.ListenButton");
+            button = TextHelper.GetTextValue("Chat.Occultist.ListenButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)

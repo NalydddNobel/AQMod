@@ -47,6 +47,11 @@ namespace Aequus.Content.WorldGeneration
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
+            AddPass("Shinies", "Caves Test", (progress, configuration) =>
+            {
+                progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirderCaves");
+                RadonCaves.GenerateWorld();
+            }, tasks);
             AddPass("Shinies", "Radon Biome", (progress, configuration) =>
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
@@ -54,31 +59,32 @@ namespace Aequus.Content.WorldGeneration
             }, tasks);
             AddPass("Statues", "Rockman Biome", (progress, configuration) =>
             {
+                progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.Rockman");
                 RockmanGenerator.GenerateRandomLocation();
             }, tasks);
             AddPass("Beaches", "Crab Home", (progress, configuration) =>
             {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevice");
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
                 GenCrabCrevice.Generate(progress);
             }, tasks);
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>
             {
-                progress.Message = AequusText.GetText("WorldGeneration.GoreNests");
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNests");
                 GenGoreNest.Generate();
             }, tasks);
             AddPass("Pots", "Crab Pottery", (progress, configuration) =>
             {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCrevicePots");
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevicePots");
                 GenCrabCrevice.TransformPots();
             }, tasks);
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
             {
-                progress.Message = AequusText.GetText("WorldGeneration.GoreNestCleanup");
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNestCleanup");
                 GenGoreNest.Cleanup();
             }, tasks);
             AddPass("Tile Cleanup", "Crab Growth", (progress, configuration) =>
             {
-                progress.Message = AequusText.GetText("WorldGeneration.CrabCreviceGrowth");
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCreviceGrowth");
                 GenCrabCrevice.GrowPlants();
             }, tasks);
         }
@@ -256,19 +262,15 @@ namespace Aequus.Content.WorldGeneration
         }
         public static int DungeonChestItem(int type)
         {
-            switch (WorldGen.genRand.Next(4))
+            return WorldGen.genRand.Next(4) switch
             {
-                default:
-                    return ModContent.ItemType<Valari>();
-                case 1:
-                    return ModContent.ItemType<Revenant>();
-                case 2:
-                    return ModContent.ItemType<DungeonCandle>();
-                case 3:
-                    return ModContent.ItemType<PandorasBox>();
-            }
+                1 => ModContent.ItemType<Revenant>(),
+                2 => ModContent.ItemType<DungeonCandle>(),
+                3 => ModContent.ItemType<PandorasBox>(),
+                _ => ModContent.ItemType<Valari>(),
+            };
         }
-        
+
         public static bool CanPlaceStructure(int middleX, int middleY, int width, int height, int padding = 0)
         {
             return CanPlaceStructure(new Rectangle(middleX - width / 2, middleY - height / 2, width, height), padding);

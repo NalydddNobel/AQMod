@@ -42,7 +42,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             {
                 if (t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = string.Format(t.Text, AequusText.ArmorSetBonusKey);
+                    t.Text = string.Format(t.Text, TextHelper.ArmorSetBonusKey);
                 }
             }
         }

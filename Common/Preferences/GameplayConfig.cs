@@ -1,10 +1,9 @@
-﻿using Aequus.Common;
-using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
-namespace Aequus
+namespace Aequus.Common.Preferences
 {
     public class GameplayConfig : ConfigurationBase, IPostSetupContent
     {
@@ -65,20 +64,20 @@ namespace Aequus
             Text("General.EarlyMimics");
             Text("General.DamageReductionCap", new
             {
-                Item = AequusText.ItemCommand<CrownOfBlood>(),
+                Item = TextHelper.ItemCommand<CrownOfBlood>(),
             });
             Text("General.EarlyGravityGlobe", new
             {
-                Item = AequusText.ItemCommand(ItemID.GravityGlobe),
+                Item = TextHelper.ItemCommand(ItemID.GravityGlobe),
             });
             Text("General.EarlyPortalGun", new
             {
-                Item = AequusText.ItemCommand(ItemID.PortalGun),
+                Item = TextHelper.ItemCommand(ItemID.PortalGun),
             });
             Text("Recipes.VoidBag", new
             {
-                Item1 = AequusText.ItemCommand(ItemID.VoidVault),
-                Item2 = AequusText.ItemCommand(ItemID.VoidLens),
+                Item1 = TextHelper.ItemCommand(ItemID.VoidVault),
+                Item2 = TextHelper.ItemCommand(ItemID.VoidLens),
             });
         }
     }
