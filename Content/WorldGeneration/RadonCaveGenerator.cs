@@ -20,8 +20,8 @@ namespace Aequus.Content.WorldGeneration
 
         public RadonCaveGenerator()
         {
-            sizeX = 0.05f;
-            sizeY = 0.03f;
+            sizeX = 0.02f;
+            sizeY = 0.18f;
         }
 
         public void GenerateWorld()
@@ -46,9 +46,6 @@ namespace Aequus.Content.WorldGeneration
 
         public bool CreateCave(int x, int y)
         {
-            sizeX = 0.02f;
-            sizeY = 0.18f;
-
             int w = MaxWidth;
             int h = MaxHeight;
             if (!GrowGrass(x, y, w, h))
