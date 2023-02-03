@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Boss.OmegaStarite;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 namespace Aequus.Projectiles.Monster.OmegaStariteProjs
@@ -26,7 +27,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
 
         protected override bool CheckAttachmentConditions(NPC npc)
         {
-            return (int)npc.ai[0] != NPCs.Boss.OmegaStarite.ACTION_DEAD && npc.ModNPC is NPCs.Boss.OmegaStarite;
+            return (int)npc.ai[0] != OmegaStarite.ACTION_DEAD && npc.ModNPC is OmegaStarite;
         }
 
         public override void AI()
@@ -37,7 +38,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            var starite = (NPCs.Boss.OmegaStarite)Main.npc[AttachedNPC].ModNPC;
+            var starite = (OmegaStarite)Main.npc[AttachedNPC].ModNPC;
             for (int i = 0; i < starite.rings.Count; i++)
             {
                 for (int j = 0; j < starite.rings[i].amountOfSegments; j++)

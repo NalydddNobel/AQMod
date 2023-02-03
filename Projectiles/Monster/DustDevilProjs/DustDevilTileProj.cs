@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics.Primitives;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

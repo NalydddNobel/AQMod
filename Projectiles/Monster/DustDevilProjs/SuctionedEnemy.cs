@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Boss;
+﻿using Aequus.NPCs.Boss.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -78,7 +78,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                 return;
             }
             var npc = Main.npc[(int)Projectile.ai[1]];
-            if (npc.active && (int)npc.ai[0] == NPCs.Boss.DustDevil.ACTION_SUCTIONENEMIES)
+            if (npc.active && (int)npc.ai[0] == DustDevil.ACTION_SUCTIONENEMIES)
             {
                 if ((int)Projectile.ai[0] == 0)
                 {
@@ -155,12 +155,12 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
         {
             if ((int)Projectile.ai[0] != 0)
             {
-                NPCs.Boss.DustDevil.AddLegacyDraw(Projectile.whoAmI, Projectile.localAI[0]);
+                DustDevil.AddLegacyDraw(Projectile.whoAmI, Projectile.localAI[0]);
             }
         }
         public override bool PreDraw(ref Color lightColor)
         {
-            if ((int)Projectile.ai[0] == -1 || NPCs.Boss.DustDevil.CurrentlyLegacyDrawing(Projectile.localAI[0]))
+            if ((int)Projectile.ai[0] == -1 || DustDevil.CurrentlyLegacyDrawing(Projectile.localAI[0]))
             {
                 Projectile.GetDrawInfo(out var _, out var off, out var _, out var _, out int trailLength);
                 int npcTexture = NPCID.FromNetId((int)Projectile.ai[0]);

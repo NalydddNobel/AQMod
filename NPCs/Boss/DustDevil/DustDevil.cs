@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Graphics;
-using Aequus.Graphics.DustDevilEffects;
 using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
@@ -16,7 +15,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Boss
+namespace Aequus.NPCs.Boss.DustDevil
 {
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
@@ -38,7 +37,7 @@ namespace Aequus.NPCs.Boss
         public int SecondaryAction { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
         public float DirectActionTimer { get => NPC.ai[3]; set => NPC.ai[3] = value; }
 
-        public DustDevilTornadoManipulator Tornado;
+        public TornadoManipulator Tornado;
 
         public int effectsTimer;
         public int auraTimer;
@@ -164,14 +163,14 @@ namespace Aequus.NPCs.Boss
             {
                 if (Tornado == null || !Tornado.IsActive())
                 {
-                    Tornado = new DustDevilTornadoManipulator()
+                    Tornado = new TornadoManipulator()
                     {
                         DustDevil = NPC,
                         range = 2000f,
                         pull = 0.001f,
                     };
 
-                    DustDevilParticleSystem.Manipulators.Add(Tornado);
+                    ParticleSystem.Manipulators.Add(Tornado);
                 }
                 Tornado.Position = new Vector3(NPC.Center, 0f);
                 Tornado.timeLeft = 4;
@@ -184,8 +183,8 @@ namespace Aequus.NPCs.Boss
                     {
                         continue;
                     }
-                    var p = new DDParticle(loc, new Vector3(Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), Color.White * 0.8f, Main.rand.NextFloat(0.75f, 1.8f), Main.rand.NextFloat(MathHelper.TwoPi));
-                    DustDevilParticleSystem.AddParticle(p);
+                    var p = new DustParticle(loc, new Vector3(Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextFloat(-8f, 8f)), Color.White * 0.8f, Main.rand.NextFloat(0.75f, 1.8f), Main.rand.NextFloat(MathHelper.TwoPi));
+                    ParticleSystem.AddParticle(p);
 
                     if (Main.rand.NextBool(12))
                     {
@@ -197,10 +196,10 @@ namespace Aequus.NPCs.Boss
                         var v = new Vector3(Main.rand.NextVector2Square(-3f, 3f), Main.rand.NextFloat(-3f, 3f));
                         for (int j = 0; j < 4; j++)
                         {
-                            p = new DDParticle(loc - v * j * 0.2f, v, Color.White, Main.rand.NextFloat(0.75f, 1.5f), Main.rand.NextFloat(MathHelper.TwoPi));
+                            p = new DustParticle(loc - v * j * 0.2f, v, Color.White, Main.rand.NextFloat(0.75f, 1.5f), Main.rand.NextFloat(MathHelper.TwoPi));
                             p.frame.X = 0;
                             p.OnAdd();
-                            DustDevilParticleSystem.AddParticle(p);
+                            ParticleSystem.AddParticle(p);
                         }
                     }
                 }
@@ -372,7 +371,7 @@ namespace Aequus.NPCs.Boss
                 NPC.velocity = (Main.player[NPC.target].Center + new Vector2(0f, -300f) - NPC.Center) / 40f;
                 NPC.netUpdate = true;
             }
-            if ((ActionTimer >= 90 && ActionTimer < 120) || (ActionTimer >= 150 && ActionTimer < 180))
+            if (ActionTimer >= 90 && ActionTimer < 120 || ActionTimer >= 150 && ActionTimer < 180)
             {
                 if (!CheckTargets())
                 {

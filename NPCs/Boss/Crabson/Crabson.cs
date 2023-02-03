@@ -24,7 +24,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Boss
+namespace Aequus.NPCs.Boss.Crabson
 {
     [AutoloadBossHead]
     public class Crabson : AequusBoss
@@ -38,8 +38,8 @@ namespace Aequus.NPCs.Boss
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
 
         public static int BossHeadID_Claw { get; private set; }
-        public Asset<Texture2D> ClawTexture => ModContent.Request<Texture2D>(Texture + "Claw", AssetRequestMode.ImmediateLoad);
-        public Asset<Texture2D> ClawChainTexture => ModContent.Request<Texture2D>(Texture + "Claw_Chain", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> ClawTexture => ModContent.Request<Texture2D>($"{Texture}Claw", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> ClawChainTexture => ModContent.Request<Texture2D>($"{Texture}Claw_Chain", AssetRequestMode.ImmediateLoad);
 
         public int leftClaw;
         public int rightClaw;
@@ -58,7 +58,7 @@ namespace Aequus.NPCs.Boss
         {
             if (!Main.dedServ)
             {
-                BossHeadID_Claw = Mod.AddBossHeadTexture(this.GetPath() + "Claw_Head_Boss", -1);
+                BossHeadID_Claw = Mod.AddBossHeadTexture($"{Texture}Claw_Head_Boss", -1);
                 music = new ConfiguredMusicData(MusicID.Boss3, MusicID.OtherworldlyBoss1);
             }
         }

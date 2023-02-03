@@ -2,9 +2,9 @@
 using System;
 using Terraria;
 
-namespace Aequus.Graphics.DustDevilEffects
+namespace Aequus.NPCs.Boss.DustDevil
 {
-    public class DustDevilTornadoManipulator : IDDParticleManipulator
+    public class TornadoManipulator : IParticleManipulator
     {
         public Vector3 Position { get; set; }
 
@@ -15,7 +15,7 @@ namespace Aequus.Graphics.DustDevilEffects
         public float pull;
         public float range;
 
-        public void InteractWithParticle(DDParticle p)
+        public void InteractWithParticle(DustParticle p)
         {
             var diff = Position - p.Position;
             float m = (float)Math.Pow(1f - diff.Length() / 2000f, 2f) * p.Scale;
@@ -50,7 +50,7 @@ namespace Aequus.Graphics.DustDevilEffects
                 p.Velocity = Vector3.Normalize(Vector3.Lerp(p.Velocity, v * p.Scale, 0.05f)) * 20f * p.Scale;
             }
             p.Velocity += new Vector3(DustDevil.velocity * 0.4f, 0f) * m;
-            if (p.Scale < 1.5f && p.Scale > 0.4f && Main.rand.NextBool(DustDevilParticleSystem.Particles.Count / 200 + 6 + p.timeAlive / 30))
+            if (p.Scale < 1.5f && p.Scale > 0.4f && Main.rand.NextBool(ParticleSystem.Particles.Count / 200 + 6 + p.timeAlive / 30))
                 p.Scale += 0.1f * m;
         }
 

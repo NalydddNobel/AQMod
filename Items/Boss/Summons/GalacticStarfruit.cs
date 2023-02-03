@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.AnalysisQuests;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

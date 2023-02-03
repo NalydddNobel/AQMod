@@ -34,7 +34,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
-namespace Aequus.NPCs.Boss
+namespace Aequus.NPCs.Boss.OmegaStarite
 {
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
@@ -936,7 +936,7 @@ namespace Aequus.NPCs.Boss
                     r.Inflate(24, 24);
                     for (int i = 0; i < Main.maxItems; i++)
                     {
-                        if (Main.item[i].active&& Main.item[i].type == ItemID.Burger)
+                        if (Main.item[i].active && Main.item[i].type == ItemID.Burger)
                         {
                             if (r.Intersects(Main.item[i].getRect()))
                             {
@@ -1145,7 +1145,7 @@ namespace Aequus.NPCs.Boss
                             if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 float lifePercent = NPC.life / (float)NPC.lifeMax;
-                                if (Main.getGoodWorld || (Main.expertMode && lifePercent < 0.75f) || lifePercent < 0.6f)
+                                if (Main.getGoodWorld || Main.expertMode && lifePercent < 0.75f || lifePercent < 0.6f)
                                 {
                                     SoundEngine.PlaySound(SoundID.DD2_DarkMageHealImpact, NPC.Center);
                                     int type = ModContent.ProjectileType<OmegaStariteBullet>();
@@ -1316,7 +1316,7 @@ namespace Aequus.NPCs.Boss
             }
             if (NPC.localAI[0] > delay)
             {
-                if (Main.getGoodWorld || (NPC.life / (float)NPC.lifeMax) < 0.75f)
+                if (Main.getGoodWorld || NPC.life / (float)NPC.lifeMax < 0.75f)
                 {
                     float speed = 7.5f;
                     if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -1576,7 +1576,7 @@ namespace Aequus.NPCs.Boss
             {
                 DrawDeathLightRays(intensity, Main.item[(int)NPC.ai[1]].Center - screenPos, spotlight, spotlightColor, spotlightOrig, deathSpotlightScale, NPC.localAI[3] * 0.05f);
                 float decMult = Math.Clamp(2f - intensity * 0.4f, 0f, 1f);
-                    secretIntensity *= decMult;
+                secretIntensity *= decMult;
                 byte a = drawColor.A;
                 drawColor *= secretIntensity;
                 drawColor.A = a;
@@ -1590,9 +1590,9 @@ namespace Aequus.NPCs.Boss
                 {
                     for (int j = 0; j < intensity * layerDepth; j++)
                     {
-                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f + xOff * 2f * j, 0f), 
+                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f + xOff * 2f * j, 0f),
                             omegiteFrame, clr3 * layerDepth, rotation, origin1, scale, SpriteEffects.None, 0f);
-                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f - xOff * 2f * j, 0f), 
+                        spriteBatch.Draw(omegiteTexture, position + new Vector2(2f - xOff * 2f * j, 0f),
                             omegiteFrame, clr3 * layerDepth, rotation, origin1, scale, SpriteEffects.None, 0f);
                     }
                 });
@@ -1641,7 +1641,7 @@ namespace Aequus.NPCs.Boss
             //}
             spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * secretIntensity, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + intensity, SpriteEffects.None, 0f);
 
-            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - (intensity)) * secretIntensity, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
+            spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * (1f - intensity) * secretIntensity, NPC.rotation, spotlightOrig, NPC.scale * 2.5f + (intensity + 1), SpriteEffects.None, 0f);
 
             if (!NPC.IsABestiaryIconDummy)
             {
@@ -1694,7 +1694,7 @@ namespace Aequus.NPCs.Boss
         }
         public void DrawDeathLightRays(float intensity, Vector2 drawPos, Texture2D spotlight, Color spotlightColor, Vector2 spotlightOrig, float deathSpotlightScale, float deathTime)
         {
-            if (intensity > 3f || (Action == -100 && intensity > 2f))
+            if (intensity > 3f || Action == -100 && intensity > 2f)
             {
                 float intensity2 = intensity - 2f;
                 float raysScaler = intensity2;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics.Primitives;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -66,7 +67,7 @@ namespace Aequus.Projectiles.Monster
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            var offset = normal * NPCs.Boss.OmegaStarite.DIAMETER;
+            var offset = normal * OmegaStarite.DIAMETER;
             var end = Projectile.Center + offset + normal * DEATHRAY_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + offset, end, DEATHRAY_SIZE * Projectile.scale, ref _);
         }

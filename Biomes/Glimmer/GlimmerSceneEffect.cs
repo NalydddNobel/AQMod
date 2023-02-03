@@ -1,6 +1,7 @@
 ﻿using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

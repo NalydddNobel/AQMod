@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Graphics.DustDevilEffects
+namespace Aequus.NPCs.Boss.DustDevil
 {
-    public class DDParticle
+    public class DustParticle
     {
         public static Texture2D Texture;
 
@@ -29,11 +29,11 @@ namespace Aequus.Graphics.DustDevilEffects
         public Vector2 Dimension2D => new Vector2(Position.X, Position.Y);
         public float Z => Position.Z;
 
-        public List<IDDParticleManipulator> activeManipulators;
+        public List<IParticleManipulator> activeManipulators;
 
         public bool ShouldBeRemovedFromRenderer { get; private set; }
 
-        public DDParticle(Vector3 position, Vector3 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        public DustParticle(Vector3 position, Vector3 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
         {
             Position = position;
             Velocity = velocity;
@@ -42,7 +42,7 @@ namespace Aequus.Graphics.DustDevilEffects
             Rotation = rotation;
             Identifier = NextIdentifier;
             NextIdentifier++;
-            activeManipulators = new List<IDDParticleManipulator>();
+            activeManipulators = new List<IParticleManipulator>();
             OnAdd();
         }
 
@@ -82,7 +82,7 @@ namespace Aequus.Graphics.DustDevilEffects
         public virtual void UpdateManipulators()
         {
             activeManipulators.Clear();
-            foreach (var m in DustDevilParticleSystem.Manipulators)
+            foreach (var m in ParticleSystem.Manipulators)
             {
                 if (Vector3.Distance(Position, m.Position) < m.InteractionRange)
                 {

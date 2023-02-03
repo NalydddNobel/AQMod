@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,12 +34,12 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
             Projectile.scale = Main.getGoodWorld ? 1f : 0.75f;
         }
 
-        private const float size = NPCs.Boss.OmegaStarite.DIAMETER * 4f;
+        private const float size = OmegaStarite.DIAMETER * 4f;
 
         public override void AI()
         {
             var npc = Main.npc[(int)Projectile.ai[0]];
-            var omegaStarite = (NPCs.Boss.OmegaStarite)npc.ModNPC;
+            var omegaStarite = (OmegaStarite)npc.ModNPC;
             if (!npc.active)
             {
                 Projectile.Kill();
@@ -68,7 +69,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            var offset = normal * NPCs.Boss.OmegaStarite.DIAMETER;
+            var offset = normal * NPCs.Boss.OmegaStarite.OmegaStarite.DIAMETER;
             var end = Projectile.Center + offset + normal * NORMAL_BEAM_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + offset, end, size * Projectile.scale, ref _);
         }
@@ -80,7 +81,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
             var frame = new Rectangle(0, 0, texture.Width, texture.Height / Main.projFrames[Projectile.type]);
             float timeSin = (float)(Math.Sin(Main.GlobalTimeWrappedHourly) + 1f) / 2f;
             Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.OmegaStarite.DIAMETER;
+            Vector2 basePosition = drawPosition + normalizedRotation * NPCs.Boss.OmegaStarite.OmegaStarite.DIAMETER;
             Vector2 origin = frame.Size() / 2f;
             Color beamColor = GlimmerBiome.CosmicEnergyColor * 0.065f;
             float rotation = Projectile.rotation - MathHelper.PiOver2;
@@ -110,7 +111,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
             Vector2 dustVelocityNormal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation - MathHelper.PiOver2);
             Vector2 dustPositionOffset = dustVelocityNormal * (size / 2 - 60f) * baseScale;
             int type = ModContent.DustType<MonoDust>();
-            Vector2 spawnBase = Projectile.Center + normalizedRotation * (NPCs.Boss.OmegaStarite.DIAMETER + 30f);
+            Vector2 spawnBase = Projectile.Center + normalizedRotation * (NPCs.Boss.OmegaStarite.OmegaStarite.DIAMETER + 30f);
             for (int i = 0; i < dustAmount; i++)
             {
                 float x = Main.rand.NextFloat(0f, length) * 60f;

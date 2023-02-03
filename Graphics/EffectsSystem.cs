@@ -3,9 +3,8 @@ using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.DustDevil;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -275,7 +274,7 @@ namespace Aequus.Graphics
                 {
                     GlimmerSceneEffect.DrawUltimateSword();
 
-                    foreach (var p in DustDevilParticleSystem.CachedBackParticles)
+                    foreach (var p in ParticleSystem.CachedBackParticles)
                     {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }
@@ -334,7 +333,7 @@ namespace Aequus.Graphics
                 }
                 else
                 {
-                    foreach (var p in DustDevilParticleSystem.CachedFrontParticles)
+                    foreach (var p in ParticleSystem.CachedFrontParticles)
                     {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }

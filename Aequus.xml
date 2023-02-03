@@ -177,7 +177,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedCrabson">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson.Crabson"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUpriser">
@@ -197,12 +197,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedDustDevil">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil.DustDevil"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.shadowOrbsBrokenTotal">
@@ -742,6 +742,31 @@
                 Whether it was successful at placing a sentry
             </summary>
         </member>
+        <member name="P:Aequus.Items.AequusRecipes.ConditionOmegaStarite">
+            <summary>
+            A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyEctoplasm">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Misc.Materials.Hexoplasm"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.XenonMushroom"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyFruit">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
+            </summary>
+        </member>
         <member name="M:Aequus.Items.Consumables.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
             
@@ -958,7 +983,7 @@
             Helper class for setting up bestiary entries
             </summary>
         </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>

@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Graphics.DustDevilEffects
+namespace Aequus.NPCs.Boss.DustDevil
 {
-    public interface IDDParticleManipulator
+    public interface IParticleManipulator
     {
         Vector3 Position { get; set; }
         float InteractionRange { get; }
-        void InteractWithParticle(DDParticle p);
+        void InteractWithParticle(DustParticle p);
         bool IsActive();
     }
 }

@@ -12,7 +12,7 @@ using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Jeweled;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.Crabson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ShopQuotesMod;

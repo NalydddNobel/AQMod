@@ -2,7 +2,9 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Tools;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.Crabson;
+using Aequus.NPCs.Boss.DustDevil;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;

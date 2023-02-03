@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Weapons.Melee;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Terraria.ID;
 using Terraria.ModLoader;
 

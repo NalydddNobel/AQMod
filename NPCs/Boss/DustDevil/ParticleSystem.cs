@@ -7,18 +7,18 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics.DustDevilEffects
+namespace Aequus.NPCs.Boss.DustDevil
 {
-    public class DustDevilParticleSystem : ModSystem
+    public class ParticleSystem : ModSystem
     {
-        public static List<IDDParticleManipulator> Manipulators;
-        public static List<DDParticle> Particles;
-        public static List<DDParticle> CachedBackParticles;
-        public static List<DDParticle> CachedFrontParticles;
+        public static List<IParticleManipulator> Manipulators;
+        public static List<DustParticle> Particles;
+        public static List<DustParticle> CachedBackParticles;
+        public static List<DustParticle> CachedFrontParticles;
 
         public static int HardUpdate;
 
-        public static void Layer(DDParticle p)
+        public static void Layer(DustParticle p)
         {
             if (p.Z < 0f)
             {
@@ -28,7 +28,7 @@ namespace Aequus.Graphics.DustDevilEffects
             CachedFrontParticles.Add(p);
         }
 
-        public static void AddParticle(DDParticle p)
+        public static void AddParticle(DustParticle p)
         {
             Particles.Add(p);
             p.UpdateManipulators();
@@ -40,11 +40,11 @@ namespace Aequus.Graphics.DustDevilEffects
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                Particles = new List<DDParticle>();
-                CachedBackParticles = new List<DDParticle>();
-                CachedFrontParticles = new List<DDParticle>();
-                Manipulators = new List<IDDParticleManipulator>();
-                DDParticle.Texture = ModContent.Request<Texture2D>("Aequus/NPCs/Boss/DustDevilDust", AssetRequestMode.ImmediateLoad).Value;
+                Particles = new List<DustParticle>();
+                CachedBackParticles = new List<DustParticle>();
+                CachedFrontParticles = new List<DustParticle>();
+                Manipulators = new List<IParticleManipulator>();
+                DustParticle.Texture = ModContent.Request<Texture2D>(AequusHelpers.GetPath<DustParticle>(), AssetRequestMode.ImmediateLoad).Value;
             }
         }
 

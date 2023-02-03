@@ -10,7 +10,6 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables;
-using Aequus.NPCs.Boss;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
@@ -35,6 +34,7 @@ using Aequus.Projectiles.Magic;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Common.ModPlayers;
+using Aequus.NPCs.Boss.OmegaStarite;
 
 namespace Aequus
 {

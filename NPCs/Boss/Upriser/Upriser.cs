@@ -1,8 +1,8 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Boss
+namespace Aequus.NPCs.Boss.Upriser
 {
-    public class Uprsier : ModNPC
+    public class Upriser : ModNPC
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
