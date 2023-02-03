@@ -59,12 +59,7 @@ namespace Aequus.Items.Armor.Passive
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.WizardHat)
-                .AddIngredient(ItemID.FallenStar, 5)
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(ItemID.WizardHat, ModContent.ItemType<MoonlunaHat>(), condition: null);
         }
     }
 }

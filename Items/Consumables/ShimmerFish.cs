@@ -39,12 +39,7 @@ namespace Aequus.Items.Consumables
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnyQuestFish)
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
     }
 }

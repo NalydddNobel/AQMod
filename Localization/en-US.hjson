@@ -52,6 +52,10 @@ Mods: {
 			}
 		}
 		
+		RecipeCondition: {
+			OmegaStarite: Craftable after Omega Starite has been defeated
+		}
+
 		DropCondition: {
 			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}
