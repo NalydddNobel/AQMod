@@ -754,7 +754,7 @@
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Nature.MossMushrooms.XenonMushroom"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Moss.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Moss.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Moss.XenonMushroom"/>.
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">

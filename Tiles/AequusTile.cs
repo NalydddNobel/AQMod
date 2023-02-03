@@ -6,7 +6,7 @@ using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Aequus.Tiles.Moss;
 
 namespace Aequus.Tiles
 {
@@ -628,6 +629,47 @@ namespace Aequus.Tiles
             return true;
         }
 
+        public static void GemFrame(int i, int j, params int[] validTiles)
+        {
+            var tile = Framing.GetTileSafely(i, j);
+            var top = Main.tile[i, j - 1];
+            var bottom = Framing.GetTileSafely(i, j + 1);
+            var left = Main.tile[i - 1, j];
+            var right = Main.tile[i + 1, j];
+            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
+            {
+                if (tile.TileFrameY < 54 || tile.TileFrameY > 90)
+                {
+                    tile.TileFrameY = (short)(54 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && validTiles.ContainsAny(bottom.TileType) && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType]))
+            {
+                if (tile.TileFrameY < 0 || tile.TileFrameY > 36)
+                {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (left != null && left.HasTile && left.TileType >= 0 && validTiles.ContainsAny(left.TileType) && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType])
+            {
+                if (tile.TileFrameY < 108 || tile.TileFrameY > 54)
+                {
+                    tile.TileFrameY = (short)(108 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            if (right != null && right.HasTile && right.TileType >= 0 && validTiles.ContainsAny(right.TileType) && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType])
+            {
+                if (tile.TileFrameY < 162 || tile.TileFrameY > 198)
+                {
+                    tile.TileFrameY = (short)(162 + WorldGen.genRand.Next(3) * 18);
+                }
+                return;
+            }
+            WorldGen.KillTile(i, j);
+        }
         public static void GemFrame(int i, int j)
         {
             var tile = Framing.GetTileSafely(i, j);

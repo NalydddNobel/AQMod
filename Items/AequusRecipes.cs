@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable.Nature.MossMushrooms;
+using Aequus.Items.Placeable.Moss;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

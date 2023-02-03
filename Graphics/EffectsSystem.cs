@@ -76,6 +76,7 @@ namespace Aequus.Graphics
         /// </summary>
         public static ParticleRenderer ParticlesAbovePlayers { get; private set; }
         public static ParticleRenderer ParticlesAboveDust { get; private set; }
+        public static ParticleRenderer ParticlesAboveLiquids { get; private set; }
 
         public static LegacyDrawList ProjsBehindProjs { get; private set; }
         public static LegacyDrawList ProjsBehindTiles { get; private set; }
@@ -93,6 +94,7 @@ namespace Aequus.Graphics
             {
                 return;
             }
+            Overlays.Scene["Aequus:ForegroundWater"] = new ForegroundWaterParticlesOverlay(EffectPriority.Low, RenderLayers.ForegroundWater);
             VerticalGradient = new StaticMiscShaderInfo("MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
             NPCsBehindAllNPCs = new DrawList<NPC>();
             ProjsBehindProjs = new LegacyDrawList();
@@ -104,6 +106,7 @@ namespace Aequus.Graphics
             ParticlesBehindPlayers = new ParticleRenderer();
             ParticlesAbovePlayers = new ParticleRenderer();
             ParticlesAboveDust = new ParticleRenderer();
+            ParticlesAboveLiquids = new ParticleRenderer();
             if (Renderers == null)
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
@@ -165,6 +168,16 @@ namespace Aequus.Graphics
                 ParticlesBehindProjs.Update();
                 ParticlesBehindPlayers.Update();
                 ParticlesAbovePlayers.Update();
+                ParticlesAboveLiquids.Update();
+                if (ParticlesAboveLiquids.Particles.Count > 0)
+                {
+                    if (!Overlays.Scene[ForegroundWaterParticlesOverlay.Key].IsVisible())
+                        Overlays.Scene.Activate(ForegroundWaterParticlesOverlay.Key);
+                }
+                else if (Overlays.Scene[ForegroundWaterParticlesOverlay.Key].IsVisible())
+                {
+                    Overlays.Scene.Deactivate(ForegroundWaterParticlesOverlay.Key);
+                }
                 GamestarRenderer.Particles.Update();
             }
         }

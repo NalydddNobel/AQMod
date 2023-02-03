@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Placeable.Furniture;
-using Aequus.Items.Placeable.Furniture.Paintings;
+﻿using Aequus.Items.Placeable.Furniture.Paintings;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

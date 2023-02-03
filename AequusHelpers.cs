@@ -1258,6 +1258,23 @@ namespace Aequus
             return (entry.Info[0] as NPCNetIdBestiaryInfoElement).NetId;
         }
 
+        public static Color GetBrightestLight(Point tilePosition, int tilesSize)
+        {
+            var lighting = Color.Black;
+            int realSize = tilesSize / 2;
+            tilePosition.Fluffize(10 + realSize);
+            for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
+            {
+                for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
+                {
+                    var v = Lighting.GetColor(i, j);
+                    lighting.R = Math.Max(v.R, lighting.R);
+                    lighting.G = Math.Max(v.G, lighting.G);
+                    lighting.B = Math.Max(v.B, lighting.B);
+                }
+            }
+            return lighting;
+        }
         /// <summary>
         /// Gets the mean of light surrounding a point
         /// </summary>
@@ -1281,7 +1298,6 @@ namespace Aequus
             if (amount == 0f)
                 return Color.White;
             return new Color(lighting / amount);
-
         }
         /// <summary>
         /// Gets the mean of light surrounding a point

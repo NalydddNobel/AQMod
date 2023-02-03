@@ -39,6 +39,8 @@ namespace Aequus.Particles
         
         protected void SetTexture(TextureInfo textureInfo, int frames = 3)
         {
+            if (textureInfo == null)
+                return;
             texture = textureInfo.Texture.Value;
             frame = textureInfo.Frame;
             frame.Y = frame.Height * Main.rand.Next(frames);

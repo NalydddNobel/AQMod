@@ -7,7 +7,7 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Projectiles;
 using Aequus.Tiles;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Blocks;
 using Aequus.UI;
 using System.Reflection;
 using Terraria;

@@ -13,7 +13,7 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
