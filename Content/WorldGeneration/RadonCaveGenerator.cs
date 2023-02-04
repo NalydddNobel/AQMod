@@ -107,7 +107,7 @@ namespace Aequus.Content.WorldGeneration
                                         if (!Main.tile[i + m, j + n].IsFullySolid())
                                         {
                                             WorldGen.PlaceTile(i, j, ModContent.TileType<RadonMossTile>());
-                                            RadonMossTile.GrowMoss(i, j);
+                                            RadonMossTile.GrowLongMoss(i, j);
                                             grewGrass = true;
                                             goto NextTile;
                                         }

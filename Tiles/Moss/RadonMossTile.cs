@@ -10,7 +10,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Tiles.Moss
 {
-    public class RadonMossTile : ModTile, ISpecialTileRenderer
+    public class RadonMossTile : ModTile, ISpecialTileRenderer, TileHooks.IDontRunVanillaRandomUpdate, TileHooks.IOnPlaceTile
     {
         public override void SetStaticDefaults()
         {
@@ -86,10 +86,12 @@ namespace Aequus.Tiles.Moss
 
         public override void RandomUpdate(int i, int j)
         {
-            GrowMoss(i, j);
+            GrowLongMoss(i, j);
+            AequusTile.SpreadCustomGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
+            AequusTile.SpreadCustomGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
         }
 
-        public static void GrowMoss(int i, int j)
+        public static void GrowLongMoss(int i, int j)
         {
             int radonMossGrass = ModContent.TileType<RadonMossGrass>();
             for (int k = -1; k <= 1; k += 2)
@@ -108,6 +110,16 @@ namespace Aequus.Tiles.Moss
                     return;
                 }
             }
+        }
+
+        public virtual bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style)
+        {
+            if (Main.tile[i, j].TileType == TileID.GrayBrick)
+            {
+                Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+                return true;
+            }
+            return null;
         }
     }
 }

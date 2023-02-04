@@ -286,14 +286,10 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
 
-            for (int i = 0; i < 2; i++)
+            var caverPoint = WorldGen.genRand.Next(validCircles);
+            if (caverPoint.Y > location.Y + 80 && WorldGen.genRand.NextBool(3))
             {
-                if (WorldGen.genRand.NextBool())
-                {
-                    var caverPoint = WorldGen.genRand.Next(validCircles);
-                    if (caverPoint.Y > location.Y + 80)
-                        WorldGen.Caverer(caverPoint.X, caverPoint.Y);
-                }
+                WorldGen.Caverer(caverPoint.X, caverPoint.Y);
             }
             return true;
         }
@@ -574,6 +570,12 @@ namespace Aequus.Content.WorldGeneration
             arr[index++].stack = rand.Next(20, 91);
         }
 
+        public void FixSand()
+        {
+            int sizeX = size * 2;
+            var leftX = LeftX(sizeX);
+            FixSand(leftX, sizeX);
+        }
         public void FixSand(int leftX, int sizeX)
         {
             for (int i = leftX; i < leftX + sizeX; i++)
@@ -731,8 +733,8 @@ namespace Aequus.Content.WorldGeneration
 
             for (int k = 0; k < size * 128; k++)
             {
-                int caveX = x + (int)WorldGen.genRand.NextFloat(-size * 1.33f, size * 1.33f);
-                int caveY = y + WorldGen.genRand.Next(-10, (int)(size * 3f));
+                int caveX = x + (int)WorldGen.genRand.NextFloat(-size * 0.85f, size * 0.85f);
+                int caveY = y + WorldGen.genRand.Next(55, (int)(size * 1.7f));
                 int minScale = WorldGen.genRand.Next(4, 8);
                 if (WorldGen.InWorld(x, y, 30) && GenerateCreviceCave(caveX, caveY, minScale, minScale + WorldGen.genRand.Next(4, 18), WorldGen.genRand.Next(80, 250)))
                 {
@@ -752,7 +754,7 @@ namespace Aequus.Content.WorldGeneration
                 v = WorldGen.digTunnel((int)v.X, (int)v.Y, dir * 2f, -1.33f, 4, WorldGen.genRand.Next(5, 9), Wet: false);
             for (int k = 0; k < 7; k++)
                 v = WorldGen.digTunnel((int)v.X, (int)v.Y, dir * 0.3f, WorldGen.genRand.Next(1, 3), 10, WorldGen.genRand.Next(3, 5), Wet: true);
-            for (int k = 0; k < 20; k++)
+            for (int k = 0; k < size / 7; k++)
                 v = WorldGen.digTunnel((int)v.X, (int)v.Y, WorldGen.genRand.Next(-2, 3), WorldGen.genRand.Next(1, 3), 10, WorldGen.genRand.Next(3, 5), Wet: true);
         }
 

@@ -41,6 +41,11 @@ namespace Aequus.Content.WorldGeneration
             GenGoreNest = new GoreNestGenerator();
         }
 
+        public override void AddRecipeGroups()
+        {
+            RockmanGenerator.PopulateInvalidTiles();
+        }
+
         public override void Unload()
         {
             CaveVariety = null;
@@ -77,6 +82,10 @@ namespace Aequus.Content.WorldGeneration
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
                 GenCrabCrevice.Generate(progress);
+            }, tasks);
+            AddPass("Gems", "Crab Sand Fix", (progress, configuration) =>
+            {
+                GenCrabCrevice.FixSand();
             }, tasks);
             AddPass("Create Ocean Caves", "Crab Growth", (progress, configuration) =>
             {

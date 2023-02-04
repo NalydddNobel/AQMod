@@ -9,31 +9,37 @@ namespace Aequus.Content.WorldGeneration
 {
     public class RockmanChestGenerator
     {
-        public void GenerateRandomLocation()
+        public bool[] validTiles;
+
+        public void PopulateInvalidTiles()
         {
-            int spawnedCount = 0;
-            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
-            var invalidTiles = new bool[TileLoader.TileCount];
-            TileID.Sets.GeneralPlacementTiles.CopyTo(invalidTiles, 0);
-            invalidTiles[TileID.MushroomGrass] = false;
-            invalidTiles[TileID.MushroomBlock] = false;
-            invalidTiles[TileID.MarbleBlock] = false;
-            invalidTiles[TileID.Marble] = false;
-            invalidTiles[TileID.GraniteBlock] = false;
-            invalidTiles[TileID.Granite] = false;
+            validTiles = new bool[TileLoader.TileCount];
+            TileID.Sets.GeneralPlacementTiles.CopyTo(validTiles, 0);
+            validTiles[TileID.MushroomGrass] = false;
+            validTiles[TileID.MushroomBlock] = false;
+            validTiles[TileID.MarbleBlock] = false;
+            validTiles[TileID.Marble] = false;
+            validTiles[TileID.GraniteBlock] = false;
+            validTiles[TileID.Granite] = false;
             for (int i = 0; i < TileLoader.TileCount; i++)
             {
                 if (Main.tileSand[i] || TileID.Sets.IcesSnow[i] || TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i])
                 {
-                    invalidTiles[i] = false;
+                    validTiles[i] = false;
                 }
             }
+        }
+
+        public void GenerateRandomLocation()
+        {
+            int spawnedCount = 0;
+            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
             for (int k = 0; k < 100000 && spawnedCount < amt; k++)
             {
                 var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
 
-                if (WorldGen.structures?.CanPlace(areaForGenerating, invalidTiles, 8) == false)
+                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
                     continue;
 
                 WorldGen.structures.AddStructure(areaForGenerating);

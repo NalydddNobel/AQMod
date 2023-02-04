@@ -70,8 +70,44 @@ namespace Aequus.Tiles
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.WorldGen.PlaceTile += WorldGen_PlaceTile;
+            On.Terraria.WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
+            On.Terraria.WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
             On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
+        }
+
+        private static bool WorldGen_PlaceTile(On.Terraria.WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style)
+        {
+            if (Type >= TileID.Count && TileLoader.GetTile(Type) is TileHooks.IOnPlaceTile onPlaceTile)
+            {
+                var val = onPlaceTile.OnPlaceTile(i, j, mute, forced, plr, style);
+                if (val.HasValue)
+                    return val.Value;
+            }
+            return orig(i, j, Type, mute, forced, plr, style);
+        }
+
+        private static void WorldGen_UpdateWorld_UndergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_UndergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        {
+            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
+            {
+                TileLoader.RandomUpdate(i, j, Main.tile[i, j].TileType);
+                WallLoader.RandomUpdate(i, j, Main.tile[i, j].WallType);
+                return;
+            }
+            orig(i, j, checkNPCSpawns, wallDist);
+        }
+
+        private static void WorldGen_UpdateWorld_OvergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        {
+            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
+            {
+                TileLoader.RandomUpdate(i, j, Main.tile[i, j].TileType);
+                WallLoader.RandomUpdate(i, j, Main.tile[i, j].WallType);
+                return;
+            }
+            orig(i, j, checkNPCSpawns, wallDist);
         }
 
         private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
@@ -743,6 +779,27 @@ namespace Aequus.Tiles
                 }
             }
             return 0;
+        }
+
+        public static void SpreadCustomGrass(int i, int j, int dirt, int grass, int spread = 0, byte color = 0)
+        {
+            if (WorldGen.InWorld(i, j, 6))
+            {
+                for (int k = i - 1; k <= i + 1; k++)
+                {
+                    for (int l = j - 1; l <= j + 1; l++)
+                    {
+                        if (WorldGen.genRand.NextBool(8))
+                        {
+                            if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt && GrowGrass(k, l, grass))
+                            {
+                                WorldGen.SquareTileFrame(k, l, resetFrame: true);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
