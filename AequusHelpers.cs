@@ -90,6 +90,19 @@ namespace Aequus
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static float NextFloat(this FastRandom rand)
+        {
+            return (float)rand.NextDouble();
+        }
+        public static float NextFloat(this FastRandom rand, float max)
+        {
+            return (float)(rand.NextDouble() * max);
+        }
+        public static float NextFloat(this FastRandom rand, float min, float max)
+        {
+            return (float)(rand.NextDouble() * (max - min) + min);
+        }
+
         public static int QualityFromFPS(int highQ, int lowQ)
         {
             return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));
@@ -2248,7 +2261,7 @@ namespace Aequus
             return obj2;
         }
 
-        public static NPC CreateSudo(NPC npc)
+        public static NPC SudoClone(NPC npc)
         {
             var npc2 = new NPC();
             npc2.SetDefaults(npc.type);

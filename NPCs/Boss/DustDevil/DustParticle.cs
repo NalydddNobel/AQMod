@@ -82,7 +82,7 @@ namespace Aequus.NPCs.Boss.DustDevil
         public virtual void UpdateManipulators()
         {
             activeManipulators.Clear();
-            foreach (var m in ParticleSystem.Manipulators)
+            foreach (var m in DustDevilParticleSystem.Manipulators)
             {
                 if (Vector3.Distance(Position, m.Position) < m.InteractionRange)
                 {

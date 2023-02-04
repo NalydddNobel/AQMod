@@ -1,0 +1,5 @@
+-The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom tiles
+-Added two new Cave varients: Weird, and Tall
+-Greatly increased the speed of the "Growing Crabs" World Generation step
+-Fixed the Crab Crevice occassionally breaking into the Dungeon
+-Added a surface tunnel which leads into the crab crevice

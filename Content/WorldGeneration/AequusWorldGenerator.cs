@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Debuff;
+﻿using Aequus.Common.Preferences;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
@@ -52,12 +53,15 @@ namespace Aequus.Content.WorldGeneration
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
-            AddPass("Wavy Caves", "Cave Variety", (progress, configuration) =>
+            if (GameplayConfig.Instance.CaveVariety > 0f)
             {
-                progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirderCaves");
-                CaveVariety.TallCaves();
-                CaveVariety.WeirdCaves();
-            }, tasks);
+                AddPass("Wavy Caves", "Cave Variety", (progress, configuration) =>
+                {
+                    progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirderCaves");
+                    CaveVariety.TallCaves();
+                    CaveVariety.WeirdCaves();
+                }, tasks);
+            }
             AddPass("Shinies", "Radon Biome", (progress, configuration) =>
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
@@ -68,30 +72,32 @@ namespace Aequus.Content.WorldGeneration
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.Rockman");
                 RockmanGenerator.GenerateRandomLocation();
             }, tasks);
-            AddPass("Beaches", "Crab Home", (progress, configuration) =>
+
+            AddPass("Lakes", "Crab Home", (progress, configuration) =>
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
                 GenCrabCrevice.Generate(progress);
             }, tasks);
-            AddPass("Underworld", "Gore Nests", (progress, configuration) =>
+            AddPass("Create Ocean Caves", "Crab Growth", (progress, configuration) =>
             {
-                progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNests");
-                GenGoreNest.Generate();
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
+                GenCrabCrevice.FinalizeGeneration();
             }, tasks);
             AddPass("Pots", "Crab Pottery", (progress, configuration) =>
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevicePots");
                 GenCrabCrevice.TransformPots();
             }, tasks);
+
+            AddPass("Underworld", "Gore Nests", (progress, configuration) =>
+            {
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNests");
+                GenGoreNest.Generate();
+            }, tasks);
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) =>
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNestCleanup");
                 GenGoreNest.Cleanup();
-            }, tasks);
-            AddPass("Tile Cleanup", "Crab Growth", (progress, configuration) =>
-            {
-                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCreviceGrowth");
-                GenCrabCrevice.GrowPlants();
             }, tasks);
         }
         public static void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks)

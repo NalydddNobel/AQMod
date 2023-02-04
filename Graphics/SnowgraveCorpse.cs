@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Particles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public class SnowgraveCorpse : ABasicParticle
+    public class SnowgraveCorpse : BaseParticle<SnowgraveCorpse>
     {
         public static HashSet<int> NPCBlacklist { get; private set; }
         /// <summary>
@@ -23,12 +24,12 @@ namespace Aequus.Graphics
         /// Parameter 1: {NPC} - The NPC which is being sudo cloned
         /// <para>Parameter 2: {NPC} - The NPC</para>
         /// </summary>
-        public static Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomDraw { get; private set; }
+        public static Dictionary<int, Func<SpriteBatch, IParticle, ParticleRendererSettings, NPC, bool>> CustomDraw { get; private set; }
         /// <summary>
         /// Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
         /// <para>Parameter 2: {NPC} - The NPC</para>
         /// </summary>
-        public static Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>> CustomUpdate { get; private set; }
+        public static Dictionary<int, Func<IParticle, ParticleRendererSettings, NPC, bool>> CustomUpdate { get; private set; }
 
         public static SoundStyle SizzleSound { get; private set; }
 
@@ -46,8 +47,8 @@ namespace Aequus.Graphics
                     NPCID.SkeletronHand,
                 };
                 OnFreezeNPC = new Dictionary<int, Action<NPC, NPC>>();
-                CustomDraw = new Dictionary<int, Func<SpriteBatch, ABasicParticle, ParticleRendererSettings, NPC, bool>>();
-                CustomUpdate = new Dictionary<int, Func<ABasicParticle, ParticleRendererSettings, NPC, bool>>();
+                CustomDraw = new Dictionary<int, Func<SpriteBatch, IParticle, ParticleRendererSettings, NPC, bool>>();
+                CustomUpdate = new Dictionary<int, Func<IParticle, ParticleRendererSettings, NPC, bool>>();
 
                 if (!Main.dedServ)
                 {
@@ -86,13 +87,18 @@ namespace Aequus.Graphics
         private Vector2 _iceOrigin;
         private Vector2 _bloomOrigin;
 
-        public Vector2 TopLeft { get => LocalPosition - new Vector2(_width / 2f, _height / 2f); set => LocalPosition = value + new Vector2(_width / 2f, _height / 2f); }
+        public Vector2 TopLeft { get => Position - new Vector2(_width / 2f, _height / 2f); set => Position = value + new Vector2(_width / 2f, _height / 2f); }
 
-        public SnowgraveCorpse(Vector2 position, NPC npc)
+        public override SnowgraveCorpse CreateInstance()
+        {
+            throw new NotImplementedException();
+        }
+
+        public SnowgraveCorpse Setup(Vector2 position, NPC npc)
         {
             maxTimeActive = 10800;
-            LocalPosition = position;
-            this.npc = AequusHelpers.CreateSudo(npc);
+            Position = position;
+            this.npc = AequusHelpers.SudoClone(npc);
             if (OnFreezeNPC.TryGetValue(npc.netID, out var onFreeze))
             {
                 onFreeze(npc, this.npc);
@@ -100,6 +106,7 @@ namespace Aequus.Graphics
             this.npc.active = true;
             this.npc.hide = false;
             this.npc.alpha = Math.Min(npc.alpha, 200);
+            return this;
         }
 
         public override void Update(ref ParticleRendererSettings settings)
@@ -116,7 +123,7 @@ namespace Aequus.Graphics
                 }
                 if (timeActive > 2 && timeActive < 10 && Collision.SolidCollision(TopLeft, _width, _height))
                 {
-                    LocalPosition.Y -= 4f;
+                    Position.Y -= 4f;
                 }
                 timeActive++;
                 if (timeActive > maxTimeActive)
@@ -134,7 +141,7 @@ namespace Aequus.Graphics
                 if (Collision.LavaCollision(TopLeft, _width, _height))
                 {
                     ShouldBeRemovedFromRenderer = true;
-                    SoundEngine.PlaySound(SizzleSound, LocalPosition);
+                    SoundEngine.PlaySound(SizzleSound, Position);
                     Kill(lavaDeath: true);
                     return;
                 }
@@ -148,7 +155,7 @@ namespace Aequus.Graphics
 
                 Velocity = Collision.TileCollision(TopLeft, Velocity, _width, _height);
 
-                LocalPosition += Velocity;
+                Position += Velocity;
             }
         }
         private void Kill(bool lavaDeath = false)
@@ -169,7 +176,7 @@ namespace Aequus.Graphics
                     Dust.NewDust(topLeft, _width, _height, DustID.Ice);
                 }
             }
-            SoundEngine.PlaySound(SoundID.Shatter, LocalPosition);
+            SoundEngine.PlaySound(SoundID.Shatter, Position);
         }
 
         public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
@@ -178,10 +185,10 @@ namespace Aequus.Graphics
             {
                 try
                 {
-                    npc.Center = LocalPosition;
+                    npc.Center = Position;
                     Main.instance.LoadNPC(npc.type);
 
-                    var drawCoordinates = LocalPosition - Main.screenPosition;
+                    var drawCoordinates = Position - Main.screenPosition;
                     drawCoordinates.Y += 4f;
                     var iceTexture = TextureAssets.Frozen.Value;
                     var npcTexture = TextureAssets.Npc[npc.type].Value;

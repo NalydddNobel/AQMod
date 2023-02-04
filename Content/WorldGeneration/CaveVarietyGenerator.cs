@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Preferences;
+using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 
 namespace Aequus.Content.WorldGeneration
@@ -16,7 +13,7 @@ namespace Aequus.Content.WorldGeneration
             {
                 for (int j = (int)Main.worldSurface + 100; j < Main.UnderworldLayer - 100; j += 200)
                 {
-                    if (!WorldGen.genRand.NextBool())
+                    if (!WorldGen.genRand.NextBool() && WorldGen.genRand.NextFloat(1f) <= GameplayConfig.Instance.CaveVariety)
                         continue;
                     GenerateWeirdCave(i, j);
                 }
@@ -63,7 +60,7 @@ namespace Aequus.Content.WorldGeneration
             {
                 for (int j = (int)Main.worldSurface + 100; j < Main.UnderworldLayer - 100; j += 200)
                 {
-                    if (!WorldGen.genRand.NextBool(4))
+                    if (!WorldGen.genRand.NextBool(4) && WorldGen.genRand.NextFloat(1f) <= GameplayConfig.Instance.CaveVariety)
                         continue;
 
                     GenerateTallCave(i, j);

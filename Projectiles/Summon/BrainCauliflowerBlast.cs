@@ -99,7 +99,7 @@ namespace Aequus.Projectiles.Summon
                         Color colorMethod(float p) => Color.OrangeRed.UseA(120) * 1.1f;
 
                         var prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var particle = new BoundBowTrailParticle(prim, position, velocity,
+                        var particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, position, velocity,
                             new Color(200, Main.rand.Next(40) + 20, 10, 0), 1.15f, Main.rand.NextFloat(MathHelper.TwoPi), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => new Color(255, 180, 15, 0).HueAdd(-p * 0.15f) * (float)Math.Sin(p * MathHelper.Pi) * Math.Min(particle.Scale, 1.5f);
@@ -108,12 +108,12 @@ namespace Aequus.Projectiles.Summon
                         {
                             particle.oldPos[k] = particle.Position - particle.Velocity * k;
                         }
-                        EffectsSystem.ParticlesBehindProjs.Add(particle);
+                        ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Add(particle);
                         continue;
                     }
 
-                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(position, velocity,
-                        new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(position, velocity,
+                        new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
         }

@@ -3,11 +3,22 @@ using Terraria.Graphics.Renderers;
 
 namespace Aequus.Particles
 {
-    public abstract class BaseTrailParticle : MonoParticle
+    public abstract class BaseTrailParticle<T> : BaseParticle<T> where T : BaseTrailParticle<T>
     {
         public Vector2[] oldPos;
 
-        public BaseTrailParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f, int trailLength = 10) : base(position, velocity, color, scale, rotation)
+        public void Setup(Vector2 position, Vector2 velocity, int trailLength, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        {
+            Position = position;
+            Velocity = velocity;
+            Color = color;
+            Scale = scale;
+            Rotation = rotation;
+            SetTrailLength(trailLength);
+            SetDefaults();
+        }
+
+        public void SetTrailLength(int trailLength)
         {
             oldPos = new Vector2[trailLength];
         }

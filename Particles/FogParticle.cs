@@ -9,15 +9,24 @@ using Terraria.ModLoader;
 
 namespace Aequus.Particles
 {
-    public class FogParticle : MonoParticle, ILoadable
+    public sealed class FogParticle : BaseParticle<FogParticle>
     {
-        public static TextureInfo fogTexture;
         public float Light;
         public float calculatingLight;
         public int lightUpdate;
 
-        public FogParticle() : base(Vector2.Zero, Vector2.Zero)
+        public override FogParticle CreateInstance()
         {
+            return new FogParticle();
+        }
+
+        protected override void SetDefaults()
+        {
+            dontEmitLight = true;
+            Light = 0.05f;
+            calculatingLight = 0.05f;
+            lightUpdate = 0;
+            SetTexture(ParticleTextures.fogParticle, 8);
         }
 
         public void UpdateLighting()
@@ -106,40 +115,6 @@ namespace Aequus.Particles
         public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture, Position - Main.screenPosition, frame, Color * (1f - Light) * MathF.Pow(Scale, 2f), Rotation, origin, Scale * 2.33f, SpriteEffects.None, 0f);
-        }
-
-        public void Load(Mod mod)
-        {
-            if (!Main.dedServ)
-            {
-                fogTexture = new TextureInfo(ModContent.Request<Texture2D>(this.GetPath(), AssetRequestMode.ImmediateLoad), verticalFrames: 8, originFracX: 0.5f, originFracY: 0.5f);
-            }
-        }
-
-        public void Unload()
-        {
-            fogTexture = null;
-        }
-
-        public void Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
-        {
-            Position = position;
-            Velocity = velocity;
-            Color = color;
-            Scale = scale;
-            Rotation = rotation;
-            dontEmitLight = true;
-            Light = 0.05f;
-            calculatingLight = 0.05f;
-            lightUpdate = 0;
-            SetTexture(fogTexture, 8);
-        }
-
-        public static FogParticle New(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
-        {
-            var fog = EffectsSystem.FogPool.RequestParticle();
-            fog.Setup(position, velocity, color, scale, rotation);
-            return fog;
         }
     }
 }

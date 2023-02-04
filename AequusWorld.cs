@@ -1,4 +1,5 @@
-﻿using Aequus.Biomes.Glimmer;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
 using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
@@ -310,6 +311,10 @@ namespace Aequus
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
             AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
+            foreach (var mossBiome in GlowingMossBiome.MossBiomes)
+            {
+                mossBiome.tileCount = tileCounts[mossBiome.MossTileID];
+            }
             TileCountsMultiplier = 1;
         }
 

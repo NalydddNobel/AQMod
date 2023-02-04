@@ -17,7 +17,7 @@ namespace Aequus.Tiles.Moss
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;
 
-            AddMapEntry(new Color(20, 20, 25));
+            AddMapEntry(new Color(55, 65, 65));
             HitSound = SoundID.Grass;
             DustType = DustID.Ambient_DarkBrown;
             //ItemDrop = ModContent.ItemType<SeaPickle>();

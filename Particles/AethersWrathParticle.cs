@@ -5,10 +5,17 @@ using Terraria.Graphics.Renderers;
 
 namespace Aequus.Particles
 {
-    public class AethersWrathParticle : BaseTrailParticle
+    public sealed class AethersWrathParticle : BaseTrailParticle<AethersWrathParticle>
     {
-        public AethersWrathParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1, float rotation = 0, int trailLength = 10) : base(position, velocity, color, scale, rotation, trailLength)
+        public override AethersWrathParticle CreateInstance()
         {
+            return new AethersWrathParticle();
+        }
+
+        protected override void SetDefaults()
+        {
+            if (oldPos == null)
+                oldPos = new Vector2[10];
             SetTexture(ParticleTextures.monoParticle);
         }
 

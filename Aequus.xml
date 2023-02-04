@@ -704,11 +704,6 @@
             Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
             </summary>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesAbovePlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
         <member name="T:Aequus.Graphics.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects

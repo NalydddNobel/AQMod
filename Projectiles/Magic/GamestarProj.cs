@@ -59,13 +59,13 @@ namespace Aequus.Projectiles.Magic
             {
                 return;
             }
-            GamestarRenderer.Particles.Add(new GamestarParticle(Projectile.Center, Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.5f), Color.White, 8));
+            GamestarRenderer.Particles.Add(ParticleSystem.Fetch<GamestarParticle>().Setup(Projectile.Center, Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.5f), Color.White, 8));
 
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 if (Projectile.oldPos[i] == Vector2.Zero || Main.rand.NextFloat(1f) < 0.33f)
                     continue;
-                GamestarRenderer.Particles.Add(new GamestarParticle(Projectile.oldPos[i] + new Vector2(Main.rand.NextFloat(Projectile.width), Main.rand.NextFloat(Projectile.height)), Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.5f), Color.White, Main.rand.Next(1, 7)));
+                GamestarRenderer.Particles.Add(ParticleSystem.Fetch<GamestarParticle>().Setup(Projectile.oldPos[i] + new Vector2(Main.rand.NextFloat(Projectile.width), Main.rand.NextFloat(Projectile.height)), Main.rand.NextVector2Unit() * Main.rand.NextFloat(2.5f), Color.White, Main.rand.Next(1, 7)));
             }
         }
 
@@ -106,7 +106,7 @@ namespace Aequus.Projectiles.Magic
             int amt = Math.Max((target.width + target.height) / 30, 5);
             for (int i = 0; i < amt; i++)
             {
-                GamestarRenderer.Particles.Add(new GamestarParticle(target.Center + new Vector2(Main.rand.NextFloat(-target.width, target.width), Main.rand.NextFloat(-target.height, target.height)),
+                GamestarRenderer.Particles.Add(ParticleSystem.Fetch<GamestarParticle>().Setup(target.Center + new Vector2(Main.rand.NextFloat(-target.width, target.width), Main.rand.NextFloat(-target.height, target.height)),
                     Main.rand.NextVector2Unit(), Color.White, 20));
             }
         }

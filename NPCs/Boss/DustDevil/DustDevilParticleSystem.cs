@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Boss.DustDevil
 {
-    public class ParticleSystem : ModSystem
+    public class DustDevilParticleSystem : ModSystem
     {
         public static List<IParticleManipulator> Manipulators;
         public static List<DustParticle> Particles;

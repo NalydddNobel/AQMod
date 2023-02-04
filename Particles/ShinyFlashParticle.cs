@@ -5,21 +5,20 @@ using Terraria.Graphics.Renderers;
 
 namespace Aequus.Particles
 {
-    public class ShinyFlashParticle : BloomParticle
+    public sealed class ShinyFlashParticle : BaseBloomParticle<ShinyFlashParticle>
     {
         public int flash;
 
-        public ShinyFlashParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float bloomScale = 1f, float rotation = 0f) : base(position, velocity, color, scale, rotation)
+        public override ShinyFlashParticle CreateInstance()
         {
-            BloomScale = bloomScale;
+            return new ShinyFlashParticle();
+        }
+
+        protected override void SetDefaults()
+        {
             SetTexture(ParticleTextures.shinyFlashParticle, 1);
             bloomTexture = Textures.Bloom[0].Value;
             bloomOrigin = Textures.Bloom[0].Value.Size() / 2f;
-        }
-
-        public ShinyFlashParticle(Vector2 position, Vector2 velocity, Color color = default(Color), Color bloomColor = default(Color), float scale = 1f, float bloomScale = 1f, float rotation = 0f) : this(position, velocity, color, scale, bloomScale, rotation)
-        {
-            BloomColor = bloomColor;
         }
 
         public override void Update(ref ParticleRendererSettings settings)

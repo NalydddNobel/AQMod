@@ -64,19 +64,29 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
-			HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"
-			HardmodeChestsTooltip: 
-				'''
-				Upgrades chests in hardmode (after generating Cobalt/Palladium) to contain Hardmode Mimic loot and other goodies.
-				{$Mods.Aequus.Configuration.RequiresReload}
-				'''
-
 			EarlyMimics: "{Chest} {GoldChest} Early Mimics"
 			EarlyMimicsTooltip: 
 				'''
 				Allows for mimics to spawn in pre-Hardmode with reduced stats and chest drops.
 				(Shadow Chest mimics will spawn post-Skeletron.)
 				(Ice mimics will also be available to spawn.)
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+		}
+
+		World: {
+			Header: "[c/ccddff:World]"
+
+			CaveVariety: "{BonePickaxe} Cave Variety (Vanilla Worldgen tweak)"
+			CaveVarietyTooltip: 
+				'''
+				Determines the amount of extra Cave Variety added by Aequus in your next generated worlds.
+				'''
+
+			HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"
+			HardmodeChestsTooltip: 
+				'''
+				Upgrades chests in hardmode (after generating Cobalt/Palladium) to contain Hardmode Mimic loot and other goodies.
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 		}

@@ -3,10 +3,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Renderers;
+using Terraria.ModLoader;
 
 namespace Aequus.Particles
 {
-    public abstract class BaseParticle : IPooledParticle
+    public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : BaseParticle<T>
     {
         public Vector2 Position;
         public Vector2 Velocity;
@@ -20,22 +21,16 @@ namespace Aequus.Particles
 
         public bool dontEmitLight;
 
-        public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
-        {
-            return Color;
-        }
+        public virtual int InitalPoolSize => 1;
+
+        public abstract T CreateInstance();
 
         public bool ShouldBeRemovedFromRenderer { get; protected set; }
 
         public bool IsRestingInPool => ShouldBeRemovedFromRenderer;
 
-        public BaseParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        public BaseParticle()
         {
-            Position = position;
-            Velocity = velocity;
-            Color = color;
-            Scale = scale;
-            Rotation = rotation;
         }
 
         protected void SetTexture(TextureInfo textureInfo, int frames = 3)
@@ -46,6 +41,26 @@ namespace Aequus.Particles
             frame = textureInfo.Frame;
             frame.Y = frame.Height * Main.rand.Next(frames);
             origin = textureInfo.Origin;
+        }
+
+        public T Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        {
+            Position = position;
+            Velocity = velocity;
+            Color = color;
+            Scale = scale;
+            Rotation = rotation;
+            SetDefaults();
+            return (T)this;
+        }
+
+        protected virtual void SetDefaults()
+        {
+        }
+
+        public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
+        {
+            return Color;
         }
 
         public virtual void Update(ref ParticleRendererSettings settings)
@@ -77,6 +92,30 @@ namespace Aequus.Particles
         public virtual void FetchFromPool()
         {
             ShouldBeRemovedFromRenderer = false;
+        }
+
+        public void Load(Mod mod)
+        {
+            ParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateInstance);
+            OnLoad(mod);
+        }
+        public virtual void OnLoad(Mod mod)
+        {
+        }
+
+        public void Unload()
+        {
+            try
+            {
+                ParticleSystem.ParticlePools<T>.Pool = null;
+            }
+            catch
+            {
+            }
+            OnUnload();
+        }
+        public virtual void OnUnload()
+        {
         }
     }
 }

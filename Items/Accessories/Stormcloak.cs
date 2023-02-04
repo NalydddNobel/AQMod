@@ -62,13 +62,12 @@ namespace Aequus.Items.Accessories
                     {
                         var prim = new TrailRenderer(Textures.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                         float rotation = player.direction * 0.45f;
-                        var particle = new StormcloakTrailParticle(prim, player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * player.direction) * 10f,
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
+                        var particle = ParticleSystem.New<StormcloakTrailParticle>(ParticleLayer.AbovePlayers).Setup(prim, player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * player.direction) * 10f,
+                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10);
                         particle.StretchTrail(v.RotatedBy(MathHelper.PiOver2 * -player.direction) * 2f);
                         particle.rotationValue = rotation / 4f;
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => colorMethod(p) * particle.Rotation * Math.Min(particle.Scale, 1.5f);
-                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
                     }
                 }
 

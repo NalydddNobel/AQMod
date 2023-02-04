@@ -1,12 +1,15 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Aequus.Particles
+﻿namespace Aequus.Particles
 {
-    public class MonoParticle : BaseParticle
+    public sealed class MonoParticle : BaseParticle<MonoParticle>
     {
-        public MonoParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f) : base(position, velocity, color, scale, rotation)
+        protected override void SetDefaults()
         {
             SetTexture(ParticleTextures.monoParticle);
+        }
+
+        public override MonoParticle CreateInstance()
+        {
+            return new MonoParticle();
         }
     }
 }

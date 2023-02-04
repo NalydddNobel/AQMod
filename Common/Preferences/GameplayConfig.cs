@@ -36,18 +36,29 @@ namespace Aequus.Common.Preferences
         public bool EarlyPortalGun { get; set; }
 
         [MemberBGColor]
-        [Name("Gameplay.General.HardmodeChests")]
-        [Desc("Gameplay.General.HardmodeChests")]
-        [DefaultValue(true)]
-        [ReloadRequired]
-        public bool HardmodeChests { get; set; }
-
-        [MemberBGColor]
         [Name("Gameplay.General.EarlyMimics")]
         [Desc("Gameplay.General.EarlyMimics")]
         [DefaultValue(true)]
         [ReloadRequired]
         public bool EarlyMimics { get; set; }
+
+
+        [Header(Key + "Gameplay.World.Header")]
+
+        [MemberBGColor]
+        [Name("Gameplay.World.CaveVariety")]
+        [Desc("Gameplay.World.CaveVariety")]
+        [DefaultValue(1f)]
+        [Range(0f, 1f)]
+        public float CaveVariety { get; set; }
+
+        [MemberBGColor]
+        [Name("Gameplay.World.HardmodeChests")]
+        [Desc("Gameplay.World.HardmodeChests")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool HardmodeChests { get; set; }
+
 
         [Header(Key + "Gameplay.Recipes.Header")]
 
@@ -60,7 +71,8 @@ namespace Aequus.Common.Preferences
 
         public override void AddCustomTranslations()
         {
-            Text("General.HardmodeChests");
+            Text("World.CaveVariety");
+            Text("World.HardmodeChests");
             Text("General.EarlyMimics");
             Text("General.DamageReductionCap", new
             {

@@ -642,7 +642,7 @@ namespace Aequus.NPCs.Friendly.Town
                     {
                         continue;
                     }
-                    EffectsSystem.ParticlesBehindProjs.Add(new OccultistParticle(p, Vector2.UnitY * -0.1f));
+                    ParticleSystem.New<OccultistParticle>(ParticleLayer.BehindAllNPCs).Setup(p, Vector2.UnitY * -0.1f);
                     break;
                 }
             }
@@ -819,13 +819,18 @@ namespace Aequus.NPCs.Friendly.Town
         }
     }
 
-    public class OccultistParticle : MonoParticle
+    public class OccultistParticle : BaseParticle<OccultistParticle>
     {
         public float t;
         public float opacity;
         public float scale;
 
-        public OccultistParticle(Vector2 position, Vector2 velocity) : base(position, velocity, default(Color), 1f, 0f)
+        public override OccultistParticle CreateInstance()
+        {
+            return new OccultistParticle();
+        }
+
+        protected override void SetDefaults()
         {
             var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
             SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);

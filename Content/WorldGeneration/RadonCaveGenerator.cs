@@ -20,8 +20,8 @@ namespace Aequus.Content.WorldGeneration
 
         public RadonCaveGenerator()
         {
-            sizeX = 0.02f;
-            sizeY = 0.18f;
+            sizeX = 0.035f;
+            sizeY = 0.30f;
         }
 
         public void GenerateWorld()
@@ -128,6 +128,8 @@ namespace Aequus.Content.WorldGeneration
             int radon = ModContent.TileType<RadonMossTile>();
             for (int j = y; j > topY; j--)
             {
+                if (!WorldGen.InWorld(x, j, fluff: 40))
+                    break;
                 if (Main.tile[x, j].HasTile && Main.tile[x, j].TileType == radon && !Main.tile[x, j + 1].IsFullySolid())
                 {
                     y = j;

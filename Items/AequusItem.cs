@@ -314,7 +314,8 @@ namespace Aequus.Items
                 for (int i = 0; i < amt; i++)
                 {
                     float intensity = (float)Math.Pow(0.9f, i + 1);
-                    EffectsSystem.ParticlesAboveDust.Add(new ShinyFlashParticle(AequusHelpers.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f));
+
+                    ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(AequusHelpers.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
                 }
                 for (int i = 0; i < amt * 2; i++)
                 {

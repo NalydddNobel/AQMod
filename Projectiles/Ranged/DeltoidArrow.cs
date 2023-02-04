@@ -164,8 +164,8 @@ namespace Aequus.Projectiles.Ranged
                 for (int i = 0; i < 5; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, 1.25f, 0.3f));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, 1.25f, 0.3f);
                 }
                 for (int i = 0; i < 15; i++)
                 {

@@ -404,7 +404,7 @@ namespace Aequus.Projectiles
                         {
                             Dust.NewDustPerfect(spawnLoc, DustID.Smoke, v, Scale: Main.rand.NextFloat(0.8f, 1.5f));
                         }
-                        EffectsSystem.ParticlesBehindProjs.Add(new MonoParticle(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi)));
+                        ParticleSystem.New<MonoParticle>(ParticleLayer.BehindProjs).Setup(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi));
                     }
                 }
                 if (projectile.type == ProjectileID.ChlorophyteBullet)

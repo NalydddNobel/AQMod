@@ -229,6 +229,13 @@ namespace Aequus.Items
             //}
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            if (AequusHelpers.DebugKeyPressed)
+                return;
+            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", AequusHelpers.GetStringListOfBiomes(Main.LocalPlayer).ConvertAll((s) => Language.GetTextValue(s)))));
+        }
+
         public class ModIconAnimation : ModProjectile
         {
             public override string Texture => $"{Aequus.AssetsPath}Shatter";
