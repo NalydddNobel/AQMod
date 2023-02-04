@@ -52,6 +52,10 @@ Mods: {
 			}
 		}
 
+		RecipeCondition: {
+			OmegaStarite: 在终末之星被击败后可以制造
+		}
+
 		DropCondition: {
 			ShadowMimic: 仅会掉落自暗影宝箱怪
 			NameTag: 仅会在命名为{NameTag}时掉落
