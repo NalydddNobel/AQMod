@@ -20,8 +20,8 @@ namespace Aequus.Content.WorldGeneration
 
         public RadonCaveGenerator()
         {
-            sizeX = 0.035f;
-            sizeY = 0.30f;
+            sizeX = 0.03f;
+            sizeY = 0.23f;
         }
 
         public void GenerateWorld()
@@ -41,7 +41,7 @@ namespace Aequus.Content.WorldGeneration
 
         public bool ValidSpotForCave(int x, int y)
         {
-            return WorldGen.InWorld(x, y, fluff: Math.Max(MaxWidth, MaxHeight) + 10) && AequusWorldGenerator.CanPlaceStructure(x, y, MaxWidth, MaxHeight);
+            return x - MaxHeight > (int)Main.worldSurface && WorldGen.InWorld(x, y, fluff: Math.Max(MaxWidth, MaxHeight) + 10) && AequusWorldGenerator.CanPlaceStructure(x, y, MaxWidth, MaxHeight);
         }
 
         public bool CreateCave(int x, int y)

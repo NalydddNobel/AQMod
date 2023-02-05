@@ -60,6 +60,7 @@ namespace Aequus.Common.ModPlayers
 
         public static int PlayerContext;
         public static bool doLuckyDropsEffect;
+        public static List<Player> _playerQuickList;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
@@ -415,7 +416,9 @@ namespace Aequus.Common.ModPlayers
 
         public override void Load()
         {
+            _playerQuickList = new List<Player>();
             LoadHooks();
+            Load_BrokenMap();
             Load_MiningEffects();
             Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
@@ -937,12 +940,13 @@ namespace Aequus.Common.ModPlayers
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_BrokenMap();
                 ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
                 cursorDye = -1;
                 cursorDyeOverride = 0;
-
+                
                 selectGhostNPC = -1;
 
                 if (sceneInvulnerability > 0)

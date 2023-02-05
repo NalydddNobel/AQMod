@@ -783,19 +783,20 @@ namespace Aequus.Tiles
 
         public static void SpreadCustomGrass(int i, int j, int dirt, int grass, int spread = 0, byte color = 0)
         {
-            if (WorldGen.InWorld(i, j, 6))
+            if (!WorldGen.InWorld(i, j, 6))
             {
-                for (int k = i - 1; k <= i + 1; k++)
+                return;
+            }
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                for (int l = j - 1; l <= j + 1; l++)
                 {
-                    for (int l = j - 1; l <= j + 1; l++)
+                    if (WorldGen.genRand.NextBool(8))
                     {
-                        if (WorldGen.genRand.NextBool(8))
+                        if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt && GrowGrass(k, l, grass))
                         {
-                            if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt && GrowGrass(k, l, grass))
-                            {
-                                WorldGen.SquareTileFrame(k, l, resetFrame: true);
-                                return;
-                            }
+                            WorldGen.SquareTileFrame(k, l, resetFrame: true);
+                            return;
                         }
                     }
                 }

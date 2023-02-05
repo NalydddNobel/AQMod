@@ -1,10 +1,11 @@
 To-Do:
-* Granite and Marble biomes can no longer spawn in the Jungle or Ice biomes
+* Granite and Marble biomes can no longer spawn in the Jungle
+* Make Radon Moss collectable with a Paint Scraper
 
 Implemented:
 
 * The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom tiles
-* Added two new Cave varients: Weird, and Tall
+* Added two new Cave variants: Weird, and Tall
 * Greatly increased the speed of the "Growing Crabs" World Generation step
-* Fixed the Crab Crevice occassionally breaking into the Dungeon
-* Added a surface tunnel which leads into the crab crevice
+* Fixed an issue where the Crab Crevice occassionally breaks into the Dungeon
+* Added a surface tunnel which leads into the Crab Crevice

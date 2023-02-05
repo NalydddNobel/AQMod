@@ -1728,6 +1728,8 @@ Mods: {
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
 
+			BrokenMapBuff: Uncharted
+
 			GravetenderMinionBuff: Gravetender
 
 			PiranhaPlantBuff: Vile Plant
@@ -1810,6 +1812,8 @@ Mods: {
 			NeutronYogurtBuff: Greatly increased gravity
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
+
+			BrokenMapBuff: You are in a mysterious area...
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 

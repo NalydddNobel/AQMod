@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -20,7 +21,7 @@ namespace Aequus.Tiles.Moss
 
             AddMapEntry(new Color(80, 90, 90));
 
-            DustType = 116;
+            DustType = DustID.Ambient_DarkBrown;
             ItemDrop = ItemID.StoneBlock;
             HitSound = SoundID.Dig;
 
@@ -77,7 +78,7 @@ namespace Aequus.Tiles.Moss
             var rand = new FastRandom(i * i + j * j * i);
             var lighting = AequusHelpers.GetBrightestLight(new Point(i, j), 6);
             float intensity = 1f - (lighting.R + lighting.G + lighting.B) / 765f;
-            intensity = MathHelper.Lerp(intensity, 1f, (float)Math.Pow(MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 600f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f)).Abs(), 0f, 1f), 2f));
+            intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 600f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f)).Abs(), 0f, 1f));
             if (intensity <= 0f)
                 return;
             var frame = ParticleTextures.fogParticle.Frame.Frame(0, frameY: rand.Next(ParticleTextures.fogParticle.FramesY));
@@ -87,10 +88,30 @@ namespace Aequus.Tiles.Moss
         public override void RandomUpdate(int i, int j)
         {
             GrowLongMoss(i, j);
+            GrowEvilPlant(i, j);
             AequusTile.SpreadCustomGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
             AequusTile.SpreadCustomGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
         }
 
+        public static void GrowEvilPlant(int i, int j)
+        {
+            int checkSize = 50;
+            int plant = ModContent.TileType<RadonPlantTile>();
+            if (!AequusTile.CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), plant))
+            {
+                if (Main.tile[i, j - 1].TileType == ModContent.TileType<RadonMossGrass>())
+                {
+                    var tile = Main.tile[i, j - 1];
+                    tile.HasTile = false;
+                }
+                WorldGen.PlaceTile(i, j - 1, plant, mute: true);
+                if (Main.tile[i, j].TileType == plant)
+                {
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i - 1, j - 1, 3, 3);
+                }
+            }
+        }
         public static void GrowLongMoss(int i, int j)
         {
             int radonMossGrass = ModContent.TileType<RadonMossGrass>();
@@ -117,6 +138,10 @@ namespace Aequus.Tiles.Moss
             if (Main.tile[i, j].TileType == TileID.GrayBrick)
             {
                 Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+                if (!mute)
+                {
+                    SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
+                }
                 return true;
             }
             return null;

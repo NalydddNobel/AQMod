@@ -1,6 +1,9 @@
-﻿using Aequus.Items.Placeable.Moss;
+﻿using Aequus.Common;
+using Aequus.Items.Placeable.Moss;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -10,7 +13,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Moss
 {
-    public class GlowingMossMushrooms : ModTile
+    public class GlowingMossMushrooms : ModTile, IAddRecipes
     {
         public const int Argon = 0;
         public const int Krypton = 1;
@@ -18,6 +21,8 @@ namespace Aequus.Tiles.Moss
         public const int Neon = 3;
         public const int Helium = 4;
         public const int Radon = 5;
+
+        private static int[] anchorValidTilesHack;
 
         public override void SetStaticDefaults()
         {
@@ -30,28 +35,8 @@ namespace Aequus.Tiles.Moss
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.newTile.AnchorValidTiles = new int[]
-            {
-                TileID.Sand,
-                TileID.Stone,
-                TileID.Ebonstone,
-                TileID.Crimstone,
-                TileID.Pearlstone,
-                TileID.BlueMoss,
-                TileID.BrownMoss,
-                TileID.GreenMoss,
-                TileID.LavaMoss,
-                TileID.PurpleMoss,
-                TileID.RedMoss,
-                TileID.ArgonMoss,
-                TileID.ArgonMossBrick,
-                TileID.KryptonMoss,
-                TileID.KryptonMossBrick,
-                TileID.XenonMoss,
-                TileID.XenonMossBrick,
-                TileID.GrayBrick,
-                ModContent.TileType<SedimentaryRockTile>(),
-            };
+            TileObjectData.newTile.AnchorValidTiles = new int[1];
+            anchorValidTilesHack = TileObjectData.newTile.AnchorValidTiles;
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(208, 0, 126), CreateMapEntryName("ArgonMushroom"));
             AddMapEntry(new Color(144, 254, 2), CreateMapEntryName("KryptonMushroom"));
@@ -59,6 +44,23 @@ namespace Aequus.Tiles.Moss
             AddMapEntry(new Color(208, 0, 160), CreateMapEntryName("NeonMushroom"));
             AddMapEntry(Color.White, CreateMapEntryName("HeliumMushroom"));
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
+        }
+
+        public void AddRecipes(Aequus aequus)
+        {
+            var l = new List<int>() { ModContent.TileType<SedimentaryRockTile>(), };
+            for (int i = 0; i < TileLoader.TileCount; i++)
+            {
+                if (Main.tileSand[i] || TileID.Sets.Conversion.Stone[i] || Main.tileMoss[i] || TileID.Sets.tileMossBrick[i])
+                {
+                    l.Add(i);
+                }
+            }
+            Array.Resize(ref anchorValidTilesHack, l.Count);
+            for (int i = 0; i < l.Count; i++)
+            {
+                anchorValidTilesHack[i] = l[i];
+            }
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 108 % 3);
