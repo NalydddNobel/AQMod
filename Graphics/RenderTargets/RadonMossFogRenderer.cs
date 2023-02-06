@@ -114,7 +114,7 @@ namespace Aequus.Graphics.RenderTargets
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
 
             var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(255, 255, 255, 255));
-            Shader.ShaderData.Apply(drawData);
+            //Shader.ShaderData.Apply(drawData);
 
             drawData.Draw(spriteBatch);
 

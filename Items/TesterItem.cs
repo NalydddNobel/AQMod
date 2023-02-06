@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
+using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Content.Necromancy;
 using Aequus.Content.WorldGeneration;
 using Aequus.Graphics;
@@ -59,17 +60,30 @@ namespace Aequus.Items
             //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
             //}
             //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
-            if (AequusWorldGenerator.RadonCaves.ValidSpotForCave(x, y))
-            {
-                AequusWorldGenerator.RadonCaves.CreateCave(x, y);
-                //AequusWorldGenerator.RadonCaves.GrowStalactite(x, y, AequusWorldGenerator.RadonCaves.MaxWidth, AequusWorldGenerator.RadonCaves.MaxHeight);
-            }
+            ReforgeItems(player, ModContent.PrefixType<ArgonPrefix>());
             return true;
         }
 
         public override void AddRecipes()
         {
             //CreateRecipe().AddIngredient<UltimateEnergy>().Register();
+        }
+
+        public static void ReforgeItems(Player player, int pre)
+        {
+            for (int i = 0; i < Main.InventorySlotsTotal; i++)
+            {
+                player.inventory[i].Prefix(pre);
+            }
+        }
+
+        public static void RadonCavesTest(int x, int y)
+        {
+            if (AequusWorldGenerator.RadonCaves.ValidSpotForCave(x, y))
+            {
+                AequusWorldGenerator.RadonCaves.CreateCave(x, y);
+                //AequusWorldGenerator.RadonCaves.GrowStalactite(x, y, AequusWorldGenerator.RadonCaves.MaxWidth, AequusWorldGenerator.RadonCaves.MaxHeight);
+            }
         }
 
         public static void PlacePollenExamples(int x, int y)

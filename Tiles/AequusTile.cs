@@ -793,9 +793,10 @@ namespace Aequus.Tiles
                 {
                     if (WorldGen.genRand.NextBool(8))
                     {
-                        if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt && GrowGrass(k, l, grass))
+                        if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt)
                         {
-                            WorldGen.SquareTileFrame(k, l, resetFrame: true);
+                            if (GrowGrass(k, l, grass))
+                                WorldGen.SquareTileFrame(k, l, resetFrame: true);
                             return;
                         }
                     }
