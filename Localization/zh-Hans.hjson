@@ -1728,6 +1728,8 @@ Mods: {
 			RitualBuff: 仪式
 			NecromancyOwnerBuff: 幽魂仆从
 
+			BrokenMapBuff: 未知领域
+
 			GravetenderMinionBuff: 守墓人
 
 			PiranhaPlantBuff: 邪恶植物
@@ -1810,6 +1812,8 @@ Mods: {
 			NeutronYogurtBuff: 重力大幅度增加
 			SpicyEelBuff: 移动速度大幅度增加
 			BaguetteBuff: 各项属性和生命再生速度大幅度提升
+
+			BrokenMapBuff: 你位于一片神秘的区域...
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
