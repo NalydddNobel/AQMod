@@ -50,22 +50,28 @@ namespace Aequus.Content.Carpentery.Photobook
 
         public override void SaveData(TagCompound tag)
         {
-            if (this.photos == null)
+            if (photos == null)
                 return;
 
-            var photos = new List<TagCompound>();
-            for (int i = 0; i < this.photos.Length; i++)
+            try
             {
-                if (this.photos[i].HasData)
+                var photos = new List<TagCompound>();
+                for (int i = 0; i < this.photos.Length; i++)
                 {
-                    photos.Add(this.photos[i].SerializeData());
+                    if (this.photos[i].HasData)
+                    {
+                        photos.Add(this.photos[i].SerializeData());
+                    }
                 }
-            }
-            if (photos.Count < 0)
-                return;
+                if (photos.Count < 0)
+                    return;
 
-            tag["Photos"] = photos;
-            return;
+                tag["Photos"] = photos;
+            }
+            catch (Exception ex)
+            {
+                Mod.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
+            }
         }
 
         public override void LoadData(TagCompound tag)

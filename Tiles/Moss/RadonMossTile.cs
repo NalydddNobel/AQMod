@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Graphics.RenderTargets;
+using Aequus.Graphics.Tiles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -58,12 +59,13 @@ namespace Aequus.Tiles.Moss
                 //        Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.25f), Color.Black, 0.005f, Main.rand.Next(4) * MathHelper.PiOver2));
                 //}
             }
-            if (new FastRandom(i * i + j * j * i).Next(2) == 0)
+            if ((!Main.tile[i, j - 1].IsFullySolid() || !Main.tile[i, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i - 1, j].IsFullySolid()) && new FastRandom(i * i + j * j * i).Next(2) == 0)
             {
                 var lighting = Lighting.GetColor(i, j);
                 if (lighting.R != 0 || lighting.G != 0 || lighting.B != 0)
                 {
-                    SpecialTileRenderer.AddSolid(i, j, TileRenderLayer.PostDrawLiquids);
+                    RadonMossFogRenderer.Tiles.Add(new Point(i, j));
+                    //SpecialTileRenderer.AddSolid(i, j, TileRenderLayer.PostDrawLiquids);
                 }
             }
             return true;
@@ -71,18 +73,6 @@ namespace Aequus.Tiles.Moss
 
         public void Render(int i, int j, TileRenderLayer layer)
         {
-            if (!Main.tile[i, j - 1].IsFullySolid() && !Main.tile[i, j + 1].IsFullySolid() && !Main.tile[i + 1, j].IsFullySolid() && !Main.tile[i - 1, j].IsFullySolid())
-            {
-                return;
-            }
-            var rand = new FastRandom(i * i + j * j * i);
-            var lighting = AequusHelpers.GetBrightestLight(new Point(i, j), 6);
-            float intensity = 1f - (lighting.R + lighting.G + lighting.B) / 765f;
-            intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 600f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f)).Abs(), 0f, 1f));
-            if (intensity <= 0f)
-                return;
-            var frame = ParticleTextures.fogParticle.Frame.Frame(0, frameY: rand.Next(ParticleTextures.fogParticle.FramesY));
-            Main.spriteBatch.Draw(ParticleTextures.fogParticle.Texture.Value, new Vector2(i * 16f, j * 16f) + new Vector2(8f).RotatedBy(rand.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.2f)) - Main.screenPosition, frame, Color.Black * intensity, rand.Next(4) * MathHelper.PiOver2, ParticleTextures.fogParticle.Origin, 4f, SpriteEffects.None, 0f);
         }
 
         public override void RandomUpdate(int i, int j)

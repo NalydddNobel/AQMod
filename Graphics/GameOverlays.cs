@@ -1,6 +1,6 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Graphics.RenderTargets;
+using Aequus.Graphics.Tiles;
 using Aequus.Particles;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
@@ -23,6 +23,12 @@ namespace Aequus.Graphics
 
                 SpecialTileRenderer.Render(TileRenderLayer.PostDrawLiquids);
                 ParticleSystem.GetLayer(ParticleLayer.AboveLiquid).Draw(spriteBatch);
+                if (RadonMossFogRenderer.Instance.IsReady)
+                {
+                    spriteBatch.End();
+                    RadonMossFogRenderer.Instance.DrawOntoScreen(spriteBatch);
+                    Begin.GeneralEntities.Begin(spriteBatch);
+                }
 
                 if (beginSpriteBatch)
                     spriteBatch.End();

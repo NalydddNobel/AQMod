@@ -17,7 +17,7 @@ namespace Aequus.Graphics
             }
             public static void Begin(SpriteBatch spriteBatch, SpriteSortMode spriteSort)
             {
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
+                spriteBatch.Begin(spriteSort, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics.RenderTargets;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -103,7 +104,7 @@ namespace Aequus.Graphics.Tiles
             Render(TileRenderLayer.PostDrawVines);
         }
 
-        private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
+        private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
         {
             orig(self, solidLayer, forRenderTargets, intoRenderTargets);
             if (intoRenderTargets || Lighting.UpdateEveryFrame)
@@ -118,6 +119,8 @@ namespace Aequus.Graphics.Tiles
                 }
                 else
                 {
+                    RadonMossFogRenderer.Tiles.Clear();
+                    RadonMossFogRenderer.DrawInfoCache.Clear();
                     foreach (var l in SolidDrawPoints.Values)
                     {
                         l.Clear();
