@@ -1,8 +1,5 @@
-﻿using Aequus.Buffs.Buildings;
-using Aequus.Content.Carpentery.Bounties;
+﻿using Aequus.Content.Carpentery.Bounties;
 using Aequus.Content.Carpentery.Bounties.Steps;
-using Aequus.Items.Misc.Carpentry.Rewards;
-using Aequus.Items.Placeable;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -154,7 +151,7 @@ namespace Aequus.Content.Carpentery
         public static void ScanForBuilderBuffs(Rectangle r)
         {
             var map = new TileMapCache(r);
-            
+
             foreach (var b in BountiesByID)
             {
                 if (b.BuildingBuff <= 0)

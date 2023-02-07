@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
+using Aequus.Common.ModPlayers;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

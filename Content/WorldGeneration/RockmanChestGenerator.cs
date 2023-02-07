@@ -9,6 +9,27 @@ namespace Aequus.Content.WorldGeneration
 {
     public class RockmanChestGenerator
     {
+        public bool[] validTiles;
+
+        public void PopulateInvalidTiles()
+        {
+            validTiles = new bool[TileLoader.TileCount];
+            TileID.Sets.GeneralPlacementTiles.CopyTo(validTiles, 0);
+            validTiles[TileID.MushroomGrass] = false;
+            validTiles[TileID.MushroomBlock] = false;
+            validTiles[TileID.MarbleBlock] = false;
+            validTiles[TileID.Marble] = false;
+            validTiles[TileID.GraniteBlock] = false;
+            validTiles[TileID.Granite] = false;
+            for (int i = 0; i < TileLoader.TileCount; i++)
+            {
+                if (Main.tileSand[i] || TileID.Sets.IcesSnow[i] || TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i])
+                {
+                    validTiles[i] = false;
+                }
+            }
+        }
+
         public void GenerateRandomLocation()
         {
             int spawnedCount = 0;
@@ -18,7 +39,7 @@ namespace Aequus.Content.WorldGeneration
                 var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
 
-                if (WorldGen.structures?.CanPlace(areaForGenerating) == false)
+                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
                     continue;
 
                 WorldGen.structures.AddStructure(areaForGenerating);

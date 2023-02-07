@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.ModPlayers;
 using Aequus.Projectiles.Summon.Misc;
 using Terraria;
 using Terraria.Audio;
@@ -33,7 +34,7 @@ namespace Aequus.Items.Armor.Gravetender
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = AequusText.GetText("ArmorSetBonus.Gravetender", AequusText.ArmorSetBonusKey);
+            player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Gravetender", TextHelper.ArmorSetBonusKey);
             var aequus = player.Aequus();
             aequus.setbonusRef = Item;
             aequus.selectGhostNPC = -2;

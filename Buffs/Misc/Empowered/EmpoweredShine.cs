@@ -16,7 +16,7 @@ namespace Aequus.Buffs.Misc.Empowered
         public override void Update(Player player, ref int buffIndex)
         {
             base.Update(player, ref buffIndex);
-            Lighting.AddLight((int)(player.position.X + (float)(player.width / 2)) / 16, (int)(player.position.Y + (float)(player.height / 2)) / 16, 1.6f, 1.9f, 2f);
+            Lighting.AddLight((int)(player.position.X + player.width / 2) / 16, (int)(player.position.Y + player.height / 2) / 16, 1.6f, 1.9f, 2f);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -57,12 +56,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.TinkerersWorkshop)
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
 
         private static bool Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)

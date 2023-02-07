@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Content.Necromancy.Renderer;
+﻿using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;

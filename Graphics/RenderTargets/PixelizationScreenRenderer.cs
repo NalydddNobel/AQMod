@@ -73,7 +73,7 @@ namespace Aequus.Graphics.RenderTargets
                     _target = null;
                 }
                 PrepareARenderTarget_AndListenToEvents(ref _target, device, Main.screenWidth / FinalResultResolutionDiv, Main.screenHeight / FinalResultResolutionDiv, RenderTargetUsage.PreserveContents);
-                
+
                 spriteBatch.End();
 
                 spriteBatch.Begin();

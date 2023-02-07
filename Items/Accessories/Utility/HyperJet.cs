@@ -1,4 +1,5 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Content.AnalysisQuests;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

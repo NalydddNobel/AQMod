@@ -1,6 +1,5 @@
 ﻿using Aequus.Tiles.Furniture;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Paintings

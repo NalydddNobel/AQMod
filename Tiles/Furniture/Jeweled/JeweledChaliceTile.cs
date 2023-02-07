@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Furniture.Jeweled
             TileObjectData.newTile.CoordinatePadding = 2;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.addTile(Type);
-            AddMapEntry(Color.Gold * 1.25f, AequusText.GetTranslation("ItemName.JeweledChalice"));
+            AddMapEntry(Color.Gold * 1.25f, TextHelper.GetText("ItemName.JeweledChalice"));
             HitSound = SoundID.Dig;
 
             ExporterQuestSystem.TilePlacements.Add(Type, new PlacementSolidTop());

@@ -24,7 +24,7 @@ namespace Aequus.Items.Misc
                 WoodInfo(ItemID.Pearlwood, () => Main.hardMode),
             });
 
-            PlayerFishing.TrashItemIDs.Add(Type);
+            AequusPlayer.TrashItemIDs.Add(Type);
 
             SacrificeTotal = 1;
         }

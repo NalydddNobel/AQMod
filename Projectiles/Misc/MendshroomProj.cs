@@ -159,8 +159,8 @@ namespace Aequus.Projectiles.Misc
             Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cMendshroom);
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
             Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor).UseA(0) * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.2f, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * 0.35f * Projectile.Opacity, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor).UseA(0) * Projectile.Opacity, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.2f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[0].Value, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * 0.35f * Projectile.Opacity, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0);
             return false;
         }
     }

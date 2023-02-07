@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Graphics.RenderTargets;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -50,7 +51,7 @@ namespace Aequus.Graphics.Tiles
         private static void Main_DoDraw_WallsAndBlacks(On.Terraria.Main.orig_DoDraw_WallsAndBlacks orig, Main self)
         {
             orig(self);
-            DrawRender(TileRenderLayer.PostDrawWalls);
+            Render(TileRenderLayer.PostDrawWalls);
         }
 
         private static void TileDrawing_DrawMultiTileVinesInWind(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
@@ -75,7 +76,6 @@ namespace Aequus.Graphics.Tiles
         {
             DrawPoints[renderLayer].Add(p);
         }
-
         public static void Add(int i, int j, TileRenderLayer renderLayer)
         {
             Add(new Point(i, j), renderLayer);
@@ -85,7 +85,6 @@ namespace Aequus.Graphics.Tiles
         {
             SolidDrawPoints[renderLayer].Add(p);
         }
-
         public static void AddSolid(int i, int j, TileRenderLayer renderLayer)
         {
             AddSolid(new Point(i, j), renderLayer);
@@ -93,19 +92,19 @@ namespace Aequus.Graphics.Tiles
 
         private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
         {
-            DrawRender(TileRenderLayer.PreDrawMasterRelics);
+            Render(TileRenderLayer.PreDrawMasterRelics);
             orig(self);
-            DrawRender(TileRenderLayer.PostDrawMasterRelics);
+            Render(TileRenderLayer.PostDrawMasterRelics);
         }
 
         private static void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
         {
-            DrawRender(TileRenderLayer.PreDrawVines);
+            Render(TileRenderLayer.PreDrawVines);
             orig(self);
-            DrawRender(TileRenderLayer.PostDrawVines);
+            Render(TileRenderLayer.PostDrawVines);
         }
 
-        private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, Terraria.GameContent.Drawing.TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
+        private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
         {
             orig(self, solidLayer, forRenderTargets, intoRenderTargets);
             if (intoRenderTargets || Lighting.UpdateEveryFrame)
@@ -120,6 +119,8 @@ namespace Aequus.Graphics.Tiles
                 }
                 else
                 {
+                    RadonMossFogRenderer.Tiles.Clear();
+                    RadonMossFogRenderer.DrawInfoCache.Clear();
                     foreach (var l in SolidDrawPoints.Values)
                     {
                         l.Clear();
@@ -127,21 +128,31 @@ namespace Aequus.Graphics.Tiles
                 }
             }
         }
-        public static void DrawRender(TileRenderLayer layer)
+        public static void Render(TileRenderLayer layer)
         {
-            foreach (var p in SolidDrawPoints[layer])
+            if (SolidDrawPoints == null || DrawPoints == null)
+                return;
+
+            try
             {
-                if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
+                foreach (var p in SolidDrawPoints[layer])
                 {
-                    renderer.Render(p.X, p.Y, layer);
+                    if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
+                    {
+                        renderer.Render(p.X, p.Y, layer);
+                    }
+                }
+                foreach (var p in DrawPoints[layer])
+                {
+                    if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
+                    {
+                        renderer.Render(p.X, p.Y, layer);
+                    }
                 }
             }
-            foreach (var p in DrawPoints[layer])
+            catch
             {
-                if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer)
-                {
-                    renderer.Render(p.X, p.Y, layer);
-                }
+
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -2,7 +2,6 @@
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee;
-using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;

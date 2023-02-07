@@ -1,17 +1,22 @@
-﻿using Ionic.Zlib;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
+using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
-using Aequus.NPCs.Boss;
+using Aequus.Items.Misc.Carpentry;
+using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Friendly.Town;
+using Aequus.Projectiles.Magic;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
@@ -26,14 +31,8 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Items.Misc.Carpentry.Rewards;
-using Aequus.Items.Misc.Carpentry;
-using Aequus.Projectiles.Magic;
-using Aequus.Items.Accessories.Summon;
-using Aequus.Items.Accessories.Debuff;
 
 namespace Aequus
 {
@@ -90,20 +89,14 @@ namespace Aequus
         {
         }
 
+        [Obsolete("Use Aequus.GetPacket(PacketType).Send()")]
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
             packet.Write((byte)type);
         }
 
-        public static void Send(Func<ModPacket, bool> func, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
-        {
-            var packet = Aequus.Instance.GetPacket(capacity);
-            packet.Write((byte)type);
-            if (func(packet))
-                packet.Send(to, ignore);
-        }
-
+        [Obsolete("Use Aequus.GetPacket(PacketType), and manually write instead of using an Action")]
         public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -132,12 +125,10 @@ namespace Aequus
 
         public static void SyncNecromancyOwner(int npc, int player)
         {
-            Send((p) =>
-                {
-                    p.Write(npc);
-                    p.Write(player);
-                },
-                PacketType.SyncNecromancyOwner);
+            var p = Aequus.GetPacket(PacketType.SyncNecromancyOwner);
+            p.Write(npc);
+            p.Write(player);
+            p.Send();
         }
 
         public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)

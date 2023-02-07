@@ -114,7 +114,8 @@ namespace Aequus.Tiles.Misc
                 float num18 = 1f;
                 bool flag2 = false;
 
-                DropGores(i, j);
+                if (Main.netMode != NetmodeID.Server)
+                    DropGores(i, j);
 
                 num18 = (num18 * 2f + 1f) / 3f;
                 int range = (int)(500f / ((num18 + 1f) / 2f));

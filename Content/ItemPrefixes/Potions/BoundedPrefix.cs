@@ -1,5 +1,4 @@
-﻿using Aequus.Content.ItemPrefixes;
-using Aequus.Items;
+﻿using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -30,7 +29,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, "PrefixBounded", AequusText.GetText("Prefixes.BoundedPotion"))
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, "PrefixBounded", TextHelper.GetTextValue("Prefixes.BoundedPotion"))
             { IsModifier = true, IsModifierBad = false, });
         }
     }

@@ -443,7 +443,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             for (int j = 0; j < circular.Length; j++)
                 Main.spriteBatch.Draw(texture, NPC.position + offset + circular[j] * armsOffset - screenPos, NPC.frame, new Color(255, 255, 255, 255), rotation + rotationOffset + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
 
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
@@ -475,7 +475,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 i++;
             }
             r.SetRand(seed);
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             var bloomOrigin = bloom.Size() / 2f;
             scale *= 0.5f;
             Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);

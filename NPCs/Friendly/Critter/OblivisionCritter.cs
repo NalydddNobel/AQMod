@@ -172,7 +172,7 @@ namespace Aequus.NPCs.Friendly.Critter
                     }
                     if (Main.player[i].ghost && Main.myPlayer == i && Main.rand.NextBool(600))
                     {
-                        Main.NewText(AequusText.GetTextWith("OblivisonEasterEgg", new { PlayerName = Main.player[i].name }));
+                        Main.NewText(TextHelper.GetTextValueWith("OblivisonEasterEgg", new { PlayerName = Main.player[i].name }));
                     }
                 }
             }

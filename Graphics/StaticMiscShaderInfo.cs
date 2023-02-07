@@ -21,12 +21,12 @@ namespace Aequus.Graphics
             effect = ModContent.Request<Effect>("Aequus/Assets/Effects/" + requestPath,
                 (initalizer != null) ? AssetRequestMode.ImmediateLoad : AssetRequestMode.AsyncLoad);
             ShaderDataKey = key;
-            if (effect.Value == null)
-            {
-                throw new Exception(requestPath + " returned null.");
-            }
             if (initalizer != null)
             {
+                if (effect.Value == null)
+                {
+                    throw new Exception(requestPath + " returned null.");
+                }
                 GameShaders.Misc[key] = initalizer(new Ref<Effect>(effect.Value), pass);
             }
         }

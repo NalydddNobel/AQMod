@@ -15,7 +15,7 @@ namespace Aequus.Buffs.Misc
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.GetModPlayer<PlayerVampirism>().daylightBurning = true;
+            player.GetModPlayer<AequusPlayer>().daylightBurning = true;
         }
     }
 }

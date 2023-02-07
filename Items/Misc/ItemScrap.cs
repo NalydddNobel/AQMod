@@ -98,7 +98,7 @@ namespace Aequus.Items.Misc
             {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { ItemRarity = AequusText.GetRarityNameValue(Rarity), });
+                    t.Text = AequusHelpers.FormatWith(t.Text, new { ItemRarity = TextHelper.GetRarityNameValue(Rarity), });
                 }
             }
         }

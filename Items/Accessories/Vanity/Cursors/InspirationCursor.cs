@@ -35,7 +35,7 @@ namespace Aequus.Items.Accessories.Vanity.Cursors
         {
             if (ThoriumMod.Instance == null)
             {
-                tooltips.AddTooltip(new TooltipLine(Mod, "NeedsThorium", AequusText.GetText("NeedsMod", "Thorium Mod")) { OverrideColor = Color.Lerp(Color.White, Color.Turquoise * 1.5f, 0.5f), });
+                tooltips.AddTooltip(new TooltipLine(Mod, "NeedsThorium", TextHelper.GetTextValue("NeedsMod", "Thorium Mod")) { OverrideColor = Color.Lerp(Color.White, Color.Turquoise * 1.5f, 0.5f), });
             }
         }
 

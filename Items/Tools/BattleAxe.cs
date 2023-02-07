@@ -1,5 +1,4 @@
 ﻿using Aequus.Projectiles.Melee.Swords;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

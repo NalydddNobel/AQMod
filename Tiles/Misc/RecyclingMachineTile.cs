@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Items;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

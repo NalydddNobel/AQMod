@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Preferences;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -92,7 +93,7 @@ namespace Aequus.Content.Necromancy.Renderer
 
         private bool EnsureTarget()
         {
-            return renderTargetCache != null && !renderTargetCache.IsDisposed && !renderTargetCache.IsContentLost 
+            return renderTargetCache != null && !renderTargetCache.IsDisposed && !renderTargetCache.IsContentLost
                 && renderTargetCache.Width == Main.screenWidth / 2 && renderTargetCache.Height == Main.screenHeight / 2;
         }
 

@@ -11,12 +11,12 @@
         </member>
         <member name="P:Aequus.Aequus.HQ">
             <summary>
-            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.HighQuality">HighQuality</see>.
+            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.HighQuality">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.LogMore">
             <summary>
-            Easier to write version of <see cref="F:Aequus.ClientConfig.Instance"/>.<see cref="P:Aequus.ClientConfig.InfoDebugLogs">HighQuality</see>.
+            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.HardmodeTier">
@@ -115,225 +115,6 @@
             <param name="identity"></param>
             <returns></returns>
         </member>
-        <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.whitePhial">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.WhitePhial"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.Moro"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.ghostTombstones">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.eventDemonSiege">
-            <summary>
-            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.closestEnemy">
-            <summary>
-            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.forceDayState">
-            <summary>
-            0 = no force, 1 = force day, 2 = force night
-            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accFaultyCoin">
-            <summary>
-            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.Utility.FaultyCoin"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accForgedCard">
-            <summary>
-            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.Utility.ForgedCard"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.luckRerolls">
-            <summary>
-            Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.dropRerolls">
-            <summary>
-            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.increasedRegen">
-            <summary>
-            An amount of regen to add to the player in <see cref="M:Aequus.AequusPlayer.UpdateLifeRegen"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accSentryInheritence">
-            <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accExpertBoost">
-            <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.TheReconstruction"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
-            <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
-            <summary>
-            Set to true by <see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
-            <summary>
-            Used by summon helmets (<see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.lastSelectedItem">
-            <summary>
-            Tracks <see cref="F:Terraria.Player.selectedItem"/>, updated in <see cref="M:Aequus.AequusPlayer.PostItemCheck"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldownMax">
-            <summary>
-            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.AequusPlayer.itemCooldown"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldown">
-            <summary>
-            When above 0, the cooldown is active. Ticks down by 1 every player update.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCombo">
-            <summary>
-            When above 0, you are in a combo. Ticks down by 1 every player update.
-            <para>Item "combos" are used for determining what type of item action to use.</para>
-            <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemUsage">
-            <summary>
-            Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemSwitch">
-            <summary>
-            A short lived timer which gets set to 30 when the player has a different selected item.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.netInteractionCooldown">
-            <summary>
-            Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusPlayer.HasCooldown">
-            <summary>
-            Helper for whether or not the player currently has a cooldown
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusPlayer.InDanger">
-            <summary>
-            Helper for whether or not the player is in danger
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.UpdateBank(Terraria.Chest,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="bank"></param>
-            <param name="bankType">Types: 
-            <list type="number">
-            Piggy Bank
-            <item>Safe</item>
-            <item>Defender's Forge</item>
-            <item>Void Bag</item>
-            </list></param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.ClosestEnemy">
-            <summary>
-            Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.UpdateMaxZombies">
-            <summary>
-            If the player has too many zombies, it kills the oldest and least prioritized one.
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
-            <summary>
-            Called right before all player layers have been drawn
-            </summary>
-            <param name="info"></param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.PostDraw(Terraria.DataStructures.PlayerDrawSet@)">
-            <summary>
-            Called right after all player layers have been drawn
-            </summary>
-            <param name="info"></param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.SetCooldown(System.Int32,System.Boolean,Terraria.Item)">
-            <summary>
-            Sets a cooldown for the player. If the cooldown value provided is less than the player's currently active cooldown, this does nothing.
-            <para>Use in combination with <see cref="P:Aequus.AequusPlayer.HasCooldown"/></para>
-            </summary>
-            <param name="cooldown">The amount of time the cooldown lasts in game ticks.</param>
-            <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
-            <param name="itemReference"></param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.ProjectileClone(Terraria.Player)">
-            <summary>
-            Creates a cloned player for a fake projectile-player clone.
-            </summary>
-            <param name="basePlayer"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusPlayer.GetEquips(Terraria.Player,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Gets a list of equipment from the player.
-            </summary>
-            <param name="player"></param>
-            <param name="armor"></param>
-            <param name="accessories"></param>
-            <param name="sentrySlot"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
-            <summary>
-            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
-            </summary>
-            <param name="position"></param>
-            <param name="velocity"></param>
-            <param name="player"></param>
-            <param name="magmaStone"></param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.CurrentPlayerContext">
-            <summary>
-            Gets a player context for applying specific effects.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusPlayer.CalcHealing(Terraria.Player,System.Int32)">
-            <summary>
-            Calculates how much to actually heal.
-            </summary>
-            <param name="player"></param>
-            <param name="healAmt"></param>
-            <returns></returns>
-        </member>
         <member name="P:Aequus.AequusSystem.Main_invasionSize">
             <summary>
             Caches <see cref="F:Terraria.Main.invasionSize"/>
@@ -396,7 +177,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedCrabson">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson.Crabson"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUpriser">
@@ -416,12 +197,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedDustDevil">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil.DustDevil"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.shadowOrbsBrokenTotal">
@@ -504,6 +285,225 @@
             <summary>
             Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
             </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.maxLifeRespawnReward">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.whitePhial">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.WhitePhial"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.moroSummonerFruit">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.Moro"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.ghostTombstones">
+            <summary>
+            Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.eventDemonSiege">
+            <summary>
+            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.closestEnemy">
+            <summary>
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.Common.ModPlayers.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.Common.ModPlayers.AequusPlayer.ClosestEnemy"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.forceDayState">
+            <summary>
+            0 = no force, 1 = force day, 2 = force night
+            <para>Used by <see cref="T:Aequus.Buffs.NoonBuff"/> and set to 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.accFaultyCoin">
+            <summary>
+            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.Utility.FaultyCoin"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.accForgedCard">
+            <summary>
+            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.Utility.ForgedCard"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.luckRerolls">
+            <summary>
+            Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
+            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.dropRerolls">
+            <summary>
+            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.increasedRegen">
+            <summary>
+            An amount of regen to add to the player in <see cref="M:Aequus.Common.ModPlayers.AequusPlayer.UpdateLifeRegen"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.accSentryInheritence">
+            <summary>
+            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.accExpertBoost">
+            <summary>
+            Set to true by <see cref="T:Aequus.Items.Accessories.TheReconstruction"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.accFoolsGoldRing">
+            <summary>
+            Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.wearingSummonHelmet">
+            <summary>
+            Set to true by <see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.summonHelmetTimer">
+            <summary>
+            Used by summon helmets (<see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.lastSelectedItem">
+            <summary>
+            Tracks <see cref="F:Terraria.Player.selectedItem"/>, updated in <see cref="M:Aequus.Common.ModPlayers.AequusPlayer.PostItemCheck"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.itemCooldownMax">
+            <summary>
+            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.Common.ModPlayers.AequusPlayer.itemCooldown"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.itemCooldown">
+            <summary>
+            When above 0, the cooldown is active. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.itemCombo">
+            <summary>
+            When above 0, you are in a combo. Ticks down by 1 every player update.
+            <para>Item "combos" are used for determining what type of item action to use.</para>
+            <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.itemUsage">
+            <summary>
+            Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.itemSwitch">
+            <summary>
+            A short lived timer which gets set to 30 when the player has a different selected item.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.AequusPlayer.netInteractionCooldown">
+            <summary>
+            Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.ModPlayers.AequusPlayer.HasCooldown">
+            <summary>
+            Helper for whether or not the player currently has a cooldown
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.ModPlayers.AequusPlayer.InDanger">
+            <summary>
+            Helper for whether or not the player is in danger
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.UpdateBank(Terraria.Chest,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="bank"></param>
+            <param name="bankType">Types: 
+            <list type="number">
+            Piggy Bank
+            <item>Safe</item>
+            <item>Defender's Forge</item>
+            <item>Void Bag</item>
+            </list></param>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.ClosestEnemy">
+            <summary>
+            Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.UpdateMaxZombies">
+            <summary>
+            If the player has too many zombies, it kills the oldest and least prioritized one.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
+            <summary>
+            Called right before all player layers have been drawn
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.PostDraw(Terraria.DataStructures.PlayerDrawSet@)">
+            <summary>
+            Called right after all player layers have been drawn
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.SetCooldown(System.Int32,System.Boolean,Terraria.Item)">
+            <summary>
+            Sets a cooldown for the player. If the cooldown value provided is less than the player's currently active cooldown, this does nothing.
+            <para>Use in combination with <see cref="P:Aequus.Common.ModPlayers.AequusPlayer.HasCooldown"/></para>
+            </summary>
+            <param name="cooldown">The amount of time the cooldown lasts in game ticks.</param>
+            <param name="ignoreStats">Whether or not to ignore cooldown stats and effects. Setting this to true will prevent them from effecting this cooldown</param>
+            <param name="itemReference"></param>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.ProjectileClone(Terraria.Player)">
+            <summary>
+            Creates a cloned player for a fake projectile-player clone.
+            </summary>
+            <param name="basePlayer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.GetEquips(Terraria.Player,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Gets a list of equipment from the player.
+            </summary>
+            <param name="player"></param>
+            <param name="armor"></param>
+            <param name="accessories"></param>
+            <param name="sentrySlot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="magmaStone"></param>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.CurrentPlayerContext">
+            <summary>
+            Gets a player context for applying specific effects.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.ModPlayers.AequusPlayer.CalcHealing(Terraria.Player,System.Int32)">
+            <summary>
+            Calculates how much to actually heal.
+            </summary>
+            <param name="player"></param>
+            <param name="healAmt"></param>
+            <returns></returns>
         </member>
         <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">
             <summary>
@@ -643,95 +643,6 @@
             <param name="name">The name of the structure</param>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Graphics.CameraFocus">
-            <summary>
-            Manages screen panning
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.CameraFocus.Context">
-            <summary>
-            A context string for the current focus
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.target">
-            <summary>
-            The target position for the camera in the world
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.cameraPosition">
-            <summary>
-            The camera's position 
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.priority">
-            <summary>
-            A priority for determining whether or not a new camera focus can be added
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.speed">
-            <summary>
-            The speed of the camera
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.cameraProgress">
-            <summary>
-            The progress of the camera from its original position to its destination
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.hold">
-            <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.returning">
-            <summary>
-            Whether or not the camera is returning
-            </summary>
-        </member>
-        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)">
-            <summary>
-            Sets the camera target to a position, may return false if your priority is below a current target's priority
-            </summary>
-            <param name="key">Context key, only really useful for 3rd party mods</param>
-            <param name="target">A world coordinate to point the camera at</param>
-            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
-            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
-            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesBehindPlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesAbovePlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
-        <member name="T:Aequus.Graphics.SkyDarkness">
-            <summary>
-            Used for darken-ing the sky for flashy visual effects
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">
-            <summary>
-            Parameter 1: {NPC} - The NPC which is being sudo cloned
-            <para>Parameter 2: {NPC} - The clone result</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomDraw">
-            <summary>
-            Parameter 1: {NPC} - The NPC which is being sudo cloned
-            <para>Parameter 2: {NPC} - The NPC</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomUpdate">
-            <summary>
-            Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
-            <para>Parameter 2: {NPC} - The NPC</para>
-            </summary>
-        </member>
         <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
@@ -740,6 +651,31 @@
             <para>.</para>
             <para>returns:</para> 
                 Whether it was successful at placing a sentry
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.ConditionOmegaStarite">
+            <summary>
+            A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyEctoplasm">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Misc.Materials.Hexoplasm"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Moss.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Moss.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Moss.XenonMushroom"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.AequusRecipes.AnyFruit">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
             </summary>
         </member>
         <member name="M:Aequus.Items.Consumables.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
@@ -866,7 +802,7 @@
             10 gold
             </summary>
         </member>
-        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.PlayerFishing,Terraria.Item,System.Single@)">
+        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.Common.ModPlayers.AequusPlayer,Terraria.Item,System.Single@)">
             <summary>
             
             </summary>
@@ -889,6 +825,90 @@
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
+            </summary>
+        </member>
+        <member name="T:Aequus.Graphics.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Graphics.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesBehindPlayers">
+            <summary>
+            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
+            </summary>
+        </member>
+        <member name="T:Aequus.Graphics.SkyDarkness">
+            <summary>
+            Used for darken-ing the sky for flashy visual effects
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">
+            <summary>
+            Parameter 1: {NPC} - The NPC which is being sudo cloned
+            <para>Parameter 2: {NPC} - The clone result</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomDraw">
+            <summary>
+            Parameter 1: {NPC} - The NPC which is being sudo cloned
+            <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomUpdate">
+            <summary>
+            Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
+            <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
@@ -958,7 +978,7 @@
             Helper class for setting up bestiary entries
             </summary>
         </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>
@@ -1024,7 +1044,7 @@
             A better naming scheme for how this camera functions
             </summary>
         </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.Common.ModPlayers.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>

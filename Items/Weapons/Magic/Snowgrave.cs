@@ -37,7 +37,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void ModifyManaCost(Player player, ref float reduce, ref float mult)
         {
             if (reduce < 0f)
-                reduce = MathHelper.Lerp(reduce, 0f, 0.8f); 
+                reduce = MathHelper.Lerp(reduce, 0f, 0.8f);
             if (mult < 0f)
                 mult = MathHelper.Lerp(reduce, 1f, 0.8f);
         }

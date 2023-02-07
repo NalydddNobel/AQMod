@@ -79,7 +79,7 @@ namespace Aequus.Items.Accessories
 
         public string GetName(string originalName)
         {
-            return buffID <= 0 ? originalName : originalName.Replace(AequusText.GetText("ItemName.PotionCanteen"), AequusText.GetTextWith("ItemName.PotionCanteen.AltName", new { PotionName = Lang.GetBuffName(buffID), }));
+            return buffID <= 0 ? originalName : originalName.Replace(TextHelper.GetTextValue("ItemName.PotionCanteen"), TextHelper.GetTextValueWith("ItemName.PotionCanteen.AltName", new { PotionName = Lang.GetBuffName(buffID), }));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

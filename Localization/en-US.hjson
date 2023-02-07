@@ -52,6 +52,10 @@ Mods: {
 			}
 		}
 		
+		RecipeCondition: {
+			OmegaStarite: Craftable after Omega Starite has been defeated
+		}
+
 		DropCondition: {
 			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}
@@ -801,7 +805,7 @@ Mods: {
 			SickBeat: 
 				'''
 				Deals extra hits when returning back
-				'This beat comes straight from {MusicSource}!'
+				'This beat comes straight from Terraria!'
 				'''
 			PhaseDisc: 
 				'''
@@ -1724,6 +1728,8 @@ Mods: {
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
 
+			BrokenMapBuff: Uncharted
+
 			GravetenderMinionBuff: Gravetender
 
 			PiranhaPlantBuff: Vile Plant
@@ -1806,6 +1812,8 @@ Mods: {
 			NeutronYogurtBuff: Greatly increased gravity
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
+
+			BrokenMapBuff: You are in a mysterious area...
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 

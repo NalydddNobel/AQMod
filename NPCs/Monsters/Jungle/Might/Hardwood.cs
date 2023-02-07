@@ -121,7 +121,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             {
                 int random = Main.rand.Next(validSpots.Count);
                 var spawnPosition = new Vector2(validSpots[random].X * 16 + 8f, validSpots[random].Y * 16f + 8f);
-                Projectile.NewProjectile(source, spawnPosition, Vector2.Normalize(target.Center - spawnPosition).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)), 
+                Projectile.NewProjectile(source, spawnPosition, Vector2.Normalize(target.Center - spawnPosition).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)),
                     ModContent.ProjectileType<HardwoodProj>(), NPC.FixedDamage(), 1f, Main.myPlayer);
             }
         }

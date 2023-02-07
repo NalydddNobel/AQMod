@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Content.Necromancy;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             {
                 if (t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = string.Format(t.Text, AequusText.ArmorSetBonusKey);
+                    t.Text = string.Format(t.Text, TextHelper.ArmorSetBonusKey);
                 }
             }
         }

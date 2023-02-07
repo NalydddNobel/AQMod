@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
-using Aequus.Projectiles.Summon.Necro;
+﻿using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,12 +23,8 @@ namespace Aequus.Items.Weapons.Summon.Scepters
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient<Revenant>()
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .TryRegisterAfter(ItemID.RainbowRod);
+            // Dummy condition, remove in proper 1.4.4 port
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<Revenant>(), ModContent.ItemType<FriendshipMagick>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
     }
 }

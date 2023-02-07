@@ -1,6 +1,5 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Boss.Summons;
-using Aequus.NPCs.Boss;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
@@ -244,11 +243,11 @@ namespace Aequus.Biomes.DemonSiege
                 }
                 if (itemList != "")
                     itemList += ", ";
-                itemList += AequusText.ItemCommand(i.type);
+                itemList += TextHelper.ItemCommand(i.type);
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                AequusText.Broadcast("Announcement.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
+                TextHelper.Broadcast("Announcement.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
             }
         }
         public void OnFail_EatItems(bool clientOnly)
@@ -262,11 +261,11 @@ namespace Aequus.Biomes.DemonSiege
                 }
                 if (itemList != "")
                     itemList += ", ";
-                itemList += AequusText.ItemCommand(i.type);
+                itemList += TextHelper.ItemCommand(i.type);
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                AequusText.Broadcast("Announcement.DemonSiegeFailEat", new Color(255, 210, 25, 255), itemList);
+                TextHelper.Broadcast("Announcement.DemonSiegeFailEat", new Color(255, 210, 25, 255), itemList);
             }
         }
         public void SummonBoss1(bool voidRing)

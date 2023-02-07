@@ -263,8 +263,8 @@ namespace Aequus.Content.WorldGeneration
                         int sign = Sign.ReadSign(v.X, v.Y);
                         if (sign >= 0)
                         {
-                            string text = AequusText.GetTextWith("GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = AequusText.GetText("GoreNestTombstones.Names." + WorldGen.genRand.Next(10)) });
-                            Sign.TextSign(sign, text + AequusText.GetText("GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
+                            string text = TextHelper.GetTextValueWith("GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = TextHelper.GetTextValue("GoreNestTombstones.Names." + WorldGen.genRand.Next(10)) });
+                            Sign.TextSign(sign, text + TextHelper.GetTextValue("GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
                         }
                         i += 400;
                     }

@@ -94,7 +94,7 @@ namespace Aequus.Items
             /// <param name="fishing"></param>
             /// <param name="fishingRod"></param>
             /// <param name="fishingLevel"></param>
-            void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel);
+            void ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel);
         }
 
         public interface IUpdateVoidBag

@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
@@ -664,7 +664,7 @@ namespace Aequus.Content.Necromancy
                     int myPriority = DespawnPriority(npc);
                     for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) 
+                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie)
                             && zombie.isZombie && zombie.zombieOwner == zombieOwner && zombie.slotsConsumed > 0)
                         {
                             int priority = zombie.DespawnPriority(Main.npc[i]);

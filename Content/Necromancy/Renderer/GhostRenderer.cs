@@ -94,7 +94,7 @@ namespace Aequus.Content.Necromancy.Renderer
                 foreach (var v in ChainedUpNPCs)
                 {
                     int i = 0;
-                    AequusHelpers.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) => 
+                    AequusHelpers.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) =>
                     {
                         var zombie = v.Item1.GetGlobalNPC<NecromancyNPC>();
                         float m = 0.5f;

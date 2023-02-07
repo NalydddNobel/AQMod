@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Friendly.Town;
+﻿using Aequus.Common.Utilities;
+using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

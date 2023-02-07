@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.GlobalProjs;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Projectiles.GlobalProjs;
 using Terraria;
 using Terraria.ModLoader;
 

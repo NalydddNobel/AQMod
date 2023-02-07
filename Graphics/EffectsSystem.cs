@@ -1,14 +1,18 @@
 ﻿using Aequus.Biomes.Glimmer;
+using Aequus.Common.ModPlayers;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Graphics.DustDevilEffects;
 using Aequus.Graphics.RenderTargets;
-using Aequus.NPCs.Boss;
+using Aequus.Graphics.Tiles;
+using Aequus.NPCs.Boss.DustDevil;
+using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -65,17 +69,10 @@ namespace Aequus.Graphics
 
         public static CachedRandom EffectRand { get; private set; }
 
-        public static ParticleRenderer ParticlesBehindAllNPCs { get; private set; }
-        public static ParticleRenderer ParticlesBehindProjs { get; private set; }
         /// <summary>
         /// Use this instead of <see cref="Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
         /// </summary>
         public static ParticleRenderer ParticlesBehindPlayers { get; private set; }
-        /// <summary>
-        /// Use this instead of <see cref="Main.ParticleSystem_World_OverPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-        /// </summary>
-        public static ParticleRenderer ParticlesAbovePlayers { get; private set; }
-        public static ParticleRenderer ParticlesAboveDust { get; private set; }
 
         public static LegacyDrawList ProjsBehindProjs { get; private set; }
         public static LegacyDrawList ProjsBehindTiles { get; private set; }
@@ -99,11 +96,6 @@ namespace Aequus.Graphics
             ProjsBehindTiles = new LegacyDrawList();
             Shake = new ScreenShake();
             EffectRand = new CachedRandom("Split".GetHashCode(), capacity: 256 * 4);
-            ParticlesBehindAllNPCs = new ParticleRenderer();
-            ParticlesBehindProjs = new ParticleRenderer();
-            ParticlesBehindPlayers = new ParticleRenderer();
-            ParticlesAbovePlayers = new ParticleRenderer();
-            ParticlesAboveDust = new ParticleRenderer();
             if (Renderers == null)
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
@@ -120,12 +112,7 @@ namespace Aequus.Graphics
         public override void Unload()
         {
             VerticalGradient = null;
-            ParticlesBehindProjs = null;
             Shake = null;
-            ParticlesBehindAllNPCs = null;
-            ParticlesBehindProjs = null;
-            ParticlesBehindPlayers = null;
-            ParticlesAbovePlayers = null;
             NPCsBehindAllNPCs?.Clear();
             NPCsBehindAllNPCs = null;
             ProjsBehindProjs = null;
@@ -134,21 +121,24 @@ namespace Aequus.Graphics
             Renderers = null;
         }
 
-        public override void OnWorldLoad()
-        {
-            if (Main.dedServ)
-            {
-                return;
-            }
-        }
-
         public void InitWorldData()
         {
+            if (Main.dedServ)
+                return;
+            Shake.Intensity = 0f;
+            ProjsBehindProjs.Clear();
+            ProjsBehindTiles.Clear();
             NPCsBehindAllNPCs.Clear();
-            ParticlesBehindAllNPCs = new ParticleRenderer();
-            ParticlesBehindProjs = new ParticleRenderer();
-            ParticlesBehindPlayers = new ParticleRenderer();
-            ParticlesAbovePlayers = new ParticleRenderer();
+        }
+
+        public override void OnWorldLoad()
+        {
+            InitWorldData();
+        }
+
+        public override void OnWorldUnload()
+        {
+            InitWorldData();
         }
 
         public override void PreUpdatePlayers()
@@ -160,11 +150,6 @@ namespace Aequus.Graphics
                 SnowgraveCorpse.ResetCounts();
 
                 Shake.Update();
-                ParticlesAboveDust.Update();
-                ParticlesBehindAllNPCs.Update();
-                ParticlesBehindProjs.Update();
-                ParticlesBehindPlayers.Update();
-                ParticlesAbovePlayers.Update();
                 GamestarRenderer.Particles.Update();
             }
         }
@@ -192,7 +177,7 @@ namespace Aequus.Graphics
         private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
         {
             Begin.GeneralEntities.Begin(Main.spriteBatch);
-            ParticlesBehindPlayers.Draw(Main.spriteBatch);
+            ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
 
             var aequusPlayers = new List<AequusPlayer>();
@@ -210,7 +195,7 @@ namespace Aequus.Graphics
             //    p.PostDrawAllPlayers(self);
             //}
             Begin.GeneralEntities.Begin(Main.spriteBatch);
-            ParticlesAbovePlayers.Draw(Main.spriteBatch);
+            ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }
 
@@ -236,7 +221,7 @@ namespace Aequus.Graphics
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
                 Begin.GeneralEntities.Begin(Main.spriteBatch);
-                ParticlesAboveDust.Draw(Main.spriteBatch);
+                ParticleSystem.GetLayer(ParticleLayer.AboveDust).Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
             }
             catch
@@ -252,7 +237,7 @@ namespace Aequus.Graphics
             Main.spriteBatch.End();
 
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
-            ParticlesBehindProjs.Draw(Main.spriteBatch);
+            ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Draw(Main.spriteBatch);
 
             ProjsBehindProjs.renderingNow = true;
             for (int i = 0; i < ProjsBehindProjs.Count; i++)
@@ -300,7 +285,7 @@ namespace Aequus.Graphics
                 }
                 else
                 {
-                    ParticlesBehindAllNPCs.Draw(Main.spriteBatch);
+                    ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCs).Draw(Main.spriteBatch);
                     GhostRenderer.DrawChainedNPCs();
                     NPCsBehindAllNPCs.renderNow = true;
                     for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)

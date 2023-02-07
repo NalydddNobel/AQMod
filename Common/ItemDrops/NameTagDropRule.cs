@@ -64,7 +64,7 @@ namespace Aequus.Common.ItemDrops
             {
                 ratesInfo2.AddCondition(condition);
             }
-            float num = (float)chanceNumerator / (float)chanceDenominator;
+            float num = chanceNumerator / (float)chanceDenominator;
             drops.Add(new DropRateInfo(itemDrop.item, itemDrop.minStack, itemDrop.maxStack, 1f, ratesInfo2.conditions));
 
             Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo2);

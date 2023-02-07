@@ -143,7 +143,7 @@ namespace Aequus.Content.Carpentery.Bounties
             spriteBatch.End();
             spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle(r.X + 20, r.Y, 120, r.Height);
             Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
-            for (int i = iconPanel/IconPanelAnimation -1; i <= iconPanel / IconPanelAnimation+1; i++)
+            for (int i = iconPanel / IconPanelAnimation - 1; i <= iconPanel / IconPanelAnimation + 1; i++)
             {
                 if (i < 0 || i >= bounties.Count)
                     continue;

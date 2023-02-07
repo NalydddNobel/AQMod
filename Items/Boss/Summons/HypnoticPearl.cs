@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Boss;
+﻿using Aequus.NPCs.Boss.Crabson;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

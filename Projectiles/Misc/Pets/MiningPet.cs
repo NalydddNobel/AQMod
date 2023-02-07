@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
 using Aequus.Common.ModPlayers;
-using Aequus.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -58,7 +57,7 @@ namespace Aequus.Projectiles.Misc.Pets
                     int checkTileX = tileCoords.X + i;
                     int checkTileY = tileCoords.Y + j;
                     if (WorldGen.InWorld(checkTileX, checkTileY, 50) && Main.tile[checkTileX, checkTileY].IsFullySolid()
-                        && Main.tileSpelunker[Main.tile[checkTileX, checkTileY].TileType] && MiningPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, checkTileX, checkTileY)
+                        && Main.tileSpelunker[Main.tile[checkTileX, checkTileY].TileType] && AequusPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, checkTileX, checkTileY)
                         && WorldGen.CanKillTile(checkTileX, checkTileY))
                     {
                         var worldCoords = new Vector2(checkTileX * 16f, checkTileY * 16f);
@@ -139,7 +138,7 @@ namespace Aequus.Projectiles.Misc.Pets
                         {
                             Main.player[Projectile.owner].PickTile(tileX, tileY, pick.pick);
                         }
-                        if (!Main.tile[tileX, tileY].IsFullySolid() || !MiningPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, tileX, tileY))
+                        if (!Main.tile[tileX, tileY].IsFullySolid() || !AequusPlayer.PickaxePowerCriteria(Main.player[Projectile.owner], pick, tileX, tileY))
                         {
                             tileX = 0;
                             tileY = 0;
@@ -189,7 +188,7 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out int _);
             var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: this.frame);
-            Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame, 
+            Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame,
                 AequusHelpers.GetColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection.ToSpriteEffect(), 0);
             if (swingPick > 0)
             {
@@ -221,7 +220,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public Vector2 GetPickaxeHandPosition()
         {
             var pos = Projectile.Center + new Vector2(0f, DrawOriginOffsetY);
-            switch (frame) 
+            switch (frame)
             {
                 case 11:
                     {

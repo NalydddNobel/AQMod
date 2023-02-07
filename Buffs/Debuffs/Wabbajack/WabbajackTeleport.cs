@@ -26,7 +26,7 @@ namespace Aequus.Buffs.Debuffs.Wabbajack
                     if (i == npc.whoAmI)
                         continue;
 
-                    if (Main.npc[i].active && !Main.npc[i].dontTakeDamage && !Main.npc[i].immortal && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == Main.npc[i].whoAmI) 
+                    if (Main.npc[i].active && !Main.npc[i].dontTakeDamage && !Main.npc[i].immortal && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == Main.npc[i].whoAmI)
                         && !NPCID.Sets.TeleportationImmune[Main.npc[i].type] && npc.Distance(Main.npc[i].position) < 700f)
                     {
                         l.Add(Main.npc[i]);

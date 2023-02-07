@@ -1,8 +1,7 @@
-﻿using Aequus.Biomes;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

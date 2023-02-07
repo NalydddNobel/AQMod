@@ -43,10 +43,10 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
         public override bool PreDraw(ref Color lightColor)
         {
             var drawCoords = Projectile.Center - Main.screenPosition;
-            Main.EntitySpriteDraw(TextureCache.Bloom[3].Value, drawCoords, null, Color.Black * Projectile.Opacity,
-                0f, TextureCache.Bloom[3].Value.Size() / 2f, Projectile.scale * 0.75f, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, drawCoords, null, Color.Black * Projectile.Opacity,
-                0f, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[3].Value, drawCoords, null, Color.Black * Projectile.Opacity,
+                0f, Textures.Bloom[3].Value.Size() / 2f, Projectile.scale * 0.75f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[0].Value, drawCoords, null, Color.Black * Projectile.Opacity,
+                0f, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
             QuickDrawAura(drawCoords, Color.Red.UseA(0) * 0.5f, Color.HotPink * 0.5f);
             Main.EntitySpriteDraw(TextureAssets.Extra[ExtrasID.CultistRitual].Value, Projectile.Center - Main.screenPosition, null, Color.Red.UseA(0) * Projectile.Opacity,
                 -Projectile.rotation, TextureAssets.Extra[ExtrasID.CultistRitual].Value.Size() / 2f, Projectile.scale * Projectile.Opacity * 0.33f, SpriteEffects.None, 0);

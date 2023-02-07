@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -12,7 +13,7 @@ using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Ranged;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -387,7 +388,7 @@ namespace Aequus.Projectiles
                     projectile.alpha = 255;
                 }
             }
-            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>() 
+            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>()
                 && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
             {
                 ScreenCulling.SetPadding(109);
@@ -403,7 +404,7 @@ namespace Aequus.Projectiles
                         {
                             Dust.NewDustPerfect(spawnLoc, DustID.Smoke, v, Scale: Main.rand.NextFloat(0.8f, 1.5f));
                         }
-                        EffectsSystem.ParticlesBehindProjs.Add(new MonoParticle(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi)));
+                        ParticleSystem.New<MonoParticle>(ParticleLayer.BehindProjs).Setup(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi));
                     }
                 }
                 if (projectile.type == ProjectileID.ChlorophyteBullet)
@@ -451,7 +452,7 @@ namespace Aequus.Projectiles
                     if (target != -1)
                     {
                         Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
-                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(), 
+                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(),
                             (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.Aequus().accStacks), 12f, projectile.owner);
                     }
                 }
@@ -604,7 +605,7 @@ namespace Aequus.Projectiles
                 {
                     swishOpacity *= 1f - (swishTimeMax - swishTime) / 8f;
                 }
-                Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, drawCoords, null, color, 0f, TextureCache.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(Textures.Bloom[0].Value, drawCoords, null, color, 0f, Textures.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
                 for (int i = -1; i <= 1; i += 2)
                 {
                     Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - frenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);

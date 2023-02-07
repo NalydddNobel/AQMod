@@ -83,7 +83,7 @@ namespace Aequus.Items.Consumables
                     i--;
                 }
             }
-            player.GetModPlayer<PlayerVampirism>().vampirism = 0;
+            player.GetModPlayer<AequusPlayer>().vampirism = 0;
             return true;
         }
     }

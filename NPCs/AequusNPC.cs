@@ -2,7 +2,7 @@
 using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Graphics;
 using Aequus.Items;
@@ -13,11 +13,10 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
-using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -413,8 +412,8 @@ namespace Aequus.NPCs
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
                 {
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        new Color(180, 90, 40, 60) * 0.5f, new Color(20, 2, 10, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(180, 90, 40, 60) * 0.5f, new Color(20, 2, 10, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
             if (npc.HasBuff<AethersWrath>())
@@ -426,14 +425,14 @@ namespace Aequus.NPCs
                     var spawnLocation = Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f;
                     spawnLocation.Y -= 4f;
                     var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
                     if (i == 0 && Main.GameUpdateCount % 12 == 0)
                     {
                         var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-6f, 6f), -Main.rand.NextFloat(4f, 7f));
                         float scale = Main.rand.NextFloat(1.2f, 2.2f);
                         float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        EffectsSystem.ParticlesBehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale * 1.2f, rotation));
+                        ParticleSystem.New<AethersWrathParticle>(ParticleLayer.BehindPlayers).Setup(spawnLocation, velocity, 10, color, scale * 1.2f, rotation);
                     }
                 }
             }
@@ -441,22 +440,22 @@ namespace Aequus.NPCs
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
             if (npc.HasBuff<CorruptionHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
             if (npc.HasBuff<CrimsonHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
         }
 
@@ -658,7 +657,7 @@ namespace Aequus.NPCs
             {
                 if (npc.HasBuff<SnowgraveDebuff>() && SnowgraveCorpse.CanFreezeNPC(npc))
                 {
-                    EffectsSystem.ParticlesBehindAllNPCs.Add(new SnowgraveCorpse(npc.Center, npc));
+                    ParticleSystem.New<SnowgraveCorpse>(ParticleLayer.BehindAllNPCs).Setup(npc.Center, npc);
                 }
             }
             return false;
@@ -707,12 +706,12 @@ namespace Aequus.NPCs
                             if (Main.npcChatCornerItem != inv[i].type)
                             {
                                 Main.npcChatCornerItem = inv[i].type;
-                                Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFish");
+                                Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFish");
                                 return false;
                             }
                             Main.npcChatCornerItem = 0;
-                            Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFishReward");
-                            Main.LocalPlayer.GetModPlayer<AnglerQuestRewards>().LegendaryFishRewards(npc, inv[i], i);
+                            Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFishReward");
+                            Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;
                             if (inv[i].stack <= 0)
                             {

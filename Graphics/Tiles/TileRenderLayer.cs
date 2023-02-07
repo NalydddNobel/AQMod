@@ -7,6 +7,7 @@
         PostDrawVines,
         PreDrawMasterRelics,
         PostDrawMasterRelics,
+        PostDrawLiquids,
         Count,
     }
 }

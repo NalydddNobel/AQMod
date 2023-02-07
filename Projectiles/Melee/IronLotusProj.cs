@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.ModPlayers;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -62,7 +63,7 @@ namespace Aequus.Projectiles.Melee
                 for (int i = 0; i < 15; i++)
                 {
                     AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(Projectile.width + 24f), AngleVector, Main.player[Projectile.owner], magmaStone: false);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f))* Main.rand.NextFloat(Projectile.width + 24f), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(Projectile.width + 24f), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
                     d.velocity += AngleVector;
                     d.velocity *= 4f;
                     d.noGravity = true;
@@ -70,7 +71,7 @@ namespace Aequus.Projectiles.Melee
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) +visualOutwards), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) + visualOutwards), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
                     d.velocity = -AngleVector * 3f;
                     d.noGravity = true;
                     d.fadeIn = d.scale + 0.33f;

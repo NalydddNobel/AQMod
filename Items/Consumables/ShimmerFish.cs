@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Misc.Fish.Quest;
-using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,12 +38,7 @@ namespace Aequus.Items.Consumables
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnyQuestFish)
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
     }
 }

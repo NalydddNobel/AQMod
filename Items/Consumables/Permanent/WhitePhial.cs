@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,12 +34,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient<BlackPhial>()
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<BlackPhial>(), ModContent.ItemType<WhitePhial>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
     }
 }

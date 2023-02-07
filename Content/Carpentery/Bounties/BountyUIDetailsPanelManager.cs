@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
 using Terraria.UI;
 
 namespace Aequus.Content.Carpentery.Bounties
@@ -24,14 +23,18 @@ namespace Aequus.Content.Carpentery.Bounties
         public void SetBounty(CarpenterBounty bounty)
         {
             Clear();
-            var uiText = new UIText(bounty.DisplayName, 0.7f, large: true);
-            uiText.HAlign = 0.5f;
+            var uiText = new UIText(bounty.DisplayName, 0.7f, large: true)
+            {
+                HAlign = 0.5f
+            };
             uiText.Top.Set(8, 0f);
             uiPanel.Append(uiText);
 
-            var descriptionPanel = new UIPanel();
-            descriptionPanel.BackgroundColor = new Color(91, 124, 193) * 0.9f;
-            descriptionPanel.BorderColor = uiPanel.BackgroundColor * 0.5f;
+            var descriptionPanel = new UIPanel
+            {
+                BackgroundColor = new Color(91, 124, 193) * 0.9f,
+                BorderColor = uiPanel.BackgroundColor * 0.5f
+            };
             descriptionPanel.Top.Set(42f, 0f);
             descriptionPanel.Width.Set(0f, 1f);
             descriptionPanel.Height.Set(100f, 0.1f);
@@ -60,8 +63,10 @@ namespace Aequus.Content.Carpentery.Bounties
             uiImage.Top.Set(20 - npcHead.Value.Height / 2, 0f);
             uiPanel.Append(uiImage);
 
-            var stepsPanel = new UIPanel();
-            stepsPanel.BackgroundColor = new Color(91, 124, 193) * 0.9f;
+            var stepsPanel = new UIPanel
+            {
+                BackgroundColor = new Color(91, 124, 193) * 0.9f
+            };
             stepsPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
             stepsPanel.Top.Set(42f + 100f + 8f, descriptionPanel.Height.Percent);
             stepsPanel.Width.Set(-10f, 0.5f);
@@ -88,20 +93,21 @@ namespace Aequus.Content.Carpentery.Bounties
             stepsPanel.Append(uiText);
             uiText.FixUIText();
 
-            var blueprintPanel = new UIPanel();
-            blueprintPanel.BackgroundColor = (new Color(91, 124, 193) * 0.5f).UseA(255) * 0.9f;
-            blueprintPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
-            blueprintPanel.Left = stepsPanel.Width;
+            var blueprintPanel = new UIPanel
+            {
+                BackgroundColor = (new Color(91, 124, 193) * 0.5f).UseA(255) * 0.9f,
+                BorderColor = stepsPanel.BackgroundColor * 1.3f,
+                Left = stepsPanel.Width
+            };
             blueprintPanel.Left.Pixels += 16f;
             blueprintPanel.Top = stepsPanel.Top;
             blueprintPanel.Width.Set(-10f, 0.5f);
             blueprintPanel.Height.Set(0f, 0.45f);
             uiPanel.Append(blueprintPanel);
-            
+
             var top = stepsPanel.Top;
             top.Pixels += 10f;
             top.Percent += 0.45f;
-
             //var buttonPanel = new UIPanel
             //{
             //    BackgroundColor = stepsPanel.BackgroundColor,
@@ -141,10 +147,12 @@ namespace Aequus.Content.Carpentery.Bounties
             //};
             //buttonPanel.Append(uiText);
 
-            var rewardPanel = new UIPanel();
-            rewardPanel.BackgroundColor = stepsPanel.BackgroundColor;
-            rewardPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
-            rewardPanel.Left = stepsPanel.Left;
+            var rewardPanel = new UIPanel
+            {
+                BackgroundColor = stepsPanel.BackgroundColor,
+                BorderColor = stepsPanel.BackgroundColor * 1.3f,
+                Left = stepsPanel.Left
+            };
             rewardPanel.Left.Precent += 0.66f;
             rewardPanel.Top = top;
             rewardPanel.Width.Set(-10f, 0.33f);

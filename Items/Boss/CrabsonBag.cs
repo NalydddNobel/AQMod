@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Tools;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.Crabson;
 using Terraria.ID;
 using Terraria.ModLoader;
 

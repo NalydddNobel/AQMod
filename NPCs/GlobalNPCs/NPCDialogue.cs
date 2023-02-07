@@ -9,13 +9,13 @@ namespace Aequus.NPCs.GlobalNPCs
     {
         public override void GetChat(NPC npc, ref string chat)
         {
-            if (Main.LocalPlayer.Aequus().ZoneGlimmer && Main.rand.NextBool(3) && AequusText.TryGetText($"Mods.Aequus.Chat.{AequusText.NPCKeyName(npc.type)}.Glimmer", out var text))
+            if (Main.LocalPlayer.Aequus().ZoneGlimmer && Main.rand.NextBool(3) && TextHelper.TryGetText($"Mods.Aequus.Chat.{TextHelper.NPCKeyName(npc.type)}.Glimmer", out var text))
             {
                 chat = text;
             }
             if (npc.type == NPCID.SkeletonMerchant && GlimmerBiome.EventActive && Main.rand.NextBool())
             {
-                chat = AequusText.GetText("Chat.SkeletonMerchant.Glimmer");
+                chat = TextHelper.GetTextValue("Chat.SkeletonMerchant.Glimmer");
             }
         }
     }

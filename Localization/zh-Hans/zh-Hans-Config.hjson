@@ -64,19 +64,29 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
-			HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
-			HardmodeChestsTooltip: 
-				'''
-				升级困难模式下的宝箱 (在生产钴/钯金后), 以容纳困难模式宝箱怪战利品和其他物品.
-				{$Mods.Aequus.Configuration.RequiresReload}
-				'''
-
 			EarlyMimics: "{Chest} {GoldChest} 早期宝箱怪"
 			EarlyMimicsTooltip: 
 				'''
 				允许宝箱怪在困难模式前生成, 并降低其属性和掉落物.
 				(暗影宝箱怪会在骷髅王后生成.)
 				(冰雪模仿者也会生成.)
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+		}
+
+		World: {
+			Header: "[c/ccddff:世界]"
+
+			CaveVariety: "{BonePickaxe} 洞穴种类 (原版世界生成调整)"
+			CaveVarietyTooltip: 
+				'''
+				决定Aequus在下一个生成的世界中添加的额外洞穴种类的数量.
+				'''
+
+			HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
+			HardmodeChestsTooltip: 
+				'''
+				升级困难模式下的宝箱 (在生成钴/钯金后), 以容纳困难模式宝箱怪战利品和其他物品.
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 		}

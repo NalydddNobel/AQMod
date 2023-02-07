@@ -242,7 +242,7 @@ namespace Aequus.Content.CrossMod.ModCalls
                             {
                                 int index = args.Length > 4 ? 4 : 3;
                                 if (Aequus.LogMore)
-                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting pylon color data for {AequusText.GetInternalNameOrUnknown(key.X, TileID.Search)} ({key.X}): Style={key.Y}");
+                                    Aequus.Instance.Logger.Info($"{mod.Name}: Setting pylon color data for {TextHelper.GetInternalNameOrUnknown(key.X, TileID.Search)} ({key.X}): Style={key.Y}");
                                 if (args[index] is Color color)
                                 {
                                     AequusTile.PylonColors[key] = () => color;

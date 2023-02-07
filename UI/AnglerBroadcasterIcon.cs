@@ -13,8 +13,8 @@ namespace Aequus.UI
 
         public override string DisplayValue()
         {
-            return (Main.anglerQuestFinished || Main.anglerQuest == -1 || Main.anglerQuest >= Main.anglerQuestItemNetIDs.Length || !NPC.AnyNPCs(NPCID.Angler)) 
-                ? AequusText.GetText("Finished") : Lang.GetItemNameValue(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+            return (Main.anglerQuestFinished || Main.anglerQuest == -1 || Main.anglerQuest >= Main.anglerQuestItemNetIDs.Length || !NPC.AnyNPCs(NPCID.Angler))
+                ? TextHelper.GetTextValue("Finished") : Lang.GetItemNameValue(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
         }
 
         public override bool Active()

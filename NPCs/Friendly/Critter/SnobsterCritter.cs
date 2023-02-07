@@ -37,7 +37,7 @@ namespace Aequus.NPCs.Friendly.Critter
         {
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, NPC.velocity.X, NPC.velocity.Y, 0, ColorHelper.GreenSlimeColor);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, NPC.velocity.X, NPC.velocity.Y, 0, AequusHelpers.ColorGreenSlime);
             }
         }
 

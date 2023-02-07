@@ -52,8 +52,8 @@ namespace Aequus.Projectiles.Summon.CandleSpawners
             Main.instance.LoadProjectile(ModContent.ProjectileType<ZombieBolt>());
             Main.EntitySpriteDraw(TextureAssets.Projectile[ModContent.ProjectileType<ZombieBolt>()].Value, drawCoords, null, Color.White * Projectile.Opacity,
                 0f, TextureAssets.Projectile[ModContent.ProjectileType<ZombieBolt>()].Value.Size() / 2f, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(TextureCache.Bloom[2].Value, drawCoords, null, Color.White * 0.5f * Projectile.Opacity,
-                0f, TextureCache.Bloom[2].Value.Size() / 2f, Projectile.scale * 0.75f, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(Textures.Bloom[2].Value, drawCoords, null, Color.White * 0.5f * Projectile.Opacity,
+                0f, Textures.Bloom[2].Value.Size() / 2f, Projectile.scale * 0.75f, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(TextureAssets.Extra[ExtrasID.CultistRitual].Value, Projectile.Center - Main.screenPosition, null, Color.White.UseA(0) * Projectile.Opacity,
                 -Projectile.rotation, TextureAssets.Extra[ExtrasID.CultistRitual].Value.Size() / 2f, Projectile.scale * Projectile.Opacity * 0.33f, SpriteEffects.None, 0);
             return false;

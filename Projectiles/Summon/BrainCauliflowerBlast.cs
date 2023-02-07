@@ -98,8 +98,8 @@ namespace Aequus.Projectiles.Summon
                         Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
                         Color colorMethod(float p) => Color.OrangeRed.UseA(120) * 1.1f;
 
-                        var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var particle = new BoundBowTrailParticle(prim, position, velocity,
+                        var prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, position, velocity,
                             new Color(200, Main.rand.Next(40) + 20, 10, 0), 1.15f, Main.rand.NextFloat(MathHelper.TwoPi), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => new Color(255, 180, 15, 0).HueAdd(-p * 0.15f) * (float)Math.Sin(p * MathHelper.Pi) * Math.Min(particle.Scale, 1.5f);
@@ -108,12 +108,12 @@ namespace Aequus.Projectiles.Summon
                         {
                             particle.oldPos[k] = particle.Position - particle.Velocity * k;
                         }
-                        EffectsSystem.ParticlesBehindProjs.Add(particle);
+                        ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Add(particle);
                         continue;
                     }
 
-                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(position, velocity,
-                        new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(position, velocity,
+                        new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace Aequus.Projectiles.Summon
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
 
             var aura = ModContent.Request<Texture2D>(Texture + "_Aura", AssetRequestMode.ImmediateLoad).Value;
             var auraOrigin = aura.Size() / 2f;

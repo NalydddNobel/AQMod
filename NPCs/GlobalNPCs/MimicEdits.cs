@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Common.Preferences;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;

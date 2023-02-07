@@ -201,9 +201,9 @@ namespace Aequus.Projectiles.Summon
 
                 f += Math.Clamp(Projectile.rotation * 0.4f, -0.05f, 0.05f) + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f + i * 0.05f) * 0.02f;
                 tentaclePos += Vector2.UnitY.RotatedBy(f);
-                Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, tentaclePos + off + new Vector2(0f, 32f * (1f - p) * Projectile.scale), null, Color.Black * Projectile.Opacity * p * p * Projectile.scale, 0f, TextureCache.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Textures.Bloom[0].Value, tentaclePos + off + new Vector2(0f, 32f * (1f - p) * Projectile.scale), null, Color.Black * Projectile.Opacity * p * p * Projectile.scale, 0f, Textures.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, Projectile.position + off, null, Color.Black * Projectile.Opacity * Projectile.scale, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(Textures.Bloom[0].Value, Projectile.position + off, null, Color.Black * Projectile.Opacity * Projectile.scale, 0f, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0f);
 
             tentaclePos = Projectile.position;
             f = 0f;
@@ -251,14 +251,14 @@ namespace Aequus.Projectiles.Summon
                 for (int i = 0; i < 10; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        Color.Red.UseA(0) * Main.rand.NextFloat(0.3f, 0.7f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.05f, 0.15f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                        Color.Red.UseA(0) * Main.rand.NextFloat(0.3f, 0.7f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.05f, 0.15f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
                 for (int i = 0; i < 15; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
-                        Color.Red.UseA(0) * Main.rand.NextFloat(0.1f, 0.4f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.01f, 0.05f), Main.rand.NextFloat(1.4f, 2.5f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
+                        Color.Red.UseA(0) * Main.rand.NextFloat(0.1f, 0.4f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.01f, 0.05f), Main.rand.NextFloat(1.4f, 2.5f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
             Projectile.frameCounter++;

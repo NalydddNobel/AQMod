@@ -8,7 +8,6 @@ using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
-using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
@@ -120,7 +119,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = AequusText.GetText("Chat.SkyMerchant.RenameChatButton");
+            button2 = TextHelper.GetTextValue("Chat.SkyMerchant.RenameChatButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)

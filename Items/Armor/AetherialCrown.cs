@@ -160,7 +160,7 @@ namespace Aequus.Items.Armor
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            string clrString = AequusText.ColorCommandStart(Color.Lerp(Color.Lime, Color.White, 0.8f), alphaPulse: true);
+            string clrString = TextHelper.ColorCommandStart(Color.Lerp(Color.Lime, Color.White, 0.8f), alphaPulse: true);
             foreach (var t in tooltips)
             {
                 if (t.Name.StartsWith("Tooltip"))

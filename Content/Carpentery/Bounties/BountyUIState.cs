@@ -29,8 +29,10 @@ namespace Aequus.Content.Carpentery.Bounties
             Top.Set(100, 0f);
             HAlign = 0.5f;
 
-            var uiPanel = new UIPanel();
-            uiPanel.BackgroundColor = new Color(68, 99, 164) * 0.5f;
+            var uiPanel = new UIPanel
+            {
+                BackgroundColor = new Color(68, 99, 164) * 0.5f
+            };
             uiPanel.Width.Set(0, 1f);
             uiPanel.Height.Set(0, 1f);
             Append(uiPanel);
@@ -41,8 +43,10 @@ namespace Aequus.Content.Carpentery.Bounties
 
         public void SetupDetailsPanel()
         {
-            var uiPanel = new UIPanel();
-            uiPanel.BackgroundColor = new Color(34, 64, 126) * 0.75f;
+            var uiPanel = new UIPanel
+            {
+                BackgroundColor = new Color(34, 64, 126) * 0.75f
+            };
             uiPanel.Top.Set(10, 0f);
             uiPanel.Left.Set(20 + 290, 0f);
             uiPanel.Width.Set(-290 - 30, 1f);
@@ -60,8 +64,10 @@ namespace Aequus.Content.Carpentery.Bounties
             uiText.TextOriginX = 0.5f;
             uiText.TextOriginY = 0f;
             Append(uiText);
-            var uiPanel = new UIPanel();
-            uiPanel.BackgroundColor = new Color(91, 124, 193) * 0.9f;
+            var uiPanel = new UIPanel
+            {
+                BackgroundColor = new Color(91, 124, 193) * 0.9f
+            };
             uiPanel.BorderColor = uiPanel.BackgroundColor * 1.3f;
             uiPanel.Top.Set(60, 0f);
             uiPanel.Left.Set(10, 0f);
@@ -76,7 +82,7 @@ namespace Aequus.Content.Carpentery.Bounties
 
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             var sortedList = new List<CarpenterBounty>(CarpenterSystem.BountiesByID);
-            sortedList.Sort((b,b2) => b.Progression.CompareTo(b2.Progression));
+            sortedList.Sort((b, b2) => b.Progression.CompareTo(b2.Progression));
             foreach (var bounty in sortedList)
             {
                 var uiElement = new BountyUISidebarElement(this, bounty);

@@ -21,7 +21,6 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 
 namespace Aequus.NPCs.Monsters.Night.Glimmer
 {
@@ -510,10 +509,10 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float innerArmsRotation = Main.GlobalTimeWrappedHourly * 6f;
 
             if (armTrail == null)
-                armTrail = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
+                armTrail = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
 
             if (armTrailSmoke == null)
-                armTrailSmoke = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
+                armTrailSmoke = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
                 {
                     coord1 = 0f,
                     coord2 = 1f
@@ -524,7 +523,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
             var armFrame = NPC.frame;
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -583,10 +582,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                         if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15))
                         {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                            EffectsSystem.ParticlesAbovePlayers.Add(
-                                new BloomParticle(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
+                                ParticleSystem.New<BloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
                                 ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
-                                Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi)));
+                                Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi));
                         }
                     }
                 }
@@ -729,7 +727,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 if (dying)
                     bloomProgress -= deathScaleBloom * 0.5f;
-                bloom = TextureCache.Bloom[3].Value;
+                bloom = Textures.Bloom[3].Value;
 
                 Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 233, 200, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.1f, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 120, 20, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.35f, SpriteEffects.None, 0f);

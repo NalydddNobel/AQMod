@@ -3,13 +3,11 @@ using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.Map;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
@@ -61,7 +59,7 @@ namespace Aequus.Tiles.Furniture
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    int itemIndex = Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 
+                    int itemIndex = Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16,
                         PixelCameraProj.DimensionsForState[StateID].X * 16, PixelCameraProj.DimensionsForState[StateID].Y * 16, ModContent.ItemType<PixelCameraClip>());
                     if (itemIndex != -1 && itemIndex < Main.maxItems)
                     {

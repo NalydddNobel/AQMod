@@ -104,7 +104,7 @@ namespace Aequus.Tiles.Ambience
 
         private static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player player, bool canPlace)
         {
-            if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile 
+            if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile
                 && Main.tile[Player.tileTargetX, Player.tileTargetY].TileType >= Main.maxTileSets && TileLoader.GetTile(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType) is HerbTileBase herbTile)
             {
                 if (herbTile.CanBeHarvestedWithStaffOfRegrowth(Player.tileTargetX, Player.tileTargetY))

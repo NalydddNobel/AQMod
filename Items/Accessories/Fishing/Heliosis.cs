@@ -48,7 +48,7 @@ namespace Aequus.Items.Accessories.Fishing
             {
                 if (t.Text == "{DevilsTongueTooltip}")
                 {
-                    t.Text = AequusText.GetText($"ItemTooltip.{nameof(Heliosis)}.DevilsTongue{(devilsTongue ? "Enabled" : "Disabled")}");
+                    t.Text = TextHelper.GetTextValue($"ItemTooltip.{nameof(Heliosis)}.DevilsTongue{(devilsTongue ? "Enabled" : "Disabled")}");
                 }
             }
         }

@@ -4,7 +4,6 @@ using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Candles
 {

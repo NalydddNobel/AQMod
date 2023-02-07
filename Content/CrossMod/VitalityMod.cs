@@ -17,7 +17,7 @@ namespace Aequus.Content.CrossMod
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            if (VitalityMod.Instance == null) 
+            if (VitalityMod.Instance == null)
                 return;
             if (VitalityMod.Instance.TryFind<ModNPC>("Miner", out var miner) && type == miner.Type)
             {

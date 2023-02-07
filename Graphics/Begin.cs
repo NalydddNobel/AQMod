@@ -17,7 +17,7 @@ namespace Aequus.Graphics
             }
             public static void Begin(SpriteBatch spriteBatch, SpriteSortMode spriteSort)
             {
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
+                spriteBatch.Begin(spriteSort, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
             }
         }
 
@@ -65,9 +65,11 @@ namespace Aequus.Graphics
                 RasterizerState rasterizer = null;
                 if (useScissorRectangle)
                 {
-                    rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
+                    rasterizer = new RasterizerState
+                    {
+                        CullMode = CullMode.None,
+                        ScissorTestEnable = true
+                    };
                 }
                 spriteBatch.Begin(spriteSort, null, null, null, rasterizer, null, Main.UIScaleMatrix);
             }
@@ -80,9 +82,11 @@ namespace Aequus.Graphics
                 RasterizerState rasterizer = null;
                 if (useScissorRectangle)
                 {
-                    rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
+                    rasterizer = new RasterizerState
+                    {
+                        CullMode = CullMode.None,
+                        ScissorTestEnable = true
+                    };
                 }
                 spriteBatch.Begin(spriteSort, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
             }

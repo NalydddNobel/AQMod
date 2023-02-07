@@ -6,13 +6,12 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.LootBags.SlotMachines;
-using Aequus.Items.Placeable;
 using Aequus.Items.Placeable.CrabCrevice;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Jeweled;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.Crabson;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ShopQuotesMod;
@@ -341,7 +340,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = AequusText.GetText("Chat.Exporter.ThieveryButton");
+            button2 = TextHelper.GetTextValue("Chat.Exporter.ThieveryButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -393,10 +392,10 @@ namespace Aequus.NPCs.Friendly.Town
             int type = Main.rand.Next(6);
             if (type == 5)
             {
-                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
+                Main.npcChatText = TextHelper.GetTextValue($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }
-            Main.npcChatText = AequusText.GetTextWith("Chat.Exporter.ThieveryComplete." + type, new { ItemName = player.inventory[i].Name });
+            Main.npcChatText = TextHelper.GetTextValueWith("Chat.Exporter.ThieveryComplete." + type, new { ItemName = player.inventory[i].Name });
         }
         public static void InnerOnQuestCompleted_SpawnLoot(Player player, int i)
         {
@@ -465,10 +464,10 @@ namespace Aequus.NPCs.Friendly.Town
             int type = Main.rand.Next(3);
             if (type == 2)
             {
-                Main.npcChatText = AequusText.GetText($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
+                Main.npcChatText = TextHelper.GetTextValue($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }
-            Main.npcChatText = AequusText.GetTextWith($"Chat.Exporter.ThieveryFailed.{type}", new { WorldName = Main.worldName, });
+            Main.npcChatText = TextHelper.GetTextValueWith($"Chat.Exporter.ThieveryFailed.{type}", new { WorldName = Main.worldName, });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
@@ -507,10 +506,10 @@ namespace Aequus.NPCs.Friendly.Town
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
             string gender = player.GenderString();
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", AequusText.GetText($"TownNPCMood.Exporter.Content_{gender}"));
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", AequusText.GetText($"TownNPCMood.Exporter.NoHome_{gender}"));
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", AequusText.GetText($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", AequusText.GetText($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.Content_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.NoHome_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
+            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
             AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.Aequus().ZoneCrabCrevice ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
         }

@@ -7,13 +7,11 @@ namespace Aequus
         private string mod;
         private int customMusicID;
         private int baseMusicID;
-        private int unusedOtherworldlyMusicID;
 
         internal ConfiguredMusicData(int musicID, int otherWorldMusic)
         {
             mod = "Aequus";
             baseMusicID = musicID;
-            unusedOtherworldlyMusicID = otherWorldMusic;
             customMusicID = -1;
         }
 

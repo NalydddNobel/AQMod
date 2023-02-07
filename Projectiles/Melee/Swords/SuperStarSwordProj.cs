@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.ModPlayers;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -127,7 +128,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
-            AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound); 
+            AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound);
             if (canPlaySound)
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)

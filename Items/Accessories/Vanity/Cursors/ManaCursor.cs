@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.CursorDyes;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Vanity.Cursors

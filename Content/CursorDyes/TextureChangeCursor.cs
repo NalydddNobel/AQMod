@@ -55,8 +55,10 @@ namespace Aequus.Content.CursorDyes
             {
                 Main.spriteBatch.End();
                 Begin.UI.Begin(Main.spriteBatch, Begin.Shader);
-                var d = new DrawData(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY) + offset, null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0);
-                d.color = Main.MouseBorderColor.UseA(255);
+                var d = new DrawData(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY) + offset, null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0)
+                {
+                    color = Main.MouseBorderColor.UseA(255)
+                };
                 GameShaders.Armor.Apply(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, null, d);
 
                 foreach (var v in AequusHelpers.CircularVector(4))

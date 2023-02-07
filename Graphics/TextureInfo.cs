@@ -26,15 +26,15 @@ namespace Aequus.Graphics
         {
         }
 
-        public TextureInfo(Asset<Texture2D> texture, int horizontalFrames, int verticalFrames, Vector2 origin) : this(texture, texture.Value.Frame(horizontalFrames, verticalFrames), origin)
+        public TextureInfo(Asset<Texture2D> texture, int horizontalFrames = 1, int verticalFrames = 1, Vector2 origin = default(Vector2)) : this(texture, texture.Value.Frame(horizontalFrames, verticalFrames), origin)
         {
         }
 
-        public TextureInfo(Asset<Texture2D> texture, Rectangle frame, float originFracX, float originFracY) : this(texture, frame, new Vector2(originFracX * frame.X, originFracY * frame.Y))
+        public TextureInfo(Asset<Texture2D> texture, Rectangle frame = default(Rectangle), float originFracX = 0f, float originFracY = 0f) : this(texture, frame, new Vector2(originFracX * frame.X, originFracY * frame.Y))
         {
         }
 
-        public TextureInfo(Asset<Texture2D> texture, int horizontalFrames, int verticalFrames, float originFracX, float originFracY)
+        public TextureInfo(Asset<Texture2D> texture, int horizontalFrames = 1, int verticalFrames = 1, float originFracX = 0f, float originFracY = 0f)
         {
             Texture = texture;
             Frame = texture.Value.Frame(horizontalFrames, verticalFrames);
