@@ -12,8 +12,9 @@ namespace Aequus.Content.WorldGeneration
 {
     public class HardmodeChestBoost : ModSystem
     {
-        public static List<int> MimicLoot { get; private set; }
-        public static List<int> FrostMimicLoot { get; private set; }
+        public static List<int> HardmodeChestLoot { get; private set; }
+        public static List<int> HardmodeSnowChestLoot { get; private set; }
+        public static List<int> HardmodeJungleChestLoot { get; private set; }
 
         public struct OreTierData
         {
@@ -33,7 +34,7 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Load()
         {
-            MimicLoot = new List<int>()
+            HardmodeChestLoot = new List<int>()
             {
                 ItemID.DualHook,
                 ItemID.MagicDagger,
@@ -42,12 +43,13 @@ namespace Aequus.Content.WorldGeneration
                 ItemID.CrossNecklace,
                 ItemID.StarCloak,
             };
-            FrostMimicLoot = new List<int>()
+            HardmodeSnowChestLoot = new List<int>()
             {
                 ItemID.Frostbrand,
                 ItemID.IceBow,
                 ItemID.FlowerofFrost,
             };
+            HardmodeJungleChestLoot = new List<int>();
             TileIDToOreTier = new Dictionary<int, OreTierData>()
             {
                 [TileID.Cobalt] = new OreTierData(TileID.Cobalt, ItemID.CobaltOre, ItemID.CobaltBar),
@@ -61,10 +63,12 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Unload()
         {
-            MimicLoot?.Clear();
-            MimicLoot = null;
-            FrostMimicLoot?.Clear();
-            FrostMimicLoot = null;
+            HardmodeJungleChestLoot?.Clear();
+            HardmodeJungleChestLoot = null;
+            HardmodeChestLoot?.Clear();
+            HardmodeChestLoot = null;
+            HardmodeSnowChestLoot?.Clear();
+            HardmodeSnowChestLoot = null;
             TileIDToOreTier?.Clear();
             TileIDToOreTier = null;
         }
@@ -204,7 +208,7 @@ namespace Aequus.Content.WorldGeneration
                 TryHardmodifyAPotion(chest, i);
             }
         }
-        public static void AddGenericHardmodeChestMiscLoot(Chest chest)
+        public static void AddGenericLoot(Chest chest)
         {
             switch (WorldGen.genRand.Next(5))
             {
@@ -222,7 +226,7 @@ namespace Aequus.Content.WorldGeneration
                     break;
             }
         }
-        public static void AddSpecificHardmodeChestMainLoot(Chest chest, int tileID, int chestStyle)
+        public static void AddMainLoot(Chest chest, int tileID, int chestStyle)
         {
             if (tileID == TileID.Containers)
             {
@@ -232,25 +236,33 @@ namespace Aequus.Content.WorldGeneration
                     case ChestType.Marble:
                     case ChestType.Granite:
                     case ChestType.Mushroom:
-                    case ChestType.RichMahogany:
-                        if (WorldGen.genRand.NextBool(MimicLoot.Count))
+                        if (WorldGen.genRand.NextBool(HardmodeChestLoot.Count + 1))
                         {
                             break;
                         }
-                        chest.item[0].SetDefaults(WorldGen.genRand.Next(MimicLoot));
+                        chest.item[0].SetDefaults(WorldGen.genRand.Next(HardmodeChestLoot));
                         break;
 
                     case ChestType.Frozen:
-                        if (WorldGen.genRand.NextBool(FrostMimicLoot.Count))
+                        if (WorldGen.genRand.NextBool(HardmodeSnowChestLoot.Count + 1))
                         {
                             break;
                         }
-                        chest.item[0].SetDefaults(WorldGen.genRand.Next(FrostMimicLoot));
+                        chest.item[0].SetDefaults(WorldGen.genRand.Next(HardmodeSnowChestLoot));
+                        break;
+
+                    case ChestType.RichMahogany:
+                    case ChestType.Ivy:
+                        if (WorldGen.genRand.NextBool(HardmodeJungleChestLoot.Count + 1))
+                        {
+                            break;
+                        }
+                        chest.item[0].SetDefaults(WorldGen.genRand.Next(HardmodeJungleChestLoot));
                         break;
                 }
             }
         }
-        public static void AddSpecificHardmodeChestMiscLoot(Chest chest, int tileID, int chestStyle)
+        public static void AddSecondaryLoot(Chest chest, int tileID, int chestStyle)
         {
             if (tileID == TileID.Containers)
             {
@@ -287,12 +299,12 @@ namespace Aequus.Content.WorldGeneration
 
             HardmodifyPreHardmodeLoot(chest);
             if (!WorldGen.genRand.NextBool(5))
-                AddSpecificHardmodeChestMainLoot(chest, chestTile, chestType);
-            AddSpecificHardmodeChestMiscLoot(chest, chestTile, chestType);
+                AddMainLoot(chest, chestTile, chestType);
+            AddSecondaryLoot(chest, chestTile, chestType);
             for (int i = 0; i < 2; i++)
             {
                 if (WorldGen.genRand.NextBool())
-                    AddGenericHardmodeChestMiscLoot(chest);
+                    AddGenericLoot(chest);
             }
 
             ChangeChestToHardmodeVariant(chest, chestType, chestTile);
