@@ -17,8 +17,10 @@ namespace Aequus
     {
         public static FieldInfo translationsField;
         public static Dictionary<string, ModTranslation> Text;
-        public static Color BossSummonMessage => new Color(175, 75, 255, 255);
-        public static Color EventMessage => new Color(50, 255, 130, 255);
+        public static Color BossSummonMessage = new Color(175, 75, 255, 255);
+        public static Color EventMessage = new Color(50, 255, 130, 255);
+        public static Color PrefixGood = new Color(120, 190, 120, 255);
+        public static Color PrefixBad = new Color(190, 120, 120, 255);
 
         public static string Unknown => GetTextValue("Unknown");
         public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");

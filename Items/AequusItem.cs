@@ -71,6 +71,7 @@ namespace Aequus.Items
         public bool reversedGravity;
         public byte noGravityTime;
         public int accStacks;
+        public int defenseChange;
         public bool naturallyDropped;
         public bool unOpenedChestItem;
         public bool prefixPotionsBounded;
@@ -493,13 +494,23 @@ namespace Aequus.Items
         public override void UpdateEquip(Item item, Player player)
         {
             UpdateEquip_Prefixes(item, player);
+            if (defenseChange < 0)
+            {
+                player.Aequus().negativeDefense -= defenseChange;
+            }
         }
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
             UpdateAccessory_Prefixes(item, player, hideVisual);
+            if (defenseChange < 0)
+            {
+                player.Aequus().negativeDefense -= defenseChange;
+            }
             if (player.Aequus().accBloodCrownSlot != -2)
+            {
                 accStacks = 1;
+            }
             if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime])
             {
                 player.npcTypeNoAggro[ModContent.NPCType<WhiteSlime>()] = true;
@@ -508,6 +519,21 @@ namespace Aequus.Items
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
+            if (defenseChange != 0)
+            {
+                foreach (var t in tooltips)
+                {
+                    if (t.Mod == "Terraria" && t.Name == "Defense")
+                    {
+                        var text = t.Text.Split(' ');
+                        text[0] += defenseChange > 0 ? 
+                            TextHelper.ColorCommand($"(+{defenseChange})", TextHelper.PrefixGood, alphaPulse: true) : 
+                            TextHelper.ColorCommand($"({defenseChange})", TextHelper.PrefixBad, alphaPulse: true);
+                        t.Text = string.Join(' ', text);
+                        break;
+                    }
+                }
+            }
             ModifyTooltips_Prefixes(item, tooltips);
         }
 

@@ -73,6 +73,9 @@ namespace Aequus.Common.ModPlayers
 
         public int projectileIdentity = -1;
 
+        public int extraHealingPotion;
+        public int negativeDefense;
+
         public PlayerWingModifiers wingStats;
 
         public int prevLife;
@@ -773,6 +776,8 @@ namespace Aequus.Common.ModPlayers
 
         public void ResetStats()
         {
+            extraHealingPotion = 0;
+            negativeDefense = 0;
             wingStats.ResetEffects();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
@@ -1028,6 +1033,10 @@ namespace Aequus.Common.ModPlayers
         public override void UpdateEquips()
         {
             UpdateEquips_Vampire();
+            if (accBloodCrownSlot != -1)
+            {
+                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
+            }
         }
 
         public override void PostUpdateEquips()
@@ -1084,11 +1093,6 @@ namespace Aequus.Common.ModPlayers
             if (setSeraphim != null && ghostSlots == 0)
             {
                 Player.endurance += 0.3f;
-            }
-
-            if (accBloodCrownSlot != -1)
-            {
-                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
             }
 
             Stormcloak.UpdateAccessory(accDustDevilExpert, Player, this);
@@ -1184,6 +1188,7 @@ namespace Aequus.Common.ModPlayers
             {
                 Player.endurance = Math.Min(Player.endurance, GameplayConfig.Instance.DamageReductionCap);
             }
+            Player.statDefense -= negativeDefense;
         }
 
         public override bool PreItemCheck()
@@ -1569,6 +1574,12 @@ namespace Aequus.Common.ModPlayers
             if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
                 return false;
             return true;
+        }
+
+        public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
+        {
+            if (healValue > 0)
+                healValue += extraHealingPotion;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)

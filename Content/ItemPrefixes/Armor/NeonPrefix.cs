@@ -12,8 +12,18 @@ namespace Aequus.Content.ItemPrefixes.Armor
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(item, tooltips);
-            AddPrefixLine(tooltips, new TooltipLine(Mod, "NeonPrefixEffect", $"+{item.defense * 2} health from potions") { IsModifier = true, IsModifierBad = false, });
+            AddPrefixLine(tooltips, new TooltipLine(Mod, "NeonPrefixEffect", $"+{item.defense * 4} health from potions") { IsModifier = true, IsModifierBad = false, });
             AddPrefixLine(tooltips, new TooltipLine(Mod, "NeonPrefixEffect", $"+{item.defense} seconds of potion sickness") { IsModifier = true, IsModifierBad = true, });
+        }
+
+        public override void Apply(Item item)
+        {
+        }
+
+        public override void UpdateEquip(Item item, Player player)
+        {
+            player.potionDelayTime += item.defense;
+            player.Aequus().extraHealingPotion += item.defense * 4;
         }
     }
 }

@@ -28,5 +28,15 @@ namespace Aequus.Content.ItemPrefixes.Armor
         {
             return (int)Math.Round(item.defense / Divisor);
         }
+
+        public override void Apply(Item item)
+        {
+            item.Aequus().defenseChange = -item.defense;
+        }
+
+        public override void UpdateEquip(Item item, Player player)
+        {
+            player.endurance += GetEnduranceAmount(item) / 100f;
+        }
     }
 }

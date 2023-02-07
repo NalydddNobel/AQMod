@@ -60,7 +60,7 @@ namespace Aequus.Items
             //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
             //}
             //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
-            ReforgeItems(player, ModContent.PrefixType<ArgonPrefix>());
+            ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
             return true;
         }
 
@@ -73,6 +73,9 @@ namespace Aequus.Items
         {
             for (int i = 0; i < Main.InventorySlotsTotal; i++)
             {
+                int stack = player.inventory[i].stack;
+                player.inventory[i].SetDefaults(player.inventory[i].type);
+                player.inventory[i].stack = stack;
                 player.inventory[i].Prefix(pre);
             }
         }
