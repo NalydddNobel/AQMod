@@ -58,7 +58,7 @@ namespace Aequus.Content.Carpentery.Bounties
 
         public void SetupBountySidebar()
         {
-            var uiText = new UIText("- BOUNTIES -", textScale: 0.8f, large: true);
+            var uiText = new UIText(AequusText.GetText("CarpenterBounty.BountyHeader"), textScale: 0.8f, large: true);
             uiText.Top.Set(24f, 0f);
             uiText.Left.Set(150f - (FontAssets.DeathText.Value.MeasureString(uiText.Text) / 2f * 0.8f).X, 0f);
             uiText.TextOriginX = 0.5f;

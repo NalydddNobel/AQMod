@@ -50,6 +50,8 @@ namespace Aequus.UI.RenameItemUI
             Height.Set(100, 0f);
 
             slot = new ItemSlotElement(back);
+            slot.Width.Set(52f, 0f);
+            slot.Height.Set(52f, 0f);
             slot.Left.Set(AequusUI.LeftInv, 0f);
             slot.Top.Set(270, 0f);
             slot.Recalculate();
