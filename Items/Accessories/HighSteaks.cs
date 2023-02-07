@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories
         {
             Item.DefaultToAccessory(16, 16);
             Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.BloodMimicItemValue;
+            Item.value = ItemDefaults.ValueBloodMoon;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

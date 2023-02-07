@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Summon.Whip
         {
             Item.DefaultToWhip(ModContent.ProjectileType<TornadoWhipProj>(), 33, 5f, 4f);
             Item.rare = ItemDefaults.RarityDustDevil;
-            Item.value = ItemDefaults.DustDevilValue;
+            Item.value = ItemDefaults.ValueDustDevil;
         }
 
         public override void AddRecipes()

@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.scale = 1.25f;
             Item.rare = ItemDefaults.RarityGlimmer;
             Item.autoReuse = true;
-            Item.value = ItemDefaults.GlimmerValue;
+            Item.value = ItemDefaults.ValueGlimmer;
         }
 
         public override bool? UseItem(Player player)

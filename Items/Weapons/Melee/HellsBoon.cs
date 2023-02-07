@@ -30,7 +30,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 3f;
             Item.shootSpeed = 35f;

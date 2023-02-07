@@ -27,7 +27,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 10;
             Item.UseSound = SoundID.Item66;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

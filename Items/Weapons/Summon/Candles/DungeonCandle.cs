@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
         {
             DefaultToCandle<WretchednessProj>(40);
             Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.DungeonValue;
+            Item.value = ItemDefaults.ValueDungeon;
             Item.flame = true;
             Item.UseSound = SoundID.Item83;
         }

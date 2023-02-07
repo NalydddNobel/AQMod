@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 14;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item75.WithPitch(1f);
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.knockBack = 1f;
         }
 

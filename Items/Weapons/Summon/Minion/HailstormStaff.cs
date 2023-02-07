@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noMelee = true;
             Item.knockBack = 3f;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.UseSound = SoundID.Item46;
             Item.buffType = ModContent.BuffType<SnowflakeBuff>();

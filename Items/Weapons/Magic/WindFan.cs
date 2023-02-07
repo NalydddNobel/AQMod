@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.DefaultToMagicWeapon(ProjectileID.BallofFrost, 40, 12f, hasAutoReuse: true);
             Item.SetWeaponValues(50, 10f, bonusCritChance: 21);
             Item.rare = ItemDefaults.RarityDustDevil;
-            Item.value = ItemDefaults.DustDevilValue;
+            Item.value = ItemDefaults.ValueDustDevil;
         }
 
         public override void AddRecipes()

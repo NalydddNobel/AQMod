@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useStyle = ItemUseStyleID.Swing;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.UseSound = SoundID.Item1;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.noMelee = true;
             Item.knockBack = 4f;
             Item.noUseGraphic = true;

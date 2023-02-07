@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.scale = 1.25f;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.autoReuse = true;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -28,7 +28,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Green;
             Item.noMelee = true;
-            Item.value = ItemDefaults.BloodMimicItemValue;
+            Item.value = ItemDefaults.ValueBloodMoon;
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

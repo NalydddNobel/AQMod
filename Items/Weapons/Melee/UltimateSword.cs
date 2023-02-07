@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.height = 30;
             Item.scale = 1.33f;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.autoReuse = true;
         }
 

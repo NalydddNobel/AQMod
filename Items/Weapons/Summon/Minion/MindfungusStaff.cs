@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noMelee = true;
             Item.knockBack = 4f;
-            Item.value = ItemDefaults.CrimsonValue;
+            Item.value = ItemDefaults.ValueEyeOfCthulhu;
             Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item44;
             Item.shoot = ModContent.ProjectileType<MindfungusMinion>();

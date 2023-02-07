@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.shootSpeed = 32f;
             Item.autoReuse = true;
             Item.noMelee = true;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.mana = 200;
             Item.shoot = ModContent.ProjectileType<SnowgraveProjSpawner>();
         }

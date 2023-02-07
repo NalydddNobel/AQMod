@@ -31,7 +31,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
             Item.knockBack = 4f;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.UseSound = SoundID.Item44;
             Item.shoot = ModContent.ProjectileType<PiranhaPlantMinion>();

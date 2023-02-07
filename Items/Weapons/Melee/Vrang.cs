@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.useTime = 40;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.DamageType = DamageClass.Melee;
-            Item.value = ItemDefaults.GaleStreamsValue / 4;
+            Item.value = ItemDefaults.ValueGaleStreams / 4;
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemDefaults.RarityGaleStreams - 2;
             Item.channel = true;

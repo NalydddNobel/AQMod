@@ -129,7 +129,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityCrabCrevice;
             Item.shoot = ModContent.ProjectileType<LiquidGunProj>();
             Item.shootSpeed = 1f;
-            Item.value = ItemDefaults.CrabCreviceValue;
+            Item.value = ItemDefaults.ValueCrabCrevice;
             Item.autoReuse = true;
             Item.knockBack = 1.5f;
             Item.useTime = 15;

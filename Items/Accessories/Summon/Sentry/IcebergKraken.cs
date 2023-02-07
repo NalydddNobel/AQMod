@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.canBePlacedInVanityRegardlessOfConditions = true;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

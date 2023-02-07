@@ -682,16 +682,20 @@ namespace Aequus.NPCs.Friendly.Town
                         {
                             for (int i = 0; i < Main.maxPlayers; i++)
                             {
-                                if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 400f)
+                                if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 300f)
                                 {
                                     NPC.velocity.X *= 0.94f;
                                     if (NPC.position.Y < Main.player[i].position.Y)
                                     {
                                         NPC.velocity.Y += 0.05f;
                                     }
-                                    else if (NPC.position.Y < Main.player[i].position.Y)
+                                    else if (NPC.position.Y > Main.player[i].position.Y + 40f)
                                     {
                                         NPC.velocity.Y -= 0.05f;
+                                    }
+                                    else
+                                    {
+                                        NPC.velocity.Y *= 0.94f;
                                     }
                                     if (NPC.velocity.Y.Abs() > 2f)
                                     {

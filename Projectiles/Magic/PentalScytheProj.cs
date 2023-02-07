@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

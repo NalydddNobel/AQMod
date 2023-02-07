@@ -20,7 +20,7 @@ namespace Aequus.Items.Weapons.Summon.Scepters
             Item.shoot = ModContent.ProjectileType<RevenantBolt>();
             Item.shootSpeed = 11.5f;
             Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.DungeonValue;
+            Item.value = ItemDefaults.ValueDungeon;
             Item.mana = 15;
             Item.UseSound = SoundID.Item8;
         }

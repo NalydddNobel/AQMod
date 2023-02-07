@@ -34,7 +34,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.mana = 6;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item88.WithVolume(0.5f).WithPitchOffset(0.8f);
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

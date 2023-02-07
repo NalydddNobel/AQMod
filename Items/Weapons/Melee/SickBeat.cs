@@ -18,7 +18,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.rare = ItemRarityID.LightRed;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.value = ItemDefaults.EarlyHardmode;
+            Item.value = ItemDefaults.ValueEarlyHardmode;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 2f;
             Item.noMelee = true;

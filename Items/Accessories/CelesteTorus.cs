@@ -144,7 +144,7 @@ namespace Aequus.Items.Accessories
             Item.knockBack = 2f;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.expert = true;
         }
 

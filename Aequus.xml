@@ -732,72 +732,67 @@
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.CrabCreviceValue">
-            <summary>
-            1 gold 50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.GlimmerValue">
-            <summary>
-            1 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.DemonSiegeValue">
-            <summary>
-            2 gold 50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.OmegaStariteValue">
-            <summary>
-            4 gold 50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.GaleStreamsValue">
-            <summary>
-            4 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.DustDevilValue">
-            <summary>
-            5 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.PotionsValue">
-            <summary>
-            2 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.CorruptionValue">
+        <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
             <summary>
             50 silver
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.CrimsonValue">
-            <summary>
-            55 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.BloodMimicItemValue">
+        <member name="P:Aequus.Items.ItemDefaults.ValueGlimmer">
             <summary>
             1 gold
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.DungeonValue">
+        <member name="P:Aequus.Items.ItemDefaults.ValueDemonSiege">
+            <summary>
+            2 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueOmegaStarite">
+            <summary>
+            3 gold (<see cref="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueGaleStreams">
+            <summary>
+            2 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueDustDevil">
+            <summary>
+            3 gold (<see cref="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueBuffPotion">
+            <summary>
+            2 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueEyeOfCthulhu">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueBloodMoon">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemDefaults.ValueDungeon">
             <summary>
             1 gold 75 silver
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.EarlyHardmode">
+        <member name="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode">
             <summary>
             3 gold
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.PostMechsEnergyWeaponValue">
+        <member name="P:Aequus.Items.ItemDefaults.ValueHardmodeDungeon">
             <summary>
-            6 gold 50 silver
+            6 gold
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.PillarWeaponValue">
+        <member name="P:Aequus.Items.ItemDefaults.ValueLunarPillars">
             <summary>
             10 gold
             </summary>

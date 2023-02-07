@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemDefaults.RarityGlimmer;
-            Item.value = ItemDefaults.GlimmerValue;
+            Item.value = ItemDefaults.ValueGlimmer;
             Item.UseSound = SoundID.Item8;
         }
     }

@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Healing
         {
             Item.DefaultToAccessory();
             Item.rare = ItemDefaults.RarityCrabCrevice;
-            Item.value = ItemDefaults.CrabCreviceValue;
+            Item.value = ItemDefaults.ValueCrabCrevice;
             Item.shoot = ModContent.ProjectileType<MendshroomProj>();
         }
 

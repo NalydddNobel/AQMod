@@ -24,7 +24,7 @@ namespace Aequus.Items.Accessories.Debuff
             Item.height = 20;
             Item.accessory = true;
             Item.rare = -1;
-            Item.value = ItemDefaults.DustDevilValue;
+            Item.value = ItemDefaults.ValueDustDevil;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

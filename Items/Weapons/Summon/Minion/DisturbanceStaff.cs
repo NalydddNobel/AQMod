@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useTime = 36;
             Item.useAnimation = 36;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.UseSound = SoundID.Item44;
             Item.noMelee = true;

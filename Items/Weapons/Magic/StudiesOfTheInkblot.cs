@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.shootSpeed = 10f;
             Item.autoReuse = true;
             Item.noMelee = true;
-            Item.value = Item.sellPrice(gold: 20);
+            Item.value = ItemDefaults.ValueLunarPillars;
             Item.shoot = ModContent.ProjectileType<TouhouOrbiter>();
             DefaultUse();
         }

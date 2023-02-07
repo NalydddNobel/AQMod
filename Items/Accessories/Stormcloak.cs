@@ -30,7 +30,7 @@ namespace Aequus.Items.Accessories
             Item.damage = 50;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityDustDevil;
-            Item.value = ItemDefaults.DustDevilValue;
+            Item.value = ItemDefaults.ValueDustDevil;
             Item.expert = true;
         }
 

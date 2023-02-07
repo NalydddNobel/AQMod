@@ -213,6 +213,7 @@ Mods: {
 			Slingshot: Slingshot
 
 		# Magic Weapons
+			SavingGrace: Saving Grace
 			Wabbajack: Wabbajack
 			WindFan: Wind Fan
 			Nightfall: Nightfall
@@ -889,6 +890,12 @@ Mods: {
 				'''
 
 		# Magic Weapons
+			SavingGrace: 
+				'''
+				Cast healing spores which heal allies by 10% of the projectile damage
+				Healing an ally grants 20 mana
+				Cannot be used while under mana sickness
+				'''
 			Wabbajack: 
 				'''
 				Casts a random effect when hitting an enemy
@@ -1569,7 +1576,7 @@ Mods: {
 
 				DedicatedItem: Dedicated Item
 
-				RouletteDrop: The item below is guaranteed to drop
+				RouletteDrop: Allows you to choose one item
 
 				NecromancyStaff: Slain enemies may convert into ghost minions
 
