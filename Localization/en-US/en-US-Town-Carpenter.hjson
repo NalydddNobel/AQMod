@@ -32,6 +32,7 @@ Mods.Aequus: {
 			BiomePaletteStep: House must be constructed using blocks and walls which match the biome's color
 		}
 		
+		BountyHeader: "- BOUNTIES -"
 		Default: I cannot describe what is printed on these eyes! But this build is nearing demise!
 		NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
 		ShortWaterfalls: The waterfall is so small and domestic. Raise it up and let gravity make something majestic!

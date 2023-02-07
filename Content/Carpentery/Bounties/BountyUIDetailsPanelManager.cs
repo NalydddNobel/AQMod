@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.UI.Elements;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
@@ -100,36 +101,45 @@ namespace Aequus.Content.Carpentery.Bounties
             var top = stepsPanel.Top;
             top.Pixels += 10f;
             top.Percent += 0.45f;
-            var buttonPanel = new UIPanel();
-            buttonPanel.BackgroundColor = stepsPanel.BackgroundColor;
-            buttonPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
-            buttonPanel.Left = stepsPanel.Left;
-            buttonPanel.Top = top;
-            buttonPanel.Width.Set(-10f, 0.33f);
-            buttonPanel.Height.Set(64f, 0f);
-            uiPanel.Append(buttonPanel);
 
-            uiText = new UIText("Buy Materials");
-            uiText.DynamicallyScaleDownToWidth = true;
-            uiText.HAlign = 0.5f;
-            uiText.VAlign = 0.5f;
-            buttonPanel.Append(uiText);
-            
-            buttonPanel = new UIPanel();
-            buttonPanel.BackgroundColor = stepsPanel.BackgroundColor;
-            buttonPanel.BorderColor = stepsPanel.BackgroundColor * 1.3f;
-            buttonPanel.Left = stepsPanel.Left;
-            buttonPanel.Left.Precent += 0.33f;
-            buttonPanel.Top = top;
-            buttonPanel.Width.Set(-10f, 0.33f);
-            buttonPanel.Height.Set(64f, 0f);
-            uiPanel.Append(buttonPanel);
+            //var buttonPanel = new UIPanel
+            //{
+            //    BackgroundColor = stepsPanel.BackgroundColor,
+            //    BorderColor = stepsPanel.BackgroundColor * 1.3f,
+            //    Left = stepsPanel.Left,
+            //    Top = top
+            //};
+            //buttonPanel.Width.Set(-10f, 0.33f);
+            //buttonPanel.Height.Set(64f, 0f);
+            //uiPanel.Append(buttonPanel);
 
-            uiText = new UIText("Set as Quest");
-            uiText.DynamicallyScaleDownToWidth = true;
-            uiText.HAlign = 0.5f;
-            uiText.VAlign = 0.5f;
-            buttonPanel.Append(uiText);
+            //uiText = new UIText("Buy Materials")
+            //{
+            //    DynamicallyScaleDownToWidth = true,
+            //    HAlign = 0.5f,
+            //    VAlign = 0.5f
+            //};
+            //buttonPanel.Append(uiText);
+
+            //buttonPanel = new UIPanel
+            //{
+            //    BackgroundColor = stepsPanel.BackgroundColor,
+            //    BorderColor = stepsPanel.BackgroundColor * 1.3f,
+            //    Left = stepsPanel.Left
+            //};
+            //buttonPanel.Left.Precent += 0.33f;
+            //buttonPanel.Top = top;
+            //buttonPanel.Width.Set(-10f, 0.33f);
+            //buttonPanel.Height.Set(64f, 0f);
+            //uiPanel.Append(buttonPanel);
+
+            //uiText = new UIText("Set as Quest")
+            //{
+            //    DynamicallyScaleDownToWidth = true,
+            //    HAlign = 0.5f,
+            //    VAlign = 0.5f
+            //};
+            //buttonPanel.Append(uiText);
 
             var rewardPanel = new UIPanel();
             rewardPanel.BackgroundColor = stepsPanel.BackgroundColor;
@@ -141,11 +151,32 @@ namespace Aequus.Content.Carpentery.Bounties
             rewardPanel.Height.Set(-rewardPanel.Top.Pixels, 1f - rewardPanel.Top.Precent);
             uiPanel.Append(rewardPanel);
 
-            uiText = new UIText("Reward:", 0.56f, large: true);
-            uiText.DynamicallyScaleDownToWidth = true;
+            var reward = bounty.ProvideBountyRewardItems()[0];
+            uiText = new UIText("Reward:", 0.56f, large: true)
+            {
+                DynamicallyScaleDownToWidth = true
+            };
             uiText.Top.Set(6f, 0f);
             uiText.HAlign = 0.5f;
             rewardPanel.Append(uiText);
+            uiText = new UIText(Lang.GetItemNameValue(reward.type), 0.4f, large: true)
+            {
+                DynamicallyScaleDownToWidth = true
+            };
+            uiText.TextColor = Color.Lerp(Color.Yellow, Color.White, 0.8f);
+            uiText.Top.Set(6f, 0.74f);
+            uiText.HAlign = 0.5f;
+            rewardPanel.Append(uiText);
+
+            var itemSlot = new ItemSlotElement(TextureAssets.InventoryBack.Value);
+            itemSlot.Width.Set(0f, 0.4f);
+            itemSlot.Height.Set(0f, 0.4f);
+            itemSlot.HAlign = 0.5f;
+            itemSlot.VAlign = 0.5f;
+            itemSlot.item = reward;
+            itemSlot.showItemTooltipOnHover = true;
+            itemSlot.canHover = true;
+            rewardPanel.Append(itemSlot);
         }
 
         public void Clear()
