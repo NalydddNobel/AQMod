@@ -213,6 +213,7 @@ Mods: {
 			Slingshot: 弹弓
 
 		# Magic Weapons
+			SavingGrace: 救世恩典
 			Wabbajack: 瓦巴杰克
 			WindFan: 风扇
 			Nightfall: 黄昏
@@ -805,7 +806,7 @@ Mods: {
 			SickBeat: 
 				'''
 				当折返时会造成额外的命中
-				'这个节拍直接来自{MusicSource}!'
+				'这个节拍直接来自泰拉瑞亚!'
 				'''
 			PhaseDisc: 
 				'''
@@ -889,6 +890,12 @@ Mods: {
 				'''
 
 		# Magic Weapons
+			SavingGrace: 
+				'''
+				释放治疗孢子, 治疗队友等同于弹幕伤害10%的生命值
+				治疗队友时会回复20点魔力值
+				当拥有耐魔性减益时无法使用
+				'''
 			Wabbajack: 
 				'''
 				击中敌人时会产生随机效果
@@ -1569,7 +1576,7 @@ Mods: {
 
 				DedicatedItem: 专属物品
 
-				RouletteDrop: 下列物品必定掉落
+				RouletteDrop: 允许你选择一件物品
 
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 
