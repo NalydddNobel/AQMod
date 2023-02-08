@@ -1735,7 +1735,7 @@ Mods: {
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
 
-			BrokenMapBuff: Uncharted
+			BrokenMapBuff: Shade
 
 			GravetenderMinionBuff: Gravetender
 
@@ -1820,7 +1820,7 @@ Mods: {
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
-			BrokenMapBuff: You are in a mysterious area...
+			BrokenMapBuff: You are invisible on the map
 
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 

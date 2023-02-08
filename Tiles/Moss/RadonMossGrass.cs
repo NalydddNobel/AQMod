@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.Utilities;
 
 namespace Aequus.Tiles.Moss
 {
@@ -20,13 +20,23 @@ namespace Aequus.Tiles.Moss
             Main.tileCut[Type] = true;
 
             TileID.Sets.DisableSmartCursor[Type] = true;
-            TileID.Sets.SwaysInWindBasic[Type] = true;
 
             anchorTiles = new int[]
             {
                 ModContent.TileType<RadonMossTile>(),
                 ModContent.TileType<RadonMossBrickTile>(),
             };
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+            TileObjectData.newTile.UsesCustomCanPlace = false;
+            TileObjectData.newTile.CoordinateHeights = new int[1] { 22 };
+            TileObjectData.newTile.CoordinateWidth = 22;
+            TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
+            TileObjectData.newTile.AnchorLeft = AnchorData.Empty;
+            TileObjectData.newTile.AnchorRight = AnchorData.Empty;
+            TileObjectData.newTile.AnchorTop = AnchorData.Empty;
+            TileObjectData.newTile.DrawYOffset = -4;
+            TileObjectData.addTile(Type);
 
             AddMapEntry(new Color(55, 65, 65));
             HitSound = SoundID.Grass;
@@ -36,7 +46,7 @@ namespace Aequus.Tiles.Moss
 
         public override bool CanPlace(int i, int j)
         {
-            int[] radonMoss = anchorTiles;
+            var radonMoss = anchorTiles;
             var top = Framing.GetTileSafely(i, j - 1);
             if (top.HasTile && !top.BottomSlope && radonMoss.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
             {
@@ -58,6 +68,15 @@ namespace Aequus.Tiles.Moss
                 return true;
             }
             return false;
+        }
+
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
+        {
+        }
+
+        public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
+        {
+            frameXOffset += 1;
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)

@@ -1,5 +1,4 @@
-﻿using Aequus.Graphics;
-using Aequus.Particles;
+﻿using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -35,7 +34,12 @@ namespace Aequus.Projectiles.Misc
                 for (int k = 0; k < 100; k++)
                     AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
             }
-            else if (Main.tile[i, j].IsFullySolid() || Main.rand.NextBool(4))
+            else if (!Main.tile[i, j].HasTile || Main.tile[i, j].IsFullySolid())
+            {
+                for (int k = 0; k < 15; k++)
+                    AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
+            else if (Main.rand.NextBool(4))
             {
                 AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
             }
@@ -43,8 +47,7 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
-            Projectile.velocity.X *= 0.985f;
-            Projectile.velocity.Y += 0.2f;
+            Projectile.velocity.X *= 0.98f;
             Projectile.ai[0]++;
             if (Projectile.velocity.Length() < 1f)
             {
@@ -110,7 +113,7 @@ namespace Aequus.Projectiles.Misc
                 for (int j = minY; j < maxY; j++)
                 {
                     Vector2 pos = new Vector2(i * 16, j * 16);
-                    if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f) || !Main.tile[i, j].HasTile)
+                    if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f))
                     {
                         continue;
                     }

@@ -109,7 +109,12 @@ namespace Aequus.Tiles.Moss
             {
                 if (WorldGen.genRand.NextBool(4) && !Main.tile[i + k, j].HasTile && TileLoader.CanPlace(i + k, j, radonMossGrass))
                 {
-                    WorldGen.PlaceTile(i + k, j, radonMossGrass, mute: true);
+                    var tile = Main.tile[i + k, j];
+                    tile.ClearTile();
+                    tile.HasTile = true;
+                    tile.TileType = (ushort)radonMossGrass;
+                    tile.TileFrameY = 144; // Framing fix, so that the TileFrame method randomizes grass better
+                    WorldGen.TileFrame(i + k, j, resetFrame: true);
                     return;
                 }
             }
@@ -117,7 +122,11 @@ namespace Aequus.Tiles.Moss
             {
                 if (WorldGen.genRand.NextBool(4) && !Main.tile[i, j + l].HasTile && TileLoader.CanPlace(i, j + l, radonMossGrass))
                 {
-                    WorldGen.PlaceTile(i, j + l, ModContent.TileType<RadonMossGrass>(), mute: true);
+                    var tile = Main.tile[i, j + l];
+                    tile.ClearTile();
+                    tile.HasTile = true;
+                    tile.TileType = (ushort)radonMossGrass;
+                    WorldGen.TileFrame(i, j + l, resetFrame: true);
                     return;
                 }
             }
@@ -128,6 +137,7 @@ namespace Aequus.Tiles.Moss
             if (Main.tile[i, j].TileType == TileID.GrayBrick)
             {
                 Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+                WorldGen.SquareTileFrame(i, j, resetFrame: true);
                 if (!mute)
                 {
                     SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));

@@ -671,11 +671,13 @@ namespace Aequus.Tiles
             var bottom = Framing.GetTileSafely(i, j + 1);
             var left = Main.tile[i - 1, j];
             var right = Main.tile[i + 1, j];
+            var obj = TileObjectData.GetTileData(Main.tile[i,j].TileType, 0);
+            int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
             if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
             {
                 if (tile.TileFrameY < 54 || tile.TileFrameY > 90)
                 {
-                    tile.TileFrameY = (short)(54 + WorldGen.genRand.Next(3) * 18);
+                    tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
                 }
                 return;
             }
@@ -683,7 +685,7 @@ namespace Aequus.Tiles
             {
                 if (tile.TileFrameY < 0 || tile.TileFrameY > 36)
                 {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * 18);
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * coordinateFullHeight);
                 }
                 return;
             }
@@ -691,7 +693,7 @@ namespace Aequus.Tiles
             {
                 if (tile.TileFrameY < 108 || tile.TileFrameY > 54)
                 {
-                    tile.TileFrameY = (short)(108 + WorldGen.genRand.Next(3) * 18);
+                    tile.TileFrameY = (short)(coordinateFullHeight * 6 + WorldGen.genRand.Next(3) * coordinateFullHeight);
                 }
                 return;
             }
@@ -699,7 +701,7 @@ namespace Aequus.Tiles
             {
                 if (tile.TileFrameY < 162 || tile.TileFrameY > 198)
                 {
-                    tile.TileFrameY = (short)(162 + WorldGen.genRand.Next(3) * 18);
+                    tile.TileFrameY = (short)(coordinateFullHeight * 9 + WorldGen.genRand.Next(3) * coordinateFullHeight);
                 }
                 return;
             }

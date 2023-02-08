@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Terraria;
+using Terraria.ID;
 
 namespace Aequus.Tiles.Moss
 {
@@ -6,8 +7,9 @@ namespace Aequus.Tiles.Moss
     {
         public override void SetStaticDefaults()
         {
-            TileID.Sets.tileMossBrick[Type] = true;
             base.SetStaticDefaults();
+            TileID.Sets.tileMossBrick[Type] = true;
+            Main.tileMoss[Type] = false;
             ItemDrop = ItemID.GrayBrick;
         }
 

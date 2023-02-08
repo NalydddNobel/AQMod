@@ -60,7 +60,8 @@ namespace Aequus.Items
             //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
             //}
             //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
-            ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
+            //ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
+            RadonCavesTest(x, y);
             return true;
         }
 
