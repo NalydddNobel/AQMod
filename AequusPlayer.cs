@@ -4,6 +4,7 @@ using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
+using Aequus.Common;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
@@ -11,7 +12,6 @@ using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics;
 using Aequus.Graphics.PlayerLayers;
-using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
@@ -22,11 +22,9 @@ using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
-using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
@@ -51,7 +49,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.ModPlayers
+namespace Aequus
 {
     public partial class AequusPlayer : ModPlayer
     {
@@ -334,9 +332,6 @@ namespace Aequus.Common.ModPlayers
 
         public bool hasSkeletonKey => Player.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
 
-        public int boundBowAmmo;
-        public int boundBowAmmoTimer;
-
         public int itemHits;
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -421,7 +416,6 @@ namespace Aequus.Common.ModPlayers
         {
             _playerQuickList = new List<Player>();
             LoadHooks();
-            Load_BrokenMap();
             Load_MiningEffects();
             Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
@@ -449,33 +443,32 @@ namespace Aequus.Common.ModPlayers
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
             clone.sceneInvulnerability = sceneInvulnerability;
-            clone.boundBowAmmo = boundBowAmmo;
-            clone.boundBowAmmoTimer = boundBowAmmoTimer;
+            clientClone_BoundBow(clone);
             clone.bloodthirst = bloodthirst;
             clone.manathirst = manathirst;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            var aequus = (AequusPlayer)clientPlayer;
+            var client = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                aequus.itemSwitch <= 0 && itemSwitch > 0,
-                Math.Abs(timeSinceLastHit - aequus.timeSinceLastHit) > 60,
-                gravetenderGhost != aequus.gravetenderGhost,
+                client.itemSwitch <= 0 && itemSwitch > 0,
+                Math.Abs(timeSinceLastHit - client.timeSinceLastHit) > 60,
+                gravetenderGhost != client.gravetenderGhost,
                 false,
-                (aequus.itemCombo - itemCombo).Abs() > 20,
-                aequus.instaShieldTime != instaShieldTime,
-                !BoundedPotionIDs.IsTheSameAs(aequus.BoundedPotionIDs),
-                boundBowAmmo != aequus.boundBowAmmo || aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0);
+                (client.itemCombo - itemCombo).Abs() > 20,
+                client.instaShieldTime != instaShieldTime,
+                !BoundedPotionIDs.IsTheSameAs(client.BoundedPotionIDs),
+                ShouldSyncBoundBow(client));
 
             var bb2 = new BitsByte(
-                (aequus.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
-                aequus.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
-                aequus.itemCooldown <= 0 && itemCooldown > 0,
-                (aequus.itemUsage - itemUsage).Abs() > 20,
-                aequus.bloodthirst != bloodthirst,
-                aequus.manathirst != manathirst);
+                (client.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
+                client.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
+                client.itemCooldown <= 0 && itemCooldown > 0,
+                (client.itemUsage - itemUsage).Abs() > 20,
+                client.bloodthirst != bloodthirst,
+                client.manathirst != manathirst);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -635,6 +628,7 @@ namespace Aequus.Common.ModPlayers
 
         public override void Initialize()
         {
+            Initialize_BoundBow();
             Initialize_Vampire();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
@@ -646,8 +640,6 @@ namespace Aequus.Common.ModPlayers
             cGlowCore = -1;
             instaShieldAlpha = 0f;
             gravityTile = 0;
-            boundBowAmmo = BoundBow.MaxAmmo;
-            boundBowAmmoTimer = BoundBow.RegenerationDelay;
             CursorDye = -1;
             ghostTombstones = false;
             moroSummonerFruit = false;
@@ -945,13 +937,12 @@ namespace Aequus.Common.ModPlayers
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
-                ResetEffects_BrokenMap();
                 ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
                 cursorDye = -1;
                 cursorDyeOverride = 0;
-                
+
                 selectGhostNPC = -1;
 
                 if (sceneInvulnerability > 0)
@@ -1041,7 +1032,7 @@ namespace Aequus.Common.ModPlayers
 
         public override void PostUpdateEquips()
         {
-            PostUpdateEquips_AccessoryStackInteractions();
+            PostUpdateEquips_CrownOfBlood();
             PostUpdateEquips_Vampire();
 
             if (Player.HasBuff<TonicSpawnratesDebuff>())
@@ -1353,7 +1344,7 @@ namespace Aequus.Common.ModPlayers
                 expertBoostBoCTimer = 0;
             }
 
-            UpdateBoundBowRecharge();
+            PostUpdate_BoundBow();
 
             if (Main.myPlayer == Player.whoAmI)
             {
@@ -1404,62 +1395,6 @@ namespace Aequus.Common.ModPlayers
                         }
                     }
                 }
-            }
-        }
-
-        public void UpdateBoundBowRecharge()
-        {
-            if (boundBowAmmoTimer > 0)
-                boundBowAmmoTimer--;
-            if (boundBowAmmoTimer <= 0)
-            {
-                bool selected = Main.myPlayer == Player.whoAmI && Player.HeldItem.ModItem is BoundBow;
-                if (Main.netMode != NetmodeID.Server)
-                {
-                    float volume = 0.2f;
-                    if (selected)
-                    {
-                        volume = 0.55f;
-                        EffectsSystem.Shake.Set(4);
-                    }
-                    SoundEngine.PlaySound(Aequus.GetSound("Item/boundBowRecharge").WithVolume(volume));
-
-                    Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
-                    Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        var d = Dust.NewDustPerfect(Player.position + new Vector2(Player.width * 2f * Main.rand.NextFloat(1f) - Player.width / 2f, Player.height * Main.rand.NextFloat(0.2f, 1.2f)), ModContent.DustType<MonoSparkleDust>(),
-                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(25), Scale: Main.rand.NextFloat(0.5f, 1.25f));
-                        d.fadeIn = d.scale + 0.5f;
-                        d.color *= d.scale;
-                    }
-                    for (int i = 0; i < 3; i++)
-                    {
-                        var prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
-                        var particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)),
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                        particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
-                        ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Add(particle);
-                        if (i < 2)
-                        {
-                            prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                            particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                            particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                            particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
-                            ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Add(particle);
-                        }
-                    }
-                }
-                boundBowAmmo++;
-                boundBowAmmoTimer = BoundBow.RegenerationDelay;
-            }
-            if (boundBowAmmo >= BoundBow.MaxAmmo)
-            {
-                boundBowAmmoTimer = BoundBow.RegenerationDelay;
             }
         }
 
@@ -1532,18 +1467,12 @@ namespace Aequus.Common.ModPlayers
 
         public void UpdateSantankSentry()
         {
-            try
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
-                    {
-                        sentry.UpdateInheritance(Main.projectile[i]);
-                    }
+                    sentry.UpdateInheritance(Main.projectile[i]);
                 }
-            }
-            catch
-            {
             }
         }
 

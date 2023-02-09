@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.ModPlayers
+namespace Aequus
 {
     public partial class AequusPlayer : ModPlayer
     {

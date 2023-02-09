@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Content.WorldGeneration;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,6 +13,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
         public override void SetDefaults()
@@ -57,15 +58,8 @@ namespace Aequus.Items.Weapons.Ranged
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
-                .AddIngredient(ItemID.CobaltBar, 10)
-                .AddIngredient<DemonicEnergy>(3)
-                .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.OnyxBlaster);
-
-            CreateRecipe()
-                .AddIngredient(ItemID.Boomstick)
-                .AddIngredient(ItemID.PalladiumBar, 10)
-                .AddIngredient<DemonicEnergy>(3)
+                .AddIngredient(ItemID.JungleSpores, 12)
+                .AddIngredient(ItemID.SoulofNight, 16)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.OnyxBlaster);
         }

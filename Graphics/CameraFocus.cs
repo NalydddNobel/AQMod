@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

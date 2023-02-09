@@ -3,7 +3,7 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;

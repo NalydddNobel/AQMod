@@ -3,7 +3,7 @@ using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod;
 using Aequus.Graphics;

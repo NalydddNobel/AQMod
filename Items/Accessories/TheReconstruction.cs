@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Content;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.Friendly;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Cooldowns;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;

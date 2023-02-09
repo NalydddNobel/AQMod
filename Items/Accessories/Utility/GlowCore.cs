@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Content.WorldGeneration;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +13,7 @@ namespace Aequus.Items.Weapons.Magic
         {
             SacrificeTotal = 1;
             Item.staff[Type] = true;
+            HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
         public override void SetDefaults()
@@ -46,7 +48,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.CobaltBar, 10)
+                .AddIngredient(ItemID.StaffofRegrowth)
                 .AddIngredient(ItemID.JungleSpores, 12)
                 .AddIngredient(ItemID.SoulofLight, 16)
                 .AddTile(TileID.Anvils)

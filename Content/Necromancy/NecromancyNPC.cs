@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;

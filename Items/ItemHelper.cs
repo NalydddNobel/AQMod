@@ -9,60 +9,35 @@ namespace Aequus.Items
     public static class ItemHelper
     {
         internal static readonly string[] VanillaTooltipNames = new string[]
-        {
-                "ItemName",
-                "Favorite",
-                "FavoriteDesc",
-                "Social",
-                "SocialDesc",
-                "Damage",
-                "CritChance",
-                "Speed",
-                "Knockback",
-                "FishingPower",
-                "NeedsBait",
-                "BaitPower",
-                "Equipable",
-                "WandConsumes",
-                "Quest",
-                "Vanity",
-                "Defense",
-                "PickPower",
-                "AxePower",
-                "HammerPower",
-                "TileBoost",
-                "HealLife",
-                "HealMana",
-                "UseMana",
-                "Placeable",
-                "Ammo",
-                "Consumable",
-                "Material",
-                "Tooltip#",
-                "EtherianManaWarning",
-                "WellFedExpert",
-                "BuffTime",
-                "OneDropLogo",
-                "PrefixDamage",
-                "PrefixSpeed",
-                "PrefixCritChance",
-                "PrefixUseMana",
-                "PrefixSize",
-                "PrefixShootSpeed",
-                "PrefixKnockback",
-                "PrefixAccDefense",
-                "PrefixAccMaxMana",
-                "PrefixAccCritChance",
-                "PrefixAccDamage",
-                "PrefixAccMoveSpeed",
-                "PrefixAccMeleeSpeed",
-                "SetBonus",
-                "Expert",
-                "Master",
-                "JourneyResearch",
-                "BestiaryNotes",
-                "SpecialPrice",
-                "Price",
+        { 
+            "ItemName",
+            "Favorite", "FavoriteDesc",
+            "Social", "SocialDesc",
+            "Damage", "CritChance", "Speed", "Knockback",
+            "FishingPower", "NeedsBait", "BaitPower",
+            "Equipable",
+            "WandConsumes",
+            "Quest",
+            "Vanity",
+            "Defense",
+            "PickPower", "AxePower", "HammerPower",
+            "TileBoost",
+            "HealLife", "HealMana", "UseMana",
+            "Placeable",
+            "Ammo",
+            "Consumable",
+            "Material",
+            "Tooltip#",
+            "EtherianManaWarning",
+            "WellFedExpert", "BuffTime",
+            "OneDropLogo",
+            "PrefixDamage", "PrefixSpeed", "PrefixCritChance", "PrefixUseMana", "PrefixSize", "PrefixShootSpeed", "PrefixKnockback", 
+            "PrefixAccDefense", "PrefixAccMaxMana", "PrefixAccCritChance", "PrefixAccDamage", "PrefixAccMoveSpeed", "PrefixAccMeleeSpeed",
+            "SetBonus",
+            "Expert", "Master",
+            "JourneyResearch",
+            "BestiaryNotes",
+            "SpecialPrice", "Price",
         };
 
         private static int FindLineIndex(string name)
@@ -118,18 +93,6 @@ namespace Aequus.Items
         public static TooltipLine ItemName(this List<TooltipLine> tooltips)
         {
             return tooltips.Find("ItemName");
-        }
-
-        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key)
-        {
-            tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, TextHelper.GetTextValue(key)));
-        }
-
-        public static void PreTooltip(this List<TooltipLine> tooltips, ModItem item, string name, string key, params object[] args)
-        {
-            tooltips.Insert(GetIndex(tooltips, "Material"),
-                    new TooltipLine(item.Mod, name, TextHelper.GetTextValue(key, args)));
         }
 
         public static void RemoveKnockback(this List<TooltipLine> tooltips)

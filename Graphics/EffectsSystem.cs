@@ -1,5 +1,5 @@
 ﻿using Aequus.Biomes.Glimmer;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;

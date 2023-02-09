@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

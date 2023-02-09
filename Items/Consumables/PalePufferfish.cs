@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

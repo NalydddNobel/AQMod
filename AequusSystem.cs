@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Common.Utilities;
 using Aequus.Content.Carpentery.Paint;
 using Aequus.Items;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Projectiles;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;

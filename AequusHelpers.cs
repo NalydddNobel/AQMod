@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs;
 using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;

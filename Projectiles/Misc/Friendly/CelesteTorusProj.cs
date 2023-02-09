@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Items.Accessories;
 using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;

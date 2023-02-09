@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.CrabCrevice;

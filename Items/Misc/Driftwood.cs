@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Tiles.Misc;
 using System;
 using System.Collections.Generic;

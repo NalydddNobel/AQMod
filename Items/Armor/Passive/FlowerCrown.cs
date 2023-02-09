@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using System;

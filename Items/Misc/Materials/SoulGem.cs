@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
