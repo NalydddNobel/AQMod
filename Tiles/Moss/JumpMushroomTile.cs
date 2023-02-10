@@ -1,5 +1,4 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.Tiles;
+﻿using Aequus.Graphics.Tiles;
 using Aequus.Networking;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -52,9 +51,9 @@ namespace Aequus.Tiles.Moss
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(50, 50, 66), CreateMapEntryName());
-            HitSound = SoundID.Grass;
-            DustType = DustID.Ambient_DarkBrown;
+            AddMapEntry(new Color(148, 0, 132), CreateMapEntryName());
+            HitSound = SoundID.Dig;
+            DustType = DustID.ArgonMoss;
             if (!Main.dedServ)
             {
                 SpecialTileRenderer.UpdateTileEffects += () => UpdateDrawData();

@@ -14,6 +14,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Items.Weapons.Ranged
@@ -75,13 +76,16 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (Main.playerInventory)
+            if (Main.playerInventory || Main.gameMenu || !Main.PlayerLoaded || AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem)
+                return;
+
+            if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequus))
                 return;
 
             var center = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
             center.X -= TextureAssets.InventoryBack.Value.Width / 2f * Main.inventoryScale;
             center.Y += TextureAssets.InventoryBack.Value.Height / 2f * Main.inventoryScale;
-            string ammo = Main.LocalPlayer.Aequus().boundBowAmmo.ToString();
+            string ammo = aequus.boundBowAmmo.ToString();
 
             var color = Color.Lerp(Color.BlueViolet, Color.White, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.45f, 1f));
             var font = FontAssets.MouseText.Value;
