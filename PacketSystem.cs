@@ -3,7 +3,6 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
-using Aequus;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;
@@ -14,6 +13,7 @@ using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Carpentry;
 using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.Networking;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Magic;
@@ -43,6 +43,21 @@ namespace Aequus
         public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
         public static Point[] playerTilePosCache;
+
+        private static Dictionary<PacketType, PacketHandler> handlerByLegacyType;
+
+        public static void Register(PacketHandler handler)
+        {
+            if (handlerByLegacyType == null)
+                handlerByLegacyType = new Dictionary<PacketType, PacketHandler>();
+
+            if (handlerByLegacyType.ContainsKey(handler.LegacyPacketType))
+            {
+                throw new Exception($"Handler of {handler.LegacyPacketType} was registered twice. ({handler.Mod.Name}, {handler.Name})");
+            }
+
+            handlerByLegacyType[handler.LegacyPacketType] = handler;
+        }
 
         public override void Load()
         {
@@ -213,6 +228,7 @@ namespace Aequus
             {
                 l.Debug("Recieving Packet: " + type);
             }
+
             switch (type)
             {
                 case PacketType.SendDebuffFlatDamage:
@@ -642,6 +658,16 @@ namespace Aequus
                 default:
                     break;
             }
+
+            if (handlerByLegacyType != null && handlerByLegacyType.TryGetValue(type, out var handler))
+            {
+                handler.Receive(reader);
+            }
+        }
+
+        public static T Get<T>() where T : PacketHandler
+        {
+            return ModContent.GetInstance<T>();
         }
     }
 }

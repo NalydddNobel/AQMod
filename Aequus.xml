@@ -1053,5 +1053,10 @@
             🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
             </summary>
         </member>
+        <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">
+            <summary>
+            Provides a method to be called when recieving the <see cref="T:Aequus.Networking.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
+            </summary>
+        </member>
     </members>
 </doc>

@@ -15,7 +15,6 @@ namespace Aequus.Tiles.Moss
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
-            Main.tileLighted[Type] = true;
             Main.tileNoFail[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);

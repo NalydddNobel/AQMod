@@ -9,11 +9,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.Tiles
 {
-    public class SpecialTileRenderer : ILoadable
+    public class SpecialTileRenderer : ModSystem
     {
-        public static List<Action<bool>> AdjustTileTarget { get; private set; }
-
         public static Action PreDrawTiles;
+        public static Action UpdateTileEffects;
+        public static Action ClearTileEffects;
+
         public static Dictionary<TileRenderLayer, List<Point>> DrawPoints { get; private set; }
         public static Dictionary<TileRenderLayer, List<Point>> SolidDrawPoints { get; private set; }
         public static Dictionary<int, int> ModHangingVines { get; private set; }
@@ -21,7 +22,7 @@ namespace Aequus.Graphics.Tiles
         private static FieldInfo _addSpecialPointSpecialPositions;
         private static FieldInfo _addSpecialPointSpecialsCount;
 
-        void ILoadable.Load(Mod mod)
+        public override void Load()
         {
             if (Main.dedServ)
                 return;
@@ -39,7 +40,6 @@ namespace Aequus.Graphics.Tiles
             {
                 DrawPoints[(TileRenderLayer)i] = new List<Point>();
             }
-            AdjustTileTarget = new List<Action<bool>>();
             ModHangingVines = new Dictionary<int, int>();
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
@@ -90,14 +90,14 @@ namespace Aequus.Graphics.Tiles
             AddSolid(new Point(i, j), renderLayer);
         }
 
-        private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, Terraria.GameContent.Drawing.TileDrawing self)
+        private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, TileDrawing self)
         {
             Render(TileRenderLayer.PreDrawMasterRelics);
             orig(self);
             Render(TileRenderLayer.PostDrawMasterRelics);
         }
 
-        private static void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, Terraria.GameContent.Drawing.TileDrawing self)
+        private static void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, TileDrawing self)
         {
             Render(TileRenderLayer.PreDrawVines);
             orig(self);
@@ -156,7 +156,25 @@ namespace Aequus.Graphics.Tiles
             }
         }
 
-        void ILoadable.Unload()
+        public override void PreUpdateGores()
+        {
+            if (!Main.dedServ && UpdateTileEffects != null)
+                UpdateTileEffects();
+        }
+
+        public override void OnWorldLoad()
+        {
+            if (!Main.dedServ && ClearTileEffects != null)
+                ClearTileEffects();
+        }
+
+        public override void OnWorldUnload()
+        {
+            if (!Main.dedServ && ClearTileEffects != null)
+                ClearTileEffects();
+        }
+
+        public override void Unload()
         {
             if (SolidDrawPoints != null)
             {
@@ -179,6 +197,8 @@ namespace Aequus.Graphics.Tiles
             _addSpecialPointSpecialsCount = null;
             _addSpecialPointSpecialPositions = null;
             PreDrawTiles = null;
+            UpdateTileEffects = null;
+            ClearTileEffects = null;
         }
     }
 }
