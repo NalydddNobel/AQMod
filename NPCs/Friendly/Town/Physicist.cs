@@ -1,9 +1,9 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
-using Aequus.Content.Personalities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;

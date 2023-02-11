@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace Aequus.Common.Networking
+namespace Aequus.Networking
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public abstract class NetTypeAttribute : Attribute

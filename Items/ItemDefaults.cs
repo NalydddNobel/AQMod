@@ -23,7 +23,7 @@ namespace Aequus.Items
         public const int RarityBossMasks = ItemRarityID.Blue;
         public const int RarityDemoniteCrimtane = ItemRarityID.Blue;
         public const int RarityDungeon = ItemRarityID.Green;
-        public const int RarityQueenBee = ItemRarityID.Green;
+        public const int RarityQueenBee = ItemRarityID.Orange;
         public const int RarityJungle = ItemRarityID.Orange;
         public const int RarityMolten = ItemRarityID.Orange;
         public const int RarityPet = ItemRarityID.Orange;

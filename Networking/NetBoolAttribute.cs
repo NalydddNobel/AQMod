@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Aequus.Common.Networking
+namespace Aequus.Networking
 {
     public class NetBoolAttribute : NetTypeAttribute
     {

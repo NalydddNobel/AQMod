@@ -5,6 +5,7 @@ To-Do:
 
 Implemented:
 == Additions ==
+* Added the Wind Fan
 * Added the Argon Mushroom
 * Added the Radon Caves, a new minibiome which spawns in the Underground
 * Added the Saving Grace, a weapon found in the Underground Jungle in Hardmode

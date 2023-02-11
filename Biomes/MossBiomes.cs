@@ -34,7 +34,7 @@ namespace Aequus.Biomes
         public override void SetStaticDefaults()
         {
             MossTileID = ModContent.TileType<RadonMossTile>();
-            MossBrickTileID = 0;
+            MossBrickTileID = ModContent.TileType<RadonMossBrickTile>();
         }
     }
 }

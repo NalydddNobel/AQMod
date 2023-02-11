@@ -1,10 +1,10 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.Common.Networking;
 using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.Networking;
 using Aequus.NPCs.Boss.Crabson;
 using Aequus.NPCs.Boss.DustDevil;
 using Aequus.NPCs.Boss.OmegaStarite;
@@ -313,7 +313,7 @@ namespace Aequus
             AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
             foreach (var mossBiome in GlowingMossBiome.MossBiomes)
             {
-                mossBiome.tileCount = tileCounts[mossBiome.MossTileID];
+                mossBiome.tileCount = tileCounts[mossBiome.MossTileID] + tileCounts[mossBiome.MossBrickTileID];
             }
             TileCountsMultiplier = 1;
         }

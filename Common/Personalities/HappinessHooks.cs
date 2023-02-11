@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Personalities
+namespace Aequus.Common.Personalities
 {
-    public class HappinessManager : ILoadable
+    public class HappinessHooks : ILoadable
     {
         public void Load(Mod mod)
         {

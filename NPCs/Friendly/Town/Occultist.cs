@@ -1,9 +1,9 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ExporterQuests;
-using Aequus.Content.Personalities;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;

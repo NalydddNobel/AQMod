@@ -1,9 +1,9 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Carpentery.Bounties;
-using Aequus.Content.Personalities;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Carpentry;

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Personalities
+namespace Aequus.Common.Personalities
 {
     public interface IModifyShoppingSettings
     {
