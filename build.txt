@@ -7,4 +7,4 @@ hideCode = false
 includeSource = false
 includePBD = true
 modReferences = ShopQuotesMod
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*
