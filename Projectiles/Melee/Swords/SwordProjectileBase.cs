@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -20,7 +19,8 @@ namespace Aequus.Projectiles.Melee.Swords
 
         private bool _init;
         public int swingDirection;
-        public int hitboxOutwards;
+        public int swordReach;
+        public int swordSize;
         public int visualOutwards;
         public float rotationOffset;
         public bool forced50;
@@ -33,6 +33,8 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public int combo;
 
+        public int freezeFrame;
+
         private float armRotation;
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
@@ -44,28 +46,46 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public virtual bool SwingSwitchDir => AnimProgress > 0.4f && AnimProgress < 0.6f;
 
+        public void DrawDebug()
+        {
+            var center = Main.player[Projectile.owner].Center;
+            AequusHelpers.DrawLine(center - Main.screenPosition, center + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Green);
+            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Red);
+            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Red);
+            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
+            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
+        }
+
         public override void SetDefaults()
         {
             Projectile.tileCollide = false;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = -1;
-            Projectile.localNPCHitCooldown = 50;
+            Projectile.localNPCHitCooldown = 500;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.ignoreWater = true;
             Projectile.ownerHitCheck = true;
             amountAllowedToHit = 2;
+            swordReach = 100;
+            swordSize = 30;
         }
 
         public override bool? CanDamage()
         {
-            return (AnimProgress > 0.4f && AnimProgress < 0.6f) ? null : false;
+            return (AnimProgress > 0.4f && AnimProgress < 0.6f && freezeFrame <= 0) ? null : false;
         }
 
         public override void AI()
         {
             var player = Main.player[Projectile.owner];
 
+            if (Projectile.numUpdates == -1 && freezeFrame > 0)
+            {
+                freezeFrame--;
+                player.itemAnimation++;
+                player.itemTime++;
+            }
             if (player.itemAnimation > 1 && player.ownedProjectileCounts[Type] <= 1)
             {
                 Projectile.timeLeft = 2;
@@ -100,7 +120,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 }
                 InterpolateSword(progress, out var angleVector, out float swingProgress, out float scale, out float outer);
                 AngleVector = angleVector;
-                Projectile.position = arm + AngleVector * hitboxOutwards;
+                Projectile.position = arm + AngleVector * swordReach;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
@@ -121,6 +141,10 @@ namespace Aequus.Projectiles.Melee.Swords
         public virtual float SwingProgress(float progress)
         {
             return progress;
+        }
+        public static float GenericSwing3(float progress)
+        {
+            return progress >= 0.5f ? 0.5f + (0.5f - MathF.Pow(2f, 20f * (0.5f - (progress - 0.5f)) - 10f) / 2f) : MathF.Pow(2f, 20f * (progress) - 10f) / 2f;
         }
         public static float GenericSwing2(float progress, float pow = 2f)
         {
@@ -167,17 +191,22 @@ namespace Aequus.Projectiles.Melee.Swords
             scale = GetScale(swingProgress);
             outer = (int)GetVisualOuter(progress, swingProgress);
         }
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            var center = Main.player[Projectile.owner].Center;
+            return AequusHelpers.DeathrayHitbox(center, center + AngleVector * (swordReach * Projectile.scale * scale), targetHitbox, swordSize * Projectile.scale * scale);
+        }
 
         public void UpdateDirection(Player player)
         {
             if (angleVector.X < 0f)
             {
-                player.direction = -1;
+                //player.direction = -1;
                 Projectile.direction = -1;
             }
             else if (angleVector.X > 0f)
             {
-                player.direction = 1;
+                //player.direction = 1;
                 Projectile.direction = 1;
             }
         }
@@ -233,14 +262,21 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void SendExtraAI(BinaryWriter writer)
         {
+            writer.Write((byte)freezeFrame);
             writer.Write(swingDirection == -1);
             writer.Write(combo);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
+            freezeFrame = reader.ReadByte();
             swingDirection = reader.ReadBoolean() ? -1 : 1;
             combo = reader.ReadInt32();
+        }
+
+        public override void PostDraw(Color lightColor)
+        {
+            //DrawDebug();
         }
     }
 }

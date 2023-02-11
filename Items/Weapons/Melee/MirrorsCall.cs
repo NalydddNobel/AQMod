@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<MirrorsCallProj>(20);
+            Item.DefaultToDopeSword<MirrorsCallProj>(32);
             Item.SetWeaponValues(150, 6f, 26);
             Item.width = 20;
             Item.height = 20;

@@ -30,7 +30,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.height = 160;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            hitboxOutwards = 70;
+            swordReach = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
             amountAllowedToHit = 5;

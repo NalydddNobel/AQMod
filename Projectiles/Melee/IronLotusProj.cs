@@ -23,7 +23,7 @@ namespace Aequus.Projectiles.Melee
             Projectile.usesLocalNPCImmunity = true;
             Projectile.noEnchantmentVisuals = true;
             Projectile.ownerHitCheck = false;
-            hitboxOutwards = 132;
+            swordReach = 132;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 5;
         }

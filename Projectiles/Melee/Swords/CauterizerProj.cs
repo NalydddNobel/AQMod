@@ -19,7 +19,7 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 145;
             Projectile.height = 145;
-            hitboxOutwards = 90;
+            swordReach = 90;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -118,6 +118,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
+            freezeFrame = 4;
             CrimsonHellfire.AddBuff(target, 240);
         }
 
@@ -158,7 +159,6 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, effects, 0);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, effects, 0);
             }
-
             return false;
         }
     }

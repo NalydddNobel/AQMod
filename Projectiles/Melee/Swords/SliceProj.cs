@@ -30,7 +30,8 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 120;
             Projectile.height = 120;
-            hitboxOutwards = 45;
+            swordReach = 45;
+            swordSize = 20;
             visualOutwards = 8;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 3;
@@ -45,6 +46,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(BuffID.Frostburn2, 1000);
+            freezeFrame = 7;
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -87,6 +89,9 @@ namespace Aequus.Projectiles.Melee.Swords
                 }
             }
 
+            if (freezeFrame > 0)
+                return;
+
             if (swingTime <= 1)
             {
                 Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
@@ -112,14 +117,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            if (progress < 0.5f)
-                return base.GetOffsetVector(progress);
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.7f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.75f) - MathHelper.PiOver2 * 1.75f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
         }
 
         public override float SwingProgress(float progress)
         {
-            return GenericSwing2(progress);
+            return GenericSwing3(progress);
         }
         public override float GetScale(float progress)
         {

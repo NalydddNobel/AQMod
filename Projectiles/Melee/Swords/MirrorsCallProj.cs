@@ -35,7 +35,7 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 180;
             Projectile.height = 180;
-            hitboxOutwards = 60;
+            swordReach = 80;
             visualOutwards = 8;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 5;
@@ -49,6 +49,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
+            freezeFrame = 9;
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -93,6 +94,9 @@ namespace Aequus.Projectiles.Melee.Swords
                 }
             }
 
+            if (freezeFrame > 0)
+                return;
+
             if (swingTime <= 1)
             {
                 Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
@@ -132,14 +136,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            if (progress < 0.5f)
-                return base.GetOffsetVector(progress);
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 2f) - MathHelper.PiOver2 * 2f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
         }
 
         public override float SwingProgress(float progress)
         {
-            return GenericSwing2(progress);
+            return GenericSwing3(progress);
         }
         public override float GetScale(float progress)
         {
@@ -186,10 +188,10 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             var glowTexture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
             float trailAlpha = 1f;
-            for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.02f)
+            for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.01f)
             {
                 InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
-                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha, (handPosition - (handPosition + offsetVector * hitboxOutwards)).ToRotation() + rotationOffset, origin, scale, effects, 0);
+                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha, (handPosition - (handPosition + offsetVector * swordReach)).ToRotation() + rotationOffset, origin, scale, effects, 0);
                 trailAlpha -= 0.07f;
             }
 

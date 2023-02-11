@@ -24,7 +24,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.width = 66;
             Projectile.height = 66;
             Projectile.noEnchantmentVisuals = true;
-            hitboxOutwards = 50;
+            swordReach = 50;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 

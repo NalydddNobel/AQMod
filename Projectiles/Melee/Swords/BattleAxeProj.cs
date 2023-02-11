@@ -19,7 +19,7 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 90;
             Projectile.height = 90;
-            hitboxOutwards = 50;
+            swordReach = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -46,9 +46,15 @@ namespace Aequus.Projectiles.Melee.Swords
             }
         }
 
+        public override Vector2 GetOffsetVector(float progress)
+        {
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.75f) - MathHelper.PiOver2 * 1.75f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
+        }
+
+
         public override float SwingProgress(float progress)
         {
-            return GenericSwing2(progress);
+            return GenericSwing3(progress);
         }
 
         public override float GetScale(float progress)
@@ -79,6 +85,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
+            freezeFrame = 4;
             if (Main.rand.NextBool(5))
             {
                 if (Main.netMode != NetmodeID.SinglePlayer)
