@@ -17,10 +17,11 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetDefaults()
         {
             Item.DefaultToMagicWeapon(ModContent.ProjectileType<WindFanProj>(), 40, 12f, hasAutoReuse: true);
-            Item.SetWeaponValues(50, 10f, bonusCritChance: 21);
+            Item.SetWeaponValues(40, 10f, bonusCritChance: 21);
             Item.rare = ItemDefaults.RarityDustDevil;
             Item.value = ItemDefaults.ValueDustDevil;
             Item.channel = true;
+            Item.mana = 25;
         }
 
         public override void AddRecipes()
@@ -35,7 +36,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override bool MeleePrefix()
         {
-            return true;
+            return false;
         }
     }
 }

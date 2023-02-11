@@ -606,8 +606,8 @@ namespace Aequus.NPCs
                 {
                     npc.lifeRegen = 0;
                 }
-                npc.lifeRegen -= 10;
-                damage = Math.Max(damage, 2);
+                npc.lifeRegen -= 25;
+                damage = Math.Max(damage, 5);
             }
             bool debuff = npc.HasBuff<CorruptionHellfire>();
             applyAequusOiled |= debuff;

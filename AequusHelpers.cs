@@ -495,6 +495,11 @@ namespace Aequus
             return (myVector / amt).Floor() * amt;
         }
 
+        public static bool IsHostile(this Projectile projectile, Player player)
+        {
+            return projectile.hostile || (projectile.friendly && Main.player[projectile.owner].team != player.team);
+        }
+
         public static float GetMinionReturnSpeed(this Projectile projectile, float minSpeed = 10f, float playerSpeedThreshold = 1.25f)
         {
             return Math.Max(Math.Max(Main.player[projectile.owner].velocity.Length() * playerSpeedThreshold, minSpeed), (Main.player[projectile.owner].Center - projectile.Center).Length() / 32f * playerSpeedThreshold);
