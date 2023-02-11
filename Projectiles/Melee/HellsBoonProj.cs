@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -138,7 +139,7 @@ namespace Aequus.Projectiles.Melee
             if (Aequus.HQ)
             {
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                 var effect = SpikeFade.ShaderData;
                 effect.UseOpacity(1f / texture.Height * frameHeight + _portaloffset);
                 effect.UseColor(new Vector3(0.65f, 0.3f, 1f));
@@ -146,7 +147,7 @@ namespace Aequus.Projectiles.Melee
                 drawData.Draw(Main.spriteBatch);
                 drawData.Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             }
             else
             {

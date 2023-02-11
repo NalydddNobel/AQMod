@@ -1591,7 +1591,7 @@ namespace Aequus
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<CameraFocus>().UpdateScreen(this);
-            EffectsSystem.UpdateScreenPosition();
+            Main.screenPosition += ScreenShake.ScreenOffset * ClientConfig.Instance.ScreenshakeIntensity;
             Main.screenPosition = Main.screenPosition.Floor();
         }
 

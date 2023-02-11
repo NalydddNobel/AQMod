@@ -10,78 +10,6 @@ namespace Aequus.Graphics
 {
     public class PaintsRenderer : ILoadable
     {
-        public struct TextureVariantKey
-        {
-            public int TileType;
-            public int TileStyle;
-            public string Texture;
-            public int PaintColor;
-
-            public TextureVariantKey(string texture, int tileType, int tileStyle, int paintColor)
-            {
-                TileType = tileType;
-                TileStyle = tileStyle;
-                Texture = texture;
-                PaintColor = paintColor;
-            }
-
-            public TextureVariantKey(int i, int j, string texture, int paintColor)
-            {
-                TileType = Main.tile[i, j].TileType;
-                TileStyle = 0;
-                Texture = texture;
-                PaintColor = paintColor;
-            }
-
-            public TextureVariantKey(Point p, string texture, int paintColor) : this(p.X, p.Y, texture, paintColor)
-            {
-            }
-
-            public bool Equals(TextureVariantKey other)
-            {
-                return Texture == other.Texture && PaintColor == other.PaintColor;
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is TextureVariantKey key)
-                {
-                    return Equals(key);
-                }
-                return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return Texture.GetHashCode() + PaintColor;
-            }
-
-            public static bool operator ==(TextureVariantKey left, TextureVariantKey right)
-            {
-                return left.Equals(right);
-            }
-
-            public static bool operator !=(TextureVariantKey left, TextureVariantKey right)
-            {
-                return !left.Equals(right);
-            }
-        }
-
-        public class TextureRenderTargetHolder : TilePaintSystemV2.ARenderTargetHolder
-        {
-            public TextureVariantKey Key;
-
-            public override void Prepare()
-            {
-                PrepareTextureIfNecessary(ModContent.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
-            }
-
-            public override void PrepareShader()
-            {
-                PrepareShader(Key.PaintColor, TreePaintSystemData.GetTileSettings(Key.TileType, Key.TileStyle));
-            }
-        }
-
         public static Dictionary<TextureVariantKey, TextureRenderTargetHolder> Renderers { get; private set; }
         public static List<TilePaintSystemV2.ARenderTargetHolder> Requests { get; private set; }
 
@@ -180,6 +108,76 @@ namespace Aequus.Graphics
         public static Texture2D TryGetPaintedTexture(Point p, string texture)
         {
             return TryGetPaintedTexture(p.X, p.Y, texture);
+        }
+    }
+    public struct TextureVariantKey
+    {
+        public int TileType;
+        public int TileStyle;
+        public string Texture;
+        public int PaintColor;
+
+        public TextureVariantKey(string texture, int tileType, int tileStyle, int paintColor)
+        {
+            TileType = tileType;
+            TileStyle = tileStyle;
+            Texture = texture;
+            PaintColor = paintColor;
+        }
+
+        public TextureVariantKey(int i, int j, string texture, int paintColor)
+        {
+            TileType = Main.tile[i, j].TileType;
+            TileStyle = 0;
+            Texture = texture;
+            PaintColor = paintColor;
+        }
+
+        public TextureVariantKey(Point p, string texture, int paintColor) : this(p.X, p.Y, texture, paintColor)
+        {
+        }
+
+        public bool Equals(TextureVariantKey other)
+        {
+            return Texture == other.Texture && PaintColor == other.PaintColor;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is TextureVariantKey key)
+            {
+                return Equals(key);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Texture.GetHashCode() + PaintColor;
+        }
+
+        public static bool operator ==(TextureVariantKey left, TextureVariantKey right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(TextureVariantKey left, TextureVariantKey right)
+        {
+            return !left.Equals(right);
+        }
+    }
+    public class TextureRenderTargetHolder : TilePaintSystemV2.ARenderTargetHolder
+    {
+        public TextureVariantKey Key;
+
+        public override void Prepare()
+        {
+            PrepareTextureIfNecessary(ModContent.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
+        }
+
+        public override void PrepareShader()
+        {
+            PrepareShader(Key.PaintColor, TreePaintSystemData.GetTileSettings(Key.TileType, Key.TileStyle));
         }
     }
 }

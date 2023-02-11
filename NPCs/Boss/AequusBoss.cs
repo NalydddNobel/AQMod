@@ -1,4 +1,5 @@
 ﻿using Aequus.Graphics;
+using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
@@ -72,7 +73,7 @@ namespace Aequus.NPCs.Boss
         }
         public void Shake(float amt, float multiplier = 0.9f)
         {
-            EffectsSystem.Shake.Set(amt, multiplier);
+            ScreenShake.SetShake(amt, multiplier);
         }
     }
 }

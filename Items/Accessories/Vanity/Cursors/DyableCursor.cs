@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CursorDyes;
-using Aequus.Graphics;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content.CursorDyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ShopQuotesMod;

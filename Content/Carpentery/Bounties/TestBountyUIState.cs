@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -142,7 +142,7 @@ namespace Aequus.Content.Carpentery.Bounties
             var scissorRectangle = spriteBatch.GraphicsDevice.ScissorRectangle;
             spriteBatch.End();
             spriteBatch.GraphicsDevice.ScissorRectangle = new Rectangle(r.X + 20, r.Y, 120, r.Height);
-            Begin.UI.Begin(spriteBatch, useScissorRectangle: true);
+            SpriteBatchBegin.UI.Begin(spriteBatch, useScissorRectangle: true);
             for (int i = iconPanel / IconPanelAnimation - 1; i <= iconPanel / IconPanelAnimation + 1; i++)
             {
                 if (i < 0 || i >= bounties.Count)
@@ -152,7 +152,7 @@ namespace Aequus.Content.Carpentery.Bounties
                 spriteBatch.Draw(icon.Value, new Vector2(r.X + 20f - 120 * (iconPanel / (float)IconPanelAnimation - i), r.Y + 20f), null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
             spriteBatch.End();
-            Begin.UI.Begin(spriteBatch, useScissorRectangle: false);
+            SpriteBatchBegin.UI.Begin(spriteBatch, useScissorRectangle: false);
             spriteBatch.GraphicsDevice.ScissorRectangle = scissorRectangle;
             spriteBatch.Draw(iconSidebars.Value, new Vector2(r.X + 18f, r.Y + 18f), new Rectangle(0, 0, 20, iconSidebars.Value.Height - 10), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             spriteBatch.Draw(iconSidebars.Value, new Vector2(r.X + 18f, r.Y + 78f), new Rectangle(0, 8, 20, iconSidebars.Value.Height - 8), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

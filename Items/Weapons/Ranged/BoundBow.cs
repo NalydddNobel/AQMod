@@ -147,7 +147,7 @@ namespace Aequus
                     if (selected)
                     {
                         volume = 0.55f;
-                        EffectsSystem.Shake.Set(4);
+                        ScreenShake.SetShake(4);
                     }
                     SoundEngine.PlaySound(Aequus.GetSound("Item/boundBowRecharge").WithVolume(volume));
 

@@ -1,7 +1,9 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Boss.OmegaStarite;
+using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -184,7 +186,7 @@ namespace Aequus.Biomes.Glimmer
                     }
 
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                     try
                     {
                         var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
@@ -201,7 +203,7 @@ namespace Aequus.Biomes.Glimmer
 
                     }
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.Begin(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 }
             }
             Main.spriteBatch.Draw(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0f);

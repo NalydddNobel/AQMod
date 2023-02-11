@@ -4,6 +4,7 @@ using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.GlobalNPCs;
+using Aequus.Particles;
 using Aequus.Projectiles.Monster.DustDevilProjs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

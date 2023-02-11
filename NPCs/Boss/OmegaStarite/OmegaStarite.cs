@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
@@ -16,6 +17,7 @@ using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.OmegaStariteProjs;
 using Microsoft.Xna.Framework;
@@ -607,7 +609,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                                         SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
-                                            EffectsSystem.Shake.Set(12f);
+                                            ScreenShake.SetShake(12f);
                                         }
                                         int p = Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<OmegaStariteDeathray>(), 100, 1f, Main.myPlayer, NPC.whoAmI);
                                         if (Main.getGoodWorld)
@@ -1511,7 +1513,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                 intensity += NPC.localAI[3] / 60;
                 Lighting.GlobalBrightness -= intensity * 0.2f;
                 ScreenFlash.Flash.Set(Main.item[(int)NPC.ai[1]].Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.04f, 0.8f));
-                EffectsSystem.Shake.Set(intensity * 0.5f);
+                ScreenShake.SetShake(intensity * 0.5f);
                 ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", focus, CameraPriority.VeryImportant, 0.5f, 60);
             }
             else if (Action == ACTION_DEAD)
@@ -1532,7 +1534,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                 }
 
                 ScreenFlash.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f));
-                EffectsSystem.Shake.Set(intensity * 2.25f);
+                ScreenShake.SetShake(intensity * 2.25f);
 
                 int range = (int)intensity + 4;
                 drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
@@ -1647,7 +1649,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
             if (!NPC.IsABestiaryIconDummy)
             {
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                 if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f)
                 {
                     if (prim == null)
@@ -1662,7 +1664,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                     NPC.oldPos[0] = new Vector2(0f, 0f);
                 }
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             }
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);

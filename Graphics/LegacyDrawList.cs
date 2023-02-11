@@ -36,6 +36,6 @@ namespace Aequus.Graphics
     public class DrawList<T> : List<T>
     {
         public bool renderNow;
-        public bool Render => renderNow || EffectsSystem.ForceRenderDrawlists;
+        public bool Render => renderNow || EffectsSystem.LegacyForceRenderDrawlists;
     }
 }

@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Aequus.Items.Misc.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -96,7 +96,7 @@ namespace Aequus.Items
 
         public static void SetGlowMask(this Item item)
         {
-            item.glowMask = AequusGlowMasks.GetID(item.type);
+            item.glowMask = GlowMasks.GetID(item.type);
         }
 
         public static void DefaultToCursorDye(this Item item)

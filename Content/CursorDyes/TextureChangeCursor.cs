@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -54,7 +54,7 @@ namespace Aequus.Content.CursorDyes
             else
             {
                 Main.spriteBatch.End();
-                Begin.UI.Begin(Main.spriteBatch, Begin.Shader);
+                SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Shader);
                 var d = new DrawData(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY) + offset, null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0)
                 {
                     color = Main.MouseBorderColor.UseA(255)
@@ -69,7 +69,7 @@ namespace Aequus.Content.CursorDyes
                 }
 
                 Main.spriteBatch.End();
-                Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
+                SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
             }
 
             Main.spriteBatch.Draw(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);

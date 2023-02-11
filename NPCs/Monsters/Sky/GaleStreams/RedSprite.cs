@@ -1,6 +1,8 @@
 ﻿using Aequus;
 using Aequus.Biomes;
+using Aequus.Common;
 using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;
@@ -8,6 +10,7 @@ using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.RedSpriteProjs;
 using Microsoft.Xna.Framework;
@@ -411,13 +414,13 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 //    (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                 //{
                                 //    ScreenFlash.Flash.Set(NPC.Center, 0.75f);
-                                //    EffectsSystem.Shake.Set(8f);
+                                //    ScreenShake.SetShake(8f);
                                 //}
                                 if (timer == 0)
                                 {
                                     if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
                                     {
-                                        EffectsSystem.Shake.Set(12f);
+                                        ScreenShake.SetShake(12f);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundEngine.PlaySound(Aequus.GetSounds("RedSprite/thunderClap", 2), NPC.Center);
@@ -497,7 +500,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 {
                                     bool reduceFX = AequusWorld.downedRedSprite || NPC.CountNPCS(Type) > 1;
                                     ScreenFlash.Flash.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
-                                    EffectsSystem.Shake.Set(reduceFX ? 18f : 20f);
+                                    ScreenShake.SetShake(reduceFX ? 18f : 20f);
                                 }
                             }
                             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -1124,7 +1127,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
 
             Main.spriteBatch.End();
-            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
 
             if (_redSpriteLightningCoords == null)
             {
@@ -1150,7 +1153,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
 
             Main.spriteBatch.End();
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
         }
         public void GenerateLightning()
         {
@@ -1243,7 +1246,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
                 else
                 {
-                    Begin.GeneralEntities.BeginShader(spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(spriteBatch);
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);

@@ -12,27 +12,6 @@ namespace Aequus.Graphics
 {
     public class ScreenFlash : ModSceneEffect
     {
-        public class FlashData
-        {
-            public Vector2 FlashLocation;
-            public float Intensity;
-            public float Multiplier;
-
-            public void Set(Vector2 location, float brightness, float multiplier = 0.9f)
-            {
-                FlashLocation = location;
-                Intensity = brightness;
-                Multiplier = multiplier;
-            }
-
-            public void Clear()
-            {
-                FlashLocation = default(Vector2);
-                Intensity = 0f;
-                Multiplier = 0f;
-            }
-        }
-
         public const string FlashFilterName = "Aequus:Flash";
 
         public static Asset<Effect> FlashShader { get; private set; }
@@ -40,7 +19,7 @@ namespace Aequus.Graphics
 
         public static Filter FlashFilter { get => Filters.Scene[FlashFilterName]; set => Filters.Scene[FlashFilterName] = value; }
 
-        public static FlashData Flash { get; private set; }
+        public static ScreenFlashData Flash { get; private set; }
 
         public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh;
 
@@ -53,7 +32,7 @@ namespace Aequus.Graphics
         {
             LoadFlashShader();
             FlashFilter = new Filter(new ScreenShaderData(new Ref<Effect>(FlashShader.Value), "FlashCoordinatePass"), EffectPriority.VeryHigh);
-            Flash = new FlashData();
+            Flash = new ScreenFlashData();
         }
         private void LoadFlashShader()
         {
@@ -118,6 +97,26 @@ namespace Aequus.Graphics
                     Filters.Scene.Deactivate(FlashFilterName, null);
                 }
             }
+        }
+    }
+    public class ScreenFlashData
+    {
+        public Vector2 FlashLocation;
+        public float Intensity;
+        public float Multiplier;
+
+        public void Set(Vector2 location, float brightness, float multiplier = 0.9f)
+        {
+            FlashLocation = location;
+            Intensity = brightness;
+            Multiplier = multiplier;
+        }
+
+        public void Clear()
+        {
+            FlashLocation = default(Vector2);
+            Intensity = 0f;
+            Multiplier = 0f;
         }
     }
 }

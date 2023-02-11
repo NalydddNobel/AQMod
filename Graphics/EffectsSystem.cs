@@ -1,6 +1,5 @@
-﻿using Aequus;
-using Aequus.Biomes.Glimmer;
-using Aequus.Common.Preferences;
+﻿using Aequus.Biomes.Glimmer;
+using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
@@ -8,9 +7,11 @@ using Aequus.Graphics.RenderTargets;
 using Aequus.NPCs.Boss.DustDevil;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
+using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -25,62 +26,18 @@ namespace Aequus.Graphics
 {
     public class EffectsSystem : ModSystem
     {
-        public class ScreenShake
-        {
-            public float Intensity;
-            public float MultiplyPerTick;
-
-            private Vector2 _shake;
-
-            public void Update()
-            {
-                if (Intensity > 0f)
-                {
-                    _shake = (new Vector2(Main.rand.NextFloat(-Intensity, Intensity), Main.rand.NextFloat(-Intensity, Intensity)) * 0.5f).Floor();
-                    Intensity *= MultiplyPerTick;
-                }
-                else
-                {
-                    Clear();
-                }
-            }
-
-            public Vector2 GetScreenOffset()
-            {
-                return _shake;
-            }
-
-            public void Set(float intensity, float multiplier = 0.9f)
-            {
-                Intensity = intensity;
-                MultiplyPerTick = multiplier;
-            }
-            public void Clear()
-            {
-                Intensity = 0f;
-                MultiplyPerTick = 0.9f;
-                _shake = new Vector2();
-            }
-        }
-
         public static StaticMiscShaderInfo VerticalGradient { get; private set; }
 
+        [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
         public static CachedRandom EffectRand { get; private set; }
-
-        /// <summary>
-        /// Use this instead of <see cref="Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-        /// </summary>
-        public static ParticleRenderer ParticlesBehindPlayers { get; private set; }
 
         public static LegacyDrawList ProjsBehindProjs { get; private set; }
         public static LegacyDrawList ProjsBehindTiles { get; private set; }
 
         public static DrawList<NPC> NPCsBehindAllNPCs { get; private set; }
 
-        public static ScreenShake Shake { get; private set; }
-
         public static List<RequestableRenderTarget> Renderers { get; internal set; }
-        public static bool ForceRenderDrawlists;
+        public static bool LegacyForceRenderDrawlists { get; set; }
 
         public override void Load()
         {
@@ -92,7 +49,6 @@ namespace Aequus.Graphics
             NPCsBehindAllNPCs = new DrawList<NPC>();
             ProjsBehindProjs = new LegacyDrawList();
             ProjsBehindTiles = new LegacyDrawList();
-            Shake = new ScreenShake();
             EffectRand = new CachedRandom("Split".GetHashCode(), capacity: 256 * 4);
             if (Renderers == null)
                 Renderers = new List<RequestableRenderTarget>();
@@ -110,7 +66,6 @@ namespace Aequus.Graphics
         public override void Unload()
         {
             VerticalGradient = null;
-            Shake = null;
             NPCsBehindAllNPCs?.Clear();
             NPCsBehindAllNPCs = null;
             ProjsBehindProjs = null;
@@ -123,7 +78,6 @@ namespace Aequus.Graphics
         {
             if (Main.dedServ)
                 return;
-            Shake.Intensity = 0f;
             ProjsBehindProjs.Clear();
             ProjsBehindTiles.Clear();
             NPCsBehindAllNPCs.Clear();
@@ -146,15 +100,8 @@ namespace Aequus.Graphics
             if (Main.netMode != NetmodeID.Server)
             {
                 SnowgraveCorpse.ResetCounts();
-
-                Shake.Update();
                 GamestarRenderer.Particles.Update();
             }
-        }
-
-        internal static void UpdateScreenPosition()
-        {
-            Main.screenPosition += Shake.GetScreenOffset() * ClientConfig.Instance.ScreenshakeIntensity;
         }
 
         private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
@@ -174,7 +121,7 @@ namespace Aequus.Graphics
 
         private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
         {
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
 
@@ -192,7 +139,7 @@ namespace Aequus.Graphics
             //{
             //    p.PostDrawAllPlayers(self);
             //}
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }
@@ -218,7 +165,7 @@ namespace Aequus.Graphics
                     Filters.Scene.Deactivate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 ParticleSystem.GetLayer(ParticleLayer.AboveDust).Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
             }

@@ -1,4 +1,5 @@
-﻿using Aequus.Particles;
+﻿using Aequus.Common;
+using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -79,7 +80,7 @@ namespace Aequus.Graphics.RenderTargets
             }
             if (DrawInfoCache.Count > 0)
             {
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
 
                 var texture = ParticleTextures.fogParticle.Texture.Value;
                 var origin = ParticleTextures.fogParticle.Origin;

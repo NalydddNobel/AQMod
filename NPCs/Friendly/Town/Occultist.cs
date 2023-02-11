@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
@@ -833,7 +834,7 @@ namespace Aequus.NPCs.Friendly.Town
         protected override void SetDefaults()
         {
             var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
-            SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
+            SetTexture(new SpriteInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
             t = Main.rand.Next(100);
             opacity = 0f;
             scale = Scale;

@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Graphics;
 using Aequus.Graphics.RenderTargets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -52,7 +53,7 @@ namespace Aequus.Content.DronePylons
                     bool cleared = false;
                     foreach (var pair in HealPairs)
                     {
-                        Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                        SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                         var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                         s.Apply(null);
 
@@ -108,7 +109,7 @@ namespace Aequus.Content.DronePylons
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
             spriteBatch.Draw(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), CombatText.HealLife);
             spriteBatch.End();
-            Begin.GeneralEntities.Begin(spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(spriteBatch);
             _wasPrepared = false;
         }
     }

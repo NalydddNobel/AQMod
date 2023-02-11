@@ -2,9 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Aequus.Graphics
+namespace Aequus.Common
 {
-    internal static class Begin
+    internal static class SpriteBatchBegin
     {
         public static SpriteSortMode Regular => SpriteSortMode.Deferred;
         public static SpriteSortMode Shader => SpriteSortMode.Immediate;

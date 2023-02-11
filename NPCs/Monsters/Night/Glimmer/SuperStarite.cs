@@ -4,6 +4,7 @@ using Aequus.Graphics;
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.Friendly.Critter;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;

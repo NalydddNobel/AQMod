@@ -6,7 +6,6 @@ using Aequus.Common.ItemDrops;
 using Aequus;
 using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod;
-using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
@@ -232,7 +231,7 @@ namespace Aequus.Items
         {
             if (item.type >= Main.maxItemTypes)
             {
-                short id = AequusGlowMasks.GetID(item.type);
+                short id = GlowMasks.GetID(item.type);
                 if (id > 0)
                 {
                     item.glowMask = id;

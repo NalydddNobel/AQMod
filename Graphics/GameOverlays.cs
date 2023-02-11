@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Common;
+using Aequus.Graphics.RenderTargets;
 using Aequus.Graphics.Tiles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +20,7 @@ namespace Aequus.Graphics
             if (layer == RenderLayers.ForegroundWater)
             {
                 if (beginSpriteBatch)
-                    Begin.GeneralEntities.Begin(spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(spriteBatch);
 
                 SpecialTileRenderer.Render(TileRenderLayer.PostDrawLiquids);
                 ParticleSystem.GetLayer(ParticleLayer.AboveLiquid).Draw(spriteBatch);
@@ -27,7 +28,7 @@ namespace Aequus.Graphics
                 {
                     spriteBatch.End();
                     RadonMossFogRenderer.Instance.DrawOntoScreen(spriteBatch);
-                    Begin.GeneralEntities.Begin(spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(spriteBatch);
                 }
 
                 if (beginSpriteBatch)

@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                 if ((int)Projectile.localAI[0] == 0)
                 {
                     ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.5f);
-                    EffectsSystem.Shake.Set(12f, 0.9f);
+                    ScreenShake.SetShake(12f, 0.9f);
                     for (int i = 0; i < 20; i++)
                     {
                         var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),
@@ -64,7 +64,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                 else if ((int)Projectile.localAI[0] == 1)
                 {
                     ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.75f);
-                    EffectsSystem.Shake.Set(32f, 0.8f);
+                    ScreenShake.SetShake(32f, 0.8f);
                     for (int i = 0; i < 50; i++)
                     {
                         var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),

@@ -1,5 +1,4 @@
-﻿using Aequus.Particles;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Particles
 {
     public class SnowgraveCorpse : BaseParticle<SnowgraveCorpse>
     {

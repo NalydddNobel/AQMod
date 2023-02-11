@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Common.Utilities
 {
     public class SpriteBatchCache : ILoadable
     {

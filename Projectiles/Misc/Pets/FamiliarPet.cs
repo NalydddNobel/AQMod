@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;

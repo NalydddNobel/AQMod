@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -33,7 +33,7 @@ namespace Aequus.Particles
         {
         }
 
-        protected void SetTexture(TextureInfo textureInfo, int frames = 3)
+        protected void SetTexture(SpriteInfo textureInfo, int frames = 3)
         {
             if (textureInfo == null)
                 return;

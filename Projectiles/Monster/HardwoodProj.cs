@@ -64,7 +64,7 @@ namespace Aequus.Projectiles.Monster
                         float distance = Projectile.Distance(Main.LocalPlayer.Center);
                         if (distance < 1000f)
                         {
-                            EffectsSystem.Shake.Set(12f * (1f - distance / 1000f), 0.9f);
+                            ScreenShake.SetShake(12f * (1f - distance / 1000f), 0.9f);
                         }
                     }
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 0.001f;

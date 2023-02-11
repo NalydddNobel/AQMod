@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -45,7 +45,7 @@ namespace Aequus.Content.Carpentery.Photobook
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             spriteBatch.End();
-            Begin.UI.Begin(spriteBatch);
+            SpriteBatchBegin.UI.Begin(spriteBatch);
             spriteBatch.Draw(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}VignetteSmall").Value,
                 new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), Color.White * vignette);
 

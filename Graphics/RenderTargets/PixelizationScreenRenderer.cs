@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,7 @@ namespace Aequus.Graphics.RenderTargets
         {
             foreach (var renderList in RenderQueue)
             {
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
 
                 foreach (var renderMethod in renderList.Value)
                 {

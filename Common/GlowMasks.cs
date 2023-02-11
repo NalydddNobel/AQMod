@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus;
 using Aequus.Items;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,9 +9,9 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Graphics
+namespace Aequus.Common
 {
-    public class AequusGlowMasks : IPostSetupContent
+    public class GlowMasks : IPostSetupContent
     {
         private static Dictionary<string, short> texturePathToGlowMaskID;
         private static Dictionary<int, short> itemIDToGlowMask;
@@ -110,7 +110,7 @@ namespace Aequus.Graphics
                     else
                     {
                         string name = tex.Name;
-                        obj = (name != null) ? new bool?(!name.StartsWith("Aequus/")) : null;
+                        obj = name != null ? new bool?(!name.StartsWith("Aequus/")) : null;
                     }
                     return obj ?? true;
                 }).ToArray();

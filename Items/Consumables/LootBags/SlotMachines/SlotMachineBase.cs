@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -144,7 +144,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)x, (int)y - 20, back.Width, backHeight), new Color(100, 100, 151, 255) * 2f * 0.485f);
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
+            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
             Main.graphics.GraphicsDevice.ScissorRectangle = new Rectangle((int)(x * Main.UIScale), (int)((y - 16) * Main.UIScale), (int)(back.Width * Main.UIScale), (int)((back.Height + 32) * Main.UIScale));
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = true;
 
@@ -193,7 +193,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             }
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
+            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = false;
 
             var arrowTexture = TextureAssets.LockOnCursor.Value;

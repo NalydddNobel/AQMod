@@ -308,7 +308,7 @@ namespace Aequus.Items
                 float crackScale = scale / 3f;
                 if ((int)t == 90)
                 {
-                    EffectsSystem.Shake.Set(20f, 0.93f);
+                    ScreenShake.SetShake(20f, 0.93f);
                     var clrs = crack.Get1DColorArr();
                     for (int i = 0; i < clrs.Length; i++)
                     {

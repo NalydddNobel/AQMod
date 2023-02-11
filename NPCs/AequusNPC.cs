@@ -4,7 +4,6 @@ using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
