@@ -878,32 +878,9 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="P:Aequus.Graphics.EffectsSystem.ParticlesBehindPlayers">
-            <summary>
-            Use this instead of <see cref="F:Terraria.Main.ParticleSystem_World_BehindPlayers"/>. Due to it not refreshing old modded particles when you build+reload
-            </summary>
-        </member>
         <member name="T:Aequus.Graphics.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.OnFreezeNPC">
-            <summary>
-            Parameter 1: {NPC} - The NPC which is being sudo cloned
-            <para>Parameter 2: {NPC} - The clone result</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomDraw">
-            <summary>
-            Parameter 1: {NPC} - The NPC which is being sudo cloned
-            <para>Parameter 2: {NPC} - The NPC</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.SnowgraveCorpse.CustomUpdate">
-            <summary>
-            Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
-            <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
@@ -1002,6 +979,24 @@
         <member name="F:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters.DungeonTemple">
             <summary>
             Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Particles.SnowgraveCorpse.OnFreezeNPC">
+            <summary>
+            Parameter 1: {NPC} - The NPC which is being sudo cloned
+            <para>Parameter 2: {NPC} - The clone result</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Particles.SnowgraveCorpse.CustomDraw">
+            <summary>
+            Parameter 1: {NPC} - The NPC which is being sudo cloned
+            <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Particles.SnowgraveCorpse.CustomUpdate">
+            <summary>
+            Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
+            <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">

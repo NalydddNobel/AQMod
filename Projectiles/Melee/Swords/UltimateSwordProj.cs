@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - (MathHelper.PiOver2 * 1.5f)) * -swingDirection * 0.95f);
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - (MathHelper.PiOver2 * 1.5f)) * -swingDirection * 1.1f);
         }
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)

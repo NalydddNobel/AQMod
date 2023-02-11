@@ -1,6 +1,7 @@
 To-Do:
 * Granite and Marble biomes can no longer spawn in the Jungle
 * Make Radon Moss collectable with a Paint Scraper
+* Fix Jumpshroom placement preview looking completely wrong
 
 Implemented:
 == Additions ==

@@ -124,7 +124,8 @@ namespace Aequus.Projectiles.Melee.Swords
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
-                UpdateSwing(progress, swingProgress);
+                if (freezeFrame <= 0)
+                    UpdateSwing(progress, swingProgress);
                 if (Main.netMode != NetmodeID.Server)
                 {
                     SetArmRotation(player, progress, swingProgress);
@@ -225,11 +226,22 @@ namespace Aequus.Projectiles.Melee.Swords
         protected virtual void SetArmRotation(Player player, float progress, float swingProgress)
         {
             var diff = Main.player[Projectile.owner].MountedCenter - Projectile.Center;
-            if (Math.Sign(diff.X) == -player.direction || progress < 0.1f)
+            if (Math.Sign(diff.X) == -player.direction)
             {
                 var v = diff;
                 v.X = Math.Abs(diff.X);
                 armRotation = v.ToRotation();
+            }
+            else if (progress < 0.1f)
+            {
+                if (swingDirection * (progress >= 0.5f ? -1 : 1) * -player.direction == -1)
+                {
+                    armRotation = -1.11f;
+                }
+                else
+                {
+                    armRotation = 1.11f;
+                }
             }
 
             if (armRotation > 1.1f)
